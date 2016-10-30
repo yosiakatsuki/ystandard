@@ -1,0 +1,47 @@
+//--------------------------------------
+//
+//	基本部分
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+* {
+	box-sizing: border-box;
+}
+
+html {
+	max-width: 100%;
+
+	font-size: $ys-font-size;
+	font-family: $ys-font-family;
+	line-height: $ys-line-height;
+	color: $ys-font-color;
+	letter-spacing: $ys-letter-spacing;
+
+}
+
+body {
+	background-color: $ys-body-bg-color;
+}
+
+.clearfix {
+	@include clearfix;
+}
+
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+};

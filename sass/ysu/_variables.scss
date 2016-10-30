@@ -6,7 +6,7 @@
 
 
 // ---- ブレークポイント ----
-$breakpoints-setting: (
+$ys-breakpoints-setting: (
 		tb : 600px,
 		pc : 960px,
 ) !default;
@@ -15,20 +15,21 @@ $breakpoints-setting: (
 // ---- ページ全体にかかる設定 ----
 
 // *色
-$body-bg-color: #fff !default;	//背景
-$gray-bg-color: #fefefe !default;
-$gray-font-color: #595857 !default;
-$gray-border-color: #ccc !default;
+$ys-body-bg-color     : #fff !default;	//背景
+$ys-gray-bg-color     : #fefefe !default;
+$ys-gray-border-color : #ccc !default;
 
 
 // *フォント
-$body-color   : #2c3e50 !default;
-$font-size    : 15px !default;
-$line-height  : 1.5 !default;
-$font-family  : Avenir,"Helvetica neue",Helvetica,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
+$ys-font-color        : #2c3e50 !default;
+$ys-gray-font-color   : #595857 !default;
+$ys-font-size         : 16px !default;
+$ys-line-height       : 1.5 !default;
+$ys-font-family       : Avenir,"Helvetica neue",Helvetica,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
+$ys-letter-spacing    : 0.1em !default;
 
 // *リンク関連
-$link-color-base   : #0068b7 !default;
-$link-hover-lighten: 10% !default;
-$link-color        : $link-color-base !default;
-$link-color-hover  :lighten($link-color-base,$link-hover-lighten) !default;
+$ys-link-color-base   : #0068b7 !default;
+$ys-link-hover-lighten: 10% !default;
+$ys-link-color        : $ys-link-color-base !default;
+$ys-link-color-hover  :lighten($ys-link-color-base,$ys-link-hover-lighten) !default;

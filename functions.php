@@ -37,7 +37,7 @@ require_once TEMPLATEPATH . '/inc/pagenation.php';
 // パンくずリスト
 require_once TEMPLATEPATH . '/inc/breadcrumb.php';
 // html,headタグ部分
-require_once TEMPLATEPATH . '/inc/htmlhead.php';
+require_once TEMPLATEPATH . '/inc/html_head.php';
 // 管理画面
 require_once TEMPLATEPATH . '/inc/admin.php';
 

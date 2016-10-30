@@ -8,7 +8,7 @@
 //--------------------------------------
 //メディアクエリ作成
 //--------------------------------------
-@mixin media-breakpoint($name,$breakpoints:$breakpoints-setting) {
+@mixin media-breakpoint($name,$breakpoints:$ys-breakpoints-setting) {
 	$breakpoint: map-get($breakpoints, $name);
 	@if $breakpoint {
 		@media screen and (min-width: $breakpoint) {
@@ -16,6 +16,26 @@
 		}
 	} @else {
 		@warn "`#{$name}` is not found. "
-        + "Please make sure it is defined in `$breakpoints-setting` map.";
+				+ "Please make sure it is defined in `$breakpoints-setting` map.";
+	}
+}
+
+
+
+
+//--------------------------------------
+//クリアフィックス
+//--------------------------------------
+@mixin clearfix {
+	&:before,
+	&:after {
+		content:"";
+		display:table
+	}
+	&:after {
+		clear:both
+	}
+	& { 
+		zoom:1
 	}
 }

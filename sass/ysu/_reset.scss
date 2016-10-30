@@ -25,13 +25,14 @@ time, mark, audio, video {
 	vertical-align: baseline;
   box-sizing: border-box;
   -webkit-appearance: none;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
 }
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-  line-height: 1;
   -webkit-text-size-adjust: 100%;
   word-break:break-word;
   word-wrap:break-word;

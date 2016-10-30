@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -19,14 +20,15 @@ time, mark, audio, video {
   font-weight: normal;
   vertical-align: baseline;
   box-sizing: border-box;
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0; }
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
 
 body {
-  line-height: 1;
   -webkit-text-size-adjust: 100%;
   word-break: break-word;
   word-wrap: break-word; }
@@ -51,3 +53,38 @@ a {
 
 a:hover {
   cursor: pointer; }
+
+* {
+  box-sizing: border-box; }
+
+html {
+  max-width: 100%;
+  font-size: 16px;
+  font-family: Avenir, "Helvetica neue", Helvetica, "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  line-height: 1.5;
+  color: #2c3e50;
+  letter-spacing: 0.1em; }
+
+body {
+  background-color: #fff; }
+
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table; }
+
+.clearfix:after {
+  clear: both; }
+
+.clearfix {
+  zoom: 1; }
+
+.wrap {
+  width: 100%;
+  margin-right: 1rem;
+  margin-left: 1rem; }
+
+@media screen and (min-width: 960px) {
+  .wrap {
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto; } }
