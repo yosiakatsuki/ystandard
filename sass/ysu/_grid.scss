@@ -10,8 +10,8 @@
 //--------------------------------------
 .wrap {
 	width: 100%;
-	margin-right: 1rem;
-	margin-left: 1rem;
+	margin-right: $ys-gutter;
+	margin-left: $ys-gutter;
 }
 
 
@@ -27,7 +27,7 @@
 //--------------------------------------
 @include media-breakpoint(pc) {
 	.wrap {
-		max-width: 1200px;
+		max-width: $ys-wrap-width;
 		margin-right: auto;
 		margin-left: auto;
 	}

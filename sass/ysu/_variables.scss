@@ -13,6 +13,9 @@ $ys-breakpoints-setting: (
 
 
 // ---- ページ全体にかかる設定 ----
+// コンテンツ幅
+$ys-wrap-width        :1200px;
+$ys-gutter            :1rem;
 
 // *色
 $ys-body-bg-color     : #fff !default;	//背景
