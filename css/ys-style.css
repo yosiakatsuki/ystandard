@@ -85,8 +85,8 @@ a {
 
 .wrap {
   width: 100%;
-  margin-right: 1rem;
-  margin-left: 1rem; }
+  padding-right: 1rem;
+  padding-left: 1rem; }
 
 @media screen and (min-width: 960px) {
   .wrap {
@@ -115,7 +115,7 @@ a {
   .site-header-menu {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 1rem;
     height: 100%; }
   .main-navigation {
     display: table;
