@@ -31,6 +31,13 @@ body {
 	@include clearfix;
 }
 
+a {
+	color: $ys-link-color;
+
+	&:hover {
+		color: $ys-link-color-hover;
+	}
+}
 
 //--------------------------------------
 // タブレット

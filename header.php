@@ -11,7 +11,7 @@
 		<header id="masthead" class="site-header" role="banner">
 			<div class="site-header-main">
 
-				<div class="wrap">
+				<div class="site-header-wrap wrap clearfix">
 					<div class="site-branding">
 
 						<?php

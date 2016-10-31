@@ -16,7 +16,7 @@
 				<?php endif; ?>
 
 				<div class="site-info">
-					<span class="site-title">Copyright &copy; <?php echo date_i18n('Y') ?> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>All Rights Reserved.</span>
+					<span class="copy">Copyright &copy; <?php echo date_i18n('Y') ?> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>All Rights Reserved.</span>
 				</div><!-- .site-info -->
 			</div><!-- .wrap -->
 		</footer><!-- .site-footer -->

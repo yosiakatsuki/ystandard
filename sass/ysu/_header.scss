@@ -1,0 +1,116 @@
+//--------------------------------------
+//
+//	基本部分
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+
+.site-header-main {
+	padding: 0.5rem 0;
+	background-color: $ys-gray-bg-color;
+}
+
+.site-header-wrap {
+	position: relative;
+}
+
+.site-title {
+	font-size: 2rem;
+	a {
+		color: $ys-font-color;
+	}
+}
+
+.site-description {
+	font-size: .8rem;
+}
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+	.site-header-menu-toggle {
+		display: none;
+	}
+
+	// ---- ナビゲーション ----
+	.site-header-menu {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+	}
+
+	.main-navigation {
+		display: table;
+		height: 100%;
+	}
+
+	.menu-global-container {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.gloval-menu {
+		font-size: 0;
+
+		li {
+			font-size: .8rem;
+		}
+
+		&>li {
+			position: relative;
+			display: inline-block;
+			margin-right: 1rem;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			a {
+				padding: .5rem 0;
+				color: $ys-gray-font-color;
+				border-bottom: 1px solid transparent;
+				transition: border 0.3s;
+			}
+
+			&>ul {
+				margin: 0.5rem 0 0;
+				position: absolute;
+				left: 0;
+				visibility: hidden;
+				opacity: 0;
+				transition: opacity 0.3s;
+			}
+
+			&:hover {
+
+				a {
+					border-bottom: 1px solid $ys-gray-font-color;
+				}
+				&.menu-item-has-children a {
+					border-bottom: 1px solid transparent;
+				}
+				&>ul {
+					visibility: visible;
+					opacity: 1;
+				}
+			}//&:hover
+
+		}//&>li
+
+
+	}//.gloval-menu
+};

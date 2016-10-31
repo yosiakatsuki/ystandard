@@ -78,6 +78,11 @@ body {
 .clearfix {
   zoom: 1; }
 
+a {
+  color: #0068b7; }
+  a:hover {
+    color: #0085ea; }
+
 .wrap {
   width: 100%;
   margin-right: 1rem;
@@ -88,3 +93,64 @@ body {
     max-width: 1200px;
     margin-right: auto;
     margin-left: auto; } }
+
+.site-header-main {
+  padding: 0.5rem 0;
+  background-color: #fafafa; }
+
+.site-header-wrap {
+  position: relative; }
+
+.site-title {
+  font-size: 2rem; }
+  .site-title a {
+    color: #2c3e50; }
+
+.site-description {
+  font-size: .8rem; }
+
+@media screen and (min-width: 960px) {
+  .site-header-menu-toggle {
+    display: none; }
+  .site-header-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%; }
+  .main-navigation {
+    display: table;
+    height: 100%; }
+  .menu-global-container {
+    display: table-cell;
+    vertical-align: middle; }
+  .gloval-menu {
+    font-size: 0; }
+    .gloval-menu li {
+      font-size: .8rem; }
+    .gloval-menu > li {
+      position: relative;
+      display: inline-block;
+      margin-right: 1rem; }
+      .gloval-menu > li:last-child {
+        margin-right: 0; }
+      .gloval-menu > li a {
+        padding: .5rem 0;
+        color: #888;
+        border-bottom: 1px solid transparent;
+        -webkit-transition: border 0.3s;
+        transition: border 0.3s; }
+      .gloval-menu > li > ul {
+        margin: 0.5rem 0 0;
+        position: absolute;
+        left: 0;
+        visibility: hidden;
+        opacity: 0;
+        -webkit-transition: opacity 0.3s;
+        transition: opacity 0.3s; }
+      .gloval-menu > li:hover a {
+        border-bottom: 1px solid #888; }
+      .gloval-menu > li:hover.menu-item-has-children a {
+        border-bottom: 1px solid transparent; }
+      .gloval-menu > li:hover > ul {
+        visibility: visible;
+        opacity: 1; } }
