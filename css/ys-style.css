@@ -88,22 +88,29 @@ a {
   padding-right: 1rem;
   padding-left: 1rem; }
 
+.site-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+
 @media screen and (min-width: 960px) {
   .wrap {
     max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
     box-sizing: content-box; }
-  .no-sidebar .content-area {
+  .no-sidebar .content-area,
+  .no-sidebar .breadcrumb {
     max-width: 1000px;
     margin-right: auto;
     margin-left: auto; }
   .has-sidebar .content-area {
     max-width: calc(100% - 332px);
-    padding-right: 1rem;
-    padding-left: 1rem;
     float: left;
     overflow: hidden; }
+  .has-sidebar .content-area,
+  .has-sidebar .breadcrumb {
+    padding-right: 1rem;
+    padding-left: 1rem; }
   .has-sidebar .sidebar {
     width: 332px;
     padding-right: 1rem;
