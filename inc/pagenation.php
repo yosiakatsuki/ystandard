@@ -20,6 +20,11 @@ if (!function_exists( 'ys_pagenation')) {
 		$total	 = isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1;
 		$current = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' )	: 1;
 
+		// 全部で１ページなら出力しない
+		if($total == 1){
+			return;
+		}
+
 		//--------------------------------------------------------------------------
 
 		//ページャーの開始
