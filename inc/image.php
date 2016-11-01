@@ -14,7 +14,7 @@
 if (!function_exists( 'ys_image_get_post_thumbnail')) {
 	function ys_image_get_post_thumbnail($postid=0,$thumbname='full') {
 
-		if($postid=0){
+		if($postid == 0){
 			$postid = get_the_ID();
 		}
 
@@ -25,7 +25,7 @@ if (!function_exists( 'ys_image_get_post_thumbnail')) {
 			// 画像オブジェクト取得
 			$image = wp_get_attachment_image_src( $post_thumbnail_id, $thumbname );
 			// 取得できたらreturn
-			if(!$image){
+			if($image !== false){
 				return $image;
 			}
 		}
@@ -45,7 +45,7 @@ if (!function_exists( 'ys_image_get_post_thumbnail')) {
 if (!function_exists( 'ys_image_get_post_thumbnail_url')) {
 	function ys_image_get_post_thumbnail_url($postid=0,$thumbname='full') {
 
-		if($postid=0){
+		if($postid == 0){
 			$postid = get_the_ID();
 		}
 		// 記事内容
@@ -63,7 +63,7 @@ if (!function_exists( 'ys_image_get_post_thumbnail_url')) {
 if (!function_exists( 'ys_image_get_post_firstimg')) {
 	function ys_image_get_post_firstimg($postid=0) {
 
-		if($postid=0){
+		if($postid == 0){
 			$postid = get_the_ID();
 		}
 		// 記事内容
@@ -100,7 +100,7 @@ if (!function_exists( 'ys_image_get_post_firstimg')) {
 if (!function_exists( 'ys_image_the_post_thumbnail')) {
 	function ys_image_the_post_thumbnail($postid=0,$thumbname='full',$outputmeta=true,$imgid='',$imgclass='') {
 
-		if($postid=0){
+		if($postid == 0){
 			$postid = get_the_ID();
 		}
 		// 画像を取得

@@ -59,13 +59,12 @@ if (!function_exists( 'ys_category_get_cat_id_list')) {
 if( ! function_exists( 'ys_category_the_post_categorys' ) ) {
 	function ys_category_the_post_categorys($postid=0,$link=True,$separator=', ') {
 
-		if($postid=0){
+		if($postid==0){
 			$postid = get_the_ID();
 		}
 
 		$terms ='';
 		$taxonomy = 'category';
-
 		// 投稿に付けられたターム（カテゴリー）の ID を取得する。
 		$post_terms = wp_get_object_terms( $postid, $taxonomy, array( 'fields' => 'ids' ) );
 
