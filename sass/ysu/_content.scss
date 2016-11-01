@@ -11,6 +11,7 @@
 .site-main {
 	& > article {
 		margin-bottom: 2rem;
+		@include clearfix;
 	}
 }
 

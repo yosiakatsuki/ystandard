@@ -6,7 +6,7 @@
 			ys_category_the_post_categorys();
 		?>
 	</div><!-- .entry-meta -->
-	
+
 	<header class="entry-header">
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
 			<span class="sticky-post">おすすめ！</span>

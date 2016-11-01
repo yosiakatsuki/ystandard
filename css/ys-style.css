@@ -83,6 +83,34 @@ a {
   a:hover {
     color: #0085ea; }
 
+img {
+  max-width: 100%;
+  height: auto; }
+
+.aligncenter,
+div.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+
+.wp-caption {
+  text-align: center; }
+
+.wp-caption img {
+  margin: 0;
+  padding: 0;
+  border: 0 none; }
+
+.wp-caption .wp-caption-text {
+  font-size: .8rem;
+  padding: .5rem; }
+
+@media screen and (min-width: 960px) {
+  .alignleft {
+    float: left; }
+  .alignright {
+    float: right; } }
+
 .wrap {
   width: 100%;
   padding-right: 1rem;
@@ -206,6 +234,13 @@ a {
 
 .site-main > article {
   margin-bottom: 2rem; }
+  .site-main > article:before, .site-main > article:after {
+    content: "";
+    display: table; }
+  .site-main > article:after {
+    clear: both; }
+  .site-main > article {
+    zoom: 1; }
 
 .entry-title {
   font-size: 2rem;

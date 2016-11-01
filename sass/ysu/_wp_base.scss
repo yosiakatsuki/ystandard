@@ -1,6 +1,6 @@
 //--------------------------------------
 //
-//	基本部分
+//	WordPressが出力するクラス関連
 //
 //--------------------------------------
 
@@ -8,40 +8,23 @@
 //--------------------------------------
 // モバイル or 全体
 //--------------------------------------
-* {
-	box-sizing: border-box;
+.aligncenter,
+div.aligncenter {
+	 display: block;
+	 margin-left: auto;
+	 margin-right: auto;
 }
-
-html {
-	max-width: 100%;
-
-	font-size: $ys-font-size;
-	font-family: $ys-font-family;
-	line-height: $ys-line-height;
-	color: $ys-font-color;
-	letter-spacing: $ys-letter-spacing;
-
+.wp-caption {
+	 text-align: center;
 }
-
-body {
-	background-color: $ys-body-bg-color;
+.wp-caption img {
+	 margin: 0;
+	 padding: 0;
+	 border: 0 none;
 }
-
-.clearfix {
-	@include clearfix;
-}
-
-a {
-	color: $ys-link-color;
-
-	&:hover {
-		color: $ys-link-color-hover;
-	}
-}
-
-img {
-	max-width: 100%;
-	height: auto;
+.wp-caption .wp-caption-text {
+	 font-size: .8rem;
+	 padding: .5rem;
 }
 
 //--------------------------------------
@@ -55,5 +38,14 @@ img {
 // PC
 //--------------------------------------
 @include media-breakpoint(pc) {
+
+
+	.alignleft {
+		 float: left;
+	}
+
+	.alignright {
+		 float: right;
+	}
 
 };
