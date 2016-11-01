@@ -8,8 +8,20 @@
 //--------------------------------------
 // モバイル or 全体
 //--------------------------------------
+.site-main {
+	& > article {
+		margin-bottom: 2rem;
+	}
+}
 
-
+.entry-title {
+	font-size: 2rem;
+	padding: 1rem 0;
+	a {
+		color: $ys-font-color;
+		font-weight: bold;
+	}
+}
 
 //--------------------------------------
 // タブレット
@@ -22,5 +34,9 @@
 // PC
 //--------------------------------------
 @include media-breakpoint(pc) {
-
+	.site-main {
+		& > article {
+			margin-bottom: 3rem;
+		}
+	}
 };

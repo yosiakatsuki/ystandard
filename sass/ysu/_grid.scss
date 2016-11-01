@@ -38,6 +38,11 @@
 		box-sizing: content-box;
 	}
 
+	.content-area {
+		padding-top: $ys-gutter;
+		padding-bottom: $ys-gutter;
+	}
+
 	// サイドバー無し
 	.no-sidebar {
 
@@ -54,7 +59,7 @@
 	.has-sidebar {
 
 		.content-area {
-			max-width: calc(100% - #{$ys-sidebar-width});
+			width: calc(100% - #{$ys-sidebar-width});
 			float: left;
 			overflow: hidden;
 		}
@@ -66,8 +71,7 @@
 
 		.sidebar {
 			width: $ys-sidebar-width;
-			padding-right: $ys-gutter;
-			padding-left: $ys-gutter;
+			padding: $ys-gutter;
 			float: right;
 		}
 	}//.has-sidebar
