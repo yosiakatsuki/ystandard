@@ -60,4 +60,4 @@
 
 		</header><!-- .site-header -->
 
-		<div id="content" class="site-content wrap">
+		<div id="content" class="<?php echo ys_style_content_class(array('site-content','wrap','clearfix')); ?>">

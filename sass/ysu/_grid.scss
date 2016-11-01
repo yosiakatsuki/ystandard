@@ -20,6 +20,7 @@
 //--------------------------------------
 @include media-breakpoint(tb) {
 
+
 };
 
 //--------------------------------------
@@ -30,5 +31,36 @@
 		max-width: $ys-wrap-width;
 		margin-right: auto;
 		margin-left: auto;
+		box-sizing: content-box;
 	}
+
+	// サイドバー無し
+	.no-sidebar {
+
+		.content-area {
+			max-width: $ys-nosidebar-max-width;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+	}//.no-sidebar
+
+	// サイドバーあり
+	.has-sidebar {
+
+		.content-area {
+			max-width: calc(100% - #{$ys-sidebar-width});
+			padding-right: $ys-gutter;
+			padding-left: $ys-gutter;
+			float: left;
+			overflow: hidden;
+		}
+
+		.sidebar {
+			width: $ys-sidebar-width;
+			padding-right: $ys-gutter;
+			padding-left: $ys-gutter;
+			float: right;
+		}
+	}//.has-sidebar
 };

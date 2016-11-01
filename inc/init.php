@@ -13,6 +13,10 @@
 if (!function_exists( 'ys_init_initialize')) {
 	function ys_init_initialize() {
 
+		if ( ! isset( $content_width ) ) {
+			$content_width = 900;
+		}
+
 		//投稿とコメントのフィード出す
 		add_theme_support( 'automatic-feed-links' );
 

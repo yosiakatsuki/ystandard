@@ -92,7 +92,23 @@ a {
   .wrap {
     max-width: 1200px;
     margin-right: auto;
-    margin-left: auto; } }
+    margin-left: auto;
+    box-sizing: content-box; }
+  .no-sidebar .content-area {
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto; }
+  .has-sidebar .content-area {
+    max-width: calc(100% - 332px);
+    padding-right: 1rem;
+    padding-left: 1rem;
+    float: left;
+    overflow: hidden; }
+  .has-sidebar .sidebar {
+    width: 332px;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    float: right; } }
 
 .site-header-main {
   padding: 0.5rem 0;
