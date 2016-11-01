@@ -4,7 +4,7 @@
 		<footer id="footer" class="site-footer" role="contentinfo">
 			<div class="wrap">
 				<?php if ( has_nav_menu( 'footer' ) ) : ?>
-					<nav class="Footer-navigation" role="navigation">
+					<nav class="footer-navigation" role="navigation">
 						<?php
 							wp_nav_menu( array(
 								'theme_location' => 'footer',

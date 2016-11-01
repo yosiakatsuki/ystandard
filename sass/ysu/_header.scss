@@ -1,6 +1,6 @@
 //--------------------------------------
 //
-//	基本部分
+//	ヘッダー
 //
 //--------------------------------------
 
@@ -11,7 +11,8 @@
 
 .site-header-main {
 	padding: 0.5rem 0;
-	background-color: $ys-gray-bg-color;
+	background-color: $ys-header-bg-color;
+	color: $ys-header-font-color;
 }
 
 .site-header-wrap {
@@ -21,7 +22,7 @@
 .site-title {
 	font-size: 2rem;
 	a {
-		color: $ys-font-color;
+		color: $ys-header-font-color;
 	}
 }
 
@@ -81,7 +82,7 @@
 
 			a {
 				padding: .5rem 0;
-				color: $ys-gray-font-color;
+				color: $ys-header-nav-font-color;
 				border-bottom: 1px solid transparent;
 				transition: border 0.3s;
 			}
@@ -98,7 +99,7 @@
 			&:hover {
 
 				a {
-					border-bottom: 1px solid $ys-gray-font-color;
+					border-bottom: 1px solid $ys-header-nav-font-color;
 				}
 				&.menu-item-has-children a {
 					border-bottom: 1px solid transparent;

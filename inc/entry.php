@@ -14,8 +14,7 @@
 if (!function_exists( 'ys_entry_the_entry_date')) {
 	function ys_entry_the_entry_date() {
 
-		$postdate = get_the_time('Ymd');
-		$moddate = get_the_modified_time('Ymd');
+		$format = get_option( 'date_format' );
 		$pubdate = 'pubdate="pubdate"';
 		$updatecontent = 'content="'.get_the_modified_time('Y-m-d').'"';
 		if(ys_is_amp()){
@@ -24,11 +23,11 @@ if (!function_exists( 'ys_entry_the_entry_date')) {
 		}
 
 		//公開直後に微調整はよくあること。日付で判断
-		if($postdate === $moddate) {
-			echo '<time class="entry-date entry-published published updated" itemprop="dateCreated datePublished dateModified" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.$postdate.'</time>';
+		if(get_the_time('Ymd') === get_the_modified_time('Ymd')) {
+			echo '<time class="entry-date entry-published published updated" itemprop="dateCreated datePublished dateModified" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
 		} else {
-			echo '<time class="entry-date entry-published published" itemprop="dateCreated datePublished" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.$postdate.'</time>';
-			echo '<span class="entry-updated updated" itemprop="dateModified" '.$updatecontent.'>'.$moddate.'</span>';
+			echo '<time class="entry-date entry-published published" itemprop="dateCreated datePublished" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
+			echo '<span class="entry-updated updated" itemprop="dateModified" '.$updatecontent.'>'.get_the_modified_time($format).'</span>';
 		}
 	}
 }

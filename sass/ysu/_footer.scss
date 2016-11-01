@@ -1,0 +1,56 @@
+//--------------------------------------
+//
+//	フッター
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+
+.site-footer {
+	padding: .5rem 0;
+	background-color: $ys-footer-bg-color;
+	color: $ys-footer-font-color;
+}
+
+.footer-navigation {
+	margin: .5rem 0 0;
+}
+
+.footer-menu {
+	font-size: 0;
+	text-align: right;
+
+	li {
+		display: inline-block;
+		font-size: .8rem;
+		margin-right: 1rem;
+
+		a {
+			color: $ys-footer-font-color;
+		}
+	}
+}
+
+.site-info {
+	margin: .5rem 0 0;
+	font-size: .9rem;
+	text-align: center;
+}
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+
+};

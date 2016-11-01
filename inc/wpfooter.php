@@ -21,6 +21,8 @@ if(!function_exists( 'ys_wpfooter_the_json_ld')) {
 		// 全体に関わる部分
 		$context = 'http://schema.org';
 		$logourl = '';
+		$logowidth = 0;
+		$logoheight = 0;
 		$logo = ys_image_get_custom_logo_image_src();
 		if($logo){
 			$logourl = $logo[0];
