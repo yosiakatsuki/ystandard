@@ -107,7 +107,7 @@ global $profileuser;
 					}
 				?>
 			</div>
-			<input type="text" id="ys_custom_avatar" name="ys_custom_avatar" class="regular-text ys-custom-image-upload-url" value="<?php echo get_user_meta($profileuser->ID, 'ys_custom_avatar', true);?>" />
+			<input type="text" id="ys_custom_avatar" name="ys_custom_avatar" class="regular-text ys-custom-image-upload-url" value="<?php echo get_user_meta($profileuser->ID, 'ys_custom_avatar', true);?>" style="display:none;" />
 			<?php
 				$uploadbutton_hidden = '';
 				$clearbutton_hidden = 'style="display:none;"';
