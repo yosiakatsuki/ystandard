@@ -107,9 +107,11 @@ div.aligncenter {
 
 @media screen and (min-width: 960px) {
   .alignleft {
-    float: left; }
+    float: left;
+    margin-right: 1rem; }
   .alignright {
-    float: right; } }
+    float: right;
+    margin-left: 1rem; } }
 
 .wrap {
   width: 100%;
