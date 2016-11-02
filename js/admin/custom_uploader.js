@@ -1,18 +1,18 @@
 jQuery(document).ready(function($){
 	var custom_uploader;
 	var title = '画像を選択',
-			urltarget = 'ys-custom-image-upload-url',
-			previewtarget = 'ys-custom-image-upload-preview';
+			urltarget = '.ys-custom-image-upload-url',
+			previewtarget = '.ys-custom-image-upload-preview';
 
 	// 画像の削除
 	$('.ys-custom-image-clear').click(function(e) {
 		// 取得URLの出力先
-		if(this.attr('data-uploaderurl')){
-			urltarget = this.attr('data-uploaderurl');
+		if($(this).attr('data-uploaderurl')){
+			urltarget = $(this).attr('data-uploaderurl');
 		}
 		// 取得画像のプレビュー先
-		if(this.attr('data-uploaderpreview')){
-			previewtarget = this.attr('data-uploaderpreview');
+		if($(this).attr('data-uploaderpreview')){
+			previewtarget = $(this).attr('data-uploaderpreview');
 		}
 		$(urltarget).val('');
 		$(previewtarget).text('画像が選択されてません。');
@@ -30,16 +30,16 @@ jQuery(document).ready(function($){
 		}
 
 		// メディアアップローダーのタイトルに指定があれば変更
-		if(this.attr('data-uploadertitle')){
-			title = this.attr('data-uploadertitle');
+		if($(this).attr('data-uploadertitle')){
+			title = $(this).attr('data-uploadertitle');
 		}
 		// 取得URLの出力先
-		if(this.attr('data-uploaderurl')){
-			urltarget = this.attr('data-uploaderurl');
+		if($(this).attr('data-uploaderurl')){
+			urltarget = $(this).attr('data-uploaderurl');
 		}
 		// 取得画像のプレビュー先
-		if(this.attr('data-uploaderpreview')){
-			previewtarget = this.attr('data-uploaderpreview');
+		if($(this).attr('data-uploaderpreview')){
+			previewtarget = $(this).attr('data-uploaderpreview');
 		}
 		//メディアアップローダー設定
 		custom_uploader = wp.media({

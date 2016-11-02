@@ -77,6 +77,8 @@ if (!function_exists( 'ys_enqueue_admin_scripts')) {
 	function ys_enqueue_admin_scripts($hook_suffix){
 		// メディアアップローダ
 		wp_enqueue_media();
+		wp_enqueue_script( 'ys-custom_uploader-scripts', get_template_directory_uri() . '/js/admin/custom_uploader.js', array('jquery','jquery-core'), '', true );
+
 	}
 }
 add_action( 'admin_enqueue_scripts', 'ys_enqueue_admin_scripts' );
@@ -90,10 +92,6 @@ add_action( 'admin_enqueue_scripts', 'ys_enqueue_admin_scripts' );
 if (!function_exists( 'ys_enqueue_admin_styles')) {
 	function ys_enqueue_admin_styles($hook_suffix){
 			wp_enqueue_style( 'ys_admin_style', get_stylesheet_directory_uri().'/css/ys-editor-style.css' );
-
-			if($hook_suffix == 'customize.php'){
-				wp_enqueue_style( 'ys_customizer_style', get_stylesheet_directory_uri().'/css/ys-customizer-style.css' );
-			}
 	}
 }
 add_action( 'admin_enqueue_scripts', 'ys_enqueue_admin_styles' );
