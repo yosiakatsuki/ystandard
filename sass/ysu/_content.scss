@@ -24,6 +24,50 @@
 	}
 }
 
+.entry-meta {
+	margin: .5rem 0;
+	font-size: .8rem;
+	color: $ys-gray-font-color;
+	@include clearfix;
+
+	a {
+		color: $ys-gray-font-color;
+	}
+}
+
+.entry-meta-author {
+
+	figure {
+		width: 96px;
+		height: 96px;
+		margin-right: 1rem;
+		border-radius: 50%;
+		float: left;
+		overflow: hidden;
+	}
+
+	&::before {
+		@include fontawesome("f007");
+	}
+}
+
+.entry-meta-date,
+.entry-meta-cat {
+	margin-top: .2rem;
+}
+
+.entry-meta-date {
+	&::before {
+		@include fontawesome("f073");
+	}
+}
+
+.entry-meta-cat {
+	&::before {
+		@include fontawesome("f115");
+	}
+}
+
 //--------------------------------------
 // タブレット
 //--------------------------------------

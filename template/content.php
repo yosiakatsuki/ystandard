@@ -15,13 +15,13 @@
 	<?php endif; ?>
 
 	<div class="entry-meta">
-		<div class="entry-author">
+		<div class="entry-meta-author">
 			<?php ys_entry_the_entry_author(); ?>
 		</div>
-		<div class="entry-date">
+		<div class="entry-meta-date">
 			<?php ys_entry_the_entry_date(false); ?>
 		</div>
-		<div class="entry-cat">
+		<div class="entry-meta-cat">
 			<?php ys_category_the_post_categorys(); ?>
 		</div>
 	</div><!-- .entry-meta -->

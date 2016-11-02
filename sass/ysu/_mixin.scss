@@ -35,7 +35,25 @@
 	&:after {
 		clear:both
 	}
-	& { 
+	& {
 		zoom:1
 	}
+}
+
+
+
+
+//--------------------------------------
+//	Font Awesome
+//--------------------------------------
+@mixin fontawesome($content,$m_t:0,$m_r:0,$m_b:0,$m_l:0) {
+	content: "\"\\"+unquote($content)+"\"";
+	width: 1.28571429em;
+	display: inline-block;
+	margin: $m_t $m_r $m_b $m_l;
+	font-family: FontAwesome;
+	text-align: center;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

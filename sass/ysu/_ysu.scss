@@ -4,12 +4,15 @@
 //		必要パーツをひたすらimport
 //
 //--------------------------------------
+
 // 変数
 @import "./_variables.scss";
 // リセット
 @import "./_reset.scss";
 // mixin
 @import "./_mixin.scss";
+
+
 // 基本部分
 @import "./_base.scss";
 // WordPressのクラス関連
@@ -22,3 +25,5 @@
 @import "./_footer.scss";
 // コンテンツ
 @import "./_content.scss";
+
+//$type:tablet;
