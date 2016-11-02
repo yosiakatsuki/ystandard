@@ -173,16 +173,22 @@ if (!function_exists( 'ys_image_get_the_user_avatar_img')) {
 		if($author_id == null){
 			$author_id = get_the_author_meta( 'ID' );
 		}
-		$user_avatar = get_avatar( $author_id, 100 );
+		$alt =  get_the_author_meta( 'display_name' );
+		$user_avatar = get_avatar( $author_id, 96 ,'',$alt);
 		$custom_avatar = get_user_meta($author_id, 'ys_custom_avatar', true);
 
 		$img = '';
 
 		// オリジナル画像があればそちらを使う
 		if($custom_avatar !== '') {
-			$img = '<img src="' . $custom_avatar . '" />';
+			$img = '<img '.$alt.' src="' . $custom_avatar . '" width="96" height="96" />';
 		} elseif($user_avatar !== '') {
 			$img = $user_avatar;
+		}
+
+		// amp対応
+		if(ys_is_amp()) {
+			$img = str_replace('<img','<amp-img layout="responsive"',$img);
 		}
 
 		return $img;
