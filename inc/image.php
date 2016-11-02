@@ -164,5 +164,43 @@ if (!function_exists( 'ys_image_get_custom_logo_image_src')) {
 
 
 
+//-----------------------------------------------
+//	ユーザー画像取得
+//-----------------------------------------------
+if (!function_exists( 'ys_image_get_the_user_avatar_img')) {
+	function ys_image_get_the_user_avatar_img($author_id = null){
+
+		if($author_id == null){
+			$author_id = get_the_author_meta( 'ID' );
+		}
+		$user_avatar = get_avatar( $author_id, 100 );
+		$custom_avatar = get_user_meta($author_id, 'ys_custom_avatar', true);
+
+		$img = '';
+
+		// オリジナル画像があればそちらを使う
+		if($custom_avatar !== '') {
+			$img = '<img src="' . $custom_avatar . '" />';
+		} elseif($user_avatar !== '') {
+			$img = $user_avatar;
+		}
+
+		return $img;
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	ユーザー画像出力
+//-----------------------------------------------
+if (!function_exists( 'ys_image_the_user_avatar')) {
+	function ys_image_the_user_avatar($author_id = null){
+
+		echo ys_image_get_the_user_avatar_img($author_id);
+	}
+}
+
 
 ?>
