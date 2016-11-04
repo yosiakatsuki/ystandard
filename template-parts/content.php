@@ -13,7 +13,9 @@
 
 		<?php if(has_post_thumbnail()): ?>
 			<figure class="post-thumbnail">
-				<?php ys_image_the_post_thumbnail(); ?>
+				<a href="<?php the_permalink(); ?>">
+					<?php ys_image_the_post_thumbnail(); ?>
+				</a>
 			</figure><!-- .post-thumbnail -->
 		<?php endif; ?>
 
