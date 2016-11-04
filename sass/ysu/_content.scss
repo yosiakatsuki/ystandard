@@ -54,12 +54,6 @@
 	text-align: right;
 }
 
-// 投稿抜粋・本文
-.entry-content {
-	margin: 1rem 0;
-}
-
-
 // 投稿者
 .entry-meta-author {
 
@@ -82,6 +76,53 @@
 		@include fontawesome("f115");
 	}
 }
+
+// 投稿抜粋・本文
+.entry-content {
+
+	margin: 1rem 0;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		clear: both;
+	}
+
+	h1,
+	h2 {
+		margin: 3rem 0 2rem;
+		font-size: 1.8rem;
+	}
+
+	h3 {
+		margin: 2.5rem 0 2rem;
+		font-size: 1.6rem;
+	}
+
+	h4 {
+		margin: 2rem 0 2rem;
+		font-size: 1.5rem;
+	}
+
+	h5 {
+		margin: 2rem 0 2rem;
+		font-size: 1.4rem;
+	}
+
+	h6 {
+		margin: 2rem 0 2rem;
+		font-size: 1.2rem;
+	}
+
+	p {
+		margin: 0 0 2rem;
+	}
+
+}
+
 
 
 

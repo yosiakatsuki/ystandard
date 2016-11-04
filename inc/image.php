@@ -202,9 +202,9 @@ if (!function_exists( 'ys_image_get_the_user_avatar_img')) {
 //	ユーザー画像出力
 //-----------------------------------------------
 if (!function_exists( 'ys_image_the_user_avatar')) {
-	function ys_image_the_user_avatar($author_id = null){
+	function ys_image_the_user_avatar($author_id = null,$size = 96){
 
-		echo ys_image_get_the_user_avatar_img($author_id);
+		echo ys_image_get_the_user_avatar_img($author_id,$size);
 	}
 }
 

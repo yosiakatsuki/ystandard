@@ -4,7 +4,7 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
 		<div class="entry-meta entry-date-container">
-			<?php ys_entry_the_entry_date(false); ?>
+			<?php ys_entry_the_entry_date(); ?>
 		</div><!-- .entry-meta -->
 
 		<?php if(has_post_thumbnail()): ?>
@@ -33,9 +33,7 @@
 
 	<footer class="entry-footer">
 		<?php
-			if ( '' !== get_the_author_meta( 'description' ) ) {
-				//get_template_part( 'template-parts/biography' );
-			}
+			get_template_part( 'template-parts/biography' );
 		 ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

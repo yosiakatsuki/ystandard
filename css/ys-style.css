@@ -275,9 +275,6 @@ div.aligncenter {
   margin: 0 0 .5rem;
   text-align: right; }
 
-.entry-content {
-  margin: 1rem 0; }
-
 .entry-meta-author {
   margin: .5rem 0 0; }
   .entry-meta-author .author::before {
@@ -303,6 +300,34 @@ div.aligncenter {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
+
+.entry-content {
+  margin: 1rem 0; }
+  .entry-content h1,
+  .entry-content h2,
+  .entry-content h3,
+  .entry-content h4,
+  .entry-content h5,
+  .entry-content h6 {
+    clear: both; }
+  .entry-content h1,
+  .entry-content h2 {
+    margin: 3rem 0 2rem;
+    font-size: 1.8rem; }
+  .entry-content h3 {
+    margin: 2.5rem 0 2rem;
+    font-size: 1.6rem; }
+  .entry-content h4 {
+    margin: 2rem 0 2rem;
+    font-size: 1.5rem; }
+  .entry-content h5 {
+    margin: 2rem 0 2rem;
+    font-size: 1.4rem; }
+  .entry-content h6 {
+    margin: 2rem 0 2rem;
+    font-size: 1.2rem; }
+  .entry-content p {
+    margin: 0 0 2rem; }
 
 @media screen and (min-width: 960px) {
   .site-main > article {
