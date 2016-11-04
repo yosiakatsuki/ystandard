@@ -19,6 +19,10 @@
 	padding-bottom: 1rem;
 }
 
+.content-area {
+	background-color: $ys-content-bg-color;
+}
+
 //--------------------------------------
 // タブレット
 //--------------------------------------
@@ -35,7 +39,6 @@
 		max-width: $ys-wrap-width;
 		margin-right: auto;
 		margin-left: auto;
-		box-sizing: content-box;
 	}
 
 	.content-area {

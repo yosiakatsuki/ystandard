@@ -66,7 +66,7 @@ html {
   letter-spacing: 0.1em; }
 
 body {
-  background-color: #fff; }
+  background-color: #fefefe; }
 
 .clearfix:before, .clearfix:after {
   content: "";
@@ -133,12 +133,14 @@ div.aligncenter {
   padding-top: 1rem;
   padding-bottom: 1rem; }
 
+.content-area {
+  background-color: #fff; }
+
 @media screen and (min-width: 960px) {
   .wrap {
     max-width: 1200px;
     margin-right: auto;
-    margin-left: auto;
-    box-sizing: content-box; }
+    margin-left: auto; }
   .content-area {
     padding-top: 1rem;
     padding-bottom: 1rem; }
