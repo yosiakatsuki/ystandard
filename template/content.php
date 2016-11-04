@@ -11,30 +11,27 @@
 			<?php ys_entry_the_entry_date(false); ?>
 		</div><!-- .entry-meta -->
 
-	</header><!-- .entry-header -->
+		<?php if(has_post_thumbnail()): ?>
+			<figure class="post-thumbnail">
+				<?php ys_image_the_post_thumbnail(); ?>
+			</figure><!-- .post-thumbnail -->
+		<?php endif; ?>
 
-	<?php if(has_post_thumbnail()): ?>
-		<figure class="post-thumbnail">
-			<?php ys_image_the_post_thumbnail(); ?>
-		</figure><!-- .post-thumbnail -->
-	<?php endif; ?>
+		<div class="entry-meta">
+			<div class="entry-meta-cat entry-meta-left"><?php ys_category_the_post_categorys(); ?></div>
+			<div class="entry-meta-author entry-meta-right"><?php ys_entry_the_entry_author(false); ?></div>
+		</div>
+	</header><!-- .entry-header -->
 
 
 
 	<div class="entry-content">
 		<?php
-
 			the_excerpt();
-
 		?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<div class="entry-meta-cat">
-			<?php ys_category_the_post_categorys(); ?>
-		</div>
-		<div class="entry-meta-author">
-			<?php ys_entry_the_entry_author(); ?>
-		</div>
+
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

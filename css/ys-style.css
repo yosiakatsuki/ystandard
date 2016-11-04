@@ -235,7 +235,7 @@ div.aligncenter {
   text-align: center; }
 
 .site-main > article {
-  margin-bottom: 2rem; }
+  margin-bottom: 3rem; }
   .site-main > article:before, .site-main > article:after {
     content: "";
     display: table; }
@@ -245,8 +245,7 @@ div.aligncenter {
     zoom: 1; }
 
 .entry-title {
-  font-size: 2rem;
-  padding: 1rem 0 .5rem; }
+  font-size: 2rem; }
   .entry-title a {
     color: #2c3e50;
     font-weight: bold; }
@@ -254,17 +253,31 @@ div.aligncenter {
 .post-thumbnail {
   line-height: 1; }
 
-.entry-meta,
-.entry-footer {
+.entry-meta {
   margin: 0 0 .5rem;
   font-size: .8rem;
   color: #2c3e50; }
-  .entry-meta a,
-  .entry-footer a {
+  .entry-meta:before, .entry-meta:after {
+    content: "";
+    display: table; }
+  .entry-meta:after {
+    clear: both; }
+  .entry-meta {
+    zoom: 1; }
+  .entry-meta a {
     color: #2c3e50; }
+
+.entry-meta-left {
+  float: left; }
+
+.entry-meta-right {
+  float: right; }
 
 .entry-date-container {
   text-align: right; }
+
+.entry-content {
+  margin: 1rem 0; }
 
 .entry-meta-author {
   margin: .5rem 0 0; }
@@ -276,12 +289,22 @@ div.aligncenter {
     width: 2rem;
     margin-right: .5rem;
     border-radius: 50%; }
-  .entry-meta-author .author::before {
+  .entry-meta-author .author.show-img::before {
     content: "この記事を書いた人：";
     font-size: .5rem;
     color: #888; }
-  .entry-meta-author .author a {
+  .entry-meta-author .author.show-img a {
     display: block; }
+  .entry-meta-author .author.no-img::before {
+    content: "\f007";
+    width: 1.28571429em;
+    display: inline-block;
+    margin: 0 0.2rem 0 0;
+    font-family: FontAwesome;
+    text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
 
 .entry-meta-cat {
   margin-top: .5rem; }
@@ -289,7 +312,7 @@ div.aligncenter {
     content: "\f115";
     width: 1.28571429em;
     display: inline-block;
-    margin: 0 0 0 0;
+    margin: 0 0.2rem 0 0;
     font-family: FontAwesome;
     text-align: center;
     text-rendering: auto;
@@ -298,4 +321,4 @@ div.aligncenter {
 
 @media screen and (min-width: 960px) {
   .site-main > article {
-    margin-bottom: 3rem; } }
+    margin-bottom: 4rem; } }

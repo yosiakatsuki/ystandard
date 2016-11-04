@@ -39,13 +39,20 @@ if (!function_exists( 'ys_entry_the_entry_date')) {
 //	投稿者取得
 //-----------------------------------------------
 if (!function_exists( 'ys_entry_the_entry_author')) {
-	function ys_entry_the_entry_author() {
+	function ys_entry_the_entry_author($show_image = true) {
 
 		$author_name = get_the_author();
 		$author_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) );
 		$author_img = ys_image_get_the_user_avatar_img();
-		echo '<figure>'.$author_img.'</figure>';
-		echo '<span class="author vcard"><a class="url fn n" href="'.$author_url.'">'.$author_name.'</a></span>';
+		$author_class = 'author vcard';
+
+		if($show_image && $author_img != '') {
+			echo '<figure>'.$author_img.'</figure>';
+			$author_class .= ' show-img';
+		} else {
+			$author_class .= ' no-img';
+		}
+		echo '<span class="'.$author_class.'"><a class="url fn n" href="'.$author_url.'">'.$author_name.'</a></span>';
 	}
 }
 

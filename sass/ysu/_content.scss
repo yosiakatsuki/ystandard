@@ -10,39 +10,59 @@
 //--------------------------------------
 .site-main {
 	& > article {
-		margin-bottom: 2rem;
+		margin-bottom: 3rem;
 		@include clearfix;
 	}
 }
 
+// 投稿タイトル
 .entry-title {
 	font-size: 2rem;
-	padding: 1rem 0 .5rem;
+	// padding: 1rem 0 .5rem;
+
 	a {
 		color: $ys-font-color;
 		font-weight: bold;
 	}
 }
 
+// アイキャッチ
 .post-thumbnail {
 	line-height: 1;
 }
 
-.entry-meta,
-.entry-footer {
+// 投稿の付加情報
+.entry-meta {
 	margin: 0 0 .5rem;
 	font-size: .8rem;
 	color: $ys-font-color;
+	@include clearfix;
 
 	a {
 		color: $ys-font-color;
 	}
 }
 
+// 左右で分割表示するときのクラス
+.entry-meta-left {
+	float: left;
+}
+.entry-meta-right {
+	float: right;
+}
+
+// 日付の表示
 .entry-date-container {
 	text-align: right;
 }
 
+// 投稿抜粋・本文
+.entry-content {
+	margin: 1rem 0;
+}
+
+
+// 投稿者
 .entry-meta-author {
 
 	margin: .5rem 0 0;
@@ -64,18 +84,27 @@
 
 	.author {
 
-		&::before {
-			content: "この記事を書いた人：";
-			font-size: .5rem;
-			color: $ys-gray-font-color;
-		}
+		&.show-img {
+			&::before {
+				content: "この記事を書いた人：";
+				font-size: .5rem;
+				color: $ys-gray-font-color;
+			}
 
-		a {
-			display: block;
-		}
-	}
+			a {
+				display: block;
+			}
+		}//&.show-img
+
+		&.no-img {
+			&::before {
+				@include fontawesome("f007");
+			}
+		}//&.no-img
+	}//.author
 }
 
+// カテゴリー情報
 .entry-meta-cat {
 	margin-top: .5rem;
 
@@ -103,7 +132,7 @@
 @include media-breakpoint(pc) {
 	.site-main {
 		& > article {
-			margin-bottom: 3rem;
+			margin-bottom: 4rem;
 		}
 	}
 };

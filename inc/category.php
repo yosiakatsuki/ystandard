@@ -75,7 +75,7 @@ if( ! function_exists( 'ys_category_the_post_categorys' ) ) {
 			$terms = rtrim( trim( str_replace( '<br />',  $separator, $terms ) ), $separator );
 		}
 		// 投稿のカテゴリーを表示
-		echo  $terms;
+		echo $terms;
 	}//ys_category_get_post_categorys
 }
 
