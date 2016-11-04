@@ -1,21 +1,18 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<div class="entry-meta">
-		<?php
-			ys_entry_the_entry_date();
-			ys_category_the_post_categorys();
-		?>
-	</div><!-- .entry-meta -->
-
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
 
-	<?php if(has_post_thumbnail()): ?>
-		<div class="post-thumbnail">
-			<?php ys_image_the_post_thumbnail(); ?>
-		</div><!-- .post-thumbnail -->
-	<?php endif; ?>
+		<div class="entry-meta entry-date-container">
+			<?php ys_entry_the_entry_date(false); ?>
+		</div><!-- .entry-meta -->
+
+		<?php if(has_post_thumbnail()): ?>
+			<figure class="post-thumbnail">
+				<?php ys_image_the_post_thumbnail(); ?>
+			</figure><!-- .post-thumbnail -->
+		<?php endif; ?>
+	</header><!-- .entry-header -->
 
 	<div class="entry-content">
 

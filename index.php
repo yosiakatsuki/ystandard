@@ -16,7 +16,7 @@ get_header(); ?>
 			<?php
 			while ( have_posts() ) : the_post();
 
-				get_template_part( 'template/content', get_post_format() );
+				get_template_part( 'template-parts/content', get_post_format() );
 
 			endwhile;
 
@@ -24,7 +24,7 @@ get_header(); ?>
 			ys_pagenation();
 
 		else :
-			get_template_part( 'template/content', 'none' );
+			get_template_part( 'template-parts/content', 'none' );
 
 		endif;
 		?>

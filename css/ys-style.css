@@ -247,8 +247,7 @@ div.aligncenter {
 .entry-title {
   font-size: 2rem; }
   .entry-title a {
-    color: #2c3e50;
-    font-weight: bold; }
+    color: #2c3e50; }
 
 .post-thumbnail {
   line-height: 1; }
@@ -281,21 +280,7 @@ div.aligncenter {
 
 .entry-meta-author {
   margin: .5rem 0 0; }
-  .entry-meta-author figure,
-  .entry-meta-author .author {
-    display: inline-block;
-    vertical-align: top; }
-  .entry-meta-author figure img {
-    width: 2rem;
-    margin-right: .5rem;
-    border-radius: 50%; }
-  .entry-meta-author .author.show-img::before {
-    content: "この記事を書いた人：";
-    font-size: .5rem;
-    color: #888; }
-  .entry-meta-author .author.show-img a {
-    display: block; }
-  .entry-meta-author .author.no-img::before {
+  .entry-meta-author .author::before {
     content: "\f007";
     width: 1.28571429em;
     display: inline-block;

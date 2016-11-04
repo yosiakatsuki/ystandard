@@ -18,11 +18,9 @@
 // 投稿タイトル
 .entry-title {
 	font-size: 2rem;
-	// padding: 1rem 0 .5rem;
 
 	a {
 		color: $ys-font-color;
-		font-weight: bold;
 	}
 }
 
@@ -67,46 +65,17 @@
 
 	margin: .5rem 0 0;
 
-	figure,
 	.author {
-		display: inline-block;
-		vertical-align: top;
-	}
 
-	figure {
-
-		img {
-			width: 2rem;
-			margin-right: .5rem;
-			border-radius: 50%;
+		&::before {
+			@include fontawesome("f007");
 		}
-	}
-
-	.author {
-
-		&.show-img {
-			&::before {
-				content: "この記事を書いた人：";
-				font-size: .5rem;
-				color: $ys-gray-font-color;
-			}
-
-			a {
-				display: block;
-			}
-		}//&.show-img
-
-		&.no-img {
-			&::before {
-				@include fontawesome("f007");
-			}
-		}//&.no-img
 	}//.author
 }
 
 // カテゴリー情報
 .entry-meta-cat {
-	
+
 	margin: .5rem 0 0;
 
 	&::before {

@@ -168,20 +168,20 @@ if (!function_exists( 'ys_image_get_custom_logo_image_src')) {
 //	ユーザー画像取得
 //-----------------------------------------------
 if (!function_exists( 'ys_image_get_the_user_avatar_img')) {
-	function ys_image_get_the_user_avatar_img($author_id = null){
+	function ys_image_get_the_user_avatar_img($author_id = null,$size = 96){
 
 		if($author_id == null){
 			$author_id = get_the_author_meta( 'ID' );
 		}
 		$alt =  get_the_author_meta( 'display_name' );
-		$user_avatar = get_avatar( $author_id, 96 ,'',$alt);
+		$user_avatar = get_avatar( $author_id, $size ,'',$alt);
 		$custom_avatar = get_user_meta($author_id, 'ys_custom_avatar', true);
 
 		$img = '';
 
 		// オリジナル画像があればそちらを使う
 		if($custom_avatar !== '') {
-			$img = '<img '.$alt.' src="' . $custom_avatar . '" width="96" height="96" />';
+			$img = '<img src="' . $custom_avatar . '" alt="'.$alt.'" width="'.$size.'" height="'.$size.'" />';
 		} elseif($user_avatar !== '') {
 			$img = $user_avatar;
 		}
