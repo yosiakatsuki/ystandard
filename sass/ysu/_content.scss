@@ -24,6 +24,19 @@
 	}
 }
 
+.entry-date {
+	&::before {
+		@include fontawesome("f073");
+	}
+}
+.entry-updated {
+	margin-left: .5rem;
+	
+	&::before {
+		@include fontawesome("f040");
+	}
+}
+
 // アイキャッチ
 .post-thumbnail {
 	line-height: 1;

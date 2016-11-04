@@ -1,0 +1,55 @@
+//--------------------------------------
+//
+//	パンくず
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.breadcrumb {
+
+	margin:0 0 1rem;
+
+	* {
+		vertical-align: middle;
+	}
+	
+	ol {
+		font-size: 0;
+		list-style: none;
+
+		li {
+			display: inline-block;
+			font-size: .8rem;
+			line-height: 1;
+
+			a {
+				color: $ys-gray-font-color;
+			}
+
+			&::after {
+				content: '»';
+				display: inline;
+				margin: 0 .3rem 0 .3rem;
+				color: $ys-gray-font-color;
+			}
+		}//li
+	}//ol
+}
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+};
