@@ -112,4 +112,30 @@ if( ! function_exists( 'ys_filter_site_icon_meta_tags' )){
 add_filter( 'site_icon_meta_tags', 'ys_filter_site_icon_meta_tags' );
 
 
+
+
+//------------------------------------------------------------------------------
+// 投稿抜粋文字数
+//------------------------------------------------------------------------------
+if( ! function_exists( 'ys_filter_excerpt_length' )){
+	function ys_filter_excerpt_length( $length ) {
+		return 160;
+	}
+}
+add_filter( 'excerpt_length', 'ys_filter_excerpt_length', 999 );
+
+
+
+
+//------------------------------------------------------------------------------
+// 投稿抜粋の最後に付ける文字列
+//------------------------------------------------------------------------------
+if( ! function_exists( 'ys_filter_excerpt_more' )){
+	function ys_filter_excerpt_more( $more ) {
+		return '…';
+	}
+}
+add_filter( 'excerpt_more', 'ys_filter_excerpt_more' );
+
+
 ?>
