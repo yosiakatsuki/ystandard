@@ -88,10 +88,21 @@ img {
   height: auto; }
 
 .aligncenter,
+div.aligncenter,
+.alignleft,
+.alignright {
+  display: block; }
+
+.aligncenter,
 div.aligncenter {
-  display: block;
   margin-left: auto;
   margin-right: auto; }
+
+.alignleft {
+  margin-right: auto; }
+
+.alignright {
+  margin-left: auto; }
 
 .wp-caption {
   text-align: center; }
@@ -108,10 +119,10 @@ div.aligncenter {
 @media screen and (min-width: 960px) {
   .alignleft {
     float: left;
-    margin-right: 1rem; }
+    margin: 0 1rem 1rem 0; }
   .alignright {
     float: right;
-    margin-left: 1rem; } }
+    margin: 0 0 1rem 1rem; } }
 
 .wrap {
   width: 100%;
