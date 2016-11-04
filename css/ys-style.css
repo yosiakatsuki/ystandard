@@ -246,69 +246,55 @@ div.aligncenter {
 
 .entry-title {
   font-size: 2rem;
-  padding: 1rem 0; }
+  padding: 1rem 0 .5rem; }
   .entry-title a {
     color: #2c3e50;
     font-weight: bold; }
 
-.entry-meta {
-  margin: .5rem 0;
+.post-thumbnail {
+  line-height: 1; }
+
+.entry-meta,
+.entry-footer {
+  margin: 0 0 .5rem;
   font-size: .8rem;
-  color: #888; }
-  .entry-meta:before, .entry-meta:after {
-    content: "";
-    display: table; }
-  .entry-meta:after {
-    clear: both; }
-  .entry-meta {
-    zoom: 1; }
-  .entry-meta a {
+  color: #2c3e50; }
+  .entry-meta a,
+  .entry-footer a {
+    color: #2c3e50; }
+
+.entry-date-container {
+  text-align: right; }
+
+.entry-meta-author {
+  margin: .5rem 0 0; }
+  .entry-meta-author figure,
+  .entry-meta-author .author {
+    display: inline-block;
+    vertical-align: top; }
+  .entry-meta-author figure img {
+    width: 2rem;
+    margin-right: .5rem;
+    border-radius: 50%; }
+  .entry-meta-author .author::before {
+    content: "この記事を書いた人：";
+    font-size: .5rem;
     color: #888; }
+  .entry-meta-author .author a {
+    display: block; }
 
-.entry-meta-author figure {
-  width: 96px;
-  height: 96px;
-  margin-right: 1rem;
-  border-radius: 50%;
-  float: left;
-  overflow: hidden; }
-
-.entry-meta-author::before {
-  content: "\f007";
-  width: 1.28571429em;
-  display: inline-block;
-  margin: 0 0 0 0;
-  font-family: FontAwesome;
-  text-align: center;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.entry-meta-date,
 .entry-meta-cat {
-  margin-top: .2rem; }
-
-.entry-meta-date::before {
-  content: "\f073";
-  width: 1.28571429em;
-  display: inline-block;
-  margin: 0 0 0 0;
-  font-family: FontAwesome;
-  text-align: center;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.entry-meta-cat::before {
-  content: "\f115";
-  width: 1.28571429em;
-  display: inline-block;
-  margin: 0 0 0 0;
-  font-family: FontAwesome;
-  text-align: center;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+  margin-top: .5rem; }
+  .entry-meta-cat::before {
+    content: "\f115";
+    width: 1.28571429em;
+    display: inline-block;
+    margin: 0 0 0 0;
+    font-family: FontAwesome;
+    text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
 
 @media screen and (min-width: 960px) {
   .site-main > article {

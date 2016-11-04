@@ -16,8 +16,8 @@ jQuery(document).ready(function($){
 		}
 		$(urltarget).val('');
 		$(previewtarget).text('画像が選択されてません。');
-		$('.ys-custom-image-upload').prop('hedden',false);
-		$('.ys-custom-image-clear').prop('hedden',true);
+		$('.ys-custom-image-upload').css('display','block');
+		$('.ys-custom-image-clear').css('display','none');
 	});
 
 	//メディアアップローダー
@@ -60,8 +60,8 @@ jQuery(document).ready(function($){
 							// プレビュー画像の出力
 							$(previewtarget).text('');
 							$(previewtarget).append('<img style="max-width:100px;height:auto;" src="'+selectimgurl+'" />');
-							$('.ys-custom-image-upload').prop('hedden',true);
-							$('.ys-custom-image-clear').prop('hedden',false);
+							$('.ys-custom-image-upload').css('display','none');
+							$('.ys-custom-image-clear').css('display','block');
 					});
 		});
 		//メディアアップローダー開く

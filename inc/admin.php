@@ -101,7 +101,7 @@ global $profileuser;
 				<?php
 					$custom_avatar = get_user_meta($profileuser->ID, 'ys_custom_avatar', true);
 					if($custom_avatar !== ''){
-						echo "<img style=\"max-width:100px;height:auto;\" src=\"$custom_avatar\" />";
+						echo "<img style=\"max-width:48px;height:auto;\" src=\"$custom_avatar\" />";
 					} else {
 						echo '画像が選択されてません。';
 					}
@@ -118,7 +118,7 @@ global $profileuser;
 			?>
 				<button id="ys_admin_show_custom_avatar_upload" class="button ys-custom-image-upload" type="button" <?php echo $uploadbutton_hidden ?>>プロフィール画像をアップロード</button>
 				<button id="ys_admin_show_custom_avatar_clear" class="button ys-custom-image-clear" type="button" <?php echo $clearbutton_hidden ?>>プロフィール画像を削除</button>
-			<p class="description">100px×100pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
+			<p class="description">48px×48pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
 		</td>
 	</tr>
 

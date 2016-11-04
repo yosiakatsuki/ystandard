@@ -17,56 +17,75 @@
 
 .entry-title {
 	font-size: 2rem;
-	padding: 1rem 0;
+	padding: 1rem 0 .5rem;
 	a {
 		color: $ys-font-color;
 		font-weight: bold;
 	}
 }
 
-.entry-meta {
-	margin: .5rem 0;
+.post-thumbnail {
+	line-height: 1;
+}
+
+.entry-meta,
+.entry-footer {
+	margin: 0 0 .5rem;
 	font-size: .8rem;
-	color: $ys-gray-font-color;
-	@include clearfix;
+	color: $ys-font-color;
 
 	a {
-		color: $ys-gray-font-color;
+		color: $ys-font-color;
 	}
+}
+
+.entry-date-container {
+	text-align: right;
 }
 
 .entry-meta-author {
 
+	margin: .5rem 0 0;
+
+	figure,
+	.author {
+		display: inline-block;
+		vertical-align: top;
+	}
+
 	figure {
-		width: 96px;
-		height: 96px;
-		margin-right: 1rem;
-		border-radius: 50%;
-		float: left;
-		overflow: hidden;
+
+		img {
+			width: 2rem;
+			margin-right: .5rem;
+			border-radius: 50%;
+		}
 	}
 
-	&::before {
-		@include fontawesome("f007");
-	}
-}
+	.author {
 
-.entry-meta-date,
-.entry-meta-cat {
-	margin-top: .2rem;
-}
+		&::before {
+			content: "この記事を書いた人：";
+			font-size: .5rem;
+			color: $ys-gray-font-color;
+		}
 
-.entry-meta-date {
-	&::before {
-		@include fontawesome("f073");
+		a {
+			display: block;
+		}
 	}
 }
 
 .entry-meta-cat {
+	margin-top: .5rem;
+
 	&::before {
 		@include fontawesome("f115");
 	}
 }
+
+
+
 
 //--------------------------------------
 // タブレット
@@ -74,6 +93,9 @@
 @include media-breakpoint(tb) {
 
 };
+
+
+
 
 //--------------------------------------
 // PC
