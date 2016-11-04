@@ -254,7 +254,6 @@ div.aligncenter {
   line-height: 1; }
 
 .entry-meta {
-  margin: 0 0 .5rem;
   font-size: .8rem;
   color: #2c3e50; }
   .entry-meta:before, .entry-meta:after {
@@ -274,6 +273,7 @@ div.aligncenter {
   float: right; }
 
 .entry-date-container {
+  margin: 0 0 .5rem;
   text-align: right; }
 
 .entry-content {
@@ -307,7 +307,7 @@ div.aligncenter {
     -moz-osx-font-smoothing: grayscale; }
 
 .entry-meta-cat {
-  margin-top: .5rem; }
+  margin: .5rem 0 0; }
   .entry-meta-cat::before {
     content: "\f115";
     width: 1.28571429em;

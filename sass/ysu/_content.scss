@@ -33,7 +33,6 @@
 
 // 投稿の付加情報
 .entry-meta {
-	margin: 0 0 .5rem;
 	font-size: .8rem;
 	color: $ys-font-color;
 	@include clearfix;
@@ -53,6 +52,7 @@
 
 // 日付の表示
 .entry-date-container {
+	margin: 0 0 .5rem;
 	text-align: right;
 }
 
@@ -106,7 +106,8 @@
 
 // カテゴリー情報
 .entry-meta-cat {
-	margin-top: .5rem;
+	
+	margin: .5rem 0 0;
 
 	&::before {
 		@include fontawesome("f115");
