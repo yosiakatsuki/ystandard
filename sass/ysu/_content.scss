@@ -1,0 +1,112 @@
+//--------------------------------------
+//
+//	投稿（本文以外）
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.site-main {
+	& > article {
+		margin-bottom: 3rem;
+		@include clearfix;
+	}
+}
+
+// 投稿タイトル
+.entry-title {
+	font-size: 2rem;
+
+	a {
+		color: $ys-font-color;
+	}
+}
+
+.entry-date {
+	&::before {
+		@include fontawesome("f073");
+	}
+}
+.entry-updated {
+	margin-left: .5rem;
+	&::before {
+		@include fontawesome("f040");
+	}
+}
+
+// アイキャッチ
+.post-thumbnail {
+	line-height: 1;
+}
+
+// 投稿の付加情報
+.entry-meta {
+	font-size: .8rem;
+	color: $ys-font-color;
+	@include clearfix;
+
+	a {
+		color: $ys-font-color;
+	}
+}
+
+// 左右で分割表示するときのクラス
+.entry-meta-left {
+	float: left;
+}
+.entry-meta-right {
+	float: right;
+}
+
+// 日付の表示
+.entry-date-container {
+	margin: 0 0 .5rem;
+	text-align: right;
+}
+
+// 投稿者
+.entry-meta-author {
+
+	margin: .5rem 0 0;
+
+	.author {
+
+		&::before {
+			@include fontawesome("f007");
+		}
+	}//.author
+}
+
+// カテゴリー情報
+.entry-meta-cat {
+
+	margin: .5rem 0 0;
+
+	&::before {
+		@include fontawesome("f115");
+	}
+}
+
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+};
+
+
+
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+	.site-main {
+		& > article {
+			margin-bottom: 4rem;
+		}
+	}
+};

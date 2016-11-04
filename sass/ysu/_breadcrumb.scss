@@ -26,14 +26,14 @@
 			line-height: 1;
 
 			a {
-				color: $ys-gray-font-color;
+				color: $ys-font-color-gray;
 			}
 
 			&::after {
 				content: '»';
 				display: inline;
 				margin: 0 .3rem 0 .3rem;
-				color: $ys-gray-font-color;
+				color: $ys-font-color-gray;
 			}
 		}//li
 	}//ol

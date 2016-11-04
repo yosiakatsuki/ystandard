@@ -14,6 +14,9 @@
 
 	margin: 1rem 0;
 
+	// --------------------
+	// 見出し
+	// --------------------
 	h1,
 	h2,
 	h3,
@@ -25,17 +28,17 @@
 
 	h1,
 	h2 {
-		margin: 3rem 0 2rem;
+		margin: 4rem 0 2rem;
 		font-size: 1.8rem;
 	}
 
 	h3 {
-		margin: 2.5rem 0 2rem;
+		margin: 3rem 0 2rem;
 		font-size: 1.6rem;
 	}
 
 	h4 {
-		margin: 2rem 0 2rem;
+		margin: 2.5rem 0 2rem;
 		font-size: 1.5rem;
 	}
 
@@ -49,9 +52,202 @@
 		font-size: 1.2rem;
 	}
 
-	p {
+	// --------------------
+	// 隙間をあけるもの
+	// --------------------
+	p,
+	ul,
+	ol,
+	dl,
+	blockquote,
+	pre,
+	table,
+	address {
 		margin: 0 0 2rem;
 	}
+
+	// --------------------
+	// 装飾
+	// --------------------
+	strong,b {
+		font-weight: bold;
+	}
+
+	del,
+	strike {
+		text-decoration: line-through;
+	}
+
+	em {
+		font-style: italic;
+	}
+
+	u,
+	ins {
+		text-decoration: underline;
+	}
+
+	// --------------------
+	// 画像
+	// --------------------
+	figure,
+	img {
+		max-width: 100%;
+		margin-bottom: .5rem;
+	}
+
+	// --------------------
+	// リスト
+	// --------------------
+	ul {
+		list-style: disc;
+	}
+
+	ol {
+		list-style: decimal;
+	}
+
+	ul,
+	ol {
+		padding-left: 2rem;
+
+		li {
+			padding: .2em 0;
+		}
+
+		ul,
+		ol {
+			margin: 0;
+
+			li:last-child {
+				padding: .2em 0 0;
+			}
+		}//ul,ol ul,ol
+
+	}//ul,ol
+
+	dt {
+		font-weight: bold;
+		margin: 1rem 0 .2rem;
+	}
+
+	dd {
+		margin:0 0 .2rem 1rem;
+	}
+
+	dl {
+		dt:first-child {
+			margin: 0 0 .2rem;
+		}
+	}
+
+
+	// --------------------
+	// コード
+	// --------------------
+	code,
+	pre,
+	kbd,
+	var,
+	tt {
+		font-family: $ys-font-family-code;
+	}
+
+	pre {
+		width: 100%;
+		background: $ys-bg-color-code;
+		padding: 10px 20px;
+		line-height: 1.2;
+		overflow: auto;
+	}//pre
+
+	code,
+	kbd,
+	var,
+	tt {
+		color: $ys-font-color-code;
+		padding: 0 1px;
+	}//code
+
+	// --------------------
+	// 引用
+	// --------------------
+	blockquote {
+		padding: 1rem;
+		background-color: $ys-bg-color-blockquote;
+		color: $ys-font-color-blockquote;
+
+		p,
+		cite {
+			margin: 0 0 1rem;
+
+			&:last-child {
+				margin: 0;
+			}
+		}
+
+		a {
+			text-decoration: underline;
+		}
+
+		cite {
+			font-size: .8rem;
+
+			&::before {
+				content: "-";
+				margin-right: .2rem;
+			}
+		}//cite
+	}//blockquote
+
+	cite,
+	cite a,
+	q {
+		font-style: italic;
+		color: $ys-font-color-blockquote;
+	}
+
+	// --------------------
+	// テーブル
+	// --------------------
+	table {
+		width: 100%;
+		table-layout: fixed;
+		border-top: 1px solid $ys-border-color-gray;
+		border-left: 1px solid $ys-border-color-gray;
+
+		tr {
+			border-bottom: 1px solid $ys-border-color-gray;
+		}
+
+		td,
+		th {
+			padding: .5rem;
+			border-right: 1px solid $ys-border-color-gray;
+		}
+
+		th {
+			background-color: $ys-bg-color-gray;
+			text-align: left;
+		}
+
+	}//table
+
+	// --------------------
+	// 下付き文字/上付き文字
+	// --------------------
+	sub,
+	sup {
+		font-size: 0.5em;
+	}
+
+	sub {
+		vertical-align: sub;
+	}
+	sub {
+		vertical-align: super;
+	}
+
 
 }
 

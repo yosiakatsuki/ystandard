@@ -17,17 +17,22 @@ $ys-nosidebar-max-width   : 1000px;
 $ys-sidebar-width         : 332px;
 
 // *色
-$ys-body-bg-color         : #fefefe !default;	//背景
-$ys-gray-bg-color         : #fafafa !default;
-$ys-gray-border-color     : #ccc !default;
-$ys-content-bg-color      : #fff !default;
+$ys-bg-color-body         : #fefefe !default;	//背景
+$ys-bg-color-gray         : #fafafa !default;
+$ys-bg-color-content      : #fff !default;
+$ys-bg-color-code         : #fbfbfb !default;
+$ys-bg-color-blockquote   : #fbfbfb !default;
+$ys-border-color-gray     : #ccc !default;
 
 // *フォント
 $ys-font-color            : #2c3e50 !default;
-$ys-gray-font-color       : #888 !default;
+$ys-font-color-gray       : #888 !default;
+$ys-font-color-code       : #2626d9 !default;
+$ys-font-color-blockquote : #888 !default;
 $ys-font-size             : 16px !default;
 $ys-line-height           : 1.5 !default;
 $ys-font-family           : Avenir,"Helvetica neue",Helvetica,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
+$ys-font-family-code             : Consolas, 'Courier New', Courier, Monaco,"游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , monospace;
 $ys-letter-spacing        : 0.1em !default;
 
 // *リンク関連
@@ -37,10 +42,10 @@ $ys-link-color            : $ys-link-color-base !default;
 $ys-link-color-hover      :lighten($ys-link-color-base,$ys-link-hover-lighten) !default;
 
 // ヘッダー部分
-$ys-header-bg-color       : $ys-gray-bg-color !default;
+$ys-header-bg-color       : $ys-bg-color-gray !default;
 $ys-header-font-color     : $ys-font-color !default;
-$ys-header-nav-font-color : $ys-gray-font-color !default;
+$ys-header-nav-font-color : $ys-font-color-gray !default;
 
 // フッター部分
-$ys-footer-bg-color       : $ys-gray-bg-color !default;
-$ys-footer-font-color     : $ys-gray-font-color !default;
+$ys-footer-bg-color       : $ys-bg-color-gray !default;
+$ys-footer-font-color     : $ys-font-color-gray !default;
