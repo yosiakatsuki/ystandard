@@ -34,6 +34,8 @@
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-
+		<p class="entry-more">
+			<a class="more-link" href="<?php the_permalink(); ?>">この記事の続きを読む »</a>
+		</p>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

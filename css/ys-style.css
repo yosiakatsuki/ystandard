@@ -348,6 +348,9 @@ div.aligncenter {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
 
+.entry-more {
+  text-align: right; }
+
 @media screen and (min-width: 960px) {
   .site-main > article {
     margin-bottom: 4rem; } }
