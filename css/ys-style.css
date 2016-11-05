@@ -134,6 +134,10 @@ div.aligncenter {
   padding-bottom: 1rem; }
 
 .content-area {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: -1rem;
+  margin-left: -1rem;
   background-color: #fff; }
 
 @media screen and (min-width: 960px) {
@@ -143,7 +147,9 @@ div.aligncenter {
     margin-left: auto; }
   .content-area {
     padding-top: 1rem;
-    padding-bottom: 1rem; }
+    padding-bottom: 1rem;
+    margin-right: 0;
+    margin-left: 0; }
   .no-sidebar .content-area,
   .no-sidebar .breadcrumb {
     max-width: 1000px;
