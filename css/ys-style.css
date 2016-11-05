@@ -503,3 +503,34 @@ div.aligncenter {
     vertical-align: sub; }
   .entry-content sub {
     vertical-align: super; }
+
+.author-info {
+  margin: 2rem 0; }
+
+.author-avatar {
+  text-align: center; }
+  .author-avatar img {
+    border-radius: 50%; }
+
+.author-title {
+  margin: 0 0 .5rem;
+  text-align: center; }
+  .author-title a {
+    display: block;
+    font-weight: bold;
+    color: #2c3e50; }
+
+.author-bio {
+  font-size: .8rem; }
+  .author-bio p {
+    margin: 0 0 .5rem; }
+
+@media screen and (min-width: 600px) {
+  .author-avatar {
+    margin-right: 1rem;
+    float: left;
+    overflow: hidden; }
+  .author-title {
+    text-align: left; }
+  .author-description.show-avatar {
+    float: left; } }

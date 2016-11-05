@@ -1,0 +1,68 @@
+//--------------------------------------
+//
+//	記事を書いた人
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.author-info {
+	margin: 2rem 0;
+}
+
+.author-avatar {
+	text-align: center;
+
+	img {
+		border-radius: 50%;
+	}
+}
+
+.author-title {
+
+	margin: 0 0 .5rem;
+	text-align: center;
+
+	a {
+		display: block;
+		font-weight: bold;
+		color: $ys-font-color;
+	}
+
+}
+
+.author-bio {
+	font-size: .8rem;
+
+	p {
+		margin: 0 0 .5rem;
+	}
+}
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+	.author-avatar {
+		margin-right: 1rem;
+		float: left;
+		overflow: hidden;
+	}
+
+	.author-title {
+		text-align: left;
+	}
+
+	.author-description.show-avatar {
+		float: left;
+	}
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+};
