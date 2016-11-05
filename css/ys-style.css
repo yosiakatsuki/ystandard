@@ -134,6 +134,8 @@ div.aligncenter {
   padding-bottom: 1rem; }
 
 .content-area {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   padding-right: 1rem;
   padding-left: 1rem;
   margin-right: -1rem;
@@ -143,11 +145,13 @@ div.aligncenter {
 @media screen and (min-width: 960px) {
   .wrap {
     max-width: 1200px;
+    padding-right: 2rem;
+    padding-left: 2rem;
     margin-right: auto;
     margin-left: auto; }
   .content-area {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     margin-right: 0;
     margin-left: 0; }
   .no-sidebar .content-area,
@@ -156,15 +160,15 @@ div.aligncenter {
     margin-right: auto;
     margin-left: auto; }
   .has-sidebar .content-area {
-    width: calc(100% - 332px);
+    width: calc(100% - 364px);
     float: left;
     overflow: hidden; }
   .has-sidebar .content-area {
-    padding-right: 1rem;
-    padding-left: 1rem; }
+    padding-right: 2rem;
+    padding-left: 2rem; }
   .has-sidebar .sidebar {
-    width: 332px;
-    padding: 1rem;
+    width: 364px;
+    padding: 2rem;
     float: right; } }
 
 .site-header-main {
@@ -189,7 +193,7 @@ div.aligncenter {
   .site-header-menu {
     position: absolute;
     top: 0;
-    right: 1rem;
+    right: 2rem;
     height: 100%; }
   .main-navigation {
     display: table;

@@ -15,7 +15,7 @@
 	* {
 		vertical-align: middle;
 	}
-	
+
 	ol {
 		font-size: 0;
 		list-style: none;
@@ -51,5 +51,4 @@
 // PC
 //--------------------------------------
 @include media-breakpoint(pc) {
-
 };

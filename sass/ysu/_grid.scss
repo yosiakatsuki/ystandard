@@ -10,8 +10,8 @@
 //--------------------------------------
 .wrap {
 	width: 100%;
-	padding-right: $ys-gutter;
-	padding-left: $ys-gutter;
+	padding-right: $ys-gutter-sp;
+	padding-left: $ys-gutter-sp;
 }
 
 .site-content {
@@ -20,10 +20,12 @@
 }
 
 .content-area {
-	padding-right: $ys-gutter;
-	padding-left: $ys-gutter;
-	margin-right: -$ys-gutter;
-	margin-left: -$ys-gutter;
+	padding-top: $ys-gutter-sp;
+	padding-bottom: $ys-gutter-sp;
+	padding-right: $ys-gutter-sp;
+	padding-left: $ys-gutter-sp;
+	margin-right: -$ys-gutter-sp;
+	margin-left: -$ys-gutter-sp;
 	background-color: $ys-bg-color-content;
 }
 
@@ -41,6 +43,8 @@
 @include media-breakpoint(pc) {
 	.wrap {
 		max-width: $ys-wrap-width;
+		padding-right: $ys-gutter;
+		padding-left: $ys-gutter;
 		margin-right: auto;
 		margin-left: auto;
 	}
