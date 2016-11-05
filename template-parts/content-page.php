@@ -18,14 +18,8 @@
 
 		the_content();
 
-		wp_link_pages( array(
-			'before'      => '<div class="page-links"><span class="page-links-title">' . 'Pages:' . '</span>',
-			'after'       => '</div>',
-			'link_before' => '<span>',
-			'link_after'  => '</span>',
-			'pagelink'    => '<span class="screen-reader-text">' . 'Page' . ' </span>%',
-			'separator'   => '<span class="screen-reader-text">, </span>',
-		) );
+		ys_entry_the_link_pages();
+		
 		?>
 	</div><!-- .entry-content -->
 

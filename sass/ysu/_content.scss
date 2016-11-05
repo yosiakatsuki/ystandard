@@ -15,6 +15,11 @@
 	}
 }
 
+// 固定表示投稿
+.sticky-post {
+	font-size: .8rem;
+}
+
 // 投稿タイトル
 .entry-title {
 	font-size: 2rem;
@@ -94,6 +99,28 @@
 .entry-more {
 	text-align: right;
 }
+
+// ページャー
+.page-links {
+
+	text-align: center;
+
+	.page-text {
+		padding: .2rem .5rem;
+		margin-right: .5rem;
+		border: 1px solid $ys-font-color;
+		background-color: $ys-font-color;
+		color: #fff;
+	}
+
+	a {
+		.page-text {
+			background-color: transparent;
+			color: $ys-font-color;
+		}
+	}//a
+}//.page-links
+
 
 //--------------------------------------
 // タブレット

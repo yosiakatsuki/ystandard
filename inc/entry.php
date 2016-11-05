@@ -48,4 +48,21 @@ if (!function_exists( 'ys_entry_the_entry_author')) {
 }
 
 
+
+
+//-----------------------------------------------
+//	ページング
+//-----------------------------------------------
+if (!function_exists( 'ys_entry_the_link_pages')) {
+	function ys_entry_the_link_pages() {
+		wp_link_pages( array(
+					'before'      => '<div class="page-links">',
+					'after'       => '</div>',
+					'link_before' => '<span class="page-text">',
+					'link_after'  => '</span>',
+					'pagelink'    => '%',
+					'separator'   => '',
+				) );
+	}
+}
 ?>
