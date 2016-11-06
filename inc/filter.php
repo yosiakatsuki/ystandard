@@ -140,4 +140,26 @@ add_filter( 'excerpt_more', 'ys_filter_excerpt_more' );
 
 
 
+//------------------------------------------------------------------------------
+// コメントフォームの順番を入れ替える
+//------------------------------------------------------------------------------
+if( ! function_exists( 'ys_filter_comment_form_fields' )){
+	function ys_filter_comment_form_fields( $fields ) {
+		// 退避
+		$comment = $fields['comment'];
+
+		// 一旦削除
+		unset( $fields['comment'] );
+
+		// 追加
+		$fields['comment'] = $comment;
+
+		return $fields;
+	}
+}
+add_filter( 'comment_form_fields', 'ys_filter_comment_form_fields' );
+
+
+
+
 ?>

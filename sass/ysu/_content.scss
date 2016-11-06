@@ -15,6 +15,15 @@
 	}
 }
 
+.single,
+.page {
+	.site-main {
+		& > article {
+			margin-bottom: 2rem;
+		}
+	}
+}
+
 // 固定表示投稿
 .sticky-post {
 	font-size: .8rem;
@@ -95,6 +104,11 @@
 	}
 }
 
+// 本文
+.entry-content {
+	margin: 1rem 0;
+}
+
 // 続き
 .entry-more {
 	text-align: right;
@@ -108,15 +122,15 @@
 	.page-text {
 		padding: .2rem .5rem;
 		margin-right: .5rem;
-		border: 1px solid $ys-font-color;
-		background-color: $ys-font-color;
-		color: #fff;
+		border: 1px solid $ys-border-color-pager;
+		background-color: $ys-bg-color-pager;
+		color: $ys-font-color-pager;
 	}
 
 	a {
 		.page-text {
-			background-color: transparent;
-			color: $ys-font-color;
+			background-color: $ys-bg-color-pager-current;
+			color: $ys-font-color-pager-current;
 		}
 	}//a
 }//.page-links
@@ -136,9 +150,11 @@
 // PC
 //--------------------------------------
 @include media-breakpoint(pc) {
+
 	.site-main {
 		& > article {
 			margin-bottom: 4rem;
 		}
 	}
+
 };

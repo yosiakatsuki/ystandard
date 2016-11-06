@@ -32,6 +32,8 @@ require_once TEMPLATEPATH . '/inc/entry.php';
 require_once TEMPLATEPATH . '/inc/wphead.php';
 // wp_footer関連
 require_once TEMPLATEPATH . '/inc/wpfooter.php';
+// コメント欄
+require_once TEMPLATEPATH . '/inc/yscomment.php';
 // ページネーション
 require_once TEMPLATEPATH . '/inc/pagenation.php';
 // パンくずリスト

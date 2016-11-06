@@ -1,0 +1,161 @@
+//--------------------------------------
+//
+//	コメントエリア
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.comments-title,
+.comment-list,
+.comment-respond,
+.comment-reply-title,
+.logged-in-as {
+	margin: 0 0 .5rem;
+}
+
+.comments-title,
+.comment-reply-title {
+	font-size: 1.2rem;
+}
+
+.comment-list {
+
+	.comment,
+	.pingback {
+		margin: 0 0 1rem;
+
+		.children {
+			margin: 1rem 0 0;
+			padding-left: 1rem;
+		}
+	}//.comment-list li
+}//.comment-list
+
+
+.comment-author {
+
+	margin: 0 0 .5rem;
+
+	img {
+		border-radius: 50%;
+	}
+
+	cite,
+	a {
+		font-weight: bold;
+	}
+}
+
+.comment-meta {
+	font-size: .6rem;
+	a {
+		color: $ys-font-color-gray;
+	}
+}
+
+.reply {
+	text-align: right;
+}
+
+.comment-navigation {
+
+	margin: 0 0 1rem;
+	font-size: .8rem;
+
+	h2 {
+		margin: 0 0 .5rem;
+		color: $ys-font-color-gray;
+	}
+
+	.nav-links {
+		font-size: 0;
+
+		& > div {
+			display: inline-block;
+			width: 50%;
+			font-size: .8rem;
+		}
+
+		.nav-previous {
+			text-align: left;
+
+			&::before {
+				content: "«";
+				margin-left: .5rem;
+			}
+		}
+
+		.nav-next {
+			text-align: right;
+
+			&::after {
+				content: "»";
+				margin-right: .5rem;
+			}
+		}
+
+	}//.nav-links
+}
+
+.logged-in-as {
+	font-size: .8rem;
+}
+
+.comment-form {
+
+	label {
+		display: block;
+		margin: 1rem 0 0;
+	}
+
+	textarea,
+	input[type="text"],
+	input[type="email"],
+	input[type="url"] {
+		width: 100%;
+		padding: .5rem;
+		border: 1px solid $ys-border-color-input;
+		background-color: $ys-bg-color-input;
+		font-size: 1rem;
+		color: $ys-font-color-input;
+	}
+
+	input[type="submit"] {
+		width: 100%;
+		padding: .5rem;
+		border: 1px solid $ys-border-color-button;
+		background-color: $ys-bg-color-button;
+		font-size: 1rem;
+		color: $ys-font-color-button;
+	}
+
+
+}
+
+.form-submit {
+	margin: 1rem 0 0;
+}
+
+.required {
+	font-size: .8rem;
+	color:$ys-required-color;
+}
+
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+
+};

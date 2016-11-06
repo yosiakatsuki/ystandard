@@ -14,14 +14,13 @@ if ( post_password_required() ) {
 			?>
 		</h2>
 
-		<?php the_comments_navigation(); ?>
-
 		<ol class="comment-list">
 			<?php
 				wp_list_comments( array(
 					'style'       => 'ol',
 					'short_ping'  => true,
 					'avatar_size' => 42,
+					'callback' => 'ys_yscomment_wp_list_comments_callback'
 				) );
 			?>
 		</ol><!-- .comment-list -->
@@ -41,6 +40,7 @@ if ( post_password_required() ) {
 		comment_form( array(
 			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
 			'title_reply_after'  => '</h2>',
+			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>'
 		) );
 	?>
 

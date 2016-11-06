@@ -11,42 +11,82 @@ $ys-breakpoints-setting: (
 ) !default;
 
 // コンテンツ幅
-$ys-wrap-width            : 1200px;
-$ys-gutter                : 2rem;
-$ys-gutter-sp             : 1rem;
-$ys-nosidebar-max-width   : 1000px;
-$ys-sidebar-width         : 364px;
+$ys-wrap-width                 : 1200px;
+$ys-gutter                     : 2rem;
+$ys-gutter-sp                  : 1rem;
+$ys-nosidebar-max-width        : 1000px;
+$ys-sidebar-width              : 364px;
 
 // *色
-$ys-bg-color-body         : #fefefe !default;	//背景
-$ys-bg-color-gray         : #fafafa !default;
-$ys-bg-color-content      : #fff !default;
-$ys-bg-color-code         : #fbfbfb !default;
-$ys-bg-color-blockquote   : #fbfbfb !default;
-$ys-border-color-gray     : #ccc !default;
+// フォント
+$ys-font-color                 : #2c3e50 !default;
+$ys-font-color-gray            : #888 !default;
+$ys-font-color-code            : #2626d9 !default;
+$ys-font-color-blockquote      : #888 !default;
+$ys-font-color-pager           : #fff !default;
+$ys-font-color-pager-current   : $ys-font-color !default;
+$ys-font-color-input           : $ys-font-color !default;
+$ys-font-color-button          : #fff !default;
+
+// 背景
+$ys-bg-color-body              : #fefefe !default;	//背景
+$ys-bg-color-gray              : #fafafa !default;
+$ys-bg-color-content           : #fff !default;
+$ys-bg-color-code              : #fbfbfb !default;
+$ys-bg-color-blockquote        : #fbfbfb !default;
+$ys-bg-color-pager             : $ys-font-color !default;
+$ys-bg-color-pager-current     : transparent !default;
+$ys-bg-color-input             : #fff !default;
+$ys-bg-color-button            : $ys-font-color !default;
+
+
+// 罫線
+$ys-border-color-gray          : #ccc !default;
+$ys-border-color-pager         : $ys-font-color !default;
+$ys-border-color-pager-current : $ys-font-color !default;
+$ys-border-color-input         : $ys-border-color-gray !default;
+$ys-border-color-button        : $ys-font-color !default;
+
+
 
 // *フォント
-$ys-font-color            : #2c3e50 !default;
-$ys-font-color-gray       : #888 !default;
-$ys-font-color-code       : #2626d9 !default;
-$ys-font-color-blockquote : #888 !default;
-$ys-font-size             : 16px !default;
-$ys-line-height           : 1.5 !default;
-$ys-font-family           : Avenir,"Helvetica neue",Helvetica,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
-$ys-font-family-code             : Consolas, 'Courier New', Courier, Monaco,"游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , monospace;
-$ys-letter-spacing        : 0.1em !default;
+$ys-font-size                  : 16px !default;
+$ys-line-height                : 1.5 !default;
+$ys-font-family                : Avenir,"Helvetica neue",Helvetica,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
+$ys-font-family-code           : Consolas, 'Courier New', Courier, Monaco,"游ゴシック" , "Yu Gothic" , "游ゴシック体" , "YuGothic" , "ヒラギノ角ゴ Pro W3" , "Hiragino Kaku Gothic Pro" , "Meiryo UI" , "メイリオ" , Meiryo , "ＭＳ Ｐゴシック" , "MS PGothic" , monospace;
+$ys-letter-spacing             : 0.1em !default;
 
 // *リンク関連
-$ys-link-color-base       : #0068b7 !default;
-$ys-link-hover-lighten    : 10% !default;
-$ys-link-color            : $ys-link-color-base !default;
-$ys-link-color-hover      :lighten($ys-link-color-base,$ys-link-hover-lighten) !default;
+$ys-link-color-base            : #0068b7 !default;
+$ys-link-hover-lighten         : 10% !default;
+$ys-link-color                 : $ys-link-color-base !default;
+$ys-link-color-hover           :lighten($ys-link-color-base,$ys-link-hover-lighten) !default;
 
 // ヘッダー部分
-$ys-header-bg-color       : $ys-bg-color-gray !default;
-$ys-header-font-color     : $ys-font-color !default;
-$ys-header-nav-font-color : $ys-font-color-gray !default;
+$ys-header-bg-color            : $ys-bg-color-gray !default;
+$ys-header-font-color          : $ys-font-color !default;
+$ys-header-nav-font-color      : $ys-font-color-gray !default;
 
 // フッター部分
-$ys-footer-bg-color       : $ys-bg-color-gray !default;
-$ys-footer-font-color     : $ys-font-color-gray !default;
+$ys-footer-bg-color            : $ys-bg-color-gray !default;
+$ys-footer-font-color          : $ys-font-color-gray !default;
+
+// コメント
+$ys-required-color             :#db2814;
+
+// SNS関連
+$ys-sns-color-twitter          :#2b97f0;
+$ys-sns-color-facebook         :#3b5a9b;
+$ys-sns-color-googleplus       :#db2814;
+$ys-sns-color-hatenabookmark   :#007ad2;
+$ys-sns-color-rss              :#fb8501;
+$ys-sns-color-feedly           :#8cba43;
+$ys-sns-color-pocket           :#ea4654;
+$ys-sns-color-instargram       :#3f729b;
+$ys-sns-color-line             :#2cbf13;
+$ys-sns-color-tumblr           :#35465c;
+$ys-sns-color-youtube          :#cd201f;
+$ys-sns-color-vine             :#00b389;
+$ys-sns-color-github           :#4183c4;
+$ys-sns-color-pinterest        :#cb2027;
+$ys-sns-color-linkedin         :#0e76a8;

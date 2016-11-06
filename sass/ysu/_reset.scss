@@ -55,6 +55,9 @@ table {
 a {
   text-decoration: none;
 }
-a:hover {
-  cursor: pointer;
+a,
+input[type="submit"] {
+	&:hover{
+		cursor: pointer;
+	}
 }

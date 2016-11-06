@@ -51,7 +51,8 @@ table {
 a {
   text-decoration: none; }
 
-a:hover {
+a:hover,
+input[type="submit"]:hover {
   cursor: pointer; }
 
 * {
@@ -266,6 +267,10 @@ div.aligncenter {
   .site-main > article {
     zoom: 1; }
 
+.single .site-main > article,
+.page .site-main > article {
+  margin-bottom: 2rem; }
+
 .sticky-post {
   font-size: .8rem; }
 
@@ -351,6 +356,9 @@ div.aligncenter {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
 
+.entry-content {
+  margin: 1rem 0; }
+
 .entry-more {
   text-align: right; }
 
@@ -389,145 +397,262 @@ div.aligncenter {
         margin: 0 .3rem 0 .3rem;
         color: #888; }
 
-.entry-content {
-  margin: 1rem 0; }
-  .entry-content h1,
-  .entry-content h2,
-  .entry-content h3,
-  .entry-content h4,
-  .entry-content h5,
-  .entry-content h6 {
-    clear: both; }
-  .entry-content h1,
-  .entry-content h2 {
-    margin: 4rem 0 2rem;
-    font-size: 1.8rem; }
-  .entry-content h3 {
-    margin: 3rem 0 2rem;
-    font-size: 1.6rem; }
-  .entry-content h4 {
-    margin: 2.5rem 0 2rem;
-    font-size: 1.5rem; }
-  .entry-content h5 {
-    margin: 2rem 0 2rem;
-    font-size: 1.4rem; }
-  .entry-content h6 {
-    margin: 2rem 0 2rem;
-    font-size: 1.2rem; }
-  .entry-content p,
-  .entry-content ul,
-  .entry-content ol,
-  .entry-content dl,
-  .entry-content blockquote,
-  .entry-content pre,
-  .entry-content table,
-  .entry-content address {
-    margin: 0 0 2rem; }
-  .entry-content strong, .entry-content b {
-    font-weight: bold; }
-  .entry-content del,
-  .entry-content strike {
-    text-decoration: line-through; }
-  .entry-content em {
-    font-style: italic; }
-  .entry-content u,
-  .entry-content ins {
-    text-decoration: underline; }
-  .entry-content figure,
-  .entry-content img {
-    max-width: 100%;
-    margin-bottom: .5rem; }
-  .entry-content ul {
-    list-style: disc; }
-  .entry-content ol {
-    list-style: decimal; }
-  .entry-content ul,
-  .entry-content ol {
-    padding-left: 2rem; }
-    .entry-content ul li,
-    .entry-content ol li {
-      padding: .2em 0; }
-    .entry-content ul ul,
-    .entry-content ul ol,
-    .entry-content ol ul,
-    .entry-content ol ol {
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6,
+.comment-text h1,
+.comment-text h2,
+.comment-text h3,
+.comment-text h4,
+.comment-text h5,
+.comment-text h6 {
+  clear: both; }
+
+.entry-content h1,
+.entry-content h2,
+.comment-text h1,
+.comment-text h2 {
+  margin: 4rem 0 2rem;
+  font-size: 1.8rem; }
+
+.entry-content h3,
+.comment-text h3 {
+  margin: 3rem 0 2rem;
+  font-size: 1.6rem; }
+
+.entry-content h4,
+.comment-text h4 {
+  margin: 2.5rem 0 2rem;
+  font-size: 1.5rem; }
+
+.entry-content h5,
+.comment-text h5 {
+  margin: 2rem 0 2rem;
+  font-size: 1.4rem; }
+
+.entry-content h6,
+.comment-text h6 {
+  margin: 2rem 0 2rem;
+  font-size: 1.2rem; }
+
+.entry-content p,
+.entry-content ul,
+.entry-content ol,
+.entry-content dl,
+.entry-content blockquote,
+.entry-content pre,
+.entry-content table,
+.entry-content address,
+.comment-text p,
+.comment-text ul,
+.comment-text ol,
+.comment-text dl,
+.comment-text blockquote,
+.comment-text pre,
+.comment-text table,
+.comment-text address {
+  margin: 0 0 2rem; }
+  .entry-content p:last-child,
+  .entry-content ul:last-child,
+  .entry-content ol:last-child,
+  .entry-content dl:last-child,
+  .entry-content blockquote:last-child,
+  .entry-content pre:last-child,
+  .entry-content table:last-child,
+  .entry-content address:last-child,
+  .comment-text p:last-child,
+  .comment-text ul:last-child,
+  .comment-text ol:last-child,
+  .comment-text dl:last-child,
+  .comment-text blockquote:last-child,
+  .comment-text pre:last-child,
+  .comment-text table:last-child,
+  .comment-text address:last-child {
+    margin: 0; }
+
+.entry-content strong, .entry-content b,
+.comment-text strong,
+.comment-text b {
+  font-weight: bold; }
+
+.entry-content del,
+.entry-content strike,
+.comment-text del,
+.comment-text strike {
+  text-decoration: line-through; }
+
+.entry-content em,
+.comment-text em {
+  font-style: italic; }
+
+.entry-content u,
+.entry-content ins,
+.comment-text u,
+.comment-text ins {
+  text-decoration: underline; }
+
+.entry-content figure,
+.entry-content img,
+.comment-text figure,
+.comment-text img {
+  max-width: 100%;
+  margin-bottom: .5rem; }
+
+.entry-content ul,
+.comment-text ul {
+  list-style: disc; }
+
+.entry-content ol,
+.comment-text ol {
+  list-style: decimal; }
+
+.entry-content ul,
+.entry-content ol,
+.comment-text ul,
+.comment-text ol {
+  padding-left: 2rem; }
+  .entry-content ul li,
+  .entry-content ol li,
+  .comment-text ul li,
+  .comment-text ol li {
+    padding: .2em 0; }
+  .entry-content ul ul,
+  .entry-content ul ol,
+  .entry-content ol ul,
+  .entry-content ol ol,
+  .comment-text ul ul,
+  .comment-text ul ol,
+  .comment-text ol ul,
+  .comment-text ol ol {
+    margin: 0; }
+    .entry-content ul ul li:last-child,
+    .entry-content ul ol li:last-child,
+    .entry-content ol ul li:last-child,
+    .entry-content ol ol li:last-child,
+    .comment-text ul ul li:last-child,
+    .comment-text ul ol li:last-child,
+    .comment-text ol ul li:last-child,
+    .comment-text ol ol li:last-child {
+      padding: .2em 0 0; }
+
+.entry-content dt,
+.comment-text dt {
+  font-weight: bold;
+  margin: 1rem 0 .2rem; }
+
+.entry-content dd,
+.comment-text dd {
+  margin: 0 0 .2rem 1rem; }
+
+.entry-content dl dt:first-child,
+.comment-text dl dt:first-child {
+  margin: 0 0 .2rem; }
+
+.entry-content code,
+.entry-content pre,
+.entry-content kbd,
+.entry-content var,
+.entry-content tt,
+.comment-text code,
+.comment-text pre,
+.comment-text kbd,
+.comment-text var,
+.comment-text tt {
+  font-family: Consolas, "Courier New", Courier, Monaco, "游ゴシック", "Yu Gothic", "游ゴシック体", "YuGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", monospace; }
+
+.entry-content pre,
+.comment-text pre {
+  width: 100%;
+  background: #fbfbfb;
+  padding: 10px 20px;
+  line-height: 1.2;
+  overflow: auto; }
+
+.entry-content code,
+.entry-content kbd,
+.entry-content var,
+.entry-content tt,
+.comment-text code,
+.comment-text kbd,
+.comment-text var,
+.comment-text tt {
+  color: #2626d9;
+  padding: 0 1px; }
+
+.entry-content blockquote,
+.comment-text blockquote {
+  padding: 1rem;
+  background-color: #fbfbfb;
+  color: #888; }
+  .entry-content blockquote p,
+  .entry-content blockquote cite,
+  .comment-text blockquote p,
+  .comment-text blockquote cite {
+    margin: 0 0 1rem; }
+    .entry-content blockquote p:last-child,
+    .entry-content blockquote cite:last-child,
+    .comment-text blockquote p:last-child,
+    .comment-text blockquote cite:last-child {
       margin: 0; }
-      .entry-content ul ul li:last-child,
-      .entry-content ul ol li:last-child,
-      .entry-content ol ul li:last-child,
-      .entry-content ol ol li:last-child {
-        padding: .2em 0 0; }
-  .entry-content dt {
-    font-weight: bold;
-    margin: 1rem 0 .2rem; }
-  .entry-content dd {
-    margin: 0 0 .2rem 1rem; }
-  .entry-content dl dt:first-child {
-    margin: 0 0 .2rem; }
-  .entry-content code,
-  .entry-content pre,
-  .entry-content kbd,
-  .entry-content var,
-  .entry-content tt {
-    font-family: Consolas, "Courier New", Courier, Monaco, "游ゴシック", "Yu Gothic", "游ゴシック体", "YuGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", monospace; }
-  .entry-content pre {
-    width: 100%;
-    background: #fbfbfb;
-    padding: 10px 20px;
-    line-height: 1.2;
-    overflow: auto; }
-  .entry-content code,
-  .entry-content kbd,
-  .entry-content var,
-  .entry-content tt {
-    color: #2626d9;
-    padding: 0 1px; }
-  .entry-content blockquote {
-    padding: 1rem;
-    background-color: #fbfbfb;
-    color: #888; }
-    .entry-content blockquote p,
-    .entry-content blockquote cite {
-      margin: 0 0 1rem; }
-      .entry-content blockquote p:last-child,
-      .entry-content blockquote cite:last-child {
-        margin: 0; }
-    .entry-content blockquote a {
-      text-decoration: underline; }
-    .entry-content blockquote cite {
-      font-size: .8rem; }
-      .entry-content blockquote cite::before {
-        content: "-";
-        margin-right: .2rem; }
-  .entry-content cite,
-  .entry-content cite a,
-  .entry-content q {
-    font-style: italic;
-    color: #888; }
-  .entry-content table {
-    width: 100%;
-    table-layout: fixed;
-    border-top: 1px solid #ccc;
-    border-left: 1px solid #ccc; }
-    .entry-content table tr {
-      border-bottom: 1px solid #ccc; }
-    .entry-content table td,
-    .entry-content table th {
-      padding: .5rem;
-      border-right: 1px solid #ccc; }
-    .entry-content table th {
-      background-color: #fafafa;
-      text-align: left; }
-  .entry-content sub,
-  .entry-content sup {
-    font-size: 0.5em; }
-  .entry-content sub {
-    vertical-align: sub; }
-  .entry-content sub {
-    vertical-align: super; }
+  .entry-content blockquote a,
+  .comment-text blockquote a {
+    text-decoration: underline; }
+  .entry-content blockquote cite,
+  .comment-text blockquote cite {
+    font-size: .8rem; }
+    .entry-content blockquote cite::before,
+    .comment-text blockquote cite::before {
+      content: "-";
+      margin-right: .2rem; }
+
+.entry-content cite,
+.entry-content cite a,
+.entry-content q,
+.comment-text cite,
+.comment-text cite a,
+.comment-text q {
+  font-style: italic;
+  color: #888; }
+
+.entry-content table,
+.comment-text table {
+  width: 100%;
+  table-layout: fixed;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc; }
+  .entry-content table tr,
+  .comment-text table tr {
+    border-bottom: 1px solid #ccc; }
+  .entry-content table td,
+  .entry-content table th,
+  .comment-text table td,
+  .comment-text table th {
+    padding: .5rem;
+    border-right: 1px solid #ccc; }
+  .entry-content table th,
+  .comment-text table th {
+    background-color: #fafafa;
+    text-align: left; }
+
+.entry-content sub,
+.entry-content sup,
+.comment-text sub,
+.comment-text sup {
+  font-size: 0.5em; }
+
+.entry-content sub,
+.comment-text sub {
+  vertical-align: sub; }
+
+.entry-content sub,
+.comment-text sub {
+  vertical-align: super; }
 
 .author-info {
-  margin: 2rem 0; }
+  margin: 2rem 0 0; }
 
 .author-avatar {
   text-align: center; }
@@ -556,3 +681,94 @@ div.aligncenter {
     text-align: left; }
   .author-description.show-avatar {
     float: left; } }
+
+.comments-title,
+.comment-list,
+.comment-respond,
+.comment-reply-title,
+.logged-in-as {
+  margin: 0 0 .5rem; }
+
+.comments-title,
+.comment-reply-title {
+  font-size: 1.2rem; }
+
+.comment-list .comment,
+.comment-list .pingback {
+  margin: 0 0 1rem; }
+  .comment-list .comment .children,
+  .comment-list .pingback .children {
+    margin: 1rem 0 0;
+    padding-left: 1rem; }
+
+.comment-author {
+  margin: 0 0 .5rem; }
+  .comment-author img {
+    border-radius: 50%; }
+  .comment-author cite,
+  .comment-author a {
+    font-weight: bold; }
+
+.comment-meta {
+  font-size: .6rem; }
+  .comment-meta a {
+    color: #888; }
+
+.reply {
+  text-align: right; }
+
+.comment-navigation {
+  margin: 0 0 1rem;
+  font-size: .8rem; }
+  .comment-navigation h2 {
+    margin: 0 0 .5rem;
+    color: #888; }
+  .comment-navigation .nav-links {
+    font-size: 0; }
+    .comment-navigation .nav-links > div {
+      display: inline-block;
+      width: 50%;
+      font-size: .8rem; }
+    .comment-navigation .nav-links .nav-previous {
+      text-align: left; }
+      .comment-navigation .nav-links .nav-previous::before {
+        content: "«";
+        margin-left: .5rem; }
+    .comment-navigation .nav-links .nav-next {
+      text-align: right; }
+      .comment-navigation .nav-links .nav-next::after {
+        content: "»";
+        margin-right: .5rem; }
+
+.logged-in-as {
+  font-size: .8rem; }
+
+.comment-form label {
+  display: block;
+  margin: 1rem 0 0; }
+
+.comment-form textarea,
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"] {
+  width: 100%;
+  padding: .5rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 1rem;
+  color: #2c3e50; }
+
+.comment-form input[type="submit"] {
+  width: 100%;
+  padding: .5rem;
+  border: 1px solid #2c3e50;
+  background-color: #2c3e50;
+  font-size: 1rem;
+  color: #fff; }
+
+.form-submit {
+  margin: 1rem 0 0; }
+
+.required {
+  font-size: .8rem;
+  color: #db2814; }
