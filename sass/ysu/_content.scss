@@ -136,6 +136,24 @@
 }//.page-links
 
 
+.post-password-form {
+	input[type="password"] {
+		border: 1px solid $ys-border-color-input;
+		background-color: $ys-bg-color-input;
+		padding: .1rem;
+		font-size: .8rem;
+		color: $ys-font-color-input;
+	}
+
+	input[type="submit"] {
+		padding: .1rem .5rem;
+		border: 1px solid $ys-border-color-button;
+		background-color: $ys-bg-color-button;
+		font-size: .8rem;
+		color: $ys-font-color-button;
+	}
+}
+
 //--------------------------------------
 // タブレット
 //--------------------------------------

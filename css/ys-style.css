@@ -374,6 +374,20 @@ div.aligncenter {
     background-color: transparent;
     color: #2c3e50; }
 
+.post-password-form input[type="password"] {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: .1rem;
+  font-size: .8rem;
+  color: #2c3e50; }
+
+.post-password-form input[type="submit"] {
+  padding: .1rem .5rem;
+  border: 1px solid #2c3e50;
+  background-color: #2c3e50;
+  font-size: .8rem;
+  color: #fff; }
+
 @media screen and (min-width: 960px) {
   .site-main > article {
     margin-bottom: 4rem; } }
