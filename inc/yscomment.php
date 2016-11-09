@@ -30,7 +30,7 @@ if (!function_exists( 'ys_yscomment_wp_list_comments_callback')) {
 			<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
 			<?php endif; ?>
 
-			<div class="comment-author">
+			<div class="comment-author clearfix">
 				<?php
 					if(get_option('show_avatars') == 1  ){
 						if( $args['avatar_size'] != 0 ) {
@@ -43,17 +43,18 @@ if (!function_exists( 'ys_yscomment_wp_list_comments_callback')) {
 					}
 				?>
 			<?php printf( __( '<cite>%s</cite>' ), get_comment_author_link() ); ?>
-			</div>
 			<?php if ( $comment->comment_approved == '0' ) : ?>
 				<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></span>
 			<?php endif; ?>
 
-			<div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
-				<?php
-					/* translators: 1: date, 2: time */
-					printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '  ', '' );
-				?>
+				<div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
+					<?php
+						/* translators: 1: date, 2: time */
+						printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '  ', '' );
+					?>
+				</div>
 			</div>
+
 
 			<div class="comment-text">
 				<?php comment_text(); ?>

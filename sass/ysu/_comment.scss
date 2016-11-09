@@ -41,6 +41,8 @@
 
 	img {
 		border-radius: 50%;
+		float: left;
+		margin-right: 1rem;
 	}
 
 	cite,
@@ -50,8 +52,11 @@
 }
 
 .comment-meta {
+
 	font-size: .6rem;
+
 	a {
+		font-weight: normal;
 		color: $ys-font-color-gray;
 	}
 }
