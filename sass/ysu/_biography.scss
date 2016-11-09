@@ -40,6 +40,26 @@
 		margin: 0 0 .5rem;
 	}
 }
+
+.author-sns {
+
+	font-size: 0;
+	margin: 0 0 .5rem;
+
+	li {
+		display: inline-block;
+		margin-right: .2rem;
+		font-size: .9rem;
+		vertical-align: middle;
+
+		a {
+			transition: color .3s;
+		}
+	}
+
+}
+
+
 //--------------------------------------
 // タブレット
 //--------------------------------------

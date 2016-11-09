@@ -1,0 +1,384 @@
+//--------------------------------------
+//
+//	便利クラス
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.color-twitter {
+	&,
+	& a {
+		color: $ys-sns-color-twitter;
+
+		&:hover {
+			color: lighten($ys-sns-color-twitter,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-twitter
+.bg-twitter {
+
+	background-color: $ys-sns-color-twitter;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-twitter,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-twitter
+
+.color-facebook {
+	&,
+	& a {
+		color: $ys-sns-color-facebook;
+
+		&:hover {
+			color: lighten($ys-sns-color-facebook,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-facebook
+.bg-facebook {
+
+	background-color: $ys-sns-color-facebook;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-facebook,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-facebook
+
+.color-google-plus {
+	&,
+	& a {
+		color: $ys-sns-color-googleplus;
+
+		&:hover {
+			color: lighten($ys-sns-color-googleplus,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-google-plus
+.bg-google-plus {
+
+	background-color: $ys-sns-color-googleplus;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-googleplus,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-google-plus
+
+.color-hatenabookmark {
+	&,
+	& a {
+		color: $ys-sns-color-hatenabookmark;
+
+		&:hover {
+			color: lighten($ys-sns-color-hatenabookmark,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-hatenabookmark
+.bg-hatenabookmark {
+
+	background-color: $ys-sns-color-hatenabookmark;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-hatenabookmark,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-hatenabookmark
+
+.color-rss {
+	&,
+	& a {
+		color: $ys-sns-color-rss;
+
+		&:hover {
+			color: lighten($ys-sns-color-rss,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-rss
+.bg-rss {
+
+	background-color: $ys-sns-color-rss;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-rss,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-rss
+
+.color-feedly {
+	&,
+	& a {
+		color: $ys-sns-color-feedly;
+
+		&:hover {
+			color: lighten($ys-sns-color-feedly,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-feedly
+.bg-feedly {
+
+	background-color: $ys-sns-color-feedly;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-feedly,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-feedly
+
+.color-pocket {
+	&,
+	& a {
+		color: $ys-sns-color-pocket;
+
+		&:hover {
+			color: lighten($ys-sns-color-pocket,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-pocket
+.bg-pocket {
+
+	background-color: $ys-sns-color-pocket;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-pocket,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-pocket
+
+.color-instargram {
+	&,
+	& a {
+		color: $ys-sns-color-instargram;
+
+		&:hover {
+			color: lighten($ys-sns-color-instargram,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-instargram
+.bg-instargram {
+
+	background-color: $ys-sns-color-instargram;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-instargram,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-instargram
+
+.color-line {
+	&,
+	& a {
+		color: $ys-sns-color-line;
+
+		&:hover {
+			color: lighten($ys-sns-color-line,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-line
+.bg-line {
+
+	background-color: $ys-sns-color-line;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-line,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-line
+
+.color-tumblr {
+	&,
+	& a {
+		color: $ys-sns-color-tumblr;
+
+		&:hover {
+			color: lighten($ys-sns-color-tumblr,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-tumblr
+.bg-tumblr {
+
+	background-color: $ys-sns-color-tumblr;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-tumblr,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-tumblr
+
+.color-youtube-play {
+	&,
+	& a {
+		color: $ys-sns-color-youtube;
+
+		&:hover {
+			color: lighten($ys-sns-color-youtube,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-youtube-play
+.bg-youtube-play {
+
+	background-color: $ys-sns-color-youtube;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-youtube,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-youtube-play
+
+.color-vine {
+	&,
+	& a {
+		color: $ys-sns-color-vine;
+
+		&:hover {
+			color: lighten($ys-sns-color-vine,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-vine
+.bg-vine {
+
+	background-color: $ys-sns-color-vine;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-vine,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-vine
+
+.color-github {
+	&,
+	& a {
+		color: $ys-sns-color-github;
+
+		&:hover {
+			color: lighten($ys-sns-color-github,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-github
+.bg-github {
+
+	background-color: $ys-sns-color-github;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-github,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-github
+
+.color-pinterest {
+	&,
+	& a {
+		color: $ys-sns-color-pinterest;
+
+		&:hover {
+			color: lighten($ys-sns-color-pinterest,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-pinterest
+.bg-pinterest {
+
+	background-color: $ys-sns-color-pinterest;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-pinterest,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-pinterest
+
+.color-linkedin {
+	&,
+	& a {
+		color: $ys-sns-color-linkedin;
+
+		&:hover {
+			color: lighten($ys-sns-color-linkedin,$ys-sns-link-hover-lighten);
+		}
+	}
+}//.color-linkedin
+.bg-linkedin {
+
+	background-color: $ys-sns-color-linkedin;
+
+	&:hover {
+		background-color: lighten($ys-sns-color-linkedin,$ys-sns-link-hover-lighten);
+	}
+
+	&,
+	& a {
+		color: #fff;
+	}
+}//.bg-linkedin
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+};

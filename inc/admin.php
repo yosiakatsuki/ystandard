@@ -66,16 +66,16 @@ if( ! function_exists( 'ys_admin_add_contactmethods' ) ) {
 	function ys_admin_add_contactmethods($wb)
 	{
 		//項目の追加
-		$wb['twitter'] = 'Twitter';
-		$wb['facebook'] = 'Facebook';
-		$wb['googleplus'] = 'Google+';
-		$wb['instargram'] = 'Instargram';
-		$wb['tumblr'] = 'Tumblr';
-		$wb['youtube'] = 'Youtube';
-		$wb['vine'] = 'vine';
-		$wb['github'] = 'GitHub';
-		$wb['pinterest'] = 'Pinterest';
-		$wb['linkedIn'] = 'LinkedIn';
+		$wb['ys_twitter'] = 'Twitter';
+		$wb['ys_facebook'] = 'Facebook';
+		$wb['ys_googleplus'] = 'Google+';
+		$wb['ys_instargram'] = 'Instargram';
+		$wb['ys_tumblr'] = 'Tumblr';
+		$wb['ys_youtube'] = 'Youtube';
+		$wb['ys_vine'] = 'vine';
+		$wb['ys_github'] = 'GitHub';
+		$wb['ys_pinterest'] = 'Pinterest';
+		$wb['ys_linkedin'] = 'LinkedIn';
 
 		return $wb;
 	}

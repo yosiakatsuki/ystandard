@@ -12,7 +12,10 @@
 		<h2 class="author-title">
 			<a class="author-link" href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author"><?php ys_entry_the_entry_author(); ?></a>
 		</h2>
-
+		<?php
+		// SNSリンク出す
+			ys_entry_the_author_sns();
+		?>
 		<div class="author-bio">
 			<?php echo wpautop(str_replace(array("\r\n", "\r", "\n"),"\n\n",get_the_author_meta( 'description' ))); ?>
 		</div><!-- .author-bio -->

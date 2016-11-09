@@ -686,6 +686,18 @@ div.aligncenter {
   .author-bio p {
     margin: 0 0 .5rem; }
 
+.author-sns {
+  font-size: 0;
+  margin: 0 0 .5rem; }
+  .author-sns li {
+    display: inline-block;
+    margin-right: .2rem;
+    font-size: .9rem;
+    vertical-align: middle; }
+    .author-sns li a {
+      -webkit-transition: color .3s;
+      transition: color .3s; }
+
 @media screen and (min-width: 600px) {
   .author-avatar {
     margin-right: 1rem;
@@ -786,3 +798,228 @@ div.aligncenter {
 .required {
   font-size: .8rem;
   color: #db2814; }
+
+.color-twitter,
+.color-twitter a {
+  color: #2b97f0; }
+  .color-twitter:hover,
+  .color-twitter a:hover {
+    color: #5baef3; }
+
+.bg-twitter {
+  background-color: #2b97f0; }
+  .bg-twitter:hover {
+    background-color: #5baef3; }
+  .bg-twitter,
+  .bg-twitter a {
+    color: #fff; }
+
+.color-facebook,
+.color-facebook a {
+  color: #3b5a9b; }
+  .color-facebook:hover,
+  .color-facebook a:hover {
+    color: #4e71bb; }
+
+.bg-facebook {
+  background-color: #3b5a9b; }
+  .bg-facebook:hover {
+    background-color: #4e71bb; }
+  .bg-facebook,
+  .bg-facebook a {
+    color: #fff; }
+
+.color-google-plus,
+.color-google-plus a {
+  color: #db2814; }
+  .color-google-plus:hover,
+  .color-google-plus a:hover {
+    color: #ed4835; }
+
+.bg-google-plus {
+  background-color: #db2814; }
+  .bg-google-plus:hover {
+    background-color: #ed4835; }
+  .bg-google-plus,
+  .bg-google-plus a {
+    color: #fff; }
+
+.color-hatenabookmark,
+.color-hatenabookmark a {
+  color: #007ad2; }
+  .color-hatenabookmark:hover,
+  .color-hatenabookmark a:hover {
+    color: #0697ff; }
+
+.bg-hatenabookmark {
+  background-color: #007ad2; }
+  .bg-hatenabookmark:hover {
+    background-color: #0697ff; }
+  .bg-hatenabookmark,
+  .bg-hatenabookmark a {
+    color: #fff; }
+
+.color-rss,
+.color-rss a {
+  color: #fb8501; }
+  .color-rss:hover,
+  .color-rss a:hover {
+    color: #fe9d31; }
+
+.bg-rss {
+  background-color: #fb8501; }
+  .bg-rss:hover {
+    background-color: #fe9d31; }
+  .bg-rss,
+  .bg-rss a {
+    color: #fff; }
+
+.color-feedly,
+.color-feedly a {
+  color: #8cba43; }
+  .color-feedly:hover,
+  .color-feedly a:hover {
+    color: #a3c868; }
+
+.bg-feedly {
+  background-color: #8cba43; }
+  .bg-feedly:hover {
+    background-color: #a3c868; }
+  .bg-feedly,
+  .bg-feedly a {
+    color: #fff; }
+
+.color-pocket,
+.color-pocket a {
+  color: #ea4654; }
+  .color-pocket:hover,
+  .color-pocket a:hover {
+    color: #ef747e; }
+
+.bg-pocket {
+  background-color: #ea4654; }
+  .bg-pocket:hover {
+    background-color: #ef747e; }
+  .bg-pocket,
+  .bg-pocket a {
+    color: #fff; }
+
+.color-instargram,
+.color-instargram a {
+  color: #3f729b; }
+  .color-instargram:hover,
+  .color-instargram a:hover {
+    color: #548cb9; }
+
+.bg-instargram {
+  background-color: #3f729b; }
+  .bg-instargram:hover {
+    background-color: #548cb9; }
+  .bg-instargram,
+  .bg-instargram a {
+    color: #fff; }
+
+.color-line,
+.color-line a {
+  color: #2cbf13; }
+  .color-line:hover,
+  .color-line a:hover {
+    color: #3ae81d; }
+
+.bg-line {
+  background-color: #2cbf13; }
+  .bg-line:hover {
+    background-color: #3ae81d; }
+  .bg-line,
+  .bg-line a {
+    color: #fff; }
+
+.color-tumblr,
+.color-tumblr a {
+  color: #35465c; }
+  .color-tumblr:hover,
+  .color-tumblr a:hover {
+    color: #485f7c; }
+
+.bg-tumblr {
+  background-color: #35465c; }
+  .bg-tumblr:hover {
+    background-color: #485f7c; }
+  .bg-tumblr,
+  .bg-tumblr a {
+    color: #fff; }
+
+.color-youtube-play,
+.color-youtube-play a {
+  color: #cd201f; }
+  .color-youtube-play:hover,
+  .color-youtube-play a:hover {
+    color: #e23e3d; }
+
+.bg-youtube-play {
+  background-color: #cd201f; }
+  .bg-youtube-play:hover {
+    background-color: #e23e3d; }
+  .bg-youtube-play,
+  .bg-youtube-play a {
+    color: #fff; }
+
+.color-vine,
+.color-vine a {
+  color: #00b389; }
+  .color-vine:hover,
+  .color-vine a:hover {
+    color: #00e6b0; }
+
+.bg-vine {
+  background-color: #00b389; }
+  .bg-vine:hover {
+    background-color: #00e6b0; }
+  .bg-vine,
+  .bg-vine a {
+    color: #fff; }
+
+.color-github,
+.color-github a {
+  color: #4183c4; }
+  .color-github:hover,
+  .color-github a:hover {
+    color: #689cd0; }
+
+.bg-github {
+  background-color: #4183c4; }
+  .bg-github:hover {
+    background-color: #689cd0; }
+  .bg-github,
+  .bg-github a {
+    color: #fff; }
+
+.color-pinterest,
+.color-pinterest a {
+  color: #cb2027; }
+  .color-pinterest:hover,
+  .color-pinterest a:hover {
+    color: #e03e44; }
+
+.bg-pinterest {
+  background-color: #cb2027; }
+  .bg-pinterest:hover {
+    background-color: #e03e44; }
+  .bg-pinterest,
+  .bg-pinterest a {
+    color: #fff; }
+
+.color-linkedin,
+.color-linkedin a {
+  color: #0e76a8; }
+  .color-linkedin:hover,
+  .color-linkedin a:hover {
+    color: #1297d7; }
+
+.bg-linkedin {
+  background-color: #0e76a8; }
+  .bg-linkedin:hover {
+    background-color: #1297d7; }
+  .bg-linkedin,
+  .bg-linkedin a {
+    color: #fff; }

@@ -11,11 +11,11 @@ $ys-breakpoints-setting: (
 ) !default;
 
 // コンテンツ幅
-$ys-wrap-width                 : 1200px;
-$ys-gutter                     : 2rem;
-$ys-gutter-sp                  : 1rem;
-$ys-nosidebar-max-width        : 1000px;
-$ys-sidebar-width              : 364px;
+$ys-wrap-width                 : 1200px !default;
+$ys-gutter                     : 2rem !default;
+$ys-gutter-sp                  : 1rem !default;
+$ys-nosidebar-max-width        : 1000px !default;
+$ys-sidebar-width              : 364px !default;
 
 // *色
 // フォント
@@ -60,7 +60,7 @@ $ys-letter-spacing             : 0.1em !default;
 $ys-link-color-base            : #0068b7 !default;
 $ys-link-hover-lighten         : 10% !default;
 $ys-link-color                 : $ys-link-color-base !default;
-$ys-link-color-hover           :lighten($ys-link-color-base,$ys-link-hover-lighten) !default;
+$ys-link-color-hover           : lighten($ys-link-color-base,$ys-link-hover-lighten) !default;
 
 // ヘッダー部分
 $ys-header-bg-color            : $ys-bg-color-gray !default;
@@ -72,21 +72,22 @@ $ys-footer-bg-color            : $ys-bg-color-gray !default;
 $ys-footer-font-color          : $ys-font-color-gray !default;
 
 // コメント
-$ys-required-color             :#db2814;
+$ys-required-color             : #db2814 !default;
 
 // SNS関連
-$ys-sns-color-twitter          :#2b97f0;
-$ys-sns-color-facebook         :#3b5a9b;
-$ys-sns-color-googleplus       :#db2814;
-$ys-sns-color-hatenabookmark   :#007ad2;
-$ys-sns-color-rss              :#fb8501;
-$ys-sns-color-feedly           :#8cba43;
-$ys-sns-color-pocket           :#ea4654;
-$ys-sns-color-instargram       :#3f729b;
-$ys-sns-color-line             :#2cbf13;
-$ys-sns-color-tumblr           :#35465c;
-$ys-sns-color-youtube          :#cd201f;
-$ys-sns-color-vine             :#00b389;
-$ys-sns-color-github           :#4183c4;
-$ys-sns-color-pinterest        :#cb2027;
-$ys-sns-color-linkedin         :#0e76a8;
+$ys-sns-color-twitter          : #2b97f0 !default;
+$ys-sns-color-facebook         : #3b5a9b !default;
+$ys-sns-color-googleplus       : #db2814 !default;
+$ys-sns-color-hatenabookmark   : #007ad2 !default;
+$ys-sns-color-rss              : #fb8501 !default;
+$ys-sns-color-feedly           : #8cba43 !default;
+$ys-sns-color-pocket           : #ea4654 !default;
+$ys-sns-color-instargram       : #3f729b !default;
+$ys-sns-color-line             : #2cbf13 !default;
+$ys-sns-color-tumblr           : #35465c !default;
+$ys-sns-color-youtube          : #cd201f !default;
+$ys-sns-color-vine             : #00b389 !default;
+$ys-sns-color-github           : #4183c4 !default;
+$ys-sns-color-pinterest        : #cb2027 !default;
+$ys-sns-color-linkedin         : #0e76a8 !default;
+$ys-sns-link-hover-lighten     : 10% !default;

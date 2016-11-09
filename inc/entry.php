@@ -57,10 +57,32 @@ if (!function_exists( 'ys_entry_the_author_sns')) {
 	function ys_entry_the_author_sns() {
 		$sns_list ='';
 
-		if($sns_list !== ''){
-			$sns_list = '';
+		// キーがmeta key,valueがfontawesomeのクラス
+		$sns_arr = array(
+			'ys_twitter' => 'twitter',
+			'ys_facebook' => 'facebook',
+			'ys_googleplus' => 'google-plus',
+			'ys_instagram' => 'instagram',
+			'ys_tumblr' => 'tumblr',
+			'ys_youtube' => 'youtube-play',
+			'ys_vine' => 'vine',
+			'ys_github' => 'github',
+			'ys_pinterest' => 'pinterest',
+			'ys_linkedin' => 'linkedin'
+		);
+
+		foreach ($sns_arr as $key => $val) {
+
+			$author_sns = get_the_author_meta( $key );
+			if($author_sns != '') {
+				$sns_list .= '<li class="color-'.$val.'"><a href="'.esc_url( $author_sns ).'" target="_blank" rel="nofollow" itemprop="url"><i class="fa fa-fw fa-'.$val.'" aria-hidden="true"></i></a></li>'.PHP_EOL;
+			}
 		}
-		return $sns_list;
+
+		if($sns_list !== ''){
+			$sns_list = '<ul class="author-sns">'.$sns_list.'</ul>';
+		}
+		echo $sns_list;
 	}
 }
 
