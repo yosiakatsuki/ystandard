@@ -57,7 +57,6 @@ if (!function_exists( 'ys_entry_the_author_sns')) {
 	function ys_entry_the_author_sns() {
 		$sns_list ='';
 
-
 		if($sns_list !== ''){
 			$sns_list = '';
 		}
