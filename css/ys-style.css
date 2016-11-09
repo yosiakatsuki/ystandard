@@ -256,6 +256,8 @@ div.aligncenter {
   margin: .5rem 0 0;
   font-size: .9rem;
   text-align: center; }
+  .site-info a {
+    color: #888; }
 
 .site-main > article {
   margin-bottom: 3rem; }
