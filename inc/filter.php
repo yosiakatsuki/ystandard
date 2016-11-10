@@ -162,4 +162,34 @@ add_filter( 'comment_form_fields', 'ys_filter_comment_form_fields' );
 
 
 
+//------------------------------------------------------------------------------
+// アーカイブタイトルを変える
+//------------------------------------------------------------------------------
+if( ! function_exists( 'ys_filter_get_the_archive_title' )){
+	function ys_filter_get_the_archive_title( $title ) {
+
+		// 標準フォーマット
+		$title_format = '「%s」の記事一覧';
+
+	 if ( is_category() ) {
+			$title = sprintf( $title_format, single_cat_title( '', false ) );
+		} elseif ( is_tag() ) {
+			$title = sprintf( $title_format, single_tag_title( '', false ) );
+		} elseif ( is_author() ) {
+			$title = sprintf( $title_format, '<span class="vcard">' . get_the_author() . '</span>' );
+		} elseif ( is_post_type_archive() ) {
+			$title = sprintf( $title_format, post_type_archive_title( '', false ) );
+		} elseif ( is_tax() ) {
+			$tax = get_taxonomy( get_queried_object()->taxonomy );
+			/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
+			$title = sprintf( '%1$s「%2$s」の投稿一覧' , $tax->labels->singular_name, single_term_title( '', false ) );
+		}
+
+		return $title;
+	}
+}
+add_filter( 'get_the_archive_title', 'ys_filter_get_the_archive_title' );
+
+
+
 ?>

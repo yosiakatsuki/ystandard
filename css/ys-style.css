@@ -600,6 +600,16 @@ div.aligncenter {
         margin: 0 .3rem 0 .3rem;
         color: #888; }
 
+.page-title {
+  margin: 0 0 1.5rem;
+  font-size: 1.4rem; }
+
+.taxonomy-description {
+  margin: 0 0 1.5rem;
+  font-size: .8rem; }
+  .taxonomy-description p {
+    margin: 0 0 .2rem; }
+
 .entry-content h1,
 .entry-content h2,
 .entry-content h3,
