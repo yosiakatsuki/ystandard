@@ -1,0 +1,83 @@
+//--------------------------------------
+//
+//	ウィジェット
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.widget {
+	margin: 0 0 2rem;
+
+	ul,
+	ol {
+		li {
+			margin: 0 0 .2rem;
+		}
+		.children {
+			padding-left: 1rem;
+		}
+	}
+
+	table {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	select {
+		width: 100%;
+		display: block;
+		// -webkit-appearance:none;
+		// -moz-appearance:none;
+		// appearance:none;
+		position:relative;
+		background:transparent;
+		border:1px solid $ys-border-color-select;
+		outline:none;
+	}
+}
+.widget-title {
+	margin: 0 0 1rem;
+	font-size: 1.1rem;
+}
+
+
+.widget_calendar {
+	tbody {
+		text-align: center;
+	}
+	#prev {
+		text-align: left;
+	}
+	#next {
+		text-align: right;
+	}
+}
+
+.widget_recent_entries {
+
+	.post-date {
+		display: block;
+		font-size: .8rem;
+	}
+}
+
+
+
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+
+};

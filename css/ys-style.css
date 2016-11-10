@@ -83,9 +83,7 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
-  font-weight: normal;
   vertical-align: baseline;
   box-sizing: border-box;
   -webkit-appearance: none;
@@ -1039,7 +1037,7 @@ div.aligncenter {
   width: 100%;
   background: transparent;
   border-bottom: 1px solid #2c3e50;
-  background-color: #fff;
+  background-color: transparent;
   color: #2c3e50;
   padding: .2rem 4rem .2rem .2rem; }
 
@@ -1052,6 +1050,42 @@ div.aligncenter {
   color: #fff;
   box-shadow: none;
   padding: .2rem .8rem; }
+
+.widget {
+  margin: 0 0 2rem; }
+  .widget ul li,
+  .widget ol li {
+    margin: 0 0 .2rem; }
+  .widget ul .children,
+  .widget ol .children {
+    padding-left: 1rem; }
+  .widget table {
+    width: 100%;
+    table-layout: fixed; }
+  .widget select {
+    width: 100%;
+    display: block;
+    position: relative;
+    background: transparent;
+    border: 1px solid #ccc;
+    outline: none; }
+
+.widget-title {
+  margin: 0 0 1rem;
+  font-size: 1.1rem; }
+
+.widget_calendar tbody {
+  text-align: center; }
+
+.widget_calendar #prev {
+  text-align: left; }
+
+.widget_calendar #next {
+  text-align: right; }
+
+.widget_recent_entries .post-date {
+  display: block;
+  font-size: .8rem; }
 
 .color-twitter,
 .color-twitter a {
