@@ -306,6 +306,7 @@ div.aligncenter {
     -moz-osx-font-smoothing: grayscale; }
 
 .post-thumbnail {
+  text-align: center;
   line-height: 1; }
 
 .entry-meta {
