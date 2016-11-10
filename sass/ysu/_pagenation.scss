@@ -1,0 +1,69 @@
+//--------------------------------------
+//
+//	フッター
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.pagenation {
+	margin: 1rem 0;
+	text-align: center;
+}
+.pagenation-title {
+	margin: 0 0 .5rem;
+}
+.pagenation-list {
+
+	font-size: 0;
+
+	li {
+		width: 2rem;
+		display: inline-block;
+		margin-right: .5rem;
+		font-size: 1rem;
+		text-align: center;
+		vertical-align: top;
+
+		a,
+		.current {
+			display: block;
+			padding: .2rem 0;
+			border: 1px solid $ys-border-color-pager;
+		}
+
+		a {
+			background-color: $ys-bg-color-pager;
+			color: $ys-font-color-pager;
+		}
+
+		.current {
+			background-color: $ys-bg-color-pager-current;
+			color: $ys-font-color-pager-current;
+		}//a
+
+		.next,
+		.previous {
+			border:none;
+		}
+	}
+
+
+}
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+
+};

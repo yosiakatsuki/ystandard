@@ -30,7 +30,7 @@ if (!function_exists( 'ys_pagenation')) {
 		//ページャーの開始
 		echo '<nav class="pagenation">';
 		//タイトル出力
-		echo '<p class="pagenation-title">Page '.$current.' of '.$total.'</p>';
+		echo ys_pagenation_get_pagenation_title($current,$total);
 		//ページのリンク出力
 		echo '<ul class="pagenation-list">';
 		//--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ if (!function_exists( 'ys_pagenation')) {
 			}
 			//「前へ」リンクの作成
 			if($current>1){
-				echo '<li><a class="previous" href="'.get_pagenum_link($current - 1).'">&lt;</a></li>';
+				echo '<li><a class="previous" href="'.get_pagenum_link($current - 1).'"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>';
 			}
 
 			//各ページへのリンク
@@ -63,7 +63,7 @@ if (!function_exists( 'ys_pagenation')) {
 
 			//「次へ」リンクの作成
 			if($current<$total){
-				echo '<li><a class="next" href="'.get_pagenum_link($current + 1).'">&gt;</a></li>';
+				echo '<li><a class="next" href="'.get_pagenum_link($current + 1).'"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>';
 			}
 			//「末尾へ」リンクの作成(見た目とかの調整の結果コメントアウト)
 			if($current<$total - $mid_size && ($mid_size * 2) + 1 < $total){
@@ -77,6 +77,18 @@ if (!function_exists( 'ys_pagenation')) {
 		//閉じる
 		echo '</ul>';
 		echo '</nav>';
+	}
+}
+
+
+
+//-----------------------------------------------
+//	ページネーションタイトル
+//-----------------------------------------------
+if (!function_exists( 'ys_pagenation_get_pagenation_title')) {
+	function ys_pagenation_get_pagenation_title($current,$total) {
+
+		return '<p class="pagenation-title">Page '.$current.' of '.$total.'</p>';
 	}
 }
 

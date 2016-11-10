@@ -123,14 +123,14 @@
 		padding: .2rem .5rem;
 		margin-right: .5rem;
 		border: 1px solid $ys-border-color-pager;
-		background-color: $ys-bg-color-pager;
-		color: $ys-font-color-pager;
+		background-color: $ys-bg-color-pager-current;
+		color: $ys-font-color-pager-current;
 	}
 
 	a {
 		.page-text {
-			background-color: $ys-bg-color-pager-current;
-			color: $ys-font-color-pager-current;
+			background-color: $ys-bg-color-pager;
+			color: $ys-font-color-pager;
 		}
 	}//a
 }//.page-links
