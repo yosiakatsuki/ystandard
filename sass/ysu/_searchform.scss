@@ -1,0 +1,57 @@
+//--------------------------------------
+//
+//	検索
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.search-form {
+	position: relative;
+}
+
+.search-field,
+.search-submit {
+	border: 0;
+	outline: 0;
+	background: transparent;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+.search-field {
+	width: 100%;
+	background: transparent;
+	border-bottom: 1px solid $ys-border-color-searchtext;
+	background-color: $ys-bg-color-searchtext;
+	color: $ys-font-color-searchtext;
+	padding: .2rem 4rem .2rem .2rem;
+}
+
+.search-submit {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	border: 1px solid $ys-border-color-searchbutton;
+	background-color: $ys-bg-color-searchbutton;
+	color: $ys-font-color-searchbutton;
+	box-shadow: none;
+	padding: .2rem .8rem;
+}
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+
+};
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+};
