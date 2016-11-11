@@ -15,13 +15,17 @@ if (!function_exists( 'ys_category_get_cat_id_list')) {
 	function ys_category_get_cat_id_list($sibling=false) {
 
 		// カテゴリー取得
-		$postcat = get_the_category();
-		// 取得できなければNULL
-		if (!$postcat){
-			return null;
+		if(is_category()) {
+			$catid = get_query_var('cat');
+			
+		} else {
+			$postcat = get_the_category();
+			// 取得できなければNULL
+			if (!$postcat){
+				return null;
+			}
+			$catid = $postcat[0]->cat_ID;
 		}
-
-		$catid = $postcat[0]->cat_ID;
 		$allcats = array($catid);
 
 		// 親がなくなるまでループ
