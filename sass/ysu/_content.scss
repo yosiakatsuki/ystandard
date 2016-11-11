@@ -156,11 +156,67 @@
 	}
 }
 
+
+.post-navigation {
+	margin: 0 0 2rem;
+
+	h2 {
+		margin: 0 0 .5rem;
+	}
+}
+
+.nav-previous,
+.nav-next {
+
+	margin: 0 0 .5rem;
+
+	.meta-nav {
+		margin: 0 0 .1rem;
+		color: $ys-font-color;
+	}
+
+	span {
+		display: block;
+	}
+
+}
+
 //--------------------------------------
 // タブレット
 //--------------------------------------
 @include media-breakpoint(tb) {
 
+	.nav-links {
+		font-size: 0;
+	}
+
+	.nav-previous,
+	.nav-next {
+		width: 50%;
+		display: inline-block;
+		font-size: 1rem;
+		vertical-align: top;
+
+	}
+
+	.nav-previous {
+
+		.meta-nav {
+			text-align: left;
+		}
+		.post-title {
+			padding-right: .5rem;
+		}
+	}
+	.nav-next {
+
+		.meta-nav {
+			text-align: right;
+		}
+		.post-title {
+			padding-left: .5rem;
+		}
+	}
 };
 
 

@@ -21,6 +21,12 @@ get_header(); ?>
 			}
 
 			// 次の投稿・前の投稿を入れる
+			the_post_navigation( array(
+				'next_text' => '<span class="meta-nav" aria-hidden="true">次の記事</span> ' .
+					'<span class="post-title">%title</span>',
+				'prev_text' => '<span class="meta-nav" aria-hidden="true">前の記事</span> ' .
+					'<span class="post-title">%title</span>',
+			) );
 
 			// End of the loop.
 		endwhile;
