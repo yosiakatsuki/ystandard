@@ -10,6 +10,8 @@
 
 //条件分岐
 require_once TEMPLATEPATH . '/inc/conditional-branch.php';
+// サニタイズ
+require_once TEMPLATEPATH . '/inc/sanitize.php';
 // 初期化・初期設定
 require_once TEMPLATEPATH . '/inc/init.php';
 // テーマカスタマイザー
@@ -44,5 +46,9 @@ require_once TEMPLATEPATH . '/inc/html_head.php';
 require_once TEMPLATEPATH . '/inc/admin.php';
 // クラスの出力など、スタイルに関係する部分
 require_once TEMPLATEPATH . '/inc/style.php';
+// 管理画面メニュー
+if(is_admin()){
+	require_once TEMPLATEPATH . '/admin-menu/admin-menu-add.php';
+}
 
 ?>

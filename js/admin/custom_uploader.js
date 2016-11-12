@@ -2,7 +2,8 @@ jQuery(document).ready(function($){
 	var custom_uploader;
 	var title = '画像を選択',
 			urltarget = '.ys-custom-image-upload-url',
-			previewtarget = '.ys-custom-image-upload-preview';
+			previewtarget = '.ys-custom-image-upload-preview',
+			preview_width = 100;
 
 	// 画像の削除
 	$('.ys-custom-image-clear').click(function(e) {
@@ -41,6 +42,10 @@ jQuery(document).ready(function($){
 		if($(this).attr('data-uploaderpreview')){
 			previewtarget = $(this).attr('data-uploaderpreview');
 		}
+		// 取得画像のプレビューの横幅
+		if($(this).attr('data-uploaderpreview-width')){
+			preview_width = $(this).attr('data-uploaderpreview-width');
+		}
 		//メディアアップローダー設定
 		custom_uploader = wp.media({
 			title: title,
@@ -59,7 +64,7 @@ jQuery(document).ready(function($){
 							$(urltarget).val(selectimgurl);
 							// プレビュー画像の出力
 							$(previewtarget).text('');
-							$(previewtarget).append('<img style="max-width:100px;height:auto;" src="'+selectimgurl+'" />');
+							$(previewtarget).append('<img style="max-width:'+preview_width+'px;height:auto;" src="'+selectimgurl+'" />');
 							$('.ys-custom-image-upload').css('display','none');
 							$('.ys-custom-image-clear').css('display','block');
 					});
