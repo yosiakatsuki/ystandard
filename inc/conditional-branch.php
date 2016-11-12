@@ -59,9 +59,27 @@ if( ! function_exists( 'ys_is_amp' ) ) {
 //-----------------------------------------------
 //	AMPページにできるか判断
 //-----------------------------------------------
-if( ! function_exists( 'ys_is_amp_possible' ) ) {
-	function ys_is_amp_possible(){
+if( ! function_exists( 'ys_is_amp_enable' ) ) {
+	function ys_is_amp_enable(){
 		return false;
 	}
 }
+
+
+
+
+//-----------------------------------------------
+//	OGP設定が揃っているか
+//-----------------------------------------------
+if( ! function_exists( 'ys_is_ogp_enable' ) ) {
+	function ys_is_ogp_enable(){
+
+		$ogp = ys_option_get_ogp();
+		if($ogp['app_id'] != '' && $ogp['admins'] != '' && $ogp['image'] != ''){
+			return true;
+		}
+		return false;
+	}
+}
+
 ?>

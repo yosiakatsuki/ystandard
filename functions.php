@@ -12,6 +12,8 @@
 require_once TEMPLATEPATH . '/inc/conditional-branch.php';
 // サニタイズ
 require_once TEMPLATEPATH . '/inc/sanitize.php';
+// オプション取得
+require_once TEMPLATEPATH . '/inc/option.php';
 // 初期化・初期設定
 require_once TEMPLATEPATH . '/inc/init.php';
 // テーマカスタマイザー

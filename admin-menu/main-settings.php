@@ -100,7 +100,7 @@
 								<input type="checkbox" name="ys_archive_noindex_author"  value="1" <?php checked(get_option('ys_archive_noindex_author',1),1); ?> />投稿者一覧ページをnoindexにする
 							</label><br />
 							<label for="ys_archive_noindex_date">
-								<input type="checkbox" name="ys_archive_noindex_date" value="1" <?php checked(get_option('ys_archive_noindex_date',1),1); ?> />日別・月別・年別一覧ページをnoindexにする
+								<input type="checkbox" name="ys_archive_noindex_date" value="1" <?php checked(get_option('ys_archive_noindex_date',1),1); ?> />月別、年別、日別、時間別一覧ページをnoindexにする
 							</label>
 						</fieldset>
 					</td>

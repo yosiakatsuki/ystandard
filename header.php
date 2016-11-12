@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	// html~headタグは関数で出力
-	ys_htmlhead();
+	ys_html_head();
 ?>
 
 <body <?php body_class(); ?>>

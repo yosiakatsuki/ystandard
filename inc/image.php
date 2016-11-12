@@ -12,7 +12,7 @@
 //	アイキャッチ画像 or 1番目の画像取得
 //-----------------------------------------------
 if (!function_exists( 'ys_image_get_post_thumbnail')) {
-	function ys_image_get_post_thumbnail($postid=0,$thumbname='full') {
+	function ys_image_get_post_thumbnail($postid=0,$thumbname='full',$defaultimg='') {
 
 		if($postid == 0){
 			$postid = get_the_ID();
@@ -30,9 +30,18 @@ if (!function_exists( 'ys_image_get_post_thumbnail')) {
 			}
 		}
 
-		// 画像取得できなかった場合先頭画像を取得
-		return ys_image_get_post_firstimg($postid);
+		// 存在しない時に表示する画像の指定があればそちらを使用
+		if($defaultimg != ''){
+			// サイズをセット
+			list($width,$height) = getimagesize($defaultimg);
+			$resultimg = array($defaultimg, $width, $height);
 
+		} else {
+			// 画像取得できなかった場合先頭画像を取得
+			$resultimg = ys_image_get_post_firstimg($postid);
+		}
+
+		return $resultimg;
 	}
 }
 
@@ -43,13 +52,13 @@ if (!function_exists( 'ys_image_get_post_thumbnail')) {
 //	アイキャッチ画像 or 1番目の画像 の画像URLを取得
 //-----------------------------------------------
 if (!function_exists( 'ys_image_get_post_thumbnail_url')) {
-	function ys_image_get_post_thumbnail_url($postid=0,$thumbname='full') {
+	function ys_image_get_post_thumbnail_url($postid=0,$thumbname='full',$defaultimg='') {
 
 		if($postid == 0){
 			$postid = get_the_ID();
 		}
 		// 記事内容
-		$img = ys_image_get_post_thumbnail($postid,$thumbname);
+		$img = ys_image_get_post_thumbnail($postid,$thumbname,$defaultimg);
 		return $img[0];
 	}
 }
