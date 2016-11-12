@@ -108,24 +108,6 @@
 			</table>
 		</div>
 	</div>
-	<?php
-	/*
-		$oyacoco_banner_top = get_option('oyacoco_banner_top');
-		wp_editor(
-			$oyacoco_banner_top,
-			'oyacoco_banner_top',
-			array(
-				'media_buttons'=>true,
-				'textarea_name'=>'oyacoco_banner_top',
-				'textarea_rows'=>20,
-				'tiny_mce'=>true,
-				'tinymce_adv' => array(
-														'width' => '600'
-													)
-					)
-			);
-			*/
-	?>
 
 	<?php submit_button(); ?>
 	</form>
