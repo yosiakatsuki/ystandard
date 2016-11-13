@@ -5,6 +5,92 @@
 //
 //------------------------------------------------------------------------------
 
+
+// -------------------------------------------
+// canonicalタグ出力
+// -------------------------------------------
+if(!function_exists( 'ys_wphead_add_canonical')) {
+	function ys_wphead_add_canonical(){
+
+		$canonical = '';
+		if( is_home() || is_front_page() ) {
+				$canonical = home_url();
+
+		} elseif ( is_category() ) {
+			$canonical = get_category_link( get_query_var('cat') );
+
+		} elseif ( is_tag() ) {
+			$tag = get_term_by( 'name', urldecode( get_query_var('tag') ), 'post_tag' );
+			$canonical = get_tag_link( $tag->term_id );
+
+		} elseif ( is_search() ) {
+			$canonical = get_search_link();
+
+		} elseif ( is_page() || is_single() ) {
+			$canonical = get_permalink();
+
+		}
+		if($canonical !== ''){
+			echo '<link rel="canonical" href="'.$canonical.'">'.PHP_EOL;
+		}
+	}
+}
+add_action( 'wp_head', 'ys_wphead_add_canonical' );
+
+
+
+
+// -------------------------------------------
+// next,prevタグ出力
+// -------------------------------------------
+if(!function_exists( 'ys_wphead_adjacent_posts_rel_link_wp_head')) {
+	function ys_wphead_adjacent_posts_rel_link_wp_head(){
+
+
+		if(is_single() || is_page()) {
+			//固定ページ・投稿ページ
+			global $post,$page;
+			$pagecnt = substr_count($post->post_content,'<!--nextpage-->') + 1;
+			if ($pagecnt > 1){
+				//prev
+				if($page > 1) {
+						if($page == 2){
+							//2ページ目なら/nなしのリンク
+							echo '<link rel="prev" href="'.get_the_permalink().'" />'.PHP_EOL;
+						} else {
+							echo '<link rel="prev" href="'.get_the_permalink().($page - 1).'" />'.PHP_EOL;
+						}
+				}
+				//next
+				if($page < $pagecnt) {
+					if($page == 0){
+						//1ページ目なら/2
+						echo '<link rel="next" href="'.get_the_permalink().'2" />'.PHP_EOL;
+					} else {
+						echo '<link rel="next" href="'.get_the_permalink().($page + 1).'" />'.PHP_EOL;
+					}
+				}
+			}
+		} else {
+			//アーカイブ
+			global $wp_query;
+			// MAXページ数と現在ページ数を取得
+			$total   = isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1;
+			$current = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' )  : 1;
+			if($current > 1) {
+				echo '<link rel="prev" href="'.get_pagenum_link( $current - 1 ).'" />'.PHP_EOL;
+			}
+			if($current < $total) {
+				echo '<link rel="next" href="'.get_pagenum_link( $current + 1 ).'" />'.PHP_EOL;
+			}
+		}
+	}
+}
+add_action( 'wp_head', 'ys_wphead_adjacent_posts_rel_link_wp_head' );
+
+
+
+
 // -------------------------------------------
 // noindexの追加
 // -------------------------------------------
@@ -76,7 +162,28 @@ if(!function_exists( 'ys_wphead_add_googleanarytics')) {
 		$ga_tracking_id = trim(get_option('ys_ga_tracking_id',''));
 
 		if($ga_tracking_id !== ''){
-			echo "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '$ga_tracking_id', 'auto');ga('send', 'pageview');</script>".PHP_EOL;
+			if(ys_is_amp()){
+				$ampanalytics = <<<EOD
+<amp-analytics type="googleanalytics" id="analytics1">
+<script type="application/json">
+{
+  "vars": {
+    "account": "$ga_tracking_id"
+  },
+  "triggers": {
+    "trackPageview": {
+      "on": "visible",
+      "request": "pageview"
+    }
+  }
+}
+</script>
+</amp-analytics>
+EOD;
+				echo $ampanalytics;
+			} else {
+				echo "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '$ga_tracking_id', 'auto');ga('send', 'pageview');</script>".PHP_EOL;
+			}
 		}
 	}
 }
@@ -162,5 +269,22 @@ if(!function_exists( 'ys_wphead_add_twitter_card')) {
 	}
 }
 add_action( 'wp_head', 'ys_wphead_add_twitter_card');
+
+
+
+
+// -------------------------------------------
+// ampページの存在タグ出力
+// -------------------------------------------
+if(!function_exists( 'ys_wphead_add_amphtml')) {
+	function ys_wphead_add_amphtml(){
+
+		if(is_single() && ys_is_amp_enable()){
+			echo '<link rel="amphtml" href="'. get_the_permalink().'?amp=1">';
+		}
+	}
+}
+add_action( 'wp_head', 'ys_wphead_add_amphtml' );
+
 
 ?>

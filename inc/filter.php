@@ -16,11 +16,10 @@ if (!function_exists( 'ys_filter_body_classes')) {
 			$classes[] = 'custom-background-image';
 		}
 
-		// サイドバーがなければクラス追加
-		if ( ! is_active_sidebar( 'sidebar-main' ) ) {
-			$classes[] = 'no-sidebar';
+		// ampならクラス追加
+		if ( ys_is_amp() ) {
+			$classes[] = 'amp';
 		}
-
 		return $classes;
 	}
 }
@@ -52,7 +51,7 @@ add_filter('script_loader_tag','ys_filter_add_async');
 //------------------------------------------------------------------------------
 if( ! function_exists( 'ys_filter_iframe_responsive' ) ) {
 	function ys_filter_iframe_responsive($the_content) {
-		if ( is_singular() ) {
+		if ( is_singular() && !ys_is_amp() ) {
 			//マッチさせたいiframeのURLをリスト化
 			$patternlist = array(
 								'youtube\.com'

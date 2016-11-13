@@ -5,6 +5,12 @@
 ?>
 
 <body <?php body_class(); ?>>
+<?php
+ 	if(ys_is_amp()) {
+		// Google Analytics
+		ys_wphead_add_googleanarytics();
+	}
+?>
 <div id="page" class="site">
 	<div class="site-inner">
 

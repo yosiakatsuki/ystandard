@@ -38,17 +38,36 @@
 	}
 }
 
-.entry-date {
+.entry-date-icon {
 	&::before {
 		@include fontawesome("f073");
 	}
 }
-.entry-updated {
+
+
+.entry-updated-icon {
 	margin-left: .5rem;
 	&::before {
 		@include fontawesome("f040");
 	}
 }
+
+.amp {
+	.entry-date {
+		&::before {
+			content: "公開：";
+			font-size: .8rem;
+		}
+	}
+	.entry-updated {
+		&::before {
+			content: "更新：";
+			margin-left: .5rem;
+			font-size: .8rem;
+		}
+	}
+}
+
 
 // アイキャッチ
 .post-thumbnail {
@@ -80,6 +99,17 @@
 	font-size: .6rem;
 	margin: 0 0 .5rem;
 	text-align: right;
+}
+
+// シェアボタン
+.sns-share {
+	margin: 2rem 0 0;
+	text-align: center;
+}
+
+.sns-share-title {
+	margin: 0 0 1rem;
+	font-size: 1.2rem;
 }
 
 // 投稿者
@@ -200,19 +230,15 @@
 	}
 
 	.nav-previous {
+		text-align: left;
 
-		.meta-nav {
-			text-align: left;
-		}
 		.post-title {
 			padding-right: .5rem;
 		}
 	}
 	.nav-next {
+		text-align: right;
 
-		.meta-nav {
-			text-align: right;
-		}
 		.post-title {
 			padding-left: .5rem;
 		}

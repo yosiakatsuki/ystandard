@@ -85,69 +85,69 @@ if( ! function_exists( 'ys_viewcount_update_views' ) ) {
 		$intpv_cnt = 1;
 		$getmetakey = '';
 		if ( is_single()) {
-		//-------------------------
-		//全アクセスカウント
-		//-------------------------
-		$intpv_cnt = 1;
-		$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_ALL,TRUE);
-		if( is_numeric($getmetakey) ) {
-		$intpv_cnt = (int) $getmetakey + 1;
-		}
-		//カスタムフィールド更新
-		update_post_meta($post->ID,YS_METAKEY_PV_ALL,$intpv_cnt);
+			//-------------------------
+			//全アクセスカウント
+			//-------------------------
+			$intpv_cnt = 1;
+			$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_ALL,TRUE);
+			if( is_numeric($getmetakey) ) {
+				$intpv_cnt = (int) $getmetakey + 1;
+			}
+			//カスタムフィールド更新
+			update_post_meta($post->ID,YS_METAKEY_PV_ALL,$intpv_cnt);
 
-		//-------------------------
-		//日別アクセスカウント
-		//-------------------------
-		$intpv_cnt = 1;
-		//キー取得
-		$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_DAY_KEY,TRUE);
-		//日付変更判断
-		if( $getmetakey === date_i18n("Y/m/d")) {
-		//日付が変わってなければPV数加算
-		$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_DAY_VAL,TRUE);
-		if( is_numeric($getmetakey) ) {
-		$intpv_cnt = (int) $getmetakey + 1;
-		}
-		update_post_meta($post->ID,YS_METAKEY_PV_DAY_VAL,$intpv_cnt);
-		} else {
-		//日付が変わっていたら、キーとPV数をを更新
-		update_post_meta($post->ID,YS_METAKEY_PV_DAY_KEY,date_i18n("Y/m/d"));
-		update_post_meta($post->ID,YS_METAKEY_PV_DAY_VAL,$intpv_cnt);
-		}
+			//-------------------------
+			//日別アクセスカウント
+			//-------------------------
+			$intpv_cnt = 1;
+			//キー取得
+			$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_DAY_KEY,TRUE);
+			//日付変更判断
+			if( $getmetakey === date_i18n("Y/m/d")) {
+				//日付が変わってなければPV数加算
+				$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_DAY_VAL,TRUE);
+				if( is_numeric($getmetakey) ) {
+					$intpv_cnt = (int) $getmetakey + 1;
+				}
+				update_post_meta($post->ID,YS_METAKEY_PV_DAY_VAL,$intpv_cnt);
+			} else {
+				//日付が変わっていたら、キーとPV数をを更新
+				update_post_meta($post->ID,YS_METAKEY_PV_DAY_KEY,date_i18n("Y/m/d"));
+				update_post_meta($post->ID,YS_METAKEY_PV_DAY_VAL,$intpv_cnt);
+			}
 
-		//-------------------------
-		//週別アクセスカウント
-		//-------------------------
-		$intpv_cnt = 1;
-		$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_WEEK_KEY,TRUE);
-		if( $getmetakey === date_i18n("Y-W")) {
+			//-------------------------
+			//週別アクセスカウント
+			//-------------------------
+			$intpv_cnt = 1;
+			$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_WEEK_KEY,TRUE);
+			if( $getmetakey === date_i18n("Y-W")) {
 
-		$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_WEEK_VAL,TRUE);
-		if( is_numeric($getmetakey) ) {
-		$intpv_cnt = (int) $getmetakey + 1;
-		}
-		update_post_meta($post->ID,YS_METAKEY_PV_WEEK_VAL,$intpv_cnt);
-		} else {
-		update_post_meta($post->ID,YS_METAKEY_PV_WEEK_KEY,date_i18n("Y-W"));
-		update_post_meta($post->ID,YS_METAKEY_PV_WEEK_VAL,$intpv_cnt);
-		}
-		//-------------------------
-		//月別アクセスカウント
-		//-------------------------
-		$intpv_cnt = 1;
-		$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_MONTH_KEY,TRUE);
-		if( $getmetakey === date_i18n("Y-m")) {
+				$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_WEEK_VAL,TRUE);
+				if( is_numeric($getmetakey) ) {
+					$intpv_cnt = (int) $getmetakey + 1;
+				}
+				update_post_meta($post->ID,YS_METAKEY_PV_WEEK_VAL,$intpv_cnt);
+			} else {
+				update_post_meta($post->ID,YS_METAKEY_PV_WEEK_KEY,date_i18n("Y-W"));
+				update_post_meta($post->ID,YS_METAKEY_PV_WEEK_VAL,$intpv_cnt);
+			}
+			//-------------------------
+			//月別アクセスカウント
+			//-------------------------
+			$intpv_cnt = 1;
+			$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_MONTH_KEY,TRUE);
+			if( $getmetakey === date_i18n("Y-m")) {
 
-		$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_MONTH_VAL,TRUE);
-		if( is_numeric($getmetakey) ) {
-		$intpv_cnt = (int) $getmetakey + 1;
-		}
-		update_post_meta($post->ID,YS_METAKEY_PV_MONTH_VAL,$intpv_cnt);
-		} else {
-		update_post_meta($post->ID,YS_METAKEY_PV_MONTH_KEY,date_i18n("Y-m"));
-		update_post_meta($post->ID,YS_METAKEY_PV_MONTH_VAL,$intpv_cnt);
-		}
+				$getmetakey = get_post_meta($post->ID,YS_METAKEY_PV_MONTH_VAL,TRUE);
+				if( is_numeric($getmetakey) ) {
+					$intpv_cnt = (int) $getmetakey + 1;
+				}
+				update_post_meta($post->ID,YS_METAKEY_PV_MONTH_VAL,$intpv_cnt);
+			} else {
+				update_post_meta($post->ID,YS_METAKEY_PV_MONTH_KEY,date_i18n("Y-m"));
+				update_post_meta($post->ID,YS_METAKEY_PV_MONTH_VAL,$intpv_cnt);
+			}
 		}
 		return '';
 	}//ys_viewcount_update_views

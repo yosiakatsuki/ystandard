@@ -17,17 +17,27 @@ if (!function_exists( 'ys_entry_the_entry_date')) {
 		$format = get_option( 'date_format' );
 		$pubdate = 'pubdate="pubdate"';
 		$updatecontent = 'content="'.get_the_modified_time('Y-m-d').'"';
+
+		$entry_date_class = 'entry-date entry-published published';
+		$update_date_class = 'entry-updated updated';
+
 		if(ys_is_amp()){
 			$pubdate = '';
 			$updatecontent = '';
+		} else {
+			$entry_date_class .= ' entry-date-icon';
+			$update_date_class .= ' entry-updated-icon';
 		}
+
 
 		//公開直後に微調整はよくあること。日付で判断
 		if(get_the_time('Ymd') === get_the_modified_time('Ymd') || $show_update === false) {
-			echo '<time class="entry-date entry-published published updated" itemprop="dateCreated datePublished dateModified" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
+			$entry_date_class .= ' updated';
+
+			echo '<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished dateModified" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
 		} else {
-			echo '<time class="entry-date entry-published published" itemprop="dateCreated datePublished" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
-			echo '<span class="entry-updated updated" itemprop="dateModified" '.$updatecontent.'>'.get_the_modified_time($format).'</span>';
+			echo '<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
+			echo '<span class="'.$update_date_class.'" itemprop="dateModified" '.$updatecontent.'>'.get_the_modified_time($format).'</span>';
 		}
 	}
 }
@@ -55,6 +65,11 @@ if (!function_exists( 'ys_entry_the_entry_author')) {
 //-----------------------------------------------
 if (!function_exists( 'ys_entry_the_author_sns')) {
 	function ys_entry_the_author_sns() {
+
+		if(ys_is_amp()) {
+			return;
+		}
+
 		$sns_list ='';
 
 		// キーがmeta key,valueがfontawesomeのクラス
@@ -112,18 +127,42 @@ if (!function_exists( 'ys_entry_the_link_pages')) {
 //	投稿抜粋文を作成
 //-----------------------------------------------
 if( ! function_exists( 'ys_entry_get_the_custom_excerpt' ) ) {
-  function ys_entry_get_the_custom_excerpt($content,$length,$sep=' ...'){
-    //HTMLタグ削除
-    $content = wp_strip_all_tags($content,true);
-    //ショートコード削除
-    $content = strip_shortcodes($content);
-    if(mb_strlen($content) > $length) {
-      $content =  mb_substr($content,0,$length - mb_strlen($sep)).$sep;
-    }
-    return $content;
-  }
+	function ys_entry_get_the_custom_excerpt($content,$length,$sep=' ...'){
+		//HTMLタグ削除
+		$content = wp_strip_all_tags($content,true);
+		//ショートコード削除
+		$content = strip_shortcodes($content);
+		if(mb_strlen($content) > $length) {
+			$content =  mb_substr($content,0,$length - mb_strlen($sep)).$sep;
+		}
+		return $content;
+	}
 }
 
+
+
+
+//-----------------------------------------------
+//	シェアボタン
+//-----------------------------------------------
+if( ! function_exists( 'ys_entry_the_sns_share' ) ) {
+	function ys_entry_the_sns_share(){
+
+		echo '<div class="sns-share">';
+		echo '<h2 class="sns-share-title">「'.get_the_title().'」をみんなとシェア！</h2>';
+		if(!ys_is_amp()){
+			// AMP以外
+		} else {
+			// AMP記事
+			$fb_app_id = '254325784911610';
+			echo '<amp-social-share type="twitter" width="100" height="44"></amp-social-share>';
+			echo '<amp-social-share type="facebook" width="100" height="44" data-param-app_id="'.$fb_app_id.'"></amp-social-share>';
+			echo '<amp-social-share type="gplus" width="100" height="44"></amp-social-share>';
+		}
+		echo '</div>';
+
+	}
+}
 
 
 ?>

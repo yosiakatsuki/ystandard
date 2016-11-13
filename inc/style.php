@@ -18,7 +18,7 @@ if (!function_exists( 'ys_style_content_class')) {
 		foreach($classes as $class){
 			$htmlclass .= $class.' ';
 		}
-		if (is_active_sidebar( 'sidebar-main' )  ){
+		if (is_active_sidebar( 'sidebar-main' ) && !ys_is_amp() ){
 			$htmlclass .= 'has-sidebar ';
 		} else {
 			$htmlclass .= 'no-sidebar ';

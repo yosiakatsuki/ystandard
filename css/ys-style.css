@@ -467,7 +467,7 @@ div.aligncenter {
   .entry-title a {
     color: #2c3e50; }
 
-.entry-date::before {
+.entry-date-icon::before {
   content: "\f073";
   width: 1.28571429em;
   display: inline-block;
@@ -478,9 +478,9 @@ div.aligncenter {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.entry-updated {
+.entry-updated-icon {
   margin-left: .5rem; }
-  .entry-updated::before {
+  .entry-updated-icon::before {
     content: "\f040";
     width: 1.28571429em;
     display: inline-block;
@@ -490,6 +490,15 @@ div.aligncenter {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
+
+.amp .entry-date::before {
+  content: "公開：";
+  font-size: .8rem; }
+
+.amp .entry-updated::before {
+  content: "更新：";
+  margin-left: .5rem;
+  font-size: .8rem; }
 
 .post-thumbnail {
   text-align: center;
@@ -518,6 +527,14 @@ div.aligncenter {
   font-size: .6rem;
   margin: 0 0 .5rem;
   text-align: right; }
+
+.sns-share {
+  margin: 2rem 0 0;
+  text-align: center; }
+
+.sns-share-title {
+  margin: 0 0 1rem;
+  font-size: 1.2rem; }
 
 .entry-meta-author {
   margin: .5rem 0 0; }
@@ -602,14 +619,14 @@ div.aligncenter {
     display: inline-block;
     font-size: 1rem;
     vertical-align: top; }
-  .nav-previous .meta-nav {
+  .nav-previous {
     text-align: left; }
-  .nav-previous .post-title {
-    padding-right: .5rem; }
-  .nav-next .meta-nav {
+    .nav-previous .post-title {
+      padding-right: .5rem; }
+  .nav-next {
     text-align: right; }
-  .nav-next .post-title {
-    padding-left: .5rem; } }
+    .nav-next .post-title {
+      padding-left: .5rem; } }
 
 @media screen and (min-width: 960px) {
   .site-main > article {
@@ -898,10 +915,32 @@ div.aligncenter {
 .comment-text sub {
   vertical-align: super; }
 
+.entry-content .iframe-responsive-container,
+.comment-text .iframe-responsive-container {
+  max-width: 560px;
+  margin: 0 0 2em; }
+
+.entry-content .iframe-responsive,
+.comment-text .iframe-responsive {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden; }
+  .entry-content .iframe-responsive iframe,
+  .comment-text .iframe-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
 .author-info {
   margin: 2rem 0 0; }
 
 .author-avatar {
+  width: 96px;
+  margin: 0 auto;
   text-align: center; }
   .author-avatar img {
     border-radius: 50%; }

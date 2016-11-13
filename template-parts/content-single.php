@@ -27,6 +27,9 @@
 
 	<footer class="entry-footer">
 		<?php
+			// シェアボタン
+			ys_entry_the_sns_share();
+			// 書いた人
 			get_template_part( 'template-parts/biography' );
 		 ?>
 	</footer><!-- .entry-footer -->
