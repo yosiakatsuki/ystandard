@@ -129,6 +129,75 @@
 	font-size: 1.2rem;
 }
 
+.sns-share-button {
+	font-size: 0;
+	text-align: left;
+
+	li {
+		width: 49%;
+		display: inline-block;
+		margin-bottom:.5rem;
+		border-radius: 3px;
+		font-size: .8rem;
+		transition: background-color 0.3s;
+
+		&:nth-child(odd) {
+			margin-right: 1%;
+		}
+
+		&:nth-child(even) {
+			margin-left: 1%;
+		}
+
+		a {
+			display: block;
+			padding: .5rem 1rem;
+		}
+
+	}
+
+	.twitter {
+		a::before {
+			@include fontawesome("f099",0,.5rem);
+		}
+	}
+
+	.facebook {
+		a::before {
+			@include fontawesome("f09a",0,.5rem);
+		}
+	}
+
+	.google-plus {
+		a::before {
+			@include fontawesome("f0d5",0,.5rem);
+		}
+	}
+
+	.hatenabookmark {
+		a::before {
+			content: "B!";
+			width: 1.28571429em;
+			display: inline-block;
+			margin: 0 .5rem 0 0;
+			font-family: Verdana;
+			font-weight: bold;
+			letter-spacing: 0;
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+	}
+
+	.pocket {
+		a::before {
+			@include fontawesome("f265",0,.5rem);
+		}
+	}
+}//.sns-share-button
+
+
+
 // 投稿者
 .entry-meta-author {
 
@@ -260,6 +329,27 @@
 			padding-left: .5rem;
 		}
 	}
+
+
+	.sns-share-button {
+		font-size: 0;
+		text-align: left;
+		text-align: center;
+
+		li {
+			width: 105px;
+			text-align: left;
+
+			&:nth-child(odd),
+			&:nth-child(even)  {
+				margin-right: 1%;
+				margin-left: auto;
+			}
+
+		}
+
+	}//.sns-share-button
+
 };
 
 

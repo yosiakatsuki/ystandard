@@ -152,6 +152,7 @@ if( ! function_exists( 'ys_entry_the_sns_share' ) ) {
 		echo '<h2 class="sns-share-title">「'.get_the_title().'」をみんなとシェア！</h2>';
 		if(!ys_is_amp()){
 			// AMP以外
+			ys_entry_the_sns_share_buttons();
 
 		} else {
 			// AMP記事
@@ -166,5 +167,36 @@ if( ! function_exists( 'ys_entry_the_sns_share' ) ) {
 	}
 }
 
+
+
+
+//-----------------------------------------------
+//	通常のシェアボタン
+//-----------------------------------------------
+if( ! function_exists( 'ys_entry_the_sns_share_buttons' ) ) {
+	function ys_entry_the_sns_share_buttons(){
+
+		$share_url = urlencode(get_permalink());
+		$share_title = urlencode(get_the_title());
+
+		echo '<ul class="sns-share-button">';
+		// Twitter
+		$tweet_via = '';
+		if(get_option('ys_sns_share_tweet_via',0) == 1 && get_option('ys_sns_share_tweet_via_account') != ''){
+			$tweet_via = '&via='.get_option('ys_sns_share_tweet_via_account');
+		}
+		echo '<li class="twitter bg-twitter"><a href="http://twitter.com/share?text='.$share_title.'&url='.$share_url.$tweet_via.'">Tweet</a></li>';
+		// Facebook
+		echo '<li class="facebook bg-facebook"><a href="http://www.facebook.com/sharer.php?src=bm&u='.$share_url.'&t='.$share_title.'">Share</a></li>';
+		// Google +
+		echo '<li class="google-plus bg-google-plus"><a href="https://plus.google.com/share?url='.$share_url.'">+1</a></li>';
+		// はてブ
+		echo '<li class="hatenabookmark bg-hatenabookmark"><a href="http://b.hatena.ne.jp/add?mode=confirm&url='.$share_url.'">はてブ</a></li>';
+		// Pocket
+		echo '<li class="pocket bg-pocket"><a href="http://getpocket.com/edit?url='.$share_url.'&title='.$share_title.'">Pocket</a></li>';
+
+		echo '</ul>';
+	}
+}
 
 ?>

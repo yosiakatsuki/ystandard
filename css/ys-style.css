@@ -550,6 +550,76 @@ div.aligncenter {
   margin: 0 0 1rem;
   font-size: 1.2rem; }
 
+.sns-share-button {
+  font-size: 0;
+  text-align: left; }
+  .sns-share-button li {
+    width: 49%;
+    display: inline-block;
+    margin-bottom: .5rem;
+    border-radius: 3px;
+    font-size: .8rem;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .sns-share-button li:nth-child(odd) {
+      margin-right: 1%; }
+    .sns-share-button li:nth-child(even) {
+      margin-left: 1%; }
+    .sns-share-button li a {
+      display: block;
+      padding: .5rem 1rem; }
+  .sns-share-button .twitter a::before {
+    content: "\f099";
+    width: 1.28571429em;
+    display: inline-block;
+    margin: 0 0.5rem 0 0;
+    font-family: FontAwesome;
+    text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+  .sns-share-button .facebook a::before {
+    content: "\f09a";
+    width: 1.28571429em;
+    display: inline-block;
+    margin: 0 0.5rem 0 0;
+    font-family: FontAwesome;
+    text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+  .sns-share-button .google-plus a::before {
+    content: "\f0d5";
+    width: 1.28571429em;
+    display: inline-block;
+    margin: 0 0.5rem 0 0;
+    font-family: FontAwesome;
+    text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+  .sns-share-button .hatenabookmark a::before {
+    content: "B!";
+    width: 1.28571429em;
+    display: inline-block;
+    margin: 0 .5rem 0 0;
+    font-family: Verdana;
+    font-weight: bold;
+    letter-spacing: 0;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+  .sns-share-button .pocket a::before {
+    content: "\f265";
+    width: 1.28571429em;
+    display: inline-block;
+    margin: 0 0.5rem 0 0;
+    font-family: FontAwesome;
+    text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+
 .entry-meta-author {
   margin: .5rem 0 0; }
   .entry-meta-author .author::before {
@@ -640,7 +710,17 @@ div.aligncenter {
   .nav-next {
     text-align: right; }
     .nav-next .post-title {
-      padding-left: .5rem; } }
+      padding-left: .5rem; }
+  .sns-share-button {
+    font-size: 0;
+    text-align: left;
+    text-align: center; }
+    .sns-share-button li {
+      width: 105px;
+      text-align: left; }
+      .sns-share-button li:nth-child(odd), .sns-share-button li:nth-child(even) {
+        margin-right: 1%;
+        margin-left: auto; } }
 
 @media screen and (min-width: 960px) {
   .site-main > article {

@@ -42,6 +42,8 @@ add_action( 'admin_menu', 'ys_add_admin_menu' );
 function ys_register_settings() {
 	// メインメニュー
 	register_setting( 'ys_main_settings', 'ys_ga_tracking_id' );
+	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via','ys_sanitize_checkbox' );
+	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via_account' );
 	register_setting( 'ys_main_settings', 'ys_archive_noindex_category','ys_sanitize_checkbox' );
 	register_setting( 'ys_main_settings', 'ys_archive_noindex_tag','ys_sanitize_checkbox' );
 	register_setting( 'ys_main_settings', 'ys_archive_noindex_author','ys_sanitize_checkbox' );
@@ -53,10 +55,10 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_ogp_default_image' );
 
 	// AMPメニュー
-	register_setting( 'ys_amp_settings', 'ys_amp_enable' );
-	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' );
-	register_setting( 'ys_amp_settings', 'ys_amp_del_script' );
-	register_setting( 'ys_amp_settings', 'ys_amp_del_style' );
+	register_setting( 'ys_amp_settings', 'ys_amp_enable','ys_sanitize_checkbox' );
+	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' ,'ys_sanitize_checkbox');
+	register_setting( 'ys_amp_settings', 'ys_amp_del_script' ,'ys_sanitize_checkbox');
+	register_setting( 'ys_amp_settings', 'ys_amp_del_style' ,'ys_sanitize_checkbox');
 }
 add_action( 'admin_init', 'ys_register_settings' );
 

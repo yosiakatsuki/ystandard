@@ -30,6 +30,25 @@
 	</div>
 
 	<div class="postbox">
+		<h2 class="hndle">シェアボタン設定</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">Twitterシェアボタン設定</th>
+					<td>
+						<fieldset>
+							<label for="ys_sns_share_tweet_via">
+								<input type="checkbox" name="ys_sns_share_tweet_via" value="1" <?php checked(get_option('ys_sns_share_tweet_via',0),1); ?> />Twitterシェアにviaを付加する（要Twitterアカウント名設定）
+							</label><br />
+							Twitterアカウント名:@<input type="text" name="ys_sns_share_tweet_via_account" value="<?php echo esc_attr( get_option('ys_sns_share_tweet_via_account') ); ?>" placeholder="" />
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="postbox">
 		<h2 class="hndle">OGP・Twitterカード設定</h2>
 		<div class="inside">
 			<table class="form-table">
