@@ -54,6 +54,7 @@ function ys_register_settings() {
 
 	// AMPメニュー
 	register_setting( 'ys_amp_settings', 'ys_amp_enable' );
+	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' );
 	register_setting( 'ys_amp_settings', 'ys_amp_del_script' );
 	register_setting( 'ys_amp_settings', 'ys_amp_del_style' );
 }

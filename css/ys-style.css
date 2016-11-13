@@ -528,6 +528,20 @@ div.aligncenter {
   margin: 0 0 .5rem;
   text-align: right; }
 
+.amp-view-info {
+  padding: 1rem;
+  margin: 2rem 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: .8rem;
+  text-align: left;
+  color: #888; }
+
+.normal-view-link {
+  display: block;
+  margin: .5rem 0 0;
+  font-size: .8rem; }
+
 .sns-share {
   margin: 2rem 0 0;
   text-align: center; }

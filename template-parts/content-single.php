@@ -14,8 +14,16 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
+	<?php
+		if(ys_is_amp() && get_option('ys_amp_normal_link',0) == 1):
+	?>
+	<div class="amp-view-info">
+		<p>※現在このページは高速表示用レイアウトで表示されています。<a class="normal-view-link" href="<?php the_permalink() ?>">通常表示に切り替える »</a></p>
+		<p></p>
+	</div>
+	<?php endif; ?>
 
+	<div class="entry-content">
 		<?php
 
 			the_content();

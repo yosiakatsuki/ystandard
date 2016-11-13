@@ -101,6 +101,23 @@
 	text-align: right;
 }
 
+
+.amp-view-info {
+	padding: 1rem;
+	margin: 2rem 0;
+	border: 1px solid $ys-border-color-gray;
+	border-radius: 3px;
+	font-size: .8rem;
+	text-align: left;
+	color: $ys-font-color-gray;
+}
+
+.normal-view-link {
+	display: block;
+	margin: .5rem 0 0;
+	font-size: .8rem;
+}
+
 // シェアボタン
 .sns-share {
 	margin: 2rem 0 0;

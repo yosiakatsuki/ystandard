@@ -148,16 +148,18 @@ if( ! function_exists( 'ys_entry_get_the_custom_excerpt' ) ) {
 if( ! function_exists( 'ys_entry_the_sns_share' ) ) {
 	function ys_entry_the_sns_share(){
 
-		echo '<div class="sns-share">';
+		echo '<div id="sns-share" class="sns-share">';
 		echo '<h2 class="sns-share-title">「'.get_the_title().'」をみんなとシェア！</h2>';
 		if(!ys_is_amp()){
 			// AMP以外
+
 		} else {
 			// AMP記事
 			$fb_app_id = '254325784911610';
 			echo '<amp-social-share type="twitter" width="100" height="44"></amp-social-share>';
 			echo '<amp-social-share type="facebook" width="100" height="44" data-param-app_id="'.$fb_app_id.'"></amp-social-share>';
 			echo '<amp-social-share type="gplus" width="100" height="44"></amp-social-share>';
+			echo '<p class="amp-view-info">その他の方法でシェアする場合は通常表示に切り替えて下さい。<a class="normal-view-link" href="'.get_the_permalink().'#sns-share">通常表示に切り替える »</a></p>';
 		}
 		echo '</div>';
 

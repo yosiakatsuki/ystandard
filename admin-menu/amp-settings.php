@@ -16,7 +16,7 @@
 	?>
 
 	<div class="postbox">
-		<h2 class="hndle">AMP記事作成条件設定</h2>
+		<h2 class="hndle">AMP設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -24,6 +24,14 @@
 					<td>
 						<label for="ys_amp_enable">
 							<input type="checkbox" name="ys_amp_enable" value="1" <?php checked(get_option('ys_amp_enable',0),1); ?> />AMPページを生成する
+						</label>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">通常ビューへのリンク表示</th>
+					<td>
+						<label for="ys_amp_normal_link">
+							<input type="checkbox" name="ys_amp_normal_link" value="1" <?php checked(get_option('ys_amp_normal_link',0),1); ?> />コンテンツ上部に通常ビューへのリンクを表示する
 						</label>
 					</td>
 				</tr>
