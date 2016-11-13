@@ -106,4 +106,24 @@ if (!function_exists( 'ys_entry_the_link_pages')) {
 }
 
 
+
+
+//-----------------------------------------------
+//	投稿抜粋文を作成
+//-----------------------------------------------
+if( ! function_exists( 'ys_entry_get_the_custom_excerpt' ) ) {
+  function ys_entry_get_the_custom_excerpt($content,$length,$sep=' ...'){
+    //HTMLタグ削除
+    $content = wp_strip_all_tags($content,true);
+    //ショートコード削除
+    $content = strip_shortcodes($content);
+    if(mb_strlen($content) > $length) {
+      $content =  mb_substr($content,0,$length - mb_strlen($sep)).$sep;
+    }
+    return $content;
+  }
+}
+
+
+
 ?>

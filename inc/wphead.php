@@ -89,6 +89,8 @@ add_action( 'wp_head', 'ys_wphead_add_googleanarytics',99 );
 // -------------------------------------------
 if(!function_exists( 'ys_wphead_add_facebook_ogp')) {
 	function ys_wphead_add_facebook_ogp(){
+		global $post;
+
 		if(ys_is_ogp_enable()){
 
 			// OGP出力に必要な情報が揃っていれば出力処理
@@ -105,9 +107,9 @@ if(!function_exists( 'ys_wphead_add_facebook_ogp')) {
 				$og_type = 'article';
 				$og_title = get_the_title();
 				$og_url = get_the_permalink();
-				$og_description = get_the_excerpt();
+				$og_description = ys_entry_get_the_custom_excerpt($post->post_content,160);
 			}
-			// 共通項目
+			//
 			echo '<meta property="og:site_name" content="'.get_bloginfo('name').'">'.PHP_EOL;
 			echo '<meta property="og:locale"    content="ja_JP">'.PHP_EOL;
 			echo '<meta property="fb:app_id"    content="'.$ogp['app_id'].'">'.PHP_EOL;
@@ -123,5 +125,42 @@ if(!function_exists( 'ys_wphead_add_facebook_ogp')) {
 add_action( 'wp_head', 'ys_wphead_add_facebook_ogp');
 
 
+
+
+// -------------------------------------------
+// Twitter Card 出力
+// -------------------------------------------
+if(!function_exists( 'ys_wphead_add_twitter_card')) {
+	function ys_wphead_add_twitter_card(){
+		global $post;
+
+		$ogp_image = esc_url( get_option('ys_ogp_default_image','') );
+		$tw_account = esc_attr( get_option('ys_twittercard_user') );
+
+		if($ogp_image != '' && $tw_account != ''){
+
+			// OGP出力に必要な情報が揃っていれば出力処理
+			$ogp = ys_option_get_ogp();
+
+			// TOPページ用に初期化(アーカイブページにもシェアボタンを置くようならタイトルとかURLを少し考えたほうが良い)
+			$og_title = get_bloginfo('name');
+			$og_image = $ogp_image;
+			$og_description = get_bloginfo('description');
+
+			if(is_single() || is_page()){
+				$og_title = get_the_title();
+				$og_image = ys_image_get_post_thumbnail_url(0,'full',$ogp_image);
+				$og_description = ys_entry_get_the_custom_excerpt($post->post_content,160);
+			}
+			// 共通項目
+			echo '<meta name="twitter:card" content="summary" />'.PHP_EOL;
+			echo '<meta name="twitter:site" content="'.$tw_account.'" />'.PHP_EOL;
+			echo '<meta name="twitter:title"    content="'.$og_title.'">'.PHP_EOL;
+			echo '<meta name="twitter:image"    content="'.$og_image.'">'.PHP_EOL;
+			echo '<meta name="twitter:description"    content="'.$og_description.'">'.PHP_EOL;
+		}
+	}
+}
+add_action( 'wp_head', 'ys_wphead_add_twitter_card');
 
 ?>
