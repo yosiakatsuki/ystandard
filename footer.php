@@ -3,6 +3,40 @@
 
 		<footer id="footer" class="site-footer" role="contentinfo">
 			<div class="wrap">
+				<?php
+					if ( !ys_is_amp() ) :
+						if ( is_active_sidebar( 'footer-left' )
+									|| is_active_sidebar( 'footer-center' )
+									|| is_active_sidebar( 'footer-right' )) :
+				?>
+					<div class="footer-widget-wrapper">
+						<div class="footer-widget-left">
+							<?php
+								if ( is_active_sidebar( 'footer-left' )){
+									dynamic_sidebar( 'footer-left' );
+								}
+							?>
+						</div>
+						<div class="footer-widget-center">
+							<?php
+								if ( is_active_sidebar( 'footer-center' )){
+									dynamic_sidebar( 'footer-center' );
+								}
+							?>
+						</div>
+						<div class="footer-widget-right">
+							<?php
+								if ( is_active_sidebar( 'footer-right' )){
+									dynamic_sidebar( 'footer-right' ); 
+								}
+							?>
+						</div>
+					</div>
+				<?php
+						endif;
+					endif;
+				?>
+
 				<?php if ( has_nav_menu( 'footer' ) ) : ?>
 					<nav class="footer-navigation" role="navigation">
 						<?php

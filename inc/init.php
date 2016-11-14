@@ -93,6 +93,36 @@ if (!function_exists( 'ys_init_widget_initialize')) {
 			'before_title'	 => '<h2 class="widget-title">',
 			'after_title'	   => '</h2>',
 		) );
+		//フッター左
+		register_sidebar( array(
+			'name'					 => 'フッター左',
+			'id'						 => 'footer-left',
+			'description'	   => 'フッターエリア左側',
+			'before_widget'  => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'	 => '</section>',
+			'before_title'	 => '<h2 class="widget-title">',
+			'after_title'	   => '</h2>',
+		) );
+		//フッター中央
+		register_sidebar( array(
+			'name'					 => 'フッター中央',
+			'id'						 => 'footer-center',
+			'description'	   => 'フッターエリア中央',
+			'before_widget'  => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'	 => '</section>',
+			'before_title'	 => '<h2 class="widget-title">',
+			'after_title'	   => '</h2>',
+		) );
+		//フッター右
+		register_sidebar( array(
+			'name'					 => 'フッター右',
+			'id'						 => 'footer-right',
+			'description'	   => 'フッターエリア右側',
+			'before_widget'  => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'	 => '</section>',
+			'before_title'	 => '<h2 class="widget-title">',
+			'after_title'	   => '</h2>',
+		) );
 	}
 }
 add_action( 'widgets_init', 'ys_init_widget_initialize' );

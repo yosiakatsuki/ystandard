@@ -44,10 +44,51 @@
 	}
 }
 
+.footer-widget-wrapper {
+	padding: 1rem 0;
+}
+.footer-widget-left,
+.footer-widget-center,
+.footer-widget-right {
+	margin: 0 0 1rem;
+}
+
+
 //--------------------------------------
 // タブレット
 //--------------------------------------
 @include media-breakpoint(tb) {
+
+	.footer-widget-wrapper {
+		font-size: 0;
+		letter-spacing: -.4em;
+	}
+
+	.footer-widget-left,
+	.footer-widget-center,
+	.footer-widget-right {
+		display: inline-block;
+		font-size: .9rem;
+		vertical-align: top;
+		letter-spacing: $ys-letter-spacing;
+	}
+
+	.footer-widget-left {
+		width: 100%;
+	}
+
+	.footer-widget-center,
+	.footer-widget-right {
+		width: 49%;
+	}
+
+	.footer-widget-center {
+		margin: 0 1% 1rem 0;
+	}
+
+	.footer-widget-right {
+		margin: 0 0 1rem 1%;
+	}
 
 };
 
@@ -56,5 +97,18 @@
 //--------------------------------------
 @include media-breakpoint(pc) {
 
+	.footer-widget-left,
+	.footer-widget-center,
+	.footer-widget-right {
+		width: 30%;
+	}
 
+	.footer-widget-left,
+	.footer-widget-center {
+		margin: 0 5% 1rem 0;
+	}
+
+	.footer-widget-right {
+		margin: 0 0 1rem 0;
+	}
 };
