@@ -30,6 +30,127 @@
 	font-size: .8rem;
 }
 
+.site-header-menu {
+	width: 0px;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: 3rem 0 1rem;
+	background-color: $ys-header-nav-bg-color-sp;
+	transition: width .3s;
+	z-index: 3;
+	overflow-y: scroll;
+}
+
+%hamburger {
+	span {
+		background-color: $ys-header-nav-button-color-open;
+	}
+	.middle {
+		background: rgba(255, 255, 255, 0);
+	}
+	.top {
+		transform: rotate(-45deg) translateX(-2px);
+	}
+	.bottom {
+		transform: rotate(45deg) translateX(-3px);
+	}
+}
+
+
+
+.amp-slider {
+	padding: 3rem 0 1rem;
+	background-color: $ys-header-nav-bg-color-sp;
+
+	.menu-toggle-label {
+		margin: .5rem 0 0;
+		@extend %hamburger;
+	}
+}
+
+.gloval-menu {
+
+
+	li {
+		font-size: .8rem;
+	}
+
+	&>li {
+
+
+		a {
+			display: block;
+			padding: 1rem 1rem;
+			color: $ys-header-nav-font-color-sp;
+		}
+
+		ul {
+
+			a {
+				padding: 1rem 1rem 1rem 2rem;
+			}
+
+		}
+	}//&>li
+
+}//.gloval-menu {
+
+.menu-toggle-label {
+
+	position: absolute;
+	top: .5rem;
+	right: 1rem;
+	padding-top: 6px;
+	z-index: 99;
+
+	span {
+		display: block;
+		width: 20px;
+		height: 2px;
+		background-color: $ys-header-nav-button-color;
+		transition: all 0.3s;
+		transform: rotate(0deg);
+	}
+	.top {
+		transform: translateY(-6px);
+	}
+	.bottom {
+		transform: translateY(6px);
+	}
+}
+
+.menu-toggle-cover {
+	display: none;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: transparent;
+	z-index: 0;
+}
+
+// チェックされた時
+#menu-toggle:checked {
+	& ~ .menu-toggle-label {
+		@extend %hamburger;
+	}
+
+	& ~.site-header-menu {
+		width: 70%;
+		max-width: 500px;
+	}
+
+	& ~ .menu-toggle-cover {
+		display: block;
+		background-color: rgba(#fff,0.4);
+		z-index: 2;
+	}
+}
+
 //--------------------------------------
 // タブレット
 //--------------------------------------
@@ -42,16 +163,23 @@
 //--------------------------------------
 @include media-breakpoint(pc) {
 
-	.site-header-menu-toggle {
+	.menu-toggle-label,
+	.menu-toggle {
 		display: none;
 	}
 
 	// ---- ナビゲーション ----
 	.site-header-menu {
-		position: absolute;
-		top: 0;
-		right: $ys-gutter;
+		display: block;
+		width: auto;
+		max-width: auto;
 		height: 100%;
+		position: absolute;
+		right: $ys-gutter;
+		bottom: auto;
+		padding: 0;
+		background-color: transparent;
+		overflow-y: hidden;
 	}
 
 	.main-navigation {
@@ -67,10 +195,6 @@
 	.gloval-menu {
 		font-size: 0;
 
-		li {
-			font-size: .8rem;
-		}
-
 		&>li {
 			position: relative;
 			display: inline-block;
@@ -81,6 +205,7 @@
 			}
 
 			a {
+				display: inline;
 				padding: .5rem 0;
 				color: $ys-header-nav-font-color;
 				border-bottom: 1px solid transparent;

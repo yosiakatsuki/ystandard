@@ -41,25 +41,35 @@
 						<?php endif; ?>
 					</div><!-- .site-branding -->
 
-					<?php if ( has_nav_menu( 'gloval' )) : ?>
-						<div id="site-header-menu-toggle" class="site-header-menu-toggle">
-							<input type="checkbox" id="menu-toggle" class="menu-toggle">
-							<label class="menu-toggle-label" for="menu-toggle"><span class="menu-toggle-icon"></span></label>
-						</div>
 
-						<div id="site-header-menu" class="site-header-menu">
-						<?php if ( has_nav_menu( 'gloval') ) : ?>
-								<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'twentysixteen' ); ?>">
+					<?php if ( has_nav_menu( 'gloval' )) : ?>
+						<?php if(ys_is_amp()): ?>
+							<button class="menu-toggle-label" on='tap:sidebar.toggle'>
+								<span class="top"></span>
+								<span class="middle"></span>
+								<span class="bottom"></span>
+							</button>
+						<?php else: //AMP?>
+							<input type="checkbox" id="menu-toggle" class="menu-toggle" hidden />
+							<label  class="menu-toggle-label" for="menu-toggle">
+								<span class="top"></span>
+								<span class="middle"></span>
+								<span class="bottom"></span>
+							</label>
+							<label class="menu-toggle-cover" for="menu-toggle"></label>
+							<div id="site-header-menu" class="site-header-menu">
+								<nav id="site-navigation" class="main-navigation" role="navigation">
 									<?php
 										wp_nav_menu( array(
 											'theme_location' => 'gloval',
 											'menu_class'		 => 'gloval-menu',
+											'container_class' => 'menu-global-container',
 											'depth'          => 2
 										 ) );
 									?>
 								</nav><!-- .main-navigation -->
-							<?php endif; ?>
-						</div><!-- .site-header-menu -->
+							</div><!-- .site-header-menu -->
+						<?php endif; //AMP?>
 					<?php endif; ?>
 				</div><!-- .wrap -->
 			</div><!-- .site-header-main -->

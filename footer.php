@@ -23,6 +23,32 @@
 	</div><!-- .site-inner -->
 </div><!-- .site -->
 
-<?php wp_footer(); ?>
+<?php
+	if(ys_is_amp()):
+		// AMP
+?>
+<amp-sidebar id='sidebar' layout="nodisplay" side="right" class="amp-slider">
+	<button class="menu-toggle-label" on='tap:sidebar.close'>
+		<span class="top"></span>
+		<span class="middle"></span>
+		<span class="bottom"></span>
+	</button>
+	<nav id="site-navigation" class="main-navigation" role="navigation">
+		<?php
+			wp_nav_menu( array(
+				'theme_location' => 'gloval',
+				'menu_class'		 => 'gloval-menu',
+				'container_class' => 'menu-global-container',
+				'depth'          => 2
+			 ) );
+		?>
+	</nav><!-- .main-navigation -->
+</amp-sidebar>
+<?php
+	else:
+		// AMP以外
+		wp_footer();
+	endif;
+?>
 </body>
 </html>

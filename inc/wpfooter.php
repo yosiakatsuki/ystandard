@@ -135,5 +135,4 @@ if(!function_exists( 'ys_wpfooter_the_json_ld')) {
 }
 add_action( 'wp_footer', 'ys_wpfooter_the_json_ld' );
 
-
 ?>
