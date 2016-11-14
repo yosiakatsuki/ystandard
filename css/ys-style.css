@@ -711,6 +711,16 @@ div.aligncenter {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
+  .sns-share-button .line a::before {
+    content: "\f075";
+    width: 1.28571429em;
+    display: inline-block;
+    margin: 0 0.5rem 0 0;
+    font-family: FontAwesome;
+    text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
 
 .entry-meta-author {
   margin: .5rem 0 0; }
@@ -808,11 +818,16 @@ div.aligncenter {
     text-align: left;
     text-align: center; }
     .sns-share-button li {
-      width: 105px;
+      width: 30%;
+      margin-left: auto;
       text-align: left; }
-      .sns-share-button li:nth-child(odd), .sns-share-button li:nth-child(even) {
-        margin-right: 1%;
-        margin-left: auto; } }
+      .sns-share-button li:nth-child(odd) {
+        margin-right: 5%; }
+      .sns-share-button li:nth-child(even) {
+        margin-right: 5%;
+        margin-left: auto; }
+      .sns-share-button li:nth-child(3n+3) {
+        margin-right: 0; } }
 
 @media screen and (min-width: 960px) {
   .site-main > article {

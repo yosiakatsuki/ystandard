@@ -194,6 +194,12 @@
 			@include fontawesome("f265",0,.5rem);
 		}
 	}
+
+	.line {
+		a::before {
+			@include fontawesome("f075",0,.5rem);
+		}
+	}
 }//.sns-share-button
 
 
@@ -337,13 +343,21 @@
 		text-align: center;
 
 		li {
-			width: 105px;
+			width: 30%;
+			margin-left: auto;
 			text-align: left;
 
-			&:nth-child(odd),
-			&:nth-child(even)  {
-				margin-right: 1%;
+			&:nth-child(odd) {
+				margin-right: 5%;
+			}
+
+			&:nth-child(even) {
+				margin-right: 5%;
 				margin-left: auto;
+			}
+
+			&:nth-child(3n+3) {
+				margin-right: 0;
 			}
 
 		}
