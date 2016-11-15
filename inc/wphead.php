@@ -103,6 +103,10 @@ if(!function_exists( 'ys_wphead_add_noindex')) {
 			//  404ページをnoindex
 			$noindexoutput = true;
 
+		} elseif(is_search()) {
+			// 検索結果をnoindex
+			$noindexoutput = true;
+
 		} elseif(is_category() && get_option('ys_archive_noindex_category',0) == 1){
 			// カテゴリーページのnoindex設定がされていればnoindex
 			$noindexoutput = true;
