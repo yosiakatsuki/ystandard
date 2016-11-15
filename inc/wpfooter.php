@@ -23,12 +23,14 @@ if(!function_exists( 'ys_wpfooter_the_json_ld')) {
 		$logourl = '';
 		$logowidth = 0;
 		$logoheight = 0;
-		$logo = ys_image_get_custom_logo_image_src();
-		if($logo){
+		
+		if(has_custom_logo()){
+			$logo = ys_image_get_custom_logo_image_src();
 			$logourl = $logo[0];
 			$logowidth = $logo[1];
 			$logoheight = $logo[2];
 		}
+
 		$blogurl = get_bloginfo('url');
 		$blogname = get_bloginfo('name');
 

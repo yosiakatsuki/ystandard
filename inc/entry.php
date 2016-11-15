@@ -53,7 +53,7 @@ if (!function_exists( 'ys_entry_the_entry_author')) {
 
 		$author_name = get_the_author();
 		$author_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) );
-		echo '<span class="author vcard" itemprop="author editor creator" itemscope itemtype="http://schema.org/Person"><a class="url fn n" itemprop="name" href="'.$author_url.'">'.$author_name.'</a></span>';
+		echo '<span class="author vcard" itemprop="author editor creator" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="'.$author_name.'"><a class="url fn n" href="'.$author_url.'">'.$author_name.'</a></span>';
 	}
 }
 
@@ -90,7 +90,7 @@ if (!function_exists( 'ys_entry_the_author_sns')) {
 
 			$author_sns = get_the_author_meta( $key );
 			if($author_sns != '') {
-				$sns_list .= '<li class="color-'.$val.'"><a href="'.esc_url( $author_sns ).'" target="_blank" rel="nofollow" itemprop="url"><i class="fa fa-fw fa-'.$val.'" aria-hidden="true"></i></a></li>'.PHP_EOL;
+				$sns_list .= '<li class="color-'.$val.'"><a href="'.esc_url( $author_sns ).'" target="_blank" rel="nofollow" ><i class="fa fa-fw fa-'.$val.'" aria-hidden="true"></i></a></li>'.PHP_EOL;
 			}
 		}
 

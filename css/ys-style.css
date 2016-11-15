@@ -370,6 +370,9 @@ div.aligncenter {
   font-size: 2rem; }
   .site-title a {
     color: #2c3e50; }
+  .site-title img,
+  .site-title amp-img {
+    max-width: 300px; }
 
 .site-description {
   font-size: .8rem; }

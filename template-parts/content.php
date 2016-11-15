@@ -1,11 +1,12 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="http://schema.org/BlogPosting" itemref="masthead">
+	<meta itemscope id="EntityOfPageid-<?php the_ID(); ?>" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
 
 	<header class="entry-header">
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
 			<span class="sticky-post">おすすめ！</span>
 		<?php endif; ?>
 
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+		<?php the_title( sprintf( '<h2 class="entry-title" itemprop="headline name"><a href="%s" rel="bookmark" itemprop="url">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
 		<div class="entry-meta entry-date-container">
 			<?php ys_entry_the_entry_date(false); ?>
@@ -13,7 +14,7 @@
 
 		<?php if(has_post_thumbnail()): ?>
 			<figure class="post-thumbnail">
-				<a href="<?php the_permalink(); ?>">
+				<a href="<?php the_permalink(); ?>" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
 					<?php ys_image_the_post_thumbnail(); ?>
 				</a>
 			</figure><!-- .post-thumbnail -->
@@ -27,7 +28,7 @@
 
 
 
-	<div class="entry-content">
+	<div class="entry-content" itemprop="articleBody">
 		<?php
 			the_excerpt();
 		?>
@@ -38,4 +39,5 @@
 			<a class="more-link" href="<?php the_permalink(); ?>">この記事の続きを読む »</a>
 		</p>
 	</footer><!-- .entry-footer -->
+	<meta itemprop="author" content="<?php the_author(); ?>" />
 </article><!-- #post-## -->

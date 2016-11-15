@@ -21,8 +21,14 @@
 
 .site-title {
 	font-size: 2rem;
+
 	a {
 		color: $ys-header-font-color;
+	}
+
+	img,
+	amp-img {
+		max-width: 300px;
 	}
 }
 
