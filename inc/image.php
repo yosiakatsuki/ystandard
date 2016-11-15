@@ -190,9 +190,9 @@ if (!function_exists( 'ys_image_get_the_user_avatar_img')) {
 
 		// オリジナル画像があればそちらを使う
 		if($custom_avatar !== '') {
-			$img = '<img src="' . $custom_avatar . '" alt="'.$alt.'" width="'.$size.'" height="'.$size.'" />';
+			$img = '<img src="' . $custom_avatar . '" alt="'.$alt.'" width="'.$size.'" height="'.$size.'" itemprop="image" />';
 		} elseif($user_avatar !== '') {
-			$img = $user_avatar;
+			$img = str_replace('<img','<img itemprop="image"', $user_avatar);;
 		}
 
 		// amp対応

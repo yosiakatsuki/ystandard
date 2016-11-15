@@ -1,4 +1,4 @@
-<div class="author-info clearfix">
+<div class="author-info clearfix" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
 	<?php
 		$avatar = ys_image_get_the_user_avatar_img();
 		if($avatar != ''):
@@ -16,7 +16,7 @@
 		// SNSリンク出す
 			ys_entry_the_author_sns();
 		?>
-		<div class="author-bio">
+		<div class="author-bio" itemprop="description" >
 			<?php echo wpautop(str_replace(array("\r\n", "\r", "\n"),"\n\n",get_the_author_meta( 'description' ))); ?>
 		</div><!-- .author-bio -->
 	</div><!-- .author-description -->

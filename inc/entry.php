@@ -53,7 +53,13 @@ if (!function_exists( 'ys_entry_the_entry_author')) {
 
 		$author_name = get_the_author();
 		$author_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) );
-		echo '<span class="author vcard" itemprop="author editor creator" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="'.$author_name.'"><a class="url fn n" href="'.$author_url.'">'.$author_name.'</a></span>';
+
+		$stracture = '';
+		if(!is_singular()){
+			$stracture = ' itemprop="author editor creator" itemscope itemtype="http://schema.org/Person"';
+		}
+
+		echo '<span class="author vcard"'.$stracture.'><a class="url fn n" href="'.$author_url.'"><span itemprop="name">'.$author_name.'</span></a></span>';
 	}
 }
 
