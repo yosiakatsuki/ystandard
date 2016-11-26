@@ -68,7 +68,7 @@ add_action( 'admin_init', 'ys_register_settings' );
 //	メインメニュー呼び出し
 //-----------------------------------------------
 function load_ys_main_settings() {
-	include TEMPLATEPATH . '/admin-menu/main-settings.php';
+	include TEMPLATEPATH . '/inc/theme-option/main-settings.php';
 }
 
 
@@ -77,7 +77,7 @@ function load_ys_main_settings() {
 //	AMPメニュー呼び出し
 //-----------------------------------------------
 function load_ys_amp_settings() {
-	include TEMPLATEPATH . '/admin-menu/amp-settings.php';
+	include TEMPLATEPATH . '/inc/theme-option/amp-settings.php';
 }
 
 ?>
