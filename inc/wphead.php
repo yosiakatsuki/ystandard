@@ -225,11 +225,11 @@ if(!function_exists( 'ys_wphead_add_facebook_ogp')) {
 			echo '<meta property="og:locale"    content="ja_JP">'.PHP_EOL;
 			echo '<meta property="fb:app_id"    content="'.$ogp['app_id'].'">'.PHP_EOL;
 			echo '<meta property="fb:admins"    content="'.$ogp['admins'].'">'.PHP_EOL;
-			echo '<meta property="fb:type"    content="'.$og_type.'">'.PHP_EOL;
-			echo '<meta property="fb:title"    content="'.$og_title.'">'.PHP_EOL;
-			echo '<meta property="fb:url"    content="'.$og_url.'">'.PHP_EOL;
-			echo '<meta property="fb:image"    content="'.$og_image.'">'.PHP_EOL;
-			echo '<meta property="fb:description"    content="'.$og_description.'">'.PHP_EOL;
+			echo '<meta property="og:type"    content="'.$og_type.'">'.PHP_EOL;
+			echo '<meta property="og:title"    content="'.$og_title.'">'.PHP_EOL;
+			echo '<meta property="og:url"    content="'.$og_url.'">'.PHP_EOL;
+			echo '<meta property="og:image"    content="'.$og_image.'">'.PHP_EOL;
+			echo '<meta property="og:description"    content="'.$og_description.'">'.PHP_EOL;
 		}
 	}
 }
