@@ -161,12 +161,13 @@ add_filter('wp_head','ys_viewcount_update_views');
 //	ランキング表示用query作成
 //-----------------------------------------------
 if (!function_exists( 'ys_viewcount_get_query_base')) {
-	function ys_viewcount_get_query_base($posts_per_page,$order,$meta,$option){
+	function ys_viewcount_get_query_base($posts_per_page,$meta,$option){
 
 		$args = array(
 						 'post_type'=>'post',
 						 'posts_per_page'=> $posts_per_page,
-						 'order'=>$order,
+						 'order'=>'DESC',
+						 'orderby' => 'meta_value_num',
 						 'no_found_rows' => true,
 						 'ignore_sticky_posts'=>true
 					 );
@@ -189,16 +190,15 @@ if (!function_exists( 'ys_viewcount_get_query_base')) {
 //	全ランキング表示用query作成
 //-----------------------------------------------
 if (!function_exists( 'ys_viewcount_get_query_all')) {
-	function ys_viewcount_get_query_all($posts_per_page=4,$order='DESC',$option=null){
+	function ys_viewcount_get_query_all($posts_per_page=4,$option=null){
 
 		// ランキングの条件部分を作成
 		$meta = array(
-							'orderby' => 'meta_value_num',
 							'meta_key' => YS_METAKEY_PV_ALL
 						);
 
 		// WP_Queryを作成
-		return ys_viewcount_get_query_base($posts_per_page,$order,$meta,$option);
+		return ys_viewcount_get_query_base($posts_per_page,$meta,$option);
 	}
 }
 
@@ -209,7 +209,7 @@ if (!function_exists( 'ys_viewcount_get_query_all')) {
 //	日別ランキング表示用query作成
 //-----------------------------------------------
 if (!function_exists( 'ys_viewcount_get_query_day')) {
-	function ys_viewcount_get_query_day($posts_per_page=4,$order='DESC',$option=null){
+	function ys_viewcount_get_query_day($posts_per_page=4,$option=null){
 
 		// ランキングの条件部分を作成
 		$meta = array(
@@ -224,7 +224,7 @@ if (!function_exists( 'ys_viewcount_get_query_day')) {
 						);
 
 		// WP_Queryを作成
-		return ys_viewcount_get_query_base($posts_per_page,$order,$meta,$option);
+		return ys_viewcount_get_query_base($posts_per_page,$meta,$option);
 	}
 }
 
@@ -235,7 +235,7 @@ if (!function_exists( 'ys_viewcount_get_query_day')) {
 //	週別ランキング表示用query作成
 //-----------------------------------------------
 if (!function_exists( 'ys_viewcount_get_query_week')) {
-	function ys_viewcount_get_query_week($posts_per_page=4,$order='DESC',$option=null){
+	function ys_viewcount_get_query_week($posts_per_page=4,$option=null){
 
 		// ランキングの条件部分を作成
 		$meta = array(
@@ -250,7 +250,7 @@ if (!function_exists( 'ys_viewcount_get_query_week')) {
 						);
 
 		// WP_Queryを作成
-		return ys_viewcount_get_query_base($posts_per_page,$order,$meta,$option);
+		return ys_viewcount_get_query_base($posts_per_page,$meta,$option);
 	}
 }
 
@@ -261,7 +261,7 @@ if (!function_exists( 'ys_viewcount_get_query_week')) {
 //	月別ランキング表示用query作成
 //-----------------------------------------------
 if (!function_exists( 'ys_viewcount_get_query_month')) {
-	function ys_viewcount_get_query_month($posts_per_page=4,$order='DESC',$option=null){
+	function ys_viewcount_get_query_month($posts_per_page=4,$option=null){
 
 		// ランキングの条件部分を作成
 		$meta = array(
@@ -276,7 +276,7 @@ if (!function_exists( 'ys_viewcount_get_query_month')) {
 						);
 
 		// WP_Queryを作成
-		return ys_viewcount_get_query_base($posts_per_page,$order,$meta,$option);
+		return ys_viewcount_get_query_base($posts_per_page,$meta,$option);
 	}
 }
 ?>
