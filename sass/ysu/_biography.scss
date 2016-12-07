@@ -50,12 +50,16 @@
 
 	li {
 		display: inline-block;
-		margin-right: .2rem;
+		margin-right: 5rem;
 		font-size: 1rem;
 		vertical-align: middle;
 
 		a {
 			transition: color .3s;
+		}
+
+		&:last-child {
+			margin-right: 0;
 		}
 	}
 
