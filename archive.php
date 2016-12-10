@@ -28,7 +28,7 @@ get_header(); ?>
 			endwhile;
 
 			// ページネーション
-			ys_pagenation();
+			ys_pagination();
 
 		// If no content, include the "No posts found" template.
 		else :

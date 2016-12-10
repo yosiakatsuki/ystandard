@@ -41,7 +41,7 @@ require_once TEMPLATEPATH . '/inc/wpfooter.php';
 // コメント欄
 require_once TEMPLATEPATH . '/inc/yscomment.php';
 // ページネーション
-require_once TEMPLATEPATH . '/inc/pagenation.php';
+require_once TEMPLATEPATH . '/inc/pagination.php';
 // パンくずリスト
 require_once TEMPLATEPATH . '/inc/breadcrumb.php';
 // html,headタグ部分

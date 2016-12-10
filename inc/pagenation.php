@@ -11,8 +11,8 @@
 //-----------------------------------------------
 //	ページネーション
 //-----------------------------------------------
-if (!function_exists( 'ys_pagenation')) {
-	function ys_pagenation($mid_size=3) {
+if (!function_exists( 'ys_pagination')) {
+	function ys_pagination($mid_size=3) {
 
 		global $wp_query;
 
@@ -28,11 +28,11 @@ if (!function_exists( 'ys_pagenation')) {
 		//--------------------------------------------------------------------------
 
 		//ページャーの開始
-		echo '<nav class="pagenation">';
+		echo '<nav class="pagination">';
 		//タイトル出力
-		echo ys_pagenation_get_pagenation_title($current,$total);
+		echo ys_pagination_get_pagination_title($current,$total);
 		//ページのリンク出力
-		echo '<ul class="pagenation-list">';
+		echo '<ul class="pagination-list">';
 		//--------------------------------------------------------------------------
 
 		// ページングありの場合、ページャー作成
@@ -85,10 +85,10 @@ if (!function_exists( 'ys_pagenation')) {
 //-----------------------------------------------
 //	ページネーションタイトル
 //-----------------------------------------------
-if (!function_exists( 'ys_pagenation_get_pagenation_title')) {
-	function ys_pagenation_get_pagenation_title($current,$total) {
+if (!function_exists( 'ys_pagination_get_pagination_title')) {
+	function ys_pagination_get_pagination_title($current,$total) {
 
-		return '<p class="pagenation-title">Page '.$current.' of '.$total.'</p>';
+		return '<p class="pagination-title">Page '.$current.' of '.$total.'</p>';
 	}
 }
 

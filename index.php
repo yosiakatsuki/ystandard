@@ -21,7 +21,7 @@ get_header(); ?>
 			endwhile;
 
 			// ページネーション
-			ys_pagenation();
+			ys_pagination();
 
 		else :
 			get_template_part( 'template-parts/content', 'none' );

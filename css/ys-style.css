@@ -1321,35 +1321,35 @@ div.aligncenter {
   font-size: .8rem;
   color: #db2814; }
 
-.pagenation {
+.pagination {
   margin: 1rem 0;
   text-align: center; }
 
-.pagenation-title {
+.pagination-title {
   margin: 0 0 .5rem; }
 
-.pagenation-list {
+.pagination-list {
   font-size: 0; }
-  .pagenation-list li {
+  .pagination-list li {
     width: 2rem;
     display: inline-block;
     margin-right: .5rem;
     font-size: 1rem;
     text-align: center;
     vertical-align: top; }
-    .pagenation-list li a,
-    .pagenation-list li .current {
+    .pagination-list li a,
+    .pagination-list li .current {
       display: block;
       padding: .2rem 0;
       border: 1px solid #2c3e50; }
-    .pagenation-list li a {
+    .pagination-list li a {
       background-color: transparent;
       color: #2c3e50; }
-    .pagenation-list li .current {
+    .pagination-list li .current {
       background-color: #2c3e50;
       color: #fff; }
-    .pagenation-list li .next,
-    .pagenation-list li .previous {
+    .pagination-list li .next,
+    .pagination-list li .previous {
       border: none; }
 
 .search-form {
