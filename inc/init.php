@@ -137,12 +137,10 @@ if (!function_exists( 'ys_init_remove')) {
 
 		// WPのバージョン削除
 		remove_action('wp_head', 'wp_generator');
-		// サイトアイコンを削除
-		//remove_action('wp_head', 'wp_site_icon',99);
 
 		// WP標準のcanonicalとnext,prevを削除
 		remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
-remove_action('wp_head', 'rel_canonical');
+		remove_action('wp_head', 'rel_canonical');
 
 		//絵文字
     /*
