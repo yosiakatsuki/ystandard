@@ -7,6 +7,7 @@
 
 //条件分岐
 require_once TEMPLATEPATH . '/inc/conditional-branch.php';
+
 // AMP
 require_once TEMPLATEPATH . '/inc/amp.php';
 // サニタイズ
