@@ -50,7 +50,7 @@ PHP	:	5.6以上
 
 ## 絵文字やEmbeds関連のスクリプト・CSSの削除について
 
-`inc/init.php`内の`ys_init_remove`に絵文字やEmbeds関連のスクリプト・CSSの削除に必要なアクションをコメントアウトながら記載済み。
+`inc/init.php`内の`ys_setup_remove_action`に絵文字やEmbeds関連のスクリプト・CSSの削除に必要なアクションをコメントアウトながら記載済み。
 
 コメントアウト解除すれば絵文字やEmbeds関連のスクリプト・CSSの削除ができるはずです。
 

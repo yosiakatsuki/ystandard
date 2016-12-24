@@ -10,8 +10,8 @@
 //------------------------------------------------------------------------------
 //	初期化
 //------------------------------------------------------------------------------
-if (!function_exists( 'ys_init_initialize')) {
-	function ys_init_initialize() {
+if (!function_exists( 'ys_setup_initialize')) {
+	function ys_setup_initialize() {
 
 		if ( ! isset( $content_width ) ) {
 			$content_width = 900;
@@ -55,10 +55,40 @@ if (!function_exists( 'ys_init_initialize')) {
 		add_theme_support('post-thumbnails');
 
 	}
-}//if (!function_exists( 'ys_init_initialize')) {
-add_action( 'after_setup_theme', 'ys_init_initialize' );
+}//if (!function_exists( 'ys_setup_initialize')) {
+add_action( 'after_setup_theme', 'ys_setup_initialize' );
 
 
+
+//------------------------------------------------------------------------------
+//	いろいろ無効化
+//------------------------------------------------------------------------------
+if (!function_exists( 'ys_setup_remove_action')) {
+	function ys_setup_remove_action() {
+
+		// WPのバージョン削除
+		remove_action('wp_head', 'wp_generator');
+
+		// WP標準のcanonicalとnext,prevを削除
+		remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
+		remove_action('wp_head', 'rel_canonical');
+
+		//絵文字
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+		remove_action( 'wp_print_styles', 'print_emoji_styles' );
+		remove_action( 'admin_print_styles', 'print_emoji_styles' );
+		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+
+		//Embeds
+		remove_action('wp_head','rest_output_link_wp_head');
+		remove_action('wp_head','wp_oembed_add_discovery_links');
+		remove_action('wp_head','wp_oembed_add_host_js');
+	}
+}
+add_action( 'after_setup_theme', 'ys_setup_remove_action' );
 
 
 //------------------------------------------------------------------------------
@@ -128,40 +158,6 @@ if (!function_exists( 'ys_init_widget_initialize')) {
 add_action( 'widgets_init', 'ys_init_widget_initialize' );
 
 
-
-//------------------------------------------------------------------------------
-//	いろいろ無効化
-//------------------------------------------------------------------------------
-if (!function_exists( 'ys_init_remove')) {
-	function ys_init_remove() {
-
-		// WPのバージョン削除
-		remove_action('wp_head', 'wp_generator');
-
-		// WP標準のcanonicalとnext,prevを削除
-		remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
-		remove_action('wp_head', 'rel_canonical');
-
-		//絵文字
-    /*
-		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-		remove_action( 'wp_print_styles', 'print_emoji_styles' );
-		remove_action( 'admin_print_styles', 'print_emoji_styles' );
-		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-    */
-
-		//Embeds
-    /*
-		remove_action('wp_head','rest_output_link_wp_head');
-		remove_action('wp_head','wp_oembed_add_discovery_links');
-		remove_action('wp_head','wp_oembed_add_host_js');
-    */
-	}
-}
-add_action( 'after_setup_theme', 'ys_init_remove' );
 
 
 ?>
