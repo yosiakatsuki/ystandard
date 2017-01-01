@@ -11,18 +11,18 @@
 //-----------------------------------------------
 //	html-head要素の出力
 //-----------------------------------------------
-if(!function_exists( 'ys_html_head')) {
-	function ys_html_head(){
+if(!function_exists( 'ys_head_tag')) {
+	function ys_head_tag(){
 
 		// ------------------------
 		// html,head開始タグ,charset,viewport
 		// ------------------------
 		if(ys_is_amp()):
 			// AMPページ用
-			ys_htmlhead_amp();
+			ys_head_amp();
 		else :
 			// 通常ページ
-			ys_htmlhead_normal();
+			ys_head_normal();
 		endif;
 		echo "</head>";
 	}
@@ -32,7 +32,7 @@ if(!function_exists( 'ys_html_head')) {
 //-----------------------------------------------
 //	AMPページのHTML-head要素
 //-----------------------------------------------
-if(!function_exists( 'ys_htmlhead_amp')) {
+if(!function_exists( 'ys_head_amp')) {
 	function ys_htmlhead_amp(){
 		?>
 <html ⚡>
@@ -80,7 +80,7 @@ echo str_replace('@charset "UTF-8";','',$css);
 //-----------------------------------------------
 //	通常ページのHTML-head要素
 //-----------------------------------------------
-if(!function_exists( 'ys_htmlhead_normal')) {
+if(!function_exists( 'ys_head_normal')) {
 	function ys_htmlhead_normal(){
 		?>
 <html <?php language_attributes(); ?>>

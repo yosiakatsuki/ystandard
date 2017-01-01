@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 	// html~headタグは関数で出力
-	ys_html_head();
+	ys_head_tag();
 ?>
 
 <body <?php body_class(); ?>>
@@ -93,4 +93,4 @@
 
 		</header><!-- .site-header -->
 
-		<div id="content" class="<?php echo ys_style_content_class(array('site-content','wrap','clearfix')); ?>">
+		<div id="content" class="site-content wrap clearfix">

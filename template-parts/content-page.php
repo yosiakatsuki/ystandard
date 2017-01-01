@@ -5,7 +5,7 @@
 		<?php the_title( '<h1 class="entry-title" itemprop="headline name">', '</h1>' ); ?>
 
 		<div class="entry-meta entry-date-container">
-			<?php ys_entry_the_entry_date(false); ?>
+			<?php ys_template_the_entry_date(false); ?>
 		</div><!-- .entry-meta -->
 
 		<?php if(has_post_thumbnail()): ?>
@@ -20,7 +20,7 @@
 
 		the_content();
 
-		ys_entry_the_link_pages();
+		ys_template_the_link_pages();
 
 		?>
 	</div><!-- .entry-content -->

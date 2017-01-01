@@ -11,8 +11,8 @@
 //-----------------------------------------------
 //	投稿・更新日取得
 //-----------------------------------------------
-if (!function_exists( 'ys_entry_the_entry_date')) {
-	function ys_entry_the_entry_date($show_update = true) {
+if (!function_exists( 'ys_template_the_entry_date')) {
+	function ys_template_the_entry_date($show_update = true) {
 
 		$format = get_option( 'date_format' );
 		$pubdate = 'pubdate="pubdate"';
@@ -48,8 +48,8 @@ if (!function_exists( 'ys_entry_the_entry_date')) {
 //-----------------------------------------------
 //	投稿者取得
 //-----------------------------------------------
-if (!function_exists( 'ys_entry_the_entry_author')) {
-	function ys_entry_the_entry_author() {
+if (!function_exists( 'ys_template_the_entry_author')) {
+	function ys_template_the_entry_author() {
 
 		$author_name = get_the_author();
 		$author_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) );
@@ -69,8 +69,8 @@ if (!function_exists( 'ys_entry_the_entry_author')) {
 //-----------------------------------------------
 //	筆者のSNSプロフィール
 //-----------------------------------------------
-if (!function_exists( 'ys_entry_the_author_sns')) {
-	function ys_entry_the_author_sns() {
+if (!function_exists( 'ys_template_the_author_sns')) {
+	function ys_template_the_author_sns() {
 
 		if(ys_is_amp()) {
 			return;
@@ -113,8 +113,8 @@ if (!function_exists( 'ys_entry_the_author_sns')) {
 //-----------------------------------------------
 //	ページング
 //-----------------------------------------------
-if (!function_exists( 'ys_entry_the_link_pages')) {
-	function ys_entry_the_link_pages() {
+if (!function_exists( 'ys_template_the_link_pages')) {
+	function ys_template_the_link_pages() {
 		wp_link_pages( array(
 					'before'      => '<div class="page-links">',
 					'after'       => '</div>',
@@ -132,8 +132,8 @@ if (!function_exists( 'ys_entry_the_link_pages')) {
 //-----------------------------------------------
 //	投稿抜粋文を作成
 //-----------------------------------------------
-if( ! function_exists( 'ys_entry_get_the_custom_excerpt' ) ) {
-	function ys_entry_get_the_custom_excerpt($content,$length,$sep=' ...'){
+if( ! function_exists( 'ys_template_get_the_custom_excerpt' ) ) {
+	function ys_template_get_the_custom_excerpt($content,$length,$sep=' ...'){
 		//HTMLタグ削除
 		$content = wp_strip_all_tags($content,true);
 		//ショートコード削除
@@ -151,14 +151,15 @@ if( ! function_exists( 'ys_entry_get_the_custom_excerpt' ) ) {
 //-----------------------------------------------
 //	シェアボタン
 //-----------------------------------------------
-if( ! function_exists( 'ys_entry_the_sns_share' ) ) {
-	function ys_entry_the_sns_share(){
+if( ! function_exists( 'ys_template_the_sns_share' ) ) {
+	function ys_template_the_sns_share(){
 
 		echo '<div id="sns-share" class="sns-share">';
 		echo '<h2 class="sns-share-title">「'.get_the_title().'」をみんなとシェア！</h2>';
+		
 		if(!ys_is_amp()){
 			// AMP以外
-			ys_entry_the_sns_share_buttons();
+			ys_template_the_sns_share_buttons();
 
 		} else {
 			// AMP記事
@@ -179,8 +180,8 @@ if( ! function_exists( 'ys_entry_the_sns_share' ) ) {
 //-----------------------------------------------
 //	通常のシェアボタン
 //-----------------------------------------------
-if( ! function_exists( 'ys_entry_the_sns_share_buttons' ) ) {
-	function ys_entry_the_sns_share_buttons(){
+if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
+	function ys_template_the_sns_share_buttons(){
 
 		$share_url = urlencode(get_permalink());
 		$share_title = urlencode(get_the_title());
@@ -205,6 +206,41 @@ if( ! function_exists( 'ys_entry_the_sns_share_buttons' ) ) {
 
 		echo '</ul>';
 	}
+}
+
+
+
+
+
+//------------------------------------------------------------------------------
+//
+//	タクソノミー関連の関数
+//
+//------------------------------------------------------------------------------
+//-----------------------------------------------
+//	投稿のカテゴリー出力
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
+	function ys_template_the_post_categorys($postid=0,$link=True,$separator=', ') {
+
+		if($postid==0){
+			$postid = get_the_ID();
+		}
+
+		$terms ='';
+		$taxonomy = 'category';
+		// 投稿に付けられたターム（カテゴリー）の ID を取得する。
+		$post_terms = wp_get_object_terms( $postid, $taxonomy, array( 'fields' => 'ids' ) );
+
+		if ( !empty( $post_terms ) && !is_wp_error( $post_terms ) ) {
+
+			$term_ids = implode( ',' , $post_terms );
+			$terms = wp_list_categories( 'title_li=&style=none&echo=0&taxonomy=' . $taxonomy . '&include=' . $term_ids );
+			$terms = rtrim( trim( str_replace( '<br />',  $separator, $terms ) ), $separator );
+		}
+		// 投稿のカテゴリーを表示
+		echo $terms;
+	}//ys_category_get_post_categorys
 }
 
 ?>

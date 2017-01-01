@@ -5,7 +5,7 @@
 		<?php the_title( '<h1 class="entry-title" itemprop="headline name">', '</h1>' ); ?>
 
 		<div class="entry-meta entry-date-container">
-			<?php ys_entry_the_entry_date(); ?>
+			<?php ys_template_the_entry_date(); ?>
 		</div><!-- .entry-meta -->
 
 		<?php if(has_post_thumbnail()): ?>
@@ -28,7 +28,7 @@
 
 			the_content();
 
-			ys_entry_the_link_pages();
+			ys_template_the_link_pages();
 
 		?>
 	</div><!-- .entry-content -->
@@ -36,7 +36,7 @@
 	<footer class="entry-footer">
 		<?php
 			// シェアボタン
-			ys_entry_the_sns_share();
+			ys_template_the_sns_share();
 			// 書いた人
 			get_template_part( 'template-parts/biography' );
 		 ?>

@@ -9,7 +9,7 @@
 		<?php the_title( sprintf( '<h2 class="entry-title" itemprop="headline name"><a href="%s" rel="bookmark" itemprop="url">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 
 		<div class="entry-meta entry-date-container">
-			<?php ys_entry_the_entry_date(false); ?>
+			<?php ys_template_the_entry_date(false); ?>
 		</div><!-- .entry-meta -->
 
 		<?php if(has_post_thumbnail()): ?>
@@ -21,8 +21,8 @@
 		<?php endif; ?>
 
 		<div class="entry-meta">
-			<div class="entry-meta-cat entry-meta-left"><?php ys_category_the_post_categorys(); ?></div>
-			<div class="entry-meta-author entry-meta-right"><?php ys_entry_the_entry_author(false); ?></div>
+			<div class="entry-meta-cat entry-meta-left"><?php ys_template_the_post_categorys(); ?></div>
+			<div class="entry-meta-author entry-meta-right"><?php ys_template_the_entry_author(false); ?></div>
 		</div>
 	</header><!-- .entry-header -->
 

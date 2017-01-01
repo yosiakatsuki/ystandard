@@ -19,7 +19,7 @@ if(!function_exists( 'ys_breadcrumb')) {
 		}
 
 		// カテゴリー取得
-		$catlist = ys_category_get_cat_id_list();
+		$catlist = ys_utilities_get_cat_id_list();
 		?>
 		<nav id="breadcrumb" class="breadcrumb" data-area="Breadcrumb">
 			<ol itemscope itemtype="http://schema.org/BreadcrumbList">

@@ -167,7 +167,7 @@ if(!function_exists( 'ys_wphead_add_googleanarytics')) {
 
 		if($ga_tracking_id !== ''){
 			if(ys_is_amp()){
-				$ampanalytics = <<<EOD
+				$ys_ampanalytics = <<<EOD
 <amp-analytics type="googleanalytics" id="analytics1">
 <script type="application/json">
 {
@@ -184,7 +184,7 @@ if(!function_exists( 'ys_wphead_add_googleanarytics')) {
 </script>
 </amp-analytics>
 EOD;
-				echo $ampanalytics;
+				echo $ys_ampanalytics;
 			} else {
 				echo "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '$ga_tracking_id', 'auto');ga('send', 'pageview');</script>".PHP_EOL;
 			}
@@ -218,7 +218,7 @@ if(!function_exists( 'ys_wphead_add_facebook_ogp')) {
 				$og_type = 'article';
 				$og_title = get_the_title();
 				$og_url = get_the_permalink();
-				$og_description = ys_entry_get_the_custom_excerpt($post->post_content,160);
+				$og_description = ys_template_get_the_custom_excerpt($post->post_content,160);
 			}
 			//
 			echo '<meta property="og:site_name" content="'.get_bloginfo('name').'">'.PHP_EOL;
@@ -260,8 +260,8 @@ if(!function_exists( 'ys_wphead_add_twitter_card')) {
 
 			if(is_single() || is_page()){
 				$og_title = get_the_title();
-				$og_image = ys_image_get_post_thumbnail_url(0,'full',$ogp_image);
-				$og_description = ys_entry_get_the_custom_excerpt($post->post_content,160);
+				$og_image = ys_utilities_get_post_thumbnail_url(0,'full',$ogp_image);
+				$og_description = ys_template_get_the_custom_excerpt($post->post_content,160);
 			}
 			// 共通項目
 			echo '<meta name="twitter:card" content="summary" />'.PHP_EOL;

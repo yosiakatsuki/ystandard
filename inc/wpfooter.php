@@ -48,7 +48,7 @@ if(!function_exists( 'ys_wpfooter_the_json_ld')) {
 			$dateModified = get_the_modified_date('Y-n-j');
 			//画像
 			$imageurl = '';
-			$image = ys_image_get_post_thumbnail( get_the_ID(), 'full' );
+			$image = ys_utilities_get_post_thumbnail( get_the_ID(), 'full' );
 			if($image){
 				$imageurl = $image[0];
 				$imgwidth = $image[1];

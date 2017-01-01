@@ -18,7 +18,7 @@ if (!function_exists( 'ys_option_get_ogp')) {
 		$ogpimage = esc_url( get_option('ys_ogp_default_image','') );
 		if(is_single() || is_page()){
 			// 存在しない場合OGPデフォルト画像を指定しておく
-			$ogpimage = ys_image_get_post_thumbnail_url(0,'full',$ogpimage);
+			$ogpimage = ys_utilities_get_post_thumbnail_url(0,'full',$ogpimage);
 		}
 
 		return array(

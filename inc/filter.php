@@ -20,6 +20,15 @@ if (!function_exists( 'ys_filter_body_classes')) {
 		if ( ys_is_amp() ) {
 			$classes[] = 'amp';
 		}
+
+		if (is_active_sidebar( 'sidebar-left' ) && !ys_is_amp() ){
+			$classes[] = 'has-sidebar left-sidebar';
+		} elseif (is_active_sidebar( 'sidebar-right' ) && !ys_is_amp() ){
+			$classes[] = 'has-sidebar right-sidebar';
+		} else {
+			$classes[] = 'no-sidebar';
+		}
+
 		return $classes;
 	}
 }

@@ -8,97 +8,7 @@
 
 
 
-//-----------------------------------------------
-//	アイキャッチ画像 or 1番目の画像取得
-//-----------------------------------------------
-if (!function_exists( 'ys_image_get_post_thumbnail')) {
-	function ys_image_get_post_thumbnail($postid=0,$thumbname='full',$defaultimg='') {
 
-		if($postid == 0){
-			$postid = get_the_ID();
-		}
-
-		// アイキャッチ画像idの取得
-		$post_thumbnail_id = get_post_thumbnail_id( $postid );
-		if($post_thumbnail_id != '' && $post_thumbnail_id !== false) {
-
-			// 画像オブジェクト取得
-			$image = wp_get_attachment_image_src( $post_thumbnail_id, $thumbname );
-			// 取得できたらreturn
-			if($image !== false){
-				return $image;
-			}
-		}
-
-		// 存在しない時に表示する画像の指定があればそちらを使用
-		if($defaultimg != ''){
-			// サイズをセット
-			list($width,$height) = getimagesize($defaultimg);
-			$resultimg = array($defaultimg, $width, $height);
-
-		} else {
-			// 画像取得できなかった場合先頭画像を取得
-			$resultimg = ys_image_get_post_firstimg($postid);
-		}
-
-		return $resultimg;
-	}
-}
-
-
-
-
-//-----------------------------------------------
-//	アイキャッチ画像 or 1番目の画像 の画像URLを取得
-//-----------------------------------------------
-if (!function_exists( 'ys_image_get_post_thumbnail_url')) {
-	function ys_image_get_post_thumbnail_url($postid=0,$thumbname='full',$defaultimg='') {
-
-		if($postid == 0){
-			$postid = get_the_ID();
-		}
-		// 記事内容
-		$img = ys_image_get_post_thumbnail($postid,$thumbname,$defaultimg);
-		return $img[0];
-	}
-}
-
-
-
-
-//-----------------------------------------------
-//	記事先頭の画像を取得
-//-----------------------------------------------
-if (!function_exists( 'ys_image_get_post_firstimg')) {
-	function ys_image_get_post_firstimg($postid=0) {
-
-		if($postid == 0){
-			$postid = get_the_ID();
-		}
-		// 記事内容
-		$post_content = get_post($postid)->post_content;
-		$pattern = '/<img.*?src=(["\'])(.+?)\1.*?>/i';
-
-		if(preg_match($pattern,$post_content,$match_img)){
-
-			// 画像取得
-			$imgurl = $imgmatch[2];
-
-		} else {
-
-			// 画像がなかった場合
-			if(file_exists(STYLESHEETPATH.'images/noimage.gif')){
-				$imgurl = get_stylesheet_directory_uri().'/images/noimage.gif';
-			} else {
-				$imgurl = get_template_directory_uri().'/images/noimage.gif';
-			}
-		}
-
-		// サイズをセット
-		list($width,$height) = getimagesize($imgurl);
-		return array($imgurl, $width, $height);
-	}
-}
 
 
 
@@ -113,7 +23,7 @@ if (!function_exists( 'ys_image_the_post_thumbnail')) {
 			$postid = get_the_ID();
 		}
 		// 画像を取得
-		$image = ys_image_get_post_thumbnail($postid,$thumbname);
+		$image = ys_utilities_get_post_thumbnail($postid,$thumbname);
 
 		// id確認
 		if($imgid !== ''){
