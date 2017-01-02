@@ -15,7 +15,7 @@
 		<?php if(has_post_thumbnail()): ?>
 			<figure class="post-thumbnail">
 				<a href="<?php the_permalink(); ?>" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-					<?php ys_image_the_post_thumbnail(); ?>
+					<?php ys_template_the_post_thumbnail(); ?>
 				</a>
 			</figure><!-- .post-thumbnail -->
 		<?php endif; ?>

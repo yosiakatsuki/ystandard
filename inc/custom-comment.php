@@ -35,7 +35,7 @@ if (!function_exists( 'ys_yscomment_wp_list_comments_callback')) {
 					if(get_option('show_avatars') == 1  ){
 						if( $args['avatar_size'] != 0 ) {
 							if($comment->comment_author_email == get_the_author_meta('user_email')){
-								echo ys_image_get_the_user_avatar_img(null,$args['avatar_size']);
+								echo ys_utilities_get_the_user_avatar_img(null,$args['avatar_size']);
 							} else {
 								echo get_avatar( $comment, $args['avatar_size'] );
 							}

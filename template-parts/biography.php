@@ -1,6 +1,6 @@
 <div class="author-info clearfix" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
 	<?php
-		$avatar = ys_image_get_the_user_avatar_img();
+		$avatar = ys_utilities_get_the_user_avatar_img();
 		if($avatar != ''):
 	?>
 	<figure class="author-avatar">

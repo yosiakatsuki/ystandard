@@ -54,6 +54,8 @@ if (!function_exists( 'ys_setup_initialize')) {
 		// アイキャッチ画像を有効に
 		add_theme_support('post-thumbnails');
 
+		add_image_size('thumbplist400',400,225,true);
+
 	}
 }//if (!function_exists( 'ys_setup_initialize')) {
 add_action( 'after_setup_theme', 'ys_setup_initialize' );

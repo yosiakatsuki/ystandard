@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <?php
 	// html~headタグは関数で出力
-	ys_head_tag();
+	ys_template_head_tag();
 ?>
 
 <body <?php body_class(); ?>>
 <?php
  	if(ys_is_amp()) {
 		// Google Analytics
-		ys_wphead_add_googleanarytics();
+		ys_extras_add_googleanarytics();
 	}
 ?>
 <div id="page" class="site">
@@ -24,7 +24,7 @@
 							$blog_title_html = '';
 							if(has_custom_logo()) {
 
-								$logo = ys_image_get_custom_logo_image_src();
+								$logo = ys_utilities_get_custom_logo_image_src();
 
 								$blog_title_html = '';
 								$blog_title_html .= '<meta itemprop="name" content="'.get_bloginfo('name').'">';

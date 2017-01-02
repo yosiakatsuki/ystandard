@@ -42,12 +42,12 @@ add_action( 'admin_menu', 'ys_add_admin_menu' );
 function ys_register_settings() {
 	// メインメニュー
 	register_setting( 'ys_main_settings', 'ys_ga_tracking_id' );
-	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via','ys_sanitize_checkbox' );
+	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via','ys_utilities_sanitize_checkbox' );
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via_account' );
-	register_setting( 'ys_main_settings', 'ys_archive_noindex_category','ys_sanitize_checkbox' );
-	register_setting( 'ys_main_settings', 'ys_archive_noindex_tag','ys_sanitize_checkbox' );
-	register_setting( 'ys_main_settings', 'ys_archive_noindex_author','ys_sanitize_checkbox' );
-	register_setting( 'ys_main_settings', 'ys_archive_noindex_date','ys_sanitize_checkbox' );
+	register_setting( 'ys_main_settings', 'ys_archive_noindex_category','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_main_settings', 'ys_archive_noindex_tag','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_main_settings', 'ys_archive_noindex_author','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_main_settings', 'ys_archive_noindex_date','ys_utilities_sanitize_checkbox' );
 	register_setting( 'ys_main_settings', 'ys_show_sidebar_mobile' );
 	register_setting( 'ys_main_settings', 'ys_ogp_fb_app_id' );
 	register_setting( 'ys_main_settings', 'ys_ogp_fb_admins' );
@@ -55,10 +55,10 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_ogp_default_image' );
 
 	// AMPメニュー
-	register_setting( 'ys_amp_settings', 'ys_amp_enable','ys_sanitize_checkbox' );
-	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' ,'ys_sanitize_checkbox');
-	register_setting( 'ys_amp_settings', 'ys_amp_del_script' ,'ys_sanitize_checkbox');
-	register_setting( 'ys_amp_settings', 'ys_amp_del_style' ,'ys_sanitize_checkbox');
+	register_setting( 'ys_amp_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' ,'ys_utilities_sanitize_checkbox');
+	register_setting( 'ys_amp_settings', 'ys_amp_del_script' ,'ys_utilities_sanitize_checkbox');
+	register_setting( 'ys_amp_settings', 'ys_amp_del_style' ,'ys_utilities_sanitize_checkbox');
 }
 add_action( 'admin_init', 'ys_register_settings' );
 
