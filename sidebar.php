@@ -1,7 +1,18 @@
-<?php if ( is_active_sidebar( 'sidebar-main' ) && !ys_is_amp() ) : ?>
-	<aside id="secondary" class="sidebar sidebar-main widget-area" role="complementary">
+<?php
+	$setting = ys_settings();
+	$show_sidebar = true;
+	if(ys_is_amp()) {
+		$show_sidebar = false;
+	} elseif(ys_is_mobile() && $setting['ys_show_sidebar_mobile'] == 0) {
+		$show_sidebar = false;
+	}
+	if ( $show_sidebar ) :
+?>
+<aside id="secondary" class="sidebar sidebar-right widget-area" role="complementary">
+	<?php if ( is_active_sidebar( 'sidebar-right' )) : ?>
 		<div class="sidebar-wrapper">
-			<?php dynamic_sidebar( 'sidebar-main' ); ?>
+			<?php dynamic_sidebar( 'sidebar-right' ); ?>
 		</div>
-	</aside><!-- .sidebar .widget-area -->
+	<?php endif; ?>
+</aside><!-- .sidebar .widget-area -->
 <?php endif; ?>

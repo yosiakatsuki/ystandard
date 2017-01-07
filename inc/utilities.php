@@ -120,7 +120,7 @@ if( ! function_exists( 'ys_is_amp_enable' ) ) {
 if( ! function_exists( 'ys_is_ogp_enable' ) ) {
 	function ys_is_ogp_enable(){
 
-		$ogp = ys_option_get_ogp();
+		$ogp = ys_settings_get_ogp();
 		if($ogp['app_id'] != '' && $ogp['admins'] != '' && $ogp['image'] != ''){
 			return true;
 		}

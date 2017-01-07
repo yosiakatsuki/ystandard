@@ -16,14 +16,44 @@ function ys_add_admin_menu() {
 				$theme_name.'設定',
 				$theme_name.'設定',
 				'manage_options',
-				'ys_main_settings',
-				'load_ys_main_settings',
+				'ys_settings_start',
+				'load_ys_settings_start',
 				'',
 				3);
 
-	// AMP用下層ページ追加
+	// 簡単設定ページ追加
 	add_submenu_page(
+		'ys_settings_start',
+		'簡単設定',
+		'簡単設定',
+		'manage_options',
+		'ys_collective_settings',
+		'load_ys_collective_settings'
+	);
+
+	// 基本設定ページ追加
+	add_submenu_page(
+		'ys_settings_start',
+		'基本設定',
+		'基本設定',
+		'manage_options',
 		'ys_main_settings',
+		'load_ys_main_settings'
+	);
+
+	// 高度な設定ページ追加
+	add_submenu_page(
+		'ys_settings_start',
+		'高度な設定',
+		'高度な設定',
+		'manage_options',
+		'ys_advanced_settings',
+		'load_ys_advanced_settings'
+	);
+
+	// AMP設定ページ追加
+	add_submenu_page(
+		'ys_settings_start',
 		'AMP設定(β版)',
 		'AMP設定(β版)',
 		'manage_options',
@@ -40,7 +70,8 @@ add_action( 'admin_menu', 'ys_add_admin_menu' );
 //	設定項目定義
 //-----------------------------------------------
 function ys_register_settings() {
-	// メインメニュー
+	// 基本設定
+	register_setting( 'ys_main_settings', 'ys_copyright_year' );
 	register_setting( 'ys_main_settings', 'ys_ga_tracking_id' );
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via','ys_utilities_sanitize_checkbox' );
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via_account' );
@@ -54,8 +85,10 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_twittercard_user' );
 	register_setting( 'ys_main_settings', 'ys_ogp_default_image' );
 
-	// AMPメニュー
-	register_setting( 'ys_amp_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );
+	//高度な設定
+	register_setting( 'ys_advanced_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );
+
+	// AMP設定
 	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' ,'ys_utilities_sanitize_checkbox');
 	register_setting( 'ys_amp_settings', 'ys_amp_del_script' ,'ys_utilities_sanitize_checkbox');
 	register_setting( 'ys_amp_settings', 'ys_amp_del_style' ,'ys_utilities_sanitize_checkbox');
@@ -63,14 +96,33 @@ function ys_register_settings() {
 add_action( 'admin_init', 'ys_register_settings' );
 
 
+//-----------------------------------------------
+//	スタートページ呼び出し
+//-----------------------------------------------
+function load_ys_settings_start() {
+	include TEMPLATEPATH . '/inc/theme-option/ys-setting-start.php';
+}
 
 //-----------------------------------------------
-//	メインメニュー呼び出し
+//	簡単設定呼び出し
+//-----------------------------------------------
+function load_ys_collective_settings() {
+	include TEMPLATEPATH . '/inc/theme-option/collective-settings.php';
+}
+
+//-----------------------------------------------
+//	基本設定呼び出し
 //-----------------------------------------------
 function load_ys_main_settings() {
 	include TEMPLATEPATH . '/inc/theme-option/main-settings.php';
 }
 
+//-----------------------------------------------
+//	高度な設定呼び出し
+//-----------------------------------------------
+function load_ys_advanced_settings() {
+	include TEMPLATEPATH . '/inc/theme-option/advanced-settings.php';
+}
 
 
 //-----------------------------------------------

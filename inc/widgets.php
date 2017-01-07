@@ -11,16 +11,7 @@
 //------------------------------------------------------------------------------
 if (!function_exists( 'ys_widget_init')) {
 	function ys_widget_init() {
-		//左サイドバー
-		register_sidebar( array(
-			'name'					 => '左サイドバー',
-			'id'						 => 'sidebar-left',
-			'description'	   => '左サイドバー',
-			'before_widget'  => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'	 => '</section>',
-			'before_title'	 => '<h2 class="widget-title">',
-			'after_title'	   => '</h2>',
-		) );
+
 		//右サイドバー
 		register_sidebar( array(
 			'name'					 => '右サイドバー',

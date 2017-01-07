@@ -20,18 +20,10 @@
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row">AMP有効化</th>
-					<td>
-						<label for="ys_amp_enable">
-							<input type="checkbox" name="ys_amp_enable" value="1" <?php checked(get_option('ys_amp_enable',0),1); ?> />AMPページを生成する
-						</label>
-					</td>
-				</tr>
-				<tr valign="top">
 					<th scope="row">通常ビューへのリンク表示</th>
 					<td>
 						<label for="ys_amp_normal_link">
-							<input type="checkbox" name="ys_amp_normal_link" value="1" <?php checked(get_option('ys_amp_normal_link',0),1); ?> />コンテンツ上部に通常ビューへのリンクを表示する
+							<input type="checkbox" name="ys_amp_normal_link" id="ys_amp_normal_link" value="1" <?php checked(get_option('ys_amp_normal_link',0),1); ?> />コンテンツ上部に通常ビューへのリンクを表示する
 						</label>
 					</td>
 				</tr>
@@ -41,13 +33,13 @@
 						<fieldset>
 							<p>
 								<label for="ys_amp_del_script">
-									<input type="checkbox" name="ys_amp_del_script" value="1" <?php checked(get_option('ys_amp_del_script',0),1); ?> /><code>&lt;script&gt;</code>タグを削除してAMPページを作成する
+									<input type="checkbox" name="ys_amp_del_script" id="ys_amp_del_script" value="1" <?php checked(get_option('ys_amp_del_script',0),1); ?> /><code>&lt;script&gt;</code>タグを削除してAMPページを作成する
 								</label><br />
 								※この設定をONにするとjavascriptを使う必要があるページが正しく表示されなくなる可能性があります。
 							</p>
 							<p>
 								<label for="ys_amp_del_style">
-									<input type="checkbox" name="ys_amp_del_style" value="1" <?php checked(get_option('ys_amp_del_style',0),1); ?> /><code>style</code>属性を削除してAMPページを作成する
+									<input type="checkbox" name="ys_amp_del_style" id="ys_amp_del_style" value="1" <?php checked(get_option('ys_amp_del_style',0),1); ?> /><code>style</code>属性を削除してAMPページを作成する
 								</label><br />
 								※この設定をONにするとインラインで定義しているスタイルが適用されなくなります。
 							</p>

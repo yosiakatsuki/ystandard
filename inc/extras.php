@@ -408,7 +408,7 @@ if(!function_exists( 'ys_extras_add_facebook_ogp')) {
 		if(ys_is_ogp_enable()){
 
 			// OGP出力に必要な情報が揃っていれば出力処理
-			$ogp = ys_option_get_ogp();
+			$ogp = ys_settings_get_ogp();
 
 			// TOPページ用に初期化(アーカイブページにもシェアボタンを置くようならタイトルとかURLを少し考えたほうが良い)
 			$og_type = 'website';
@@ -454,7 +454,7 @@ if(!function_exists( 'ys_extras_add_twitter_card')) {
 		if($ogp_image != '' && $tw_account != ''){
 
 			// OGP出力に必要な情報が揃っていれば出力処理
-			$ogp = ys_option_get_ogp();
+			$ogp = ys_settings_get_ogp();
 
 			// TOPページ用に初期化(アーカイブページにもシェアボタンを置くようならタイトルとかURLを少し考えたほうが良い)
 			$og_title = get_bloginfo('name');
@@ -505,6 +505,57 @@ add_action( 'wp_head', 'ys_extras_add_amphtml' );
 //	wp_footer関連
 //
 //------------------------------------------------------------------------------
+
+//-----------------------------------------------
+//	CSS読み込み用JS出力
+//-----------------------------------------------
+if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
+	function ys_extras_load_css_footer_js() {
+		$settings = ys_settings();
+
+		// 読み込むCSSをリスト化
+		$csslist = array(
+										get_template_directory_uri().'/css/ys-style.min.css'
+										,get_template_directory_uri().'/css/font-awesome.min.css'
+										);
+
+		$csslist = apply_filters('ys_load_css_footer_js',$csslist);
+
+		// 読み込むCSSリスト作成
+		$cssarray = '';
+		foreach($csslist as $css){
+			$cssarray .= '\''.$css.'\',';
+		}
+		$cssarray = 'list = ['.rtrim($cssarray,',').']';
+
+		// js作成
+		$script = <<<EOD
+<script async>
+  var cb = function() {
+    var {$cssarray}
+        ,l
+        ,h = document.getElementsByTagName('head')[0];
+    for (var i = 0; i < list.length; i++){
+      l = document.createElement('link');
+      l.rel = 'stylesheet';
+      l.href = list[i];
+      h.parentNode.insertBefore(l, h);
+    }
+  };
+  var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
+  if (raf) raf(cb);
+  else window.addEventListener('load', cb);
+</script>
+EOD;
+
+	echo $script;
+	}
+}
+add_action( 'wp_footer', 'ys_extras_load_css_footer_js' );
+
+
+
+
 //-----------------------------------------------
 //	json-LD出力
 //-----------------------------------------------

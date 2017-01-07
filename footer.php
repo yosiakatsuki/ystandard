@@ -27,7 +27,7 @@
 						<div class="footer-widget-right">
 							<?php
 								if ( is_active_sidebar( 'footer-right' )){
-									dynamic_sidebar( 'footer-right' ); 
+									dynamic_sidebar( 'footer-right' );
 								}
 							?>
 						</div>
@@ -50,7 +50,7 @@
 				<?php endif; ?>
 
 				<div class="site-info">
-					<span class="copy">Copyright &copy; <?php echo date_i18n('Y') ?> <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a> All Rights Reserved.</span>
+					<?php ys_template_the_copyright(); ?>
 				</div><!-- .site-info -->
 			</div><!-- .wrap -->
 		</footer><!-- .site-footer -->

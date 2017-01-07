@@ -12,8 +12,9 @@
 	box-sizing: border-box;
 }
 
-html {
-	max-width: 100%;
+html,
+body {
+  max-width: 100%;
 
 	font-size: $ys-font-size;
 	font-family: $ys-font-family;
@@ -21,6 +22,13 @@ html {
 	color: $ys-font-color;
 	letter-spacing: $ys-letter-spacing;
 
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  word-break:break-word;
+  word-wrap:break-word;
+  -webkit-appearance: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 body {

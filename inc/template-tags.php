@@ -57,12 +57,10 @@ if(!function_exists( 'ys_template_head_amp')) {
 <script async src="https://cdn.ampproject.org/v0.js"></script>
 <style amp-custom>
 <?php
-if(locate_template('css/ys-style.min.css') !== '') {
-	$css = file_get_contents(STYLESHEETPATH.'/css/ys-style.min.css');
-} else {
-	$css = file_get_contents(STYLESHEETPATH.'/css/ys-style.css');
-}
-echo str_replace('@charset "UTF-8";','',$css);
+	$inline = file_get_contents(TEMPLATEPATH.'/css/ys-inline.min.css');
+	echo str_replace('@charset "UTF-8";','',$inline);
+	$css = file_get_contents(TEMPLATEPATH.'/css/ys-style.min.css');
+	echo str_replace('@charset "UTF-8";','',$css);
 ?>
 </style>
 <?php
@@ -104,6 +102,9 @@ if(!function_exists( 'ys_template_head_normal')) {
 <meta name="referrer" content="origin-when-crossorigin">
 <meta name="format-detection" content="telephone=no" />
 <meta itemscope id="EntityOfPageid" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
+<style type="text/css">
+<?php include(TEMPLATEPATH.'/css/ys-inline.min.css'); ?>
+</style>
 <?php
 	if ( is_singular() && pings_open( get_queried_object() ) ) :
 ?>
@@ -274,7 +275,7 @@ if( ! function_exists( 'ys_template_the_sns_share' ) ) {
 	function ys_template_the_sns_share(){
 
 		echo '<div id="sns-share" class="sns-share">';
-		echo '<h2 class="sns-share-title">「'.get_the_title().'」をみんなとシェア！</h2>';
+		echo '<p class="sns-share-title">\ みんなにシェアする /</p>';
 
 		if(!ys_is_amp()){
 			// AMP以外
@@ -326,6 +327,34 @@ if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
 		echo '</ul>';
 	}
 }
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+//
+//	フッター関連
+//
+//------------------------------------------------------------------------------
+if( ! function_exists( 'ys_template_the_copyright' ) ) {
+	function ys_template_the_copyright() {
+
+		$copyright = '<p class="copy">Copyright &copy; '.date_i18n('Y').' <a href="'. esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo('name') . '</a> All Rights Reserved.</p>';
+		$powered = '<p id="powered">Powered by <a href="https://ja.wordpress.org/" target="_blank">WordPress</a> &amp; ';
+		$poweredtheme = '<a href="https://ystandard.net" target="_blank">yStandard Theme</a> by <a href="https://yosiakatsuki.net" target="_blank">yosiakatsuki</a></p>';
+
+		$copyright = apply_filters('ys_copyright',$copyright);
+		$powered = apply_filters('ys_poweredby',$powered);
+		$poweredtheme = apply_filters('ys_poweredby_theme',$poweredtheme);
+
+		echo $copyright.$powered.$poweredtheme;
+	}
+}
+
+
 
 
 

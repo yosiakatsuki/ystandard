@@ -16,13 +16,27 @@
 	?>
 
 	<div class="postbox">
+		<h2 class="hndle">Copyright</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">発行年</th>
+					<td>
+						<input type="text" name="ys_copyright_year" id="ys_copyright_year" value="<?php echo esc_attr( get_option('ys_copyright_year') ); ?>" placeholder="<?php echo date_i18n('Y'); ?>" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="postbox">
 		<h2 class="hndle">アクセス解析設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row">Google Analytics トラッキングID</th>
 					<td>
-						<input type="text" name="ys_ga_tracking_id" value="<?php echo esc_attr( get_option('ys_ga_tracking_id') ); ?>" placeholder="UA-00000000-0" />
+						<input type="text" name="ys_ga_tracking_id" id="ys_ga_tracking_id" value="<?php echo esc_attr( get_option('ys_ga_tracking_id') ); ?>" placeholder="UA-00000000-0" />
 					</td>
 				</tr>
 			</table>
@@ -38,9 +52,9 @@
 					<td>
 						<fieldset>
 							<label for="ys_sns_share_tweet_via">
-								<input type="checkbox" name="ys_sns_share_tweet_via" value="1" <?php checked(get_option('ys_sns_share_tweet_via',0),1); ?> />Twitterシェアにviaを付加する（要Twitterアカウント名設定）
+								<input type="checkbox" name="ys_sns_share_tweet_via" id="ys_sns_share_tweet_via" value="1" <?php checked(get_option('ys_sns_share_tweet_via',0),1); ?> />Twitterシェアにviaを付加する（要Twitterアカウント名設定）
 							</label><br />
-							Twitterアカウント名:@<input type="text" name="ys_sns_share_tweet_via_account" value="<?php echo esc_attr( get_option('ys_sns_share_tweet_via_account') ); ?>" placeholder="" />
+							Twitterアカウント名:@<input type="text" name="ys_sns_share_tweet_via_account" id="ys_sns_share_tweet_via_account" value="<?php echo esc_attr( get_option('ys_sns_share_tweet_via_account') ); ?>" placeholder="" />
 						</fieldset>
 					</td>
 				</tr>
@@ -55,19 +69,19 @@
 				<tr valign="top">
 					<th scope="row">Facebook app_id</th>
 					<td>
-						<input type="text" name="ys_ogp_fb_app_id" value="<?php echo esc_attr( get_option('ys_ogp_fb_app_id') ); ?>" placeholder="000000000000000" />
+						<input type="text" name="ys_ogp_fb_app_id" id="ys_ogp_fb_app_id" value="<?php echo esc_attr( get_option('ys_ogp_fb_app_id') ); ?>" placeholder="000000000000000" />
 					</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row">Facebook admins</th>
 					<td>
-						<input type="text" name="ys_ogp_fb_admins" value="<?php echo esc_attr( get_option('ys_ogp_fb_admins') ); ?>" placeholder="000000000000000" />
+						<input type="text" name="ys_ogp_fb_admins" id="ys_ogp_fb_admins" value="<?php echo esc_attr( get_option('ys_ogp_fb_admins') ); ?>" placeholder="000000000000000" />
 					</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row">Twitterアカウント名</th>
 					<td>
-						@<input type="text" name="ys_twittercard_user" value="<?php echo esc_attr( get_option('ys_twittercard_user') ); ?>" placeholder="account" />
+						@<input type="text" name="ys_twittercard_user" id="ys_twittercard_user" value="<?php echo esc_attr( get_option('ys_twittercard_user') ); ?>" placeholder="account" />
 					</td>
 				</tr>
 				<tr valign="top">
@@ -110,16 +124,16 @@
 					<td>
 						<fieldset>
 							<label for="ys_archive_noindex_category">
-								<input type="checkbox" name="ys_archive_noindex_category" value="1" <?php checked(get_option('ys_archive_noindex_category',0),1); ?> />カテゴリー一覧ページをnoindexにする
+								<input type="checkbox" name="ys_archive_noindex_category" id="ys_archive_noindex_category" value="1" <?php checked(get_option('ys_archive_noindex_category',0),1); ?> />カテゴリー一覧ページをnoindexにする
 							</label><br />
 							<label for="ys_archive_noindex_tag">
-								<input type="checkbox" name="ys_archive_noindex_tag" value="1" <?php checked(get_option('ys_archive_noindex_tag',1),1); ?> />タグ一覧ページをnoindexにする
+								<input type="checkbox" name="ys_archive_noindex_tag" id="ys_archive_noindex_tag" value="1" <?php checked(get_option('ys_archive_noindex_tag',1),1); ?> />タグ一覧ページをnoindexにする
 							</label><br />
 							<label for="ys_archive_noindex_author">
-								<input type="checkbox" name="ys_archive_noindex_author"  value="1" <?php checked(get_option('ys_archive_noindex_author',1),1); ?> />投稿者一覧ページをnoindexにする
+								<input type="checkbox" name="ys_archive_noindex_author" id="ys_archive_noindex_author"  value="1" <?php checked(get_option('ys_archive_noindex_author',1),1); ?> />投稿者一覧ページをnoindexにする
 							</label><br />
 							<label for="ys_archive_noindex_date">
-								<input type="checkbox" name="ys_archive_noindex_date" value="1" <?php checked(get_option('ys_archive_noindex_date',1),1); ?> />月別、年別、日別、時間別一覧ページをnoindexにする
+								<input type="checkbox" name="ys_archive_noindex_date" id="ys_archive_noindex_date" value="1" <?php checked(get_option('ys_archive_noindex_date',1),1); ?> />月別、年別、日別、時間別一覧ページをnoindexにする
 							</label>
 						</fieldset>
 					</td>
