@@ -20,6 +20,30 @@
 	line-height: 0;
 }
 
+// 投稿タイトル
+.entry-title {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 1rem 0;
+  color: $ys-content-entry-title-color;
+}
+
+// 投稿タイトル
+.single,
+.page {
+  .entry-title {
+    font-size: 1.5rem;
+
+  	a {
+  		color: $ys-font-color;
+  	}
+  }//.entry-title
+}//.single,.page
+
+.entry-header {
+  margin: 0 0 2rem;
+}
+
 // 投稿の付加情報
 .entry-meta {
 	font-size: .8rem;

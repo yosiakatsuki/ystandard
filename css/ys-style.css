@@ -269,6 +269,22 @@ div.aligncenter {
   text-align: center;
   line-height: 0; }
 
+.entry-title {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 1rem 0;
+  color: #2c3e50; }
+
+.single .entry-title,
+.page .entry-title {
+  font-size: 1.5rem; }
+  .single .entry-title a,
+  .page .entry-title a {
+    color: #2c3e50; }
+
+.entry-header {
+  margin: 0 0 2rem; }
+
 .entry-meta {
   font-size: .8rem;
   color: #888; }

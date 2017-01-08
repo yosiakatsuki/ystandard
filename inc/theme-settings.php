@@ -79,11 +79,11 @@ if (!function_exists( 'ys_settings')) {
 //-----------------------------------------------
 //	設定取得
 //-----------------------------------------------
-if (!function_exists( 'ys_get_settings')) {
-	function ys_get_settings($name) {
+if (!function_exists( 'ys_get_setting')) {
+	function ys_get_setting($name) {
 		$settings = ys_settings();
 
-		return apply_filters('ys_get_settings',$settings[$name],$name);
+		return apply_filters('ys_get_setting',$settings[$name],$name);
 	}
 }
 

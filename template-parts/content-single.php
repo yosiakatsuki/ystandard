@@ -8,7 +8,7 @@
 
 		<?php the_title( '<h1 class="entry-title" itemprop="headline name">', '</h1>' ); ?>
 
-		<?php if(has_post_thumbnail()): ?>
+		<?php if(has_post_thumbnail() && ys_get_setting('ys_hide_post_thumbnail') == 0): ?>
 			<figure class="post-thumbnail" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
 				<?php ys_template_the_post_thumbnail(); ?>
 			</figure><!-- .post-thumbnail -->

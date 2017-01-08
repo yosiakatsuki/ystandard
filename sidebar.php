@@ -2,7 +2,7 @@
 	$show_sidebar = true;
 	if(ys_is_amp()) {
 		$show_sidebar = false;
-	} elseif(ys_is_mobile() && ys_get_settings('ys_show_sidebar_mobile') == 0) {
+	} elseif(ys_is_mobile() && ys_get_setting('ys_show_sidebar_mobile') == 0) {
 		$show_sidebar = false;
 	}
 	if ( $show_sidebar ) :
