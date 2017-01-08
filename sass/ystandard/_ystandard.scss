@@ -16,7 +16,9 @@
 // WordPressのクラス関連
 @import "./_wp_base.scss";
 // コンテンツ
-@import "./_content.scss";
+@import "./_content-single.scss";
+// 投稿本文内のスタイル
+@import "./_markup.scss";
 // 記事を書いた人
 @import "./_biography.scss";
 // コメント

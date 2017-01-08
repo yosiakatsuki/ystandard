@@ -10,7 +10,7 @@
 //--------------------------------------
 .breadcrumb {
 
-	margin:0 0 1rem;
+  margin-top: $ys-gutter-sp;
 
 	* {
 		vertical-align: middle;
@@ -26,14 +26,14 @@
 			line-height: 1;
 
 			a {
-				color: $ys-font-color-gray;
+				color: $ys-breadcrumb-font-color;
 			}
 
 			&::after {
 				content: '»';
 				display: inline;
 				margin: 0 .3rem 0 .3rem;
-				color: $ys-font-color-gray;
+				color: $ys-breadcrumb-font-color;
 			}
 		}//li
 	}//ol
@@ -51,4 +51,9 @@
 // PC
 //--------------------------------------
 @include media-breakpoint(pc) {
+  .breadcrumb {
+
+    margin-top: $ys-gutter / 2;
+    margin-bottom: - $ys-gutter / 2;
+  }
 };

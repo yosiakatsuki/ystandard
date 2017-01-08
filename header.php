@@ -93,4 +93,9 @@
 
 		</header><!-- .site-header -->
 
+		<?php
+			// パンくず
+			ys_breadcrumb();
+		?>
+
 		<div id="content" class="site-content wrap clearfix">

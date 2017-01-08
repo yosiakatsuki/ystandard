@@ -21,7 +21,7 @@ if(!function_exists( 'ys_breadcrumb')) {
 		// カテゴリー取得
 		$catlist = ys_utilities_get_cat_id_list();
 		?>
-		<nav id="breadcrumb" class="breadcrumb" data-area="Breadcrumb">
+		<nav id="breadcrumb" class="breadcrumb wrap">
 			<ol itemscope itemtype="http://schema.org/BreadcrumbList">
 				<li itemprop="itemListElement" itemscope
 			itemtype="http://schema.org/ListItem">
