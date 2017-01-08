@@ -10,7 +10,7 @@
 @import "_ys_custom_variables.scss";
 
 //ysuで予め定義したスタイルを読み込み
-@import "ystandard/_ystandard.scss";
+@import "ystandard/_ystandard-inline.scss";
 
 //カスタマイズ用スタイル
 @import "_ys_customize.scss";

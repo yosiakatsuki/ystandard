@@ -29,6 +29,8 @@ require_once TEMPLATEPATH . '/inc/custom-comment.php';
 require_once TEMPLATEPATH . '/inc/pagination.php';
 // パンくずリスト
 require_once TEMPLATEPATH . '/inc/breadcrumb.php';
+// ウィジェット
+require_once TEMPLATEPATH . '/inc/widgets.php';
 // 管理画面関連
 require_once TEMPLATEPATH . '/inc/admin.php';
 // 管理画面メニュー

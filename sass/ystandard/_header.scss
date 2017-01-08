@@ -9,10 +9,13 @@
 // モバイル or 全体
 //--------------------------------------
 
-.site-header-main {
-	padding: 0.5rem 0;
+.color-site-header {
 	background-color: $ys-header-bg-color;
 	color: $ys-header-font-color;
+}
+
+.site-header {
+	padding: $ys-gutter-sp 0;
 }
 
 .site-header-wrap {
@@ -181,7 +184,7 @@
 		max-width: auto;
 		height: 100%;
 		position: absolute;
-		right: $ys-gutter;
+		right: 0;
 		bottom: auto;
 		padding: 0;
 		background-color: transparent;

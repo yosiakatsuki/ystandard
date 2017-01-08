@@ -22,6 +22,7 @@ if (!function_exists( 'ys_settings')) {
 
 		// 基本設定
 		$ys_copyright_year = esc_attr( get_option('ys_copyright_year',date_i18n('Y')) );
+		$ys_copyright_year = ($ys_copyright_year == '') ? date_i18n('Y') : $ys_copyright_year;
 		$ys_ga_tracking_id = esc_attr( get_option('ys_ga_tracking_id','') );
 		$ys_sns_share_tweet_via = get_option('ys_sns_share_tweet_via',0);
 		$ys_sns_share_tweet_via_account = esc_attr( get_option('ys_sns_share_tweet_via_account','') );

@@ -2,9 +2,6 @@
 	<meta itemscope id="EntityOfPageid-<?php the_ID(); ?>" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
 
 	<header class="entry-header">
-		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
-			<span class="sticky-post">おすすめ！</span>
-		<?php endif; ?>
 
 		<?php the_title( sprintf( '<h2 class="entry-title" itemprop="headline name"><a href="%s" rel="bookmark" itemprop="url">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 

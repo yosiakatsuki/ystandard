@@ -14,10 +14,10 @@
 <div id="page" class="site">
 	<div class="site-inner">
 
-		<header id="masthead" class="site-header" role="banner" itemscope id="site-header" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-			<div class="site-header-main">
+		<header id="masthead" class="site-header color-site-header" role="banner" itemscope id="site-header" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+			<div class="site-header-main wrap">
 
-				<div class="site-header-wrap wrap clearfix">
+				<div class="site-header-wrap clearfix">
 					<div class="site-branding">
 
 						<?php
