@@ -206,6 +206,12 @@ if (!function_exists( 'ys_utilities_get_post_thumbnail')) {
 
 			// 画像オブジェクト取得
 			$image = wp_get_attachment_image_src( $post_thumbnail_id, $thumbname );
+
+			// full以外で取得して取得できない場合fullを取り直す
+			if($image == false && $thumbname != 'full'){
+				$image = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
+			}
+
 			// 取得できたらreturn
 			if($image !== false){
 				return $image;

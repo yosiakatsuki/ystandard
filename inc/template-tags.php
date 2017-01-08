@@ -141,12 +141,16 @@ if (!function_exists( 'ys_template_the_entry_date')) {
 		$entry_date_class = 'entry-date entry-published published';
 		$update_date_class = 'entry-updated updated';
 
+		$ico_calendar = '<svg width="32" height="32" viewBox="0 0 32 32" id="ico-calendar" ><path d="M10 12h4v4h-4zM16 12h4v4h-4zM22 12h4v4h-4zM4 24h4v4h-4zM10 24h4v4h-4zM16 24h4v4h-4zM10 18h4v4h-4zM16 18h4v4h-4zM22 18h4v4h-4zM4 18h4v4h-4zM26 0v2h-4v-2h-14v2h-4v-2h-4v32h30v-32h-4zM28 30h-26v-22h26v22z"></path></svg>';
+
+		$ico_update = '<svg width="32" height="32" viewBox="0 0 32 32" id="ico-update"><path d="M32 12h-12l4.485-4.485c-2.267-2.266-5.28-3.515-8.485-3.515s-6.219 1.248-8.485 3.515c-2.266 2.267-3.515 5.28-3.515 8.485s1.248 6.219 3.515 8.485c2.267 2.266 5.28 3.515 8.485 3.515s6.219-1.248 8.485-3.515c0.189-0.189 0.371-0.384 0.546-0.583l3.010 2.634c-2.933 3.349-7.239 5.464-12.041 5.464-8.837 0-16-7.163-16-16s7.163-16 16-16c4.418 0 8.418 1.791 11.313 4.687l4.687-4.687v12z"></path></svg>';
+
+		$ico_calendar = apply_filters('ys_ico_calendar',$ico_calendar);
+		$ico_update = apply_filters('ys_ico_update',$ico_update);
+
 		if(ys_is_amp()){
 			$pubdate = '';
 			$updatecontent = '';
-		} else {
-			$entry_date_class .= ' entry-date-icon';
-			$update_date_class .= ' entry-updated-icon';
 		}
 
 
@@ -154,10 +158,10 @@ if (!function_exists( 'ys_template_the_entry_date')) {
 		if(get_the_time('Ymd') === get_the_modified_time('Ymd') || $show_update === false) {
 			$entry_date_class .= ' updated';
 
-			echo '<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished dateModified" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
+			echo $ico_calendar.'<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished dateModified" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
 		} else {
-			echo '<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
-			echo '<span class="'.$update_date_class.'" itemprop="dateModified" '.$updatecontent.'>'.get_the_modified_time($format).'</span>';
+			echo $ico_calendar.'<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time>';
+			echo $ico_update.'<span class="'.$update_date_class.'" itemprop="dateModified" '.$updatecontent.'>'.get_the_modified_time($format).'</span>';
 		}
 	}
 }
@@ -180,6 +184,21 @@ if (!function_exists( 'ys_template_the_entry_author')) {
 		}
 
 		echo '<span class="author vcard"'.$stracture.'><a class="url fn n" href="'.$author_url.'"><span itemprop="name">'.$author_name.'</span></a></span>';
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	この記事を読む
+//-----------------------------------------------
+if (!function_exists( 'ys_template_the_entry_more_text')) {
+	function ys_template_the_entry_more_text() {
+
+		$read_more = 'この記事を読む';
+
+		echo apply_filters('ys_entry_more_text',$read_more);
 	}
 }
 

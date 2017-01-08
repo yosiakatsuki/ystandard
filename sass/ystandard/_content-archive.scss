@@ -1,0 +1,139 @@
+//--------------------------------------
+//
+//	投稿共通
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+.home,
+.blog,
+.archive,
+.search {
+  .site-main {
+
+    .post {
+      margin: 0 0 $ys-gutter-sp * 2;
+    }//.post
+  }//.site-main
+}
+
+.post-thumbnail-container {
+  display: block;
+  position: relative;
+  margin: 0 0 1rem;
+
+  &:hover {
+    .entry-more {
+      background-color: $ys-content-postthumb-hover-bg-color;
+      color: $ys-content-postthumb-hover-color;
+    }
+  }
+}
+// 続き
+.entry-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  color: transparent;
+  transition: background-color .3s,color .3s;
+}
+
+
+// 投稿タイトル
+.entry-title {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 1rem 0;
+
+	a {
+		color: $ys-content-entry-title-color;
+	}
+}
+
+// 投稿者
+.entry-meta-author {
+	margin: .5rem 0 0;
+  font-size: .5rem;
+
+	.author {
+
+		&::before {
+			@include fontawesome("f007");
+		}
+	}//.author
+}
+
+// カテゴリー情報
+.entry-meta-cat {
+
+	&::before {
+		@include fontawesome("f115");
+	}
+}
+
+// 本文
+.entry-excerpt {
+  margin: 1rem 0 .5rem;
+  font-size: 0.8em;
+  color: $ys-content-entry-excerpt-color;
+}
+
+
+
+
+
+
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+  .home,
+  .blog,
+  .archive,
+  .search {
+    .site-main {
+      display: flex;
+      flex-wrap: wrap;
+
+      .post {
+        width: calc(50% - #{($ys-gutter / 2)});
+
+
+        &:nth-child(odd) {
+          margin: 0 ($ys-gutter / 2) $ys-gutter 0;
+        }
+
+        &:nth-child(even) {
+          margin: 0 0 $ys-gutter ($ys-gutter / 2) ;
+        }
+      }//.post
+    }//.site-main
+  }
+
+};
+
+
+
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+
+
+
+};

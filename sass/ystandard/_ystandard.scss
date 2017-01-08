@@ -11,15 +11,17 @@
 @import "./_mixin.scss";
 
 
+// ユーティリティー
+@import "./_utilities.scss";
 // WordPressのクラス関連
 @import "./_wp_base.scss";
-// footer
-@import "./_footer.scss";
+// コンテンツ
+@import "./_content.scss";
 // 記事を書いた人
 @import "./_biography.scss";
 // コメント
 @import "./_comment.scss";
 // ページネーション
 @import "./_pagination.scss";
-// ユーティリティー
-@import "./_utilities.scss";
+// footer
+@import "./_footer.scss";

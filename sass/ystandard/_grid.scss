@@ -20,13 +20,12 @@
 }
 
 .content-area {
-  padding-top: $ys-gutter-sp;
-  padding-bottom: $ys-gutter-sp;
-  padding-right: $ys-gutter-sp;
-  padding-left: $ys-gutter-sp;
+  padding: $ys-gutter-sp;
   margin-right: -$ys-gutter-sp;
   margin-left: -$ys-gutter-sp;
+  margin-bottom: $ys-gutter-sp;
   background-color: $ys-bg-color-content;
+  overflow: hidden;
 }
 
 //--------------------------------------
@@ -58,7 +57,8 @@
     padding : $ys-gutter;
     margin-right: 0;
     margin-left: 0;
-    overflow: hidden;
+    margin-bottom: 0;
+    border: $ys-grid-pc-border-px solid $ys-grid-pc-border-color;
   }
 
   .sidebar {

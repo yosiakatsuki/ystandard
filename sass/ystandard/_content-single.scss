@@ -1,0 +1,297 @@
+//--------------------------------------
+//
+//	投稿共通
+//
+//--------------------------------------
+
+
+//--------------------------------------
+// モバイル or 全体
+//--------------------------------------
+
+
+// 投稿タイトル
+.single,
+.page {
+  .entry-title {
+
+  	a {
+  		color: $ys-font-color;
+  	}
+  }
+}
+
+/*
+.amp {
+	.entry-date {
+		&::before {
+			content: "公開：";
+			font-size: .8rem;
+		}
+	}
+	.entry-updated {
+		&::before {
+			content: "更新：";
+			margin-left: .5rem;
+			font-size: .8rem;
+		}
+	}
+}
+*/
+
+// 日付の表示
+.entry-date-container {
+	font-size: .6rem;
+	margin: 0 0 .5rem;
+	text-align: right;
+
+	svg {
+		height: .5rem;
+		width: auto;
+		margin-right: .3rem;
+	}
+}
+
+
+.amp-view-info {
+	padding: 1rem;
+	margin: 2rem 0;
+	border: 1px solid $ys-border-color-gray;
+	border-radius: 3px;
+	font-size: .8rem;
+	text-align: left;
+	color: $ys-font-color-gray;
+}
+
+.normal-view-link {
+	display: block;
+	margin: .5rem 0 0;
+	font-size: .8rem;
+}
+
+// シェアボタン
+.sns-share {
+	margin: 2rem 0 0;
+	text-align: center;
+}
+
+.sns-share-title {
+	margin: 0 0 1rem;
+	font-size: 1.2rem;
+}
+
+.sns-share-button {
+	font-size: 0;
+	text-align: left;
+
+	li {
+		width: 49%;
+		display: inline-block;
+		margin-bottom:.5rem;
+		border-radius: 3px;
+		font-size: .8rem;
+		transition: background-color 0.3s;
+
+		&:nth-child(odd) {
+			margin-right: 1%;
+		}
+
+		&:nth-child(even) {
+			margin-left: 1%;
+		}
+
+		a {
+			display: block;
+			padding: .5rem 1rem;
+		}
+
+	}
+
+	.twitter {
+		a::before {
+			@include fontawesome("f099",0,.5rem);
+		}
+	}
+
+	.facebook {
+		a::before {
+			@include fontawesome("f09a",0,.5rem);
+		}
+	}
+
+	.google-plus {
+		a::before {
+			@include fontawesome("f0d5",0,.5rem);
+		}
+	}
+
+	.hatenabookmark {
+		a::before {
+			content: "B!";
+			width: 1.28571429em;
+			display: inline-block;
+			margin: 0 .5rem 0 0;
+			font-family: Verdana;
+			font-weight: bold;
+			letter-spacing: 0;
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+	}
+
+	.pocket {
+		a::before {
+			@include fontawesome("f265",0,.5rem);
+		}
+	}
+
+	.line {
+		a::before {
+			@include fontawesome("f075",0,.5rem);
+		}
+	}
+}//.sns-share-button
+
+
+
+
+// ページャー
+.page-links {
+
+	text-align: center;
+
+	.page-text {
+		padding: .2rem .5rem;
+		margin-right: .5rem;
+		border: 1px solid $ys-border-color-pager;
+		background-color: $ys-bg-color-pager-current;
+		color: $ys-font-color-pager-current;
+	}
+
+	a {
+		.page-text {
+			background-color: $ys-bg-color-pager;
+			color: $ys-font-color-pager;
+		}
+	}//a
+}//.page-links
+
+
+.post-password-form {
+
+	input[type="password"] {
+		border: 1px solid $ys-border-color-input;
+		background-color: $ys-bg-color-input;
+		padding: .1rem;
+		font-size: .8rem;
+		color: $ys-font-color-input;
+	}
+
+	input[type="submit"] {
+		padding: .1rem .5rem;
+		border: 1px solid $ys-border-color-button;
+		background-color: $ys-bg-color-button;
+		font-size: .8rem;
+		color: $ys-font-color-button;
+	}
+}
+
+
+.post-navigation {
+	margin: 0 0 2rem;
+
+	h2 {
+		margin: 0 0 .5rem;
+	}
+}
+
+.nav-previous,
+.nav-next {
+
+	margin: 0 0 .5rem;
+
+	.meta-nav {
+		margin: 0 0 .1rem;
+		color: $ys-font-color;
+	}
+
+	span {
+		display: block;
+	}
+
+}
+
+//--------------------------------------
+// タブレット
+//--------------------------------------
+@include media-breakpoint(tb) {
+
+	.nav-links {
+		font-size: 0;
+	}
+
+	.nav-previous,
+	.nav-next {
+		width: 50%;
+		display: inline-block;
+		font-size: 1rem;
+		vertical-align: top;
+
+	}
+
+	.nav-previous {
+		text-align: left;
+
+		.post-title {
+			padding-right: .5rem;
+		}
+	}
+	.nav-next {
+		text-align: right;
+
+		.post-title {
+			padding-left: .5rem;
+		}
+	}
+
+
+	.sns-share-button {
+		font-size: 0;
+		text-align: left;
+		text-align: center;
+
+		li {
+			width: 30%;
+			margin-left: auto;
+			text-align: left;
+
+			&:nth-child(odd) {
+				margin-right: 5%;
+			}
+
+			&:nth-child(even) {
+				margin-right: 5%;
+				margin-left: auto;
+			}
+
+			&:nth-child(3n+3) {
+				margin-right: 0;
+			}
+
+		}
+
+	}//.sns-share-button
+
+};
+
+
+
+
+//--------------------------------------
+// PC
+//--------------------------------------
+@include media-breakpoint(pc) {
+
+
+};
