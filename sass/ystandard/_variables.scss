@@ -85,11 +85,13 @@ $ys-header-nav-button-color      : $ys-font-color !default;
 $ys-header-nav-button-color-open : #fff !default;
 
 // 投稿関連
+$ys-content-entry-list-separator-color : $ys-grid-pc-border-color !default;
+$ys-content-entry-list-hover-color : $ys-bg-color-gray !default;
 $ys-content-entry-title-color    : $ys-font-color !default;
 $ys-content-entry-meta-color     : $ys-font-color-gray !default;
 $ys-content-entry-excerpt-color  : $ys-font-color-gray !default;
 $ys-content-postthumb-hover-color : #fff !default;
-$ys-content-postthumb-hover-bg-color : rgba(#000,0.5) !default;
+$ys-content-postthumb-hover-bg-color : rgba(#000,0.7) !default;
 $ys-content-image-border-color : $ys-border-color-gray !default;
 $ys-content-image-border-px : 2px !default;
 

@@ -10,7 +10,7 @@ $ys_settings = null;
 $ys_amp = null;
 
 //-----------------------------------------------
-//	設定取得
+//	設定呼び出し
 //-----------------------------------------------
 if (!function_exists( 'ys_settings')) {
 	function ys_settings() {
@@ -37,6 +37,7 @@ if (!function_exists( 'ys_settings')) {
 		$ys_ogp_default_image = esc_url( get_option('ys_ogp_default_image','') );
 
 		// 高度な設定
+		$ys_hide_post_thumbnail = get_option('ys_hide_post_thumbnail',0) ;
 		$ys_amp_enable = get_option('ys_amp_enable',0) ;
 
 		// AMP設定
@@ -60,6 +61,7 @@ if (!function_exists( 'ys_settings')) {
 										,'ys_twittercard_user' => $ys_twittercard_user	//Twitterカードのユーザー名
 										,'ys_ogp_default_image' => $ys_ogp_default_image	//OGPデフォルト画像
 
+										,'ys_hide_post_thumbnail' => $ys_hide_post_thumbnail	//個別ページでアイキャッチ画像を非表示にする
 										,'ys_amp_enable' => $ys_amp_enable	//AMPページを有効化するか
 
 										,'ys_amp_normal_link' => $ys_amp_normal_link	//通常ビューへのリンクを表示する
@@ -70,6 +72,21 @@ if (!function_exists( 'ys_settings')) {
 		return apply_filters('ys_settings',$result);
 	}
 }
+
+
+
+
+//-----------------------------------------------
+//	設定取得
+//-----------------------------------------------
+if (!function_exists( 'ys_get_settings')) {
+	function ys_get_settings($name) {
+		$settings = ys_settings();
+
+		return apply_filters('ys_get_settings',$settings[$name],$name);
+	}
+}
+
 
 
 //-----------------------------------------------

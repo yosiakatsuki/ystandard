@@ -173,7 +173,7 @@ if (!function_exists( 'ys_template_the_entry_date')) {
 //	投稿者取得
 //-----------------------------------------------
 if (!function_exists( 'ys_template_the_entry_author')) {
-	function ys_template_the_entry_author() {
+	function ys_template_the_entry_author($link = true) {
 
 		$author_name = get_the_author();
 		$author_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) );
@@ -183,7 +183,13 @@ if (!function_exists( 'ys_template_the_entry_author')) {
 			$stracture = ' itemprop="author editor creator" itemscope itemtype="http://schema.org/Person"';
 		}
 
-		echo '<span class="author vcard"'.$stracture.'><a class="url fn n" href="'.$author_url.'"><span itemprop="name">'.$author_name.'</span></a></span>';
+		if($link) {
+			$author = '<span class="author vcard"'.$stracture.'><a class="url fn n" href="'.$author_url.'"><span itemprop="name">'.$author_name.'</span></a></span>';
+		} else {
+			$author = '<span class="author vcard"'.$stracture.'><span class="url fn n"><span itemprop="name">'.$author_name.'</span></span></span>';
+		}
+
+		echo $author;
 	}
 }
 
@@ -361,9 +367,7 @@ if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
 if( ! function_exists( 'ys_template_the_copyright' ) ) {
 	function ys_template_the_copyright() {
 
-		$setting = ys_settings();
-
-		$copyright = '<p class="copy">Copyright &copy; '.$setting['ys_copyright_year'].' <a href="'. esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo('name') . '</a> All Rights Reserved.</p>';
+		$copyright = '<p class="copy">Copyright &copy; '.ys_get_settings('ys_copyright_year').' <a href="'. esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo('name') . '</a> All Rights Reserved.</p>';
 		$powered = '<p id="powered">Powered by <a href="https://ja.wordpress.org/" target="_blank">WordPress</a> &amp; ';
 		$poweredtheme = '<a href="https://ystandard.net" target="_blank">yStandard Theme</a> by <a href="https://yosiakatsuki.net" target="_blank">yosiakatsuki</a></p>';
 
@@ -390,7 +394,7 @@ if( ! function_exists( 'ys_template_the_copyright' ) ) {
 //	投稿のカテゴリー出力
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
-	function ys_template_the_post_categorys($postid=0,$link=True,$separator=', ') {
+	function ys_template_the_post_categorys($number = null,$link=true,$separator=', ',$postid=0) {
 
 		if($postid==0){
 			$postid = get_the_ID();
@@ -404,11 +408,25 @@ if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
 		if ( !empty( $post_terms ) && !is_wp_error( $post_terms ) ) {
 
 			$term_ids = implode( ',' , $post_terms );
-			$terms = wp_list_categories( 'title_li=&style=none&echo=0&taxonomy=' . $taxonomy . '&include=' . $term_ids );
-			$terms = rtrim( trim( str_replace( '<br />',  $separator, $terms ) ), $separator );
+
+			$query = 'include=' . $term_ids;
+			if($number != null ) {
+				$query .= '&number='.$number;
+			}
+
+			$categories = get_categories( $query );
+			foreach ( $categories as $category ) {
+
+				if($link) {
+					$terms = '<a href="' . get_category_link( $category->term_id ) . '">' . $category->name . '</a>';
+				} else {
+					$terms = '<span class="cat-list <?php echo $category->slug; ?>">'.$category->name.'</span>';
+				}
+				$terms .= $separator;
+			}
 		}
 		// 投稿のカテゴリーを表示
-		echo $terms;
+		echo rtrim($terms,$separator);
 	}//ys_category_get_post_categorys
 }
 

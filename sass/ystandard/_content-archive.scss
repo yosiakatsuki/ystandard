@@ -8,16 +8,13 @@
 //--------------------------------------
 // モバイル or 全体
 //--------------------------------------
-.home,
-.blog,
-.archive,
-.search {
-  .site-main {
+.post-list {
+  margin: 0 0 $ys-gutter-sp * 2;
+  border-bottom: 1px solid $ys-content-entry-list-separator-color;
+}//.post
 
-    .post {
-      margin: 0 0 $ys-gutter-sp * 2;
-    }//.post
-  }//.site-main
+.entry-container {
+  display: block;
 }
 
 .post-thumbnail-container {
@@ -55,10 +52,7 @@
   font-size: 1.2rem;
   font-weight: normal;
   margin: 1rem 0;
-
-	a {
-		color: $ys-content-entry-title-color;
-	}
+  color: $ys-content-entry-title-color;
 }
 
 // 投稿者
@@ -85,7 +79,7 @@
 // 本文
 .entry-excerpt {
   margin: 1rem 0 .5rem;
-  font-size: 0.8em;
+  font-size: .7em;
   color: $ys-content-entry-excerpt-color;
 }
 
@@ -100,27 +94,26 @@
 //--------------------------------------
 @include media-breakpoint(tb) {
 
-  .home,
-  .blog,
-  .archive,
-  .search {
-    .site-main {
-      display: flex;
-      flex-wrap: wrap;
+  .post-list {
+      margin: 0;
+    }//.post
 
-      .post {
-        width: calc(50% - #{($ys-gutter / 2)});
+  .entry-container {
+    transition: background-color .5s;
 
+    &:hover {
+      background-color: $ys-content-entry-list-hover-color;
+    }
+  }
 
-        &:nth-child(odd) {
-          margin: 0 ($ys-gutter / 2) $ys-gutter 0;
-        }
+  .post-thumbnail-container {
+    width: 35%;
+    margin-right: $ys-gutter-sp;
+    float: left;
+  }
 
-        &:nth-child(even) {
-          margin: 0 0 $ys-gutter ($ys-gutter / 2) ;
-        }
-      }//.post
-    }//.site-main
+  .entry-detail {
+    overflow: hidden;
   }
 
 };
@@ -133,7 +126,9 @@
 //--------------------------------------
 @include media-breakpoint(pc) {
 
-
+  .post-thumbnail-container {
+    margin-right: $ys-gutter;
+  }
 
 
 };

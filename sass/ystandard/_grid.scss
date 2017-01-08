@@ -33,7 +33,9 @@
 //--------------------------------------
 @include media-breakpoint(tb) {
 
-
+  .content-area {
+    padding : 0;
+  }
 };
 
 //--------------------------------------
@@ -54,7 +56,6 @@
   }
 
   .content-area {
-    padding : $ys-gutter;
     margin-right: 0;
     margin-left: 0;
     margin-bottom: 0;

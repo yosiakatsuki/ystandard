@@ -119,7 +119,7 @@ add_filter( 'site_icon_meta_tags', 'ys_extras_site_icon_meta_tags' );
 //------------------------------------------------------------------------------
 if( ! function_exists( 'ys_extras_excerpt_length' )){
 	function ys_extras_excerpt_length( $length ) {
-		return 160;
+		return 120;
 	}
 }
 add_filter( 'excerpt_length', 'ys_extras_excerpt_length', 999 );
@@ -503,7 +503,6 @@ add_action( 'wp_head', 'ys_extras_add_amphtml' );
 //-----------------------------------------------
 if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
 	function ys_extras_load_css_footer_js() {
-		$settings = ys_settings();
 
 		// 読み込むCSSをリスト化
 		$csslist = array(

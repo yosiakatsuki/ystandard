@@ -9,6 +9,10 @@
 // モバイル or 全体
 //--------------------------------------
 
+.post {
+  padding: $ys-gutter-sp $ys-gutter-sp $ys-gutter-sp * 2;
+}
+
 // アイキャッチ
 .post-thumbnail {
   border: $ys-content-image-border-px solid $ys-content-image-border-color;
@@ -57,7 +61,9 @@
 //--------------------------------------
 @include media-breakpoint(tb) {
 
-
+  .post {
+    padding: $ys-gutter-sp;
+  }
 };
 
 
@@ -68,5 +74,7 @@
 //--------------------------------------
 @include media-breakpoint(pc) {
 
-
+  .post {
+    padding: $ys-gutter;
+  }
 };

@@ -87,6 +87,7 @@ function ys_register_settings() {
 
 	//高度な設定
 	register_setting( 'ys_advanced_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_advanced_settings', 'ys_hide_post_thumbnail','ys_utilities_sanitize_checkbox' );
 
 	// AMP設定
 	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' ,'ys_utilities_sanitize_checkbox');

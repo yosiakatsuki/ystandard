@@ -261,6 +261,9 @@ div.aligncenter {
     float: right;
     margin: 0 0 1rem 1rem; } }
 
+.post {
+  padding: 1rem 1rem 2rem; }
+
 .post-thumbnail {
   border: 2px solid #ccc;
   text-align: center;
@@ -293,6 +296,14 @@ div.aligncenter {
     width: auto;
     margin-right: .3rem;
     fill: #888; }
+
+@media screen and (min-width: 600px) {
+  .post {
+    padding: 1rem; } }
+
+@media screen and (min-width: 960px) {
+  .post {
+    padding: 2rem; } }
 
 .author-info {
   margin: 2rem 0 0; }
