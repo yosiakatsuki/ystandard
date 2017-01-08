@@ -33,8 +33,18 @@ footer,header,hgroup,menu,nav,section {
   display:block;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  clear: both;
+}
+
 nav ul {
-    list-style:none;
+  list-style:none;
 }
 
 blockquote, q {
@@ -48,12 +58,12 @@ q:before, q:after {
 }
 
 a {
-    margin:0;
-    padding:0;
-    font-size:100%;
-    vertical-align:baseline;
-    background:transparent;
-    text-decoration: none;
+  margin:0;
+  padding:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+  text-decoration: none;
 }
 
 a,

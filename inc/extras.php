@@ -163,6 +163,21 @@ add_filter( 'comment_form_fields', 'ys_extras_comment_form_fields' );
 
 
 //------------------------------------------------------------------------------
+// コメントフォームで使えるタグを追加
+//------------------------------------------------------------------------------
+function ys_extras_comment_tags($data) {
+	global $allowedtags;
+	$allowedtags['pre'] = array('class'=>array());
+	$allowedtags['blockquote'] = array();
+	return $data;
+}
+add_filter('comments_open', 'ys_extras_comment_tags');
+add_filter('pre_comment_approved', 'ys_extras_comment_tags');
+
+
+
+
+//------------------------------------------------------------------------------
 // アーカイブタイトルを変える
 //------------------------------------------------------------------------------
 if( ! function_exists( 'ys_extras_get_the_archive_title' )){

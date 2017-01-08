@@ -26,6 +26,15 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  clear: both; }
+
 nav ul {
   list-style: none; }
 
@@ -492,6 +501,49 @@ img {
     width: auto;
     margin-right: .3rem;
     fill: #888; }
+
+.entry-content h1,
+.entry-content h2 {
+  margin: 4rem 0 2rem;
+  font-size: 1.5rem; }
+
+.entry-content h3 {
+  margin: 3rem 0 2rem;
+  font-size: 1.3rem; }
+
+.entry-content h4 {
+  margin: 2.5rem 0 2rem;
+  font-size: 1.2rem; }
+
+.entry-content h5 {
+  margin: 2rem 0 2rem;
+  font-size: 1.1rem; }
+
+.entry-content h6 {
+  margin: 2rem 0 2rem;
+  font-size: 1rem; }
+
+.entry-content strong, .entry-content b {
+  font-weight: bold; }
+
+.entry-content p,
+.entry-content ul,
+.entry-content ol,
+.entry-content dl,
+.entry-content blockquote,
+.entry-content pre,
+.entry-content table,
+.entry-content address {
+  margin: 0 0 2rem; }
+  .entry-content p:last-child,
+  .entry-content ul:last-child,
+  .entry-content ol:last-child,
+  .entry-content dl:last-child,
+  .entry-content blockquote:last-child,
+  .entry-content pre:last-child,
+  .entry-content table:last-child,
+  .entry-content address:last-child {
+    margin: 0; }
 
 @media screen and (min-width: 600px) {
   .post {

@@ -9,72 +9,8 @@
 // モバイル or 全体
 //--------------------------------------
 
-// 投稿抜粋・本文,コメント内でも使用可能
-.entry-content,
-.comment-text {
-
-	// --------------------
-	// 見出し
-	// --------------------
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		clear: both;
-	}
-
-	h1,
-	h2 {
-		margin: 4rem 0 2rem;
-		font-size: 1.8rem;
-	}
-
-	h3 {
-		margin: 3rem 0 2rem;
-		font-size: 1.6rem;
-	}
-
-	h4 {
-		margin: 2.5rem 0 2rem;
-		font-size: 1.5rem;
-	}
-
-	h5 {
-		margin: 2rem 0 2rem;
-		font-size: 1.4rem;
-	}
-
-	h6 {
-		margin: 2rem 0 2rem;
-		font-size: 1.2rem;
-	}
-
-	// --------------------
-	// 隙間をあけるもの
-	// --------------------
-	p,
-	ul,
-	ol,
-	dl,
-	blockquote,
-	pre,
-	table,
-	address {
-		margin: 0 0 2rem;
-
-		&:last-child {
-			margin: 0;
-		}
-	}
-
-	// --------------------
-	// 装飾
-	// --------------------
-	strong,b {
-		font-weight: bold;
-	}
+// 投稿本文
+.entry-content {
 
 	del,
 	strike {
@@ -156,14 +92,6 @@
 		font-family: $ys-font-family-code;
 	}
 
-	pre {
-		width: 100%;
-		background: $ys-bg-color-code;
-		padding: 10px 20px;
-		line-height: 1.2;
-		overflow: auto;
-	}//pre
-
 	code,
 	kbd,
 	var,
@@ -172,36 +100,7 @@
 		padding: 0 1px;
 	}//code
 
-	// --------------------
-	// 引用
-	// --------------------
-	blockquote {
-		padding: 1rem;
-		background-color: $ys-bg-color-blockquote;
-		color: $ys-font-color-blockquote;
 
-		p,
-		cite {
-			margin: 0 0 1rem;
-
-			&:last-child {
-				margin: 0;
-			}
-		}
-
-		a {
-			text-decoration: underline;
-		}
-
-		cite {
-			font-size: .8rem;
-
-			&::before {
-				content: "-";
-				margin-right: .2rem;
-			}
-		}//cite
-	}//blockquote
 
 	cite,
 	cite a,
@@ -274,7 +173,49 @@
 
 }
 
+// 投稿本文,コメント内でも使用可能
+.entry-content,
+.comment-text {
 
+  pre {
+    width: 100%;
+    background: $ys-bg-color-code;
+    padding: 1.5rem;
+    line-height: 1.2;
+    overflow: auto;
+  }//pre
+
+  // --------------------
+	// 引用
+	// --------------------
+	blockquote {
+		padding: 1.5rem;
+		background-color: $ys-bg-color-blockquote;
+		color: $ys-font-color-blockquote;
+
+		p,
+		cite {
+			margin: 0 0 1rem;
+
+			&:last-child {
+				margin: 0;
+			}
+		}
+
+		a {
+			text-decoration: underline;
+		}
+
+		cite {
+			font-size: .8rem;
+
+			&::before {
+				content: "-";
+				margin-right: .2rem;
+			}
+		}//cite
+	}//blockquote
+}//.entry-content,.comment-text
 
 
 
