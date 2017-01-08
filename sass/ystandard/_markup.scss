@@ -8,34 +8,10 @@
 //--------------------------------------
 // モバイル or 全体
 //--------------------------------------
-
-// 投稿本文
-.entry-content {
-
-	del,
-	strike {
-		text-decoration: line-through;
-	}
-
-	em {
-		font-style: italic;
-	}
-
-	u,
-	ins {
-		text-decoration: underline;
-	}
-
-	// --------------------
-	// 画像
-	// --------------------
-	figure,
-	img {
-		max-width: 100%;
-		margin-bottom: .5rem;
-	}
-
-	// --------------------
+// 投稿本文,コメント内でも使用可能
+.entry-content,
+.comment-text {
+  // --------------------
 	// リスト
 	// --------------------
 	ul {
@@ -80,35 +56,6 @@
 		}
 	}
 
-
-	// --------------------
-	// コード
-	// --------------------
-	code,
-	pre,
-	kbd,
-	var,
-	tt {
-		font-family: $ys-font-family-code;
-	}
-
-	code,
-	kbd,
-	var,
-	tt {
-		color: $ys-font-color-code;
-		padding: 0 1px;
-	}//code
-
-
-
-	cite,
-	cite a,
-	q {
-		font-style: italic;
-		color: $ys-font-color-blockquote;
-	}
-
 	// --------------------
 	// テーブル
 	// --------------------
@@ -134,48 +81,41 @@
 		}
 
 	}//table
+  
+  del,
+  strike {
+    text-decoration: line-through;
+  }
 
+  em {
+    font-style: italic;
+  }
+
+  // --------------------
+	// コード
 	// --------------------
-	// 下付き文字/上付き文字
-	// --------------------
-	sub,
-	sup {
-		font-size: 0.5em;
+	code,
+	pre,
+	kbd,
+	var,
+	tt {
+		font-family: $ys-font-family-code;
 	}
 
-	sub {
-		vertical-align: sub;
+	code,
+	kbd,
+	var,
+	tt {
+		color: $ys-font-color-code;
+		padding: 0 1px;
+	}//code
+
+  cite,
+	cite a,
+	q {
+		font-style: italic;
+		color: $ys-font-color-blockquote;
 	}
-	sub {
-		vertical-align: super;
-	}
-
-	.iframe-responsive-container {
-		max-width: 560px;
-		margin: 0 0 2em;
-	}
-
-	.iframe-responsive {
-		position: relative;
-		padding-bottom: 56.25%;
-		padding-top: 30px;
-		height: 0;
-		overflow: hidden;
-
-		iframe {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height:100%;
-		}
-	}
-
-}
-
-// 投稿本文,コメント内でも使用可能
-.entry-content,
-.comment-text {
 
   pre {
     width: 100%;
@@ -215,7 +155,52 @@
 			}
 		}//cite
 	}//blockquote
+
+	u,
+	ins {
+		text-decoration: underline;
+	}
+
+	// --------------------
+	// 下付き文字/上付き文字
+	// --------------------
+	sub,
+	sup {
+		font-size: 0.5em;
+	}
+
+	sub {
+		vertical-align: sub;
+	}
+	sub {
+		vertical-align: super;
+	}
+
+	.iframe-responsive-container {
+		max-width: 560px;
+		margin: 0 0 2em;
+	}
+
+	.iframe-responsive {
+		position: relative;
+		padding-bottom: 56.25%;
+		padding-top: 30px;
+		height: 0;
+		overflow: hidden;
+
+		iframe {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height:100%;
+		}
+	}
+
 }//.entry-content,.comment-text
+
+
+
 
 
 
