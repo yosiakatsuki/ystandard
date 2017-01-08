@@ -299,20 +299,21 @@ if( ! function_exists( 'ys_template_get_the_custom_excerpt' ) ) {
 if( ! function_exists( 'ys_template_the_sns_share' ) ) {
 	function ys_template_the_sns_share(){
 
+
 		echo '<div id="sns-share" class="sns-share">';
-		echo '<p class="sns-share-title">\ みんなにシェアする /</p>';
+		$share_buttons_title = '\ みんなにシェアする /';
+		$share_buttons_title = apply_filters('ys_share_buttons_title',$share_buttons_title);
+
+		echo '<p class="sns-share-title">'.$share_buttons_title.'</p>';
 
 		if(!ys_is_amp()){
 			// AMP以外
-			ys_template_the_sns_share_buttons();
+			echo ys_template_the_sns_share_buttons();
 
 		} else {
 			// AMP記事
-			$fb_app_id = '254325784911610';
-			echo '<amp-social-share type="twitter" width="100" height="44"></amp-social-share>';
-			echo '<amp-social-share type="facebook" width="100" height="44" data-param-app_id="'.$fb_app_id.'"></amp-social-share>';
-			echo '<amp-social-share type="gplus" width="100" height="44"></amp-social-share>';
-			echo '<p class="amp-view-info">その他の方法でシェアする場合は通常表示に切り替えて下さい。<a class="normal-view-link" href="'.get_the_permalink().'#sns-share">通常表示に切り替える »</a></p>';
+			echo ys_template_the_amp_sns_share_buttons();
+
 		}
 		echo '</div>';
 
@@ -328,33 +329,74 @@ if( ! function_exists( 'ys_template_the_sns_share' ) ) {
 if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
 	function ys_template_the_sns_share_buttons(){
 
+		$share_buttons = '';
 		$share_url = urlencode(get_permalink());
 		$share_title = urlencode(get_the_title());
 
-		echo '<ul class="sns-share-button">';
+		$share_buttons .= '<ul class="sns-share-button">';
+
 		// Twitter
 		$tweet_via = '';
-		if(get_option('ys_sns_share_tweet_via',0) == 1 && get_option('ys_sns_share_tweet_via_account') != ''){
-			$tweet_via = '&via='.get_option('ys_sns_share_tweet_via_account');
+		if(ys_get_setting('ys_sns_share_tweet_via') == 1 && ys_get_setting('ys_sns_share_tweet_via_account') != ''){
+			$tweet_via = '&via='.ys_get_setting('ys_sns_share_tweet_via_account');
 		}
-		echo '<li class="twitter bg-twitter"><a href="http://twitter.com/share?text='.$share_title.'&url='.$share_url.$tweet_via.'">Twitter</a></li>';
-		// Facebook
-		echo '<li class="facebook bg-facebook"><a href="http://www.facebook.com/sharer.php?src=bm&u='.$share_url.'&t='.$share_title.'">Facebook</a></li>';
-		// はてブ
-		echo '<li class="hatenabookmark bg-hatenabookmark"><a href="http://b.hatena.ne.jp/add?mode=confirm&url='.$share_url.'">はてブ</a></li>';
-		// Google +
-		echo '<li class="google-plus bg-google-plus"><a href="https://plus.google.com/share?url='.$share_url.'">Google+</a></li>';
-		// Pocket
-		echo '<li class="pocket bg-pocket"><a href="http://getpocket.com/edit?url='.$share_url.'&title='.$share_title.'">Pocket</a></li>';
-		// LINE
-		echo '<li class="line bg-line"><a href="http://line.me/R/msg/text/?'.$share_title.'%0A'.$share_url.'" target="_blank">LINE</a></li>';
+		$twitter_share_text = apply_filters('ys_share_twitter_text',$share_title);
+		$twitter_share_url = apply_filters('ys_share_twitter_url',$share_url);
+		$twitter_button_text = apply_filters('ys_twitter_button_text','Twitter');
 
-		echo '</ul>';
+		$share_buttons .= '<li class="twitter bg-twitter"><a href="http://twitter.com/share?text='.$twitter_share_text.'&url='.$twitter_share_url.$tweet_via.'">'.$twitter_button_text.'</a></li>';
+
+		// Facebook
+		$facebook_button_text = apply_filters('ys_facebook_button_text','Facebook');
+		$share_buttons .= '<li class="facebook bg-facebook"><a href="http://www.facebook.com/sharer.php?src=bm&u='.$share_url.'&t='.$share_title.'">'.$facebook_button_text.'</a></li>';
+
+		// はてブ
+		$hatenabookmark_button_text = apply_filters('ys_hatenabookmark_button_text','はてブ');
+		$share_buttons .= '<li class="hatenabookmark bg-hatenabookmark"><a href="http://b.hatena.ne.jp/add?mode=confirm&url='.$share_url.'">'.$hatenabookmark_button_text.'</a></li>';
+
+		// Google +
+		$googleplus_button_text = apply_filters('ys_googleplus_button_text','Google+');
+		$share_buttons .= '<li class="google-plus bg-google-plus"><a href="https://plus.google.com/share?url='.$share_url.'">'.$googleplus_button_text.'</a></li>';
+
+		// Pocket
+		$pocket_button_text = apply_filters('ys_pocket_button_text','Pocket');
+		$share_buttons .= '<li class="pocket bg-pocket"><a href="http://getpocket.com/edit?url='.$share_url.'&title='.$share_title.'">'.$pocket_button_text.'</a></li>';
+
+		// LINE
+		$share_buttons .= '<li class="line bg-line"><a href="http://line.me/R/msg/text/?'.$share_title.'%0A'.$share_url.'" target="_blank">LINE</a></li>';
+
+		// ボタン追加
+		$share_buttons = apply_filters('ys_sns_share_buttons_add',$share_buttons);
+
+		$share_buttons .= '</ul>';
+
+		return apply_filters('ys_sns_share_buttons',$share_buttons);
 	}
 }
 
 
 
+
+//-----------------------------------------------
+//	AMPシェアボタン
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_amp_sns_share_buttons' ) ) {
+	function ys_template_the_amp_sns_share_buttons() {
+		$share_buttons = '';
+
+		$fb_app_id = ys_get_setting('ys_amp_share_fb_app_id');
+
+		$share_buttons .= '<amp-social-share type="twitter" width="100" height="44"></amp-social-share>';
+		$share_buttons .= '<amp-social-share type="facebook" width="100" height="44" data-param-app_id="'.$fb_app_id.'"></amp-social-share>';
+		$share_buttons .= '<amp-social-share type="gplus" width="100" height="44"></amp-social-share>';
+
+		if(ys_get_setting('ys_amp_normal_link_share_btn') == 1) {
+			$share_buttons .= '<p class="amp-view-info">その他の方法でシェアする場合は通常表示に切り替えて下さい。<a class="normal-view-link" href="'.get_the_permalink().'#sns-share">通常表示に切り替える »</a></p>';
+		}
+
+		return apply_filters('ys_amp_sns_share_buttons',$share_buttons);
+	}
+}
 
 
 

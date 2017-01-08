@@ -16,7 +16,7 @@
 	</header><!-- .entry-header -->
 
 	<?php
-		if(ys_is_amp() && get_option('ys_amp_normal_link',0) == 1):
+		if(ys_is_amp() && ys_get_setting('ys_amp_normal_link') == 1):
 	?>
 	<div class="amp-view-info">
 		<p>※現在このページは高速表示用レイアウトで表示されています。<a class="normal-view-link" href="<?php the_permalink() ?>">通常表示に切り替える »</a></p>
@@ -32,13 +32,4 @@
 
 		?>
 	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php
-			// シェアボタン
-			ys_template_the_sns_share();
-			// 書いた人
-			get_template_part( 'template-parts/biography' );
-		 ?>
-	</footer><!-- .entry-footer -->
 </article><!-- #post-## -->

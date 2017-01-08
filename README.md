@@ -97,14 +97,15 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義
 
 ### AMP設定（β）
 
+- シェアボタン設定
+  - Facebook app_id
 - 通常ビューへのリンク表示
   - コンテンツ上部
   - シェアボタン下
 - AMP記事作成条件設定
   - scriptタグの削除
   - styleタグの削除
-- シェアボタン設定
-  - Facebook app_id
+
 
 
 ## 履歴

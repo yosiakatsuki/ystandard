@@ -41,7 +41,9 @@ if (!function_exists( 'ys_settings')) {
 		$ys_amp_enable = get_option('ys_amp_enable',0) ;
 
 		// AMP設定
-		$ys_amp_normal_link = get_option('ys_amp_normal_link',0) ;
+		$ys_amp_share_fb_app_id = esc_attr( get_option('ys_amp_share_fb_app_id','') );
+		$ys_amp_normal_link = get_option('ys_amp_normal_link',1) ;
+		$ys_amp_normal_link_share_btn = get_option('ys_amp_normal_link_share_btn',1) ;
 		$ys_amp_del_script = get_option('ys_amp_del_script',0) ;
 		$ys_amp_del_style = get_option('ys_amp_del_style',0) ;
 
@@ -64,6 +66,8 @@ if (!function_exists( 'ys_settings')) {
 										,'ys_hide_post_thumbnail' => $ys_hide_post_thumbnail	//個別ページでアイキャッチ画像を非表示にする
 										,'ys_amp_enable' => $ys_amp_enable	//AMPページを有効化するか
 
+										,'ys_amp_share_fb_app_id' => $ys_amp_share_fb_app_id	//AMPのfacebookシェアボタン用App id
+										,'ys_amp_normal_link_share_btn' => $ys_amp_normal_link_share_btn	//通常ビューへのリンクを表示する
 										,'ys_amp_normal_link' => $ys_amp_normal_link	//通常ビューへのリンクを表示する
 										,'ys_amp_del_script' => $ys_amp_del_script	//scriptタグを削除してAMPページを作成
 										,'ys_amp_del_style' => $ys_amp_del_style	//インラインで書かれたstyle属性を削除してAMPページを作成

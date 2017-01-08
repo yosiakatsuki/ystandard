@@ -90,7 +90,9 @@ function ys_register_settings() {
 	register_setting( 'ys_advanced_settings', 'ys_hide_post_thumbnail','ys_utilities_sanitize_checkbox' );
 
 	// AMP設定
+	register_setting( 'ys_amp_settings', 'ys_amp_share_fb_app_id' );
 	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' ,'ys_utilities_sanitize_checkbox');
+	register_setting( 'ys_amp_settings', 'ys_amp_normal_link_share_btn' ,'ys_utilities_sanitize_checkbox');
 	register_setting( 'ys_amp_settings', 'ys_amp_del_script' ,'ys_utilities_sanitize_checkbox');
 	register_setting( 'ys_amp_settings', 'ys_amp_del_style' ,'ys_utilities_sanitize_checkbox');
 }
