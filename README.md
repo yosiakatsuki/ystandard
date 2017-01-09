@@ -95,6 +95,7 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義
   - instagram
   - Feedly
 - 投稿設定
+  - 同じカテゴリーの関連記事を出力する
 - SEO対策設定
   - アーカイブページのnoindex設定
 

@@ -84,6 +84,7 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_ogp_fb_admins' );
 	register_setting( 'ys_main_settings', 'ys_twittercard_user' );
 	register_setting( 'ys_main_settings', 'ys_ogp_default_image' );
+	register_setting( 'ys_main_settings', 'ys_show_post_related','ys_utilities_sanitize_checkbox' );
 
 	//高度な設定
 	register_setting( 'ys_advanced_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );

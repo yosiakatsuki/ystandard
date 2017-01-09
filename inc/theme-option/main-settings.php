@@ -115,6 +115,21 @@
 		</div>
 	</div>
 
+	<div class="postbox">
+		<h2 class="hndle">投稿設定</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">同じカテゴリーの関連記事を出力する</th>
+					<td>
+						<label for="ys_show_post_related">
+							<input type="checkbox" name="ys_show_post_related" id="ys_show_post_related" value="1" <?php checked(get_option('ys_show_post_related',1),1); ?> />同じカテゴリーの関連記事を出力する
+						</label>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 
 	<div class="postbox">
 		<h2 class="hndle">SEO対策設定</h2>

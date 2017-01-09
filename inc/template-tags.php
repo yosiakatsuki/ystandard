@@ -434,22 +434,26 @@ if( ! function_exists( 'ys_template_the_advertisement' ) ) {
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_related_post' ) ) {
 	function ys_template_the_related_post() {
-		$option = array(
-										'post__not_in' => array(get_the_ID()),  //現在の投稿IDは除く
-										'category__in' => ys_utilities_get_cat_id_list(true), //カテゴリー絞り込み
-									);
 
-		$query = new WP_Query(ys_utilities_get_rand(4,$option));
+		if(ys_get_setting('ys_show_post_related') == 1) {
+			$option = array(
+											'post__not_in' => array(get_the_ID()),  //現在の投稿IDは除く
+											'category__in' => ys_utilities_get_cat_id_list(true), //カテゴリー絞り込み
+										);
 
-		if ($query->have_posts()) {
-			echo '<div class="entry-post-related entry-footer-container">';
-			echo '<h2>関連記事</h2>';
-			while ($query->have_posts()) : $query->the_post();
-				get_template_part( 'template-parts/content','related' );
-			endwhile;
-			echo '</div>';
+			$query = new WP_Query(ys_utilities_get_rand(4,$option));
+
+			if ($query->have_posts()) {
+				echo '<div class="entry-post-related entry-footer-container">';
+				echo '<h2>関連記事</h2>';
+				while ($query->have_posts()) : $query->the_post();
+					get_template_part( 'template-parts/content','related' );
+				endwhile;
+				echo '</div>';
+			}
 		}
-	}
+
+	}//ys_template_the_related_post
 }
 
 

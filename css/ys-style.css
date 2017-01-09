@@ -787,7 +787,8 @@ div.aligncenter {
     padding-left: 1rem; }
 
 .comment-list .pingback {
-  margin: 0 0 1rem; }
+  margin: 0 0 1rem;
+  font-size: .8rem; }
 
 .comment-author {
   margin: 0 0 .5rem; }
