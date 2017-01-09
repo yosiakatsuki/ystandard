@@ -723,7 +723,9 @@ img {
   .widget ol li {
     margin: 0 0 .2rem; }
   .widget ul .children,
-  .widget ol .children {
+  .widget ul ul,
+  .widget ol .children,
+  .widget ol ul {
     padding-left: 1rem; }
   .widget table {
     width: 100%;
@@ -739,6 +741,14 @@ img {
 .widget-title {
   margin: 0 0 1rem;
   font-size: 1.1rem; }
+
+.widget_rss ul li,
+.widget_rss ol li,
+.widget_recent_comments ul li,
+.widget_recent_comments ol li,
+.widget_recent_entries ul li,
+.widget_recent_entries ol li {
+  margin: 0 0 1rem; }
 
 .widget_calendar tbody {
   text-align: center; }

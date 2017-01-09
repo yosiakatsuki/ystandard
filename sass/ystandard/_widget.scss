@@ -16,7 +16,8 @@
 		li {
 			margin: 0 0 .2rem;
 		}
-		.children {
+		.children,
+    ul {
 			padding-left: 1rem;
 		}
 	}
@@ -37,10 +38,22 @@
 		border:1px solid $ys-border-color-select;
 		outline:none;
 	}
+
 }
 .widget-title {
 	margin: 0 0 1rem;
 	font-size: 1.1rem;
+}
+
+.widget_rss,
+.widget_recent_comments,
+.widget_recent_entries {
+  ul,
+	ol {
+		li {
+			margin: 0 0 1rem;
+		}
+	}
 }
 
 
