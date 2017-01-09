@@ -185,6 +185,97 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 
 
 
+//-----------------------------------------------
+//	投稿のカテゴリー取得
+//-----------------------------------------------
+if( ! function_exists( 'ys_utilities_get_the_post_categorys' ) ) {
+	function ys_utilities_get_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0) {
+
+		if($postid==0){
+			$postid = get_the_ID();
+		}
+
+		$terms ='';
+		//投稿カテゴリ取得
+		$categories = get_the_category($postid);
+		$count = 0;
+		if($categories){
+			//カテゴリが取得できたら
+			foreach( $categories as $category ) {
+				$terms .= '<span class="'.$category->slug.'" itemprop="keywords">';
+				//リンクありの場合
+				if($link){
+					$terms .= '<a href="' . get_category_link( $category->term_id ) . '">';
+				}//if($link)
+
+				//カテゴリ名付ける
+				$terms .= $category->cat_name;
+				//リンクありの場合
+				if($link){
+					$terms .= '</a>';
+				}//if($link)
+				$terms .= '</span>';
+
+				//区切り文字
+				$terms .= $separator;
+
+				$count += 1;
+				if($number != 0 && $number <= $count){
+					break;
+				}
+			}//foreach
+		}
+
+		// 投稿のカテゴリーを表示
+		return rtrim($terms,$separator);
+	}//ys_utilities_get_the_post_categorys
+}
+
+
+
+
+//-----------------------------------------------
+//	投稿のタグ一覧取得
+//-----------------------------------------------
+if( ! function_exists( 'ys_utilities_get_the_tag_list' ) ) {
+	function ys_utilities_get_the_tag_list($separator=', ',$link=true,$postid=0) {
+		if($postid==0){
+			$postid = get_the_ID();
+		}
+		//投稿タグ取得
+		$posttags = get_the_tags();
+		$result = '';
+		if ( $posttags ) {
+
+			//カテゴリが取得できたら
+			foreach( $posttags as $posttag ) {
+				$result .= '<span class="'.$posttag->slug.'">';
+				//リンクありの場合
+				if($link){
+					$result .= '<a href="' . get_tag_link( $posttag->term_id ) . '">';
+				}//if($link)
+
+				//カテゴリ名付ける
+				$result .= $posttag->name;
+				//リンクありの場合
+				if($link){
+					$result .= '</a>';
+				}//if($link)
+				$result .= '</span>';
+
+				//区切り文字
+				$result .= $separator;
+			}//foreach
+			//最後の区切り文字をトリム
+			$result = rtrim($result, $separator);
+			return $result;
+
+		}
+	}//ys_utilities_get_the_tag_list
+}
+
+
+
 //------------------------------------------------------------------------------
 //
 //	画像関連の関数
@@ -270,7 +361,7 @@ if (!function_exists( 'ys_utilities_get_post_firstimg')) {
 		if(preg_match($pattern,$post_content,$match_img)){
 
 			// 画像取得
-			$imgurl = $imgmatch[2];
+			$imgurl = $match_img[2];
 
 		} else {
 

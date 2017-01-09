@@ -49,12 +49,13 @@
 // 投稿以外の左右padding調整クラス
 .entry-footer-container {
   padding: $ys-gutter-sp;
+  margin-left: -1 * $ys-gutter-sp;
+  margin-right: -1 * $ys-gutter-sp;
 }
-
 
 // シェアボタン
 .sns-share {
-	margin: 2rem 0 0;
+	margin-top: 2rem;
   background-color: $ys-content-share-bg-color;
 	text-align: center;
 }
@@ -138,6 +139,48 @@
 }//.sns-share-button
 
 
+.entry-category-list,
+.entry-tag-list {
+
+  h2 {
+    font-size: .9rem;
+  }
+
+	a {
+		display: inline-block;
+		position: relative;
+		padding: .2rem .5rem;
+		margin: 0 .5rem .5rem 0;
+		border: 1px solid $ys-content-taxonomy-border-color;
+		border-radius: 2px;
+    font-size: .8rem;
+		color: $ys-content-taxonomy-font-color;
+		transition: color .3s;
+
+		&:hover {
+			color: $ys-content-taxonomy-font-color + #222;
+		}
+	}
+}
+
+.entry-tag-list {
+  margin-top: 1rem;
+}
+
+.no-amp {
+	.entry-category-list h2::before {
+		@include fontawesome("f115");
+	}
+	.entry-tag-list h2::before {
+		@include fontawesome("f02b");
+	}
+}
+
+.entry-post-related {
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
 
 
 // ページャー
@@ -188,56 +231,66 @@
 	h2 {
 		margin: 0 0 .5rem;
 	}
-}
 
-.nav-previous,
-.nav-next {
+  .nav-previous,
+  .nav-next {
 
-	margin: 0 0 .5rem;
+  	margin: 0 0 .5rem;
 
-	.meta-nav {
-		margin: 0 0 .1rem;
-		color: $ys-font-color;
-	}
+  	.meta-nav {
+  		margin: 0 0 .1rem;
+  		color: $ys-font-color;
+  	}
 
-	span {
-		display: block;
-	}
+  	span {
+  		display: block;
+  	}
 
-}
+  }
+}//.post-navigation
+
+
 
 //--------------------------------------
 // タブレット
 //--------------------------------------
 @include media-breakpoint(tb) {
 
-	.nav-links {
-		font-size: 0;
-	}
+  .entry-footer-container {
+    margin-left:0;
+    margin-right:0;
+  }
 
-	.nav-previous,
-	.nav-next {
-		width: 50%;
-		display: inline-block;
-		font-size: 1rem;
-		vertical-align: top;
+  .post-navigation {
+    .nav-links {
+  		font-size: 0;
+  	}
 
-	}
+  	.nav-previous,
+  	.nav-next {
+  		width: 50%;
+  		display: inline-block;
+  		font-size: 1rem;
+  		vertical-align: top;
 
-	.nav-previous {
-		text-align: left;
+  	}
 
-		.post-title {
-			padding-right: .5rem;
-		}
-	}
-	.nav-next {
-		text-align: right;
+  	.nav-previous {
+  		text-align: left;
 
-		.post-title {
-			padding-left: .5rem;
-		}
-	}
+  		.post-title {
+  			padding-right: .5rem;
+  		}
+  	}
+  	.nav-next {
+  		text-align: right;
+
+  		.post-title {
+  			padding-left: .5rem;
+  		}
+  	}
+  }//.post-navigation
+
 
 
 	.sns-share-button {

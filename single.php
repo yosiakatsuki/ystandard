@@ -14,12 +14,15 @@ get_header(); ?>
 			// 書いた人
 			get_template_part( 'template-parts/biography' );
 
+			// カテゴリー・タグ
+			ys_template_the_taxonomy_list();
+
+			// 関連記事
+			ys_template_the_related_post();
+
 			if ( !ys_is_amp() && ( comments_open() || get_comments_number() ) ) {
 				comments_template();
 			}
-
-			// 次の投稿・前の投稿を入れる
-			ys_template_the_post_navigation();
 
 		endwhile;
 		?>

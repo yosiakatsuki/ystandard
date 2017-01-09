@@ -13,11 +13,15 @@
 }
 
 .comments-title,
-.comment-list,
-.comment-respond,
 .comment-reply-title,
 .logged-in-as {
-	margin: 0 0 .5rem;
+	margin: 0 0 1rem;
+}
+
+.comment-list {
+	margin: 0 0 4rem;
+}
+.comment-respond {
 }
 
 .comments-title,
@@ -27,15 +31,18 @@
 
 .comment-list {
 
-	.comment,
-	.pingback {
-		margin: 0 0 1rem;
+	.comment {
+		margin: 0 0 2rem;
 
 		.children {
-			margin: 1rem 0 0;
+			margin: 2rem 0 0;
 			padding-left: 1rem;
 		}
-	}//.comment-list li
+	}//.comment-list .comment
+
+	.pingback {
+		margin: 0 0 1rem;
+	}
 }//.comment-list
 
 
@@ -52,6 +59,7 @@
 	cite,
 	a {
 		font-weight: bold;
+    font-style: normal;
 	}
 }
 
@@ -80,16 +88,16 @@
 	}
 
 	.nav-links {
-		font-size: 0;
+    @include clearfix;
 
 		& > div {
-			display: inline-block;
 			width: 50%;
 			font-size: .8rem;
 		}
 
 		.nav-previous {
 			text-align: left;
+      float: left;
 
 			&::before {
 				content: "«";
@@ -99,6 +107,7 @@
 
 		.nav-next {
 			text-align: right;
+      float: right;
 
 			&::after {
 				content: "»";

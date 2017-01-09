@@ -19,6 +19,8 @@ if (!function_exists( 'ys_extras_body_classes')) {
 		// ampならクラス追加
 		if ( ys_is_amp() ) {
 			$classes[] = 'amp';
+		} else {
+			$classes[] = 'no-amp';
 		}
 
 		return $classes;

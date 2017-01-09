@@ -430,28 +430,28 @@ if( ! function_exists( 'ys_template_the_advertisement' ) ) {
 
 
 //-----------------------------------------------
-//	投稿ナビゲーション（次へ/前へ）
+//	関連記事
 //-----------------------------------------------
-if( ! function_exists( 'ys_template_the_post_navigation' ) ) {
-	function ys_template_the_post_navigation($before='',$after='') {
+if( ! function_exists( 'ys_template_the_related_post' ) ) {
+	function ys_template_the_related_post() {
+		$option = array(
+										'post__not_in' => array(get_the_ID()),  //現在の投稿IDは除く
+										'category__in' => ys_utilities_get_cat_id_list(true), //カテゴリー絞り込み
+									);
 
-		if($before == ''){
-			$before = '<div class="entry-footer-container">';
-		}
-		if($after == ''){
-			$after = '</div>';
-		}
-		echo $before;
-		the_post_navigation( array(
-			'next_text' => '<span class="meta-nav" aria-hidden="true">次の記事</span> ' .
-				'<span class="post-title">%title</span>',
-			'prev_text' => '<span class="meta-nav" aria-hidden="true">前の記事</span> ' .
-				'<span class="post-title">%title</span>',
-		) );
-		echo $after;
+		$query = new WP_Query(ys_utilities_get_rand(4,$option));
 
+		if ($query->have_posts()) {
+			echo '<div class="entry-post-related entry-footer-container">';
+			echo '<h2>関連記事</h2>';
+			while ($query->have_posts()) : $query->the_post();
+				get_template_part( 'template-parts/content','related' );
+			endwhile;
+			echo '</div>';
+		}
 	}
 }
+
 
 
 
@@ -490,45 +490,67 @@ if( ! function_exists( 'ys_template_the_copyright' ) ) {
 //	投稿のカテゴリー出力
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
-	function ys_template_the_post_categorys($number = null,$link=true,$separator=', ',$postid=0) {
-
-		if($postid==0){
-			$postid = get_the_ID();
-		}
-
-		$terms ='';
-		$taxonomy = 'category';
-		// 投稿に付けられたターム（カテゴリー）の ID を取得する。
-		$post_terms = wp_get_object_terms( $postid, $taxonomy, array( 'fields' => 'ids' ) );
-
-		if ( !empty( $post_terms ) && !is_wp_error( $post_terms ) ) {
-
-			$term_ids = implode( ',' , $post_terms );
-
-			$query = 'include=' . $term_ids;
-			if($number != null ) {
-				$query .= '&number='.$number;
-			}
-
-			$categories = get_categories( $query );
-			foreach ( $categories as $category ) {
-
-				if($link) {
-					$terms = '<a href="' . get_category_link( $category->term_id ) . '">' . $category->name . '</a>';
-				} else {
-					$terms = '<span class="cat-list <?php echo $category->slug; ?>">'.$category->name.'</span>';
-				}
-				$terms .= $separator;
-			}
-		}
-		// 投稿のカテゴリーを表示
-		echo rtrim($terms,$separator);
-	}//ys_category_get_post_categorys
+	function ys_template_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0) {
+		echo ys_utilities_get_the_post_categorys($number,$link,$separator,$postid);
+	}
 }
 
 
 
 
+//-----------------------------------------------
+//	投稿のカテゴリー一覧出力
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_category_list' ) ) {
+	function ys_template_the_category_list($before,$after,$separator=', ',$link=true,$postid=0) {
+
+		$categorys = ys_utilities_get_the_post_categorys(0,$link,$separator,$postid);
+
+		echo $before;
+		echo $categorys;
+		echo $after;
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	投稿のタグ一覧出力
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_tag_list' ) ) {
+	function ys_template_the_tag_list($before,$after,$separator=', ',$link=true,$postid=0) {
+
+		$tags = ys_utilities_get_the_tag_list($separator,$link,$postid);
+
+		if($tags != ''){
+			echo $before;
+			echo $tags;
+			echo $after;
+		}
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	投稿のタグ一覧出力
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_taxonomy_list' ) ) {
+	function ys_template_the_taxonomy_list() {
+
+		echo '<div class="entry-footer-container">';
+
+		// カテゴリー
+		ys_template_the_category_list('<div class="entry-category-list"><h2>カテゴリー</h2>','</div>','');
+		// タグ
+		ys_template_the_tag_list('<div class="entry-tag-list"><h2>タグ</h2>','</div>','');
+
+		echo '</div>';
+
+	}
+}
 
 
 
