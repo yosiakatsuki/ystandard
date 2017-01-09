@@ -82,6 +82,13 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義
   - Facebook admins
   - Twitterアカウント名
   - OGPデフォルト画像
+- SNSフォローURL
+  - Twitter
+  - Facebook
+  - Google+
+  - はてなブックマーク
+  - instagram
+  - Feedly
 - SEO対策設定
   - アーカイブページのnoindex設定
 

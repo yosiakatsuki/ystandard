@@ -231,7 +231,6 @@ if (!function_exists( 'ys_template_the_author_sns')) {
 			'ys_instagram' => 'instagram',
 			'ys_tumblr' => 'tumblr',
 			'ys_youtube' => 'youtube-play',
-			'ys_vine' => 'vine',
 			'ys_github' => 'github',
 			'ys_pinterest' => 'pinterest',
 			'ys_linkedin' => 'linkedin'
@@ -294,14 +293,31 @@ if( ! function_exists( 'ys_template_get_the_custom_excerpt' ) ) {
 
 
 //-----------------------------------------------
+//	CTA
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_entry_foot_cta' ) ) {
+	function ys_template_the_entry_foot_cta() {
+
+		// 広告
+		ys_template_the_advertisement();
+
+		// シェアボタン
+		ys_template_the_sns_share();
+
+	}
+}
+
+
+
+//-----------------------------------------------
 //	シェアボタン
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_sns_share' ) ) {
 	function ys_template_the_sns_share(){
 
 
-		echo '<div id="sns-share" class="sns-share">';
-		$share_buttons_title = '\ みんなにシェアする /';
+		echo '<div id="sns-share" class="sns-share entry-footer-container">';
+		$share_buttons_title = '\ みんなとシェアする /';
 		$share_buttons_title = apply_filters('ys_share_buttons_title',$share_buttons_title);
 
 		echo '<p class="sns-share-title">'.$share_buttons_title.'</p>';
@@ -398,6 +414,44 @@ if( ! function_exists( 'ys_template_the_amp_sns_share_buttons' ) ) {
 	}
 }
 
+
+
+
+//-----------------------------------------------
+//	広告
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_advertisement' ) ) {
+	function ys_template_the_advertisement() {
+
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	投稿ナビゲーション（次へ/前へ）
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_post_navigation' ) ) {
+	function ys_template_the_post_navigation($before='',$after='') {
+
+		if($before == ''){
+			$before = '<div class="entry-footer-container">';
+		}
+		if($after == ''){
+			$after = '</div>';
+		}
+		echo $before;
+		the_post_navigation( array(
+			'next_text' => '<span class="meta-nav" aria-hidden="true">次の記事</span> ' .
+				'<span class="post-title">%title</span>',
+			'prev_text' => '<span class="meta-nav" aria-hidden="true">前の記事</span> ' .
+				'<span class="post-title">%title</span>',
+		) );
+		echo $after;
+
+	}
+}
 
 
 

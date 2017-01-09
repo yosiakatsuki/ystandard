@@ -8,8 +8,9 @@ get_header(); ?>
 
 			get_template_part( 'template-parts/content', 'single' );
 
-			// シェアボタン
-			ys_template_the_sns_share();
+			// CTA
+			ys_template_the_entry_foot_cta();
+
 			// 書いた人
 			get_template_part( 'template-parts/biography' );
 
@@ -18,12 +19,7 @@ get_header(); ?>
 			}
 
 			// 次の投稿・前の投稿を入れる
-			the_post_navigation( array(
-				'next_text' => '<span class="meta-nav" aria-hidden="true">次の記事</span> ' .
-					'<span class="post-title">%title</span>',
-				'prev_text' => '<span class="meta-nav" aria-hidden="true">前の記事</span> ' .
-					'<span class="post-title">%title</span>',
-			) );
+			ys_template_the_post_navigation();
 
 		endwhile;
 		?>

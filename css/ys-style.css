@@ -11,7 +11,8 @@
   .bg-twitter:hover {
     background-color: #5baef3; }
   .bg-twitter,
-  .bg-twitter a {
+  .bg-twitter a,
+  .bg-twitter a:hover {
     color: #fff; }
 
 .color-facebook,
@@ -26,7 +27,8 @@
   .bg-facebook:hover {
     background-color: #4e71bb; }
   .bg-facebook,
-  .bg-facebook a {
+  .bg-facebook a,
+  .bg-facebook a:hover {
     color: #fff; }
 
 .color-google-plus,
@@ -41,7 +43,8 @@
   .bg-google-plus:hover {
     background-color: #ed4835; }
   .bg-google-plus,
-  .bg-google-plus a {
+  .bg-google-plus a,
+  .bg-google-plus a:hover {
     color: #fff; }
 
 .color-hatenabookmark,
@@ -56,7 +59,8 @@
   .bg-hatenabookmark:hover {
     background-color: #0697ff; }
   .bg-hatenabookmark,
-  .bg-hatenabookmark a {
+  .bg-hatenabookmark a,
+  .bg-hatenabookmark a:hover {
     color: #fff; }
 
 .color-rss,
@@ -71,7 +75,8 @@
   .bg-rss:hover {
     background-color: #fe9d31; }
   .bg-rss,
-  .bg-rss a {
+  .bg-rss a,
+  .bg-rss a:hover {
     color: #fff; }
 
 .color-feedly,
@@ -86,7 +91,8 @@
   .bg-feedly:hover {
     background-color: #a3c868; }
   .bg-feedly,
-  .bg-feedly a {
+  .bg-feedly a,
+  .bg-feedly a:hover {
     color: #fff; }
 
 .color-pocket,
@@ -101,7 +107,8 @@
   .bg-pocket:hover {
     background-color: #ef747e; }
   .bg-pocket,
-  .bg-pocket a {
+  .bg-pocket a,
+  .bg-pocket a:hover {
     color: #fff; }
 
 .color-instargram,
@@ -116,7 +123,8 @@
   .bg-instargram:hover {
     background-color: #548cb9; }
   .bg-instargram,
-  .bg-instargram a {
+  .bg-instargram a,
+  .bg-instargram a:hover {
     color: #fff; }
 
 .color-line,
@@ -131,7 +139,8 @@
   .bg-line:hover {
     background-color: #3ae81d; }
   .bg-line,
-  .bg-line a {
+  .bg-line a,
+  .bg-line a:hover {
     color: #fff; }
 
 .color-tumblr,
@@ -146,7 +155,8 @@
   .bg-tumblr:hover {
     background-color: #485f7c; }
   .bg-tumblr,
-  .bg-tumblr a {
+  .bg-tumblr a,
+  .bg-tumblr a:hover {
     color: #fff; }
 
 .color-youtube-play,
@@ -161,7 +171,8 @@
   .bg-youtube-play:hover {
     background-color: #e23e3d; }
   .bg-youtube-play,
-  .bg-youtube-play a {
+  .bg-youtube-play a,
+  .bg-youtube-play a:hover {
     color: #fff; }
 
 .color-vine,
@@ -176,7 +187,8 @@
   .bg-vine:hover {
     background-color: #00e6b0; }
   .bg-vine,
-  .bg-vine a {
+  .bg-vine a,
+  .bg-vine a:hover {
     color: #fff; }
 
 .color-github,
@@ -191,7 +203,8 @@
   .bg-github:hover {
     background-color: #689cd0; }
   .bg-github,
-  .bg-github a {
+  .bg-github a,
+  .bg-github a:hover {
     color: #fff; }
 
 .color-pinterest,
@@ -203,7 +216,8 @@
 
 .bg-pinterest {
   background-color: #cb2027; }
-  .bg-pinterest:hover {
+  .bg-pinterest:hover,
+  .bg-pinterest a:hover {
     background-color: #e03e44; }
   .bg-pinterest,
   .bg-pinterest a {
@@ -221,7 +235,8 @@
   .bg-linkedin:hover {
     background-color: #1297d7; }
   .bg-linkedin,
-  .bg-linkedin a {
+  .bg-linkedin a,
+  .bg-linkedin a:hover {
     color: #fff; }
 
 .aligncenter,
@@ -278,15 +293,6 @@ div.aligncenter {
 	}
 }
 */
-.entry-date-container {
-  font-size: .6rem;
-  margin: 0 0 .5rem;
-  text-align: right; }
-  .entry-date-container svg {
-    height: .5rem;
-    width: auto;
-    margin-right: .3rem; }
-
 .amp-view-info {
   padding: 1rem;
   margin: 2rem 0;
@@ -301,8 +307,12 @@ div.aligncenter {
   margin: .5rem 0 0;
   font-size: .8rem; }
 
+.entry-footer-container {
+  padding: 1rem; }
+
 .sns-share {
   margin: 2rem 0 0;
+  background-color: #fafafa;
   text-align: center; }
 
 .sns-share-title {
@@ -463,6 +473,10 @@ div.aligncenter {
         margin-left: auto; }
       .sns-share-button li:nth-child(3n+3) {
         margin-right: 0; } }
+
+@media screen and (min-width: 960px) {
+  .entry-footer-container {
+    padding: 2rem; } }
 
 .entry-content ul,
 .comment-text ul {
@@ -674,11 +688,12 @@ div.aligncenter {
     margin: 0 0 .5rem; }
 
 .author-sns {
+  margin: 0 0 .5rem;
   font-size: 0;
-  margin: 0 0 .5rem; }
+  text-align: center; }
   .author-sns li {
     display: inline-block;
-    margin-right: 5rem;
+    margin-right: .5rem;
     font-size: 1rem;
     vertical-align: middle; }
     .author-sns li a {
@@ -690,12 +705,13 @@ div.aligncenter {
 @media screen and (min-width: 600px) {
   .author-avatar {
     margin-right: 1rem;
-    float: left;
-    overflow: hidden; }
+    float: left; }
   .author-title {
     text-align: left; }
+  .author-sns {
+    text-align: left; }
   .author-description.show-avatar {
-    float: left; } }
+    overflow: hidden; } }
 
 .comments-area {
   margin: 0 0 2rem; }

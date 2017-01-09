@@ -28,19 +28,6 @@
 }
 */
 
-// 日付の表示
-.entry-date-container {
-	font-size: .6rem;
-	margin: 0 0 .5rem;
-	text-align: right;
-
-	svg {
-		height: .5rem;
-		width: auto;
-		margin-right: .3rem;
-	}
-}
-
 
 .amp-view-info {
 	padding: 1rem;
@@ -58,9 +45,17 @@
 	font-size: .8rem;
 }
 
+
+// 投稿以外の左右padding調整クラス
+.entry-footer-container {
+  padding: $ys-gutter-sp;
+}
+
+
 // シェアボタン
 .sns-share {
 	margin: 2rem 0 0;
+  background-color: $ys-content-share-bg-color;
 	text-align: center;
 }
 
@@ -282,5 +277,7 @@
 //--------------------------------------
 @include media-breakpoint(pc) {
 
-
+  .entry-footer-container {
+    padding: $ys-gutter;
+  }
 };

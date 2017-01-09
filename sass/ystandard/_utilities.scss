@@ -27,7 +27,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-twitter
@@ -51,7 +52,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-facebook
@@ -75,7 +77,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-google-plus
@@ -99,7 +102,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-hatenabookmark
@@ -123,7 +127,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-rss
@@ -147,7 +152,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-feedly
@@ -171,7 +177,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-pocket
@@ -195,7 +202,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-instargram
@@ -219,7 +227,8 @@
 	}
 
 	&,
-	& a {
+  & a,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-line
@@ -243,7 +252,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-tumblr
@@ -267,7 +277,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-youtube-play
@@ -291,7 +302,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-vine
@@ -315,7 +327,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-github
@@ -334,7 +347,8 @@
 
 	background-color: $ys-sns-color-pinterest;
 
-	&:hover {
+	&:hover ,
+	& a:hover {
 		background-color: lighten($ys-sns-color-pinterest,$ys-sns-link-hover-lighten);
 	}
 
@@ -363,7 +377,8 @@
 	}
 
 	&,
-	& a {
+	& a ,
+	& a:hover {
 		color: #fff;
 	}
 }//.bg-linkedin

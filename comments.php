@@ -4,7 +4,7 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area">
+<div id="comments" class="comments-area entry-footer-container">
 
 	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">

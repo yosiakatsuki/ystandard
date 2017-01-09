@@ -1,4 +1,4 @@
-<div class="author-info clearfix" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
+<div class="author-info clearfix entry-footer-container" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
 	<?php
 		$avatar = ys_utilities_get_the_user_avatar_img();
 		if($avatar != ''):

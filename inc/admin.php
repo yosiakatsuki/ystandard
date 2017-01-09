@@ -72,7 +72,6 @@ if( ! function_exists( 'ys_admin_add_contactmethods' ) ) {
 		$wb['ys_instargram'] = 'Instargram';
 		$wb['ys_tumblr'] = 'Tumblr';
 		$wb['ys_youtube'] = 'Youtube';
-		$wb['ys_vine'] = 'vine';
 		$wb['ys_github'] = 'GitHub';
 		$wb['ys_pinterest'] = 'Pinterest';
 		$wb['ys_linkedin'] = 'LinkedIn';
