@@ -450,7 +450,9 @@ img {
     margin-top: 1rem;
     margin-bottom: -1rem; } }
 
-.post {
+.post,
+.page-header,
+.site-main > article {
   padding: 1rem 1rem 2rem; }
 
 .post-thumbnail {
@@ -577,11 +579,15 @@ img {
   font-weight: bold; }
 
 @media screen and (min-width: 600px) {
-  .post {
+  .post,
+  .page-header,
+  .site-main > article {
     padding: 1rem; } }
 
 @media screen and (min-width: 960px) {
-  .post {
+  .post,
+  .page-header,
+  .site-main > article {
     padding: 2rem; } }
 
 .post-list {

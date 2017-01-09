@@ -2,33 +2,27 @@
 	<meta itemscope id="EntityOfPageid-<?php the_ID(); ?>" itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/Webpage" itemid="<?php echo the_permalink(); ?>">
 
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title" itemprop="headline name">', '</h1>' ); ?>
-
 		<div class="entry-meta entry-date-container">
-			<?php ys_template_the_entry_date(false); ?>
+			<?php ys_template_the_entry_date(); ?>
 		</div><!-- .entry-meta -->
 
-		<?php if(has_post_thumbnail()): ?>
+		<?php the_title( '<h1 class="entry-title" itemprop="headline name">', '</h1>' ); ?>
+
+		<?php if(has_post_thumbnail() && ys_get_setting('ys_hide_post_thumbnail') == 0): ?>
 			<figure class="post-thumbnail" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
 				<?php ys_template_the_post_thumbnail(); ?>
 			</figure><!-- .post-thumbnail -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content"  itemprop="articleBody">
+	<div class="entry-content" itemprop="articleBody">
 		<?php
 
-		the_content();
+			the_content();
 
-		ys_template_the_link_pages();
+			ys_template_the_link_pages();
 
 		?>
 	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php
-			get_template_part( 'template-parts/biography' );
-		 ?>
-	</footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->
