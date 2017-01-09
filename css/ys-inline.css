@@ -680,11 +680,10 @@ img {
     margin-right: 2rem; } }
 
 .page-title {
-  margin: 0 0 1.5rem;
   font-size: 1.4rem; }
 
 .taxonomy-description {
-  margin: 0 0 1.5rem;
+  margin: 1rem 0 0;
   font-size: .8rem; }
   .taxonomy-description p {
     margin: 0 0 .2rem; }
