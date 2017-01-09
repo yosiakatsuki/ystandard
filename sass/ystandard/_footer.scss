@@ -13,6 +13,11 @@
 	padding: .5rem 0;
 	background-color: $ys-footer-bg-color;
 	color: $ys-footer-font-color;
+
+  a,
+  a:hover {
+    color: $ys-footer-font-color;
+  }
 }
 
 .footer-navigation {
@@ -20,6 +25,7 @@
 }
 
 .footer-menu {
+  margin: 1rem 0;
 	font-size: 0;
 	text-align: right;
 
@@ -27,21 +33,48 @@
 		display: inline-block;
 		font-size: .8rem;
 		margin-right: 1rem;
-
-		a {
-			color: $ys-footer-font-color;
-		}
 	}
 }
+
+.follow-sns-list {
+
+  margin: .5rem 0;
+  line-height: 1;
+  font-size: 1.3rem;
+  text-align: center;
+
+  li {
+    display: inline-block;
+    margin-right: .5rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }//li
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: $ys-footer-sns-bg-color;
+    border-radius: 50%;
+
+    &:hover {
+      background-color: $ys-footer-sns-bg-color + #222;
+    }
+  }
+
+  .icon-hatenabookmark::before {
+    margin: 0;
+  }
+}
+
 
 .site-info {
 	margin: .5rem 0 0;
 	font-size: .9rem;
 	text-align: center;
-
-	a {
-		color: $ys-footer-font-color;
-	}
 }
 
 .footer-widget-wrapper {

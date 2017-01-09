@@ -84,6 +84,10 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_ogp_fb_admins' );
 	register_setting( 'ys_main_settings', 'ys_twittercard_user' );
 	register_setting( 'ys_main_settings', 'ys_ogp_default_image' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_twitter' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_facebook' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_googlepuls' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_instagram' );
 	register_setting( 'ys_main_settings', 'ys_show_post_related','ys_utilities_sanitize_checkbox' );
 
 	//高度な設定

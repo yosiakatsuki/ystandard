@@ -30,7 +30,11 @@
 	a {
 		display: block;
 		font-weight: bold;
-		color: $ys-font-color;
+		color: $ys-author-name-font-color;
+
+    &:hover {
+      color: $ys-author-name-font-color + #222;
+    }
 	}
 
 }

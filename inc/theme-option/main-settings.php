@@ -116,6 +116,39 @@
 	</div>
 
 	<div class="postbox">
+		<h2 class="hndle">SNSフォローURL</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">Twitter</th>
+					<td>
+						<input type="text" name="ys_follow_url_twitter" id="ys_follow_url_twitter" value="<?php echo esc_url( get_option('ys_follow_url_twitter') ); ?>" placeholder="http://example.com" style="width:100%;"/>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">Facebook</th>
+					<td>
+						<input type="text" name="ys_follow_url_facebook" id="ys_follow_url_facebook" value="<?php echo esc_url( get_option('ys_follow_url_facebook') ); ?>" placeholder="http://example.com" style="width:100%;" />
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">Google+</th>
+					<td>
+						<input type="text" name="ys_follow_url_googlepuls" id="ys_follow_url_googlepuls" value="<?php echo esc_url( get_option('ys_follow_url_googlepuls') ); ?>" placeholder="http://example.com" style="width:100%;" />
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">Instagram</th>
+					<td>
+						<input type="text" name="ys_follow_url_instagram" id="ys_follow_url_instagram" value="<?php echo esc_url( get_option('ys_follow_url_instagram') ); ?>" placeholder="http://example.com" style="width:100%;" />
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+
+	<div class="postbox">
 		<h2 class="hndle">投稿設定</h2>
 		<div class="inside">
 			<table class="form-table">

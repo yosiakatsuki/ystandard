@@ -368,7 +368,7 @@ if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
 
 		// はてブ
 		$hatenabookmark_button_text = apply_filters('ys_hatenabookmark_button_text','はてブ');
-		$share_buttons .= '<li class="hatenabookmark bg-hatenabookmark"><a href="http://b.hatena.ne.jp/add?mode=confirm&url='.$share_url.'">'.$hatenabookmark_button_text.'</a></li>';
+		$share_buttons .= '<li class="hatenabookmark bg-hatenabookmark"><a class="icon-hatenabookmark" href="http://b.hatena.ne.jp/add?mode=confirm&url='.$share_url.'">'.$hatenabookmark_button_text.'</a></li>';
 
 		// Google +
 		$googleplus_button_text = apply_filters('ys_googleplus_button_text','Google+');
@@ -464,6 +464,53 @@ if( ! function_exists( 'ys_template_the_related_post' ) ) {
 //	フッター関連
 //
 //------------------------------------------------------------------------------
+
+//-----------------------------------------------
+//	copyright
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
+	function ys_template_the_follow_sns_list() {
+
+		$twitter = ys_get_setting('ys_follow_url_twitter');
+		$facebook = ys_get_setting('ys_follow_url_facebook');
+		$googlepuls = ys_get_setting('ys_follow_url_googlepuls');
+		$instagram = ys_get_setting('ys_follow_url_instagram');
+
+		if($twitter != ''
+			|| $facebook != ''
+			|| $googlepuls != ''
+			|| $instagram != '') {
+
+				$sns_follow_links = '';
+
+				if($twitter != ''){
+					$sns_follow_links .= '<li class="twitter"><a href="'.$twitter.'"><i class="fa fa-twitter" aria-hidden="true"></i></li>';
+				}
+				if($facebook != ''){
+					$sns_follow_links .= '<li class="facebook"><a href="'.$facebook.'"><i class="fa fa-facebook" aria-hidden="true"></i></li>';
+				}
+				if($googlepuls != ''){
+					$sns_follow_links .= '<li class="googlepuls"><a href="'.$googlepuls.'"><i class="fa fa-google-plus" aria-hidden="true"></i></li>';
+				}
+				if($instagram != ''){
+					$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'"><i class="fa fa-instagram" aria-hidden="true"></i></li>';
+				}
+
+				$sns_follow_links = apply_filters('ys_follow_sns_list',$sns_follow_links);
+
+				echo '<div class="follow-sns-list"><ul>';
+				echo $sns_follow_links;
+				echo '</ul></div>';
+			}
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	copyright
+//-----------------------------------------------
 if( ! function_exists( 'ys_template_the_copyright' ) ) {
 	function ys_template_the_copyright() {
 

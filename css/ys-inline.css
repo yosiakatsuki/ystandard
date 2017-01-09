@@ -211,7 +211,9 @@ body {
   zoom: 1; }
 
 a {
-  color: #0068b7; }
+  color: #0068b7;
+  -webkit-transition: color .3s,background-color .3s;
+  transition: color .3s,background-color .3s; }
   a:hover {
     color: #0085ea; }
 

@@ -5,6 +5,12 @@
 			<div class="wrap">
 				<?php
 					if ( !ys_is_amp() ) :
+
+						// SNSフォロー
+						ys_template_the_follow_sns_list();
+				?>
+
+				<?php
 						if ( is_active_sidebar( 'footer-left' )
 									|| is_active_sidebar( 'footer-center' )
 									|| is_active_sidebar( 'footer-right' )) :
@@ -33,8 +39,8 @@
 						</div>
 					</div>
 				<?php
-						endif;
-					endif;
+						endif;//sidebar
+					endif;//ys_is_amp
 				?>
 
 				<?php if ( has_nav_menu( 'footer' ) ) : ?>

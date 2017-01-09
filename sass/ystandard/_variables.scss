@@ -100,10 +100,14 @@ $ys-content-pager-bg-color : transparent !default;
 $ys-content-pager-current-font-color : #fff !default;
 $ys-content-pager-current-bg-color : $ys-font-color !default;
 
-
 $ys-content-share-bg-color : $ys-bg-color-gray !default;
+
 $ys-content-taxonomy-font-color : $ys-font-color-gray !default;
 $ys-content-taxonomy-border-color : $ys-border-color-gray !default;
+
+
+// 投稿者
+$ys-author-name-font-color : $ys-font-color !default;
 
 
 // ページネーション
@@ -116,6 +120,7 @@ $ys-pagination-current-border-color : $ys-font-color !default;
 // フッター部分
 $ys-footer-bg-color              : #2c3e50 !default;
 $ys-footer-font-color            : #fff !default;
+$ys-footer-sns-bg-color : $ys-footer-bg-color + #111 !default;
 
 // コメント
 $ys-required-color               : #db2814 !default;

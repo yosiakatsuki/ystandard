@@ -35,6 +35,10 @@ if (!function_exists( 'ys_settings')) {
 		$ys_ogp_fb_admins = esc_attr( get_option('ys_ogp_fb_admins','') );
 		$ys_twittercard_user = esc_attr( get_option('ys_twittercard_user','') );
 		$ys_ogp_default_image = esc_url( get_option('ys_ogp_default_image','') );
+		$ys_follow_url_twitter = esc_url( get_option('ys_follow_url_twitter','') );
+		$ys_follow_url_facebook = esc_url( get_option('ys_follow_url_facebook','') );
+		$ys_follow_url_googlepuls = esc_url( get_option('ys_follow_url_googlepuls','') );
+		$ys_follow_url_instagram = esc_url( get_option('ys_follow_url_instagram','') );
 		$ys_show_post_related = get_option('ys_show_post_related',1) ;
 
 		// 高度な設定
@@ -63,6 +67,10 @@ if (!function_exists( 'ys_settings')) {
 										,'ys_ogp_fb_admins' => $ys_ogp_fb_admins	//facebook admins
 										,'ys_twittercard_user' => $ys_twittercard_user	//Twitterカードのユーザー名
 										,'ys_ogp_default_image' => $ys_ogp_default_image	//OGPデフォルト画像
+										,'ys_follow_url_twitter' => $ys_follow_url_twitter	//TwitterフォローURL
+										,'ys_follow_url_facebook' => $ys_follow_url_facebook	//facebookフォローURL
+										,'ys_follow_url_googlepuls' => $ys_follow_url_googlepuls	//google+フォローURL
+										,'ys_follow_url_instagram' => $ys_follow_url_instagram	//instagramフォローURL
 										,'ys_show_post_related' => $ys_show_post_related	//関連記事を出力する
 
 										,'ys_hide_post_thumbnail' => $ys_hide_post_thumbnail	//個別ページでアイキャッチ画像を非表示にする

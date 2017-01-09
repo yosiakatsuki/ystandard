@@ -41,6 +41,7 @@ body {
 
 a {
 	color: $ys-link-color;
+	transition: color .3s,background-color .3s;
 
 	&:hover {
 		color: $ys-link-color-hover;
