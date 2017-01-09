@@ -191,15 +191,15 @@
 	.page-text {
 		padding: .2rem .5rem;
 		margin-right: .5rem;
-		border: 1px solid $ys-border-color-pager;
-		background-color: $ys-bg-color-pager-current;
-		color: $ys-font-color-pager-current;
+		border: 1px solid $ys-content-pager-border-color;
+		background-color: $ys-content-pager-current-bg-color;
+		color: $ys-content-pager-current-font-color;
 	}
 
 	a {
 		.page-text {
-			background-color: $ys-bg-color-pager;
-			color: $ys-font-color-pager;
+			background-color: $ys-content-pager-bg-color;
+			color: $ys-content-pager-font-color;
 		}
 	}//a
 }//.page-links

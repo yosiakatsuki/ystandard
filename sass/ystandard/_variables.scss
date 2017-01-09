@@ -23,8 +23,6 @@ $ys-font-color                   : #2c3e50 !default;
 $ys-font-color-gray              : #888 !default;
 $ys-font-color-code              : #2626d9 !default;
 $ys-font-color-blockquote        : #888 !default;
-$ys-font-color-pager             : $ys-font-color !default;
-$ys-font-color-pager-current     : #fff !default;
 $ys-font-color-input             : $ys-font-color !default;
 $ys-font-color-button            : #fff !default;
 $ys-font-color-searchtext        : $ys-font-color !default;
@@ -36,8 +34,6 @@ $ys-bg-color-gray                : #fafafa !default;
 $ys-bg-color-content             : #fff !default;
 $ys-bg-color-code                : #fbfbfb !default;
 $ys-bg-color-blockquote          : #fbfbfb !default;
-$ys-bg-color-pager               : transparent !default;
-$ys-bg-color-pager-current       : $ys-font-color !default;
 $ys-bg-color-input               : #fff !default;
 $ys-bg-color-button              : $ys-font-color !default;
 $ys-bg-color-searchtext          : transparent !default;
@@ -98,10 +94,23 @@ $ys-content-postthumb-hover-bg-color : rgba(#000,0.7) !default;
 $ys-content-image-border-color : $ys-border-color-gray !default;
 $ys-content-image-border-px : 2px !default;
 
+$ys-content-pager-border-color : $ys-font-color !default;
+$ys-content-pager-font-color : $ys-font-color !default;
+$ys-content-pager-bg-color : transparent !default;
+$ys-content-pager-current-font-color : #fff !default;
+$ys-content-pager-current-bg-color : $ys-font-color !default;
+
+
 $ys-content-share-bg-color : $ys-bg-color-gray !default;
 $ys-content-taxonomy-font-color : $ys-font-color-gray !default;
 $ys-content-taxonomy-border-color : $ys-border-color-gray !default;
 
+
+// ページネーション
+$ys-pagination-adjacent-bg-color : $ys-font-color !default;
+$ys-pagination-adjacent-font-color : #fff !default;
+$ys-pagination-border-color : $ys-border-color-gray !default;
+$ys-pagination-current-border-color : $ys-font-color !default;
 
 
 // フッター部分

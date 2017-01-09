@@ -15,9 +15,11 @@
 }
 .pagination-title {
 	margin: 0 0 .5rem;
+  font-size: .9rem;
 }
 .pagination-list {
 
+  position: relative;
 	font-size: 0;
 
 	li {
@@ -32,25 +34,29 @@
 		.current {
 			display: block;
 			padding: .2rem 0;
-			border: 1px solid $ys-border-color-pager;
-		}
-
-		a {
-			background-color: $ys-bg-color-pager;
-			color: $ys-font-color-pager;
+			border-bottom: 1px solid $ys-pagination-border-color;
+      color: $ys-font-color;
 		}
 
 		.current {
-			background-color: $ys-bg-color-pager-current;
-			color: $ys-font-color-pager-current;
+      border-bottom: 2px solid $ys-pagination-current-border-color;
 		}//a
 
-		.next,
-		.previous {
-			border:none;
-		}
-	}
-
+	}//li
+  .next,
+  .previous {
+    position: absolute;
+    background-color: $ys-pagination-adjacent-bg-color;
+    a {
+      color: $ys-pagination-adjacent-font-color;
+    }
+  }//.next,.previous
+  .next {
+    right: 0;
+  }
+  .previous {
+    left: 0;
+  }
 
 }
 
@@ -58,7 +64,9 @@
 // タブレット
 //--------------------------------------
 @include media-breakpoint(tb) {
-
+  .pagination {
+    padding: 0 $ys-gutter-sp;
+  }
 };
 
 //--------------------------------------
@@ -66,5 +74,7 @@
 //--------------------------------------
 @include media-breakpoint(pc) {
 
-
+  .pagination {
+    padding: 0 $ys-gutter;
+  }
 };

@@ -44,7 +44,7 @@ if (!function_exists( 'ys_pagination')) {
 			}
 			//「前へ」リンクの作成
 			if($current>1){
-				echo '<li><a class="previous" href="'.get_pagenum_link($current - 1).'"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>';
+				echo '<li class="previous"><a href="'.get_pagenum_link($current - 1).'"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>';
 			}
 
 			//各ページへのリンク
@@ -63,7 +63,7 @@ if (!function_exists( 'ys_pagination')) {
 
 			//「次へ」リンクの作成
 			if($current<$total){
-				echo '<li><a class="next" href="'.get_pagenum_link($current + 1).'"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>';
+				echo '<li class="next"><a href="'.get_pagenum_link($current + 1).'"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>';
 			}
 			//「末尾へ」リンクの作成(見た目とかの調整の結果コメントアウト)
 			if($current<$total - $mid_size && ($mid_size * 2) + 1 < $total){
