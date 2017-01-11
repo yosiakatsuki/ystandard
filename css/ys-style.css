@@ -886,7 +886,9 @@ div.aligncenter {
   font-size: .9rem; }
 
 .pagination-list {
+  max-width: 300px;
   position: relative;
+  margin: 0 auto;
   font-size: 0; }
   .pagination-list li {
     width: 2rem;

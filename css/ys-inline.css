@@ -238,6 +238,10 @@ img {
   background-color: #fff;
   overflow: hidden; }
 
+.sidebar {
+  padding: 1rem 0;
+  overflow: hidden; }
+
 @media screen and (min-width: 600px) {
   .content-area {
     padding: 0; } }
@@ -266,8 +270,7 @@ img {
     -webkit-flex: 0 0 352px;
     -ms-flex: 0 0 352px;
     flex: 0 0 352px;
-    padding: 2rem;
-    overflow: hidden; } }
+    padding: 2rem; } }
 
 .color-site-header {
   background-color: #fafafa;

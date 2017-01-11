@@ -25,15 +25,15 @@ if (!function_exists( 'ys_pagination')) {
 			return;
 		}
 
-		//--------------------------------------------------------------------------
-
 		//ページャーの開始
 		echo '<nav class="pagination">';
 		//タイトル出力
-		echo ys_pagination_get_pagination_title($current,$total);
+		$pagination_title = '<p class="pagination-title">'.$current.' / '.$total.'</p>';
+		$pagination_title = apply_filters('',$pagination_title,$current,$total);
+
+		echo $pagination_title;
 		//ページのリンク出力
 		echo '<ul class="pagination-list">';
-		//--------------------------------------------------------------------------
 
 		// ページングありの場合、ページャー作成
 		if ( $total > 1 ) {
@@ -79,20 +79,5 @@ if (!function_exists( 'ys_pagination')) {
 		echo '</nav>';
 	}
 }
-
-
-
-//-----------------------------------------------
-//	ページネーションタイトル
-//-----------------------------------------------
-if (!function_exists( 'ys_pagination_get_pagination_title')) {
-	function ys_pagination_get_pagination_title($current,$total) {
-
-		return '<p class="pagination-title">Page '.$current.' of '.$total.'</p>';
-	}
-}
-
-
-
 
 ?>
