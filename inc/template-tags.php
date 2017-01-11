@@ -466,7 +466,7 @@ if( ! function_exists( 'ys_template_the_related_post' ) ) {
 //------------------------------------------------------------------------------
 
 //-----------------------------------------------
-//	copyright
+//	SNSのフォローリンク
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 	function ys_template_the_follow_sns_list() {
@@ -484,16 +484,16 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 				$sns_follow_links = '';
 
 				if($twitter != ''){
-					$sns_follow_links .= '<li class="twitter"><a href="'.$twitter.'"><i class="fa fa-twitter" aria-hidden="true"></i></li>';
+					$sns_follow_links .= '<li class="twitter"><a href="'.$twitter.'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';
 				}
 				if($facebook != ''){
-					$sns_follow_links .= '<li class="facebook"><a href="'.$facebook.'"><i class="fa fa-facebook" aria-hidden="true"></i></li>';
+					$sns_follow_links .= '<li class="facebook"><a href="'.$facebook.'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';
 				}
 				if($googlepuls != ''){
-					$sns_follow_links .= '<li class="googlepuls"><a href="'.$googlepuls.'"><i class="fa fa-google-plus" aria-hidden="true"></i></li>';
+					$sns_follow_links .= '<li class="googlepuls"><a href="'.$googlepuls.'"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';
 				}
 				if($instagram != ''){
-					$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'"><i class="fa fa-instagram" aria-hidden="true"></i></li>';
+					$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';
 				}
 
 				$sns_follow_links = apply_filters('ys_follow_sns_list',$sns_follow_links);
@@ -503,6 +503,48 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 				echo '</ul></div>';
 			}
 	}
+}
+
+
+
+
+//-----------------------------------------------
+//	SNSのフォローリンク
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_fotter_widget' ) ) {
+	function ys_template_the_fotter_widget() {
+
+		if ( is_active_sidebar( 'footer-left' )
+					|| is_active_sidebar( 'footer-center' )
+					|| is_active_sidebar( 'footer-right' )) {
+
+			echo '<div class="footer-widget-wrapper">';
+
+				// 左ウィジェット
+				if ( is_active_sidebar( 'footer-left' )){
+					echo '<div class="footer-widget-left">';
+					dynamic_sidebar( 'footer-left' );
+					echo '</div>';
+				}
+
+				// 中央ウィジェット
+				if ( is_active_sidebar( 'footer-center' )) {
+					echo '<div class="footer-widget-center">';
+					dynamic_sidebar( 'footer-center' );
+					echo '</div>';
+				}
+
+				// 右ウィジェット
+				if ( is_active_sidebar( 'footer-right' )) {
+					echo '<div class="footer-widget-right">';
+					dynamic_sidebar( 'footer-right' );
+					echo '</div>';
+				}
+
+			echo '</div>';
+
+		}
+	}//ys_template_the_fotter_widget
 }
 
 

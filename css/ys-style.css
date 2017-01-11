@@ -983,7 +983,7 @@ div.aligncenter {
   text-align: center; }
 
 .footer-widget-wrapper {
-  padding: 1rem 0; }
+  padding: 2rem 0 1rem; }
 
 .footer-widget-left,
 .footer-widget-center,
@@ -992,32 +992,77 @@ div.aligncenter {
 
 @media screen and (min-width: 600px) {
   .footer-widget-wrapper {
-    font-size: 0;
-    letter-spacing: -.4em; }
-  .footer-widget-left,
-  .footer-widget-center,
-  .footer-widget-right {
-    display: inline-block;
-    font-size: .9rem;
-    vertical-align: top;
-    letter-spacing: 0.1em; }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap; }
   .footer-widget-left {
     width: 100%; }
   .footer-widget-center,
   .footer-widget-right {
-    width: 49%; }
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 100%; }
+  .footer-widget-left {
+    padding: 0; }
   .footer-widget-center {
-    margin: 0 1% 1rem 0; }
+    padding: 1rem 1rem 0 0; }
   .footer-widget-right {
-    margin: 0 0 1rem 1%; } }
+    padding: 1rem 0 0 1rem; }
+  /*
+	.footer-widget-wrapper {
+		font-size: 0;
+		letter-spacing: -.4em;
+	}
+
+	.footer-widget-left,
+	.footer-widget-center,
+	.footer-widget-right {
+		display: inline-block;
+		font-size: .9rem;
+		vertical-align: top;
+		letter-spacing: $ys-letter-spacing;
+	}
+
+	.footer-widget-left {
+		width: 100%;
+	}
+
+	.footer-widget-center,
+	.footer-widget-right {
+		width: 49%;
+	}
+
+	.footer-widget-center {
+		margin: 0 1% 1rem 0;
+	}
+
+	.footer-widget-right {
+		margin: 0 0 1rem 1%;
+	}
+  */ }
 
 @media screen and (min-width: 960px) {
+  .footer-widget-wrapper {
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap; }
   .footer-widget-left,
   .footer-widget-center,
   .footer-widget-right {
-    width: 30%; }
-  .footer-widget-left,
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 100%; }
+  .footer-widget-left {
+    padding: 0 2rem 0 0; }
   .footer-widget-center {
-    margin: 0 5% 1rem 0; }
+    padding: 0 2rem; }
   .footer-widget-right {
-    margin: 0 0 1rem 0; } }
+    padding: 0 0 0 2rem; } }

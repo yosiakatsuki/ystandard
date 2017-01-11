@@ -8,38 +8,10 @@
 
 						// SNSフォロー
 						ys_template_the_follow_sns_list();
-				?>
 
-				<?php
-						if ( is_active_sidebar( 'footer-left' )
-									|| is_active_sidebar( 'footer-center' )
-									|| is_active_sidebar( 'footer-right' )) :
-				?>
-					<div class="footer-widget-wrapper">
-						<div class="footer-widget-left">
-							<?php
-								if ( is_active_sidebar( 'footer-left' )){
-									dynamic_sidebar( 'footer-left' );
-								}
-							?>
-						</div>
-						<div class="footer-widget-center">
-							<?php
-								if ( is_active_sidebar( 'footer-center' )){
-									dynamic_sidebar( 'footer-center' );
-								}
-							?>
-						</div>
-						<div class="footer-widget-right">
-							<?php
-								if ( is_active_sidebar( 'footer-right' )){
-									dynamic_sidebar( 'footer-right' );
-								}
-							?>
-						</div>
-					</div>
-				<?php
-						endif;//sidebar
+						// ウィジェット
+						ys_template_the_fotter_widget();
+
 					endif;//ys_is_amp
 				?>
 
