@@ -20,21 +20,6 @@
   }
 }
 
-.footer-navigation {
-	margin: .5rem 0 0;
-}
-
-.footer-menu {
-  margin: 1rem 0;
-	font-size: 0;
-	text-align: right;
-
-	li {
-		display: inline-block;
-		font-size: .8rem;
-		margin-right: 1rem;
-	}
-}
 
 .follow-sns-list {
 
@@ -70,6 +55,21 @@
   }
 }
 
+.footer-navigation {
+	margin: .5rem 0 0;
+}
+
+.footer-menu {
+  margin: 1rem 0;
+	font-size: 0;
+	text-align: left;
+
+	li {
+		display: inline-block;
+		font-size: .8rem;
+		margin-right: 1rem;
+	}
+}
 
 .site-info {
 	margin: .5rem 0 0;

@@ -933,18 +933,6 @@ div.aligncenter {
   .site-footer a:hover {
     color: #fff; }
 
-.footer-navigation {
-  margin: .5rem 0 0; }
-
-.footer-menu {
-  margin: 1rem 0;
-  font-size: 0;
-  text-align: right; }
-  .footer-menu li {
-    display: inline-block;
-    font-size: .8rem;
-    margin-right: 1rem; }
-
 .follow-sns-list {
   margin: .5rem 0;
   line-height: 1;
@@ -976,6 +964,18 @@ div.aligncenter {
       background-color: #5f7183; }
   .follow-sns-list .icon-hatenabookmark::before {
     margin: 0; }
+
+.footer-navigation {
+  margin: .5rem 0 0; }
+
+.footer-menu {
+  margin: 1rem 0;
+  font-size: 0;
+  text-align: left; }
+  .footer-menu li {
+    display: inline-block;
+    font-size: .8rem;
+    margin-right: 1rem; }
 
 .site-info {
   margin: .5rem 0 0;
