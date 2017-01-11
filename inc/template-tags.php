@@ -14,18 +14,18 @@
 //-----------------------------------------------
 //	html-head要素の出力
 //-----------------------------------------------
-if(!function_exists( 'ys_template_head_tag')) {
-	function ys_template_head_tag(){
+if(!function_exists( 'ys_template_the_head_tag')) {
+	function ys_template_the_head_tag(){
 
 		// ------------------------
 		// html,head開始タグ,charset,viewport
 		// ------------------------
 		if(ys_is_amp()):
 			// AMPページ用
-			ys_template_head_amp();
+			ys_template_the_head_amp();
 		else :
 			// 通常ページ
-			ys_template_head_normal();
+			ys_template_the_head_normal();
 		endif;
 		echo "</head>";
 	}
@@ -37,8 +37,8 @@ if(!function_exists( 'ys_template_head_tag')) {
 //-----------------------------------------------
 //	AMPページのHTML-head要素
 //-----------------------------------------------
-if(!function_exists( 'ys_template_head_amp')) {
-	function ys_template_head_amp(){
+if(!function_exists( 'ys_template_the_head_amp')) {
+	function ys_template_the_head_amp(){
 		?>
 <html ⚡>
 <head>
@@ -83,8 +83,8 @@ if(!function_exists( 'ys_template_head_amp')) {
 //-----------------------------------------------
 //	通常ページのHTML-head要素
 //-----------------------------------------------
-if(!function_exists( 'ys_template_head_normal')) {
-	function ys_template_head_normal(){
+if(!function_exists( 'ys_template_the_head_normal')) {
+	function ys_template_the_head_normal(){
 		?>
 <html <?php language_attributes(); ?>>
 <?php if(ys_is_ogp_enable()): ?>
@@ -115,6 +115,113 @@ if(!function_exists( 'ys_template_head_normal')) {
 	wp_head();
 	}
 }
+
+
+
+
+
+
+
+//------------------------------------------------------------------------------
+//
+//	ヘッダー関連
+//
+//------------------------------------------------------------------------------
+
+//-----------------------------------------------
+//	サイトタイトル・ヘッダーロゴ
+//-----------------------------------------------
+if(!function_exists( 'ys_template_the_header_site_title_logo')) {
+	function ys_template_the_header_site_title_logo(){
+
+		$html = '';
+
+		if(has_custom_logo()) {
+			// カスタムロゴの設定あり
+			$logo = ys_utilities_get_custom_logo_image_src();
+			$logo = apply_filters('ys_custom_logo',$logo);
+			$logo_html = '';
+			$logo_html .= '<meta itemprop="name" content="'.get_bloginfo('name').'">';
+			$logo_html .= '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" itemscope itemtype="https://schema.org/ImageObject" itemprop="logo">';
+			$logo_html .= '<img src="'.$logo[0].'" alt="'.get_bloginfo( 'name' ).'"  class="custom-logo" width="'.$logo[1].'" height="'.$logo[2].'" />';
+			$logo_html .= '<meta itemprop="name" content="'.get_bloginfo('name').'">';
+			$logo_html .= '<meta itemprop="url" content="'.$logo[0].'">';
+			$logo_html .= '<meta itemprop="width" content="'.$logo[1].'">';
+			$logo_html .= '<meta itemprop="height" content="'.$logo[2].'">';
+			$logo_html .= '</a>';
+
+			if(ys_is_amp()){
+				$logo_html = str_replace('<img','<amp-img layout="responsive"',$logo_html);
+			}
+
+			$html = $logo_html;
+
+		} else {
+			$html = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" itemprop="name">'.get_bloginfo( 'name' ).'</a>';
+		}
+
+		if ( !is_singular() ) {
+			echo '<h1 class="site-title">'.$html.'</h1>';
+		} else {
+			echo '<p class="site-title">'.$html.'</p>';
+		}
+
+		$description = get_bloginfo( 'description', 'display' );
+		if ( $description != '' || is_customize_preview() ) {
+			echo '<p class="site-description">'.$description.'</p>';
+		}
+	}//ys_template_the_header_site_title_logo
+}
+
+
+
+
+//-----------------------------------------------
+//	グローバルメニュー
+//-----------------------------------------------
+if(!function_exists( 'ys_template_the_header_global_menu')) {
+	function ys_template_the_header_global_menu(){
+
+		if ( has_nav_menu( 'gloval' )){
+
+			if(ys_is_amp()){ ?>
+
+				<button class="menu-toggle-label" on='tap:sidebar.toggle'>
+					<span class="top"></span>
+					<span class="middle"></span>
+					<span class="bottom"></span>
+				</button>
+
+				<?php
+			} else { ?>
+
+				<input type="checkbox" id="menu-toggle" class="menu-toggle" hidden />
+				<label  class="menu-toggle-label" for="menu-toggle">
+					<span class="top"></span>
+					<span class="middle"></span>
+					<span class="bottom"></span>
+				</label>
+				<label class="menu-toggle-cover" for="menu-toggle"></label>
+				<div id="site-header-menu" class="site-header-menu">
+					<nav id="site-navigation" class="main-navigation" role="navigation">
+						<?php
+							wp_nav_menu( array(
+								'theme_location' => 'gloval',
+								'menu_class'		 => 'gloval-menu',
+								'container_class' => 'menu-global-container',
+								'depth'          => 2
+							 ) );
+						?>
+					</nav><!-- .main-navigation -->
+				</div><!-- .site-header-menu -->
+				<?php
+			}
+
+		}//if ( has_nav_menu( 'gloval' )){
+
+	}//ys_template_the_header_global_menu
+}
+
 
 
 
@@ -554,6 +661,39 @@ if( ! function_exists( 'ys_template_the_fotter_widget' ) ) {
 			echo '</div>';
 		}
 	}//ys_template_the_fotter_widget
+}
+
+
+
+
+//-----------------------------------------------
+//	AMPページ用メニュー出力
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_amp_menu' ) ) {
+	function ys_template_the_amp_menu() {
+
+		if(ys_is_amp()):
+		?>
+			<amp-sidebar id='sidebar' layout="nodisplay" side="right" class="amp-slider">
+				<button class="menu-toggle-label" on='tap:sidebar.close'>
+					<span class="top"></span>
+					<span class="middle"></span>
+					<span class="bottom"></span>
+				</button>
+				<nav id="site-navigation" class="main-navigation" role="navigation">
+		<?php
+			wp_nav_menu( array(
+				'theme_location' => 'gloval',
+				'menu_class'		 => 'gloval-menu',
+				'container_class' => 'menu-global-container',
+				'depth'          => 2
+			 ) );
+		?>
+			</nav><!-- .main-navigation -->
+		</amp-sidebar>
+		<?php
+		endif;
+	}
 }
 
 
