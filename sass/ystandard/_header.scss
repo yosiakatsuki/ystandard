@@ -112,7 +112,11 @@
 	top: .5rem;
 	right: 1rem;
 	padding-top: 6px;
+	border: 0;
+	background: 0;
+	outline: none;
 	z-index: 99;
+  -webkit-appearance: none;
 
 	span {
 		display: block;

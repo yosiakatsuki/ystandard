@@ -179,7 +179,10 @@ optgroup {
   font-weight: bold; }
 
 * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0; }
 
 html,
 body {
@@ -192,10 +195,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   word-break: break-word;
-  word-wrap: break-word;
-  -webkit-appearance: none;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0; }
+  word-wrap: break-word; }
 
 body {
   background-color: #fefefe; }
@@ -231,7 +231,7 @@ img {
   padding-bottom: 1rem; }
 
 .content-area {
-  padding: 1rem;
+  padding: 1rem 0;
   margin-right: -1rem;
   margin-left: -1rem;
   margin-bottom: 1rem;
@@ -261,6 +261,7 @@ img {
     padding-top: 2rem;
     padding-bottom: 2rem; }
   .content-area {
+    width: 100%;
     margin-right: 0;
     margin-left: 0;
     margin-bottom: 0;
@@ -342,7 +343,11 @@ img {
   top: .5rem;
   right: 1rem;
   padding-top: 6px;
-  z-index: 99; }
+  border: 0;
+  background: 0;
+  outline: none;
+  z-index: 99;
+  -webkit-appearance: none; }
   .menu-toggle-label span {
     display: block;
     width: 20px;

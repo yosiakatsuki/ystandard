@@ -10,6 +10,9 @@
 //--------------------------------------
 * {
 	box-sizing: border-box;
+  -webkit-appearance: none;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
 }
 
 html,
@@ -26,9 +29,6 @@ body {
   -ms-text-size-adjust: 100%;
   word-break:break-word;
   word-wrap:break-word;
-  -webkit-appearance: none;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
 }
 
 body {

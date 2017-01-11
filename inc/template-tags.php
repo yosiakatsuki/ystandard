@@ -476,33 +476,42 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 		$googlepuls = ys_get_setting('ys_follow_url_googlepuls');
 		$instagram = ys_get_setting('ys_follow_url_instagram');
 
+		$html = '';
+
 		if($twitter != ''
 			|| $facebook != ''
 			|| $googlepuls != ''
 			|| $instagram != '') {
 
-				$sns_follow_links = '';
+			$sns_follow_links = '';
 
-				if($twitter != ''){
-					$sns_follow_links .= '<li class="twitter"><a href="'.$twitter.'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';
-				}
-				if($facebook != ''){
-					$sns_follow_links .= '<li class="facebook"><a href="'.$facebook.'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';
-				}
-				if($googlepuls != ''){
-					$sns_follow_links .= '<li class="googlepuls"><a href="'.$googlepuls.'"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';
-				}
-				if($instagram != ''){
-					$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';
-				}
-
-				$sns_follow_links = apply_filters('ys_follow_sns_list',$sns_follow_links);
-
-				echo '<div class="follow-sns-list"><ul>';
-				echo $sns_follow_links;
-				echo '</ul></div>';
+			if($twitter != ''){
+				$sns_follow_links .= '<li class="twitter"><a href="'.$twitter.'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';
 			}
-	}
+			if($facebook != ''){
+				$sns_follow_links .= '<li class="facebook"><a href="'.$facebook.'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';
+			}
+			if($googlepuls != ''){
+				$sns_follow_links .= '<li class="googlepuls"><a href="'.$googlepuls.'"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';
+			}
+			if($instagram != ''){
+				$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';
+			}
+
+			$sns_follow_links = apply_filters('ys_follow_sns_list',$sns_follow_links);
+
+			$html .= '<div class="follow-sns-list"><ul>';
+			$html .= $sns_follow_links;
+			$html .= '</ul></div>';
+
+			if ( !ys_is_amp() ) {
+				echo $html;
+			} else {
+				$html = '';
+				echo apply_filters('ys_follow_sns_list_amp',$html);
+			}
+		}
+	}//ys_template_the_follow_sns_list
 }
 
 
@@ -514,9 +523,10 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 if( ! function_exists( 'ys_template_the_fotter_widget' ) ) {
 	function ys_template_the_fotter_widget() {
 
-		if ( is_active_sidebar( 'footer-left' )
-					|| is_active_sidebar( 'footer-center' )
-					|| is_active_sidebar( 'footer-right' )) {
+		if ( !ys_is_amp()
+					&& (is_active_sidebar( 'footer-left' )
+							|| is_active_sidebar( 'footer-center' )
+							|| is_active_sidebar( 'footer-right' ) ) ) {
 
 			echo '<div class="footer-widget-wrapper">';
 
@@ -542,7 +552,6 @@ if( ! function_exists( 'ys_template_the_fotter_widget' ) ) {
 				}
 
 			echo '</div>';
-
 		}
 	}//ys_template_the_fotter_widget
 }

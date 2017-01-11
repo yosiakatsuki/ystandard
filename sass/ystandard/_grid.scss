@@ -20,7 +20,7 @@
 }
 
 .content-area {
-  padding: $ys-gutter-sp;
+  padding: $ys-gutter-sp 0;
   margin-right: -$ys-gutter-sp;
   margin-left: -$ys-gutter-sp;
   margin-bottom: $ys-gutter-sp;
@@ -60,6 +60,7 @@
   }
 
   .content-area {
+    width: 100%;
     margin-right: 0;
     margin-left: 0;
     margin-bottom: 0;

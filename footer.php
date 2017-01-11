@@ -4,15 +4,10 @@
 		<footer id="footer" class="site-footer" role="contentinfo">
 			<div class="wrap">
 				<?php
-					if ( !ys_is_amp() ) :
-
-						// SNSフォロー
-						ys_template_the_follow_sns_list();
-
-						// ウィジェット
-						ys_template_the_fotter_widget();
-
-					endif;//ys_is_amp
+					// SNSフォロー
+					ys_template_the_follow_sns_list();
+					// ウィジェット
+					ys_template_the_fotter_widget();
 				?>
 
 				<?php if ( has_nav_menu( 'footer' ) ) : ?>
