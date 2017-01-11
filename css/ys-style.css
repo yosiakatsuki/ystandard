@@ -321,9 +321,7 @@ div.aligncenter {
   font-size: .8rem; }
 
 .entry-footer-container {
-  padding: 1rem;
-  margin-left: -1rem;
-  margin-right: -1rem; }
+  padding: 1rem; }
 
 .sns-share {
   margin-top: 2rem;
@@ -493,9 +491,6 @@ div.aligncenter {
       display: block; }
 
 @media screen and (min-width: 600px) {
-  .entry-footer-container {
-    margin-left: 0;
-    margin-right: 0; }
   .post-navigation .nav-links {
     font-size: 0; }
   .post-navigation .nav-previous,

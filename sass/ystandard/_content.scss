@@ -9,8 +9,8 @@
 // モバイル or 全体
 //--------------------------------------
 
-.post,
-.page-header,
+.entry-container > .post,
+.site-main > .page-header,
 .site-main > article {
     padding: $ys-gutter-sp $ys-gutter-sp $ys-gutter-sp * 2;
 }

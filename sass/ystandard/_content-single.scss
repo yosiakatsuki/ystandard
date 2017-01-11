@@ -49,8 +49,6 @@
 // 投稿以外の左右padding調整クラス
 .entry-footer-container {
   padding: $ys-gutter-sp;
-  margin-left: -1 * $ys-gutter-sp;
-  margin-right: -1 * $ys-gutter-sp;
 }
 
 // シェアボタン
@@ -240,11 +238,6 @@
 // タブレット
 //--------------------------------------
 @include media-breakpoint(tb) {
-
-  .entry-footer-container {
-    margin-left:0;
-    margin-right:0;
-  }
 
   .post-navigation {
     .nav-links {

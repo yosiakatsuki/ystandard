@@ -460,8 +460,8 @@ img {
     margin-top: 1rem;
     margin-bottom: -1rem; } }
 
-.post,
-.page-header,
+.entry-container > .post,
+.site-main > .page-header,
 .site-main > article {
   padding: 1rem 1rem 2rem; }
 
