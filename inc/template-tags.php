@@ -582,6 +582,12 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 		$facebook = ys_get_setting('ys_follow_url_facebook');
 		$googlepuls = ys_get_setting('ys_follow_url_googlepuls');
 		$instagram = ys_get_setting('ys_follow_url_instagram');
+		$tumblr = ys_get_setting('ys_follow_url_tumblr');
+		$youtube = ys_get_setting('ys_follow_url_youtube');
+		$github = ys_get_setting('ys_follow_url_github');
+		$pinterest = ys_get_setting('ys_follow_url_pinterest');
+		$linkedin = ys_get_setting('ys_follow_url_linkedin');
+
 
 		$html = '';
 
@@ -605,6 +611,26 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 				$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';
 			}
 
+			if($tumblr != ''){
+				$sns_follow_links .= '<li class="tumblr"><a href="'.$tumblr.'"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>';
+			}
+
+			if($youtube != ''){
+				$sns_follow_links .= '<li class="youtube"><a href="'.$youtube.'"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';
+			}
+
+			if($github != ''){
+				$sns_follow_links .= '<li class="github"><a href="'.$github.'"><i class="fa fa-github" aria-hidden="true"></i></a></li>';
+			}
+
+			if($pinterest != ''){
+				$sns_follow_links .= '<li class="pinterest"><a href="'.$pinterest.'"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>';
+			}
+
+			if($linkedin != ''){
+				$sns_follow_links .= '<li class="linkedin"><a href="'.$linkedin.'"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>';
+			}
+
 			$sns_follow_links = apply_filters('ys_follow_sns_list',$sns_follow_links);
 
 			$html .= '<div class="follow-sns-list"><ul>';
@@ -625,7 +651,7 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 
 
 //-----------------------------------------------
-//	SNSのフォローリンク
+//	フッターウィジットエリア
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_fotter_widget' ) ) {
 	function ys_template_the_fotter_widget() {

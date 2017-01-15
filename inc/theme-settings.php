@@ -39,6 +39,11 @@ if (!function_exists( 'ys_settings')) {
 		$ys_follow_url_facebook = esc_url( get_option('ys_follow_url_facebook','') );
 		$ys_follow_url_googlepuls = esc_url( get_option('ys_follow_url_googlepuls','') );
 		$ys_follow_url_instagram = esc_url( get_option('ys_follow_url_instagram','') );
+		$ys_follow_url_tumblr = esc_url( get_option('ys_follow_url_tumblr','') );
+		$ys_follow_url_youtube = esc_url( get_option('ys_follow_url_youtube','') );
+		$ys_follow_url_github = esc_url( get_option('ys_follow_url_github','') );
+		$ys_follow_url_pinterest = esc_url( get_option('ys_follow_url_pinterest','') );
+		$ys_follow_url_linkedin = esc_url( get_option('ys_follow_url_linkedin','') );
 		$ys_show_post_related = get_option('ys_show_post_related',1) ;
 
 		// 高度な設定
@@ -71,6 +76,11 @@ if (!function_exists( 'ys_settings')) {
 										,'ys_follow_url_facebook' => $ys_follow_url_facebook	//facebookフォローURL
 										,'ys_follow_url_googlepuls' => $ys_follow_url_googlepuls	//google+フォローURL
 										,'ys_follow_url_instagram' => $ys_follow_url_instagram	//instagramフォローURL
+										,'ys_follow_url_tumblr' => $ys_follow_url_tumblr	//tumblrフォローURL
+										,'ys_follow_url_youtube' => $ys_follow_url_youtube	//YouTubeフォローURL
+										,'ys_follow_url_github' => $ys_follow_url_github	//GitHubフォローURL
+										,'ys_follow_url_pinterest' => $ys_follow_url_pinterest	//PinterestフォローURL
+										,'ys_follow_url_linkedin' => $ys_follow_url_linkedin	//linkedinフォローURL
 										,'ys_show_post_related' => $ys_show_post_related	//関連記事を出力する
 
 										,'ys_hide_post_thumbnail' => $ys_hide_post_thumbnail	//個別ページでアイキャッチ画像を非表示にする

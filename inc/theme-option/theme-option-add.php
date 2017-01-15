@@ -88,6 +88,11 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_follow_url_facebook' );
 	register_setting( 'ys_main_settings', 'ys_follow_url_googlepuls' );
 	register_setting( 'ys_main_settings', 'ys_follow_url_instagram' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_tumblr' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_youtube' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_github' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_pinterest' );
+	register_setting( 'ys_main_settings', 'ys_follow_url_linkedin' );
 	register_setting( 'ys_main_settings', 'ys_show_post_related','ys_utilities_sanitize_checkbox' );
 
 	//高度な設定
