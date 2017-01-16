@@ -45,6 +45,7 @@ if (!function_exists( 'ys_settings')) {
 		$ys_follow_url_pinterest = esc_url( get_option('ys_follow_url_pinterest','') );
 		$ys_follow_url_linkedin = esc_url( get_option('ys_follow_url_linkedin','') );
 		$ys_show_post_related = get_option('ys_show_post_related',1) ;
+		$ys_hide_post_paging = get_option('ys_hide_post_paging',0) ;
 
 		// 高度な設定
 		$ys_hide_post_thumbnail = get_option('ys_hide_post_thumbnail',0) ;
@@ -82,6 +83,7 @@ if (!function_exists( 'ys_settings')) {
 										,'ys_follow_url_pinterest' => $ys_follow_url_pinterest	//PinterestフォローURL
 										,'ys_follow_url_linkedin' => $ys_follow_url_linkedin	//linkedinフォローURL
 										,'ys_show_post_related' => $ys_show_post_related	//関連記事を出力する
+										,'ys_hide_post_paging' => $ys_hide_post_paging	//次の記事・前の記事を表示しない
 
 										,'ys_hide_post_thumbnail' => $ys_hide_post_thumbnail	//個別ページでアイキャッチ画像を非表示にする
 										,'ys_amp_enable' => $ys_amp_enable	//AMPページを有効化するか

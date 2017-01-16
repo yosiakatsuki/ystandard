@@ -197,7 +197,15 @@
 					<th scope="row">同じカテゴリーの関連記事を出力する</th>
 					<td>
 						<label for="ys_show_post_related">
-							<input type="checkbox" name="ys_show_post_related" id="ys_show_post_related" value="1" <?php checked(get_option('ys_show_post_related',1),1); ?> />同じカテゴリーの関連記事を出力する
+							<input type="checkbox" name="ys_show_post_related" id="ys_show_post_related" value="1" <?php checked(get_option('ys_show_post_related',1),1); ?> />
+						</label>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">次の記事・前の記事のリンクを出力しない</th>
+					<td>
+						<label for="ys_hide_post_paging">
+							<input type="checkbox" name="ys_hide_post_paging" id="ys_hide_post_paging" value="1" <?php checked(get_option('ys_hide_post_paging',0),1); ?> />
 						</label>
 					</td>
 				</tr>

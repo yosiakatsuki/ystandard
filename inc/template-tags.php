@@ -573,6 +573,10 @@ if( ! function_exists( 'ys_template_the_related_post' ) ) {
 if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 	function ys_template_the_post_paging() {
 
+		if(ys_get_setting('ys_hide_post_paging') == 1){
+			return;
+		}
+
 		$html = '<div class="post-navigation entry-footer-container">';
 
 		$home = '<div class="home"><a href="'.esc_url( home_url( '/' ) ).'/">';
