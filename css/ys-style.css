@@ -477,8 +477,6 @@ div.aligncenter {
 
 .post-navigation {
   margin: 0 0 2rem; }
-  .post-navigation h2 {
-    margin: 0 0 .5rem; }
   .post-navigation .nav-previous,
   .post-navigation .nav-next {
     margin: 0 0 .5rem; }
@@ -491,22 +489,42 @@ div.aligncenter {
       display: block; }
 
 @media screen and (min-width: 600px) {
-  .post-navigation .nav-links {
-    font-size: 0; }
-  .post-navigation .nav-previous,
-  .post-navigation .nav-next {
-    width: 50%;
-    display: inline-block;
-    font-size: 1rem;
-    vertical-align: top; }
-  .post-navigation .nav-previous {
-    text-align: left; }
-    .post-navigation .nav-previous .post-title {
+  .post-navigation {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; }
+    .post-navigation .prev,
+    .post-navigation .next {
+      width: 50%;
+      vertical-align: top; }
+    .post-navigation .next-label,
+    .post-navigation .prev-label {
+      display: block;
+      margin-bottom: .5rem; }
+    .post-navigation .prev {
+      text-align: left;
       padding-right: .5rem; }
-  .post-navigation .nav-next {
-    text-align: right; }
-    .post-navigation .nav-next .post-title {
+    .post-navigation .next {
+      text-align: right;
       padding-left: .5rem; }
+    .post-navigation .home {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      height: 100%;
+      font-size: 3rem; }
+      .post-navigation .home a, .post-navigation .home a:hover {
+        color: #2c3e50; }
   .sns-share-button {
     font-size: 0;
     text-align: left;

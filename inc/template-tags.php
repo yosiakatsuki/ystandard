@@ -558,9 +558,55 @@ if( ! function_exists( 'ys_template_the_related_post' ) ) {
 				endwhile;
 				echo '</div>';
 			}
+			wp_reset_postdata();
 		}
 
 	}//ys_template_the_related_post
+}
+
+
+
+
+//-----------------------------------------------
+//	前の記事・次の記事
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_post_paging' ) ) {
+	function ys_template_the_post_paging() {
+
+		$html = '<div class="post-navigation entry-footer-container">';
+
+		$home = '<div class="home"><a href="'.esc_url( home_url( '/' ) ).'/">';
+		if(ys_is_amp()){
+			$home .= 'HOME';
+		} else {
+			$home .= '<i class="fa fa-home" aria-hidden="true"></i>';
+		}
+		$home .= '</a></div>';
+
+		$html .= '<div class="prev">';
+		if (get_previous_post()) {
+			$html .= '<span class="prev-label">«前の投稿</span>'.get_previous_post_link('%link','%title',true);
+		} else {
+			$html .= $home;
+		}
+		$html .= '</div>';
+
+		$html .= '<div class="next">';
+		if (get_next_post()){
+			$html .= '<span class="next-label">次の投稿»</span>'.get_next_post_link('%link','%title',true);
+		} else {
+			$html .= $home;
+		}
+		$html .= '</div>';
+
+
+
+		$html .= '</div>';
+
+		$html = apply_filters('ys_post_paging',$html);
+
+		echo $html;
+	}
 }
 
 
