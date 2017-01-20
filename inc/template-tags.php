@@ -284,33 +284,6 @@ if (!function_exists( 'ys_template_the_entry_date')) {
 
 
 //-----------------------------------------------
-//	投稿者取得
-//-----------------------------------------------
-if (!function_exists( 'ys_template_the_entry_author')) {
-	function ys_template_the_entry_author($link = true) {
-
-		$author_name = get_the_author();
-		$author_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) );
-
-		$stracture = '';
-		if(!is_singular()){
-			$stracture = ' itemprop="author editor creator" itemscope itemtype="http://schema.org/Person"';
-		}
-
-		if($link) {
-			$author = '<span class="author vcard"'.$stracture.'><a class="url fn n" href="'.$author_url.'"><span itemprop="name">'.$author_name.'</span></a></span>';
-		} else {
-			$author = '<span class="author vcard"'.$stracture.'><span class="url fn n"><span itemprop="name">'.$author_name.'</span></span></span>';
-		}
-
-		echo $author;
-	}
-}
-
-
-
-
-//-----------------------------------------------
 //	この記事を読む
 //-----------------------------------------------
 if (!function_exists( 'ys_template_the_entry_more_text')) {
@@ -326,10 +299,121 @@ if (!function_exists( 'ys_template_the_entry_more_text')) {
 
 
 //-----------------------------------------------
+//	投稿者情報
+//-----------------------------------------------
+if (!function_exists( 'ys_template_get_the_biography')) {
+	function ys_template_get_the_biography( $user_id = false) {
+
+		$author_link = esc_url( get_author_posts_url( get_the_author_meta( 'ID',$user_id ) ) );
+		$author_name = ys_template_get_the_entry_author(true,$user_id);
+		$author_sns = ys_template_get_the_author_sns($user_id);
+		$author_dscr = wpautop(str_replace(array("\r\n", "\r", "\n"),"\n\n",get_the_author_meta( 'description' ,$user_id)));
+
+		$avatar = ys_utilities_get_the_user_avatar_img($user_id);
+		if($avatar !== ''){
+			$avatar = '<figure class="author-avatar"><a class="author-link" href="'.$author_link.'" rel="author">'.$avatar.'</a></figure>';
+		}
+		$class = $avatar !== '' ? ' show-avatar' : '';
+
+		$template = ys_template_get_the_biography_template();
+
+		return sprintf(
+						$template
+						,$avatar
+						,$class
+						,$author_link
+						,$author_name
+						,$author_sns
+						,$author_dscr);
+
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	投稿者情報
+//-----------------------------------------------
+if (!function_exists( 'ys_template_the_biography')) {
+	function ys_template_the_biography($user_id = false) {
+		echo ys_template_get_the_biography($user_id);
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	投稿者情報表示テンプレート取得
+//-----------------------------------------------
+if (!function_exists( 'ys_template_get_the_biography_template')) {
+	function ys_template_get_the_biography_template() {
+
+		$template = <<<EOD
+		<div class="author-info clearfix entry-footer-container" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
+			%s
+			<div class="author-description%s">
+				<h2 class="author-title">
+					<a class="author-link" href="%s" rel="author">%s</a>
+				</h2>
+				%s
+				<div class="author-bio" itemprop="description" >%s</div>
+			</div>
+		</div>
+EOD;
+
+	return apply_filters('ys_biography_template',$template);
+
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	投稿者取得
+//-----------------------------------------------
+if (!function_exists( 'ys_template_get_the_entry_author')) {
+	function ys_template_get_the_entry_author($link = true,$user_id = false) {
+
+		$author_name = esc_html( get_the_author_meta( 'display_name',$user_id ) );
+		$author_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID',$user_id ) ) );
+
+		$stracture = '';
+		if(!is_singular()){
+			$stracture = ' itemprop="author editor creator" itemscope itemtype="http://schema.org/Person"';
+		}
+
+		if($link) {
+			$author = '<span class="author vcard"'.$stracture.'><a class="url fn n" href="'.$author_url.'"><span itemprop="name">'.$author_name.'</span></a></span>';
+		} else {
+			$author = '<span class="author vcard"'.$stracture.'><span class="url fn n"><span itemprop="name">'.$author_name.'</span></span></span>';
+		}
+
+		return $author;
+	}
+}
+
+
+
+
+//-----------------------------------------------
+//	投稿者表示
+//-----------------------------------------------
+if (!function_exists( 'ys_template_the_entry_author')) {
+	function ys_template_the_entry_author($link = true,$user_id = false) {
+
+		echo ys_template_get_the_entry_author($link,$user_id);
+	}
+}
+
+
+//-----------------------------------------------
 //	筆者のSNSプロフィール
 //-----------------------------------------------
-if (!function_exists( 'ys_template_the_author_sns')) {
-	function ys_template_the_author_sns() {
+if (!function_exists( 'ys_template_get_the_author_sns')) {
+	function ys_template_get_the_author_sns($user_id = false) {
 
 		if(ys_is_amp()) {
 			return;
@@ -352,7 +436,7 @@ if (!function_exists( 'ys_template_the_author_sns')) {
 
 		foreach ($sns_arr as $key => $val) {
 
-			$author_sns = get_the_author_meta( $key );
+			$author_sns = get_the_author_meta( $key,$user_id );
 			if($author_sns != '') {
 				$sns_list .= '<li class="color-'.$val.'"><a href="'.esc_url( $author_sns ).'" target="_blank" rel="nofollow" ><i class="fa fa-fw fa-'.$val.'" aria-hidden="true"></i></a></li>'.PHP_EOL;
 			}
@@ -361,7 +445,7 @@ if (!function_exists( 'ys_template_the_author_sns')) {
 		if($sns_list !== ''){
 			$sns_list = '<ul class="author-sns">'.$sns_list.'</ul>';
 		}
-		echo $sns_list;
+		return $sns_list;
 	}
 }
 

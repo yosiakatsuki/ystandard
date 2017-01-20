@@ -12,7 +12,7 @@ get_header(); ?>
 			ys_template_the_entry_foot_cta();
 
 			// 書いた人
-			get_template_part( 'template-parts/biography' );
+			ys_template_the_biography();
 
 			// カテゴリー・タグ
 			ys_template_the_taxonomy_list();

@@ -415,12 +415,12 @@ if (!function_exists( 'ys_utilities_get_custom_logo_image_src')) {
 //	ユーザー画像取得
 //-----------------------------------------------
 if (!function_exists( 'ys_utilities_get_the_user_avatar_img')) {
-	function ys_utilities_get_the_user_avatar_img($author_id = null,$size = 96){
+	function ys_utilities_get_the_user_avatar_img($author_id = false,$size = 96){
 
-		if($author_id == null){
+		if($author_id == false){
 			$author_id = get_the_author_meta( 'ID' );
 		}
-		$alt =  get_the_author_meta( 'display_name' );
+		$alt =  get_the_author_meta( 'display_name',$author_id );
 		$user_avatar = get_avatar( $author_id, $size ,'',$alt);
 		$custom_avatar = get_user_meta($author_id, 'ys_custom_avatar', true);
 
@@ -428,10 +428,12 @@ if (!function_exists( 'ys_utilities_get_the_user_avatar_img')) {
 
 		// オリジナル画像があればそちらを使う
 		if($custom_avatar !== '') {
-			$img = '<img src="' . $custom_avatar . '" alt="'.$alt.'" width="'.$size.'" height="'.$size.'" itemprop="image" />';
+			$img = '<img src="' . $custom_avatar . '" alt="'.$alt.'" '.image_hwstring( $size, $size ).' itemprop="image" />';
 		} elseif($user_avatar !== '') {
 			$img = str_replace('<img','<img itemprop="image"', $user_avatar);;
 		}
+
+		$img = apply_filters('ys_user_avatar',$img ,$author_id ,$size);
 
 		// amp対応
 		if(ys_is_amp()) {
