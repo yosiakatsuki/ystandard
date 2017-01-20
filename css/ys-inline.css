@@ -478,6 +478,7 @@ img {
 
 .single .entry-title,
 .page .entry-title {
+  margin: 0 0 .5rem;
   font-size: 1.5rem; }
   .single .entry-title a,
   .page .entry-title a {
@@ -506,13 +507,16 @@ img {
   float: right; }
 
 .entry-date-container {
-  font-size: .8rem;
+  font-size: .7rem;
   text-align: right; }
   .entry-date-container svg {
     height: .7rem;
     width: auto;
     margin-right: .3rem;
     fill: #888; }
+
+.entry-date-update {
+  margin-left: .5rem; }
 
 .entry-content p,
 .entry-content ul,

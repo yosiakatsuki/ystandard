@@ -35,6 +35,7 @@
 .single,
 .page {
   .entry-title {
+    margin: 0 0 .5rem;
     font-size: 1.5rem;
 
   	a {
@@ -68,7 +69,7 @@
 
 // 日付の表示
 .entry-date-container {
-	font-size: .8rem;
+	font-size: .7rem;
 	text-align: right;
 
 	svg {
@@ -77,6 +78,9 @@
 		margin-right: .3rem;
     fill:$ys-content-entry-meta-color;
 	}
+}
+.entry-date-update {
+  margin-left: .5rem;
 }
 
 .entry-content,
