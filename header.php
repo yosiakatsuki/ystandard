@@ -38,6 +38,8 @@
 		<?php
 			// パンくず
 			ys_breadcrumb();
+			// ヒーローエリア
+			ys_template_the_site_hero();
 		?>
 
 		<div id="content" class="site-content wrap clearfix">

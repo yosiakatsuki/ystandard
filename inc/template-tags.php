@@ -225,6 +225,20 @@ if(!function_exists( 'ys_template_the_header_global_menu')) {
 
 
 
+//-----------------------------------------------
+//	サイト ヒーローエリア
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_site_hero' ) ) {
+	function ys_template_the_site_hero() {
+
+		// ヒーローエリア
+		// 	※要カスタマイズ
+
+		$html = '';
+		echo apply_filters('ys_site_hero',$html);
+	}
+}
+
 
 
 
@@ -234,6 +248,24 @@ if(!function_exists( 'ys_template_the_header_global_menu')) {
 //	投稿の表示関連
 //
 //------------------------------------------------------------------------------
+
+//-----------------------------------------------
+//	個別記事 ヒーローエリア
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_post_hero' ) ) {
+	function ys_template_the_post_hero() {
+
+		// ヒーローエリア
+		// 	※要カスタマイズ
+
+		$html = '';
+		echo apply_filters('ys_post_hero',$html);
+	}
+}
+
+
+
+
 
 //-----------------------------------------------
 //	投稿・更新日取得
@@ -616,18 +648,6 @@ if( ! function_exists( 'ys_template_the_amp_sns_share_buttons' ) ) {
 
 
 //-----------------------------------------------
-//	広告
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_advertisement' ) ) {
-	function ys_template_the_advertisement() {
-
-	}
-}
-
-
-
-
-//-----------------------------------------------
 //	関連記事
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_related_post' ) ) {
@@ -704,6 +724,17 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 	}
 }
 
+
+
+
+//-----------------------------------------------
+//	広告
+//-----------------------------------------------
+if( ! function_exists( 'ys_template_the_advertisement' ) ) {
+	function ys_template_the_advertisement() {
+
+	}
+}
 
 
 
