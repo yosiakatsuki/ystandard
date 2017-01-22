@@ -116,6 +116,39 @@
 	</div>
 
 	<div class="postbox">
+		<h2 class="hndle">サイト表示設定</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">サイドバー表示</th>
+					<td>
+						<label for="ys_show_sidebar_mobile">
+							<input type="checkbox" name="ys_show_sidebar_mobile" id="ys_show_sidebar_mobile" value="1" <?php checked(get_option('ys_show_sidebar_mobile',0),1); ?> />モバイル表示でもサイドバー部分を出力する
+						</label>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">絵文字設定</th>
+					<td>
+						<label for="ys_show_emoji">
+							<input type="checkbox" name="ys_show_emoji" id="ys_show_emoji" value="1" <?php checked(get_option('ys_show_emoji',0),1); ?> />絵文字関連スタイルシート・スクリプトを出力する
+						</label>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">oembed設定</th>
+					<td>
+						<label for="ys_show_oembed">
+							<input type="checkbox" name="ys_show_oembed" id="ys_show_oembed" value="1" <?php checked(get_option('ys_show_oembed',0),1); ?> />oembed関連スタイルシート・スクリプトを出力する
+						</label>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+
+	<div class="postbox">
 		<h2 class="hndle">SNSフォローURL</h2>
 		<div class="inside">
 			<p>※5種類以上登録すると</p>
@@ -237,8 +270,53 @@
 					</td>
 				</tr>
 			</table>
-		</div>
-	</div>
+		</div><!-- /.inside -->
+	</div><!-- /.postbox -->
+
+	<div class="postbox">
+		<h2 class="hndle">広告設定</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">記事タイトル下</th>
+					<td>
+						<p><strong>PC表示用</strong></p>
+						<textarea name="ys_advertisement_under_title" rows="8" cols="80"><?php echo get_option('ys_advertisement_under_title',''); ?></textarea>
+						<p><strong>スマホ表示用</strong></p>
+						<textarea name="ys_advertisement_under_title_sp" rows="8" cols="80"><?php echo get_option('ys_advertisement_under_title_sp',''); ?></textarea>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">moreタグ部分</th>
+					<td>
+						<p><strong>PC表示用</strong></p>
+						<textarea name="ys_advertisement_replace_more" rows="8" cols="80"><?php echo get_option('ys_advertisement_replace_more',''); ?></textarea>
+						<p><strong>スマホ表示用</strong></p>
+						<textarea name="ys_advertisement_replace_more_sp" rows="8" cols="80"><?php echo get_option('ys_advertisement_replace_more_sp',''); ?></textarea>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">記事本文下（左）</th>
+					<td>
+						<textarea name="ys_advertisement_under_content_left" rows="8" cols="80"><?php echo get_option('ys_advertisement_under_content_left',''); ?></textarea>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">記事本文下（右）</th>
+					<td>
+						<textarea name="ys_advertisement_under_content_right" rows="8" cols="80"><?php echo get_option('ys_advertisement_under_content_right',''); ?></textarea>
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">記事本文下（スマホ）</th>
+					<td>
+						<textarea name="ys_advertisement_under_content_sp" rows="8" cols="80"><?php echo get_option('ys_advertisement_under_content_sp',''); ?></textarea>
+						<p>※スマホ表示で表示域を覆い尽くすような広告の配置にならないよう、記事下には1つ分しか設定を用意していません。</p>
+					</td>
+				</tr>
+			</table>
+		</div><!-- /.inside -->
+	</div><!-- /.postbox -->
 
 	<?php submit_button(); ?>
 	</form>

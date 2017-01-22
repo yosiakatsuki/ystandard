@@ -21,20 +21,26 @@ if (!function_exists( 'ys_settings')) {
 		}
 
 		// 基本設定
+	// 基本設定 > Copyright
 		$ys_copyright_year = esc_attr( get_option('ys_copyright_year',date_i18n('Y')) );
 		$ys_copyright_year = ($ys_copyright_year == '') ? date_i18n('Y') : $ys_copyright_year;
+	// 基本設定 > アクセス解析設定
 		$ys_ga_tracking_id = esc_attr( get_option('ys_ga_tracking_id','') );
+	// 基本設定 > シェアボタン設定
 		$ys_sns_share_tweet_via = get_option('ys_sns_share_tweet_via',0);
 		$ys_sns_share_tweet_via_account = esc_attr( get_option('ys_sns_share_tweet_via_account','') );
-		$ys_archive_noindex_category = get_option('ys_archive_noindex_category',0) ;
-		$ys_archive_noindex_tag = get_option('ys_archive_noindex_tag',1) ;
-		$ys_archive_noindex_author = get_option('ys_archive_noindex_author',1) ;
-		$ys_archive_noindex_date = get_option('ys_archive_noindex_date',1) ;
-		$ys_show_sidebar_mobile = get_option('ys_show_sidebar_mobile',1) ;
+	// 基本設定 > OGP設定
 		$ys_ogp_fb_app_id = esc_attr( get_option('ys_ogp_fb_app_id','') );
 		$ys_ogp_fb_admins = esc_attr( get_option('ys_ogp_fb_admins','') );
 		$ys_twittercard_user = esc_attr( get_option('ys_twittercard_user','') );
 		$ys_ogp_default_image = esc_url( get_option('ys_ogp_default_image','') );
+
+	// 基本設定 > サイト表示設定
+		$ys_show_sidebar_mobile = get_option('ys_show_sidebar_mobile',1) ;
+		$ys_show_emoji = get_option('ys_show_emoji',0) ;
+		$ys_show_oembed = get_option('ys_show_oembed',0) ;
+
+	// 基本設定 > SNSフォロー
 		$ys_follow_url_twitter = esc_url( get_option('ys_follow_url_twitter','') );
 		$ys_follow_url_facebook = esc_url( get_option('ys_follow_url_facebook','') );
 		$ys_follow_url_googlepuls = esc_url( get_option('ys_follow_url_googlepuls','') );
@@ -44,8 +50,24 @@ if (!function_exists( 'ys_settings')) {
 		$ys_follow_url_github = esc_url( get_option('ys_follow_url_github','') );
 		$ys_follow_url_pinterest = esc_url( get_option('ys_follow_url_pinterest','') );
 		$ys_follow_url_linkedin = esc_url( get_option('ys_follow_url_linkedin','') );
+
+	// 基本設定 > 投稿設定
 		$ys_show_post_related = get_option('ys_show_post_related',1) ;
 		$ys_hide_post_paging = get_option('ys_hide_post_paging',0) ;
+
+	// 基本設定 > SEO設定
+		$ys_archive_noindex_category = get_option('ys_archive_noindex_category',0) ;
+		$ys_archive_noindex_tag = get_option('ys_archive_noindex_tag',1) ;
+		$ys_archive_noindex_author = get_option('ys_archive_noindex_author',1) ;
+		$ys_archive_noindex_date = get_option('ys_archive_noindex_date',1) ;
+	// 基本設定 > 広告設定
+		$ys_advertisement_under_title = get_option('ys_advertisement_under_title','') ;
+		$ys_advertisement_replace_more = get_option('ys_advertisement_replace_more','') ;
+		$ys_advertisement_under_content_left = get_option('ys_advertisement_under_content_left','') ;
+		$ys_advertisement_under_content_right = get_option('ys_advertisement_under_content_right','') ;
+		$ys_advertisement_under_title_sp = get_option('ys_advertisement_under_title_sp','') ;
+		$ys_advertisement_replace_more_sp = get_option('ys_advertisement_replace_more_sp','') ;
+		$ys_advertisement_under_content_sp = get_option('ys_advertisement_under_content_sp','') ;
 
 		// 高度な設定
 		$ys_hide_post_thumbnail = get_option('ys_hide_post_thumbnail',0) ;
@@ -57,22 +79,30 @@ if (!function_exists( 'ys_settings')) {
 		$ys_amp_normal_link_share_btn = get_option('ys_amp_normal_link_share_btn',1) ;
 		$ys_amp_del_script = get_option('ys_amp_del_script',0) ;
 		$ys_amp_del_style = get_option('ys_amp_del_style',0) ;
+	// AMP設定 > 広告設定
+		$ys_amp_advertisement_under_title = get_option('ys_amp_advertisement_under_title','') ;
+		$ys_amp_advertisement_replace_more = get_option('ys_amp_advertisement_replace_more','') ;
+		$ys_amp_advertisement_under_content = get_option('ys_amp_advertisement_under_content','') ;
+
 
 		// 配列作成
 		$result = array(
 										'ys_copyright_year' => $ys_copyright_year	//発行年
+
 										,'ys_ga_tracking_id' => $ys_ga_tracking_id	//Google AanalyticsトラッキングID
+
 										,'ys_sns_share_tweet_via' => $ys_sns_share_tweet_via	//Tweetポタンに via を出力するか
 										,'ys_sns_share_tweet_via_account' => $ys_sns_share_tweet_via_account	//Twitter via アカウント
-										,'ys_archive_noindex_category' => $ys_archive_noindex_category	//カテゴリー一覧をnoindexにする
-										,'ys_archive_noindex_tag' => $ys_archive_noindex_tag	//タグ一覧をnoindexにする
-										,'ys_archive_noindex_author' => $ys_archive_noindex_author	//投稿者一覧をnoindexにする
-										,'ys_archive_noindex_date' => $ys_archive_noindex_date	//日別一覧をnoindexにする
-										,'ys_show_sidebar_mobile' => $ys_show_sidebar_mobile	//モバイル表示でサイドバーを出力する
+
 										,'ys_ogp_fb_app_id' => $ys_ogp_fb_app_id	//Facebook app id
 										,'ys_ogp_fb_admins' => $ys_ogp_fb_admins	//facebook admins
 										,'ys_twittercard_user' => $ys_twittercard_user	//Twitterカードのユーザー名
 										,'ys_ogp_default_image' => $ys_ogp_default_image	//OGPデフォルト画像
+
+										,'ys_show_sidebar_mobile' => $ys_show_sidebar_mobile	//モバイル表示でサイドバーを出力する
+										,'ys_show_emoji' => $ys_show_emoji	//絵文字を出力する
+										,'ys_show_oembed' => $ys_show_oembed	//oembedを出力する
+
 										,'ys_follow_url_twitter' => $ys_follow_url_twitter	//TwitterフォローURL
 										,'ys_follow_url_facebook' => $ys_follow_url_facebook	//facebookフォローURL
 										,'ys_follow_url_googlepuls' => $ys_follow_url_googlepuls	//google+フォローURL
@@ -82,8 +112,22 @@ if (!function_exists( 'ys_settings')) {
 										,'ys_follow_url_github' => $ys_follow_url_github	//GitHubフォローURL
 										,'ys_follow_url_pinterest' => $ys_follow_url_pinterest	//PinterestフォローURL
 										,'ys_follow_url_linkedin' => $ys_follow_url_linkedin	//linkedinフォローURL
+
 										,'ys_show_post_related' => $ys_show_post_related	//関連記事を出力する
 										,'ys_hide_post_paging' => $ys_hide_post_paging	//次の記事・前の記事を表示しない
+
+										,'ys_archive_noindex_category' => $ys_archive_noindex_category	//カテゴリー一覧をnoindexにする
+										,'ys_archive_noindex_tag' => $ys_archive_noindex_tag	//タグ一覧をnoindexにする
+										,'ys_archive_noindex_author' => $ys_archive_noindex_author	//投稿者一覧をnoindexにする
+										,'ys_archive_noindex_date' => $ys_archive_noindex_date	//日別一覧をnoindexにする
+
+										,'ys_advertisement_under_title' => $ys_advertisement_under_title	//広告　タイトル下
+										,'ys_advertisement_replace_more' => $ys_advertisement_replace_more	//moreタグ置換
+										,'ys_advertisement_under_content_left' => $ys_advertisement_under_content_left	//記事下　左
+										,'ys_advertisement_under_content_right' => $ys_advertisement_under_content_right	//記事下　右
+										,'ys_advertisement_under_title_sp' => $ys_advertisement_under_title_sp	//広告　タイトル下 SP
+										,'ys_advertisement_replace_more_sp' => $ys_advertisement_replace_more_sp	//moreタグ置換 SP
+										,'ys_advertisement_under_content_sp' => $ys_advertisement_under_content_sp	//記事下 SP
 
 										,'ys_hide_post_thumbnail' => $ys_hide_post_thumbnail	//個別ページでアイキャッチ画像を非表示にする
 										,'ys_amp_enable' => $ys_amp_enable	//AMPページを有効化するか
@@ -93,6 +137,11 @@ if (!function_exists( 'ys_settings')) {
 										,'ys_amp_normal_link' => $ys_amp_normal_link	//通常ビューへのリンクを表示する
 										,'ys_amp_del_script' => $ys_amp_del_script	//scriptタグを削除してAMPページを作成
 										,'ys_amp_del_style' => $ys_amp_del_style	//インラインで書かれたstyle属性を削除してAMPページを作成
+
+										,'ys_amp_advertisement_under_title' => $ys_amp_advertisement_under_title	//広告　タイトル下
+										,'ys_amp_advertisement_replace_more' => $ys_amp_advertisement_replace_more	//moreタグ置換
+										,'ys_amp_advertisement_under_content' => $ys_amp_advertisement_under_content	//記事下　左
+
 									);
 
 		return apply_filters('ys_settings',$result);

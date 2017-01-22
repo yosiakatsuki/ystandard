@@ -13,6 +13,10 @@
 		<div class="entry-meta entry-date-container">
 			<?php ys_template_the_entry_date(); ?>
 		</div><!-- .entry-meta -->
+		<?php
+			// 広告
+			ys_template_the_advertisement_under_title();
+		?>
 
 		<?php if(has_post_thumbnail() && ys_get_setting('ys_hide_post_thumbnail') == 0): ?>
 			<figure class="post-thumbnail" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">

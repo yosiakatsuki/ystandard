@@ -82,8 +82,9 @@ add_filter('the_content','ys_extras_iframe_responsive');
 if( ! function_exists( 'ys_extras_more_tag_replace' )){
 	function ys_extras_more_tag_replace($the_content) {
 
-		// 開発テーマでカスタマイズする（もしくは子テーマで拡張させる）
-		$replace = '';
+		$ad = ys_template_get_the_advertisement_more_tag();
+		$replace = $ad;
+		$replace = apply_filters('ys_more_tag_replace',$replace);
 
 		if($replace !== ''){
 			//more部分を広告に置換
@@ -321,19 +322,19 @@ if(!function_exists( 'ys_extras_add_noindex')) {
 			// 検索結果をnoindex
 			$noindexoutput = true;
 
-		} elseif(is_category() && get_option('ys_archive_noindex_category',0) == 1){
+		} elseif(is_category() && ys_get_setting('ys_archive_noindex_category',0) == 1){
 			// カテゴリーページのnoindex設定がされていればnoindex
 			$noindexoutput = true;
 
-		} elseif(is_tag() && get_option('ys_archive_noindex_tag',1) == 1){
+		} elseif(is_tag() && ys_get_setting('ys_archive_noindex_tag',1) == 1){
 			// カテゴリーページのnoindex設定がされていればnoindex
 			$noindexoutput = true;
 
-		} elseif(is_author() && get_option('ys_archive_noindex_author',1) == 1){
+		} elseif(is_author() && ys_get_setting('ys_archive_noindex_author',1) == 1){
 			// カテゴリーページのnoindex設定がされていればnoindex
 			$noindexoutput = true;
 
-		} elseif(is_date() && get_option('ys_archive_noindex_date',1) == 1){
+		} elseif(is_date() && ys_get_setting('ys_archive_noindex_date',1) == 1){
 			// カテゴリーページのnoindex設定がされていればnoindex
 			$noindexoutput = true;
 

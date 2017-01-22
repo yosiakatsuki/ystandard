@@ -151,6 +151,20 @@
 }//.entry-content,.comment-text
 
 
+// 広告
+.ad-container {
+  margin: 1rem 0;
+  text-align: center;
+  max-width: 100%;
+}
+.entry-content .ad-container{
+  margin: 1rem 0 2rem;
+}
+.ad-caption {
+  font-size: .7rem;
+  color: $ys-font-color-gray;
+}
+
 
 //--------------------------------------
 // タブレット
@@ -162,6 +176,23 @@
   .site-main > article {
     padding: $ys-gutter-sp;
   }
+  .ad-double {
+    font-size: 0;
+
+    .ad-left,
+    .ad-right {
+      display: inline-block;
+      width: 50%;
+      margin: 0;
+      font-size: 1rem;
+    }
+    .ad-left {
+      padding-right: .5rem;
+    }
+    .ad-right {
+      padding-left: .5rem;
+    }
+  }//.ad-double
 };
 
 

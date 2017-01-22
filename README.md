@@ -87,17 +87,29 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義
   - Facebook admins
   - Twitterアカウント名
   - OGPデフォルト画像
+- サイト表示設定
+  - モバイル表示でもサイドバー部分を出力する
+  - 絵文字関連スタイルシート・スクリプトを出力する
+  - oembed関連スタイルシート・スクリプトを出力する
 - SNSフォローURL
   - Twitter
   - Facebook
   - Google+
-  - はてなブックマーク
   - Instagram
-  - Feedly
+  - tumblr
+  - Youtube
+  - Github
+  - Pinterest
+  - LinkedIn
 - 投稿設定
   - 同じカテゴリーの関連記事を出力する
+  - 次の記事・前の記事を出力しない
 - SEO対策設定
   - アーカイブページのnoindex設定
+- 広告設定
+  - 記事タイトル下
+  - moreタグ部分
+  - 記事本文下（左右）
 
 ### 高度な設定
 

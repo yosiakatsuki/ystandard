@@ -592,11 +592,35 @@ img {
 .comment-text b {
   font-weight: bold; }
 
+.ad-container {
+  margin: 1rem 0;
+  text-align: center;
+  max-width: 100%; }
+
+.entry-content .ad-container {
+  margin: 1rem 0 2rem; }
+
+.ad-caption {
+  font-size: .7rem;
+  color: #888; }
+
 @media screen and (min-width: 600px) {
   .post,
   .page-header,
   .site-main > article {
-    padding: 1rem; } }
+    padding: 1rem; }
+  .ad-double {
+    font-size: 0; }
+    .ad-double .ad-left,
+    .ad-double .ad-right {
+      display: inline-block;
+      width: 50%;
+      margin: 0;
+      font-size: 1rem; }
+    .ad-double .ad-left {
+      padding-right: .5rem; }
+    .ad-double .ad-right {
+      padding-left: .5rem; } }
 
 @media screen and (min-width: 960px) {
   .post,
