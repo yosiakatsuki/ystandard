@@ -50,6 +50,20 @@ add_filter('script_loader_tag','ys_extras_add_async');
 
 
 //------------------------------------------------------------------------------
+// セルフピンバック対策
+//------------------------------------------------------------------------------
+function ys_no_self_ping( &$links ) {
+				$home = get_option( 'home' );
+				foreach ( $links as $l => $link )
+								if ( 0 === strpos( $link, $home ) )
+												unset($links[$l]);
+}
+add_action( 'pre_ping', 'ys_no_self_ping' );
+
+
+
+
+//------------------------------------------------------------------------------
 // iframeのレスポンシブ化
 //------------------------------------------------------------------------------
 if( ! function_exists( 'ys_extras_iframe_responsive' ) ) {
@@ -383,15 +397,15 @@ if(!function_exists( 'ys_extras_add_googleanarytics')) {
 <amp-analytics type="googleanalytics" id="analytics1">
 <script type="application/json">
 {
-  "vars": {
-    "account": "$ga_tracking_id"
-  },
-  "triggers": {
-    "trackPageview": {
-      "on": "visible",
-      "request": "pageview"
-    }
-  }
+	"vars": {
+		"account": "$ga_tracking_id"
+	},
+	"triggers": {
+		"trackPageview": {
+			"on": "visible",
+			"request": "pageview"
+		}
+	}
 }
 </script>
 </amp-analytics>
@@ -540,20 +554,20 @@ if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
 		// js作成
 		$script = <<<EOD
 <script async>
-  var cb = function() {
-    var {$cssarray}
-        ,l
-        ,h = document.getElementsByTagName('head')[0];
-    for (var i = 0; i < list.length; i++){
-      l = document.createElement('link');
-      l.rel = 'stylesheet';
-      l.href = list[i];
-      h.parentNode.insertBefore(l, h);
-    }
-  };
-  var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
-  if (raf) raf(cb);
-  else window.addEventListener('load', cb);
+	var cb = function() {
+		var {$cssarray}
+				,l
+				,h = document.getElementsByTagName('head')[0];
+		for (var i = 0; i < list.length; i++){
+			l = document.createElement('link');
+			l.rel = 'stylesheet';
+			l.href = list[i];
+			h.parentNode.insertBefore(l, h);
+		}
+	};
+	var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
+	if (raf) raf(cb);
+	else window.addEventListener('load', cb);
 </script>
 EOD;
 
