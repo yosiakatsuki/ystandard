@@ -4,7 +4,7 @@
 	ys_template_the_head_tag();
 ?>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?>><div id="fb-root"></div>
 <?php
  	if(ys_is_amp()) {
 		// Google Analytics

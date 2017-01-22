@@ -55,6 +55,7 @@ if (!function_exists( 'ys_enqueue_scripts')) {
 
 		//テーマのjs読み込む
 		wp_enqueue_script( 'ystandard-scripts', get_template_directory_uri() . '/js/ys.min.js', array('jquery','jquery-core'), '', true );
+		// SNS関連のjs読み込み
 
 	}
 }
