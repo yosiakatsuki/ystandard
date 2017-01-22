@@ -632,9 +632,9 @@ if( ! function_exists( 'ys_template_the_amp_sns_share_buttons' ) ) {
 
 		$fb_app_id = ys_get_setting('ys_amp_share_fb_app_id');
 
-		$share_buttons .= '<amp-social-share type="twitter" width="100" height="44"></amp-social-share>';
-		$share_buttons .= '<amp-social-share type="facebook" width="100" height="44" data-param-app_id="'.$fb_app_id.'"></amp-social-share>';
-		$share_buttons .= '<amp-social-share type="gplus" width="100" height="44"></amp-social-share>';
+		$share_buttons .= '<amp-social-share type="twitter" width="90" height="44"></amp-social-share>';
+		$share_buttons .= '<amp-social-share type="facebook" width="90" height="44" data-param-app_id="'.$fb_app_id.'"></amp-social-share>';
+		$share_buttons .= '<amp-social-share type="gplus" width="90" height="44"></amp-social-share>';
 
 		if(ys_get_setting('ys_amp_normal_link_share_btn') == 1) {
 			$share_buttons .= '<p class="amp-view-info">その他の方法でシェアする場合は通常表示に切り替えて下さい。<a class="normal-view-link" href="'.get_the_permalink().'#sns-share">通常表示に切り替える »</a></p>';
