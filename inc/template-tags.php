@@ -698,7 +698,7 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 		}
 		$home .= '</a></div>';
 
-		$html .= '<div class="prev">';
+		$html .= '<div class="nav-prev">';
 		if (get_previous_post()) {
 			$html .= '<span class="prev-label">«前の投稿</span>'.get_previous_post_link('%link','%title',true);
 		} else {
@@ -706,7 +706,7 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 		}
 		$html .= '</div>';
 
-		$html .= '<div class="next">';
+		$html .= '<div class="nav-next">';
 		if (get_next_post()){
 			$html .= '<span class="next-label">次の投稿»</span>'.get_next_post_link('%link','%title',true);
 		} else {

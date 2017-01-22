@@ -210,7 +210,12 @@
 .post-navigation {
 	margin: 0 0 2rem;
 
-  .nav-previous,
+  .next-label,
+  .prev-label {
+    display: block;
+  }
+
+  .nav-prev,
   .nav-next {
 
   	margin: 0 0 .5rem;
@@ -225,6 +230,17 @@
   	}
 
   }
+  .home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 3rem;
+
+    a,a:hover{
+      color: $ys-font-color;
+    }
+  }
 }//.post-navigation
 
 
@@ -237,23 +253,17 @@
   .post-navigation {
   	display: flex;
 
-  	.prev,
-  	.next {
+  	.nav-prev,
+  	.nav-next {
   		width: 50%;
   		vertical-align: top;
   	}
 
-    .next-label,
-    .prev-label {
-      display: block;
-      margin-bottom: .5rem
-    }
-
-  	.prev {
+  	.nav-prev {
   		text-align: left;
   		padding-right: .5rem;
   	}
-  	.next {
+  	.nav-next {
   		text-align: right;
   		padding-left: .5rem;
   	}
