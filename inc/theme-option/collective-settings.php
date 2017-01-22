@@ -55,32 +55,38 @@
 					<th scope="row">Twitterアカウント</th>
 					<td>
 						Twitterアカウント名:@<input type="text" name="ys_collective_twitter_account" id="ys_collective_twitter_account" value="" placeholder="accountname1234" />
-						<p><strong>変更箇所</strong></p>
-						<ul style="margin:0;padding-left:2em;list-style-type: disc;">
-							<li>基本設定 - Twitterシェアボタン設定 - Twitterアカウント名</li>
-							<li>基本設定 - OGP・Twitterカード設定 - Twitterアカウント名</li>
-						</ul>
+						<div class="collective-dscr">
+							<p><strong>変更箇所</strong></p>
+							<ul>
+								<li>基本設定 - Twitterシェアボタン設定 - Twitterアカウント名</li>
+								<li>基本設定 - OGP・Twitterカード設定 - Twitterアカウント名</li>
+							</ul>
+						</div>
 					</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row">Facebook app_id</th>
 					<td>
 						<input type="text" name="ys_collective_fb_app_id" id="ys_collective_fb_app_id" value="" placeholder="000000000000000" />
-						<p><strong>変更箇所</strong></p>
-						<ul style="margin:0;padding-left:2em;list-style-type: disc;">
-							<li>基本設定 - OGP・Twitterカード設定 - Facebook app_id</li>
-							<li>AMP設定 - シェアボタン設定 - Facebook app_id</li>
-						</ul>
+						<div class="collective-dscr">
+							<p><strong>変更箇所</strong></p>
+							<ul>
+								<li>基本設定 - OGP・Twitterカード設定 - Facebook app_id</li>
+								<li>AMP設定 - シェアボタン設定 - Facebook app_id</li>
+							</ul>
+						</div>
 					</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row">Facebook admins</th>
 					<td>
 						<input type="text" name="ys_collective_fb_admins" id="ys_collective_fb_admins" value="" placeholder="000000000000000" />
-						<p><strong>変更箇所</strong></p>
-						<ul style="margin:0;padding-left:2em;list-style-type: disc;">
-							<li>基本設定 - OGP・Twitterカード設定 - Facebook admins</li>
-						</ul>
+						<div class="collective-dscr">
+							<p><strong>変更箇所</strong></p>
+							<ul>
+								<li>基本設定 - OGP・Twitterカード設定 - Facebook admins</li>
+							</ul>
+						</div>
 					</td>
 				</tr>
 			</table>
