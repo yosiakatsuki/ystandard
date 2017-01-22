@@ -16,7 +16,7 @@
 	?>
 
 	<div class="postbox">
-		<h2 class="hndle">Copyright</h2>
+		<h2>Copyright</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -30,7 +30,7 @@
 	</div>
 
 	<div class="postbox">
-		<h2 class="hndle">アクセス解析設定</h2>
+		<h2>アクセス解析設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -44,7 +44,7 @@
 	</div>
 
 	<div class="postbox">
-		<h2 class="hndle">シェアボタン設定</h2>
+		<h2>シェアボタン設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -63,7 +63,7 @@
 	</div>
 
 	<div class="postbox">
-		<h2 class="hndle">OGP・Twitterカード設定</h2>
+		<h2>OGP・Twitterカード設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -116,7 +116,7 @@
 	</div>
 
 	<div class="postbox">
-		<h2 class="hndle">サイト表示設定</h2>
+		<h2>サイト表示設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -149,7 +149,7 @@
 
 
 	<div class="postbox">
-		<h2 class="hndle">SNSフォローURL</h2>
+		<h2>SNSフォローURL</h2>
 		<div class="inside">
 			<p>※5種類以上登録すると</p>
 			<table class="form-table">
@@ -223,7 +223,7 @@
 
 
 	<div class="postbox">
-		<h2 class="hndle">投稿設定</h2>
+		<h2>投稿設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -247,7 +247,7 @@
 	</div>
 
 	<div class="postbox">
-		<h2 class="hndle">SEO対策設定</h2>
+		<h2>SEO対策設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -274,7 +274,7 @@
 	</div><!-- /.postbox -->
 
 	<div class="postbox">
-		<h2 class="hndle">広告設定</h2>
+		<h2>広告設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -322,3 +322,4 @@
 	</form>
 </div>
 </div><!-- /.warp -->
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ys-setting-page-style.min.css">

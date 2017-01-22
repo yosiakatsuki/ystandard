@@ -47,8 +47,9 @@
 	?>
 
 	<div class="postbox">
-		<h2 class="hndle">SNSアカウント設定</h2>
+		<h2>SNSアカウント設定</h2>
 		<div class="inside">
+
 			<table class="form-table">
 				<tr valign="top">
 					<th scope="row">Twitterアカウント</th>
@@ -90,3 +91,4 @@
 	</form>
 </div>
 </div><!-- /.warp -->
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ys-setting-page-style.min.css">

@@ -16,7 +16,7 @@
 	?>
 
 	<div class="postbox">
-		<h2 class="hndle">投稿設定</h2>
+		<h2>投稿設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="postbox">
-		<h2 class="hndle">AMP有効化</h2>
+		<h2>AMP有効化</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
@@ -51,3 +51,4 @@
 	</form>
 </div>
 </div><!-- /.warp -->
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/ys-setting-page-style.min.css">
