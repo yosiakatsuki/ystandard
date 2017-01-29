@@ -88,7 +88,7 @@ if( ! function_exists( 'ys_is_amp_enable' ) ) {
 		global $post;
 		$result = true;
 
-		if(get_option('ys_amp_enable',0) == 0){
+		if(ys_get_setting('ys_amp_enable') == 0){
 			return false;
 		}
 
@@ -96,11 +96,11 @@ if( ! function_exists( 'ys_is_amp_enable' ) ) {
 			$content = $post->post_content;
 
 			// scriptタグの判断
-			if(strpos($content,'<script>') !== false && get_option('ys_amp_del_script',0) != 1) {
+			if(strpos($content,'<script') !== false && ys_get_setting('ys_amp_del_script') != 1) {
 				$result = false;
 			}
 			// style属性の判断
-			if(preg_match('/style=".+?"/i',$content,$matches) === 1 && get_option('ys_amp_del_style',0) != 1) {
+			if(preg_match('/style=".+?"/i',$content,$matches) === 1 && ys_get_setting('ys_amp_del_style') != 1) {
 				$result = false;
 			}
 

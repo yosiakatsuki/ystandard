@@ -72,9 +72,7 @@ if( ! function_exists( 'ys_extras_iframe_responsive' ) ) {
 			//マッチさせたいiframeのURLをリスト化
 			$patternlist = array(
 								'youtube\.com'
-								,'instagram\.com'
 								,'vine\.co'
-								,'www\.google\.com\/maps'
 							);
 			//置換する
 			foreach ($patternlist as $value) {
