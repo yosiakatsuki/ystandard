@@ -1,9 +1,8 @@
 {
-  "name": "ysu",
-  "version": "1.0.0",
-  "description": "su",
-  "main": "index.js",
-  "dependencies": {},
+  "name": "ystandard",
+	"version": "1.0.0",
+  "author": "yosiakatuki",
+  "license": "GPLv2",
   "devDependencies": {
     "browser-sync": "^2.17.3",
     "gulp": "^3.9.1",
@@ -17,9 +16,6 @@
     "gulp-watch": "^4.3.10"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp": "gulp"
   },
-  "author": "yosiakatuki",
-  "license": "ISC",
-  "homepage": "https://github.com/yosiakatsuki/ysu#readme"
 }
