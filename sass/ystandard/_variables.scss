@@ -25,8 +25,6 @@ $ys-font-color-code              : #2626d9 !default;
 $ys-font-color-blockquote        : #888 !default;
 $ys-font-color-input             : $ys-font-color !default;
 $ys-font-color-button            : #fff !default;
-$ys-font-color-searchtext        : $ys-font-color !default;
-$ys-font-color-searchbutton      : #fff !default;
 
 // 背景
 $ys-bg-color-body                : #fefefe !default;	//背景
@@ -36,10 +34,6 @@ $ys-bg-color-code                : #fbfbfb !default;
 $ys-bg-color-blockquote          : #fbfbfb !default;
 $ys-bg-color-input               : #fff !default;
 $ys-bg-color-button              : $ys-font-color !default;
-$ys-bg-color-searchtext          : transparent !default;
-$ys-bg-color-searchbutton        : $ys-font-color !default;
-
-
 
 // 罫線
 $ys-border-color-gray            : #ccc !default;
@@ -47,8 +41,6 @@ $ys-border-color-pager           : $ys-font-color !default;
 $ys-border-color-pager-current   : $ys-font-color !default;
 $ys-border-color-input           : $ys-border-color-gray !default;
 $ys-border-color-button          : $ys-font-color !default;
-$ys-border-color-searchtext      : $ys-font-color !default;
-$ys-border-color-searchbutton    : $ys-font-color !default;
 $ys-border-color-select          : $ys-border-color-gray !default;
 
 
@@ -115,6 +107,15 @@ $ys-pagination-adjacent-bg-color : $ys-font-color !default;
 $ys-pagination-adjacent-font-color : #fff !default;
 $ys-pagination-border-color : $ys-border-color-gray !default;
 $ys-pagination-current-border-color : $ys-font-color !default;
+
+// 検索フォーム
+$ys-font-color-searchtext        : $ys-font-color !default;
+$ys-font-color-placeholdertext   : $ys-font-color-gray !default;
+$ys-font-color-searchbutton      : $ys-font-color !default;
+$ys-bg-color-searchtext          : transparent !default;
+$ys-bg-color-searchbutton        : transparent !default;
+$ys-border-color-searchtext      : $ys-font-color !default;
+$ys-border-color-searchbutton    : transparent !default;
 
 
 // フッター部分

@@ -24,21 +24,34 @@
 .search-field {
 	width: 100%;
 	background: transparent;
-	border-bottom: 1px solid $ys-border-color-searchtext;
+	border: 1px solid $ys-border-color-searchtext;
+  border-radius: 1.1rem;
 	background-color: $ys-bg-color-searchtext;
 	color: $ys-font-color-searchtext;
-	padding: .2rem 4rem .2rem .2rem;
+	padding: .3rem 2rem .3rem 1rem;
+
+  &:placeholder-shown {
+    font-size: .9rem;
+    line-height: 1.7;
+    color:$ys-font-color-placeholdertext;
+  }
 }
 
 .search-submit {
+  height: 100%;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	border: 1px solid $ys-border-color-searchbutton;
 	background-color: $ys-bg-color-searchbutton;
-	color: $ys-font-color-searchbutton;
+  color: $ys-font-color-searchbutton;
 	box-shadow: none;
-	padding: .2rem .8rem;
+	padding: .5rem 1rem .5rem .5rem;
+
+  svg {
+    width: 1rem;
+    fill: $ys-font-color-searchbutton;
+  }
 }
 
 //--------------------------------------
