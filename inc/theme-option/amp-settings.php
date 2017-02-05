@@ -68,19 +68,19 @@
 				<tr valign="top">
 					<th scope="row">記事タイトル下</th>
 					<td>
-						<textarea name="ys_amp_advertisement_under_title" rows="8" cols="80"><?php echo get_option('ys_amp_advertisement_under_title',''); ?></textarea>
+						<textarea name="ys_amp_advertisement_under_title" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_amp_advertisement_under_title',''))); ?></textarea>
 					</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row">moreタグ部分</th>
 					<td>
-						<textarea name="ys_amp_advertisement_replace_more" rows="8" cols="80"><?php echo get_option('ys_amp_advertisement_replace_more',''); ?></textarea>
+						<textarea name="ys_amp_advertisement_replace_more" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_amp_advertisement_replace_more',''))); ?></textarea>
 					</td>
 				</tr>
 				<tr valign="top">
 					<th scope="row">記事本文下</th>
 					<td>
-						<textarea name="ys_amp_advertisement_under_content" rows="8" cols="80"><?php echo get_option('ys_amp_advertisement_under_content',''); ?></textarea>
+						<textarea name="ys_amp_advertisement_under_content" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_amp_advertisement_under_content',''))); ?></textarea>
 					</td>
 				</tr>
 			</table>
