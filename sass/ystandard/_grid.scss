@@ -69,6 +69,6 @@
 
   .sidebar {
     flex: 0 0 $ys-sidebar-width;
-    padding: $ys-gutter;
+    padding: $ys-gutter $ys-gutter 0;
   }
 };

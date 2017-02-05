@@ -954,6 +954,13 @@ div.aligncenter {
   .pagination {
     padding: 0 2rem; } }
 
+#sidebar-fixed {
+  width: 100%; }
+
+.sidebar-wrapper {
+  height: 100%;
+  position: relative; }
+
 .site-footer {
   padding: .5rem 0;
   background-color: #2c3e50;

@@ -271,7 +271,7 @@ img {
     -webkit-flex: 0 0 352px;
     -ms-flex: 0 0 352px;
     flex: 0 0 352px;
-    padding: 2rem; } }
+    padding: 2rem 2rem 0; } }
 
 .color-site-header {
   background-color: #fafafa;

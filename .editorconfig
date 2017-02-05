@@ -19,3 +19,7 @@ insert_final_newline = true
 [*.scss]
 indent_style = space
 insert_final_newline = true
+
+[*.js]
+indent_style = space
+insert_final_newline = true

@@ -133,7 +133,7 @@ gulp.task('cmq', function() {
 //watch
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //コード関連
-gulp.task('watch',['sass'],function() {
+gulp.task('watch',['sass','minjs'],function() {
 	watch(src_sass, function(event) {
 		gulp.start('sass');
 	});
