@@ -1,5 +1,5 @@
 {
-  "version" : "0.1",
-  "details_url" : "http://example.com/example-theme/details.html",
-  "download_url" : "http://examle.com/example-theme/example-theme.zip"
+  "version" : "0.0.1",
+  "details_url" : "https://github.com/yosiakatsuki/ystandard/blob/master/README.md",
+  "download_url" : "https://github.com/yosiakatsuki/ystandard/releases/download/0.0.1/ystandard.zip"
 }
