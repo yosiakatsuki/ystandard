@@ -31,12 +31,13 @@ require_once TEMPLATEPATH . '/inc/pagination.php';
 require_once TEMPLATEPATH . '/inc/breadcrumb.php';
 // ウィジェット
 require_once TEMPLATEPATH . '/inc/widgets.php';
-// 管理画面関連
-require_once TEMPLATEPATH . '/inc/admin.php';
+
 // 管理画面メニュー
 if(is_admin()){
 	require_once TEMPLATEPATH . '/inc/theme-option/theme-option-add.php';
-	require_once TEMPLATEPATH . '/lib/theme-update-checker';
+	require_once TEMPLATEPATH . '/lib/theme-update-checker.php';
+	// 管理画面関連
+	require_once TEMPLATEPATH . '/inc/admin.php';
 }
 
 

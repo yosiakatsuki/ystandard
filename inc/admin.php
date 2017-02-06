@@ -155,7 +155,7 @@ add_action( 'profile_update', 'ys_admin_save_custom_avatar', 10, 2 );
 //-------------------------------------------------------
 $theme_update_checker = new ThemeUpdateChecker(
 																					'ystandard',
-																					'http://example.com/example-theme/update-info.json' //JSONファイルのURL
+																					'http://example.com/example-theme/ystandard-info.json' 
 																				);
 
 
