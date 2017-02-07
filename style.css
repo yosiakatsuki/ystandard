@@ -12,4 +12,9 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
-/* 子テーマ作るときにぶつかって面倒だから何も入れない */
+/*
+  子テーマ作るときにぶつかって面倒だから何も入れていません。
+  テーマで使用しているスタイルシートは./css/ディレクトリにあります。
+    ./css/ys-inline.css : インライン読み込みさせるスタイル（ファーストビューに関わる部分）
+    ./css/ys-style.css  : ファーストビュー以外のスタイル
+*/
