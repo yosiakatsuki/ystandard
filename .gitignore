@@ -11,10 +11,10 @@ wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
 
 /.htaccess
-/license.txt
 /readme.html
 /sitemap.xml
 /sitemap.xml.gz
 
 .DS_Store
 node_modules/
+*.sh
