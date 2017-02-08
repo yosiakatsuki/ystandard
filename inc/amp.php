@@ -26,14 +26,14 @@ if(!function_exists( 'ys_amp_the_head_amp')) {
 <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 <?php ys_amp_the_amp_script(); ?>
-<style amp-custom>
 <?php
-	$inline = file_get_contents(TEMPLATEPATH.'/css/ys-inline.min.css');
-	echo str_replace('@charset "UTF-8";','',$inline);
-	$css = file_get_contents(TEMPLATEPATH.'/css/ys-style.min.css');
-	echo str_replace('@charset "UTF-8";','',$css);
+// インラインCSS読み込み
+	$args =array(
+		TEMPLATEPATH.'/css/ys-inline.min.css'
+		,TEMPLATEPATH.'/css/ys-style.min.css'
+	);
+	ys_template_the_inline_css($args,true);
 ?>
-</style>
 <?php
 	// noindex
 	ys_extras_add_noindex();
@@ -226,7 +226,7 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 		$content = preg_replace($pattern, $append, $content);
 
 		// scriptにwpautopが効くパターン
-		
+
 		$pattern = '/<blockquote class="twitter-tweet".*?>.*?<a href="https:\/\/twitter.com\/.*?\/status\/(.*?)">.*?<\/blockquote>.*?<script async src="\/\/platform.twitter.com\/widgets.js" charset="utf-8"><\/script><\/p>/is';
 		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
 		$content = preg_replace($pattern, $append, $content);

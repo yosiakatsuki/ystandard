@@ -56,9 +56,10 @@ if(!function_exists( 'ys_template_the_head_normal')) {
 <meta name="referrer" content="origin-when-crossorigin">
 <meta name="format-detection" content="telephone=no" />
 <meta itemscope id="EntityOfPageid" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
-<style type="text/css">
-<?php include(TEMPLATEPATH.'/css/ys-inline.min.css'); ?>
-</style>
+<?php
+// インラインCSS読み込み
+	ys_template_the_inline_css(array(TEMPLATEPATH.'/css/ys-inline.min.css'),false);
+?>
 <?php
 	if ( is_singular() && pings_open( get_queried_object() ) ) :
 ?>
@@ -73,7 +74,34 @@ if(!function_exists( 'ys_template_the_head_normal')) {
 
 
 
+//-----------------------------------------------
+//	CSS読み込み
+//-----------------------------------------------
+if(!function_exists( 'ys_template_the_inline_css')) {
+	function ys_template_the_inline_css($csslist,$amp=false){
 
+		if($amp) {
+
+			$csslist = apply_filters('ys_the_inline_css_amp',$csslist);
+
+			echo '<style amp-custom>';
+			foreach($csslist as $css){
+				$inline = file_get_contents($css);
+				echo str_replace('@charset "UTF-8";','',$inline);
+			}
+
+		} else {
+
+			$csslist = apply_filters('ys_the_inline_css',$csslist);
+
+			echo '<style type="text/css">';
+			foreach($csslist as $css){
+				include($css);
+			}
+		}
+		echo '</style>';
+	}
+}
 
 
 //------------------------------------------------------------------------------
