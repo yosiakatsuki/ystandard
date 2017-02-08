@@ -17,5 +17,5 @@
   },
   "scripts": {
     "gulp": "gulp"
-  },
+  }
 }
