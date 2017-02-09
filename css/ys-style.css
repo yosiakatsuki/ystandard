@@ -47,19 +47,6 @@
   .bg-google-plus a:hover {
     color: #fff; }
 
-.icon-hatenabookmark::before {
-  content: "B!";
-  width: 1.28571429em;
-  display: inline-block;
-  margin: 0 .5rem 0 0;
-  font-family: Verdana;
-  font-weight: bold;
-  font-style: normal;
-  letter-spacing: 0;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
 .color-hatenabookmark,
 .color-hatenabookmark a {
   color: #007ad2; }
@@ -124,20 +111,20 @@
   .bg-pocket a:hover {
     color: #fff; }
 
-.color-instargram,
-.color-instargram a {
+.color-instagram,
+.color-instagram a {
   color: #3f729b; }
-  .color-instargram:hover,
-  .color-instargram a:hover {
+  .color-instagram:hover,
+  .color-instagram a:hover {
     color: #548cb9; }
 
-.bg-instargram {
+.bg-instagram {
   background-color: #3f729b; }
-  .bg-instargram:hover {
+  .bg-instagram:hover {
     background-color: #548cb9; }
-  .bg-instargram,
-  .bg-instargram a,
-  .bg-instargram a:hover {
+  .bg-instagram,
+  .bg-instagram a,
+  .bg-instagram a:hover {
     color: #fff; }
 
 .color-line,
@@ -172,20 +159,20 @@
   .bg-tumblr a:hover {
     color: #fff; }
 
-.color-youtube-play,
-.color-youtube-play a {
+.color-youtube,
+.color-youtube a {
   color: #cd201f; }
-  .color-youtube-play:hover,
-  .color-youtube-play a:hover {
+  .color-youtube:hover,
+  .color-youtube a:hover {
     color: #e23e3d; }
 
-.bg-youtube-play {
+.bg-youtube {
   background-color: #cd201f; }
-  .bg-youtube-play:hover {
+  .bg-youtube:hover {
     background-color: #e23e3d; }
-  .bg-youtube-play,
-  .bg-youtube-play a,
-  .bg-youtube-play a:hover {
+  .bg-youtube,
+  .bg-youtube a,
+  .bg-youtube a:hover {
     color: #fff; }
 
 .color-vine,
@@ -229,11 +216,11 @@
 
 .bg-pinterest {
   background-color: #cb2027; }
-  .bg-pinterest:hover,
-  .bg-pinterest a:hover {
+  .bg-pinterest:hover {
     background-color: #e03e44; }
   .bg-pinterest,
-  .bg-pinterest a {
+  .bg-pinterest a,
+  .bg-pinterest a:hover {
     color: #fff; }
 
 .color-linkedin,

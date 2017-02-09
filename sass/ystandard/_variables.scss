@@ -127,19 +127,21 @@ $ys-footer-sns-bg-color : $ys-footer-bg-color + #111 !default;
 $ys-required-color               : #db2814 !default;
 
 // SNS関連
-$ys-sns-color-twitter            : #2b97f0 !default;
-$ys-sns-color-facebook           : #3b5a9b !default;
-$ys-sns-color-googleplus         : #db2814 !default;
-$ys-sns-color-hatenabookmark     : #007ad2 !default;
-$ys-sns-color-rss                : #fb8501 !default;
-$ys-sns-color-feedly             : #8cba43 !default;
-$ys-sns-color-pocket             : #ea4654 !default;
-$ys-sns-color-instargram         : #3f729b !default;
-$ys-sns-color-line               : #2cbf13 !default;
-$ys-sns-color-tumblr             : #35465c !default;
-$ys-sns-color-youtube            : #cd201f !default;
-$ys-sns-color-vine               : #00b389 !default;
-$ys-sns-color-github             : #4183c4 !default;
-$ys-sns-color-pinterest          : #cb2027 !default;
-$ys-sns-color-linkedin           : #0e76a8 !default;
+$sns-color: (
+	'twitter'        : #2b97f0,
+	'facebook'       : #3b5a9b,
+  'google-plus'    : #db2814,
+  'hatenabookmark' : #007ad2,
+  'rss'            : #fb8501,
+	'feedly'         : #8cba43,
+	'pocket'         : #ea4654,
+  'instagram'      : #3f729b,
+	'line'           : #2cbf13,
+	'tumblr'         : #35465c,
+	'youtube'        : #cd201f,
+	'vine'           : #00b389,
+	'github'         : #4183c4,
+	'pinterest'      : #cb2027,
+	'linkedin'       : #0e76a8
+);
 $ys-sns-link-hover-lighten       : 10% !default;
