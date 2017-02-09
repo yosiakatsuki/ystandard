@@ -572,23 +572,23 @@ if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
 		$twitter_share_url = apply_filters('ys_share_twitter_url',$share_url);
 		$twitter_button_text = apply_filters('ys_twitter_button_text','Twitter');
 
-		$share_buttons .= '<li class="twitter bg-twitter"><a href="http://twitter.com/share?text='.$twitter_share_text.'&url='.$twitter_share_url.$tweet_via.'">'.$twitter_button_text.'</a></li>';
+		$share_buttons .= '<li class="twitter bg-twitter"><a href="http://twitter.com/share?text='.$twitter_share_text.'&url='.$twitter_share_url.$tweet_via.'" rel="nofollow">'.$twitter_button_text.'</a></li>';
 
 		// Facebook
 		$facebook_button_text = apply_filters('ys_facebook_button_text','Facebook');
-		$share_buttons .= '<li class="facebook bg-facebook"><a href="http://www.facebook.com/sharer.php?src=bm&u='.$share_url.'&t='.$share_title.'">'.$facebook_button_text.'</a></li>';
+		$share_buttons .= '<li class="facebook bg-facebook"><a href="http://www.facebook.com/sharer.php?src=bm&u='.$share_url.'&t='.$share_title.'" rel="nofollow">'.$facebook_button_text.'</a></li>';
 
 		// はてブ
 		$hatenabookmark_button_text = apply_filters('ys_hatenabookmark_button_text','はてブ');
-		$share_buttons .= '<li class="hatenabookmark bg-hatenabookmark"><a class="icon-hatenabookmark" href="http://b.hatena.ne.jp/add?mode=confirm&url='.$share_url.'">'.$hatenabookmark_button_text.'</a></li>';
+		$share_buttons .= '<li class="hatenabookmark bg-hatenabookmark"><a class="icon-hatenabookmark" href="http://b.hatena.ne.jp/add?mode=confirm&url='.$share_url.'" rel="nofollow">'.$hatenabookmark_button_text.'</a></li>';
 
 		// Google +
 		$googleplus_button_text = apply_filters('ys_googleplus_button_text','Google+');
-		$share_buttons .= '<li class="google-plus bg-google-plus"><a href="https://plus.google.com/share?url='.$share_url.'">'.$googleplus_button_text.'</a></li>';
+		$share_buttons .= '<li class="google-plus bg-google-plus"><a href="https://plus.google.com/share?url='.$share_url.'" rel="nofollow">'.$googleplus_button_text.'</a></li>';
 
 		// Pocket
 		$pocket_button_text = apply_filters('ys_pocket_button_text','Pocket');
-		$share_buttons .= '<li class="pocket bg-pocket"><a href="http://getpocket.com/edit?url='.$share_url.'&title='.$share_title.'">'.$pocket_button_text.'</a></li>';
+		$share_buttons .= '<li class="pocket bg-pocket"><a href="http://getpocket.com/edit?url='.$share_url.'&title='.$share_title.'" rel="nofollow">'.$pocket_button_text.'</a></li>';
 
 		// LINE
 		$share_buttons .= '<li class="line bg-line"><a href="http://line.me/R/msg/text/?'.$share_title.'%0A'.$share_url.'" target="_blank">LINE</a></li>';
@@ -746,36 +746,36 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 			$sns_follow_links = '';
 
 			if($twitter != ''){
-				$sns_follow_links .= '<li class="twitter"><a href="'.$twitter.'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="twitter"><a href="'.$twitter.'" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';
 			}
 			if($facebook != ''){
-				$sns_follow_links .= '<li class="facebook"><a href="'.$facebook.'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="facebook"><a href="'.$facebook.'" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';
 			}
 			if($googlepuls != ''){
-				$sns_follow_links .= '<li class="googlepuls"><a href="'.$googlepuls.'"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="googlepuls"><a href="'.$googlepuls.'" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';
 			}
 			if($instagram != ''){
-				$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'" rel="nofollow"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';
 			}
 
 			if($tumblr != ''){
-				$sns_follow_links .= '<li class="tumblr"><a href="'.$tumblr.'"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="tumblr"><a href="'.$tumblr.'" rel="nofollow"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>';
 			}
 
 			if($youtube != ''){
-				$sns_follow_links .= '<li class="youtube"><a href="'.$youtube.'"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="youtube"><a href="'.$youtube.'" rel="nofollow"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';
 			}
 
 			if($github != ''){
-				$sns_follow_links .= '<li class="github"><a href="'.$github.'"><i class="fa fa-github" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="github"><a href="'.$github.'" rel="nofollow"><i class="fa fa-github" aria-hidden="true"></i></a></li>';
 			}
 
 			if($pinterest != ''){
-				$sns_follow_links .= '<li class="pinterest"><a href="'.$pinterest.'"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="pinterest"><a href="'.$pinterest.'" rel="nofollow"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>';
 			}
 
 			if($linkedin != ''){
-				$sns_follow_links .= '<li class="linkedin"><a href="'.$linkedin.'"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>';
+				$sns_follow_links .= '<li class="linkedin"><a href="'.$linkedin.'" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>';
 			}
 
 			$sns_follow_links = apply_filters('ys_follow_sns_list',$sns_follow_links);
@@ -879,8 +879,8 @@ if( ! function_exists( 'ys_template_the_copyright' ) ) {
 	function ys_template_the_copyright() {
 
 		$copyright = '<p class="copy">Copyright &copy; '.ys_get_setting('ys_copyright_year').' <a href="'. esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo('name') . '</a> All Rights Reserved.</p>';
-		$powered = '<p id="powered">Powered by <a href="https://ja.wordpress.org/" target="_blank">WordPress</a> &amp; ';
-		$poweredtheme = '<a href="https://ystandard.net" target="_blank">yStandard Theme</a> by <a href="https://yosiakatsuki.net" target="_blank">yosiakatsuki</a></p>';
+		$powered = '<p id="powered">Powered by <a href="https://ja.wordpress.org/" target="_blank" rel="nofollow">WordPress</a> &amp; ';
+		$poweredtheme = '<a href="https://ystandard.net" target="_blank" rel="nofollow">yStandard Theme</a> by <a href="https://yosiakatsuki.net" target="_blank" rel="nofollow">yosiakatsuki</a></p>';
 
 		$copyright = apply_filters('ys_copyright',$copyright);
 		$powered = apply_filters('ys_poweredby',$powered);
