@@ -151,7 +151,7 @@
 	<div class="postbox">
 		<h2>SNSフォローURL</h2>
 		<div class="inside">
-			<p>※5種類以上登録すると</p>
+			<p>※5種類以上登録すると折り返しが発生し、見た目がイマイチになるかもしれません…</p>
 			<table class="form-table">
 
 				<tr valign="top">
