@@ -507,6 +507,7 @@ img {
   float: right; }
 
 .entry-date-container {
+  margin: 0 0 .5rem;
   font-size: .7rem;
   text-align: right; }
   .entry-date-container svg {
