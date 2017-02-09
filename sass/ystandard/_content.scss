@@ -140,6 +140,12 @@
 		max-width: 100%;
 		margin-bottom: .5rem;
 	}
+  figure {
+    text-align: center;
+  }
+  img {
+    border: $ys-content-image-border-px solid $ys-content-image-border-color;
+  }
 
 	// --------------------
 	// 装飾
