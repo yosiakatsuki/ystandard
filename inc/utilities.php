@@ -169,7 +169,7 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 					$siblist = get_term_children((int)$catid,'category');
 					foreach($siblist as $sibcat){
 						//array_push( $allcats, $brcat);
-						$allcats[] = $brcat;
+						$allcats[] = $sibcat;
 					}
 				}
 				//配列におやカテゴリID追加
