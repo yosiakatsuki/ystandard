@@ -77,7 +77,7 @@ $ys-breadcrumb-font-color              : $ys-font-color-gray !default;
 
 // 投稿関連
 $ys-content-entry-list-separator-color : $ys-grid-pc-border-color !default;
-$ys-content-entry-list-hover-color     : $ys-bg-color-gray !default;
+$ys-content-entry-list-hover-bg        : $ys-bg-color-gray !default;
 $ys-content-entry-title-color          : $ys-font-color !default;
 $ys-content-entry-meta-color           : $ys-font-color-gray !default;
 $ys-content-entry-excerpt-color        : $ys-font-color-gray !default;
@@ -127,6 +127,12 @@ $ys-footer-sns-bg-color                : $ys-footer-bg-color + #111 !default;
 
 // コメント
 $ys-required-color                     : #db2814 !default;
+
+// ウィジェット-人気記事
+$ys-widget-ranking-border              : $ys-bg-color-gray !default;
+$ys-widget-ranking-hover-bg            : $ys-bg-color-gray !default;
+$ys-widget-ranking-link-color          : $ys-font-color !default;
+$ys-widget-ranking-link-color-hover    : lighten($ys-widget-ranking-link-color,$ys-link-hover-lighten) !default;
 
 // SNS関連
 $sns-color: (

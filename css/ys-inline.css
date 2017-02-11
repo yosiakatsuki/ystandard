@@ -271,7 +271,7 @@ img {
     -webkit-flex: 0 0 352px;
     -ms-flex: 0 0 352px;
     flex: 0 0 352px;
-    padding: 2rem 2rem 0; } }
+    padding: 0 2rem; } }
 
 .color-site-header {
   background-color: #fafafa;
@@ -818,3 +818,19 @@ img {
 .widget_recent_entries .post-date {
   display: block;
   font-size: .8rem; }
+
+.ys-ranking-list {
+  border-top: 1px solid #fafafa; }
+  .ys-ranking-list a {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid #fafafa;
+    color: #2c3e50; }
+    .ys-ranking-list a:hover {
+      background-color: #fafafa;
+      color: #3e5871; }
+  .ys-ranking-list img {
+    float: left;
+    margin-right: .5rem; }
+  .ys-ranking-list p {
+    overflow: hidden; }

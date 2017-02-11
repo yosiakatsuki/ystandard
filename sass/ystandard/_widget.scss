@@ -78,6 +78,29 @@
 }
 
 
+.ys-ranking-list {
+  border-top:1px solid $ys-widget-ranking-border;
+
+  a {
+    display: block;
+    padding: 1rem 0;
+    border-bottom: 1px solid $ys-widget-ranking-border;
+    color: $ys-widget-ranking-link-color;
+
+    &:hover {
+      background-color: $ys-widget-ranking-hover-bg;
+      color: $ys-widget-ranking-link-color-hover;
+    }
+  }//a
+
+  img {
+    float: left;
+    margin-right: .5rem;
+  }
+  p {
+    overflow: hidden;
+  }
+}//.ys-ranking-list
 
 
 //--------------------------------------
