@@ -141,11 +141,9 @@ if( ! function_exists( 'ys_is_ogp_enable' ) ) {
 //-----------------------------------------------
 if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 	function ys_utilities_get_cat_id_list($sibling=false) {
-
 		// カテゴリー取得
 		if(is_category()) {
 			$catid = get_query_var('cat');
-
 		} else {
 			$postcat = get_the_category();
 			// 取得できなければNULL
@@ -154,6 +152,7 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 			}
 			$catid = $postcat[0]->cat_ID;
 		}
+
 		$allcats = array($catid);
 
 		// 親がなくなるまでループ
@@ -163,12 +162,13 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 			$catid = $category->parent;
 			//0以外ならリストに追加
 			if($catid>0){
+				
 				//兄弟もめぐる場合
 				if($sibling){
 					//子どもを取得（重複追加されるのでページ出力には向かない）
 					$siblist = get_term_children((int)$catid,'category');
 					foreach($siblist as $sibcat){
-						//array_push( $allcats, $brcat);
+						//array_push( $allcats, $sibcat);
 						$allcats[] = $sibcat;
 					}
 				}
@@ -181,6 +181,7 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 		return	array_reverse($allcats);
 	}
 }
+
 
 
 
@@ -478,6 +479,7 @@ if (!function_exists( 'ys_utilities_get_query')) {
 						);
 
 		//オプションがあれば追加
+		// wp_parse_args
 		if($option!==null){
 			$args = array_merge($args,$option);
 		}

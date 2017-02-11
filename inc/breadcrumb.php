@@ -53,7 +53,7 @@ if(!function_exists( 'ys_breadcrumb')) {
 //-----------------------------------------------
 if(!function_exists( 'ys_breadcrumb_get_the_home_link_text')) {
 	function ys_breadcrumb_get_the_home_link_text() {
-		echo get_bloginfo('name');
+		bloginfo('name');
 		//echo 'ホーム';
 	}
 }
