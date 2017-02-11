@@ -281,8 +281,8 @@ if (!function_exists( 'ys_template_the_entry_date')) {
 		$html_pubdate = '';
 		$html_update = '';
 
-		//公開直後に微調整はよくあること。日付で判断
-		if(get_the_time('Ymd') === get_the_modified_time('Ymd') || $show_update === false) {
+		//公開直後に微調整はよくあること。日付で判断 予約投稿すると更新日が公開日以前になる
+		if(get_the_time('Ymd') >= get_the_modified_time('Ymd') || $show_update === false) {
 			$entry_date_class .= ' updated';
 
 			$html_pubdate = '<span class="entry-date-published">'.$ico_calendar.'<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished dateModified" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time></span>';
