@@ -29,8 +29,9 @@ if(!function_exists( 'ys_amp_the_head_amp')) {
 <?php
 // インラインCSS読み込み
 	$args =array(
-		TEMPLATEPATH.'/css/ys-inline.min.css'
-		,TEMPLATEPATH.'/css/ys-style.min.css'
+		TEMPLATEPATH.'/css/ys-inline.min.css',
+		TEMPLATEPATH.'/css/ys-style.min.css',
+		STYLESHEETPATH.'/style.css'
 	);
 	ys_template_the_inline_css($args,true);
 ?>
