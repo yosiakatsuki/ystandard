@@ -14,7 +14,7 @@
 <div id="page" class="site">
 	<div class="site-inner">
 
-		<header id="masthead" class="site-header color-site-header" role="banner" itemscope id="site-header" itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+		<header id="masthead" class="site-header color-site-header" role="banner" itemscope id="site-header" itemprop="publisher" itemscope itemtype="https://schema.org/Organization" <?php ys_template_the_header_attr(); ?>>
 			<div class="site-header-main wrap">
 
 				<div class="site-header-wrap clearfix">
@@ -42,4 +42,4 @@
 			ys_template_the_site_hero();
 		?>
 
-		<div id="content" class="site-content wrap clearfix">
+		<div id="content" class="site-content wrap clearfix" <?php ys_template_the_content_attr(); ?>>

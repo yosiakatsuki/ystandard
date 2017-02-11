@@ -7,7 +7,7 @@
 	}
 	if ( $show_sidebar ) :
 ?>
-<aside id="secondary" class="sidebar sidebar-right widget-area" role="complementary">
+<aside id="secondary" class="sidebar sidebar-right widget-area" role="complementary" <?php ys_template_the_sidebar_attr(); ?>>
 	<?php if ( is_active_sidebar( 'sidebar-right' ) || is_active_sidebar( 'sidebar-fixed' ) ) : ?>
 		<div class="sidebar-wrapper">
 			<?php if ( is_active_sidebar( 'sidebar-right' ) ): ?>

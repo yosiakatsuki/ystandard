@@ -1,7 +1,7 @@
 
 		</div><!-- .site-content -->
 
-		<footer id="footer" class="site-footer" role="contentinfo">
+		<footer id="footer" class="site-footer" role="contentinfo" <?php ys_template_the_footer_attr(); ?>>
 			<div class="wrap">
 				<?php
 					// SNSフォロー
