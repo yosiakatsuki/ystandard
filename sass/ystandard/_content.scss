@@ -34,7 +34,7 @@
 // 投稿タイトル
 .single,
 .page {
-  .entry-title {
+  .entry-header .entry-title {
     margin: 0 0 .5rem;
     font-size: 1.5rem;
 
@@ -97,7 +97,7 @@
   pre,
   table,
   address {
-    margin: 0 0 2rem;
+    margin: 0 0 3rem;
 
     &:last-child {
       margin: 0;
@@ -182,6 +182,9 @@
   .site-main > .page-header,
   .site-main > article {
     padding: $ys-gutter-sp;
+  }
+  .entry-content {
+    font-size: 1.1rem;
   }
   .ad-double {
     font-size: 0;

@@ -476,12 +476,12 @@ img {
   margin: 1rem 0;
   color: #2c3e50; }
 
-.single .entry-title,
-.page .entry-title {
+.single .entry-header .entry-title,
+.page .entry-header .entry-title {
   margin: 0 0 .5rem;
   font-size: 1.5rem; }
-  .single .entry-title a,
-  .page .entry-title a {
+  .single .entry-header .entry-title a,
+  .page .entry-header .entry-title a {
     color: #2c3e50; }
 
 .entry-header {
@@ -535,7 +535,7 @@ img {
 .comment-text pre,
 .comment-text table,
 .comment-text address {
-  margin: 0 0 2rem; }
+  margin: 0 0 3rem; }
   .entry-content p:last-child,
   .entry-content ul:last-child,
   .entry-content ol:last-child,
@@ -618,6 +618,8 @@ img {
   .site-main > .page-header,
   .site-main > article {
     padding: 1rem; }
+  .entry-content {
+    font-size: 1.1rem; }
   .ad-double {
     font-size: 0; }
     .ad-double .ad-left,
