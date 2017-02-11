@@ -10,9 +10,11 @@
 //--------------------------------------
 
 .site-footer {
+	position: relative;
 	padding: .5rem 0;
 	background-color: $ys-footer-bg-color;
 	color: $ys-footer-font-color;
+	z-index: 2;
 
   a,
   a:hover {
