@@ -128,11 +128,13 @@ $ys-footer-sns-bg-color                : $ys-footer-bg-color + #111 !default;
 // コメント
 $ys-required-color                     : #db2814 !default;
 
+// ウィジェット
+$ys-widget-link-color          : $ys-font-color-gray !default;
+$ys-widget-link-color-hover    : lighten($ys-widget-link-color,$ys-link-hover-lighten) !default;
+
 // ウィジェット-人気記事
 $ys-widget-ranking-border              : $ys-bg-color-gray !default;
 $ys-widget-ranking-hover-bg            : $ys-bg-color-gray !default;
-$ys-widget-ranking-link-color          : $ys-font-color !default;
-$ys-widget-ranking-link-color-hover    : lighten($ys-widget-ranking-link-color,$ys-link-hover-lighten) !default;
 
 // SNS関連
 $sns-color: (

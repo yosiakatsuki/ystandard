@@ -10,7 +10,15 @@
 //--------------------------------------
 .widget {
 	margin: 0 0 2rem;
+  font-size: .9rem;
 
+  a {
+    color: $ys-widget-link-color;
+
+    &:hover {
+      color: $ys-widget-link-color-hover;
+    }
+  }//a
 	ul,
 	ol {
 		li {
@@ -85,11 +93,9 @@
     display: block;
     padding: 1rem 0;
     border-bottom: 1px solid $ys-widget-ranking-border;
-    color: $ys-widget-ranking-link-color;
 
     &:hover {
       background-color: $ys-widget-ranking-hover-bg;
-      color: $ys-widget-ranking-link-color-hover;
     }
   }//a
 
