@@ -71,8 +71,8 @@ if( ! function_exists( 'ys_extras_iframe_responsive' ) ) {
 		if ( is_singular() && !ys_is_amp() ) {
 			//マッチさせたいiframeのURLをリスト化
 			$patternlist = array(
-								'youtube\.com'
-								,'vine\.co'
+								'youtube\.com',
+								'vine\.co'
 							);
 			//置換する
 			foreach ($patternlist as $value) {
@@ -536,8 +536,8 @@ if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
 
 		// 読み込むCSSをリスト化
 		$csslist = array(
-										get_template_directory_uri().'/css/ys-style.min.css'
-										,get_template_directory_uri().'/css/font-awesome.min.css'
+										get_template_directory_uri().'/css/ys-style.min.css',
+										get_template_directory_uri().'/css/font-awesome.min.css'
 										);
 
 		$csslist = apply_filters('ys_load_css_footer_js',$csslist);

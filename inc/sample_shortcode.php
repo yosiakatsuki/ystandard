@@ -42,7 +42,7 @@ add_shortcode('ys_sample2', 'ys_shortcode_sample_2');
 //-----------------------------------------------
 function ys_shortcode_sample_3($args,$content=null) {
 
-		if($content != null){
+		if(!is_null($content)){
 			$content = '<span>'.$content.'</span>';
 		} else {
 			$content ='';
