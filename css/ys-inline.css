@@ -614,8 +614,8 @@ img {
   color: #888; }
 
 @media screen and (min-width: 600px) {
-  .post,
-  .page-header,
+  .entry-container > .post,
+  .site-main > .page-header,
   .site-main > article {
     padding: 1rem; }
   .ad-double {
@@ -632,8 +632,8 @@ img {
       padding-left: .5rem; } }
 
 @media screen and (min-width: 960px) {
-  .post,
-  .page-header,
+  .entry-container > .post,
+  .site-main > .page-header,
   .site-main > article {
     padding: 2rem; } }
 
@@ -727,7 +727,8 @@ img {
     margin-right: 2rem; } }
 
 .page-title {
-  font-size: 1.4rem; }
+  font-size: 1.4rem;
+  text-align: center; }
 
 .taxonomy-description {
   margin: 1rem 0 0;

@@ -178,8 +178,8 @@
 //--------------------------------------
 @include media-breakpoint(tb) {
 
-  .post,
-  .page-header,
+  .entry-container > .post,
+  .site-main > .page-header,
   .site-main > article {
     padding: $ys-gutter-sp;
   }
@@ -210,8 +210,8 @@
 //--------------------------------------
 @include media-breakpoint(pc) {
 
-  .post,
-  .page-header,
+  .entry-container > .post,
+  .site-main > .page-header,
   .site-main > article {
     padding: $ys-gutter;
   }
