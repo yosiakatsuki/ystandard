@@ -125,18 +125,21 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 			$logo_html = '';
 			$logo_html .= '<meta itemprop="name" content="'.get_bloginfo('name').'">';
 			$logo_html .= '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" itemscope itemtype="https://schema.org/ImageObject" itemprop="logo">';
-			$logo_html .= '<img src="'.$logo[0].'" alt="'.get_bloginfo( 'name' ).'"  class="custom-logo" width="'.$logo[1].'" height="'.$logo[2].'" />';
+			$logo_html .= '{logo_image}';
 			$logo_html .= '<meta itemprop="name" content="'.get_bloginfo('name').'">';
 			$logo_html .= '<meta itemprop="url" content="'.$logo[0].'">';
 			$logo_html .= '<meta itemprop="width" content="'.$logo[1].'">';
 			$logo_html .= '<meta itemprop="height" content="'.$logo[2].'">';
 			$logo_html .= '</a>';
 
+			$logo_image = '<img src="'.$logo[0].'" alt="'.get_bloginfo( 'name' ).'"  class="custom-logo" width="'.$logo[1].'" height="'.$logo[2].'" />';
+			$logo_image = apply_filters('ys_custom_logo_img_tag',$logo_image,$logo);
+
 			if(ys_is_amp()){
-				$logo_html = str_replace('<img','<amp-img layout="responsive"',$logo_html);
+				$logo_image = str_replace('<img','<amp-img layout="responsive"',$logo_image);
 			}
 
-			$html = $logo_html;
+			$html = str_replace('{logo_image}',$logo_image,$logo_html);
 
 		} else {
 			$html = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" itemprop="name">'.get_bloginfo( 'name' ).'</a>';
@@ -149,6 +152,7 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 		}
 
 		$description = get_bloginfo( 'description', 'display' );
+		$description = apply_filters('ys_header_description',$description);
 		if ( $description != '' || is_customize_preview() ) {
 			echo '<p class="site-description">'.$description.'</p>';
 		}

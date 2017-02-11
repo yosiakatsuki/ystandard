@@ -143,7 +143,7 @@ if(!function_exists( 'ys_amp_convert_amp')) {
 				$content = ys_amp_delete_style($content);
 			}
 
-			return apply_filters('ys_amp_convert_amp',$content);
+			return apply_filters('ys_convert_amp',$content);
 		} else {
 			return $the_content;
 		}
