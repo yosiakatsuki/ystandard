@@ -60,7 +60,7 @@
   }
 
   .content-area {
-    width: 100%;
+    width: calc(100% - #{$ys-sidebar-width});
     margin-right: 0;
     margin-left: 0;
     margin-bottom: 0;

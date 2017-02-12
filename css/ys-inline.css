@@ -261,7 +261,7 @@ img {
     padding-top: 2rem;
     padding-bottom: 2rem; }
   .content-area {
-    width: 100%;
+    width: calc(100% - 352px);
     margin-right: 0;
     margin-left: 0;
     margin-bottom: 0;
@@ -609,6 +609,8 @@ img {
   margin: 1rem 0;
   text-align: center;
   max-width: 100%; }
+  .ad-container ins {
+    background-color: #fff; }
 
 .entry-content .ad-container {
   margin: 1rem 0 2rem; }
