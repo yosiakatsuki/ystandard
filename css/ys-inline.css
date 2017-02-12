@@ -718,7 +718,7 @@ img {
     .entry-container:hover {
       background-color: #fafafa; }
   .post-thumbnail-container {
-    width: 35%;
+    width: 250px;
     margin-right: 1rem;
     float: left; }
   .entry-detail {

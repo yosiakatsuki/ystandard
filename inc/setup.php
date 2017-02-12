@@ -54,7 +54,10 @@ if (!function_exists( 'ys_setup_initialize')) {
 		// アイキャッチ画像を有効に
 		add_theme_support('post-thumbnails');
 
-		add_image_size('yslistthumb',686,390,true);
+		add_image_size('yslistthumb',500,300,true);
+
+		// テキストウィジェットでショートコードを有効化
+		add_filter('widget_text', 'do_shortcode' );
 
 	}
 }//if (!function_exists( 'ys_setup_initialize')) {

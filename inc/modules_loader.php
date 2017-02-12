@@ -31,6 +31,8 @@ require_once TEMPLATEPATH . '/inc/pagination.php';
 require_once TEMPLATEPATH . '/inc/breadcrumb.php';
 // ウィジェット
 require_once TEMPLATEPATH . '/inc/widgets.php';
+// ショートコード
+require_once TEMPLATEPATH . '/inc/shortcode.php';
 
 // 管理画面メニュー
 if(is_admin()){
