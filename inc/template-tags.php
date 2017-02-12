@@ -320,7 +320,7 @@ if (!function_exists( 'ys_template_the_entry_more_text')) {
 //	投稿者情報
 //-----------------------------------------------
 if (!function_exists( 'ys_template_get_the_biography')) {
-	function ys_template_get_the_biography( $user_id = false) {
+	function ys_template_get_the_biography( $user_id = false,$shortcode=false) {
 
 		$author_link = esc_url( get_author_posts_url( get_the_author_meta( 'ID',$user_id ) ) );
 		$author_name = ys_template_get_the_entry_author(true,$user_id);
@@ -332,17 +332,19 @@ if (!function_exists( 'ys_template_get_the_biography')) {
 			$avatar = '<figure class="author-avatar"><a class="author-link" href="'.$author_link.'" rel="author">'.$avatar.'</a></figure>';
 		}
 		$class = $avatar !== '' ? ' show-avatar' : '';
+		$class_wrap = $shortcode == true ? 'author-info clearfix' : 'author-info clearfix entry-footer-container';
 
 		$template = ys_template_get_the_biography_template();
 
 		return sprintf(
-						$template
-						,$avatar
-						,$class
-						,$author_link
-						,$author_name
-						,$author_sns
-						,$author_dscr);
+						$template,
+						$class_wrap,
+						$avatar,
+						$class,
+						$author_link,
+						$author_name,
+						$author_sns,
+						$author_dscr);
 
 	}
 }
@@ -369,7 +371,7 @@ if (!function_exists( 'ys_template_get_the_biography_template')) {
 	function ys_template_get_the_biography_template() {
 
 		$template = <<<EOD
-		<div class="author-info clearfix entry-footer-container" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
+		<div class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
 			%s
 			<div class="author-description%s">
 				<h2 class="author-title">

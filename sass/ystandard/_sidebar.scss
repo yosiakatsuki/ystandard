@@ -15,7 +15,16 @@
   height: 100%;
   position: relative;
 }
+.sidebar-right {
 
+	a {
+	  color: $ys-widget-link-color;
+
+	  &:hover {
+	    color: $ys-widget-link-color-hover;
+	  }
+	}//a
+}
 
 
 //--------------------------------------

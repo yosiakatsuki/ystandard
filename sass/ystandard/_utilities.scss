@@ -9,7 +9,8 @@
 // モバイル or 全体
 //--------------------------------------
 @each $key, $color in $sns-color {
-	.color-#{$key} {
+	.color-#{$key},
+  .widget .color-#{$key} {
 		&,
 		& a {
 			color: $color;
@@ -20,7 +21,8 @@
 		}
 	}//.color-#{$key}
 
-	.bg-#{$key} {
+	.bg-#{$key},
+  .widget .bg-#{$key} {
 
 		background-color: $color;
 

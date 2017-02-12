@@ -779,10 +779,6 @@ img {
 .widget {
   margin: 0 0 2rem;
   font-size: .9rem; }
-  .widget a {
-    color: #888; }
-    .widget a:hover {
-      color: #a2a2a2; }
   .widget ul li,
   .widget ol li {
     margin: 0 0 .2rem; }

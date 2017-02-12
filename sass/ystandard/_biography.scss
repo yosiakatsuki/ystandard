@@ -11,6 +11,9 @@
 .author-info {
 	margin: 2rem 0 0;
 }
+.widget .author-info {
+	margin: 0;
+}
 
 .author-avatar {
 	width: 96px;
@@ -22,7 +25,8 @@
 	}
 }
 
-.author-title {
+.author-title,
+.widget .author-title {
 
 	margin: 0 0 .5rem;
 	text-align: center;
@@ -47,7 +51,8 @@
 	}
 }
 
-.author-sns {
+.author-sns,
+.widget .author-sns {
 
   margin: 0 0 .5rem;
 	font-size: 0;
@@ -79,6 +84,11 @@
 	.author-avatar {
 		margin-right: 1rem;
 		float: left;
+	}
+	.widget .author-avatar {
+		margin:0 auto;
+		text-align: center;
+		float: none;
 	}
 
 	.author-title {
