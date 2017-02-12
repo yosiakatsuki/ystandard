@@ -499,6 +499,10 @@ img {
     zoom: 1; }
   .entry-meta a {
     color: #888; }
+  .entry-meta svg {
+    height: .8rem;
+    margin-right: .2rem;
+    fill: #888; }
 
 .entry-meta-left {
   float: left; }
@@ -692,17 +696,6 @@ img {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
-
-.entry-meta-cat::before {
-  content: "\f115";
-  width: 1.28571429em;
-  display: inline-block;
-  margin: 0 0.2rem 0 0;
-  font-family: FontAwesome;
-  text-align: center;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
 
 .entry-excerpt {
   margin: 1rem 0 .5rem;

@@ -912,7 +912,7 @@ if( ! function_exists( 'ys_template_the_copyright' ) ) {
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
 	function ys_template_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0) {
-		echo ys_utilities_get_the_post_categorys($number,$link,$separator,$postid);
+		echo '<svg viewBox="0 0 32 32"><path d="M26 30l6-16h-26l-6 16zM4 12l-4 18v-26h9l4 4h13v4z"></path></svg>'.ys_utilities_get_the_post_categorys($number,$link,$separator,$postid);
 	}
 }
 

@@ -57,6 +57,11 @@
 	a {
 		color: $ys-content-entry-meta-color;
 	}
+  svg {
+    height: .8rem;
+    margin-right: .2rem;
+    fill: $ys-content-entry-meta-color;
+  }
 }
 
 // 左右で分割表示するときのクラス
