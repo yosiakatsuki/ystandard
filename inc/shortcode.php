@@ -23,7 +23,7 @@ function ys_shortcode_author($args) {
 
 		if($author_id == '' && $default_user_name !== false){
 			$user = get_user_by( 'slug', $default_user_name );
-			if(!$user){
+			if($user){
 				$author_id = $user->ID;
 			}
 		}
