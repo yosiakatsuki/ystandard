@@ -75,7 +75,7 @@
 
 ### sass
 
-ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義
+ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義しています。
 
 `/sass/_ys_custom_variables.scss`で変数を上書き、`/sass/_ys_customize.scss`で作成するテーマ独自のスタイルを追加していく想定で作成しています。
 
@@ -134,8 +134,7 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義
 - 投稿設定
   - 個別ページでアイキャッチ画像を表示しない
 - css,javascript設定
-  - 追加で読み込むスタイルシート
-  - jQueryをCDNから読み込む（URLを設定）
+  - jQueryをCDNから読み込む（URLを設定）　（※追加予定）
 - AMP有効化
   - AMPページを生成する（β）
 
@@ -156,6 +155,10 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義
 
 
 ## 履歴
+
+### v0.1.0
+- 2017/02/12
+  - ベータ版公開
 
 ### v0.0.x
 
