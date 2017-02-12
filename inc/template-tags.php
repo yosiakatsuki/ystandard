@@ -371,7 +371,7 @@ if (!function_exists( 'ys_template_get_the_biography_template')) {
 	function ys_template_get_the_biography_template() {
 
 		$template = <<<EOD
-		<div class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
+		<div id="biography" class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
 			%s
 			<div class="author-description%s">
 				<h2 class="author-title">
