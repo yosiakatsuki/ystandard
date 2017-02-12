@@ -30,8 +30,9 @@
 			background-color: lighten($color,$ys-sns-link-hover-lighten);
 		}
 
-		&,
-		& a ,
+    &,
+		&:hover,
+		& a,
 		& a:hover {
 			color: #fff;
 		}

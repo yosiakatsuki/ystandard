@@ -16,7 +16,10 @@ function ys_shortcode_author($args) {
 				'default_user_name' => false,
 		), $args));
 
-		$author_id = get_the_author_meta( 'ID' );
+		$author_id = '';
+		if(is_singular()){
+			$author_id = get_the_author_meta( 'ID' );
+		}
 
 		if($author_id == '' && $default_user_name !== false){
 			$user = get_user_by( 'slug', $default_user_name );
