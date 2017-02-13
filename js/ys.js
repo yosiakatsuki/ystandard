@@ -177,7 +177,7 @@ function ys_evt_scroll() {
 		ys_scroll_main(document);
 
 		ys_setTimeoutId = null ;
-	}, 300 ) ;
+	}, 100 ) ;
 };
 
 //-----------------------------------------------
