@@ -68,7 +68,7 @@ add_action( 'widgets_init', 'ys_widget_init' );
 
 //------------------------------------------------------------------------------
 //
-//	テーマオリジナルのウィジェト
+//	テーマオリジナルのウィジェット
 //
 //------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ add_action( 'widgets_init', 'ys_widget_init' );
 //------------------------------------------------------------------------------
 //	人気記事ランキング
 //------------------------------------------------------------------------------
-class ys_widgets_ranking_widget extends WP_Widget {
+class YS_Ranking_Widget extends WP_Widget {
 
 
 	private $default_title = '人気記事';
@@ -239,11 +239,101 @@ class ys_widgets_ranking_widget extends WP_Widget {
 }
 
 
+
+
+/**
+ * 広告表示用テキストウィジェット
+ */
+class YS_AD_Text_Widget extends WP_Widget {
+
+	/**
+	 * WordPress でウィジェットを登録
+	 */
+	function __construct() {
+		parent::__construct(
+			'ys_ad_text_widget', // Base ID
+			'[ys]広告表示用テキストウィジェット', // Name
+			array( 'description' => '404ページと結果0件の検索ページに出力しないテキストウィジェット', ) // Args
+		);
+	}
+
+	/**
+	 * ウィジェットのフロントエンド表示
+	 *
+	 * @see WP_Widget::widget()
+	 *
+	 * @param array $args     ウィジェットの引数
+	 * @param array $instance データベースの保存値
+	 */
+	public function widget( $args, $instance ) {
+		global $wp_query;
+
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : '';
+		$text = ! empty( $instance['text'] ) ? $instance['text'] : '';
+
+		$text = apply_filters('ys_ad_text_widget_text', $text, $instance, $this );
+
+		if(!is_404() && !(is_search() && 0 == $wp_query->found_posts) && '' !== $text ) {
+			echo $args['before_widget'];
+			if ( ! empty( $instance['title'] ) ) {
+				echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
+			}
+			echo $instance['text'];
+			echo $args['after_widget'];
+		}
+
+	}
+
+	/**
+	 * バックエンドのウィジェットフォーム
+	 *
+	 * @see WP_Widget::form()
+	 *
+	 * @param array $instance データベースからの前回保存された値
+	 */
+	public function form( $instance ) {
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : '';
+		$text = ! empty( $instance['text'] ) ? $instance['text'] : '';
+		?>
+		<p>
+		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+		</p>
+		<p><label for="<?php echo $this->get_field_id( 'text' ); ?>">内容:</label>
+		<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea($text); ?></textarea></p>
+		<?php
+	}
+
+	/**
+	 * ウィジェットフォームの値を保存用にサニタイズ
+	 *
+	 * @see WP_Widget::update()
+	 *
+	 * @param array $new_instance 保存用に送信された値
+	 * @param array $old_instance データベースからの以前保存された値
+	 *
+	 * @return array 保存される更新された安全な値
+	 */
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		if ( current_user_can( 'unfiltered_html' ) ) {
+			$instance['text'] = $new_instance['text'];
+		} else {
+			$instance['text'] = wp_kses_post( $new_instance['text'] );
+		}
+		return $instance;
+	}
+
+} // class
+
+
 //------------------------------------------------------------------------------
 //	ウィジェットの登録
 //------------------------------------------------------------------------------
 function ys_widgets_register_widget() {
-    register_widget( 'ys_widgets_ranking_widget' );
+		register_widget( 'YS_Ranking_Widget' );
+		register_widget( 'YS_AD_Text_Widget' );
 }
 add_action( 'widgets_init', 'ys_widgets_register_widget' );
 ?>
