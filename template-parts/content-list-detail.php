@@ -16,7 +16,13 @@
 		<div class="entry-date-container entry-meta-right"><?php ys_template_the_entry_date(false); ?></div>
 	</div>
 
-	<?php the_title('<h2 class="entry-title" itemprop="headline name">', '</h2>' ); ?>
+	<?php
+		if(is_single() || is_attachment()){
+			the_title('<h3 class="entry-title" itemprop="headline name">', '</h3>' );
+		} else {
+			the_title('<h2 class="entry-title" itemprop="headline name">', '</h2>' );
+		}
+	?>
 
 	<div class="entry-excerpt" itemprop="articleBody">
 		<?php

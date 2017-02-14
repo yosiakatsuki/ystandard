@@ -31,7 +31,7 @@ function ys_shortcode_author($args) {
 			return '';
 		}
 
-		return ys_template_get_the_biography($author_id,true);
+		return ys_template_get_the_biography($author_id,true,'div');
 }
 add_shortcode('ys_author', 'ys_shortcode_author');
 

@@ -320,7 +320,7 @@ if (!function_exists( 'ys_template_the_entry_more_text')) {
 //	投稿者情報
 //-----------------------------------------------
 if (!function_exists( 'ys_template_get_the_biography')) {
-	function ys_template_get_the_biography( $user_id = false,$shortcode=false) {
+	function ys_template_get_the_biography( $user_id = false,$shortcode=false,$warp='aside') {
 
 		$author_link = esc_url( get_author_posts_url( get_the_author_meta( 'ID',$user_id ) ) );
 		$author_name = ys_template_get_the_entry_author(true,$user_id);
@@ -338,13 +338,15 @@ if (!function_exists( 'ys_template_get_the_biography')) {
 
 		return sprintf(
 						$template,
+						$warp,
 						$class_wrap,
 						$avatar,
 						$class,
 						$author_link,
 						$author_name,
 						$author_sns,
-						$author_dscr);
+						$author_dscr,
+						$warp);
 
 	}
 }
@@ -371,7 +373,7 @@ if (!function_exists( 'ys_template_get_the_biography_template')) {
 	function ys_template_get_the_biography_template() {
 
 		$template = <<<EOD
-		<div id="biography" class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
+		<%s id="biography" class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
 			%s
 			<div class="author-description%s">
 				<h2 class="author-title">
@@ -380,7 +382,7 @@ if (!function_exists( 'ys_template_get_the_biography_template')) {
 				%s
 				<div class="author-bio" itemprop="description" >%s</div>
 			</div>
-		</div>
+		</%s>
 EOD;
 
 	return apply_filters('ys_biography_template',$template);
@@ -534,7 +536,7 @@ if( ! function_exists( 'ys_template_the_sns_share' ) ) {
 	function ys_template_the_sns_share(){
 
 
-		echo '<div id="sns-share" class="sns-share entry-footer-container">';
+		echo '<aside id="sns-share" class="sns-share entry-footer-container">';
 		$share_buttons_title = '\ みんなとシェアする /';
 		$share_buttons_title = apply_filters('ys_share_buttons_title',$share_buttons_title);
 
@@ -549,7 +551,7 @@ if( ! function_exists( 'ys_template_the_sns_share' ) ) {
 			echo ys_template_the_amp_sns_share_buttons();
 
 		}
-		echo '</div>';
+		echo '</aside>';
 
 	}
 }
@@ -650,12 +652,12 @@ if( ! function_exists( 'ys_template_the_related_post' ) ) {
 			$query = new WP_Query(ys_utilities_get_rand(4,$option));
 
 			if ($query->have_posts()) {
-				echo '<div class="entry-post-related entry-footer-container">';
+				echo '<aside class="entry-post-related entry-footer-container">';
 				echo '<h2>関連記事</h2>';
 				while ($query->have_posts()) : $query->the_post();
 					get_template_part( 'template-parts/content','related' );
 				endwhile;
-				echo '</div>';
+				echo '</aside>';
 			}
 			wp_reset_postdata();
 		}
@@ -964,9 +966,9 @@ if( ! function_exists( 'ys_template_the_taxonomy_list' ) ) {
 		echo '<div class="entry-footer-container">';
 
 		// カテゴリー
-		ys_template_the_category_list('<div class="entry-category-list"><h2>カテゴリー</h2>','</div>','');
+		ys_template_the_category_list('<aside class="entry-category-list"><h2>カテゴリー</h2>','</aside>','');
 		// タグ
-		ys_template_the_tag_list('<div class="entry-tag-list"><h2>タグ</h2>','</div>','');
+		ys_template_the_tag_list('<aside class="entry-tag-list"><h2>タグ</h2>','</aside>','');
 
 		echo '</div>';
 
@@ -1057,9 +1059,9 @@ if( ! function_exists( 'ys_template_get_the_advertisement_format' ) ) {
 
 		$html = '';
 		if($ad !== ''){
-			$html = '<div class="ad-container"><div class="ad-caption">スポンサードリンク</div><div class="ad-content">';
+			$html = '<aside class="ad-container"><div class="ad-caption">スポンサーリンク</div><div class="ad-content">';
 			$html .= $ad;
-			$html .= '</div></div>';
+			$html .= '</div></aside>';
 		}
 
 		return $html;
