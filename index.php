@@ -7,7 +7,7 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 
-			<header>
+			<header class="page-header">
 				<?php if(is_singular()) : ?>
 					<h1 class="page-title"><?php single_post_title(); ?></h1>
 				<?php else: ?>

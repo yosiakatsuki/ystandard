@@ -460,8 +460,9 @@ img {
     margin-top: 1rem;
     margin-bottom: -1rem; } }
 
+.page-header,
+.none-content,
 .entry-container > .post,
-.site-main > .page-header,
 .site-main > article {
   padding: 1rem 1rem 2rem; }
 
@@ -620,8 +621,9 @@ img {
   color: #888; }
 
 @media screen and (min-width: 600px) {
+  .page-header,
+  .none-content,
   .entry-container > .post,
-  .site-main > .page-header,
   .site-main > article {
     padding: 1rem; }
   .entry-content {
@@ -640,8 +642,9 @@ img {
       padding-left: .5rem; } }
 
 @media screen and (min-width: 960px) {
+  .page-header,
+  .none-content,
   .entry-container > .post,
-  .site-main > .page-header,
   .site-main > article {
     padding: 2rem; } }
 
