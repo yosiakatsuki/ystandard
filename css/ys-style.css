@@ -389,6 +389,19 @@
   .widget .bg-linkedin a:hover {
     color: #fff; }
 
+.icon-hatenabookmark::before {
+  content: "B!";
+  width: 1.28571429em;
+  display: inline-block;
+  margin: 0 .5rem 0 0;
+  font-family: Verdana;
+  font-weight: bold;
+  font-style: normal;
+  letter-spacing: 0;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
 .aligncenter,
 div.aligncenter,
 .alignleft,
