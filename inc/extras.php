@@ -391,8 +391,21 @@ if(!function_exists( 'ys_extras_custom_noindex') ) {
 if(!function_exists( 'ys_extras_add_googleanarytics')) {
 	function ys_extras_add_googleanarytics(){
 		$ga_tracking_id = trim(get_option('ys_ga_tracking_id',''));
+		$output_ga = true;
 
-		if($ga_tracking_id !== ''){
+		if(is_user_logged_in()){
+			$user = wp_get_current_user();
+
+			if ($user->has_cap( 'edit_posts' ) ) {
+				$output_ga = false;
+			}
+		}
+
+		if('' == $ga_tracking_id){
+			$output_ga = false;
+		}
+
+		if($output_ga){
 			if(ys_is_amp()){
 				$ys_ampanalytics = <<<EOD
 <amp-analytics type="googleanalytics" id="analytics1">
