@@ -668,6 +668,19 @@ img {
   .post-thumbnail-container:hover .entry-more {
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff; }
+  .post-thumbnail-container:before {
+    content: "";
+    display: block;
+    padding-top: 61%; }
+  .post-thumbnail-container .post-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden; }
+    .post-thumbnail-container .post-thumbnail img {
+      width: 100%; }
 
 .entry-more {
   display: -webkit-box;
@@ -725,6 +738,13 @@ img {
     width: 250px;
     margin-right: 1rem;
     float: left; }
+    .post-thumbnail-container:before {
+      padding-top: 0; }
+    .post-thumbnail-container .post-thumbnail {
+      position: static;
+      overflow: visible; }
+      .post-thumbnail-container .post-thumbnail img {
+        width: auto; }
   .entry-detail {
     overflow: hidden; } }
 

@@ -28,7 +28,28 @@
       color: $ys-content-postthumb-hover-color;
     }
   }
+
+  &:before {
+    content:"";
+    display: block;
+    padding-top: 61%;
+  }
+  .post-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+  }
 }
+
+
+
 // 続き
 .entry-more {
   display: flex;
@@ -98,6 +119,19 @@
     width: 250px;
     margin-right: $ys-gutter-sp;
     float: left;
+
+    &:before {
+      padding-top: 0;
+    }
+    .post-thumbnail {
+      position: static;
+      overflow: visible;
+
+
+      img {
+        width: auto;
+      }
+    }
   }
 
   .entry-detail {
