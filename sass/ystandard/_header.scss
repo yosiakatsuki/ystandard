@@ -8,14 +8,13 @@
 //--------------------------------------
 // モバイル or 全体
 //--------------------------------------
+.site-header {
+	padding: $ys-gutter-sp 0;
+}
 
 .color-site-header {
 	background-color: $ys-header-bg-color;
 	color: $ys-header-font-color;
-}
-
-.site-header {
-	padding: $ys-gutter-sp 0;
 }
 
 .site-header-wrap {
@@ -25,18 +24,25 @@
 .site-title {
 	font-size: 2rem;
 
-	a {
-		color: $ys-header-font-color;
-	}
-
 	img,
 	amp-img {
 		max-width: 300px;
 	}
 }
 
+.color-site-title {
+  color: $ys-header-font-color;
+  a {
+		color: $ys-header-font-color;
+	}
+}
+
 .site-description {
 	font-size: .8rem;
+}
+
+.color-site-dscr {
+  color: $ys-header-font-color;
 }
 
 .site-header-menu {

@@ -142,7 +142,7 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 			$html = str_replace('{logo_image}',$logo_image,$logo_html);
 
 		} else {
-			$html = '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" itemprop="name">'.get_bloginfo( 'name' ).'</a>';
+			$html = '<a class="color-site-title" href="'.esc_url( home_url( '/' ) ).'" rel="home" itemprop="name">'.get_bloginfo( 'name' ).'</a>';
 		}
 
 		if ( !is_singular() ) {
@@ -154,7 +154,7 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 		$description = get_bloginfo( 'description', 'display' );
 		$description = apply_filters('ys_header_description',$description);
 		if ( $description != '' || is_customize_preview() ) {
-			echo '<p class="site-description">'.$description.'</p>';
+			echo '<p class="site-description color-site-dscr">'.$description.'</p>';
 		}
 	}//ys_template_the_header_site_title_logo
 }
