@@ -21,11 +21,7 @@
 	</div>
 
 	<?php
-		if(is_single() || is_attachment()){
-			the_title('<h3 class="entry-title" itemprop="headline name">', '</h3>' );
-		} else {
-			the_title('<h2 class="entry-title" itemprop="headline name">', '</h2>' );
-		}
+		the_title('<h3 class="entry-title" itemprop="headline name">', '</h3>' );
 	?>
 
 	<div class="entry-excerpt" itemprop="articleBody">

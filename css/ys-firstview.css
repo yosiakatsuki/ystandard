@@ -752,13 +752,17 @@ img {
   .post-thumbnail-container {
     margin-right: 2rem; } }
 
+.page-header {
+  border-bottom: 1px solid #eee; }
+
 .page-title {
   font-size: 1.4rem;
   text-align: center; }
 
 .taxonomy-description {
   margin: 1rem 0 0;
-  font-size: .8rem; }
+  font-size: .8rem;
+  color: #888; }
   .taxonomy-description p {
     margin: 0 0 .2rem; }
 

@@ -8,6 +8,11 @@
 //--------------------------------------
 // モバイル or 全体
 //--------------------------------------
+
+.page-header {
+  border-bottom: 1px solid $ys-content-entry-list-separator-color;
+}
+
 .page-title {
 	font-size: 1.4rem;
   text-align: center;
@@ -17,6 +22,7 @@
 
 	margin: 1rem 0 0;
 	font-size: .8rem;
+  color: $ys-content-description-font-color;
 
 	p {
 		margin: 0 0 .2rem;

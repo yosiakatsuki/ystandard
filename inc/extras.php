@@ -216,6 +216,12 @@ if( ! function_exists( 'ys_extras_get_the_archive_title' )){
 			$tax = get_taxonomy( get_queried_object()->taxonomy );
 			/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
 			$title = sprintf( '%1$s「%2$s」の投稿一覧' , $tax->labels->singular_name, single_term_title( '', false ) );
+		} elseif (is_home()) {
+			$title = '記事一覧';
+		}
+
+		if(get_query_var( 'paged' )) {
+			$title .= ' '.get_query_var( 'paged' ).'ページ';
 		}
 
 		return $title;
