@@ -560,7 +560,7 @@ if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
 		$csslist = array(
 										get_template_directory_uri().'/css/ys-style.min.css',
 										get_template_directory_uri().'/css/font-awesome.min.css',
-										get_stylesheet_directory_uri().'/style-firstview.css'
+										get_stylesheet_directory_uri().'/style.css'
 										);
 
 		$csslist = apply_filters('ys_load_css_footer_js',$csslist);

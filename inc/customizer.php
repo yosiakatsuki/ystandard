@@ -13,19 +13,21 @@
 //-----------------------------------------------
 if (!function_exists( 'ys_customizer')) {
 	function ys_customizer($wp_customize) {
-		// ------------------------
-		// 設定の削除
-		// ------------------------
+		/**
+		 * 設定の削除
+		 */
 
 		// サイトアイコン削除
 		ys_customizer_delete_site_icon($wp_customize);
 
-		// ------------------------
-		// 設定の追加
-		// ------------------------
+		/**
+		 * 設定の追加
+		 */
 
 		// apple touch icon
 		ys_customizer_add_apple_touch_icon($wp_customize);
+
+		// 色変更
 
 	}
 }

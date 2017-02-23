@@ -28,12 +28,15 @@ add_action( 'wp_enqueue_scripts', 'ys_enqueue_deregister',9 );
 if (!function_exists( 'ys_enqueue_styles')) {
 	function ys_enqueue_styles() {
 
-		//------------------------------------------
-		//	スタイルシート
-		//------------------------------------------
+		/**
+		 *	スタイルシート
+		 */
+
 		// 高速化対策のため</body>で遅延読み込み
 		// wp_enqueue_style( 'ystandard-styles', get_template_directory_uri().'/css/ys-style.min.css', array(), '' );
 		// wp_enqueue_style( 'font-awesome', get_template_directory_uri().'/css/font-awesome.min.css', array(), null );
+		
+		// wp_dequeue_style();
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles' );
