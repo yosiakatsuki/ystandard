@@ -289,10 +289,9 @@ img {
   .site-title amp-img {
     max-width: 300px; }
 
-.color-site-title {
+.color-site-title,
+.color-site-title:hover {
   color: #2c3e50; }
-  .color-site-title a {
-    color: #2c3e50; }
 
 .site-description {
   font-size: .8rem; }

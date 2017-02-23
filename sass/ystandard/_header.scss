@@ -30,11 +30,9 @@
 	}
 }
 
-.color-site-title {
+.color-site-title,
+.color-site-title:hover {
   color: $ys-header-font-color;
-  a {
-		color: $ys-header-font-color;
-	}
 }
 
 .site-description {
