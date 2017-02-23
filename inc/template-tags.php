@@ -6,14 +6,14 @@
  * ************************************************************************ */
 
 
-//------------------------------------------------------------------------------
-//
-//	html~head関連
-//
-//------------------------------------------------------------------------------
-//-----------------------------------------------
-//	html-head要素の出力
-//-----------------------------------------------
+/**
+ *	**********************************************
+ *	html~head関連
+ *	**********************************************
+ */
+/**
+ *	html-head要素の出力
+ */
 if(!function_exists( 'ys_template_the_head_tag')) {
 	function ys_template_the_head_tag(){
 
@@ -224,6 +224,31 @@ if( ! function_exists( 'ys_template_the_site_hero' ) ) {
 		echo apply_filters('ys_site_hero',$html);
 	}
 }
+
+
+
+
+
+/**
+ *
+ *	front-page
+ *
+ */
+if( ! function_exists( 'ys_template_get_front_page_template_part' ) ) {
+	function ys_template_get_front_page_template_part() {
+
+		$type = get_option('show_on_front');
+
+		if('page' == $type){
+			$template = 'page';
+		} else {
+			$template = 'home';
+		}
+
+		return apply_filters('ys_get_front_page_template_part',$template);
+	}
+}
+
 
 
 
@@ -1198,6 +1223,7 @@ if( ! function_exists( 'ys_template_the_footer_attr' ) ) {
 		echo apply_filters('ys_the_footer_attr','');
 	}
 }
+
 
 
 ?>

@@ -1,10 +1,4 @@
 <?php
-$show_on_front = get_option('show_on_front');
-
-if('page' == $show_on_front){
-	get_template_part( 'page', '' );
-} else {
-	get_template_part( 'home', '' );
-}
-
+	// フロントページテンプレート読み込み
+	get_template_part(ys_template_get_front_page_template_part())
 ?>
