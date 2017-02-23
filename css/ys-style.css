@@ -831,9 +831,20 @@ div.aligncenter {
 
 .entry-content blockquote,
 .comment-text blockquote {
+  position: relative;
   padding: 1.5rem;
   background-color: #fbfbfb;
+  border-left: 3px solid #ccc;
   color: #888; }
+  .entry-content blockquote:after,
+  .comment-text blockquote:after {
+    position: absolute;
+    content: "”";
+    top: 0;
+    right: 1.5rem;
+    font-family: sans-serif;
+    font-size: 6rem;
+    opacity: .2; }
   .entry-content blockquote p,
   .entry-content blockquote cite,
   .comment-text blockquote p,
