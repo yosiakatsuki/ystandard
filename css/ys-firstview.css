@@ -468,7 +468,7 @@ img {
 
 .page-header,
 .none-content,
-.entry-container > .post,
+.entry-container > .post-list,
 .site-main > article {
   padding: 1rem 1rem 2rem; }
 
@@ -629,7 +629,7 @@ img {
 @media screen and (min-width: 600px) {
   .page-header,
   .none-content,
-  .entry-container > .post,
+  .entry-container > .post-list,
   .site-main > article {
     padding: 1rem; }
   .entry-content {
@@ -650,7 +650,7 @@ img {
 @media screen and (min-width: 960px) {
   .page-header,
   .none-content,
-  .entry-container > .post,
+  .entry-container > .post-list,
   .site-main > article {
     padding: 2rem; } }
 

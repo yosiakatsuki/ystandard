@@ -11,7 +11,7 @@
 
 .page-header,
 .none-content,
-.entry-container > .post,
+.entry-container > .post-list,
 .site-main > article {
     padding: $ys-gutter-sp $ys-gutter-sp $ys-gutter-sp * 2;
 }
@@ -189,7 +189,7 @@
 
   .page-header,
   .none-content,
-  .entry-container > .post,
+  .entry-container > .post-list,
   .site-main > article {
     padding: $ys-gutter-sp;
   }
@@ -225,7 +225,7 @@
 
   .page-header,
   .none-content,
-  .entry-container > .post,
+  .entry-container > .post-list,
   .site-main > article {
     padding: $ys-gutter;
   }

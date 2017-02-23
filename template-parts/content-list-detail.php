@@ -12,7 +12,11 @@
 
 <div class="entry-detail">
 	<div class="entry-meta">
-		<div class="entry-meta-cat entry-meta-left"><?php ys_template_the_post_categorys(1,false); ?></div>
+		<?php
+			$cat = get_the_category();
+			if($cat) : ?>
+			<div class="entry-meta-cat entry-meta-left"><?php ys_template_the_post_categorys(1,false); ?></div>
+		<?php endif; ?>
 		<div class="entry-date-container entry-meta-right"><?php ys_template_the_entry_date(false); ?></div>
 	</div>
 
