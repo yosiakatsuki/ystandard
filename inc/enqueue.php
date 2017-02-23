@@ -54,7 +54,7 @@ if (!function_exists( 'ys_enqueue_scripts')) {
 		//wp_enqueue_script( 'jquery-core', false, array(), null, true );
 
 		//テーマのjs読み込む
-		wp_enqueue_script( 'ystandard-scripts', get_template_directory_uri() . '/js/ys.js', array('jquery','jquery-core'), '', true );
+		wp_enqueue_script( 'ystandard-scripts', get_template_directory_uri() . '/js/ys.min.js', array('jquery','jquery-core'), '', true );
 
 	}
 }

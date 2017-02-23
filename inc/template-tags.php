@@ -58,7 +58,7 @@ if(!function_exists( 'ys_template_the_head_normal')) {
 <meta itemscope id="EntityOfPageid" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
 <?php
 // インラインCSS読み込み
-	ys_template_the_inline_css(array(TEMPLATEPATH.'/css/ys-inline.min.css'),false);
+	ys_template_the_inline_css(array(TEMPLATEPATH.'/css/ys-firstview.min.css'),false);
 ?>
 <?php
 	if ( is_singular() && pings_open( get_queried_object() ) ) :
