@@ -225,69 +225,91 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 		// Twitter　>>>>
 		$pattern = '/<p>https:\/\/twitter.com\/.*?\/status\/(.*?)".*?<\/p>/i';
 		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 
 		// scriptにwpautopが効くパターン
 
 		$pattern = '/<blockquote class="twitter-tweet".*?>.*?<a href="https:\/\/twitter.com\/.*?\/status\/(.*?)">.*?<\/blockquote>.*?<script async src="\/\/platform.twitter.com\/widgets.js" charset="utf-8"><\/script><\/p>/is';
 		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 
 		// scriptにwpautopが効かなかったパターン
 		$pattern = '/<blockquote class="twitter-tweet".*?>.+?<a href="https:\/\/twitter.com\/.*?\/status\/(.*?)">.+?<\/blockquote>.*?<script async src="\/\/platform.twitter.com\/widgets.js" charset="utf-8"><\/script>/is';
 		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 
 		// blockquoteのみパターン
 		$pattern = '/<blockquote class="twitter-tweet".*?>.*?<a href="https:\/\/twitter.com\/.*?\/status\/(.*?)".*?<\/blockquote>/is';
 		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 		// <<<< Twitter
 
 		// Instagram >>>>
 		// scriptにwpautopが効くパターン
 		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www.instagram.com\/p\/(.+?)\/".+?<\/blockquote>.*?<script async defer src="\/\/platform.instagram.com\/.+?\/embeds.js"><\/script><\/p>/is';
 		$append = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 
 		// scriptにwpautopが効かなかったパターン
 		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www.instagram.com\/p\/(.+?)\/".+?<\/blockquote>.*?<script async defer src="\/\/platform.instagram.com\/.+?\/embeds.js"><\/script>/is';
 		$append = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 
 		// blockquoteのみパターン
 		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www.instagram.com\/p\/(.+?)\/".+?<\/blockquote>/is';
 		$append = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 		// <<<< Instagram
 
 		// YouTube
 		$pattern = '/<iframe[^>]+?src="https:\/\/www.youtube.com\/embed\/(.+?)(\?feature=oembed)?".*?><\/iframe>/is';
 		$append = '<amp-youtube layout="responsive" data-videoid="$1" width="480" height="270"></amp-youtube>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 
 		// vine
 		$pattern = '/<iframe[^>]+?src="https:\/\/vine.co\/v\/(.+?)\/embed\/simple".+?><\/iframe>/is';
 		$append = '<amp-vine data-vineid="$1" width="600" height="600" layout="responsive"></amp-vine>';
-		$content = preg_replace($pattern, $append, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
 
 		// Facebook post
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/post\.php\?href=(.*?)&.+?".+?><\/iframe>/is';
-		$content = preg_replace_callback(
-									$pattern
-									, function ($m) {
-											return '<amp-facebook width=486 height=657 layout="responsive" data-href="'.urldecode($m[1]).'"></amp-facebook>';
-										}
-									, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace_callback(
+										$pattern
+										, function ($m) {
+												return '<amp-facebook width=486 height=657 layout="responsive" data-href="'.urldecode($m[1]).'"></amp-facebook>';
+											}
+										, $content);
+		}
 
 		// Facebook video
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/video\.php\?href=(.*?)&.+?".+?><\/iframe>/is';
-		$content = preg_replace_callback(
-									$pattern
-									, function ($m) {
-											return '<amp-facebook width=552 height=574 layout="responsive" data-embed-as="video" data-href="'.urldecode($m[1]).'"></amp-facebook>';
-										}
-									, $content);
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace_callback(
+										$pattern
+										, function ($m) {
+												return '<amp-facebook width=552 height=574 layout="responsive" data-embed-as="video" data-href="'.urldecode($m[1]).'"></amp-facebook>';
+											}
+										, $content);
+		}
 
 
 		return $content;
