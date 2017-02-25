@@ -129,6 +129,49 @@ add_filter( 'site_icon_meta_tags', 'ys_extras_site_icon_meta_tags' );
 
 
 
+/**
+ *	テーマカスタマイザーのCSS
+ */
+if( ! function_exists( 'ys_extras_customize_css' )){
+	function ys_extras_customize_css() {
+
+		/**
+		 *	設定取得
+		 */
+		$html_bg = get_option('ys_color_site_bg','#fff');
+		$html_font = get_option('ys_color_site_font','#2c3e50');
+		$html_font_sub = get_option('ys_color_site_font_sub','#888');
+
+		$header_bg = get_option('ys_color_header_bg','#fafafa');
+		$header_font = get_option('ys_color_header_font','#2c3e50');
+
+		$nav_font_pc = get_option('ys_color_nav_font_pc','#888');
+		$nav_border_pc = get_option('ys_color_nav_border_pc','#888');
+		$nav_bg_sp = get_option('ys_color_nav_bg_sp','#2c3e50');
+		$nav_font_sp = get_option('ys_color_nav_font_sp','#fff');
+		$nav_border_sp = get_option('ys_color_nav_border_sp','#fff');
+
+		$footer_bg = get_option('ys_color_footer_bg','#2c3e50');
+		$footer_font = get_option('ys_color_footer_font','#fff');
+
+		$css = '';
+
+		// サイト全体設定
+		$selectors = array(
+									'body, html',
+									'.entry-title',
+									'.pagination-list li .current,.pagination-list li a'
+								);
+		$css .= ys_utilities_create_inline_css($selectors,"color:{$html_font};");
+
+
+		$css = apply_filters('ys_customize_css',$css);
+		echo '<style type="text/css">'.$css.'</style>';
+	}
+}
+add_action( 'wp_head', 'ys_extras_customize_css',11 );
+
+
 //------------------------------------------------------------------------------
 // 投稿抜粋文字数
 //------------------------------------------------------------------------------
