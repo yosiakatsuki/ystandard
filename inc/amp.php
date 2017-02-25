@@ -31,8 +31,8 @@ if(!function_exists( 'ys_amp_the_head_amp')) {
 	$args =array(
 		TEMPLATEPATH.'/css/ys-firstview.min.css',
 		TEMPLATEPATH.'/css/ys-style.min.css',
-		STYLESHEETPATH.'/style-firstview.css',
-		STYLESHEETPATH.'/style.css'
+		locate_template('style-firstview.css'),
+		locate_template('style.css')
 	);
 	ys_template_the_inline_css($args,true);
 ?>

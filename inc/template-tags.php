@@ -58,7 +58,13 @@ if(!function_exists( 'ys_template_the_head_normal')) {
 <meta itemscope id="EntityOfPageid" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
 <?php
 // インラインCSS読み込み
-	ys_template_the_inline_css(array(TEMPLATEPATH.'/css/ys-firstview.min.css'),false);
+	ys_template_the_inline_css(
+						array(
+							TEMPLATEPATH.'/css/ys-firstview.min.css',
+							locate_template('style-firstview.css')
+						),
+						false
+			);
 ?>
 <?php
 	if ( is_singular() && pings_open( get_queried_object() ) ) :
@@ -86,8 +92,10 @@ if(!function_exists( 'ys_template_the_inline_css')) {
 
 			echo '<style amp-custom>';
 			foreach($csslist as $css){
-				$inline = file_get_contents($css);
-				echo str_replace('@charset "UTF-8";','',$inline);
+				if(file_exists($css)){
+					$inline = file_get_contents($css);
+					echo preg_replace( '/\/\*.*?\*\//is', '', str_replace('@charset "UTF-8";','',$inline));
+				}
 			}
 
 		} else {
@@ -96,7 +104,9 @@ if(!function_exists( 'ys_template_the_inline_css')) {
 
 			echo '<style type="text/css">';
 			foreach($csslist as $css){
-				include($css);
+				if(file_exists($css)){
+					include($css);
+				}
 			}
 		}
 		echo '</style>';
