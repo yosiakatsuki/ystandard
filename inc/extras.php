@@ -130,20 +130,6 @@ add_filter( 'site_icon_meta_tags', 'ys_extras_site_icon_meta_tags' );
 
 
 
-/**
- *	テーマカスタマイザーのCSS
- */
-if( ! function_exists( 'ys_extras_customize_css' )){
-	function ys_extras_customize_css() {
-		$css = ys_customizer_inline_css();
-		if($css){
-			echo '<style type="text/css">'.$css.'</style>';
-		}
-	}
-}
-add_action( 'wp_head', 'ys_extras_customize_css',11 );
-
-
 //------------------------------------------------------------------------------
 // 投稿抜粋文字数
 //------------------------------------------------------------------------------
@@ -552,6 +538,22 @@ if(!function_exists( 'ys_extras_add_amphtml')) {
 }
 add_action( 'wp_head', 'ys_extras_add_amphtml' );
 
+
+
+
+
+/**
+ *	テーマカスタマイザーのCSS
+ */
+if( ! function_exists( 'ys_extras_customize_css' )){
+	function ys_extras_customize_css() {
+		$css = ys_customizer_inline_css();
+		if($css){
+			echo '<style type="text/css">'.$css.'</style>';
+		}
+	}
+}
+add_action( 'wp_head', 'ys_extras_customize_css',11 );
 
 
 

@@ -318,6 +318,10 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 if( ! function_exists( 'ys_customizer_inline_css' )){
 	function ys_customizer_inline_css() {
 
+		if(ys_get_setting('ys_desabled_color_customizeser') == true){
+			return '';
+		}
+
 		/**
 		 *	設定取得
 		 */

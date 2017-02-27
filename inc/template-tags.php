@@ -97,6 +97,8 @@ if(!function_exists( 'ys_template_the_inline_css')) {
 					echo preg_replace( '/\/\*.*?\*\//is', '', str_replace('@charset "UTF-8";','',$inline));
 				}
 			}
+			// テーマカスタマイザー指定
+			echo ys_customizer_inline_css();
 
 		} else {
 

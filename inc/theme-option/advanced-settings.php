@@ -25,6 +25,7 @@
 						<label for="ys_hide_post_thumbnail">
 							<input type="checkbox" name="ys_hide_post_thumbnail" id="ys_hide_post_thumbnail" value="1" <?php checked(get_option('ys_hide_post_thumbnail',0),1); ?> />投稿ページでアイキャッチ画像を表示しない
 						</label>
+						<p class="description">※投稿内の先頭にアイキャッチ画像を配置している場合、こちらの設定を有効にすることにより画像が2枚連続で表示されないようにします。（他プログサービスからの引っ越してきた場合に役立つかもしれません）</p>
 					</td>
 				</tr>
 			</table>
@@ -41,6 +42,7 @@
 						<label for="ys_desabled_color_customizeser">
 							<input type="checkbox" name="ys_desabled_color_customizeser" id="ys_desabled_color_customizeser" value="1" <?php checked(get_option('ys_desabled_color_customizeser',0),1); ?> />投稿ページでアイキャッチ画像を表示しない
 						</label>
+						<p class="description">※ご自身でCSSを調整する場合はこちらの機能を有効化してください。余分なCSSコードが出力されなくなります</p>
 					</td>
 				</tr>
 			</table>
@@ -57,6 +59,7 @@
 						<label for="ys_amp_enable">
 							<input type="checkbox" name="ys_amp_enable" id="ys_amp_enable" value="1" <?php checked(get_option('ys_amp_enable',0),1); ?> />AMPページを生成する
 						</label>
+						<p class="description">※AMPページの生成を保証するものではありません。使用しているプラグインや投稿内のHTMLタグ、インラインCSS、javascriptコードによりAMPフォーマットとしてエラーとなる場合もあります。</p>
 					</td>
 				</tr>
 			</table>
