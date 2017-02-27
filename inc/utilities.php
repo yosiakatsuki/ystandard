@@ -162,7 +162,7 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 			$catid = $category->parent;
 			//0以外ならリストに追加
 			if($catid>0){
-				
+
 				//兄弟もめぐる場合
 				if($sibling){
 					//子どもを取得（重複追加されるのでページ出力には向かない）
@@ -510,6 +510,12 @@ if (!function_exists( 'ys_utilities_get_rand')) {
 
 
 
+/**
+ *
+ *	その他　関数
+ *
+ */
+
 
 
 //------------------------------------------------------------------------------
@@ -522,8 +528,8 @@ if (!function_exists( 'ys_utilities_get_rand')) {
 //	チェックボックスのサニタイズ
 //-----------------------------------------------
 if (!function_exists( 'ys_utilities_sanitize_checkbox')) {
-	function ys_utilities_sanitize_checkbox( $input ) {
-		if ( $input == true ) {
+	function ys_utilities_sanitize_checkbox( $value ) {
+		if ( $value == true || $value === 'true' ) {
 			return true;
 		} else {
 			return false;

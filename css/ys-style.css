@@ -627,7 +627,8 @@ div.aligncenter {
   margin: 0 0 2rem; }
   .post-navigation .next-label,
   .post-navigation .prev-label {
-    display: block; }
+    display: block;
+    color: #888; }
   .post-navigation .nav-prev,
   .post-navigation .nav-next {
     margin: 0 0 .5rem; }
@@ -638,6 +639,10 @@ div.aligncenter {
     .post-navigation .nav-prev span,
     .post-navigation .nav-next span {
       display: block; }
+    .post-navigation .nav-prev a,
+    .post-navigation .nav-next a {
+      color: #2c3e50;
+      text-decoration: underline; }
   .post-navigation .home {
     display: -webkit-box;
     display: -webkit-flex;

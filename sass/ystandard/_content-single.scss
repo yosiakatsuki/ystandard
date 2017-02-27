@@ -208,6 +208,7 @@
   .next-label,
   .prev-label {
     display: block;
+    color: $ys-content-post-navlabel-font-color;
   }
 
   .nav-prev,
@@ -223,6 +224,11 @@
   	span {
   		display: block;
   	}
+
+    a {
+      color: $ys-content-post-nav-font-color;
+      text-decoration: underline;
+    }
 
   }
   .home {

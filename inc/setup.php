@@ -26,7 +26,7 @@ if (!function_exists( 'ys_setup_initialize')) {
 		//メニュー有効化
 		register_nav_menus(
 			array(
-					'gloval' => 'グローバルメニュー',
+					'gloval' => 'グローバルナビゲーション',
 					'footer' => 'フッターメニュー',
 				)
 			);

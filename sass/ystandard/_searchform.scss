@@ -35,6 +35,15 @@
     line-height: 1.7;
     color:$ys-font-color-placeholdertext;
   }
+  &::-webkit-input-placeholder {
+    color:$ys-font-color-placeholdertext;
+  }
+  &:-ms-input-placeholder {
+    color:$ys-font-color-placeholdertext;
+  }
+  &::-moz-placeholder {
+    color:$ys-font-color-placeholdertext;
+  }
 }
 
 .search-submit {

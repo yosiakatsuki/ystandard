@@ -779,14 +779,20 @@ img {
 .search-field {
   width: 100%;
   background: transparent;
-  border: 1px solid #2c3e50;
+  border: 1px solid #888;
   border-radius: 1.1rem;
   background-color: transparent;
-  color: #2c3e50;
+  color: #888;
   padding: .3rem 2rem .3rem 1rem; }
   .search-field:placeholder-shown {
     font-size: .9rem;
     line-height: 1.7;
+    color: #888; }
+  .search-field::-webkit-input-placeholder {
+    color: #888; }
+  .search-field:-ms-input-placeholder {
+    color: #888; }
+  .search-field::-moz-placeholder {
     color: #888; }
 
 .search-submit {
@@ -796,12 +802,12 @@ img {
   right: 0;
   border: 1px solid transparent;
   background-color: transparent;
-  color: #2c3e50;
+  color: #888;
   box-shadow: none;
   padding: .5rem 1rem .5rem .5rem; }
   .search-submit svg {
     width: 1rem;
-    fill: #2c3e50; }
+    fill: #888; }
 
 .widget {
   margin: 0 0 3rem;

@@ -32,6 +32,22 @@
 	</div>
 
 	<div class="postbox">
+		<h2>css,javascript設定</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">テーマカスタマイザーの色設定を無効にする</th>
+					<td>
+						<label for="ys_desabled_color_customizeser">
+							<input type="checkbox" name="ys_desabled_color_customizeser" id="ys_desabled_color_customizeser" value="1" <?php checked(get_option('ys_desabled_color_customizeser',0),1); ?> />投稿ページでアイキャッチ画像を表示しない
+						</label>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="postbox">
 		<h2>AMP有効化</h2>
 		<div class="inside">
 			<table class="form-table">
