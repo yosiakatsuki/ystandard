@@ -37,12 +37,12 @@
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row">テーマカスタマイザーの色設定を無効にする</th>
+					<th scope="row">テーマカスタマイザーでの色変更</th>
 					<td>
 						<label for="ys_desabled_color_customizeser">
-							<input type="checkbox" name="ys_desabled_color_customizeser" id="ys_desabled_color_customizeser" value="1" <?php checked(get_option('ys_desabled_color_customizeser',0),1); ?> />投稿ページでアイキャッチ画像を表示しない
+							<input type="checkbox" name="ys_desabled_color_customizeser" id="ys_desabled_color_customizeser" value="1" <?php checked(get_option('ys_desabled_color_customizeser',0),1); ?> />テーマカスタマイザーでの色変更機能を無効にする
 						</label>
-						<p class="description">※ご自身でCSSを調整する場合はこちらの機能を有効化してください。余分なCSSコードが出力されなくなります</p>
+						<p class="description">※ご自身でCSSを調整する場合はこちらのチェックをいれてください。余分なCSSコードが出力されなくなります</p>
 					</td>
 				</tr>
 			</table>
