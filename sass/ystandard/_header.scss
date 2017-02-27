@@ -196,7 +196,7 @@
 		bottom: auto;
 		padding: 0;
 		background-color: transparent;
-		overflow-y: hidden;
+		overflow-y: visible;
 	}
 
 	.main-navigation {
@@ -247,8 +247,22 @@
 					border-bottom: 1px solid transparent;
 				}
 				&>ul {
+					left: -100%;
+					right: -100%;
+					margin: 0.5rem auto 0;
+          text-align: center;
 					visibility: visible;
 					opacity: 1;
+          li {
+            padding: .5rem 0;
+          }
+
+          a {
+            padding: .5rem 0;
+            &:hover {
+              border-bottom: 1px solid $ys-header-nav-font-color;
+            }
+          }
 				}
 			}//&:hover
 

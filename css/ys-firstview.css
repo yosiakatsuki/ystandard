@@ -403,7 +403,7 @@ img {
     bottom: auto;
     padding: 0;
     background-color: transparent;
-    overflow-y: hidden; }
+    overflow-y: visible; }
   .main-navigation {
     display: table;
     height: 100%; }
@@ -438,8 +438,18 @@ img {
       .gloval-menu > li:hover.menu-item-has-children a {
         border-bottom: 1px solid transparent; }
       .gloval-menu > li:hover > ul {
+        left: -100%;
+        right: -100%;
+        margin: 0.5rem auto 0;
+        text-align: center;
         visibility: visible;
-        opacity: 1; } }
+        opacity: 1; }
+        .gloval-menu > li:hover > ul li {
+          padding: .5rem 0; }
+        .gloval-menu > li:hover > ul a {
+          padding: .5rem 0; }
+          .gloval-menu > li:hover > ul a:hover {
+            border-bottom: 1px solid #888; } }
 
 .breadcrumb {
   margin-top: 1rem; }

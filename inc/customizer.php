@@ -456,7 +456,8 @@ if( ! function_exists( 'ys_customizer_inline_css' )){
 		$css .= '@media screen and (min-width: 960px) {';
 		// 背景
 		$selectors = array(
-										'.gloval-menu>li:hover a'
+										'.gloval-menu>li:hover a',
+										'.gloval-menu>li:hover.menu-item-has-children a:hover'
 									);
 		$css .= implode(",", $selectors)."{border-color:{$nav_border_pc};}";
 

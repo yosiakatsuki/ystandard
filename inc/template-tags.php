@@ -205,7 +205,7 @@ if(!function_exists( 'ys_template_the_header_global_menu')) {
 						<?php
 							wp_nav_menu( array(
 								'theme_location' => 'gloval',
-								'menu_class'		 => 'gloval-menu',
+								'menu_class'		 => 'gloval-menu clearfix',
 								'container_class' => 'menu-global-container',
 								'depth'          => 2
 							 ) );
