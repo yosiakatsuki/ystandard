@@ -220,14 +220,33 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 
 ### ナビゲーション
 
-- ナビゲーション文字色（mobile~tablet / PC で切り替えあり）
-  - `.gloval-menu>li a`
-  - `.gloval-menu>li:hover a`(PCのみ)
+- ブレークポイント
+  - SP/Tablet
+    - `@media screen and (max-width: 959px) {}`（テーマデフォルト）
+  - PC
+    - `@media screen and (min-width: 960px) {}`（テーマデフォルト）
 
+- ナビゲーション文字色
+  - SP/PC
+    - `.gloval-menu>li a`
 
-## 履歴
+- ナビゲーション背景色
+  - SP
+    - `.site-header-menu`
+  - PC
+    - なし
+
+- ナビゲーション ホバー時の下線
+  - SP
+    - なし
+  - PC
+    - `.gloval-menu>li:hover a`
+    - `.gloval-menu>li:hover.menu-item-has-children a:hover`
+
+## 変更履歴
 
 ### v0.1.x
+- v0.1.4 : 2017/02/27 テーマカスタマイザーに色変更機能を追加
 - v0.1.3 : 2017/02/19 ログイン中はGoogle Analyticsのトラッキングタグを出力しないように調整、一覧ページの画像が縦横比固定で出力されるように調整
 - v0.1.2 : 2017/02/16 fixs 404ページ調整,fixs 検索結果ページのアーカイブタイトル修正
 - v0.1.1 : 2017/02/12 個別投稿の構造化データでauthorがエラーになる問題対処

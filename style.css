@@ -4,7 +4,7 @@ Theme URI: http://ystandard.net
 Author: yosiakatsuki
 Author URI: http://yosiakatsuki.net
 Description:サイト高速化、Google PageSpeed Insightsでの高得点獲得に重点を置きながら、比較的カスタマイズしやすい形を目指したテーマ
-Version: 0.1.3
+Version: 0.1.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,8 +13,10 @@ Use it to make something cool, have fun, and share what you've learned with othe
 */
 
 /*
-  子テーマ作るときにぶつかって面倒だから何も入れていません。
-  テーマで使用しているスタイルシートは./css/ディレクトリにあります。
+  子テーマ作るときにぶつかって面倒だから何も入れていませんが、CSS自体は読み込まれます。
+  サイト独自のスタイルの記述（カスタマイズ）にご利用ください。（オリジナルのスタイルを上書きできます）
+
+  テーマで使用しているオリジナルのスタイルシートは./css/ディレクトリにあります。
     ./css/ys-firstview.css : インライン読み込みさせるスタイル（ファーストビューに関わる部分）
     ./css/ys-style.css  : ファーストビュー以外のスタイル
 */

@@ -454,7 +454,7 @@ if( ! function_exists( 'ys_customizer_inline_css' )){
 
 		// PC Only
 		$css .= '@media screen and (min-width: 960px) {';
-		// 背景
+		// 下線
 		$selectors = array(
 										'.gloval-menu>li:hover a',
 										'.gloval-menu>li:hover.menu-item-has-children a:hover'
