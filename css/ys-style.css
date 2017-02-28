@@ -402,6 +402,36 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.ys-box {
+  padding: 1em;
+  background-color: #fefefe;
+  border: 1px solid #ccc;
+  font-size: .8em; }
+  .ys-box p {
+    margin: 0 0 .5em; }
+  .ys-box > p:last-child {
+    margin: 0; }
+  .ys-box ul {
+    margin: 0; }
+  .ys-box li:last-child {
+    margin: 0; }
+  .ys-box > a[target="_blank"] {
+    display: inline; }
+
+.ys-button {
+  padding: .5rem 3em;
+  border: 1px solid #888;
+  color: #888;
+  box-shadow: 1px 1px 1px #ccc;
+  -webkit-transition: color .3s,background-color .3s,box-shadow .3s;
+  transition: color .3s,background-color .3s,box-shadow .3s; }
+  .ys-button a {
+    color: #888; }
+  .ys-button:hover,
+  .ys-button a:hover {
+    color: #a2a2a2;
+    box-shadow: 0 0 0 transparent; }
+
 .aligncenter,
 div.aligncenter,
 .alignleft,

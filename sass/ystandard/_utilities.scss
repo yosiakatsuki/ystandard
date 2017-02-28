@@ -49,12 +49,58 @@
 		font-family: Verdana;
 		font-weight: bold;
 		font-style: normal;
-		letter-spacing: 0;		
+		letter-spacing: 0;
 		text-rendering: auto;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
 }
+
+
+// 汎用囲み
+.ys-box {
+	padding: 1em;
+	background-color: $ys-bg-color-body;
+	border: 1px solid $ys-border-color-gray;
+  font-size: .8em;
+
+  p {
+    margin: 0 0 .5em;
+  }//p:last-child
+
+	&>p:last-child {
+    margin: 0;
+  }//p:last-child
+
+  ul {
+    margin:0;
+  }
+
+	li:last-child {
+    margin: 0;
+  }
+
+	&>a[target="_blank"]{
+    display: inline;
+  }
+}
+
+.ys-button {
+	padding: .5rem 3em;
+  border: 1px solid $ys-font-color-gray;
+	color:$ys-font-color-gray;
+  box-shadow:1px 1px 1px $ys-border-color-gray;
+  transition: color .3s,background-color .3s,box-shadow .3s;
+  a {
+    color: $ys-font-color-gray;
+  }
+  &:hover,
+  a:hover {
+    color: lighten($ys-font-color-gray,10%);
+    box-shadow:0 0 0 transparent;
+  }
+}
+
 
 //--------------------------------------
 // タブレット
