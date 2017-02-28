@@ -243,6 +243,10 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
     - `.gloval-menu>li:hover a`
     - `.gloval-menu>li:hover.menu-item-has-children a:hover`
 
+### 汎用的なスタイル
+- `.ys-box`
+- `.ys-button`
+
 ## 変更履歴
 
 ### v0.1.x
