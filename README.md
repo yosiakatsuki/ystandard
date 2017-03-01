@@ -246,6 +246,10 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 ### 汎用的なスタイル
 - `.ys-box`
 - `.ys-button`
+- `.ys-button-block`
+- `.ys-text-left`
+- `.ys-text-center`
+- `.ys-text-right`
 
 ## 変更履歴
 
