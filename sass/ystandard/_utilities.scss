@@ -86,21 +86,33 @@
 }
 
 .ys-button {
-	padding: .5rem 3em;
+	padding: .5rem 4em;
   border: 1px solid $ys-font-color-gray;
-	color:$ys-font-color-gray;
-  box-shadow:1px 1px 1px $ys-border-color-gray;
+	color:$ys-font-color;
+  font-size: .9em;
+  box-shadow:1px 1px 1px rgba($ys-border-color-gray,.6);
   transition: color .3s,background-color .3s,box-shadow .3s;
-  a {
-    color: $ys-font-color-gray;
-  }
-  &:hover,
-  a:hover {
-    color: lighten($ys-font-color-gray,10%);
+  &:hover {
+    color: lighten($ys-font-color,10%);
     box-shadow:0 0 0 transparent;
   }
 }
+.ys-button-block {
+  display: block;
+  text-align: center;
+}
 
+.ys-text-center {
+  text-align: center;
+}
+
+.ys-text-right {
+  text-align: right;
+}
+
+.ys-text-left {
+  text-align: left;
+}
 
 //--------------------------------------
 // タブレット

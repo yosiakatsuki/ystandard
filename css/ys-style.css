@@ -419,18 +419,29 @@
     display: inline; }
 
 .ys-button {
-  padding: .5rem 3em;
+  padding: .5rem 4em;
   border: 1px solid #888;
-  color: #888;
-  box-shadow: 1px 1px 1px #ccc;
+  color: #2c3e50;
+  font-size: .9em;
+  box-shadow: 1px 1px 1px rgba(204, 204, 204, 0.6);
   -webkit-transition: color .3s,background-color .3s,box-shadow .3s;
   transition: color .3s,background-color .3s,box-shadow .3s; }
-  .ys-button a {
-    color: #888; }
-  .ys-button:hover,
-  .ys-button a:hover {
-    color: #a2a2a2;
+  .ys-button:hover {
+    color: #3e5871;
     box-shadow: 0 0 0 transparent; }
+
+.ys-button-block {
+  display: block;
+  text-align: center; }
+
+.ys-text-center {
+  text-align: center; }
+
+.ys-text-right {
+  text-align: right; }
+
+.ys-text-left {
+  text-align: left; }
 
 .aligncenter,
 div.aligncenter,
