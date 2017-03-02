@@ -666,7 +666,7 @@ if(!function_exists( 'ys_extras_the_json_ld')) {
 			//カテゴリー
 			$category = get_the_category();
 			if($category):
-				$articleSection = get_the_category()[0]->name;
+				$articleSection = $category[0]->name;
 			else:
 				$articleSection = '';
 			endif;
