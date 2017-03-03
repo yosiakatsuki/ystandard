@@ -155,7 +155,7 @@ add_action( 'profile_update', 'ys_admin_save_custom_avatar', 10, 2 );
 //-------------------------------------------------------
 $theme_update_checker = new ThemeUpdateChecker(
 																					'ystandard',
-																					'https://raw.githubusercontent.com/yosiakatsuki/ystandard/master/ystandard-info.json' 
+																					'https://wp-ystandard.com/download/ystandard/ystandard-info.json' 
 																				);
 
 
