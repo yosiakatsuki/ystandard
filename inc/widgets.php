@@ -73,9 +73,13 @@ add_action( 'widgets_init', 'ys_widget_init' );
 //------------------------------------------------------------------------------
 
 
-//------------------------------------------------------------------------------
-//	人気記事ランキング
-//------------------------------------------------------------------------------
+/**
+ *	************************************
+ *
+ *	人気記事ランキング
+ *
+ *	************************************
+ */
 class YS_Ranking_Widget extends WP_Widget {
 
 
@@ -164,7 +168,7 @@ class YS_Ranking_Widget extends WP_Widget {
 					$post_url = get_the_permalink();
 					$post_title = get_the_title();
 
-					$html_post = "<a href=\"$post_url\"><li class=\"clearfix\">$imgtag<p>$post_title</p></li></a>";
+					$html_post = "<li><a class=\"clearfix\" href=\"$post_url\">$imgtag<p>$post_title</p></a></li>";
 					$html_post = apply_filters('ys_ranking_widget_post',$html_post);
 					$html_postlist .= $html_post;
 				endwhile;
