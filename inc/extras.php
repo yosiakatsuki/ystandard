@@ -600,7 +600,7 @@ if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
 			l = document.createElement('link');
 			l.rel = 'stylesheet';
 			l.href = list[i];
-			h.parentNode.insertBefore(l, h);
+			h.appendChild(l);
 		}
 	};
 	var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
