@@ -306,6 +306,7 @@ if (!function_exists( 'ys_utilities_get_post_thumbnail')) {
 
 			// 取得できたらreturn
 			if($image !== false){
+				$image[] = trim( strip_tags( get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true ) ) );
 				return $image;
 			}
 		}
@@ -319,7 +320,11 @@ if (!function_exists( 'ys_utilities_get_post_thumbnail')) {
 		} else {
 			// 画像取得できなかった場合先頭画像を取得
 			$resultimg = ys_utilities_get_post_firstimg($postid);
+
 		}
+		$resultimg[] = false;
+		$resultimg[] = get_the_title($postid); //alt用
+
 
 		return $resultimg;
 	}

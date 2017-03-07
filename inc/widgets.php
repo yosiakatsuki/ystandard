@@ -159,7 +159,7 @@ class YS_Ranking_Widget extends WP_Widget {
 					if($show_img && $img) {
 						$img[1] = $img_width;
 						$img[2] = $img_height;
-						$imgtag = '<img src="'.$img[0].'" '.image_hwstring( $img[1], $img[2] ).' />';
+						$imgtag = '<img src="'.$img[0].'" '.image_hwstring( $img[1], $img[2] ).' alt="'.esc_attr($img[4]).'" />';
 
 						$imgtag = apply_filters('ys_ranking_widget_image',$imgtag,$img);
 
