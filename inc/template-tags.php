@@ -297,7 +297,8 @@ if (!function_exists( 'ys_template_the_entry_date')) {
 	function ys_template_the_entry_date($show_update = true) {
 
 		$format = get_option( 'date_format' );
-		$pubdate = 'pubdate="pubdate"';
+		// $pubdate = 'pubdate="pubdate"';
+		$pubdate = '';
 		$update_content = 'content="'.get_the_modified_time('Y-m-d').'"';
 
 		$entry_date_class = 'entry-date entry-published published';
