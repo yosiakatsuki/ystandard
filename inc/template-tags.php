@@ -379,7 +379,6 @@ if (!function_exists( 'ys_template_get_the_biography')) {
 						$class_wrap,
 						$avatar,
 						$class,
-						$author_link,
 						$author_name,
 						$author_sns,
 						$author_dscr,
@@ -410,11 +409,11 @@ if (!function_exists( 'ys_template_get_the_biography_template')) {
 	function ys_template_get_the_biography_template() {
 
 		$template = <<<EOD
-		<%s id="biography" class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
+		<%s class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
 			%s
 			<div class="author-description%s">
 				<h2 class="author-title">
-					<a class="author-link" href="%s" rel="author">%s</a>
+					%s
 				</h2>
 				%s
 				<div class="author-bio" itemprop="description" >%s</div>
@@ -444,11 +443,17 @@ if (!function_exists( 'ys_template_get_the_entry_author')) {
 			$stracture = ' itemprop="author editor creator" itemscope itemtype="http://schema.org/Person"';
 		}
 
+
 		if($link) {
-			$author = '<span class="author vcard"'.$stracture.'><a class="url fn n" href="'.$author_url.'"><span itemprop="name">'.$author_name.'</span></a></span>';
+			$tag = 'a';
+			$href = 'href="'.$author_url.'" rel="author"';
 		} else {
-			$author = '<span class="author vcard"'.$stracture.'><span class="url fn n"><span itemprop="name">'.$author_name.'</span></span></span>';
+			$tag = 'span';
+			$href = '';
 		}
+
+		$author = '<span class="author vcard"'.$stracture.'><'.$tag.' class="url fn n" '.$href.'><span itemprop="name">'.$author_name.'</span></'.$tag.'></span>';
+
 
 		return $author;
 	}
