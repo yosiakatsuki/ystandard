@@ -371,12 +371,15 @@ if (!function_exists( 'ys_template_get_the_biography')) {
 		}
 		$class = $avatar !== '' ? ' show-avatar' : '';
 		$class_wrap = $shortcode == true ? 'author-info clearfix' : 'author-info clearfix entry-footer-container';
+		$id = $shortcode == true ? '' : 'id="biography"';
+
 
 		$template = ys_template_get_the_biography_template();
 
 		return sprintf(
 						$template,
 						$warp,
+						$id,
 						$class_wrap,
 						$avatar,
 						$class,
@@ -410,7 +413,7 @@ if (!function_exists( 'ys_template_get_the_biography_template')) {
 	function ys_template_get_the_biography_template() {
 
 		$template = <<<EOD
-		<%s class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
+		<%s %s class="%s" itemprop="author editor creator copyrightHolder" itemscope itemtype="http://schema.org/Person">
 			%s
 			<div class="author-description%s">
 				<h2 class="author-title">
