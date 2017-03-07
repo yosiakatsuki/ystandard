@@ -404,6 +404,7 @@
 
 .ys-box {
   padding: 1em;
+  margin-bottom: 3rem;
   background-color: #fefefe;
   border: 1px solid #ccc;
   font-size: .9em; }
@@ -413,7 +414,7 @@
     margin: 0; }
   .ys-box ul {
     margin: 0; }
-  .ys-box li:last-child {
+  .ys-box li:last-child, .ys-box:last-child {
     margin: 0; }
   .ys-box > a[target="_blank"] {
     display: inline; }
