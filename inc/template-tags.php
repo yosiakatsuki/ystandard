@@ -51,7 +51,7 @@ if(!function_exists( 'ys_template_the_head_normal')) {
 <head>
 <?php endif; ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="referrer" content="origin-when-crossorigin">
 <meta name="format-detection" content="telephone=no" />
@@ -200,7 +200,7 @@ if(!function_exists( 'ys_template_the_header_global_menu')) {
 				</label>
 				<label class="menu-toggle-cover" for="menu-toggle"></label>
 				<div id="site-header-menu" class="site-header-menu">
-					<nav id="site-navigation" class="main-navigation" role="navigation">
+					<nav id="site-navigation" class="main-navigation">
 						<?php
 							wp_nav_menu( array(
 								'theme_location' => 'gloval',
@@ -923,7 +923,7 @@ if( ! function_exists( 'ys_template_the_amp_menu' ) ) {
 					<span class="middle"></span>
 					<span class="bottom"></span>
 				</button>
-				<nav id="site-navigation" class="main-navigation" role="navigation">
+				<nav id="site-navigation" class="main-navigation">
 		<?php
 			wp_nav_menu( array(
 				'theme_location' => 'gloval',

@@ -1,7 +1,7 @@
 
 		</div><!-- .site-content -->
 
-		<footer id="footer" class="site-footer" role="contentinfo" <?php ys_template_the_footer_attr(); ?>>
+		<footer id="footer" class="site-footer" <?php ys_template_the_footer_attr(); ?>>
 			<div class="wrap">
 				<?php
 					// SNSフォロー
@@ -11,7 +11,7 @@
 				?>
 
 				<?php if ( has_nav_menu( 'footer' ) ) : ?>
-					<nav class="footer-navigation" role="navigation">
+					<nav class="footer-navigation">
 						<?php
 							wp_nav_menu( array(
 								'theme_location' => 'footer',
