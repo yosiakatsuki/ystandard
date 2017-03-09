@@ -421,18 +421,32 @@ if (!function_exists( 'ys_utilities_get_custom_logo_image_src')) {
 //	ユーザー画像取得
 //-----------------------------------------------
 if (!function_exists( 'ys_utilities_get_the_user_avatar_img')) {
-	function ys_utilities_get_the_user_avatar_img($author_id = false,$size = 96,$itemprop=true){
+	function ys_utilities_get_the_user_avatar_img($author_id = false,$size = 96,$args=array()){
 
 		if($author_id == false){
 			$author_id = get_the_author_meta( 'ID' );
 		}
+
+		/**
+		 *	引数デフォルト値セット
+		 */
+		$defaults = array(
+			'itemprop' => false,
+		);
+		$args = wp_parse_args($args,$defaults);
+
+
 		$alt =  get_the_author_meta( 'display_name',$author_id );
 		$user_avatar = get_avatar( $author_id, $size ,'',$alt);
 		$custom_avatar = get_user_meta($author_id, 'ys_custom_avatar', true);
 
 		$img = '';
+
+		/**
+		 *	構造化データのタグ出力
+		 */
 		$itemprop = '';
-		if($itemprop){
+		if($args['itemprop']){
 			$itemprop=' itemprop="image"';
 		}
 

@@ -364,8 +364,8 @@ if (!function_exists( 'ys_template_get_the_biography')) {
 		$author_sns = ys_template_get_the_author_sns($user_id);
 		$author_dscr = wpautop(str_replace(array("\r\n", "\r", "\n"),"\n\n",get_the_author_meta( 'description' ,$user_id)));
 
-
-		$avatar = ys_utilities_get_the_user_avatar_img($user_id,96,!$shortcode);
+		$avatar_args = $shortcode == false ? array('itemprop'=>true) : array();
+		$avatar = ys_utilities_get_the_user_avatar_img($user_id,96,$avatar_args);
 		if($avatar !== ''){
 			$avatar = '<figure class="author-avatar"><a class="author-link" href="'.$author_link.'" rel="author">'.$avatar.'</a></figure>';
 		}
@@ -1094,9 +1094,9 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 //	ユーザー画像出力
 //-----------------------------------------------
 if (!function_exists( 'ys_template_the_user_avatar')) {
-	function ys_template_the_user_avatar($author_id = null,$size = 96){
+	function ys_template_the_user_avatar($author_id = null,$size = 96,$args=array()){
 
-		echo ys_utilities_get_the_user_avatar_img($author_id,$size);
+		echo ys_utilities_get_the_user_avatar_img($author_id,$size,$args);
 	}
 }
 
