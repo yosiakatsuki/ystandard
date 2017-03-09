@@ -1120,7 +1120,7 @@ if( ! function_exists( 'ys_template_get_the_advertisement_format' ) ) {
 	function ys_template_get_the_advertisement_format($ad) {
 
 		$html = '';
-		if($ad !== ''){
+		if($ad !== '' && !is_feed()){
 			$html = '<aside class="ad-container"><div class="ad-caption">スポンサーリンク</div><div class="ad-content">';
 			$html .= $ad;
 			$html .= '</div></aside>';
