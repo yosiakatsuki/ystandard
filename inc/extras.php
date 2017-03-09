@@ -591,7 +591,7 @@ if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
 
 		// js作成
 		$script = <<<EOD
-<script async>
+<script type="text/javascript">
 	var cb = function() {
 		var {$cssarray}
 				,l
