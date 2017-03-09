@@ -1,5 +1,5 @@
-<meta itemscope id="EntityOfPageid-<?php the_ID(); ?>" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
 <meta itemprop="author" content="<?php the_author(); ?>" />
+<meta id="EntityOfPageid-<?php the_ID(); ?>" itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/Webpage" itemid="<?php the_permalink(); ?>" content="">
 
 <div class="post-thumbnail-container">
 	<figure class="post-thumbnail" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">

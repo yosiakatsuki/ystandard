@@ -1,5 +1,5 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="http://schema.org/BlogPosting" itemref="masthead biography">
-	<meta itemscope id="EntityOfPageid-<?php the_ID(); ?>" itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/Webpage" itemid="<?php echo the_permalink(); ?>">
+	<meta id="EntityOfPageid-<?php the_ID(); ?>" itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/Webpage" itemid="<?php the_permalink(); ?>" content="">
 
 	<header class="entry-header">
 		<?php

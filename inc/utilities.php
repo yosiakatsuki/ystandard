@@ -190,7 +190,7 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 //	投稿のカテゴリー取得
 //-----------------------------------------------
 if( ! function_exists( 'ys_utilities_get_the_post_categorys' ) ) {
-	function ys_utilities_get_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0) {
+	function ys_utilities_get_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0,$itemprop='itemprop="keywords"' ) {
 
 		if($postid==0){
 			$postid = get_the_ID();
@@ -203,7 +203,7 @@ if( ! function_exists( 'ys_utilities_get_the_post_categorys' ) ) {
 		if($categories){
 			//カテゴリが取得できたら
 			foreach( $categories as $category ) {
-				$terms .= '<span class="'.$category->slug.'" itemprop="keywords">';
+				$terms .= '<span class="'.$category->slug.'" '.$itemprop.' >';
 				//リンクありの場合
 				if($link){
 					$terms .= '<a href="' . get_category_link( $category->term_id ) . '">';
@@ -421,7 +421,7 @@ if (!function_exists( 'ys_utilities_get_custom_logo_image_src')) {
 //	ユーザー画像取得
 //-----------------------------------------------
 if (!function_exists( 'ys_utilities_get_the_user_avatar_img')) {
-	function ys_utilities_get_the_user_avatar_img($author_id = false,$size = 96){
+	function ys_utilities_get_the_user_avatar_img($author_id = false,$size = 96,$itemprop=true){
 
 		if($author_id == false){
 			$author_id = get_the_author_meta( 'ID' );
@@ -431,12 +431,16 @@ if (!function_exists( 'ys_utilities_get_the_user_avatar_img')) {
 		$custom_avatar = get_user_meta($author_id, 'ys_custom_avatar', true);
 
 		$img = '';
+		$itemprop = '';
+		if($itemprop){
+			$itemprop=' itemprop="image"';
+		}
 
 		// オリジナル画像があればそちらを使う
 		if($custom_avatar !== '') {
-			$img = '<img src="' . $custom_avatar . '" alt="'.$alt.'" '.image_hwstring( $size, $size ).' itemprop="image" />';
+			$img = '<img src="' . $custom_avatar . '" alt="'.$alt.'" '.image_hwstring( $size, $size ).$itemprop.' />';
 		} elseif($user_avatar !== '') {
-			$img = str_replace('<img','<img itemprop="image"', $user_avatar);;
+			$img = str_replace('<img','<img '.$itemprop, $user_avatar);;
 		}
 
 		$img = apply_filters('ys_user_avatar',$img ,$author_id ,$size);

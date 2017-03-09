@@ -14,7 +14,7 @@
 <div id="page" class="site">
 	<div class="site-inner">
 
-		<header id="masthead" class="site-header color-site-header" role="banner" itemscope id="site-header" itemprop="publisher" itemscope itemtype="https://schema.org/Organization" <?php ys_template_the_header_attr(); ?>>
+		<header id="masthead" class="site-header color-site-header" role="banner" itemprop="publisher" itemscope itemtype="https://schema.org/Organization" <?php ys_template_the_header_attr(); ?>>
 			<div class="site-header-main wrap">
 
 				<div class="site-header-wrap clearfix">
