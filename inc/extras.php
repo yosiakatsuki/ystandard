@@ -542,22 +542,6 @@ add_action( 'wp_head', 'ys_extras_add_amphtml' );
 
 
 
-/**
- *	テーマカスタマイザーのCSS
- */
-if( ! function_exists( 'ys_extras_customize_css' )){
-	function ys_extras_customize_css() {
-		$css = ys_customizer_inline_css();
-		if($css){
-			echo '<style type="text/css">'.$css.'</style>';
-		}
-	}
-}
-add_action( 'wp_head', 'ys_extras_customize_css',11 );
-
-
-
-
 
 
 

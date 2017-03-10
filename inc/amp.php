@@ -31,6 +31,7 @@ if(!function_exists( 'ys_amp_the_head_amp')) {
 	$args =array(
 		TEMPLATEPATH.'/css/ys-firstview.min.css',
 		TEMPLATEPATH.'/css/ys-style.min.css',
+		ys_customizer_inline_css(),
 		locate_template('style-firstview.css'),
 		locate_template('style.css')
 	);

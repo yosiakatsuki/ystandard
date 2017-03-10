@@ -60,6 +60,7 @@ if(!function_exists( 'ys_template_the_head_normal')) {
 	ys_template_the_inline_css(
 						array(
 							TEMPLATEPATH.'/css/ys-firstview.min.css',
+							ys_customizer_inline_css(),
 							locate_template('style-firstview.css')
 						),
 						false
@@ -91,13 +92,16 @@ if(!function_exists( 'ys_template_the_inline_css')) {
 
 			echo '<style amp-custom>';
 			foreach($csslist as $css){
-				if(file_exists($css)){
-					$inline = file_get_contents($css);
-					echo preg_replace( '/\/\*.*?\*\//is', '', str_replace('@charset "UTF-8";','',$inline));
+				if(false === strrpos($css,TEMPLATEPATH) && false === strrpos($css,STYLESHEETPATH)){
+					// インラインCSSはそのままecho
+					echo $css;
+				} else {
+					if(file_exists($css)){
+						$inline = file_get_contents($css);
+						echo preg_replace( '/\/\*.*?\*\//is', '', str_replace('@charset "UTF-8";','',$inline));
+					}
 				}
-			}
-			// テーマカスタマイザー指定
-			echo ys_customizer_inline_css();
+			}//foreach
 
 		} else {
 
@@ -105,10 +109,16 @@ if(!function_exists( 'ys_template_the_inline_css')) {
 
 			echo '<style type="text/css">';
 			foreach($csslist as $css){
-				if(file_exists($css)){
-					include($css);
+
+				if(false === strrpos($css,TEMPLATEPATH) && false === strrpos($css,STYLESHEETPATH)){
+					// インラインCSSはそのままecho
+					echo $css;
+				} else {
+					if(file_exists($css)){
+						include($css);
+					}
 				}
-			}
+			}//foreach
 		}
 		echo '</style>';
 	}
