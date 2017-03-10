@@ -325,7 +325,7 @@ if (!function_exists( 'ys_utilities_get_post_thumbnail')) {
 		// 存在しない時に表示する画像の指定があればそちらを使用
 		if($defaultimg != ''){
 			// サイズをセット
-			list($width,$height) = getimagesize($defaultimg);
+			list($width,$height) = ys_utilities_get_image_size($defaultimg);
 			$resultimg = array($defaultimg, $width, $height);
 
 		} else {
@@ -391,7 +391,7 @@ if (!function_exists( 'ys_utilities_get_post_firstimg')) {
 		}
 
 		// サイズをセット
-		list($width,$height) = getimagesize($imgurl);
+		list($width,$height) = ys_utilities_get_image_size($imgurl);
 		return array($imgurl, $width, $height);
 	}
 }
@@ -550,6 +550,19 @@ if (!function_exists( 'ys_utilities_get_rand')) {
  *
  */
 
+/**
+ *	画像サイズ取得
+ */
+if (!function_exists( 'ys_utilities_get_image_size')) {
+	function ys_utilities_get_image_size( $img_path ) {
+
+		$size = @getimagesize($img_path);
+		if($size === false){
+			$size = array(0,0);
+		}
+		return $size;
+	}
+}
 
 
 //------------------------------------------------------------------------------

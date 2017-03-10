@@ -508,7 +508,7 @@ if(!function_exists( 'ys_extras_add_twitter_card')) {
 
 			if(is_single() || is_page()){
 				$og_title = get_the_title();
-				$og_image = ys_utilities_get_post_thumbnail_url('full',$ogp_image);
+				$og_image = ys_utilities_get_post_thumbnail_url('full','');
 				$og_description = ys_template_get_the_custom_excerpt($post->post_content,160);
 			}
 			// 共通項目
