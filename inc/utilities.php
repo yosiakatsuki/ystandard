@@ -201,7 +201,6 @@ if( ! function_exists( 'ys_utilities_get_the_post_categorys' ) ) {
 		 */
 		$defaults = array(
 			'itemprop' => false,
-			'itemprop'=>'itemprop="keywords"'
 		);
 		$args = wp_parse_args($args,$defaults);
 
