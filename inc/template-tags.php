@@ -976,7 +976,7 @@ if( ! function_exists( 'ys_template_the_copyright' ) ) {
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
 	function ys_template_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0) {
-		echo '<svg viewBox="0 0 32 32"><path d="M26 30l6-16h-26l-6 16zM4 12l-4 18v-26h9l4 4h13v4z"></path></svg>'.ys_utilities_get_the_post_categorys($number,$link,$separator,$postid);
+		echo '<svg viewBox="0 0 32 32"><path d="M26 30l6-16h-26l-6 16zM4 12l-4 18v-26h9l4 4h13v4z"></path></svg>'.ys_utilities_get_the_post_categorys($number,$link,$separator,$postid,array('itemprop'=>true));
 	}
 }
 
@@ -987,9 +987,9 @@ if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
 //	投稿のカテゴリー一覧出力
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_category_list' ) ) {
-	function ys_template_the_category_list($before,$after,$separator=', ',$link=true,$postid=0,$itemprop='itemprop="keywords"') {
+	function ys_template_the_category_list($before,$after,$separator=', ',$link=true,$postid=0,$args=array()) {
 
-		$categorys = ys_utilities_get_the_post_categorys(0,$link,$separator,$postid,$itemprop);
+		$categorys = ys_utilities_get_the_post_categorys(0,$link,$separator,$postid,$args);
 
 		echo $before;
 		echo $categorys;
@@ -1028,7 +1028,7 @@ if( ! function_exists( 'ys_template_the_taxonomy_list' ) ) {
 		echo '<div class="entry-footer-container">';
 
 		// カテゴリー
-		ys_template_the_category_list('<aside class="entry-category-list"><h2>カテゴリー</h2>','</aside>','',true,0,'');
+		ys_template_the_category_list('<aside class="entry-category-list"><h2>カテゴリー</h2>','</aside>','',true,0);
 		// タグ
 		ys_template_the_tag_list('<aside class="entry-tag-list"><h2>タグ</h2>','</aside>','');
 

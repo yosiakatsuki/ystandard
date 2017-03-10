@@ -190,11 +190,22 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 //	投稿のカテゴリー取得
 //-----------------------------------------------
 if( ! function_exists( 'ys_utilities_get_the_post_categorys' ) ) {
-	function ys_utilities_get_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0,$itemprop='itemprop="keywords"' ) {
+	function ys_utilities_get_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0,$args=array()) {
 
 		if($postid==0){
 			$postid = get_the_ID();
 		}
+
+		/**
+		 *	引数デフォルト値セット
+		 */
+		$defaults = array(
+			'itemprop' => false,
+			'itemprop'=>'itemprop="keywords"'
+		);
+		$args = wp_parse_args($args,$defaults);
+
+		$itemprop = false == $args['itemprop'] ? '' : ' itemprop="keywords"';
 
 		$terms ='';
 		//投稿カテゴリ取得
@@ -203,7 +214,7 @@ if( ! function_exists( 'ys_utilities_get_the_post_categorys' ) ) {
 		if($categories){
 			//カテゴリが取得できたら
 			foreach( $categories as $category ) {
-				$terms .= '<span class="'.$category->slug.'" '.$itemprop.' >';
+				$terms .= '<span class="'.$category->slug.'"'.$itemprop.' >';
 				//リンクありの場合
 				if($link){
 					$terms .= '<a href="' . get_category_link( $category->term_id ) . '">';
