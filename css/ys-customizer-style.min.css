@@ -2,4 +2,4 @@
 *
 *		カスタマイザー用CSS
 *
-*/#customize-control-site_icon .app-icon-preview,#customize-control-ys_apple_touch_icon .favicon-preview{display:none}
+*/#customize-control-site_icon .app-icon-preview{display:none}#customize-control-ys_apple_touch_icon .favicon-preview{display:none}
