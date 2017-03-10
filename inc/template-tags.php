@@ -1050,7 +1050,14 @@ if( ! function_exists( 'ys_template_the_taxonomy_list' ) ) {
 //	記事一覧用画像タグの出力
 //-----------------------------------------------
 if (!function_exists( 'ys_template_the_post_thumbnail')) {
-	function ys_template_the_post_thumbnail($thumbname='full',$viewsize=false,$outputmeta=true,$imgid='',$imgclass='',$postid=0) {
+	function ys_template_the_post_thumbnail(
+																	$thumbname='full',
+																	$viewsize=false,
+																	$outputmeta=true,
+																	$imgid='',
+																	$imgclass='',
+																	$postid=0
+																) {
 
 		if($postid == 0){
 			$postid = get_the_ID();
@@ -1076,7 +1083,8 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 		if(!is_array($viewsize)){
 			$viewsize = array($image[1],$image[2]);
 		}
-		echo $imgtag.$imgid.$imgclass.'src="'.$image[0].'" '.image_hwstring($viewsize[0],$viewsize[1]).' />';
+
+		echo $imgtag.$imgid.$imgclass.'src="'.$image[0].'" '.image_hwstring($viewsize[0],$viewsize[1]).' alt="" />';
 
 		//metaタグを出力
 		if($outputmeta && !ys_is_amp()){
