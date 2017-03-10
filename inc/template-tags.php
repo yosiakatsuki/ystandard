@@ -761,16 +761,25 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 		$home .= '</a></div>';
 
 		$html .= '<div class="nav-prev">';
-		if (get_previous_post()) {
-			$html .= '<span class="prev-label">«前の投稿</span>'.get_previous_post_link('%link','%title',true);
+		$prevpost = get_previous_post();
+		if ($prevpost) {
+			$prev_info = apply_filters('ys_the_post_paging_prev_info','<span class="prev-label">«前の投稿</span>');
+			$prev_link = '<a href="'.esc_url(get_permalink($prevpost->ID)).'">'.get_the_title($prevpost->ID).'</a>';
+			$prev_link = apply_filters('ys_the_post_paging_prev_link',$prev_link);
+			$html .= $prev_info.$prev_link;
 		} else {
 			$html .= $home;
 		}
 		$html .= '</div>';
 
 		$html .= '<div class="nav-next">';
-		if (get_next_post()){
-			$html .= '<span class="next-label">次の投稿»</span>'.get_next_post_link('%link','%title',true);
+		$nextpost = get_next_post();
+		if ($nextpost){
+
+			$next_info = apply_filters('ys_the_post_paging_next_info','<span class="next-label">次の投稿»</span>');
+			$next_link = '<a href="'.esc_url(get_permalink($nextpost->ID)).'">'.get_the_title($nextpost->ID).'</a>';
+			$next_link = apply_filters('ys_the_post_paging_next_link',$next_link);
+			$html .= $next_info.$next_link;
 		} else {
 			$html .= $home;
 		}
