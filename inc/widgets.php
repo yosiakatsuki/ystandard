@@ -130,7 +130,7 @@ class YS_Ranking_Widget extends WP_Widget {
 		// カスタムタクソノミー対応は各自でやってください！
 		if(is_single() || is_category()) {
 			// カテゴリーで絞り込む
-			$cat_ids = ys_utilities_get_cat_id_list(true);
+			$cat_ids = ys_utilities_get_cat_id_list();
 			// オプションパラメータ作成
 			$option = array('category__in'=>$cat_ids);
 			// 投稿ならば表示中の投稿をのぞく

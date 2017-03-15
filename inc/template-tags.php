@@ -716,9 +716,11 @@ if( ! function_exists( 'ys_template_the_related_post' ) ) {
 	function ys_template_the_related_post() {
 
 		if(ys_get_setting('ys_show_post_related') == 1 && !ys_is_amp()) {
+			$cats = ys_utilities_get_cat_id_list();
+			$cats = apply_filters('ys_the_related_post_category_in',$cats);
 			$option = array(
 											'post__not_in' => array(get_the_ID()),  //現在の投稿IDは除く
-											'category__in' => ys_utilities_get_cat_id_list(true), //カテゴリー絞り込み
+											'category__in' => $cats, //カテゴリー絞り込み
 										);
 
 			$query = new WP_Query(ys_utilities_get_rand(4,$option));

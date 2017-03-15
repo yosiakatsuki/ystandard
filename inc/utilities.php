@@ -140,43 +140,52 @@ if( ! function_exists( 'ys_is_ogp_enable' ) ) {
 //	カテゴリーIDの一覧取得
 //-----------------------------------------------
 if (!function_exists( 'ys_utilities_get_cat_id_list')) {
-	function ys_utilities_get_cat_id_list($sibling=false) {
+	function ys_utilities_get_cat_id_list($parent=false,$sibling=false) {
 		// カテゴリー取得
 		if(is_category()) {
 			$catid = get_query_var('cat');
+			$allcats = array($catid);
+
 		} else {
 			$postcat = get_the_category();
 			// 取得できなければNULL
 			if (!$postcat){
 				return null;
 			}
-			$catid = $postcat[0]->cat_ID;
-		}
-
-		$allcats = array($catid);
-
-		// 親がなくなるまでループ
-		while($catid>0){
-			//親カテゴリを取得
-			$category = get_category($catid);
-			$catid = $category->parent;
-			//0以外ならリストに追加
-			if($catid>0){
-
-				//兄弟もめぐる場合
-				if($sibling){
-					//子どもを取得（重複追加されるのでページ出力には向かない）
-					$siblist = get_term_children((int)$catid,'category');
-					foreach($siblist as $sibcat){
-						//array_push( $allcats, $sibcat);
-						$allcats[] = $sibcat;
-					}
-				}
-				//配列におやカテゴリID追加
-				//array_push($allcats, $catid);
-				$allcats[] = $catid;
+			$allcats = array();
+			foreach($postcat as $cat){
+				$allcats[] = $cat->cat_ID;
 			}
 		}
+
+		if($parent){
+
+			$catid = $allcats[0];
+			// 親がなくなるまでループ
+			while($catid>0){
+				//親カテゴリを取得
+				$category = get_category($catid);
+				$catid = $category->parent;
+				//0以外ならリストに追加
+				if($catid>0){
+
+					//兄弟もめぐる場合
+					if($sibling){
+						//子どもを取得（重複追加されるのでページ出力には向かない）
+						$siblist = get_term_children((int)$catid,'category');
+						foreach($siblist as $sibcat){
+							//array_push( $allcats, $sibcat);
+							$allcats[] = $sibcat;
+						}
+					}
+					//配列におやカテゴリID追加
+					//array_push($allcats, $catid);
+					$allcats[] = $catid;
+				}
+			}//while($catid>0)
+
+
+		}//if($parent){
 		//子から親を辿ったので、順番反転させて返却（兄弟を含める場合、順番に補償なし）
 		return	array_reverse($allcats);
 	}
