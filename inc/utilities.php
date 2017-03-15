@@ -161,6 +161,7 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 		if($parent){
 
 			$catid = $allcats[0];
+			$allcats = array($catid);
 			// 親がなくなるまでループ
 			while($catid>0){
 				//親カテゴリを取得
