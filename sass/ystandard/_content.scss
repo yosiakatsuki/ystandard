@@ -81,7 +81,9 @@
 
 	svg {
 		height: .7rem;
-		width: auto;
+		width: .7rem;
+    padding: 0;
+    margin:0;
 		margin-right: .3rem;
     fill:$ys-content-entry-meta-color;
 	}

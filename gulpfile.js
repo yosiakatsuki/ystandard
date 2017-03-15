@@ -19,7 +19,7 @@ var bS_WatchFiles = [
 
 //browserSyncのオプション
 var bS_Options = {
-	proxy: "ystandard.dev",
+	proxy: "wp-ystandard.dev",
 	open : "external",
 	port : "3000"
 };
