@@ -163,13 +163,13 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 			$html = str_replace('{logo_image}',$logo_image,$logo_html);
 
 		} else {
-			$html = '<a class="color-site-title" href="'.esc_url( home_url( '/' ) ).'" rel="home" itemprop="name">'.get_bloginfo( 'name' ).'</a>';
+			$html = '<a class="color-site-title" href="'.esc_url( home_url( '/' ) ).'" rel="home">'.get_bloginfo( 'name' ).'</a>';
 		}
 
-		if ( !is_singular() ) {
-			echo '<h1 class="site-title">'.$html.'</h1>';
+		if ( !is_singular() || is_front_page() ) {
+			echo '<h1 class="site-title" itemprop="name">'.$html.'</h1>';
 		} else {
-			echo '<p class="site-title">'.$html.'</p>';
+			echo '<p class="site-title" itemprop="name">'.$html.'</p>';
 		}
 
 		$description = get_bloginfo( 'description', 'display' );
