@@ -138,19 +138,26 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 	function ys_template_the_header_site_title_logo(){
 
 		$html = '';
-
+		$logo = null;
+		$logo_meta = '';
+		// ロゴ取得
 		if(has_custom_logo()) {
-			// カスタムロゴの設定あり
 			$logo = ys_utilities_get_custom_logo_image_src();
 			$logo = apply_filters('ys_custom_logo',$logo);
+			$logo_meta .= '<meta itemprop="name" content="'.get_bloginfo('name').'">';
+			$logo_meta .= '<meta itemprop="url" content="'.$logo[0].'">';
+			$logo_meta .= '<meta itemprop="width" content="'.$logo[1].'">';
+			$logo_meta .= '<meta itemprop="height" content="'.$logo[2].'">';
+		}
+
+		if(has_custom_logo() && 0 == get_option('ys_logo_hidden',0)) {
+			// カスタムロゴを表示する
+
 			$logo_html = '';
 			$logo_html .= '<meta itemprop="name" content="'.get_bloginfo('name').'">';
 			$logo_html .= '<a href="'.esc_url( home_url( '/' ) ).'" rel="home" itemscope itemtype="https://schema.org/ImageObject" itemprop="logo">';
 			$logo_html .= '{logo_image}';
-			$logo_html .= '<meta itemprop="name" content="'.get_bloginfo('name').'">';
-			$logo_html .= '<meta itemprop="url" content="'.$logo[0].'">';
-			$logo_html .= '<meta itemprop="width" content="'.$logo[1].'">';
-			$logo_html .= '<meta itemprop="height" content="'.$logo[2].'">';
+			$logo_html .= $logo_meta;
 			$logo_html .= '</a>';
 
 			$logo_image = '<img src="'.$logo[0].'" alt="'.get_bloginfo( 'name' ).'"  class="custom-logo" width="'.$logo[1].'" height="'.$logo[2].'" />';
@@ -163,7 +170,12 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 			$html = str_replace('{logo_image}',$logo_image,$logo_html);
 
 		} else {
-			$html = '<a class="color-site-title" href="'.esc_url( home_url( '/' ) ).'" rel="home">'.get_bloginfo( 'name' ).'</a>';
+			$itemscope = '' != $logo_meta ? ' itemscope itemtype="https://schema.org/ImageObject" itemprop="logo"' : '';
+			$html = '<a class="color-site-title" href="'.esc_url( home_url( '/' ) ).'" rel="home"'.$itemscope.'>';
+			$html .= get_bloginfo( 'name' );
+			$html .= $logo_meta;
+			$html .= '</a>';
+
 		}
 
 		if ( !is_singular() || is_front_page() ) {

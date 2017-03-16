@@ -23,6 +23,8 @@ if (!function_exists( 'ys_customizer')) {
 		/**
 		 * 設定の追加
 		 */
+		// サイトロゴオプション
+		ys_customizer_add_logo_setting($wp_customize);
 
 		// apple touch icon
 		ys_customizer_add_apple_touch_icon($wp_customize);
@@ -66,7 +68,7 @@ if (!function_exists( 'ys_customizer_add_apple_touch_icon')) {
 		$wp_customize->add_setting( 'ys_apple_touch_icon', array(
 			'type'       => 'option',
 			'capability' => 'manage_options',
-			'transport'  => 'postMessage', // Previewed with JS in the Customizer controls window.
+			'transport'  => 'postMessage',
 		) );
 
 		$wp_customize->add_control( new WP_Customize_Site_Icon_Control( $wp_customize, 'ys_apple_touch_icon', array(
@@ -83,6 +85,36 @@ if (!function_exists( 'ys_customizer_add_apple_touch_icon')) {
 	}
 }
 
+
+
+
+/**
+ *
+ *	ロゴ設定追加
+ *
+ */
+if (!function_exists( 'ys_customizer_add_logo_setting')) {
+	function ys_customizer_add_logo_setting($wp_customize) {
+		$wp_customize->
+			add_setting( 'ys_logo_hidden', array(
+				'type'       => 'option',
+				'sanitize_callback' => 'ys_utilities_sanitize_checkbox',
+			) );
+
+		$wp_customize->
+			add_control(
+				'ys_logo_hidden',
+				array(
+					'section' => 'title_tagline',
+					'settings' => 'ys_logo_hidden',
+					'label' => 'ロゴを出力しない',
+					'description'=>'サイトヘッダーにロゴ画像を表示しない場合はチェックをつけてください（サイトタイトルをテキストのみで表示する場合でもロゴの指定がないと構造化データでエラーになるので、仮の画像でも良いので設定することを推奨します）',
+					'type' => 'checkbox',
+					'priority' => 9	//順番
+				)
+			);
+	}
+}
 
 
 
