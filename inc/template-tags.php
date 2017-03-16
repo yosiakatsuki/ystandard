@@ -322,7 +322,7 @@ if (!function_exists( 'ys_template_the_entry_date')) {
 
 		if(ys_is_amp()){
 			$pubdate = '';
-			$update_content = '';
+			$update_content = 'content="'.get_the_modified_time('Y-m-d').'"';
 		}
 
 		$html_pubdate = '';
