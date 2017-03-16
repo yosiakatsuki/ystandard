@@ -138,7 +138,7 @@ if(!function_exists( 'ys_amp_convert_amp')) {
 
 			// scriptの削除
 			if(get_option('ys_amp_del_script',0) == 1){
-				$content = ys_amp_delete_script($content);
+				// $content = ys_amp_delete_script($content);
 			}
 			// styleの削除
 			if(get_option('ys_amp_del_style',0) == 1){
@@ -224,56 +224,59 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 	function ys_amp_replace_sns($content) {
 
 		// Twitter　>>>>
-		$pattern = '/<p>https:\/\/twitter\.com\/.*?\/status\/(.*?)".*?<\/p>/i';
+		$pattern = '/<p>https:\/\/twitter\.com\/.+?\/status\/(.+?)".+?<\/p>/i';
 		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
 		if(preg_match($pattern,$content,$matches) === 1){
 			$content = preg_replace($pattern, $append, $content);
 		}
 
-		// scriptにwpautopが効くパターン
-
-		$pattern = '/<blockquote class="twitter-tweet".*?>.*?<a href="https:\/\/twitter\.com\/.*?\/status\/(.*?)">.*?<\/blockquote>.*?<script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script><\/p>/is';
+		$pattern = '/<blockquote class="twitter-tweet".*?>.+?<a href="https:\/\/twitter\.com\/.*?\/status\/(.*?)">.+?<\/blockquote>/is';
 		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
+
+		// scriptの処理
+		// scriptにwpautopが効くパターン
+		$pattern = '/<p><script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script><\/p>/is';
+		$append = '';
 		if(preg_match($pattern,$content,$matches) === 1){
 			$content = preg_replace($pattern, $append, $content);
 		}
 
 		// scriptにwpautopが効かなかったパターン
-		$pattern = '/<blockquote class="twitter-tweet".*?>.+?<a href="https:\/\/twitter\.com\/.*?\/status\/(.*?)">.+?<\/blockquote>.*?<script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script>/is';
-		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
-
-		// blockquoteのみパターン
-		$pattern = '/<blockquote class="twitter-tweet".*?>.*?<a href="https:\/\/twitter\.com\/.*?\/status\/(.*?)".*?<\/blockquote>/is';
-		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
+		$pattern = '/<script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script>/is';
+		$append = '';
 		if(preg_match($pattern,$content,$matches) === 1){
 			$content = preg_replace($pattern, $append, $content);
 		}
 		// <<<< Twitter
 
 		// Instagram >>>>
-		// scriptにwpautopが効くパターン
-		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www\.instagram\.com\/p\/(.+?)\/".+?<\/blockquote>.*?<script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script><\/p>/is';
-		$append = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
-
-		// scriptにwpautopが効かなかったパターン
-		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www\.instagram\.com\/p\/(.+?)\/".+?<\/blockquote>.*?<script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script>/is';
-		$append = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
-
 		// blockquoteのみパターン
 		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www\.instagram\.com\/p\/(.+?)\/".+?<\/blockquote>/is';
 		$append = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
 		if(preg_match($pattern,$content,$matches) === 1){
 			$content = preg_replace($pattern, $append, $content);
 		}
+
+		// scriptにwpautopが効くパターン
+
+		$pattern = '/<p><script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script><\/p>/is';
+		$append = '';
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
+
+		// scriptにwpautopが効かなかったパターン
+		$pattern = '/<script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script>/is';
+		$append = '';
+		if(preg_match($pattern,$content,$matches) === 1){
+			$content = preg_replace($pattern, $append, $content);
+		}
+
+
+
 		// <<<< Instagram
 
 		// YouTube
