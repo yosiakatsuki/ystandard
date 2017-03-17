@@ -1120,7 +1120,7 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 		echo $imgtag.$imgid.$imgclass.'src="'.$image[0].'" '.image_hwstring($viewsize[0],$viewsize[1]).' alt="" />';
 
 		//metaタグを出力
-		if($outputmeta && !ys_is_amp()){
+		if($outputmeta){
 			echo '<meta itemprop="url" content="'.$image[0].'" />';
 			echo '<meta itemprop="width" content="'.$image[1].'" />';
 			echo '<meta itemprop="height" content="'.$image[2].'" />';

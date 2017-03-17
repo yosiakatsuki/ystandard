@@ -607,10 +607,6 @@ add_action( 'wp_footer', 'ys_extras_load_css_footer_js' );
 if(!function_exists( 'ys_extras_the_json_ld')) {
 	function ys_extras_the_json_ld(){
 
-		if(ys_is_amp()){
-			return ;
-		}
-
 		// 全体に関わる部分
 		$context = 'http://schema.org';
 		$logourl = '';

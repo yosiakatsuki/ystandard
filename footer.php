@@ -31,10 +31,12 @@
 </div><!-- .site -->
 
 <?php
-	// AMP用メニュー出力
-	ys_template_the_amp_menu();
-
-	if(!ys_is_amp()):
+	if(ys_is_amp()):
+		// AMP用メニュー出力
+		ys_template_the_amp_menu();
+		// json-LD出力
+		ys_extras_the_json_ld();
+	else:
 		// AMP以外
 		wp_footer();
 	endif;
