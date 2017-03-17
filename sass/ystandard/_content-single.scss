@@ -203,6 +203,7 @@
 
 
 .post-navigation {
+	display: flex;
 	margin: 0 0 2rem;
 
   .next-label,
@@ -215,6 +216,8 @@
   .nav-next {
 
   	margin: 0 0 .5rem;
+		width: 50%;
+		vertical-align: top;
 
   	.meta-nav {
   		margin: 0 0 .1rem;
@@ -227,10 +230,21 @@
 
     a {
       color: $ys-content-post-nav-font-color;
+			font-size: .9rem;
       text-decoration: underline;
     }
 
-  }
+  }//.nav-prev,.nav-next
+
+	.nav-prev {
+		text-align: left;
+		padding-right: .5rem;
+	}
+	.nav-next {
+		text-align: right;
+		padding-left: .5rem;
+	}
+
   .home {
     display: flex;
     justify-content: center;
@@ -252,34 +266,12 @@
 @include media-breakpoint(tb) {
 
   .post-navigation {
-  	display: flex;
-
-  	.nav-prev,
-  	.nav-next {
-  		width: 50%;
-  		vertical-align: top;
-  	}
-
-  	.nav-prev {
-  		text-align: left;
-  		padding-right: .5rem;
-  	}
-  	.nav-next {
-  		text-align: right;
-  		padding-left: .5rem;
-  	}
-
-    .home {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      font-size: 3rem;
-
-      a,a:hover{
-        color: $ys-font-color;
-      }
-    }
+		.nav-prev,
+		.nav-next {
+			a {
+				font-size: 1rem;
+			}
+		}
   }//.post-navigation
 
 
