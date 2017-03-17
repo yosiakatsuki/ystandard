@@ -251,6 +251,7 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 - `.ys-text-center`
 - `.ys-text-right`
 
+
 ## 変更履歴
 
 ### v0.2.0
