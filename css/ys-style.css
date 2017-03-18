@@ -421,7 +421,7 @@
 
 .ys-button {
   padding: .8rem 4em;
-  border: 1px solid #888;
+  border: 1px solid #b3b3b3;
   color: #2c3e50;
   font-size: .9em;
   box-shadow: 1px 1px 1px rgba(204, 204, 204, 0.6);
@@ -505,7 +505,7 @@ div.aligncenter {
   border-radius: 3px;
   font-size: .8rem;
   text-align: left;
-  color: #888; }
+  color: #b3b3b3; }
 
 .normal-view-link {
   display: block;
@@ -607,12 +607,12 @@ div.aligncenter {
   border: 1px solid #ccc;
   border-radius: 2px;
   font-size: .8rem;
-  color: #888;
+  color: #b3b3b3;
   -webkit-transition: color .3s;
   transition: color .3s; }
   .entry-category-list a:hover,
   .entry-tag-list a:hover {
-    color: #aaaaaa; }
+    color: #d5d5d5; }
 
 .entry-tag-list {
   margin-top: 1rem; }
@@ -674,7 +674,7 @@ div.aligncenter {
   .post-navigation .next-label,
   .post-navigation .prev-label {
     display: block;
-    color: #888; }
+    color: #b3b3b3; }
   .post-navigation .nav-prev,
   .post-navigation .nav-next {
     margin: 0 0 .5rem;
@@ -1008,7 +1008,7 @@ sub {
   font-size: .6rem; }
   .comment-meta a {
     font-weight: normal;
-    color: #888; }
+    color: #b3b3b3; }
 
 .reply {
   text-align: right; }
@@ -1018,7 +1018,7 @@ sub {
   font-size: .8rem; }
   .comment-navigation h2 {
     margin: 0 0 .5rem;
-    color: #888; }
+    color: #b3b3b3; }
   .comment-navigation .nav-links:before, .comment-navigation .nav-links:after {
     content: "";
     display: table; }
@@ -1132,9 +1132,9 @@ sub {
   position: relative; }
 
 .sidebar-right a {
-  color: #888; }
+  color: #b3b3b3; }
   .sidebar-right a:hover {
-    color: #a2a2a2; }
+    color: #cdcdcd; }
 
 .site-footer {
   position: relative;
