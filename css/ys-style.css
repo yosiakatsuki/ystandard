@@ -777,6 +777,26 @@ div.aligncenter {
     .comment-text ol ol li:last-child {
       padding: .2em 0 0; }
 
+.entry-content table,
+.comment-text table {
+  width: 100%;
+  table-layout: fixed;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc; }
+  .entry-content table tr,
+  .comment-text table tr {
+    border-bottom: 1px solid #ccc; }
+  .entry-content table td,
+  .entry-content table th,
+  .comment-text table td,
+  .comment-text table th {
+    padding: .5rem;
+    border-right: 1px solid #ccc; }
+  .entry-content table th,
+  .comment-text table th {
+    background-color: #fafafa;
+    text-align: left; }
+
 dt {
   font-weight: bold;
   margin: 1rem 0 .2rem; }
@@ -786,21 +806,6 @@ dd {
 
 dl dt:first-child {
   margin: 0 0 .2rem; }
-
-table {
-  width: 100%;
-  table-layout: fixed;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc; }
-  table tr {
-    border-bottom: 1px solid #ccc; }
-  table td,
-  table th {
-    padding: .5rem;
-    border-right: 1px solid #ccc; }
-  table th {
-    background-color: #fafafa;
-    text-align: left; }
 
 del,
 strike {

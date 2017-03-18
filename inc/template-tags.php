@@ -689,7 +689,7 @@ if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
 		$pocket_share_html = apply_filters('ys_the_sns_share_buttons_pocket',$pocket_share_html);
 
 		// LINE
-		$line_share_html .= '<li class="line bg-line"><a href="http://line.me/R/msg/text/?'.$share_title.'%0A'.$share_url.'" target="_blank">LINE</a></li>';
+		$line_share_html = '<li class="line bg-line"><a href="http://line.me/R/msg/text/?'.$share_title.'%0A'.$share_url.'" target="_blank">LINE</a></li>';
 		$line_share_html = apply_filters('ys_the_sns_share_buttons_line',$line_share_html);
 
 		$share_buttons .= $twitter_share_html.$facebook_share_html.$hatenabookmark_share_html.$googleplus_share_html.$pocket_share_html.$line_share_html;
