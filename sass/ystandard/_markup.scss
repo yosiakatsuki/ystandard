@@ -40,177 +40,180 @@
 		}//ul,ol ul,ol
 
 	}//ul,ol
+}//.entry-content,.comment-text
 
-	dt {
-		font-weight: bold;
-		margin: 1rem 0 .2rem;
-	}
+dt {
+  font-weight: bold;
+  margin: 1rem 0 .2rem;
+}
 
-	dd {
-		margin:0 0 .2rem 1rem;
-	}
+dd {
+  margin:0 0 .2rem 1rem;
+}
 
-	dl {
-		dt:first-child {
-			margin: 0 0 .2rem;
-		}
-	}
+dl {
+  dt:first-child {
+    margin: 0 0 .2rem;
+  }
+}
 
-	// --------------------
-	// テーブル
-	// --------------------
-	table {
-		width: 100%;
-		table-layout: fixed;
-		border-top: 1px solid $ys-border-color-gray;
-		border-left: 1px solid $ys-border-color-gray;
+// --------------------
+// テーブル
+// --------------------
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-top: 1px solid $ys-border-color-gray;
+  border-left: 1px solid $ys-border-color-gray;
 
-		tr {
-			border-bottom: 1px solid $ys-border-color-gray;
-		}
-
-		td,
-		th {
-			padding: .5rem;
-			border-right: 1px solid $ys-border-color-gray;
-		}
-
-		th {
-			background-color: $ys-bg-color-gray;
-			text-align: left;
-		}
-
-	}//table
-
-  del,
-  strike {
-    text-decoration: line-through;
+  tr {
+    border-bottom: 1px solid $ys-border-color-gray;
   }
 
-  em {
-    font-style: italic;
+  td,
+  th {
+    padding: .5rem;
+    border-right: 1px solid $ys-border-color-gray;
   }
 
-  // --------------------
-	// コード
-	// --------------------
-	code,
-	pre,
-	kbd,
-	var,
-	tt {
-		font-family: $ys-font-family-code;
+  th {
+    background-color: $ys-bg-color-gray;
+    text-align: left;
+  }
+
+}//table
+
+del,
+strike {
+  text-decoration: line-through;
+}
+
+em {
+  font-style: italic;
+}
+
+// --------------------
+// コード
+// --------------------
+code,
+pre,
+kbd,
+var,
+tt {
+	font-family: $ys-font-family-code;
+}
+
+code,
+kbd,
+var,
+tt {
+  padding: 0 1px;
+	color: $ys-font-color-code;
+  letter-spacing: normal;
+}//code
+
+cite,
+cite a,
+q {
+	font-style: italic;
+	color: $ys-font-color-blockquote;
+}
+
+pre {
+  width: 100%;
+  background: $ys-bg-color-code;
+  padding: 0.5rem;
+  font-size: .8em;
+  line-height: 1.3;
+  overflow: auto;
+}//pre
+
+
+// --------------------
+// 引用
+// --------------------
+blockquote {
+  position: relative;
+	padding: 1.5rem;
+	background-color: $ys-bg-color-blockquote;
+  border-left: 3px solid $ys-border-color-blockquote;
+	color: $ys-font-color-blockquote;
+
+  &:after {
+    position: absolute;
+    content: "”";
+    top: 1rem;
+    right: 1.5rem;
+    font-family: sans-serif;
+    font-size: 6rem;
+    line-height: 1;
+    opacity: .1;
+  }
+
+	p,
+	cite {
+		margin: 0 0 1rem;
+
+		&:last-child {
+			margin: 0;
+		}
 	}
 
-	code,
-	kbd,
-	var,
-	tt {
-		color: $ys-font-color-code;
-		padding: 0 1px;
-	}//code
-
-  cite,
-	cite a,
-	q {
-		font-style: italic;
-		color: $ys-font-color-blockquote;
-	}
-
-  pre {
-    width: 100%;
-    background: $ys-bg-color-code;
-    padding: 1.5rem;
-    line-height: 1.2;
-    overflow: auto;
-  }//pre
-
-  // --------------------
-	// 引用
-	// --------------------
-	blockquote {
-    position: relative;
-		padding: 1.5rem;
-		background-color: $ys-bg-color-blockquote;
-    border-left: 3px solid $ys-border-color-blockquote;
-		color: $ys-font-color-blockquote;
-
-    &:after {
-      position: absolute;
-      content: "”";
-      top: 1rem;
-      right: 1.5rem;
-      font-family: sans-serif;
-      font-size: 6rem;
-      line-height: 1;
-      opacity: .1;
-    }
-
-		p,
-		cite {
-			margin: 0 0 1rem;
-
-			&:last-child {
-				margin: 0;
-			}
-		}
-
-		a {
-			text-decoration: underline;
-		}
-
-		cite {
-			font-size: .8rem;
-
-			&::before {
-				content: "-";
-				margin-right: .2rem;
-			}
-		}//cite
-	}//blockquote
-
-	u,
-	ins {
+	a {
 		text-decoration: underline;
 	}
 
-	// --------------------
-	// 下付き文字/上付き文字
-	// --------------------
-	sub,
-	sup {
-		font-size: 0.5em;
-	}
+	cite {
+		font-size: .8rem;
 
-	sub {
-		vertical-align: sub;
-	}
-	sub {
-		vertical-align: super;
-	}
-
-	.iframe-responsive-container {
-		max-width: 560px;
-		margin: 0 0 2em;
-	}
-
-	.iframe-responsive {
-		position: relative;
-		padding-bottom: 56.25%;
-		padding-top: 30px;
-		height: 0;
-		overflow: hidden;
-
-		iframe {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height:100%;
+		&::before {
+			content: "-";
+			margin-right: .2rem;
 		}
-	}
+	}//cite
+}//blockquote
 
-}//.entry-content,.comment-text
+u,
+ins {
+	text-decoration: underline;
+}
+
+// --------------------
+// 下付き文字/上付き文字
+// --------------------
+sub,
+sup {
+	font-size: 0.5em;
+}
+
+sub {
+	vertical-align: sub;
+}
+sub {
+	vertical-align: super;
+}
+
+.iframe-responsive-container {
+  max-width: 560px;
+  margin: 0 0 2em;
+}
+
+.iframe-responsive {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+  }
+}
+
 
 
 

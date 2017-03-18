@@ -777,98 +777,74 @@ div.aligncenter {
     .comment-text ol ol li:last-child {
       padding: .2em 0 0; }
 
-.entry-content dt,
-.comment-text dt {
+dt {
   font-weight: bold;
   margin: 1rem 0 .2rem; }
 
-.entry-content dd,
-.comment-text dd {
+dd {
   margin: 0 0 .2rem 1rem; }
 
-.entry-content dl dt:first-child,
-.comment-text dl dt:first-child {
+dl dt:first-child {
   margin: 0 0 .2rem; }
 
-.entry-content table,
-.comment-text table {
+table {
   width: 100%;
   table-layout: fixed;
   border-top: 1px solid #ccc;
   border-left: 1px solid #ccc; }
-  .entry-content table tr,
-  .comment-text table tr {
+  table tr {
     border-bottom: 1px solid #ccc; }
-  .entry-content table td,
-  .entry-content table th,
-  .comment-text table td,
-  .comment-text table th {
+  table td,
+  table th {
     padding: .5rem;
     border-right: 1px solid #ccc; }
-  .entry-content table th,
-  .comment-text table th {
+  table th {
     background-color: #fafafa;
     text-align: left; }
 
-.entry-content del,
-.entry-content strike,
-.comment-text del,
-.comment-text strike {
+del,
+strike {
   text-decoration: line-through; }
 
-.entry-content em,
-.comment-text em {
+em {
   font-style: italic; }
 
-.entry-content code,
-.entry-content pre,
-.entry-content kbd,
-.entry-content var,
-.entry-content tt,
-.comment-text code,
-.comment-text pre,
-.comment-text kbd,
-.comment-text var,
-.comment-text tt {
-  font-family: Consolas, "Courier New", Courier, Monaco, "游ゴシック", "Yu Gothic", "游ゴシック体", "YuGothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", monospace; }
+code,
+pre,
+kbd,
+var,
+tt {
+  font-family: Consolas, Monaco, monospace, "游ゴシック", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo; }
 
-.entry-content code,
-.entry-content kbd,
-.entry-content var,
-.entry-content tt,
-.comment-text code,
-.comment-text kbd,
-.comment-text var,
-.comment-text tt {
+code,
+kbd,
+var,
+tt {
+  padding: 0 1px;
   color: #2626d9;
-  padding: 0 1px; }
+  letter-spacing: normal; }
 
-.entry-content cite,
-.entry-content cite a,
-.entry-content q,
-.comment-text cite,
-.comment-text cite a,
-.comment-text q {
+cite,
+cite a,
+q {
   font-style: italic;
   color: #888; }
 
-.entry-content pre,
-.comment-text pre {
+pre {
   width: 100%;
   background: #fbfbfb;
-  padding: 1.5rem;
-  line-height: 1.2;
+  padding: 0.5rem;
+  font-size: .8em;
+  line-height: 1.3;
   overflow: auto; }
 
-.entry-content blockquote,
-.comment-text blockquote {
+blockquote {
   position: relative;
   padding: 1.5rem;
   background-color: #fbfbfb;
   border-left: 3px solid #ccc;
   color: #888; }
-  .entry-content blockquote:after,
-  .comment-text blockquote:after {
+  blockquote:after {
     position: absolute;
     content: "”";
     top: 1rem;
@@ -877,61 +853,45 @@ div.aligncenter {
     font-size: 6rem;
     line-height: 1;
     opacity: .1; }
-  .entry-content blockquote p,
-  .entry-content blockquote cite,
-  .comment-text blockquote p,
-  .comment-text blockquote cite {
+  blockquote p,
+  blockquote cite {
     margin: 0 0 1rem; }
-    .entry-content blockquote p:last-child,
-    .entry-content blockquote cite:last-child,
-    .comment-text blockquote p:last-child,
-    .comment-text blockquote cite:last-child {
+    blockquote p:last-child,
+    blockquote cite:last-child {
       margin: 0; }
-  .entry-content blockquote a,
-  .comment-text blockquote a {
+  blockquote a {
     text-decoration: underline; }
-  .entry-content blockquote cite,
-  .comment-text blockquote cite {
+  blockquote cite {
     font-size: .8rem; }
-    .entry-content blockquote cite::before,
-    .comment-text blockquote cite::before {
+    blockquote cite::before {
       content: "-";
       margin-right: .2rem; }
 
-.entry-content u,
-.entry-content ins,
-.comment-text u,
-.comment-text ins {
+u,
+ins {
   text-decoration: underline; }
 
-.entry-content sub,
-.entry-content sup,
-.comment-text sub,
-.comment-text sup {
+sub,
+sup {
   font-size: 0.5em; }
 
-.entry-content sub,
-.comment-text sub {
+sub {
   vertical-align: sub; }
 
-.entry-content sub,
-.comment-text sub {
+sub {
   vertical-align: super; }
 
-.entry-content .iframe-responsive-container,
-.comment-text .iframe-responsive-container {
+.iframe-responsive-container {
   max-width: 560px;
   margin: 0 0 2em; }
 
-.entry-content .iframe-responsive,
-.comment-text .iframe-responsive {
+.iframe-responsive {
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 30px;
   height: 0;
   overflow: hidden; }
-  .entry-content .iframe-responsive iframe,
-  .comment-text .iframe-responsive iframe {
+  .iframe-responsive iframe {
     position: absolute;
     top: 0;
     left: 0;
