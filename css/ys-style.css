@@ -825,8 +825,9 @@ code,
 kbd,
 var,
 tt {
-  padding: 0 1px;
-  color: #2626d9;
+  padding: 1px 4px;
+  background-color: #f7f7f7;
+  font-size: .98rem;
   letter-spacing: normal; }
 
 cite,
@@ -837,16 +838,16 @@ q {
 
 pre {
   width: 100%;
-  background: #fbfbfb;
+  background-color: #f7f7f7;
   padding: 0.5rem;
   font-size: .8em;
-  line-height: 1.3;
+  line-height: 1.4;
   overflow: auto; }
 
 blockquote {
   position: relative;
   padding: 1.5rem;
-  background-color: #fbfbfb;
+  background-color: #f7f7f7;
   border-left: 3px solid #ccc;
   color: #888; }
   blockquote:after {

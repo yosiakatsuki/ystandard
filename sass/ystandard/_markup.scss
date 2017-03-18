@@ -109,8 +109,10 @@ code,
 kbd,
 var,
 tt {
-  padding: 0 1px;
-	color: $ys-font-color-code;
+  padding: 1px 4px;
+  background-color: $ys-bg-color-code;
+  font-size: .98rem;
+	// color: $ys-font-color-code;
   letter-spacing: normal;
 }//code
 
@@ -123,10 +125,10 @@ q {
 
 pre {
   width: 100%;
-  background: $ys-bg-color-code;
+  background-color: $ys-bg-color-code;
   padding: 0.5rem;
   font-size: .8em;
-  line-height: 1.3;
+  line-height: 1.4;
   overflow: auto;
 }//pre
 
