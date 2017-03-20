@@ -1125,18 +1125,6 @@ sub {
   .pagination {
     padding: 0 2rem; } }
 
-#sidebar-fixed {
-  width: 100%; }
-
-.sidebar-wrapper {
-  height: 100%;
-  position: relative; }
-
-.sidebar-right a {
-  color: #b3b3b3; }
-  .sidebar-right a:hover {
-    color: #cdcdcd; }
-
 .site-footer {
   position: relative;
   padding: .5rem 0;

@@ -821,6 +821,18 @@ img {
     width: 1rem;
     fill: #b3b3b3; }
 
+#sidebar-fixed {
+  width: 100%; }
+
+.sidebar-wrapper {
+  height: 100%;
+  position: relative; }
+
+.sidebar-right a {
+  color: #b3b3b3; }
+  .sidebar-right a:hover {
+    color: #cdcdcd; }
+
 .widget {
   margin: 0 0 3rem;
   font-size: .9rem; }
@@ -852,7 +864,9 @@ img {
 .widget_recent_comments ul li,
 .widget_recent_comments ol li,
 .widget_recent_entries ul li,
-.widget_recent_entries ol li {
+.widget_recent_entries ol li,
+.widget_categories ul li,
+.widget_categories ol li {
   margin: 0 0 1rem; }
 
 .widget_calendar tbody {
