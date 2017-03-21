@@ -603,10 +603,17 @@ if( ! function_exists( 'ys_template_the_entry_foot_cta' ) ) {
 	function ys_template_the_entry_foot_cta() {
 
 		// 広告
-		ys_template_the_advertisement_under_content();
+		$ad = ys_template_the_advertisement_under_content();
 
 		// シェアボタン
-		ys_template_the_sns_share();
+		$sns_share = ys_template_get_the_sns_share();
+
+		// 購読ボタン
+		$subscribe = '';
+
+		$html = $ad.$sns_share.$subscribe;
+
+		echo apply_filters('ys_the_entry_foot_cta',$html,$ad,$sns_share,$subscribe);
 
 	}
 }
@@ -616,26 +623,28 @@ if( ! function_exists( 'ys_template_the_entry_foot_cta' ) ) {
 //-----------------------------------------------
 //	シェアボタン
 //-----------------------------------------------
-if( ! function_exists( 'ys_template_the_sns_share' ) ) {
-	function ys_template_the_sns_share(){
+if( ! function_exists( 'ys_template_get_the_sns_share' ) ) {
+	function ys_template_get_the_sns_share(){
 
-
-		echo '<aside id="sns-share" class="sns-share entry-footer-container">';
+		$html = '';
+		$html .= '<aside id="sns-share" class="sns-share entry-footer-container">';
 		$share_buttons_title = '\ みんなとシェアする /';
 		$share_buttons_title = apply_filters('ys_share_buttons_title',$share_buttons_title);
 
-		echo '<p class="sns-share-title">'.$share_buttons_title.'</p>';
+		$html .= '<p class="sns-share-title">'.$share_buttons_title.'</p>';
 
 		if(!ys_is_amp()){
 			// AMP以外
-			echo ys_template_the_sns_share_buttons();
+			$html .= ys_template_get_the_sns_share_buttons();
 
 		} else {
 			// AMP記事
-			echo ys_template_the_amp_sns_share_buttons();
+			$html .= ys_template_get_the_amp_sns_share_buttons();
 
 		}
-		echo '</aside>';
+		$html .= '</aside>';
+
+		return apply_filters('ys_get_the_sns_share',$html);
 
 	}
 }
@@ -646,8 +655,8 @@ if( ! function_exists( 'ys_template_the_sns_share' ) ) {
 //-----------------------------------------------
 //	通常のシェアボタン
 //-----------------------------------------------
-if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
-	function ys_template_the_sns_share_buttons(){
+if( ! function_exists( 'ys_template_get_the_sns_share_buttons' ) ) {
+	function ys_template_get_the_sns_share_buttons(){
 
 		$share_buttons = '';
 		$share_url = urlencode(get_permalink());
@@ -699,7 +708,7 @@ if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
 
 		$share_buttons .= '</ul>';
 
-		return apply_filters('ys_sns_share_buttons',$share_buttons);
+		return apply_filters('ys_get_the_sns_share_buttons',$share_buttons);
 	}
 }
 
@@ -709,8 +718,8 @@ if( ! function_exists( 'ys_template_the_sns_share_buttons' ) ) {
 //-----------------------------------------------
 //	AMPシェアボタン
 //-----------------------------------------------
-if( ! function_exists( 'ys_template_the_amp_sns_share_buttons' ) ) {
-	function ys_template_the_amp_sns_share_buttons() {
+if( ! function_exists( 'ys_template_get_the_amp_sns_share_buttons' ) ) {
+	function ys_template_get_the_amp_sns_share_buttons() {
 		$share_buttons = '';
 
 		$fb_app_id = ys_get_setting('ys_amp_share_fb_app_id');
@@ -723,8 +732,17 @@ if( ! function_exists( 'ys_template_the_amp_sns_share_buttons' ) ) {
 			$share_buttons .= '<p class="amp-view-info">その他の方法でシェアする場合は通常表示に切り替えて下さい。<a class="normal-view-link" href="'.get_the_permalink().'#sns-share">通常表示に切り替える »</a></p>';
 		}
 
-		return apply_filters('ys_amp_sns_share_buttons',$share_buttons);
+		return apply_filters('ys_get_the_amp_sns_share_buttons',$share_buttons);
 	}
+}
+
+
+
+
+/**
+ *	購読リンク
+ */
+if( ! function_exists( 'ys_template_the_amp_sns_share_buttons' ) ) {
 }
 
 
@@ -1264,7 +1282,7 @@ if( ! function_exists( 'ys_template_the_advertisement_under_content' ) ) {
 				$ad = $ad_right;
 			}
 		}
-		echo apply_filters('ys_advertisement_under_content',ys_template_get_the_advertisement_format($ad));
+		return apply_filters('ys_advertisement_under_content',ys_template_get_the_advertisement_format($ad));
 
 	}
 }
