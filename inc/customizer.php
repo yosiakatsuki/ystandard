@@ -126,6 +126,23 @@ if (!function_exists( 'ys_customizer_add_logo_setting')) {
 if (!function_exists( 'ys_customizer_color_setting')) {
 	function ys_customizer_color_setting($wp_customize){
 
+		// 色情報
+		$default_colors = array(
+												'ys_color_site_bg'=>'#fff',
+												'ys_color_site_font'=>'#2c3e50',
+												'ys_color_site_font_sub'=>'#b3b3b3',
+												'ys_color_header_bg'=>'#fafafa',
+												'ys_color_header_font'=>'#2c3e50',
+												'ys_color_nav_font_pc'=>'#b3b3b3',
+												'ys_color_nav_border_pc'=>'#b3b3b3',
+												'ys_color_nav_bg_sp'=>'#2c3e50',
+												'ys_color_nav_font_sp'=>'#fff',
+												'ys_color_footer_bg'=>'#2c3e50',
+												'ys_color_footer_sns_bg'=>'#3d4f61',
+												'ys_color_footer_sns_hover_bg'=>'#5f7183',
+												'ys_color_footer_font'=>'#fff'
+											);
+
 		// パネルの追加
 		$wp_customize->add_panel(
 											'ys_color_panel',
@@ -152,7 +169,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_site',
 				'settings' => 'ys_color_site_bg',
-				'default' => '#fff',
+				'default' => $default_colors['ys_color_site_bg'],
 				'label' => 'サイト背景色'
 			)
 		);
@@ -163,7 +180,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_site',
 				'settings' => 'ys_color_site_font',
-				'default' => '#2c3e50',
+				'default' => $default_colors['ys_color_site_font'],
 				'label' => 'サイト文字色（メイン）'
 			)
 		);
@@ -173,7 +190,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_site',
 				'settings' => 'ys_color_site_font_sub',
-				'default' => '#888',
+				'default' => $default_colors['ys_color_site_font_sub'],
 				'label' => 'サイト文字色（薄字）'
 			)
 		);
@@ -196,7 +213,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_header',
 				'settings' => 'ys_color_header_bg',
-				'default' => '#fafafa',
+				'default' => $default_colors['ys_color_header_bg'],
 				'label' => 'ヘッダー背景色'
 			)
 		);
@@ -207,7 +224,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_header',
 				'settings' => 'ys_color_header_font',
-				'default' => '#2c3e50',
+				'default' => $default_colors['ys_color_header_font'],
 				'label' => 'ヘッダー文字色'
 			)
 		);
@@ -230,7 +247,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_nav',
 				'settings' => 'ys_color_nav_font_pc',
-				'default' => '#888',
+				'default' => $default_colors['ys_color_nav_font_pc'],
 				'label' => '[PC]ナビゲーション文字色'
 			)
 		);
@@ -241,7 +258,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_nav',
 				'settings' => 'ys_color_nav_border_pc',
-				'default' => '#888',
+				'default' => $default_colors['ys_color_nav_border_pc'],
 				'label' => '[PC]ナビゲーションホバー時の下線色'
 			)
 		);
@@ -252,7 +269,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_nav',
 				'settings' => 'ys_color_nav_bg_sp',
-				'default' => '#2c3e50',
+				'default' => $default_colors['ys_color_nav_bg_sp'],
 				'label' => '[SP]ナビゲーション背景色'
 			)
 		);
@@ -264,7 +281,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_nav',
 				'settings' => 'ys_color_nav_font_sp',
-				'default' => '#fff',
+				'default' => $default_colors['ys_color_nav_font_sp'],
 				'label' => '[SP]ナビゲーション文字色'
 			)
 		);
@@ -299,7 +316,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_footer',
 				'settings' => 'ys_color_footer_bg',
-				'default' => '#2c3e50',
+				'default' => $default_colors['ys_color_footer_bg'],
 				'label' => 'フッター背景色'
 			)
 		);
@@ -310,7 +327,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_footer',
 				'settings' => 'ys_color_footer_sns_bg',
-				'default' => '#3d4f61',
+				'default' => $default_colors['ys_color_footer_sns_bg'],
 				'label' => 'フッターSNSアイコン背景色'
 			)
 		);
@@ -320,7 +337,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_footer',
 				'settings' => 'ys_color_footer_sns_hover_bg',
-				'default' => '#5f7183',
+				'default' => $default_colors['ys_color_footer_sns_hover_bg'],
 				'label' => 'フッターSNSアイコン hover 背景色'
 			)
 		);
@@ -331,7 +348,7 @@ if (!function_exists( 'ys_customizer_color_setting')) {
 			array(
 				'section'  => 'ys_color_footer',
 				'settings' => 'ys_color_footer_font',
-				'default' => '#fff',
+				'default' => $default_colors['ys_color_footer_font'],
 				'label' => 'フッター文字色'
 			)
 		);
