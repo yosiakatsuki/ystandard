@@ -19,7 +19,7 @@ $ys-sidebar-width                      : 352px !default;
 
 // *色
 // フォント
-$ys-font-color                         : #2c3e50 !default;
+$ys-font-color                         : #34495E !default;
 $ys-font-color-gray                    : #b3b3b3 !default;
 $ys-font-color-input                   : $ys-font-color !default;
 $ys-font-color-button                  : #fff !default;
@@ -32,7 +32,7 @@ $ys-bg-color-input                     : #fff !default;
 $ys-bg-color-button                    : $ys-font-color !default;
 
 // 罫線
-$ys-border-color-gray                  : #ccc !default;
+$ys-border-color-gray                  : #bdc3c7 !default;
 $ys-border-color-pager                 : $ys-font-color !default;
 $ys-border-color-pager-current         : $ys-font-color !default;
 $ys-border-color-input                 : $ys-border-color-gray !default;
@@ -49,14 +49,18 @@ $ys-font-family-code                   : Consolas, Monaco, monospace,"游ゴシ�
 $ys-letter-spacing                     : 0.1em !default;
 
 // *リンク関連
-$ys-link-color-base                    : #0068b7 !default;
+$ys-link-color-base                    : #2980B9 !default;
 $ys-link-hover-lighten                 : 10% !default;
 $ys-link-color                         : $ys-link-color-base !default;
 $ys-link-color-hover                   : lighten($ys-link-color-base,$ys-link-hover-lighten) !default;
 
 // 枠
-$ys-grid-pc-border-color               : #eee;
+$ys-grid-pc-border-color               : #ecf0f1;
 $ys-grid-pc-border-px                  : 1px;
+
+// ボタンなど、角丸デフォルト値
+$ys-border-radius-default              : 4px !default;
+
 
 // ヘッダー部分
 $ys-header-bg-color                    : $ys-bg-color-gray !default;
@@ -91,7 +95,7 @@ $ys-content-pager-bg-color             : transparent !default;
 $ys-content-pager-current-font-color   : #fff !default;
 $ys-content-pager-current-bg-color     : $ys-font-color !default;
 
-$ys-content-share-bg-color             : #f6f6f6 !default;
+$ys-content-share-bg-color             : lighten(#ecf0f1,3%) !default;
 
 $ys-content-taxonomy-font-color        : $ys-font-color-gray !default;
 $ys-content-taxonomy-border-color      : $ys-border-color-gray !default;
@@ -131,7 +135,7 @@ $ys-border-color-searchbutton          : transparent !default;
 
 
 // フッター部分
-$ys-footer-bg-color                    : #2c3e50 !default;
+$ys-footer-bg-color                    : $ys-font-color !default;
 $ys-footer-font-color                  : #fff !default;
 $ys-footer-sns-bg-color                : $ys-footer-bg-color + #111 !default;
 

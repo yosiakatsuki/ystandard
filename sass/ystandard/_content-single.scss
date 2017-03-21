@@ -33,7 +33,7 @@
 	padding: 1rem;
 	margin: 2rem 0;
 	border: 1px solid $ys-border-color-gray;
-	border-radius: 3px;
+	border-radius: $ys-border-radius-default;
 	font-size: .8rem;
 	text-align: left;
 	color: $ys-font-color-gray;
@@ -72,7 +72,7 @@
 		width: 49%;
 		display: inline-block;
 		margin-bottom:.5rem;
-		border-radius: 3px;
+		border-radius: $ys-border-radius-default;
 		font-size: .8rem;
 		transition: background-color 0.3s;
 
@@ -134,9 +134,9 @@
 		display: inline-block;
 		position: relative;
 		padding: .2rem .5rem;
-		margin: 0 .5rem .5rem 0;
+		margin: .8rem .5rem .8rem 0;
 		border: 1px solid $ys-content-taxonomy-border-color;
-		border-radius: 2px;
+		border-radius: $ys-border-radius-default;
     font-size: .8rem;
 		color: $ys-content-taxonomy-font-color;
 		transition: color .3s;

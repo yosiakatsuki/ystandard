@@ -145,7 +145,10 @@
 	input[type="submit"] {
 		width: 100%;
 		padding: .5rem;
+		margin-top: 1rem;
+		margin-bottom: 1rem;
 		border: 1px solid $ys-border-color-button;
+		border-radius: $ys-border-radius-default;
 		background-color: $ys-bg-color-button;
 		font-size: 1rem;
 		color: $ys-font-color-button;

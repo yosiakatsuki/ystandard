@@ -13,10 +13,10 @@
   .widget .color-#{$key} {
 		&,
 		& a {
-			color: $color;
+			color: desaturate($color,10%);
 
 			&:hover {
-				color: lighten($color,$ys-sns-link-hover-lighten);
+				color: desaturate(lighten($color,$ys-sns-link-hover-lighten),10%);
 			}
 		}
 	}//.color-#{$key}
@@ -24,10 +24,10 @@
 	.bg-#{$key},
   .widget .bg-#{$key} {
 
-		background-color: $color;
+		background-color: desaturate($color,10%);
 
 		&:hover {
-			background-color: lighten($color,$ys-sns-link-hover-lighten);
+			background-color: desaturate(lighten($color,$ys-sns-link-hover-lighten),10%);
 		}
 
     &,
