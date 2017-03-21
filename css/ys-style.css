@@ -8,14 +8,14 @@
   .color-twitter a:hover,
   .widget .color-twitter:hover,
   .widget .color-twitter a:hover {
-    color: #63aeeb; }
+    color: #4da2e8; }
 
 .bg-twitter,
 .widget .bg-twitter {
   background-color: #3696e5; }
   .bg-twitter:hover,
   .widget .bg-twitter:hover {
-    background-color: #63aeeb; }
+    background-color: #4da2e8; }
   .bg-twitter, .bg-twitter:hover,
   .bg-twitter a,
   .bg-twitter a:hover,
@@ -34,14 +34,14 @@
   .color-facebook a:hover,
   .widget .color-facebook:hover,
   .widget .color-facebook a:hover {
-    color: #5a75af; }
+    color: #4e69a1; }
 
 .bg-facebook,
 .widget .bg-facebook {
   background-color: #465e90; }
   .bg-facebook:hover,
   .widget .bg-facebook:hover {
-    background-color: #5a75af; }
+    background-color: #4e69a1; }
   .bg-facebook, .bg-facebook:hover,
   .bg-facebook a,
   .bg-facebook a:hover,
@@ -60,14 +60,14 @@
   .color-google-plus a:hover,
   .widget .color-google-plus:hover,
   .widget .color-google-plus a:hover {
-    color: #e25140; }
+    color: #de3c2a; }
 
 .bg-google-plus,
 .widget .bg-google-plus {
   background-color: #cf3220; }
   .bg-google-plus:hover,
   .widget .bg-google-plus:hover {
-    background-color: #e25140; }
+    background-color: #de3c2a; }
   .bg-google-plus, .bg-google-plus:hover,
   .bg-google-plus a,
   .bg-google-plus a:hover,
@@ -86,14 +86,14 @@
   .color-hatenabookmark a:hover,
   .widget .color-hatenabookmark:hover,
   .widget .color-hatenabookmark a:hover {
-    color: #1295f3; }
+    color: #0c87e0; }
 
 .bg-hatenabookmark,
 .widget .bg-hatenabookmark {
   background-color: #0b78c8; }
   .bg-hatenabookmark:hover,
   .widget .bg-hatenabookmark:hover {
-    background-color: #1295f3; }
+    background-color: #0c87e0; }
   .bg-hatenabookmark, .bg-hatenabookmark:hover,
   .bg-hatenabookmark a,
   .bg-hatenabookmark a:hover,
@@ -112,14 +112,14 @@
   .color-rss a:hover,
   .widget .color-rss:hover,
   .widget .color-rss a:hover {
-    color: #f49d3b; }
+    color: #f29123; }
 
 .bg-rss,
 .widget .bg-rss {
   background-color: #ee840e; }
   .bg-rss:hover,
   .widget .bg-rss:hover {
-    background-color: #f49d3b; }
+    background-color: #f29123; }
   .bg-rss, .bg-rss:hover,
   .bg-rss a,
   .bg-rss a:hover,
@@ -138,14 +138,14 @@
   .color-feedly a:hover,
   .widget .color-feedly:hover,
   .widget .color-feedly a:hover {
-    color: #a1be72; }
+    color: #95b660; }
 
 .bg-feedly,
 .widget .bg-feedly {
   background-color: #89ad50; }
   .bg-feedly:hover,
   .widget .bg-feedly:hover {
-    background-color: #a1be72; }
+    background-color: #95b660; }
   .bg-feedly, .bg-feedly:hover,
   .bg-feedly a,
   .bg-feedly a:hover,
@@ -164,14 +164,14 @@
   .color-pocket a:hover,
   .widget .color-pocket:hover,
   .widget .color-pocket a:hover {
-    color: #e77c85; }
+    color: #e46671; }
 
 .bg-pocket,
 .widget .bg-pocket {
   background-color: #e0505d; }
   .bg-pocket:hover,
   .widget .bg-pocket:hover {
-    background-color: #e77c85; }
+    background-color: #e46671; }
   .bg-pocket, .bg-pocket:hover,
   .bg-pocket a,
   .bg-pocket a:hover,
@@ -190,14 +190,14 @@
   .color-instagram a:hover,
   .widget .color-instagram:hover,
   .widget .color-instagram a:hover {
-    color: #608bad; }
+    color: #537ea1; }
 
 .bg-instagram,
 .widget .bg-instagram {
   background-color: #4a7190; }
   .bg-instagram:hover,
   .widget .bg-instagram:hover {
-    background-color: #608bad; }
+    background-color: #537ea1; }
   .bg-instagram, .bg-instagram:hover,
   .bg-instagram a,
   .bg-instagram a:hover,
@@ -216,14 +216,14 @@
   .color-line a:hover,
   .widget .color-line:hover,
   .widget .color-line a:hover {
-    color: #43dc29; }
+    color: #3aca21; }
 
 .bg-line,
 .widget .bg-line {
   background-color: #33b51e; }
   .bg-line:hover,
   .widget .bg-line:hover {
-    background-color: #43dc29; }
+    background-color: #3aca21; }
   .bg-line, .bg-line:hover,
   .bg-line a,
   .bg-line a:hover,
@@ -242,14 +242,14 @@
   .color-tumblr a:hover,
   .widget .color-tumblr:hover,
   .widget .color-tumblr a:hover {
-    color: #516073; }
+    color: #475364; }
 
 .bg-tumblr,
 .widget .bg-tumblr {
   background-color: #3c4755; }
   .bg-tumblr:hover,
   .widget .bg-tumblr:hover {
-    background-color: #516073; }
+    background-color: #475364; }
   .bg-tumblr, .bg-tumblr:hover,
   .bg-tumblr a,
   .bg-tumblr a:hover,
@@ -268,14 +268,14 @@
   .color-youtube-play a:hover,
   .widget .color-youtube-play:hover,
   .widget .color-youtube-play a:hover {
-    color: #d74948; }
+    color: #d23434; }
 
 .bg-youtube-play,
 .widget .bg-youtube-play {
   background-color: #c12c2b; }
   .bg-youtube-play:hover,
   .widget .bg-youtube-play:hover {
-    background-color: #d74948; }
+    background-color: #d23434; }
   .bg-youtube-play, .bg-youtube-play:hover,
   .bg-youtube-play a,
   .bg-youtube-play a:hover,
@@ -294,14 +294,14 @@
   .color-vine a:hover,
   .widget .color-vine:hover,
   .widget .color-vine a:hover {
-    color: #0cdbaa; }
+    color: #0ac297; }
 
 .bg-vine,
 .widget .bg-vine {
   background-color: #09aa84; }
   .bg-vine:hover,
   .widget .bg-vine:hover {
-    background-color: #0cdbaa; }
+    background-color: #0ac297; }
   .bg-vine, .bg-vine:hover,
   .bg-vine a,
   .bg-vine a:hover,
@@ -320,14 +320,14 @@
   .color-github a:hover,
   .widget .color-github:hover,
   .widget .color-github a:hover {
-    color: #729cc6; }
+    color: #6090bf; }
 
 .bg-github,
 .widget .bg-github {
   background-color: #4d83b8; }
   .bg-github:hover,
   .widget .bg-github:hover {
-    background-color: #729cc6; }
+    background-color: #6090bf; }
   .bg-github, .bg-github:hover,
   .bg-github a,
   .bg-github a:hover,
@@ -346,14 +346,14 @@
   .color-pinterest a:hover,
   .widget .color-pinterest:hover,
   .widget .color-pinterest a:hover {
-    color: #d5494e; }
+    color: #d1343a; }
 
 .bg-pinterest,
 .widget .bg-pinterest {
   background-color: #bf2c32; }
   .bg-pinterest:hover,
   .widget .bg-pinterest:hover {
-    background-color: #d5494e; }
+    background-color: #d1343a; }
   .bg-pinterest, .bg-pinterest:hover,
   .bg-pinterest a,
   .bg-pinterest a:hover,
@@ -372,14 +372,14 @@
   .color-linkedin a:hover,
   .widget .color-linkedin:hover,
   .widget .color-linkedin a:hover {
-    color: #1e93cb; }
+    color: #1a83b5; }
 
 .bg-linkedin,
 .widget .bg-linkedin {
   background-color: #17739f; }
   .bg-linkedin:hover,
   .widget .bg-linkedin:hover {
-    background-color: #1e93cb; }
+    background-color: #1a83b5; }
   .bg-linkedin, .bg-linkedin:hover,
   .bg-linkedin a,
   .bg-linkedin a:hover,
