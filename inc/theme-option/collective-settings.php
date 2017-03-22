@@ -10,6 +10,7 @@
 			if($tw_account != ''){
 				update_option('ys_sns_share_tweet_via_account', $tw_account);
 				update_option('ys_twittercard_user', $tw_account);
+				update_option('ys_subscribe_url_twitter', 'https://twitter.com/'.$tw_account);
 			}
 		}
 		$fb_app_id = '';
@@ -60,6 +61,7 @@
 							<ul>
 								<li>基本設定 - Twitterシェアボタン設定 - Twitterアカウント名</li>
 								<li>基本設定 - OGP・Twitterカード設定 - Twitterアカウント名</li>
+								<li>基本設定 - 購読ボタン設定 - Twitter（アカウントページへのURLを生成します）</li>
 							</ul>
 						</div>
 					</td>

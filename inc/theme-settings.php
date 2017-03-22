@@ -51,6 +51,12 @@ if (!function_exists( 'ys_settings')) {
 		$ys_follow_url_pinterest = esc_url( get_option('ys_follow_url_pinterest','') );
 		$ys_follow_url_linkedin = esc_url( get_option('ys_follow_url_linkedin','') );
 
+	// 基本設定 > 購読リンク
+		$ys_subscribe_url_twitter = esc_url( get_option('ys_subscribe_url_twitter','') );
+		$ys_subscribe_url_facebook = esc_url( get_option('ys_subscribe_url_facebook','') );
+		$ys_subscribe_url_googleplus = esc_url( get_option('ys_subscribe_url_googleplus','') );
+		$ys_subscribe_url_feedly = esc_url( get_option('ys_subscribe_url_feedly','') );
+
 	// 基本設定 > 投稿設定
 		$ys_show_post_related = get_option('ys_show_post_related',1) ;
 		$ys_hide_post_paging = get_option('ys_hide_post_paging',0) ;
@@ -113,6 +119,11 @@ if (!function_exists( 'ys_settings')) {
 										'ys_follow_url_github' => $ys_follow_url_github,	//GitHubフォローURL
 										'ys_follow_url_pinterest' => $ys_follow_url_pinterest,	//PinterestフォローURL
 										'ys_follow_url_linkedin' => $ys_follow_url_linkedin,	//linkedinフォローURL
+
+										'ys_subscribe_url_twitter' => $ys_subscribe_url_twitter,	//Twitterフォローリンク
+										'ys_subscribe_url_facebook' => $ys_subscribe_url_facebook,	//Facebookページフォローリンク
+										'ys_subscribe_url_googleplus' => $ys_subscribe_url_googleplus,	//Google＋ページフォローリンク
+										'ys_subscribe_url_feedly' => $ys_subscribe_url_feedly,	//Feedlyフォローリンク
 
 										'ys_show_post_related' => $ys_show_post_related,	//関連記事を出力する
 										'ys_hide_post_paging' => $ys_hide_post_paging,	//次の記事・前の記事を表示しない

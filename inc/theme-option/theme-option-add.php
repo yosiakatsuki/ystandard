@@ -83,6 +83,11 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_ogp_fb_admins' );
 	register_setting( 'ys_main_settings', 'ys_twittercard_user' );
 	register_setting( 'ys_main_settings', 'ys_ogp_default_image' );
+	// 基本設定 > 購読設定
+	register_setting( 'ys_main_settings', 'ys_subscribe_url_twitter' );
+	register_setting( 'ys_main_settings', 'ys_subscribe_url_facebook' );
+	register_setting( 'ys_main_settings', 'ys_subscribe_url_googleplus' );
+	register_setting( 'ys_main_settings', 'ys_subscribe_url_feedly' );
 
 	// 基本設定 > サイト表示設定
 	register_setting( 'ys_main_settings', 'ys_show_sidebar_mobile','ys_utilities_sanitize_checkbox'  );

@@ -44,25 +44,6 @@
 	</div>
 
 	<div class="postbox">
-		<h2>シェアボタン設定</h2>
-		<div class="inside">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">Twitterシェアボタン設定</th>
-					<td>
-						<fieldset>
-							<label for="ys_sns_share_tweet_via">
-								<input type="checkbox" name="ys_sns_share_tweet_via" id="ys_sns_share_tweet_via" value="1" <?php checked(get_option('ys_sns_share_tweet_via',0),1); ?> />Twitterシェアにviaを付加する（要Twitterアカウント名設定）
-							</label><br />
-							Twitterアカウント名:@<input type="text" name="ys_sns_share_tweet_via_account" id="ys_sns_share_tweet_via_account" value="<?php echo esc_attr( get_option('ys_sns_share_tweet_via_account') ); ?>" placeholder="" />
-						</fieldset>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-
-	<div class="postbox">
 		<h2>OGP・Twitterカード設定</h2>
 		<div class="inside">
 			<table class="form-table">
@@ -116,6 +97,60 @@
 	</div>
 
 	<div class="postbox">
+		<h2>シェアボタン設定</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">Twitterシェアボタン設定</th>
+					<td>
+						<fieldset>
+							<label for="ys_sns_share_tweet_via">
+								<input type="checkbox" name="ys_sns_share_tweet_via" id="ys_sns_share_tweet_via" value="1" <?php checked(get_option('ys_sns_share_tweet_via',0),1); ?> />Twitterシェアにviaを付加する（要Twitterアカウント名設定）
+							</label><br />
+							Twitterアカウント名:@<input type="text" name="ys_sns_share_tweet_via_account" id="ys_sns_share_tweet_via_account" value="<?php echo esc_attr( get_option('ys_sns_share_tweet_via_account') ); ?>" placeholder="" />
+						</fieldset>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="postbox">
+		<h2>購読ボタン設定</h2>
+		<div class="inside">
+		<p class="description">※購読ボタンを表示しない場合は空白にしてください</p>
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">Twitter</th>
+					<td>
+						<input type="text" name="ys_subscribe_url_twitter" id="ys_subscribe_url_twitter" value="<?php echo esc_url( get_option('ys_subscribe_url_twitter') ); ?>" placeholder="http://example.com" style="width:100%;" />
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">Facebookページ</th>
+					<td>
+						<input type="text" name="ys_subscribe_url_facebook" id="ys_subscribe_url_facebook" value="<?php echo esc_url( get_option('ys_subscribe_url_facebook') ); ?>" placeholder="http://example.com" style="width:100%;" />
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">Google+</th>
+					<td>
+						<input type="text" name="ys_subscribe_url_googleplus" id="ys_subscribe_url_googleplus" value="<?php echo esc_url( get_option('ys_subscribe_url_googleplus') ); ?>" placeholder="http://example.com" style="width:100%;" />
+					</td>
+				</tr>
+				<tr valign="top">
+					<th scope="row">Feedly</th>
+					<td>
+						<input type="text" name="ys_subscribe_url_feedly" id="ys_subscribe_url_feedly" value="<?php echo esc_url( get_option('ys_subscribe_url_feedly') ); ?>" placeholder="http://example.com" style="width:100%;" />
+						<p class="description"><a href="https://feedly.com/factory.html">https://feedly.com/factory.html</a>で購読用URLを生成・取得してください。（出来上がったHTMLタグのhref部分）</p>
+						<p class="description">おそらく「 <?php echo 'http://cloud.feedly.com/#subscription'.urlencode('/feed/'.get_bloginfo('rss2_url')); ?> 」になると思います。</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="postbox">
 		<h2>サイト表示設定</h2>
 		<div class="inside">
 			<table class="form-table">
@@ -151,7 +186,7 @@
 	<div class="postbox">
 		<h2>SNSフォローURL</h2>
 		<div class="inside">
-			<p>※5種類以上登録すると折り返しが発生し、見た目がイマイチになるかもしれません…</p>
+			<p class="description">※5種類以上登録すると折り返しが発生し、見た目がイマイチになるかもしれません…</p>
 			<table class="form-table">
 
 				<tr valign="top">

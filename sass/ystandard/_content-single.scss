@@ -8,27 +8,6 @@
 //--------------------------------------
 // モバイル or 全体
 //--------------------------------------
-
-
-/*
-.amp {
-	.entry-date {
-		&::before {
-			content: "公開：";
-			font-size: .8rem;
-		}
-	}
-	.entry-updated {
-		&::before {
-			content: "更新：";
-			margin-left: .5rem;
-			font-size: .8rem;
-		}
-	}
-}
-*/
-
-
 .amp-view-info {
 	padding: 1rem;
 	margin: 2rem 0;
@@ -121,6 +100,88 @@
 		}
 	}
 }//.sns-share-button
+
+
+.subscribe {
+  margin: 2rem 0 0;
+
+  .subscribe-title {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  ul {
+    font-size: 0;
+    list-style-type: none;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      width: 50%;
+      margin-bottom: 1rem;
+      font-size: .8rem;
+      text-align: center;
+      line-height: 1.3;  
+      vertical-align: top;
+    }
+    li:nth-child(odd){
+      padding-right: .5rem;
+    }
+    li:nth-child(even){
+      padding-left: .5rem;
+    }
+  }
+  .follow-odd {
+    li:nth-child(even){
+      padding-right: .5rem;
+      padding-left: 0;
+    }
+    li:nth-child(odd){
+      padding-right: 0;
+      padding-left: .5rem;
+    }
+
+    li:first-child {
+      width: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  a {
+    display: block;
+    padding: .5rem;
+    border-radius: $ys-border-radius-default;
+  }
+
+  .twitter::before {
+    @include fontawesome("f099",0,auto,0,auto);
+  }
+
+  .facebook::before {
+    @include fontawesome("f09a",0,auto,0,auto);
+  }
+
+  .google-plus::before {
+    @include fontawesome("f0d5",0,auto,0,auto);
+  }
+
+  .feedly::before {
+    @include fontawesome("f09e",0,auto,0,auto);
+  }
+
+  .twitter,
+  .facebook,
+  .google-plus,
+  .feedly {
+    &::before{
+      display: block;
+      font-size: 1.1rem;
+    }
+  }//.twitter,…
+
+}//.subscribe
 
 
 .entry-category-list,
@@ -302,6 +363,25 @@
 		}
 
 	}//.sns-share-button
+
+
+  .subscribe {
+
+    ul {
+      li {
+        max-width: 25%;
+        padding: 0 .5rem;
+      }
+    }
+
+    .follow-odd li {
+      &:first-child,
+      &:nth-child(odd),
+      &:nth-child(even) {
+        padding: 0 .5rem;
+      }
+    }
+  }//subscribe
 
 };
 
