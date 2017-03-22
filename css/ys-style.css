@@ -3,19 +3,19 @@
 .color-twitter a,
 .widget .color-twitter,
 .widget .color-twitter a {
-  color: #3696e5; }
+  color: #4da2e8; }
   .color-twitter:hover,
   .color-twitter a:hover,
   .widget .color-twitter:hover,
   .widget .color-twitter a:hover {
-    color: #4da2e8; }
+    color: #63aeeb; }
 
 .bg-twitter,
 .widget .bg-twitter {
-  background-color: #3696e5; }
+  background-color: #4da2e8; }
   .bg-twitter:hover,
   .widget .bg-twitter:hover {
-    background-color: #4da2e8; }
+    background-color: #63aeeb; }
   .bg-twitter, .bg-twitter:hover,
   .bg-twitter a,
   .bg-twitter a:hover,
@@ -29,19 +29,19 @@
 .color-facebook a,
 .widget .color-facebook,
 .widget .color-facebook a {
-  color: #465e90; }
+  color: #4e69a1; }
   .color-facebook:hover,
   .color-facebook a:hover,
   .widget .color-facebook:hover,
   .widget .color-facebook a:hover {
-    color: #4e69a1; }
+    color: #5a75af; }
 
 .bg-facebook,
 .widget .bg-facebook {
-  background-color: #465e90; }
+  background-color: #4e69a1; }
   .bg-facebook:hover,
   .widget .bg-facebook:hover {
-    background-color: #4e69a1; }
+    background-color: #5a75af; }
   .bg-facebook, .bg-facebook:hover,
   .bg-facebook a,
   .bg-facebook a:hover,
@@ -55,19 +55,19 @@
 .color-google-plus a,
 .widget .color-google-plus,
 .widget .color-google-plus a {
-  color: #cf3220; }
+  color: #de3c2a; }
   .color-google-plus:hover,
   .color-google-plus a:hover,
   .widget .color-google-plus:hover,
   .widget .color-google-plus a:hover {
-    color: #de3c2a; }
+    color: #e25140; }
 
 .bg-google-plus,
 .widget .bg-google-plus {
-  background-color: #cf3220; }
+  background-color: #de3c2a; }
   .bg-google-plus:hover,
   .widget .bg-google-plus:hover {
-    background-color: #de3c2a; }
+    background-color: #e25140; }
   .bg-google-plus, .bg-google-plus:hover,
   .bg-google-plus a,
   .bg-google-plus a:hover,
@@ -81,19 +81,19 @@
 .color-hatenabookmark a,
 .widget .color-hatenabookmark,
 .widget .color-hatenabookmark a {
-  color: #0b78c8; }
+  color: #0c87e0; }
   .color-hatenabookmark:hover,
   .color-hatenabookmark a:hover,
   .widget .color-hatenabookmark:hover,
   .widget .color-hatenabookmark a:hover {
-    color: #0c87e0; }
+    color: #1295f3; }
 
 .bg-hatenabookmark,
 .widget .bg-hatenabookmark {
-  background-color: #0b78c8; }
+  background-color: #0c87e0; }
   .bg-hatenabookmark:hover,
   .widget .bg-hatenabookmark:hover {
-    background-color: #0c87e0; }
+    background-color: #1295f3; }
   .bg-hatenabookmark, .bg-hatenabookmark:hover,
   .bg-hatenabookmark a,
   .bg-hatenabookmark a:hover,
@@ -107,19 +107,19 @@
 .color-rss a,
 .widget .color-rss,
 .widget .color-rss a {
-  color: #ee840e; }
+  color: #f29123; }
   .color-rss:hover,
   .color-rss a:hover,
   .widget .color-rss:hover,
   .widget .color-rss a:hover {
-    color: #f29123; }
+    color: #f49d3b; }
 
 .bg-rss,
 .widget .bg-rss {
-  background-color: #ee840e; }
+  background-color: #f29123; }
   .bg-rss:hover,
   .widget .bg-rss:hover {
-    background-color: #f29123; }
+    background-color: #f49d3b; }
   .bg-rss, .bg-rss:hover,
   .bg-rss a,
   .bg-rss a:hover,
@@ -133,19 +133,19 @@
 .color-feedly a,
 .widget .color-feedly,
 .widget .color-feedly a {
-  color: #89ad50; }
+  color: #95b660; }
   .color-feedly:hover,
   .color-feedly a:hover,
   .widget .color-feedly:hover,
   .widget .color-feedly a:hover {
-    color: #95b660; }
+    color: #a1be72; }
 
 .bg-feedly,
 .widget .bg-feedly {
-  background-color: #89ad50; }
+  background-color: #95b660; }
   .bg-feedly:hover,
   .widget .bg-feedly:hover {
-    background-color: #95b660; }
+    background-color: #a1be72; }
   .bg-feedly, .bg-feedly:hover,
   .bg-feedly a,
   .bg-feedly a:hover,
@@ -159,19 +159,19 @@
 .color-pocket a,
 .widget .color-pocket,
 .widget .color-pocket a {
-  color: #e0505d; }
+  color: #e46671; }
   .color-pocket:hover,
   .color-pocket a:hover,
   .widget .color-pocket:hover,
   .widget .color-pocket a:hover {
-    color: #e46671; }
+    color: #e77c85; }
 
 .bg-pocket,
 .widget .bg-pocket {
-  background-color: #e0505d; }
+  background-color: #e46671; }
   .bg-pocket:hover,
   .widget .bg-pocket:hover {
-    background-color: #e46671; }
+    background-color: #e77c85; }
   .bg-pocket, .bg-pocket:hover,
   .bg-pocket a,
   .bg-pocket a:hover,
@@ -185,19 +185,19 @@
 .color-instagram a,
 .widget .color-instagram,
 .widget .color-instagram a {
-  color: #4a7190; }
+  color: #537ea1; }
   .color-instagram:hover,
   .color-instagram a:hover,
   .widget .color-instagram:hover,
   .widget .color-instagram a:hover {
-    color: #537ea1; }
+    color: #608bad; }
 
 .bg-instagram,
 .widget .bg-instagram {
-  background-color: #4a7190; }
+  background-color: #537ea1; }
   .bg-instagram:hover,
   .widget .bg-instagram:hover {
-    background-color: #537ea1; }
+    background-color: #608bad; }
   .bg-instagram, .bg-instagram:hover,
   .bg-instagram a,
   .bg-instagram a:hover,
@@ -211,19 +211,19 @@
 .color-line a,
 .widget .color-line,
 .widget .color-line a {
-  color: #33b51e; }
+  color: #3aca21; }
   .color-line:hover,
   .color-line a:hover,
   .widget .color-line:hover,
   .widget .color-line a:hover {
-    color: #3aca21; }
+    color: #43dc29; }
 
 .bg-line,
 .widget .bg-line {
-  background-color: #33b51e; }
+  background-color: #3aca21; }
   .bg-line:hover,
   .widget .bg-line:hover {
-    background-color: #3aca21; }
+    background-color: #43dc29; }
   .bg-line, .bg-line:hover,
   .bg-line a,
   .bg-line a:hover,
@@ -237,19 +237,19 @@
 .color-tumblr a,
 .widget .color-tumblr,
 .widget .color-tumblr a {
-  color: #3c4755; }
+  color: #475364; }
   .color-tumblr:hover,
   .color-tumblr a:hover,
   .widget .color-tumblr:hover,
   .widget .color-tumblr a:hover {
-    color: #475364; }
+    color: #516073; }
 
 .bg-tumblr,
 .widget .bg-tumblr {
-  background-color: #3c4755; }
+  background-color: #475364; }
   .bg-tumblr:hover,
   .widget .bg-tumblr:hover {
-    background-color: #475364; }
+    background-color: #516073; }
   .bg-tumblr, .bg-tumblr:hover,
   .bg-tumblr a,
   .bg-tumblr a:hover,
@@ -263,19 +263,19 @@
 .color-youtube-play a,
 .widget .color-youtube-play,
 .widget .color-youtube-play a {
-  color: #c12c2b; }
+  color: #d23434; }
   .color-youtube-play:hover,
   .color-youtube-play a:hover,
   .widget .color-youtube-play:hover,
   .widget .color-youtube-play a:hover {
-    color: #d23434; }
+    color: #d74948; }
 
 .bg-youtube-play,
 .widget .bg-youtube-play {
-  background-color: #c12c2b; }
+  background-color: #d23434; }
   .bg-youtube-play:hover,
   .widget .bg-youtube-play:hover {
-    background-color: #d23434; }
+    background-color: #d74948; }
   .bg-youtube-play, .bg-youtube-play:hover,
   .bg-youtube-play a,
   .bg-youtube-play a:hover,
@@ -289,19 +289,19 @@
 .color-vine a,
 .widget .color-vine,
 .widget .color-vine a {
-  color: #09aa84; }
+  color: #0ac297; }
   .color-vine:hover,
   .color-vine a:hover,
   .widget .color-vine:hover,
   .widget .color-vine a:hover {
-    color: #0ac297; }
+    color: #0cdbaa; }
 
 .bg-vine,
 .widget .bg-vine {
-  background-color: #09aa84; }
+  background-color: #0ac297; }
   .bg-vine:hover,
   .widget .bg-vine:hover {
-    background-color: #0ac297; }
+    background-color: #0cdbaa; }
   .bg-vine, .bg-vine:hover,
   .bg-vine a,
   .bg-vine a:hover,
@@ -315,19 +315,19 @@
 .color-github a,
 .widget .color-github,
 .widget .color-github a {
-  color: #4d83b8; }
+  color: #6090bf; }
   .color-github:hover,
   .color-github a:hover,
   .widget .color-github:hover,
   .widget .color-github a:hover {
-    color: #6090bf; }
+    color: #729cc6; }
 
 .bg-github,
 .widget .bg-github {
-  background-color: #4d83b8; }
+  background-color: #6090bf; }
   .bg-github:hover,
   .widget .bg-github:hover {
-    background-color: #6090bf; }
+    background-color: #729cc6; }
   .bg-github, .bg-github:hover,
   .bg-github a,
   .bg-github a:hover,
@@ -341,19 +341,19 @@
 .color-pinterest a,
 .widget .color-pinterest,
 .widget .color-pinterest a {
-  color: #bf2c32; }
+  color: #d1343a; }
   .color-pinterest:hover,
   .color-pinterest a:hover,
   .widget .color-pinterest:hover,
   .widget .color-pinterest a:hover {
-    color: #d1343a; }
+    color: #d5494e; }
 
 .bg-pinterest,
 .widget .bg-pinterest {
-  background-color: #bf2c32; }
+  background-color: #d1343a; }
   .bg-pinterest:hover,
   .widget .bg-pinterest:hover {
-    background-color: #d1343a; }
+    background-color: #d5494e; }
   .bg-pinterest, .bg-pinterest:hover,
   .bg-pinterest a,
   .bg-pinterest a:hover,
@@ -367,19 +367,19 @@
 .color-linkedin a,
 .widget .color-linkedin,
 .widget .color-linkedin a {
-  color: #17739f; }
+  color: #1a83b5; }
   .color-linkedin:hover,
   .color-linkedin a:hover,
   .widget .color-linkedin:hover,
   .widget .color-linkedin a:hover {
-    color: #1a83b5; }
+    color: #1e93cb; }
 
 .bg-linkedin,
 .widget .bg-linkedin {
-  background-color: #17739f; }
+  background-color: #1a83b5; }
   .bg-linkedin:hover,
   .widget .bg-linkedin:hover {
-    background-color: #1a83b5; }
+    background-color: #1e93cb; }
   .bg-linkedin, .bg-linkedin:hover,
   .bg-linkedin a,
   .bg-linkedin a:hover,

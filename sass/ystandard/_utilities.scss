@@ -9,6 +9,9 @@
 // モバイル or 全体
 //--------------------------------------
 @each $key, $color in $sns-color {
+
+	$color : lighten($color,5%);
+	
 	.color-#{$key},
   .widget .color-#{$key} {
 		&,
