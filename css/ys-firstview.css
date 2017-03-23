@@ -248,7 +248,7 @@ img {
 
 @media screen and (min-width: 960px) {
   .wrap {
-    max-width: 1264px;
+    max-width: 1282px;
     padding-right: 2rem;
     padding-left: 2rem;
     margin-right: auto;
@@ -482,9 +482,10 @@ img {
   padding: 1rem 1rem 2rem; }
 
 .post-thumbnail {
-  border: 3px solid #fafafa;
   text-align: center;
   line-height: 0; }
+  .post-thumbnail img {
+    border: 3px solid #fafafa; }
 
 .entry-title {
   font-size: 1.2rem;

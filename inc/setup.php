@@ -14,7 +14,7 @@ if (!function_exists( 'ys_setup_initialize')) {
 	function ys_setup_initialize() {
 
 		if ( ! isset( $content_width ) ) {
-			$content_width = 900;
+			$content_width = 800;
 		}
 
 		//投稿とコメントのフィード出す
