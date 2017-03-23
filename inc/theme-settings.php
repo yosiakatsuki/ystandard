@@ -81,6 +81,8 @@ if (!function_exists( 'ys_settings')) {
 		$ys_desabled_color_customizeser = get_option('ys_desabled_color_customizeser',0) ;
 		$ys_load_script_twitter = get_option('ys_load_script_twitter',0) ;
 		$ys_load_script_facebook = get_option('ys_load_script_facebook',0) ;
+		$ys_load_cdn_jquery_url = esc_url( get_option('ys_load_cdn_jquery_url','') );
+		$ys_not_load_jquery = get_option('ys_not_load_jquery',0) ;
 		// 高度な設定 - AMP設定
 		$ys_amp_enable = get_option('ys_amp_enable',0) ;
 
@@ -149,6 +151,8 @@ if (!function_exists( 'ys_settings')) {
 										'ys_desabled_color_customizeser' => $ys_desabled_color_customizeser,	//テーマカスタマイザーの色設定を無効にする
 										'ys_load_script_twitter' => $ys_load_script_twitter,	//Twitter埋め込み用js読み込み
 										'ys_load_script_facebook' => $ys_load_script_facebook,	//Facebook埋め込み用js読み込み
+										'ys_load_cdn_jquery_url' => $ys_load_cdn_jquery_url,	//CDNにホストされているjQueryを読み込む（URLを設定）
+										'ys_not_load_jquery' => $ys_not_load_jquery,	//jQueryを読み込まない
 										'ys_amp_enable' => $ys_amp_enable,	//AMPページを有効化するか
 
 										'ys_amp_share_fb_app_id' => $ys_amp_share_fb_app_id,	//AMPのfacebookシェアボタン用App id

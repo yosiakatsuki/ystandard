@@ -127,6 +127,8 @@ function ys_register_settings() {
 	register_setting( 'ys_advanced_settings', 'ys_desabled_color_customizeser','ys_utilities_sanitize_checkbox' );
 	register_setting( 'ys_advanced_settings', 'ys_load_script_twitter','ys_utilities_sanitize_checkbox' );
 	register_setting( 'ys_advanced_settings', 'ys_load_script_facebook','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_advanced_settings', 'ys_load_cdn_jquery_url' );
+	register_setting( 'ys_advanced_settings', 'ys_not_load_jquery','ys_utilities_sanitize_checkbox' );
 	//高度な設定 - AMP設定
 	register_setting( 'ys_advanced_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );
 

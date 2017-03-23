@@ -71,6 +71,26 @@
 					</td>
 				</tr>
 
+				<tr valign="top">
+					<th scope="row">CDNにホストされているjQueryを読み込む<br />（URLを設定）</th>
+					<td>
+						<input type="text" name="ys_load_cdn_jquery_url" id="ys_load_cdn_jquery_url" value="<?php echo esc_url( get_option('ys_load_cdn_jquery_url','') ); ?>" placeholder="http://example.com/jquery.min.js" style="width:100%;" />
+						<p class="description">※WordPress標準のjQueryを読み込む場合は空白にしてください（デフォルト）</p>
+						<p class="description">※ホストされているjQueryのURLを入力してください。</p>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<th scope="row">jQueryを読み込まない</th>
+					<td>
+						<label for="ys_not_load_jquery">
+							<input type="checkbox" name="ys_not_load_jquery" id="ys_not_load_jquery" value="1" <?php checked(get_option('ys_not_load_jquery',0),1); ?> />jQueryを読み込まない
+						</label>
+						<p class="description">※この設定を有効にするとサイト表示高速化が期待できますが、jQueryを使用している処理が動かなくなります。プラグインの動作に影響が出る恐れがありますのでご注意ください</p>
+						<p class="description">※テーマ標準のjavascriptではjQueryを使用する機能は使っていません</p>
+					</td>
+				</tr>
+
 			</table>
 		</div>
 	</div>
