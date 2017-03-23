@@ -152,6 +152,11 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 - シェアボタン設定
   - Twitterシェアにviaを付加する（要Twitterアカウント名設定）
   - Twitterアカウント名
+- 購読ボタン設定
+  - Twitter
+  - Facebookページ
+  - Google+
+  - Feedly
 - OGP・Twitterカード設定
   - Facebook app_id
   - Facebook admins
