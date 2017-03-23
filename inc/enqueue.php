@@ -35,7 +35,7 @@ if (!function_exists( 'ys_enqueue_styles')) {
 		// 高速化対策のため</body>で遅延読み込み
 		// wp_enqueue_style( 'ystandard-styles', get_template_directory_uri().'/css/ys-style.min.css', array(), '' );
 		// wp_enqueue_style( 'font-awesome', get_template_directory_uri().'/css/font-awesome.min.css', array(), null );
-		
+
 		// wp_dequeue_style();
 	}
 }
@@ -56,8 +56,10 @@ if (!function_exists( 'ys_enqueue_scripts')) {
 		//coreだけ読み込む・フッター側
 		//wp_enqueue_script( 'jquery-core', false, array(), null, true );
 
+
+		$ys_script_deps = array('jquery');
 		//テーマのjs読み込む
-		wp_enqueue_script( 'ystandard-scripts', get_template_directory_uri() . '/js/ys.min.js', array('jquery','jquery-core'), '', true );
+		wp_enqueue_script( 'ystandard-scripts', get_template_directory_uri() . '/js/ys.js', $ys_script_deps, '', true );
 
 	}
 }

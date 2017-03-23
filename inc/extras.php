@@ -601,6 +601,44 @@ add_action( 'wp_footer', 'ys_extras_load_css_footer_js' );
 
 
 
+/**
+ *	追加読み込みスクリプト・CSSの追加
+ */
+if( ! function_exists( 'ys_extras_add_load_script_list' ) ) {
+	function ys_extras_add_load_script_list() {
+
+		$script_onload = array();
+		$script_lazyload = array();
+		$css_lazyload = array();
+
+		// SNS関連のスクリプト読み込み
+		$script_onload[] = ys_utilities_get_load_script_array(
+													'twitter-wjs',
+													'//platform.twitter.com/widgets.js'
+												);
+		$script_onload[] = ys_utilities_get_load_script_array(
+													'facebook-jssdk',
+													'//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8'
+												);
+
+		$script_onload = apply_filters('ys_add_load_script_list_onload',$script_onload);
+		$script_lazyload = apply_filters('ys_add_load_script_list_lazyload',$script_lazyload);
+		$css_lazyload = apply_filters('ys_add_load_css_list_lazyload',$css_lazyload);
+
+		$script_html = '<script type="text/javascript">';
+		$script_html .= 'var js_onload = '.ys_utilities_json_encode($script_onload).';';
+		$script_html .= 'var js_lazyload = '.ys_utilities_json_encode($script_lazyload).';';
+		$script_html .= 'var css_lazyload = '.ys_utilities_json_encode($css_lazyload).';';
+		$script_html .= '</script>';
+
+		echo $script_html;
+	}
+}
+add_action( 'wp_footer', 'ys_extras_add_load_script_list',9 );
+
+
+
+
 //-----------------------------------------------
 //	json-LD出力
 //-----------------------------------------------

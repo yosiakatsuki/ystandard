@@ -1,4 +1,6 @@
-var ys_setTimeoutId = null;
+var ys_setTimeoutId = null
+    ,script_append_flg = 0
+    ,css_append_flg = 0;
 
 //-----------------------------------------------
 //スクリプト読み込み
@@ -35,7 +37,6 @@ function ys_sylesheet_load(d, id, href) {
 		style = d.createElement('link');
 		style.id = id;
 		style.href = href;
-		style.media = 'all';
 		style.rel = 'stylesheet';
 		d.getElementsByTagName('head')[0].appendChild(style);
 	}
@@ -51,16 +52,54 @@ function ys_get_scroll(d) {
 	return d.documentElement.scrollTop || d.body.scrollTop;
 };
 
+//-----------------------------------------------
+//追加スクリプトロード
+//-----------------------------------------------
+function ys_load_scripts_onload(d) {
+
+  if (typeof(js_onload) != 'undefined' && js_onload != null){
+    for(var i=0;i < js_onload.length;i=(i+1)|0) {
+      ys_script_load(d,js_onload[i].id,js_onload[i].url,'');
+    }
+  }
+};
 
 //-----------------------------------------------
-//SNS関連スクリプトロード
+//追加スクリプトロード(スクロール発火)
 //-----------------------------------------------
-function ys_load_sns_scripts(d) {
+function ys_load_scripts_scroll() {
 
-	// twitter
-	ys_script_load(d,'twitter-wjs','//platform.twitter.com/widgets.js','');
-	// facebook
-	ys_script_load(d,'facebook-jssdk','//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8','');
+  if (typeof(js_lazyload) != 'undefined' && js_lazyload != null){
+    // 一気に読み込むとカクつく恐れもあるので1つづつ読み込み
+    if(js_lazyload.length > 0 && script_append_flg == 0) {
+      script_append_flg = 1; //フラグ立てる
+      ys_script_load(document,js_lazyload[0].id,js_lazyload[0].url,'');
+      js_lazyload.shift();
+      script_append_flg = 0; //フラグ戻す
+    } else {
+      // 読み込めるものがなくなったらイベント削除
+      window.removeEventListener( 'scroll' , ys_load_scripts_scroll, false);
+    }
+  }
+};
+
+//-----------------------------------------------
+//追加CSSロード(スクロール発火)
+//-----------------------------------------------
+function ys_load_css_scroll() {
+
+  if (typeof(css_lazyload) != 'undefined' && css_lazyload != null){
+    // 一気に読み込むとカクつく恐れもあるので1つづつ読み込み
+    if(css_lazyload.length > 0 && css_append_flg == 0) {
+      css_append_flg = 1; //フラグ立てる
+      ys_sylesheet_load(document,css_lazyload[0].id,css_lazyload[0].url);
+      css_lazyload.shift();
+      css_append_flg = 0; //フラグ戻す
+    } else {
+      // 読み込めるものがなくなったらイベント削除
+      window.removeEventListener( 'scroll' , ys_load_css_scroll, false);
+    }
+  }
 };
 
 //-----------------------------------------------
@@ -161,8 +200,8 @@ function ys_scroll_main(d) {
 //-----------------------------------------------
 function ys_init() {
 	var d = document;
-  // SNS関連スクリプト
-	ys_load_sns_scripts(d);
+  // 追加スクリプトロード
+  ys_load_scripts_onload(d);
 };
 
 //-----------------------------------------------
@@ -180,8 +219,15 @@ function ys_evt_scroll() {
 	}, 100 ) ;
 };
 
+
+//-----------------------------------------------
+//初期化処理
+//-----------------------------------------------
+ys_init();
+
 //-----------------------------------------------
 //イベント追加
 //-----------------------------------------------
-window.onload = ys_init;
-window.addEventListener( "scroll", ys_evt_scroll);
+window.addEventListener( 'scroll' , ys_evt_scroll, false);
+window.addEventListener( 'scroll' , ys_load_scripts_scroll, false);
+window.addEventListener( 'scroll' , ys_load_css_scroll, false);
