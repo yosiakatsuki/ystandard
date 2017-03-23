@@ -1,6 +1,14 @@
 var ys_setTimeoutId = null
-    ,script_append_flg = 0
-    ,css_append_flg = 0;
+    ,script_append_wait = new Date()
+    ,css_append_wait = new Date();
+
+var script_append_wait_clear = function(){
+  script_append_wait = new Date();
+};
+var css_append_wait_clear = function(){
+  css_append_wait = new Date();
+};
+
 
 //-----------------------------------------------
 //スクリプト読み込み
@@ -22,7 +30,7 @@ function ys_script_load(d, id, src,deps,onloadfnc) {
 		js.src = src;
 		js.async = true;
 		if(onloadfnc != null){
-			js.onloadfnc = onloadfnc;
+			js.onload = onloadfnc;
 		}
 		d.body.appendChild(js);
 	}
@@ -31,13 +39,19 @@ function ys_script_load(d, id, src,deps,onloadfnc) {
 //-----------------------------------------------
 //スタイルシート読み込み
 //-----------------------------------------------
-function ys_sylesheet_load(d, id, href) {
+function ys_sylesheet_load(d, id, href,onloadfnc) {
+
+  onloadfnc = onloadfnc === undefined ? null : onloadfnc;
+
 	var style;
 	if (!d.getElementById(id)) {
 		style = d.createElement('link');
 		style.id = id;
 		style.href = href;
 		style.rel = 'stylesheet';
+		if(onloadfnc != null){
+			style.onload = onloadfnc;
+		}
 		d.getElementsByTagName('head')[0].appendChild(style);
 	}
 };
@@ -71,11 +85,12 @@ function ys_load_scripts_scroll() {
 
   if (typeof(js_lazyload) != 'undefined' && js_lazyload != null){
     // 一気に読み込むとカクつく恐れもあるので1つづつ読み込み
-    if(js_lazyload.length > 0 && script_append_flg == 0) {
-      script_append_flg = 1; //フラグ立てる
-      ys_script_load(document,js_lazyload[0].id,js_lazyload[0].url,'');
-      js_lazyload.shift();
-      script_append_flg = 0; //フラグ戻す
+    if(js_lazyload.length > 0) {
+      if(new Date() > script_append_wait){
+        script_append_wait.setSeconds( script_append_wait.getSeconds() + 1 );
+        ys_script_load(document,js_lazyload[0].id,js_lazyload[0].url,'',script_append_wait_clear);
+        js_lazyload.shift();
+      }
     } else {
       // 読み込めるものがなくなったらイベント削除
       window.removeEventListener( 'scroll' , ys_load_scripts_scroll, false);
@@ -90,17 +105,20 @@ function ys_load_css_scroll() {
 
   if (typeof(css_lazyload) != 'undefined' && css_lazyload != null){
     // 一気に読み込むとカクつく恐れもあるので1つづつ読み込み
-    if(css_lazyload.length > 0 && css_append_flg == 0) {
-      css_append_flg = 1; //フラグ立てる
-      ys_sylesheet_load(document,css_lazyload[0].id,css_lazyload[0].url);
-      css_lazyload.shift();
-      css_append_flg = 0; //フラグ戻す
+    if(css_lazyload.length > 0) {
+      date = new Date();
+      if(date> css_append_wait){
+        css_append_wait.setSeconds( css_append_wait.getSeconds() + 1 );
+        ys_sylesheet_load(document,css_lazyload[0].id,css_lazyload[0].url,css_append_wait_clear);
+        css_lazyload.shift();
+      }
     } else {
       // 読み込めるものがなくなったらイベント削除
       window.removeEventListener( 'scroll' , ys_load_css_scroll, false);
     }
   }
 };
+
 
 //-----------------------------------------------
 //サイドバー追従
