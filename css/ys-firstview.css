@@ -865,10 +865,21 @@ img {
 .widget_recent_comments ul li,
 .widget_recent_comments ol li,
 .widget_recent_entries ul li,
-.widget_recent_entries ol li,
+.widget_recent_entries ol li {
+  margin: 0 0 1rem; }
+
 .widget_categories ul li,
 .widget_categories ol li {
-  margin: 0 0 1rem; }
+  margin: 0 0 .5rem;
+  font-size: .8rem; }
+  .widget_categories ul li a,
+  .widget_categories ol li a {
+    font-size: 1rem; }
+  .widget_categories ul li ul,
+  .widget_categories ul li ol,
+  .widget_categories ol li ul,
+  .widget_categories ol li ol {
+    margin-top: .5rem; }
 
 .widget_calendar tbody {
   text-align: center; }

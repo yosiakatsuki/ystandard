@@ -48,8 +48,7 @@
 
 .widget_rss,
 .widget_recent_comments,
-.widget_recent_entries,
-.widget_categories {
+.widget_recent_entries {
   ul,
 	ol {
 		li {
@@ -57,7 +56,22 @@
 		}
 	}
 }
-
+.widget_categories {
+	ul,
+	ol {
+		li {
+			margin: 0 0 .5rem;
+      font-size: .8rem;
+      a {
+        font-size: 1rem;
+      }
+			ul,
+			ol {
+				margin-top: .5rem;
+			}
+		}
+	}
+}
 
 .widget_calendar {
 	tbody {
