@@ -188,6 +188,8 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
   - 個別ページでアイキャッチ画像を表示しない
 - css,javascript設定
   - テーマカスタマイザーの色設定を無効にする
+  - Twitter用javascript読み込み設定
+  - Facebook用javascript読み込み設定
   - jQueryをCDNから読み込む（URLを設定）　（※追加予定）
 - AMP有効化
   - AMPページを生成する（β）

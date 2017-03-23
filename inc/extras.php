@@ -612,14 +612,20 @@ if( ! function_exists( 'ys_extras_add_load_script_list' ) ) {
 		$css_lazyload = array();
 
 		// SNS関連のスクリプト読み込み
-		$script_onload[] = ys_utilities_get_load_script_array(
-													'twitter-wjs',
-													'//platform.twitter.com/widgets.js'
-												);
-		$script_onload[] = ys_utilities_get_load_script_array(
-													'facebook-jssdk',
-													'//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8'
-												);
+		if(ys_get_setting('ys_load_script_twitter')){
+			$script_onload[] = ys_utilities_get_load_script_array(
+														'twitter-wjs',
+														'//platform.twitter.com/widgets.js'
+													);
+		}
+
+		if(ys_get_setting('ys_load_script_facebook')){
+			$script_onload[] = ys_utilities_get_load_script_array(
+														'facebook-jssdk',
+														'//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8'
+													);
+		}
+
 
 		$script_onload = apply_filters('ys_add_load_script_list_onload',$script_onload);
 		$script_lazyload = apply_filters('ys_add_load_script_list_lazyload',$script_lazyload);

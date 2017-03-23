@@ -121,10 +121,14 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_advertisement_replace_more_sp' );
 	register_setting( 'ys_main_settings', 'ys_advertisement_under_content_sp' );
 
-	//高度な設定
-	register_setting( 'ys_advanced_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );
+	//高度な設定 - 投稿設定
 	register_setting( 'ys_advanced_settings', 'ys_hide_post_thumbnail','ys_utilities_sanitize_checkbox' );
+	//高度な設定 - css,javascript設定
 	register_setting( 'ys_advanced_settings', 'ys_desabled_color_customizeser','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_advanced_settings', 'ys_load_script_twitter','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_advanced_settings', 'ys_load_script_facebook','ys_utilities_sanitize_checkbox' );
+	//高度な設定 - AMP設定
+	register_setting( 'ys_advanced_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );
 
 	// AMP設定
 	register_setting( 'ys_amp_settings', 'ys_amp_share_fb_app_id' );

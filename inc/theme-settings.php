@@ -75,9 +75,13 @@ if (!function_exists( 'ys_settings')) {
 		$ys_advertisement_replace_more_sp = get_option('ys_advertisement_replace_more_sp','') ;
 		$ys_advertisement_under_content_sp = get_option('ys_advertisement_under_content_sp','') ;
 
-		// 高度な設定
+		// 高度な設定 - 投稿設定
 		$ys_hide_post_thumbnail = get_option('ys_hide_post_thumbnail',0) ;
+		// 高度な設定 - css,javascript設定
 		$ys_desabled_color_customizeser = get_option('ys_desabled_color_customizeser',0) ;
+		$ys_load_script_twitter = get_option('ys_load_script_twitter',0) ;
+		$ys_load_script_facebook = get_option('ys_load_script_facebook',0) ;
+		// 高度な設定 - AMP設定
 		$ys_amp_enable = get_option('ys_amp_enable',0) ;
 
 		// AMP設定
@@ -143,6 +147,8 @@ if (!function_exists( 'ys_settings')) {
 
 										'ys_hide_post_thumbnail' => $ys_hide_post_thumbnail,	//個別ページでアイキャッチ画像を非表示にする
 										'ys_desabled_color_customizeser' => $ys_desabled_color_customizeser,	//テーマカスタマイザーの色設定を無効にする
+										'ys_load_script_twitter' => $ys_load_script_twitter,	//Twitter埋め込み用js読み込み
+										'ys_load_script_facebook' => $ys_load_script_facebook,	//Facebook埋め込み用js読み込み
 										'ys_amp_enable' => $ys_amp_enable,	//AMPページを有効化するか
 
 										'ys_amp_share_fb_app_id' => $ys_amp_share_fb_app_id,	//AMPのfacebookシェアボタン用App id
