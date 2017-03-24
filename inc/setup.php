@@ -49,12 +49,13 @@ if (!function_exists( 'ys_setup_initialize')) {
 			ys_init_change_logo_size());
 
 		// カスタム背景
-		add_theme_support('custom-background');
+		// add_theme_support('custom-background');
 
 		// アイキャッチ画像を有効に
 		add_theme_support('post-thumbnails');
 
-		add_image_size('yslistthumb',500,300,true);
+		// iPhone6サイズRetina対応
+		add_image_size('yslistthumb',686,412,true);
 
 		// テキストウィジェットでショートコードを有効化
 		add_filter('widget_text', 'do_shortcode' );

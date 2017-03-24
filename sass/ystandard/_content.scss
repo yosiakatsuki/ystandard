@@ -21,9 +21,10 @@
 .post-thumbnail {
 	text-align: center;
 	line-height: 0;
-  
+
   img {
     border: $ys-content-image-border-px solid $ys-content-image-border-color;
+    box-sizing: content-box;
   }
 }
 

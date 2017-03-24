@@ -485,7 +485,8 @@ img {
   text-align: center;
   line-height: 0; }
   .post-thumbnail img {
-    border: 3px solid #fafafa; }
+    border: 3px solid #fafafa;
+    box-sizing: content-box; }
 
 .entry-title {
   font-size: 1.2rem;
