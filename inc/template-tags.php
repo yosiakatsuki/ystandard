@@ -770,7 +770,7 @@ if( ! function_exists( 'ys_template_get_the_subscribe_buttons' ) ) {
 		$count = 0;
 		foreach ($subscribe as $key => $value) {
 			if($value['url']){
-				$subscribe_html .= '<li><a class="'.$value['class'].' bg-'.$value['class'].'" href="'.esc_html($value['url']).'" rel="nofollow">'.$key.'</a></li>';
+				$subscribe_html .= '<li><a class="'.$value['class'].' bg-'.$value['class'].'" href="'.esc_html($value['url']).'" target="_blank" rel="nofollow">'.$key.'</a></li>';
 				$count ++;
 			}
 		}
@@ -785,7 +785,7 @@ if( ! function_exists( 'ys_template_get_the_subscribe_buttons' ) ) {
 		$html = '';
 		if($container){
 			$html .= '<aside id="subscribe" class="subscribe entry-footer-container">';
-			$subscribe_title = 'フォローする';
+			$subscribe_title = 'フォローする！';
 			$subscribe_title = apply_filters('ys_get_the_subscribe_buttons_title','<p class="subscribe-title">'.$subscribe_title.'</p>');
 			$html .= $subscribe_title;
 		}

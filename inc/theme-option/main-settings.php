@@ -142,7 +142,7 @@
 					<th scope="row">Feedly</th>
 					<td>
 						<input type="text" name="ys_subscribe_url_feedly" id="ys_subscribe_url_feedly" value="<?php echo esc_url( get_option('ys_subscribe_url_feedly') ); ?>" placeholder="http://example.com" style="width:100%;" />
-						<p class="description"><a href="https://feedly.com/factory.html">https://feedly.com/factory.html</a>で購読用URLを生成・取得してください。（出来上がったHTMLタグのhref部分）</p>
+						<p class="description"><a href="https://feedly.com/factory.html" target="_blank">https://feedly.com/factory.html</a>で購読用URLを生成・取得してください。（出来上がったHTMLタグのhref部分）</p>
 						<p class="description">おそらく「 <?php echo 'http://cloud.feedly.com/#subscription'.urlencode('/feed/'.get_bloginfo('rss2_url')); ?> 」になると思います。</p>
 					</td>
 				</tr>
