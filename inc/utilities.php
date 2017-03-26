@@ -564,11 +564,16 @@ if (!function_exists( 'ys_utilities_get_rand')) {
  */
 if (!function_exists( 'ys_utilities_get_image_size')) {
 	function ys_utilities_get_image_size( $img_path ) {
+		$size = false;
 
-		$size = @getimagesize($img_path);
-		if($size === false){
-			$size = array(0,0);
+		if ( file_exists( $img_path ) ) {
+			$size = getimagesize( $img_path );
 		}
+
+		if ( $size === false ) {
+			$size = array( 0, 0 );
+		}
+
 		return $size;
 	}
 }
