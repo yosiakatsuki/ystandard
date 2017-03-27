@@ -583,8 +583,8 @@ if (!function_exists( 'ys_utilities_get_load_script_array')) {
 	function ys_utilities_get_load_script_array( $id , $url ) {
 
 		return array(
-						'id'=>esc_attr($id),
-						'url'=>$url
+						'id'  => esc_attr( $id ),
+						'url' => esc_url_raw( $url ),
 						// 'url'=>esc_url($url) //facebookのスクリプトとか読めなくなる
 					);
 	}
