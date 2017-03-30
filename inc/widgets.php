@@ -277,7 +277,7 @@ class YS_AD_Text_Widget extends WP_Widget {
 		$text = apply_filters('ys_ad_text_widget_text', $text, $instance, $this );
 
 		if(!is_404() && !(is_search() && 0 == $wp_query->found_posts) && '' !== $text ) {
-			echo '<div class="ys-ad-widget">';
+			echo '<div class="widget ys-ad-widget">';
 			echo $instance['text'];
 			echo '</div>';
 		}
