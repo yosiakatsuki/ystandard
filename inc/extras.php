@@ -559,8 +559,8 @@ if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
 
 		// 読み込むCSSをリスト化
 		$csslist = array(
-										get_template_directory_uri().'/css/ys-style.min.css',
-										get_stylesheet_directory_uri().'/style.css',
+										get_template_directory_uri().'/css/ys-style.min.css?ver='.ys_utilities_get_theme_version(true),
+										get_stylesheet_directory_uri().'/style.css?ver='.ys_utilities_get_theme_version(),
 										get_template_directory_uri().'/css/font-awesome.min.css'
 										);
 

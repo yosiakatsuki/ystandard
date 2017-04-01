@@ -67,7 +67,7 @@ if (!function_exists( 'ys_enqueue_scripts')) {
 			$ys_script_deps = array();
 		}
 		//テーマのjs読み込む
-		wp_enqueue_script( 'ystandard-scripts', get_template_directory_uri() . '/js/ys.min.js', $ys_script_deps, '', true );
+		wp_enqueue_script( 'ystandard-scripts', get_template_directory_uri() . '/js/ys.min.js', $ys_script_deps, ys_utilities_get_theme_version(true), true );
 
 	}
 }

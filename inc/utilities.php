@@ -599,6 +599,24 @@ if (!function_exists( 'ys_utilities_get_load_script_array')) {
 
 
 /**
+ *	テーマバージョン取得
+ */
+if (!function_exists( 'ys_utilities_get_theme_version')) {
+	function ys_utilities_get_theme_version($template = false) {
+
+		$theme = wp_get_theme();
+		if($template && get_template() != get_stylesheet()){
+			// 親テーマ情報
+			$theme = wp_get_theme(get_template());
+		}
+		return $theme->Version;
+	}
+}
+
+
+
+
+/**
  *	jsonエンコード
  */
 if (!function_exists( 'ys_utilities_json_encode')) {
