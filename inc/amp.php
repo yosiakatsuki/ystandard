@@ -274,16 +274,17 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 		if(preg_match($pattern,$content,$matches) === 1){
 			$content = preg_replace($pattern, $append, $content);
 		}
-
-
-
 		// <<<< Instagram
 
 		// YouTube
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.youtube\.com\/embed\/(.+?)(\?feature=oembed)?".*?><\/iframe>/is';
-		$append = '<amp-youtube layout="responsive" data-videoid="$1" width="480" height="270"></amp-youtube>';
 		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
+			$content = preg_replace_callback(
+										$pattern
+										, function ($m) {
+												return '<amp-youtube layout="responsive" data-videoid="'.preg_replace('/\?.*$/','',$m[1]).'" width="480" height="270"></amp-youtube>';
+											}
+										, $content);
 		}
 
 		// vine
