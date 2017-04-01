@@ -11,7 +11,7 @@
 @each $key, $color in $sns-color {
 
 	$color : lighten($color,5%);
-	
+
 	.color-#{$key},
   .widget .color-#{$key} {
 		&,
@@ -90,19 +90,51 @@
   }
 }
 
-.ys-button {
-	padding: .8rem 4em;
-  border: 1px solid $ys-font-color-gray;
-	color:$ys-font-color;
+
+.ys-button a,
+a.ys-button,
+.ys-button-dark a,
+a.ys-button-dark,
+.ys-button-origin a,
+a.ys-button-origin {
+  padding: .8rem 4em;
   font-size: .9em;
-  box-shadow:1px 1px 1px rgba($ys-border-color-gray,.6);
+  border-radius: $ys-util-button-border-radius;
+  // border: 1px solid $ys-util-button-border-color;
+  border-width: 1px;
+  border-style: solid;
+  box-shadow:1px 1px 1px rgba($ys-util-button-shadow-color,.6);
   transition: color .3s,background-color .3s,box-shadow .3s;
+
   &:hover {
-    color: lighten($ys-font-color,10%);
-    box-shadow:0 0 0 transparent;
+		box-shadow:3px 2px 2px rgba($ys-util-button-shadow-color,.6);
   }
 }
-.ys-button-block {
+
+.ys-button a,
+a.ys-button {
+  border-color: $ys-util-button-border-color;
+  background-color: $ys-util-button-bg-color;
+	color:$ys-util-button-font-color;
+
+  &:hover {
+    background-color: $ys-util-button-bg-color;
+    color: $ys-util-button-font-color-hover;
+  }
+}
+.ys-button-dark a,
+a.ys-button-dark {
+  background-color: $ys-util-button-dark-bg-color;
+  border-color: $ys-util-button-dark-bg-color;
+  color: $ys-util-button-dark-font-color;
+
+  &:hover {
+    background-color: $ys-util-button-dark-font-color;
+    color: $ys-util-button-dark-bg-color;
+  }
+}
+.ys-button-block a,
+a.ys-button-block{
   display: block;
   text-align: center;
 }

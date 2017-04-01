@@ -170,3 +170,13 @@ $sns-color: (
 );
 $ys-sns-link-hover-desaturate    : 10% !default;
 $ys-sns-link-hover-lighten       : 5% !default;
+
+// ユーティリティ
+$ys-util-button-font-color       : $ys-font-color;
+$ys-util-button-font-color-hover : lighten($ys-util-button-font-color,10%);
+$ys-util-button-bg-color         : #fff;
+$ys-util-button-border-color     : $ys-font-color-gray;
+$ys-util-button-border-radius    : $ys-border-radius-default;
+$ys-util-button-shadow-color     : $ys-border-color-gray;
+$ys-util-button-dark-font-color  : #fff;
+$ys-util-button-dark-bg-color    : $ys-font-color;
