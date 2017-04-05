@@ -620,6 +620,11 @@ img {
 .comment-text img {
   border: 3px solid #fafafa; }
 
+.entry-content img + figcaption,
+.comment-text img + figcaption {
+  margin-top: -.5rem;
+  margin-bottom: 1rem; }
+
 .entry-content strong, .entry-content b,
 .comment-text strong,
 .comment-text b {

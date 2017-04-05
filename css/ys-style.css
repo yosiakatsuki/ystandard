@@ -934,9 +934,11 @@ tt {
 
 cite,
 cite a,
-q {
+q,
+figcaption {
   font-style: italic;
-  color: #888; }
+  color: #888;
+  font-size: .9em; }
 
 pre {
   width: 100%;
