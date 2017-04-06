@@ -52,13 +52,32 @@ add_filter('script_loader_tag','ys_extras_add_async');
 //------------------------------------------------------------------------------
 // セルフピンバック対策
 //------------------------------------------------------------------------------
-function ys_no_self_ping( &$links ) {
-				$home = get_option( 'home' );
-				foreach ( $links as $l => $link )
-								if ( 0 === strpos( $link, $home ) )
-												unset($links[$l]);
+if( ! function_exists( 'ys_extras_no_self_ping' ) ) {
+	function ys_extras_no_self_ping( &$links ) {
+					$home = get_option( 'home' );
+					foreach ( $links as $l => $link )
+									if ( 0 === strpos( $link, $home ) )
+													unset($links[$l]);
+	}
 }
-add_action( 'pre_ping', 'ys_no_self_ping' );
+add_action( 'pre_ping', 'ys_extras_no_self_ping' );
+
+
+
+/*
+ *	RSSフィードにアイキャッチ画像を表示
+ */
+if( ! function_exists( 'ys_extras_rss_the_post_thumbnail' ) ) {
+	function ys_extras_rss_the_post_thumbnail($content) {
+		global $post;
+		if( has_post_thumbnail( $post->ID ) && false == ys_get_setting( 'ys_hide_post_thumbnail' ) ) {
+			$content = get_the_post_thumbnail($post->ID) . $content;
+		}
+		return $content;
+	}
+}
+add_filter('the_excerpt_rss', 'ys_extras_rss_the_post_thumbnail');
+add_filter('the_content_feed', 'ys_extras_rss_the_post_thumbnail');
 
 
 
