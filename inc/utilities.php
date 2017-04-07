@@ -479,16 +479,45 @@ if (!function_exists( 'ys_utilities_get_the_user_avatar_img')) {
 
 		$img = apply_filters('ys_user_avatar',$img ,$author_id ,$size);
 
-		// amp対応
-		if(ys_is_amp()) {
-			$img = str_replace('<img','<amp-img layout="responsive"',$img);
-		}
+		$img = ys_utilities_get_the_convert_amp_img($img);
 
 		return $img;
 	}
 }
 
 
+
+
+/*
+ *	AMP用イメージフォーマット
+ */
+if (!function_exists( 'ys_utilities_get_the_convert_amp_img')) {
+	function ys_utilities_get_the_convert_amp_img($img,$layout='responsive') {
+		// amp対応
+		if(ys_is_amp()) {
+			$img = str_replace('<img','<amp-img layout="'.$layout.'"',$img);
+		}
+		return apply_filters('ys_get_the_convert_amp_img',$img);
+	}
+}
+
+
+
+
+/*
+ *	ImageObject用meta
+ */
+if (!function_exists( 'ys_utilities_get_the_image_object_meta')) {
+	function ys_utilities_get_the_image_object_meta($image) {
+		$meta = '';
+		if( $image ) {
+			$meta .= '<meta itemprop="url" content="'.$image[0].'" />';
+			$meta .= '<meta itemprop="width" content="'.$image[1].'" />';
+			$meta .= '<meta itemprop="height" content="'.$image[2].'" />';
+		}
+		return $meta;
+	}
+}
 
 
 

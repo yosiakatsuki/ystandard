@@ -163,9 +163,7 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 			$logo_image = '<img src="'.$logo[0].'" alt="'.get_bloginfo( 'name' ).'"  class="custom-logo" width="'.$logo[1].'" height="'.$logo[2].'" />';
 			$logo_image = apply_filters('ys_custom_logo_img_tag',$logo_image,$logo);
 
-			if(ys_is_amp()){
-				$logo_image = str_replace('<img','<amp-img layout="responsive"',$logo_image);
-			}
+			$logo_image = ys_utilities_get_the_convert_amp_img($logo_image);
 
 			$html = str_replace('{logo_image}',$logo_image,$logo_html);
 
@@ -1179,35 +1177,50 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 		if($postid == 0){
 			$postid = get_the_ID();
 		}
-		// 画像を取得
-		$image = ys_utilities_get_post_thumbnail($thumbname,'',$postid);
 
-		// id確認
-		if($imgid !== ''){
-			$imgid = ' id="'.$imgid.'"';
-		}
-		// class確認
-		if($imgclass !== ''){
-			$imgclass = ' class="'.$imgclass.'"';
-		}
+		$image = null;
 
-		//imgタグを出力
-		if(ys_is_amp()){
-			$imgtag = '<amp-img layout="responsive" ';
+		if( has_post_thumbnail( $postid ) ) {
+
+			$post_thumbnail_id = get_post_thumbnail_id( $postid );
+
+			if( $post_thumbnail_id ) {
+				$image = wp_get_attachment_image_src( $post_thumbnail_id, $thumbname );
+			}
+
+			$attr = array();
+			if( $imgid ) $attr = wp_parse_args( array( 'id'=>$imgid ), $attr );
+			if( $imgclass ) $attr = wp_parse_args( array( 'class'=>$imgclass ), $attr );
+
+			$img = get_the_post_thumbnail( $postid, $thumbname, $attr );
+
 		} else {
-			$imgtag = '<img ';
-		}
-		if(!is_array($viewsize)){
-			$viewsize = array($image[1],$image[2]);
+
+			// 画像を取得
+			$image = ys_utilities_get_post_thumbnail($thumbname,'',$postid);
+
+			// id確認
+			if($imgid !== ''){
+				$imgid = ' id="'.$imgid.'"';
+			}
+			// class確認
+			if($imgclass !== ''){
+				$imgclass = ' class="'.$imgclass.'"';
+			}
+
+			if(!is_array($viewsize)){
+				$viewsize = array($image[1],$image[2]);
+			}
+
+			$img = '<img '.$imgid.$imgclass.'src="'.$image[0].'" '.image_hwstring($viewsize[0],$viewsize[1]).' alt="" />';
+
 		}
 
-		echo $imgtag.$imgid.$imgclass.'src="'.$image[0].'" '.image_hwstring($viewsize[0],$viewsize[1]).' alt="" />';
+		echo ys_utilities_get_the_convert_amp_img($img);
 
 		//metaタグを出力
 		if($outputmeta){
-			echo '<meta itemprop="url" content="'.$image[0].'" />';
-			echo '<meta itemprop="width" content="'.$image[1].'" />';
-			echo '<meta itemprop="height" content="'.$image[2].'" />';
+			echo ys_utilities_get_the_image_object_meta($image);
 		}
 	}
 }
