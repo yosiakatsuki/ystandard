@@ -698,7 +698,8 @@ img {
     bottom: 0;
     overflow: hidden; }
     .post-thumbnail-container .post-thumbnail img {
-      width: 100%; }
+      width: 100%;
+      box-sizing: border-box; }
 
 .entry-more {
   display: -webkit-box;
