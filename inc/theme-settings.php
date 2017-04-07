@@ -22,6 +22,7 @@ if (!function_exists( 'ys_settings')) {
 
 		// 基本設定
 	// 基本設定 > Copyright
+		$ys_title_separate = esc_attr( get_option('ys_title_separate','') );
 		$ys_copyright_year = esc_attr( get_option('ys_copyright_year',date_i18n('Y')) );
 		$ys_copyright_year = ($ys_copyright_year == '') ? date_i18n('Y') : $ys_copyright_year;
 	// 基本設定 > アクセス解析設定
@@ -100,6 +101,7 @@ if (!function_exists( 'ys_settings')) {
 
 		// 配列作成
 		$result = array(
+										'ys_title_separate' => $ys_title_separate,	//タイトルの区切り文字
 										'ys_copyright_year' => $ys_copyright_year,	//発行年
 
 										'ys_ga_tracking_id' => $ys_ga_tracking_id,	//Google AanalyticsトラッキングID

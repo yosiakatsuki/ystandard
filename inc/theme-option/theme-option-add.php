@@ -72,9 +72,10 @@ add_action( 'admin_menu', 'ys_add_admin_menu' );
 function ys_register_settings() {
 	// 基本設定
 	// 基本設定 > Copyright
-	register_setting( 'ys_main_settings', 'ys_copyright_year' );
+	register_setting( 'ys_main_settings', 'ys_title_separate' , 'sanitize_text_field');
+	register_setting( 'ys_main_settings', 'ys_copyright_year' , 'sanitize_text_field');
 	// 基本設定 > アクセス解析設定
-	register_setting( 'ys_main_settings', 'ys_ga_tracking_id' );
+	register_setting( 'ys_main_settings', 'ys_ga_tracking_id' , 'sanitize_text_field');
 	// 基本設定 > シェアボタン設定
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via','ys_utilities_sanitize_checkbox' );
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via_account' );

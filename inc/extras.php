@@ -82,6 +82,24 @@ add_filter('the_content_feed', 'ys_extras_rss_the_post_thumbnail');
 
 
 
+/*
+ *	ブログタイトルの区切り文字変更
+ */
+if( ! function_exists( 'ys_extras_document_title_separator' ) ) {
+	function ys_extras_document_title_separator($sep) {
+
+		$sep_option = ys_get_setting('ys_title_separate');
+		if('' != $sep_option){
+			$sep = $sep_option;
+		}
+		return $sep;
+	}
+}
+add_filter('document_title_separator', 'ys_extras_document_title_separator');
+
+
+
+
 //------------------------------------------------------------------------------
 // iframeのレスポンシブ化
 //------------------------------------------------------------------------------
