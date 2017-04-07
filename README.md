@@ -145,8 +145,9 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 
 ### 基本設定
 
-- Copyright
-  - 発行年
+- サイト基本設定
+  - タイトルの区切り文字
+  - 発行年（Copyright）
 - アクセス解析設定
   - Google Analytics トラッキングID
 - シェアボタン設定
