@@ -1176,9 +1176,9 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 		}
 
 		$image = null;
-		$thumbname = apply_filters('ys_the_post_thumbnail_thumbname',$thumbname);
-		$imgid = apply_filters('ys_the_post_thumbnail_id',$imgid);
-		$imgclass = apply_filters('ys_the_post_thumbnail_class',$imgclass);
+		$thumbname = apply_filters( 'ys_the_post_thumbnail_thumbname', $thumbname, $postid );
+		$imgid = apply_filters( 'ys_the_post_thumbnail_id', $imgid, $postid );
+		$imgclass = apply_filters( 'ys_the_post_thumbnail_class', $imgclass, $postid );
 
 		if( has_post_thumbnail( $postid ) ) {
 
@@ -1216,7 +1216,7 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 
 		}
 
-		$img = apply_filters('ys_the_post_thumbnail',$img);
+		$img = apply_filters( 'ys_the_post_thumbnail', $img, $postid);
 		echo ys_utilities_get_the_convert_amp_img($img);
 
 		//metaタグを出力
