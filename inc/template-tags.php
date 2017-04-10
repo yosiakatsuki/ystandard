@@ -1216,7 +1216,7 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 
 		}
 
-		$img = apply_filters( 'ys_the_post_thumbnail', $img, $postid);
+		$img = apply_filters( 'ys_the_post_thumbnail', $img, $thumbname, $postid);
 		echo ys_utilities_get_the_convert_amp_img($img);
 
 		//metaタグを出力
