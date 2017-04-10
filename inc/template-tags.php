@@ -1177,8 +1177,8 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 
 		$image = null;
 		$thumbname = apply_filters( 'ys_the_post_thumbnail_thumbname', $thumbname, $postid );
-		$imgid = apply_filters( 'ys_the_post_thumbnail_id', $imgid, $postid );
-		$imgclass = apply_filters( 'ys_the_post_thumbnail_class', $imgclass, $postid );
+		$imgid = apply_filters( 'ys_the_post_thumbnail_id', $imgid, $thumbname, $postid );
+		$imgclass = apply_filters( 'ys_the_post_thumbnail_class', $imgclass, $thumbname, $postid );
 
 		if( has_post_thumbnail( $postid ) ) {
 
