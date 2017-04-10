@@ -1176,6 +1176,7 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 		}
 
 		$image = null;
+		$thumbname = apply_filters('ys_the_post_thumbnail_thumbname',$thumbname);
 		$imgid = apply_filters('ys_the_post_thumbnail_id',$imgid);
 		$imgclass = apply_filters('ys_the_post_thumbnail_class',$imgclass);
 
