@@ -1,4 +1,24 @@
 @charset "UTF-8";
+/**
+ *	中央配置
+ */
+.flex-c-c {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+/**
+ *	SNSカラー
+ */
 .color-twitter,
 .color-twitter a,
 .widget .color-twitter,
@@ -812,6 +832,23 @@ div.aligncenter {
     font-size: 3rem; }
     .post-navigation .home a, .post-navigation .home a:hover {
       color: #34495E; }
+
+.post-navigation-image-wrap {
+  position: relative;
+  width: 100%;
+  margin-bottom: .5rem;
+  overflow: hidden; }
+  .post-navigation-image-wrap:before {
+    content: "";
+    display: block;
+    padding-top: 60%; }
+  .post-navigation-image-wrap img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto; }
 
 @media screen and (min-width: 600px) {
   .post-navigation .nav-prev a,

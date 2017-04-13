@@ -860,7 +860,13 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 		$prevpost = get_previous_post();
 		if ($prevpost) {
 			$prev_info = apply_filters('ys_the_post_paging_prev_info','<span class="prev-label">«前の投稿</span>');
-			$prev_link = '<a href="'.esc_url(get_permalink($prevpost->ID)).'">'.get_the_title($prevpost->ID).'</a>';
+			$prev_img = '';
+			if( has_post_thumbnail( $prevpost->ID ) ) {
+				$prev_img = ys_template_get_the_post_thumbnail( 'yslistthumb', false, false, '', 'post-navigation-image', $prevpost->ID);
+				$prev_img = apply_filters( 'ys_the_post_paging_prev_image', $prev_img, $prevpost->ID );
+				$prev_img = '<span class="post-navigation-image-wrap flex-c-c">'.$prev_img.'</span>';
+			}
+			$prev_link = '<a href="'.esc_url(get_permalink($prevpost->ID)).'">'.$prev_img.get_the_title($prevpost->ID).'</a>';
 			$prev_link = apply_filters('ys_the_post_paging_prev_link',$prev_link);
 			$html .= $prev_info.$prev_link;
 		} else {
@@ -873,7 +879,13 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 		if ($nextpost){
 
 			$next_info = apply_filters('ys_the_post_paging_next_info','<span class="next-label">次の投稿»</span>');
-			$next_link = '<a href="'.esc_url(get_permalink($nextpost->ID)).'">'.get_the_title($nextpost->ID).'</a>';
+			$next_img = '';
+			if( has_post_thumbnail( $nextpost->ID ) ) {
+				$next_img = ys_template_get_the_post_thumbnail( 'yslistthumb', false, false, '', 'post-navigation-image', $nextpost->ID);
+				$next_img = apply_filters( 'ys_the_post_paging_next_image', $next_img, $nextpost->ID );
+				$next_img = '<span class="post-navigation-image-wrap flex-c-c">'.$next_img.'</span>';
+			}
+			$next_link = '<a href="'.esc_url(get_permalink($nextpost->ID)).'">'.$next_img.get_the_title($nextpost->ID).'</a>';
 			$next_link = apply_filters('ys_the_post_paging_next_link',$next_link);
 			$html .= $next_info.$next_link;
 		} else {
@@ -1161,8 +1173,8 @@ if( ! function_exists( 'ys_template_the_taxonomy_list' ) ) {
 //
 //------------------------------------------------------------------------------
 
-if (!function_exists( 'ys_template_the_post_thumbnail')) {
-	function ys_template_the_post_thumbnail(
+if (!function_exists( 'ys_template_get_the_post_thumbnail')) {
+	function ys_template_get_the_post_thumbnail(
 																	$thumbname='full',
 																	$viewsize=false,
 																	$outputmeta=true,
@@ -1175,6 +1187,7 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 			$postid = get_the_ID();
 		}
 
+		$html = '';
 		$image = null;
 		$thumbname = apply_filters( 'ys_the_post_thumbnail_thumbname', $thumbname, $postid );
 		$imgid = apply_filters( 'ys_the_post_thumbnail_id', $imgid, $thumbname, $postid );
@@ -1192,9 +1205,11 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 			if( $imgid ) $attr = wp_parse_args( array( 'id'=>$imgid ), $attr );
 			if( $imgclass ) $attr = wp_parse_args( array( 'class'=>$imgclass ), $attr );
 
-			$img = get_the_post_thumbnail( $postid, $thumbname, $attr );
+			$html = get_the_post_thumbnail( $postid, $thumbname, $attr );
 
-		} else {
+		}
+
+		if( '' == $html ) {
 
 			// 画像を取得
 			$image = ys_utilities_get_post_thumbnail($thumbname,'',$postid);
@@ -1208,24 +1223,49 @@ if (!function_exists( 'ys_template_the_post_thumbnail')) {
 				$imgclass = ' class="'.$imgclass.'"';
 			}
 
-			if(!is_array($viewsize)){
+			if( !is_array( $viewsize ) ){
 				$viewsize = array($image[1],$image[2]);
+			} else {
+				if( 0 == $viewsize[0] ){
+					$viewsize[0] = $image[1];
+				}
+				if( 0 == $viewsize[1] ){
+					$viewsize[1] = $image[2];
+				}
 			}
 
-			$img = '<img '.$imgid.$imgclass.'src="'.$image[0].'" '.image_hwstring($viewsize[0],$viewsize[1]).' alt="" />';
+			$html = '<img '.$imgid.$imgclass.'src="'.$image[0].'" '.image_hwstring($viewsize[0],$viewsize[1]).' alt="" />';
 
 		}
 
-		$img = apply_filters( 'ys_the_post_thumbnail', $img, $image, $thumbname, $postid );
-		echo ys_utilities_get_the_convert_amp_img($img);
+		$html = apply_filters( 'ys_the_post_thumbnail', $html, $image, $thumbname, $postid );
+		$html =  ys_utilities_get_the_convert_amp_img($html);
 
 		//metaタグを出力
 		if($outputmeta){
-			echo ys_utilities_get_the_image_object_meta($image);
+			$html .= ys_utilities_get_the_image_object_meta($image);
 		}
+
+		return $html;
 	}
 }
 
+/**
+ *	画像取得（出力）
+ */
+if (!function_exists( 'ys_template_the_post_thumbnail')) {
+	function ys_template_the_post_thumbnail(
+																	$thumbname='full',
+																	$viewsize=false,
+																	$outputmeta=true,
+																	$imgid='',
+																	$imgclass='',
+																	$postid=0
+																) {
+
+		echo ys_template_get_the_post_thumbnail( $thumbname, $viewsize, $outputmeta, $imgid, $imgclass, $postid );
+	}
+}
 
 
 

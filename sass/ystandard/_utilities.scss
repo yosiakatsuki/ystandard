@@ -4,10 +4,20 @@
 //
 //--------------------------------------
 
+/**
+ *	中央配置
+ */
+.flex-c-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-//--------------------------------------
-// モバイル or 全体
-//--------------------------------------
+
+
+/**
+ *	SNSカラー
+ */
 @each $key, $color in $sns-color {
 
 	$color : lighten($color,5%);
@@ -58,6 +68,8 @@
 		-moz-osx-font-smoothing: grayscale;
 	}
 }
+
+
 
 
 // 汎用囲み
