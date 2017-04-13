@@ -549,7 +549,7 @@ if(!function_exists( 'ys_extras_add_twitter_card')) {
 				$og_description = ys_template_get_the_custom_excerpt($post->post_content,160);
 			}
 			// 共通項目
-			echo '<meta name="twitter:card" content="summary" />'.PHP_EOL;
+			echo '<meta name="twitter:card" content="summary_large_image" />'.PHP_EOL;
 			echo '<meta name="twitter:site" content="'.$tw_account.'" />'.PHP_EOL;
 			echo '<meta name="twitter:title"    content="'.$og_title.'">'.PHP_EOL;
 			echo '<meta name="twitter:image"    content="'.$og_image.'">'.PHP_EOL;
