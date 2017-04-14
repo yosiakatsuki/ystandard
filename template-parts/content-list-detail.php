@@ -2,7 +2,7 @@
 <meta id="EntityOfPageid-<?php the_ID(); ?>" itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/Webpage" itemid="<?php the_permalink(); ?>" content="">
 
 <div class="post-thumbnail-container">
-	<figure class="post-thumbnail" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+	<figure class="post-thumbnail post-list-thumbnail-center" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
 		<?php ys_template_the_post_thumbnail('yslistthumb',array(250,150)); ?>
 	</figure><!-- .post-thumbnail -->
 	<div class="entry-more">

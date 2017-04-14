@@ -29,18 +29,7 @@
     }
   }
 
-  &:before {
-    content:"";
-    display: block;
-    padding-top: 61%;
-  }
   .post-thumbnail {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
 
     img {
       width: 100%;
@@ -48,7 +37,28 @@
     }
   }
 }
+.post-list-thumbnail-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 
+  &:before {
+    content:"";
+    display: block;
+    padding-top: 61%;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
+}
 
 
 // 続き
@@ -125,9 +135,6 @@
       padding-top: 0;
     }
     .post-thumbnail {
-      position: static;
-      overflow: visible;
-
 
       img {
         width: auto;

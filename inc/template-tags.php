@@ -864,7 +864,7 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 			if( has_post_thumbnail( $prevpost->ID ) ) {
 				$prev_img = ys_template_get_the_post_thumbnail( 'yslistthumb', false, false, '', 'post-navigation-image', $prevpost->ID);
 				$prev_img = apply_filters( 'ys_the_post_paging_prev_image', $prev_img, $prevpost->ID );
-				$prev_img = '<span class="post-navigation-image-wrap flex-c-c">'.$prev_img.'</span>';
+				$prev_img = '<span class="post-navigation-image-wrap post-list-thumbnail-center">'.$prev_img.'</span>';
 			}
 			$prev_link = '<a href="'.esc_url(get_permalink($prevpost->ID)).'">'.$prev_img.get_the_title($prevpost->ID).'</a>';
 			$prev_link = apply_filters('ys_the_post_paging_prev_link',$prev_link);
@@ -883,7 +883,7 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 			if( has_post_thumbnail( $nextpost->ID ) ) {
 				$next_img = ys_template_get_the_post_thumbnail( 'yslistthumb', false, false, '', 'post-navigation-image', $nextpost->ID);
 				$next_img = apply_filters( 'ys_the_post_paging_next_image', $next_img, $nextpost->ID );
-				$next_img = '<span class="post-navigation-image-wrap flex-c-c">'.$next_img.'</span>';
+				$next_img = '<span class="post-navigation-image-wrap post-list-thumbnail-center">'.$next_img.'</span>';
 			}
 			$next_link = '<a href="'.esc_url(get_permalink($nextpost->ID)).'">'.$next_img.get_the_title($nextpost->ID).'</a>';
 			$next_link = apply_filters('ys_the_post_paging_next_link',$next_link);
