@@ -600,6 +600,9 @@ if( ! function_exists( 'ys_template_get_the_custom_excerpt' ) ) {
 if( ! function_exists( 'ys_template_the_entry_foot_cta' ) ) {
 	function ys_template_the_entry_foot_cta() {
 
+		// ウィジェット
+		ys_template_the_entry_foot_widget();
+
 		// 広告
 		$ad = ys_template_the_advertisement_under_content();
 
@@ -614,6 +617,30 @@ if( ! function_exists( 'ys_template_the_entry_foot_cta' ) ) {
 
 		echo apply_filters('ys_the_entry_foot_cta',$html,$ad,$sns_share,$subscribe);
 
+	}
+}
+
+
+
+
+/**
+ *	記事下ウィジェットの表示
+ */
+if( ! function_exists( 'ys_template_the_entry_foot_widget' ) ) {
+	function ys_template_the_entry_foot_widget() {
+
+		$show_widget = true;
+		if( ys_is_amp() && 0 == ys_get_setting('ys_show_entry_footer_widget_amp') ){
+			$show_widget = false;
+		}
+
+		$show_widget = apply_filters( 'ys_show_entry_foot_widget', $show_widget );
+
+		if ( $show_widget && is_active_sidebar( 'entry-footer' ) ) {
+			echo '<aside class="widget-entry-footer">';
+			dynamic_sidebar( 'entry-footer' );
+			echo '</aside>';
+		}
 	}
 }
 

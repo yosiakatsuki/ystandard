@@ -928,6 +928,21 @@ img {
   .ys-ranking-list p {
     overflow: hidden; }
 
+.widget-entry-footer {
+  padding: 1rem; }
+  .widget-entry-footer h2 {
+    font-weight: bold; }
+  .widget-entry-footer .widget:last-child {
+    margin-bottom: 0; }
+  .widget-entry-footer + .sns-share,
+  .widget-entry-footer + .subscribe,
+  .widget-entry-footer + .author-info {
+    margin-top: 0; }
+
+@media screen and (min-width: 600px) {
+  .widget-entry-footer {
+    padding: 2rem; } }
+
 .site-footer {
   position: relative;
   padding: .5rem 0;

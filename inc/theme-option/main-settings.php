@@ -174,7 +174,7 @@
 					<th scope="row">サイドバー表示</th>
 					<td>
 						<label for="ys_show_sidebar_mobile">
-							<input type="checkbox" name="ys_show_sidebar_mobile" id="ys_show_sidebar_mobile" value="1" <?php checked(get_option('ys_show_sidebar_mobile',0),1); ?> />モバイル表示でもサイドバー部分を出力する
+							<input type="checkbox" name="ys_show_sidebar_mobile" id="ys_show_sidebar_mobile" value="1" <?php checked(get_option('ys_show_sidebar_mobile',1),1); ?> />モバイル表示でもサイドバー部分を出力する
 						</label>
 					</td>
 				</tr>

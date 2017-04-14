@@ -93,6 +93,7 @@ if (!function_exists( 'ys_settings')) {
 		$ys_amp_normal_link_share_btn = get_option('ys_amp_normal_link_share_btn',1) ;
 		$ys_amp_del_script = get_option('ys_amp_del_script',0) ;
 		$ys_amp_del_style = get_option('ys_amp_del_style',0) ;
+		$ys_show_entry_footer_widget_amp = get_option('ys_show_entry_footer_widget_amp',0) ;
 	// AMP設定 > 広告設定
 		$ys_amp_advertisement_under_title = get_option('ys_amp_advertisement_under_title','') ;
 		$ys_amp_advertisement_replace_more = get_option('ys_amp_advertisement_replace_more','') ;
@@ -162,6 +163,7 @@ if (!function_exists( 'ys_settings')) {
 										'ys_amp_normal_link' => $ys_amp_normal_link,	//通常ビューへのリンクを表示する
 										'ys_amp_del_script' => $ys_amp_del_script,	//scriptタグを削除してAMPページを作成
 										'ys_amp_del_style' => $ys_amp_del_style,	//インラインで書かれたstyle属性を削除してAMPページを作成
+										'ys_show_entry_footer_widget_amp' => $ys_show_entry_footer_widget_amp,	//AMPページで記事下ウィジェットを表示する
 
 										'ys_amp_advertisement_under_title' => $ys_amp_advertisement_under_title,	//広告　タイトル下
 										'ys_amp_advertisement_replace_more' => $ys_amp_advertisement_replace_more,	//moreタグ置換

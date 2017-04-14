@@ -61,6 +61,16 @@ if (!function_exists( 'ys_widget_init')) {
 			'before_title'	 => '<h2 class="widget-title">',
 			'after_title'	   => '</h2>',
 		) );
+		// 記事下CTAエリア
+		register_sidebar( array(
+			'name'					 => '記事下エリア',
+			'id'						 => 'entry-footer',
+			'description'	   => '記事直下に表示されるウィジェット',
+			'before_widget'  => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'	 => '</div>',
+			'before_title'	 => '<h2 class="widget-title">',
+			'after_title'	   => '</h2>',
+		) );
 	}
 }
 add_action( 'widgets_init', 'ys_widget_init' );

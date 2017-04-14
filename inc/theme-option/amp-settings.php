@@ -40,6 +40,7 @@
 						</p>
 					</td>
 				</tr>
+
 				<tr valign="top">
 					<th scope="row">AMP記事作成条件設定</th>
 					<td>
@@ -57,6 +58,19 @@
 						</p>
 					</td>
 				</tr>
+
+				<tr valign="top">
+					<th scope="row">記事下のウィジェットを表示する</th>
+					<td>
+						<p>
+							<label for="ys_show_entry_footer_widget_amp">
+								<input type="checkbox" name="ys_show_entry_footer_widget_amp" id="ys_show_entry_footer_widget_amp" value="1" <?php checked(get_option('ys_show_entry_footer_widget_amp',0),1); ?> />AMPページでも記事下のジェットを表示する
+							</label><br />
+							※この設定をONにすると配置するウィジェットによってはAMPフォーマットとしてエラーになる恐れがありますのでご注意ください
+						</p>
+					</td>
+				</tr>
+
 			</table>
 		</div>
 	</div>

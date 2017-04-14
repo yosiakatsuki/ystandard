@@ -116,12 +116,32 @@
   }
 }//.ys-ranking-list
 
+.widget-entry-footer {
+  padding: $ys-gutter-sp;
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .widget:last-child {
+    margin-bottom: 0;
+  }
+
+  &+.sns-share,
+  &+.subscribe,
+  &+.author-info {
+    margin-top: 0;
+  }
+}
+
 
 //--------------------------------------
 // タブレット
 //--------------------------------------
 @include media-breakpoint(tb) {
-
+  .widget-entry-footer {
+    padding: $ys-gutter;
+  }
 };
 
 //--------------------------------------

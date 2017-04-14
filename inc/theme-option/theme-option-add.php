@@ -139,6 +139,7 @@ function ys_register_settings() {
 	register_setting( 'ys_amp_settings', 'ys_amp_normal_link_share_btn' ,'ys_utilities_sanitize_checkbox');
 	register_setting( 'ys_amp_settings', 'ys_amp_del_script' ,'ys_utilities_sanitize_checkbox');
 	register_setting( 'ys_amp_settings', 'ys_amp_del_style' ,'ys_utilities_sanitize_checkbox');
+	register_setting( 'ys_amp_settings', 'ys_show_entry_footer_widget_amp' ,'ys_utilities_sanitize_checkbox');
 	// AMP設定 > 広告設定
 	register_setting( 'ys_amp_settings', 'ys_amp_advertisement_under_title' );
 	register_setting( 'ys_amp_settings', 'ys_amp_advertisement_replace_more' );

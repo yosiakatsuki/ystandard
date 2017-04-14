@@ -35,8 +35,9 @@
 - PHP : 5.6以上
 
 
-## 主な機能
+## 主な機能・特徴
 
+- レスポンシブウェブデザイン（SP/Tablet/PC）
 - Google Analyticsのタグ出力を管理画面から設定可
 - OGPの出力（管理画面で設定を行う必要あり）
 - カテゴリー、タグ、日別ページのnoindex設定
@@ -126,6 +127,15 @@
 
 ## スタイルについて
 
+### ブレークポイント
+
+- SP
+  - 指定なし
+- Tablet
+  - `@media screen and (min-width: 600px) {}`（テーマデフォルト）
+- PC
+  - `@media screen and (min-width: 960px) {}`（テーマデフォルト）
+
 ### sass
 
 ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義しています。
@@ -211,6 +221,7 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 - AMP記事作成条件設定
   - scriptタグの削除
   - styleタグの削除
+- 記事下のウィジェットを表示する
 - 広告設定
   - 記事タイトル下
   - moreタグ部分
@@ -228,12 +239,6 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
   - `.color-site-dscr`
 
 ### ナビゲーション
-
-- ブレークポイント
-  - SP/Tablet
-    - `@media screen and (max-width: 959px) {}`（テーマデフォルト）
-  - PC
-    - `@media screen and (min-width: 960px) {}`（テーマデフォルト）
 
 - ナビゲーション文字色
   - SP/PC
@@ -262,7 +267,16 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 
 ## 変更履歴
 
+### v0.4.0
+- v0.4.0
+  - 記事直下に表示するウィジェット機能追加(スタイリングは`.widget-entry-footer`にて可能)
+
 ### v0.3.0
+- v0.3.2 : 2017/04/08
+  - RSSフィードにアイキャッチ画像を表示
+  - Twitter埋め込みの余白調整
+  - タイトルとブログ名の区切り文字の変更機能追加
+  - アイキャッチ画像の出力方法変更
 - v0.3.1 : 2017/04/01
   - 汎用ボタンクラスのスタイル調整
   - 汎用ボタン、カスタマイズ用クラス追加
