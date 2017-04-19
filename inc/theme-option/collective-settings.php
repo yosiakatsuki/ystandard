@@ -1,4 +1,5 @@
 <?php
+
 	if (!current_user_can('manage_options'))
 		{
 			wp_die( __('You do not have sufficient permissions to access this page.') );
@@ -29,6 +30,13 @@
 			}
 		}
 
+		if ($tw_account !== ''
+				|| $fb_app_id !== ''
+				|| $fb_admins !== '' ) {
+
+					add_settings_error('general', 'settings_updated', __('Settings saved.'), 'updated');
+    }
+		settings_errors();
 ?>
 
 <div class="wrap">
@@ -38,14 +46,7 @@
 <div id="poststuff">
 	<form method="post" action="">
 
-	<?php
-		if ($tw_account !== ''
-				|| $fb_app_id !== ''
-				|| $fb_admins !== '' ) {
-        echo '<div id="setting-error-settings_updated" class="updated settings-error notice is-dismissible">
-            <p><strong>設定を保存しました。</strong></p></div>';
-    }
-	?>
+
 
 	<div class="postbox">
 		<h2>SNSアカウント設定</h2>

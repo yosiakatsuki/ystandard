@@ -3,6 +3,10 @@
 		{
 			wp_die( __('You do not have sufficient permissions to access this page.') );
 		}
+		if ( isset( $_GET['updated'] ) && isset( $_GET['page'] ) ) {
+			add_settings_error('general', 'settings_updated', __('Settings saved.'), 'updated');
+		}
+		settings_errors();
 ?>
 
 <div class="wrap">
