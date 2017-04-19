@@ -179,10 +179,7 @@ optgroup {
   font-weight: bold; }
 
 * {
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0; }
+  box-sizing: border-box; }
 
 html,
 body {
@@ -343,6 +340,12 @@ img {
 .gloval-menu > li ul a {
   padding: 1rem 1rem 1rem 2rem; }
 
+.menu-toggle,
+.menu-toggle-label {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
 .menu-toggle-label {
   position: absolute;
   top: .5rem;
@@ -351,8 +354,7 @@ img {
   border: 0;
   background: 0;
   outline: none;
-  z-index: 99;
-  -webkit-appearance: none; }
+  z-index: 99; }
   .menu-toggle-label span {
     display: block;
     width: 20px;
@@ -800,6 +802,12 @@ img {
 
 .search-form {
   position: relative; }
+  .search-form label,
+  .search-form input,
+  .search-form button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; }
 
 .search-field,
 .search-submit {

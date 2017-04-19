@@ -10,6 +10,11 @@
 //--------------------------------------
 .comments-area {
 	margin: 0 0 2rem;
+
+	input,
+	textarea {
+		appearance: none;
+	}
 }
 
 .comments-title,

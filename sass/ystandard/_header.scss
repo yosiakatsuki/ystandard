@@ -110,6 +110,11 @@
 
 }//.gloval-menu {
 
+.menu-toggle,
+.menu-toggle-label {
+  appearance: none;
+}
+
 .menu-toggle-label {
 
 	position: absolute;
@@ -120,7 +125,6 @@
 	background: 0;
 	outline: none;
 	z-index: 99;
-  -webkit-appearance: none;
 
 	span {
 		display: block;

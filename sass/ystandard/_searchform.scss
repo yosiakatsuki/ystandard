@@ -10,6 +10,12 @@
 //--------------------------------------
 .search-form {
 	position: relative;
+
+  label,
+  input,
+  button {
+    appearance:none;
+  }
 }
 
 .search-field,

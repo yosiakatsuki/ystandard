@@ -1086,6 +1086,11 @@ sub {
 
 .comments-area {
   margin: 0 0 2rem; }
+  .comments-area input,
+  .comments-area textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; }
 
 .comments-title,
 .comment-reply-title,
