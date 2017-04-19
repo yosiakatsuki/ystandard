@@ -594,9 +594,9 @@ if( ! function_exists( 'ys_template_get_the_custom_excerpt' ) ) {
 
 
 
-//-----------------------------------------------
-//	CTA
-//-----------------------------------------------
+/**
+ *	CTA
+ */
 if( ! function_exists( 'ys_template_the_entry_foot_cta' ) ) {
 	function ys_template_the_entry_foot_cta() {
 
@@ -652,6 +652,8 @@ if( ! function_exists( 'ys_template_the_entry_foot_widget' ) ) {
 if( ! function_exists( 'ys_template_get_the_sns_share' ) ) {
 	function ys_template_get_the_sns_share(){
 
+		global $post;
+
 		$html = '';
 		$html .= '<aside id="sns-share" class="sns-share entry-footer-container">';
 		$share_buttons_title = '\ みんなとシェアする /';
@@ -669,6 +671,11 @@ if( ! function_exists( 'ys_template_get_the_sns_share' ) ) {
 
 		}
 		$html .= '</aside>';
+
+		// シェアボタンが非表示なら表示消す
+		if( "1" === get_post_meta($post->ID,'ys_hide_share',true) ){
+			$html = '';
+		}
 
 		return apply_filters('ys_get_the_sns_share',$html);
 
@@ -771,6 +778,8 @@ if( ! function_exists( 'ys_template_get_the_amp_sns_share_buttons' ) ) {
 if( ! function_exists( 'ys_template_get_the_subscribe_buttons' ) ) {
 	function ys_template_get_the_subscribe_buttons($container = true) {
 
+		global $post;
+
 		$subscribe = array(
 									'Twitter'=>array(
 																'class'=>'twitter',
@@ -821,6 +830,11 @@ if( ! function_exists( 'ys_template_get_the_subscribe_buttons' ) ) {
 
 		if($container){
 			$html .= '</aside>';
+		}
+
+		// フォローボタンの非表示設定
+		if( "1" === get_post_meta($post->ID,'ys_hide_follow',true) ){
+			$html = '';
 		}
 
 		return apply_filters('ys_get_the_subscribe_buttons',$html);

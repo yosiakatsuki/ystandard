@@ -8,14 +8,14 @@
 
 
 
-//-----------------------------------------------
-//	投稿作成メニューに項目追加
-//-----------------------------------------------
-if (!function_exists( 'ys_admin_add_post_option')) {
+/**
+ *	投稿編集ページに項目追加
+ */
+if ( !function_exists( 'ys_admin_add_post_option') ) {
 	function ys_admin_add_post_option() {
 		// 投稿オプション
-		add_meta_box( 'ys_admin_post_option', 'ys投稿オプション', 'ys_admin_post_option', 'post','advanced');
-		add_meta_box( 'ys_admin_post_option', 'ys投稿オプション', 'ys_admin_post_option', 'page','advanced');
+		add_meta_box( 'ys_admin_post_option', 'yStandard投稿オプション', 'ys_admin_post_option', 'post');
+		add_meta_box( 'ys_admin_post_option', 'yStandard投稿オプション', 'ys_admin_post_option', 'page');
 	}
 }
 add_action('admin_menu', 'ys_admin_add_post_option');
@@ -23,35 +23,42 @@ add_action('admin_menu', 'ys_admin_add_post_option');
 
 
 
-//-----------------------------------------------
-//	投稿作成メニューに追加する内容
-//-----------------------------------------------
+/**
+ *	投稿編集ページに表示する内容を記述
+ */
 if( ! function_exists( 'ys_admin_post_option' ) ) {
 	function ys_admin_post_option() {
 		global $post;
 
-		//noindex設定の追加 --------------------------------------------------------------------------------------
-		$noindex = get_post_meta($post->ID,'ys_noindex',true);
-		$noindex_c = '';
-		if($noindex==1){ $noindex_c='checked="checked"';}
+		//noindex設定
+		echo '<h3 style="font-size:1em;margin-bottom: -0.5em;">noindex設定</h3><p><label for="ys_noindex"><input type="checkbox" id="ys_noindex" name="ys_noindex" value="1" '.checked(get_post_meta($post->ID,'ys_noindex',true),"1",false).' /> 「noindex,follow」を設定</label></p>';
 
-		echo '<p><input type="checkbox" name="ys_noindex" value="1" '.$noindex_c.' /> 「noindex,follow」を設定</p>';
-		//noindex設定の追加 --------------------------------------------------------------------------------------
+		// CTA表示設定
+		echo '<h3 style="font-size:1em;margin-bottom: -0.5em;">投稿下エリアの非表示設定</h3><p>';
+		echo '<label for="ys_hide_share"><input type="checkbox" id="ys_hide_share" name="ys_hide_share" value="1" '.checked(get_post_meta($post->ID,'ys_hide_share',true),"1",false).' /> シェアボタンを<strong>非表示</strong>にする</label><br />';
+		echo '<label for="ys_hide_follow"><input type="checkbox" id="ys_hide_follow" name="ys_hide_follow" value="1" '.checked(get_post_meta($post->ID,'ys_hide_follow',true),"1",false).' /> フォローボタンを<strong>非表示</strong>にする</label>';
+		echo '</p>';
 	}
 }
 
 
-//-------------------------------------------------------
-// カスタムフィールドの値を保存
-//-------------------------------------------------------
+
+
+/**
+ *	カスタムフィールドの値を保存
+ */
 if( ! function_exists( 'ys_admin_save_post_option' ) ) {
 	function ys_admin_save_post_option( $post_id ) {
+
 		//noindex設定の保存
-		if(!empty($_POST['ys_noindex'])){
-			update_post_meta($post_id, 'ys_noindex', $_POST['ys_noindex'] );
-		} else {
-			delete_post_meta($post_id, 'ys_noindex');
-		}
+		ys_utilities_save_post_option_checkbox( $_POST, $post_id, 'ys_noindex' );
+
+		// シェアボタン設定の保存
+		ys_utilities_save_post_option_checkbox( $_POST, $post_id, 'ys_hide_share' );
+
+		// フォローボタン設定の保存
+		ys_utilities_save_post_option_checkbox( $_POST, $post_id, 'ys_hide_follow' );
+
 	}
 }
 add_action('save_post', 'ys_admin_save_post_option');

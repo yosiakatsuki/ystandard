@@ -657,6 +657,33 @@ if (!function_exists( 'ys_utilities_json_encode')) {
 
 
 
+
+/**
+ *
+ *	管理画面
+ *
+ */
+
+/**
+ *	投稿オプション：チェックボックス値の保存
+ */
+if ( !function_exists( 'ys_utilities_save_post_option_checkbox' ) ) {
+	function ys_utilities_save_post_option_checkbox( $post, $post_id, $key ) {
+
+		if( ys_utilities_sanitize_checkbox_post_option( $post, $key ) ){
+			update_post_meta($post_id, $key, $post[$key] );
+		} else {
+			delete_post_meta($post_id, $key);
+		}
+
+	}
+}
+
+
+
+
+
+
 //------------------------------------------------------------------------------
 //
 //	サニタイズ
@@ -676,5 +703,21 @@ if (!function_exists( 'ys_utilities_sanitize_checkbox')) {
 	}
 }
 
+
+
+
+/**
+ *	チェックボックスのサニタイズ(カスタムフィールド)
+ */
+if (!function_exists( 'ys_utilities_sanitize_checkbox_post_option')) {
+	function ys_utilities_sanitize_checkbox_post_option( $post, $key ) {
+
+		if( isset( $post[$key] ) && !empty( $post[$key] ) && "1" === $post[$key] ){
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
 
 ?>
