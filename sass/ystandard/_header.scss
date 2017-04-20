@@ -44,16 +44,16 @@
 }
 
 .site-header-menu {
-	width: 0px;
 	position: fixed;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	padding: 3rem 0 1rem;
 	background-color: $ys-header-nav-bg-color-sp;
-	transition: width .3s;
+	transition: transform .3s;
 	z-index: 3;
 	overflow-y: scroll;
+	transform: translateX(100%);
 }
 
 %hamburger {
@@ -162,6 +162,7 @@
 
 	& ~.site-header-menu {
 		width: 70%;
+		transform: translateX(0);
 		max-width: 500px;
 	}
 
@@ -201,6 +202,7 @@
 		padding: 0;
 		background-color: transparent;
 		overflow-y: visible;
+    transform: translateX(0);
 	}
 
 	.main-navigation {

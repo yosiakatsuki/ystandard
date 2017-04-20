@@ -297,17 +297,20 @@ img {
   color: #b3b3b3; }
 
 .site-header-menu {
-  width: 0px;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   padding: 3rem 0 1rem;
   background-color: #34495E;
-  -webkit-transition: width .3s;
-  transition: width .3s;
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s, -webkit-transform .3s;
   z-index: 3;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%); }
 
 .amp-slider .menu-toggle-label span, #menu-toggle:checked ~ .menu-toggle-label span {
   background-color: #fff; }
@@ -384,6 +387,8 @@ img {
 
 #menu-toggle:checked ~ .site-header-menu {
   width: 70%;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
   max-width: 500px; }
 
 #menu-toggle:checked ~ .menu-toggle-cover {
@@ -405,7 +410,9 @@ img {
     bottom: auto;
     padding: 0;
     background-color: transparent;
-    overflow-y: visible; }
+    overflow-y: visible;
+    -webkit-transform: translateX(0);
+    transform: translateX(0); }
   .main-navigation {
     display: table;
     height: 100%; }
