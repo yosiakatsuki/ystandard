@@ -55,18 +55,23 @@
 
 // 投稿の付加情報
 .entry-meta {
-	font-size: .8rem;
+	font-size: .7rem;
 	color: $ys-content-entry-meta-color;
 	@include clearfix;
 
 	a {
 		color: $ys-content-entry-meta-color;
 	}
-  svg {
-    height: .8rem;
-    margin-right: .2rem;
-    fill: $ys-content-entry-meta-color;
-  }
+}
+// アイコン用
+.entry-meta-ico {
+  height: 1em;
+  width: auto;
+  padding: 0;
+  margin:0;
+  margin-right: .3rem;
+  fill: $ys-content-entry-meta-color;
+  vertical-align: middle;
 }
 
 // 左右で分割表示するときのクラス
@@ -82,16 +87,13 @@
   margin: 0 0 .5rem;
 	font-size: .7rem;
 	text-align: right;
-
-	svg {
-		height: .7rem;
-		width: .7rem;
-    padding: 0;
-    margin:0;
-		margin-right: .3rem;
-    fill:$ys-content-entry-meta-color;
-	}
+  line-height: 1;
 }
+.entry-date,
+.entry-date-update {
+  vertical-align: middle;
+}
+
 .entry-date-update {
   margin-left: .5rem;
 }

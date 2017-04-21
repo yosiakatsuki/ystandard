@@ -78,23 +78,26 @@
   transition: background-color .3s,color .3s;
 }
 
+// カテゴリー表示
+.entry-meta-cat {
+  font-size: .8rem;
+}
+
 // 投稿者
 .entry-meta-author {
 	margin: .5rem 0 0;
   font-size: .5rem;
-
-	.author {
-
-		&::before {
-			@include fontawesome("f007");
-		}
-	}//.author
 }
 
-// カテゴリー情報
-.entry-meta-cat {
+.entry-meta-cat,
+.entry-meta-author {
 
+  line-height: 1;
+  span {
+    vertical-align: middle;
+  }
 }
+
 
 // 本文
 .entry-excerpt {

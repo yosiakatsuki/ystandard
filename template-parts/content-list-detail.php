@@ -30,5 +30,5 @@
 		?>
 	</div><!-- .entry-content -->
 
-	<div class="entry-meta entry-meta-author"><?php ys_template_the_entry_author(false); ?></div>
+	<div class="entry-meta entry-meta-author"><?php ys_template_the_entry_author( false, false, false, true ); ?></div>
 </div>

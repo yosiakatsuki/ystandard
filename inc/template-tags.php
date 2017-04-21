@@ -323,9 +323,9 @@ if (!function_exists( 'ys_template_the_entry_date')) {
 		$entry_date_class = 'entry-date entry-published published';
 		$update_date_class = 'entry-updated updated';
 
-		$ico_calendar = '<svg width="32" height="32" viewBox="0 0 32 32"><path d="M10 12h4v4h-4zM16 12h4v4h-4zM22 12h4v4h-4zM4 24h4v4h-4zM10 24h4v4h-4zM16 24h4v4h-4zM10 18h4v4h-4zM16 18h4v4h-4zM22 18h4v4h-4zM4 18h4v4h-4zM26 0v2h-4v-2h-14v2h-4v-2h-4v32h30v-32h-4zM28 30h-26v-22h26v22z"></path></svg>';
+		$ico_calendar = '<svg class="entry-meta-ico" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path d="M1 4c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm2 2v12h14V6H3zm2-6h2v2H5V0zm8 0h2v2h-2V0zM5 9h2v2H5V9zm0 4h2v2H5v-2zm4-4h2v2H9V9zm0 4h2v2H9v-2zm4-4h2v2h-2V9zm0 4h2v2h-2v-2z"/></svg>';
 
-		$ico_update = '<svg width="32" height="32" viewBox="0 0 32 32"><path d="M32 12h-12l4.485-4.485c-2.267-2.266-5.28-3.515-8.485-3.515s-6.219 1.248-8.485 3.515c-2.266 2.267-3.515 5.28-3.515 8.485s1.248 6.219 3.515 8.485c2.267 2.266 5.28 3.515 8.485 3.515s6.219-1.248 8.485-3.515c0.189-0.189 0.371-0.384 0.546-0.583l3.010 2.634c-2.933 3.349-7.239 5.464-12.041 5.464-8.837 0-16-7.163-16-16s7.163-16 16-16c4.418 0 8.418 1.791 11.313 4.687l4.687-4.687v12z"></path></svg>';
+		$ico_update = '<svg class="entry-meta-ico" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path d="M14.66 15.66A8 8 0 1 1 17 10h-2a6 6 0 1 0-1.76 4.24l1.42 1.42zM12 10h8l-4 4-4-4z"/></svg>';
 
 		$ico_calendar = apply_filters('ys_ico_calendar',$ico_calendar);
 		$ico_update = apply_filters('ys_ico_update',$ico_update);
@@ -468,15 +468,17 @@ EOD;
 //	投稿者取得
 //-----------------------------------------------
 if (!function_exists( 'ys_template_get_the_entry_author')) {
-	function ys_template_get_the_entry_author($link = true,$user_id = false,$hidestracture=false) {
+	function ys_template_get_the_entry_author( $link = true, $user_id = false, $hidestracture=false, $ico=false ) {
 
 		$author_name = esc_html( get_the_author_meta( 'display_name',$user_id ) );
 		$author_url = esc_url( get_author_posts_url( get_the_author_meta( 'ID',$user_id ) ) );
 
 		$stracture = '';
 		$itempropname = '';
+
 		if(!$hidestracture){
 			$itempropname = ' itemprop="name"';
+
 			if(!is_singular()){
 				$stracture = ' itemscope itemtype="http://schema.org/Person" itemprop="author editor creator"';
 			}
@@ -494,8 +496,11 @@ if (!function_exists( 'ys_template_get_the_entry_author')) {
 
 		$author = '<span class="author vcard"'.$stracture.'><'.$tag.' class="url fn n" '.$href.'><span'.$itempropname.'>'.$author_name.'</span></'.$tag.'></span>';
 
+		if( $ico ){
+			$author = '<svg class="entry-meta-ico" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.3 3.7l4 4L4 20H0v-4L12.3 3.7zm1.4-1.4L16 0l4 4-2.3 2.3-4-4z"/></svg>'.$author;
+		}
 
-		return $author;
+		return apply_filters( 'ys_get_the_entry_author', $author, $user_id );
 	}
 }
 
@@ -506,9 +511,9 @@ if (!function_exists( 'ys_template_get_the_entry_author')) {
 //	投稿者表示
 //-----------------------------------------------
 if (!function_exists( 'ys_template_the_entry_author')) {
-	function ys_template_the_entry_author($link = true,$user_id = false) {
+	function ys_template_the_entry_author( $link = true, $user_id = false, $hidestracture=false, $ico=false ) {
 
-		echo ys_template_get_the_entry_author($link,$user_id);
+		echo ys_template_get_the_entry_author( $link, $user_id, $hidestracture, $ico );
 	}
 }
 
@@ -1144,7 +1149,7 @@ if( ! function_exists( 'ys_template_the_copyright' ) ) {
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
 	function ys_template_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0) {
-		echo '<svg viewBox="0 0 32 32"><path d="M26 30l6-16h-26l-6 16zM4 12l-4 18v-26h9l4 4h13v4z"></path></svg>'.ys_utilities_get_the_post_categorys($number,$link,$separator,$postid,array('itemprop'=>true));
+		echo '<svg class="entry-meta-ico" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path d="M0 4c0-1.1.9-2 2-2h7l2 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2 2v10h16V6H2z"/></svg>'.ys_utilities_get_the_post_categorys($number,$link,$separator,$postid,array('itemprop'=>true));
 	}
 }
 
