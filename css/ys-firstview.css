@@ -281,7 +281,8 @@ img {
   position: relative; }
 
 .site-title {
-  font-size: 2rem; }
+  font-size: 2rem;
+  padding-right: 2.5rem; }
   .site-title img,
   .site-title amp-img {
     max-width: 300px; }
@@ -397,6 +398,8 @@ img {
   z-index: 2; }
 
 @media screen and (min-width: 960px) {
+  .site-title {
+    padding-right: 0; }
   .menu-toggle-label,
   .menu-toggle {
     display: none; }

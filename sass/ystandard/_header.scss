@@ -23,6 +23,7 @@
 
 .site-title {
 	font-size: 2rem;
+	padding-right: 2.5rem;
 
 	img,
 	amp-img {
@@ -184,6 +185,10 @@
 // PC
 //--------------------------------------
 @include media-breakpoint(pc) {
+
+	.site-title {
+		padding-right: 0;
+	}
 
 	.menu-toggle-label,
 	.menu-toggle {
