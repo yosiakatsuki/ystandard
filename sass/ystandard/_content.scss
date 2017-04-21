@@ -11,10 +11,13 @@
 
 .page-header,
 .none-content,
-.entry-container > .post-list,
-.site-main > article {
-    padding: $ys-gutter-sp $ys-gutter-sp $ys-gutter-sp * 2;
+.entry-container > .post-list {
+    padding: $ys-gutter-sp * 2 $ys-gutter-sp;
 }
+.site-main > article {
+  padding: $ys-gutter-sp;
+}
+
 
 
 // アイキャッチ

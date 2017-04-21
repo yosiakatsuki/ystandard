@@ -473,7 +473,7 @@ img {
       display: inline-block;
       font-size: .8rem;
       line-height: 1;
-      padding-bottom: .2rem; }
+      padding-bottom: .5rem; }
       .breadcrumb ol li a {
         color: #b3b3b3; }
       .breadcrumb ol li::after {
@@ -489,9 +489,11 @@ img {
 
 .page-header,
 .none-content,
-.entry-container > .post-list,
+.entry-container > .post-list {
+  padding: 2rem 1rem; }
+
 .site-main > article {
-  padding: 1rem 1rem 2rem; }
+  padding: 1rem; }
 
 .post-thumbnail {
   text-align: center;
