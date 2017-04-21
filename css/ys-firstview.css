@@ -224,11 +224,10 @@ img {
   padding-left: 1rem; }
 
 .site-content {
-  padding-top: 1rem;
   padding-bottom: 1rem; }
 
 .content-area {
-  padding: 1rem 0;
+  padding: 0 0 1rem;
   margin-right: -1rem;
   margin-left: -1rem;
   margin-bottom: 1rem;
@@ -473,7 +472,8 @@ img {
     .breadcrumb ol li {
       display: inline-block;
       font-size: .8rem;
-      line-height: 1; }
+      line-height: 1;
+      padding-bottom: .2rem; }
       .breadcrumb ol li a {
         color: #b3b3b3; }
       .breadcrumb ol li::after {

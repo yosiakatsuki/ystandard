@@ -15,12 +15,12 @@
 }
 
 .site-content {
-  padding-top: $ys-gutter-sp;
+  // padding-top: $ys-gutter-sp;
   padding-bottom: $ys-gutter-sp;
 }
 
 .content-area {
-  padding: $ys-gutter-sp 0;
+  padding: 0 0 $ys-gutter-sp;
   margin-right: -$ys-gutter-sp;
   margin-left: -$ys-gutter-sp;
   margin-bottom: $ys-gutter-sp;
