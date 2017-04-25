@@ -112,7 +112,6 @@ tt {
   padding: 1px 4px;
   background-color: $ys-bg-color-code;
   font-size: .98rem;
-	// color: $ys-font-color-code;
   letter-spacing: normal;
 }//code
 
@@ -133,8 +132,13 @@ pre {
   font-size: .8em;
   line-height: 1.4;
   word-wrap: normal;
-  white-space: pre;
   overflow: auto;
+  white-space: pre;
+
+  code {
+    display: block;
+    white-space: pre;
+  }
 }//pre
 
 

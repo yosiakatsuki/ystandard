@@ -955,8 +955,11 @@ pre {
   font-size: .8em;
   line-height: 1.4;
   word-wrap: normal;
-  white-space: pre;
-  overflow: auto; }
+  overflow: auto;
+  white-space: pre; }
+  pre code {
+    display: block;
+    white-space: pre; }
 
 blockquote {
   position: relative;
