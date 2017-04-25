@@ -949,11 +949,13 @@ figcaption {
   font-size: .9em; }
 
 pre {
-  width: 100%;
+  display: block;
   background-color: #f7f7f7;
   padding: 0.5rem;
   font-size: .8em;
   line-height: 1.4;
+  word-wrap: normal;
+  white-space: pre;
   overflow: auto; }
 
 blockquote {

@@ -127,12 +127,13 @@ figcaption {
 
 
 pre {
-  width: 100%;
+  display: block;
   background-color: $ys-bg-color-code;
   padding: 0.5rem;
   font-size: .8em;
   line-height: 1.4;
   word-wrap: normal;
+  white-space: pre;
   overflow: auto;
 }//pre
 
