@@ -132,8 +132,8 @@ add_filter('the_content','ys_extras_iframe_responsive');
 if( ! function_exists( 'ys_extras_more_tag_replace' )){
 	function ys_extras_more_tag_replace($the_content) {
 
-		$ad = ys_template_get_the_advertisement_more_tag();
-		$replace = $ad;
+		$replace = ys_template_get_the_advertisement_more_tag();
+		if( is_page() ) $replace = '';
 		$replace = apply_filters('ys_more_tag_replace',$replace);
 
 		if($replace !== ''){

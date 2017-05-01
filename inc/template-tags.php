@@ -1439,6 +1439,12 @@ if( ! function_exists( 'ys_template_the_advertisement_under_content' ) ) {
 				$ad = $ad_right;
 			}
 		}
+
+		// 固定ページでは広告出さない
+		if( is_page() ){
+			$ad = '';
+		}
+
 		return apply_filters('ys_advertisement_under_content',ys_template_get_the_advertisement_format($ad));
 
 	}
