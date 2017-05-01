@@ -29,5 +29,12 @@
 
 		?>
 	</div><!-- .entry-content -->
+	<?php
+		// CTA
+		ys_template_the_entry_foot_cta();
+
+		// 書いた人
+		ys_template_the_biography();
+	 ?>
 
 </article><!-- #post-## -->

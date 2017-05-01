@@ -390,7 +390,7 @@ if (!function_exists( 'ys_template_get_the_biography')) {
 			$avatar = '<figure class="author-avatar"><a class="author-link" href="'.$author_link.'" rel="author">'.$avatar.'</a></figure>';
 		}
 		$class_dscr = $avatar !== '' ? ' show-avatar' : '';
-		$class_wrap = 'author-info clearfix entry-footer-container';
+		$class_wrap = 'author-info clearfix';
 		$id = 'id="biography"';
 		$itemscope = ' itemscope itemtype="http://schema.org/Person" itemprop="author editor creator copyrightHolder"';
 		$itemprop = ' itemprop="description"';
@@ -660,7 +660,7 @@ if( ! function_exists( 'ys_template_get_the_sns_share' ) ) {
 		global $post;
 
 		$html = '';
-		$html .= '<aside id="sns-share" class="sns-share entry-footer-container">';
+		$html .= '<aside id="sns-share" class="sns-share">';
 		$share_buttons_title = '\ みんなとシェアする /';
 		$share_buttons_title = apply_filters('ys_share_buttons_title','<p class="sns-share-title">'.$share_buttons_title.'</p>');
 
@@ -823,7 +823,7 @@ if( ! function_exists( 'ys_template_get_the_subscribe_buttons' ) ) {
 		// HTML組み立て
 		$html = '';
 		if($container){
-			$html .= '<aside id="subscribe" class="subscribe entry-footer-container">';
+			$html .= '<aside id="subscribe" class="subscribe">';
 			$subscribe_title = 'フォローする！';
 			$subscribe_title = apply_filters('ys_get_the_subscribe_buttons_title','<p class="subscribe-title">'.$subscribe_title.'</p>');
 			$html .= $subscribe_title;

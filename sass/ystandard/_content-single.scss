@@ -32,7 +32,8 @@
 
 // シェアボタン
 .sns-share {
-	margin-top: 2rem;
+	margin: 2rem -1*$ys-gutter-sp 0;
+  padding: $ys-gutter-sp;
   background-color: $ys-content-share-bg-color;
 	text-align: center;
 }
@@ -399,6 +400,10 @@
 @include media-breakpoint(pc) {
 
   .entry-footer-container {
+    padding: $ys-gutter;
+  }
+  .sns-share {
+    margin: 2rem -1*$ys-gutter 0;
     padding: $ys-gutter;
   }
 };

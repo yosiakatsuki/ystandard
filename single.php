@@ -8,12 +8,6 @@ get_header(); ?>
 
 			get_template_part( 'template-parts/content', 'single' );
 
-			// CTA
-			ys_template_the_entry_foot_cta();
-
-			// 書いた人
-			ys_template_the_biography();
-
 			// カテゴリー・タグ
 			ys_template_the_taxonomy_list();
 
