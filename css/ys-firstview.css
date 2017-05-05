@@ -191,7 +191,10 @@ body {
   letter-spacing: 0.1em;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility; }
 
 body {
   background-color: #fefefe; }
@@ -293,7 +296,7 @@ img {
   font-size: .8rem; }
 
 .color-site-dscr {
-  color: #b3b3b3; }
+  color: #a3a3a3; }
 
 .site-header-menu {
   position: fixed;
@@ -431,7 +434,7 @@ img {
       .gloval-menu > li a {
         display: inline;
         padding: .5rem 0;
-        color: #b3b3b3;
+        color: #a3a3a3;
         border-bottom: 1px solid transparent;
         -webkit-transition: border 0.3s;
         transition: border 0.3s; }
@@ -444,7 +447,7 @@ img {
         -webkit-transition: opacity 0.3s;
         transition: opacity 0.3s; }
       .gloval-menu > li:hover a {
-        border-bottom: 1px solid #b3b3b3; }
+        border-bottom: 1px solid #a3a3a3; }
       .gloval-menu > li:hover.menu-item-has-children a {
         border-bottom: 1px solid transparent; }
       .gloval-menu > li:hover > ul {
@@ -459,7 +462,7 @@ img {
         .gloval-menu > li:hover > ul a {
           padding: .5rem 0; }
           .gloval-menu > li:hover > ul a:hover {
-            border-bottom: 1px solid #b3b3b3; } }
+            border-bottom: 1px solid #a3a3a3; } }
 
 .breadcrumb {
   margin-top: 1rem; }
@@ -474,12 +477,12 @@ img {
       line-height: 1;
       padding-bottom: .5rem; }
       .breadcrumb ol li a {
-        color: #b3b3b3; }
+        color: #a3a3a3; }
       .breadcrumb ol li::after {
         content: '»';
         display: inline;
         margin: 0 .3rem 0 .3rem;
-        color: #b3b3b3; }
+        color: #a3a3a3; }
 
 @media screen and (min-width: 960px) {
   .breadcrumb {
@@ -520,7 +523,7 @@ img {
 
 .entry-meta {
   font-size: .7rem;
-  color: #b3b3b3; }
+  color: #a3a3a3; }
   .entry-meta:before, .entry-meta:after {
     content: "";
     display: table; }
@@ -529,7 +532,7 @@ img {
   .entry-meta {
     zoom: 1; }
   .entry-meta a {
-    color: #b3b3b3; }
+    color: #a3a3a3; }
 
 .entry-meta-ico {
   height: 1em;
@@ -537,7 +540,7 @@ img {
   padding: 0;
   margin: 0;
   margin-right: .3rem;
-  fill: #b3b3b3;
+  fill: #a3a3a3;
   vertical-align: middle; }
 
 .entry-meta-left {
@@ -658,7 +661,7 @@ img {
 
 .ad-caption {
   font-size: .7rem;
-  color: #b3b3b3; }
+  color: #a3a3a3; }
 
 @media screen and (min-width: 600px) {
   .page-header,
@@ -775,7 +778,7 @@ img {
 .entry-excerpt {
   margin: 1rem 0 .5rem;
   font-size: .7em;
-  color: #b3b3b3; }
+  color: #a3a3a3; }
 
 @media screen and (min-width: 600px) {
   .post-list {
@@ -810,7 +813,7 @@ img {
 .taxonomy-description {
   margin: 1rem 0 0;
   font-size: .8rem;
-  color: #b3b3b3; }
+  color: #a3a3a3; }
   .taxonomy-description p {
     margin: 0 0 .2rem; }
 
@@ -834,21 +837,21 @@ img {
 .search-field {
   width: 100%;
   background: transparent;
-  border: 1px solid #b3b3b3;
+  border: 1px solid #a3a3a3;
   border-radius: 1.1rem;
   background-color: transparent;
-  color: #b3b3b3;
+  color: #a3a3a3;
   padding: .3rem 2rem .3rem 1rem; }
   .search-field:placeholder-shown {
     font-size: .9rem;
     line-height: 1.7;
-    color: #b3b3b3; }
+    color: #a3a3a3; }
   .search-field::-webkit-input-placeholder {
-    color: #b3b3b3; }
+    color: #a3a3a3; }
   .search-field:-ms-input-placeholder {
-    color: #b3b3b3; }
+    color: #a3a3a3; }
   .search-field::-moz-placeholder {
-    color: #b3b3b3; }
+    color: #a3a3a3; }
 
 .search-submit {
   height: 100%;
@@ -857,12 +860,12 @@ img {
   right: 0;
   border: 1px solid transparent;
   background-color: transparent;
-  color: #b3b3b3;
+  color: #a3a3a3;
   box-shadow: none;
   padding: .5rem 1rem .5rem .5rem; }
   .search-submit svg {
     width: 1rem;
-    fill: #b3b3b3; }
+    fill: #a3a3a3; }
 
 #sidebar-fixed {
   width: 100%; }
@@ -872,9 +875,9 @@ img {
   position: relative; }
 
 .sidebar-right a {
-  color: #b3b3b3; }
+  color: #a3a3a3; }
   .sidebar-right a:hover {
-    color: #cdcdcd; }
+    color: #bdbdbd; }
 
 .widget {
   margin: 0 0 3rem;
