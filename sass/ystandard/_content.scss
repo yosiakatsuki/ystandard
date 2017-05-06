@@ -29,6 +29,9 @@
     border: $ys-content-image-border-px solid $ys-content-image-border-color;
     box-sizing: content-box;
   }
+  amp-img {
+    max-width: 100%;
+  }
 }
 
 // 投稿タイトル
