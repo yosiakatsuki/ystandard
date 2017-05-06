@@ -500,6 +500,8 @@ img {
   .post-thumbnail img {
     border: 3px solid #fafafa;
     box-sizing: content-box; }
+  .post-thumbnail amp-img {
+    max-width: 100%; }
 
 .entry-title {
   font-size: 1.2rem;
