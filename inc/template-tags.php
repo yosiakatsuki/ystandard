@@ -894,15 +894,15 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 
 		$html = '<div class="post-navigation entry-footer-container">';
 
-		$home = '<div class="home"><a href="'.esc_url( home_url( '/' ) ).'/">';
+		$home = '<a href="'.esc_url( home_url( '/' ) ).'">';
 		if(ys_is_amp()){
 			$home .= 'HOME';
 		} else {
 			$home .= '<i class="fa fa-home" aria-hidden="true"></i>';
 		}
-		$home .= '</a></div>';
+		$home .= '</a>';
 
-		$html .= '<div class="nav-prev">';
+		$post_navigation_warp = '<div class="nav-prev">';
 		$prevpost = get_previous_post();
 		if ($prevpost) {
 			$prev_info = apply_filters('ys_the_post_paging_prev_info','<span class="prev-label">«前の投稿</span>');
@@ -914,13 +914,14 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 			}
 			$prev_link = '<a href="'.esc_url(get_permalink($prevpost->ID)).'">'.$prev_img.get_the_title($prevpost->ID).'</a>';
 			$prev_link = apply_filters('ys_the_post_paging_prev_link',$prev_link);
-			$html .= $prev_info.$prev_link;
+			$html .= $post_navigation_warp.$prev_info.$prev_link;
 		} else {
-			$html .= $home;
+			$post_navigation_warp = '<div class="nav-prev home">';
+			$html .= $post_navigation_warp.$home;
 		}
 		$html .= '</div>';
 
-		$html .= '<div class="nav-next">';
+		$post_navigation_warp = '<div class="nav-next">';
 		$nextpost = get_next_post();
 		if ($nextpost){
 
@@ -933,9 +934,10 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 			}
 			$next_link = '<a href="'.esc_url(get_permalink($nextpost->ID)).'">'.$next_img.get_the_title($nextpost->ID).'</a>';
 			$next_link = apply_filters('ys_the_post_paging_next_link',$next_link);
-			$html .= $next_info.$next_link;
+			$html .= $post_navigation_warp.$next_info.$next_link;
 		} else {
-			$html .= $home;
+			$post_navigation_warp = '<div class="nav-next home">';
+			$html .= $post_navigation_warp.$home;
 		}
 		$html .= '</div>';
 

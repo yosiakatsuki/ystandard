@@ -812,7 +812,6 @@ div.aligncenter {
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    height: 100%;
     font-size: 3rem; }
     .post-navigation .home a, .post-navigation .home a:hover {
       color: #34495E; }
