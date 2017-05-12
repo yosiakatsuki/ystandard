@@ -11,6 +11,10 @@
 .widget {
 	margin: 0 0 3rem;
   font-size: .9rem;
+	
+	&:last-child {
+		margin: 0;
+	}
 
 	ul,
 	ol {

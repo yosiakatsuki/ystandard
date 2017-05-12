@@ -191,7 +191,6 @@ body {
   letter-spacing: 0.1em;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  word-break: break-all;
   word-wrap: break-word; }
 
 body {
@@ -501,6 +500,8 @@ img {
   .post-thumbnail img {
     border: 3px solid #fafafa;
     box-sizing: content-box; }
+  .post-thumbnail amp-img {
+    max-width: 100%; }
 
 .entry-title {
   font-size: 1.2rem;
@@ -534,7 +535,7 @@ img {
 
 .entry-meta-ico {
   height: 1em;
-  width: auto;
+  width: 1em;
   padding: 0;
   margin: 0;
   margin-right: .3rem;
@@ -880,6 +881,8 @@ img {
 .widget {
   margin: 0 0 3rem;
   font-size: .9rem; }
+  .widget:last-child {
+    margin: 0; }
   .widget ul li,
   .widget ol li {
     margin: 0 0 .2rem; }
