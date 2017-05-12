@@ -156,33 +156,37 @@
     border-radius: $ys-border-radius-default;
   }
 
-  .twitter::before {
-    @include fontawesome("f099",0,auto,0,auto);
-  }
-
-  .facebook::before {
-    @include fontawesome("f09a",0,auto,0,auto);
-  }
-
-  .google-plus::before {
-    @include fontawesome("f0d5",0,auto,0,auto);
-  }
-
-  .feedly::before {
-    @include fontawesome("f09e",0,auto,0,auto);
-  }
-
-  .twitter,
-  .facebook,
-  .google-plus,
-  .feedly {
-    &::before{
-      display: block;
-      font-size: 1.1rem;
-    }
-  }//.twitter,…
-
 }//.subscribe
+
+.no-amp {
+	.subscribe {
+		.twitter::before {
+			@include fontawesome("f099",0,auto,0,auto);
+		}
+
+		.facebook::before {
+			@include fontawesome("f09a",0,auto,0,auto);
+		}
+
+		.google-plus::before {
+			@include fontawesome("f0d5",0,auto,0,auto);
+		}
+
+		.feedly::before {
+			@include fontawesome("f09e",0,auto,0,auto);
+		}
+		
+		.twitter,
+		.facebook,
+		.google-plus,
+		.feedly {
+			&::before{
+				display: block;
+				font-size: 1.1rem;
+			}
+		}//.twitter,…
+	}
+}//.no-amp
 
 
 .entry-category-list,

@@ -648,52 +648,57 @@ div.aligncenter {
     display: block;
     padding: .5rem;
     border-radius: 4px; }
-  .subscribe .twitter::before {
-    content: "\f099";
-    width: 1.28571429em;
-    display: inline-block;
-    margin: 0 auto 0 auto;
-    font-family: FontAwesome;
-    text-align: center;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; }
-  .subscribe .facebook::before {
-    content: "\f09a";
-    width: 1.28571429em;
-    display: inline-block;
-    margin: 0 auto 0 auto;
-    font-family: FontAwesome;
-    text-align: center;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; }
-  .subscribe .google-plus::before {
-    content: "\f0d5";
-    width: 1.28571429em;
-    display: inline-block;
-    margin: 0 auto 0 auto;
-    font-family: FontAwesome;
-    text-align: center;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; }
-  .subscribe .feedly::before {
-    content: "\f09e";
-    width: 1.28571429em;
-    display: inline-block;
-    margin: 0 auto 0 auto;
-    font-family: FontAwesome;
-    text-align: center;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; }
-  .subscribe .twitter::before,
-  .subscribe .facebook::before,
-  .subscribe .google-plus::before,
-  .subscribe .feedly::before {
-    display: block;
-    font-size: 1.1rem; }
+
+.no-amp .subscribe .twitter::before {
+  content: "\f099";
+  width: 1.28571429em;
+  display: inline-block;
+  margin: 0 auto 0 auto;
+  font-family: FontAwesome;
+  text-align: center;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.no-amp .subscribe .facebook::before {
+  content: "\f09a";
+  width: 1.28571429em;
+  display: inline-block;
+  margin: 0 auto 0 auto;
+  font-family: FontAwesome;
+  text-align: center;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.no-amp .subscribe .google-plus::before {
+  content: "\f0d5";
+  width: 1.28571429em;
+  display: inline-block;
+  margin: 0 auto 0 auto;
+  font-family: FontAwesome;
+  text-align: center;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.no-amp .subscribe .feedly::before {
+  content: "\f09e";
+  width: 1.28571429em;
+  display: inline-block;
+  margin: 0 auto 0 auto;
+  font-family: FontAwesome;
+  text-align: center;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.no-amp .subscribe .twitter::before,
+.no-amp .subscribe .facebook::before,
+.no-amp .subscribe .google-plus::before,
+.no-amp .subscribe .feedly::before {
+  display: block;
+  font-size: 1.1rem; }
 
 .entry-category-list h2,
 .entry-tag-list h2 {
