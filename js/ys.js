@@ -155,6 +155,8 @@ function ys_fixed_sidebar(d) {
       ,sidebartop = siderect.top + window.pageYOffset
       ,scroll = ys_get_scroll(d)
       ,fixmargin = 20;
+  // サイドバー高さ同期（safari対策）
+  d.getElementById('sidebar-wrapper').style.height = d.getElementById('secondary').offsetHeight + 'px';
   if(scroll + elmfixside.offsetHeight + fixmargin > sidebartop + elmsidebar.offsetHeight ) {
     // absolute　下部固定
     ys_set_styles_fixed_sidebar(elmfixside,'absolute',0);

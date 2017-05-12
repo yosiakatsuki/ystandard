@@ -881,6 +881,8 @@ img {
 .widget {
   margin: 0 0 3rem;
   font-size: .9rem; }
+  .widget:last-child {
+    margin: 0; }
   .widget ul li,
   .widget ol li {
     margin: 0 0 .2rem; }

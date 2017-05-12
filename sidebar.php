@@ -9,7 +9,7 @@
 ?>
 <aside id="secondary" class="sidebar sidebar-right widget-area" <?php ys_template_the_sidebar_attr(); ?>>
 	<?php if ( is_active_sidebar( 'sidebar-right' ) || is_active_sidebar( 'sidebar-fixed' ) ) : ?>
-		<div class="sidebar-wrapper">
+		<div id="sidebar-wrapper" class="sidebar-wrapper">
 			<?php if ( is_active_sidebar( 'sidebar-right' ) ): ?>
 				<div id="sidebar-right" class="clearfix">
 					<?php dynamic_sidebar( 'sidebar-right' ); ?>
