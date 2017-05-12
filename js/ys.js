@@ -134,6 +134,7 @@ function ys_fixed_sidebar(d) {
   }
   // サイドバーが下に落ちてないか確認
   if(elmprimary.offsetLeft + elmprimary.offsetWidth > elmsidebar.offsetLeft) {
+    d.getElementById('sidebar-wrapper').style.height = 'auto';
     ys_set_styles_fixed_sidebar(elmfixside,'reset',0)
     return;
   }
