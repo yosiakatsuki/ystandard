@@ -11,10 +11,6 @@
 .widget {
 	margin: 0 0 3rem;
   font-size: .9rem;
-	
-	&:last-child {
-		margin: 0;
-	}
 
 	ul,
 	ol {
@@ -119,6 +115,15 @@
     overflow: hidden;
   }
 }//.ys-ranking-list
+
+#sidebar-fixed {
+	.widget {
+		&:last-child {
+			margin: 0;
+		}
+	}
+}
+
 
 .widget-entry-footer {
   padding: $ys-gutter-sp;
