@@ -625,8 +625,10 @@ img {
 
 .entry-content figure,
 .entry-content img,
+.entry-content amp-img,
 .comment-text figure,
-.comment-text img {
+.comment-text img,
+.comment-text amp-img {
   max-width: 100%;
   margin-bottom: .5rem; }
 
