@@ -625,8 +625,10 @@ img {
 
 .entry-content figure,
 .entry-content img,
+.entry-content amp-img,
 .comment-text figure,
-.comment-text img {
+.comment-text img,
+.comment-text amp-img {
   max-width: 100%;
   margin-bottom: .5rem; }
 
@@ -881,8 +883,6 @@ img {
 .widget {
   margin: 0 0 3rem;
   font-size: .9rem; }
-  .widget:last-child {
-    margin: 0; }
   .widget ul li,
   .widget ol li {
     margin: 0 0 .2rem; }
@@ -953,6 +953,9 @@ img {
     margin-right: .5rem; }
   .ys-ranking-list p {
     overflow: hidden; }
+
+#sidebar-fixed .widget:last-child {
+  margin: 0; }
 
 .widget-entry-footer {
   padding: 1rem; }
