@@ -42,29 +42,5 @@
 		</div>
 	</div>
 
-	<div class="postbox">
-		<h2>yStandard情報</h2>
-		<div class="inside">
-			<table class="form-table">
-				<?php
-
-				?>
-				<tr valign="top">
-					<th scope="row">バージョン情報</th>
-					<td>
-						<?php
-							$theme = wp_get_theme(get_template());
-							echo '<div><span style="display:inline-block;width:70px;">yStandard</span>：'.$theme->Version.'</div>';
-							if(get_template() != get_stylesheet()){
-								$theme_child = wp_get_theme();
-								echo '<div><span style="display:inline-block;width:70px;">子テーマ</span>：'.$theme_child->Version.'</div>';
-							}
-						?>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-
 </div><!-- /#poststuff -->
 </div><!-- /.warp -->

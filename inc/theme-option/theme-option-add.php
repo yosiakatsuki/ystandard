@@ -1,13 +1,13 @@
 <?php
-//------------------------------------------------------------------------------
-//
-//	管理画面メニュー追加
-//
-//------------------------------------------------------------------------------
+/**
+ *
+ *	管理画面メニュー追加
+ *
+ */
 
-//-----------------------------------------------
-//	メニュー追加
-//-----------------------------------------------
+/**
+ *	メニュー追加
+ */
 function ys_add_admin_menu() {
 
 	$theme_name = get_template();
@@ -54,11 +54,21 @@ function ys_add_admin_menu() {
 	// AMP設定ページ追加
 	add_submenu_page(
 		'ys_settings_start',
-		'AMP設定(β版)',
-		'AMP設定(β版)',
+		'AMP設定',
+		'AMP設定',
 		'manage_options',
 		'ys_amp_settings',
 		'load_ys_amp_settings'
+	);
+
+	// 便利ツール
+	add_submenu_page(
+		'ys_settings_start',
+		'便利ツール',
+		'便利ツール',
+		'manage_options',
+		'ys_tools',
+		'load_ys_tools'
 	);
 
 }
@@ -66,9 +76,9 @@ add_action( 'admin_menu', 'ys_add_admin_menu' );
 
 
 
-//-----------------------------------------------
-//	設定項目定義
-//-----------------------------------------------
+/**
+ *	設定項目定義
+ */
 function ys_register_settings() {
 	// 基本設定
 	// 基本設定 > Copyright
@@ -152,40 +162,47 @@ function ys_register_settings() {
 add_action( 'admin_init', 'ys_register_settings' );
 
 
-//-----------------------------------------------
-//	スタートページ呼び出し
-//-----------------------------------------------
+/**
+ *	スタートページ呼び出し
+ */
 function load_ys_settings_start() {
 	include TEMPLATEPATH . '/inc/theme-option/ys-setting-start.php';
 }
 
-//-----------------------------------------------
-//	簡単設定呼び出し
-//-----------------------------------------------
+/**
+ *	簡単設定呼び出し
+ */
 function load_ys_collective_settings() {
 	include TEMPLATEPATH . '/inc/theme-option/collective-settings.php';
 }
 
-//-----------------------------------------------
-//	基本設定呼び出し
-//-----------------------------------------------
+/**
+ *	基本設定呼び出し
+ */
 function load_ys_main_settings() {
 	include TEMPLATEPATH . '/inc/theme-option/main-settings.php';
 }
 
-//-----------------------------------------------
-//	高度な設定呼び出し
-//-----------------------------------------------
+/**
+ *	高度な設定呼び出し
+ */
 function load_ys_advanced_settings() {
 	include TEMPLATEPATH . '/inc/theme-option/advanced-settings.php';
 }
 
 
-//-----------------------------------------------
-//	AMPメニュー呼び出し
-//-----------------------------------------------
+/**
+ *	AMPメニュー呼び出し
+ */
 function load_ys_amp_settings() {
 	include TEMPLATEPATH . '/inc/theme-option/amp-settings.php';
+}
+
+/**
+ *	便利ツール呼び出し
+ */
+function load_ys_tools() {
+	include TEMPLATEPATH . '/inc/theme-option/ys-tools.php';
 }
 
 ?>
