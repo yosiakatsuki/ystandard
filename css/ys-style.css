@@ -446,7 +446,7 @@ a.ys-button-origin {
 
 .ys-button a,
 a.ys-button {
-  border-color: #a3a3a3;
+  border-color: #939393;
   background-color: #fff;
   color: #34495E; }
   .ys-button a:hover,
@@ -522,7 +522,7 @@ div.aligncenter {
   border-radius: 4px;
   font-size: .8rem;
   text-align: left;
-  color: #a3a3a3; }
+  color: #939393; }
 
 .normal-view-link {
   display: block;
@@ -713,12 +713,12 @@ div.aligncenter {
   border: 1px solid #bdc3c7;
   border-radius: 4px;
   font-size: .8rem;
-  color: #a3a3a3;
+  color: #939393;
   -webkit-transition: color .3s;
   transition: color .3s; }
   .entry-category-list a:hover,
   .entry-tag-list a:hover {
-    color: #c5c5c5; }
+    color: #b5b5b5; }
 
 .entry-tag-list {
   margin-top: 1rem; }
@@ -780,7 +780,7 @@ div.aligncenter {
   .post-navigation .next-label,
   .post-navigation .prev-label {
     display: block;
-    color: #a3a3a3; }
+    color: #939393; }
   .post-navigation .nav-prev,
   .post-navigation .nav-next {
     margin: 0 0 .5rem;
@@ -1142,7 +1142,7 @@ sub {
   font-size: .6rem; }
   .comment-meta a {
     font-weight: normal;
-    color: #a3a3a3; }
+    color: #939393; }
 
 .reply {
   text-align: right; }
@@ -1152,7 +1152,7 @@ sub {
   font-size: .8rem; }
   .comment-navigation h2 {
     margin: 0 0 .5rem;
-    color: #a3a3a3; }
+    color: #939393; }
   .comment-navigation .nav-links:before, .comment-navigation .nav-links:after {
     content: "";
     display: table; }
