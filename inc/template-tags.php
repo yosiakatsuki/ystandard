@@ -697,8 +697,8 @@ if( ! function_exists( 'ys_template_get_the_sns_share_buttons' ) ) {
 	function ys_template_get_the_sns_share_buttons(){
 
 		$share_buttons = '';
-		$share_url = urlencode(get_permalink());
-		$share_title = urlencode(wp_get_document_title());
+		$share_url = urlencode( get_permalink() );
+		$share_title = urlencode( str_replace( ' &#8211; ', ' - ', wp_get_document_title() ) );
 
 		$share_buttons .= '<ul class="sns-share-button">';
 
