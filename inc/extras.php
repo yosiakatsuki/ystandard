@@ -23,6 +23,12 @@ if (!function_exists( 'ys_extras_body_classes')) {
 			$classes[] = 'no-amp';
 		}
 
+		// 1カラムの場合
+		if( is_page_template( 'template-one-column.php' )
+			|| ( !is_active_sidebar( 'sidebar-right' ) && !is_active_sidebar( 'sidebar-fixed' ) ) ) {
+			$classes[] = 'ys-one-column';
+		}
+
 		return $classes;
 	}
 }

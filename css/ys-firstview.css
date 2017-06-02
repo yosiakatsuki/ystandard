@@ -264,6 +264,8 @@ img {
     margin-left: 0;
     margin-bottom: 0;
     border: 1px solid #ecf0f1; }
+  .ys-one-column .content-area {
+    width: 100%; }
   .sidebar {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 352px;

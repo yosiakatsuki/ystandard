@@ -67,6 +67,10 @@
     border: $ys-grid-pc-border-px solid $ys-grid-pc-border-color;
   }
 
+  .ys-one-column .content-area {
+    width: 100%;
+  }
+
   .sidebar {
     flex: 0 0 $ys-sidebar-width;
     padding: 0 $ys-gutter;
