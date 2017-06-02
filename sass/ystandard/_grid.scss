@@ -27,6 +27,11 @@
   background-color: $ys-bg-color-content;
   overflow: hidden;
 }
+.ys-one-column {
+  .content-area {
+    overflow: inherit;
+  }
+}
 .sidebar {
   padding: $ys-gutter-sp 0;
   overflow: hidden;
@@ -66,13 +71,16 @@
     margin-bottom: 0;
     border: $ys-grid-pc-border-px solid $ys-grid-pc-border-color;
   }
-
-  .ys-one-column .content-area {
-    width: 100%;
-  }
-
   .sidebar {
     flex: 0 0 $ys-sidebar-width;
     padding: 0 $ys-gutter;
   }
+
+  .ys-one-column {
+    .content-area {
+      width: 100%;
+    }
+  }
+
+
 };

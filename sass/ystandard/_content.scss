@@ -18,8 +18,6 @@
   padding: $ys-gutter-sp;
 }
 
-
-
 // アイキャッチ
 .post-thumbnail {
 	text-align: center;
@@ -33,6 +31,7 @@
     max-width: 100%;
   }
 }
+
 
 // 投稿タイトル
 .entry-title {
@@ -201,6 +200,77 @@
 }
 
 
+// ワンカラム
+.ys-one-column {
+
+  .entry-header {
+    position: relative;
+    padding: 10% 1rem;
+    margin-top: -1rem;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    overflow-y: hidden;
+
+    &:before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      background-color: rgba(#000,.6);
+      z-index: 2;
+    }
+
+    .entry-title,
+    .entry-date-container {
+      position: relative;
+      max-width: $ys-wrap-width-1col;
+      margin-left: auto;
+      margin-right: auto;
+      color: #fff;
+      font-weight: bold;
+      z-index: 3;
+    }
+    .entry-meta-ico {
+      fill:#fff;
+    }
+
+    .post-thumbnail {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+      z-index: 1;
+      overflow-x: hidden;
+
+      img {
+        width: 120%;
+        max-width: none;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        bottom: 0;
+        right: 0;
+        margin:auto;
+        transform: translateX(-50%);
+        border: none;
+      }
+    }//.post-thumbnail
+
+  }//.entry-header
+
+  .entry-content {
+    max-width: $ys-wrap-width-1col;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}//.ys-one-column
+
+
 //--------------------------------------
 // タブレット
 //--------------------------------------
@@ -212,6 +282,7 @@
   .site-main > article {
     padding: $ys-gutter-sp;
   }
+
   .entry-content {
     font-size: 1.1rem;
   }
@@ -247,5 +318,14 @@
   .entry-container > .post-list,
   .site-main > article {
     padding: $ys-gutter;
+  }
+
+  // ワンカラム
+  .ys-one-column {
+
+    .entry-header {
+      margin-top: -2rem;
+      padding: 15% 1rem;
+    }
   }
 };

@@ -24,8 +24,7 @@ if (!function_exists( 'ys_extras_body_classes')) {
 		}
 
 		// 1カラムの場合
-		if( is_page_template( 'template-one-column.php' )
-			|| ( !is_active_sidebar( 'sidebar-right' ) && !is_active_sidebar( 'sidebar-fixed' ) ) ) {
+		if( ys_is_one_column() ) {
 			$classes[] = 'ys-one-column';
 		}
 

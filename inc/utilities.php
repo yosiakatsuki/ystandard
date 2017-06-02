@@ -128,6 +128,25 @@ if( ! function_exists( 'ys_is_ogp_enable' ) ) {
 	}
 }
 
+/**
+ *	ワンカラムテンプレートか
+ */
+if( ! function_exists( 'ys_is_one_column' ) ) {
+	function ys_is_one_column(){
+
+		$one_colmun = false;
+
+		if( is_page_template( 'template-one-column.php' ) ) {
+			$one_colmun = true;
+		}
+		if ( !is_active_sidebar( 'sidebar-right' ) && !is_active_sidebar( 'sidebar-fixed' ) ) {
+			$one_colmun = true;
+		}
+
+		return apply_filters( 'ys_is_one_column', $one_colmun );
+	}
+}
+
 
 
 
