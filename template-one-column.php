@@ -2,7 +2,7 @@
 /**
  * Template Name:1カラム
  * Template Post Type:post,page
- * ワンカラムテンプレート
+ * Description:ワンカラムテンプレート
  */
 get_header(); ?>
 
