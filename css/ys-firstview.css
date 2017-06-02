@@ -727,14 +727,18 @@ img {
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
-  align-items: center;
+  align-items: center; }
+
+.post-list-thumbnail-wrap {
+  width: 100%;
+  height: 100%;
   position: relative;
   overflow: hidden; }
-  .post-list-thumbnail-center:before {
+  .post-list-thumbnail-wrap:before {
     content: "";
     display: block;
     padding-top: 61%; }
-  .post-list-thumbnail-center img {
+  .post-list-thumbnail-wrap img {
     position: absolute;
     top: 0;
     right: 0;

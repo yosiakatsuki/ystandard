@@ -3,7 +3,9 @@
 
 <div class="post-thumbnail-container">
 	<figure class="post-thumbnail post-list-thumbnail-center" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
-		<?php ys_template_the_post_thumbnail('yslistthumb',array(250,150)); ?>
+		<div class="post-list-thumbnail-wrap">
+			<?php ys_template_the_post_thumbnail('yslistthumb',array(250,150)); ?>
+		</div>
 	</figure><!-- .post-thumbnail -->
 	<div class="entry-more">
 		<p class="entry-more-text"><?php ys_template_the_entry_more_text(); ?></p>
