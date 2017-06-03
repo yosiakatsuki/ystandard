@@ -30,6 +30,7 @@ if (!function_exists( 'ys_settings')) {
 	// 基本設定 > シェアボタン設定
 		$ys_sns_share_tweet_via = get_option('ys_sns_share_tweet_via',0);
 		$ys_sns_share_tweet_via_account = esc_attr( get_option('ys_sns_share_tweet_via_account','') );
+		$ys_sns_share_tweet_related_account = esc_attr( get_option('ys_sns_share_tweet_related_account','') );
 	// 基本設定 > OGP設定
 		$ys_ogp_fb_app_id = esc_attr( get_option('ys_ogp_fb_app_id','') );
 		$ys_ogp_fb_admins = esc_attr( get_option('ys_ogp_fb_admins','') );
@@ -109,6 +110,7 @@ if (!function_exists( 'ys_settings')) {
 
 										'ys_sns_share_tweet_via' => $ys_sns_share_tweet_via,	//Tweetポタンに via を出力するか
 										'ys_sns_share_tweet_via_account' => $ys_sns_share_tweet_via_account,	//Twitter via アカウント
+										'ys_sns_share_tweet_related_account' => $ys_sns_share_tweet_related_account,	//Twitter related アカウント
 
 										'ys_ogp_fb_app_id' => $ys_ogp_fb_app_id,	//Facebook app id
 										'ys_ogp_fb_admins' => $ys_ogp_fb_admins,	//facebook admins

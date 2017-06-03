@@ -113,11 +113,11 @@
 	</div>
 
 	<div class="postbox">
-		<h2>シェアボタン設定</h2>
+		<h2>Twitterシェアボタン設定</h2>
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
-					<th scope="row">Twitterシェアボタン設定</th>
+					<th scope="row">投稿ユーザー（via）の設定</th>
 					<td>
 						<fieldset>
 							<label for="ys_sns_share_tweet_via">
@@ -127,6 +127,15 @@
 						</fieldset>
 					</td>
 				</tr>
+				<tr valign="top">
+					<th scope="row">おすすめアカウントの設定</th>
+					<td>
+						ツイート後に表示するおすすめアカウント<input type="text" name="ys_sns_share_tweet_related_account" id="ys_sns_share_tweet_related_account" value="<?php echo esc_attr( get_option('ys_sns_share_tweet_related_account') ); ?>" placeholder="" style="min-width:300px;"/><br />
+						※@を除いたアカウント名を入力して下さい。<br />
+						※複数のアカウントをおすすめ表示する場合はカンマで区切って下さい。<br />
+						※空白の場合おすすめアカウントは表示されません。
+					</td>
+			</tr>
 			</table>
 			<?php submit_button(); ?>
 

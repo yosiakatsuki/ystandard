@@ -89,6 +89,7 @@ function ys_register_settings() {
 	// 基本設定 > シェアボタン設定
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via','ys_utilities_sanitize_checkbox' );
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via_account' );
+	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_related_account' );
 	// 基本設定 > OGP設定
 	register_setting( 'ys_main_settings', 'ys_ogp_fb_app_id' );
 	register_setting( 'ys_main_settings', 'ys_ogp_fb_admins' );
