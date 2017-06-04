@@ -160,9 +160,12 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
   - 発行年（Copyright）
 - アクセス解析設定
   - Google Analytics トラッキングID
-- シェアボタン設定
-  - Twitterシェアにviaを付加する（要Twitterアカウント名設定）
-  - Twitterアカウント名
+- Twitterシェアボタン設定
+  - 投稿ユーザー（via）の設定
+    - Twitterシェアにviaを付加する（要Twitterアカウント名設定）
+    - Twitterアカウント名
+  - おすすめアカウントの設定
+    - ツイート後に表示するおすすめアカウント
 - 購読ボタン設定
   - Twitter
   - Facebookページ
@@ -261,11 +264,26 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 - `.ys-box`
 - `.ys-button`
 - `.ys-button-block`
+- `.ys-button-origin`
 - `.ys-text-left`
 - `.ys-text-center`
 - `.ys-text-right`
+- `.ys-small`
+- `.ys-large`
 
 ## 変更履歴
+
+### v0.7.x
+- v0.7.0
+  - 不具合修正
+    - firefoxで一覧の画像が表示されない問題対処
+    - ページングありのページでnext,prevのlinkタグがうまく設定出来ていない点対処
+  - 機能追加
+    - フォントを細く特徴的にする
+    - 現在のテーマバージョン情報を表示する
+    - シェアボタンで使うタイトルからWordPress標準で出力される&#8211;をハイフンに置換する
+    - ツイート後におすすめユーザーを表示するオプションの追加
+    - ワンカラム機能の追加
 
 ### v0.6.x
 - v0.6.2 : 2017/05/15

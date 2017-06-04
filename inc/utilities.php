@@ -128,6 +128,25 @@ if( ! function_exists( 'ys_is_ogp_enable' ) ) {
 	}
 }
 
+/**
+ *	ワンカラムテンプレートか
+ */
+if( ! function_exists( 'ys_is_one_column' ) ) {
+	function ys_is_one_column(){
+
+		$one_colmun = false;
+
+		if( is_page_template( 'template-one-column.php' ) ) {
+			$one_colmun = true;
+		}
+		if ( !is_active_sidebar( 'sidebar-right' ) && !is_active_sidebar( 'sidebar-fixed' ) ) {
+			$one_colmun = true;
+		}
+
+		return apply_filters( 'ys_is_one_column', $one_colmun );
+	}
+}
+
 
 
 
@@ -655,6 +674,31 @@ if (!function_exists( 'ys_utilities_json_encode')) {
 	}
 }
 
+
+
+
+/**
+ *	prev,next用URL取得
+ */
+if ( !function_exists( 'ys_utilities_get_the_link_page' ) ) {
+	function ys_utilities_get_the_link_page( $i ) {
+
+		global $wp_rewrite;
+    $post = get_post();
+
+		if ( 1 == $i ) {
+			$url = get_permalink();
+		} else {
+			if ( '' == get_option('permalink_structure') || in_array($post->post_status, array('draft', 'pending')) )
+				$url = add_query_arg( 'page', $i, get_permalink() );
+			elseif ( 'page' == get_option('show_on_front') && get_option('page_on_front') == $post->ID )
+				$url = trailingslashit(get_permalink()) . user_trailingslashit("$wp_rewrite->pagination_base/" . $i, 'single_paged');
+			else
+				$url = trailingslashit(get_permalink()) . user_trailingslashit($i, 'single_paged');
+		}
+		return $url;
+	}
+}
 
 
 

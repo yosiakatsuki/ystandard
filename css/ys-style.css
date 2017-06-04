@@ -411,6 +411,13 @@
   background-color: #fefefe;
   border: 1px solid #bdc3c7;
   font-size: .9em; }
+  .ys-box:before, .ys-box:after {
+    content: "";
+    display: table; }
+  .ys-box:after {
+    clear: both; }
+  .ys-box {
+    zoom: 1; }
   .ys-box p {
     margin: 0 0 .5em; }
   .ys-box > p:last-child {
@@ -421,6 +428,12 @@
     margin: 0; }
   .ys-box > a[target="_blank"] {
     display: inline; }
+
+.ys-box-img {
+  width: 75px;
+  height: auto;
+  margin: 0 .5rem 0 0;
+  float: left; }
 
 .ys-button a,
 a.ys-button,
@@ -446,7 +459,7 @@ a.ys-button-origin {
 
 .ys-button a,
 a.ys-button {
-  border-color: #b3b3b3;
+  border-color: #939393;
   background-color: #fff;
   color: #34495E; }
   .ys-button a:hover,
@@ -477,6 +490,12 @@ a.ys-button-block {
 
 .ys-text-left {
   text-align: left; }
+
+.ys-small {
+  font-size: .8em; }
+
+.ys-large {
+  font-size: 1.2em; }
 
 .aligncenter,
 div.aligncenter,
@@ -522,7 +541,7 @@ div.aligncenter {
   border-radius: 4px;
   font-size: .8rem;
   text-align: left;
-  color: #b3b3b3; }
+  color: #939393; }
 
 .normal-view-link {
   display: block;
@@ -713,12 +732,12 @@ div.aligncenter {
   border: 1px solid #bdc3c7;
   border-radius: 4px;
   font-size: .8rem;
-  color: #b3b3b3;
+  color: #939393;
   -webkit-transition: color .3s;
   transition: color .3s; }
   .entry-category-list a:hover,
   .entry-tag-list a:hover {
-    color: #d5d5d5; }
+    color: #b5b5b5; }
 
 .entry-tag-list {
   margin-top: 1rem; }
@@ -780,7 +799,7 @@ div.aligncenter {
   .post-navigation .next-label,
   .post-navigation .prev-label {
     display: block;
-    color: #b3b3b3; }
+    color: #939393; }
   .post-navigation .nav-prev,
   .post-navigation .nav-next {
     margin: 0 0 .5rem;
@@ -1142,7 +1161,7 @@ sub {
   font-size: .6rem; }
   .comment-meta a {
     font-weight: normal;
-    color: #b3b3b3; }
+    color: #939393; }
 
 .reply {
   text-align: right; }
@@ -1152,7 +1171,7 @@ sub {
   font-size: .8rem; }
   .comment-navigation h2 {
     margin: 0 0 .5rem;
-    color: #b3b3b3; }
+    color: #939393; }
   .comment-navigation .nav-links:before, .comment-navigation .nav-links:after {
     content: "";
     display: table; }

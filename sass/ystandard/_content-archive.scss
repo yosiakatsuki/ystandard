@@ -41,6 +41,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.post-list-thumbnail-wrap {
+  width: 100%;
   position: relative;
   overflow: hidden;
 
@@ -59,7 +63,6 @@
     margin: auto;
   }
 }
-
 
 // 続き
 .entry-more {

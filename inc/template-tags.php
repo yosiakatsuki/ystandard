@@ -697,21 +697,26 @@ if( ! function_exists( 'ys_template_get_the_sns_share_buttons' ) ) {
 	function ys_template_get_the_sns_share_buttons(){
 
 		$share_buttons = '';
-		$share_url = urlencode(get_permalink());
-		$share_title = urlencode(wp_get_document_title());
+		$share_url = urlencode( get_permalink() );
+		$share_title = urlencode( str_replace( ' &#8211; ', ' - ', wp_get_document_title() ) );
 
 		$share_buttons .= '<ul class="sns-share-button">';
 
 		// Twitter
 		$tweet_via = '';
-		if(ys_get_setting('ys_sns_share_tweet_via') == 1 && ys_get_setting('ys_sns_share_tweet_via_account') != ''){
-			$tweet_via = '&via='.ys_get_setting('ys_sns_share_tweet_via_account');
+		if( 1 == ys_get_setting( 'ys_sns_share_tweet_via' ) && '' != ys_get_setting( 'ys_sns_share_tweet_via_account' ) ){
+			$tweet_via = '&via='.ys_get_setting( 'ys_sns_share_tweet_via_account' );
 		}
-		$twitter_share_text = apply_filters('ys_share_twitter_text',$share_title);
-		$twitter_share_url = apply_filters('ys_share_twitter_url',$share_url);
-		$twitter_button_text = apply_filters('ys_twitter_button_text','Twitter');
+		$tweet_related = '';
+		if( '' != ys_get_setting( 'ys_sns_share_tweet_related_account' ) ){
+			$tweet_related = '&related='.ys_get_setting( 'ys_sns_share_tweet_related_account' );
+		}
 
-		$twitter_share_html = '<li class="twitter bg-twitter"><a href="http://twitter.com/share?text='.$twitter_share_text.'&url='.$twitter_share_url.$tweet_via.'"  target="_blank" rel="nofollow">'.$twitter_button_text.'</a></li>';
+		$twitter_share_text = apply_filters( 'ys_share_twitter_text', $share_title );
+		$twitter_share_url = apply_filters( 'ys_share_twitter_url', $share_url );
+		$twitter_button_text = apply_filters( 'ys_twitter_button_text', 'Twitter' );
+
+		$twitter_share_html = '<li class="twitter bg-twitter"><a href="http://twitter.com/share?text='.$twitter_share_text.'&url='.$twitter_share_url.$tweet_via.$tweet_related.'"  target="_blank" rel="nofollow">'.$twitter_button_text.'</a></li>';
 		$twitter_share_html = apply_filters('ys_the_sns_share_buttons_twitter',$twitter_share_html);
 
 		// Facebook
