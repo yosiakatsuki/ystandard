@@ -330,24 +330,16 @@ if(!function_exists( 'ys_extras_adjacent_posts_rel_link_wp_head')) {
 			//固定ページ・投稿ページ
 			global $post,$page;
 			$pagecnt = substr_count($post->post_content,'<!--nextpage-->') + 1;
+
 			if ($pagecnt > 1){
 				//prev
 				if($page > 1) {
-						if($page == 2){
-							//2ページ目なら/nなしのリンク
-							echo '<link rel="prev" href="'.get_the_permalink().'" />'.PHP_EOL;
-						} else {
-							echo '<link rel="prev" href="'.get_the_permalink().($page - 1).'" />'.PHP_EOL;
-						}
+					echo '<link rel="prev" href="'.ys_utilities_get_the_link_page( $page - 1 ).'" />'.PHP_EOL;
 				}
 				//next
 				if($page < $pagecnt) {
-					if($page == 0){
-						//1ページ目なら/2
-						echo '<link rel="next" href="'.get_the_permalink().'2" />'.PHP_EOL;
-					} else {
-						echo '<link rel="next" href="'.get_the_permalink().($page + 1).'" />'.PHP_EOL;
-					}
+					$page = 0 == $page ? 1 : $page;
+					echo '<link rel="next" href="'.ys_utilities_get_the_link_page( $page + 1 ).'" />'.PHP_EOL;
 				}
 			}
 		} else {
