@@ -13,9 +13,6 @@
 		<h2>yStandard情報</h2>
 		<div class="inside">
 			<table class="form-table">
-				<?php
-
-				?>
 				<tr valign="top">
 					<th scope="row">バージョン情報</th>
 					<td>

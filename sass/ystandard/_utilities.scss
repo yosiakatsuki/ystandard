@@ -69,6 +69,7 @@
 	background-color: $ys-bg-color-body;
 	border: 1px solid $ys-border-color-gray;
   font-size: .9em;
+  @include clearfix;
 
   p {
     margin: 0 0 .5em;
@@ -91,7 +92,12 @@
     display: inline;
   }
 }
-
+.ys-box-img {
+  width: 75px;
+  height: auto;
+  margin:0 .5rem 0 0;
+  float: left;
+}//ysShareImg
 
 .ys-button a,
 a.ys-button,

@@ -411,6 +411,13 @@
   background-color: #fefefe;
   border: 1px solid #bdc3c7;
   font-size: .9em; }
+  .ys-box:before, .ys-box:after {
+    content: "";
+    display: table; }
+  .ys-box:after {
+    clear: both; }
+  .ys-box {
+    zoom: 1; }
   .ys-box p {
     margin: 0 0 .5em; }
   .ys-box > p:last-child {
@@ -421,6 +428,12 @@
     margin: 0; }
   .ys-box > a[target="_blank"] {
     display: inline; }
+
+.ys-box-img {
+  width: 75px;
+  height: auto;
+  margin: 0 .5rem 0 0;
+  float: left; }
 
 .ys-button a,
 a.ys-button,
