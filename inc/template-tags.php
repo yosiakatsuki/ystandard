@@ -900,11 +900,7 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 		$html = '<div class="post-navigation entry-footer-container">';
 
 		$home = '<a href="'.esc_url( home_url( '/' ) ).'">';
-		if(ys_is_amp()){
-			$home .= 'HOME';
-		} else {
-			$home .= '<i class="fa fa-home" aria-hidden="true"></i>';
-		}
+		$home .= '<i class="fa fa-home" aria-hidden="true"></i>';
 		$home .= '</a>';
 
 		$post_navigation_warp = '<div class="nav-prev">';
@@ -1034,8 +1030,8 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 			$html .= $sns_follow_links;
 			$html .= '</ul></div>';
 
+			echo $html;
 			if ( !ys_is_amp() ) {
-				echo $html;
 			} else {
 				$html = '';
 				echo apply_filters('ys_follow_sns_list_amp',$html);
@@ -1352,7 +1348,7 @@ if( ! function_exists( 'ys_template_get_the_advertisement_format' ) ) {
 	function ys_template_get_the_advertisement_format($ad) {
 
 		$html = '';
-		if($ad !== '' && !is_feed()){
+		if( ( '' !== $ad && !is_feed() ) || ( '' !== $ad && ys_is_amp() ) ){
 			$html = '<aside class="ad-container"><div class="ad-caption">スポンサーリンク</div><div class="ad-content">';
 			$html .= $ad;
 			$html .= '</div></aside>';
