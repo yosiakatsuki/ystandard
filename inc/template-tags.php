@@ -524,10 +524,6 @@ if (!function_exists( 'ys_template_the_entry_author')) {
 if (!function_exists( 'ys_template_get_the_author_sns')) {
 	function ys_template_get_the_author_sns($user_id = false) {
 
-		if(ys_is_amp()) {
-			return;
-		}
-
 		$sns_list ='';
 
 		// キーがmeta key,valueがfontawesomeのクラス
@@ -1030,10 +1026,9 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 			$html .= $sns_follow_links;
 			$html .= '</ul></div>';
 
-			echo $html;
 			if ( !ys_is_amp() ) {
+				echo apply_filters('ys_follow_sns_list',$html);
 			} else {
-				$html = '';
 				echo apply_filters('ys_follow_sns_list_amp',$html);
 			}
 		}
