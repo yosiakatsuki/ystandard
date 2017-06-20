@@ -18,6 +18,8 @@ if(!function_exists( 'ys_breadcrumb')) {
 			return;
 		}
 
+		do_action( 'ys_breadcrumb_prepend' );
+
 		// カテゴリー取得
 		$catlist = ys_utilities_get_cat_id_list(true);
 		?>
@@ -42,6 +44,7 @@ if(!function_exists( 'ys_breadcrumb')) {
 			</ol>
 		</nav>
 		<?php
+		do_action( 'ys_breadcrumb_append' );
 	}
 }
 
