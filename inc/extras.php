@@ -566,12 +566,12 @@ if(!function_exists( 'ys_extras_add_amphtml')) {
 	function ys_extras_add_amphtml(){
 
 		if(is_single() && ys_is_amp_enable()){
-			echo '<link rel="amphtml" href="'. get_the_permalink().'?amp=1">';
+			$query_str = false === strpos( get_the_permalink(), '?' ) ? '?' : '&' ;
+			echo '<link rel="amphtml" href="'. get_the_permalink().$query_str.'amp=1">';
 		}
 	}
 }
 add_action( 'wp_head', 'ys_extras_add_amphtml' );
-
 
 
 
