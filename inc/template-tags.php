@@ -1341,15 +1341,20 @@ if (!function_exists( 'ys_template_the_user_avatar')) {
 //
 //------------------------------------------------------------------------------
 
-//-----------------------------------------------
-//	広告出力フォーマット
-//-----------------------------------------------
+/**
+ *	広告出力フォーマット
+ */
 if( ! function_exists( 'ys_template_get_the_advertisement_format' ) ) {
-	function ys_template_get_the_advertisement_format($ad) {
+	function ys_template_get_the_advertisement_format( $ad, $caption = true ) {
 
 		$html = '';
+
+		$caption_text = apply_filters( 'ys_advertisement_caption_text', 'スポンサーリンク' );
+		$caption_html = $caption ? '<div class="ad-caption">'.$caption_text.'</div>' : '';
+		$caption_html = apply_filters( 'ys_advertisement_caption_html', $caption_html );
+
 		if( ( '' !== $ad && !is_feed() ) || ( '' !== $ad && ys_is_amp() ) ){
-			$html = '<aside class="ad-container"><div class="ad-caption">スポンサーリンク</div><div class="ad-content">';
+			$html = '<aside class="ad-container">'.$caption_html.'<div class="ad-content">';
 			$html .= $ad;
 			$html .= '</div></aside>';
 		}
