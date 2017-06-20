@@ -14,11 +14,14 @@
 if(!function_exists( 'ys_breadcrumb')) {
 	function ys_breadcrumb(){
 
+		do_action( 'ys_breadcrumb_prepend' );
+
 		if(!have_posts() || (!is_single() && !is_category()) ){
+			
+			do_action( 'ys_breadcrumb_append' );
 			return;
 		}
 
-		do_action( 'ys_breadcrumb_prepend' );
 
 		// カテゴリー取得
 		$catlist = ys_utilities_get_cat_id_list(true);
