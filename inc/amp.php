@@ -128,6 +128,9 @@ if(!function_exists( 'ys_amp_convert_amp')) {
 
 		if(ys_is_amp()) {
 
+			// 先に置換したい場合
+			$content = apply_filters( 'ys_convert_amp_before', $content );
+
 			// HTMLタグなどの置換
 			$content = ys_amp_replace_tag($content);
 			// sns埋め込みの置換
