@@ -229,55 +229,41 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 
 		// Twitter　>>>>
 		$pattern = '/<p>https:\/\/twitter\.com\/.+?\/status\/(.+?)".+?<\/p>/i';
-		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		$pattern = '/<blockquote class="twitter-tweet".*?>.+?<a href="https:\/\/twitter\.com\/.*?\/status\/(.*?)">.+?<\/blockquote>/is';
-		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// scriptの処理
 		// scriptにwpautopが効くパターン
 		$pattern = '/<p><script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script><\/p>/is';
-		$append = '';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// scriptにwpautopが効かなかったパターン
 		$pattern = '/<script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script>/is';
-		$append = '';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		// <<<< Twitter
 
 		// Instagram >>>>
 		// blockquoteのみパターン
 		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www\.instagram\.com\/p\/(.+?)\/".+?<\/blockquote>/is';
-		$append = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// scriptにwpautopが効くパターン
 
 		$pattern = '/<p><script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script><\/p>/is';
-		$append = '';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// scriptにwpautopが効かなかったパターン
 		$pattern = '/<script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script>/is';
-		$append = '';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		// <<<< Instagram
 
 		// YouTube
@@ -293,10 +279,8 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 
 		// vine
 		$pattern = '/<iframe[^>]+?src="https:\/\/vine\.co\/v\/(.+?)\/embed\/simple".+?><\/iframe>/is';
-		$append = '<amp-vine data-vineid="$1" width="600" height="600" layout="responsive"></amp-vine>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '<amp-vine data-vineid="$1" width="600" height="600" layout="responsive"></amp-vine>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// Facebook post
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/post\.php\?href=(.*?)&.+?".+?><\/iframe>/is';
@@ -326,6 +310,16 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 }
 
 
+/**
+ *	AMP用正規表現置換処理関数
+ */
+function ys_amp_preg_replace( $pattern, $replacement, $content ) {
+
+	if( 1 === preg_match( $pattern, $content, $matches ) ){
+		$content = preg_replace( $pattern, $replacement, $content );
+	}
+	return $content;
+}
 
 
 // ----------------------------------------------
