@@ -20,13 +20,13 @@ $ys-sidebar-width                      : 352px !default;
 
 // *色
 // フォント
-$ys-font-color                         : #34495E !default;
+$ys-font-color                         : #555 !default;
 $ys-font-color-gray                    : #939393 !default;
 $ys-font-color-input                   : $ys-font-color !default;
 $ys-font-color-button                  : #fff !default;
 
 // 背景
-$ys-bg-color-body                      : #fefefe !default;	//背景
+$ys-bg-color-body                      : #fff !default;	//背景
 $ys-bg-color-gray                      : #fafafa !default;
 $ys-bg-color-content                   : #fff !default;
 $ys-bg-color-input                     : #fff !default;
@@ -45,8 +45,8 @@ $ys-border-color-select                : $ys-border-color-gray !default;
 // *フォント
 $ys-font-size                          : 16px !default;
 $ys-line-height                        : 1.5 !default;
-$ys-font-family                        : Avenir,"Helvetica neue",Helvetica,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
-$ys-font-family-code                   : Consolas, Monaco, monospace,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo;
+$ys-font-family                        : -apple-system, 'BlinkMacSystemFont', '.SFNSDisplay-Regular',Avenir,"Helvetica neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","游ゴシック",YuGothic,"Meiryo UI",メイリオ,Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
+$ys-font-family-code                   : Consolas, Monaco,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","游ゴシック",YuGothic,"Meiryo UI",メイリオ,Meiryo,monospace !default;
 $ys-letter-spacing                     : 0.1em !default;
 
 // *リンク関連
@@ -67,7 +67,7 @@ $ys-border-radius-default              : 4px !default;
 $ys-header-bg-color                    : $ys-bg-color-gray !default;
 $ys-header-font-color                  : $ys-font-color !default;
 $ys-header-dscr-font-color             : $ys-font-color-gray !default;
-$ys-header-nav-font-color              : $ys-font-color-gray !default;
+$ys-header-nav-font-color              : $ys-font-color !default;
 $ys-header-nav-font-color-sp           : #fff !default;
 $ys-header-nav-bg-color-sp             : $ys-font-color !default;
 $ys-header-nav-border-color-sp         : #fff !default;
