@@ -113,4 +113,14 @@ if (!function_exists( 'ys_enqueue_customizer_styles')) {
 }
 add_action('customize_controls_print_styles', 'ys_enqueue_customizer_styles');
 
-?>
+
+
+/**
+ * テーマカスタマイザー用JS
+ */
+if (!function_exists( 'ys_enqueue_customize_controls_js')) {
+	function ys_enqueue_customize_controls_js() {
+	    wp_enqueue_script( 'ys_customize_controls_js', get_template_directory_uri() . '/js/admin/customizer-control.js', array( 'customize-controls', 'jquery' ), null, true );
+	}
+}
+add_action( 'customize_controls_enqueue_scripts', 'ys_enqueue_customize_controls_js' );
