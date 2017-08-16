@@ -167,7 +167,6 @@
     border: $ys-content-image-border-px solid $ys-content-image-border-color;
   }
   img + figcaption {
-    margin-top: -.5rem;
     margin-bottom: 1rem;
   }
 
@@ -178,6 +177,7 @@
 		font-weight: bold;
 	}
 
+  @include clearfix;
 
 }//.entry-content,.comment-text
 
@@ -194,7 +194,7 @@
 .entry-content .ad-container{
   margin: 1rem 0 2rem;
 }
-.ad-caption {
+.ad-label {
   font-size: .7rem;
   color: $ys-font-color-gray;
 }
@@ -295,6 +295,7 @@
       width: 50%;
       margin: 0;
       font-size: 1rem;
+      vertical-align: top;
     }
     .ad-left {
       padding-right: .5rem;

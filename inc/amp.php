@@ -25,6 +25,7 @@ if(!function_exists( 'ys_amp_the_head_amp')) {
 <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <?php ys_amp_the_amp_script(); ?>
 <?php
 // インラインCSS読み込み
@@ -127,8 +128,13 @@ if(!function_exists( 'ys_amp_convert_amp')) {
 
 		if(ys_is_amp()) {
 
+			// 先に置換したい場合
+			$content = apply_filters( 'ys_convert_amp_before', $content );
+
 			// HTMLタグなどの置換
 			$content = ys_amp_replace_tag($content);
+			// oembed埋め込みの置換
+			$content = ys_amp_replace_oembed( $content );
 			// sns埋め込みの置換
 			$content = ys_amp_replace_sns($content);
 			// imgの置換
@@ -185,9 +191,9 @@ if(!function_exists( 'ys_amp_replace_tag')) {
 if(!function_exists( 'ys_amp_replace_image')) {
 	function ys_amp_replace_image($content) {
 
-		$pattern = '/<img/i';
-		$append = '<amp-img layout="responsive"';
-		$content = preg_replace($pattern, $append, $content);
+		$pattern = '/<img(.+?)(\/)>/i';
+		$replacement = '<amp-img layout="responsive"$1></amp-img>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		return $content;
 	}
@@ -217,6 +223,28 @@ if(!function_exists( 'ys_amp_replace_iframe')) {
 
 
 
+/**
+ * [if description]
+ */
+if(!function_exists( 'ys_amp_replace_oembed')) {
+	function ys_amp_replace_oembed( $content ) {
+
+		// iframeを削除
+		$pattern = '/<p><iframe class="wp-embedded-content".*?>.*?<\/iframe><\/p>/is';
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
+
+		$pattern = '/<iframe class="wp-embedded-content".*?>.*?<\/iframe>/is';
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
+
+		return $content;
+	}
+}
+
+
+
+
 // ----------------------------------------------
 // sns埋め込み置換
 // ----------------------------------------------
@@ -225,55 +253,41 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 
 		// Twitter　>>>>
 		$pattern = '/<p>https:\/\/twitter\.com\/.+?\/status\/(.+?)".+?<\/p>/i';
-		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		$pattern = '/<blockquote class="twitter-tweet".*?>.+?<a href="https:\/\/twitter\.com\/.*?\/status\/(.*?)">.+?<\/blockquote>/is';
-		$append = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// scriptの処理
 		// scriptにwpautopが効くパターン
 		$pattern = '/<p><script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script><\/p>/is';
-		$append = '';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// scriptにwpautopが効かなかったパターン
 		$pattern = '/<script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script>/is';
-		$append = '';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		// <<<< Twitter
 
 		// Instagram >>>>
 		// blockquoteのみパターン
 		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www\.instagram\.com\/p\/(.+?)\/".+?<\/blockquote>/is';
-		$append = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// scriptにwpautopが効くパターン
 
 		$pattern = '/<p><script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script><\/p>/is';
-		$append = '';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// scriptにwpautopが効かなかったパターン
 		$pattern = '/<script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script>/is';
-		$append = '';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		// <<<< Instagram
 
 		// YouTube
@@ -289,10 +303,8 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 
 		// vine
 		$pattern = '/<iframe[^>]+?src="https:\/\/vine\.co\/v\/(.+?)\/embed\/simple".+?><\/iframe>/is';
-		$append = '<amp-vine data-vineid="$1" width="600" height="600" layout="responsive"></amp-vine>';
-		if(preg_match($pattern,$content,$matches) === 1){
-			$content = preg_replace($pattern, $append, $content);
-		}
+		$replacement = '<amp-vine data-vineid="$1" width="600" height="600" layout="responsive"></amp-vine>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		// Facebook post
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/post\.php\?href=(.*?)&.+?".+?><\/iframe>/is';
@@ -322,6 +334,16 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 }
 
 
+/**
+ *	AMP用正規表現置換処理関数
+ */
+function ys_amp_preg_replace( $pattern, $replacement, $content ) {
+
+	if( 1 === preg_match( $pattern, $content, $matches ) ){
+		$content = preg_replace( $pattern, $replacement, $content );
+	}
+	return $content;
+}
 
 
 // ----------------------------------------------

@@ -20,24 +20,25 @@ $ys-sidebar-width                      : 352px !default;
 
 // *色
 // フォント
-$ys-font-color                         : #34495E !default;
+$ys-font-color                         : #333 !default;
 $ys-font-color-gray                    : #939393 !default;
 $ys-font-color-input                   : $ys-font-color !default;
 $ys-font-color-button                  : #fff !default;
 
 // 背景
-$ys-bg-color-body                      : #fefefe !default;	//背景
+$ys-bg-color-body                      : #fff !default;
+$ys-bg-color-black                     : #2c3e50 !default;
 $ys-bg-color-gray                      : #fafafa !default;
 $ys-bg-color-content                   : #fff !default;
 $ys-bg-color-input                     : #fff !default;
-$ys-bg-color-button                    : $ys-font-color !default;
+$ys-bg-color-button                    : $ys-bg-color-black !default;
 
 // 罫線
 $ys-border-color-gray                  : #bdc3c7 !default;
-$ys-border-color-pager                 : $ys-font-color !default;
-$ys-border-color-pager-current         : $ys-font-color !default;
+$ys-border-color-pager                 : $ys-bg-color-black !default;
+$ys-border-color-pager-current         : $ys-bg-color-black !default;
 $ys-border-color-input                 : $ys-border-color-gray !default;
-$ys-border-color-button                : $ys-font-color !default;
+$ys-border-color-button                : $ys-bg-color-black !default;
 $ys-border-color-select                : $ys-border-color-gray !default;
 
 
@@ -45,8 +46,8 @@ $ys-border-color-select                : $ys-border-color-gray !default;
 // *フォント
 $ys-font-size                          : 16px !default;
 $ys-line-height                        : 1.5 !default;
-$ys-font-family                        : Avenir,"Helvetica neue",Helvetica,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
-$ys-font-family-code                   : Consolas, Monaco, monospace,"游ゴシック",YuGothic,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo;
+$ys-font-family                        : Avenir,"Helvetica neue",Helvetica,YuGothic,"Yu Gothic","Hiragino Sans","ヒラギノ角ゴシック","メイリオ",Meiryo,"ＭＳ Ｐゴシック",sans-serif !default;
+$ys-font-family-code                   : Consolas, Monaco,"Hiragino Sans","ヒラギノ角ゴシック",YuGothic,"Yu Gothic","メイリオ",Meiryo,monospace !default;
 $ys-letter-spacing                     : 0.1em !default;
 
 // *リンク関連
@@ -67,7 +68,7 @@ $ys-border-radius-default              : 4px !default;
 $ys-header-bg-color                    : $ys-bg-color-gray !default;
 $ys-header-font-color                  : $ys-font-color !default;
 $ys-header-dscr-font-color             : $ys-font-color-gray !default;
-$ys-header-nav-font-color              : $ys-font-color-gray !default;
+$ys-header-nav-font-color              : $ys-font-color !default;
 $ys-header-nav-font-color-sp           : #fff !default;
 $ys-header-nav-bg-color-sp             : $ys-font-color !default;
 $ys-header-nav-border-color-sp         : #fff !default;
@@ -90,11 +91,11 @@ $ys-content-postthumb-hover-bg-color   : rgba(#000,0.7) !default;
 $ys-content-image-border-color         : $ys-bg-color-gray !default;
 $ys-content-image-border-px            : 3px !default;
 
-$ys-content-pager-border-color         : $ys-font-color !default;
-$ys-content-pager-font-color           : $ys-font-color !default;
+$ys-content-pager-border-color         : $ys-bg-color-black !default;
+$ys-content-pager-font-color           : $ys-bg-color-black !default;
 $ys-content-pager-bg-color             : transparent !default;
 $ys-content-pager-current-font-color   : #fff !default;
-$ys-content-pager-current-bg-color     : $ys-font-color !default;
+$ys-content-pager-current-bg-color     : $ys-bg-color-black !default;
 
 $ys-content-share-bg-color             : lighten(#ecf0f1,3%) !default;
 
@@ -120,10 +121,10 @@ $ys-author-name-font-color             : $ys-font-color !default;
 
 
 // ページネーション
-$ys-pagination-adjacent-bg-color       : $ys-font-color !default;
+$ys-pagination-adjacent-bg-color       : $ys-bg-color-black !default;
 $ys-pagination-adjacent-font-color     : #fff !default;
 $ys-pagination-border-color            : $ys-border-color-gray !default;
-$ys-pagination-current-border-color    : $ys-font-color !default;
+$ys-pagination-current-border-color    : $ys-bg-color-black !default;
 
 // 検索フォーム
 $ys-font-color-searchtext              : $ys-font-color-gray !default;
@@ -136,7 +137,7 @@ $ys-border-color-searchbutton          : transparent !default;
 
 
 // フッター部分
-$ys-footer-bg-color                    : $ys-font-color !default;
+$ys-footer-bg-color                    : $ys-bg-color-black !default;
 $ys-footer-font-color                  : #fff !default;
 $ys-footer-sns-bg-color                : $ys-footer-bg-color + #111 !default;
 
@@ -173,11 +174,11 @@ $ys-sns-link-hover-desaturate    : 10% !default;
 $ys-sns-link-hover-lighten       : 5% !default;
 
 // ユーティリティ
-$ys-util-button-font-color       : $ys-font-color;
+$ys-util-button-font-color       : $ys-bg-color-black;
 $ys-util-button-font-color-hover : lighten($ys-util-button-font-color,10%);
 $ys-util-button-bg-color         : #fff;
 $ys-util-button-border-color     : $ys-font-color-gray;
 $ys-util-button-border-radius    : $ys-border-radius-default;
 $ys-util-button-shadow-color     : $ys-border-color-gray;
 $ys-util-button-dark-font-color  : #fff;
-$ys-util-button-dark-bg-color    : $ys-font-color;
+$ys-util-button-dark-bg-color    : $ys-bg-color-black;

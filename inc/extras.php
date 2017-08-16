@@ -154,10 +154,9 @@ add_filter('the_content', 'ys_extras_more_tag_replace');
 
 
 
-
-//------------------------------------------------------------------------------
-// サイトアイコン
-//------------------------------------------------------------------------------
+/**
+ * サイトアイコン
+ */
 if( ! function_exists( 'ys_extras_site_icon_meta_tags' )){
 	function ys_extras_site_icon_meta_tags($meta_tags) {
 		$meta_tags = array(
@@ -168,6 +167,23 @@ if( ! function_exists( 'ys_extras_site_icon_meta_tags' )){
 	}
 }
 add_filter( 'site_icon_meta_tags', 'ys_extras_site_icon_meta_tags' );
+
+
+
+
+/**
+ * apple touch icon
+ */
+if( ! function_exists( 'ys_extras_apple_touch_icon' )){
+	function ys_extras_apple_touch_icon() {
+		if ( ! (bool)ys_utilities_get_apple_touch_icon_url(512, '') && ! is_customize_preview() ) {
+			return;
+		}
+		echo '<link rel="apple-touch-icon-precomposed" href="'.esc_url( ys_utilities_get_apple_touch_icon_url( 180 )).'" />'.PHP_EOL;
+		echo '<meta name="msapplication-TileImage" content="'.esc_url( ys_utilities_get_apple_touch_icon_url( 270 ) ).'" />'.PHP_EOL;
+	}
+}
+add_filter( 'wp_head', 'ys_extras_apple_touch_icon' );
 
 
 
@@ -431,7 +447,14 @@ if(!function_exists( 'ys_extras_custom_noindex') ) {
 // -------------------------------------------
 if(!function_exists( 'ys_extras_add_googleanarytics')) {
 	function ys_extras_add_googleanarytics(){
+
 		$ga_tracking_id = trim(get_option('ys_ga_tracking_id',''));
+		$ga_tracking_id_amp = trim(get_option('ys_ga_tracking_id_amp',''));
+
+		if( '' == $ga_tracking_id_amp ) {
+			$ga_tracking_id_amp = $ga_tracking_id;
+		}
+
 		$output_ga = true;
 
 		if(is_user_logged_in()){
@@ -442,18 +465,21 @@ if(!function_exists( 'ys_extras_add_googleanarytics')) {
 			}
 		}
 
-		if('' == $ga_tracking_id){
+		if( '' == $ga_tracking_id && '' == $ga_tracking_id_amp ){
 			$output_ga = false;
 		}
 
-		if($output_ga){
-			if(ys_is_amp()){
-				$ys_ampanalytics = <<<EOD
-<amp-analytics type="googleanalytics" id="analytics1">
-<script type="application/json">
+		if( $output_ga ){
+			if( ys_is_amp() ){
+
+				$ga_tracking_id_amp = apply_filters( 'ys_tracking_id_amp', $ga_tracking_id_amp );
+
+				if( '' != $ga_tracking_id_amp ) {
+
+					$ys_amp_ga_json = <<<EOD
 {
 	"vars": {
-		"account": "$ga_tracking_id"
+		"account": "$ga_tracking_id_amp"
 	},
 	"triggers": {
 		"trackPageview": {
@@ -462,12 +488,26 @@ if(!function_exists( 'ys_extras_add_googleanarytics')) {
 		}
 	}
 }
-</script>
-</amp-analytics>
 EOD;
-				echo $ys_ampanalytics;
+					$ys_amp_ga_json = apply_filters( 'ys_amp_ga_json', $ys_amp_ga_json, $ga_tracking_id_amp );
+					$ys_amp_ga = '<amp-analytics type="googleanalytics" id="analytics1"><script type="application/json">'.$ys_amp_ga_json.'</script></amp-analytics>';
+
+					echo $ys_amp_ga.PHP_EOL;
+				}
+
 			} else {
-				echo "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '$ga_tracking_id', 'auto');ga('send', 'pageview');</script>".PHP_EOL;
+
+				$ga_tracking_id = apply_filters( 'ys_tracking_id', $ga_tracking_id );
+
+				if( '' != $ga_tracking_id ){
+
+					$ys_ga_function = "ga('create', '$ga_tracking_id', 'auto');ga('send', 'pageview');";
+					$ys_ga_function = apply_filters( 'ys_ga_function', $ys_ga_function, $ga_tracking_id );
+
+					$ys_google_analytics = "<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');$ys_ga_function</script>";
+
+					echo $ys_google_analytics.PHP_EOL;
+				}
 			}
 		}
 	}
@@ -566,12 +606,12 @@ if(!function_exists( 'ys_extras_add_amphtml')) {
 	function ys_extras_add_amphtml(){
 
 		if(is_single() && ys_is_amp_enable()){
-			echo '<link rel="amphtml" href="'. get_the_permalink().'?amp=1">';
+			$query_str = false === strpos( get_the_permalink(), '?' ) ? '?' : '&' ;
+			echo '<link rel="amphtml" href="'. get_the_permalink().$query_str.'amp=1">';
 		}
 	}
 }
 add_action( 'wp_head', 'ys_extras_add_amphtml' );
-
 
 
 

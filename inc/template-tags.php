@@ -524,10 +524,6 @@ if (!function_exists( 'ys_template_the_entry_author')) {
 if (!function_exists( 'ys_template_get_the_author_sns')) {
 	function ys_template_get_the_author_sns($user_id = false) {
 
-		if(ys_is_amp()) {
-			return;
-		}
-
 		$sns_list ='';
 
 		// キーがmeta key,valueがfontawesomeのクラス
@@ -900,11 +896,7 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 		$html = '<div class="post-navigation entry-footer-container">';
 
 		$home = '<a href="'.esc_url( home_url( '/' ) ).'">';
-		if(ys_is_amp()){
-			$home .= 'HOME';
-		} else {
-			$home .= '<i class="fa fa-home" aria-hidden="true"></i>';
-		}
+		$home .= '<i class="fa fa-home" aria-hidden="true"></i>';
 		$home .= '</a>';
 
 		$post_navigation_warp = '<div class="nav-prev">';
@@ -1035,9 +1027,8 @@ if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
 			$html .= '</ul></div>';
 
 			if ( !ys_is_amp() ) {
-				echo $html;
+				echo apply_filters('ys_follow_sns_list',$html);
 			} else {
-				$html = '';
 				echo apply_filters('ys_follow_sns_list_amp',$html);
 			}
 		}
@@ -1345,15 +1336,20 @@ if (!function_exists( 'ys_template_the_user_avatar')) {
 //
 //------------------------------------------------------------------------------
 
-//-----------------------------------------------
-//	広告出力フォーマット
-//-----------------------------------------------
+/**
+ *	広告出力フォーマット
+ */
 if( ! function_exists( 'ys_template_get_the_advertisement_format' ) ) {
-	function ys_template_get_the_advertisement_format($ad) {
+	function ys_template_get_the_advertisement_format( $ad, $label = true ) {
 
 		$html = '';
-		if($ad !== '' && !is_feed()){
-			$html = '<aside class="ad-container"><div class="ad-caption">スポンサーリンク</div><div class="ad-content">';
+
+		$label_text = apply_filters( 'ys_advertisement_label_text', 'スポンサーリンク' );
+		$label_html = $label ? '<div class="ad-label">'.$label_text.'</div>' : '';
+		$label_html = apply_filters( 'ys_advertisement_label_html', $label_html );
+
+		if( ( '' !== $ad && !is_feed() ) || ( '' !== $ad && ys_is_amp() ) ){
+			$html = '<aside class="ad-container">'.$label_html.'<div class="ad-content">';
 			$html .= $ad;
 			$html .= '</div></aside>';
 		}

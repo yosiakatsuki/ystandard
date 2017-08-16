@@ -24,6 +24,13 @@
 		<div class="inside">
 			<table class="form-table">
 				<tr valign="top">
+					<th scope="row">AMP用 Google Analytics トラッキングID</th>
+					<td>
+						<input type="text" name="ys_ga_tracking_id_amp" id="ys_ga_tracking_id_amp" value="<?php echo esc_attr( get_option('ys_ga_tracking_id_amp') ); ?>" placeholder="UA-00000000-0" /><br />
+						※空白にすると通常の表示と同じトラッキングIDを使用します
+					</td>
+				</tr>
+				<tr valign="top">
 					<th scope="row">FacebookシェアボタンのApp ID</th>
 					<td>
 						<input type="text" name="ys_amp_share_fb_app_id" id="ys_amp_share_fb_app_id" value="<?php echo esc_attr( get_option('ys_amp_share_fb_app_id') ); ?>" placeholder="000000000000000" />
@@ -76,6 +83,8 @@
 				</tr>
 
 			</table>
+			<?php submit_button(); ?>
+
 		</div>
 	</div>
 

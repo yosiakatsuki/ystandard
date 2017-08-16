@@ -455,6 +455,34 @@ if (!function_exists( 'ys_utilities_get_custom_logo_image_src')) {
 
 
 
+/**
+ * apple touch icon用URLを取得
+ */
+if (!function_exists( 'ys_utilities_get_apple_touch_icon_url')) {
+	function ys_utilities_get_apple_touch_icon_url( $size = 512, $url = '', $blog_id = 0 ) {
+
+		if ( is_multisite() && (int) $blog_id !== get_current_blog_id() ) {
+			switch_to_blog( $blog_id );
+		}
+
+		$site_icon_id = get_option( 'ys_apple_touch_icon' );
+		if ( $site_icon_id ) {
+			if ( $size >= 512 ) {
+				$size_data = 'full';
+			} else {
+				$size_data = array( $size, $size );
+			}
+			$url = wp_get_attachment_image_url( $site_icon_id, $size_data );
+		}
+		if ( is_multisite() && ms_is_switched() ) {
+			restore_current_blog();
+		}
+		return $url;
+	}
+}
+
+
+
 
 //-----------------------------------------------
 //	ユーザー画像取得
