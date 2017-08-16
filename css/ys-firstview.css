@@ -185,9 +185,9 @@ html,
 body {
   max-width: 100%;
   font-size: 16px;
-  font-family: -apple-system, "BlinkMacSystemFont", ".SFNSDisplay-Regular", Avenir, "Helvetica neue", Helvetica, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック", YuGothic, "Meiryo UI", メイリオ, Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
   line-height: 1.5;
-  color: #555;
+  color: #333;
   letter-spacing: 0.1em;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -281,7 +281,7 @@ img {
 
 .color-site-header {
   background-color: #fafafa;
-  color: #555; }
+  color: #333; }
 
 .site-header-wrap {
   position: relative; }
@@ -295,7 +295,7 @@ img {
 
 .color-site-title,
 .color-site-title:hover {
-  color: #555; }
+  color: #333; }
 
 .site-description {
   font-size: .8rem; }
@@ -309,7 +309,7 @@ img {
   right: 0;
   bottom: 0;
   padding: 3rem 0 1rem;
-  background-color: #555;
+  background-color: #333;
   -webkit-transition: -webkit-transform .3s;
   transition: -webkit-transform .3s;
   transition: transform .3s;
@@ -335,7 +335,7 @@ img {
 
 .amp-slider {
   padding: 3rem 0 1rem;
-  background-color: #555; }
+  background-color: #333; }
   .amp-slider .menu-toggle-label {
     margin: .5rem 0 0; }
 
@@ -369,7 +369,7 @@ img {
     display: block;
     width: 20px;
     height: 2px;
-    background-color: #555;
+    background-color: #333;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
     -webkit-transform: rotate(0deg);
@@ -439,7 +439,7 @@ img {
       .gloval-menu > li a {
         display: inline;
         padding: .5rem 0;
-        color: #555;
+        color: #333;
         border-bottom: 1px solid transparent;
         -webkit-transition: border 0.3s;
         transition: border 0.3s; }
@@ -452,7 +452,7 @@ img {
         -webkit-transition: opacity 0.3s;
         transition: opacity 0.3s; }
       .gloval-menu > li:hover a {
-        border-bottom: 1px solid #555; }
+        border-bottom: 1px solid #333; }
       .gloval-menu > li:hover.menu-item-has-children a {
         border-bottom: 1px solid transparent; }
       .gloval-menu > li:hover > ul {
@@ -467,7 +467,7 @@ img {
         .gloval-menu > li:hover > ul a {
           padding: .5rem 0; }
           .gloval-menu > li:hover > ul a:hover {
-            border-bottom: 1px solid #555; } }
+            border-bottom: 1px solid #333; } }
 
 .breadcrumb {
   margin-top: 1rem; }
@@ -515,7 +515,7 @@ img {
   font-size: 1.2rem;
   font-weight: normal;
   margin: 1rem 0;
-  color: #555; }
+  color: #333; }
 
 .single .entry-header .entry-title,
 .page .entry-header .entry-title {
@@ -523,7 +523,7 @@ img {
   font-size: 1.6rem; }
   .single .entry-header .entry-title a,
   .page .entry-header .entry-title a {
-    color: #555; }
+    color: #333; }
 
 .entry-header {
   margin: 0 0 2rem; }
@@ -668,7 +668,7 @@ img {
 .entry-content .ad-container {
   margin: 1rem 0 2rem; }
 
-.ad-caption {
+.ad-label {
   font-size: .7rem;
   color: #939393; }
 
@@ -1045,7 +1045,7 @@ img {
 .site-footer {
   position: relative;
   padding: .5rem 0;
-  background-color: #555;
+  background-color: #2c3e50;
   color: #fff;
   z-index: 2; }
   .site-footer a,
@@ -1077,10 +1077,10 @@ img {
     align-items: center;
     width: 50px;
     height: 50px;
-    background-color: #666666;
+    background-color: #3d4f61;
     border-radius: 50%; }
     .follow-sns-list a:hover {
-      background-color: #888888; }
+      background-color: #5f7183; }
   .follow-sns-list .icon-hatenabookmark::before {
     margin: 0; }
 

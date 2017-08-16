@@ -461,21 +461,21 @@ a.ys-button-origin {
 a.ys-button {
   border-color: #939393;
   background-color: #fff;
-  color: #555; }
+  color: #2c3e50; }
   .ys-button a:hover,
   a.ys-button:hover {
     background-color: #fff;
-    color: #6f6f6f; }
+    color: #3e5871; }
 
 .ys-button-dark a,
 a.ys-button-dark {
-  background-color: #555;
-  border-color: #555;
+  background-color: #2c3e50;
+  border-color: #2c3e50;
   color: #fff; }
   .ys-button-dark a:hover,
   a.ys-button-dark:hover {
     background-color: #fff;
-    color: #555; }
+    color: #2c3e50; }
 
 .ys-button-block a,
 a.ys-button-block {
@@ -769,24 +769,24 @@ div.aligncenter {
   .page-links .page-text {
     padding: .2rem .5rem;
     margin-right: .5rem;
-    border: 1px solid #555;
-    background-color: #555;
+    border: 1px solid #2c3e50;
+    background-color: #2c3e50;
     color: #fff; }
   .page-links a .page-text {
     background-color: transparent;
-    color: #555; }
+    color: #2c3e50; }
 
 .post-password-form input[type="password"] {
   border: 1px solid #bdc3c7;
   background-color: #fff;
   padding: .1rem;
   font-size: .8rem;
-  color: #555; }
+  color: #333; }
 
 .post-password-form input[type="submit"] {
   padding: .1rem .5rem;
-  border: 1px solid #555;
-  background-color: #555;
+  border: 1px solid #2c3e50;
+  background-color: #2c3e50;
   font-size: .8rem;
   color: #fff; }
 
@@ -808,13 +808,13 @@ div.aligncenter {
     .post-navigation .nav-prev .meta-nav,
     .post-navigation .nav-next .meta-nav {
       margin: 0 0 .1rem;
-      color: #555; }
+      color: #333; }
     .post-navigation .nav-prev span,
     .post-navigation .nav-next span {
       display: block; }
     .post-navigation .nav-prev a,
     .post-navigation .nav-next a {
-      color: #555;
+      color: #333;
       font-size: .9rem;
       text-decoration: underline; }
   .post-navigation .nav-prev {
@@ -838,7 +838,7 @@ div.aligncenter {
     align-items: center;
     font-size: 3rem; }
     .post-navigation .home a, .post-navigation .home a:hover {
-      color: #555; }
+      color: #333; }
 
 .post-navigation-image-wrap {
   position: relative;
@@ -956,7 +956,7 @@ pre,
 kbd,
 var,
 tt {
-  font-family: Consolas, Monaco, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "游ゴシック", YuGothic, "Meiryo UI", メイリオ, Meiryo, monospace; }
+  font-family: Consolas, Monaco, "Hiragino Sans", "ヒラギノ角ゴシック", YuGothic, "Yu Gothic", "メイリオ", Meiryo, monospace; }
 
 code,
 kbd,
@@ -1072,10 +1072,10 @@ sub {
   .widget .author-title a {
     display: block;
     font-weight: bold;
-    color: #555; }
+    color: #333; }
     .author-title a:hover,
     .widget .author-title a:hover {
-      color: #777777; }
+      color: #555555; }
 
 .author-bio {
   font-size: .9rem; }
@@ -1211,16 +1211,16 @@ sub {
   border: 1px solid #bdc3c7;
   background-color: #fff;
   font-size: 1rem;
-  color: #555; }
+  color: #333; }
 
 .comment-form input[type="submit"] {
   width: 100%;
   padding: .5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  border: 1px solid #555;
+  border: 1px solid #2c3e50;
   border-radius: 4px;
-  background-color: #555;
+  background-color: #2c3e50;
   font-size: 1rem;
   color: #fff; }
 
@@ -1257,13 +1257,13 @@ sub {
       display: block;
       padding: .2rem 0;
       border-bottom: 1px solid #bdc3c7;
-      color: #555; }
+      color: #333; }
     .pagination-list li .current {
-      border-bottom: 2px solid #555; }
+      border-bottom: 2px solid #2c3e50; }
   .pagination-list .next,
   .pagination-list .previous {
     position: absolute;
-    background-color: #555; }
+    background-color: #2c3e50; }
     .pagination-list .next a,
     .pagination-list .previous a {
       color: #fff; }

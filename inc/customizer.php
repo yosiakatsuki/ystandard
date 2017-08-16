@@ -568,7 +568,7 @@ function ys_customizer_get_color_default($setting_name){
 			// 色情報
 			$default_colors = array(
 													'ys_color_site_bg'=>'#fff',
-													'ys_color_site_font'=>'#2c3e50',
+													'ys_color_site_font'=>'#333',
 													'ys_color_site_font_sub'=>'#b3b3b3',
 													'ys_color_header_bg'=>'#fafafa',
 													'ys_color_header_font'=>'#2c3e50',
