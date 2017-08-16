@@ -89,6 +89,7 @@ if (!function_exists( 'ys_settings')) {
 		$ys_amp_enable = get_option('ys_amp_enable',0) ;
 
 		// AMP設定
+		$ys_ga_tracking_id_amp = esc_attr( get_option('ys_ga_tracking_id_amp','') );
 		$ys_amp_share_fb_app_id = esc_attr( get_option('ys_amp_share_fb_app_id','') );
 		$ys_amp_normal_link = get_option('ys_amp_normal_link',1) ;
 		$ys_amp_normal_link_share_btn = get_option('ys_amp_normal_link_share_btn',1) ;
@@ -160,6 +161,7 @@ if (!function_exists( 'ys_settings')) {
 										'ys_not_load_jquery' => $ys_not_load_jquery,	//jQueryを読み込まない
 										'ys_amp_enable' => $ys_amp_enable,	//AMPページを有効化するか
 
+										'ys_ga_tracking_id_amp' => $ys_ga_tracking_id_amp,	//AMPのGoogle Analyticsトラッキングコード
 										'ys_amp_share_fb_app_id' => $ys_amp_share_fb_app_id,	//AMPのfacebookシェアボタン用App id
 										'ys_amp_normal_link_share_btn' => $ys_amp_normal_link_share_btn,	//通常ビューへのリンクを表示する
 										'ys_amp_normal_link' => $ys_amp_normal_link,	//通常ビューへのリンクを表示する

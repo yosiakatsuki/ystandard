@@ -147,6 +147,7 @@ function ys_register_settings() {
 	register_setting( 'ys_advanced_settings', 'ys_amp_enable','ys_utilities_sanitize_checkbox' );
 
 	// AMP設定
+	register_setting( 'ys_amp_settings', 'ys_ga_tracking_id_amp' );
 	register_setting( 'ys_amp_settings', 'ys_amp_share_fb_app_id' );
 	register_setting( 'ys_amp_settings', 'ys_amp_normal_link' ,'ys_utilities_sanitize_checkbox');
 	register_setting( 'ys_amp_settings', 'ys_amp_normal_link_share_btn' ,'ys_utilities_sanitize_checkbox');

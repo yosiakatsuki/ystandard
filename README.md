@@ -280,6 +280,7 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
     - デフォルトのフォントカラーを黒濃いめに調整
     - AMP設定メニューはAMP有効化した時のみに表示する
     - AMPページ生成でWordPressサイトのoembed関連iframeの削除
+    - AMP用 Google Analytics トラッキングID設定の追加
     - 広告のキャプション変更フィルターフック追加
     - 広告用HTML作成メソッドに広告ラベル無しオプションを追加
     - AMP正規表現置換処理を関数化
