@@ -17,16 +17,8 @@ div.aligncenter,
 
 .aligncenter,
 div.aligncenter {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.alignleft {
-	margin-right: auto;
-}
-
-.alignright {
-	margin-left: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .wp-caption {
@@ -39,14 +31,23 @@ div.aligncenter {
 }
 .wp-caption .wp-caption-text {
 	 font-size: .8rem;
-	 padding: 0 .5rem .5rem .5rem;
+	 padding: .1rem .5rem .5rem .5rem;
 }
+
 
 //--------------------------------------
 // タブレット
 //--------------------------------------
 @include media-breakpoint(tb) {
+  	.alignleft {
+  		 float: left;
+  		 margin:0 1rem 1rem 0;
+  	}
 
+  	.alignright {
+  		 float: right;
+  		 margin:0 0 1rem 1rem;
+  	}
 };
 
 //--------------------------------------
@@ -55,14 +56,5 @@ div.aligncenter {
 @include media-breakpoint(pc) {
 
 
-	.alignleft {
-		 float: left;
-		 margin:0 1rem 1rem 0;
-	}
-
-	.alignright {
-		 float: right;
-		 margin:0 0 1rem 1rem;
-	}
 
 };

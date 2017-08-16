@@ -508,12 +508,6 @@ div.aligncenter {
   margin-left: auto;
   margin-right: auto; }
 
-.alignleft {
-  margin-right: auto; }
-
-.alignright {
-  margin-left: auto; }
-
 .wp-caption {
   text-align: center; }
 
@@ -524,9 +518,9 @@ div.aligncenter {
 
 .wp-caption .wp-caption-text {
   font-size: .8rem;
-  padding: 0 .5rem .5rem .5rem; }
+  padding: .1rem .5rem .5rem .5rem; }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 600px) {
   .alignleft {
     float: left;
     margin: 0 1rem 1rem 0; }

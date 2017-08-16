@@ -167,7 +167,6 @@
     border: $ys-content-image-border-px solid $ys-content-image-border-color;
   }
   img + figcaption {
-    margin-top: -.5rem;
     margin-bottom: 1rem;
   }
 
@@ -178,6 +177,7 @@
 		font-weight: bold;
 	}
 
+  @include clearfix;
 
 }//.entry-content,.comment-text
 

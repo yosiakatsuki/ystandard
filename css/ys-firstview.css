@@ -650,13 +650,26 @@ img {
 
 .entry-content img + figcaption,
 .comment-text img + figcaption {
-  margin-top: -.5rem;
   margin-bottom: 1rem; }
 
 .entry-content strong, .entry-content b,
 .comment-text strong,
 .comment-text b {
   font-weight: bold; }
+
+.entry-content:before, .entry-content:after,
+.comment-text:before,
+.comment-text:after {
+  content: "";
+  display: table; }
+
+.entry-content:after,
+.comment-text:after {
+  clear: both; }
+
+.entry-content,
+.comment-text {
+  zoom: 1; }
 
 .ad-container {
   margin: 1rem 0;
@@ -806,6 +819,9 @@ img {
     bottom: 0;
     left: 0;
     margin: auto; }
+
+.sticky {
+  font-size: 1em; }
 
 .entry-more {
   display: -webkit-box;
