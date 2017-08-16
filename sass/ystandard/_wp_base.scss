@@ -21,18 +21,19 @@ div.aligncenter {
   margin-right: auto;
 }
 
-.wp-caption {
+.wp-caption,
+.gallery-caption {
 	 text-align: center;
+   font-size: .8rem;
+   padding: .1rem .5rem .5rem .5rem;
+
+   img {
+   	 margin: 0;
+   	 padding: 0;
+   	 border: 0 none;
+   }
 }
-.wp-caption img {
-	 margin: 0;
-	 padding: 0;
-	 border: 0 none;
-}
-.wp-caption .wp-caption-text {
-	 font-size: .8rem;
-	 padding: .1rem .5rem .5rem .5rem;
-}
+
 
 
 //--------------------------------------

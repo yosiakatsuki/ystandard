@@ -508,17 +508,16 @@ div.aligncenter {
   margin-left: auto;
   margin-right: auto; }
 
-.wp-caption {
-  text-align: center; }
-
-.wp-caption img {
-  margin: 0;
-  padding: 0;
-  border: 0 none; }
-
-.wp-caption .wp-caption-text {
+.wp-caption,
+.gallery-caption {
+  text-align: center;
   font-size: .8rem;
   padding: .1rem .5rem .5rem .5rem; }
+  .wp-caption img,
+  .gallery-caption img {
+    margin: 0;
+    padding: 0;
+    border: 0 none; }
 
 @media screen and (min-width: 600px) {
   .alignleft {
@@ -527,6 +526,68 @@ div.aligncenter {
   .alignright {
     float: right;
     margin: 0 0 1rem 1rem; } }
+
+/**
+ * モバイル or 全体
+ */
+.gallery {
+  margin: 2rem 0 3rem; }
+  .gallery .gallery-item {
+    width: 50%;
+    margin: 0;
+    display: inline-block;
+    text-align: left;
+    vertical-align: top; }
+
+.gallery-columns-1 .gallery-item {
+  width: 100%; }
+
+.gallery-columns-2 .gallery-item {
+  max-width: 50%; }
+
+.gallery-columns-3 .gallery-item {
+  max-width: 33.33%; }
+
+.gallery-item img {
+  display: block;
+  margin-bottom: 0;
+  border: none;
+  padding: 1px; }
+
+.gallery-item a, .gallery-item a:hover, .gallery-item a:focus {
+  display: inline-block;
+  max-width: 100%; }
+
+.gallery-item a:hover img, .gallery-item a:focus img {
+  opacity: .8; }
+
+/**
+ * タブレット
+ */
+@media screen and (min-width: 600px) {
+  .gallery-item {
+    max-width: 25%; }
+  .gallery-columns-1 .gallery-item {
+    max-width: 100%; }
+  .gallery-columns-2 .gallery-item {
+    max-width: 50%; }
+  .gallery-columns-4 .gallery-item {
+    max-width: 25%; } }
+
+/**
+ * PC
+ */
+@media screen and (min-width: 960px) {
+  .gallery-columns-5 .gallery-item {
+    max-width: 20%; }
+  .gallery-columns-6 .gallery-item {
+    max-width: 16.66%; }
+  .gallery-columns-7 .gallery-item {
+    max-width: 14.28%; }
+  .gallery-columns-8 .gallery-item {
+    max-width: 12.5%; }
+  .gallery-columns-9 .gallery-item {
+    max-width: 11.11%; } }
 
 .amp-view-info {
   padding: 1rem;
