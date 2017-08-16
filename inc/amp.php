@@ -133,6 +133,8 @@ if(!function_exists( 'ys_amp_convert_amp')) {
 
 			// HTMLタグなどの置換
 			$content = ys_amp_replace_tag($content);
+			// oembed埋め込みの置換
+			$content = ys_amp_replace_oembed( $content );
 			// sns埋め込みの置換
 			$content = ys_amp_replace_sns($content);
 			// imgの置換
@@ -213,6 +215,28 @@ if(!function_exists( 'ys_amp_replace_iframe')) {
 		$pattern = '/<\/iframe>/i';
 		$append = '</amp-iframe>';
 		$content = preg_replace($pattern, $append, $content);
+
+		return $content;
+	}
+}
+
+
+
+
+/**
+ * [if description]
+ */
+if(!function_exists( 'ys_amp_replace_oembed')) {
+	function ys_amp_replace_oembed( $content ) {
+
+		// iframeを削除
+		$pattern = '/<p><iframe class="wp-embedded-content".*?>.*?<\/iframe><\/p>/is';
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
+
+		$pattern = '/<iframe class="wp-embedded-content".*?>.*?<\/iframe>/is';
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		return $content;
 	}

@@ -109,6 +109,7 @@ if (!function_exists( 'ys_setup_remove_oembed')) {
 	function ys_setup_remove_oembed() {
 
 		//Embeds
+		add_filter('embed_oembed_discover', '__return_false');
 		remove_action('wp_head','rest_output_link_wp_head');
 		remove_action('wp_head','wp_oembed_add_discovery_links');
 		remove_action('wp_head','wp_oembed_add_host_js');
