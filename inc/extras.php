@@ -154,10 +154,9 @@ add_filter('the_content', 'ys_extras_more_tag_replace');
 
 
 
-
-//------------------------------------------------------------------------------
-// サイトアイコン
-//------------------------------------------------------------------------------
+/**
+ * サイトアイコン
+ */
 if( ! function_exists( 'ys_extras_site_icon_meta_tags' )){
 	function ys_extras_site_icon_meta_tags($meta_tags) {
 		$meta_tags = array(
@@ -168,6 +167,23 @@ if( ! function_exists( 'ys_extras_site_icon_meta_tags' )){
 	}
 }
 add_filter( 'site_icon_meta_tags', 'ys_extras_site_icon_meta_tags' );
+
+
+
+
+/**
+ * apple touch icon
+ */
+if( ! function_exists( 'ys_extras_apple_touch_icon' )){
+	function ys_extras_apple_touch_icon() {
+		if ( ! (bool)ys_utilities_get_apple_touch_icon_url(512, '') && ! is_customize_preview() ) {
+			return;
+		}
+		echo '<link rel="apple-touch-icon-precomposed" href="'.esc_url( ys_utilities_get_apple_touch_icon_url( 180 )).'" />'.PHP_EOL;
+		echo '<meta name="msapplication-TileImage" content="'.esc_url( ys_utilities_get_apple_touch_icon_url( 270 ) ).'" />'.PHP_EOL;
+	}
+}
+add_filter( 'wp_head', 'ys_extras_apple_touch_icon' );
 
 
 
