@@ -548,17 +548,23 @@ div.aligncenter {
 .gallery-columns-3 .gallery-item {
   max-width: 33.33%; }
 
-.gallery-item img {
+.gallery-item img,
+.gallery-item amp-img {
   display: block;
   margin-bottom: 0;
   border: none;
   padding: 1px; }
 
+.gallery-item amp-img {
+  border: 1px solid #fff; }
+
 .gallery-item a, .gallery-item a:hover, .gallery-item a:focus {
   display: inline-block;
   max-width: 100%; }
 
-.gallery-item a:hover img, .gallery-item a:focus img {
+.gallery-item a:hover img,
+.gallery-item a:hover amp-img, .gallery-item a:focus img,
+.gallery-item a:focus amp-img {
   opacity: .8; }
 
 /**

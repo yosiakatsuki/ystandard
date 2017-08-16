@@ -33,11 +33,15 @@
 
 .gallery-item {
 
-  img {
+  img,
+  amp-img {
     display: block;
     margin-bottom: 0;
     border: none;
     padding: 1px;
+  }
+  amp-img {
+    border: 1px solid #fff;
   }
 
   a {
@@ -51,7 +55,8 @@
 
     &:hover,
     &:focus {
-      img {
+      img,
+      amp-img {
         opacity: .8;
       }
     }
