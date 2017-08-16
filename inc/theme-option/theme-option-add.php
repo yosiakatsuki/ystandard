@@ -52,14 +52,16 @@ function ys_add_admin_menu() {
 	);
 
 	// AMP設定ページ追加
-	add_submenu_page(
-		'ys_settings_start',
-		'AMP設定',
-		'AMP設定',
-		'manage_options',
-		'ys_amp_settings',
-		'load_ys_amp_settings'
-	);
+	if ( ys_get_setting( 'ys_amp_enable' ) ) {
+		add_submenu_page(
+			'ys_settings_start',
+			'AMP設定',
+			'AMP設定',
+			'manage_options',
+			'ys_amp_settings',
+			'load_ys_amp_settings'
+		);
+	}
 
 	// 便利ツール
 	add_submenu_page(
