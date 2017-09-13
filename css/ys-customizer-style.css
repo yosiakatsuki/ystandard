@@ -1,11 +1,14 @@
-@charset "UTF-8";
 /*!
 *
 *		カスタマイザー用CSS
 *
 */
+
 #customize-control-site_icon .app-icon-preview {
-  display: none; }
+	display: none;
+}
 
 #customize-control-ys_apple_touch_icon .favicon-preview {
-  display: none; }
+	display: none;
+}
+
