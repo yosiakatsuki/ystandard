@@ -359,23 +359,62 @@ if( ! function_exists( 'ys_customizer_inline_css' )){
 		/**
 		 *	設定取得
 		 */
-		$html_bg = get_option('ys_color_site_bg',ys_customizer_get_color_default('ys_color_site_bg'));
-		$html_font = get_option('ys_color_site_font',ys_customizer_get_color_default('ys_color_site_font'));
-		$html_font_sub = get_option('ys_color_site_font_sub',ys_customizer_get_color_default('ys_color_site_font_sub'));
+		$html_bg = get_option(
+										'ys_color_site_bg',
+										ys_customizer_get_color_default('ys_color_site_bg')
+								);
+		$html_font = get_option(
+										'ys_color_site_font',
+										ys_customizer_get_color_default('ys_color_site_font')
+									);
+		$html_font_sub = get_option(
+										'ys_color_site_font_sub',
+										ys_customizer_get_color_default('ys_color_site_font_sub')
+									);
 
-		$header_bg = get_option('ys_color_header_bg',ys_customizer_get_color_default('ys_color_header_bg'));
-		$header_font = get_option('ys_color_header_font',ys_customizer_get_color_default('ys_color_header_font'));
+		$header_bg = get_option(
+										'ys_color_header_bg',
+										ys_customizer_get_color_default('ys_color_header_bg')
+									);
+		$header_font = get_option(
+										'ys_color_header_font',
+										ys_customizer_get_color_default('ys_color_header_font')
+									);
 
-		$nav_font_pc = get_option('ys_color_nav_font_pc',ys_customizer_get_color_default('ys_color_nav_font_pc'));
-		$nav_border_pc = get_option('ys_color_nav_border_pc',ys_customizer_get_color_default('ys_color_nav_border_pc'));
-		$nav_bg_sp = get_option('ys_color_nav_bg_sp',ys_customizer_get_color_default('ys_color_nav_bg_sp'));
-		$nav_font_sp = get_option('ys_color_nav_font_sp',ys_customizer_get_color_default('ys_color_nav_font_sp'));
+		$nav_font_pc = get_option(
+										'ys_color_nav_font_pc',
+										ys_customizer_get_color_default('ys_color_nav_font_pc')
+									);
+		$nav_border_pc = get_option(
+										'ys_color_nav_border_pc',
+										ys_customizer_get_color_default('ys_color_nav_border_pc')
+									);
+		$nav_bg_sp = get_option(
+										'ys_color_nav_bg_sp',
+										ys_customizer_get_color_default('ys_color_nav_bg_sp')
+									);
+		$nav_font_sp = get_option(
+										'ys_color_nav_font_sp',
+										ys_customizer_get_color_default('ys_color_nav_font_sp')
+									);
 		// $nav_border_sp = get_option('ys_color_nav_border_sp','#fff');
 
-		$footer_bg = get_option('ys_color_footer_bg',ys_customizer_get_color_default('ys_color_footer_bg'));
-		$footer_sns_bg = get_option('ys_color_footer_sns_bg',ys_customizer_get_color_default('ys_color_footer_sns_bg'));
-		$footer_sns_hover_bg = get_option('ys_color_footer_sns_hover_bg',ys_customizer_get_color_default('ys_color_footer_sns_hover_bg'));
-		$footer_font = get_option('ys_color_footer_font',ys_customizer_get_color_default('ys_color_footer_font'));
+		$footer_bg = get_option(
+										'ys_color_footer_bg',
+										ys_customizer_get_color_default('ys_color_footer_bg')
+									);
+		$footer_sns_bg = get_option(
+										'ys_color_footer_sns_bg',
+										ys_customizer_get_color_default('ys_color_footer_sns_bg')
+									);
+		$footer_sns_hover_bg = get_option(
+										'ys_color_footer_sns_hover_bg',
+										ys_customizer_get_color_default('ys_color_footer_sns_hover_bg')
+									);
+		$footer_font = get_option(
+										'ys_color_footer_font',
+										ys_customizer_get_color_default('ys_color_footer_font')
+									);
 
 		$css = '';
 

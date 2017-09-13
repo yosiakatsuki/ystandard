@@ -264,12 +264,14 @@
           text-align: center;
 					visibility: visible;
 					opacity: 1;
+
           li {
-            padding: .5rem 0;
+            background-color: rgba(#fff,0.8);
           }
 
           a {
-            padding: .5rem 0;
+            padding: .5rem;
+            display: inline-block;
             &:hover {
               border-bottom: 1px solid $ys-header-nav-font-color;
             }
