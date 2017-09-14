@@ -463,9 +463,10 @@ img {
         visibility: visible;
         opacity: 1; }
         .gloval-menu > li:hover > ul li {
-          padding: .5rem 0; }
+          background-color: rgba(255, 255, 255, 0.8); }
         .gloval-menu > li:hover > ul a {
-          padding: .5rem 0; }
+          padding: .5rem;
+          display: inline-block; }
           .gloval-menu > li:hover > ul a:hover {
             border-bottom: 1px solid #333; } }
 
