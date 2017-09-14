@@ -58,6 +58,7 @@ gulp.task('sass', function() {
 			browsers: ["last 2 versions", "ie >= 11", "Android >= 4","ios_saf >= 8"],
 			cascade: false
 		}))
+		.pipe(cmq({log: true}))
 		.pipe(gulp.dest('./css'));
 });
 
