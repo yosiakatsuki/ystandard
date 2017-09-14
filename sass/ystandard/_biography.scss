@@ -37,22 +37,7 @@
 		color: inherit;
 	}
 }
-.entry-content {
 
-  .author-title {
-    margin: 0 0 .5rem;
-    font-size: 1rem;
-  }
-  .author-info {
-    border: 1px solid $ys-grid-pc-border-color;
-    padding: 1rem 1rem 0;
-  }
-  .author-bio {
-    p {
-      margin-bottom: 1rem;
-    }
-  }
-}
 
 .author-bio {
 	font-size: .9rem;
@@ -84,6 +69,27 @@
 		}
 	}
 
+}
+
+.entry-content {
+
+  .author-title {
+    margin: 0 0 .5rem;
+    font-size: 1rem;
+  }
+  .author-info {
+    border: 1px solid $ys-grid-pc-border-color;
+    padding: 1rem 1rem 0;
+  }
+  .author-bio {
+    p {
+      margin-bottom: 1rem;
+    }
+  }
+  .author-sns {
+    margin: 0 0 .5rem;
+    padding-left: 0;
+  }
 }
 
 
