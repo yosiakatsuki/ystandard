@@ -749,6 +749,7 @@ img {
 .comment-text pre,
 .comment-text table,
 .comment-text address {
+<<<<<<< HEAD
 	margin: 0 0 3rem;
 }
 
@@ -770,6 +771,9 @@ img {
 .comment-text address:last-child {
 	margin: 0;
 }
+=======
+  margin: 0 0 3rem; }
+>>>>>>> issue/102
 
 .entry-content h1,
 .entry-content h2,

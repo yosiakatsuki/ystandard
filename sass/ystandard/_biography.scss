@@ -34,13 +34,24 @@
 	a {
 		display: block;
 		font-weight: bold;
-		color: $ys-author-name-font-color;
-
-    &:hover {
-      color: $ys-author-name-font-color + #222;
-    }
+		color: inherit;
 	}
+}
+.entry-content {
 
+  .author-title {
+    margin: 0 0 .5rem;
+    font-size: 1rem;
+  }
+  .author-info {
+    border: 1px solid $ys-grid-pc-border-color;
+    padding: 1rem 1rem 0;
+  }
+  .author-bio {
+    p {
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .author-bio {
