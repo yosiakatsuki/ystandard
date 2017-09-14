@@ -586,23 +586,6 @@ img {
 .comment-text table,
 .comment-text address {
   margin: 0 0 3rem; }
-  .entry-content p:last-child,
-  .entry-content ul:last-child,
-  .entry-content ol:last-child,
-  .entry-content dl:last-child,
-  .entry-content blockquote:last-child,
-  .entry-content pre:last-child,
-  .entry-content table:last-child,
-  .entry-content address:last-child,
-  .comment-text p:last-child,
-  .comment-text ul:last-child,
-  .comment-text ol:last-child,
-  .comment-text dl:last-child,
-  .comment-text blockquote:last-child,
-  .comment-text pre:last-child,
-  .comment-text table:last-child,
-  .comment-text address:last-child {
-    margin: 0; }
 
 .entry-content h1,
 .entry-content h2,
