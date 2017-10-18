@@ -563,25 +563,19 @@
 	zoom: 1;
 }
 
-.ys-box p {
+.ys-box p,
+.ys-box ul,
+.ys-box ol {
 	margin: 0 0 .5em;
 }
 
-.ys-box > p:last-child {
-	margin: 0;
-}
-
-.ys-box ul {
+.ys-box > *:last-child {
 	margin: 0;
 }
 
 .ys-box li:last-child,
 .ys-box:last-child {
 	margin: 0;
-}
-
-.ys-box > a[target="_blank"] {
-	display: inline;
 }
 
 .ys-box-img {
