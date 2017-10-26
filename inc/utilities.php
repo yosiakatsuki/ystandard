@@ -60,21 +60,22 @@ if( ! function_exists( 'ys_is_amp' ) ) {
 	function ys_is_amp(){
 		global $ys_amp;
 
-		if($ys_amp !== null){
+		if( $ys_amp !== null ){
 			return $ys_amp;
 		}
 		$param_amp = '';
-		if(isset($_GET['amp'])){
+		if( isset( $_GET['amp'] ) ){
 			$param_amp = $_GET['amp'];
 		}
 
-		if($param_amp === '1' && ys_is_amp_enable()){
+		if( $param_amp === '1' && ys_is_amp_enable() ){
 			$ys_amp = true;
 		} else {
 			$ys_amp = false;
 		}
 
-		return $ys_amp;
+		return apply_filters( 'ys_is_amp', $ys_amp );
+
 	}
 }
 
@@ -88,26 +89,26 @@ if( ! function_exists( 'ys_is_amp_enable' ) ) {
 		global $post;
 		$result = true;
 
-		if(ys_get_setting('ys_amp_enable') == 0){
+		if( ys_get_setting( 'ys_amp_enable' ) == 0 ){
 			return false;
 		}
 
-		if(is_single()) {
+		if( is_single() ) {
 			$content = $post->post_content;
 
 			// scriptタグの判断
-			if(strpos($content,'<script') !== false && ys_get_setting('ys_amp_del_script') != 1) {
+			if( strpos( $content,'<script' ) !== false && ys_get_setting( 'ys_amp_del_script' ) != 1 ) {
 				$result = false;
 			}
 			// style属性の判断
-			if(preg_match('/style=".+?"/i',$content,$matches) === 1 && ys_get_setting('ys_amp_del_style') != 1) {
+			if( preg_match( '/style=".+?"/i', $content, $matches ) === 1 && ys_get_setting( 'ys_amp_del_style' ) != 1 ) {
 				$result = false;
 			}
 
 		} else {
 			$result = false;
 		}
-		return $result;
+		return apply_filters( 'ys_is_amp_enable', $result );
 	}
 }
 
@@ -121,7 +122,7 @@ if( ! function_exists( 'ys_is_ogp_enable' ) ) {
 	function ys_is_ogp_enable(){
 
 		$ogp = ys_settings_get_ogp();
-		if($ogp['app_id'] != '' && $ogp['admins'] != '' && $ogp['image'] != ''){
+		if( $ogp['app_id'] != '' && $ogp['admins'] != '' && $ogp['image'] != '' ){
 			return true;
 		}
 		return false;
