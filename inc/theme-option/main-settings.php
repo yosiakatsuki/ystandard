@@ -113,6 +113,30 @@
 	</div>
 
 	<div class="postbox">
+		<h2>SNSシェアボタン設定</h2>
+		<div class="inside">
+			<table class="form-table">
+				<tr valign="top">
+					<th scope="row">シェアボタンを表示設定</th>
+					<td>
+						<fieldset>
+							<label for="ys_sns_share_on_entry_header">
+								<input type="checkbox" name="ys_sns_share_on_entry_header" id="ys_sns_share_on_entry_header" value="1" <?php checked(get_option('ys_sns_share_on_entry_header',0),1); ?> />ページ上部にシェアボタンを表示する
+							</label><br>
+							<label for="ys_sns_share_on_below_entry">
+								<input type="checkbox" name="ys_sns_share_on_below_entry" id="ys_sns_share_on_below_entry" value="1" <?php checked(get_option('ys_sns_share_on_below_entry',1),1); ?> />記事下部にシェアボタンを表示する
+							</label>
+						</fieldset>
+					</td>
+				</tr>
+
+			</table>
+			<?php submit_button(); ?>
+
+		</div>
+	</div>
+
+	<div class="postbox">
 		<h2>Twitterシェアボタン設定</h2>
 		<div class="inside">
 			<table class="form-table">

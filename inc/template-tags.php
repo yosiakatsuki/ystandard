@@ -593,6 +593,37 @@ if( ! function_exists( 'ys_template_get_the_custom_excerpt' ) ) {
 }
 
 
+/**
+ * 記事header SNSシェアボタン
+ */
+if( ! function_exists( 'ys_template_the_entry_header_share' ) ) {
+	function ys_template_the_entry_header_share() {
+
+		global $post;
+
+		$html = '';
+		$html .= '<aside id="sns-share__entry-header" class="sns-share__entry-header">';
+
+		if( ! ys_is_amp() ){
+			// AMP以外
+			$html .= ys_template_get_the_sns_share_buttons();
+
+		} else {
+			// AMP記事
+			$html .= ys_template_get_the_amp_sns_share_buttons();
+
+		}
+		$html .= '</aside>';
+
+		// シェアボタンが非表示なら表示消す
+		if( 0 == ys_get_setting( 'ys_sns_share_on_entry_header' ) ){
+			$html = '';
+		}
+
+		echo apply_filters( 'ys_template_the_entry_header_share', $html );
+
+	}
+}
 
 
 /**
@@ -677,6 +708,11 @@ if( ! function_exists( 'ys_template_get_the_sns_share' ) ) {
 		if( "1" === get_post_meta($post->ID,'ys_hide_share',true) ){
 			$html = '';
 		}
+		// シェアボタンが非表示なら表示消す
+		if( 0 == ys_get_setting( 'ys_sns_share_on_entry_header' ) ){
+			$html = '';
+		}
+
 
 		return apply_filters('ys_get_the_sns_share',$html);
 

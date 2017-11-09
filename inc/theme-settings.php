@@ -16,8 +16,8 @@ if (!function_exists( 'ys_settings')) {
 	function ys_settings() {
 		global $ys_settings;
 
-		if($ys_settings !== null) {
-			return $ys_settings;
+		if( null !== $ys_settings ) {
+			return apply_filters( 'ys_settings', $ys_settings );
 		}
 
 		// 基本設定
@@ -27,7 +27,12 @@ if (!function_exists( 'ys_settings')) {
 		$ys_copyright_year = ($ys_copyright_year == '') ? date_i18n('Y') : $ys_copyright_year;
 	// 基本設定 > アクセス解析設定
 		$ys_ga_tracking_id = esc_attr( get_option('ys_ga_tracking_id','') );
-	// 基本設定 > シェアボタン設定
+
+	// 基本設定 > SNSシェアボタン設定
+		$ys_sns_share_on_entry_header = get_option('ys_sns_share_on_entry_header',0);
+		$ys_sns_share_on_below_entry = get_option('ys_sns_share_on_below_entry',0);
+
+	// 基本設定 > Twitterシェアボタン設定
 		$ys_sns_share_tweet_via = get_option('ys_sns_share_tweet_via',0);
 		$ys_sns_share_tweet_via_account = esc_attr( get_option('ys_sns_share_tweet_via_account','') );
 		$ys_sns_share_tweet_related_account = esc_attr( get_option('ys_sns_share_tweet_related_account','') );
@@ -109,6 +114,9 @@ if (!function_exists( 'ys_settings')) {
 
 										'ys_ga_tracking_id' => $ys_ga_tracking_id,	//Google AanalyticsトラッキングID
 
+										'ys_sns_share_on_entry_header' => $ys_sns_share_on_entry_header,	//Tweetポタンに via を出力するか
+										'ys_sns_share_on_below_entry' => $ys_sns_share_on_below_entry,	//Tweetポタンに via を出力するか
+
 										'ys_sns_share_tweet_via' => $ys_sns_share_tweet_via,	//Tweetポタンに via を出力するか
 										'ys_sns_share_tweet_via_account' => $ys_sns_share_tweet_via_account,	//Twitter via アカウント
 										'ys_sns_share_tweet_related_account' => $ys_sns_share_tweet_related_account,	//Twitter related アカウント
@@ -175,7 +183,9 @@ if (!function_exists( 'ys_settings')) {
 
 									);
 
-		return apply_filters('ys_settings',$result);
+		$ys_settings = $result;
+
+		return apply_filters( 'ys_settings', $ys_settings );
 	}
 }
 
