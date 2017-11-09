@@ -23,6 +23,10 @@
 				<?php ys_template_the_post_thumbnail( 'full', false, true, 'ys-post-thumbnail' ); ?>
 			</figure><!-- .post-thumbnail -->
 		<?php endif; ?>
+
+		<?php
+			ys_template_the_entry_header_share();
+		?>
 	</header><!-- .entry-header -->
 
 	<?php

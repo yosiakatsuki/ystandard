@@ -778,6 +778,14 @@ div.aligncenter {
 	text-align: center;
 }
 
+.sns-share .sns-share-button li:nth-child(odd) {
+	margin-right: 1%;
+}
+
+.sns-share .sns-share-button li:nth-child(even) {
+	margin-left: 1%;
+}
+
 .sns-share-title {
 	margin: 0 0 1rem;
 	font-size: 1.2rem;
@@ -797,14 +805,6 @@ div.aligncenter {
 	font-size: .8rem;
 	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
-}
-
-.sns-share-button li:nth-child(odd) {
-	margin-right: 1%;
-}
-
-.sns-share-button li:nth-child(even) {
-	margin-left: 1%;
 }
 
 .sns-share-button li a {
@@ -1704,28 +1704,29 @@ sub {
 	font-size: 1rem;
 }
 
-.sns-share-button {
+.sns-share .sns-share-button {
 	font-size: 0;
 	text-align: left;
 	text-align: center;
 }
 
-.sns-share-button li {
+.sns-share .sns-share-button li {
 	width: 30%;
 	margin-left: auto;
 	text-align: left;
-}
-
-.sns-share-button li:nth-child(odd) {
 	margin-right: 5%;
 }
 
-.sns-share-button li:nth-child(even) {
+.sns-share .sns-share-button li:nth-child(odd) {
+	margin-right: 5%;
+}
+
+.sns-share .sns-share-button li:nth-child(even) {
 	margin-right: 5%;
 	margin-left: auto;
 }
 
-.sns-share-button li:nth-child(3n+3) {
+.sns-share .sns-share-button li:nth-child(3n+3) {
 	margin-right: 0;
 }
 

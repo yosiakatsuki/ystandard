@@ -88,7 +88,12 @@ function ys_register_settings() {
 	register_setting( 'ys_main_settings', 'ys_copyright_year' , 'sanitize_text_field');
 	// 基本設定 > アクセス解析設定
 	register_setting( 'ys_main_settings', 'ys_ga_tracking_id' , 'sanitize_text_field');
-	// 基本設定 > シェアボタン設定
+
+	// 基本設定 > SNSシェアボタン設定
+	register_setting( 'ys_main_settings', 'ys_sns_share_on_entry_header','ys_utilities_sanitize_checkbox' );
+	register_setting( 'ys_main_settings', 'ys_sns_share_on_below_entry','ys_utilities_sanitize_checkbox' );
+
+	// 基本設定 > Twitterシェアボタン設定
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via','ys_utilities_sanitize_checkbox' );
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_via_account' );
 	register_setting( 'ys_main_settings', 'ys_sns_share_tweet_related_account' );
