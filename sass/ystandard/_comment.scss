@@ -34,13 +34,15 @@
 	font-size: 1.2rem;
 }
 
+
+
+
 .comment-list {
 
 	.comment {
 		margin: 0 0 2rem;
 
 		.children {
-			margin: 2rem 0 0;
 			padding-left: 1rem;
 		}
 	}//.comment-list .comment
@@ -51,6 +53,23 @@
 	}
 }//.comment-list
 
+.comment-body {
+  padding: 2rem 0;
+  border-bottom: 1px solid $ys-border-color-gray;
+}
+
+
+.comment-text {
+  p,
+  blockquote,
+  pre {
+    margin: 0 0 1.5rem;
+
+    &:last-child {
+      margin: 0;
+    }
+  }
+}
 
 .comment-author {
 
