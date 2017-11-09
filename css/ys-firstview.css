@@ -642,7 +642,7 @@ img {
 }
 
 .sns-share__header {
-	margin: 0 0 1rem;
+	margin: .5rem 0;
 }
 
 .sns-share__header .sns-share-button {
@@ -658,7 +658,7 @@ img {
 }
 
 .sns-share__header .sns-share-button li a {
-	padding: .5rem .4rem;
+	padding: .5rem .3rem;
 }
 
 .sns-share__header .sns-share-button li a::before {
