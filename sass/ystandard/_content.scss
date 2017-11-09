@@ -87,12 +87,14 @@
   margin: 0 0 1rem;
 
   .sns-share-button {
+    margin-right: -2px;
 
     li {
       text-align: center;
       width: ( 100 / 6 )#{%};
       margin: 0;
-      border-radius: 0;
+      border-right: 2px solid #fff;
+      vertical-align: top;
 
       a {
         padding: .5rem .4rem;

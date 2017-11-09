@@ -645,11 +645,16 @@ img {
 	margin: 0 0 1rem;
 }
 
+.sns-share__header .sns-share-button {
+	margin-right: -2px;
+}
+
 .sns-share__header .sns-share-button li {
 	text-align: center;
 	width: 16.66667%;
 	margin: 0;
-	border-radius: 0;
+	border-right: 2px solid #fff;
+	vertical-align: top;
 }
 
 .sns-share__header .sns-share-button li a {
