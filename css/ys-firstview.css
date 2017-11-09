@@ -699,99 +699,71 @@ img {
 .entry-content ol,
 .entry-content dl,
 .entry-content blockquote,
-.entry-content pre,
-.entry-content table,
-.entry-content address,
-.comment-text p,
-.comment-text ul,
-.comment-text ol,
-.comment-text dl,
-.comment-text blockquote,
-.comment-text pre,
-.comment-text table,
-.comment-text address {
+.entry-content pre {
 	margin: 0 0 3rem;
 }
 
 .entry-content h1,
-.entry-content h2,
-.comment-text h1,
-.comment-text h2 {
+.entry-content h2 {
 	margin: 6rem 0 2rem;
 	font-size: 1.6rem;
 }
 
-.entry-content h3,
-.comment-text h3 {
+.entry-content h3 {
 	margin: 5.5rem 0 2rem;
 	font-size: 1.5rem;
 }
 
-.entry-content h4,
-.comment-text h4 {
+.entry-content h4 {
 	margin: 5rem 0 2rem;
 	font-size: 1.4rem;
 }
 
-.entry-content h5,
-.comment-text h5 {
+.entry-content h5 {
 	margin: 4.5rem 0 2rem;
 	font-size: 1.3rem;
 }
 
-.entry-content h6,
-.comment-text h6 {
+.entry-content h6 {
 	margin: 4rem 0 2rem;
 	font-size: 1.3rem;
 }
 
 .entry-content figure,
 .entry-content img,
-.entry-content amp-img,
-.comment-text figure,
-.comment-text img,
-.comment-text amp-img {
+.entry-content amp-img {
 	max-width: 100%;
 	margin-bottom: .5rem;
 }
 
-.entry-content figure,
-.comment-text figure {
+.entry-content figure {
 	text-align: center;
 }
 
-.entry-content img,
-.comment-text img {
+.entry-content img {
 	border: 3px solid #fafafa;
 }
 
-.entry-content img + figcaption,
-.comment-text img + figcaption {
+.entry-content img + figcaption {
 	margin-bottom: 1rem;
 }
 
 .entry-content strong,
-.entry-content b,
-.comment-text strong,
-.comment-text b {
+.entry-content b {
 	font-weight: bold;
 }
 
 .entry-content:before,
-.entry-content:after,
-.comment-text:before,
-.comment-text:after {
+.entry-content:after {
 	content: "";
 	display: table;
 }
 
-.entry-content:after,
-.comment-text:after {
+.entry-content:after {
 	clear: both;
 }
 
-.entry-content,
-.comment-text {
+.entry-content {
 	zoom: 1;
 }
 

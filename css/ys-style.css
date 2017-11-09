@@ -1145,76 +1145,57 @@ div.aligncenter {
 	margin-bottom: .5rem;
 }
 
-.entry-content ul,
-.comment-text ul {
+.entry-content ul {
 	list-style: disc;
 }
 
-.entry-content ol,
-.comment-text ol {
+.entry-content ol {
 	list-style: decimal;
 }
 
 .entry-content ul,
-.entry-content ol,
-.comment-text ul,
-.comment-text ol {
+.entry-content ol {
 	padding-left: 2rem;
 	overflow: hidden;
 }
 
 .entry-content ul li,
-.entry-content ol li,
-.comment-text ul li,
-.comment-text ol li {
+.entry-content ol li {
 	padding: .2rem 0;
 }
 
 .entry-content ul ul,
 .entry-content ul ol,
 .entry-content ol ul,
-.entry-content ol ol,
-.comment-text ul ul,
-.comment-text ul ol,
-.comment-text ol ul,
-.comment-text ol ol {
+.entry-content ol ol {
 	margin: 0;
 }
 
 .entry-content ul ul li:last-child,
 .entry-content ul ol li:last-child,
 .entry-content ol ul li:last-child,
-.entry-content ol ol li:last-child,
-.comment-text ul ul li:last-child,
-.comment-text ul ol li:last-child,
-.comment-text ol ul li:last-child,
-.comment-text ol ol li:last-child {
+.entry-content ol ol li:last-child {
 	padding: .2rem 0 0;
 }
 
-.entry-content table,
-.comment-text table {
+.entry-content table {
 	width: 100%;
 	table-layout: fixed;
 	border-top: 1px solid #bdc3c7;
 	border-left: 1px solid #bdc3c7;
 }
 
-.entry-content table tr,
-.comment-text table tr {
+.entry-content table tr {
 	border-bottom: 1px solid #bdc3c7;
 }
 
 .entry-content table td,
-.entry-content table th,
-.comment-text table td,
-.comment-text table th {
+.entry-content table th {
 	padding: .5rem;
 	border-right: 1px solid #bdc3c7;
 }
 
-.entry-content table th,
-.comment-text table th {
+.entry-content table th {
 	background-color: #fafafa;
 	text-align: left;
 }
@@ -1400,13 +1381,29 @@ sub {
 }
 
 .comment-list .comment .children {
-	margin: 2rem 0 0;
 	padding-left: 1rem;
 }
 
 .comment-list .pingback {
 	margin: 0 0 1rem;
 	font-size: .8rem;
+}
+
+.comment-body {
+	padding: 2rem 0;
+	border-bottom: 1px solid #bdc3c7;
+}
+
+.comment-text p,
+.comment-text blockquote,
+.comment-text pre {
+	margin: 0 0 1.5rem;
+}
+
+.comment-text p:last-child,
+.comment-text blockquote:last-child,
+.comment-text pre:last-child {
+	margin: 0;
 }
 
 .comment-author {

@@ -134,8 +134,7 @@
   margin-left: .5rem;
 }
 
-.entry-content,
-.comment-text  {
+.entry-content {
   // --------------------
   // 隙間をあけるもの
   // --------------------
@@ -144,9 +143,7 @@
   ol,
   dl,
   blockquote,
-  pre,
-  table,
-  address {
+  pre {
     margin: 0 0 3rem;
   }
   // --------------------
