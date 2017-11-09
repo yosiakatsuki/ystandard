@@ -19,15 +19,15 @@
 }
 .pagination-list {
 
-  max-width: 300px;
   position: relative;
   margin: 0 auto;
 	font-size: 0;
 
 	li {
-		width: 2rem;
+		width: 9%;
+    max-width: 2rem;
 		display: inline-block;
-		margin-right: .5rem;
+		margin-right: 1%;
 		font-size: 1rem;
 		text-align: center;
 		vertical-align: top;
@@ -47,19 +47,12 @@
 	}//li
   .next,
   .previous {
-    position: absolute;
     background-color: $ys-pagination-adjacent-bg-color;
     a {
       color: $ys-pagination-adjacent-font-color;
+      border-bottom: 2px solid $ys-pagination-current-border-color;
     }
   }//.next,.previous
-  .next {
-    right: 0;
-  }
-  .previous {
-    left: 0;
-  }
-
 }
 
 //--------------------------------------
