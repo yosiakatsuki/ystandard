@@ -1538,16 +1538,16 @@ sub {
 }
 
 .pagination-list {
-	max-width: 300px;
 	position: relative;
 	margin: 0 auto;
 	font-size: 0;
 }
 
 .pagination-list li {
-	width: 2rem;
+	width: 9%;
+	max-width: 2rem;
 	display: inline-block;
-	margin-right: .5rem;
+	margin-right: 1%;
 	font-size: 1rem;
 	text-align: center;
 	vertical-align: top;
@@ -1567,21 +1567,13 @@ sub {
 
 .pagination-list .next,
 .pagination-list .previous {
-	position: absolute;
 	background-color: #2c3e50;
 }
 
 .pagination-list .next a,
 .pagination-list .previous a {
 	color: #fff;
-}
-
-.pagination-list .next {
-	right: 0;
-}
-
-.pagination-list .previous {
-	left: 0;
+	border-bottom: 2px solid #2c3e50;
 }
 
 .author-info {
