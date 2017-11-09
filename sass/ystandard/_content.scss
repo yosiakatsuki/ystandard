@@ -26,9 +26,13 @@
   img {
     border: $ys-content-image-border-px solid $ys-content-image-border-color;
     box-sizing: content-box;
+    margin-left: -3px;
   }
   amp-img {
     max-width: 100%;
+    img {
+      margin-left: 0;
+    }
   }
 }
 
@@ -79,6 +83,33 @@
   vertical-align: middle;
 }
 
+.sns-share__header {
+  margin: .5rem 0;
+
+  .sns-share-button {
+    margin-right: -2px;
+
+    li {
+      text-align: center;
+      width: ( 100 / 6 )#{%};
+      margin: 0;
+      border-right: 2px solid #fff;
+      vertical-align: top;
+
+      a {
+        padding: .5rem .3rem;
+      }
+      a::before {
+        margin-right: .2rem;
+      }
+    }
+  }
+  .sns-share-text {
+    display: none;
+    letter-spacing: normal;
+  }
+}
+
 // 左右で分割表示するときのクラス
 .entry-meta-left {
 	float: left;
@@ -103,8 +134,7 @@
   margin-left: .5rem;
 }
 
-.entry-content,
-.comment-text  {
+.entry-content {
   // --------------------
   // 隙間をあけるもの
   // --------------------
@@ -113,9 +143,7 @@
   ol,
   dl,
   blockquote,
-  pre,
-  table,
-  address {
+  pre {
     margin: 0 0 3rem;
   }
   // --------------------
@@ -323,6 +351,14 @@
     .entry-header {
       margin-top: -2rem;
       padding: 15% 1rem;
+    }
+  }
+  .sns-share__header {
+    a {
+      font-size: .7rem;
+    }
+    .sns-share-text {
+      display: inline;
     }
   }
 };

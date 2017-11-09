@@ -29,7 +29,7 @@
 	<div class="postbox">
 		<h2>高度な設定</h2>
 		<div class="inside">
-			<p>AMP有効化設定など</p>
+			<p>css,javascriptの読み込み設定、AMP有効化設定など</p>
 			<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_advanced_settings'; ?>">設定を始める»</a></strong></p>
 		</div>
 	</div>
@@ -38,7 +38,11 @@
 		<h2>AMP設定</h2>
 		<div class="inside">
 			<p>AMPページ作成の条件や通常ページへのリンク出力設定など</p>
-			<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_amp_settings'; ?>">設定を始める»</a></strong></p>
+			<?php if( 0 == ys_get_setting( 'ys_amp_enable' ) ): ?>
+				<p><strong>※AMPページを生成が有効になっていません。</strong><br><a href="<?php echo get_admin_url().'/admin.php?page=ys_advanced_settings'; ?>">高度な設定</a>から「AMPページを生成する」にチェックを入れて下さい</p>
+			<?php else: ?>
+				<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_amp_settings'; ?>">設定を始める»</a></strong></p>
+			<?php endif; ?>
 		</div>
 	</div>
 
