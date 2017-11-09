@@ -575,10 +575,15 @@ img {
 .post-thumbnail img {
 	border: 3px solid #fafafa;
 	box-sizing: content-box;
+	margin-left: -3px;
 }
 
 .post-thumbnail amp-img {
 	max-width: 100%;
+}
+
+.post-thumbnail amp-img img {
+	margin-left: 0;
 }
 
 .entry-title {
@@ -634,6 +639,30 @@ img {
 	margin-right: .3rem;
 	fill: #939393;
 	vertical-align: middle;
+}
+
+.sns-share__header {
+	margin: 0 0 1rem;
+}
+
+.sns-share__header .sns-share-button li {
+	text-align: center;
+	width: 16.66667%;
+	margin: 0;
+	border-radius: 0;
+}
+
+.sns-share__header .sns-share-button li a {
+	padding: .5rem .4rem;
+}
+
+.sns-share__header .sns-share-button li a::before {
+	margin-right: .2rem;
+}
+
+.sns-share__header .sns-share-text {
+	display: none;
+	letter-spacing: normal;
 }
 
 .entry-meta-left {
@@ -1543,6 +1572,14 @@ img {
 .ys-one-column .entry-header {
 	margin-top: -2rem;
 	padding: 15% 1rem;
+}
+
+.sns-share__header a {
+	font-size: .7rem;
+}
+
+.sns-share__header .sns-share-text {
+	display: inline;
 }
 
 .post-thumbnail-container {

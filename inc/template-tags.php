@@ -602,17 +602,9 @@ if( ! function_exists( 'ys_template_the_entry_header_share' ) ) {
 		global $post;
 
 		$html = '';
-		$html .= '<aside id="sns-share__entry-header" class="sns-share__entry-header">';
+		$html .= '<aside id="sns-share__entry-header" class="sns-share__header">';
 
-		if( ! ys_is_amp() ){
-			// AMP以外
-			$html .= ys_template_get_the_sns_share_buttons();
-
-		} else {
-			// AMP記事
-			$html .= ys_template_get_the_amp_sns_share_buttons();
-
-		}
+		$html .= ys_template_get_the_sns_share_buttons();
 		$html .= '</aside>';
 
 		// シェアボタンが非表示なら表示消す
@@ -746,34 +738,35 @@ if( ! function_exists( 'ys_template_get_the_sns_share_buttons' ) ) {
 
 		$twitter_share_text = apply_filters( 'ys_share_twitter_text', $share_title );
 		$twitter_share_url = apply_filters( 'ys_share_twitter_url', $share_url );
-		$twitter_button_text = apply_filters( 'ys_twitter_button_text', 'Twitter' );
+		$twitter_button_text = apply_filters( 'ys_twitter_button_text', '<span class="sns-share-text">Twitter</span>' );
 
 		$twitter_share_html = '<li class="twitter bg-twitter"><a href="http://twitter.com/share?text='.$twitter_share_text.'&url='.$twitter_share_url.$tweet_via.$tweet_related.'"  target="_blank" rel="nofollow">'.$twitter_button_text.'</a></li>';
 		$twitter_share_html = apply_filters('ys_the_sns_share_buttons_twitter',$twitter_share_html);
 
 		// Facebook
-		$facebook_button_text = apply_filters('ys_facebook_button_text','Facebook');
+		$facebook_button_text = apply_filters('ys_facebook_button_text','<span class="sns-share-text">Facebook</span>');
 		$facebook_share_html = '<li class="facebook bg-facebook"><a href="http://www.facebook.com/sharer.php?src=bm&u='.$share_url.'&t='.$share_title.'" target="_blank"  rel="nofollow">'.$facebook_button_text.'</a></li>';
 		$facebook_share_html = apply_filters('ys_the_sns_share_buttons_facebook',$facebook_share_html);
 
 
 		// はてブ
-		$hatenabookmark_button_text = apply_filters('ys_hatenabookmark_button_text','はてブ');
+		$hatenabookmark_button_text = apply_filters('ys_hatenabookmark_button_text','<span class="sns-share-text">はてブ</span>');
 		$hatenabookmark_share_html = '<li class="hatenabookmark bg-hatenabookmark"><a class="icon-hatenabookmark" href="http://b.hatena.ne.jp/add?mode=confirm&url='.$share_url.'" target="_blank"  rel="nofollow">'.$hatenabookmark_button_text.'</a></li>';
 		$hatenabookmark_share_html = apply_filters('ys_the_sns_share_buttons_hatenabookmark',$hatenabookmark_share_html);
 
 		// Google +
-		$googleplus_button_text = apply_filters('ys_googleplus_button_text','Google+');
+		$googleplus_button_text = apply_filters('ys_googleplus_button_text','<span class="sns-share-text">Google+</span>');
 		$googleplus_share_html = '<li class="google-plus bg-google-plus"><a href="https://plus.google.com/share?url='.$share_url.'" target="_blank" rel="nofollow">'.$googleplus_button_text.'</a></li>';
 		$googleplus_share_html = apply_filters('ys_the_sns_share_buttons_googleplus',$googleplus_share_html);
 
 		// Pocket
-		$pocket_button_text = apply_filters('ys_pocket_button_text','Pocket');
+		$pocket_button_text = apply_filters('ys_pocket_button_text','<span class="sns-share-text">Pocket</span>');
 		$pocket_share_html = '<li class="pocket bg-pocket"><a href="http://getpocket.com/edit?url='.$share_url.'&title='.$share_title.'" target="_blank" rel="nofollow">'.$pocket_button_text.'</a></li>';
 		$pocket_share_html = apply_filters('ys_the_sns_share_buttons_pocket',$pocket_share_html);
 
 		// LINE
-		$line_share_html = '<li class="line bg-line"><a href="http://line.me/R/msg/text/?'.$share_title.'%0A'.$share_url.'" target="_blank">LINE</a></li>';
+		$line_button_text = apply_filters('ys_line_button_text','<span class="sns-share-text">LINE</span>');
+		$line_share_html = '<li class="line bg-line"><a href="http://line.me/R/msg/text/?'.$share_title.'%0A'.$share_url.'" target="_blank">' . $line_button_text . '</a></li>';
 		$line_share_html = apply_filters('ys_the_sns_share_buttons_line',$line_share_html);
 
 		$share_buttons .= $twitter_share_html.$facebook_share_html.$hatenabookmark_share_html.$googleplus_share_html.$pocket_share_html.$line_share_html;

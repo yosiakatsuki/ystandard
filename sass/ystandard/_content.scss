@@ -26,9 +26,13 @@
   img {
     border: $ys-content-image-border-px solid $ys-content-image-border-color;
     box-sizing: content-box;
+    margin-left: -3px;
   }
   amp-img {
     max-width: 100%;
+    img {
+      margin-left: 0;
+    }
   }
 }
 
@@ -77,6 +81,31 @@
   margin-right: .3rem;
   fill: $ys-content-entry-meta-color;
   vertical-align: middle;
+}
+
+.sns-share__header {
+  margin: 0 0 1rem;
+
+  .sns-share-button {
+
+    li {
+      text-align: center;
+      width: ( 100 / 6 )#{%};
+      margin: 0;
+      border-radius: 0;
+
+      a {
+        padding: .5rem .4rem;
+      }
+      a::before {
+        margin-right: .2rem;
+      }
+    }
+  }
+  .sns-share-text {
+    display: none;
+    letter-spacing: normal;
+  }
 }
 
 // 左右で分割表示するときのクラス
@@ -323,6 +352,14 @@
     .entry-header {
       margin-top: -2rem;
       padding: 15% 1rem;
+    }
+  }
+  .sns-share__header {
+    a {
+      font-size: .7rem;
+    }
+    .sns-share-text {
+      display: inline;
     }
   }
 };
