@@ -191,7 +191,7 @@ if(!function_exists( 'ys_amp_replace_tag')) {
 if(!function_exists( 'ys_amp_replace_image')) {
 	function ys_amp_replace_image($content) {
 
-		$pattern = '/<img(.+?)(\/)>/i';
+		$pattern = '/<img(.+?)?>/i';
 		$replacement = '<amp-img layout="responsive"$1></amp-img>';
 		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
