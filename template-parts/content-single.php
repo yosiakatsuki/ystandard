@@ -25,10 +25,16 @@
 		<?php endif; ?>
 
 		<?php
-			ys_template_the_entry_header_share();
+			if( ! ys_is_one_column() ){
+				ys_template_the_entry_header_share();
+			}
 		?>
 	</header><!-- .entry-header -->
-
+		<?php
+			if( ys_is_one_column() ){
+				ys_template_the_entry_header_share();
+			}
+		?>
 	<?php
 		if(ys_is_amp() && ys_get_setting('ys_amp_normal_link') == 1):
 	?>
