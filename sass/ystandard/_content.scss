@@ -257,6 +257,9 @@
       font-weight: bold;
       z-index: 3;
     }
+    .entry-title {
+      font-size: 1.4rem;
+    }
     .entry-meta-ico {
       fill:#fff;
     }
@@ -269,7 +272,7 @@
       left: 0;
       text-align: center;
       z-index: 1;
-      overflow-x: hidden;
+      overflow: hidden;
 
       img {
         width: 120%;
@@ -291,6 +294,9 @@
     max-width: $ys-wrap-width-1col;
     margin-left: auto;
     margin-right: auto;
+  }
+  .sns-share__header {
+    margin: .5rem 0 2rem;
   }
 }//.ys-one-column
 
