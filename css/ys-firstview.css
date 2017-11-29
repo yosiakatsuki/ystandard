@@ -818,6 +818,10 @@ img {
 	z-index: 3;
 }
 
+.ys-one-column .entry-header .entry-title {
+	font-size: 1.4rem;
+}
+
 .ys-one-column .entry-header .entry-meta-ico {
 	fill: #fff;
 }
@@ -830,7 +834,7 @@ img {
 	left: 0;
 	text-align: center;
 	z-index: 1;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 
 .ys-one-column .entry-header .post-thumbnail img {
@@ -851,6 +855,10 @@ img {
 	max-width: 960px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.ys-one-column .sns-share__header {
+	margin: .5rem 0 2rem;
 }
 
 .post-list {
