@@ -7,7 +7,7 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
-    "browser-sync": "^2.17.3",
+    "browser-sync": "^2.23.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^7.0.0",
@@ -15,10 +15,11 @@
     "gulp-combine-media-queries": "^0.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.3.2",
-    "gulp-uglify": "^2.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.1.2",
     "gulp-watch": "^4.3.10",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-stream": "^4.0.0"
   },
   "scripts": {
     "gulp": "gulp watch"

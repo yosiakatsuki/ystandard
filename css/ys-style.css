@@ -813,7 +813,7 @@ div.aligncenter {
 }
 
 .sns-share-button .twitter a::before {
-	content: "\f099";
+	content: '"\\f099"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 0.5rem 0 0;
@@ -825,7 +825,7 @@ div.aligncenter {
 }
 
 .sns-share-button .facebook a::before {
-	content: "\f09a";
+	content: '"\\f09a"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 0.5rem 0 0;
@@ -837,7 +837,7 @@ div.aligncenter {
 }
 
 .sns-share-button .google-plus a::before {
-	content: "\f0d5";
+	content: '"\\f0d5"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 0.5rem 0 0;
@@ -849,7 +849,7 @@ div.aligncenter {
 }
 
 .sns-share-button .pocket a::before {
-	content: "\f265";
+	content: '"\\f265"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 0.5rem 0 0;
@@ -861,7 +861,7 @@ div.aligncenter {
 }
 
 .sns-share-button .line a::before {
-	content: "\f075";
+	content: '"\\f075"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 0.5rem 0 0;
@@ -929,7 +929,7 @@ div.aligncenter {
 }
 
 .subscribe .twitter::before {
-	content: "\f099";
+	content: '"\\f099"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 auto 0 auto;
@@ -941,7 +941,7 @@ div.aligncenter {
 }
 
 .subscribe .facebook::before {
-	content: "\f09a";
+	content: '"\\f09a"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 auto 0 auto;
@@ -953,7 +953,7 @@ div.aligncenter {
 }
 
 .subscribe .google-plus::before {
-	content: "\f0d5";
+	content: '"\\f0d5"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 auto 0 auto;
@@ -965,7 +965,7 @@ div.aligncenter {
 }
 
 .subscribe .feedly::before {
-	content: "\f09e";
+	content: '"\\f09e"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 auto 0 auto;
@@ -1013,7 +1013,7 @@ div.aligncenter {
 }
 
 .entry-category-list h2::before {
-	content: "\f115";
+	content: '"\\f115"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 0.2rem 0 0;
@@ -1025,7 +1025,7 @@ div.aligncenter {
 }
 
 .entry-tag-list h2::before {
-	content: "\f02b";
+	content: '"\\f02b"';
 	width: 1.28571429em;
 	display: inline-block;
 	margin: 0 0.2rem 0 0;

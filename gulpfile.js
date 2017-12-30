@@ -8,12 +8,14 @@ var autoprefixer	 = require('gulp-autoprefixer');
 var uglify				 = require('gulp-uglify');
 var browserSync		 = require('browser-sync');
 var babel          = require('gulp-babel');
+var webpackStream   = require("webpack-stream");
+var webpack         = require("webpack");
 var cmq						 = require('gulp-combine-media-queries');
 
 /**
  * browserSyncで監視するファイル
  */
-var bS_WatchFiles = [
+var bsWatchFiles = [
   './css/*.min.css',
   './js/*.min.js',
   './**/*.php'
@@ -22,7 +24,7 @@ var bS_WatchFiles = [
 /**
  * browserSyncのオプション
  */
-var bS_Options = {
+var bsOptions = {
   proxy: "wp-ystandard.dev",
   open : "external",
   port : "3000"
@@ -31,14 +33,14 @@ var bS_Options = {
 /**
  * sass
  */
-var src_sass = [
+var srcSass = [
   './src/sass/**/*.scss'
 ]
 
 /**
  * css
  */
-var src_css = [
+var srcCss = [
   './css/*.css',
   '!./css/*.min.css',
   '!./css/ys-editor-style.css'
@@ -47,23 +49,29 @@ var src_css = [
 /**
  * js
  */
-var src_js = [
+var srcJs = [
   './src/js/**/*.js'
 ]
 
 /**
  * es2015
  */
-var sec_es = [
-  './src/js/**/*.js'
+var srcEs = [
+  './src/js/**/*.js',
+  '!./src/js/modules/**/*.js'
 ]
+
+/**
+ * webpack config 読み込み
+ */
+var webpackConfig = require("./webpack.config");
 
 
 /**
  * sass
  */
 gulp.task('sass', function() {
-  gulp.src(src_sass)
+  gulp.src(srcSass)
     .pipe(plumber({
       errorHandler: function(err) {
         console.log(err.messageFormatted);
@@ -84,7 +92,7 @@ gulp.task('sass', function() {
  * css圧縮
  */
 gulp.task('mincss', function() {
-  gulp.src(src_css)
+  gulp.src(srcCss)
     .pipe(plumber({
       errorHandler: function(err) {
         console.log(err.messageFormatted);
@@ -102,7 +110,7 @@ gulp.task('mincss', function() {
  * js圧縮
  */
 gulp.task('minjs', function() {
-  gulp.src(src_js)
+  gulp.src(srcJs)
     .pipe(plumber({
       errorHandler: function(err) {
         console.log(err.messageFormatted);
@@ -114,13 +122,43 @@ gulp.task('minjs', function() {
     .pipe(gulp.dest('./js'));
 });
 
+/**
+ * es2015のコンパイル
+ */
+gulp.task('babel', function () {
+  gulp.src(srcEs)
+    .pipe(plumber({
+      errorHandler: function(err) {
+        console.log(err.messageFormatted);
+        this.emit('end');
+      }
+    }))
+    .pipe(babel())
+    .pipe(gulp.dest('./js'));
+});
+
+
+
+/**
+ * webpack
+ */
+gulp.task('webpack', function(){
+  return plumber({
+      errorHandler: function(err) {
+        console.log(err.messageFormatted);
+        this.emit('end');
+      }
+    })
+    .pipe(webpackStream(webpackConfig, webpack))
+    .pipe(gulp.dest('./js'));
+});
 
 
 /**
  * browser-sync init
  */
 gulp.task('bs-init', function() {
-  browserSync.init(bS_Options);
+  browserSync.init(bsOptions);
 });
 
 /**
@@ -137,7 +175,7 @@ gulp.task('bs-reload', function() {
  * ※エラーが発生する場合、node_modules/gulp-combine-media-queries/index.js の 152行目をコメントアウト
  */
 gulp.task('cmq', function() {
-  gulp.src(src_css)
+  gulp.src(srcCss)
     .pipe(plumber({
       errorHandler: function(err) {
         console.log(err.messageFormatted);
@@ -148,20 +186,6 @@ gulp.task('cmq', function() {
     .pipe(gulp.dest('./css/cmq/'));
 });
 
-/**
- * es2015のコンパイル
- */
-gulp.task('babel', function () {
-  gulp.src(sec_es)
-    .pipe(plumber({
-      errorHandler: function(err) {
-        console.log(err.messageFormatted);
-        this.emit('end');
-      }
-    }))
-    .pipe(babel())
-    .pipe(gulp.dest('./js'));
-});
 
 
 
@@ -172,18 +196,18 @@ gulp.task('babel', function () {
 /**
  * コード
  */
-gulp.task('watch',['sass','babel'],function() {
-  watch(src_sass, function(event) {
+gulp.task('watch',['sass','webpack'],function() {
+  watch(srcSass, function(event) {
     gulp.start('sass');
   });
-  watch(src_js, function(event) {
+  watch(srcJs, function(event) {
     gulp.start('minjs');
   });
-  watch(src_css, function(event) {
+  watch(srcCss, function(event) {
     gulp.start('mincss');
   });
-  watch(sec_es, function(event) {
-    gulp.start('babel');
+  watch(srcEs, function(event) {
+    gulp.start('webpack');
   });
 });
 
@@ -192,7 +216,7 @@ gulp.task('watch',['sass','babel'],function() {
  * browserSync
  */
 gulp.task('watch-bs',['bs-init','watch'],function() {
-  watch(bS_WatchFiles, function(event) {
+  watch(bsWatchFiles, function(event) {
     gulp.start('bs-reload');
   });
 });
@@ -201,7 +225,7 @@ gulp.task('watch-bs',['bs-init','watch'],function() {
  * sassのみ
  */
 gulp.task('watch-sass',['sass'],function() {
-  watch(src_sass, function(event) {
+  watch(srcSass, function(event) {
     gulp.start('sass');
   });
 });
