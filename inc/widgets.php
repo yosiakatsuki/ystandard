@@ -75,16 +75,6 @@ if (!function_exists( 'ys_widget_init')) {
 }
 add_action( 'widgets_init', 'ys_widget_init' );
 
-
-//------------------------------------------------------------------------------
-//
-//	テーマオリジナルのウィジェット
-//
-//------------------------------------------------------------------------------
-require_once get_template_directory() . '/inc/classes/widgets/class-ys-ad-text-widget.php';
-require_once get_template_directory() . '/inc/classes/widgets/class-ys-ranking-widget.php';
-
-
 //------------------------------------------------------------------------------
 //	ウィジェットの登録
 //------------------------------------------------------------------------------

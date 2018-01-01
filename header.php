@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <?php
-	// html~headタグは関数で出力
-	ys_template_the_head_tag();
+	if( ys_is_amp() ) {
+		/**
+		 * AMPフォーマットの場合
+		 */
+		get_template_part( '/template-parts/amp/head-amp.php' );
+	} else {
+		/**
+		 * 通常フォーマットの場合
+		 */
+		get_template_part( '/template-parts/head/head.php' );
+	}
 ?>
 
 <body <?php body_class(); ?>><div id="fb-root"></div>
 <?php
- 	if(ys_is_amp()) {
+ 	if( ys_is_amp() ) {
 		// Google Analytics
 		ys_extras_add_googleanarytics();
 	}
