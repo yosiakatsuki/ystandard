@@ -5,6 +5,7 @@
 		 * AMPフォーマットの場合
 		 */
 		get_template_part( '/template-parts/amp/head-amp.php' );
+		
 	} else {
 		/**
 		 * 通常フォーマットの場合

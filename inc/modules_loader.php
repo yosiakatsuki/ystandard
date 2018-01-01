@@ -16,10 +16,16 @@ require_once get_template_directory() . '/inc/classes/class.ys-styles.php';
  * 変数
  */
 require_once get_template_directory() . '/inc/variables/variables.php';
+/**
+* 設定
+*/
+require_once get_template_directory() . '/inc/option/option.php';
+/**
+ * 条件分岐
+ */
+require_once get_template_directory() . '/inc/conditional-branch/conditional-branch.php';
 
 
-//設定
-require_once get_template_directory() . '/inc/theme-settings.php';
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';
 // AMP
@@ -53,8 +59,14 @@ require_once get_template_directory() . '/inc/shortcode.php';
 require_once get_template_directory() . '/inc/head/head.php';
 require_once get_template_directory() . '/inc/head/wp_head.php';
 
+/**
+ * v2でいずれ廃止予定
+ */
+//設定
+require_once get_template_directory() . '/inc/migration-v1-v2/v1/theme-settings.php';
+
 // 管理画面メニュー
-if(is_admin()){
+if( is_admin() ){
 	require_once get_template_directory() . '/inc/theme-option/theme-option-add.php';
 	require_once get_template_directory() . '/library/theme-update-checker/theme-update-checker.php';
 	// 管理画面関連

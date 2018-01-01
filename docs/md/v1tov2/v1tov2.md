@@ -7,10 +7,27 @@
 
 ## css
 
-- ys-button → ys-btn
+- ys-button → btn
 
+
+## 変更された関数
+- ys_amp_the_amp_script -> ys_the_amp_script
+- ys_extras_apple_touch_icon -> ys_the_apple_touch_icon
+- ys_extras_add_canonical -> ys_the_canonical_tag
+- ys_extras_adjacent_posts_rel_link_wp_head -> ys_the_rel_link
+- ys_extras_add_noindex -> ys_the_noindex
+
+## 削除予定の関数
+- ys_settings
+- ys_get_setting
 
 ## 削除された関数
 - ys_template_the_head_normal
 - ys_template_the_head_tag
 - ys_template_the_inline_css
+- ys_amp_the_head_amp
+- ys_amp_the_amp_script
+- ys_extras_apple_touch_icon
+- ys_extras_add_canonical
+- ys_extras_adjacent_posts_rel_link_wp_head
+- ys_extras_add_noindex
