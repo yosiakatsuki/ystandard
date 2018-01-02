@@ -16,7 +16,7 @@ if( ! function_exists( 'ys_get_the_head_tag' ) ) {
  * <head>タグ出力
  */
 if( ! function_exists( 'ys_the_head_tag' ) ) {
-	function ys_get_the_head_tag() {
+	function ys_the_head_tag() {
 		echo ys_get_the_head_tag();
 	}
 }

@@ -4,16 +4,16 @@
 		/**
 		 * AMPフォーマットの場合
 		 */
-		get_template_part( '/template-parts/amp/head-amp.php' );
-		
+		get_template_part( 'template-parts/amp/head-amp' );
+
 	} else {
 		/**
 		 * 通常フォーマットの場合
 		 */
-		get_template_part( '/template-parts/head/head.php' );
+		get_template_part( 'template-parts/head/head' );
 	}
 ?>
-
+<!-- head -->
 <body <?php body_class(); ?>><div id="fb-root"></div>
 <?php
  	if( ys_is_amp() ) {

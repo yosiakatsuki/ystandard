@@ -9,6 +9,10 @@
 - file: inc/option/option.php
 - description: yStandard用設定取得内容編集用フィルタ
 
+## ys_custom_logo_param
+- file: inc/init/init.php
+- description: カスタムロゴのサイズ変更用フィルタ
+
 ## ys_get_the_head_tag
 - file: inc/head/head.php
 - description: OGPパラメーター付きの<head>開始タグ編集用フィルタ

@@ -16,6 +16,10 @@
 - ys_extras_add_canonical -> ys_the_canonical_tag
 - ys_extras_adjacent_posts_rel_link_wp_head -> ys_the_rel_link
 - ys_extras_add_noindex -> ys_the_noindex
+- ys_setup_initialize -> ys_init
+- ys_setup_remove_action -> ys_remove_action
+- ys_setup_remove_emoji -> ys_remove_emoji
+- ys_setup_remove_oembed -> ys_remove_oembed
 
 ## 削除予定の関数
 - ys_settings
@@ -31,3 +35,8 @@
 - ys_extras_add_canonical
 - ys_extras_adjacent_posts_rel_link_wp_head
 - ys_extras_add_noindex
+- ys_setup_initialize
+- ys_init_change_logo_size
+- ys_setup_remove_action
+- ys_setup_remove_emoji
+- ys_setup_remove_oembed

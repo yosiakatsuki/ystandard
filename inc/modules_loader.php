@@ -24,6 +24,10 @@ require_once get_template_directory() . '/inc/option/option.php';
  * 条件分岐
  */
 require_once get_template_directory() . '/inc/conditional-branch/conditional-branch.php';
+/**
+ * 初期化
+ */
+require_once get_template_directory() . '/inc/init/init.php';
 
 
 // utilities
@@ -31,7 +35,7 @@ require_once get_template_directory() . '/inc/utilities.php';
 // AMP
 require_once get_template_directory() . '/inc/amp.php';
 // 初期化・初期設定
-require_once get_template_directory() . '/inc/setup.php';
+
 // テーマカスタマイザー
 require_once get_template_directory() . '/inc/customizer.php';
 // スクリプトの読み込み・停止
