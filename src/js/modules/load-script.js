@@ -66,7 +66,7 @@ class YSLoadScript {
     try {
       scripts = JSON.parse(scripts)
     } catch (e) {
-      return null
+      return false
     }
     return scripts
   }
@@ -121,7 +121,7 @@ class YSLoadScript {
    */
   loadScripts () {
     let scripts = this.getScripts(this._scriptOnloadAttribute)
-    if (scripts == null) return
+    if (scripts === null || scripts === false) return
 
     for (var i = 0; i < scripts.length; i = (i + 1) | 0) {
       YSLoadScript.loadScript(scripts[i].id, scripts[i].url, '')
@@ -133,7 +133,7 @@ class YSLoadScript {
    */
   lazyLoadScripts () {
     let scripts = this.getLazyScripts()
-    if (scripts == null) return
+    if (scripts === null || scripts === false) return
 
     if (scripts.length > 0) {
       if (!this.isWaitingLazyLoad()) {
@@ -154,7 +154,7 @@ class YSLoadScript {
    */
   lazyLoadCss () {
     let cssList = this.getLazyCss()
-    if (cssList == null) return
+    if (cssList === null || cssList === false) return
 
     if (cssList.length > 0) {
       if (!this.isWaitingLazyLoad()) {

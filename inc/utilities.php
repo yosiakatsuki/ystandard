@@ -655,57 +655,6 @@ if (!function_exists( 'ys_utilities_get_image_size')) {
 	}
 }
 
-
-
-
-/**
- *	遅延ロード用配列作成関数
- */
-if (!function_exists( 'ys_utilities_get_load_script_array')) {
-	function ys_utilities_get_load_script_array( $id , $url ) {
-
-		return array(
-						'id'  => esc_attr( $id ),
-						'url' => esc_url_raw( $url ),
-						// 'url'=>esc_url($url) //facebookのスクリプトとか読めなくなる
-					);
-	}
-}
-
-
-
-
-/**
- *	テーマバージョン取得
- */
-if (!function_exists( 'ys_utilities_get_theme_version')) {
-	function ys_utilities_get_theme_version($template = false) {
-
-		$theme = wp_get_theme();
-		if($template && get_template() != get_stylesheet()){
-			// 親テーマ情報
-			$theme = wp_get_theme(get_template());
-		}
-		return $theme->Version;
-	}
-}
-
-
-
-
-/**
- *	jsonエンコード
- */
-if (!function_exists( 'ys_utilities_json_encode')) {
-	function ys_utilities_json_encode( $array ) {
-
-		return json_encode($array, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES );
-	}
-}
-
-
-
-
 /**
  *	prev,next用URL取得
  */

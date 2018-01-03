@@ -32,7 +32,7 @@ if( ! function_exists( 'ys_the_amp_script' ) ) {
 		/**
 		 * 広告表示
 		 */
-		if( ys_is_show_advertisement() ){
+		if( ys_is_load_amp_ad_js() ){
 			$scripts .= '<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>' . PHP_EOL;
 		}
 		/**

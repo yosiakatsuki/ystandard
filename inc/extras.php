@@ -36,23 +36,6 @@ add_filter( 'body_class', 'ys_extras_body_classes' );
 
 
 
-//------------------------------------------------------------------------------
-// スクリプトにasync付ける
-//------------------------------------------------------------------------------
-if( ! function_exists( 'ys_extras_add_async' ) ) {
-	function ys_extras_add_async($tag) {
-		if(is_admin()){
-			return $tag;
-		}
-		//jQuery関連以外のjsにasyncを付ける
-		if ( strpos($tag,'jquery') !== false ) return $tag;
-		return str_replace("src", "async src", $tag);
-	}
-}
-add_filter('script_loader_tag','ys_extras_add_async');
-
-
-
 
 //------------------------------------------------------------------------------
 // セルフピンバック対策
@@ -473,96 +456,9 @@ add_action( 'wp_head', 'ys_extras_add_amphtml' );
 //
 //------------------------------------------------------------------------------
 
-//-----------------------------------------------
-//	CSS読み込み用JS出力
-//-----------------------------------------------
-if( ! function_exists( 'ys_extras_load_css_footer_js' ) ) {
-	function ys_extras_load_css_footer_js() {
-
-		// 読み込むCSSをリスト化
-		$csslist = array(
-										get_template_directory_uri().'/css/ys-style.min.css?ver='.ys_utilities_get_theme_version(true),
-										get_stylesheet_directory_uri().'/style.css?ver='.ys_utilities_get_theme_version(),
-										get_template_directory_uri().'/css/font-awesome.min.css'
-										);
-
-		$csslist = apply_filters('ys_load_css_footer_js',$csslist);
-
-		// 読み込むCSSリスト作成
-		$cssarray = '';
-		foreach($csslist as $css){
-			$cssarray .= '\''.$css.'\',';
-		}
-		$cssarray = 'list = ['.rtrim($cssarray,',').']';
-
-		// js作成
-		$script = <<<EOD
-<script type="text/javascript">
-	var cb = function() {
-		var {$cssarray}
-				,l
-				,h = document.getElementsByTagName('head')[0];
-		for (var i = 0; i < list.length; i++){
-			l = document.createElement('link');
-			l.rel = 'stylesheet';
-			l.href = list[i];
-			h.appendChild(l);
-		}
-	};
-	var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
-	if (raf) raf(cb);
-	else window.addEventListener('load', cb);
-</script>
-EOD;
-
-	echo $script;
-	}
-}
-add_action( 'wp_footer', 'ys_extras_load_css_footer_js' );
 
 
 
-
-/**
- *	追加読み込みスクリプト・CSSの追加
- */
-if( ! function_exists( 'ys_extras_add_load_script_list' ) ) {
-	function ys_extras_add_load_script_list() {
-
-		$script_onload = array();
-		$script_lazyload = array();
-		$css_lazyload = array();
-
-		// SNS関連のスクリプト読み込み
-		if(ys_get_setting('ys_load_script_twitter')){
-			$script_onload[] = ys_utilities_get_load_script_array(
-														'twitter-wjs',
-														'//platform.twitter.com/widgets.js'
-													);
-		}
-
-		if(ys_get_setting('ys_load_script_facebook')){
-			$script_onload[] = ys_utilities_get_load_script_array(
-														'facebook-jssdk',
-														'//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8'
-													);
-		}
-
-
-		$script_onload = apply_filters('ys_add_load_script_list_onload',$script_onload);
-		$script_lazyload = apply_filters('ys_add_load_script_list_lazyload',$script_lazyload);
-		$css_lazyload = apply_filters('ys_add_load_css_list_lazyload',$css_lazyload);
-
-		$script_html = '<script type="text/javascript">';
-		$script_html .= 'var js_onload = '.ys_utilities_json_encode($script_onload).';';
-		$script_html .= 'var js_lazyload = '.ys_utilities_json_encode($script_lazyload).';';
-		$script_html .= 'var css_lazyload = '.ys_utilities_json_encode($css_lazyload).';';
-		$script_html .= '</script>';
-
-		echo $script_html;
-	}
-}
-add_action( 'wp_footer', 'ys_extras_add_load_script_list',9 );
 
 
 

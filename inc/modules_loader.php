@@ -4,7 +4,7 @@
  */
 require_once get_template_directory() . '/inc/classes/widgets/class.ys-ad-text-widget.php';
 require_once get_template_directory() . '/inc/classes/widgets/class.ys-ranking-widget.php';
-require_once get_template_directory() . '/inc/classes/class.ys-styles.php';
+require_once get_template_directory() . '/inc/classes/class.ys-enqueue.php';
 
 /**
  *
@@ -28,6 +28,18 @@ require_once get_template_directory() . '/inc/conditional-branch/conditional-bra
  * 初期化
  */
 require_once get_template_directory() . '/inc/init/init.php';
+/**
+ * enqueue
+ */
+require_once get_template_directory() . '/inc/enqueue/enqueue.php';
+/**
+ * utilities
+ */
+require_once get_template_directory() . '/inc/util/util.php';
+
+
+
+
 
 
 // utilities
@@ -38,8 +50,7 @@ require_once get_template_directory() . '/inc/amp.php';
 
 // テーマカスタマイザー
 require_once get_template_directory() . '/inc/customizer.php';
-// スクリプトの読み込み・停止
-require_once get_template_directory() . '/inc/enqueue.php';
+
 // フィルタ関連
 require_once get_template_directory() . '/inc/extras.php';
 //簡易VPカウント

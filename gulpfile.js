@@ -200,9 +200,9 @@ gulp.task('watch',['sass','webpack'],function() {
   watch(srcSass, function(event) {
     gulp.start('sass');
   });
-  watch(srcJs, function(event) {
-    gulp.start('minjs');
-  });
+  // watch(srcJs, function(event) {
+  //   gulp.start('minjs');
+  // });
   watch(srcCss, function(event) {
     gulp.start('mincss');
   });

@@ -129,6 +129,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				//記事下　左
 				'ys_amp_advertisement_under_content' => get_option( 'ys_amp_advertisement_under_content', '' )
 			);
+		
 		return apply_filters( 'ys_get_options', $result );
 	}
 }

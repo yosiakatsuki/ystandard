@@ -26,8 +26,8 @@ if( ! function_exists( 'ys_the_head_tag' ) ) {
  */
 if( ! function_exists( 'ys_set_inline_style' ) ) {
 	function ys_set_inline_style( $style, $minify = true ) {
-		global $ys_styles;
-		$style = $ys_styles->set_inline_style( $style, $minify );
+		global $ys_enqueue;
+		$style = $ys_enqueue->set_inline_style( $style, $minify );
 	}
 }
 
@@ -36,8 +36,8 @@ if( ! function_exists( 'ys_set_inline_style' ) ) {
  */
 if( ! function_exists( 'ys_get_the_inline_style' ) ) {
 	function ys_get_the_inline_style( $is_amp ) {
-		global $ys_styles;
-		$style = $ys_styles->get_inline_style( $is_amp );
+		global $ys_enqueue;
+		$style = $ys_enqueue->get_inline_style( $is_amp );
 		return apply_filters( 'ys_get_the_inline_style', $style );
 	}
 }

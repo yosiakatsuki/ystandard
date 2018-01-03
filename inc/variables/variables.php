@@ -8,8 +8,8 @@
 /**
  * CSS関連のクラス
  */
-global $ys_styles;
-$ys_styles = new YS_Styles();
+global $ys_enqueue;
+$ys_enqueue = new YS_Enqueue();
 
 /**
  * 設定オブジェクト

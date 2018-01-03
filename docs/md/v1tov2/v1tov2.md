@@ -20,6 +20,9 @@
 - ys_setup_remove_action -> ys_remove_action
 - ys_setup_remove_emoji -> ys_remove_emoji
 - ys_setup_remove_oembed -> ys_remove_oembed
+- ys_extras_load_css_footer_js -> ys_enqueue_css
+- ys_utilities_get_theme_version -> ys_util_get_theme_version
+- ys_extras_add_async -> ys_add_async_on_js
 
 ## 削除予定の関数
 - ys_settings
@@ -35,8 +38,13 @@
 - ys_extras_add_canonical
 - ys_extras_adjacent_posts_rel_link_wp_head
 - ys_extras_add_noindex
+- ys_extras_add_load_script_list
 - ys_setup_initialize
 - ys_init_change_logo_size
 - ys_setup_remove_action
 - ys_setup_remove_emoji
 - ys_setup_remove_oembed
+- ys_utilities_get_theme_version
+- ys_utilities_json_encode
+- ys_extras_add_async
+- ys_utilities_get_load_script_array
