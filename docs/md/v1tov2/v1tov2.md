@@ -77,6 +77,9 @@
 - ys_extras_get_the_archive_title
 - ys_extras_add_facebook_ogp
 - ys_extras_add_googleanarytics
+- ys_template_the_header_attr
+- ys_template_the_content_attr
+- ys_template_the_site_hero
 
 
 ## 変更されたフィルタ
@@ -85,3 +88,6 @@
 ## 削除されたフィルタ
 - ys_ga_function
 - ys_amp_ga_json
+- ys_the_header_attr
+- ys_the_content_attr
+- ys_site_hero

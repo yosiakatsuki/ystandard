@@ -428,7 +428,7 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.color-site-header'
+							'.color__site-header'
 						),
 						array(
 							'background-color' => $header_bg
@@ -439,7 +439,7 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.color-site-header',
+							'.color__site-header',
 							'.color-site-title, .color-site-title:hover',
 							'.color-site-dscr'
 						),

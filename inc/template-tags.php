@@ -122,25 +122,6 @@ if(!function_exists( 'ys_template_the_header_global_menu')) {
 
 
 
-
-//-----------------------------------------------
-//	サイト ヒーローエリア
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_site_hero' ) ) {
-	function ys_template_the_site_hero() {
-
-		// ヒーローエリア
-		// 	※要カスタマイズ
-
-		$html = '';
-		echo apply_filters('ys_site_hero',$html);
-	}
-}
-
-
-
-
-
 /**
  *
  *	front-page
@@ -1284,23 +1265,6 @@ if( ! function_exists( 'ys_template_the_advertisement_under_content' ) ) {
 //	カスタム属性
 //
 //------------------------------------------------------------------------------
-
-//-----------------------------------------------
-//	ヘッダ
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_header_attr' ) ) {
-	function ys_template_the_header_attr() {
-		echo apply_filters('ys_the_header_attr','');
-	}
-}
-//-----------------------------------------------
-//	コンテンツ
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_content_attr' ) ) {
-	function ys_template_the_content_attr() {
-		echo apply_filters('ys_the_content_attr','');
-	}
-}
 //-----------------------------------------------
 //	サイドバー
 //-----------------------------------------------
