@@ -33,6 +33,10 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: CDNのjQueryを読み込むかどうかの結果編集用フィルタ
 
+### ys_is_enable_google_analytics
+- file: inc/conditional-branch/conditional-branch.php
+- description: Google Analyticsのタグを読み込むかの結果編集用フィルタ
+
 
 ## head
 
@@ -44,35 +48,44 @@
 - file: inc/head/head.php
 - description: インラインCSSのカスタム用フィルタ
 
-
-## wp_head
-
 ### ys_the_noindex
-- file: inc/head/wp_head.php
+- file: inc/head/head.php
 - description: noindexの条件カスタム用フィルタ
 
 ### ys_get_the_ogp
-- file: inc/head/wp_head.php
+- file: inc/head/head.php
 - description: OGPのmetaタグ編集用フィルタ
 
 ### ys_get_the_twitter_card
-- file: inc/head/wp_head.php
+- file: inc/head/head.php
 - description: Twitterカードのmetaタグ編集用フィルタ
 
 ### ys_get_ogp_and_twitter_card_param
-- file: inc/head/wp_head.php
+- file: inc/head/head.php
 - description: OGP/Twitterカードの各種パラメータ編集用フィルタ
 
+### ys_get_google_anarytics_tracking_id
+- file: inc/head/head.php
+- description: Google AnalyticsトラッキングID編集フィルタ
 
-## ys_amp_head
+
+## amp-head
 
 ### ys_get_the_amp_document_title
-- file: inc/amp/ys_amp_head.php
+- file: inc/amp/amp-head.php
 - description: AMPでのページタイトル編集フィルタ
 
 ### ys_the_amp_script
-- file: inc/amp/ys_amp_head.php
+- file: inc/amp/amp-head.php
 - description: AMP用scriptタグ読み込みの編集フィルタ
+
+
+## amp-google-analytics
+
+### ys_get_amp_google_anarytics_tracking_id
+- file: inc/amp/amp-google-analytics.php
+- description: AMP用Google AnalyticsトラッキングID編集フィルタ
+
 
 
 ## archive

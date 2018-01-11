@@ -57,3 +57,38 @@ function ys_is_load_cdn_jquery() {
 	}
 	return apply_filters( 'ys_is_load_cdn_jquery', $result );
 }
+
+/**
+ * Google Analyticsのタグを出力するか
+ */
+function ys_is_enable_google_analytics() {
+	$result = true;
+	/**
+	 * ログイン中にGA出力しない場合
+	 */
+	if( ys_get_option( 'ys_ga_exclude_logged_in_user' ) ) {
+		if( is_user_logged_in() ){
+			/**
+			 * 編集権限を持っている場合のみ判断
+			 */
+			if( current_user_can( 'edit_posts' ) ) {
+				$result = false;
+			}
+		}
+	}
+	$ga_id = ys_get_google_anarytics_tracking_id();
+	$ga_id_amp = ys_get_amp_google_anarytics_tracking_id();
+	if( '' == $ga_id_amp && '' != $ga_id ){
+		$ga_id_amp = $ga_id;
+	}
+	if( ys_is_amp() ) {
+		if( '' == $ga_id_amp ) {
+			$result = false;
+		}
+	} else {
+		if( '' == $ga_id ) {
+			$result = false;
+		}
+	}
+	return apply_filters( 'ys_is_enable_google_analytics', $result );
+}

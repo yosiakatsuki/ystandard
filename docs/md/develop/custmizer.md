@@ -150,10 +150,10 @@
   * CDNにホストされているjQueryを読み込む
   * jQueryを読み込まない
 - [ys]AMP設定(1300)
-  * AMP有効化設定
-    * AMP機能を有効化する
-  * AMP機能設定
-    * AMP用 Google Analytics トラッキングID
+  - AMP有効化設定
+    - AMP機能を有効化する
+  - AMP機能設定
+    - AMP用 Google Analytics トラッキングID
     * FacebookシェアボタンのApp ID
     * AMP記事作成条件設定
       * <script>タグを削除してAMPページを作成する

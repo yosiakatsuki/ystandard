@@ -59,6 +59,12 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			 */
 			// AMPページを有効化するか
 			'ys_amp_enable' => get_option( 'ys_amp_enable', 0 ),
+			// AMPのGoogle Analyticsトラッキングコード
+			'ys_ga_tracking_id_amp' => esc_attr( get_option( 'ys_ga_tracking_id_amp', '' ) ),
+
+
+
+
 
 
 				// タイトルの区切り文字
@@ -150,8 +156,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				//jQueryを読み込まない
 				'ys_not_load_jquery' => get_option( 'ys_not_load_jquery', 0 ),
 
-				//AMPのGoogle Analyticsトラッキングコード
-				'ys_ga_tracking_id_amp' => esc_attr( get_option( 'ys_ga_tracking_id_amp', '' ) ),
+
 				//AMPのfacebookシェアボタン用App id
 				'ys_amp_share_fb_app_id' => esc_attr( get_option('ys_amp_share_fb_app_id','') ),
 				//通常ビューへのリンクを表示する

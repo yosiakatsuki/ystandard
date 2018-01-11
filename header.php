@@ -15,12 +15,7 @@
 ?>
 <!-- head -->
 <body <?php body_class(); ?>><div id="fb-root"></div>
-<?php
- 	if( ys_is_amp() ) {
-		// Google Analytics
-		ys_extras_add_googleanarytics();
-	}
-?>
+	<?php do_action( 'ys_body_prepend' ); ?>
 <div id="page" class="site">
 	<div class="site-inner">
 

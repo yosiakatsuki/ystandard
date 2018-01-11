@@ -42,22 +42,6 @@
 	</div>
 
 	<div class="postbox">
-		<h2>アクセス解析設定</h2>
-		<div class="inside">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">Google Analytics トラッキングID</th>
-					<td>
-						<input type="text" name="ys_ga_tracking_id" id="ys_ga_tracking_id" value="<?php echo esc_attr( get_option('ys_ga_tracking_id') ); ?>" placeholder="UA-00000000-0" />
-					</td>
-				</tr>
-			</table>
-			<?php submit_button(); ?>
-
-		</div>
-	</div>
-
-	<div class="postbox">
 		<h2>SNSシェアボタン設定</h2>
 		<div class="inside">
 			<table class="form-table">

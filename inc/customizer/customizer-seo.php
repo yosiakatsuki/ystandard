@@ -11,8 +11,8 @@ function ys_customizer_seo( $wp_customize ){
 	$wp_customize->add_panel(
 										'ys_customizer_panel_seo',
 										array(
-											'priority'       => 1300,
-											'title'          => '[ys]AMP設定'
+											'priority'       => 1110,
+											'title'          => '[ys]SEO設定'
 										)
 									);
 	/**

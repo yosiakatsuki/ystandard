@@ -1,5 +1,12 @@
 <?php
 /**
+ * AMPフォーマットのheadでタグを出力
+ */
+function ys_amp_head() {
+	do_action( 'ys_amp_head' );
+}
+
+/**
  * 通常のフォーマットと同じ関数を使うもの
  */
 add_action( 'ys_amp_head', 'ys_the_canonical_tag' );

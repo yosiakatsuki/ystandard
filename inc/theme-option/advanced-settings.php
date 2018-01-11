@@ -99,23 +99,6 @@
 		</div>
 	</div>
 
-	<div class="postbox">
-		<h2>AMP有効化</h2>
-		<div class="inside">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">AMP有効化</th>
-					<td>
-						<label for="ys_amp_enable">
-							<input type="checkbox" name="ys_amp_enable" id="ys_amp_enable" value="1" <?php checked(get_option('ys_amp_enable',0),1); ?> />AMPページを生成する
-						</label>
-						<p class="description">※AMPページの生成を保証するものではありません。使用しているプラグインや投稿内のHTMLタグ、インラインCSS、javascriptコードによりAMPフォーマットとしてエラーとなる場合もあります。</p>
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-
 	<?php submit_button(); ?>
 	</form>
 </div>

@@ -17,8 +17,8 @@ require_once get_template_directory() . '/inc/classes/class.ys-enqueue.php';
  */
 require_once get_template_directory() . '/inc/variables/variables.php';
 /**
-* 設定
-*/
+ * 設定
+ */
 require_once get_template_directory() . '/inc/option/option.php';
 /**
  * utilities
@@ -49,23 +49,28 @@ require_once get_template_directory() . '/inc/post-meta/post-meta.php';
  */
 require_once get_template_directory() . '/inc/customizer/customizer.php';
 /**
- * アーカイブ関連
+ * アーカイブ
  */
 require_once get_template_directory() . '/inc/archive/archive.php';
+/**
+ * <head>
+ */
+require_once get_template_directory() . '/inc/head/head.php';
 /**
  * フッター
  */
 require_once get_template_directory() . '/inc/footer/footer-sns.php';
 
-
+/**
+ * AMP
+ */
+require_once get_template_directory() . '/inc/amp/amp-head.php';
+require_once get_template_directory() . '/inc/amp/amp-google-analytics.php';
 
 
 
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';
-// AMP
-require_once get_template_directory() . '/inc/amp.php';
-// 初期化・初期設定
 
 
 
@@ -86,17 +91,8 @@ require_once get_template_directory() . '/inc/widgets.php';
 // ショートコード
 require_once get_template_directory() . '/inc/shortcode.php';
 
-/**
- * <head>タグ関連
- */
-require_once get_template_directory() . '/inc/head/head.php';
-require_once get_template_directory() . '/inc/head/wp_head.php';
 
-/**
- * v2でいずれ廃止予定
- */
-//設定
-require_once get_template_directory() . '/inc/migration-v1-v2/v1/theme-settings.php';
+
 
 // 管理画面メニュー
 if( is_admin() ){
@@ -105,3 +101,10 @@ if( is_admin() ){
 	// 管理画面関連
 	require_once get_template_directory() . '/inc/admin.php';
 }
+
+
+/**
+ * v2でいずれ廃止予定
+ */
+//設定
+require_once get_template_directory() . '/inc/migration-v1-v2/v1/theme-settings.php';
