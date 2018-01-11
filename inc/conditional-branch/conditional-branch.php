@@ -1,4 +1,17 @@
 <?php
+/**
+ * TOPページ判断（HOMEの1ページ目 or front-page）
+ */
+if ( ! function_exists( 'ys_is_toppage') ) {
+	function ys_is_toppage() {
+		if( ( is_home() && ! is_paged() ) || is_front_page() ){
+			return true;
+		}
+		return false;
+	}
+}
+
+
 
 /**
  * AMPページに広告を表示するか

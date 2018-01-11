@@ -5,9 +5,21 @@
 - post_meta系をまとめる
   - inc / post-meta.php
 
+## テンプレート
+- template-one-column.php -> page-template/template-one-column.phpに変わることに気をつける
+
+## フッターのSNSリンクの背景色
+- 設定が変わったので実装変える
+- hover時はopacity +20 する
+
 ## css
 
 - ys-button → btn
+
+## 設定の再設定が必要な箇所
+- OGPデフォルト画像の再設定
+- Google Analyticsのトラッキングコードタイプ
+
 
 
 ## 変更された関数
@@ -23,6 +35,14 @@
 - ys_extras_load_css_footer_js -> ys_enqueue_css
 - ys_utilities_get_theme_version -> ys_util_get_theme_version
 - ys_extras_add_async -> ys_add_async_on_js
+- ys_extras_add_amphtml -> ys_the_amphtml
+- ys_extras_add_twitter_card -> ys_get_the_twitter_card
+- ys_customizer -> ys_theme_customizer
+- ys_customizer_color_setting -> ys_customizer_color
+- ys_template_get_the_custom_excerpt -> ys_util_get_the_custom_excerpt
+- ys_extras_get_the_archive_title -> ys_get_the_archive_title
+- ys_extras_add_facebook_ogp -> ys_get_the_ogp
+- ys_extras_add_googleanarytics -> ys_the_google_anarytics
 
 ## 削除予定の関数
 - ys_settings
@@ -39,6 +59,9 @@
 - ys_extras_adjacent_posts_rel_link_wp_head
 - ys_extras_add_noindex
 - ys_extras_add_load_script_list
+- ys_extras_add_async
+- ys_extras_add_amphtml
+- ys_extras_add_twitter_card
 - ys_setup_initialize
 - ys_init_change_logo_size
 - ys_setup_remove_action
@@ -46,5 +69,19 @@
 - ys_setup_remove_oembed
 - ys_utilities_get_theme_version
 - ys_utilities_json_encode
-- ys_extras_add_async
 - ys_utilities_get_load_script_array
+- ys_customizer
+- ys_customizer_color_setting
+- ys_template_the_follow_sns_list
+- ys_template_get_the_custom_excerpt
+- ys_extras_get_the_archive_title
+- ys_extras_add_facebook_ogp
+- ys_extras_add_googleanarytics
+
+
+## 変更されたフィルタ
+- ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
+
+## 削除されたフィルタ
+- ys_ga_function
+- ys_amp_ga_json

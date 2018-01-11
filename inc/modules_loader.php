@@ -21,6 +21,14 @@ require_once get_template_directory() . '/inc/variables/variables.php';
 */
 require_once get_template_directory() . '/inc/option/option.php';
 /**
+ * utilities
+ */
+require_once get_template_directory() . '/inc/util/util.php';
+/**
+ * 投稿タイプ
+ */
+require_once get_template_directory() . '/inc/post-type/post-type.php';
+/**
  * 条件分岐
  */
 require_once get_template_directory() . '/inc/conditional-branch/conditional-branch.php';
@@ -33,10 +41,21 @@ require_once get_template_directory() . '/inc/init/init.php';
  */
 require_once get_template_directory() . '/inc/enqueue/enqueue.php';
 /**
- * utilities
+ * post-meta
  */
-require_once get_template_directory() . '/inc/util/util.php';
-
+require_once get_template_directory() . '/inc/post-meta/post-meta.php';
+/**
+ * テーマカスタマイザー
+ */
+require_once get_template_directory() . '/inc/customizer/customizer.php';
+/**
+ * アーカイブ関連
+ */
+require_once get_template_directory() . '/inc/archive/archive.php';
+/**
+ * フッター
+ */
+require_once get_template_directory() . '/inc/footer/footer-sns.php';
 
 
 
@@ -48,8 +67,7 @@ require_once get_template_directory() . '/inc/utilities.php';
 require_once get_template_directory() . '/inc/amp.php';
 // 初期化・初期設定
 
-// テーマカスタマイザー
-require_once get_template_directory() . '/inc/customizer.php';
+
 
 // フィルタ関連
 require_once get_template_directory() . '/inc/extras.php';

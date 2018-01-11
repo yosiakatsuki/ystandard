@@ -462,24 +462,6 @@ if (!function_exists( 'ys_template_the_link_pages')) {
 
 
 
-
-//-----------------------------------------------
-//	投稿抜粋文を作成
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_get_the_custom_excerpt' ) ) {
-	function ys_template_get_the_custom_excerpt($content,$length,$sep=' ...'){
-		//HTMLタグ削除
-		$content = wp_strip_all_tags($content,true);
-		//ショートコード削除
-		$content = strip_shortcodes($content);
-		if(mb_strlen($content) > $length) {
-			$content =  mb_substr($content,0,$length - mb_strlen($sep)).$sep;
-		}
-		return $content;
-	}
-}
-
-
 /**
  * 記事header SNSシェアボタン
  */
@@ -876,81 +858,6 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 //	フッター関連
 //
 //------------------------------------------------------------------------------
-
-//-----------------------------------------------
-//	SNSのフォローリンク
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_follow_sns_list' ) ) {
-	function ys_template_the_follow_sns_list() {
-
-		$twitter = ys_get_setting('ys_follow_url_twitter');
-		$facebook = ys_get_setting('ys_follow_url_facebook');
-		$googlepuls = ys_get_setting('ys_follow_url_googlepuls');
-		$instagram = ys_get_setting('ys_follow_url_instagram');
-		$tumblr = ys_get_setting('ys_follow_url_tumblr');
-		$youtube = ys_get_setting('ys_follow_url_youtube');
-		$github = ys_get_setting('ys_follow_url_github');
-		$pinterest = ys_get_setting('ys_follow_url_pinterest');
-		$linkedin = ys_get_setting('ys_follow_url_linkedin');
-
-
-		$html = '';
-
-		if($twitter != ''
-			|| $facebook != ''
-			|| $googlepuls != ''
-			|| $instagram != '') {
-
-			$sns_follow_links = '';
-
-			if($twitter != ''){
-				$sns_follow_links .= '<li class="twitter"><a href="'.$twitter.'" target="_blank" rel="nofollow"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';
-			}
-			if($facebook != ''){
-				$sns_follow_links .= '<li class="facebook"><a href="'.$facebook.'" target="_blank" rel="nofollow"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';
-			}
-			if($googlepuls != ''){
-				$sns_follow_links .= '<li class="googlepuls"><a href="'.$googlepuls.'" target="_blank" rel="nofollow"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';
-			}
-			if($instagram != ''){
-				$sns_follow_links .= '<li class="instagram"><a href="'.$instagram.'" target="_blank" rel="nofollow"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';
-			}
-
-			if($tumblr != ''){
-				$sns_follow_links .= '<li class="tumblr"><a href="'.$tumblr.'" target="_blank" rel="nofollow"><i class="fa fa-tumblr" aria-hidden="true"></i></a></li>';
-			}
-
-			if($youtube != ''){
-				$sns_follow_links .= '<li class="youtube"><a href="'.$youtube.'" target="_blank" rel="nofollow"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';
-			}
-
-			if($github != ''){
-				$sns_follow_links .= '<li class="github"><a href="'.$github.'" target="_blank" rel="nofollow"><i class="fa fa-github" aria-hidden="true"></i></a></li>';
-			}
-
-			if($pinterest != ''){
-				$sns_follow_links .= '<li class="pinterest"><a href="'.$pinterest.'" target="_blank" rel="nofollow"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>';
-			}
-
-			if($linkedin != ''){
-				$sns_follow_links .= '<li class="linkedin"><a href="'.$linkedin.'" target="_blank" rel="nofollow"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>';
-			}
-
-			$sns_follow_links = apply_filters('ys_follow_sns_list',$sns_follow_links);
-
-			$html .= '<div class="follow-sns-list"><ul>';
-			$html .= $sns_follow_links;
-			$html .= '</ul></div>';
-
-			if ( !ys_is_amp() ) {
-				echo apply_filters('ys_follow_sns_list',$html);
-			} else {
-				echo apply_filters('ys_follow_sns_list_amp',$html);
-			}
-		}
-	}//ys_template_the_follow_sns_list
-}
-
 
 
 

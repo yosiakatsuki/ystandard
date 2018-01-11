@@ -12,12 +12,61 @@ if( ! function_exists( 'ys_get_options' ) ) {
 		 * 配列作成
 		 */
 		$result = array(
-				//タイトルの区切り文字
+			/**
+			 *
+			 * [ys]SNS設定
+			 *
+			 */
+			/**
+			 * OGP
+			 */
+			// OGPメタタグを出力する
+			'ys_ogp_enable' => get_option( 'ys_ogp_enable', 1 ),
+			// Facebook app id
+			'ys_ogp_fb_app_id' => esc_attr( get_option( 'ys_ogp_fb_app_id', '' ) ),
+			// facebook admins
+			'ys_ogp_fb_admins' => esc_attr( get_option( 'ys_ogp_fb_admins', '' ) ),
+			// OGPデフォルト画像
+			'ys_ogp_default_image' => get_option( 'ys_ogp_default_image', '' ),
+			/**
+			 * Twitterカード
+			 */
+			// Twitterカードを出力する
+			'ys_twittercard_enable' => get_option( 'ys_twittercard_enable', 1 ),
+			// Twitterカードのユーザー名
+			'ys_twittercard_user' => esc_attr( get_option( 'ys_twittercard_user', '' ) ),
+			// Twitterカード タイプ
+			'ys_twittercard_type' => esc_attr( get_option( 'ys_twittercard_type', 'summary_large_image' ) ),
+
+			/**
+			 *
+			 * [ys]SEO設定
+			 *
+			 */
+			/**
+			 * Google Analytics
+			 */
+			// Google Aanalytics トラッキングID
+			'ys_ga_tracking_id' => esc_attr( get_option( 'ys_ga_tracking_id', '' ) ),
+			// Google Aanalytics トラッキングコードタイプ
+			'ys_ga_tracking_type' => esc_attr( get_option( 'ys_ga_tracking_type', 'gtag' ) ),
+			// ログイン中はアクセス数をカウントしない
+			'ys_ga_exclude_logged_in_user' => get_option( 'ys_ga_exclude_logged_in_user', 0 ),
+			/**
+			 *
+			 * [ys]AMP設定
+			 *
+			 */
+			// AMPページを有効化するか
+			'ys_amp_enable' => get_option( 'ys_amp_enable', 0 ),
+
+
+				// タイトルの区切り文字
 				'ys_title_separate' => esc_attr( get_option( 'ys_title_separate', '' ) ),
-				//発行年
+				// 発行年
 				'ys_copyright_year' => ys_get_copyright_year_option(),
-				//Google AanalyticsトラッキングID
-				'ys_ga_tracking_id' => esc_attr( get_option( 'ys_ga_tracking_id', '' ) ),
+
+
 				//Tweetポタンを投稿上部に表示するか
 				'ys_sns_share_on_entry_header' => get_option( 'ys_sns_share_on_entry_header', 0 ),
 				//Tweetポタンを投稿下に表示するか
@@ -28,14 +77,8 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				'ys_sns_share_tweet_via_account' => esc_attr( get_option( 'ys_sns_share_tweet_via_account', '' ) ),
 				//Twitter related アカウント
 				'ys_sns_share_tweet_related_account' => esc_attr( get_option( 'ys_sns_share_tweet_related_account', '' ) ),
-				//Facebook app id
-				'ys_ogp_fb_app_id' => esc_attr( get_option( 'ys_ogp_fb_app_id', '' ) ),
-				//facebook admins
-				'ys_ogp_fb_admins' => esc_attr( get_option( 'ys_ogp_fb_admins', '' ) ),
-				//Twitterカードのユーザー名
-				'ys_twittercard_user' => esc_attr( get_option( 'ys_twittercard_user', '' ) ),
-				//OGPデフォルト画像
-				'ys_ogp_default_image' => esc_url( get_option( 'ys_ogp_default_image', '' ) ),
+
+
 				//モバイル表示でサイドバーを出力する
 				'ys_show_sidebar_mobile' => get_option( 'ys_show_sidebar_mobile', 1 ),
 				//絵文字を出力する
@@ -106,8 +149,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				'ys_load_cdn_jquery_url' => esc_url( get_option( 'ys_load_cdn_jquery_url', '' ) ),
 				//jQueryを読み込まない
 				'ys_not_load_jquery' => get_option( 'ys_not_load_jquery', 0 ),
-				//AMPページを有効化するか
-				'ys_amp_enable' => get_option( 'ys_amp_enable', 0 ),
+
 				//AMPのGoogle Analyticsトラッキングコード
 				'ys_ga_tracking_id_amp' => esc_attr( get_option( 'ys_ga_tracking_id_amp', '' ) ),
 				//AMPのfacebookシェアボタン用App id
@@ -129,7 +171,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				//記事下　左
 				'ys_amp_advertisement_under_content' => get_option( 'ys_amp_advertisement_under_content', '' )
 			);
-		
+
 		return apply_filters( 'ys_get_options', $result );
 	}
 }

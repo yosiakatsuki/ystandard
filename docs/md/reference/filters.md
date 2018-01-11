@@ -51,6 +51,18 @@
 - file: inc/head/wp_head.php
 - description: noindexの条件カスタム用フィルタ
 
+### ys_get_the_ogp
+- file: inc/head/wp_head.php
+- description: OGPのmetaタグ編集用フィルタ
+
+### ys_get_the_twitter_card
+- file: inc/head/wp_head.php
+- description: Twitterカードのmetaタグ編集用フィルタ
+
+### ys_get_ogp_and_twitter_card_param
+- file: inc/head/wp_head.php
+- description: OGP/Twitterカードの各種パラメータ編集用フィルタ
+
 
 ## ys_amp_head
 
@@ -61,6 +73,46 @@
 ### ys_the_amp_script
 - file: inc/amp/ys_amp_head.php
 - description: AMP用scriptタグ読み込みの編集フィルタ
+
+
+## archive
+
+### ys_get_the_archive_title
+- file: inc/archive/archive.php
+- description: archiveページのタイトル編集用フィルタ
+
+### ys_the_amp_script
+- file: inc/amp/ys_amp_head.php
+- description: AMP用scriptタグ読み込みの編集フィルタ
+
+
+## footer-sns
+
+### ys_get_footer_sns_list
+- file: inc/footer/footer-sns.php
+- description: フッターに表示するSNSフォロー用リンクの配列編集用フィルタ
+
+
+
+## post-meta
+
+### ys_get_post_meta
+- file: inc/post-meta/post-meta.php
+- description: get_post_meta結果の編集フィルタ
+
+
+## customizer-color
+
+### ys_customize_css
+- file: inc/customizer/customizer-color.php
+- description: カスタマイザーの色設定を使用したインラインCSS編集フィルタ
+
+
+## util
+
+### ys_util_get_the_custom_excerpt
+- file: inc/util/util.php
+- description: カスタム投稿抜粋の結果編集用フィルタ
 
 
 ## class.ys-enqueue

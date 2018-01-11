@@ -4,8 +4,10 @@
 		<footer id="footer" class="site-footer" <?php ys_template_the_footer_attr(); ?>>
 			<div class="wrap">
 				<?php
-					// SNSフォロー
-					ys_template_the_follow_sns_list();
+					/**
+					 * SNSフォロー
+					 */
+					get_template_part( 'template-parts/footer/footer-sns' );
 					// ウィジェット
 					ys_template_the_fotter_widget();
 				?>
