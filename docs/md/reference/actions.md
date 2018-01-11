@@ -7,3 +7,7 @@
 ## ys_body_prepend
 - file: header.php
 - description: body開始直下で実行するアクション
+
+## ys_body_append
+- file: header.php
+- description: body終了直前で実行するアクション

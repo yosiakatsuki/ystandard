@@ -43,5 +43,6 @@
 		wp_footer();
 	endif;
 ?>
+<?php do_action( 'ys_body_append' ); ?>
 </body>
 </html>

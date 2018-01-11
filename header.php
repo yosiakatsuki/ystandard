@@ -15,7 +15,8 @@
 ?>
 <!-- head -->
 <body <?php body_class(); ?>><div id="fb-root"></div>
-	<?php do_action( 'ys_body_prepend' ); ?>
+<?php do_action( 'ys_body_prepend' ); ?>
+
 <div id="page" class="site">
 	<div class="site-inner">
 
