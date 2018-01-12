@@ -8,8 +8,8 @@ var autoprefixer	 = require('gulp-autoprefixer');
 var uglify				 = require('gulp-uglify');
 var browserSync		 = require('browser-sync');
 var babel          = require('gulp-babel');
-var webpackStream   = require("webpack-stream");
-var webpack         = require("webpack");
+var webpackStream   = require('webpack-stream');
+var webpack         = require('webpack');
 var cmq						 = require('gulp-combine-media-queries');
 
 /**
@@ -64,7 +64,7 @@ var srcEs = [
 /**
  * webpack config 読み込み
  */
-var webpackConfig = require("./webpack.config");
+var webpackConfig = require('./webpack.config');
 
 
 /**
@@ -80,7 +80,7 @@ gulp.task('sass', function() {
     }))
     .pipe(sass())
     .pipe(autoprefixer({
-      browsers: ["last 2 versions", "ie >= 11", "Android >= 4","ios_saf >= 8"],
+      browsers: ["last 2 versions", "ie >= 11", "Android >= 4.4","ios_saf >= 9"],
       cascade: false
     }))
     .pipe(cmq({log: true}))

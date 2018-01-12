@@ -1,16 +1,27 @@
 @charset "UTF-8";
-//--------------------------------------
-//
-//	テーマ独自のスタイルシート
-//		必要パーツをひたすらimport
-//		オリジナルなスタイルは_ys_customize.cssへ（できれば子テーマ運用して欲しい）
-//
-//--------------------------------------
-//テーマで上書き用
-@import "_ys_custom_variables.scss";
 
-//ysuで予め定義したスタイルを読み込み
-@import "ystandard/_ystandard-firstview.scss";
 
-//カスタマイズ用スタイル
-@import "_ys_customize-firstview.scss";
+// variables
+@import "variables";
+// mixins
+@import "mixins/breakpoint";
+@import "mixins/clearfix";
+@import "mixins/grid";
+@import "mixins/wrap";
+
+//func
+@import "function/margin";
+
+// normalize
+// @import "~normalize.css";
+
+// import scss
+@import "base/base";
+@import "wrap/wrap";
+@import "grid/grid";
+@import "grid/grid-tb";
+@import "grid/grid-pc";
+@import "grid/grid-lg";
+@import "section/section";
+@import "section/section-tb";
+@import "section/section-pc";

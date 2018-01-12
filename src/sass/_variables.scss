@@ -1,0 +1,55 @@
+
+// ブレークポイント
+$breakpoints-setting: (
+		tb : 600px,
+		pc : 960px,
+    lg : 1281px,
+);
+
+// コンテンツ幅
+$gutter              : 15px;
+$contents-max-width  : 800px + ($gutter * 2);
+$sidebar-width       : 300px + ($gutter * 2);
+$container-max-width : $contents-max-width + $sidebar-width;
+
+// 色
+$font-color-main      : #222;
+$font-color-gray      : #939393;
+$bg-color-body        : #fff;
+$bg-color-dark        : #292b2c;
+$bg-color-dark-gray   : #e9ecef;
+$bg-color-gray        : #fafafa;
+$border-color-dark    : #292b2c;
+$border-color-gray    : #bdc3c7;
+$link-color-base      : #2980B9;
+$link-color           : #2980B9;
+$link-color-hover     : lighten($link-color-base,10%);
+
+// タイポグラフィ
+$font-size        : 16px;
+$ine-height       : 1.6;
+$font-family      : Avenir,"Helvetica neue",Helvetica,YuGothic,"Yu Gothic","Hiragino Sans","ヒラギノ角ゴシック","メイリオ",Meiryo,"ＭＳ Ｐゴシック",sans-serif;
+$font-family-code : Consolas, Monaco, monospace;
+$letter-spacing   : 0.1em;
+
+// その他
+$border-radius : 0;
+
+// SNSカラー
+$sns-color: (
+	'twitter'        : #2b97f0,
+	'facebook'       : #3b5a9b,
+  'google-plus'    : #db2814,
+  'hatenabookmark' : #007ad2,
+  'rss'            : #fb8501,
+	'feedly'         : #8cba43,
+	'pocket'         : #ea4654,
+  'instagram'      : #3f729b,
+	'line'           : #2cbf13,
+	'tumblr'         : #35465c,
+	'youtube-play'   : #cd201f,
+	'vine'           : #00b389,
+	'github'         : #4183c4,
+	'pinterest'      : #cb2027,
+	'linkedin'       : #0e76a8
+);

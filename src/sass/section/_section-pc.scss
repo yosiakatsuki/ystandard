@@ -1,0 +1,10 @@
+.section {
+  @at-root {
+    @include media-breakpoint(pc) {
+
+      .section--full {
+        min-height: 768px;
+      }
+    }
+  }
+}

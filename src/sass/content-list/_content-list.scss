@@ -1,0 +1,31 @@
+.content-list {
+  @at-root {
+
+    &,
+    .content-list--alternate {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid $border-color-gray;
+    }
+
+    .content-list__item {
+      margin: 0;
+      padding: 30px 0;
+      border-bottom: 1px solid $border-color-gray;
+      overflow: hidden;
+      zoom: 1;
+    }
+
+    .content-list__img {
+      text-align: center;
+      margin: 0 0 1em;
+
+      img {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+  }//root
+}

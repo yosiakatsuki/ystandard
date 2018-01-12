@@ -1,0 +1,25 @@
+.grid {
+  @at-root {
+    @include media-breakpoint(pc) {
+
+      .row--slide {
+        &::-webkit-scrollbar {
+          height: 0;
+        }
+      }
+      .col--slide {
+        min-width: auto;
+      }
+
+      .col__2--pc {
+        width: 50%;
+      }
+      .col__3--pc {
+        width: 33.33%;
+      }
+      .col__4--pc {
+        width: 25%;
+      }
+    }
+  }
+}

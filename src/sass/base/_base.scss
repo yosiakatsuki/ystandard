@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+html {
+  font-size: $font-size;
+}
+body {
+  color: $font-color-main;
+  font-family: $font-family;
+  letter-spacing: $letter-spacing;
+  line-height: $ine-height;
+
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html, body,
+p, ol, ul, li, dl, dt, dd, table,
+blockquote, figure, fieldset, legend, textarea, pre, iframe, hr,
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+code, kbd, pre, samp {
+  font-family: $font-family-code;
+  line-height: 1;
+}
+
+input, textarea, keygen, select, button {
+  font-family: $font-family;
+}
+
+input, textarea, optgroup, select, button {
+  line-height: 1.2;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  margin-bottom: 1.5em;
+}
+
+p {
+  margin-bottom: 1.5em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+ul, ol {
+  margin-left: 1.5em;
+}
+
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 0;
+}
+
+blockquote {
+  :last-child {
+    margin-bottom: 0;
+  }
+}
+
+code {
+  background-color: $bg-color-gray;
+  border-radius: 2px;
+  padding: 2px 6px;
+}
+
+pre {
+
+  border: 1px solid $border-color-gray;
+  padding: 1em;
+  overflow: auto;
+
+  code {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    padding: 0;
+  }
+}
+
+a {
+	color: $link-color;
+	transition: color .3s,background-color .3s;
+
+	&:hover {
+		color: $link-color-hover;
+	}
+}
+
+label {
+  cursor: pointer;
+}

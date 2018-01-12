@@ -1,0 +1,79 @@
+.grid {
+  @at-root {
+
+    .row,
+    .row--slide {
+      display: flex;
+    }
+
+    .row {
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .row--slide {
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        border-radius: 4px;
+        background-color: $bg-color-gray;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: $border-color-gray;
+        border-radius: 4px;
+      }
+    }
+
+    .col--slide {
+      min-width: 300px;
+    }
+
+    .row--align-top {
+      align-items: top;
+    }
+    .row--align-center {
+      align-items: center;
+    }
+    .row--align-bottom {
+      align-items: bottom;
+    }
+    .row--justify-start {
+      justify-content: start;
+    }
+    .row--justify-end {
+      justify-content: end;
+    }
+    .row--justify-center {
+      justify-content: center;
+    }
+    .row--justify-between {
+      justify-content: space-between;
+    }
+    .row--justify-around {
+      justify-content: space-around;
+    }
+
+
+    [class^="col"],
+    [class*=" col"] {
+      @include col;
+      max-width: 100%;
+    }
+    .col__2--sp {
+      width: 50%;
+    }
+    .col__3--sp {
+      width: 33.33%;
+    }
+    .col__4--sp {
+      width: 25%;
+    }
+  }
+}

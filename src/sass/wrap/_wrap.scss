@@ -1,0 +1,9 @@
+.wrap {
+  @at-root {
+
+    & {
+      @include wrap;
+    }
+
+  }//root
+}

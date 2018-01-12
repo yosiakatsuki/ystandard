@@ -1,0 +1,15 @@
+.grid {
+  @at-root {
+    @include media-breakpoint(tb) {
+      .col__2--tb {
+        width: 50%;
+      }
+      .col__3--tb {
+        width: 33.33%;
+      }
+      .col__4--tb {
+        width: 25%;
+      }
+    }
+  }
+}

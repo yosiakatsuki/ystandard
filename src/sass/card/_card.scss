@@ -1,0 +1,64 @@
+.card {
+  @at-root {
+
+    .card {
+      display: block;
+      height: 100%;
+      text-decoration: none;
+      color: $font-color-main;
+      box-shadow: 0 1px 1px rgba($border-color-gray,0.7);
+      transition: transform .4s;
+
+      &:hover {
+        color: $font-color-main;
+        transform: translateY(-0.3em);
+      }
+    }
+
+    .card__img {
+      border-bottom: 1px solid $bg-color-gray;
+
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .card__text {
+      padding: 30px;
+
+      &>*:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .card__title {
+      font-size: 1.2em;
+      margin-bottom: .5em;
+    }
+
+    .card__dscr {
+      color: $font-color-gray;
+      font-size: .9em;
+      margin-bottom: 1.5em;
+    }
+
+    .card__tag {
+      list-style: none;
+      margin: 0 0 1em;
+      padding: 0;
+    }
+
+    .card__tag-item {
+      display: inline-block;
+      background-color: $bg-color-dark-gray;
+      margin-right: .2em;
+      margin-bottom: .2em;
+      padding: .2em .6em;
+      color: $font-color-gray;
+      font-size: .8em;
+    }
+
+  }//at-root
+}
