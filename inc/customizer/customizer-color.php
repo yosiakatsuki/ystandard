@@ -317,27 +317,14 @@ function ys_customizer_inline_css() {
 							'body'
 						),
 						array(
-							'background-color' => $html_bg
+							'background-color' => $html_bg,
+							'color' => $html_font
 						)
 					);
 
 	/**
 	 * 文字色を使っている部分
 	 */
-	$css .= ys_customizer_create_inline_css(
-						array(
-							'body, html',
-							'.entry-title',
-							'.pagination-list li .current,.pagination-list li a',
-							'.page-links a .page-text',
-							'.author-title a, .widget .author-title a',
-							'.post-navigation .nav-next a, .post-navigation .nav-prev a',
-							'.post-navigation .home a, .post-navigation .home a:hover'
-						),
-						array(
-							'color' => $html_font
-						)
-					);
 	$css .= ys_customizer_create_inline_css(
 						array(
 							'.pagination-list .next, .pagination-list .previous',
@@ -440,8 +427,8 @@ function ys_customizer_inline_css() {
 	$css .= ys_customizer_create_inline_css(
 						array(
 							'.color__site-header',
-							'.color-site-title, .color-site-title:hover',
-							'.color-site-dscr'
+							'.color__site-title, .color__site-title:hover',
+							'.color__site-dscr'
 						),
 						array(
 							'color' => $header_font

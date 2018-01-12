@@ -9,7 +9,8 @@ function ys_customizer_wp( $wp_customize ) {
 	ys_customizer_delete_site_icon( $wp_customize );
 	ys_customizer_add_partial_bloginfo( $wp_customize );
 	ys_customizer_add_apple_touch_icon( $wp_customize );
-	ys_customizer_add_logo_setting( $wp_customize );
+	ys_customizer_add_logo( $wp_customize );
+	ys_customizer_add_description( $wp_customize );
 }
 
 /**
@@ -32,7 +33,7 @@ function ys_customizer_add_partial_bloginfo( $wp_customize ) {
 		$wp_customize->selective_refresh->add_partial(
 			'blogname',
 			 array(
-				'selector'            => '.site-title',
+				'selector'            => '.site-title a',
 				'container_inclusive' => false,
 				'render_callback'     => function() {
 																		bloginfo( 'name' );
@@ -50,6 +51,49 @@ function ys_customizer_add_partial_bloginfo( $wp_customize ) {
 			)
 		);
 	}
+}
+
+/**
+ * ロゴ設定追加
+ */
+function ys_customizer_add_logo( $wp_customize ) {
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'          => 'ys_logo_hidden',
+			'section'     => 'title_tagline',
+			'label'       => 'ロゴを出力しない',
+			'description' => 'サイトヘッダーにロゴ画像を表示しない場合はチェックをつけてください（サイトタイトルをテキストのみで表示する場合でもロゴの指定がないと構造化データでエラーになるので、仮の画像でも良いので設定することを推奨します）',
+			'priority'    => 9
+		)
+	);
+}
+
+/**
+ * 概要表示・デスクリプション
+ */
+function ys_customizer_add_description( $wp_customize ) {
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'          => 'ys_wp_hidden_blogdescription',
+			'section'     => 'title_tagline',
+			'label'       => 'キャッチフレーズを出力しない',
+			'description' => '',
+			'priority'    => 20
+		)
+	);
+	ys_customizer_add_setting_plain_textarea(
+		$wp_customize,
+		array(
+			'id'          => 'ys_wp_site_description',
+			'section'     => 'title_tagline',
+			'transport'   => 'postMessage',
+			'label'       => 'TOPページのmeta description',
+			'description' => '※HTMLタグ・改行は削除されます',
+			'priority'    => 21
+		)
+	);
 }
 
 
@@ -81,23 +125,4 @@ function ys_customizer_add_apple_touch_icon( $wp_customize ) {
 		'height'      => 512,
 		'width'       => 512,
 	) ) );
-}
-
-
-
-
-/**
- * ロゴ設定追加
- */
-function ys_customizer_add_logo_setting( $wp_customize ) {
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
-		array(
-			'id'          => 'ys_logo_hidden',
-			'section'     => 'title_tagline',
-			'label'       => 'ロゴを出力しない',
-			'description' => 'サイトヘッダーにロゴ画像を表示しない場合はチェックをつけてください（サイトタイトルをテキストのみで表示する場合でもロゴの指定がないと構造化データでエラーになるので、仮の画像でも良いので設定することを推奨します）',
-			'priority'    => 9
-		)
-	);
 }

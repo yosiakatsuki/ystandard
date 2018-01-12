@@ -13,6 +13,15 @@ if( ! function_exists( 'ys_get_options' ) ) {
 		 */
 		$result = array(
 			/**
+			 * 基本設定
+			 */
+			// ロゴを出力しない
+			'ys_logo_hidden' => get_option( 'ys_logo_hidden', 0 ),
+			// キャッチフレーズを出力しない
+			'ys_wp_hidden_blogdescription' => get_option( 'ys_wp_hidden_blogdescription', 0 ),
+			// TOPページのmeta description
+			'ys_wp_site_description' => get_option( 'ys_wp_site_description', '' ),
+			/**
 			 *
 			 * [ys]SNS設定
 			 *

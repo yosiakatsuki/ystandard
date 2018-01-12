@@ -31,10 +31,6 @@
       }
     }
 
-    .col--slide {
-      min-width: 300px;
-    }
-
     .row--align-top {
       align-items: top;
     }
@@ -61,8 +57,9 @@
     }
 
 
-    [class^="col"],
-    [class*=" col"] {
+    .col,
+    [class^="col_"],
+    [class*=" col_"] {
       @include col;
       max-width: 100%;
     }
@@ -74,6 +71,9 @@
     }
     .col__4--sp {
       width: 25%;
+    }
+    .col__slide {
+      min-width: 300px;
     }
   }
 }

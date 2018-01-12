@@ -50,14 +50,14 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 
 		} else {
 			$itemscope = '' != $logo_meta ? ' itemscope itemtype="https://schema.org/ImageObject" itemprop="logo"' : '';
-			$html = '<a class="color-site-title" href="'.esc_url( home_url( '/' ) ).'" rel="home"'.$itemscope.'>';
+			$html = '<a class="color__site-title" href="'.esc_url( home_url( '/' ) ).'" rel="home"'.$itemscope.'>';
 			$html .= get_bloginfo( 'name' );
 			$html .= $logo_meta;
 			$html .= '</a>';
 
 		}
 
-		if ( !is_singular() || is_front_page() ) {
+		if ( ! is_singular() || is_front_page() ) {
 			echo '<h1 class="site-title" itemprop="name">'.$html.'</h1>';
 		} else {
 			echo '<p class="site-title" itemprop="name">'.$html.'</p>';
@@ -66,7 +66,7 @@ if(!function_exists( 'ys_template_the_header_site_title_logo')) {
 		$description = get_bloginfo( 'description', 'display' );
 		$description = apply_filters('ys_header_description',$description);
 		if ( $description != '' || is_customize_preview() ) {
-			echo '<p class="site-description color-site-dscr">'.$description.'</p>';
+			echo '<p class="site-description color__site-dscr">'.$description.'</p>';
 		}
 	}//ys_template_the_header_site_title_logo
 }

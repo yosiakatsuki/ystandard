@@ -69,14 +69,6 @@ samp {
 
 input,
 textarea,
-keygen,
-select,
-button {
-	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
-}
-
-input,
-textarea,
 optgroup,
 select,
 button {
@@ -96,7 +88,7 @@ h4,
 h5,
 h6 {
 	font-weight: normal;
-	margin-bottom: 1.5em;
+	margin-bottom: 25px;
 }
 
 p {
@@ -109,7 +101,7 @@ p:last-child {
 
 ul,
 ol {
-	margin-left: 1.5em;
+	margin-left: 25px;
 }
 
 dt {
@@ -132,7 +124,7 @@ code {
 
 pre {
 	border: 1px solid #bdc3c7;
-	padding: 1em;
+	padding: 15px;
 	overflow: auto;
 }
 
@@ -162,6 +154,14 @@ label {
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0 15px;
+}
+
+.wrap--wide {
+	max-width: 1230px;
+}
+
+.wrap--full {
+	max-width: 100%;
 }
 
 .row,
@@ -197,10 +197,6 @@ label {
 .row--slide::-webkit-scrollbar-thumb {
 	background-color: #bdc3c7;
 	border-radius: 4px;
-}
-
-.col--slide {
-	min-width: 300px;
 }
 
 .row--align-top {
@@ -243,8 +239,9 @@ label {
 	justify-content: space-around;
 }
 
-[class^="col"],
-[class*=" col"] {
+.col,
+[class^="col_"],
+[class*=" col_"] {
 	padding: 15px;
 	max-width: 100%;
 }
@@ -259,6 +256,10 @@ label {
 
 .col__4--sp {
 	width: 25%;
+}
+
+.col__slide {
+	min-width: 300px;
 }
 
 .section {
@@ -320,6 +321,29 @@ label {
 	font-size: 1rem;
 }
 
+.header {
+	padding: 15px 0;
+}
+
+.header__title {
+	margin: 0;
+	padding: 0;
+}
+
+.header__title img,
+.header__title amp-img {
+	max-width: 300px;
+}
+
+.header__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.header__dscr {
+	font-size: .9em;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__2--tb {
@@ -356,10 +380,6 @@ label {
 	height: 0;
 }
 
-.col--slide {
-	min-width: auto;
-}
-
 .col__2--pc {
 	width: 50%;
 }
@@ -370,6 +390,10 @@ label {
 
 .col__4--pc {
 	width: 25%;
+}
+
+.col__slide {
+	min-width: auto;
 }
 
 .section--full {

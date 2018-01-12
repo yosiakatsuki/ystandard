@@ -18,17 +18,33 @@
 <?php do_action( 'ys_body_prepend' ); ?>
 <div id="page" class="site">
 	<header id="masthead" class="header site-header color__site-header">
-		<div class="header__container wrap">
-			<div class="site-branding">
+		<div class="header__container wrap header--default">
+			<div class="row">
+				<div class="site-branding header__branding">
+					<?php
+						/**
+						 * ヘッダーロゴ
+						 */
+						$logo = ys_get_header_logo();
+						$class = 'site-title header__title color__site-title';
+						if ( ! is_singular() || is_front_page() ) {
+							printf( '<h1 class="%s">%s</h1>', $class, $logo );
+						} else {
+							printf( '<p class="%s">%s</p>', $class, $logo );
+						}
+						/**
+						 * 概要
+						 */
+						ys_the_blog_description();
+					 ?>
+				</div><!-- .site-branding -->
+				<div class="header__nav">
+				</div><!-- .header__nav -->
 				<?php
-				// ロゴ
-					ys_template_the_header_site_title_logo();
-				 ?>
-			</div><!-- .site-branding -->
-			<?php
-			// グローバルメニュー
-				ys_template_the_header_global_menu();
-			?>
+				// グローバルメニュー
+					ys_template_the_header_global_menu();
+				?>
+			</div><!-- .row -->
 		</div><!-- .header__container -->
 	</header><!-- .header .site-header -->
 	<?php

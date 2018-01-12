@@ -187,6 +187,32 @@ function ys_customizer_add_setting_textarea( $wp_customize, $args ) {
 					);
 }
 /**
+ * Add setting and control : textarea(no html)
+ */
+function ys_customizer_add_setting_plain_textarea( $wp_customize, $args ) {
+	$args = ys_customizer_parse_args( $args );
+	$wp_customize->add_setting(
+						$args['id'],
+						array(
+							'default'           => $args['default'],
+							'type'              => $args['setting_type'],
+							'transport'         => $args['transport'],
+							'sanitize_callback' => 'ys_customizer_sanitize_plain_text'
+						)
+					);
+	$wp_customize->add_control(
+						$args['id'],
+						array(
+							'description' => $args['description'],
+							'label'       => $args['label'],
+							'section'     => $args['section'],
+							'settings'    => $args['id'],
+							'type'        => 'textarea',
+							'priority'    => $args['priority'],
+						)
+					);
+}
+/**
  * Add setting and control : url
  */
 function ys_customizer_add_setting_url( $wp_customize, $args ) {

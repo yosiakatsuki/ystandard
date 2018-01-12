@@ -29,3 +29,11 @@ function ys_customizer_sanitize_number( $number, $setting ) {
 	$step = ( isset( $atts['step'] ) ? $atts['step'] : 1 );
 	return ( $min <= $number && $number <= $max && is_int( $number / $step ) ? $number : $setting->default );
 }
+/**
+ * plain text
+ */
+function ys_customizer_sanitize_plain_text( $value ) {
+	$value = wp_filter_nohtml_kses( $value );
+	$value = preg_replace('/(?:\n|\r|\r\n)/', '', $value );
+	return $value;
+}

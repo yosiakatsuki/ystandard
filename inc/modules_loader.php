@@ -57,6 +57,10 @@ require_once get_template_directory() . '/inc/archive/archive.php';
  */
 require_once get_template_directory() . '/inc/head/head.php';
 /**
+ * ヘッダー
+ */
+require_once get_template_directory() . '/inc/header/header.php';
+/**
  * フッター
  */
 require_once get_template_directory() . '/inc/footer/footer-sns.php';

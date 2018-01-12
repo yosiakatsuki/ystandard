@@ -1,0 +1,6 @@
+.header {
+  @at-root {
+    @include media-breakpoint(pc) {
+    }
+  }
+}

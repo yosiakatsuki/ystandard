@@ -80,10 +80,13 @@
 - ys_template_the_header_attr
 - ys_template_the_content_attr
 - ys_template_the_site_hero
+- ys_utilities_get_custom_logo_image_src
+- ys_template_the_header_site_title_logo
 
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
+- ys_header_description -> ys_the_blog_description
 
 ## 削除されたフィルタ
 - ys_ga_function

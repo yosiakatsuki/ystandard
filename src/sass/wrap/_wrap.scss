@@ -5,5 +5,12 @@
       @include wrap;
     }
 
+    .wrap--wide {
+      max-width: 1200px + ($gutter * 2);
+    }
+    .wrap--full {
+      max-width: 100%;
+    }
+
   }//root
 }

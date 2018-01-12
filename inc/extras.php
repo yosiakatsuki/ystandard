@@ -374,5 +374,5 @@ if(!function_exists( 'ys_extras_the_json_ld')) {
 		}
 	}
 }
-add_action( 'wp_footer', 'ys_extras_the_json_ld' );
+// add_action( 'wp_footer', 'ys_extras_the_json_ld' );
 ?>

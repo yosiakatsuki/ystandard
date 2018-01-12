@@ -7,9 +7,6 @@
           height: 0;
         }
       }
-      .col--slide {
-        min-width: auto;
-      }
 
       .col__2--pc {
         width: 50%;
@@ -19,6 +16,9 @@
       }
       .col__4--pc {
         width: 25%;
+      }
+      .col__slide {
+        min-width: auto;
       }
     }
   }

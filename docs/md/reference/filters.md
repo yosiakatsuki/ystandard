@@ -69,23 +69,23 @@
 - description: Google AnalyticsトラッキングID編集フィルタ
 
 
-## amp-head
+## header
 
-### ys_get_the_amp_document_title
-- file: inc/amp/amp-head.php
-- description: AMPでのページタイトル編集フィルタ
+### ys_get_header_logo
+- file: inc/header/header.php
+- description: ヘッダーロゴ編集用フィルタ
 
-### ys_the_amp_script
-- file: inc/amp/amp-head.php
-- description: AMP用scriptタグ読み込みの編集フィルタ
+### ys_get_header_logo_format
+- file: inc/header/header.php
+- description: aタグを含むヘッダーロゴのラッパーHTMLフォーマット編集フィルタ
 
+### ys_the_blog_description
+- file: inc/header/header.php
+- description: ヘッダーキャッチフレーズ編集用フィルタ
 
-## amp-google-analytics
-
-### ys_get_amp_google_anarytics_tracking_id
-- file: inc/amp/amp-google-analytics.php
-- description: AMP用Google AnalyticsトラッキングID編集フィルタ
-
+### ys_the_blog_description_format
+- file: inc/header/header.php
+- description: ヘッダーキャッチフレーズのラッパーHTMLフォーマット編集フィルタ
 
 
 ## archive
@@ -104,7 +104,6 @@
 ### ys_get_footer_sns_list
 - file: inc/footer/footer-sns.php
 - description: フッターに表示するSNSフォロー用リンクの配列編集用フィルタ
-
 
 
 ## post-meta
@@ -126,6 +125,24 @@
 ### ys_util_get_the_custom_excerpt
 - file: inc/util/util.php
 - description: カスタム投稿抜粋の結果編集用フィルタ
+
+
+## amp-head
+
+### ys_get_the_amp_document_title
+- file: inc/amp/amp-head.php
+- description: AMPでのページタイトル編集フィルタ
+
+### ys_the_amp_script
+- file: inc/amp/amp-head.php
+- description: AMP用scriptタグ読み込みの編集フィルタ
+
+
+## amp-google-analytics
+
+### ys_get_amp_google_anarytics_tracking_id
+- file: inc/amp/amp-google-analytics.php
+- description: AMP用Google AnalyticsトラッキングID編集フィルタ
 
 
 ## class.ys-enqueue

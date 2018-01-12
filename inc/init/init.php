@@ -69,6 +69,8 @@ if( ! function_exists( 'ys_init' ) ) {
 		 */
 		add_filter( 'widget_text', 'do_shortcode' );
 
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
 		ys_remove_action();
 
 		ys_remove_emoji();
