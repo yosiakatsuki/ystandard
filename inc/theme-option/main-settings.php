@@ -20,28 +20,6 @@
 	?>
 
 	<div class="postbox">
-		<h2>サイト基本設定</h2>
-		<div class="inside">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">タイトルの区切り文字</th>
-					<td>
-						<input type="text" name="ys_title_separate" id="ys_title_separate" value="<?php echo esc_attr( get_option('ys_title_separate') ); ?>" placeholder="-" />
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">発行年(Copyright)</th>
-					<td>
-						<input type="text" name="ys_copyright_year" id="ys_copyright_year" value="<?php echo esc_attr( get_option('ys_copyright_year') ); ?>" placeholder="<?php echo date_i18n('Y'); ?>" />
-					</td>
-				</tr>
-			</table>
-			<?php submit_button(); ?>
-		</div>
-
-	</div>
-
-	<div class="postbox">
 		<h2>SNSシェアボタン設定</h2>
 		<div class="inside">
 			<table class="form-table">

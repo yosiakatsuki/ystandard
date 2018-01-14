@@ -13,7 +13,9 @@ if( ! function_exists( 'ys_get_options' ) ) {
 		 */
 		$result = array(
 			/**
+			 *
 			 * 基本設定
+			 *
 			 */
 			// ロゴを出力しない
 			'ys_logo_hidden' => get_option( 'ys_logo_hidden', 0 ),
@@ -21,6 +23,15 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_wp_hidden_blogdescription' => get_option( 'ys_wp_hidden_blogdescription', 0 ),
 			// TOPページのmeta description
 			'ys_wp_site_description' => get_option( 'ys_wp_site_description', '' ),
+			/**
+			 *
+			 * [ys]サイト共通設定
+			 *
+			 */
+			// タイトルの区切り文字
+			'ys_title_separate' => esc_attr( get_option( 'ys_title_separate', '-' ) ),
+			// 発行年
+			'ys_copyright_year' => ys_get_copyright_year_option(),
 			/**
 			 *
 			 * [ys]SNS設定
@@ -76,10 +87,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 
 
 
-				// タイトルの区切り文字
-				'ys_title_separate' => esc_attr( get_option( 'ys_title_separate', '' ) ),
-				// 発行年
-				'ys_copyright_year' => ys_get_copyright_year_option(),
+
 
 
 				//Tweetポタンを投稿上部に表示するか
