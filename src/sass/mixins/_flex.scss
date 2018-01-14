@@ -1,0 +1,5 @@
+@mixin flex {
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+}

@@ -20,7 +20,7 @@ if( ! function_exists( 'ys_init' ) ) {
 		 */
 		register_nav_menus(
 			array(
-					'gloval' => 'グローバルナビゲーション',
+					'global' => 'グローバルナビゲーション',
 					'footer' => 'フッターメニュー',
 				)
 			);

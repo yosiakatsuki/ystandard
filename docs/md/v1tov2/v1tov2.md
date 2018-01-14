@@ -13,11 +13,11 @@
 - hover時はopacity +20 する
 
 ## css
-
 - ys-button → btn
 
 ## 設定の再設定が必要な箇所
 - OGPデフォルト画像の再設定
+- ヘッダーメニュー
 - Google Analyticsのトラッキングコードタイプ
 
 
@@ -82,6 +82,7 @@
 - ys_template_the_site_hero
 - ys_utilities_get_custom_logo_image_src
 - ys_template_the_header_site_title_logo
+- ys_template_the_header_global_menu
 
 
 ## 変更されたフィルタ

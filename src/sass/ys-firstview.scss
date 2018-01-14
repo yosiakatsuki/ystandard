@@ -8,6 +8,8 @@
 @import "mixins/clearfix";
 @import "mixins/grid";
 @import "mixins/wrap";
+@import "mixins/nav";
+@import "mixins/flex";
 
 //func
 @import "function/margin";
@@ -28,3 +30,6 @@
 
 // ystandard
 @import "ystandard/header/header";
+@import "ystandard/header/header-pc";
+@import "ystandard/nav/global-nav";
+@import "ystandard/nav/global-nav-pc";

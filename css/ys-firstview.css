@@ -164,19 +164,17 @@ label {
 	max-width: 100%;
 }
 
-.row,
-.row--slide {
+.row {
 	display: -ms-flexbox;
 	display: flex;
-}
-
-.row {
 	max-width: 100%;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 }
 
 .row--slide {
+	display: -ms-flexbox;
+	display: flex;
 	-ms-flex-wrap: nowrap;
 	flex-wrap: nowrap;
 	overflow-x: scroll;
@@ -321,13 +319,14 @@ label {
 	font-size: 1rem;
 }
 
-.header {
+.header__branding {
 	padding: 15px 0;
 }
 
 .header__title {
 	margin: 0;
-	padding: 0;
+	padding: 0 20px 0 0;
+	font-size: 1.7em;
 }
 
 .header__title img,
@@ -341,7 +340,146 @@ label {
 }
 
 .header__dscr {
+	font-size: .8em;
+}
+
+.global-nav {
 	font-size: .9em;
+}
+
+.global-nav ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.global-nav li {
+	width: 100%;
+	color: #fff;
+}
+
+.global-nav a {
+	padding: 1em;
+	display: block;
+	text-decoration: none;
+	color: inherit;
+}
+
+.global-nav .sub-menu li {
+	padding-left: 2em;
+}
+
+/*
+      スライドメニュー
+     */
+
+.global-nav__menu {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 70%;
+	padding: 45px 0 15px;
+	background-color: #292b2c;
+	z-index: 100;
+	overflow-y: scroll;
+	-webkit-transform: translateX(100%);
+	transform: translateX(100%);
+	transition: -webkit-transform .3s;
+	transition: transform .3s;
+	transition: transform .3s, -webkit-transform .3s;
+}
+
+.admin-bar .global-nav__menu {
+	padding-top: 90px;
+}
+
+.global-nav__btn,
+.global-nav__cover {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.global-nav__btn {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	border: 0;
+	background: 0;
+	padding: 5px 0;
+	outline: none;
+	z-index: 102;
+}
+
+.global-nav__btn span {
+	display: block;
+	width: 20px;
+	height: 2px;
+	background-color: #222;
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	transition: -webkit-transform 0.3s;
+	transition: transform 0.3s;
+	transition: transform 0.3s, -webkit-transform 0.3s;
+}
+
+.global-nav__btn .top {
+	-webkit-transform: translateY(-5px);
+	transform: translateY(-5px);
+}
+
+.global-nav__btn .bottom {
+	-webkit-transform: translateY(5px);
+	transform: translateY(5px);
+}
+
+.global-nav__cover {
+	display: none;
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(255, 255, 255, 0);
+	z-index: 0;
+	transition: all 3s;
+}
+
+/*
+      メニューがチェックされた時
+     */
+
+#header__nav-toggle:checked ~ .global-nav__btn .middle {
+	opacity: 0;
+}
+
+#header__nav-toggle:checked ~ .global-nav__btn .top {
+	-webkit-transform: rotate(-45deg) translateX(-2px);
+	transform: rotate(-45deg) translateX(-2px);
+}
+
+#header__nav-toggle:checked ~ .global-nav__btn .bottom {
+	-webkit-transform: rotate(45deg) translateX(-3px);
+	transform: rotate(45deg) translateX(-3px);
+}
+
+#header__nav-toggle:checked ~ .global-nav__btn span {
+	background-color: #fff;
+}
+
+#header__nav-toggle:checked ~ .global-nav__cover {
+	display: block;
+	background-color: rgba(255, 255, 255, 0.4);
+	z-index: 100;
+}
+
+#header__nav-toggle:checked ~ .global-nav__menu {
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	max-width: 500px;
 }
 
 @media screen and (min-width: 600px) {
@@ -398,6 +536,81 @@ label {
 
 .section--full {
 	min-height: 768px;
+}
+
+.header--1row {
+	display: -ms-flexbox;
+	display: flex;
+	max-width: 100%;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+
+.global-nav ul {
+	height: 100%;
+}
+
+.global-nav li {
+	width: auto;
+	position: relative;
+	border-bottom: 1px solid transparent;
+	transition: border .3s;
+	color: inherit;
+}
+
+.global-nav li:not(.menu-item-has-children):hover {
+	border-bottom: 1px solid #222;
+}
+
+.global-nav .sub-menu {
+	position: absolute;
+	margin: 0 auto;
+	text-align: center;
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+	transition: all 0.3s;
+}
+
+.global-nav .menu-item-has-children:hover .sub-menu {
+	display: block;
+	left: -20%;
+	right: -20%;
+	opacity: 1;
+	visibility: visible;
+	z-index: 3;
+}
+
+.global-nav .menu-item-has-children:hover .sub-menu li {
+	background-color: rgba(255, 255, 255, 0.9);
+	border-bottom: none;
+	padding-left: 0;
+}
+
+/*
+        スライドメニュー
+       */
+
+.global-nav__menu {
+	height: 100%;
+	width: auto;
+	position: relative;
+	background-color: transparent;
+	-webkit-transform: none;
+	transform: none;
+	overflow-y: visible;
+}
+
+.global-nav__menu,
+.admin-bar .global-nav__menu {
+	padding: 0;
+}
+
+.global-nav__btn,
+.global-nav__cover {
+	display: none;
 }
 
 }

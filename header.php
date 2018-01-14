@@ -18,8 +18,8 @@
 <?php do_action( 'ys_body_prepend' ); ?>
 <div id="page" class="site">
 	<header id="masthead" class="header site-header color__site-header">
-		<div class="header__container wrap header--default">
-			<div class="row">
+		<div class="header__container wrap">
+			<div class="header--1row">
 				<div class="site-branding header__branding">
 					<?php
 						/**
@@ -38,12 +38,9 @@
 						ys_the_blog_description();
 					 ?>
 				</div><!-- .site-branding -->
-				<div class="header__nav">
+				<div class="global-nav">
+					<?php get_template_part( 'template-parts/nav/global-nav' ); ?>
 				</div><!-- .header__nav -->
-				<?php
-				// グローバルメニュー
-					ys_template_the_header_global_menu();
-				?>
 			</div><!-- .row -->
 		</div><!-- .header__container -->
 	</header><!-- .header .site-header -->

@@ -1,12 +1,14 @@
 .header {
   @at-root {
 
-    .header {
+    .header__branding {
       padding: $gutter 0;
     }
+
     .header__title {
       margin: 0;
-      padding: 0;
+      padding: 0 20px 0 0;
+      font-size: 1.7em;
 
       img,amp-img {
         max-width: 300px;
@@ -17,7 +19,8 @@
       }
     }
     .header__dscr {
-      font-size: .9em;
+      font-size: .8em;
     }
+
   }
 }

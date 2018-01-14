@@ -1,6 +1,10 @@
 .header {
   @at-root {
     @include media-breakpoint(pc) {
+      .header--1row {
+        @include flex;
+        justify-content: space-between;
+      }
     }
   }
 }

@@ -1,0 +1,112 @@
+.global-nav {
+  @at-root {
+
+    & {
+      font-size: .9em;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+
+      li {
+        width: 100%;
+        color: #fff;
+      }
+
+      a {
+        padding: 1em;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+      }
+      .sub-menu li {
+        padding-left: 2em;
+      }
+    }
+
+    /*
+      スライドメニュー
+     */
+    .global-nav__menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 70%;
+      padding: ($gutter * 3) 0 $gutter;
+      background-color: $bg-color-dark;
+      z-index: 100;
+      overflow-y: scroll;
+      transform: translateX(100%);
+      transition: transform .3s;
+    }
+    .admin-bar .global-nav__menu {
+      padding-top: ($gutter * 6)
+    }
+    .global-nav__btn,
+    .global-nav__cover {
+      appearance: none;
+    }
+    .global-nav__btn {
+      position: absolute;
+      top: $gutter;
+      right: $gutter;
+      border: 0;
+      background: 0;
+      padding: 5px 0;
+      outline: none;
+      z-index: 102;
+
+      span {
+        display: block;
+        width: 20px;
+        height: 2px;
+        //TODO:スマホメニューボタン色
+        background-color: #222;
+        transform: rotate(0deg);
+        transition: transform 0.3s;
+      }
+      .top {
+        transform: translateY(-5px);
+      }
+      .bottom {
+        transform: translateY(5px);
+      }
+    }
+    .global-nav__cover {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(#fff,0);
+      z-index: 0;
+      transition: all 3s;
+    }
+    /*
+      メニューがチェックされた時
+     */
+    #header__nav-toggle:checked {
+      & ~ .global-nav__btn {
+        @include toggle-hamburger;
+        span {
+          background-color: #fff;
+        }
+      }
+      & ~ .global-nav__cover {
+        display: block;
+        background-color: rgba(#fff,0.4);
+        z-index: 100;
+      }
+      & ~ .global-nav__menu {
+    		transform: translateX(0);
+        max-width: 500px;
+      }
+    }
+  }
+}

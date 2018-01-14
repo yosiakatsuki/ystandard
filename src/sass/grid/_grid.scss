@@ -1,17 +1,12 @@
 .grid {
   @at-root {
 
-    .row,
+    .row {
+      @include flex;
+    }
+
     .row--slide {
       display: flex;
-    }
-
-    .row {
-      max-width: 100%;
-      flex-wrap: wrap;
-    }
-
-    .row--slide {
       flex-wrap: nowrap;
       overflow-x: scroll;
       overflow-y: hidden;

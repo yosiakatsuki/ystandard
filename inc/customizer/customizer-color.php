@@ -592,16 +592,16 @@ function ys_customizer_get_default_color( $setting_name ){
  */
 function ys_customizer_get_defaults() {
 	return array(
-						'ys_color_site_bg'             =>'#fff',
-						'ys_color_site_font'           =>'#333',
+						'ys_color_site_bg'             =>'#ffffff',
+						'ys_color_site_font'           =>'#222222',
 						'ys_color_site_font_sub'       =>'#b3b3b3',
 						'ys_color_header_bg'           =>'#fafafa',
 						'ys_color_header_font'         =>'#2c3e50',
 						'ys_color_nav_font_pc'         =>'#b3b3b3',
 						'ys_color_nav_border_pc'       =>'#b3b3b3',
 						'ys_color_nav_bg_sp'           =>'#2c3e50',
-						'ys_color_nav_font_sp'         =>'#fff',
+						'ys_color_nav_font_sp'         =>'#ffffff',
 						'ys_color_footer_bg'           =>'#2c3e50',
-						'ys_color_footer_font'         =>'#fff'
+						'ys_color_footer_font'         =>'#ffffff'
 					);
 }
