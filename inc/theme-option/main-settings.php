@@ -19,45 +19,6 @@
 		do_settings_sections( 'ys_main_settings' );
 	?>
 
-	
-
-	<div class="postbox">
-		<h2>購読ボタン設定</h2>
-		<div class="inside">
-		<p class="description">※購読ボタンを表示しない場合は空白にしてください</p>
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">Twitter</th>
-					<td>
-						<input type="text" name="ys_subscribe_url_twitter" id="ys_subscribe_url_twitter" value="<?php echo esc_url( get_option('ys_subscribe_url_twitter') ); ?>" placeholder="http://example.com" style="width:100%;" />
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">Facebookページ</th>
-					<td>
-						<input type="text" name="ys_subscribe_url_facebook" id="ys_subscribe_url_facebook" value="<?php echo esc_url( get_option('ys_subscribe_url_facebook') ); ?>" placeholder="http://example.com" style="width:100%;" />
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">Google+</th>
-					<td>
-						<input type="text" name="ys_subscribe_url_googleplus" id="ys_subscribe_url_googleplus" value="<?php echo esc_url( get_option('ys_subscribe_url_googleplus') ); ?>" placeholder="http://example.com" style="width:100%;" />
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">Feedly</th>
-					<td>
-						<input type="text" name="ys_subscribe_url_feedly" id="ys_subscribe_url_feedly" value="<?php echo esc_url( get_option('ys_subscribe_url_feedly') ); ?>" placeholder="http://example.com" style="width:100%;" />
-						<p class="description"><a href="https://feedly.com/factory.html" target="_blank">https://feedly.com/factory.html</a>で購読用URLを生成・取得してください。（出来上がったHTMLタグのhref部分）</p>
-						<p class="description">おそらく「 <?php echo 'http://cloud.feedly.com/#subscription'.urlencode('/feed/'.get_bloginfo('rss2_url')); ?> 」になると思います。</p>
-					</td>
-				</tr>
-			</table>
-			<?php submit_button(); ?>
-
-		</div>
-	</div>
-
 	<div class="postbox">
 		<h2>サイト表示設定</h2>
 		<div class="inside">

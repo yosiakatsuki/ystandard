@@ -88,6 +88,21 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			// Twitter related アカウント
 			'ys_sns_share_tweet_related_account' => esc_attr( get_option( 'ys_sns_share_tweet_related_account', '' ) ),
 			/**
+			 * 購読ボタン設定
+			 */
+			// Twitterフォローリンク
+			'ys_subscribe_url_twitter' => esc_url( get_option( 'ys_subscribe_url_twitter', '' ) ),
+			// Facebookページフォローリンク
+			'ys_subscribe_url_facebook' => esc_url( get_option( 'ys_subscribe_url_facebook', '' ) ),
+			// Google＋ページフォローリンク
+			'ys_subscribe_url_googleplus' => esc_url( get_option( 'ys_subscribe_url_googleplus', '' ) ),
+			// Feedlyフォローリンク
+			'ys_subscribe_url_feedly' => esc_url( get_option( 'ys_subscribe_url_feedly', '' ) ),
+			// SP表示列数
+			'ys_subscribe_col_sp' => get_option( 'ys_subscribe_col_sp', '2' ),
+			// PC表示列数
+			'ys_subscribe_col_pc' => get_option( 'ys_subscribe_col_pc', '4' ),
+			/**
 			 *
 			 * [ys]SEO設定
 			 *
@@ -148,14 +163,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				'ys_follow_url_pinterest' => esc_url( get_option( 'ys_follow_url_pinterest', '' ) ),
 				//linkedinフォローURL
 				'ys_follow_url_linkedin' => esc_url( get_option( 'ys_follow_url_linkedin', '' ) ),
-				//Twitterフォローリンク
-				'ys_subscribe_url_twitter' => esc_url( get_option( 'ys_subscribe_url_twitter', '' ) ),
-				//Facebookページフォローリンク
-				'ys_subscribe_url_facebook' => esc_url( get_option( 'ys_subscribe_url_facebook', '' ) ),
-				//Google＋ページフォローリンク
-				'ys_subscribe_url_googleplus' => esc_url( get_option( 'ys_subscribe_url_googleplus', '' ) ),
-				//Feedlyフォローリンク
-				'ys_subscribe_url_feedly' => esc_url( get_option( 'ys_subscribe_url_feedly', '' ) ),
+
 				//関連記事を出力する
 				'ys_show_post_related' => get_option( 'ys_show_post_related', 1 ),
 				//次の記事・前の記事を表示しない

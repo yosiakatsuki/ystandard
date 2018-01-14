@@ -31,6 +31,10 @@ function ys_customizer_sns( $wp_customize ){
 	 * Twitter Share
 	 */
 	ys_customizer_sns_add_twitter_share( $wp_customize );
+	/**
+	 * 購読ボタン設定
+	 */
+	ys_customizer_sns_add_sns_follow( $wp_customize );
 }
 
 /**
@@ -400,6 +404,134 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 			'input_attrs' => array(
 												'placeholder' => 'username',
 											)
+		)
+	);
+}
+
+/**
+ * 購読ボタン設定
+ */
+function ys_customizer_sns_add_sns_follow( $wp_customize ) {
+	/**
+	 * セクション追加
+	 */
+	$wp_customize->add_section(
+										'ys_customizer_section_sns_follow',
+										array(
+											'title'    => '購読ボタン設定',
+											'panel'    => 'ys_customizer_panel_sns',
+										)
+									);
+	/**
+	 * SNS購読ボタン設定
+	 */
+	ys_customizer_add_label(
+		$wp_customize,
+		array(
+			'id'          => 'ys_sns_follow_label',
+			'label'       => '購読ボタン設定',
+			'section'     => 'ys_customizer_section_sns_follow',
+			'description' => '※購読ボタンを表示しない場合は空白にしてください',
+		)
+	);
+	/**
+	 * Twitter
+	 */
+	ys_customizer_add_setting_text(
+		$wp_customize,
+		array(
+			'id'        => 'ys_subscribe_url_twitter',
+			'default'   => '',
+			'label'     => 'Twitter',
+			'section'   => 'ys_customizer_section_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Facebookページ
+	 */
+	ys_customizer_add_setting_text(
+		$wp_customize,
+		array(
+			'id'        => 'ys_subscribe_url_facebook',
+			'default'   => '',
+			'label'     => 'Facebookページ',
+			'section'   => 'ys_customizer_section_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Facebookページ
+	 */
+	ys_customizer_add_setting_text(
+		$wp_customize,
+		array(
+			'id'        => 'ys_subscribe_url_googleplus',
+			'default'   => '',
+			'label'     => 'Google+',
+			'section'   => 'ys_customizer_section_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Feedly
+	 */
+	ys_customizer_add_setting_text(
+		$wp_customize,
+		array(
+			'id'        => 'ys_subscribe_url_feedly',
+			'default'   => '',
+			'label'     => 'Feedly',
+			'section'   => 'ys_customizer_section_sns_follow',
+			'description'  => '<a href="https://feedly.com/factory.html" target="_blank">https://feedly.com/factory.html</a>で購読用URLを生成・取得してください。（出来上がったHTMLタグのhref部分）'
+		)
+	);
+	/**
+	 * 何列表示するか
+	 */
+	ys_customizer_add_label(
+		$wp_customize,
+		array(
+			'id'          => 'ys_sns_follow_col_label',
+			'label'       => '購読ボタンを何列表示するか',
+			'section'     => 'ys_customizer_section_sns_follow',
+			'description' => '',
+		)
+	);
+	/**
+	 * Sp表示列数
+	 */
+	ys_customizer_add_setting_radio(
+		$wp_customize,
+		array(
+			'id'      => 'ys_subscribe_col_sp',
+			'default' => 2,
+			'label'   => 'SP表示列数',
+			'section' => 'ys_customizer_section_sns_follow',
+			'choices' => array(
+				'1' => '1列',
+				'2'  => '2列',
+				'3'  => '3列',
+				'4'  => '4列',
+			)
+		)
+	);
+	/**
+	 * PC表示列数
+	 */
+	ys_customizer_add_setting_radio(
+		$wp_customize,
+		array(
+			'id'      => 'ys_subscribe_col_pc',
+			'default' => 4,
+			'label'   => 'PC表示列数',
+			'section' => 'ys_customizer_section_sns_follow',
+			'choices' => array(
+				'1' => '1列',
+				'2'  => '2列',
+				'3'  => '3列',
+				'4'  => '4列',
+			)
 		)
 	);
 }
