@@ -57,7 +57,17 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_twittercard_user' => esc_attr( get_option( 'ys_twittercard_user', '' ) ),
 			// Twitterカード タイプ
 			'ys_twittercard_type' => esc_attr( get_option( 'ys_twittercard_type', 'summary_large_image' ) ),
-
+			/**
+			 * Twitterシェアボタン
+			 */
+			// Tweetポタンに via を出力するか
+			'ys_sns_share_tweet_via' => get_option( 'ys_sns_share_tweet_via', 0 ),
+			// Twitter via アカウント
+			'ys_sns_share_tweet_via_account' => esc_attr( get_option( 'ys_sns_share_tweet_via_account', '' ) ),
+			// ツイート後におすすめアカウントを表示する
+			'ys_sns_share_tweet_related' => get_option( 'ys_sns_share_tweet_related', 0 ),
+			// Twitter related アカウント
+			'ys_sns_share_tweet_related_account' => esc_attr( get_option( 'ys_sns_share_tweet_related_account', '' ) ),
 			/**
 			 *
 			 * [ys]SEO設定
@@ -94,12 +104,8 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				'ys_sns_share_on_entry_header' => get_option( 'ys_sns_share_on_entry_header', 0 ),
 				//Tweetポタンを投稿下に表示するか
 				'ys_sns_share_on_below_entry' => get_option( 'ys_sns_share_on_below_entry', 0 ),
-				//Tweetポタンに via を出力するか
-				'ys_sns_share_tweet_via' => get_option( 'ys_sns_share_tweet_via', 0 ),
-				//Twitter via アカウント
-				'ys_sns_share_tweet_via_account' => esc_attr( get_option( 'ys_sns_share_tweet_via_account', '' ) ),
-				//Twitter related アカウント
-				'ys_sns_share_tweet_related_account' => esc_attr( get_option( 'ys_sns_share_tweet_related_account', '' ) ),
+
+
 
 
 				//モバイル表示でサイドバーを出力する

@@ -44,36 +44,6 @@
 	</div>
 
 	<div class="postbox">
-		<h2>Twitterシェアボタン設定</h2>
-		<div class="inside">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">投稿ユーザー（via）の設定</th>
-					<td>
-						<fieldset>
-							<label for="ys_sns_share_tweet_via">
-								<input type="checkbox" name="ys_sns_share_tweet_via" id="ys_sns_share_tweet_via" value="1" <?php checked(get_option('ys_sns_share_tweet_via',0),1); ?> />Twitterシェアにviaを付加する（要Twitterアカウント名設定）
-							</label><br />
-							Twitterアカウント名:@<input type="text" name="ys_sns_share_tweet_via_account" id="ys_sns_share_tweet_via_account" value="<?php echo esc_attr( get_option('ys_sns_share_tweet_via_account') ); ?>" placeholder="" />
-						</fieldset>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">おすすめアカウントの設定</th>
-					<td>
-						ツイート後に表示するおすすめアカウント<input type="text" name="ys_sns_share_tweet_related_account" id="ys_sns_share_tweet_related_account" value="<?php echo esc_attr( get_option('ys_sns_share_tweet_related_account') ); ?>" placeholder="" style="min-width:300px;"/><br />
-						※@を除いたアカウント名を入力して下さい。<br />
-						※複数のアカウントをおすすめ表示する場合はカンマで区切って下さい。<br />
-						※空白の場合おすすめアカウントは表示されません。
-					</td>
-			</tr>
-			</table>
-			<?php submit_button(); ?>
-
-		</div>
-	</div>
-
-	<div class="postbox">
 		<h2>購読ボタン設定</h2>
 		<div class="inside">
 		<p class="description">※購読ボタンを表示しない場合は空白にしてください</p>

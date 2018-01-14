@@ -23,6 +23,10 @@ function ys_customizer_sns( $wp_customize ){
 	 * Twitter Cards
 	 */
 	ys_customizer_sns_add_twitter_cards( $wp_customize );
+	/**
+	 * Twitter Share
+	 */
+	ys_customizer_sns_add_twitter_share( $wp_customize );
 }
 
 /**
@@ -37,7 +41,6 @@ function ys_customizer_sns_add_ogp( $wp_customize ) {
 										array(
 											'title'    => 'OGP設定',
 											'panel'    => 'ys_customizer_panel_sns',
-											'priority' => 1,
 										)
 									);
 	/**
@@ -123,7 +126,6 @@ function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
 										array(
 											'title'    => 'Twitterカード設定',
 											'panel'    => 'ys_customizer_panel_sns',
-											'priority' => 1,
 										)
 									);
 	/**
@@ -180,6 +182,102 @@ function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
 				'summary_large_image' => 'Summary Card with Large Image',
 				'summary' => 'Summary Card'
 			)
+		)
+	);
+}
+
+/**
+ * Twitter share
+ */
+function ys_customizer_sns_add_twitter_share( $wp_customize ) {
+	/**
+	 * セクション追加
+	 */
+	$wp_customize->add_section(
+										'ys_customizer_section_twitter_share',
+										array(
+											'title'    => 'Twitterシェアボタン設定',
+											'panel'    => 'ys_customizer_panel_sns',
+										)
+									);
+	/**
+	 * 投稿ユーザー（via）の設定
+	 */
+	ys_customizer_add_label(
+		$wp_customize,
+		array(
+			'id'          => 'ys_sns_share_tweet_via_label',
+			'label'       => '投稿ユーザー（via）の設定',
+			'section'     => 'ys_customizer_section_twitter_share',
+			'description' => '',
+		)
+	);
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_tweet_via',
+			'label'     => 'Twitterシェアにviaを付加する',
+			'description' => '※合わせて「viaに設定するTwitterアカウント名」の設定が必要です',
+			'default'   => 0,
+			'section'   => 'ys_customizer_section_twitter_share',
+			'transport' => 'postMessage',
+		)
+	);
+	/**
+	 * viaに設定するTwitterアカウント名
+	 */
+	ys_customizer_add_setting_text(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_tweet_via_account',
+			'default'   => '',
+			'label'     => 'viaに設定するTwitterアカウント名',
+			'section'   => 'ys_customizer_section_twitter_share',
+			'description'  => '「@」なしのTwitterユーザー名を入力して下さい。例：Twitterユーザー名…「@yosiakatsuki」→入力…「yosiakatsuki」',
+			'transport' => 'postMessage',
+			'input_attrs' => array(
+												'placeholder' => 'username',
+											)
+		)
+	);
+	/**
+	 * おすすめアカウントの設定
+	 */
+	ys_customizer_add_label(
+		$wp_customize,
+		array(
+			'id'          => 'ys_sns_share_tweet_via_label',
+			'label'       => 'おすすめアカウントの設定',
+			'section'     => 'ys_customizer_section_twitter_share',
+			'description' => '',
+		)
+	);
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_tweet_related',
+			'label'     => 'ツイート後におすすめアカウントを表示する',
+			'description' => '※合わせて「ツイート後に表示するおすすめアカウント」の設定が必要です',
+			'default'   => 0,
+			'section'   => 'ys_customizer_section_twitter_share',
+			'transport' => 'postMessage',
+		)
+	);
+	/**
+	 * ツイート後に表示するおすすめアカウント
+	 */
+	ys_customizer_add_setting_text(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_tweet_related_account',
+			'default'   => '',
+			'label'     => 'ツイート後に表示するおすすめアカウント',
+			'section'   => 'ys_customizer_section_twitter_share',
+			'description'  => '「@」なしのTwitterユーザー名を入力して下さい。例：Twitterユーザー名…「@yosiakatsuki」→入力…「yosiakatsuki」、複数のアカウントをおすすめ表示する場合はカンマで区切って下さい',
+			'transport' => 'postMessage',
+			'input_attrs' => array(
+												'placeholder' => 'username',
+											)
 		)
 	);
 }

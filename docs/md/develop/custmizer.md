@@ -75,21 +75,21 @@
     - Twitter Cards metaタグを出力する
     - Twitterアカウント名
     - カードタイプ
-  * Twitterシェアボタン設定
-    * Twitterシェアにviaを付加する（要Twitterアカウント名設定）
-    * Twitterアカウント名
-    * ツイート後におすすめアカウントを表示する
-    * ツイート後に表示するおすすめアカウント
   * SNSシェアボタン設定
     * 表示するボタン
-      * Twitter
-      * Facebook
-      * はてなブックマーク
-      * Google+
-      * Pocket
-      * LINE
+    * Twitter
+    * Facebook
+    * はてなブックマーク
+    * Google+
+    * Pocket
+    * LINE
     * ページ上部にシェアボタンを表示する
     * 記事下部にシェアボタンを表示する
+  - Twitterシェアボタン設定
+    - Twitterシェアボタンにviaを付加する（要Twitterアカウント名設定）
+    - viaに設定するTwitterアカウント名
+    - ツイート後におすすめアカウントを表示する
+    - ツイート後に表示するおすすめアカウント
   * 購読ボタン設定
     * Twitter
     * Facebookページ
