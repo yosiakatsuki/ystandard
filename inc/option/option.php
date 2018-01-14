@@ -103,6 +103,27 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			// PC表示列数
 			'ys_subscribe_col_pc' => get_option( 'ys_subscribe_col_pc', '4' ),
 			/**
+			 * フッターSNSフォローリンク
+			 */
+			// TwitterフォローURL
+			'ys_follow_url_twitter' => esc_url( get_option( 'ys_follow_url_twitter', '' ) ),
+			// facebookフォローURL
+			'ys_follow_url_facebook' => esc_url( get_option( 'ys_follow_url_facebook', '' ) ),
+			// google+フォローURL
+			'ys_follow_url_googlepuls' => esc_url( get_option( 'ys_follow_url_googlepuls', '' ) ),
+			// instagramフォローURL
+			'ys_follow_url_instagram' => esc_url( get_option( 'ys_follow_url_instagram', '' ) ),
+			// tumblrフォローURL
+			'ys_follow_url_tumblr' => esc_url( get_option( 'ys_follow_url_tumblr', '' ) ),
+			// YouTubeフォローURL
+			'ys_follow_url_youtube' => esc_url( get_option( 'ys_follow_url_youtube', '' ) ),
+			// GitHubフォローURL
+			'ys_follow_url_github' => esc_url( get_option( 'ys_follow_url_github', '' ) ),
+			// PinterestフォローURL
+			'ys_follow_url_pinterest' => esc_url( get_option( 'ys_follow_url_pinterest', '' ) ),
+			// linkedinフォローURL
+			'ys_follow_url_linkedin' => esc_url( get_option( 'ys_follow_url_linkedin', '' ) ),
+			/**
 			 *
 			 * [ys]SEO設定
 			 *
@@ -145,24 +166,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				'ys_show_emoji' => get_option( 'ys_show_emoji', 0 ),
 				//oembedを出力する
 				'ys_show_oembed' => get_option( 'ys_show_oembed', 0 ),
-				//TwitterフォローURL
-				'ys_follow_url_twitter' => esc_url( get_option( 'ys_follow_url_twitter', '' ) ),
-				//facebookフォローURL
-				'ys_follow_url_facebook' => esc_url( get_option( 'ys_follow_url_facebook', '' ) ),
-				//google+フォローURL
-				'ys_follow_url_googlepuls' => esc_url( get_option( 'ys_follow_url_googlepuls', '' ) ),
-				//instagramフォローURL
-				'ys_follow_url_instagram' => esc_url( get_option( 'ys_follow_url_instagram', '' ) ),
-				//tumblrフォローURL
-				'ys_follow_url_tumblr' => esc_url( get_option( 'ys_follow_url_tumblr', '' ) ),
-				//YouTubeフォローURL
-				'ys_follow_url_youtube' => esc_url( get_option( 'ys_follow_url_youtube', '' ) ),
-				//GitHubフォローURL
-				'ys_follow_url_github' => esc_url( get_option( 'ys_follow_url_github', '' ) ),
-				//PinterestフォローURL
-				'ys_follow_url_pinterest' => esc_url( get_option( 'ys_follow_url_pinterest', '' ) ),
-				//linkedinフォローURL
-				'ys_follow_url_linkedin' => esc_url( get_option( 'ys_follow_url_linkedin', '' ) ),
+
 
 				//関連記事を出力する
 				'ys_show_post_related' => get_option( 'ys_show_post_related', 1 ),

@@ -38,7 +38,7 @@
   - titleタグの区切り文字
   - 発行年(Copyright)
 * [ys]デザイン設定(1010)
-  * ヘッダータイプ
+  * ※ヘッダータイプ
     * 左ロゴ-右ナビゲーション
     * 中央寄せ
     * 左ロゴ-一列ナビゲーション
@@ -90,32 +90,32 @@
     - viaに設定するTwitterアカウント名
     - ツイート後におすすめアカウントを表示する
     - ツイート後に表示するおすすめアカウント
-  * 購読ボタン設定
-    * Twitter
-    * Facebookページ
-    * Google+
-    * Feedly
-    * 何列表示するか
-      * SP
-        * 1
-        * 2
-        * 3
-        * 4
-      * PC
-        * 1
-        * 2
-        * 3
-        * 4
-  * フッターSNSフォローリンク
-    * Twitter
-    * Facebook
-    * Google+
-    * Instagram
-    * Tumblr
-    * YouTube
-    * GitHub
-    * Pinterest
-    * LinkedIn
+  - ※購読ボタン設定
+    - Twitter
+    - Facebookページ
+    - Google+
+    - Feedly
+    - 何列表示するか
+      - SP
+        - 1
+        - 2
+        - 3
+        - 4
+      - PC
+        - 1
+        - 2
+        - 3
+        - 4
+  - フッターSNSフォローリンク
+    - Twitter
+    - Facebook
+    - Google+
+    - Instagram
+    - Tumblr
+    - YouTube
+    - GitHub
+    - Pinterest
+    - LinkedIn
 - [ys]SEO設定(1110)
   * meta設定
     * meta descriptionを自動生成する

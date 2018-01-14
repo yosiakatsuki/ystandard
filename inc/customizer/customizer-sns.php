@@ -35,6 +35,10 @@ function ys_customizer_sns( $wp_customize ){
 	 * 購読ボタン設定
 	 */
 	ys_customizer_sns_add_sns_follow( $wp_customize );
+	/**
+	 * フッターSNSフォローボタン設定
+	 */
+	ys_customizer_sns_add_footer_sns_follow( $wp_customize );
 }
 
 /**
@@ -57,7 +61,6 @@ function ys_customizer_sns_add_ogp( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'          => 'ys_ogp_enable_label',
 			'label'       => 'OGP metaタグ',
 			'section'     => 'ys_customizer_section_ogp',
 			'description' => '',
@@ -142,7 +145,6 @@ function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'          => 'ys_twittercard_enable_label',
 			'label'       => 'Twitterカードmetaタグ',
 			'section'     => 'ys_customizer_section_twitter_cards',
 			'description' => '',
@@ -214,7 +216,6 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'          => 'ys_sns_share_btn_label',
 			'label'       => '表示するSNSシェアボタン',
 			'section'     => 'ys_customizer_section_sns_share_button',
 			'description' => '',
@@ -280,7 +281,6 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'          => 'ys_sns_share_on_label',
 			'label'       => 'シェアボタンの表示位置',
 			'section'     => 'ys_customizer_section_sns_share_button',
 			'description' => '',
@@ -332,7 +332,6 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'          => 'ys_sns_share_tweet_via_label',
 			'label'       => '投稿ユーザー（via）の設定',
 			'section'     => 'ys_customizer_section_twitter_share',
 			'description' => '',
@@ -372,7 +371,6 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'          => 'ys_sns_share_tweet_via_label',
 			'label'       => 'おすすめアカウントの設定',
 			'section'     => 'ys_customizer_section_twitter_share',
 			'description' => '',
@@ -428,7 +426,6 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'          => 'ys_sns_follow_label',
 			'label'       => '購読ボタン設定',
 			'section'     => 'ys_customizer_section_sns_follow',
 			'description' => '※購読ボタンを表示しない場合は空白にしてください',
@@ -437,7 +434,7 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	/**
 	 * Twitter
 	 */
-	ys_customizer_add_setting_text(
+	ys_customizer_add_setting_url(
 		$wp_customize,
 		array(
 			'id'        => 'ys_subscribe_url_twitter',
@@ -450,7 +447,7 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	/**
 	 * Facebookページ
 	 */
-	ys_customizer_add_setting_text(
+	ys_customizer_add_setting_url(
 		$wp_customize,
 		array(
 			'id'        => 'ys_subscribe_url_facebook',
@@ -463,7 +460,7 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	/**
 	 * Facebookページ
 	 */
-	ys_customizer_add_setting_text(
+	ys_customizer_add_setting_url(
 		$wp_customize,
 		array(
 			'id'        => 'ys_subscribe_url_googleplus',
@@ -476,7 +473,7 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	/**
 	 * Feedly
 	 */
-	ys_customizer_add_setting_text(
+	ys_customizer_add_setting_url(
 		$wp_customize,
 		array(
 			'id'        => 'ys_subscribe_url_feedly',
@@ -492,7 +489,6 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'          => 'ys_sns_follow_col_label',
 			'label'       => '購読ボタンを何列表示するか',
 			'section'     => 'ys_customizer_section_sns_follow',
 			'description' => '',
@@ -532,6 +528,140 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 				'3'  => '3列',
 				'4'  => '4列',
 			)
+		)
+	);
+}
+
+/**
+ * フッターSNSフォローボタン設定
+ */
+function ys_customizer_sns_add_footer_sns_follow( $wp_customize ) {
+	/**
+	 * セクション追加
+	 */
+	$wp_customize->add_section(
+										'ys_customizer_section_footer_sns_follow',
+										array(
+											'title'    => 'フッターSNSフォローリンク設定',
+											'panel'    => 'ys_customizer_panel_sns',
+											'description' => 'フッターに標示するSNSフォローボタンの設定'
+										)
+									);
+	/**
+	 * Twitter
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_twitter',
+			'default'   => '',
+			'label'     => 'Twitter',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Facebook
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_facebook',
+			'default'   => '',
+			'label'     => 'Facebook',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Google+
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_googlepuls',
+			'default'   => '',
+			'label'     => 'Google+',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Instagram
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_instagram',
+			'default'   => '',
+			'label'     => 'Instagram',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Tumblr
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_tumblr',
+			'default'   => '',
+			'label'     => 'Tumblr',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Youtube
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_youtube',
+			'default'   => '',
+			'label'     => 'Youtube',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * GitHub
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_github',
+			'default'   => '',
+			'label'     => 'GitHub',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * Pinterest
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_pinterest',
+			'default'   => '',
+			'label'     => 'Pinterest',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
+		)
+	);
+	/**
+	 * LinkedIn
+	 */
+	ys_customizer_add_setting_url(
+		$wp_customize,
+		array(
+			'id'        => 'ys_follow_url_linkedin',
+			'default'   => '',
+			'label'     => 'LinkedIn',
+			'section'   => 'ys_customizer_section_footer_sns_follow',
+			'description'  => ''
 		)
 	);
 }

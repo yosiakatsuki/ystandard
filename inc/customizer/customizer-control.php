@@ -244,19 +244,19 @@ function ys_customizer_add_setting_url( $wp_customize, $args ) {
 function ys_customizer_add_label( $wp_customize, $args ) {
 	$args = ys_customizer_parse_args( $args );
 	$wp_customize->add_setting(
-						$args['id'],
+						'ys_customizer_label',
 						array(
 							'type'              => 'option',
 							'transport'         => 'postMessage',
 						)
 					);
 	$wp_customize->add_control(
-						$args['id'],
+						'ys_customizer_label',
 						array(
 							'description' => $args['description'],
 							'label'       => $args['label'],
 							'section'     => $args['section'],
-							'settings'    => $args['id'],
+							'settings'    => 'ys_customizer_label',
 							'type'        => 'hidden',
 							'priority'    => $args['priority'],
 						)
