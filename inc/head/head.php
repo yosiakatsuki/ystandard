@@ -58,6 +58,19 @@ if( ! function_exists( 'ys_the_inline_style' ) ) {
 }
 
 /**
+ * TOPページのmeta description出力
+ */
+if( ! function_exists( 'ys_the_meta_description' ) ) {
+	function ys_the_meta_description(){
+		$dscr = trim( ys_get_option( 'ys_wp_site_description' ) );
+		if( ys_is_toppage() && '' != $dscr ){
+			echo '<meta name="description"  content="'. $dscr . '">' . PHP_EOL;
+		}
+	}
+}
+add_action( 'wp_head', 'ys_the_meta_description' );
+
+/**
  * ピンバックURLの出力
  */
 if( ! function_exists( 'ys_the_pingback_url' ) ) {
@@ -377,8 +390,6 @@ if( ! function_exists( 'ys_get_google_anarytics_tracking_id' ) ) {
 		return apply_filters( 'ys_get_google_anarytics_tracking_id', trim( ys_get_option( 'ys_ga_tracking_id' ) ) );
 	}
 }
-
-
 
 /**
  * ampページの存在タグ出力

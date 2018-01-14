@@ -5,8 +5,8 @@
   - ロゴを出力しない
   - サイトのタイトル
   - キャッチフレーズ
-  * キャッチフレーズをサイトヘッダーに表示する
-  * TOPページのmeta description
+  - キャッチフレーズをサイトヘッダーに表示する
+  - TOPページのmeta description
   - サイトアイコン
   - apple touch icon
 - 色(40)
