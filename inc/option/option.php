@@ -58,6 +58,25 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			// Twitterカード タイプ
 			'ys_twittercard_type' => esc_attr( get_option( 'ys_twittercard_type', 'summary_large_image' ) ),
 			/**
+			 * SNSシェアボタン設定
+			 */
+			// Twitter
+			'ys_sns_share_button_twitter' => get_option( 'ys_sns_share_button_twitter', 1 ),
+			// Facebook
+			'ys_sns_share_button_facebook' => get_option( 'ys_sns_share_button_facebook', 1 ),
+			// はてブ
+			'ys_sns_share_button_hatenabookmark' => get_option( 'ys_sns_share_button_hatenabookmark', 1 ),
+			// Google+
+			'ys_sns_share_button_googlepuls' => get_option( 'ys_sns_share_button_googlepuls', 1 ),
+			// Pocket
+			'ys_sns_share_button_pocket' => get_option( 'ys_sns_share_button_pocket', 1 ),
+			// LINE
+			'ys_sns_share_button_line' => get_option( 'ys_sns_share_button_line', 1 ),
+			// Tweetポタンを投稿上部に表示する
+			'ys_sns_share_on_entry_header' => get_option( 'ys_sns_share_on_entry_header', 1 ),
+			// Tweetポタンを投稿下に表示する
+			'ys_sns_share_on_below_entry' => get_option( 'ys_sns_share_on_below_entry', 1 ),
+			/**
 			 * Twitterシェアボタン
 			 */
 			// Tweetポタンに via を出力するか
@@ -100,10 +119,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 
 
 
-				//Tweetポタンを投稿上部に表示するか
-				'ys_sns_share_on_entry_header' => get_option( 'ys_sns_share_on_entry_header', 0 ),
-				//Tweetポタンを投稿下に表示するか
-				'ys_sns_share_on_below_entry' => get_option( 'ys_sns_share_on_below_entry', 0 ),
+
 
 
 

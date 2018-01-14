@@ -65,7 +65,7 @@
     * 左サイドバー
   * 列数
   * 抜粋の文字数
-* [ys]SNS設定(1100)
+- [ys]SNS設定(1100)
   - OGP設定
     - OGP metaタグを出力する
     - Facebook app_id
@@ -75,16 +75,16 @@
     - Twitter Cards metaタグを出力する
     - Twitterアカウント名
     - カードタイプ
-  * SNSシェアボタン設定
-    * 表示するボタン
-    * Twitter
-    * Facebook
-    * はてなブックマーク
-    * Google+
-    * Pocket
-    * LINE
-    * ページ上部にシェアボタンを表示する
-    * 記事下部にシェアボタンを表示する
+  - SNSシェアボタン設定
+    - 表示するSNSシェアボタン
+      - Twitter
+      - Facebook
+      - はてなブックマーク
+      - Google+
+      - Pocket
+      - LINE
+    - 記事上部にシェアボタンを表示する
+    - 記事下部にシェアボタンを表示する
   - Twitterシェアボタン設定
     - Twitterシェアボタンにviaを付加する（要Twitterアカウント名設定）
     - viaに設定するTwitterアカウント名

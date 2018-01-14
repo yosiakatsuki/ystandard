@@ -24,6 +24,10 @@ function ys_customizer_sns( $wp_customize ){
 	 */
 	ys_customizer_sns_add_twitter_cards( $wp_customize );
 	/**
+	 * SNS Share Button
+	 */
+	ys_customizer_sns_add_sns_share_button( $wp_customize );
+	/**
 	 * Twitter Share
 	 */
 	ys_customizer_sns_add_twitter_share( $wp_customize );
@@ -182,6 +186,124 @@ function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
 				'summary_large_image' => 'Summary Card with Large Image',
 				'summary' => 'Summary Card'
 			)
+		)
+	);
+}
+
+/**
+ * SNS Share Button
+ */
+function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
+	/**
+	 * セクション追加
+	 */
+	$wp_customize->add_section(
+										'ys_customizer_section_sns_share_button',
+										array(
+											'title'    => 'SNSシェアボタン設定',
+											'panel'    => 'ys_customizer_panel_sns',
+										)
+									);
+	/**
+	 * シェアボタン表示設定
+	 */
+	ys_customizer_add_label(
+		$wp_customize,
+		array(
+			'id'          => 'ys_sns_share_btn_label',
+			'label'       => '表示するSNSシェアボタン',
+			'section'     => 'ys_customizer_section_sns_share_button',
+			'description' => '',
+		)
+	);
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_button_twitter',
+			'label'     => 'Twitter',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_button_facebook',
+			'label'     => 'Facebook',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_button_hatenabookmark',
+			'label'     => 'はてなブックマーク',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_button_googlepuls',
+			'label'     => 'Google+',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_button_pocket',
+			'label'     => 'Pocket',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_button_line',
+			'label'     => 'LINE',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	/**
+	 * シェアボタン表示位置
+	 */
+	ys_customizer_add_label(
+		$wp_customize,
+		array(
+			'id'          => 'ys_sns_share_on_label',
+			'label'       => 'シェアボタンの表示位置',
+			'section'     => 'ys_customizer_section_sns_share_button',
+			'description' => '',
+		)
+	);
+	/**
+	 * 記事上部に表示する
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_on_entry_header',
+			'label'     => '記事上部にシェアボタンを表示する',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	/**
+	 * 記事下部に表示する
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_on_below_entry',
+			'label'     => '記事下部にシェアボタンを表示する',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
 		)
 	);
 }
