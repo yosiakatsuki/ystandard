@@ -5,6 +5,7 @@
 require_once get_template_directory() . '/inc/classes/widgets/class.ys-ad-text-widget.php';
 require_once get_template_directory() . '/inc/classes/widgets/class.ys-ranking-widget.php';
 require_once get_template_directory() . '/inc/classes/class.ys-enqueue.php';
+require_once get_template_directory() . '/inc/classes/class.ys-global-nav.php';
 
 /**
  *

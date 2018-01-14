@@ -14,14 +14,16 @@
 		<span class="bottom"></span>
 	</label>
 	<label class="global-nav__cover" for="header__nav-toggle"></label>
-	<nav id="global-nav__menu" class="global-nav__menu">
+	<nav id="global-nav" class="global-nav color__nav-bg--sp color__nav-bg--pc">
 		<?php
 			wp_nav_menu( array(
 				'theme_location' => 'global',
-				'menu_class'     => 'row row--align-center',
+				'menu_class'     => 'global-nav__menu row row--align-center',
+				'menu_id'        => 'global-nav__menu',
 				'container'      => false,
 				'depth'          => 2,
-				'fallback_cb'    => ''
+				'fallback_cb'    => '',
+				'walker'         => new YS_Walker_Global_Nav_Menu
 			 ) );
 		?>
 	</nav><!-- .global-nav__menu -->

@@ -3,50 +3,48 @@
     @include media-breakpoint(pc) {
 
       & {
-        ul {
-          height: 100%;
-        }
         li {
           width: auto;
           position: relative;
-          border-bottom: 1px solid transparent;
           transition: border .3s;
-          color: inherit;
-
-          &:not(.menu-item-has-children):hover {
-            // TODO:メニューライン色
-            border-bottom: 1px solid #222;
-          }
         }
-        .sub-menu {
-          position: absolute;
-          margin: 0 auto;
-          text-align: center;
-          opacity: 0;
-          visibility: hidden;
-          z-index: 0;
-  				transition: all 0.3s;
+      }
+      .global-nav__item {
+        border-bottom: 1px solid transparent;
+        &:not(.menu-item-has-children):hover {
         }
-        .menu-item-has-children:hover {
-          .sub-menu {
-            display: block;
-            left: -20%;
-  					right: -20%;
-            opacity: 1;
-            visibility: visible;
-            z-index: 3;
-            li {
-              background-color: rgba(#fff,0.9);
-              border-bottom: none;
-              padding-left: 0;
-            }
+      }
+      .global-nav__menu {
+        height: 100%;
+      }
+      .global-nav__sub-menu {
+        position: absolute;
+        margin: 0 auto;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 0;
+				transition: all 0.3s;
+        li {
+          border-bottom: none;
+          padding-left: 0;
+          opacity: .9;
+        }
+      }
+      .menu-item-has-children:hover {
+        .global-nav__sub-menu {
+          opacity: 1;
+          visibility: visible;
+          z-index: 3;
+          li {
+            border-bottom: none;
           }
         }
       }
       /*
         スライドメニュー
        */
-      .global-nav__menu {
+      .global-nav {
         height: 100%;
         width: auto;
         position: relative;
@@ -55,8 +53,8 @@
         transform: none;
         overflow-y: visible;
       }
-      .global-nav__menu,
-      .admin-bar .global-nav__menu {
+      .global-nav,
+      .admin-bar .global-nav {
         padding: 0;
       }
       .global-nav__btn,

@@ -344,7 +344,7 @@ label {
 }
 
 .global-nav {
-	font-size: .9em;
+	font-size: .8em;
 }
 
 .global-nav ul {
@@ -355,7 +355,6 @@ label {
 
 .global-nav li {
 	width: 100%;
-	color: #fff;
 }
 
 .global-nav a {
@@ -365,15 +364,15 @@ label {
 	color: inherit;
 }
 
-.global-nav .sub-menu li {
-	padding-left: 2em;
+.global-nav__sub-menu li {
+	padding-left: 1em;
 }
 
 /*
       スライドメニュー
      */
 
-.global-nav__menu {
+.global-nav {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -390,7 +389,7 @@ label {
 	transition: transform .3s, -webkit-transform .3s;
 }
 
-.admin-bar .global-nav__menu {
+.admin-bar .global-nav {
 	padding-top: 90px;
 }
 
@@ -476,7 +475,7 @@ label {
 	z-index: 100;
 }
 
-#header__nav-toggle:checked ~ .global-nav__menu {
+#header__nav-toggle:checked ~ .global-nav {
 	-webkit-transform: translateX(0);
 	transform: translateX(0);
 	max-width: 500px;
@@ -548,23 +547,21 @@ label {
 	justify-content: space-between;
 }
 
-.global-nav ul {
-	height: 100%;
-}
-
 .global-nav li {
 	width: auto;
 	position: relative;
-	border-bottom: 1px solid transparent;
 	transition: border .3s;
-	color: inherit;
 }
 
-.global-nav li:not(.menu-item-has-children):hover {
-	border-bottom: 1px solid #222;
+.global-nav__item {
+	border-bottom: 1px solid transparent;
 }
 
-.global-nav .sub-menu {
+.global-nav__menu {
+	height: 100%;
+}
+
+.global-nav__sub-menu {
 	position: absolute;
 	margin: 0 auto;
 	text-align: center;
@@ -574,26 +571,27 @@ label {
 	transition: all 0.3s;
 }
 
-.global-nav .menu-item-has-children:hover .sub-menu {
-	display: block;
-	left: -20%;
-	right: -20%;
+.global-nav__sub-menu li {
+	border-bottom: none;
+	padding-left: 0;
+	opacity: .9;
+}
+
+.menu-item-has-children:hover .global-nav__sub-menu {
 	opacity: 1;
 	visibility: visible;
 	z-index: 3;
 }
 
-.global-nav .menu-item-has-children:hover .sub-menu li {
-	background-color: rgba(255, 255, 255, 0.9);
+.menu-item-has-children:hover .global-nav__sub-menu li {
 	border-bottom: none;
-	padding-left: 0;
 }
 
 /*
         スライドメニュー
        */
 
-.global-nav__menu {
+.global-nav {
 	height: 100%;
 	width: auto;
 	position: relative;
@@ -603,8 +601,8 @@ label {
 	overflow-y: visible;
 }
 
-.global-nav__menu,
-.admin-bar .global-nav__menu {
+.global-nav,
+.admin-bar .global-nav {
 	padding: 0;
 }
 

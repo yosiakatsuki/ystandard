@@ -146,6 +146,18 @@ function ys_customizer_add_global_nav_color( $wp_customize ){
 										);
 
 		/**
+		 * ナビゲーション背景色（PC）
+		 */
+		ys_customizer_add_setting_color(
+			$wp_customize,
+			array(
+				'section' => 'ys_color_nav',
+				'id'      => 'ys_color_nav_bg_pc',
+				'default' => ys_customizer_get_default_color( 'ys_color_nav_bg_pc' ),
+				'label'   => '[PC]ナビゲーション背景色'
+			)
+		);
+		/**
 		 * ナビゲーション文字色（PC）
 		 */
 		ys_customizer_add_setting_color(
@@ -155,19 +167,6 @@ function ys_customizer_add_global_nav_color( $wp_customize ){
 				'id'      => 'ys_color_nav_font_pc',
 				'default' => ys_customizer_get_default_color( 'ys_color_nav_font_pc' ),
 				'label'   => '[PC]ナビゲーション文字色'
-			)
-		);
-
-		/**
-		 * ナビゲーションホバー時の下線（PC）
-		 */
-		ys_customizer_add_setting_color(
-			$wp_customize,
-			array(
-				'section' => 'ys_color_nav',
-				'id'      => 'ys_color_nav_border_pc',
-				'default' => ys_customizer_get_default_color( 'ys_color_nav_border_pc' ),
-				'label'   => '[PC]ナビゲーションホバー時の下線色'
 			)
 		);
 
@@ -301,10 +300,6 @@ function ys_customizer_inline_css() {
 	$html_font_sub = ys_customizer_get_color_option( 'ys_color_site_font_sub' );
 	$header_bg = ys_customizer_get_color_option( 'ys_color_header_bg' );
 	$header_font = ys_customizer_get_color_option( 'ys_color_header_font' );
-	$nav_font_pc = ys_customizer_get_color_option( 'ys_color_nav_font_pc' );
-	$nav_border_pc = ys_customizer_get_color_option( 'ys_color_nav_border_pc' );
-	$nav_bg_sp = ys_customizer_get_color_option( 'ys_color_nav_bg_sp' );
-	$nav_font_sp = ys_customizer_get_color_option( 'ys_color_nav_font_sp' );
 	$footer_bg = ys_customizer_get_color_option( 'ys_color_footer_bg' );
 	$footer_font = ys_customizer_get_color_option( 'ys_color_footer_font' );
 
@@ -447,10 +442,10 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.site-header-menu'
+							'.color__nav-bg--sp'
 						),
 						array(
-							'background-color' => $nav_bg_sp
+							'background-color' => ys_customizer_get_color_option( 'ys_color_nav_bg_sp' )
 						)
 					);
 	/**
@@ -458,10 +453,10 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.gloval-menu>li a'
+							'.color__nav-font--pc'
 						),
 						array(
-							'color' => $nav_font_sp
+							'color' => ys_customizer_get_color_option( 'ys_color_nav_font_sp' )
 						)
 					);
 	$css .= '}';
@@ -471,28 +466,39 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= '@media screen and (min-width: 960px) {';
 	/**
-	 * 下線
-	 */
+	* 背景
+	*/
 	$css .= ys_customizer_create_inline_css(
-						array(
-							'.gloval-menu>li:hover a',
-							'.gloval-menu>li:hover.menu-item-has-children a:hover'
-						),
-						array(
-							'border-color' => $nav_border_pc
-						)
-					);
+		array(
+			'.color__nav-bg--pc',
+			'.global-nav__sub-menu li'
+		),
+		array(
+			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_bg_pc' )
+		)
+	);
 	/**
-	 * 文字
-	 */
+	* 文字
+	*/
 	$css .= ys_customizer_create_inline_css(
-						array(
-							'.gloval-menu>li a'
-						),
-						array(
-							'color' => $nav_font_pc
-						)
-					);
+		array(
+			'.color__nav-font--pc'
+		),
+		array(
+			'color' => ys_customizer_get_color_option( 'ys_color_nav_font_pc' )
+		)
+	);
+	/**
+	* 文字下線
+	*/
+	$css .= ys_customizer_create_inline_css(
+		array(
+			'.global-nav__item:not(.menu-item-has-children):hover'
+		),
+		array(
+			'border-bottom' => '1px solid ' . ys_customizer_get_color_option( 'ys_color_nav_font_pc' )
+		)
+	);
 	$css .= '}';
 
 
@@ -594,14 +600,14 @@ function ys_customizer_get_defaults() {
 	return array(
 						'ys_color_site_bg'             =>'#ffffff',
 						'ys_color_site_font'           =>'#222222',
-						'ys_color_site_font_sub'       =>'#b3b3b3',
-						'ys_color_header_bg'           =>'#fafafa',
-						'ys_color_header_font'         =>'#2c3e50',
-						'ys_color_nav_font_pc'         =>'#b3b3b3',
-						'ys_color_nav_border_pc'       =>'#b3b3b3',
-						'ys_color_nav_bg_sp'           =>'#2c3e50',
+						'ys_color_site_font_sub'       =>'#939393',
+						'ys_color_header_bg'           =>'#ffffff',
+						'ys_color_header_font'         =>'#222222',
+						'ys_color_nav_bg_pc'           =>'#ffffff',
+						'ys_color_nav_font_pc'         =>'#939393',
+						'ys_color_nav_bg_sp'           =>'#292b2c',
 						'ys_color_nav_font_sp'         =>'#ffffff',
-						'ys_color_footer_bg'           =>'#2c3e50',
+						'ys_color_footer_bg'           =>'#292b2c',
 						'ys_color_footer_font'         =>'#ffffff'
 					);
 }

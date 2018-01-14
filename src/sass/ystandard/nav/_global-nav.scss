@@ -2,7 +2,7 @@
   @at-root {
 
     & {
-      font-size: .9em;
+      font-size: .8em;
 
       ul {
         margin: 0;
@@ -12,7 +12,6 @@
 
       li {
         width: 100%;
-        color: #fff;
       }
 
       a {
@@ -21,15 +20,15 @@
         text-decoration: none;
         color: inherit;
       }
-      .sub-menu li {
-        padding-left: 2em;
-      }
+    }
+    .global-nav__sub-menu li {
+      padding-left: 1em;
     }
 
     /*
       スライドメニュー
      */
-    .global-nav__menu {
+    .global-nav {
       position: fixed;
       top: 0;
       right: 0;
@@ -42,7 +41,7 @@
       transform: translateX(100%);
       transition: transform .3s;
     }
-    .admin-bar .global-nav__menu {
+    .admin-bar .global-nav {
       padding-top: ($gutter * 6)
     }
     .global-nav__btn,
@@ -103,7 +102,7 @@
         background-color: rgba(#fff,0.4);
         z-index: 100;
       }
-      & ~ .global-nav__menu {
+      & ~ .global-nav {
     		transform: translateX(0);
         max-width: 500px;
       }

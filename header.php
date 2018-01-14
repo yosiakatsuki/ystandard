@@ -38,7 +38,7 @@
 						ys_the_blog_description();
 					 ?>
 				</div><!-- .site-branding -->
-				<div class="global-nav">
+				<div class="header__nav">
 					<?php get_template_part( 'template-parts/nav/global-nav' ); ?>
 				</div><!-- .header__nav -->
 			</div><!-- .row -->
