@@ -544,7 +544,7 @@ function ys_customizer_sns_add_footer_sns_follow( $wp_customize ) {
 										array(
 											'title'    => 'フッターSNSフォローリンク設定',
 											'panel'    => 'ys_customizer_panel_sns',
-											'description' => 'フッターに標示するSNSフォローボタンの設定'
+											'description' => 'フッターに表示するSNSフォローボタンの設定'
 										)
 									);
 	/**

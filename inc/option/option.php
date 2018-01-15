@@ -34,6 +34,12 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_copyright_year' => ys_get_copyright_year_option(),
 			/**
 			 *
+			 * [ys]デザイン設定
+			 *
+			 */
+			'ys_design_header_type' => get_option( 'ys_design_header_type', '1row' ),
+			/**
+			 *
 			 * [ys]SNS設定
 			 *
 			 */

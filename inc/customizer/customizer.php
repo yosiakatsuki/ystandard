@@ -7,6 +7,7 @@ require_once get_template_directory() . '/inc/customizer/customizer-sanitize.php
 require_once get_template_directory() . '/inc/customizer/customizer-wp.php';
 require_once get_template_directory() . '/inc/customizer/customizer-color.php';
 require_once get_template_directory() . '/inc/customizer/customizer-site.php';
+require_once get_template_directory() . '/inc/customizer/customizer-design.php';
 require_once get_template_directory() . '/inc/customizer/customizer-sns.php';
 require_once get_template_directory() . '/inc/customizer/customizer-seo.php';
 require_once get_template_directory() . '/inc/customizer/customizer-amp.php';
@@ -28,6 +29,10 @@ function ys_theme_customizer( $wp_customize ) {
 	 */
 	ys_customizer_site( $wp_customize );
 	/**
+	 * デザイン設定
+	 */
+	ys_customizer_design( $wp_customize );
+	/**
 	 * SNS設定
 	 */
 	ys_customizer_sns( $wp_customize );
@@ -41,4 +46,10 @@ function ys_theme_customizer( $wp_customize ) {
 	ys_customizer_amp( $wp_customize );
 
 }
-add_action('customize_register', 'ys_theme_customizer');
+add_action( 'customize_register', 'ys_theme_customizer' );
+/**
+ * カスタマイザー用画像アセットURL取得
+ */
+function ys_get_template_customizer_assets_img_dir_uri() {
+	return get_template_directory_uri() . '/assets/images/customizer';
+}
