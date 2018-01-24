@@ -596,8 +596,12 @@ a.ys-button-origin {
 	border-radius: 4px;
 	border-width: 1px;
 	border-style: solid;
+	-webkit-box-shadow: 1px 1px 1px rgba(189, 195, 199, 0.6);
 	box-shadow: 1px 1px 1px rgba(189, 195, 199, 0.6);
+	-webkit-transition: color .3s,background-color .3s,-webkit-box-shadow .3s;
+	transition: color .3s,background-color .3s,-webkit-box-shadow .3s;
 	transition: color .3s,background-color .3s,box-shadow .3s;
+	transition: color .3s,background-color .3s,box-shadow .3s,-webkit-box-shadow .3s;
 }
 
 .ys-button a:hover,
@@ -606,6 +610,7 @@ a.ys-button:hover,
 a.ys-button-dark:hover,
 .ys-button-origin a:hover,
 a.ys-button-origin:hover {
+	-webkit-box-shadow: 3px 2px 2px rgba(189, 195, 199, 0.6);
 	box-shadow: 3px 2px 2px rgba(189, 195, 199, 0.6);
 }
 
@@ -802,6 +807,7 @@ div.aligncenter {
 	margin-bottom: .5rem;
 	border-radius: 4px;
 	font-size: .8rem;
+	-webkit-transition: background-color 0.3s;
 	transition: background-color 0.3s;
 }
 
@@ -997,6 +1003,7 @@ div.aligncenter {
 	border-radius: 4px;
 	font-size: .8rem;
 	color: #939393;
+	-webkit-transition: color .3s;
 	transition: color .3s;
 }
 
@@ -1067,6 +1074,7 @@ div.aligncenter {
 }
 
 .post-navigation {
+	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	margin: 0 0 2rem;
@@ -1114,10 +1122,13 @@ div.aligncenter {
 }
 
 .post-navigation .home {
+	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
+	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
 	font-size: 3rem;
@@ -1621,6 +1632,7 @@ sub {
 
 .author-sns li a,
 .widget .author-sns li a {
+	-webkit-transition: color .3s;
 	transition: color .3s;
 }
 

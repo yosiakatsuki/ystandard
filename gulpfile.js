@@ -3,141 +3,61 @@ var plumber				 = require('gulp-plumber');
 var watch					 = require('gulp-watch');
 var rename				 = require('gulp-rename');
 var sass					 = require('gulp-sass');
-var cleanCSS 			 = require('gulp-clean-css');
-var autoprefixer	 = require('gulp-autoprefixer');
+var postcss        = require('gulp-postcss');
+var autoprefixer   = require('autoprefixer');
+var cssnano        = require('cssnano');
 var uglify				 = require('gulp-uglify');
 var browserSync		 = require('browser-sync');
-var babel          = require('gulp-babel');
-var webpackStream   = require('webpack-stream');
-var webpack         = require('webpack');
+var webpackStream  = require('webpack-stream');
+var webpack        = require('webpack');
 var cmq						 = require('gulp-combine-media-queries');
 
-/**
- * browserSyncで監視するファイル
- */
-var bsWatchFiles = [
-  './css/*.min.css',
-  './js/*.min.js',
-  './**/*.php'
-];
+var dir = {
+  src: {
+    sass: './src/sass/**/*.scss',
+    js: './src/js/**/*.js'
+  },
+  dist: {
+    css: './css',
+    js: './js'
+  }
+}
 
 /**
- * browserSyncのオプション
- */
-var bsOptions = {
-  proxy: "wp-ystandard.dev",
-  open : "external",
-  port : "3000"
-};
-
-/**
- * sass
- */
-var srcSass = [
-  './src/sass/**/*.scss'
-]
-
-/**
- * css
- */
-var srcCss = [
-  './css/*.css',
-  '!./css/*.min.css',
-  '!./css/ys-editor-style.css'
-]
-
-/**
- * js
- */
-var srcJs = [
-  './src/js/**/*.js'
-]
-
-/**
- * es2015
- */
-var srcEs = [
-  './src/js/**/*.js',
-  '!./src/js/modules/**/*.js'
-]
-
-/**
- * webpack config 読み込み
+ * webpack config
  */
 var webpackConfig = require('./webpack.config');
-
 
 /**
  * sass
  */
 gulp.task('sass', function() {
-  gulp.src(srcSass)
+  gulp.src(dir.src.sass)
     .pipe(plumber({
       errorHandler: function(err) {
         console.log(err.messageFormatted);
         this.emit('end');
       }
     }))
-    .pipe(sass())
-    .pipe(autoprefixer({
-      browsers: ["last 2 versions", "ie >= 11", "Android >= 4.4","ios_saf >= 9"],
-      cascade: false
+    .pipe(sass({
+       includePaths: require('node-normalize-scss').includePaths
     }))
+    .pipe(postcss([
+      autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+      })
+    ]))
     .pipe(cmq({log: false}))
-    .pipe(gulp.dest('./css'));
-});
-
-
-/**
- * css圧縮
- */
-gulp.task('mincss', function() {
-  gulp.src(srcCss)
-    .pipe(plumber({
-      errorHandler: function(err) {
-        console.log(err.messageFormatted);
-        this.emit('end');
-      }
-    }))
+    .pipe(gulp.dest(dir.dist.css))
+    .pipe(postcss([
+      cssnano({
+        'zindex': false
+      })
+    ]))
     .pipe(rename({suffix: '.min'}))
-    .pipe(cleanCSS())
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest(dir.dist.css));
 });
-
-
-
-/**
- * js圧縮
- */
-gulp.task('minjs', function() {
-  gulp.src(srcJs)
-    .pipe(plumber({
-      errorHandler: function(err) {
-        console.log(err.messageFormatted);
-        this.emit('end');
-    }
-    }))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify({preserveComments: 'some'}))
-    .pipe(gulp.dest('./js'));
-});
-
-/**
- * es2015のコンパイル
- */
-gulp.task('babel', function () {
-  gulp.src(srcEs)
-    .pipe(plumber({
-      errorHandler: function(err) {
-        console.log(err.messageFormatted);
-        this.emit('end');
-      }
-    }))
-    .pipe(babel())
-    .pipe(gulp.dest('./js'));
-});
-
-
 
 /**
  * webpack
@@ -150,15 +70,18 @@ gulp.task('webpack', function(){
       }
     })
     .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest('./js'));
+    .pipe(gulp.dest(dir.dist.js));
 });
-
 
 /**
  * browser-sync init
  */
 gulp.task('bs-init', function() {
-  browserSync.init(bsOptions);
+  browserSync.init({
+    proxy: "wp-ystandard.local",
+    open : "external",
+    port : "3000"
+  });
 });
 
 /**
@@ -168,64 +91,28 @@ gulp.task('bs-reload', function() {
   browserSync.reload()
 });
 
-
-
 /**
- * メディアクエリの整理
- * ※エラーが発生する場合、node_modules/gulp-combine-media-queries/index.js の 152行目をコメントアウト
- */
-gulp.task('cmq', function() {
-  gulp.src(srcCss)
-    .pipe(plumber({
-      errorHandler: function(err) {
-        console.log(err.messageFormatted);
-        this.emit('end');
-      }
-    }))
-    .pipe(cmq({log: true}))
-    .pipe(gulp.dest('./css/cmq/'));
-});
-
-
-
-
-
-/** --------------------------------------
+ *
  * watch
- * --------------------------------------- */
+ *
+ */
 /**
  * コード
  */
 gulp.task('watch',['sass','webpack'],function() {
-  watch(srcSass, function(event) {
+  watch(dir.src.sass, function(event) {
     gulp.start('sass');
   });
-  // watch(srcJs, function(event) {
-  //   gulp.start('minjs');
-  // });
-  watch(srcCss, function(event) {
-    gulp.start('mincss');
-  });
-  watch(srcEs, function(event) {
+  watch(dir.src.js, function(event) {
     gulp.start('webpack');
   });
 });
 
-
 /**
  * browserSync
  */
-gulp.task('watch-bs',['bs-init','watch'],function() {
-  watch(bsWatchFiles, function(event) {
+gulp.task('browsersync',['bs-init','watch'],function() {
+  watch(['./css/*.min.css','./js/*.min.js','./**/*.php'], function(event) {
     gulp.start('bs-reload');
-  });
-});
-
-/**
- * sassのみ
- */
-gulp.task('watch-sass',['sass'],function() {
-  watch(srcSass, function(event) {
-    gulp.start('sass');
   });
 });

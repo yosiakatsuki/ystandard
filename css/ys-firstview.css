@@ -7,11 +7,13 @@
  */
 
 * {
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 *:before,
 *:after {
+	-webkit-box-sizing: inherit;
 	box-sizing: inherit;
 }
 
@@ -137,6 +139,7 @@ pre code {
 
 a {
 	color: #2980B9;
+	-webkit-transition: color .3s,background-color .3s;
 	transition: color .3s,background-color .3s;
 }
 
@@ -165,6 +168,7 @@ label {
 }
 
 .row {
+	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	max-width: 100%;
@@ -173,6 +177,7 @@ label {
 }
 
 .row--slide {
+	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-wrap: nowrap;
@@ -198,36 +203,43 @@ label {
 }
 
 .row--align-top {
+	-webkit-box-align: top;
 	-ms-flex-align: top;
 	align-items: top;
 }
 
 .row--align-center {
+	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
 }
 
 .row--align-bottom {
+	-webkit-box-align: bottom;
 	-ms-flex-align: bottom;
 	align-items: bottom;
 }
 
 .row--justify-start {
+	-webkit-box-pack: start;
 	-ms-flex-pack: start;
 	justify-content: start;
 }
 
 .row--justify-end {
+	-webkit-box-pack: end;
 	-ms-flex-pack: end;
 	justify-content: end;
 }
 
 .row--justify-center {
+	-webkit-box-pack: center;
 	-ms-flex-pack: center;
 	justify-content: center;
 }
 
 .row--justify-between {
+	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
@@ -384,6 +396,7 @@ label {
 	overflow-y: scroll;
 	-webkit-transform: translateX(100%);
 	transform: translateX(100%);
+	-webkit-transition: -webkit-transform .3s;
 	transition: -webkit-transform .3s;
 	transition: transform .3s;
 	transition: transform .3s, -webkit-transform .3s;
@@ -418,6 +431,7 @@ label {
 	background-color: #222;
 	-webkit-transform: rotate(0deg);
 	transform: rotate(0deg);
+	-webkit-transition: -webkit-transform 0.3s;
 	transition: -webkit-transform 0.3s;
 	transition: transform 0.3s;
 	transition: transform 0.3s, -webkit-transform 0.3s;
@@ -444,6 +458,7 @@ label {
 	left: 0;
 	background-color: rgba(255, 255, 255, 0);
 	z-index: 0;
+	-webkit-transition: all 3s;
 	transition: all 3s;
 }
 
@@ -538,11 +553,13 @@ label {
 }
 
 .header--1row {
+	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	max-width: 100%;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
+	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 }
@@ -550,6 +567,7 @@ label {
 .global-nav li {
 	width: auto;
 	position: relative;
+	-webkit-transition: border .3s;
 	transition: border .3s;
 }
 
@@ -568,6 +586,7 @@ label {
 	opacity: 0;
 	visibility: hidden;
 	z-index: 0;
+	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
 }
 

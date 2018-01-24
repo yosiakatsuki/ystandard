@@ -11,7 +11,9 @@
 	height: 100%;
 	text-decoration: none;
 	color: #222;
+	-webkit-box-shadow: 0 1px 1px rgba(189, 195, 199, 0.7);
 	box-shadow: 0 1px 1px rgba(189, 195, 199, 0.7);
+	-webkit-transition: -webkit-transform .4s;
 	transition: -webkit-transform .4s;
 	transition: transform .4s;
 	transition: transform .4s, -webkit-transform .4s;
@@ -102,6 +104,7 @@
 	color: #222;
 	font-size: 1rem;
 	text-decoration: none;
+	-webkit-transition: all .3s;
 	transition: all .3s;
 }
 
