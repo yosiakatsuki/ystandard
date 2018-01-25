@@ -21,6 +21,10 @@ function ys_customizer_design( $wp_customize ){
 	 * ヘッダー設定
 	 */
 	ys_customizer_design_add_header( $wp_customize );
+	/**
+	 * モバイルページ設定
+	 */
+	ys_customizer_design_add_mobile( $wp_customize );
 }
 
 /**
@@ -53,13 +57,45 @@ function ys_customizer_design_add_header( $wp_customize ) {
 			'id'          => 'ys_design_header_type',
 			'default'     => '1row',
 			'label'       => 'ヘッダータイプ',
-			'description' => 'ヘッダーの表示タイプ',
+			'description' => 'ヘッダーの表示タイプ(※現在機能開発集のため1番目のタイプしか表示できません)',
 			'section'     => 'ys_customizer_section_header_design',
 			'choices'     => array(
 												'1row'   => $row1,
 												'center' => $center,
 												'2row'   => $row2
 											)
+		)
+	);
+}
+
+
+/**
+ * モバイルページ設定
+ */
+function ys_customizer_design_add_mobile( $wp_customize ) {
+	/**
+	 * セクション追加
+	 */
+	$wp_customize->add_section(
+										'ys_customizer_section_mobile_design',
+										array(
+											'title'           => 'モバイルページ設定',
+											'panel'           => 'ys_customizer_panel_design',
+											'priority'        => 1,
+											'description'     => 'モバイルページのデザイン設定',
+											'active_callback' => array()
+										)
+									);
+	/**
+	 * サイドバー出力
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_show_sidebar_mobile',
+			'label'       => 'モバイル表示でサイドバーを出力しない',
+			'default'   => 0,
+			'section'   => 'ys_customizer_section_mobile_design',
 		)
 	);
 }

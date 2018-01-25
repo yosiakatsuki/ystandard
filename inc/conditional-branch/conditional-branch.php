@@ -92,3 +92,17 @@ function ys_is_enable_google_analytics() {
 	}
 	return apply_filters( 'ys_is_enable_google_analytics', $result );
 }
+/**
+ * サイドバーを表示するか
+ */
+function ys_is_show_sidebar() {
+	$show_sidebar = true;
+	if( ys_is_amp() ) {
+		$show_sidebar = false;
+	} elseif( ys_is_mobile() && 1 == ys_get_setting( 'ys_show_sidebar_mobile' ) ) {
+		$show_sidebar = false;
+	} elseif( ! is_active_sidebar( 'sidebar-right' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
+		$show_sidebar = false;
+	}
+	return apply_filters( 'ys_is_show_sidebar', $show_sidebar );
+}

@@ -19,6 +19,7 @@
 - OGPデフォルト画像の再設定
 - ヘッダーメニュー
 - Google Analyticsのトラッキングコードタイプ
+- サイドバーのモバイル表示（表示するがデフォルトになる）
 
 
 
@@ -83,6 +84,7 @@
 - ys_utilities_get_custom_logo_image_src
 - ys_template_the_header_site_title_logo
 - ys_template_the_header_global_menu
+- ys_template_the_sidebar_attr
 
 
 ## 変更されたフィルタ
@@ -94,4 +96,5 @@
 - ys_amp_ga_json
 - ys_the_header_attr
 - ys_the_content_attr
+- ys_the_sidebar_attr
 - ys_site_hero

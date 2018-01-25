@@ -37,6 +37,10 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: Google Analyticsのタグを読み込むかの結果編集用フィルタ
 
+### ys_is_show_sidebar
+- file: inc/conditional-branch/conditional-branch.php
+- description: サイドバー部分の表示有無の編集用フィルタ
+
 
 ## head
 

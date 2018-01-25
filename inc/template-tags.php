@@ -1158,14 +1158,6 @@ if( ! function_exists( 'ys_template_the_advertisement_under_content' ) ) {
 //
 //------------------------------------------------------------------------------
 //-----------------------------------------------
-//	サイドバー
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_sidebar_attr' ) ) {
-	function ys_template_the_sidebar_attr() {
-		echo apply_filters('ys_the_sidebar_attr','');
-	}
-}
-//-----------------------------------------------
 //	フッター
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_footer_attr' ) ) {

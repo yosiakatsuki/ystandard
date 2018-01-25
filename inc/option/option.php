@@ -37,7 +37,10 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			 * [ys]デザイン設定
 			 *
 			 */
+			// ヘッダータイプ
 			'ys_design_header_type' => get_option( 'ys_design_header_type', '1row' ),
+			//モバイル表示でサイドバーを出力しない
+			'ys_show_sidebar_mobile' => get_option( 'ys_show_sidebar_mobile', 0 ),
 			/**
 			 *
 			 * [ys]SNS設定
@@ -166,8 +169,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 
 
 
-				//モバイル表示でサイドバーを出力する
-				'ys_show_sidebar_mobile' => get_option( 'ys_show_sidebar_mobile', 1 ),
+
 				//絵文字を出力する
 				'ys_show_emoji' => get_option( 'ys_show_emoji', 0 ),
 				//oembedを出力する
