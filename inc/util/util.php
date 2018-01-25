@@ -73,3 +73,19 @@ if( ! function_exists( 'ys_util_the_custom_excerpt' ) ) {
 		echo ys_util_get_the_custom_excerpt( $length, $sep, $post_id );
 	}
 }
+/**
+ * Twitter用javascript URL取得
+ */
+if( ! function_exists( 'ys_util_get_twitter_widgets_js' ) ) {
+	function ys_util_get_twitter_widgets_js(){
+		return apply_filters( 'ys_util_get_twitter_widgets_js', '//platform.twitter.com/widgets.js' );
+	}
+}
+/**
+ * Facebook用javascript URL取得
+ */
+if( ! function_exists( 'ys_util_get_facebook_sdk_js' ) ) {
+	function ys_util_get_facebook_sdk_js(){
+		return apply_filters( 'ys_util_get_facebook_sdk_js', '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8' );
+	}
+}
