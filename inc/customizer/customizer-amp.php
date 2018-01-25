@@ -11,7 +11,7 @@ function ys_customizer_amp( $wp_customize ){
 	$wp_customize->add_panel(
 										'ys_customizer_panel_amp',
 										array(
-											'priority'       => 1110,
+											'priority'       => 1300,
 											'title'          => '[ys]AMP設定'
 										)
 									);

@@ -99,16 +99,16 @@ if( ! function_exists( 'ys_remove_action' ) ) {
  */
 if ( ! function_exists( 'ys_remove_emoji' ) ) {
 	function ys_remove_emoji() {
-
-		//絵文字
-		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-		remove_action( 'wp_print_styles', 'print_emoji_styles' );
-		remove_action( 'admin_print_styles', 'print_emoji_styles' );
-		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
-		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
-		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-
+		if( ! ys_is_show_emoji() ) {
+			//絵文字
+			remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+			remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+			remove_action( 'wp_print_styles', 'print_emoji_styles' );
+			remove_action( 'admin_print_styles', 'print_emoji_styles' );
+			remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+			remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+			remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+		}
 	}
 }
 /**
@@ -116,12 +116,12 @@ if ( ! function_exists( 'ys_remove_emoji' ) ) {
  */
 if ( ! function_exists( 'ys_remove_oembed' ) ) {
 	function ys_remove_oembed() {
-
-		//Embeds
-		add_filter('embed_oembed_discover', '__return_false');
-		remove_action('wp_head','rest_output_link_wp_head');
-		remove_action('wp_head','wp_oembed_add_discovery_links');
-		remove_action('wp_head','wp_oembed_add_host_js');
-
+		if( ! ys_is_show_oembed() ) {
+			//Embeds
+			add_filter('embed_oembed_discover', '__return_false');
+			remove_action('wp_head','rest_output_link_wp_head');
+			remove_action('wp_head','wp_oembed_add_discovery_links');
+			remove_action('wp_head','wp_oembed_add_host_js');
+		}
 	}
 }

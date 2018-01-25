@@ -41,6 +41,14 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: サイドバー部分の表示有無の編集用フィルタ
 
+### ys_is_show_emoji
+- file: inc/conditional-branch/conditional-branch.php
+- description: 絵文字関連スクリプトの出力有無の編集用フィルタ
+
+### ys_is_show_oembed
+- file: inc/conditional-branch/conditional-branch.php
+- description: oembed関連スクリプトの出力有無の編集用フィルタ
+
 
 ## head
 

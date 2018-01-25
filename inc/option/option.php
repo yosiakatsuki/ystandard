@@ -148,6 +148,15 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_ga_exclude_logged_in_user' => get_option( 'ys_ga_exclude_logged_in_user', 0 ),
 			/**
 			 *
+			 * [ys]サイト高速化設定
+			 *
+			 */
+			// 絵文字を出力しない
+			'ys_performance_tuning_disable_emoji' => get_option( 'ys_performance_tuning_disable_emoji', 1 ),
+			// oembedを出力しない
+			'ys_performance_tuning_disable_oembed' => get_option( 'ys_performance_tuning_disable_oembed', 1 ),
+			/**
+			 *
 			 * [ys]AMP設定
 			 *
 			 */
@@ -170,10 +179,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 
 
 
-				//絵文字を出力する
-				'ys_show_emoji' => get_option( 'ys_show_emoji', 0 ),
-				//oembedを出力する
-				'ys_show_oembed' => get_option( 'ys_show_oembed', 0 ),
+
 
 
 				//関連記事を出力する

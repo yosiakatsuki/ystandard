@@ -11,8 +11,6 @@ if ( ! function_exists( 'ys_is_toppage') ) {
 	}
 }
 
-
-
 /**
  * AMPページに広告を表示するか
  */
@@ -69,7 +67,7 @@ function ys_is_enable_google_analytics() {
 	if( ys_get_option( 'ys_ga_exclude_logged_in_user' ) ) {
 		if( is_user_logged_in() ){
 			/**
-			 * 編集権限を持っている場合のみ判断
+			 * 編集権限を持っている場合のみ出力しない
 			 */
 			if( current_user_can( 'edit_posts' ) ) {
 				$result = false;
@@ -105,4 +103,24 @@ function ys_is_show_sidebar() {
 		$show_sidebar = false;
 	}
 	return apply_filters( 'ys_is_show_sidebar', $show_sidebar );
+}
+/**
+ * 絵文字用 css / js を出力するか
+ */
+function ys_is_show_emoji() {
+	$show_emoji = true;
+	if( ys_get_option( 'ys_performance_tuning_disable_emoji' ) ) {
+		$show_emoji = false;
+	}
+	return apply_filters( 'ys_is_show_emoji', $show_emoji );
+}
+/**
+ * oembed css / js を出力するか
+ */
+function ys_is_show_oembed() {
+	$show_emoji = true;
+	if( ys_get_option( 'ys_performance_tuning_disable_oembed' ) ) {
+		$show_emoji = false;
+	}
+	return apply_filters( 'ys_is_show_oembed', $show_emoji );
 }

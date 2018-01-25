@@ -20,44 +20,6 @@
 	?>
 
 	<div class="postbox">
-		<h2>サイト表示設定</h2>
-		<div class="inside">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">サイドバー表示</th>
-					<td>
-						<label for="ys_show_sidebar_mobile">
-							<input type="checkbox" name="ys_show_sidebar_mobile" id="ys_show_sidebar_mobile" value="1" <?php checked(get_option('ys_show_sidebar_mobile',1),1); ?> />モバイル表示でもサイドバー部分を出力する
-						</label>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">絵文字設定</th>
-					<td>
-						<label for="ys_show_emoji">
-							<input type="checkbox" name="ys_show_emoji" id="ys_show_emoji" value="1" <?php checked(get_option('ys_show_emoji',0),1); ?> />絵文字関連スタイルシート・スクリプトを出力する
-						</label>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">oembed設定</th>
-					<td>
-						<label for="ys_show_oembed">
-							<input type="checkbox" name="ys_show_oembed" id="ys_show_oembed" value="1" <?php checked(get_option('ys_show_oembed',0),1); ?> />oembed関連スタイルシート・スクリプトを出力する
-						</label>
-					</td>
-				</tr>
-			</table>
-			<?php submit_button(); ?>
-
-		</div>
-	</div>
-
-
-	
-
-
-	<div class="postbox">
 		<h2>投稿設定</h2>
 		<div class="inside">
 			<table class="form-table">

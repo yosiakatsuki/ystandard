@@ -10,6 +10,7 @@ require_once get_template_directory() . '/inc/customizer/customizer-site.php';
 require_once get_template_directory() . '/inc/customizer/customizer-design.php';
 require_once get_template_directory() . '/inc/customizer/customizer-sns.php';
 require_once get_template_directory() . '/inc/customizer/customizer-seo.php';
+require_once get_template_directory() . '/inc/customizer/customizer-performance-tuning.php';
 require_once get_template_directory() . '/inc/customizer/customizer-amp.php';
 
 /**
@@ -40,6 +41,10 @@ function ys_theme_customizer( $wp_customize ) {
 	 * SEO設定
 	 */
 	ys_customizer_seo( $wp_customize );
+	/**
+	 * サイト高速化設定
+	 */
+	ys_customizer_performance_tuning( $wp_customize );
 	/**
 	 * AMP設定
 	 */

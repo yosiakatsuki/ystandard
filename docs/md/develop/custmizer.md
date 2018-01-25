@@ -131,10 +131,12 @@
       - グローバル サイトタグ(gtag.js)
       - ユニバーサルアナリティクス(analytics.js)
     - ログイン中はアクセス数をカウントしない
-* [ys]サイト高速化設定(1120)
-  * 絵文字関連スタイルシート・スクリプトを出力する
-  * oembed関連スタイルシート・スクリプトを出力する
-  * LazyLoad機能を有効化する
+- [ys]サイト高速化設定(1120)
+  - WordPress標準機能で読み込むCSS・javascriptの無効化
+    - 絵文字関連スタイルシート・スクリプトを出力しない
+    - oembed関連スタイルシート・スクリプトを出力しない
+  * LazyLoad機能
+    * LazyLoad機能を有効化する
 * [ys]広告設定(1130)
   * PC
     * 記事タイトル下
@@ -147,10 +149,13 @@
     * 記事本文下
 * [ys]上級者向け設定(1200)
   * テーマカスタマイザーでの色変更機能を無効にする
-  * Twitter用javascriptを読み込む
-  * Facebook用javascriptを読み込む
-  * CDNにホストされているjQueryを読み込む
-  * jQueryを読み込まない
+    * テーマカスタマイザーでの色変更機能を無効にする
+  * SNS用javascriptの読み込み
+    * Twitter用javascriptを読み込む
+    * Facebook用javascriptを読み込む
+  * jQuery設定
+    * CDNにホストされているjQueryを読み込む
+    * jQueryを読み込まない
 - [ys]AMP設定(1300)
   - AMP有効化設定
     - AMP機能を有効化する
