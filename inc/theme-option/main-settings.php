@@ -46,35 +46,6 @@
 	</div>
 
 	<div class="postbox">
-		<h2>SEO対策設定</h2>
-		<div class="inside">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">アーカイブページのnoindex</th>
-					<td>
-						<fieldset>
-							<label for="ys_archive_noindex_category">
-								<input type="checkbox" name="ys_archive_noindex_category" id="ys_archive_noindex_category" value="1" <?php checked(get_option('ys_archive_noindex_category',0),1); ?> />カテゴリー一覧ページをnoindexにする
-							</label><br />
-							<label for="ys_archive_noindex_tag">
-								<input type="checkbox" name="ys_archive_noindex_tag" id="ys_archive_noindex_tag" value="1" <?php checked(get_option('ys_archive_noindex_tag',1),1); ?> />タグ一覧ページをnoindexにする
-							</label><br />
-							<label for="ys_archive_noindex_author">
-								<input type="checkbox" name="ys_archive_noindex_author" id="ys_archive_noindex_author"  value="1" <?php checked(get_option('ys_archive_noindex_author',1),1); ?> />投稿者一覧ページをnoindexにする
-							</label><br />
-							<label for="ys_archive_noindex_date">
-								<input type="checkbox" name="ys_archive_noindex_date" id="ys_archive_noindex_date" value="1" <?php checked(get_option('ys_archive_noindex_date',1),1); ?> />月別、年別、日別、時間別一覧ページをnoindexにする
-							</label>
-						</fieldset>
-					</td>
-				</tr>
-			</table>
-			<?php submit_button(); ?>
-
-		</div><!-- /.inside -->
-	</div><!-- /.postbox -->
-
-	<div class="postbox">
 		<h2>広告設定</h2>
 		<div class="inside">
 			<table class="form-table">

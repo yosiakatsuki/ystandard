@@ -120,11 +120,11 @@
   * meta設定
     * meta descriptionを自動生成する
     * meta descriptionに使用する文字数
-  * noindex設定
-    * カテゴリー一覧ページをnoindexにする
-    * タグ一覧ページをnoindexにする
-    * 投稿者一覧ページをnoindexにする
-    * 月別、年別、日別、時間別一覧ページをnoindexにする
+  - アーカイブページのnoindex設定
+    - カテゴリー一覧ページをnoindexにする
+    - タグ一覧ページをnoindexにする
+    - 投稿者一覧ページをnoindexにする
+    - 月別、年別、日別、時間別一覧ページをnoindexにする
   - Google Analytics
     - Google Analytics トラッキングID
     - トラッキングコードタイプ

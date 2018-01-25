@@ -138,6 +138,17 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			 *
 			 */
 			/**
+			 * アーカイブページのnoindex設定
+			 */
+			// カテゴリー一覧をnoindexにする
+			'ys_archive_noindex_category' => get_option( 'ys_archive_noindex_category', 0 ),
+			// タグ一覧をnoindexにする
+			'ys_archive_noindex_tag' => get_option( 'ys_archive_noindex_tag', 1 ),
+			// 投稿者一覧をnoindexにする
+			'ys_archive_noindex_author' => get_option( 'ys_archive_noindex_author', 1 ),
+			// 日別一覧をnoindexにする
+			'ys_archive_noindex_date' => get_option( 'ys_archive_noindex_date', 1 ),
+			/**
 			 * Google Analytics
 			 */
 			// Google Aanalytics トラッキングID
@@ -186,14 +197,8 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				'ys_show_post_related' => get_option( 'ys_show_post_related', 1 ),
 				//次の記事・前の記事を表示しない
 				'ys_hide_post_paging' => get_option( 'ys_hide_post_paging', 0 ),
-				//カテゴリー一覧をnoindexにする
-				'ys_archive_noindex_category' => get_option( 'ys_archive_noindex_category', 0 ),
-				//タグ一覧をnoindexにする
-				'ys_archive_noindex_tag' => get_option( 'ys_archive_noindex_tag', 1 ),
-				//投稿者一覧をnoindexにする
-				'ys_archive_noindex_author' => get_option( 'ys_archive_noindex_author', 1 ),
-				//日別一覧をnoindexにする
-				'ys_archive_noindex_date' => get_option( 'ys_archive_noindex_date', 1 ),
+
+
 				//広告　タイトル下
 				'ys_advertisement_under_title' => get_option( 'ys_advertisement_under_title', '' ),
 				//広告　moreタグ置換

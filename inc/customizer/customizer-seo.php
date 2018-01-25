@@ -16,11 +16,83 @@ function ys_customizer_seo( $wp_customize ){
 										)
 									);
 	/**
+	 * アーカイブページのnoindex設定
+	 */
+	ys_customizer_seo_add_noindex( $wp_customize );
+	/**
 	 * Google Analytics設定
 	 */
 	ys_customizer_seo_add_google_analytics( $wp_customize );
 }
 
+/**
+ *	アーカイブページのnoindex設定
+ */
+function ys_customizer_seo_add_noindex( $wp_customize ) {
+	/**
+	 * セクション追加
+	 */
+	$wp_customize->add_section(
+										'ys_customizer_section_noindex',
+										array(
+											'title'    => 'アーカイブページのnoindex設定',
+											'panel'    => 'ys_customizer_panel_seo',
+											'priority' => 1,
+										)
+									);
+	/**
+	 * カテゴリー一覧をnoindexにする
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_archive_noindex_category',
+			'label'       => 'カテゴリー一覧をnoindexにする',
+			'default'   => 0,
+			'section'   => 'ys_customizer_section_noindex',
+			'transport' => 'postMessage',
+		)
+	);
+	/**
+	 * タグ一覧をnoindexにする
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_archive_noindex_tag',
+			'label'       => 'タグ一覧をnoindexにする',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_noindex',
+			'transport' => 'postMessage',
+		)
+	);
+	/**
+	 * 投稿者一覧をnoindexにする
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_archive_noindex_author',
+			'label'       => '投稿者一覧をnoindexにする',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_noindex',
+			'transport' => 'postMessage',
+		)
+	);
+	/**
+	 * 日別一覧をnoindexにする
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_archive_noindex_date',
+			'label'       => '日別一覧をnoindexにする',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_noindex',
+			'transport' => 'postMessage',
+		)
+	);
+}
 /**
  * Google Analytics設定
  */
