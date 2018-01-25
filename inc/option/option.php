@@ -43,6 +43,17 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_show_sidebar_mobile' => get_option( 'ys_show_sidebar_mobile', 0 ),
 			/**
 			 *
+			 * [ys]投稿ページ設定
+			 *
+			 */
+			// 個別ページでアイキャッチ画像を非表示にする
+			'ys_hide_post_thumbnail' => get_option( 'ys_hide_post_thumbnail', 0 ),
+			// 関連記事を出力する
+			'ys_show_post_related' => get_option( 'ys_show_post_related', 1 ),
+			// 次の記事・前の記事を表示しない
+			'ys_hide_post_paging' => get_option( 'ys_hide_post_paging', 0 ),
+			/**
+			 *
 			 * [ys]SNS設定
 			 *
 			 */
@@ -212,15 +223,11 @@ if( ! function_exists( 'ys_get_options' ) ) {
 
 
 
-				//関連記事を出力する
-				'ys_show_post_related' => get_option( 'ys_show_post_related', 1 ),
-				//次の記事・前の記事を表示しない
-				'ys_hide_post_paging' => get_option( 'ys_hide_post_paging', 0 ),
 
 
 
-				//個別ページでアイキャッチ画像を非表示にする
-				'ys_hide_post_thumbnail' => get_option( 'ys_hide_post_thumbnail', 0 ),
+
+
 				//テーマカスタマイザーの色設定を無効にする
 				'ys_desabled_color_customizeser' => get_option( 'ys_desabled_color_customizeser', 0 ),
 				//Twitter埋め込み用js読み込み

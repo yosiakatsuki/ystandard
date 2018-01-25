@@ -19,14 +19,6 @@
 	</div>
 
 	<div class="postbox">
-		<h2>基本設定</h2>
-		<div class="inside">
-			<p>Google AnalyticsのトラッキングIDやOGP設定など</p>
-			<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_main_settings'; ?>">設定を始める»</a></strong></p>
-		</div>
-	</div>
-
-	<div class="postbox">
 		<h2>高度な設定</h2>
 		<div class="inside">
 			<p>css,javascriptの読み込み設定、AMP有効化設定など</p>

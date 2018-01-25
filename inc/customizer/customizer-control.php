@@ -201,7 +201,7 @@ function ys_customizer_add_setting_textarea( $wp_customize, $args ) {
 							'default'           => $args['default'],
 							'type'              => $args['setting_type'],
 							'transport'         => $args['transport'],
-							'sanitize_callback' => 'esc_textarea'
+							'sanitize_callback' => $args['sanitize_callback']
 						)
 					);
 	$wp_customize->add_control(
@@ -303,7 +303,8 @@ function ys_customizer_parse_args( $args ) {
 		'transport'    => 'refresh',
 		'priority'     => 1,
 		'default'      => '',
-		'input_attrs'  => array()
+		'input_attrs'  => array(),
+		'sanitize_callback' => ''
 	);
 	return wp_parse_args( $args, $defaults );
 }

@@ -31,15 +31,6 @@ function ys_add_admin_menu() {
 		'load_ys_collective_settings'
 	);
 
-	// 基本設定ページ追加
-	add_submenu_page(
-		'ys_settings_start',
-		'基本設定',
-		'基本設定',
-		'manage_options',
-		'ys_main_settings',
-		'load_ys_main_settings'
-	);
 
 	// 高度な設定ページ追加
 	add_submenu_page(
@@ -51,8 +42,6 @@ function ys_add_admin_menu() {
 		'load_ys_advanced_settings'
 	);
 
-	// AMP設定ページ追加
-	if ( ys_get_setting( 'ys_amp_enable' ) ) {
 		add_submenu_page(
 			'ys_settings_start',
 			'AMP設定',
@@ -61,8 +50,6 @@ function ys_add_admin_menu() {
 			'ys_amp_settings',
 			'load_ys_amp_settings'
 		);
-	}
-
 	// 便利ツール
 	add_submenu_page(
 		'ys_settings_start',
