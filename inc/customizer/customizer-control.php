@@ -201,7 +201,7 @@ function ys_customizer_add_setting_textarea( $wp_customize, $args ) {
 							'default'           => $args['default'],
 							'type'              => $args['setting_type'],
 							'transport'         => $args['transport'],
-							'sanitize_callback' => 'wp_filter_post_kses'
+							'sanitize_callback' => 'esc_textarea'
 						)
 					);
 	$wp_customize->add_control(

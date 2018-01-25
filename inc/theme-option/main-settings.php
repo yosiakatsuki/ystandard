@@ -45,51 +45,6 @@
 		</div>
 	</div>
 
-	<div class="postbox">
-		<h2>広告設定</h2>
-		<div class="inside">
-			<table class="form-table">
-				<tr valign="top">
-					<th scope="row">記事タイトル下</th>
-					<td>
-						<p><strong>PC表示用</strong></p>
-						<textarea name="ys_advertisement_under_title" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_advertisement_under_title',''))); ?></textarea>
-						<p><strong>スマホ表示用</strong></p>
-						<textarea name="ys_advertisement_under_title_sp" rows="8" cols="80"><?php echo get_option('ys_advertisement_under_title_sp',''); ?></textarea>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">moreタグ部分</th>
-					<td>
-						<p><strong>PC表示用</strong></p>
-						<textarea name="ys_advertisement_replace_more" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_advertisement_replace_more',''))); ?></textarea>
-						<p><strong>スマホ表示用</strong></p>
-						<textarea name="ys_advertisement_replace_more_sp" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_advertisement_replace_more_sp',''))); ?></textarea>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">記事本文下（左）</th>
-					<td>
-						<textarea name="ys_advertisement_under_content_left" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_advertisement_under_content_left',''))); ?></textarea>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">記事本文下（右）</th>
-					<td>
-						<textarea name="ys_advertisement_under_content_right" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_advertisement_under_content_right',''))); ?></textarea>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row">記事本文下（スマホ）</th>
-					<td>
-						<textarea name="ys_advertisement_under_content_sp" rows="8" cols="80"><?php echo esc_textarea(stripslashes(get_option('ys_advertisement_under_content_sp',''))); ?></textarea>
-						<p>※スマホ表示で表示域を覆い尽くすような広告の配置にならないよう、記事下には1つ分しか設定を用意していません。</p>
-					</td>
-				</tr>
-			</table>
-		</div><!-- /.inside -->
-	</div><!-- /.postbox -->
-
 	<?php submit_button(); ?>
 	</form>
 </div>

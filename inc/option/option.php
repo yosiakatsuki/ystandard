@@ -168,6 +168,25 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_performance_tuning_disable_oembed' => get_option( 'ys_performance_tuning_disable_oembed', 1 ),
 			/**
 			 *
+			 * [ys]広告設定
+			 *
+			 */
+			//広告　タイトル下
+			'ys_advertisement_under_title' => get_option( 'ys_advertisement_under_title', '' ),
+			//広告　moreタグ置換
+			'ys_advertisement_replace_more' => get_option( 'ys_advertisement_replace_more', '' ),
+			//広告　記事下　左
+			'ys_advertisement_under_content_left' => get_option( 'ys_advertisement_under_content_left', '' ),
+			//広告　記事下　右
+			'ys_advertisement_under_content_right' => get_option( 'ys_advertisement_under_content_right', '' ),
+			//広告　タイトル下 SP
+			'ys_advertisement_under_title_sp' => get_option( 'ys_advertisement_under_title_sp', '' ),
+			//広告　moreタグ置換 SP
+			'ys_advertisement_replace_more_sp' => get_option( 'ys_advertisement_replace_more_sp', '' ) ,
+			//広告　記事下 SP
+			'ys_advertisement_under_content_sp' => get_option( 'ys_advertisement_under_content_sp', '' ),
+			/**
+			 *
 			 * [ys]AMP設定
 			 *
 			 */
@@ -199,20 +218,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 				'ys_hide_post_paging' => get_option( 'ys_hide_post_paging', 0 ),
 
 
-				//広告　タイトル下
-				'ys_advertisement_under_title' => get_option( 'ys_advertisement_under_title', '' ),
-				//広告　moreタグ置換
-				'ys_advertisement_replace_more' => get_option( 'ys_advertisement_replace_more', '' ),
-				//広告　記事下　左
-				'ys_advertisement_under_content_left' => get_option( 'ys_advertisement_under_content_left', '' ),
-				//広告　記事下　右
-				'ys_advertisement_under_content_right' => get_option( 'ys_advertisement_under_content_right', '' ),
-				//広告　タイトル下 SP
-				'ys_advertisement_under_title_sp' => get_option( 'ys_advertisement_under_title_sp', '' ),
-				//広告　moreタグ置換 SP
-				'ys_advertisement_replace_more_sp' => get_option( 'ys_advertisement_replace_more_sp', '' ) ,
-				//広告　記事下 SP
-				'ys_advertisement_under_content_sp' => get_option( 'ys_advertisement_under_content_sp', '' ),
+
 				//個別ページでアイキャッチ画像を非表示にする
 				'ys_hide_post_thumbnail' => get_option( 'ys_hide_post_thumbnail', 0 ),
 				//テーマカスタマイザーの色設定を無効にする
