@@ -26,7 +26,7 @@
 				'walker'         => new YS_Walker_Global_Nav_Menu
 			 ) );
 		?>
-	</nav><!-- .global-nav__menu -->
+	</nav><!-- .global-nav -->
 <?php
 		endif;
 	endif; ?>
