@@ -51,6 +51,7 @@
 - ys_extras_get_the_archive_title -> ys_get_the_archive_title
 - ys_extras_add_facebook_ogp -> ys_get_the_ogp
 - ys_extras_add_googleanarytics -> ys_the_google_anarytics
+- ys_template_get_front_page_template_part -> ys_get_front_page_template
 
 ## 削除予定の関数
 - ys_settings
@@ -97,6 +98,7 @@
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
 - ys_header_description -> ys_the_blog_description
+- ys_get_front_page_template_part -> ys_get_front_page_template
 
 ## 削除されたフィルタ
 - ys_ga_function

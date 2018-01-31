@@ -6,43 +6,6 @@
  * ************************************************************************ */
 
 
-//------------------------------------------------------------------------------
-//
-//	ヘッダー関連
-//
-//------------------------------------------------------------------------------
-
-
-
-/**
- *
- *	front-page
- *
- */
-if( ! function_exists( 'ys_template_get_front_page_template_part' ) ) {
-	function ys_template_get_front_page_template_part() {
-
-		$type = get_option('show_on_front');
-
-		if('page' == $type){
-			$template = 'page';
-			$page_template = get_page_template_slug();
-
-			if( $page_template ) {
-				$template = str_replace( '.php', '', $page_template );
-			}
-
-		} else {
-			$template = 'home';
-		}
-
-		return apply_filters('ys_get_front_page_template_part',$template);
-	}
-}
-
-
-
-
 
 
 //------------------------------------------------------------------------------

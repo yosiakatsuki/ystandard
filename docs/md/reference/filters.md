@@ -81,6 +81,13 @@
 - description: Google AnalyticsトラッキングID編集フィルタ
 
 
+## template
+
+### ys_get_front_page_template
+- file: inc/template/tempalte.php
+- description: front-pageで読み込むテンプレートファイルの編集フィルタ
+
+
 ## header
 
 ### ys_get_header_logo
