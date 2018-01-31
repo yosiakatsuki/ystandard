@@ -6,81 +6,6 @@
  * ************************************************************************ */
 
 
-
-
-//------------------------------------------------------------------------------
-//
-//	投稿の表示関連
-//
-//------------------------------------------------------------------------------
-
-//-----------------------------------------------
-//	個別記事 ヒーローエリア
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_post_hero' ) ) {
-	function ys_template_the_post_hero() {
-
-		// ヒーローエリア
-		// 	※要カスタマイズ
-
-		$html = '';
-		echo apply_filters('ys_post_hero',$html);
-	}
-}
-
-
-
-
-
-//-----------------------------------------------
-//	投稿・更新日取得
-//-----------------------------------------------
-if (!function_exists( 'ys_template_the_entry_date')) {
-	function ys_template_the_entry_date($show_update = true) {
-
-		$format = get_option( 'date_format' );
-		// $pubdate = 'pubdate="pubdate"';
-		$pubdate = '';
-		$update_content = 'content="'.get_the_modified_time('Y-m-d').'"';
-
-		$entry_date_class = 'entry-date entry-published published';
-		$update_date_class = 'entry-updated updated';
-
-		$ico_calendar = '<svg class="entry-meta-ico" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path d="M1 4c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm2 2v12h14V6H3zm2-6h2v2H5V0zm8 0h2v2h-2V0zM5 9h2v2H5V9zm0 4h2v2H5v-2zm4-4h2v2H9V9zm0 4h2v2H9v-2zm4-4h2v2h-2V9zm0 4h2v2h-2v-2z"/></svg>';
-
-		$ico_update = '<svg class="entry-meta-ico" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path d="M14.66 15.66A8 8 0 1 1 17 10h-2a6 6 0 1 0-1.76 4.24l1.42 1.42zM12 10h8l-4 4-4-4z"/></svg>';
-
-		$ico_calendar = apply_filters('ys_ico_calendar',$ico_calendar);
-		$ico_update = apply_filters('ys_ico_update',$ico_update);
-
-		if(ys_is_amp()){
-			$pubdate = '';
-			$update_content = 'content="'.get_the_modified_time('Y-m-d').'"';
-		}
-
-		$html_pubdate = '';
-		$html_update = '';
-
-		//公開直後に微調整はよくあること。日付で判断 予約投稿すると更新日が公開日以前になる
-		if(get_the_time('Ymd') >= get_the_modified_time('Ymd') || $show_update === false) {
-			$entry_date_class .= ' updated';
-
-			$html_pubdate = '<span class="entry-date-published">'.$ico_calendar.'<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished dateModified" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time></span>';
-
-		} else {
-			$html_pubdate = '<span class="entry-date-published">'.$ico_calendar.'<time class="'.$entry_date_class.'" itemprop="dateCreated datePublished" datetime="'.get_post_time('Y-m-d').'" '.$pubdate.'>'.get_the_time($format).'</time></span>';
-			$html_update = '<span class="entry-date-update">'.$ico_update.'<span class="'.$update_date_class.'" itemprop="dateModified" '.$update_content.'>'.get_the_modified_time($format).'</span></span>';
-		}
-
-		echo apply_filters('ys_entry_date_published',$html_pubdate);
-		echo apply_filters('ys_entry_date_update',$html_update);
-
-	}
-}
-
-
-
-
 //-----------------------------------------------
 //	この記事を読む
 //-----------------------------------------------
@@ -276,26 +201,6 @@ if (!function_exists( 'ys_template_get_the_author_sns')) {
 		return $sns_list;
 	}
 }
-
-
-
-
-//-----------------------------------------------
-//	ページング
-//-----------------------------------------------
-if (!function_exists( 'ys_template_the_link_pages')) {
-	function ys_template_the_link_pages() {
-		wp_link_pages( array(
-					'before'      => '<div class="page-links">',
-					'after'       => '</div>',
-					'link_before' => '<span class="page-text">',
-					'link_after'  => '</span>',
-					'pagelink'    => '%',
-					'separator'   => '',
-				) );
-	}
-}
-
 
 
 /**
@@ -876,7 +781,7 @@ if( ! function_exists( 'ys_template_the_taxonomy_list' ) ) {
 //
 //------------------------------------------------------------------------------
 
-if (!function_exists( 'ys_template_get_the_post_thumbnail')) {
+if (function_exists( 'ys_template_get_the_post_thumbnail')) {
 	function ys_template_get_the_post_thumbnail(
 																	$thumbname='full',
 																	$viewsize=false,
@@ -956,19 +861,19 @@ if (!function_exists( 'ys_template_get_the_post_thumbnail')) {
 /**
  *	画像取得（出力）
  */
-if (!function_exists( 'ys_template_the_post_thumbnail')) {
-	function ys_template_the_post_thumbnail(
-																	$thumbname='full',
-																	$viewsize=false,
-																	$outputmeta=true,
-																	$imgid='',
-																	$imgclass='',
-																	$postid=0
-																) {
-
-		echo ys_template_get_the_post_thumbnail( $thumbname, $viewsize, $outputmeta, $imgid, $imgclass, $postid );
-	}
-}
+// if (!function_exists( 'ys_template_the_post_thumbnail')) {
+// 	function ys_template_the_post_thumbnail(
+// 																	$thumbname='full',
+// 																	$viewsize=false,
+// 																	$outputmeta=true,
+// 																	$imgid='',
+// 																	$imgclass='',
+// 																	$postid=0
+// 																) {
+//
+// 		echo ys_template_get_the_post_thumbnail( $thumbname, $viewsize, $outputmeta, $imgid, $imgclass, $postid );
+// 	}
+// }
 
 
 

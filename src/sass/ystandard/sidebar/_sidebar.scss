@@ -1,0 +1,14 @@
+.sidebar {
+  @at-root {
+    & {
+      padding: $gutter;
+    }
+
+    @include media-breakpoint(pc) {
+      & {
+        flex: none;
+        width: $sidebar-width;
+      }
+    }
+  }
+}

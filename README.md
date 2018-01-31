@@ -271,6 +271,21 @@ ystandard側で作成したスタイルは`/sass/ystandard/`以下で定義し�
 - `.ys-small`
 - `.ys-large`
 
+## Third-party resources
+
+### Font Awesome
+Font License: SIL OFL 1.1
+Code License: MIT License
+Source      : https://fortawesome.github.io/Font-Awesome/
+
+### IcoMoon
+License: GPL / CC BY 4.0
+Source : https://icomoon.io/#icons-icomoon/
+
+### Theme Update Checker Library
+License: GPL
+Source : http://w-shadow.com/
+
 ## 変更履歴
 
 ### v1.0.x

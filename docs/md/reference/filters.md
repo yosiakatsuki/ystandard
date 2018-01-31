@@ -88,6 +88,13 @@
 - description: front-pageで読み込むテンプレートファイルの編集フィルタ
 
 
+## entry
+
+### ys_get_entry_date
+- file: inc/entry/entry-meta.php
+- description: 公開日・更新日取得用配列の編集フィルタ
+
+
 ## header
 
 ### ys_get_header_logo

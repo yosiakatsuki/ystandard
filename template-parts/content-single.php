@@ -4,8 +4,6 @@
 	<header class="entry-header">
 
 		<?php
-			// ヒーローエリア
-			ys_template_the_post_hero();
 
 			the_title( '<h1 class="entry-title" itemprop="headline name">', '</h1>' );
 		?>

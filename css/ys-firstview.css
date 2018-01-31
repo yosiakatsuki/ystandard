@@ -485,7 +485,7 @@ body {
 	color: #222;
 	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
 	letter-spacing: 0.1em;
-	line-height: 1.6;
+	line-height: 1.7;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 	-moz-osx-font-smoothing: grayscale;
@@ -639,7 +639,6 @@ label {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	max-width: 100%;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	margin-right: -15px;
@@ -729,6 +728,7 @@ label {
 	max-width: 100%;
 }
 
+.col__2,
 .col__2--sp {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 50%;
@@ -736,6 +736,7 @@ label {
 	width: 50%;
 }
 
+.col__3,
 .col__3--sp {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 33.33%;
@@ -743,6 +744,7 @@ label {
 	width: 33.33%;
 }
 
+.col__4,
 .col__4--sp {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 25%;
@@ -978,6 +980,46 @@ label {
 	max-width: 500px;
 }
 
+.content {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.content__main {
+	-webkit-box-flex: 1;
+	-ms-flex: 1 0 0%;
+	flex: 1 0 0%;
+	padding: 15px;
+}
+
+.sidebar {
+	padding: 15px;
+}
+
+.entry__title {
+	font-size: 1.8em;
+	line-height: 1.5;
+	margin: 0 0 15px;
+	padding: 0;
+}
+
+.entry__thumbnail {
+	text-align: center;
+}
+
+.entry__meta {
+	padding: 1em 0;
+	font-size: .8em;
+}
+
+.entry__date-icon {
+	margin-right: 5px;
+}
+
+.entry__update {
+	margin-left: .5em;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__2--tb {
@@ -1056,7 +1098,6 @@ label {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	max-width: 100%;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	-webkit-box-pack: justify;
@@ -1128,6 +1169,13 @@ label {
 .global-nav__btn,
 .global-nav__cover {
 	display: none;
+}
+
+.sidebar {
+	-webkit-box-flex: 0;
+	-ms-flex: none;
+	flex: none;
+	width: 330px;
 }
 
 }

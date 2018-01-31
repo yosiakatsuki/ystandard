@@ -55,6 +55,10 @@ require_once get_template_directory() . '/inc/customizer/customizer.php';
  */
 require_once get_template_directory() . '/inc/template/template.php';
 /**
+ * 投稿
+ */
+require_once get_template_directory() . '/inc/entry/entry-meta.php';
+/**
  * アーカイブ
  */
 require_once get_template_directory() . '/inc/archive/archive.php';

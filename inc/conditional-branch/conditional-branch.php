@@ -124,3 +124,10 @@ function ys_is_show_oembed() {
 	}
 	return apply_filters( 'ys_is_show_oembed', $show_emoji );
 }
+
+/**
+ * アイキャッチ画像を表示するか(singlar)
+ */
+function ys_show_post_thumbnail() {
+	return ( has_post_thumbnail() && 0 == ys_get_setting( 'ys_hide_post_thumbnail' ) );
+}

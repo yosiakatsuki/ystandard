@@ -93,7 +93,9 @@
 - ys_template_the_header_site_title_logo
 - ys_template_the_header_global_menu
 - ys_template_the_sidebar_attr
-
+- ys_template_the_link_pages
+- ys_template_the_entry_date
+- ys_template_the_post_hero
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
@@ -107,3 +109,6 @@
 - ys_the_content_attr
 - ys_the_sidebar_attr
 - ys_site_hero
+- ys_entry_date_published
+- ys_entry_date_update
+- ys_post_hero

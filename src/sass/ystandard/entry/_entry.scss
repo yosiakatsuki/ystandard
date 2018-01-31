@@ -1,0 +1,27 @@
+.entry {
+  @at-root {
+    .entry__title {
+      font-size: 1.8em;
+      line-height: 1.5;
+      margin: 0 0 $gutter;
+      padding: 0;
+    }
+
+    .entry__thumbnail {
+      text-align: center;
+    }
+
+    .entry__meta {
+      padding: 1em 0;
+      font-size: .8em;
+    }
+
+    .entry__date-icon {
+      margin-right: 5px;
+    }
+    .entry__update {
+      margin-left: .5em;
+    }
+
+  }//@
+}

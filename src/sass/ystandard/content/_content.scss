@@ -1,0 +1,13 @@
+.content {
+  @at-root {
+    & {
+      padding-top: $gutter;
+      padding-bottom: $gutter;
+    }
+
+    .content__main {
+      flex: 1 0 0%;
+      padding: $gutter;
+    }
+  }
+}
