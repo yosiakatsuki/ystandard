@@ -1,8 +1,28 @@
-.grid {
+/*
+  container
+ */
+.container {
   @at-root {
+    & {
+      @include container;
+    }
 
-    .row {
-      @include flex;
+    .container--wide {
+      max-width: 1200px + ($gutter * 2);
+    }
+    .container--full {
+      max-width: 100%;
+    }
+  }
+}
+
+/*
+  row
+ */
+.row {
+  @at-root {
+    & {
+      @include row;
     }
 
     .row--slide {
@@ -51,24 +71,94 @@
       justify-content: space-around;
     }
 
+    // screen
+    @include media-breakpoint(pc) {
+      .row--slide {
+        &::-webkit-scrollbar {
+          height: 0;
+        }
+      }
+    }
 
-    .col,
-    [class^="col_"],
-    [class*=" col_"] {
+  }// at-root
+}
+/*
+  col
+ */
+.col {
+  @at-root {
+
+    &,
+    [class*="col_"] {
       @include col;
       max-width: 100%;
     }
     .col__2--sp {
+      flex: 0 0 50%;
       width: 50%;
     }
     .col__3--sp {
+      flex: 0 0 33.33%;
       width: 33.33%;
     }
     .col__4--sp {
+      flex: 0 0 25%;
       width: 25%;
     }
     .col__slide {
       min-width: 300px;
     }
-  }
+
+    // tablet
+    @include media-breakpoint(tb) {
+      .col__2--tb {
+        flex: 0 0 50%;
+        width: 50%;
+      }
+      .col__3--tb {
+        flex: 0 0 33.33%;
+        width: 33.33%;
+      }
+      .col__4--tb {
+        flex: 0 0 25%;
+        width: 25%;
+      }
+    }
+
+    // screen
+    @include media-breakpoint(pc) {
+      .col__2--pc {
+        flex: 0 0 50%;
+        width: 50%;
+      }
+      .col__3--pc {
+        flex: 0 0 33.33%;
+        width: 33.33%;
+      }
+      .col__4--pc {
+        flex: 0 0 25%;
+        width: 25%;
+      }
+      .col__slide {
+        min-width: auto;
+      }
+    }
+
+    // large screen
+    @include media-breakpoint(lg) {
+      .col__2--lg {
+        flex: 0 0 50%;
+        width: 50%;
+      }
+      .col__3--lg {
+        flex: 0 0 33.33%;
+        width: 33.33%;
+      }
+      .col__4--lg {
+        flex: 0 0 25%;
+        width: 25%;
+      }
+    }
+
+  }// at-root
 }

@@ -22,5 +22,15 @@
       font-size: .8em;
     }
 
-  }
+    // screen
+    @include media-breakpoint(pc) {
+
+      .header--1row {
+        @include flex;
+        justify-content: space-between;
+      }
+      
+    }
+
+  }// at-root
 }

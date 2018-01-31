@@ -17,7 +17,7 @@ if(!function_exists( 'ys_breadcrumb')) {
 		do_action( 'ys_breadcrumb_prepend' );
 
 		if(!have_posts() || (!is_single() && !is_category()) ){
-			
+
 			do_action( 'ys_breadcrumb_append' );
 			return;
 		}
@@ -26,7 +26,7 @@ if(!function_exists( 'ys_breadcrumb')) {
 		// カテゴリー取得
 		$catlist = ys_utilities_get_cat_id_list(true);
 		?>
-		<nav id="breadcrumb" class="breadcrumb wrap">
+		<nav id="breadcrumb" class="breadcrumb container">
 			<ol itemscope itemtype="http://schema.org/BreadcrumbList">
 				<li itemprop="itemListElement" itemscope
 			itemtype="http://schema.org/ListItem">

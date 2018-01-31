@@ -2,7 +2,7 @@
 	</div><!-- .site-content -->
 
 	<footer id="footer" class="site-footer" <?php ys_template_the_footer_attr(); ?>>
-		<div class="wrap">
+		<div class="container">
 			<?php
 				/**
 				 * SNSフォロー
@@ -27,7 +27,7 @@
 			<div class="site-info">
 				<?php ys_template_the_copyright(); ?>
 			</div><!-- .site-info -->
-		</div><!-- .wrap -->
+		</div><!-- .container -->
 	</footer><!-- .site-footer -->
 </div><!-- .site -->
 

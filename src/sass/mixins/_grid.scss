@@ -1,3 +1,24 @@
+/*
+  container
+ */
+@mixin container {
+  position: relative;
+  max-width: $container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 $gutter;
+}
+/*
+  row
+ */
+@mixin row {
+  @include flex;
+  margin-right: $gutter * -1;
+  margin-left: $gutter * -1;
+}
+/*
+  col
+ */
 @mixin col {
   // flex: 1 1 auto;
   padding: $gutter;

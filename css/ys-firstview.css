@@ -1,5 +1,13 @@
 /*
-  ラッパー
+  container
+ */
+
+/*
+  row
+ */
+
+/*
+  col
  */
 
 /*
@@ -603,7 +611,11 @@ label {
 	cursor: pointer;
 }
 
-.wrap {
+/*
+  container
+ */
+
+.container {
 	position: relative;
 	max-width: 1160px;
 	margin-left: auto;
@@ -611,13 +623,17 @@ label {
 	padding: 0 15px;
 }
 
-.wrap--wide {
+.container--wide {
 	max-width: 1230px;
 }
 
-.wrap--full {
+.container--full {
 	max-width: 100%;
 }
+
+/*
+  row
+ */
 
 .row {
 	display: -webkit-box;
@@ -626,6 +642,8 @@ label {
 	max-width: 100%;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
 }
 
 .row--slide {
@@ -701,22 +719,34 @@ label {
 	justify-content: space-around;
 }
 
+/*
+  col
+ */
+
 .col,
-[class^="col_"],
-[class*=" col_"] {
+[class*="col_"] {
 	padding: 15px;
 	max-width: 100%;
 }
 
 .col__2--sp {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
 	width: 50%;
 }
 
 .col__3--sp {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 33.33%;
+	flex: 0 0 33.33%;
 	width: 33.33%;
 }
 
 .col__4--sp {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 25%;
+	flex: 0 0 25%;
 	width: 25%;
 }
 
@@ -951,14 +981,23 @@ label {
 @media screen and (min-width: 600px) {
 
 .col__2--tb {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
 	width: 50%;
 }
 
 .col__3--tb {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 33.33%;
+	flex: 0 0 33.33%;
 	width: 33.33%;
 }
 
 .col__4--tb {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 25%;
+	flex: 0 0 25%;
 	width: 25%;
 }
 
@@ -985,14 +1024,23 @@ label {
 }
 
 .col__2--pc {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
 	width: 50%;
 }
 
 .col__3--pc {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 33.33%;
+	flex: 0 0 33.33%;
 	width: 33.33%;
 }
 
 .col__4--pc {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 25%;
+	flex: 0 0 25%;
 	width: 25%;
 }
 
@@ -1087,14 +1135,23 @@ label {
 @media screen and (min-width: 1281px) {
 
 .col__2--lg {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
 	width: 50%;
 }
 
 .col__3--lg {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 33.33%;
+	flex: 0 0 33.33%;
 	width: 33.33%;
 }
 
 .col__4--lg {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 25%;
+	flex: 0 0 25%;
 	width: 25%;
 }
 

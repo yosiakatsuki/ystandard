@@ -18,7 +18,7 @@
 <?php do_action( 'ys_body_prepend' ); ?>
 <div id="page" class="site">
 	<header id="masthead" class="header site-header color__site-header">
-		<div class="header__container wrap">
+		<div class="header__container container">
 			<div class="header--1row">
 				<div class="site-branding header__branding">
 					<?php

@@ -7,7 +7,6 @@
 @import "mixins/breakpoint";
 @import "mixins/clearfix";
 @import "mixins/grid";
-@import "mixins/wrap";
 @import "mixins/nav";
 @import "mixins/flex";
 
@@ -19,17 +18,9 @@
 
 // import scss
 @import "base/base";
-@import "wrap/wrap";
 @import "grid/grid";
-@import "grid/grid-tb";
-@import "grid/grid-pc";
-@import "grid/grid-lg";
 @import "section/section";
-@import "section/section-tb";
-@import "section/section-pc";
 
 // ystandard
 @import "ystandard/header/header";
-@import "ystandard/header/header-pc";
 @import "ystandard/nav/global-nav";
-@import "ystandard/nav/global-nav-pc";

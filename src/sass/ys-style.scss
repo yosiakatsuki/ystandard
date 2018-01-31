@@ -7,7 +7,6 @@
 @import "mixins/breakpoint";
 @import "mixins/clearfix";
 @import "mixins/grid";
-@import "mixins/wrap";
 @import "mixins/flex";
 
 //func
@@ -19,6 +18,5 @@
 // import scss
 @import "card/card";
 @import "content-list/content-list";
-@import "content-list/content-list-tb";
 @import "utility/button/button";
 @import "utility/text/text";

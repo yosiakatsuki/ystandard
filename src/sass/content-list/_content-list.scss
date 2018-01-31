@@ -27,5 +27,48 @@
       }
     }
 
-  }//root
+    // tablet
+    @include media-breakpoint(tb) {
+
+      .content-list__item {
+        padding: 30px;
+      }
+
+      .content-list__img {
+        width: 250px;
+        margin: 0 1em 0 0;
+        float: left;
+      }
+
+      .content-list--alternate {
+        .content-list__item:nth-child(even) {
+          .content-list__img {
+            float: right;
+            margin: 0 0 0 1em;
+          }
+        }
+      }
+
+      .content-list__text {
+        overflow: hidden;
+
+        &>*:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .content-list__title {
+        font-size: 1.2em;
+        margin-bottom: .5em;
+      }
+
+      .content-list__dscr {
+        color: $font-color-gray;
+        font-size: .9em;
+        margin-bottom: 1.5em;
+      }
+
+    }
+
+  }// at-root
 }

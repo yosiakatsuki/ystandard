@@ -59,5 +59,31 @@
       font-size: 1rem;
     }
 
+    // tablet
+    @include media-breakpoint(tb) {
+
+      & {
+        padding-top: get_section_margin(tb);
+        padding-bottom: get_section_margin(tb);
+      }
+
+      .section--last {
+        padding-top: get_section_margin(tb);
+      }
+
+      .section--large {
+        padding-top: get_section_margin(tb) * 2;
+        padding-bottom: get_section_margin(tb) * 2;
+      }
+    }
+
+    // screen
+    @include media-breakpoint(pc) {
+
+      .section--full {
+        min-height: 768px;
+      }
+    }
+    
   }//at-root
 }

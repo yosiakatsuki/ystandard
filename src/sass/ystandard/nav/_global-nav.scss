@@ -107,5 +107,70 @@
         max-width: 500px;
       }
     }
-  }
+
+    // screen
+    @include media-breakpoint(pc) {
+
+      & {
+        li {
+          width: auto;
+          position: relative;
+          transition: border .3s;
+        }
+      }
+      .global-nav__item {
+        border-bottom: 1px solid transparent;
+        &:not(.menu-item-has-children):hover {
+        }
+      }
+      .global-nav__menu {
+        height: 100%;
+      }
+      .global-nav__sub-menu {
+        position: absolute;
+        margin: 0 auto;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 0;
+				transition: all 0.3s;
+        li {
+          border-bottom: none;
+          padding-left: 0;
+          opacity: .9;
+        }
+      }
+      .menu-item-has-children:hover {
+        .global-nav__sub-menu {
+          opacity: 1;
+          visibility: visible;
+          z-index: 3;
+          li {
+            border-bottom: none;
+          }
+        }
+      }
+      /*
+        スライドメニュー
+       */
+      .global-nav {
+        height: 100%;
+        width: auto;
+        position: relative;
+        // TODO:PCの時のナビゲーション色
+        background-color: transparent;
+        transform: none;
+        overflow-y: visible;
+      }
+      .global-nav,
+      .admin-bar .global-nav {
+        padding: 0;
+      }
+      .global-nav__btn,
+      .global-nav__cover {
+        display: none;
+      }
+    }
+
+  }// at-root
 }
