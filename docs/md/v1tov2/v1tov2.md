@@ -96,6 +96,8 @@
 - ys_template_the_link_pages
 - ys_template_the_entry_date
 - ys_template_the_post_hero
+- ys_template_the_entry_foot_cta
+- ys_template_the_entry_foot_widget
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
@@ -112,3 +114,4 @@
 - ys_entry_date_published
 - ys_entry_date_update
 - ys_post_hero
+- ys_show_entry_foot_widget

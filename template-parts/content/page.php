@@ -8,7 +8,7 @@
 				<?php the_post_thumbnail() ?>
 			</figure><!-- .post-thumbnail -->
 		<?php endif; ?>
-		<?php get_template_part( 'template-parts/entry/entry-meta' ); ?>
+		<?php get_template_part( 'template-parts/singular/entry-meta' ); ?>
 	</header><!-- .entry-header -->
 	<div class="entry-content entry__content">
 		<?php
@@ -23,6 +23,9 @@
 					) );
 		?>
 	</div><!-- .entry-content -->
+	<footer class="entry__footer">
+		<?php get_template_part( 'template-parts/singular/entry-footer' ); ?>
+	</footer><!-- .entry__footer -->
 	<?php
 		// CTA
 		ys_template_the_entry_foot_cta();

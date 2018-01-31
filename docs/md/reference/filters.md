@@ -49,6 +49,14 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: oembed関連スクリプトの出力有無の編集用フィルタ
 
+### ys_show_post_thumbnail
+- file: inc/conditional-branch/conditional-branch.php
+- description: アイキャッチ画像の出力有無の編集用フィルタ
+
+### ys_show_entry_footer_widget
+- file: inc/conditional-branch/conditional-branch.php
+- description: 記事下ウィジェットの出力有無の編集用フィルタ
+
 
 ## head
 

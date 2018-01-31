@@ -129,5 +129,14 @@ function ys_is_show_oembed() {
  * アイキャッチ画像を表示するか(singlar)
  */
 function ys_show_post_thumbnail() {
-	return ( has_post_thumbnail() && 0 == ys_get_setting( 'ys_hide_post_thumbnail' ) );
+	$result = ( has_post_thumbnail() && 0 == ys_get_setting( 'ys_hide_post_thumbnail' ) );
+	return apply_filters( 'ys_show_post_thumbnail', $result );
+}
+
+/**
+ * 記事下ウィジェットを表示するか
+ */
+function ys_show_entry_footer_widget() {
+	$result = ( is_active_sidebar( 'entry-footer' ) && ! ys_is_amp() );
+	return apply_filters( 'ys_show_entry_footer_widget', $result );
 }
