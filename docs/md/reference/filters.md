@@ -21,7 +21,7 @@
 
 ## conditional-branch
 
-### ys_is_load_amp_ad_js
+### ys_is_load_amp_ad_script
 - file: inc/conditional-branch/conditional-branch.php
 - description: AMP記事で広告用jsを読み込み判断の結果編集用フィルタ
 

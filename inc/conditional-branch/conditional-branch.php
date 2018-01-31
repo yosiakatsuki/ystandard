@@ -12,9 +12,9 @@ if ( ! function_exists( 'ys_is_toppage') ) {
 }
 
 /**
- * AMPページに広告を表示するか
+ * AMPページに広告用scriptをロードするか
  */
-function ys_is_load_amp_ad_js() {
+function ys_is_load_amp_ad_script() {
 	$result = false;
 	if( '' !== ys_get_option( 'ys_amp_advertisement_under_title' ) ){
 		$result = true;
@@ -25,7 +25,7 @@ function ys_is_load_amp_ad_js() {
 	if( '' !== ys_get_option( 'ys_amp_advertisement_under_content' ) ){
 		$result = true;
 	}
-	return apply_filters( 'ys_is_load_amp_ad_js', $result );
+	return apply_filters( 'ys_is_load_amp_ad_script', $result );
 }
 
 /**
