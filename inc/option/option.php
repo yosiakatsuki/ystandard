@@ -220,50 +220,12 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_amp_enable' => get_option( 'ys_amp_enable', 0 ),
 			// AMPのGoogle Analyticsトラッキングコード
 			'ys_ga_tracking_id_amp' => esc_attr( get_option( 'ys_ga_tracking_id_amp', '' ) ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				//AMPのfacebookシェアボタン用App id
-				'ys_amp_share_fb_app_id' => esc_attr( get_option('ys_amp_share_fb_app_id','') ),
-				//通常ビューへのリンクを表示する
-				'ys_amp_normal_link_share_btn' => get_option( 'ys_amp_normal_link', 1 ),
-				//通常ビューへのリンクを表示する
-				'ys_amp_normal_link' => get_option( 'ys_amp_normal_link_share_btn', 1 ),
-				//scriptタグを削除してAMPページを作成
-				'ys_amp_del_script' => get_option( 'ys_amp_del_script', 0 ),
-				//インラインで書かれたstyle属性を削除してAMPページを作成
-				'ys_amp_del_style' => get_option( 'ys_amp_del_style', 0 ),
-				//AMPページで記事下ウィジェットを表示する
-				'ys_show_entry_footer_widget_amp' => get_option( 'ys_show_entry_footer_widget_amp', 0 ),
-				//広告　タイトル下
-				'ys_amp_advertisement_under_title' => get_option( 'ys_amp_advertisement_under_title', '' ),
-				//moreタグ置換
-				'ys_amp_advertisement_replace_more' => get_option( 'ys_amp_advertisement_replace_more', '' ),
-				//記事下　左
-				'ys_amp_advertisement_under_content' => get_option( 'ys_amp_advertisement_under_content', '' )
+			// 広告　タイトル下
+			'ys_amp_advertisement_under_title' => get_option( 'ys_amp_advertisement_under_title', '' ),
+			// moreタグ置換
+			'ys_amp_advertisement_replace_more' => get_option( 'ys_amp_advertisement_replace_more', '' ),
+			// 記事下　左
+			'ys_amp_advertisement_under_content' => get_option( 'ys_amp_advertisement_under_content', '' )
 			);
 
 		return apply_filters( 'ys_get_options', $result );

@@ -1,7 +1,7 @@
 <?php
-	if (!current_user_can('manage_options'))
+	if ( ! current_user_can( 'manage_options' ) )
 		{
-			wp_die( __('You do not have sufficient permissions to access this page.') );
+			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
 ?>
 
@@ -16,12 +16,14 @@
 				<tr valign="top">
 					<th scope="row">バージョン情報</th>
 					<td>
-						<?php
-							echo '<div><span style="display:inline-block;width:70px;">yStandard</span>：'.ys_utilities_get_theme_version(true).'</div>';
-							if(get_template() != get_stylesheet()){
-								echo '<div><span style="display:inline-block;width:70px;">子テーマ</span>：'.ys_utilities_get_theme_version().'</div>';
-							}
-						?>
+						<div>
+							<span style="display:inline-block;width:70px;">yStandard</span>：<?php echo ys_util_get_theme_version( true ); ?>
+						</div>
+						<?php if( get_template() != get_stylesheet() ): ?>
+							<div>
+								<span style="display:inline-block;width:70px;">子テーマ</span>：<?php echo ys_util_get_theme_version(); ?>
+							</div>
+						<?php endif; ?>
 					</td>
 				</tr>
 			</table>

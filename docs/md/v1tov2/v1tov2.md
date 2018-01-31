@@ -23,6 +23,12 @@
 - 絵文字関連スタイルシート・スクリプトを出力しない（設定項目が変わるので「出力する」にしていた場合再設定が必要）
 - oembed関連スタイルシート・スクリプトを出力しない（設定項目が変わるので「出力する」にしていた場合再設定が必要）
 
+## 削除された設定
+- AMP Facebookシェアボタン用 app id (ys_amp_share_fb_app_id)
+- AMP 通常ビューへのリンク表示 (ys_amp_normal_link_share_btn,ys_amp_normal_link)
+- AMP scriptタグを削除してAMPページを作成する  (ys_amp_del_script)
+- AMP style属性を削除してAMPページを作成する (ys_amp_del_style)
+- AMP AMPページでも記事下のジェットを表示する (ys_show_entry_footer_widget_amp)
 
 ## 変更された関数
 - ys_amp_the_amp_script -> ys_the_amp_script

@@ -3,40 +3,20 @@
 		{
 			wp_die( __('You do not have sufficient permissions to access this page.') );
 		}
-	$theme_name = get_template();
+	$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
 
 <div class="wrap">
-<h2><?php echo $theme_name; ?>の設定を始める</h2>
+<h2>yStandardの設定を始める</h2>
 <div id="poststuff">
-	<div class="postbox">
-		<h2>簡単設定</h2>
-		<div class="inside">
-			<p>Twitterユーザー名やFacebookのAppIDなど、複数箇所に入力する必要がある項目についてまとめて設定します</p>
-			<p>※このテーマでは役割ごとに別々のSNSアカウントを設定可能です</p>
-			<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_collective_settings'; ?>">設定を始める»</a></strong></p>
-		</div>
-	</div>
 
 	<div class="postbox">
-		<h2>高度な設定</h2>
+		<h2>yStandardの設定はテーマカスタマイザーから!</h2>
 		<div class="inside">
-			<p>css,javascriptの読み込み設定、AMP有効化設定など</p>
-			<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_advanced_settings'; ?>">設定を始める»</a></strong></p>
+			<p>yStandardの設定はテーマカスタマイサーから行って下さい</p>
+			<p><a href="<?php echo esc_url( add_query_arg( 'return', urlencode( $current_url ), wp_customize_url() ) ); ?>">テーマカスタマイザー</a></p>
 		</div>
-	</div>
-
-	<div class="postbox">
-		<h2>AMP設定</h2>
-		<div class="inside">
-			<p>AMPページ作成の条件や通常ページへのリンク出力設定など</p>
-			<?php if( 0 == ys_get_setting( 'ys_amp_enable' ) ): ?>
-				<p><strong>※AMPページを生成が有効になっていません。</strong><br><a href="<?php echo get_admin_url().'/admin.php?page=ys_advanced_settings'; ?>">高度な設定</a>から「AMPページを生成する」にチェックを入れて下さい</p>
-			<?php else: ?>
-				<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_amp_settings'; ?>">設定を始める»</a></strong></p>
-			<?php endif; ?>
-		</div>
-	</div>
+	</div><!-- ./postbox -->
 
 </div><!-- /#poststuff -->
 </div><!-- /.warp -->
