@@ -19,16 +19,6 @@ if ( ! function_exists( 'ys_util_get_theme_version') ) {
 }
 
 /**
- * クエリストリング追加
- */
-if ( ! function_exists( 'ys_util_add_query_string') ) {
-	function ys_util_add_query_string( $url, $query_str ) {
-		$sep = false === strrpos( '?', $url ) ? '?' : '&';
-		return $url . $sep . $query_str;
-	}
-}
-
-/**
  * 投稿抜粋文を作成
  */
 if( ! function_exists( 'ys_util_get_the_custom_excerpt' ) ) {

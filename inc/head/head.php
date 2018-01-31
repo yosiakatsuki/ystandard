@@ -398,7 +398,7 @@ if( ! function_exists( 'ys_the_amphtml' ) ) {
 	function ys_the_amphtml(){
 
 		if( is_single() && ys_is_amp_enable() ){
-			$permalink = ys_util_add_query_string( get_the_permalink(), 'amp=1' );
+			$permalink = add_query_arg( 'amp', '1', get_the_permalink() );
 			echo '<link rel="amphtml" href="'. $permalink . '">' . PHP_EOL;
 		}
 	}

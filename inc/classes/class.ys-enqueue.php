@@ -127,7 +127,7 @@ class YS_Enqueue {
 		foreach( $items as $item ){
 			$src = $item['src'];
 			if( false !== $item['ver'] ) {
-				$src = ys_util_add_query_string( $src, $item['ver'] );
+				$src = add_query_arg( $item['ver'], '', $src );
 			}
 			$list[] = $src;
 		}
