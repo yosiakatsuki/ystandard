@@ -19,6 +19,21 @@
 - description: カスタムロゴのサイズ変更用フィルタ
 
 
+## advertisement
+
+### ys_ad_label_text
+- file: inc/advertisement/advertisement.php
+- description: 広告ラベル編集用フィルタ
+
+### ys_get_ad_block_html
+- file: inc/advertisement/advertisement.php
+- description: 広告のコード共通フォーマット編集用フィルタ
+
+### ys_get_ad_entry_footer
+- file: inc/advertisement/advertisement.php
+- description: 記事下広告のコード編集用フィルタ
+
+
 ## conditional-branch
 
 ### ys_is_load_amp_ad_script

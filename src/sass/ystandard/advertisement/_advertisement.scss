@@ -1,0 +1,26 @@
+.ad {
+  @at-root {
+    .ad__container {
+      padding: $gutter 0;
+    }
+    .ad__label {
+      font-size: .8em;
+      color: $font-color-gray;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    //tablet
+    @include media-breakpoint(tb) {
+      .ad__double {
+        @include flex;
+        align-items: top;
+      }
+      .ad__left,
+      .ad__right {
+        text-align: center;
+        width: 50%;
+      }
+    }
+  }
+}

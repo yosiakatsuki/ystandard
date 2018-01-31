@@ -74,6 +74,14 @@ require_once get_template_directory() . '/inc/header/header.php';
  * フッター
  */
 require_once get_template_directory() . '/inc/footer/footer-sns.php';
+/**
+ * フィルター関連
+ */
+require_once get_template_directory() . '/inc/filters/content.php';
+/**
+ * 広告
+ */
+require_once get_template_directory() . '/inc/advertisement/advertisement.php';
 
 /**
  * AMP

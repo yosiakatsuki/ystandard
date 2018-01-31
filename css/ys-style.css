@@ -144,6 +144,17 @@
 	text-align: right;
 }
 
+.ad__container {
+	padding: 15px 0;
+}
+
+.ad__label {
+	font-size: .8em;
+	color: #939393;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
 @media screen and (min-width: 600px) {
 
 .content-list__item {
@@ -178,6 +189,23 @@
 	color: #939393;
 	font-size: .9em;
 	margin-bottom: 1.5em;
+}
+
+.ad__double {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	-webkit-box-align: top;
+	-ms-flex-align: top;
+	align-items: top;
+}
+
+.ad__left,
+.ad__right {
+	text-align: center;
+	width: 50%;
 }
 
 }

@@ -52,6 +52,7 @@
 - ys_extras_add_facebook_ogp -> ys_get_the_ogp
 - ys_extras_add_googleanarytics -> ys_the_google_anarytics
 - ys_template_get_front_page_template_part -> ys_get_front_page_template
+- ys_extras_more_tag_replace -> ys_more_tag_replace
 
 ## 削除予定の関数
 - ys_settings
@@ -98,11 +99,16 @@
 - ys_template_the_post_hero
 - ys_template_the_entry_foot_cta
 - ys_template_the_entry_foot_widget
+- ys_template_get_the_advertisement_format
+- ys_template_the_advertisement_under_content
+- ys_template_get_the_advertisement_more_tag
+- ys_extras_more_tag_replace
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
 - ys_header_description -> ys_the_blog_description
 - ys_get_front_page_template_part -> ys_get_front_page_template
+- ys_advertisement_label_text -> ys_ad_label_text
 
 ## 削除されたフィルタ
 - ys_ga_function
@@ -115,3 +121,4 @@
 - ys_entry_date_update
 - ys_post_hero
 - ys_show_entry_foot_widget
+- ys_advertisement_label_html

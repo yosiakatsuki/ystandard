@@ -235,7 +235,7 @@ if( ! function_exists( 'ys_template_the_entry_foot_cta' ) ) {
 	function ys_template_the_entry_foot_cta() {
 
 		// 広告
-		$ad = ys_template_the_advertisement_under_content();
+		$ad = '';// ys_template_the_advertisement_under_content();
 
 		// シェアボタン
 		$sns_share = ys_template_get_the_sns_share();
@@ -873,122 +873,27 @@ if (!function_exists( 'ys_template_the_user_avatar')) {
 //
 //------------------------------------------------------------------------------
 
-/**
- *	広告出力フォーマット
- */
-if( ! function_exists( 'ys_template_get_the_advertisement_format' ) ) {
-	function ys_template_get_the_advertisement_format( $ad, $label = true ) {
-
-		$html = '';
-
-		$label_text = apply_filters( 'ys_advertisement_label_text', 'スポンサーリンク' );
-		$label_html = $label ? '<div class="ad-label">'.$label_text.'</div>' : '';
-		$label_html = apply_filters( 'ys_advertisement_label_html', $label_html );
-
-		if( ( '' !== $ad && !is_feed() ) || ( '' !== $ad && ys_is_amp() ) ){
-			$html = '<aside class="ad-container">'.$label_html.'<div class="ad-content">';
-			$html .= $ad;
-			$html .= '</div></aside>';
-		}
-
-		return $html;
-	}
-}
-
 //-----------------------------------------------
 //	広告:記事タイトル下
 //-----------------------------------------------
-if( ! function_exists( 'ys_template_the_advertisement_under_title' ) ) {
-	function ys_template_the_advertisement_under_title() {
+// if( ! function_exists( 'ys_template_the_advertisement_under_title' ) ) {
+// 	function ys_template_the_advertisement_under_title() {
+//
+// 		$key = 'ys_advertisement_under_title';
+// 		if(ys_is_mobile()){
+// 			$key = 'ys_advertisement_under_title_sp';
+// 		}
+// 		if(ys_is_amp()){
+// 			$key = 'ys_amp_advertisement_under_title';
+// 		}
+//
+// 		$ad = '';
+// 		$ad = ys_get_setting($key);
+// 		echo apply_filters('ys_advertisement_under_title',ys_template_get_the_advertisement_format($ad));
+//
+// 	}
+// }
 
-		$key = 'ys_advertisement_under_title';
-		if(ys_is_mobile()){
-			$key = 'ys_advertisement_under_title_sp';
-		}
-		if(ys_is_amp()){
-			$key = 'ys_amp_advertisement_under_title';
-		}
-
-		$ad = '';
-		$ad = ys_get_setting($key);
-		echo apply_filters('ys_advertisement_under_title',ys_template_get_the_advertisement_format($ad));
-
-	}
-}
-
-
-
-
-//-----------------------------------------------
-//	広告:moreタグ置換
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_get_the_advertisement_more_tag' ) ) {
-	function ys_template_get_the_advertisement_more_tag() {
-
-		// ※出力はextras内
-		$key = 'ys_advertisement_replace_more';
-		if(ys_is_mobile()){
-			$key = 'ys_advertisement_replace_more_sp';
-		}
-		if(ys_is_amp()){
-			$key = 'ys_amp_advertisement_replace_more';
-		}
-		$ad = '';
-		$ad = ys_get_setting($key);
-		return apply_filters('ys_advertisement_replace_more',ys_template_get_the_advertisement_format($ad));
-	}
-}
-
-
-
-
-//-----------------------------------------------
-//	広告:記事下
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_advertisement_under_content' ) ) {
-	function ys_template_the_advertisement_under_content() {
-
-		$key_left = 'ys_advertisement_under_content_left';
-		$key_right = 'ys_advertisement_under_content_right';
-		if(ys_is_mobile()){
-			$key_left = 'ys_advertisement_under_content_sp';
-			$key_right = '';
-		}
-		if(ys_is_amp()){
-			$key_left = 'ys_amp_advertisement_under_content';
-			$key_right = '';
-		}
-
-		$ad = '';
-		$ad_left = ys_get_setting($key_left);
-		$ad_right = '';
-		if($key_right !== ''){
-			$ad_right = ys_get_setting($key_right);
-		}
-
-		if($ad_left !== '' && $ad_right !== ''){
-			$ad .= '<div class="ad-double">';
-			$ad .= '<div class="ad-left">'.$ad_left.'</div>';
-			$ad .= '<div class="ad-right">'.$ad_right.'</div>';
-			$ad .= '</div>';
-		} else {
-			if($ad_left !== ''){
-				$ad = $ad_left;
-			}
-			if($ad_right !== ''){
-				$ad = $ad_right;
-			}
-		}
-
-		// 固定ページでは広告出さない
-		if( is_page() ){
-			$ad = '';
-		}
-
-		return apply_filters('ys_advertisement_under_content',ys_template_get_the_advertisement_format($ad));
-
-	}
-}
 
 
 
