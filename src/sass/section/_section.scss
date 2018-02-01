@@ -6,16 +6,17 @@
       padding-bottom: get_section_margin(sp);
     }
 
-    .section--last {
-      padding-top: get_section_margin(sp);
-    }
-
     .section--large {
       padding-top: get_section_margin(sp) * 2;
       padding-bottom: get_section_margin(sp) * 2;
     }
 
-    .section--full {
+    .section--full,
+    .section--screen {
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+    }
+    .section--screen {
       min-height: 640px;
       height: 100vh;
     }
@@ -67,10 +68,6 @@
         padding-bottom: get_section_margin(tb);
       }
 
-      .section--last {
-        padding-top: get_section_margin(tb);
-      }
-
       .section--large {
         padding-top: get_section_margin(tb) * 2;
         padding-bottom: get_section_margin(tb) * 2;
@@ -80,10 +77,10 @@
     // screen
     @include media-breakpoint(pc) {
 
-      .section--full {
+      .section--screen {
         min-height: 768px;
       }
     }
-    
+
   }//at-root
 }

@@ -31,11 +31,19 @@ if( ! function_exists( 'ys_get_front_page_template' ) ) {
 if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 	function ys_get_entry_footer_template() {
 		$dir = 'template-parts/singular/entry-footer-block/';
-		$templates = array(
-									$dir . 'entry-footer-wdget', //フッターウィジェット
-									$dir . 'entry-footer-ad',    //広告
-									$dir . 'entry-footer-share'  //シェアボタン
-								);
+		$templates = array();
+		/**
+		 *  フッターウィジェット
+		 */
+		$templates[] = $dir . 'entry-footer-wdget';
+		/**
+		 * 広告
+		 */
+		$templates[] = $dir . 'entry-footer-ad';
+		/**
+		 * シェアボタン
+		 */
+		$templates[] = $dir . 'entry-footer-share';
 		return apply_filters( 'ys_get_entry_footer_template', $templates );
 	}
 }

@@ -3,7 +3,7 @@
     .entry__title {
       font-size: 1.8em;
       line-height: 1.5;
-      margin: 0 0 $gutter;
+      margin: 0 0 get_margin();
       padding: 0;
     }
 
@@ -23,8 +23,14 @@
       margin-left: .5em;
     }
 
-    .entry__footer-block {
-      margin-top: $gutter;
+    .entry__footer > * {
+      margin-top: get_margin();
+    }
+
+    @include media-breakpoint(tb) {
+      .entry__footer > * {
+        margin-top: get_margin(2);
+      }
     }
 
   }//@

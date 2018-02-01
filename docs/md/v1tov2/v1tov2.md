@@ -28,7 +28,7 @@
 - AMP 通常ビューへのリンク表示 (ys_amp_normal_link_share_btn,ys_amp_normal_link)
 - AMP scriptタグを削除してAMPページを作成する  (ys_amp_del_script)
 - AMP style属性を削除してAMPページを作成する (ys_amp_del_style)
-- AMP AMPページでも記事下のジェットを表示する (ys_show_entry_footer_widget_amp)
+- AMP AMPページでも記事下のジェットを表示する (ys_is_show_entry_footer_widget_amp)
 
 ## 変更された関数
 - ys_amp_the_amp_script -> ys_the_amp_script
