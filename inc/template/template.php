@@ -24,3 +24,18 @@ if( ! function_exists( 'ys_get_front_page_template' ) ) {
 		return apply_filters( 'ys_get_front_page_template', $template );
 	}
 }
+
+/**
+ * 記事フッターでロードするテンプレート
+ */
+if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
+	function ys_get_entry_footer_template() {
+		$dir = 'template-parts/singular/entry-footer-block/';
+		$templates = array(
+									$dir . 'entry-footer-wdget', //フッターウィジェット
+									$dir . 'entry-footer-ad',    //広告
+									$dir . 'entry-footer-share'  //シェアボタン
+								);
+		return apply_filters( 'ys_get_entry_footer_template', $templates );
+	}
+}

@@ -110,6 +110,49 @@
 - file: inc/template/tempalte.php
 - description: front-pageで読み込むテンプレートファイルの編集フィルタ
 
+### ys_get_entry_footer_template
+- file: inc/template/tempalte.php
+- description: 記事フッターで読み込むテンプレートファイルの編集フィルタ
+
+
+## share-button
+
+### ys_get_share_button_data
+- file: inc/sns/share-button.php
+- description: シェアボタン用データの編集フィルタ
+
+### ys_show_share_button_twitter
+- file: inc/sns/share-button.php
+- description: Twitterシェアボタンの表示有無編集フィルタ
+
+### ys_show_share_button_facebook
+- file: inc/sns/share-button.php
+- description: Facebookシェアボタンの表示有無編集フィルタ
+
+### ys_show_share_button_hatenabookmark
+- file: inc/sns/share-button.php
+- description: はてなブックマークシェアボタンの表示有無編集フィルタ
+
+### ys_sns_share_button_googlepuls
+- file: inc/sns/share-button.php
+- description: Google+シェアボタンの表示有無編集フィルタ
+
+### ys_sns_share_button_pocket
+- file: inc/sns/share-button.php
+- description: Pocketシェアボタンの表示有無編集フィルタ
+
+### ys_sns_share_button_line
+- file: inc/sns/share-button.php
+- description: LINEシェアボタンの表示有無編集フィルタ
+
+### ys_share_tweet_via_account
+- file: inc/sns/share-button.php
+- description: Twitterシェアボタンのviaアカウント編集フィルタ
+
+### ys_share_tweet_related_account
+- file: inc/sns/share-button.php
+- description: Twitterシェアボタンの関連アカウント編集フィルタ
+
 
 ## entry
 

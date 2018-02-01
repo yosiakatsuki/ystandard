@@ -103,6 +103,9 @@
 - ys_template_the_advertisement_under_content
 - ys_template_get_the_advertisement_more_tag
 - ys_extras_more_tag_replace
+- ys_template_get_the_sns_share_buttons
+- ys_template_get_the_amp_sns_share_buttons
+- ys_template_get_the_sns_share
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
@@ -122,3 +125,6 @@
 - ys_post_hero
 - ys_show_entry_foot_widget
 - ys_advertisement_label_html
+- ys_get_the_sns_share_buttons
+- ys_get_the_amp_sns_share_buttons
+- ys_get_the_sns_share

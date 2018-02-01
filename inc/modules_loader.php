@@ -82,6 +82,10 @@ require_once get_template_directory() . '/inc/filters/content.php';
  * 広告
  */
 require_once get_template_directory() . '/inc/advertisement/advertisement.php';
+/**
+ * SNS
+ */
+require_once get_template_directory() . '/inc/sns/share-button.php';
 
 /**
  * AMP

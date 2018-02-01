@@ -1,10 +1,10 @@
 <?php
 	/**
-	 * フッターウィジェット
+	 * 読み込むテンプレートをまとめた配列を取得
 	 */
-	get_template_part( 'template-parts/singular/entry-footer-wdget' );
-
-	/**
-	 * 広告表示
-	 */
-	get_template_part( 'template-parts/singular/entry-footer-ad' );
+	$templates = ys_get_entry_footer_template();
+	foreach ( $templates as $template ): ?>
+		<div class="entry__footer-block">
+			<?php get_template_part( $template ); ?>
+		</div><!-- .entry__footer-block -->
+	<?php endforeach; ?>

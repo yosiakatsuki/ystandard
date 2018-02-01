@@ -1020,6 +1020,125 @@ label {
 	margin-left: .5em;
 }
 
+.entry__footer-block {
+	margin-top: 15px;
+}
+
+.share-btn__list {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 0;
+	margin: 0 -1px;
+	list-style: none;
+}
+
+.share-btn__item {
+	width: 100%;
+	padding: 5px 1px;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 0%;
+	flex: 1 1 0%;
+}
+
+.share-btn__link {
+	position: relative;
+	display: block;
+	padding: 10px 5px;
+	border: 1px solid #fff;
+	color: #fff;
+	font-size: .9em;
+	line-height: 1;
+	text-align: center;
+	text-decoration: none;
+	overflow: hidden;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+.share-btn__link.twitter {
+	border-color: #2b97f0;
+	background-color: #2b97f0;
+}
+
+.share-btn__link.twitter:hover {
+	color: #2b97f0;
+	background-color: #fff;
+}
+
+.share-btn__link.facebook {
+	border-color: #3b5a9b;
+	background-color: #3b5a9b;
+}
+
+.share-btn__link.facebook:hover {
+	color: #3b5a9b;
+	background-color: #fff;
+}
+
+.share-btn__link.hatenabookmark {
+	border-color: #007ad2;
+	background-color: #007ad2;
+}
+
+.share-btn__link.hatenabookmark:hover {
+	color: #007ad2;
+	background-color: #fff;
+}
+
+.share-btn__link.google-plus {
+	border-color: #db2814;
+	background-color: #db2814;
+}
+
+.share-btn__link.google-plus:hover {
+	color: #db2814;
+	background-color: #fff;
+}
+
+.share-btn__link.pocket {
+	border-color: #ea4654;
+	background-color: #ea4654;
+}
+
+.share-btn__link.pocket:hover {
+	color: #ea4654;
+	background-color: #fff;
+}
+
+.share-btn__link.line {
+	border-color: #2cbf13;
+	background-color: #2cbf13;
+}
+
+.share-btn__link.line:hover {
+	color: #2cbf13;
+	background-color: #fff;
+}
+
+.share-btn__icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: .2;
+	z-index: 1;
+}
+
+.share-btn__icon.fa {
+	font-size: 3em;
+}
+
+.share-btn__text {
+	position: relative;
+	z-index: 2;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__2--tb {

@@ -61,6 +61,7 @@ function ys_customizer_sns_add_ogp( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
+			'id' => 'ys_ogp_enable_label',
 			'label'       => 'OGP metaタグ',
 			'section'     => 'ys_customizer_section_ogp',
 			'description' => '',
@@ -145,6 +146,7 @@ function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
+			'id'        => 'ys_twittercard_enable_label',
 			'label'       => 'Twitterカードmetaタグ',
 			'section'     => 'ys_customizer_section_twitter_cards',
 			'description' => '',
@@ -216,6 +218,7 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
+			'id'        => 'ys_sns_share_button_label',
 			'label'       => '表示するSNSシェアボタン',
 			'section'     => 'ys_customizer_section_sns_share_button',
 			'description' => '',
@@ -281,6 +284,7 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
+			'id'        => 'ys_sns_share_on_label',
 			'label'       => 'シェアボタンの表示位置',
 			'section'     => 'ys_customizer_section_sns_share_button',
 			'description' => '',
@@ -332,6 +336,7 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
+			'id'        => 'ys_sns_share_tweet_via_label',
 			'label'       => '投稿ユーザー（via）の設定',
 			'section'     => 'ys_customizer_section_twitter_share',
 			'description' => '',
@@ -371,6 +376,7 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
+			'id'        => 'ys_sns_share_tweet_related_label',
 			'label'       => 'おすすめアカウントの設定',
 			'section'     => 'ys_customizer_section_twitter_share',
 			'description' => '',
@@ -426,6 +432,7 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
+			'id'        => 'ys_subscribe_label',
 			'label'       => '購読ボタン設定',
 			'section'     => 'ys_customizer_section_sns_follow',
 			'description' => '※購読ボタンを表示しない場合は空白にしてください',
@@ -489,6 +496,7 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
+			'id'      => 'ys_subscribe_col_label',
 			'label'       => '購読ボタンを何列表示するか',
 			'section'     => 'ys_customizer_section_sns_follow',
 			'description' => '',
