@@ -241,83 +241,13 @@ if( ! function_exists( 'ys_template_the_entry_foot_cta' ) ) {
 		$sns_share = ''; //ys_template_get_the_sns_share();
 
 		// 購読ボタン
-		$subscribe = ys_template_get_the_subscribe_buttons();
+		$subscribe = '';//ys_template_get_the_subscribe_buttons();
 
 		// つなげる
 		$html = $ad.$sns_share.$subscribe;
 
 		echo apply_filters('ys_the_entry_foot_cta',$html,$ad,$sns_share,$subscribe);
 
-	}
-}
-
-
-/**
- *	購読リンク
- */
-if( ! function_exists( 'ys_template_get_the_subscribe_buttons' ) ) {
-	function ys_template_get_the_subscribe_buttons($container = true) {
-
-		global $post;
-
-		$subscribe = array(
-									'Twitter'=>array(
-																'class'=>'twitter',
-																'url'=>ys_get_setting('ys_subscribe_url_twitter')
-															),
-									'Facebook'=>array(
-																'class'=>'facebook',
-																'url'=>ys_get_setting('ys_subscribe_url_facebook')
-															),
-									'Google+'=>array(
-															'class'=>'google-plus',
-															'url'=>ys_get_setting('ys_subscribe_url_googleplus')
-														),
-									'Feedly'=>array(
-															'class'=>'feedly',
-															'url'=>ys_get_setting('ys_subscribe_url_feedly')
-														)
-								);
-		$subscribe = apply_filters('ys_get_the_subscribe_buttons_list',$subscribe);
-
-		$subscribe_html = '';
-		$count = 0;
-		foreach ($subscribe as $key => $value) {
-			if($value['url']){
-				$subscribe_html .= '<li><a class="'.$value['class'].' bg-'.$value['class'].'" href="'.esc_html($value['url']).'" target="_blank" rel="nofollow">'.$key.'</a></li>';
-				$count ++;
-			}
-		}
-		$subscribe_html = apply_filters('ys_get_the_subscribe_buttons_html',$subscribe_html);
-
-		// 何も設定がなければなにも出さない
-		if(0 == $count){
-			return '';
-		}
-
-		// HTML組み立て
-		$html = '';
-		if($container){
-			$html .= '<aside id="subscribe" class="subscribe">';
-			$subscribe_title = 'フォローする！';
-			$subscribe_title = apply_filters('ys_get_the_subscribe_buttons_title','<p class="subscribe-title">'.$subscribe_title.'</p>');
-			$html .= $subscribe_title;
-		}
-
-		$html .= (0 == $count%2) ? '<ul>' : '<ul class="follow-odd">' ;
-		$html .= $subscribe_html;
-		$html .= '</ul>';
-
-		if($container){
-			$html .= '</aside>';
-		}
-
-		// フォローボタンの非表示設定
-		if( "1" === get_post_meta($post->ID,'ys_hide_follow',true) ){
-			$html = '';
-		}
-
-		return apply_filters('ys_get_the_subscribe_buttons',$html);
 	}
 }
 

@@ -79,3 +79,11 @@ if( ! function_exists( 'ys_util_get_facebook_sdk_js' ) ) {
 		return apply_filters( 'ys_util_get_facebook_sdk_js', '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8' );
 	}
 }
+/**
+ * Feedly 購読URL作成
+ */
+if( ! function_exists( 'ys_util_get_feedly_subscribe_url' ) ) {
+	function ys_util_get_feedly_subscribe_url( $type = '' ) {
+		return 'https://feedly.com/i/subscription/feed/' . urlencode( get_feed_link( $type ) );
+	}
+}

@@ -106,6 +106,7 @@
 - ys_template_get_the_sns_share_buttons
 - ys_template_get_the_amp_sns_share_buttons
 - ys_template_get_the_sns_share
+- ys_template_get_the_subscribe_buttons
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
@@ -128,3 +129,7 @@
 - ys_get_the_sns_share_buttons
 - ys_get_the_amp_sns_share_buttons
 - ys_get_the_sns_share
+- ys_get_the_subscribe_buttons_list
+- ys_get_the_subscribe_buttons_title
+- ys_get_the_subscribe_buttons
+- ys_the_entry_foot_cta

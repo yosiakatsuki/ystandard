@@ -31,19 +31,12 @@ if( ! function_exists( 'ys_get_front_page_template' ) ) {
 if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 	function ys_get_entry_footer_template() {
 		$dir = 'template-parts/singular/entry-footer-block/';
-		$templates = array();
-		/**
-		 *  フッターウィジェット
-		 */
-		$templates[] = $dir . 'entry-footer-wdget';
-		/**
-		 * 広告
-		 */
-		$templates[] = $dir . 'entry-footer-ad';
-		/**
-		 * シェアボタン
-		 */
-		$templates[] = $dir . 'entry-footer-share';
+		$templates = array(
+										'wdget'     => $dir . 'entry-footer-wdget',    //フッターウィジェット
+										'ad'        => $dir . 'entry-footer-ad',       //広告
+										'share'     => $dir . 'entry-footer-share',    //シェアボタン
+										'subscribe' => $dir . 'entry-footer-subscribe' //購読
+									);
 		return apply_filters( 'ys_get_entry_footer_template', $templates );
 	}
 }

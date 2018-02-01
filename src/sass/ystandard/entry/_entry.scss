@@ -24,12 +24,12 @@
     }
 
     .entry__footer > * {
-      margin-top: get_margin();
+      margin-top: get_margin(2);
     }
 
     @include media-breakpoint(tb) {
       .entry__footer > * {
-        margin-top: get_margin(2);
+        margin-top: get_margin(4);
       }
     }
 

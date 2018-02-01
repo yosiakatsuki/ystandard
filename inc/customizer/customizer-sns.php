@@ -532,54 +532,6 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 			'description'  => '<a href="https://feedly.com/factory.html" target="_blank">https://feedly.com/factory.html</a>で購読用URLを生成・取得してください。（出来上がったHTMLタグのhref部分）'
 		)
 	);
-	/**
-	 * 何列表示するか
-	 */
-	ys_customizer_add_label(
-		$wp_customize,
-		array(
-			'id'      => 'ys_subscribe_col_label',
-			'label'       => '購読ボタンを何列表示するか',
-			'section'     => 'ys_customizer_section_sns_follow',
-			'description' => '',
-		)
-	);
-	/**
-	 * Sp表示列数
-	 */
-	ys_customizer_add_setting_radio(
-		$wp_customize,
-		array(
-			'id'      => 'ys_subscribe_col_sp',
-			'default' => 2,
-			'label'   => 'SP表示列数',
-			'section' => 'ys_customizer_section_sns_follow',
-			'choices' => array(
-				'1' => '1列',
-				'2'  => '2列',
-				'3'  => '3列',
-				'4'  => '4列',
-			)
-		)
-	);
-	/**
-	 * PC表示列数
-	 */
-	ys_customizer_add_setting_radio(
-		$wp_customize,
-		array(
-			'id'      => 'ys_subscribe_col_pc',
-			'default' => 4,
-			'label'   => 'PC表示列数',
-			'section' => 'ys_customizer_section_sns_follow',
-			'choices' => array(
-				'1' => '1列',
-				'2'  => '2列',
-				'3'  => '3列',
-				'4'  => '4列',
-			)
-		)
-	);
 }
 
 /**

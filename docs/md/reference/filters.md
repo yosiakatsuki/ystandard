@@ -193,6 +193,17 @@
 - file: inc/sns/share-button.php
 - description: RSSボタンテキスト編集フィルタ
 
+## subscribe
+
+### ys_get_subscribe_buttons
+- file: inc/sns/subscribe.php
+- description: 購読ボタン表示一覧配列編集フィルタ
+
+### ys_get_subscribe_background_image
+- file: inc/sns/subscribe.php
+- description: 購読ボタン背景画像編集フィルタ
+
+
 
 ## entry
 

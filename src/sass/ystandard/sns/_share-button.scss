@@ -17,7 +17,6 @@
       position: relative;
       display: block;
       padding: 10px 5px;
-      border: 1px solid #fff;
       color: #fff;
       font-size: .9em;
       line-height: 1;
@@ -25,72 +24,6 @@
       text-decoration: none;
       overflow: hidden;
       z-index: 2;
-      transition: all .3s;
-
-      &.twitter {
-        border-color: get_sns_color('twitter');
-        background-color: get_sns_color('twitter');
-        &:hover {
-          color: get_sns_color('twitter');
-          background-color: #fff;
-        }
-      }
-      &.facebook {
-        border-color: get_sns_color('facebook');
-        background-color: get_sns_color('facebook');
-        &:hover {
-          color: get_sns_color('facebook');
-          background-color: #fff;
-        }
-      }
-      &.hatenabookmark {
-        border-color: get_sns_color('hatenabookmark');
-        background-color: get_sns_color('hatenabookmark');
-        &:hover {
-          color: get_sns_color('hatenabookmark');
-          background-color: #fff;
-        }
-      }
-      &.google-plus {
-        border-color: get_sns_color('google-plus');
-        background-color: get_sns_color('google-plus');
-        &:hover {
-          color: get_sns_color('google-plus');
-          background-color: #fff;
-        }
-      }
-      &.pocket {
-        border-color: get_sns_color('pocket');
-        background-color: get_sns_color('pocket');
-        &:hover {
-          color: get_sns_color('pocket');
-          background-color: #fff;
-        }
-      }
-      &.line {
-        border-color: get_sns_color('line');
-        background-color: get_sns_color('line');
-        &:hover {
-          color: get_sns_color('line');
-          background-color: #fff;
-        }
-      }
-      &.feedly {
-        border-color: get_sns_color('feedly');
-        background-color: get_sns_color('feedly');
-        &:hover {
-          color: get_sns_color('feedly');
-          background-color: #fff;
-        }
-      }
-      &.rss {
-        border-color: get_sns_color('rss');
-        background-color: get_sns_color('rss');
-        &:hover {
-          color: get_sns_color('rss');
-          background-color: #fff;
-        }
-      }
     }
 
     .share-btn__icon {
