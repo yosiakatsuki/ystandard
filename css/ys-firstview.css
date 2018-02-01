@@ -1028,23 +1028,19 @@ label {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-webkit-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
 	padding: 0;
 	margin: 0 -1px;
 	list-style: none;
 }
 
 .share-btn__item {
-	width: 100%;
-	padding: 5px 1px;
-	-webkit-box-flex: 1;
-	-ms-flex: 1 1 0%;
-	flex: 1 1 0%;
+	width: 33.33%;
+	padding: 1px;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
 }
 
 .share-btn__link {
@@ -1058,6 +1054,7 @@ label {
 	text-align: center;
 	text-decoration: none;
 	overflow: hidden;
+	z-index: 2;
 	-webkit-transition: all .3s;
 	transition: all .3s;
 }
@@ -1122,6 +1119,26 @@ label {
 	background-color: #fff;
 }
 
+.share-btn__link.feedly {
+	border-color: #8cba43;
+	background-color: #8cba43;
+}
+
+.share-btn__link.feedly:hover {
+	color: #8cba43;
+	background-color: #fff;
+}
+
+.share-btn__link.rss {
+	border-color: #fb8501;
+	background-color: #fb8501;
+}
+
+.share-btn__link.rss:hover {
+	color: #fb8501;
+	background-color: #fff;
+}
+
 .share-btn__icon {
 	position: absolute;
 	top: 0;
@@ -1134,9 +1151,16 @@ label {
 	font-size: 3em;
 }
 
-.share-btn__text {
-	position: relative;
-	z-index: 2;
+.fa-hatenabookmark::before {
+	content: "B!";
+	font-family: Verdana;
+	font-weight: bold;
+	font-style: normal;
+	letter-spacing: 0;
+}
+
+.fa-feedly::before {
+	content: "\f09e";
 }
 
 @media screen and (min-width: 600px) {
@@ -1295,6 +1319,10 @@ label {
 	-ms-flex: none;
 	flex: none;
 	width: 330px;
+}
+
+.share-btn__item {
+	width: 25%;
 }
 
 }

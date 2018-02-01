@@ -42,10 +42,22 @@ if( ! function_exists( 'ys_get_share_button_data' ) ) {
 			$data[] = ys_get_share_button_data_pocket( $share_url, $share_title );
 		}
 		/**
-		 * pocket
+		 * LINE
 		 */
 		if( apply_filters( 'ys_show_share_button_line', ys_get_option( 'ys_sns_share_button_line' ) ) ) {
 			$data[] = ys_get_share_button_data_line( $share_url, $share_title );
+		}
+		/**
+		 * Feedly
+		 */
+		if( apply_filters( 'ys_show_share_button_feedly', ys_get_option( 'ys_sns_share_button_feedly' ) ) ) {
+			$data[] = ys_get_share_button_data_feedly( $share_url, $share_title );
+		}
+		/**
+		 * RSS
+		 */
+		if( apply_filters( 'ys_show_share_button_rss', ys_get_option( 'ys_sns_share_button_rss' ) ) ) {
+			$data[] = ys_get_share_button_data_rss( $share_url, $share_title );
 		}
 		return apply_filters( 'ys_get_share_button_data', $data );
 	}
@@ -86,13 +98,13 @@ if( ! function_exists( 'ys_get_share_button_data_twitter' ) ) {
  */
 if( ! function_exists( 'ys_get_share_button_data_facebook' ) ) {
 	function ys_get_share_button_data_facebook( $share_url, $share_title ) {
-		$facebook_share_url = 'https://www.facebook.com/sharer.php?src=bm&u=' . $share_url . '&t=' . $share_title;
-		$facebook_button_text = apply_filters( 'ys_facebook_button_text', 'Facebook' );
+		$share_url = 'https://www.facebook.com/sharer.php?src=bm&u=' . $share_url . '&t=' . $share_title;
+		$button_text = apply_filters( 'ys_facebook_button_text', 'Facebook' );
 		return array(
 								'type' => esc_attr( 'facebook' ),
 								'icon' => esc_attr( 'facebook' ),
-								'url' => esc_url_raw( $facebook_share_url ),
-								'button-text' => esc_html( $facebook_button_text )
+								'url' => esc_url_raw( $share_url ),
+								'button-text' => esc_html( $button_text )
 							);
 	}
 }
@@ -102,13 +114,13 @@ if( ! function_exists( 'ys_get_share_button_data_facebook' ) ) {
  */
 if( ! function_exists( 'ys_get_share_button_data_hatenabookmark' ) ) {
 	function ys_get_share_button_data_hatenabookmark( $share_url, $share_title ) {
-		$hatenabookmark_share_url = 'https://b.hatena.ne.jp/add?mode=confirm&url=' . $share_url;
-		$hatenabookmark_button_text = apply_filters( 'ys_hatenabookmark_button_text', 'はてブ' );
+		$share_url = 'https://b.hatena.ne.jp/add?mode=confirm&url=' . $share_url;
+		$button_text = apply_filters( 'ys_hatenabookmark_button_text', 'はてブ' );
 		return array(
 								'type' => esc_attr( 'hatenabookmark' ),
 								'icon' => esc_attr( 'hatenabookmark' ),
-								'url' => esc_url_raw( $hatenabookmark_share_url ),
-								'button-text' => esc_html( $hatenabookmark_button_text )
+								'url' => esc_url_raw( $share_url ),
+								'button-text' => esc_html( $button_text )
 							);
 	}
 }
@@ -118,13 +130,13 @@ if( ! function_exists( 'ys_get_share_button_data_hatenabookmark' ) ) {
  */
 if( ! function_exists( 'ys_get_share_button_data_google_plus' ) ) {
 	function ys_get_share_button_data_google_plus( $share_url, $share_title ) {
-		$googleplus_share_url = 'https://plus.google.com/share?url=' . $share_url;
-		$googleplus_button_text = apply_filters( 'ys_googleplus_button_text', 'Google+' );
+		$share_url = 'https://plus.google.com/share?url=' . $share_url;
+		$button_text = apply_filters( 'ys_googleplus_button_text', 'Google+' );
 		return array(
 								'type' => esc_attr( 'google-plus' ),
 								'icon' => esc_attr( 'google-plus' ),
-								'url' => esc_url_raw( $googleplus_share_url ),
-								'button-text' => esc_html( $googleplus_button_text )
+								'url' => esc_url_raw( $share_url ),
+								'button-text' => esc_html( $button_text )
 							);
 	}
 }
@@ -134,13 +146,13 @@ if( ! function_exists( 'ys_get_share_button_data_google_plus' ) ) {
  */
 if( ! function_exists( 'ys_get_share_button_data_pocket' ) ) {
 	function ys_get_share_button_data_pocket( $share_url, $share_title ) {
-		$pocket_share_url = 'https://getpocket.com/edit?url=' . $share_url . '&title=' . $share_title;
-		$pocket_button_text = apply_filters( 'ys_pocket_button_text', 'Pocket' );
+		$share_url = 'https://getpocket.com/edit?url=' . $share_url . '&title=' . $share_title;
+		$button_text = apply_filters( 'ys_pocket_button_text', 'Pocket' );
 		return array(
 								'type' => esc_attr( 'pocket' ),
 								'icon' => esc_attr( 'get-pocket' ),
-								'url' => esc_url_raw( $pocket_share_url ),
-								'button-text' => esc_html( $pocket_button_text )
+								'url' => esc_url_raw( $share_url ),
+								'button-text' => esc_html( $button_text )
 							);
 	}
 }
@@ -150,13 +162,45 @@ if( ! function_exists( 'ys_get_share_button_data_pocket' ) ) {
  */
 if( ! function_exists( 'ys_get_share_button_data_line' ) ) {
 	function ys_get_share_button_data_line( $share_url, $share_title ) {
-		$line_share_url = 'https://line.me/R/msg/text/?' . $share_title . '%0A' . $share_url;
-		$line_button_text = apply_filters( 'ys_line_button_text', 'LINE' );
+		$share_url = 'https://line.me/R/msg/text/?' . $share_title . '%0A' . $share_url;
+		$button_text = apply_filters( 'ys_line_button_text', 'LINE' );
 		return array(
 								'type' => esc_attr( 'line' ),
-								'icon' => esc_attr( 'comment-o' ),
-								'url' => esc_url_raw( $line_share_url ),
-								'button-text' => esc_html( $line_button_text )
+								'icon' => esc_attr( 'comment' ),
+								'url' => esc_url_raw( $share_url ),
+								'button-text' => esc_html( $button_text )
+							);
+	}
+}
+
+/**
+ * シェアボタン用データ : Feedly
+ */
+if( ! function_exists( 'ys_get_share_button_data_feedly' ) ) {
+	function ys_get_share_button_data_feedly( $share_url, $share_title ) {
+		$share_url = 'https://feedly.com/i/subscription/feed/' . urlencode( get_feed_link() );
+		$button_text = apply_filters( 'ys_feedly_button_text', 'Feedly' );
+		return array(
+								'type' => esc_attr( 'feedly' ),
+								'icon' => esc_attr( 'feedly' ),
+								'url' => esc_url_raw( $share_url ),
+								'button-text' => esc_html( $button_text )
+							);
+	}
+}
+
+/**
+ * シェアボタン用データ : Feedly
+ */
+if( ! function_exists( 'ys_get_share_button_data_rss' ) ) {
+	function ys_get_share_button_data_rss( $share_url, $share_title ) {
+		$share_url = get_feed_link();
+		$button_text = apply_filters( 'ys_rss_button_text', 'フィード' );
+		return array(
+								'type' => esc_attr( 'rss' ),
+								'icon' => esc_attr( 'rss' ),
+								'url' => esc_url_raw( $share_url ),
+								'button-text' => esc_html( $button_text )
 							);
 	}
 }

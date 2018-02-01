@@ -92,6 +92,10 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_sns_share_button_pocket' => get_option( 'ys_sns_share_button_pocket', 1 ),
 			// LINE
 			'ys_sns_share_button_line' => get_option( 'ys_sns_share_button_line', 1 ),
+			// Feedly
+			'ys_sns_share_button_feedly' => get_option( 'ys_sns_share_button_feedly', 1 ),
+			// RSS
+			'ys_sns_share_button_rss' => get_option( 'ys_sns_share_button_rss', 1 ),
 			// Tweetポタンを投稿上部に表示する
 			'ys_sns_share_on_entry_header' => get_option( 'ys_sns_share_on_entry_header', 1 ),
 			// Tweetポタンを投稿下に表示する

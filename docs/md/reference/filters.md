@@ -145,6 +145,14 @@
 - file: inc/sns/share-button.php
 - description: LINEシェアボタンの表示有無編集フィルタ
 
+### ys_show_share_button_feedly
+- file: inc/sns/share-button.php
+- description: Feedlyボタンの表示有無編集フィルタ
+
+### ys_show_share_button_rss
+- file: inc/sns/share-button.php
+- description: Feedlyボタンの表示有無編集フィルタ
+
 ### ys_share_tweet_via_account
 - file: inc/sns/share-button.php
 - description: Twitterシェアボタンのviaアカウント編集フィルタ
@@ -152,6 +160,38 @@
 ### ys_share_tweet_related_account
 - file: inc/sns/share-button.php
 - description: Twitterシェアボタンの関連アカウント編集フィルタ
+
+### ys_twitter_button_text
+- file: inc/sns/share-button.php
+- description: Twitterボタンテキスト編集フィルタ
+
+### ys_facebook_button_text
+- file: inc/sns/share-button.php
+- description: Facebookボタンテキスト編集フィルタ
+
+### ys_hatenabookmark_button_text
+- file: inc/sns/share-button.php
+- description: はてブボタンテキスト編集フィルタ
+
+### ys_googleplus_button_text
+- file: inc/sns/share-button.php
+- description: Google+ボタンテキスト編集フィルタ
+
+### ys_pocket_button_text
+- file: inc/sns/share-button.php
+- description: Pocketボタンテキスト編集フィルタ
+
+### ys_line_button_text
+- file: inc/sns/share-button.php
+- description: LINEボタンテキスト編集フィルタ
+
+### ys_feedly_button_text
+- file: inc/sns/share-button.php
+- description: Feedlyボタンテキスト編集フィルタ
+
+### ys_rss_button_text
+- file: inc/sns/share-button.php
+- description: RSSボタンテキスト編集フィルタ
 
 
 ## entry

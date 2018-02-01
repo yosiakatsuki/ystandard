@@ -2,18 +2,16 @@
   @at-root {
 
     .share-btn__list {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flex;
       padding: 0;
       margin: 0 -1px;
       list-style: none;
     }
 
     .share-btn__item {
-      width: 100%;
-      padding: 5px 1px;
-      flex: 1 1 0%;
+      width: 33.33%;
+      padding: 1px;
+      flex: 0 0 auto;
     }
     .share-btn__link {
       position: relative;
@@ -26,6 +24,7 @@
       text-align: center;
       text-decoration: none;
       overflow: hidden;
+      z-index: 2;
       transition: all .3s;
 
       &.twitter {
@@ -76,6 +75,22 @@
           background-color: #fff;
         }
       }
+      &.feedly {
+        border-color: get_sns_color('feedly');
+        background-color: get_sns_color('feedly');
+        &:hover {
+          color: get_sns_color('feedly');
+          background-color: #fff;
+        }
+      }
+      &.rss {
+        border-color: get_sns_color('rss');
+        background-color: get_sns_color('rss');
+        &:hover {
+          color: get_sns_color('rss');
+          background-color: #fff;
+        }
+      }
     }
 
     .share-btn__icon {
@@ -88,9 +103,11 @@
         font-size: 3em;
       }
     }
-    .share-btn__text {
-      position: relative;
-      z-index: 2;
+
+    @include media-breakpoint(pc) {
+      .share-btn__item {
+        width: 25%;
+      }
     }
   }
 }

@@ -224,6 +224,9 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 			'description' => '',
 		)
 	);
+	/**
+	 * twitter
+	 */
 	ys_customizer_add_setting_checkbox(
 		$wp_customize,
 		array(
@@ -233,6 +236,9 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 			'section'   => 'ys_customizer_section_sns_share_button',
 		)
 	);
+	/**
+	 * facebook
+	 */
 	ys_customizer_add_setting_checkbox(
 		$wp_customize,
 		array(
@@ -242,6 +248,9 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 			'section'   => 'ys_customizer_section_sns_share_button',
 		)
 	);
+	/**
+	 * はてブ
+	 */
 	ys_customizer_add_setting_checkbox(
 		$wp_customize,
 		array(
@@ -251,6 +260,9 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 			'section'   => 'ys_customizer_section_sns_share_button',
 		)
 	);
+	/**
+	 * Google+
+	 */
 	ys_customizer_add_setting_checkbox(
 		$wp_customize,
 		array(
@@ -260,6 +272,9 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 			'section'   => 'ys_customizer_section_sns_share_button',
 		)
 	);
+	/**
+	 * Pocket
+	 */
 	ys_customizer_add_setting_checkbox(
 		$wp_customize,
 		array(
@@ -269,11 +284,38 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 			'section'   => 'ys_customizer_section_sns_share_button',
 		)
 	);
+	/**
+	 * LINE
+	 */
 	ys_customizer_add_setting_checkbox(
 		$wp_customize,
 		array(
 			'id'        => 'ys_sns_share_button_line',
 			'label'     => 'LINE',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	/**
+	 * Feedly
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_button_feedly',
+			'label'     => 'Feedly',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_sns_share_button',
+		)
+	);
+	/**
+	 * RSS
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_sns_share_button_rss',
+			'label'     => 'RSS',
 			'default'   => 1,
 			'section'   => 'ys_customizer_section_sns_share_button',
 		)
