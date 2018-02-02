@@ -8,6 +8,7 @@
       & {
         flex: none;
         width: $sidebar-width;
+        margin-left: get_margin(2);
       }
     }
   }

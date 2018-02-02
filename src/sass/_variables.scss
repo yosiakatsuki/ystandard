@@ -9,7 +9,7 @@ $breakpoints-setting: (
 // コンテンツ幅
 $gutter              : 15px;
 $contents-max-width  : 800px + ($gutter * 2);
-$sidebar-width       : 300px + ($gutter * 2);
+$sidebar-width       : 300px + ($gutter * 4);
 $container-max-width : $contents-max-width + $sidebar-width;
 
 // 色

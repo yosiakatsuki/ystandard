@@ -617,7 +617,7 @@ label {
 
 .container {
 	position: relative;
-	max-width: 1160px;
+	max-width: 1190px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0 15px;
@@ -1637,7 +1637,8 @@ label {
 	-webkit-box-flex: 0;
 	-ms-flex: none;
 	flex: none;
-	width: 330px;
+	width: 360px;
+	margin-left: 30px;
 }
 
 .share-btn__item {
