@@ -6,11 +6,9 @@
 
     @include media-breakpoint(pc) {
       & {
-        flex: none;
+        flex: 0 0 auto;
         width: $sidebar-width;
         margin-left: get_margin(2);
-        padding-top: get_margin(2);
-        padding-bottom: get_margin(2);
       }
     }
   }

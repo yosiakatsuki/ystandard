@@ -1801,17 +1801,15 @@ label {
 }
 
 .content__main {
-	padding: 30px;
+	padding: 15px;
 }
 
 .sidebar {
 	-webkit-box-flex: 0;
-	-ms-flex: none;
-	flex: none;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
 	width: 360px;
 	margin-left: 30px;
-	padding-top: 30px;
-	padding-bottom: 30px;
 }
 
 .share-btn__item {
