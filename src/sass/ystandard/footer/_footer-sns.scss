@@ -1,0 +1,25 @@
+.footer-sns {
+  @at-root {
+
+    .footer-sns__list {
+      margin: 0 -.1em;
+    }
+    .footer-sns__item {
+      margin: 0 .1em;
+    }
+    .footer-sns__link {
+      height: 3em;
+      width: 3em;
+      padding: 1em;
+      border-radius: 50%;
+      font-size: 1.1em;
+      overflow: hidden;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    @include media-breakpoint(tb) {
+    }
+  }// @
+}

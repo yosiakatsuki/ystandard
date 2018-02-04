@@ -1,5 +1,9 @@
 .footer__widget {
   @at-root {
+
+    & {
+      margin-top: get_margin();
+    }
     .footer__widget-container {
       padding: get_margin() 0;
     }

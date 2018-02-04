@@ -242,6 +242,10 @@ a:hover {
 	text-decoration: underline;
 }
 
+.footer__widget {
+	margin-top: 15px;
+}
+
 .footer__widget-container {
 	padding: 15px 0;
 }
@@ -257,6 +261,27 @@ a:hover {
 
 .footer__nav-list li:first-child {
 	margin-left: 0;
+}
+
+.footer-sns__list {
+	margin: 0 -.1em;
+}
+
+.footer-sns__item {
+	margin: 0 .1em;
+}
+
+.footer-sns__link {
+	height: 3em;
+	width: 3em;
+	padding: 1em;
+	border-radius: 50%;
+	font-size: 1.1em;
+	overflow: hidden;
+}
+
+.footer-sns__link:hover {
+	text-decoration: none;
 }
 
 @media screen and (min-width: 600px) {

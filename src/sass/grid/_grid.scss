@@ -46,31 +46,6 @@
       }
     }
 
-    .row--align-top {
-      align-items: top;
-    }
-    .row--align-center {
-      align-items: center;
-    }
-    .row--align-bottom {
-      align-items: bottom;
-    }
-    .row--justify-start {
-      justify-content: start;
-    }
-    .row--justify-end {
-      justify-content: end;
-    }
-    .row--justify-center {
-      justify-content: center;
-    }
-    .row--justify-between {
-      justify-content: space-between;
-    }
-    .row--justify-around {
-      justify-content: space-around;
-    }
-
     // screen
     @include media-breakpoint(pc) {
       .row--slide {
