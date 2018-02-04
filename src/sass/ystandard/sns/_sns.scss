@@ -34,4 +34,7 @@
 [class*="sns__btn-"] {
   text-decoration: none;
   transition: all .3s;
+  &:hover {
+    text-decoration: none;
+  }
 }
