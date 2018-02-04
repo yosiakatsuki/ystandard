@@ -204,15 +204,6 @@
 	z-index: 2;
 }
 
-.subscribe__list {
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-}
-
 .subscribe__item {
 	width: 50%;
 	padding: 0 5px 5px;
@@ -318,12 +309,6 @@ a:hover {
 	color: #939393;
 	font-size: .9em;
 	margin-bottom: 1.5em;
-}
-
-.ad__double {
-	-webkit-box-align: top;
-	-ms-flex-align: top;
-	align-items: top;
 }
 
 .ad__left,
