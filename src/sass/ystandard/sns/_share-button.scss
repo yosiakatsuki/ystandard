@@ -3,9 +3,7 @@
 
     .share-btn__list {
       @include flex;
-      padding: 0;
       margin: 0 -1px;
-      list-style: none;
     }
 
     .share-btn__item {

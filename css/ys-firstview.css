@@ -865,12 +865,6 @@ label {
 	font-size: .8em;
 }
 
-.global-nav ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
 .global-nav li {
 	width: 100%;
 }
@@ -1078,9 +1072,6 @@ label {
 }
 
 .author__sns {
-	padding: 0;
-	margin: 0;
-	list-style: none;
 	text-align: center;
 }
 
@@ -1560,9 +1551,7 @@ label {
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding: 0;
 	margin: 0 -1px;
-	list-style: none;
 }
 
 .share-btn__item {
