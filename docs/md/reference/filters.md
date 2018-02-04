@@ -72,6 +72,10 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: 記事下ウィジェットの出力有無の編集用フィルタ
 
+### ys_id_show_entry_footer_author
+- file: inc/conditional-branch/conditional-branch.php
+- description: 記事下投稿者ボックスの出力有無の編集用フィルタ
+
 
 ## head
 
@@ -193,6 +197,7 @@
 - file: inc/sns/share-button.php
 - description: RSSボタンテキスト編集フィルタ
 
+
 ## subscribe
 
 ### ys_get_subscribe_buttons
@@ -202,6 +207,18 @@
 ### ys_get_subscribe_background_image
 - file: inc/sns/subscribe.php
 - description: 購読ボタン背景画像編集フィルタ
+
+
+## author
+
+### ys_get_author_sns_list
+- file: inc/author/author.php
+- description: 投稿者SNS一覧配列編集フィルタ
+
+### ys_get_author_avatar
+- file: inc/author/author.php
+- description: 投稿者プロフィール画像編集フィルタ
+
 
 
 
@@ -270,6 +287,13 @@
 - description: カスタム投稿抜粋の結果編集用フィルタ
 
 
+## amp-util
+
+### ys_amp_convert_image
+- file: inc/amp/amp-util.php
+- description: AMP用画像変換の結果編集フィルタ
+
+
 ## amp-head
 
 ### ys_get_the_amp_document_title
@@ -286,6 +310,17 @@
 ### ys_get_amp_google_anarytics_tracking_id
 - file: inc/amp/amp-google-analytics.php
 - description: AMP用Google AnalyticsトラッキングID編集フィルタ
+
+
+## shortcode
+
+### ys_shortcode_author_id
+- file: inc/shortcode/shortcode-author.php
+- description: 投稿者表示ショートコード 投稿者ID編集フィルタ
+
+### ys_shortcode_author_html
+- file: inc/shortcode/shortcode-author.php
+- description: 投稿者表示ショートコード結果編集フィルタ
 
 
 ## class.ys-enqueue

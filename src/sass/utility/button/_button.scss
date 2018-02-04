@@ -1,16 +1,21 @@
 .ys-btn {
   display: inline-block;
-  padding: .5em 1.5em;
+  padding: .25em 2em;
   background-color: #fff;
-  border: 1px solid $border-color-gray;
+  border: 1px solid $border-color-dark;
   color: $font-color-main;
-  font-size: 1rem;
   text-decoration: none;
   transition: all .3s;
 
   &:hover {
-    color: $font-color-main;
+    color: #fff;
+    background-color: $border-color-dark
   }
+}
+
+.ys-btn--full {
+  display: block;
+  text-align: center;
 }
 
 .ys-btn-large {

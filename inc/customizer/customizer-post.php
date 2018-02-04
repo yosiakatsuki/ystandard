@@ -82,5 +82,17 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 			'section'   => 'ys_customizer_section_post'
 		)
 	);
+	/**
+	 * 次の記事・前の記事のリンクを出力しない
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_hide_post_author',
+			'label'       => '「この記事を書いた人」ボックスを表示しない',
+			'default'   => 0,
+			'section'   => 'ys_customizer_section_post'
+		)
+	);
 
 }

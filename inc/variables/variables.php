@@ -22,3 +22,9 @@ $ys_options = null;
  */
 global $ys_amp;
 $ys_amp = null;
+
+/**
+ * 投稿者id上書き用
+ */
+global $ys_author;
+$ys_author = false;

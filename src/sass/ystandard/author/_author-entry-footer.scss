@@ -1,0 +1,24 @@
+.entry__footer-author {
+  @at-root {
+    .entry__footer-author-title {
+      font-size: 1em;
+    }
+
+    @include media-breakpoint(tb) {
+      & {
+        .author__main {
+          float: left;
+          margin-right: 1em;
+        }
+        .author__sub {
+          overflow: hidden;
+        }
+        .author__sns,
+        .author__archive {
+          text-align: left;
+        }
+      }
+    }
+
+  }// @
+}

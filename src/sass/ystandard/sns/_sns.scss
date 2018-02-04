@@ -25,6 +25,9 @@
   }
   .sns__color--#{$key} {
     color: $color;
+    &:hover {
+      color: lighten($color,10%);
+    }
   }
 }//@each
 

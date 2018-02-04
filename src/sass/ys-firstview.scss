@@ -19,6 +19,7 @@
 
 // import scss
 @import "base/base";
+@import "clearfix/clearfix";
 @import "grid/grid";
 @import "section/section";
 
@@ -28,6 +29,7 @@
 @import "ystandard/content/content";
 @import "ystandard/sidebar/sidebar";
 @import "ystandard/entry/entry";
+@import "ystandard/author/author";
 @import "ystandard/sns/sns";
 @import "ystandard/sns/share-button";
 @import "ystandard/sns/sns-icon";

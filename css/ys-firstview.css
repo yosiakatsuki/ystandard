@@ -534,7 +534,7 @@ textarea,
 optgroup,
 select,
 button {
-	line-height: 1.2;
+	line-height: 1.4;
 }
 
 img {
@@ -550,20 +550,20 @@ h4,
 h5,
 h6 {
 	font-weight: normal;
-	margin-bottom: 25px;
+	margin-bottom: 1em;
 }
 
 p {
-	margin-bottom: 1.5em;
+	margin: 1.5em 0 0;
 }
 
-p:last-child {
-	margin-bottom: 0;
+p:first-child {
+	margin: 0;
 }
 
 ul,
 ol {
-	margin-left: 25px;
+	margin-left: 1.5em;
 }
 
 dt {
@@ -609,6 +609,20 @@ a:hover {
 
 label {
 	cursor: pointer;
+}
+
+.clearfix:before,
+.clearfix:after {
+	content: "";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
 }
 
 /*
@@ -1026,6 +1040,57 @@ label {
 	margin-top: 30px;
 }
 
+.author__main {
+	padding: 0 .5em;
+}
+
+.author__img {
+	display: block;
+	width: 96px;
+	margin: auto;
+	border-radius: 50%;
+}
+
+.author__name {
+	margin-top: .5em;
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.author__link {
+	text-decoration: none;
+}
+
+.author__dscr {
+	font-size: .9em;
+}
+
+.author__dscr p {
+	margin-top: .5em;
+}
+
+.author__sns {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+}
+
+.author__sns-item {
+	display: inline-block;
+	margin: 1em 5px 5px;
+}
+
+.author__sns-link {
+	font-size: 1.1em;
+}
+
+.author__archive {
+	margin-top: .5em;
+	text-align: center;
+}
+
 .sns__btn--twitter {
 	background-color: #2b97f0;
 	border: 1px solid #2b97f0;
@@ -1050,6 +1115,10 @@ label {
 
 .sns__color--twitter {
 	color: #2b97f0;
+}
+
+.sns__color--twitter:hover {
+	color: #5baef3;
 }
 
 .sns__btn--facebook {
@@ -1078,6 +1147,10 @@ label {
 	color: #3b5a9b;
 }
 
+.sns__color--facebook:hover {
+	color: #4e71bb;
+}
+
 .sns__btn--google-plus {
 	background-color: #db2814;
 	border: 1px solid #db2814;
@@ -1102,6 +1175,10 @@ label {
 
 .sns__color--google-plus {
 	color: #db2814;
+}
+
+.sns__color--google-plus:hover {
+	color: #ed4835;
 }
 
 .sns__btn--hatenabookmark {
@@ -1130,6 +1207,10 @@ label {
 	color: #007ad2;
 }
 
+.sns__color--hatenabookmark:hover {
+	color: #0697ff;
+}
+
 .sns__btn--rss {
 	background-color: #fb8501;
 	border: 1px solid #fb8501;
@@ -1154,6 +1235,10 @@ label {
 
 .sns__color--rss {
 	color: #fb8501;
+}
+
+.sns__color--rss:hover {
+	color: #fe9d31;
 }
 
 .sns__btn--feedly {
@@ -1182,6 +1267,10 @@ label {
 	color: #8cba43;
 }
 
+.sns__color--feedly:hover {
+	color: #a3c868;
+}
+
 .sns__btn--pocket {
 	background-color: #ea4654;
 	border: 1px solid #ea4654;
@@ -1208,30 +1297,38 @@ label {
 	color: #ea4654;
 }
 
+.sns__color--pocket:hover {
+	color: #ef747e;
+}
+
 .sns__btn--instagram {
-	background-color: #3f729b;
-	border: 1px solid #3f729b;
+	background-color: #003569;
+	border: 1px solid #003569;
 	color: #fff;
 }
 
 .sns__btn--instagram:hover {
 	background-color: #fff;
-	color: #3f729b;
+	color: #003569;
 }
 
 .sns__btn-outline--instagram {
 	background-color: #fff;
-	border: 1px solid #3f729b;
-	color: #3f729b;
+	border: 1px solid #003569;
+	color: #003569;
 }
 
 .sns__btn-outline--instagram:hover {
-	background-color: #3f729b;
+	background-color: #003569;
 	color: #fff;
 }
 
 .sns__color--instagram {
-	color: #3f729b;
+	color: #003569;
+}
+
+.sns__color--instagram:hover {
+	color: #004f9c;
 }
 
 .sns__btn--line {
@@ -1260,6 +1357,10 @@ label {
 	color: #2cbf13;
 }
 
+.sns__color--line:hover {
+	color: #3ae81d;
+}
+
 .sns__btn--tumblr {
 	background-color: #35465c;
 	border: 1px solid #35465c;
@@ -1284,6 +1385,10 @@ label {
 
 .sns__color--tumblr {
 	color: #35465c;
+}
+
+.sns__color--tumblr:hover {
+	color: #485f7c;
 }
 
 .sns__btn--youtube-play {
@@ -1312,6 +1417,10 @@ label {
 	color: #cd201f;
 }
 
+.sns__color--youtube-play:hover {
+	color: #e23e3d;
+}
+
 .sns__btn--vine {
 	background-color: #00b389;
 	border: 1px solid #00b389;
@@ -1338,30 +1447,38 @@ label {
 	color: #00b389;
 }
 
+.sns__color--vine:hover {
+	color: #00e6b0;
+}
+
 .sns__btn--github {
-	background-color: #4183c4;
-	border: 1px solid #4183c4;
+	background-color: #24292e;
+	border: 1px solid #24292e;
 	color: #fff;
 }
 
 .sns__btn--github:hover {
 	background-color: #fff;
-	color: #4183c4;
+	color: #24292e;
 }
 
 .sns__btn-outline--github {
 	background-color: #fff;
-	border: 1px solid #4183c4;
-	color: #4183c4;
+	border: 1px solid #24292e;
+	color: #24292e;
 }
 
 .sns__btn-outline--github:hover {
-	background-color: #4183c4;
+	background-color: #24292e;
 	color: #fff;
 }
 
 .sns__color--github {
-	color: #4183c4;
+	color: #24292e;
+}
+
+.sns__color--github:hover {
+	color: #3a434b;
 }
 
 .sns__btn--pinterest {
@@ -1390,6 +1507,10 @@ label {
 	color: #cb2027;
 }
 
+.sns__color--pinterest:hover {
+	color: #e03e44;
+}
+
 .sns__btn--linkedin {
 	background-color: #0e76a8;
 	border: 1px solid #0e76a8;
@@ -1414,6 +1535,10 @@ label {
 
 .sns__color--linkedin {
 	color: #0e76a8;
+}
+
+.sns__color--linkedin:hover {
+	color: #1297d7;
 }
 
 [class*="sns__btn-"] {

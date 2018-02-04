@@ -46,12 +46,23 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			 * [ys]投稿ページ設定
 			 *
 			 */
-			// 個別ページでアイキャッチ画像を非表示にする
+			// 個別ページでアイキャッチ画像を表示しない
 			'ys_hide_post_thumbnail' => get_option( 'ys_hide_post_thumbnail', 0 ),
 			// 関連記事を出力する
 			'ys_show_post_related' => get_option( 'ys_show_post_related', 1 ),
 			// 次の記事・前の記事を表示しない
 			'ys_hide_post_paging' => get_option( 'ys_hide_post_paging', 0 ),
+			// 「この記事を書いた人」ボックスを表示しない
+			'ys_hide_post_author' => get_option( 'ys_hide_post_author', 0 ),
+			/**
+			 *
+			 * [ys]固定ページ設定
+			 *
+			 */
+			// 個別ページでアイキャッチ画像を表示しない
+			'ys_hide_page_thumbnail' => get_option( 'ys_hide_page_thumbnail', 0 ),
+			// 「この記事を書いた人」ボックスを表示しない
+			'ys_hide_page_author' => get_option( 'ys_hide_page_author', 0 ),
 			/**
 			 *
 			 * [ys]SNS設定

@@ -24,13 +24,9 @@
 		?>
 	</div><!-- .entry-content -->
 	<footer class="entry__footer">
-		<?php get_template_part( 'template-parts/singular/entry-footer' ); ?>
+		<?php
+			//記事下部分
+			get_template_part( 'template-parts/singular/entry-footer' );
+		?>
 	</footer><!-- .entry__footer -->
-	<?php
-		// CTA
-		ys_template_the_entry_foot_cta();
-
-		// 書いた人
-		ys_template_the_biography();
-	 ?>
 </article>

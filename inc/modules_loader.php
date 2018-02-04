@@ -87,13 +87,20 @@ require_once get_template_directory() . '/inc/advertisement/advertisement.php';
  */
 require_once get_template_directory() . '/inc/sns/share-button.php';
 require_once get_template_directory() . '/inc/sns/subscribe.php';
-
+/**
+ * author
+ */
+require_once get_template_directory() . '/inc/author/author.php';
 /**
  * AMP
  */
+require_once get_template_directory() . '/inc/amp/amp-util.php';
 require_once get_template_directory() . '/inc/amp/amp-head.php';
 require_once get_template_directory() . '/inc/amp/amp-google-analytics.php';
-
+/**
+ * ショートコード
+ */
+require_once get_template_directory() . '/inc/shortcode/shortcode.php';
 
 
 // utilities
@@ -115,8 +122,7 @@ require_once get_template_directory() . '/inc/pagination.php';
 require_once get_template_directory() . '/inc/breadcrumb.php';
 // ウィジェット
 require_once get_template_directory() . '/inc/widgets.php';
-// ショートコード
-require_once get_template_directory() . '/inc/shortcode.php';
+
 
 
 

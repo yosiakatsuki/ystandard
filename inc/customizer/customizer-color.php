@@ -322,6 +322,18 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
+							'.color__font-main',
+							'.color__font-main:hover'
+						),
+						array(
+							'color' => $html_font
+						)
+					);
+	/**
+	 * 文字色を使っている部分
+	 */
+	$css .= ys_customizer_create_inline_css(
+						array(
 							'.pagination-list .next, .pagination-list .previous',
 							'.page-links .page-text',
 							'.comment-form input[type=submit]',
@@ -346,8 +358,6 @@ function ys_customizer_inline_css() {
 							'.entry-excerpt',
 							'.post-navigation .next-label, .post-navigation .prev-label',
 							'.search-field:placeholder-shown',
-							'.sidebar-right a',
-							'.entry-category-list a, .entry-tag-list a'
 						),
 						array(
 							'color' => $html_font_sub

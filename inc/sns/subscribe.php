@@ -81,7 +81,7 @@ if( ! function_exists( 'ys_get_subscribe_background_image' ) ) {
 			$image = get_the_post_thumbnail( get_the_ID(), 'post-thmbnail', array( 'class' => 'subscribe__image' ) );
 		}
 		if( ys_is_amp() ) {
-			$image = ys_amp_replace_image( $image );
+			$image = ys_amp_convert_image( $image );
 		}
 		return apply_filters( 'ys_get_subscribe_background_image', $image );
 	}

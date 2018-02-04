@@ -26,7 +26,7 @@ if(!function_exists( 'ys_amp_convert_amp')) {
 			// sns埋め込みの置換
 			$content = ys_amp_replace_sns($content);
 			// imgの置換
-			$content = ys_amp_replace_image($content);
+			$content = ys_amp_convert_image($content);
 			// iframeの置換
 			$content = ys_amp_replace_iframe($content);
 
@@ -65,23 +65,6 @@ if(!function_exists( 'ys_amp_replace_tag')) {
 		$content = preg_replace('/ +onclick=[\'][^\']*?[\']/i', '', $content);
 		$content = preg_replace('/<font[^>]+?>/i', '', $content);
 		$content = preg_replace('/<\/font>/i', '', $content);
-
-		return $content;
-	}
-}
-
-
-
-
-// ----------------------------------------------
-// imgタグの置換
-// ----------------------------------------------
-if(!function_exists( 'ys_amp_replace_image')) {
-	function ys_amp_replace_image($content) {
-
-		$pattern = '/<img(.+?)?>/i';
-		$replacement = '<amp-img layout="responsive"$1></amp-img>';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
 		return $content;
 	}
@@ -222,16 +205,6 @@ if(!function_exists( 'ys_amp_replace_sns')) {
 }
 
 
-/**
- *	AMP用正規表現置換処理関数
- */
-function ys_amp_preg_replace( $pattern, $replacement, $content ) {
-
-	if( 1 === preg_match( $pattern, $content, $matches ) ){
-		$content = preg_replace( $pattern, $replacement, $content );
-	}
-	return $content;
-}
 
 
 // ----------------------------------------------

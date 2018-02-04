@@ -140,3 +140,17 @@ function ys_is_show_entry_footer_widget() {
 	$result = ( is_active_sidebar( 'entry-footer' ) && ! ys_is_amp() );
 	return apply_filters( 'ys_is_show_entry_footer_widget', $result );
 }
+
+/**
+ * 記事下投稿者表示するか
+ */
+function ys_id_show_entry_footer_author() {
+	$result = true;
+	if( is_single() && ys_get_option( 'ys_hide_post_author') ) {
+		$result = false;
+	}
+	if( is_page() && ys_get_option( 'ys_hide_page_author') ) {
+		$result = false;
+	}
+	return apply_filters( 'ys_id_show_entry_footer_author', $result );
+}
