@@ -837,6 +837,20 @@ label {
 	list-style: none;
 }
 
+.flex {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.flex-wrap {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
 .header__branding {
 	padding: 15px 0;
 }
@@ -1545,12 +1559,11 @@ label {
 	transition: all .3s;
 }
 
+[class*="sns__btn-"]:hover {
+	text-decoration: none;
+}
+
 .share-btn__list {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
 	margin: 0 -1px;
 }
 
@@ -1636,6 +1649,20 @@ label {
 	padding-bottom: 120px;
 }
 
+.flex--tb {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.flex-wrap--tb {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
+
 .entry__footer > * {
 	margin-top: 60px;
 }
@@ -1675,6 +1702,20 @@ label {
 
 .section--screen {
 	min-height: 768px;
+}
+
+.flex--pc {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.flex-wrap--pc {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 
 .header--1row {

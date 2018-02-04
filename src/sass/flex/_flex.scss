@@ -1,0 +1,26 @@
+.flex {
+  @at-root {
+    & {
+      display: flex;
+    }
+    .flex-wrap {
+      @include flex;
+    }
+    @include media-breakpoint(tb) {
+      .flex--tb {
+        display: flex;
+      }
+      .flex-wrap--tb {
+        @include flex;
+      }
+    }
+    @include media-breakpoint(pc) {
+      .flex--pc {
+        display: flex;
+      }
+      .flex-wrap--pc {
+        @include flex;
+      }
+    }
+  }// @
+}

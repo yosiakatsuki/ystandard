@@ -3,7 +3,7 @@
 	 *
 	 * 読み込むテンプレートをまとめた配列を取得・展開
 	 *
-	 * 特にカスタマイズしていなければ、template-parts/singular/entry-footer-block の中のファイルを読み込む
+	 * 特にカスタマイズしていなければ、template-parts/entry/entry-footer-block の中のファイルを読み込む
 	 * 読み込むテンプレートのリストは inc/template/template.php内で作成
 	 *
 	 */

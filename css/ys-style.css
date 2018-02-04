@@ -205,11 +205,6 @@
 }
 
 .subscribe__list {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
@@ -254,14 +249,6 @@ a:hover {
 .footer-nav {
 	font-size: .9em;
 	margin-top: 15px;
-}
-
-.footer__nav-list {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
 }
 
 .footer__nav-list li {
@@ -309,11 +296,6 @@ a:hover {
 }
 
 .ad__double {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
 	-webkit-box-align: top;
 	-ms-flex-align: top;
 	align-items: top;
@@ -345,12 +327,6 @@ a:hover {
 
 .site__footer {
 	padding-top: 30px;
-}
-
-.footer__widget {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
 }
 
 .footer__widget-container {

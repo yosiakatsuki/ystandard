@@ -13,7 +13,6 @@
     //tablet
     @include media-breakpoint(tb) {
       .ad__double {
-        @include flex;
         align-items: top;
       }
       .ad__left,

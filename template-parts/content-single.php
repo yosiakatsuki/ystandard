@@ -51,7 +51,7 @@
 		?>
 	</div><!-- .entry-content -->
 	<footer class="entry__footer">
-		<?php get_template_part( 'template-parts/singular/entry-footer' ); ?>
+		<?php get_template_part( 'template-parts/entry/entry-footer' ); ?>
 	</footer><!-- .entry__footer -->
 	<?php
 

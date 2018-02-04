@@ -7,7 +7,7 @@
 	<div class="subscribe__container">
 		<?php ys_the_subscribe_background_image(); ?>
 		<div class="subscribe__buttons">
-			<ul class="subscribe__list list-style--none">
+			<ul class="subscribe__list list-style--none flex-wrap">
 			<?php
 				foreach ( $subscribe as $key => $value ): ?>
 				<li class="subscribe__item">

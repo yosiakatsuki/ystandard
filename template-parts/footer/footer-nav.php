@@ -4,7 +4,7 @@
 		<?php
 			wp_nav_menu( array(
 				'theme_location' => 'footer',
-				'menu_class'     => 'footer__nav-list list-style--none',
+				'menu_class'     => 'footer__nav-list list-style--none flex-wrap',
 				'container'      => false,
 				'fallback_cb'    => '',
 				'depth'          => 1

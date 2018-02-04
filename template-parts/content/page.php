@@ -8,7 +8,7 @@
 				<?php the_post_thumbnail() ?>
 			</figure><!-- .post-thumbnail -->
 		<?php endif; ?>
-		<?php get_template_part( 'template-parts/singular/entry-meta' ); ?>
+		<?php get_template_part( 'template-parts/entry/entry-meta' ); ?>
 	</header><!-- .entry-header -->
 	<div class="entry-content entry__content">
 		<?php
@@ -26,7 +26,7 @@
 	<footer class="entry__footer">
 		<?php
 			//記事下部分
-			get_template_part( 'template-parts/singular/entry-footer' );
+			get_template_part( 'template-parts/entry/entry-footer' );
 		?>
 	</footer><!-- .entry__footer -->
 </article>

@@ -30,7 +30,7 @@ if( ! function_exists( 'ys_get_front_page_template' ) ) {
  */
 if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 	function ys_get_entry_footer_template() {
-		$dir = 'template-parts/singular/entry-footer-block/';
+		$dir = 'template-parts/entry/entry-footer-block/';
 		$templates = array(
 										'wdget'     => $dir . 'entry-footer-wdget',     //フッターウィジェット
 										'ad'        => $dir . 'entry-footer-ad',        //広告

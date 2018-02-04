@@ -4,9 +4,6 @@
       padding: get_margin() 0;
     }
     @include media-breakpoint(tb) {
-      & {
-        display: flex;
-      }
       .footer__widget-container {
         flex: 1;
         &:first-child {

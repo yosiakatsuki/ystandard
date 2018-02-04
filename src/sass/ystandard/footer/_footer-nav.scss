@@ -6,8 +6,6 @@
       margin-top: get_margin();
     }
     .footer__nav-list {
-      @include flex;
-
       li {
         margin: 0 0 5px 15px;
         &:first-child {

@@ -2,7 +2,7 @@
 	$sns_list = ys_get_footer_sns_list();
 ?>
 <div class="footer-sns">
-	<ul class="footer-sns__list">
+	<ul class="footer-sns__list list-style--none flex-wrap">
 	<?php
 		foreach ( $sns_list as $value ) :
 			if( '' != $value['url'] ):
