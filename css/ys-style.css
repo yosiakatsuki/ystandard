@@ -242,8 +242,40 @@
 	padding-bottom: 15px;
 }
 
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 .footer__widget-container {
 	padding: 15px 0;
+}
+
+.footer-nav {
+	font-size: .9em;
+	margin-top: 15px;
+}
+
+.footer__nav-list {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.footer__nav-list li {
+	margin: 0 0 5px 15px;
+}
+
+.footer__nav-list li:first-child {
+	margin-left: 0;
 }
 
 @media screen and (min-width: 600px) {

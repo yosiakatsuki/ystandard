@@ -1,0 +1,22 @@
+.footer-nav {
+  @at-root {
+
+    & {
+      font-size: .9em;
+      margin-top: get_margin();
+    }
+    .footer__nav-list {
+      @include flex;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        margin: 0 0 5px 15px;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }// @
+}

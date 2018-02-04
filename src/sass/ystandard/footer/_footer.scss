@@ -4,6 +4,12 @@
       padding-top: get_margin();
       padding-bottom: get_margin();
     }
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
     @include media-breakpoint(tb) {
       & {
         padding-top: get_margin(2);
