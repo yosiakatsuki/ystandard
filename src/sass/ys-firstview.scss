@@ -9,6 +9,7 @@
 @import "mixins/grid";
 @import "mixins/nav";
 @import "mixins/flex";
+@import "mixins/list";
 
 //func
 @import "function/margin";
@@ -22,6 +23,8 @@
 @import "clearfix/clearfix";
 @import "grid/grid";
 @import "section/section";
+@import "utility/list/list";
+
 
 // ystandard
 @import "ystandard/header/header";

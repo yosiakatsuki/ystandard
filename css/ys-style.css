@@ -265,9 +265,6 @@ a:hover {
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	padding: 0;
-	margin: 0;
-	list-style: none;
 }
 
 .footer__nav-list li {
