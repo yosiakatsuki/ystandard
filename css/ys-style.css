@@ -237,6 +237,15 @@
 	font-size: 1em;
 }
 
+.site__footer {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.footer__widget-container {
+	padding: 15px 0;
+}
+
 @media screen and (min-width: 600px) {
 
 .content-list__item {
@@ -306,6 +315,30 @@
 .entry__footer-author .author__sns,
 .entry__footer-author .author__archive {
 	text-align: left;
+}
+
+.site__footer {
+	padding-top: 30px;
+}
+
+.footer__widget {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.footer__widget-container {
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+
+.footer__widget-container:first-child {
+	padding-left: 0;
+}
+
+.footer__widget-container:last-child {
+	padding-right: 0;
 }
 
 }

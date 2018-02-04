@@ -52,29 +52,33 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: Google Analyticsのタグを読み込むかの結果編集用フィルタ
 
-### ys_is_show_sidebar
+### ys_is_active_sidebar_widget
 - file: inc/conditional-branch/conditional-branch.php
 - description: サイドバー部分の表示有無の編集用フィルタ
 
-### ys_is_show_emoji
+### ys_is_active_emoji
 - file: inc/conditional-branch/conditional-branch.php
 - description: 絵文字関連スクリプトの出力有無の編集用フィルタ
 
-### ys_is_show_oembed
+### ys_is_active_oembed
 - file: inc/conditional-branch/conditional-branch.php
 - description: oembed関連スクリプトの出力有無の編集用フィルタ
 
-### ys_is_show_post_thumbnail
+### ys_is_active_post_thumbnail
 - file: inc/conditional-branch/conditional-branch.php
 - description: アイキャッチ画像の出力有無の編集用フィルタ
 
-### ys_is_show_entry_footer_widget
+### ys_is_active_entry_footer_widget
 - file: inc/conditional-branch/conditional-branch.php
 - description: 記事下ウィジェットの出力有無の編集用フィルタ
 
-### ys_id_show_entry_footer_author
+### ys_is_active_entry_footer_author
 - file: inc/conditional-branch/conditional-branch.php
 - description: 記事下投稿者ボックスの出力有無の編集用フィルタ
+
+### ys_is_active_footer_widgets
+- file: inc/conditional-branch/conditional-branch.php
+- description: フッターウィジェットの出力有無の編集用フィルタ
 
 
 ## head

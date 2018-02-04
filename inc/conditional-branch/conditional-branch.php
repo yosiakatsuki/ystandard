@@ -93,58 +93,58 @@ function ys_is_enable_google_analytics() {
 /**
  * サイドバーを表示するか
  */
-function ys_is_show_sidebar() {
+function ys_is_active_sidebar_widget() {
 	$show_sidebar = true;
 	if( ys_is_amp() ) {
 		$show_sidebar = false;
 	} elseif( ys_is_mobile() && 1 == ys_get_setting( 'ys_show_sidebar_mobile' ) ) {
 		$show_sidebar = false;
-	} elseif( ! is_active_sidebar( 'sidebar-right' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
+	} elseif( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
 		$show_sidebar = false;
 	}
-	return apply_filters( 'ys_is_show_sidebar', $show_sidebar );
+	return apply_filters( 'ys_is_active_sidebar_widget', $show_sidebar );
 }
 /**
  * 絵文字用 css / js を出力するか
  */
-function ys_is_show_emoji() {
+function ys_is_active_emoji() {
 	$show_emoji = true;
 	if( ys_get_option( 'ys_performance_tuning_disable_emoji' ) ) {
 		$show_emoji = false;
 	}
-	return apply_filters( 'ys_is_show_emoji', $show_emoji );
+	return apply_filters( 'ys_is_active_emoji', $show_emoji );
 }
 /**
  * oembed css / js を出力するか
  */
-function ys_is_show_oembed() {
+function ys_is_active_oembed() {
 	$show_emoji = true;
 	if( ys_get_option( 'ys_performance_tuning_disable_oembed' ) ) {
 		$show_emoji = false;
 	}
-	return apply_filters( 'ys_is_show_oembed', $show_emoji );
+	return apply_filters( 'ys_is_active_oembed', $show_emoji );
 }
 
 /**
  * アイキャッチ画像を表示するか(singlar)
  */
-function ys_is_show_post_thumbnail() {
+function ys_is_active_post_thumbnail() {
 	$result = ( has_post_thumbnail() && 0 == ys_get_setting( 'ys_hide_post_thumbnail' ) );
-	return apply_filters( 'ys_is_show_post_thumbnail', $result );
+	return apply_filters( 'ys_is_active_post_thumbnail', $result );
 }
 
 /**
  * 記事下ウィジェットを表示するか
  */
-function ys_is_show_entry_footer_widget() {
+function ys_is_active_entry_footer_widget() {
 	$result = ( is_active_sidebar( 'entry-footer' ) && ! ys_is_amp() );
-	return apply_filters( 'ys_is_show_entry_footer_widget', $result );
+	return apply_filters( 'ys_is_active_entry_footer_widget', $result );
 }
 
 /**
  * 記事下投稿者表示するか
  */
-function ys_id_show_entry_footer_author() {
+function ys_is_active_entry_footer_author() {
 	$result = true;
 	if( is_single() && ys_get_option( 'ys_hide_post_author') ) {
 		$result = false;
@@ -152,5 +152,18 @@ function ys_id_show_entry_footer_author() {
 	if( is_page() && ys_get_option( 'ys_hide_page_author') ) {
 		$result = false;
 	}
-	return apply_filters( 'ys_id_show_entry_footer_author', $result );
+	return apply_filters( 'ys_is_active_entry_footer_author', $result );
+}
+/**
+ * フッターウィジェットが有効か
+ */
+function ys_is_active_footer_widgets() {
+	$result = true;
+	if( ys_is_amp() ) {
+		$result = false;
+	}
+	if( ! is_active_sidebar( 'footer-left' ) && ! is_active_sidebar( 'footer-center' ) && ! is_active_sidebar( 'footer-right' ) ) {
+		$result = false;
+	}
+	return apply_filters( 'ys_is_active_footer_widgets', $result );
 }

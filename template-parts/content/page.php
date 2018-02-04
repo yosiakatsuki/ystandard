@@ -3,7 +3,7 @@
 		<?php
 			the_title( '<h1 class="entry-title entry__title">', '</h1>' );
 		?>
-		<?php if( ys_is_show_post_thumbnail() ): ?>
+		<?php if( ys_is_active_post_thumbnail() ): ?>
 			<figure class="post-thumbnail entry__thumbnail">
 				<?php the_post_thumbnail() ?>
 			</figure><!-- .post-thumbnail -->

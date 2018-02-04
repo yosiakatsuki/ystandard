@@ -22,13 +22,14 @@
 - サイドバーのモバイル表示（表示するがデフォルトになる）
 - 絵文字関連スタイルシート・スクリプトを出力しない（設定項目が変わるので「出力する」にしていた場合再設定が必要）
 - oembed関連スタイルシート・スクリプトを出力しない（設定項目が変わるので「出力する」にしていた場合再設定が必要）
+- サイドバーのidが変わる
 
 ## 削除された設定
 - AMP Facebookシェアボタン用 app id (ys_amp_share_fb_app_id)
 - AMP 通常ビューへのリンク表示 (ys_amp_normal_link_share_btn,ys_amp_normal_link)
 - AMP scriptタグを削除してAMPページを作成する  (ys_amp_del_script)
 - AMP style属性を削除してAMPページを作成する (ys_amp_del_style)
-- AMP AMPページでも記事下のジェットを表示する (ys_is_show_entry_footer_widget_amp)
+- AMP AMPページでも記事下のジェットを表示する (ys_is_active_entry_footer_widget_amp)
 
 ## 変更された関数
 - ys_amp_the_amp_script -> ys_the_amp_script
@@ -115,6 +116,9 @@
 - ys_template_get_the_biography
 - ys_template_the_biography
 - ys_template_get_the_biography_template
+- ys_template_the_footer_attr
+- ys_template_the_post_thumbnail
+- ys_template_the_fotter_widget
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
@@ -146,3 +150,4 @@
 - ys_user_avatar
 - ys_get_the_convert_amp_img
 - ys_biography_template
+- ys_the_footer_attr

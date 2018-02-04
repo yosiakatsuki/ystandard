@@ -1,0 +1,13 @@
+.site__footer {
+  @at-root {
+    & {
+      padding-top: get_margin();
+      padding-bottom: get_margin();
+    }
+    @include media-breakpoint(tb) {
+      & {
+        padding-top: get_margin(2);
+      }
+    }
+  }
+}

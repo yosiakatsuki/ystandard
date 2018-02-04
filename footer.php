@@ -1,15 +1,17 @@
 
 	</div><!-- .site-content -->
 
-	<footer id="footer" class="site-footer" <?php ys_template_the_footer_attr(); ?>>
+	<footer id="footer" class="site-footer site__footer">
 		<div class="container">
 			<?php
 				/**
 				 * SNSフォロー
 				 */
 				get_template_part( 'template-parts/footer/footer-sns' );
-				// ウィジェット
-				ys_template_the_fotter_widget();
+				/**
+				 * ウィジェット
+				 */
+				get_template_part( 'template-parts/footer/footer-widget' );
 			?>
 
 			<?php if ( has_nav_menu( 'footer' ) ) : ?>

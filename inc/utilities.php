@@ -128,7 +128,7 @@ if( ! function_exists( 'ys_is_one_column' ) ) {
 		if( is_page_template( 'template-one-column.php' ) ) {
 			$one_colmun = true;
 		}
-		if ( !is_active_sidebar( 'sidebar-right' ) && !is_active_sidebar( 'sidebar-fixed' ) ) {
+		if ( !is_active_sidebar( 'sidebar-widget' ) && !is_active_sidebar( 'sidebar-fixed' ) ) {
 			$one_colmun = true;
 		}
 

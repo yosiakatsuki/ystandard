@@ -99,7 +99,7 @@ if( ! function_exists( 'ys_remove_action' ) ) {
  */
 if ( ! function_exists( 'ys_remove_emoji' ) ) {
 	function ys_remove_emoji() {
-		if( ! ys_is_show_emoji() ) {
+		if( ! ys_is_active_emoji() ) {
 			//絵文字
 			remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 			remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
@@ -116,7 +116,7 @@ if ( ! function_exists( 'ys_remove_emoji' ) ) {
  */
 if ( ! function_exists( 'ys_remove_oembed' ) ) {
 	function ys_remove_oembed() {
-		if( ! ys_is_show_oembed() ) {
+		if( ! ys_is_active_oembed() ) {
 			//Embeds
 			add_filter('embed_oembed_discover', '__return_false');
 			remove_action('wp_head','rest_output_link_wp_head');

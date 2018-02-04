@@ -1,0 +1,21 @@
+.footer__widget {
+  @at-root {
+    .footer__widget-container {
+      padding: get_margin() 0;
+    }
+    @include media-breakpoint(tb) {
+      & {
+        display: flex;
+      }
+      .footer__widget-container {
+        flex: 1;
+        &:first-child {
+          padding-left: 0;
+        }
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}

@@ -101,7 +101,10 @@ require_once get_template_directory() . '/inc/amp/amp-google-analytics.php';
  * ショートコード
  */
 require_once get_template_directory() . '/inc/shortcode/shortcode.php';
-
+/**
+ * ウィジェット
+ */
+require_once get_template_directory() . '/inc/widgets/widgets.php';
 
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';
@@ -120,8 +123,7 @@ require_once get_template_directory() . '/inc/custom-comment.php';
 require_once get_template_directory() . '/inc/pagination.php';
 // パンくずリスト
 require_once get_template_directory() . '/inc/breadcrumb.php';
-// ウィジェット
-require_once get_template_directory() . '/inc/widgets.php';
+
 
 
 
