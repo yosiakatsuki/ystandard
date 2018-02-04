@@ -1,7 +1,7 @@
 .sidebar {
   @at-root {
     & {
-      padding: $gutter;
+      padding: get_margin();
     }
 
     @include media-breakpoint(pc) {
@@ -9,6 +9,8 @@
         flex: none;
         width: $sidebar-width;
         margin-left: get_margin(2);
+        padding-top: get_margin(2);
+        padding-bottom: get_margin(2);
       }
     }
   }

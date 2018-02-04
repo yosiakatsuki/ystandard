@@ -48,4 +48,4 @@
 		// パンくず
 		ys_breadcrumb();
 	?>
-	<div id="content" class="site-content">
+	<div id="content" class="site-content content">

@@ -13,17 +13,18 @@ $sidebar-width       : 300px + ($gutter * 4);
 $container-max-width : $contents-max-width + $sidebar-width;
 
 // 色
-$font-color-main      : #222;
-$font-color-gray      : #939393;
-$bg-color-body        : #fff;
-$bg-color-dark        : #292b2c;
-$bg-color-dark-gray   : #e9ecef;
-$bg-color-gray        : #fafafa;
-$border-color-dark    : #292b2c;
-$border-color-gray    : #bdc3c7;
-$link-color-base      : #2980B9;
-$link-color           : #2980B9;
-$link-color-hover     : lighten($link-color-base,10%);
+$font-color-main    : #222;
+$font-color-gray    : #939393;
+$bg-color-body      : #fff;
+$bg-color-dark      : #292b2c;
+$bg-color-dark-gray : #e9ecef;
+$bg-color-gray      : #fafafa;
+$border-color-light : #ecf0f1;
+$border-color-dark  : #292b2c;
+$border-color-gray  : #bdc3c7;
+$link-color-base    : #2980B9;
+$link-color         : #2980B9;
+$link-color-hover   : lighten($link-color-base,10%);
 
 // タイポグラフィ
 $font-size        : 16px;

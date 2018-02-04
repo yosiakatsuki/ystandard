@@ -996,7 +996,7 @@ label {
 	max-width: 500px;
 }
 
-.content {
+.content__wrap {
 	padding-top: 15px;
 	padding-bottom: 15px;
 }
@@ -1006,6 +1006,7 @@ label {
 	-ms-flex: 1 0 0%;
 	flex: 1 0 0%;
 	padding: 15px;
+	background-color: #fff;
 }
 
 .sidebar {
@@ -1013,7 +1014,7 @@ label {
 }
 
 .entry__title {
-	font-size: 1.8em;
+	font-size: 1.6em;
 	line-height: 1.5;
 	margin: 0 0 15px;
 	padding: 0;
@@ -1758,12 +1759,23 @@ label {
 	display: none;
 }
 
+.content__wrap {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.content__main {
+	padding: 30px;
+}
+
 .sidebar {
 	-webkit-box-flex: 0;
 	-ms-flex: none;
 	flex: none;
 	width: 360px;
 	margin-left: 30px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 .share-btn__item {

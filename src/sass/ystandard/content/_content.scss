@@ -1,13 +1,27 @@
 .content {
   @at-root {
     & {
-      padding-top: $gutter;
-      padding-bottom: $gutter;
+    }
+
+    .content__wrap {
+      padding-top: get_margin();
+      padding-bottom: get_margin();
     }
 
     .content__main {
       flex: 1 0 0%;
-      padding: $gutter;
+      padding: get_margin();
+      background-color: #fff;
+    }
+    @include media-breakpoint(pc) {
+      .content__wrap {
+        padding-top: get_margin(2);
+        padding-bottom: get_margin(2);
+      }
+
+      .content__main {
+        padding: get_margin(2);
+      }
     }
   }
 }

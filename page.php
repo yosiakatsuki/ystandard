@@ -1,7 +1,7 @@
 <?php
 get_header(); ?>
 <div class="container">
-	<div class="content-area content row">
+	<div class="content-area content__wrap row">
 		<main id="main" class="site-main content__main">
 			<?php
 			while ( have_posts() ) : the_post();
