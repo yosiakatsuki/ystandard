@@ -119,6 +119,7 @@
 - ys_template_the_footer_attr
 - ys_template_the_post_thumbnail
 - ys_template_the_fotter_widget
+- ys_template_the_copyright
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id

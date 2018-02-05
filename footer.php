@@ -18,10 +18,8 @@
 				/**
 				 * copyright
 				 */
+				get_template_part( 'template-parts/footer/footer-copy' );
 			?>
-			<div class="site-info">
-				<?php ys_template_the_copyright(); ?>
-			</div><!-- .site-info -->
 		</div><!-- .container -->
 	</footer><!-- .site-footer -->
 </div><!-- .site -->

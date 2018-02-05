@@ -179,28 +179,6 @@ if( ! function_exists( 'ys_template_the_amp_menu' ) ) {
 
 
 
-//-----------------------------------------------
-//	copyright
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_copyright' ) ) {
-	function ys_template_the_copyright() {
-
-		$copyright = '<p class="copy">Copyright &copy; '.ys_get_setting('ys_copyright_year').' <a href="'. esc_url( home_url( '/' ) ) . '" rel="home">' . get_bloginfo('name') . '</a> All Rights Reserved.</p>';
-		$powered = '<p id="powered">Powered by <a href="https://ja.wordpress.org/" target="_blank" rel="nofollow">WordPress</a> &amp; ';
-		$poweredtheme = '<a href="https://wp-ystandard.com" target="_blank" rel="nofollow">yStandard Theme</a> by <a href="https://yosiakatsuki.net/blog/" target="_blank" rel="nofollow">yosiakatsuki</a></p>';
-
-		$copyright = apply_filters('ys_copyright',$copyright);
-		$powered = apply_filters('ys_poweredby',$powered);
-		$poweredtheme = apply_filters('ys_poweredby_theme',$poweredtheme);
-
-		echo $copyright.$powered.$poweredtheme;
-	}
-}
-
-
-
-
-
 
 
 //------------------------------------------------------------------------------

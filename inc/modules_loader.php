@@ -92,6 +92,10 @@ require_once get_template_directory() . '/inc/sns/subscribe.php';
  */
 require_once get_template_directory() . '/inc/author/author.php';
 /**
+ * copyright
+ */
+require_once get_template_directory() . '/inc/copyright/copyright.php';
+/**
  * AMP
  */
 require_once get_template_directory() . '/inc/amp/amp-util.php';

@@ -223,6 +223,7 @@
 .site__footer {
 	padding-top: 15px;
 	padding-bottom: 15px;
+	font-size: .9em;
 }
 
 a {
@@ -242,7 +243,6 @@ a:hover {
 }
 
 .footer-nav {
-	font-size: .9em;
 	margin-top: 15px;
 }
 
@@ -267,12 +267,21 @@ a:hover {
 	width: 3em;
 	padding: 1em;
 	border-radius: 50%;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	overflow: hidden;
 }
 
 .footer-sns__link:hover {
 	text-decoration: none;
+}
+
+.site__info {
+	margin-top: 30px;
+}
+
+.footer__poweredby {
+	margin-top: .5em;
+	font-size: .9em;
 }
 
 @media screen and (min-width: 600px) {
