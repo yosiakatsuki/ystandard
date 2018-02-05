@@ -517,7 +517,7 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.site-footer'
+							'.site__footer'
 						),
 						array(
 							'background-color' => $footer_bg
@@ -525,8 +525,8 @@ function ys_customizer_inline_css() {
 					);
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.site-footer',
-							'.site-footer a, .site-footer a:hover'
+							'.site__footer',
+							'.site__footer a, .site__footer a:hover'
 						),
 						array(
 							'color' => $footer_font
