@@ -120,6 +120,10 @@
 - ys_template_the_post_thumbnail
 - ys_template_the_fotter_widget
 - ys_template_the_copyright
+- ys_admin_add_post_option
+- ys_admin_save_post_option
+- ys_utilities_save_post_option_checkbox
+- ys_utilities_sanitize_checkbox_post_option
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id

@@ -585,9 +585,11 @@ code {
 }
 
 pre {
-	border: 1px solid #bdc3c7;
+	background-color: #fafafa;
 	padding: 15px;
 	overflow: auto;
+	font-size: .8em;
+	line-height: 1.4;
 }
 
 pre code {
@@ -1025,11 +1027,12 @@ label {
 }
 
 .content__main {
-	-webkit-box-flex: 1;
-	-ms-flex: 1 0 0%;
-	flex: 1 0 0%;
+	-webkit-box-flex: 0;
+	-ms-flex: none;
+	flex: none;
 	padding: 15px;
 	background-color: #fff;
+	max-width: 800px;
 }
 
 .sidebar {
@@ -1058,6 +1061,10 @@ label {
 
 .entry__update {
 	margin-left: .5em;
+}
+
+.entry__content {
+	overflow: hidden;
 }
 
 .entry__footer > * {

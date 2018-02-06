@@ -29,6 +29,14 @@
 - file: inc/advertisement/advertisement.php
 - description: 広告のコード共通フォーマット編集用フィルタ
 
+### ys_get_ad_entry_header
+- file: inc/advertisement/advertisement.php
+- description: 記事上広告のコード編集用フィルタ
+
+### ys_get_ad_more_tag
+- file: inc/advertisement/advertisement.php
+- description: 記事moreタグ部分の広告のコード編集用フィルタ
+
 ### ys_get_ad_entry_footer
 - file: inc/advertisement/advertisement.php
 - description: 記事下広告のコード編集用フィルタ
@@ -68,6 +76,14 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: アイキャッチ画像の出力有無の編集用フィルタ
 
+### ys_is_active_entry_header_share
+- file: inc/conditional-branch/conditional-branch.php
+- description: 記事先頭シェアボタンの出力有無の編集用フィルタ
+
+### ys_is_active_entry_footer_share
+- file: inc/conditional-branch/conditional-branch.php
+- description: 記事下シェアボタンの出力有無の編集用フィルタ
+
 ### ys_is_active_entry_footer_widget
 - file: inc/conditional-branch/conditional-branch.php
 - description: 記事下ウィジェットの出力有無の編集用フィルタ
@@ -79,6 +95,10 @@
 ### ys_is_active_footer_widgets
 - file: inc/conditional-branch/conditional-branch.php
 - description: フッターウィジェットの出力有無の編集用フィルタ
+
+### ys_is_active_advertisement
+- file: inc/conditional-branch/conditional-branch.php
+- description: 広告の出力有無の編集用フィルタ
 
 
 ## head

@@ -12,7 +12,7 @@
 			get_template_part( 'template-parts/entry/entry-header' );
 		?>
 	</header><!-- .entry-header -->
-	<div class="entry-content entry__content">
+		<div class="entry-content entry__content">
 		<?php
 			the_content();
 			wp_link_pages( array(
@@ -31,4 +31,4 @@
 			get_template_part( 'template-parts/entry/entry-footer' );
 		?>
 	</footer><!-- .entry__footer -->
-</article>
+</article><!-- #post-## -->

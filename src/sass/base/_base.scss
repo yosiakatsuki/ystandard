@@ -83,10 +83,11 @@ code {
 }
 
 pre {
-
-  border: 1px solid $border-color-gray;
+  background-color: $bg-color-gray;
   padding: 15px;
   overflow: auto;
+  font-size: .8em;
+  line-height: 1.4;
 
   code {
     background-color: transparent;

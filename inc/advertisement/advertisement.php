@@ -24,6 +24,28 @@ if( ! function_exists( 'ys_get_ad_block_html' ) ) {
 	}
 }
 /**
+ * 記事上広告の取得
+ */
+if( ! function_exists( 'ys_get_ad_entry_header' ) ) {
+	function ys_get_ad_entry_header() {
+		$key = 'ys_advertisement_under_title';
+		if( ys_is_mobile() ){
+			$key = 'ys_advertisement_under_title_sp';
+		}
+		if( ys_is_amp() ){
+			$key = 'ys_amp_advertisement_under_title';
+		}
+		$ad = '';
+		$ad = ys_get_option( $key );
+		return apply_filters( 'ys_get_ad_entry_header', ys_get_ad_block_html( $ad ) );
+	}
+}
+function ys_the_ad_entry_header() {
+	if( ys_is_active_advertisement() ) {
+		echo ys_get_ad_entry_header();
+	}
+}
+/**
  * moreタグ広告の取得
  */
 if( ! function_exists( 'ys_get_ad_more_tag' ) ) {
@@ -38,6 +60,11 @@ if( ! function_exists( 'ys_get_ad_more_tag' ) ) {
 		$ad = '';
 		$ad = ys_get_option( $key );
 		return apply_filters( 'ys_get_ad_more_tag', ys_get_ad_block_html( $ad ) );
+	}
+}
+function ys_the_ad_more_tag() {
+	if( ys_is_active_advertisement() ) {
+		echo ys_get_ad_more_tag();
 	}
 }
 /**
@@ -82,5 +109,10 @@ if( ! function_exists( 'ys_get_ad_entry_footer' ) ) {
 			}
 		}
 		return apply_filters( 'ys_get_ad_entry_footer', ys_get_ad_block_html( $ad ) );
+	}
+}
+function ys_the_ad_entry_footer() {
+	if( ys_is_active_advertisement() ) {
+		echo ys_get_ad_entry_footer();
 	}
 }

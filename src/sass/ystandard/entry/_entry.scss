@@ -22,7 +22,9 @@
     .entry__update {
       margin-left: .5em;
     }
-
+    .entry__content {
+      overflow: hidden;
+    }
     .entry__footer > * {
       margin-top: get_margin(2);
     }

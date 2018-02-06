@@ -9,9 +9,10 @@
     }
 
     .content__main {
-      flex: 1 0 0%;
+      flex: none;
       padding: get_margin();
       background-color: #fff;
+      max-width: $contents-width;
     }
     @include media-breakpoint(pc) {
       .content__wrap {
