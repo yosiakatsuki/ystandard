@@ -557,10 +557,6 @@ p {
 	margin: 1.5em 0 0;
 }
 
-p:first-child {
-	margin: 0;
-}
-
 ul,
 ol {
 	margin-left: 1.5em;
@@ -574,21 +570,23 @@ dd {
 	margin-left: 0;
 }
 
-blockquote :last-child {
+blockquote *:last-child {
 	margin-bottom: 0;
 }
 
 code {
 	background-color: #fafafa;
-	border-radius: 2px;
-	padding: 2px 6px;
+	border-radius: 3px;
+	padding: 2px 4px;
+	font-size: .9em;
+	letter-spacing: normal;
 }
 
 pre {
 	background-color: #fafafa;
 	padding: 15px;
 	overflow: auto;
-	font-size: .8em;
+	font-size: .9em;
 	line-height: 1.4;
 }
 
@@ -1030,9 +1028,10 @@ label {
 	-webkit-box-flex: 0;
 	-ms-flex: none;
 	flex: none;
+	width: 100%;
+	max-width: 800px;
 	padding: 15px;
 	background-color: #fff;
-	max-width: 800px;
 }
 
 .sidebar {
@@ -1579,6 +1578,10 @@ label {
 	text-decoration: none;
 }
 
+.twitter-tweet {
+	margin: 1.5em 0 0;
+}
+
 .share-btn__list {
 	margin: 0 -1px;
 }
@@ -1630,6 +1633,149 @@ label {
 
 .sns-icon--left {
 	margin-right: 5px;
+}
+
+blockquote,
+figure,
+hr,
+pre,
+table,
+iframe,
+video {
+	margin: 1.5em 0 0;
+}
+
+h1,
+h2 {
+	margin: 5em 0 1em;
+	font-size: 1.5em;
+}
+
+h3 {
+	margin: 4.5em 0 1em;
+	font-size: 1.4em;
+}
+
+h4 {
+	margin: 4em 0 1em;
+	font-size: 1.3em;
+}
+
+h5 {
+	margin: 3.5em 0 1em;
+	font-size: 1.2em;
+}
+
+h6 {
+	margin: 3em 0 1em;
+	font-size: 1.2em;
+}
+
+h1 + h2,
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 {
+	margin-top: 2em;
+}
+
+blockquote {
+	position: relative;
+	padding: 15px;
+	background-color: #fafafa;
+	border-left: 2px solid #bdc3c7;
+	color: #939393;
+	font-size: .95em;
+}
+
+blockquote:after {
+	position: absolute;
+	content: "”";
+	top: 7.5px;
+	right: 7.5px;
+	font-family: sans-serif;
+	font-size: 5em;
+	line-height: 1;
+	opacity: .1;
+}
+
+blockquote a {
+	text-decoration: underline;
+}
+
+blockquote cite {
+	font-size: .9em;
+}
+
+blockquote cite::before {
+	content: "-";
+	margin-right: 5px;
+}
+
+table {
+	width: 100%;
+	table-layout: fixed;
+	border-top: 1px solid #bdc3c7;
+	border-left: 1px solid #bdc3c7;
+	border-collapse: collapse;
+}
+
+tr {
+	border-bottom: 1px solid #bdc3c7;
+}
+
+td,
+th {
+	padding: .5em;
+	border-right: 1px solid #bdc3c7;
+}
+
+th {
+	background-color: #fafafa;
+}
+
+ul,
+ol,
+dl {
+	margin-top: 1.5em;
+}
+
+ul li,
+ol li {
+	padding: .1em 0;
+}
+
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+	margin-top: 0;
+}
+
+ul ul li:last-child,
+ul ol li:last-child,
+ol ul li:last-child,
+ol ol li:last-child {
+	padding: .1em 0 0;
+}
+
+dt {
+	margin: 1em 0 .1em;
+}
+
+dd {
+	margin: 0 0 .2em 1em;
+}
+
+figcaption {
+	padding: .1em .5em .5em;
+	color: #939393;
+	font-size: .9em;
+	font-style: italic;
+}
+
+.widget-title {
+	margin-top: 0;
 }
 
 @media screen and (min-width: 600px) {

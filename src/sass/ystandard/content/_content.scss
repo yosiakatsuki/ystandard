@@ -10,9 +10,10 @@
 
     .content__main {
       flex: none;
+      width: 100%;
+      max-width: $contents-width;
       padding: get_margin();
       background-color: #fff;
-      max-width: $contents-width;
     }
     @include media-breakpoint(pc) {
       .content__wrap {

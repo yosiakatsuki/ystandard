@@ -31,10 +31,20 @@
   }
 }//@each
 
+//
+//  SNSボタン共通
+//
 [class*="sns__btn-"] {
   text-decoration: none;
   transition: all .3s;
   &:hover {
     text-decoration: none;
   }
+}
+
+//
+//  SNS埋め込み
+//
+.twitter-tweet {
+  margin: 1.5em 0 0;
 }
