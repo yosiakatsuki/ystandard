@@ -20,6 +20,7 @@
     }
     .header__dscr {
       font-size: .8em;
+      margin: 0;
     }
 
     // screen
@@ -29,7 +30,7 @@
         @include flex;
         justify-content: space-between;
       }
-      
+
     }
 
   }// at-root

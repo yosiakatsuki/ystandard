@@ -297,6 +297,25 @@
 - description: get_post_meta結果の編集フィルタ
 
 
+## breadcrumbs
+
+### ys_get_breadcrumbs
+- file: inc/breadcrumbs/breadcrumbs.php
+- description: パンくずリスト用配列編集フィルタ
+
+### ys_set_breadcrumb_item
+- file: inc/breadcrumbs/breadcrumbs.php
+- description: パンくずリスト用配列作成処理フィルタ
+
+### ys_get_breadcrumb_ancestors
+- file: inc/breadcrumbs/breadcrumbs.php
+- description: パンくずリスト用 親項目取得・並び替え結果 処理フィルタ
+
+### ys_set_breadcrumb_ancestors
+- file: inc/breadcrumbs/breadcrumbs.php
+- description: パンくずリスト用 親項目取得・並び替え結果セット 処理フィルタ
+
+
 ## customizer-color
 
 ### ys_customize_css

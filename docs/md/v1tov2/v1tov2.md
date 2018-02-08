@@ -159,3 +159,7 @@
 - ys_get_the_convert_amp_img
 - ys_biography_template
 - ys_the_footer_attr
+
+## 削除されたアクション
+- ys_breadcrumb_prepend
+- ys_breadcrumb_append

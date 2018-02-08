@@ -44,8 +44,10 @@
 			</div><!-- .row -->
 		</div><!-- .header__container -->
 	</header><!-- .header .site-header -->
-	<?php
-		// パンくず
-		ys_breadcrumb();
-	?>
 	<div id="content" class="site-content site__content">
+		<?php
+		/**
+		* パンくず リスト
+		*/
+		get_template_part( 'template-parts/breadcrumbs/breadcrumbs' );
+		?>

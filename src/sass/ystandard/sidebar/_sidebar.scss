@@ -1,14 +1,14 @@
 .sidebar {
   @at-root {
     & {
-      padding: get_margin();
+      padding: get_margin() 0;
     }
 
     @include media-breakpoint(pc) {
       & {
         flex: 0 0 auto;
         width: $sidebar-width;
-        margin-left: get_margin(2);
+        padding: 0 get_margin(2);
       }
     }
   }

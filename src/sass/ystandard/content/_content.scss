@@ -1,28 +1,30 @@
 .site__content {
   @at-root {
     & {
+      margin-top: get_margin();
+      margin-bottom: get_margin();
     }
 
     .content__wrap {
-      padding-top: get_margin();
-      padding-bottom: get_margin();
+      @include flex;
     }
 
     .content__main {
       flex: none;
       width: 100%;
       max-width: $contents-max-width;
-      padding: get_margin();
       background-color: #fff;
+      padding: 0 0 get_margin();
     }
     @include media-breakpoint(pc) {
-      .content__wrap {
-        padding-top: get_margin(2);
-        padding-bottom: get_margin(2);
+      & {
+        margin-top: get_margin(2);
+        margin-bottom: get_margin(2);
       }
 
       .content__main {
-        padding: get_margin();
+        padding: get_margin(2) ( get_margin(2) - 1px ) ;
+        border: 1px solid $border-color-light;
       }
     }
   }

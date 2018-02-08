@@ -94,6 +94,10 @@ require_once get_template_directory() . '/inc/sns/subscribe.php';
  */
 require_once get_template_directory() . '/inc/author/author.php';
 /**
+ * パンくずリスト
+ */
+require_once get_template_directory() . '/inc/breadcrumbs/breadcrumbs.php';
+/**
  * copyright
  */
 require_once get_template_directory() . '/inc/copyright/copyright.php';
@@ -131,9 +135,6 @@ require_once get_template_directory() . '/inc/template-tags.php';
 require_once get_template_directory() . '/inc/custom-comment.php';
 // ページネーション
 require_once get_template_directory() . '/inc/pagination.php';
-// パンくずリスト
-require_once get_template_directory() . '/inc/breadcrumb.php';
-
 
 
 

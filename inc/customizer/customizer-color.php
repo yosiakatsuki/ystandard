@@ -322,8 +322,7 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.color__font-main',
-							'.color__font-main:hover'
+							'.color__font-main'
 						),
 						array(
 							'color' => $html_font

@@ -1,7 +1,7 @@
 <?php
 get_header(); ?>
 <div class="container">
-	<section class="content-area content__wrap row">
+	<section class="content-area content__wrap">
 		<main id="main" class="site-main content__main">
 		<?php if ( have_posts() ) : ?>
 			<header class="page-header archive__header">

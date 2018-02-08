@@ -1,0 +1,305 @@
+<?php
+/**
+ * パンくずリスト
+ * 参考：https://github.com/inc2734/wp-breadcrumbs
+ */
+function ys_get_breadcrumbs() {
+	$items = array();
+	$show_on_front = get_option( 'show_on_front' );
+	$page_on_front = get_option( 'page_on_front' );
+	$page_for_posts = get_option( 'page_for_posts' );
+	/**
+	 * Front-page or Home
+	 */
+	$label = __( 'Home', 'ystandard' );
+	if( is_front_page() ){
+		if ( $page_on_front ){
+			$label = get_the_title( $page_on_front );
+		}
+		$items = ys_set_breadcrumb_item( $items, $label );
+		return apply_filters( 'ys_get_breadcrumbs', $items );
+	}
+	$items = ys_set_breadcrumb_item( $items, $label, home_url( '/' ) );
+	/**
+	 * Page for posts
+	 */
+	$item = ys_get_page_for_posts_name( $items, $show_on_front, $page_for_posts );
+	if( $item ){
+		$items = $item;
+	}
+	/**
+	 * ページ属性ごと
+	 */
+	if( is_404() ) {
+		/**
+		 * 404 not found
+		 */
+		$items = ys_set_breadcrumb_item( $items, __( 'Page not found', 'ystandard' ) );
+	} elseif( is_search() ) {
+		/**
+		 * search
+		 */
+		$items = ys_set_breadcrumb_item(
+							$items,
+							sprintf(
+									__( 'Search results of "%1$s"', 'ystandard' ),
+									get_search_query()
+								)
+						);
+	} elseif( is_tax() ) {
+		/**
+		* taxonomy
+		*/
+		$taxonomy = get_query_var( 'taxonomy' );
+		$term = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
+		$taxonomy_objects = get_taxonomy( $taxonomy );
+		$post_type = array_shift( $post_types );
+		if ( $post_type ) {
+			$post_type_object = get_post_type_object( $post_type );
+			$label = $post_type_object->label;
+			if ( $post_type_object->has_archive ) {
+				$items = ys_set_breadcrumb_item( $items, $label, get_post_type_archive_link( $post_type ) );
+			}
+		}
+		if ( is_taxonomy_hierarchical( $taxonomy ) && $term->parent ) {
+			$items = ys_set_breadcrumb_ancestors( $items, $term->term_id, $taxonomy );
+		}
+		$items = ys_set_breadcrumb_item( $items, $term->name );
+	} elseif( is_attachment() ) {
+		/**
+		* attachment
+		*/
+		$items = ys_set_breadcrumb_item( $items, get_the_title() );
+	} elseif( is_page() ){
+		/**
+		* Page
+		*/
+		$items = ys_set_breadcrumb_ancestors( $items, get_the_ID(), 'page' );
+		$items = ys_set_breadcrumb_item( $items, get_the_title() );
+	} elseif( is_post_type_archive() ) {
+		/**
+		* post_type_archive
+		*/
+		$post_type = ys_get_post_type();
+		if ( $post_type && 'post' !== $post_type ) {
+			$post_type_object = get_post_type_object( $post_type );
+			$label = $post_type_object->label;
+			$items = ys_set_breadcrumb_item( $items, $label );
+		}
+	} elseif( is_single() ){
+		/**
+		* single
+		*/
+		$post_type = ys_get_post_type();
+		if ( $post_type && 'post' !== $post_type ) {
+			$post_type_object = get_post_type_object( $post_type );
+			$label = $post_type_object->label;
+			$taxonomies = $post_type_object->taxonomies;
+			$taxonomy = array_shift( $taxonomies );
+			$terms    = get_the_terms( get_the_ID(), $taxonomy );
+			$items = ys_set_breadcrumb_item(
+										$items,
+										$label,
+										get_post_type_archive_link( $post_type )
+									);
+			if( $terms ){
+				$term = array_shift( $terms );
+				$items = ys_set_breadcrumb_ancestors( $items, $term->term_id, $taxonomy );
+				$items = ys_set_breadcrumb_item( $items, $term->name, get_term_link( $term ) );
+			}
+		} else {
+			$categories = get_the_category( get_the_ID() );
+			$category = $categories[0];
+			$items = ys_set_breadcrumb_ancestors( $items, $category->term_id, 'category' );
+			$link = get_term_link( $category );
+			if( is_wp_error( $link ) ) {
+				$link = '';
+			}
+			$items = ys_set_breadcrumb_item( $items, $category->name, $link );
+		}
+		$items = ys_set_breadcrumb_item( $items, get_the_title() );
+	} elseif( is_category() ) {
+		/**
+		 * category
+		 */
+		$category_name = single_cat_title( '', false );
+		$category_id   = get_cat_ID( $category_name );
+		$items = ys_set_breadcrumb_ancestors( $items, $category_id, 'category' );
+		$items = ys_set_breadcrumb_item( $items, $category_name );
+	} elseif( is_tag() ) {
+		/**
+		 * tag
+		 */
+		$items = ys_set_breadcrumb_item( $items, single_tag_title( '', false ) );
+	} elseif( is_author() ) {
+		/**
+		 * author
+		 */
+		$author_id = get_query_var( 'author' );
+		$items = ys_set_breadcrumb_item( $items, ys_get_author_display_name( $author_id ) );
+	} elseif( is_day() ) {
+		/**
+		 * day
+		 */
+		$year = get_query_var( 'year' );
+		if ( $year ) {
+			$month = get_query_var( 'monthnum' );
+			$day   = get_query_var( 'day' );
+		} else {
+			$ymd   = get_query_var( 'm' );
+			$year  = substr( $ymd, 0, 4 );
+			$month = substr( $ymd, 4, 2 );
+			$day   = substr( $ymd, -2 );
+		}
+		$items = ys_set_breadcrumb_year( $items, $year );
+		$items = ys_set_breadcrumb_month( $items, $year, $month );
+		$items = ys_set_breadcrumb_day( $items, $day );
+	} elseif( is_month() ) {
+		/**
+		 * month
+		 */
+		$year = get_query_var( 'year' );
+		if ( $year ) {
+			$month = get_query_var( 'monthnum' );
+		} else {
+			$ymd   = get_query_var( 'm' );
+			$year  = substr( $ymd, 0, 4 );
+			$month = substr( $ymd, -2 );
+		}
+		$items = ys_set_breadcrumb_year( $items, $year );
+		$items = ys_set_breadcrumb_month( $items, $year, $month, false );
+	} elseif( is_year() ) {
+		/**
+		 * year
+		 */
+		$year = get_query_var( 'year' );
+		if ( ! $year ) {
+			$ymd  = get_query_var( 'm' );
+			$year = $ymd;
+		}
+		$items = ys_set_breadcrumb_year( $items, $year, false );
+	} elseif( is_home() ) {
+		/**
+		 * Home
+		 */
+		if ( 'page' === $show_on_front && $page_for_posts ) {
+			$items = ys_set_breadcrumb_item( $items, get_the_title( $page_for_posts ) );
+		}
+	}
+	return apply_filters( 'ys_get_breadcrumbs', $items );
+}
+
+/**
+ * パンくず用配列セット
+ */
+function ys_set_breadcrumb_item( $items, $title, $link = '' ){
+	if( empty( $link ) ){
+		$link = '';
+	}
+	$items[] = array(
+					'title' => $title,
+					'link'   => $link
+				);
+	return apply_filters( 'ys_set_breadcrumb_item', $items, $title, $link );
+}
+/**
+ * フロントページ指定がある時の一覧ページタイトル
+ */
+function ys_get_page_for_posts_name( $items, $show_on_front, $page_for_posts ) {
+	$post_type = ys_get_post_type();
+	if( ( is_single() && 'post' === $post_type ) || is_date() || is_author() || is_category() || is_tax() ){
+		if ( 'page' === $show_on_front && $page_for_posts ) {
+				return ys_set_breadcrumb_item(
+							$items,
+							get_the_title( $page_for_posts ),
+							get_permalink( $page_for_posts )
+						);
+			}
+	}
+	return false;
+}
+/**
+ * 親の取得と並び替え
+ */
+function ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type = '' ){
+	$ancestors = get_ancestors( $object_id, $object_type, $resource_type );
+	krsort( $ancestors );
+	return apply_filters( 'ys_get_breadcrumb_ancestors', $ancestors, $object_id, $object_type, $resource_type );
+}
+/**
+ * Set ancestors and krsort
+ */
+function ys_set_breadcrumb_ancestors( $items, $object_id, $object_type, $resource_type = '' ){
+	$ancestors = ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type );
+	foreach ( $ancestors as $ancestor_id ) {
+		if( 'page' == $object_type ){
+			$items = ys_set_breadcrumb_item(
+									$items,
+									get_the_title( $ancestor_id ),
+									get_permalink( $ancestor_id )
+								);
+		} else {
+			$ancestors_term = get_term_by( 'ID', $ancestor_id, $taxonomy );
+			$items = ys_set_breadcrumb_item(
+										$items,
+										$ancestors_term->name,
+										get_term_link( $ancestor_id, $taxonomy )
+									);
+		}
+	}
+	return apply_filters( 'ys_set_breadcrumb_ancestors', $items, $object_id, $object_type, $resource_type );
+}
+/**
+ * 年
+ */
+function ys_set_breadcrumb_year( $items, $year, $link = true ){
+	$label = $year;
+	$url = '';
+	if ( 'ja' === get_locale() ) {
+		$label .= '年';
+	}
+	if( $link ) {
+		$url = get_year_link( $year );
+	}
+	return ys_set_breadcrumb_item( $items, $label, $url );
+}
+/**
+ * 月
+ */
+function ys_set_breadcrumb_month( $items, $year, $month, $link = true ){
+	$label = $month;
+	$url = '';
+	if ( 'ja' === get_locale() ) {
+		$label .= '月';
+	} else {
+			$monthes = array(
+				1  => 'January',
+				2  => 'February',
+				3  => 'March',
+				4  => 'April',
+				5  => 'May',
+				6  => 'June',
+				7  => 'July',
+				8  => 'August',
+				9  => 'September',
+				10 => 'October',
+				11 => 'November',
+				12 => 'December',
+			);
+			$label = $monthes[ $month ];
+	}
+	if( $link ) {
+		$url = get_month_link( $year, $month );
+	}
+	return ys_set_breadcrumb_item( $items, $label, $url );
+}
+/**
+ * 日
+ */
+function ys_set_breadcrumb_day( $items, $day ){
+	$label = $day;
+	if ( 'ja' === get_locale() ) {
+		$label .= '日';
+	}
+	return ys_set_breadcrumb_item( $items, $label );
+}

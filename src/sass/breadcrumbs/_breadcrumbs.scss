@@ -1,0 +1,32 @@
+.breadcrumbs {
+  @at-root {
+
+    & {
+      font-size: .7em;
+      line-height: 2;
+      a {
+        text-decoration: none;
+      }
+    }
+    .breadcrumbs__list {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .breadcrumbs__item {
+      display: inline;
+      &::after {
+        content: "/";
+        margin: 0 5px;
+      }
+      &:last-child::after {
+        content: "";
+        margin: 0;
+      }
+    }
+    @include media-breakpoint(tb) {
+      & {
+      }
+    }
+  }// @
+}
