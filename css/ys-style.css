@@ -165,6 +165,10 @@
 	margin-left: 0;
 }
 
+.footer-sns a:hover {
+	text-decoration: none;
+}
+
 .footer-sns__list {
 	margin: 0 -.1em;
 }
@@ -180,10 +184,6 @@
 	border-radius: 50%;
 	font-size: 1.2em;
 	overflow: hidden;
-}
-
-.footer-sns__link:hover {
-	text-decoration: none;
 }
 
 .site__info {

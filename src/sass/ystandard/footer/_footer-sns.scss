@@ -1,6 +1,14 @@
 .footer-sns {
   @at-root {
 
+    & {
+      a {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
     .footer-sns__list {
       margin: 0 -.1em;
     }
@@ -14,10 +22,8 @@
       border-radius: 50%;
       font-size: 1.2em;
       overflow: hidden;
-      &:hover {
-        text-decoration: none;
-      }
     }
+
 
     @include media-breakpoint(tb) {
     }
