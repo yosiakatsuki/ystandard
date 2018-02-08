@@ -1,39 +1,31 @@
 <?php
 get_header(); ?>
-
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" >
-
+<div class="container">
+	<section class="content-area content__wrap row">
+		<main id="main" class="site-main content__main">
 		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
+			<header class="page-header archive__header">
 				<?php
-					the_archive_title( '<h2 class="page-title">', '</h2>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
+					the_archive_title( '<h2 class="page-title archive__title">', '</h2>' );
+					the_archive_description( '<div class="taxonomy-description archive__dscr color__font-sub">', '</div>' );
 				?>
 			</header><!-- .page-header -->
-
-			<?php
-			// Start the Loop.
-			while ( have_posts() ) : the_post();
-
-				get_template_part( 'template-parts/content', get_post_format() );
-
-			// End the loop.
-			endwhile;
-
-			// ページネーション
-			ys_pagination();
-
-		// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
+			<div class="archive__list">
+				<?php
+					while ( have_posts() ) : the_post();
+						get_template_part( 'template-parts/content/archive' );
+					endwhile;
+					// ページネーション
+					ys_pagination();
+				?>
+			</div><!-- .archive__list -->
+		<?php
+			else :
+				get_template_part( 'template-parts/content/none' );
+			endif;
 		?>
-
 		</main><!-- .site-main -->
+		<?php get_sidebar(); ?>
 	</section><!-- .content-area -->
-
-<?php get_sidebar(); ?>
+</div><!-- .container -->
 <?php get_footer(); ?>

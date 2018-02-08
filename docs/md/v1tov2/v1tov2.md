@@ -56,6 +56,7 @@
 - ys_extras_more_tag_replace -> ys_more_tag_replace
 - ys_amp_replace_image -> ys_amp_convert_image
 - ys_utilities_get_the_convert_amp_img -> ys_amp_convert_image
+- ys_extras_body_classes -> ys_body_classes
 
 ## 削除予定の関数
 - ys_settings
@@ -124,6 +125,8 @@
 - ys_admin_save_post_option
 - ys_utilities_save_post_option_checkbox
 - ys_utilities_sanitize_checkbox_post_option
+- ys_template_the_post_categorys
+- ys_utilities_get_the_post_categorys
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id

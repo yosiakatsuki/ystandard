@@ -26,6 +26,7 @@ require_once get_template_directory() . '/inc/option/option.php';
  * utilities
  */
 require_once get_template_directory() . '/inc/util/util.php';
+require_once get_template_directory() . '/inc/util/svg.php';
 /**
  * 投稿タイプ
  */
@@ -78,6 +79,7 @@ require_once get_template_directory() . '/inc/footer/footer-sns.php';
  * フィルター関連
  */
 require_once get_template_directory() . '/inc/filters/content.php';
+require_once get_template_directory() . '/inc/filters/body.php';
 /**
  * 広告
  */
@@ -95,6 +97,10 @@ require_once get_template_directory() . '/inc/author/author.php';
  * copyright
  */
 require_once get_template_directory() . '/inc/copyright/copyright.php';
+/**
+ * カテゴリー関連
+ */
+require_once get_template_directory() . '/inc/category/category.php';
 /**
  * AMP
  */

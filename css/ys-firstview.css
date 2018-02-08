@@ -631,7 +631,7 @@ label {
 
 .container {
 	position: relative;
-	max-width: 1190px;
+	max-width: 1220px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0 15px;
@@ -1029,7 +1029,7 @@ label {
 	-ms-flex: none;
 	flex: none;
 	width: 100%;
-	max-width: 800px;
+	max-width: 830px;
 	padding: 15px;
 	background-color: #fff;
 }
@@ -1050,7 +1050,7 @@ label {
 }
 
 .entry__meta {
-	padding: 1em 0;
+	margin: 1em 0;
 	font-size: .8em;
 }
 
@@ -1090,6 +1090,7 @@ label {
 
 .author__link {
 	text-decoration: none;
+	color: inherit;
 }
 
 .author__dscr {
@@ -1774,6 +1775,107 @@ figcaption {
 	font-style: italic;
 }
 
+.archive__title {
+	margin: 0;
+}
+
+.archive__dscr {
+	padding: 15px 0;
+	font-size: .8em;
+}
+
+.archive__dscr p {
+	margin: .5em 0 0;
+}
+
+.entry-list__thumb-mask {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: transparent;
+	color: transparent;
+	font-size: .9em;
+	font-weight: bold;
+	z-index: -1;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+.entry-list__thumb-mask p {
+	margin: 0;
+}
+
+.entry-list__thumb {
+	position: relative;
+}
+
+.entry-list__thumb:hover .entry-list__thumb-mask {
+	background-color: rgba(0, 0, 0, 0.4);
+	color: #fff;
+	z-index: 2;
+}
+
+.entry-list__figure {
+	margin: 0;
+}
+
+.entry-list__no-img {
+	color: #939393;
+	font-size: 3em;
+}
+
+.entry-list__meta p {
+	margin: 0;
+}
+
+.entry-list__meta i {
+	margin-right: 5px;
+}
+
+.entry-list__title {
+	margin: .5em 0 0;
+	font-size: 1.2em;
+}
+
+.entry-list__excerpt {
+	font-size: .8em;
+}
+
+.entry-list__excerpt p {
+	margin-top: 1em;
+}
+
+.entry-list__author {
+	margin: 1em 0 0;
+}
+
+.entry-list__author-figure,
+.entry-list__author-name {
+	display: inline-block;
+	margin: 0;
+	vertical-align: middle;
+}
+
+.entry-list__author-figure img {
+	width: 24px;
+}
+
+.entry-list__link {
+	color: inherit;
+	text-decoration: none;
+}
+
+.entry-list--list .entry-list {
+	padding: 30px 0;
+	border-bottom: 1px solid #ecf0f1;
+}
+
+.entry-list--list .entry-list:first-child {
+	border-top: 1px solid #ecf0f1;
+}
+
 .widget-title {
 	margin-top: 0;
 }
@@ -1827,6 +1929,34 @@ figcaption {
 
 .entry__footer > * {
 	margin-top: 60px;
+}
+
+.entry-list--list .archive__header {
+	padding: 0 30px;
+}
+
+.entry-list--list .entry-list {
+	padding: 30px;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+.entry-list--list .entry-list:hover {
+	background-color: #fafafa;
+}
+
+.entry-list--list .entry-list__thumb {
+	width: 250px;
+	float: left;
+	margin-right: 30px;
+}
+
+.entry-list--list .entry-list__detail {
+	overflow: hidden;
+}
+
+.entry-list--list .entry-list__meta {
+	margin: 0;
 }
 
 }

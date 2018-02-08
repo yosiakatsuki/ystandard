@@ -352,12 +352,8 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.breadcrumb ol li a',
-							'.breadcrumb ol li::after',
-							'.entry-meta',
-							'.entry-excerpt',
-							'.post-navigation .next-label, .post-navigation .prev-label',
-							'.search-field:placeholder-shown',
+							'.color__font-sub',
+							'input:placeholder-shown',
 						),
 						array(
 							'color' => $html_font_sub
@@ -369,7 +365,7 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.search-field::-webkit-input-placeholder'
+							'input::-webkit-input-placeholder'
 						),
 						array(
 							'color' => $html_font_sub
@@ -377,7 +373,7 @@ function ys_customizer_inline_css() {
 					);
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.search-field:-ms-input-placeholder'
+							'input:-ms-input-placeholder'
 						),
 						array(
 							'color' => $html_font_sub
@@ -385,7 +381,7 @@ function ys_customizer_inline_css() {
 					);
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.search-field::-moz-placeholder'
+							'input::-moz-placeholder'
 						),
 						array(
 							'color' => $html_font_sub

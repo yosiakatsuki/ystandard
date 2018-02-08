@@ -201,68 +201,6 @@ if (!function_exists( 'ys_utilities_get_cat_id_list')) {
 }
 
 
-
-
-
-//-----------------------------------------------
-//	投稿のカテゴリー取得
-//-----------------------------------------------
-if( ! function_exists( 'ys_utilities_get_the_post_categorys' ) ) {
-	function ys_utilities_get_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0,$args=array()) {
-
-		if($postid==0){
-			$postid = get_the_ID();
-		}
-
-		/**
-		 *	引数デフォルト値セット
-		 */
-		$defaults = array(
-			'itemprop' => false,
-		);
-		$args = wp_parse_args($args,$defaults);
-
-		$itemprop = false == $args['itemprop'] ? '' : ' itemprop="keywords"';
-
-		$terms ='';
-		//投稿カテゴリ取得
-		$categories = get_the_category($postid);
-		$count = 0;
-		if($categories){
-			//カテゴリが取得できたら
-			foreach( $categories as $category ) {
-				$terms .= '<span class="'.$category->slug.'"'.$itemprop.' >';
-				//リンクありの場合
-				if($link){
-					$terms .= '<a href="' . get_category_link( $category->term_id ) . '">';
-				}//if($link)
-
-				//カテゴリ名付ける
-				$terms .= $category->cat_name;
-				//リンクありの場合
-				if($link){
-					$terms .= '</a>';
-				}//if($link)
-				$terms .= '</span>';
-
-				//区切り文字
-				$terms .= $separator;
-
-				$count += 1;
-				if($number != 0 && $number <= $count){
-					break;
-				}
-			}//foreach
-		}
-
-		// 投稿のカテゴリーを表示
-		return rtrim($terms,$separator);
-	}//ys_utilities_get_the_post_categorys
-}
-
-
-
-
 //-----------------------------------------------
 //	投稿のタグ一覧取得
 //-----------------------------------------------

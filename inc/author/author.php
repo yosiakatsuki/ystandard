@@ -45,7 +45,7 @@ if ( ! function_exists( 'ys_get_author_name' ) ) {
 		}
 		if( $vcard ) {
 			$author_name = sprintf(
-												'<span class="vcard author"><a class="url fn author__link color__font-main" href="%s">%s</a></span>',
+												'<span class="vcard author"><a class="url fn author__link" href="%s">%s</a></span>',
 												$author_url,
 												$author_name
 										);

@@ -11,7 +11,7 @@
     .content__main {
       flex: none;
       width: 100%;
-      max-width: $contents-width;
+      max-width: $contents-max-width;
       padding: get_margin();
       background-color: #fff;
     }

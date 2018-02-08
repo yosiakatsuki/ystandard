@@ -14,96 +14,6 @@
   余白取得
  */
 
-.card {
-	display: block;
-	height: 100%;
-	text-decoration: none;
-	color: #222;
-	-webkit-box-shadow: 0 1px 1px rgba(189, 195, 199, 0.7);
-	box-shadow: 0 1px 1px rgba(189, 195, 199, 0.7);
-	-webkit-transition: -webkit-transform .4s;
-	transition: -webkit-transform .4s;
-	transition: transform .4s;
-	transition: transform .4s, -webkit-transform .4s;
-}
-
-.card:hover {
-	color: #222;
-	-webkit-transform: translateY(-0.3em);
-	transform: translateY(-0.3em);
-}
-
-.card__img {
-	border-bottom: 1px solid #fafafa;
-}
-
-.card__img img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.card__text {
-	padding: 30px;
-}
-
-.card__text > *:last-child {
-	margin-bottom: 0;
-}
-
-.card__title {
-	font-size: 1.2em;
-	margin-bottom: .5em;
-}
-
-.card__dscr {
-	color: #939393;
-	font-size: .9em;
-	margin-bottom: 1.5em;
-}
-
-.card__tag {
-	list-style: none;
-	margin: 0 0 1em;
-	padding: 0;
-}
-
-.card__tag-item {
-	display: inline-block;
-	background-color: #e9ecef;
-	margin-right: .2em;
-	margin-bottom: .2em;
-	padding: .2em .6em;
-	color: #939393;
-	font-size: .8em;
-}
-
-.content-list,
-.content-list--alternate {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	border-top: 1px solid #bdc3c7;
-}
-
-.content-list__item {
-	margin: 0;
-	padding: 30px 0;
-	border-bottom: 1px solid #bdc3c7;
-	overflow: hidden;
-	zoom: 1;
-}
-
-.content-list__img {
-	text-align: center;
-	margin: 0 0 1em;
-}
-
-.content-list__img img {
-	margin: 0;
-	padding: 0;
-}
-
 .ys-normal {
 	font-size: 1rem;
 }
@@ -227,11 +137,11 @@
 	font-size: .9em;
 }
 
-a {
+.site__footer a {
 	text-decoration: none;
 }
 
-a:hover {
+.site__footer a:hover {
 	text-decoration: underline;
 }
 
@@ -370,40 +280,6 @@ div.aligncenter {
 }
 
 @media screen and (min-width: 600px) {
-
-.content-list__item {
-	padding: 30px;
-}
-
-.content-list__img {
-	width: 250px;
-	margin: 0 1em 0 0;
-	float: left;
-}
-
-.content-list--alternate .content-list__item:nth-child(even) .content-list__img {
-	float: right;
-	margin: 0 0 0 1em;
-}
-
-.content-list__text {
-	overflow: hidden;
-}
-
-.content-list__text > *:last-child {
-	margin-bottom: 0;
-}
-
-.content-list__title {
-	font-size: 1.2em;
-	margin-bottom: .5em;
-}
-
-.content-list__dscr {
-	color: #939393;
-	font-size: .9em;
-	margin-bottom: 1.5em;
-}
 
 .ad__left,
 .ad__right {

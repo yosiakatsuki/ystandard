@@ -1,0 +1,39 @@
+.entry-list--list {
+
+  .entry-list {
+    padding: get_margin(2) 0;
+    border-bottom: 1px solid $border-color-light;
+    &:first-child {
+      border-top: 1px solid $border-color-light;
+    }
+  }
+  .entry-list__thumb {
+
+  }
+  @include media-breakpoint(tb) {
+
+    .archive__header {
+      padding: 0 get_margin(2);
+    }
+
+    .entry-list {
+      padding: get_margin(2);
+      transition: all .3s;
+      &:hover {
+        background-color: $bg-color-gray;
+      }
+    }
+
+    .entry-list__thumb {
+      width: 250px;
+      float: left;
+      margin-right: get_margin(2);
+    }
+    .entry-list__detail {
+      overflow: hidden;
+    }
+    .entry-list__meta {
+      margin: 0;
+    }
+  }
+}

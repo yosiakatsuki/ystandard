@@ -4,11 +4,11 @@
       padding-top: get_margin();
       padding-bottom: get_margin();
       font-size: .9em;
-    }
-    a {
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
+      a {
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
     @include media-breakpoint(tb) {

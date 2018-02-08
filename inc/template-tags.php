@@ -186,14 +186,6 @@ if( ! function_exists( 'ys_template_the_amp_menu' ) ) {
 //	タクソノミー関連の関数
 //
 //------------------------------------------------------------------------------
-//-----------------------------------------------
-//	投稿のカテゴリー出力
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_post_categorys' ) ) {
-	function ys_template_the_post_categorys($number = 0,$link=true,$separator=', ',$postid=0) {
-		echo '<svg class="entry-meta-ico" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20"><path d="M0 4c0-1.1.9-2 2-2h7l2 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2 2v10h16V6H2z"/></svg>'.ys_utilities_get_the_post_categorys($number,$link,$separator,$postid,array('itemprop'=>true));
-	}
-}
 
 
 

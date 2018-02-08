@@ -11,7 +11,8 @@ $gutter              : 15px;
 $contents-width      : 800px;
 $contents-max-width  : $contents-width + ($gutter * 2);
 $sidebar-width       : 300px + ($gutter * 4);
-$container-max-width : $contents-max-width + $sidebar-width;
+$sidebar-margin      : $gutter * 2;
+$container-max-width : $contents-max-width + $sidebar-width + $sidebar-margin;
 
 // 色
 $font-color-main    : #222;
