@@ -30,7 +30,7 @@ function ys_body_classes( $classes ) {
 	/**
 	 * アーカイブレイアウト
 	 */
-	if( is_archive() ){
+	if( is_archive() || is_home() ){
 		$classes[] = 'entry-list--list';
 	}
 
