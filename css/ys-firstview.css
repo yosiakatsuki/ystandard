@@ -1076,6 +1076,14 @@ label {
 	padding: 15px 0;
 }
 
+.sidebar a {
+	text-decoration: none;
+}
+
+.sidebar__fixed {
+	padding-top: 30px;
+}
+
 .entry__title {
 	font-size: 1.6em;
 	line-height: 1.5;
@@ -1101,11 +1109,16 @@ label {
 }
 
 .entry__content {
+	padding: 1.5em 0 1em;
 	overflow: hidden;
 }
 
 .entry__footer > * {
 	margin-top: 30px;
+}
+
+.entry__footer > *:first-child {
+	margin-top: 0;
 }
 
 .author__main {
@@ -1685,6 +1698,16 @@ video {
 	margin: 1.5em 0 0;
 }
 
+blockquote:first-child,
+figure:first-child,
+hr:first-child,
+pre:first-child,
+table:first-child,
+iframe:first-child,
+video:first-child {
+	margin: 0;
+}
+
 h1,
 h2 {
 	margin: 5em 0 1em;
@@ -1915,8 +1938,40 @@ figcaption {
 	border-top: 1px solid #ecf0f1;
 }
 
-.widget-title {
+.widget {
+	margin-top: 30px;
+}
+
+.widget:first-child {
 	margin-top: 0;
+}
+
+.widget ul,
+.widget ol {
+	margin-left: 0;
+	list-style: none;
+}
+
+.widget li ul,
+.widget li ol {
+	margin-left: 1.5em;
+}
+
+.widget-title {
+	font-size: 1.2em;
+	margin-top: 0;
+}
+
+.widget_recent_entries li,
+.widget_categories li,
+.widget_archive li,
+.widget_nav_menu li,
+.widget_pages li {
+	margin: 0 0 .5em;
+}
+
+.widget_calendar a {
+	text-decoration: underline;
 }
 
 @media screen and (min-width: 600px) {

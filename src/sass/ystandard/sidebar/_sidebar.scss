@@ -2,6 +2,13 @@
   @at-root {
     & {
       padding: get_margin() 0;
+
+      a {
+        text-decoration: none;
+      }
+    }
+    .sidebar__fixed {
+      padding-top: get_margin(2);
     }
 
     @include media-breakpoint(pc) {

@@ -153,6 +153,14 @@
 	padding: 15px 0;
 }
 
+.widget_calendar a {
+	text-decoration: underline;
+}
+
+.widget_calendar th {
+	background-color: transparent;
+}
+
 .footer-nav {
 	margin-top: 15px;
 }
@@ -313,6 +321,7 @@ div.aligncenter {
 	-webkit-box-flex: 1;
 	-ms-flex: 1;
 	flex: 1;
+	padding: 15px;
 }
 
 .footer__widget-container:first-child {

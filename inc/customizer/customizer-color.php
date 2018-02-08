@@ -353,6 +353,14 @@ function ys_customizer_inline_css() {
 						array(
 							'.color__font-sub',
 							'input:placeholder-shown',
+							'.sidebar .widget_recent_entries a',
+							'.sidebar .widget_categories a',
+							'.sidebar .widget_archive a',
+							'.sidebar .widget_nav_menu a',
+							'.sidebar .widget_pages a',
+							'.sidebar .widget_meta a',
+							'.sidebar .widget_calendar a',
+							'.sidebar .widget_ys_widgets_ranking a',
 						),
 						array(
 							'color' => $html_font_sub

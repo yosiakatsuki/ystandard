@@ -2,12 +2,12 @@
 <aside id="secondary" class="sidebar sidebar-widget widget-area">
 		<div id="sidebar-wrapper" class="sidebar-wrapper">
 			<?php if ( is_active_sidebar( 'sidebar-widget' ) ): ?>
-				<div id="sidebar-widget" class="clearfix">
+				<div id="sidebar-widget" class="sidebar__widget clearfix">
 					<?php dynamic_sidebar( 'sidebar-widget' ); ?>
 				</div>
 			<?php endif; ?>
 			<?php if ( is_active_sidebar( 'sidebar-fixed' ) ): ?>
-				<div id="sidebar-fixed" class="clearfix">
+				<div id="sidebar-fixed" class="sidebar__fixed clearfix">
 					<?php dynamic_sidebar( 'sidebar-fixed' ); ?>
 				</div>
 			<?php endif; ?>

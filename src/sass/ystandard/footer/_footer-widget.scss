@@ -7,9 +7,20 @@
     .footer__widget-container {
       padding: get_margin() 0;
     }
+    .widget_calendar {
+      a {
+        text-decoration: underline;
+      }
+      th {
+        background-color: transparent;
+      }
+    }
+
+
     @include media-breakpoint(tb) {
       .footer__widget-container {
         flex: 1;
+        padding: get_margin();
         &:first-child {
           padding-left: 0;
         }
