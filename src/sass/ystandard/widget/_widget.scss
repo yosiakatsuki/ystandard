@@ -2,6 +2,7 @@
   @at-root {
     & {
       margin-top: get_margin(2);
+      font-size: .9em;
       &:first-child {
         margin-top: 0;
       }
@@ -17,8 +18,13 @@
       }
     }
     .widget-title {
-      font-size: 1.2em;
+      font-size: 1.3em;
       margin-top: 0;
+    }
+    @include media-breakpoint(pc) {
+      & {
+        margin-top: get_margin(4);
+      }
     }
   }
 }
