@@ -23,10 +23,14 @@
       margin-left: .5em;
     }
     .entry__content {
+      padding: 1.5em 0 1em;
       overflow: hidden;
     }
     .entry__footer > * {
       margin-top: get_margin(2);
+      &:first-child {
+        margin-top: 0;
+      }
     }
 
     @include media-breakpoint(tb) {
