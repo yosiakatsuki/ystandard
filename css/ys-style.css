@@ -138,13 +138,7 @@
 
 .pagination a {
 	color: inherit;
-	-webkit-transition: all .3s;
-	transition: all .3s;
-}
-
-.pagination a:hover {
-	background-color: #292b2c;
-	color: #fff;
+	text-decoration: none;
 }
 
 .pagination__item {
@@ -153,13 +147,37 @@
 	background-color: #e9ecef;
 	margin-right: 5px;
 	text-decoration: none;
+	-webkit-transition: all .3s;
+	transition: all .3s;
 }
 
 .pagination__item:last-child {
 	margin-right: 0;
 }
 
+.pagination__item:hover {
+	background-color: #292b2c;
+	color: #fff;
+}
+
 .pagination__item--current {
+	background-color: #292b2c;
+	color: #fff;
+}
+
+.page-links {
+	margin-top: 1em;
+}
+
+.page-links a {
+	margin-right: 5px;
+}
+
+.page-links a:last-child {
+	margin-right: 0;
+}
+
+.page-links > .page-links__item {
 	background-color: #292b2c;
 	color: #fff;
 }

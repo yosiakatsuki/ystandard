@@ -6,11 +6,7 @@
 
       a {
         color: inherit;
-        transition: all .3s;
-        &:hover {
-          background-color: $bg-color-dark;
-          color: #fff;
-        }
+        text-decoration: none;
       }
     }
     .pagination__item {
@@ -19,8 +15,13 @@
       background-color: $bg-color-dark-gray;
       margin-right: 5px;
       text-decoration: none;
+      transition: all .3s;
       &:last-child {
         margin-right: 0;
+      }
+      &:hover {
+        background-color: $bg-color-dark;
+        color: #fff;
       }
     }
     .pagination__item--current {

@@ -16,11 +16,11 @@
 		<?php
 			the_content();
 			wp_link_pages( array(
-						'before'      => '<div class="page-links">',
-						'after'       => '</div>',
-						'link_before' => '<span class="page-text">',
+						'before'      => '<nav class="page-links pagination flex flex--j-center">',
+						'after'       => '</nav>',
+						'link_before' => '<span class="page-links__item pagination__item flex flex--c-c">',
 						'link_after'  => '</span>',
-						'pagelink'    => '%',
+						'pagelink'    => '<span class="page-links__text">%</span>',
 						'separator'   => '',
 					) );
 		?>
