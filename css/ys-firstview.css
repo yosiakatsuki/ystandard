@@ -1850,7 +1850,7 @@ figcaption {
 	margin: .5em 0 0;
 }
 
-.entry-list__thumb-mask {
+.entry-list__mask {
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -1865,15 +1865,15 @@ figcaption {
 	transition: all .3s;
 }
 
-.entry-list__thumb-mask p {
+.entry-list__mask p {
 	margin: 0;
 }
 
-.entry-list__thumb {
+.entry-list__mask-wrap {
 	position: relative;
 }
 
-.entry-list__thumb:hover .entry-list__thumb-mask {
+.entry-list__mask-wrap:hover .entry-list__mask {
 	background-color: rgba(0, 0, 0, 0.4);
 	color: #fff;
 	z-index: 2;
@@ -2071,7 +2071,7 @@ figcaption {
 	background-color: #fafafa;
 }
 
-.entry-list--list .entry-list__thumb {
+.entry-list--list .entry-list__mask-wrap {
 	width: 250px;
 	float: left;
 	margin-right: 30px;

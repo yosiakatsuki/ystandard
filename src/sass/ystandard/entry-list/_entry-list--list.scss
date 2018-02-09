@@ -7,7 +7,7 @@
       border-top: 1px solid $border-color-light;
     }
   }
-  .entry-list__thumb {
+  .entry-list__mask-wrap {
 
   }
   @include media-breakpoint(tb) {
@@ -21,7 +21,7 @@
       }
     }
 
-    .entry-list__thumb {
+    .entry-list__mask-wrap {
       width: 250px;
       float: left;
       margin-right: get_margin(2);

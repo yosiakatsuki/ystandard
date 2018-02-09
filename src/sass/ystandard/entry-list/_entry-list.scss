@@ -1,6 +1,6 @@
 .entry-list {
   @at-root {
-    .entry-list__thumb-mask {
+    .entry-list__mask {
       position: absolute;
       top:0;
       right: 0;
@@ -16,10 +16,10 @@
         margin: 0;
       }
     }
-    .entry-list__thumb {
+    .entry-list__mask-wrap {
       position: relative;
       &:hover {
-        .entry-list__thumb-mask {
+        .entry-list__mask {
           background-color: rgba(#000,.4);
           color: #fff;
           z-index: 2;
