@@ -36,28 +36,28 @@ if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 		 * タクソノミー
 		 */
 		if( is_single() ) {
-			$templates = wp_parse_args( array( 'taxonomy' => $dir . 'entry-footer-taxonomy' ) ,$templates );
+			$templates['taxonomy'] = $dir . 'entry-footer-taxonomy';
 		}
 		/**
 		 * フッターウィジェット
 		 */
-		$templates = wp_parse_args( array( 'wdget' => $dir . 'entry-footer-wdget' ) ,$templates );
+		$templates['wdget'] = $dir . 'entry-footer-wdget';
 		/**
 		 * 広告
 		 */
-		$templates = wp_parse_args( array( 'ad' => $dir . 'entry-footer-ad' ) ,$templates );
+		$templates['ad'] = $dir . 'entry-footer-ad';
 		/**
 		 * シェアボタン
 		 */
-		$templates = wp_parse_args( array( 'share' => $dir . 'entry-footer-share' ) ,$templates );
+		$templates['share'] = $dir . 'entry-footer-share';
 		/**
 		 * 購読
 		 */
-		$templates = wp_parse_args( array( 'subscribe' => $dir . 'entry-footer-subscribe' ) ,$templates );
+		$templates['subscribe'] = $dir . 'entry-footer-subscribe';
 		/**
 		 * 投稿者表示
 		 */
-		$templates = wp_parse_args( array( 'author' => $dir . 'entry-footer-author' ) ,$templates );
+		$templates['author'] = $dir . 'entry-footer-author';
 		return apply_filters( 'ys_get_entry_footer_template', $templates );
 	}
 }

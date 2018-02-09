@@ -26,7 +26,10 @@ require_once get_template_directory() . '/inc/option/option.php';
  * utilities
  */
 require_once get_template_directory() . '/inc/util/util.php';
-require_once get_template_directory() . '/inc/util/svg.php';
+/**
+ * sanitize
+ */
+require_once get_template_directory() . '/inc/sanitize/sanitize.php';
 /**
  * 投稿タイプ
  */
@@ -127,6 +130,7 @@ require_once get_template_directory() . '/inc/post-view/post-view.php';
  * ページネーション
  */
 require_once get_template_directory() . '/inc/pagination/pagination.php';
+
 
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';

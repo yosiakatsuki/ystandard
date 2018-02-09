@@ -333,12 +333,7 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 						array(
-							'.pagination-list .next, .pagination-list .previous',
-							'.page-links .page-text',
-							'.comment-form input[type=submit]',
-							'.pagination-list li .current',
-							'.page-links .page-text',
-							'.comment-form input[type=submit]'
+							'.color__bg-main',
 						),
 						array(
 							'background-color' => $html_font
@@ -398,7 +393,6 @@ function ys_customizer_inline_css() {
 	$css .= ys_customizer_create_inline_css(
 						array(
 							'.search-field',
-							'.entry-category-list a, .entry-tag-list a'
 						),
 						array(
 							'border-color' => $html_font_sub
@@ -407,7 +401,6 @@ function ys_customizer_inline_css() {
 	$css .= ys_customizer_create_inline_css(
 						array(
 							'.search-submit svg',
-							'.entry-meta svg'
 						),
 						array(
 							'fill' => $html_font_sub
@@ -611,16 +604,16 @@ function ys_customizer_get_default_color( $setting_name ){
  */
 function ys_customizer_get_defaults() {
 	return array(
-						'ys_color_site_bg'             =>'#ffffff',
-						'ys_color_site_font'           =>'#222222',
-						'ys_color_site_font_sub'       =>'#939393',
-						'ys_color_header_bg'           =>'#ffffff',
-						'ys_color_header_font'         =>'#222222',
-						'ys_color_nav_bg_pc'           =>'#ffffff',
-						'ys_color_nav_font_pc'         =>'#939393',
-						'ys_color_nav_bg_sp'           =>'#292b2c',
-						'ys_color_nav_font_sp'         =>'#ffffff',
-						'ys_color_footer_bg'           =>'#292b2c',
-						'ys_color_footer_font'         =>'#ffffff'
+						'ys_color_site_bg'       => '#ffffff',
+						'ys_color_site_font'     => '#222222',
+						'ys_color_site_font_sub' => '#939393',
+						'ys_color_header_bg'     => '#ffffff',
+						'ys_color_header_font'   => '#222222',
+						'ys_color_nav_bg_pc'     => '#ffffff',
+						'ys_color_nav_font_pc'   => '#939393',
+						'ys_color_nav_bg_sp'     => '#292b2c',
+						'ys_color_nav_font_sp'   => '#ffffff',
+						'ys_color_footer_bg'     => '#292b2c',
+						'ys_color_footer_font'   => '#ffffff'
 					);
 }

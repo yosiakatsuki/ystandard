@@ -15,8 +15,8 @@ function ys_add_meta_box() {
 	/**
 	 * 投稿オプション
 	 */
-	add_meta_box( 'ys_add_post_option', 'yStandard投稿オプション', 'ys_admin_post_option', 'post' );
-	add_meta_box( 'ys_add_post_option', 'yStandard投稿オプション', 'ys_admin_post_option', 'page' );
+	add_meta_box( 'ys_add_post_option', 'yStandard投稿オプション', 'ys_add_post_option', 'post' );
+	add_meta_box( 'ys_add_post_option', 'yStandard投稿オプション', 'ys_add_post_option', 'page' );
 }
 add_action( 'admin_menu', 'ys_add_meta_box' );
 /**
@@ -52,19 +52,19 @@ function ys_save_post( $post_id ) {
 		/**
 		 * noindex設定
 		 */
-		ys_utilities_save_post_option_checkbox( $_POST, $post_id, 'ys_noindex' );
+		ys_sanitize_checkbox( $_POST, $post_id, 'ys_noindex' );
 		/**
 		 * 広告非表示設定
 		 */
-		ys_utilities_save_post_option_checkbox( $_POST, $post_id, 'ys_hide_ad' );
+		ys_sanitize_checkbox( $_POST, $post_id, 'ys_hide_ad' );
 		/**
 		 * シェアボタン非表示設定
 		 */
-		ys_utilities_save_post_option_checkbox( $_POST, $post_id, 'ys_hide_share' );
+		ys_sanitize_checkbox( $_POST, $post_id, 'ys_hide_share' );
 		/**
 		 * フォローボタン非表示設定
 		 */
-		ys_utilities_save_post_option_checkbox( $_POST, $post_id, 'ys_hide_follow' );
+		ys_sanitize_checkbox( $_POST, $post_id, 'ys_hide_follow' );
 }
 add_action( 'save_post', 'ys_save_post' );
 /**
