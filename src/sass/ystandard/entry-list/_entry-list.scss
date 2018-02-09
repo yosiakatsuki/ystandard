@@ -12,9 +12,9 @@
       font-weight: bold;
       z-index: -1;
       transition: all .3s;
-      p {
-        margin: 0;
-      }
+    }
+    .entry-list__mask-text {
+      margin: 0;
     }
     .entry-list__mask-wrap {
       position: relative;

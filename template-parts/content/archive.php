@@ -1,5 +1,5 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class( array( 'entry-list', 'clearfix' ) ); ?>>
-	<div class="entry-list__mask-wrap">
+	<div class="entry-list__thumbnail entry-list__mask-wrap">
 		<a href="<?php the_permalink(); ?>" class="entry-list__link">
 			<?php if( has_post_thumbnail() ): ?>
 				<figure class="entry-list__figure">
@@ -10,7 +10,9 @@
 					<i class="fa fa-picture-o" aria-hidden="true"></i>
 				</div><!-- .entry-list__no-img -->
 			<?php endif; ?>
-			<div class="entry-list__mask flex flex--c-c"><p>READ MORE</p></div><!-- .entry-list__mask -->
+			<div class="entry-list__mask flex flex--c-c">
+				<p class="entry-list__mask-text ">READ MORE</p>
+			</div><!-- .entry-list__mask -->
 		</a>
 	</div>
 	<div class="entry-list__detail">

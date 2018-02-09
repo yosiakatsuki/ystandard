@@ -1865,7 +1865,7 @@ figcaption {
 	transition: all .3s;
 }
 
-.entry-list__mask p {
+.entry-list__mask-text {
 	margin: 0;
 }
 
@@ -1986,6 +1986,10 @@ figcaption {
 	overflow: hidden;
 }
 
+.ys-ranking__img {
+	position: relative;
+}
+
 .ys-ranking__img--thumbnail .ys-ranking__list {
 	border-top: 1px solid #ecf0f1;
 }
@@ -1998,6 +2002,8 @@ figcaption {
 .ys-ranking__img--thumbnail .ys-ranking__img {
 	float: left;
 	margin-right: 1em;
+	letter-spacing: normal;
+	font-size: 0.7em;
 }
 
 .ys-ranking__img--thumbnail .ys-ranking__img img {
@@ -2071,7 +2077,7 @@ figcaption {
 	background-color: #fafafa;
 }
 
-.entry-list--list .entry-list__mask-wrap {
+.entry-list--list .entry-list__thumbnail {
 	width: 250px;
 	float: left;
 	margin-right: 30px;

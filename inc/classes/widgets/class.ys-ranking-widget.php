@@ -111,7 +111,7 @@ class YS_Ranking_Widget extends WP_Widget {
 				$post_title = get_the_title();
 
 				$html_post = sprintf(
-											'<li class="ys-ranking__item"><a class="clearfix" href="%s">%s<span class="ys-ranking__title">%s</span></a></li>',
+											'<li class="ys-ranking__item"><a class="entry-list__mask-wrap clearfix" href="%s">%s<span class="ys-ranking__title">%s</span></a></li>',
 											get_the_permalink(),
 											$img,
 											get_the_title()
@@ -196,12 +196,13 @@ class YS_Ranking_Widget extends WP_Widget {
 	private function get_thumbnail( $thumb_type ) {
 		if( has_post_thumbnail() ) {
 			$img = sprintf(
-							'<figure class="ys-ranking__img">%s</figure>',
+							'<div class="ys-ranking__img"><figure>%s</figure>',
 							get_the_post_thumbnail( get_the_ID(), $thumb_type )
 						);
 		} else {
-			$img = '<div class="ys-ranking__img ys-ranking__no-img flex flex--c-c"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
+			$img = '<div class="ys-ranking__img"><div class="ys-ranking__no-img flex flex--c-c"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
 		}
+		$img .= '<div class="entry-list__mask flex flex--c-c"><p class="entry-list__mask-text ">READ MORE</p></div></div>';
 		return apply_filters( 'ys_ranking_widget_image', $img, get_the_ID() );
 	}
 	/**

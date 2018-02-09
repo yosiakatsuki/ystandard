@@ -9,6 +9,9 @@
   font-size: 1.1em;
   overflow: hidden;
 }
+.ys-ranking__img {
+  position: relative;
+}
 //
 // thumbnail
 //
@@ -23,6 +26,8 @@
   .ys-ranking__img {
     float: left;
     margin-right: 1em;
+    letter-spacing: normal;
+    font-size: 0.7em;
     img {
       width: 75px;
     }
