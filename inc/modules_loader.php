@@ -152,10 +152,18 @@ require_once get_template_directory() . '/inc/custom-comment.php';
 
 // 管理画面メニュー
 if( is_admin() ){
+	/**
+	 * テーマ設定画面
+	 */
 	require_once get_template_directory() . '/inc/theme-option/theme-option-add.php';
-	require_once get_template_directory() . '/library/theme-update-checker/theme-update-checker.php';
-	// 管理画面関連
+	/**
+	 * 管理画面関連
+	 */
 	require_once get_template_directory() . '/inc/admin.php';
+	/**
+	 * アップデートチェック
+	 */
+	require_once get_template_directory() . '/inc/update-checker/update-checker.php';
 }
 
 
