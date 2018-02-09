@@ -1975,6 +1975,40 @@ figcaption {
 	text-decoration: underline;
 }
 
+.ys-ranking__item {
+	padding: 0 0 2em;
+}
+
+.ys-ranking__title {
+	display: block;
+	padding: .5em 0 0;
+	font-size: 1.1em;
+	overflow: hidden;
+}
+
+.ys-ranking__img--thumbnail .ys-ranking__list {
+	border-top: 1px solid #ecf0f1;
+}
+
+.ys-ranking__img--thumbnail .ys-ranking__item {
+	padding: 1em 0;
+	border-bottom: 1px solid #ecf0f1;
+}
+
+.ys-ranking__img--thumbnail .ys-ranking__img {
+	float: left;
+	margin-right: 1em;
+}
+
+.ys-ranking__img--thumbnail .ys-ranking__img img {
+	width: 75px;
+}
+
+.ys-ranking__img--thumbnail .ys-ranking__title {
+	padding-top: 0;
+	font-size: 1em;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__2--tb {
@@ -2026,12 +2060,9 @@ figcaption {
 	margin-top: 60px;
 }
 
-.entry-list--list .archive__header {
-	padding: 0 30px;
-}
-
 .entry-list--list .entry-list {
 	padding: 30px;
+	margin: 0 -30px;
 	-webkit-transition: all .3s;
 	transition: all .3s;
 }

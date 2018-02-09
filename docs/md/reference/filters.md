@@ -369,25 +369,44 @@
 ## class.ys-enqueue
 
 ### ys_enqueue_minify_css
-- file: inc/classes/class.ys-styles.php
+- file: inc/classes/class.ys-enqueue.php
 - description: インラインCSSのminify結果の編集フィルタ
 
 ### ys_enqueue_inline_styles
-- file: inc/classes/class.ys-styles.php
+- file: inc/classes/class.ys-enqueue.php
 - description: インラインCSSを作成する前にインライン化するCSSの配列を操作する為のフィルタ
 
 ### ys_enqueue_non_critical_css
-- file: inc/classes/class.ys-styles.php
+- file: inc/classes/class.ys-enqueue.php
 - description: ファーストビュー以外のCSSの配列を操作する為のフィルタ
 
 ### ys_enqueue_onload_scripts
-- file: inc/classes/class.ys-styles.php
+- file: inc/classes/class.ys-enqueue.php
 - description: onloadイベントで読み込むjavascriptの配列を操作する為のフィルタ
 
 ### ys_enqueue_lazyload_scripts
-- file: inc/classes/class.ys-styles.php
+- file: inc/classes/class.ys-enqueue.php
 - description: スクロール発火で読み込むjavascriptの配列を操作する為のフィルタ
 
 ### ys_enqueue_lazyload_css
-- file: inc/classes/class.ys-styles.php
+- file: inc/classes/class.ys-enqueue.php
 - description: スクロール発火で読み込むcssの配列を操作する為のフィルタ
+
+
+## class.ys-ranking-widget
+
+### ys_ranking_widget_option
+- file: inc/classes/class.ys-ranking-widget.php
+- description: ランキングウィジェットのパラメータ編集フィルタ
+
+### ys_ranking_widget_image
+- file: inc/classes/class.ys-ranking-widget.php
+- description: ランキングウィジェットの画像タグ編集フィルタ
+
+### ys_ranking_widget_post
+- file: inc/classes/class.ys-ranking-widget.php
+- description: ランキングウィジェットのリストHTMLタグ編集フィルタ
+
+### ys_ranking_widget_warp
+- file: inc/classes/class.ys-ranking-widget.php
+- description: ランキングウィジェットのラッパーHTMLタグ編集フィルタ

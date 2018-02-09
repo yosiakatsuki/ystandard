@@ -127,6 +127,8 @@
 - ys_utilities_sanitize_checkbox_post_option
 - ys_template_the_post_categorys
 - ys_utilities_get_the_post_categorys
+- ys_utilities_get_cat_id_list
+- ys_utilities_sanitize_checkbox
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id

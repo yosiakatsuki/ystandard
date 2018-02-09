@@ -526,33 +526,3 @@ if ( !function_exists( 'ys_utilities_get_the_link_page' ) ) {
 		return $url;
 	}
 }
-
-
-
-/**
- *
- *	管理画面
- *
- */
-
-
-//------------------------------------------------------------------------------
-//
-//	サニタイズ
-//
-//------------------------------------------------------------------------------
-
-//-----------------------------------------------
-//	チェックボックスのサニタイズ
-//-----------------------------------------------
-if (!function_exists( 'ys_utilities_sanitize_checkbox')) {
-	function ys_utilities_sanitize_checkbox( $value ) {
-		if ( $value == true || $value === 'true' ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-}
-
-?>

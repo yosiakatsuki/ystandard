@@ -119,6 +119,11 @@ require_once get_template_directory() . '/inc/shortcode/shortcode.php';
  * ウィジェット
  */
 require_once get_template_directory() . '/inc/widgets/widgets.php';
+/**
+ * 簡易VPカウント
+ */
+require_once get_template_directory() . '/inc/post-view/post-view.php';
+
 
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';
@@ -127,8 +132,7 @@ require_once get_template_directory() . '/inc/utilities.php';
 
 // フィルタ関連
 require_once get_template_directory() . '/inc/extras.php';
-//簡易VPカウント
-require_once get_template_directory() . '/inc/viewcount.php';
+
 //投稿表示関連
 require_once get_template_directory() . '/inc/template-tags.php';
 // コメント欄

@@ -7,15 +7,22 @@
  *	************************************
  */
 class YS_Ranking_Widget extends WP_Widget {
-
-
+	/**
+	 * タイトル
+	 */
 	private $default_title = '人気記事';
+	/**
+	 * 表示投稿数
+	 */
 	private $default_post_count = 5;
+	/**
+	 * 画像表示有無
+	 */
 	private $default_show_img = 1;
-	private $default_img_width = 75;
-	private $default_img_height = 75;
-
-
+	/**
+	 * 画像サイズ
+	 */
+	private $default_thmbnail_size = 'thumbnail';
 	/**
 	 * ウィジェット名などを設定
 	 */
@@ -23,7 +30,9 @@ class YS_Ranking_Widget extends WP_Widget {
 		parent::__construct(
 			'ys_widgets_ranking', // Base ID
 			'[ys]人気記事ランキング', // Name
-			array( 'description' => '個別記事・カテゴリーアーカイブでは関連するカテゴリーのランキング、それ以外ではサイト全体の人気記事ランキングを表示します', ) // Args
+			array(
+				'description' => '個別記事・カテゴリーアーカイブでは関連するカテゴリーのランキング、それ以外ではサイト全体の人気記事ランキングを表示します'
+			) // Args
 		);
 	}
 
@@ -34,84 +43,96 @@ class YS_Ranking_Widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
-		// outputs the content of the widget
-		extract( $args );
+		//extract( $args );
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : '';
 		$post_count = ( isset($instance['post_count']) ) ? esc_attr($instance['post_count']) : $this->default_post_count;
 		$show_img = ( isset($instance['show_img']) ) ? esc_attr($instance['show_img']) : $this->default_show_img;
-		$img_width = ( isset($instance['img_width']) ) ? esc_attr($instance['img_width']) : $this->default_img_width;
-		$img_height = ( isset($instance['img_height']) ) ? esc_attr($instance['img_height']) : $this->default_img_height;
+		$thumb_type = ( isset($instance['thmbnail_size']) ) ? esc_attr($instance['thmbnail_size']) : $this->default_thmbnail_size;
 
-		echo $before_widget;
-		// ウィジェットタイトル
+		echo $args['before_widget'];
+		/**
+		 * ウィジェットタイトル
+		 */
 		if ( empty( $title ) ) {
 			$title = $this->default_title;
 		}
-		echo $before_title . apply_filters( 'widget_title', $title ). $after_title;
-		// クエリ作成
+		echo $args['before_title'] . apply_filters( 'widget_title', $title ). $args['after_title'];
+		/**
+		 * クエリ作成
+		 */
 		$query = null;
 		$option = null;
-
-		// 投稿とカテゴリーページの場合
-		// カスタムタクソノミー対応は各自でやってください！
-		if(is_single() || is_category()) {
-			// カテゴリーで絞り込む
-			$cat_ids = ys_utilities_get_cat_id_list();
-			// オプションパラメータ作成
-			$option = array('category__in'=>$cat_ids);
-			// 投稿ならば表示中の投稿をのぞく
-			if(is_single()){
+		/**
+		 * 投稿とカテゴリーページの場合
+		 * カスタムタクソノミー対応はそのうち
+		 */
+		if( is_single() || is_category() ) {
+			/**
+			 * カテゴリーで絞り込む
+			 */
+			$cat_ids = ys_get_the_category_id_list();
+			/**
+			 * オプションパラメータ作成
+			 */
+			$option = array( 'category__in' => $cat_ids );
+			/**
+			 * 投稿ならば表示中の投稿をのぞく
+			 */
+			if( is_single() ){
 				global $post;
-				$option = wp_parse_args( array('post__not_in'=>array($post->ID)), $option );
+				$option = wp_parse_args(
+										array(
+											'post__not_in' => array( $post->ID) ),
+											$option
+										);
 			}
 		}
-
-		$option = apply_filters('ys_ranking_widget_option',$option);
-
-		$query = ys_viewcount_get_query_all($post_count,$option);
-
-		// 個別記事・カテゴリーアーカイブで関連記事が取れない場合、全体の人気記事にする
-		if( ( is_single() || is_category() ) && !$query->have_posts()){
+		$option = apply_filters( 'ys_ranking_widget_option', $option, $title );
+		$query = ys_get_post_views_query_all( $post_count, $option );
+		/**
+		 * 個別記事・カテゴリーアーカイブで関連記事が取れない場合、全体の人気記事にする
+		 */
+		if( ( is_single() || is_category() ) && ! $query->have_posts() ){
 			wp_reset_postdata();
-			$query = ys_viewcount_get_query_all($post_count);
+			$query = ys_get_post_views_query_all( $post_count );
 		}
-
 		if( $query -> have_posts() ) {
-			$html_postlist = '';
-				while ($query -> have_posts()) : $query -> the_post();
-					//imgタグ作る
-					$imgtag = '';
-					$img = ys_utilities_get_post_thumbnail('thumbnail');
-					if($show_img && $img) {
-						$img[1] = $img_width;
-						$img[2] = $img_height;
-						$imgtag = '<img src="'.$img[0].'" '.image_hwstring( $img[1], $img[2] ).' alt="'.esc_attr($img[4]).'" />';
+			$html = '';
+			while ( $query -> have_posts() ) {
+				$query->the_post();
+				$img = '';
+				$img_type = 'ys-ranking__img--no-img';
+				if( $show_img ) {
+					$img = $this->get_thumbnail( $thumb_type );
+					$img_type = 'ys-ranking__img--' . $thumb_type;
+				}
+				// HTMLタグ作成
+				$post_url = get_the_permalink();
+				$post_title = get_the_title();
 
-						$imgtag = apply_filters('ys_ranking_widget_image',$imgtag,$img);
-
-					}
-					// HTMLタグ作成
-					$post_url = get_the_permalink();
-					$post_title = get_the_title();
-
-					$html_post = "<li><a class=\"clearfix\" href=\"$post_url\">$imgtag<p>$post_title</p></a></li>";
-					$html_post = apply_filters('ys_ranking_widget_post',$html_post);
-					$html_postlist .= $html_post;
-				endwhile;
-
-			$html_wrap = '<ul class="ys-ranking-list">{post_list}</ul>';
-			$html_wrap = apply_filters('ys_ranking_widget_warp',$html_wrap);
-
-			// 表示
-			echo str_replace('{post_list}',$html_postlist,$html_wrap);
-
+				$html_post = sprintf(
+											'<li class="ys-ranking__item"><a class="clearfix" href="%s">%s<span class="ys-ranking__title">%s</span></a></li>',
+											get_the_permalink(),
+											$img,
+											get_the_title()
+										);
+				$html_post = apply_filters( 'ys_ranking_widget_post', $html_post, get_the_ID() );
+				$html .= $html_post;
+			}
+			$wrap = '<ul class="ys-ranking__list ' . $img_type . '">%s</ul>';
+			$html = sprintf(
+											apply_filters( 'ys_ranking_widget_warp' , $wrap ),
+											$html
+										);
+			/**
+			 * 表示
+			 */
+			echo $html;
 		} else {
 			echo '<p>関連する人気記事はありません</p>';
 		}
 		wp_reset_postdata();
-
-		echo $after_widget;
-
+		echo $args['after_widget'];
 	}
 
 	/**
@@ -124,8 +145,7 @@ class YS_Ranking_Widget extends WP_Widget {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : '';
 		$post_count = ( isset($instance['post_count']) ) ? esc_attr($instance['post_count']) : $this->default_post_count;
 		$show_img = ( isset($instance['show_img']) ) ? esc_attr($instance['show_img']) : $this->default_show_img;
-		$img_width = ( isset($instance['img_width']) ) ? esc_attr($instance['img_width']) : $this->default_img_width;
-		$img_height = ( isset($instance['img_height']) ) ? esc_attr($instance['img_height']) : $this->default_img_height;
+		$thmbnail_size = ( isset($instance['thmbnail_size']) ) ? esc_attr($instance['thmbnail_size']) : $this->default_thmbnail_size;
 
 		?>
 		<p>
@@ -138,12 +158,16 @@ class YS_Ranking_Widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'show_img' ); ?>">
-				<input type="checkbox" id="<?php echo $this->get_field_id( 'show_img' ); ?>" name="<?php echo $this->get_field_name( 'show_img' ); ?>" value="1" <?php checked($show_img,1); ?> />アイキャッチ画像を表示する
+				<input type="checkbox" id="<?php echo $this->get_field_id( 'show_img' ); ?>" name="<?php echo $this->get_field_name( 'show_img' ); ?>" value="1" <?php checked( $show_img, 1 ); ?> />アイキャッチ画像を表示する
 			</label><br />
-			<label for="<?php echo $this->get_field_id( 'img_width' ); ?>" style="display:inline-block;width:82px;">画像表示幅:</label>
-			<input class="small-text" id="<?php echo $this->get_field_id( 'img_width' ); ?>" name="<?php echo $this->get_field_name( 'img_width' ); ?>" type="number" step="10" min="1" value="<?php echo $img_width; ?>" size="10" /><br />
-			<label for="<?php echo $this->get_field_id( 'img_height' ); ?>" style="display:inline-block;width:82px;">画像表示高さ:</label>
-			<input class="small-text" id="<?php echo $this->get_field_id( 'img_height' ); ?>" name="<?php echo $this->get_field_name( 'img_height' ); ?>" type="number" step="10" min="1" value="<?php echo $img_height; ?>" size="10" /><br />
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'thmbnail_size' ); ?>">表示する画像サイズ</label><br />
+			<select name="<?php echo $this->get_field_name( 'thmbnail_size' ); ?>">
+				<?php foreach ( $this->get_image_sizes() as $key => $value ) : ?>
+					<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thmbnail_size ); ?>><?php _e( $key );?> (<?php echo esc_html( $value['width'] ) . ' x ' . esc_html( $value['height'] ) ?>)</option>
+				<?php endforeach; ?>
+			</select>
 		</p>
 		<?php
 	}
@@ -160,10 +184,54 @@ class YS_Ranking_Widget extends WP_Widget {
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 
 		$instance['post_count'] = ( is_numeric( $new_instance['post_count'] ) ) ? (int)$new_instance['post_count'] : $this->default_post_count;
-		$instance['show_img'] = ys_utilities_sanitize_checkbox($new_instance['show_img']);
-		$instance['img_width'] = ( is_numeric( $new_instance['img_width'] ) ) ? (int)$new_instance['img_width'] : $this->default_img_width;
-		$instance['img_height'] = ( is_numeric( $new_instance['img_height'] ) ) ? (int)$new_instance['img_height'] : $this->default_img_height;
+		$instance['show_img'] = $this->sanitize_checkbox( $new_instance['show_img'] );
+		$instance['thmbnail_size'] = ( ! empty( $new_instance['thmbnail_size'] ) ) ? $new_instance['thmbnail_size'] : $this->default_thmbnail_size;
 
 		return $instance;
+	}
+
+	/**
+	 * 画像タグ作成
+	 */
+	private function get_thumbnail( $thumb_type ) {
+		if( has_post_thumbnail() ) {
+			$img = sprintf(
+							'<figure class="ys-ranking__img">%s</figure>',
+							get_the_post_thumbnail( get_the_ID(), $thumb_type )
+						);
+		} else {
+			$img = '<div class="ys-ranking__img ys-ranking__no-img flex flex--c-c"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
+		}
+		return apply_filters( 'ys_ranking_widget_image', $img, get_the_ID() );
+	}
+	/**
+	 * テーマ内で使える画像サイズ取得
+	 */
+	private function get_image_sizes() {
+		global $_wp_additional_image_sizes;
+		$sizes = array();
+		foreach ( get_intermediate_image_sizes() as $size ) {
+			if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ) ) ) {
+				$sizes[ $size ]['width']  = get_option( "{$size}_size_w" );
+				$sizes[ $size ]['height'] = get_option( "{$size}_size_h" );
+			} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
+				$sizes[ $size ] = array(
+														'width'  => $_wp_additional_image_sizes[ $size ]['width'],
+														'height' => $_wp_additional_image_sizes[ $size ]['height']
+													);
+
+			}
+		}
+		return $sizes;
+	}
+	/**
+	 * チェックボックスのサニタイズ
+	 */
+	private function sanitize_checkbox( $value ) {
+		if ( $value == true || $value === 'true' ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

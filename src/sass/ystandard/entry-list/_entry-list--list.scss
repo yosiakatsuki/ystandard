@@ -12,12 +12,9 @@
   }
   @include media-breakpoint(tb) {
 
-    .archive__header {
-      padding: 0 get_margin(2);
-    }
-
     .entry-list {
       padding: get_margin(2);
+      margin: 0 ( -1 * get_margin(2) );
       transition: all .3s;
       &:hover {
         background-color: $bg-color-gray;
