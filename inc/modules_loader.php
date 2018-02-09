@@ -123,7 +123,10 @@ require_once get_template_directory() . '/inc/widgets/widgets.php';
  * 簡易VPカウント
  */
 require_once get_template_directory() . '/inc/post-view/post-view.php';
-
+/**
+ * ページネーション
+ */
+require_once get_template_directory() . '/inc/pagination/pagination.php';
 
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';
@@ -137,8 +140,7 @@ require_once get_template_directory() . '/inc/extras.php';
 require_once get_template_directory() . '/inc/template-tags.php';
 // コメント欄
 require_once get_template_directory() . '/inc/custom-comment.php';
-// ページネーション
-require_once get_template_directory() . '/inc/pagination.php';
+
 
 
 

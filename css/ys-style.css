@@ -131,6 +131,39 @@
 	font-size: 1em;
 }
 
+.pagination {
+	margin-top: 1em;
+	color: #939393;
+}
+
+.pagination a {
+	color: inherit;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+.pagination a:hover {
+	background-color: #292b2c;
+	color: #fff;
+}
+
+.pagination__item {
+	height: 40px;
+	width: 40px;
+	background-color: #e9ecef;
+	margin-right: 5px;
+	text-decoration: none;
+}
+
+.pagination__item:last-child {
+	margin-right: 0;
+}
+
+.pagination__item--current {
+	background-color: #292b2c;
+	color: #fff;
+}
+
 .site__footer {
 	padding-top: 15px;
 	padding-bottom: 15px;

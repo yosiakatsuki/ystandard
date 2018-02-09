@@ -316,6 +316,13 @@
 - description: パンくずリスト用 親項目取得・並び替え結果セット 処理フィルタ
 
 
+## breadcrumbs
+
+### ys_get_pagination
+- file: inc/pagination/pagination.php
+- description: ページネーション用配列編集フィルタ
+
+
 ## customizer-color
 
 ### ys_customize_css

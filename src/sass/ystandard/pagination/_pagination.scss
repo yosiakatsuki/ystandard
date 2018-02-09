@@ -1,0 +1,31 @@
+.pagination {
+  @at-root {
+    & {
+      margin-top: 1em;
+      color: $font-color-gray;
+
+      a {
+        color: inherit;
+        transition: all .3s;
+        &:hover {
+          background-color: $bg-color-dark;
+          color: #fff;
+        }
+      }
+    }
+    .pagination__item {
+      height: 40px;
+      width: 40px;
+      background-color: $bg-color-dark-gray;
+      margin-right: 5px;
+      text-decoration: none;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    .pagination__item--current {
+      background-color: $bg-color-dark;
+      color: #fff;
+    }
+  }// @
+}

@@ -15,8 +15,10 @@ get_header(); ?>
 					while ( have_posts() ) : the_post();
 						get_template_part( 'template-parts/content/archive' );
 					endwhile;
-					// ページネーション
-					ys_pagination();
+					/**
+					 * ページネーション
+					 */
+					get_template_part( 'template-parts/pagination/pagination' );
 				?>
 			</div><!-- .archive__list -->
 		<?php
