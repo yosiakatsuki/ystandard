@@ -3,18 +3,19 @@
 
     & {
       margin-top: get_margin();
+      .widget_calendar {
+        a {
+          text-decoration: underline;
+        }
+        th {
+          background-color: transparent;
+        }
+      }
     }
     .footer__widget-container {
       padding: get_margin() 0;
     }
-    .widget_calendar {
-      a {
-        text-decoration: underline;
-      }
-      th {
-        background-color: transparent;
-      }
-    }
+
 
 
     @include media-breakpoint(tb) {

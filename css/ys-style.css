@@ -149,16 +149,16 @@
 	margin-top: 15px;
 }
 
-.footer__widget-container {
-	padding: 15px 0;
-}
-
-.widget_calendar a {
+.footer__widget .widget_calendar a {
 	text-decoration: underline;
 }
 
-.widget_calendar th {
+.footer__widget .widget_calendar th {
 	background-color: transparent;
+}
+
+.footer__widget-container {
+	padding: 15px 0;
 }
 
 .footer-nav {
