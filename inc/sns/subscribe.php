@@ -12,57 +12,45 @@ if( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 		 * @var [type]
 		 */
 		if( ys_get_option( 'ys_subscribe_url_twitter' ) ) {
-			$arg = array(
-							'Twitter' => array(
-														'class' => 'twitter',
-														'icon' => 'twitter',
-														'text' => 'Twitter',
-														'url' => ys_get_option( 'ys_subscribe_url_twitter' )
-													)
-							);
-			$subscribe = wp_parse_args( $arg, $subscribe );
+			$subscribe['Twitter'] = array(
+																'class' => 'twitter',
+																'icon' => 'twitter',
+																'text' => 'Twitter',
+																'url' => ys_get_option( 'ys_subscribe_url_twitter' )
+															);
 		}
 		/**
 		 * Facebook
 		 */
 		if( ys_get_option( 'ys_subscribe_url_facebook' ) ) {
-			$arg = array(
-							'Facebook' => array(
-															'class' => 'facebook',
-															'icon' => 'facebook',
-															'text' => 'Facebook',
-															'url' => ys_get_option( 'ys_subscribe_url_facebook' )
-														)
-							);
-			$subscribe = wp_parse_args( $arg, $subscribe );
+			$subscribe['Facebook'] = array(
+																'class' => 'facebook',
+																'icon' => 'facebook',
+																'text' => 'Facebook',
+																'url' => ys_get_option( 'ys_subscribe_url_facebook' )
+															);
 		}
 		/**
 		 * Google +
 		 */
 		if( ys_get_option( 'ys_subscribe_url_googleplus' ) ) {
-			$arg = array(
-							'Google+' => array(
-														'class' => 'google-plus',
-														'icon' => 'google-plus',
-														'text' => 'Google+',
-														'url' => ys_get_option( 'ys_subscribe_url_googleplus' )
-													)
-							);
-			$subscribe = wp_parse_args( $arg, $subscribe );
+			$subscribe['Google+'] = array(
+																'class' => 'google-plus',
+																'icon' => 'google-plus',
+																'text' => 'Google+',
+																'url' => ys_get_option( 'ys_subscribe_url_googleplus' )
+															);
 		}
 		/**
 		 * Feedly
 		 */
 		if( ys_get_option( 'ys_subscribe_url_feedly' ) ) {
-			$arg = array(
-							'Feedly' => array(
-														'class' => 'feedly',
-														'icon' => 'feedly',
-														'text' => 'Feedly',
-														'url' => ys_get_option( 'ys_subscribe_url_feedly' )
-													)
-							);
-			$subscribe = wp_parse_args( $arg, $subscribe );
+			$subscribe['Feedly'] = array(
+															'class' => 'feedly',
+															'icon' => 'feedly',
+															'text' => 'Feedly',
+															'url' => ys_get_option( 'ys_subscribe_url_feedly' )
+														);
 		}
 		if( "1" === ys_get_post_meta( 'ys_hide_follow' ) ){
 			$subscribe = array();
