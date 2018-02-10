@@ -103,3 +103,15 @@ function ys_comment_tags( $data ) {
 }
 add_filter( 'comments_open', 'ys_comment_tags' );
 add_filter( 'pre_comment_approved', 'ys_comment_tags' );
+/**
+ * コメントフォームの順番を入れ替える
+ */
+if( ! function_exists( 'ys_comment_form_fields' )){
+	function ys_comment_form_fields( $fields ) {
+		$comment = $fields['comment'];
+		unset( $fields['comment'] );
+		$fields['comment'] = $comment;
+		return $fields;
+	}
+}
+add_filter( 'comment_form_fields', 'ys_comment_form_fields' );

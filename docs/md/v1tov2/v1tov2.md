@@ -63,6 +63,7 @@
 - ys_amp_replace_sns -> ys_amp_convert_sns
 - ys_amp_replace_iframe -> ys_amp_convert_iframe
 - ys_yscomment_wp_list_comments_callback -> ys_wp_list_comments_callback
+- ys_extras_comment_form_fields -> ys_comment_form_fields
 
 ## 削除予定の関数
 - ys_settings
@@ -145,6 +146,7 @@
 - ys_amp_replace_sns
 - ys_amp_replace_iframe
 - ys_yscomment_wp_list_comments_callback
+- ys_extras_comment_form_fields
 
 
 ## 変更されたフィルタ
