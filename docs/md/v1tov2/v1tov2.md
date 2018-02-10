@@ -66,6 +66,8 @@
 - ys_extras_comment_form_fields -> ys_comment_form_fields
 - ys_extras_no_self_ping -> ys_no_self_ping
 - ys_extras_rss_the_post_thumbnail -> ys_rss_add_post_thumbnail
+- ys_extras_site_icon_meta_tags -> ys_site_icon_meta_tags
+- ys_utilities_get_apple_touch_icon_url -> ys_get_apple_touch_icon_url
 
 ## 削除予定の関数
 - ys_settings
@@ -151,7 +153,8 @@
 - ys_extras_comment_form_fields
 - ys_extras_no_self_ping
 - ys_extras_rss_the_post_thumbnail
-
+- ys_extras_site_icon_meta_tags
+- ys_utilities_get_apple_touch_icon_url
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id

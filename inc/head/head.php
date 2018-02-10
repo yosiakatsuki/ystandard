@@ -87,20 +87,60 @@ add_action( 'wp_head', 'ys_the_pingback_url' );
  */
 if( ! function_exists( 'ys_the_apple_touch_icon' ) ){
 	function ys_the_apple_touch_icon() {
-		if ( ! ys_utilities_get_apple_touch_icon_url( 512, '' ) && ! is_customize_preview() ) {
+		if ( ! ys_get_apple_touch_icon_url( 512, '' ) && ! is_customize_preview() ) {
 			return;
 		}
 		printf(
 			'<link rel="apple-touch-icon-precomposed" href="%s" />',
-			esc_url( ys_utilities_get_apple_touch_icon_url( 180 ) )
+			esc_url( ys_get_apple_touch_icon_url( 180 ) )
 		);
 		printf(
 			'<meta name="msapplication-TileImage" content="%s" />',
-			esc_url( ys_utilities_get_apple_touch_icon_url( 270 ) )
+			esc_url( ys_get_apple_touch_icon_url( 270 ) )
 		);
 	}
 }
 add_filter( 'wp_head', 'ys_the_apple_touch_icon' );
+
+/**
+ * apple touch icon用URLを取得
+ */
+if (!function_exists( 'ys_get_apple_touch_icon_url')) {
+	function ys_get_apple_touch_icon_url( $size = 512, $url = '', $blog_id = 0 ) {
+
+		if ( is_multisite() && (int) $blog_id !== get_current_blog_id() ) {
+			switch_to_blog( $blog_id );
+		}
+
+		$site_icon_id = get_option( 'ys_apple_touch_icon' );
+		if ( $site_icon_id ) {
+			if ( $size >= 512 ) {
+				$size_data = 'full';
+			} else {
+				$size_data = array( $size, $size );
+			}
+			$url = wp_get_attachment_image_url( $site_icon_id, $size_data );
+		}
+		if ( is_multisite() && ms_is_switched() ) {
+			restore_current_blog();
+		}
+		return $url;
+	}
+}
+
+/**
+ * サイトアイコン
+ */
+if( ! function_exists( 'ys_site_icon_meta_tags' )){
+	function ys_site_icon_meta_tags( $meta_tags ) {
+		$meta_tags = array(
+				sprintf( '<link rel="icon" href="%s" sizes="32x32" />', esc_url( get_site_icon_url( 32 ) ) ),
+				sprintf( '<link rel="icon" href="%s" sizes="192x192" />', esc_url( get_site_icon_url( 192 ) ) )
+		);
+		return $meta_tags;
+	}
+}
+add_filter( 'site_icon_meta_tags', 'ys_site_icon_meta_tags' );
 
 /**
  * canonicalタグ出力

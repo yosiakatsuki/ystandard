@@ -59,19 +59,7 @@ add_filter('the_content','ys_extras_iframe_responsive');
 
 
 
-/**
- * サイトアイコン
- */
-if( ! function_exists( 'ys_extras_site_icon_meta_tags' )){
-	function ys_extras_site_icon_meta_tags($meta_tags) {
-		$meta_tags = array(
-				sprintf( '<link rel="icon" href="%s" sizes="32x32" />', esc_url( get_site_icon_url( 32 ) ) ),
-				sprintf( '<link rel="icon" href="%s" sizes="192x192" />', esc_url( get_site_icon_url( 192 ) ) )
-		);
-		return $meta_tags;
-	}
-}
-add_filter( 'site_icon_meta_tags', 'ys_extras_site_icon_meta_tags' );
+
 
 
 
