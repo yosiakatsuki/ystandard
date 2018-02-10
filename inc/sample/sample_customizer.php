@@ -1,20 +1,17 @@
 <?php
-//------------------------------------------------------------------------------
-//
-//	テーマカスタマイザー
-//
-//------------------------------------------------------------------------------
-
-
-
-
-//-----------------------------------------------
-//	カスタマイザーサンプル
-//-----------------------------------------------
-if (!function_exists( 'ys_customizer_sample')) {
-	function ys_customizer_sample($wp_customize) {
-
-		// セクションの追加
+/**
+ *
+ * テーマカスタマイザー
+ *
+ */
+/**
+ * カスタマイザーサンプル
+ */
+if ( ! function_exists( 'ys_customizer_sample' ) ) {
+	function ys_customizer_sample( $wp_customize ) {
+		/**
+		 * セクションの追加
+		 */
 		$wp_customize->
 			add_section(
 				'ys_section_name',
@@ -24,8 +21,9 @@ if (!function_exists( 'ys_customizer_sample')) {
 					'description' => "セクションの説明"
 				)
 			);
-
-		// 設定の追加
+		/**
+		 * 設定の追加
+		 */
 		$wp_customize->
 			add_setting(
 				'ys_setting_name',
@@ -34,8 +32,9 @@ if (!function_exists( 'ys_customizer_sample')) {
 					'type' => 'option'	//タイプ
 				)
 			);
-
-		// コントロールの追加
+		/**
+		 * コントロールの追加
+		 */
 		$wp_customize->
 			add_control(
 				'ys_setting_name',
@@ -48,8 +47,6 @@ if (!function_exists( 'ys_customizer_sample')) {
 					'priority' => 1	//順番
 				)
 			);
-
-	}//function ys_customizer_sample($wp_customize)
+	}
 }
-//add_action('customize_register', 'ys_customizer_sample');
-?>
+//add_action( 'customize_register', 'ys_customizer_sample' );
