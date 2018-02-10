@@ -96,6 +96,7 @@ require_once get_template_directory() . '/inc/sns/subscribe.php';
  * author
  */
 require_once get_template_directory() . '/inc/author/author.php';
+require_once get_template_directory() . '/inc/author/author-option-page.php';
 /**
  * パンくずリスト
  */
@@ -156,10 +157,6 @@ if( is_admin() ){
 	 * テーマ設定画面
 	 */
 	require_once get_template_directory() . '/inc/theme-option/theme-option-add.php';
-	/**
-	 * 管理画面関連
-	 */
-	require_once get_template_directory() . '/inc/admin.php';
 	/**
 	 * アップデートチェック
 	 */

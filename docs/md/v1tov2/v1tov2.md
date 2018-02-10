@@ -130,6 +130,9 @@
 - ys_utilities_get_cat_id_list
 - ys_utilities_sanitize_checkbox
 - ys_pagination
+- ys_admin_add_contactmethods
+- ys_admin_show_custom_avatar
+- ys_admin_save_custom_avatar
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
