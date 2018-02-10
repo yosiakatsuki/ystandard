@@ -111,8 +111,8 @@ function ys_is_active_oembed() {
 /**
  * アイキャッチ画像を表示するか(singlar)
  */
-function ys_is_active_post_thumbnail() {
-	$result = ( has_post_thumbnail() && 0 == ys_get_setting( 'ys_hide_post_thumbnail' ) );
+function ys_is_active_post_thumbnail( $post_id = null ) {
+	$result = ( has_post_thumbnail( $post_id ) && 0 == ys_get_option( 'ys_hide_post_thumbnail' ) );
 	return apply_filters( 'ys_is_active_post_thumbnail', $result );
 }
 

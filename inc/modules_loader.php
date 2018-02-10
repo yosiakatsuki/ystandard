@@ -137,6 +137,10 @@ require_once get_template_directory() . '/inc/pagination/pagination.php';
  * コメント欄
  */
 require_once get_template_directory() . '/inc/comment/comment.php';
+/**
+ * RSS
+ */
+require_once get_template_directory() . '/inc/rss/rss.php';
 
 
 

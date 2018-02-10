@@ -9,20 +9,7 @@
 
 
 
-/*
- *	RSSフィードにアイキャッチ画像を表示
- */
-if( ! function_exists( 'ys_extras_rss_the_post_thumbnail' ) ) {
-	function ys_extras_rss_the_post_thumbnail($content) {
-		global $post;
-		if( has_post_thumbnail( $post->ID ) && false == ys_get_setting( 'ys_hide_post_thumbnail' ) ) {
-			$content = get_the_post_thumbnail($post->ID) . $content;
-		}
-		return $content;
-	}
-}
-add_filter('the_excerpt_rss', 'ys_extras_rss_the_post_thumbnail');
-add_filter('the_content_feed', 'ys_extras_rss_the_post_thumbnail');
+
 
 
 

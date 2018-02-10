@@ -65,6 +65,7 @@
 - ys_yscomment_wp_list_comments_callback -> ys_wp_list_comments_callback
 - ys_extras_comment_form_fields -> ys_comment_form_fields
 - ys_extras_no_self_ping -> ys_no_self_ping
+- ys_extras_rss_the_post_thumbnail -> ys_rss_add_post_thumbnail
 
 ## 削除予定の関数
 - ys_settings
@@ -149,6 +150,7 @@
 - ys_yscomment_wp_list_comments_callback
 - ys_extras_comment_form_fields
 - ys_extras_no_self_ping
+- ys_extras_rss_the_post_thumbnail
 
 
 ## 変更されたフィルタ
