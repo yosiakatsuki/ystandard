@@ -17,7 +17,7 @@ if( ! function_exists( 'ys_enqueue_scripts' ) ) {
 			'ystandard-scripts',
 			get_template_directory_uri() . '/js/ystandard.bundle.js',
 			array(),
-			ys_util_get_theme_version(true),
+			ys_get_theme_version(true),
 			true
 		);
 
@@ -35,11 +35,11 @@ if( ! function_exists( 'ys_the_load_non_critical_css' ) ) {
 		 */
 		ys_enqueue_non_critical_css(
 			get_template_directory_uri() . '/css/ys-style.min.css',
-			ys_util_get_theme_version(true)
+			ys_get_theme_version(true)
 		);
 		ys_enqueue_non_critical_css(
 			get_stylesheet_directory_uri() . '/style.css',
-			ys_util_get_theme_version()
+			ys_get_theme_version()
 		);
 		ys_enqueue_non_critical_css(
 			get_template_directory_uri() . '/library/font-awesome/css/font-awesome.min.css',
@@ -165,7 +165,7 @@ if( ! function_exists( 'ys_enqueue_admin_scripts' ) ) {
 			'ys-custom_uploader-scripts',
 			get_template_directory_uri() . '/js/admin/custom_uploader.js',
 			array('jquery','jquery-core'),
-			ys_util_get_theme_version(true),
+			ys_get_theme_version(true),
 			true
 		);
 	}
@@ -181,7 +181,7 @@ if ( ! function_exists( 'ys_enqueue_admin_styles' ) ) {
 				'ys_admin_style',
 				get_template_directory_uri().'/css/ys-editor-style.css',
 				array(),
-				ys_util_get_theme_version(true)
+				ys_get_theme_version(true)
 			);
 	}
 }
@@ -196,7 +196,7 @@ if ( ! function_exists( 'ys_enqueue_customizer_styles' ) ) {
 			'ys_customizer_style',
 			get_template_directory_uri().'/css/ys-customizer-style.css',
 			array(),
-			ys_util_get_theme_version(true)
+			ys_get_theme_version(true)
 		);
 	}
 }
@@ -211,7 +211,7 @@ if ( ! function_exists( 'ys_enqueue_customize_controls_js' ) ) {
 				'ys_customize_controls_js',
 				get_template_directory_uri() . '/js/admin/customizer-control.js',
 				array( 'customize-controls', 'jquery' ),
-				ys_util_get_theme_version(true),
+				ys_get_theme_version(true),
 				true
 			);
 	}

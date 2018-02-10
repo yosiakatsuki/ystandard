@@ -27,6 +27,10 @@ require_once get_template_directory() . '/inc/option/option.php';
  */
 require_once get_template_directory() . '/inc/util/util.php';
 /**
+ * 画像関連の処理
+ */
+require_once get_template_directory() . '/inc/image/image.php';
+/**
  * sanitize
  */
 require_once get_template_directory() . '/inc/sanitize/sanitize.php';

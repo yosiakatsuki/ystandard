@@ -35,7 +35,7 @@ if( ! function_exists( 'ys_the_json_ld' ) ) {
 			$dateModified = get_the_modified_date('Y-n-j');
 			//画像
 			$imageurl = '';
-			$image = ys_utilities_get_post_thumbnail('full','',get_the_ID());
+			$image = ys_get_the_image_object( 'full', get_the_ID() );
 			if($image){
 				$imageurl = $image[0];
 				$imgwidth = $image[1];

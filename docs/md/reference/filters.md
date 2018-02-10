@@ -332,7 +332,7 @@
 
 ## util
 
-### ys_util_get_the_custom_excerpt
+### ys_get_the_custom_excerpt
 - file: inc/util/util.php
 - description: カスタム投稿抜粋の結果編集用フィルタ
 

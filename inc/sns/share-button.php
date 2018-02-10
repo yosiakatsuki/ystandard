@@ -178,7 +178,7 @@ if( ! function_exists( 'ys_get_share_button_data_line' ) ) {
  */
 if( ! function_exists( 'ys_get_share_button_data_feedly' ) ) {
 	function ys_get_share_button_data_feedly( $share_url, $share_title ) {
-		$share_url = ys_util_get_feedly_subscribe_url();
+		$share_url = ys_get_feedly_subscribe_url();
 		$button_text = apply_filters( 'ys_feedly_button_text', 'Feedly' );
 		return array(
 								'type' => esc_attr( 'feedly' ),

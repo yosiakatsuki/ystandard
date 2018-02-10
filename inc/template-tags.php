@@ -14,14 +14,14 @@ if( ! function_exists( 'ys_template_the_related_post' ) ) {
 	function ys_template_the_related_post() {
 
 		if(ys_get_setting('ys_show_post_related') == 1 && !ys_is_amp()) {
-			$cats = ys_utilities_get_cat_id_list();
+			$cats = ys_get_the_category_id_list();
 			$cats = apply_filters('ys_the_related_post_category_in',$cats);
 			$option = array(
 											'post__not_in' => array(get_the_ID()),  //現在の投稿IDは除く
 											'category__in' => $cats, //カテゴリー絞り込み
 										);
 
-			$query = new WP_Query(ys_utilities_get_rand(4,$option));
+			$query = new WP_Query( ys_get_posts_args_rand( 4,$option));
 
 			if ($query->have_posts()) {
 				echo '<aside class="entry-post-related entry-footer-container">';
@@ -166,7 +166,7 @@ if (function_exists( 'ys_template_get_the_post_thumbnail')) {
 		if( '' == $html ) {
 
 			// 画像を取得
-			$image = ys_utilities_get_post_thumbnail($thumbname,'',$postid);
+			$image = ys_get_the_image_object( $thumbname, $postid);
 
 			// id確認
 			if($imgid !== ''){
@@ -194,11 +194,6 @@ if (function_exists( 'ys_template_get_the_post_thumbnail')) {
 
 		$html = apply_filters( 'ys_the_post_thumbnail', $html, $image, $thumbname, $postid );
 		$html =  ys_amp_convert_image($html);
-
-		//metaタグを出力
-		if($outputmeta){
-			$html .= ys_utilities_get_the_image_object_meta($image);
-		}
 
 		return $html;
 	}

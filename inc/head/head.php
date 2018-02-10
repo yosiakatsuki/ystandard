@@ -179,25 +179,35 @@ add_action( 'wp_head', 'ys_the_canonical_tag' );
 if(!function_exists( 'ys_the_rel_link')) {
 	function ys_the_rel_link(){
 		if( is_single() || is_page() ) {
-			//固定ページ・投稿ページ
+			/**
+			 * 固定ページ・投稿ページ
+			 */
 			global $post,$page;
 			$pagecnt = substr_count( $post->post_content, '<!--nextpage-->' ) + 1;
 
 			if ( $pagecnt > 1 ){
-				//prev
+				/**
+				 * prev
+				 */
 				if( $page > 1 ) {
-					printf( '<link rel="prev" href="%s" />', ys_utilities_get_the_link_page( $page - 1 ) );
+					printf( '<link rel="prev" href="%s" />', ys_get_the_link_page( $page - 1 ) );
 				}
-				//next
+				/**
+				 * next
+				 */
 				if( $page < $pagecnt ) {
 					$page = 0 == $page ? 1 : $page;
-					printf( '<link rel="next" href="%s" />', ys_utilities_get_the_link_page( $page + 1 ) );
+					printf( '<link rel="next" href="%s" />', ys_get_the_link_page( $page + 1 ) );
 				}
 			}
 		} else {
-			//アーカイブ
+			/**
+			 * アーカイブ
+			 */
 			global $wp_query;
-			// MAXページ数と現在ページ数を取得
+			/**
+			 * MAXページ数と現在ページ数を取得
+			 */
 			$total   = isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1;
 			$current = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' )  : 1;
 			if( $current > 1 ) {
@@ -210,6 +220,27 @@ if(!function_exists( 'ys_the_rel_link')) {
 	}
 }
 add_action( 'wp_head', 'ys_the_rel_link' );
+/**
+ *	prev,next用URL取得
+ */
+if ( !function_exists( 'ys_get_the_link_page' ) ) {
+	function ys_get_the_link_page( $i ) {
+		global $wp_rewrite;
+    $post = get_post();
+		if ( 1 == $i ) {
+			$url = get_permalink();
+		} else {
+			if ( '' == get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) )
+				$url = add_query_arg( 'page', $i, get_permalink() );
+			elseif ( 'page' == get_option( 'show_on_front' ) && $post->ID == get_option( 'page_on_front' ) )
+				$url = trailingslashit( get_permalink() ) . user_trailingslashit( "$wp_rewrite->pagination_base/" . $i, 'single_paged' );
+			else
+				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $i, 'single_paged' );
+		}
+		return $url;
+	}
+}
+
 
 /**
  * noindex
@@ -381,7 +412,7 @@ if( ! function_exists( 'ys_get_ogp_and_twitter_card_param') ) {
 		 */
 		if( is_singular() && ! ys_is_toppage() ) {
 			$param['title'] = get_the_title();
-			$param['description'] = ys_util_get_the_custom_excerpt('');
+			$param['description'] = ys_get_the_custom_excerpt('');
 			$param['image'] = get_the_post_thumbnail_url();
 			$param['url'] = get_the_permalink();
 			$param['ogp_type'] = 'article';

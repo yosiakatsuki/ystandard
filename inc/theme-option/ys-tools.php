@@ -17,11 +17,11 @@
 					<th scope="row">バージョン情報</th>
 					<td>
 						<div>
-							<span style="display:inline-block;width:70px;">yStandard</span>：<?php echo ys_util_get_theme_version( true ); ?>
+							<span style="display:inline-block;width:70px;">yStandard</span>：<?php echo ys_get_theme_version( true ); ?>
 						</div>
 						<?php if( get_template() != get_stylesheet() ): ?>
 							<div>
-								<span style="display:inline-block;width:70px;">子テーマ</span>：<?php echo ys_util_get_theme_version(); ?>
+								<span style="display:inline-block;width:70px;">子テーマ</span>：<?php echo ys_get_theme_version(); ?>
 							</div>
 						<?php endif; ?>
 					</td>

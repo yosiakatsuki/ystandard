@@ -42,6 +42,11 @@ function ys_add_post_option() {
 		<label for="ys_hide_follow">
 			<input type="checkbox" id="ys_hide_follow" name="ys_hide_follow" value="1" <?php checked( ys_get_post_meta( 'ys_hide_follow', $post->ID ), '1' , false ); ?> />フォローボタンを<strong>非表示</strong>にする
 		</label>
+		<?php if( ys_get_option( 'ys_amp_enable' ) ): ?>
+			<label for="ys_post_meta_amp_desable">
+				<input type="checkbox" id="ys_post_meta_amp_desable" name="ys_post_meta_amp_desable" value="1" <?php checked( ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ), '1' , false ); ?> />AMPページを<strong>作成しない</strong>
+			</label>
+		<?php endif; ?>
 	</p>
 	<?php
 }
@@ -52,19 +57,23 @@ function ys_save_post( $post_id ) {
 		/**
 		 * noindex設定
 		 */
-		ys_sanitize_checkbox( $_POST, $post_id, 'ys_noindex' );
+		ys_save_post_checkbox( $_POST, $post_id, 'ys_noindex' );
 		/**
 		 * 広告非表示設定
 		 */
-		ys_sanitize_checkbox( $_POST, $post_id, 'ys_hide_ad' );
+		ys_save_post_checkbox( $_POST, $post_id, 'ys_hide_ad' );
 		/**
 		 * シェアボタン非表示設定
 		 */
-		ys_sanitize_checkbox( $_POST, $post_id, 'ys_hide_share' );
+		ys_save_post_checkbox( $_POST, $post_id, 'ys_hide_share' );
 		/**
 		 * フォローボタン非表示設定
 		 */
-		ys_sanitize_checkbox( $_POST, $post_id, 'ys_hide_follow' );
+		ys_save_post_checkbox( $_POST, $post_id, 'ys_hide_follow' );
+		/**
+		 * AMPページ作成設定
+		 */
+		ys_save_post_checkbox( $_POST, $post_id, 'ys_post_meta_amp_desable' );
 }
 add_action( 'save_post', 'ys_save_post' );
 /**

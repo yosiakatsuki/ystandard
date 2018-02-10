@@ -42,13 +42,13 @@
 - ys_setup_remove_emoji -> ys_remove_emoji
 - ys_setup_remove_oembed -> ys_remove_oembed
 - ys_extras_load_css_footer_js -> ys_enqueue_css
-- ys_utilities_get_theme_version -> ys_util_get_theme_version
+- ys_utilities_get_theme_version -> ys_get_theme_version
 - ys_extras_add_async -> ys_add_async_on_js
 - ys_extras_add_amphtml -> ys_the_amphtml
 - ys_extras_add_twitter_card -> ys_get_the_twitter_card
 - ys_customizer -> ys_theme_customizer
 - ys_customizer_color_setting -> ys_customizer_color
-- ys_template_get_the_custom_excerpt -> ys_util_get_the_custom_excerpt
+- ys_template_get_the_custom_excerpt -> ys_get_the_custom_excerpt
 - ys_extras_get_the_archive_title -> ys_get_the_archive_title
 - ys_extras_add_facebook_ogp -> ys_get_the_ogp
 - ys_extras_add_googleanarytics -> ys_the_google_anarytics
@@ -74,12 +74,27 @@
 - ys_extras_excerpt_more -> ys_excerpt_more
 - ys_extras_the_json_ld -> ys_the_json_ld
 - ys_template_the_entry_more_text -> ys_the_entry_read_more_text
+- ys_utilities_get_image_size -> ys_get_image_size
+- ys_utilities_get_the_link_page -> ys_get_the_link_page
+- ys_utilities_get_query -> ys_get_posts_args
+- ys_utilities_get_rand -> ys_get_posts_args_rand
+- ys_utilities_get_the_image_object_meta -> ys_get_the_image_object_meta
 
 ## 削除予定の関数
 - ys_settings
 - ys_get_setting
 
 ## 削除された関数
+- ys_utilities_get_post_thumbnail
+- ys_utilities_get_post_thumbnail_url
+- ys_utilities_get_the_image_object_meta
+- ys_utilities_get_post_firstimg
+- ys_utilities_get_rand
+- ys_utilities_get_query
+- ys_utilities_get_the_link_page
+- ys_utilities_get_image_size
+- ys_utilities_get_the_tag_list
+- ys_is_ogp_enable
 - ys_template_the_taxonomy_list
 - ys_template_the_category_list
 - ys_template_the_amp_menu

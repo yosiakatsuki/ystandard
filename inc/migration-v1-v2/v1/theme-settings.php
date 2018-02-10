@@ -36,9 +36,12 @@ if (!function_exists( 'ys_settings_get_ogp')) {
 
 		// OGP設定取得
 		$ogpimage = ys_get_setting('ys_ogp_default_image');
-		if(is_single() || is_page()){
+		if( is_single() || is_page() ){
 			// アイキャッチが存在しない場合OGPデフォルト画像を指定しておく
-			$ogpimage = ys_utilities_get_post_thumbnail_url('full',$ogpimage);
+			global $post;
+			if( has_post_thumbnail( $post->ID ) ) {
+				$ogpimage = get_the_post_thumbnail_url( $post->ID );
+			}
 		}
 
 		return array(

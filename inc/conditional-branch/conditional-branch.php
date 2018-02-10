@@ -10,6 +10,86 @@ if ( ! function_exists( 'ys_is_toppage') ) {
 		return false;
 	}
 }
+/**
+ * モバイル判定
+ */
+if( ! function_exists( 'ys_is_mobile' ) ) {
+	function ys_is_mobile(){
+		$ua = array(
+						'^(?!.*iPad).*iPhone',	//iPadとiPhoneが混ざるUAがあるらしい
+						'iPod',
+						'Android.*Mobile',
+						'Mobile.*Firefox',
+						'Windows.*Phone',
+						'blackberry',
+						'dream',
+						'CUPCAKE',
+						'webOS',
+						'incognito',
+						'webmate'
+						);
+		$pattern = '/' . implode( '|', $ua ) . '/i';
+		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
+	}
+}
+/**
+ * AMP判定
+ */
+if( ! function_exists( 'ys_is_amp' ) ) {
+	function ys_is_amp(){
+		global $ys_amp;
+		if( null !== $ys_amp ){
+			return $ys_amp;
+		}
+		$param_amp = '';
+		if( isset( $_GET['amp'] ) ){
+			$param_amp = $_GET['amp'];
+		}
+		if( '1' === $param_amp && ys_is_amp_enable() ){
+			$ys_amp = true;
+		} else {
+			$ys_amp = false;
+		}
+		return apply_filters( 'ys_is_amp', $ys_amp );
+	}
+}
+/**
+ * AMPページにできるか判断
+ */
+if( ! function_exists( 'ys_is_amp_enable' ) ) {
+	function ys_is_amp_enable(){
+		global $post;
+		$result = true;
+		if( 0 == ys_get_option( 'ys_amp_enable' ) ){
+			return apply_filters( 'ys_is_amp_enable', false );
+		}
+		if( ! is_single() ){
+			return apply_filters( 'ys_is_amp_enable', false );
+		}
+		/**
+		 * 投稿ごとのAMPページ生成判断
+		 */
+		if( '1' === ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ) ){
+			$result = false;
+		}
+		return apply_filters( 'ys_is_amp_enable', $result );
+	}
+}
+/**
+ *	ワンカラムテンプレートか
+ */
+if( ! function_exists( 'ys_is_one_column' ) ) {
+	function ys_is_one_column(){
+		$one_colmun = false;
+		if( is_page_template( 'template-one-column.php' ) ) {
+			$one_colmun = true;
+		}
+		if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
+			$one_colmun = true;
+		}
+		return apply_filters( 'ys_is_one_column', $one_colmun );
+	}
+}
 
 /**
  * WordPressのjQueryを停止するかどうか
