@@ -62,6 +62,7 @@
 - ys_amp_replace_oembed -> ys_amp_convert_oembed
 - ys_amp_replace_sns -> ys_amp_convert_sns
 - ys_amp_replace_iframe -> ys_amp_convert_iframe
+- ys_yscomment_wp_list_comments_callback -> ys_wp_list_comments_callback
 
 ## 削除予定の関数
 - ys_settings
@@ -142,7 +143,8 @@
 - ys_amp_replace_tag
 - ys_amp_replace_oembed
 - ys_amp_replace_sns
-- ys_amp_replace_iframe 
+- ys_amp_replace_iframe
+- ys_yscomment_wp_list_comments_callback
 
 
 ## 変更されたフィルタ

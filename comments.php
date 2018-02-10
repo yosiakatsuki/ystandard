@@ -20,7 +20,7 @@ if ( post_password_required() ) {
 					'style'       => 'ol',
 					'short_ping'  => true,
 					'avatar_size' => 42,
-					'callback' => 'ys_yscomment_wp_list_comments_callback'
+					'callback' => 'ys_wp_list_comments_callback'
 				) );
 			?>
 		</ol><!-- .comment-list -->

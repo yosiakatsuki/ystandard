@@ -381,26 +381,6 @@ if (!function_exists( 'ys_utilities_get_apple_touch_icon_url')) {
 }
 
 
-
-
-//-----------------------------------------------
-//	ユーザー画像取得
-//-----------------------------------------------
-if (!function_exists( 'ys_utilities_get_the_user_avatar_img')) {
-	function ys_utilities_get_the_user_avatar_img($author_id = false,$size = 96,$args=array()){
-
-
-		$img = apply_filters('ys_user_avatar',$img ,$author_id ,$size);
-
-		$img = ys_amp_convert_image($img);
-
-		return $img;
-	}
-}
-
-
-
-
 /*
  *	ImageObject用meta
  */

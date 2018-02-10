@@ -133,7 +133,10 @@ require_once get_template_directory() . '/inc/post-view/post-view.php';
  * ページネーション
  */
 require_once get_template_directory() . '/inc/pagination/pagination.php';
-
+/**
+ * コメント欄
+ */
+require_once get_template_directory() . '/inc/comment/comment.php';
 
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';
@@ -145,8 +148,7 @@ require_once get_template_directory() . '/inc/extras.php';
 
 //投稿表示関連
 require_once get_template_directory() . '/inc/template-tags.php';
-// コメント欄
-require_once get_template_directory() . '/inc/custom-comment.php';
+
 
 
 
