@@ -57,6 +57,11 @@
 - ys_amp_replace_image -> ys_amp_convert_image
 - ys_utilities_get_the_convert_amp_img -> ys_amp_convert_image
 - ys_extras_body_classes -> ys_body_classes
+- ys_amp_convert_amp -> ys_amp_convert_content
+- ys_amp_replace_tag -> ys_amp_convert_html
+- ys_amp_replace_oembed -> ys_amp_convert_oembed
+- ys_amp_replace_sns -> ys_amp_convert_sns
+- ys_amp_replace_iframe -> ys_amp_convert_iframe
 
 ## 削除予定の関数
 - ys_settings
@@ -133,6 +138,12 @@
 - ys_admin_add_contactmethods
 - ys_admin_show_custom_avatar
 - ys_admin_save_custom_avatar
+- ys_amp_convert_amp
+- ys_amp_replace_tag
+- ys_amp_replace_oembed
+- ys_amp_replace_sns
+- ys_amp_replace_iframe 
+
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
@@ -141,6 +152,8 @@
 - ys_advertisement_label_text -> ys_ad_label_text
 - ys_user_avatar -> ys_get_author_avatar
 - ys_get_the_convert_amp_img -> ys_amp_convert_image
+- ys_convert_amp_before -> ys_amp_convert_before
+
 
 ## 削除されたフィルタ
 - ys_ga_function
@@ -165,6 +178,8 @@
 - ys_get_the_convert_amp_img
 - ys_biography_template
 - ys_the_footer_attr
+- ys_convert_amp_before
+
 
 ## 削除されたアクション
 - ys_breadcrumb_prepend

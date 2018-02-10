@@ -12,23 +12,6 @@ if ( ! function_exists( 'ys_is_toppage') ) {
 }
 
 /**
- * AMPページに広告用scriptをロードするか
- */
-function ys_is_load_amp_ad_script() {
-	$result = false;
-	if( '' !== ys_get_option( 'ys_amp_advertisement_under_title' ) ){
-		$result = true;
-	}
-	if( '' !== ys_get_option( 'ys_amp_advertisement_replace_more' ) ){
-		$result = true;
-	}
-	if( '' !== ys_get_option( 'ys_amp_advertisement_under_content' ) ){
-		$result = true;
-	}
-	return apply_filters( 'ys_is_load_amp_ad_script', $result );
-}
-
-/**
  * WordPressのjQueryを停止するかどうか
  */
 function ys_is_deregister_jquery() {

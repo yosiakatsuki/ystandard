@@ -113,6 +113,8 @@ require_once get_template_directory() . '/inc/category/category.php';
  * AMP
  */
 require_once get_template_directory() . '/inc/amp/amp-util.php';
+require_once get_template_directory() . '/inc/amp/amp-convert.php';
+require_once get_template_directory() . '/inc/amp/amp-filter.php';
 require_once get_template_directory() . '/inc/amp/amp-head.php';
 require_once get_template_directory() . '/inc/amp/amp-google-analytics.php';
 /**
