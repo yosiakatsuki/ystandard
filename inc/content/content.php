@@ -78,3 +78,15 @@ if( ! function_exists( 'ys_excerpt_more' ) ){
 	}
 }
 add_filter( 'excerpt_more', 'ys_excerpt_more' );
+/**
+ * 続きを読む テキスト
+ */
+if ( ! function_exists( 'ys_get_entry_read_more_text' ) ) {
+	function ys_get_entry_read_more_text() {
+		$read_more = 'READ MORE';
+		echo apply_filters( 'ys_entry_read_more_text', $read_more );
+	}
+}
+function ys_the_entry_read_more_text() {
+	echo ys_get_entry_read_more_text();
+}

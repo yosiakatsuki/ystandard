@@ -1,11 +1,30 @@
 <?php
 	if ( has_nav_menu( 'global' ) ):
 		if ( ys_is_amp() ): ?>
-		<button class="global-nav__btn" on='tap:sidebar.toggle'>
+		<button class="global-nav__btn" on="tap:sidebar.toggle">
 			<span class="top"></span>
 			<span class="middle"></span>
 			<span class="bottom"></span>
 		</button>
+		<amp-sidebar id="sidebar" layout="nodisplay" side="right" class="amp-slider">
+			<button class="global-nav__btn" on="tap:sidebar.close">
+				<span class="top"></span>
+				<span class="middle"></span>
+				<span class="bottom"></span>
+			</button>
+			<nav id="global-nav" class="global-nav color__nav-bg--sp">
+				<?php
+					wp_nav_menu( array(
+						'theme_location' => 'global',
+						'menu_class'     => 'global-nav__menu row flex--a-center list-style--none',
+						'menu_id'        => 'global-nav__menu',
+						'container'      => false,
+						'depth'          => 2,
+						'walker'         => new YS_Walker_Global_Nav_Menu
+					 ) );
+				?>
+		</nav><!-- .main-navigation -->
+	</amp-sidebar>
 <?php else: ?>
 	<input type="checkbox" id="header__nav-toggle" class="header__nav-toggle" hidden />
 	<label  class="global-nav__btn" for="header__nav-toggle">

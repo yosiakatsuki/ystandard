@@ -73,12 +73,18 @@
 - ys_extras_excerpt_length -> ys_excerpt_length
 - ys_extras_excerpt_more -> ys_excerpt_more
 - ys_extras_the_json_ld -> ys_the_json_ld
+- ys_template_the_entry_more_text -> ys_the_entry_read_more_text
 
 ## 削除予定の関数
 - ys_settings
 - ys_get_setting
 
 ## 削除された関数
+- ys_template_the_taxonomy_list
+- ys_template_the_category_list
+- ys_template_the_amp_menu
+- ys_template_the_entry_header_share
+- ys_template_the_entry_more_text
 - ys_template_the_head_normal
 - ys_template_the_head_tag
 - ys_template_the_inline_css
@@ -174,6 +180,7 @@
 - ys_user_avatar -> ys_get_author_avatar
 - ys_get_the_convert_amp_img -> ys_amp_convert_image
 - ys_convert_amp_before -> ys_amp_convert_before
+- ys_entry_more_text -> ys_entry_read_more_text
 
 
 ## 削除されたフィルタ

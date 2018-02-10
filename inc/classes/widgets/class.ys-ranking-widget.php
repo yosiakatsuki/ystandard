@@ -202,7 +202,7 @@ class YS_Ranking_Widget extends WP_Widget {
 		} else {
 			$img = '<div class="ys-ranking__img"><div class="ys-ranking__no-img flex flex--c-c"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
 		}
-		$img .= '<div class="entry-list__mask flex flex--c-c"><p class="entry-list__mask-text ">READ MORE</p></div></div>';
+		$img .= '<div class="entry-list__mask flex flex--c-c"><p class="entry-list__mask-text ">' . ys_get_entry_read_more_text() . '</p></div></div>';
 		return apply_filters( 'ys_ranking_widget_image', $img, get_the_ID() );
 	}
 	/**

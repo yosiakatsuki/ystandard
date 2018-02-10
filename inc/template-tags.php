@@ -6,44 +6,6 @@
  * ************************************************************************ */
 
 
-//-----------------------------------------------
-//	この記事を読む
-//-----------------------------------------------
-if (!function_exists( 'ys_template_the_entry_more_text')) {
-	function ys_template_the_entry_more_text() {
-
-		$read_more = 'この記事を読む';
-
-		echo apply_filters('ys_entry_more_text',$read_more);
-	}
-}
-
-
-/**
- * 記事header SNSシェアボタン
- */
-if( ! function_exists( 'ys_template_the_entry_header_share' ) ) {
-	function ys_template_the_entry_header_share() {
-
-		global $post;
-
-		$html = '';
-		$html .= '<aside id="sns-share__entry-header" class="sns-share__header">';
-
-		$html .= ys_template_get_the_sns_share_buttons();
-		$html .= '</aside>';
-
-		// シェアボタンが非表示なら表示消す
-		if( 0 == ys_get_setting( 'ys_sns_share_on_entry_header' ) ){
-			$html = '';
-		}
-
-		echo apply_filters( 'ys_template_the_entry_header_share', $html );
-
-	}
-}
-
-
 
 //-----------------------------------------------
 //	関連記事
@@ -146,38 +108,6 @@ if( ! function_exists( 'ys_template_the_post_paging' ) ) {
 
 
 
-//-----------------------------------------------
-//	AMPページ用メニュー出力
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_amp_menu' ) ) {
-	function ys_template_the_amp_menu() {
-
-		if(ys_is_amp()):
-		?>
-			<amp-sidebar id='sidebar' layout="nodisplay" side="right" class="amp-slider">
-				<button class="menu-toggle-label" on='tap:sidebar.close'>
-					<span class="top"></span>
-					<span class="middle"></span>
-					<span class="bottom"></span>
-				</button>
-				<nav id="site-navigation" class="main-navigation">
-		<?php
-			wp_nav_menu( array(
-				'theme_location' => 'gloval',
-				'menu_class'		 => 'gloval-menu',
-				'container_class' => 'menu-global-container',
-				'depth'          => 2
-			 ) );
-		?>
-			</nav><!-- .main-navigation -->
-		</amp-sidebar>
-		<?php
-		endif;
-	}
-}
-
-
-
 
 
 
@@ -187,62 +117,6 @@ if( ! function_exists( 'ys_template_the_amp_menu' ) ) {
 //
 //------------------------------------------------------------------------------
 
-
-
-
-//-----------------------------------------------
-//	投稿のカテゴリー一覧出力
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_category_list' ) ) {
-	function ys_template_the_category_list($before,$after,$separator=', ',$link=true,$postid=0,$args=array()) {
-
-		$categorys = ys_utilities_get_the_post_categorys(0,$link,$separator,$postid,$args);
-
-		echo $before;
-		echo $categorys;
-		echo $after;
-	}
-}
-
-
-
-
-//-----------------------------------------------
-//	投稿のタグ一覧出力
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_tag_list' ) ) {
-	function ys_template_the_tag_list($before,$after,$separator=', ',$link=true,$postid=0) {
-
-		$tags = ys_utilities_get_the_tag_list($separator,$link,$postid);
-
-		if($tags != ''){
-			echo $before;
-			echo $tags;
-			echo $after;
-		}
-	}
-}
-
-
-
-
-//-----------------------------------------------
-//	投稿のタグ一覧出力
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_taxonomy_list' ) ) {
-	function ys_template_the_taxonomy_list() {
-
-		echo '<div class="entry-footer-container">';
-
-		// カテゴリー
-		ys_template_the_category_list('<aside class="entry-category-list"><h2>カテゴリー</h2>','</aside>','',true,0);
-		// タグ
-		ys_template_the_tag_list('<aside class="entry-tag-list"><h2>タグ</h2>','</aside>','');
-
-		echo '</div>';
-
-	}
-}
 
 
 
@@ -329,20 +203,3 @@ if (function_exists( 'ys_template_get_the_post_thumbnail')) {
 		return $html;
 	}
 }
-
-/**
- *	画像取得（出力）
- */
-// if (!function_exists( 'ys_template_the_post_thumbnail')) {
-// 	function ys_template_the_post_thumbnail(
-// 																	$thumbname='full',
-// 																	$viewsize=false,
-// 																	$outputmeta=true,
-// 																	$imgid='',
-// 																	$imgclass='',
-// 																	$postid=0
-// 																) {
-//
-// 		echo ys_template_get_the_post_thumbnail( $thumbname, $viewsize, $outputmeta, $imgid, $imgclass, $postid );
-// 	}
-// }

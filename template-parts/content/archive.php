@@ -11,7 +11,7 @@
 				</div><!-- .entry-list__no-img -->
 			<?php endif; ?>
 			<div class="entry-list__mask flex flex--c-c">
-				<p class="entry-list__mask-text ">READ MORE</p>
+				<p class="entry-list__mask-text "><?php ys_the_entry_read_more_text(); ?></p>
 			</div><!-- .entry-list__mask -->
 		</a>
 	</div>
