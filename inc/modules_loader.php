@@ -138,25 +138,24 @@ require_once get_template_directory() . '/inc/pagination/pagination.php';
  */
 require_once get_template_directory() . '/inc/comment/comment.php';
 
+
+
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';
-
-
-
 // フィルタ関連
 require_once get_template_directory() . '/inc/extras.php';
-
 //投稿表示関連
 require_once get_template_directory() . '/inc/template-tags.php';
 
 
-
-
-
-
-
-// 管理画面メニュー
+/**
+ * 管理画面メニュー
+ */
 if( is_admin() ){
+	/**
+	 * 管理者向け機能
+	 */
+	require_once get_template_directory() . '/inc/admin/admin.php';
 	/**
 	 * テーマ設定画面
 	 */

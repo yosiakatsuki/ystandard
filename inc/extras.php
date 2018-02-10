@@ -8,20 +8,6 @@
 
 
 
-//------------------------------------------------------------------------------
-// セルフピンバック対策
-//------------------------------------------------------------------------------
-if( ! function_exists( 'ys_extras_no_self_ping' ) ) {
-	function ys_extras_no_self_ping( &$links ) {
-					$home = get_option( 'home' );
-					foreach ( $links as $l => $link )
-									if ( 0 === strpos( $link, $home ) )
-													unset($links[$l]);
-	}
-}
-add_action( 'pre_ping', 'ys_extras_no_self_ping' );
-
-
 
 /*
  *	RSSフィードにアイキャッチ画像を表示
