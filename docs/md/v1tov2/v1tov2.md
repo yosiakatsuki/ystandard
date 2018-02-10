@@ -68,6 +68,10 @@
 - ys_extras_rss_the_post_thumbnail -> ys_rss_add_post_thumbnail
 - ys_extras_site_icon_meta_tags -> ys_site_icon_meta_tags
 - ys_utilities_get_apple_touch_icon_url -> ys_get_apple_touch_icon_url
+- ys_extras_document_title_separator -> ys_document_title_separator
+- ys_extras_iframe_responsive -> ys_add_iframe_responsive_container
+- ys_extras_excerpt_length -> ys_excerpt_length
+- ys_extras_excerpt_more -> ys_excerpt_more
 
 ## 削除予定の関数
 - ys_settings
@@ -155,6 +159,10 @@
 - ys_extras_rss_the_post_thumbnail
 - ys_extras_site_icon_meta_tags
 - ys_utilities_get_apple_touch_icon_url
+- ys_extras_document_title_separator
+- ys_extras_iframe_responsive
+- ys_extras_excerpt_length
+- ys_extras_excerpt_more
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
