@@ -1,16 +1,9 @@
 <?php
-//------------------------------------------------------------------------------
-//
-//	フィルタフック/アクション関連の関数
-//
-//------------------------------------------------------------------------------
-
-
-//-----------------------------------------------
-//	json-LD出力
-//-----------------------------------------------
-if(!function_exists( 'ys_extras_the_json_ld')) {
-	function ys_extras_the_json_ld(){
+/**
+ * json-LD出力
+ */
+if( ! function_exists( 'ys_the_json_ld' ) ) {
+	function ys_the_json_ld(){
 
 		// 全体に関わる部分
 		$context = 'http://schema.org';
@@ -129,5 +122,4 @@ if(!function_exists( 'ys_extras_the_json_ld')) {
 		}
 	}
 }
-// add_action( 'wp_footer', 'ys_extras_the_json_ld' );
-?>
+add_action( 'wp_footer', 'ys_the_json_ld' );

@@ -72,6 +72,7 @@
 - ys_extras_iframe_responsive -> ys_add_iframe_responsive_container
 - ys_extras_excerpt_length -> ys_excerpt_length
 - ys_extras_excerpt_more -> ys_excerpt_more
+- ys_extras_the_json_ld -> ys_the_json_ld
 
 ## 削除予定の関数
 - ys_settings
@@ -163,6 +164,7 @@
 - ys_extras_iframe_responsive
 - ys_extras_excerpt_length
 - ys_extras_excerpt_more
+- ys_extras_the_json_ld
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id

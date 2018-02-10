@@ -144,13 +144,15 @@ require_once get_template_directory() . '/inc/comment/comment.php';
  * RSS
  */
 require_once get_template_directory() . '/inc/rss/rss.php';
+/**
+ * json-LD作成
+ */
+require_once get_template_directory() . '/inc/json-ld/json-ld.php';
 
 
 
 // utilities
 require_once get_template_directory() . '/inc/utilities.php';
-// フィルタ関連
-require_once get_template_directory() . '/inc/extras.php';
 //投稿表示関連
 require_once get_template_directory() . '/inc/template-tags.php';
 
