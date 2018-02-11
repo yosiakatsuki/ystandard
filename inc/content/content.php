@@ -130,7 +130,7 @@ if( ! function_exists( 'ys_the_custom_excerpt' ) ) {
 if ( ! function_exists( 'ys_get_entry_read_more_text' ) ) {
 	function ys_get_entry_read_more_text() {
 		$read_more = 'READ MORE';
-		echo apply_filters( 'ys_entry_read_more_text', $read_more );
+		return apply_filters( 'ys_entry_read_more_text', $read_more );
 	}
 }
 function ys_the_entry_read_more_text() {
