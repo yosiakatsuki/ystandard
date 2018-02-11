@@ -8,39 +8,6 @@
 
 
 //-----------------------------------------------
-//	関連記事
-//-----------------------------------------------
-if( ! function_exists( 'ys_template_the_related_post' ) ) {
-	function ys_template_the_related_post() {
-
-		if(ys_get_setting('ys_show_post_related') == 1 && !ys_is_amp()) {
-			$cats = ys_get_the_category_id_list();
-			$cats = apply_filters('ys_the_related_post_category_in',$cats);
-			$option = array(
-											'post__not_in' => array(get_the_ID()),  //現在の投稿IDは除く
-											'category__in' => $cats, //カテゴリー絞り込み
-										);
-
-			$query = new WP_Query( ys_get_posts_args_rand( 4,$option));
-
-			if ($query->have_posts()) {
-				echo '<aside class="entry-post-related entry-footer-container">';
-				echo '<h2>関連記事</h2>';
-				while ($query->have_posts()) : $query->the_post();
-					get_template_part( 'template-parts/content','related' );
-				endwhile;
-				echo '</aside>';
-			}
-			wp_reset_postdata();
-		}
-
-	}//ys_template_the_related_post
-}
-
-
-
-
-//-----------------------------------------------
 //	前の記事・次の記事
 //-----------------------------------------------
 if( ! function_exists( 'ys_template_the_post_paging' ) ) {

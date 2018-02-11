@@ -11,6 +11,12 @@ if( ! function_exists( 'ys_enqueue_scripts' ) ) {
 			wp_enqueue_script( 'jquery', ys_get_option( 'ys_load_cdn_jquery_url' ) );
 		}
 		/**
+		 * Polyfill関連
+		 */
+		if( ys_is_ie() || ys_is_edge() ) {
+			wp_enqueue_script( 'object-fit-images', get_template_directory_uri() . '/library/object-fit-images/ofi.min.js' );
+		}
+		/**
 		 * テーマのjs読み込む
 		 */
 		wp_enqueue_script(

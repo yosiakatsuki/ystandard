@@ -11,6 +11,13 @@ if ( ! function_exists( 'ys_is_toppage') ) {
 	}
 }
 /**
+ * ユーザーエージェントのチェック
+ */
+function ys_check_user_agent( $ua ) {
+	$pattern = '/' . implode( '|', $ua ) . '/i';
+	return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
+}
+/**
  * モバイル判定
  */
 if( ! function_exists( 'ys_is_mobile' ) ) {
@@ -28,8 +35,30 @@ if( ! function_exists( 'ys_is_mobile' ) ) {
 						'incognito',
 						'webmate'
 						);
-		$pattern = '/' . implode( '|', $ua ) . '/i';
-		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
+		return ys_check_user_agent( $ua );
+	}
+}
+/**
+ * IE判定
+ */
+if( ! function_exists( 'ys_is_ie' ) ) {
+	function ys_is_ie() {
+		$ua = array(
+						'Trident',
+						'MSIE'
+						);
+		return ys_check_user_agent( $ua );
+	}
+}
+/**
+ * Edge判定
+ */
+if( ! function_exists( 'ys_is_edge' ) ) {
+	function ys_is_edge() {
+		$ua = array(
+						'Edge'
+						);
+		return ys_check_user_agent( $ua );
 	}
 }
 /**
@@ -273,4 +302,14 @@ function ys_is_active_advertisement() {
 		}
 	}
 	return apply_filters( 'ys_is_active_advertisement', $result );
+}
+/**
+ * 関連記事を表示するか
+ */
+function ys_is_active_related_post() {
+	$result = false;
+	if( ! ys_is_amp() && ys_get_option( 'ys_show_post_related' ) ) {
+		$result = true;
+	}
+	return apply_filters( 'ys_is_active_related_post', $result );
 }

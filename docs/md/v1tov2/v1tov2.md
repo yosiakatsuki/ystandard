@@ -85,6 +85,7 @@
 - ys_get_setting
 
 ## 削除された関数
+- ys_template_the_related_post
 - ys_utilities_get_post_thumbnail
 - ys_utilities_get_post_thumbnail_url
 - ys_utilities_get_the_image_object_meta

@@ -26,24 +26,7 @@
     }
 
     .row--slide {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: scroll;
-      overflow-y: hidden;
-      -webkit-overflow-scrolling: touch;
-      overflow-scrolling: touch;
-
-      &::-webkit-scrollbar {
-        height: 4px;
-      }
-      &::-webkit-scrollbar-track {
-        border-radius: 4px;
-        background-color: $bg-color-gray;
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: $border-color-gray;
-        border-radius: 4px;
-      }
+      @include row--slide;
     }
 
     // screen
@@ -84,7 +67,16 @@
       width: 25%;
     }
     .col__slide {
-      min-width: 300px;
+      flex: 0 0 30%;
+      width: 30%;
+      min-width: 200px;
+      padding: get_margin() get_margin(0.5);
+      &:first-child {
+        margin-left: -5px;
+      }
+      &:last-child {
+        padding-right: -5px;
+      }
     }
 
     // tablet
@@ -116,9 +108,6 @@
       .col__4--pc {
         flex: 0 0 25%;
         width: 25%;
-      }
-      .col__slide {
-        min-width: auto;
       }
     }
 

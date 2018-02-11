@@ -286,6 +286,10 @@ Source : https://icomoon.io/#icons-icomoon/
 License: GPL
 Source : http://w-shadow.com/
 
+### object-fit-images
+License: MIT
+Source : https://github.com/bfred-it/object-fit-images
+
 ## 変更履歴
 
 ### v1.0.x

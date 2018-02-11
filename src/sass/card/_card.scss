@@ -1,7 +1,7 @@
 .card {
   @at-root {
 
-    .card {
+    & {
       display: block;
       height: 100%;
       text-decoration: none;
@@ -26,27 +26,23 @@
     }
 
     .card__text {
-      padding: 30px;
-
-      &>*:last-child {
-        margin-bottom: 0;
-      }
+      padding: get_margin();
+      font-size: .9em;
     }
 
     .card__title {
       font-size: 1.2em;
-      margin-bottom: .5em;
+      margin: 0;
     }
 
     .card__dscr {
       color: $font-color-gray;
-      font-size: .9em;
-      margin-bottom: 1.5em;
+      margin-top: 1em;
     }
 
     .card__tag {
       list-style: none;
-      margin: 0 0 1em;
+      margin: 1em 0 0;
       padding: 0;
     }
 
@@ -57,7 +53,8 @@
       margin-bottom: .2em;
       padding: .2em .6em;
       color: $font-color-gray;
-      font-size: .8em;
+      font-size: .9em;
+      vertical-align: top;
     }
 
   }//at-root

@@ -100,6 +100,10 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: 広告の出力有無の編集用フィルタ
 
+### ys_is_active_related_post
+- file: inc/conditional-branch/conditional-branch.php
+- description: 関連記事表示の編集用フィルタ
+
 
 ## head
 
