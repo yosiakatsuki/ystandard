@@ -3,16 +3,17 @@
     .entry__title {
       font-size: 1.6em;
       line-height: 1.5;
-      margin: 0 0 get_margin();
+      margin: 0 0 5px;
       padding: 0;
     }
 
     .entry__thumbnail {
+      margin: 0;
       text-align: center;
     }
 
     .entry__meta {
-      margin: 1em 0;
+      margin-top: get_margin();
       font-size: .8em;
     }
 

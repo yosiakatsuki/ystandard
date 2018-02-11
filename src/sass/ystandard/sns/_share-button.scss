@@ -1,6 +1,10 @@
 .share-btn {
   @at-root {
 
+    & {
+      margin-top: get_margin();
+    }
+
     .share-btn__list {
       margin: 0 -1px;
     }

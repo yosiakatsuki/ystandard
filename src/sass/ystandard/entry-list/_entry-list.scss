@@ -1,5 +1,10 @@
 .entry-list {
   @at-root {
+    & {
+      .entry__author {
+        margin-top: get_margin();
+      }
+    }
     .entry-list__mask {
       position: absolute;
       top:0;
@@ -50,20 +55,6 @@
       font-size: .8em;
       p {
         margin-top: 1em;
-      }
-    }
-    .entry-list__author {
-      margin: 1em 0 0;
-    }
-    .entry-list__author-figure,
-    .entry-list__author-name {
-      display: inline-block;
-      margin: 0;
-      vertical-align: middle;
-    }
-    .entry-list__author-figure {
-      img {
-        width: 24px;
       }
     }
     .entry-list__link {

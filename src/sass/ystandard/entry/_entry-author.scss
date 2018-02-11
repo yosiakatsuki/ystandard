@@ -1,0 +1,19 @@
+.entry__author {
+  @at-root {
+    & {
+      font-size: .8em;
+    }
+    .entry__author-figure,
+    .entry__author-name {
+      display: inline-block;
+      margin: 0;
+      vertical-align: middle;
+    }
+    .entry__author-figure {
+      img {
+        width: 24px;
+      }
+    }
+
+  }//@
+}

@@ -1087,16 +1087,17 @@ label {
 .entry__title {
 	font-size: 1.6em;
 	line-height: 1.5;
-	margin: 0 0 15px;
+	margin: 0 0 5px;
 	padding: 0;
 }
 
 .entry__thumbnail {
+	margin: 0;
 	text-align: center;
 }
 
 .entry__meta {
-	margin: 1em 0;
+	margin-top: 15px;
 	font-size: .8em;
 }
 
@@ -1119,6 +1120,21 @@ label {
 
 .entry__footer > *:first-child {
 	margin-top: 0;
+}
+
+.entry__author {
+	font-size: .8em;
+}
+
+.entry__author-figure,
+.entry__author-name {
+	display: inline-block;
+	margin: 0;
+	vertical-align: middle;
+}
+
+.entry__author-figure img {
+	width: 24px;
 }
 
 .author__main {
@@ -1635,6 +1651,10 @@ label {
 	margin: 1.5em 0 0;
 }
 
+.share-btn {
+	margin-top: 15px;
+}
+
 .share-btn__list {
 	margin: 0 -1px;
 }
@@ -1850,6 +1870,10 @@ figcaption {
 	margin: .5em 0 0;
 }
 
+.entry-list .entry__author {
+	margin-top: 15px;
+}
+
 .entry-list__mask {
 	position: absolute;
 	top: 0;
@@ -1907,21 +1931,6 @@ figcaption {
 
 .entry-list__excerpt p {
 	margin-top: 1em;
-}
-
-.entry-list__author {
-	margin: 1em 0 0;
-}
-
-.entry-list__author-figure,
-.entry-list__author-name {
-	display: inline-block;
-	margin: 0;
-	vertical-align: middle;
-}
-
-.entry-list__author-figure img {
-	width: 24px;
 }
 
 .entry-list__link {

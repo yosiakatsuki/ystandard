@@ -29,11 +29,7 @@
 		<div class="entry-excerpt entry-list__excerpt color__font-sub">
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-list__excerpt -->
-		<div class="entry-list__author entry__meta">
-			<figure class="entry-list__author-figure">
-				<?php ys_the_author_avatar( false, 24 ); ?>
-			</figure>
-			<p class="entry-list__author-name color__font-sub"><?php ys_the_author_name(); ?></p>
-		</div><!-- .entry-list__author -->
+		<?php // TODO:投稿者非表示の時に消す ?>
+		<?php get_template_part( 'template-parts/entry/entry-author' ); ?>
 	</div><!-- .entry-list__detail -->
 </article><!-- #post-## -->

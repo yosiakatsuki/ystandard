@@ -64,6 +64,27 @@
 	padding: 1em 2em;
 }
 
+.responsive__container {
+	max-width: 560px;
+	margin-top: 1.5em;
+}
+
+.responsive__item {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+
+.responsive__item iframe {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 .ad__container {
 	padding: 15px 0;
 }
