@@ -154,10 +154,6 @@ require_once get_template_directory() . '/inc/rss/rss.php';
  */
 require_once get_template_directory() . '/inc/json-ld/json-ld.php';
 
-
-
-// utilities
-require_once get_template_directory() . '/inc/utilities.php';
 //投稿表示関連
 require_once get_template_directory() . '/inc/template-tags.php';
 

@@ -12,7 +12,7 @@ if( ! function_exists( 'ys_the_json_ld' ) ) {
 		$logoheight = 0;
 
 		if(has_custom_logo()){
-			$logo = ys_utilities_get_custom_logo_image_src();
+			$logo = ys_get_custom_logo_image_object();
 			$logourl = $logo[0];
 			$logowidth = $logo[1];
 			$logoheight = $logo[2];
@@ -36,6 +36,8 @@ if( ! function_exists( 'ys_the_json_ld' ) ) {
 			//画像
 			$imageurl = '';
 			$image = ys_get_the_image_object( 'full', get_the_ID() );
+			$imgwidth = 0;
+			$imgheight = 0;
 			if($image){
 				$imageurl = $image[0];
 				$imgwidth = $image[1];
