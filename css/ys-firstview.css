@@ -948,6 +948,22 @@ label {
 	padding-top: 75%;
 }
 
+.ratio__16-9 {
+	padding-top: 56.25%;
+}
+
+.ratio__3-1 {
+	padding-top: 33.33333%;
+}
+
+.ratio__2-1 {
+	padding-top: 50%;
+}
+
+.ratio__1-1 {
+	padding-top: 100%;
+}
+
 .ratio__item {
 	position: absolute;
 	top: 0;

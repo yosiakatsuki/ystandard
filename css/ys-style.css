@@ -359,6 +359,39 @@
 	color: #fff;
 }
 
+.entry-paging a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.entry-paging__info {
+	font-size: .9em;
+}
+
+.entry-paging__info--prev {
+	text-align: left;
+}
+
+.entry-paging__info--next {
+	text-align: right;
+}
+
+.entry-paging__title {
+	margin: .5em 0 0;
+	padding: 0;
+	font-size: .9em;
+}
+
+.entry-paging__title:before,
+.entry-paging__title:after {
+	content: none;
+}
+
+.entry-paging__home {
+	height: 100%;
+	font-size: 3em;
+}
+
 @media screen and (min-width: 600px) {
 
 .ad__left,
@@ -402,6 +435,10 @@
 
 .footer__widget-container:last-child {
 	padding-right: 0;
+}
+
+.entry-paging__title {
+	font-size: 1em;
 }
 
 }

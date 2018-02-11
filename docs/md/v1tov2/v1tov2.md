@@ -223,6 +223,7 @@
 - ys_biography_template
 - ys_the_footer_attr
 - ys_convert_amp_before
+- ys_the_post_paging_next_info
 
 
 ## 削除されたアクション

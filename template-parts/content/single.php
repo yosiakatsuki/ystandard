@@ -44,5 +44,5 @@
 	/**
 	 * 前の記事・次の記事
 	 */
-	//ys_template_the_post_paging();
+	get_template_part( 'template-parts/entry/entry-paging' );
  ?>
