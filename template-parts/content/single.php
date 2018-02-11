@@ -40,9 +40,7 @@
 	/**
 	 * コメント
 	 */
-	// if ( ! ys_is_amp() && ( comments_open() || get_comments_number() ) ) {
-	// 	comments_template();
-	// }
+	get_template_part( 'template-parts/entry/entry-comments' );
 	/**
 	 * 前の記事・次の記事
 	 */

@@ -285,88 +285,78 @@
 	font-size: .9em;
 }
 
-.aligncenter,
-div.aligncenter,
-.alignleft,
-.alignright {
-	display: block;
+.comments__area ol {
+	margin-left: 0;
+	list-style: none;
 }
 
-.aligncenter,
-div.aligncenter {
-	margin-left: auto;
-	margin-right: auto;
+.comments__area .children {
+	margin-left: 1em;
 }
 
-.wp-caption {
-	text-align: center;
+.comments__title {
+	margin: 0;
+	font-size: 1.2em;
+}
+
+.comment__list {
+	margin-top: 0;
+}
+
+.comment__body {
+	padding: 1.5em 0;
+	border-bottom: 1px solid #ecf0f1;
+}
+
+.comment__author-image {
+	width: 42px;
+	margin: 0 15px 0 0;
+	float: left;
+}
+
+.comment__author-image img {
+	border-radius: 50%;
+}
+
+.comment__meta {
 	font-size: .9em;
-	padding: .1em .5em .5em;
+	overflow: hidden;
 }
 
-.wp-caption img {
-	margin: 0;
-	padding: 0;
+.comment__meta a {
+	text-decoration: none;
+	color: inherit;
 }
 
-.gallery {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	margin: 1.5em -1px;
+.comment__meta-data {
+	font-size: .9em;
 }
 
-.gallery-item {
-	-webkit-box-align: start;
-	-ms-flex-align: start;
-	align-items: flex-start;
-	-webkit-box-flex: 0;
-	-ms-flex: 0 1 auto;
-	flex: 0 1 auto;
-	padding: 1px;
-	margin: 0;
+.comment__name {
+	font-style: normal;
 }
 
-.gallery-item a:hover {
-	opacity: .8;
+.comment__text {
+	font-size: .9em;
 }
 
-.gallery-columns-2 .gallery-item {
-	width: 50%;
+.comment__text p {
+	margin-top: 1em;
 }
 
-.gallery-columns-3 .gallery-item {
-	width: 33.33333%;
+.comment__reply a {
+	display: inline-block;
+	padding: .2em 1em;
+	border: 1px solid #939393;
+	border-radius: 4px;
+	color: #939393;
+	font-size: .9em;
+	text-decoration: none;
 }
 
-.gallery-columns-4 .gallery-item {
-	width: 25%;
-}
-
-.gallery-columns-5 .gallery-item {
-	width: 20%;
-}
-
-.gallery-columns-6 .gallery-item {
-	width: 16.66667%;
-}
-
-.gallery-columns-7 .gallery-item {
-	width: 14.28571%;
-}
-
-.gallery-columns-8 .gallery-item {
-	width: 12.5%;
-}
-
-.gallery-columns-9 .gallery-item {
-	width: 11.11111%;
-}
-
-.gallery-caption {
-	text-align: center;
+.comment__reply a:hover {
+	background-color: #939393;
+	color: #fff;
 }
 
 @media screen and (min-width: 600px) {
@@ -412,16 +402,6 @@ div.aligncenter {
 
 .footer__widget-container:last-child {
 	padding-right: 0;
-}
-
-.alignleft {
-	float: left;
-	margin: 0 1em 1em 0;
-}
-
-.alignright {
-	float: right;
-	margin: 0 0 1em 1em;
 }
 
 }
