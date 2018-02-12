@@ -33,12 +33,6 @@ if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 		$dir = 'template-parts/entry/entry-footer-block/';
 		$templates = array();
 		/**
-		 * タクソノミー
-		 */
-		if( is_single() ) {
-			$templates['taxonomy'] = $dir . 'entry-footer-taxonomy';
-		}
-		/**
 		 * フッターウィジェット
 		 */
 		$templates['wdget'] = $dir . 'entry-footer-wdget';
@@ -50,6 +44,12 @@ if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 		 * シェアボタン
 		 */
 		$templates['share'] = $dir . 'entry-footer-share';
+		/**
+		 * タクソノミー
+		 */
+		if( is_single() ) {
+			$templates['taxonomy'] = $dir . 'entry-footer-taxonomy';
+		}
 		/**
 		 * 購読
 		 */

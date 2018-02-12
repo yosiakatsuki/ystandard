@@ -2,6 +2,10 @@
 /**
  * カテゴリー関連の関数
  */
+
+/**
+ * 投稿についたカテゴリー1件を表示する
+ */
 if( ! function_exists( 'ys_the_entry_category' ) ) {
 	function ys_the_entry_category( $link = true, $post_id = 0 ) {
 		$category = ys_get_the_category( 1, $link, $post_id );
@@ -43,6 +47,15 @@ if( ! function_exists( 'ys_get_the_category' ) ) {
 			}
 		}
 		return $list;
+	}
+}
+/**
+ * 投稿についているカテゴリー一覧を表示
+ */
+if( ! function_exists( 'ys_the_category_list' ) ) {
+	function ys_the_category_list( $separator = '', $link = true, $post_id = 0 ) {
+		$list = ys_get_the_category( 0, $link = true, $post_id = 0 );
+		echo implode( $separator, $list );
 	}
 }
 /**

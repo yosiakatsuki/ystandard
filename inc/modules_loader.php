@@ -113,9 +113,10 @@ require_once get_template_directory() . '/inc/breadcrumbs/breadcrumbs.php';
  */
 require_once get_template_directory() . '/inc/copyright/copyright.php';
 /**
- * カテゴリー関連
+ * taxonomy関連
  */
-require_once get_template_directory() . '/inc/category/category.php';
+require_once get_template_directory() . '/inc/taxonomy/category.php';
+require_once get_template_directory() . '/inc/taxonomy/tag.php';
 /**
  * AMP
  */

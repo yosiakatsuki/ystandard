@@ -1,0 +1,38 @@
+.entry__footer-taxonomy {
+  @at-root {
+    & {
+      font-size: .9em;
+      a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      .category__link,
+      .tag__link {
+        display: inline-block;
+        margin-left: 5px;
+        margin-bottom: 5px;
+      }
+    }
+    .entry__footer-tax-title {
+      flex: 0 0 auto;
+      margin: 0;
+      padding: 0;
+      font-size: 1em;
+      &:before,
+      &after {
+        content: none;
+      }
+    }
+    .entry__footer-tax-container {
+      margin: 0;
+    }
+    .entry__footer-tax-icon {
+      margin-right: 5px;
+    }
+    .entry__footer-tag {
+    }
+  }// @
+}
