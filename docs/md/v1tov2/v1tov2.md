@@ -187,6 +187,8 @@
 - ys_extras_excerpt_length
 - ys_extras_excerpt_more
 - ys_extras_the_json_ld
+- ys_template_the_post_paging
+- ys_template_get_the_post_thumbnail
 
 ## 変更されたフィルタ
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
