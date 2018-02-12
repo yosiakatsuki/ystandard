@@ -239,12 +239,14 @@ function ys_set_breadcrumb_ancestors( $items, $object_id, $object_type, $resourc
 									get_permalink( $ancestor_id )
 								);
 		} else {
-			$ancestors_term = get_term_by( 'ID', $ancestor_id, $taxonomy );
-			$items = ys_set_breadcrumb_item(
-										$items,
-										$ancestors_term->name,
-										get_term_link( $ancestor_id, $taxonomy )
-									);
+			$ancestors_term = get_term_by( 'id', $ancestor_id, $object_type );
+			if( $ancestors_term ) {
+				$items = ys_set_breadcrumb_item(
+									$items,
+									$ancestors_term->name,
+									get_term_link( $ancestor_id, $object_type )
+								);
+			}
 		}
 	}
 	return apply_filters( 'ys_set_breadcrumb_ancestors', $items, $object_id, $object_type, $resource_type );
