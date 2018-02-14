@@ -1004,12 +1004,22 @@ textarea,
 select,
 button {
 	display: block;
-	width: 100%;
 	background-color: #fff;
 	border: 1px solid #bdc3c7;
 	padding: .5em;
 	font-size: 1em;
 	border-radius: 2px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="search"],
+input[type="url"],
+input[type="email"],
+textarea,
+select {
+	width: 100%;
 }
 
 select:not([size]):not([multiple]) {
@@ -1020,8 +1030,20 @@ button,
 input[type="reset"],
 input[type="submit"],
 input[type="button"] {
-	width: auto;
-	padding: .5em 1em;
+	padding: .5em 2em;
+	background-color: #292b2c;
+	border: 1px solid #292b2c;
+	color: #fff;
+	-webkit-transition: all .3s;
+	transition: all .3s;
+}
+
+button:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+	background-color: #fff;
+	color: #222;
 }
 
 .header__branding {
@@ -2087,6 +2109,23 @@ figcaption {
 
 .entry-list--list .entry-list:first-child {
 	border-top: 1px solid #ecf0f1;
+}
+
+.search-form {
+	position: relative;
+}
+
+.search-field {
+	padding-right: 2.5em;
+}
+
+.search-submit {
+	position: absolute;
+	right: 0;
+	top: 0;
+	border: none;
+	background-color: transparent;
+	padding: .7em 1em 0.3em;
 }
 
 .widget {

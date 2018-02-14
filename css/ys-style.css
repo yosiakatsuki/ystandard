@@ -61,17 +61,6 @@
 	background-color: #292b2c;
 }
 
-.ys-btn--fill {
-	background-color: #292b2c;
-	border: 1px solid #292b2c;
-	color: #fff;
-}
-
-.ys-btn--fill:hover {
-	background-color: #fff;
-	color: #222;
-}
-
 .ys-btn--full {
 	display: block;
 	width: 100%;
