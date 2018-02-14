@@ -21,10 +21,10 @@ function ys_body_classes( $classes ) {
 	}
 
 	/**
-	 * 1カラムの場合
+	 * 1カラム,AMPの場合
 	 */
-	if( ys_is_one_column() ) {
-		$classes[] = 'ys-one-col';
+	if( ys_is_one_column() || ys_is_amp() ) {
+		$classes[] = 'one-col';
 	}
 
 	/**

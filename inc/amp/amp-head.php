@@ -27,6 +27,16 @@ if( ! function_exists( 'ys_get_the_amp_document_title' ) ) {
 add_action( 'ys_amp_head', 'ys_get_the_amp_document_title' );
 
 /**
+ * ユーザーカスタムHEAD出力
+ */
+if( ! function_exists( 'ys_the_uc_custom_head_amp' ) ) {
+	function ys_the_uc_custom_head_amp() {
+		get_template_part( 'user-custom-head-amp' );
+	}
+}
+add_action( 'ys_amp_head', 'ys_the_uc_custom_head_amp', 11 );
+
+/**
  * AMP記事で必要になるスクリプト出力
  */
 if( ! function_exists( 'ys_the_amp_script' ) ) {
@@ -82,6 +92,8 @@ if( ! function_exists( 'ys_the_amp_script' ) ) {
 		echo apply_filters( 'ys_the_amp_script', $scripts );
 	}
 }
+add_action( 'ys_amp_head', 'ys_the_amp_script' );
+
 
 /**
  * AMPページに広告用scriptをロードするか

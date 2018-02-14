@@ -103,6 +103,10 @@
 	margin-bottom: 5px;
 }
 
+.ad__content {
+	text-align: center;
+}
+
 .entry__footer-taxonomy {
 	font-size: .9em;
 }

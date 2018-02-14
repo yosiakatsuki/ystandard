@@ -1,6 +1,7 @@
 .sidebar {
   @at-root {
     & {
+      width: 100%;
       padding: get_margin() 0;
 
       a {

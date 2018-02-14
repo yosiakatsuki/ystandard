@@ -2,6 +2,12 @@
 /**
  * 画像関連の処理
  */
+
+function ys_post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+	return ys_amp_convert_image( $html );
+}
+add_filter( 'post_thumbnail_html', 'ys_post_thumbnail_html', 10, 5 );
+
 /**
  * 画像オブジェクト取得
  */

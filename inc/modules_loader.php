@@ -81,15 +81,16 @@ require_once get_template_directory() . '/inc/header/header.php';
 /**
  * フッター
  */
+require_once get_template_directory() . '/inc/footer/footer.php';
 require_once get_template_directory() . '/inc/footer/footer-sns.php';
 /**
  * コンテンツ関連
  */
 require_once get_template_directory() . '/inc/content/content.php';
 /**
- * フィルター関連
+ * body ... body_class
  */
-require_once get_template_directory() . '/inc/filters/body.php';
+require_once get_template_directory() . '/inc/body/body.php';
 /**
  * 広告
  */

@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <?php
+	/**
+	 * *********************************************************************************
+	 *
+	 *     head内にタグを追記したいあなたへ
+	 *
+	 *     yStandardではAMPフォーマット対応の為にheadタグをheader.php以外のファイルに書いています
+	 *     もし、Google Fontsや広告など、何かタグを追加しようとこのファイルをひらいたのであれば、
+	 *     yStandardではuser-custom-head.php というファイルに追加したいタグを書き込むだけで
+	 *     headに出力出来るようになっています。
+	 *
+	 *     自分で追加した部分も見やすくなりますのでぜひご活用下さい。
+	 *
+	 * *********************************************************************************
+	 */
 	if( ys_is_amp() ) {
 		/**
 		 * AMPフォーマットの場合
@@ -41,7 +55,7 @@
 				<div class="header__nav">
 					<?php get_template_part( 'template-parts/nav/global-nav' ); ?>
 				</div><!-- .header__nav -->
-			</div><!-- .row -->
+			</div><!-- .header_row -->
 		</div><!-- .header__container -->
 	</header><!-- .header .site-header -->
 	<div id="content" class="site-content site__content">

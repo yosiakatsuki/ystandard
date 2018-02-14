@@ -1230,6 +1230,7 @@ input[type="button"]:hover {
 }
 
 .sidebar {
+	width: 100%;
 	padding: 15px 0;
 }
 
@@ -1297,7 +1298,8 @@ input[type="button"]:hover {
 	vertical-align: middle;
 }
 
-.entry__author-figure img {
+.entry__author-figure img,
+.entry__author-figure amp-img {
 	width: 24px;
 }
 
@@ -2289,6 +2291,10 @@ div.aligncenter {
 	text-align: center;
 }
 
+.one-col .container {
+	max-width: 860px;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__2--tb {
@@ -2502,6 +2508,7 @@ div.aligncenter {
 }
 
 .content__main {
+	width: calc( 100% - 360px);
 	padding: 30px 29px;
 	border: 1px solid #ecf0f1;
 }

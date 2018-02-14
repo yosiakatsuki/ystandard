@@ -1,7 +1,6 @@
 # 開発メモ
 
 ## 今後の予定
-- user-custom- 系実装
 - サイトフッターSNSアイコンの背景色
 - 構造化データ
 - →デモサイト作成
@@ -9,10 +8,12 @@
 ### alpha
 - CSSを1ファイルにする (wp_add_inline_styleで出力)
   - 最低1ファイルCSSを読ませる必要があるのでpage speed insight的にどうか…
+  - そもそもAMPではそういうことできないので気にすることないのでは？
 - 関連記事の日付をカード下に固定する
   - カードのスタイルに追加
 - SPスライドメニューに検索窓追加
   - 設定でON-OFF出来るようにする
+- 404ページ
 
 
 ## テスト
@@ -38,11 +39,11 @@ ystandard
 │├ sass
 │├ js                         : ES2015 & webpack
 │
-├ template-parts                : ページを構成するテンプレートをまとめる
-├ user-custom                   : ユーザーがカスタマイズしやすくするためのテンプレート
-│├ user-custom-head.php        : 非AMPフォーマットのheadタグのユーザー拡張部分
-│├ user-custom-head-amp.php    : AMPフォーマットのheadタグのユーザー拡張部分
-│└ user-custom-append-body.php : 非AMPフォーマットの</body>直前のユーザー拡張部分
+├ template-parts              : ページを構成するテンプレートをまとめる
+│
+├ user-custom-head.php        : 非AMPフォーマットのheadタグのユーザー拡張部分
+├ user-custom-head-amp.php    : AMPフォーマットのheadタグのユーザー拡張部分
+├ user-custom-append-body.php : 非AMPフォーマットの</body>直前のユーザー拡張部分
 │
 ├ 各テーマテンプレート
 ├ gulpfile.js,package.json等の開発用ファイル

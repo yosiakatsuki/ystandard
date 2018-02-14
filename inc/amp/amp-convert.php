@@ -65,8 +65,8 @@ if( ! function_exists( 'ys_amp_convert_oembed' ) ) {
 /**
  * iframeの変換
  */
-if( ! function_exists( 'ys_amp_replace_iframe' ) ) {
-	function ys_amp_replace_iframe( $content, $layout = 'responsive' ) {
+if( ! function_exists( 'ys_amp_convert_iframe' ) ) {
+	function ys_amp_convert_iframe( $content, $layout = 'responsive' ) {
 		$pattern = '/<iframe([^>]+?)<\/iframe>/i';
 		$replacement = '<amp-iframe layout="' . $layout . '"$1</amp-iframe>';
 		$content = ys_amp_preg_replace( $pattern, $replacement, $content );

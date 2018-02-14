@@ -247,55 +247,57 @@ if ( !function_exists( 'ys_get_the_link_page' ) ) {
  */
 if( ! function_exists( 'ys_the_noindex' ) ) {
 	function ys_the_noindex(){
-		$noindexoutput = false;
+		$noindex = false;
 
 		if( is_404() ){
 			/**
 			 * 404ページをnoindex
 			 */
-			$noindexoutput = true;
+			$noindex = true;
 
 		} elseif( is_search() ) {
 			/**
 			 * 検索結果をnoindex
 			 */
-			$noindexoutput = true;
+			$noindex = true;
 
-		} elseif( is_category() && 1 == ys_get_option( 'ys_archive_noindex_category', 0 ) ) {
+		} elseif( is_category() && ys_get_option( 'ys_archive_noindex_category' ) ) {
 			/**
 			 * カテゴリーページのnoindex設定がされていればnoindex
 			 */
-			$noindexoutput = true;
+			$noindex = true;
 
-		} elseif( is_tag() && 1 == ys_get_option( 'ys_archive_noindex_tag', 1 ) ){
+		} elseif( is_tag() && ys_get_option( 'ys_archive_noindex_tag' ) ){
 			/**
 			 * カテゴリーページのnoindex設定がされていればnoindex
 			 */
-			$noindexoutput = true;
+			$noindex = true;
 
-		} elseif( is_author() && 1 == ys_get_option( 'ys_archive_noindex_author', 1 ) ){
+		} elseif( is_author() && ys_get_option( 'ys_archive_noindex_author' ) ){
 			/**
 			 * カテゴリーページのnoindex設定がされていればnoindex
 			 */
-			$noindexoutput = true;
+			$noindex = true;
 
-		} elseif( is_date() && 1 == ys_get_option( 'ys_archive_noindex_date', 1 ) ){
+		} elseif( is_date() && ys_get_option( 'ys_archive_noindex_date' ) ){
 			/**
 			 * カテゴリーページのnoindex設定がされていればnoindex
 			 */
-			$noindexoutput = true;
+			$noindex = true;
 
 		} elseif( is_single() || is_page() ){
 			if( '1' === ys_get_post_meta( 'ys_noindex' ) ){
 				/**
 				 * 投稿・固定ページでnoindex設定されていればnoindex
 				 */
-				$noindexoutput = true;
+				$noindex = true;
 			}
 		}
-		$noindexoutput = apply_filters( 'ys_the_noindex', $noindexoutput );
-		// noindex出力
-		if( $noindexoutput ){
+		$noindex = apply_filters( 'ys_the_noindex', $noindex );
+		/**
+		 * noindex出力
+		 */
+		if( $noindex ){
 			echo '<meta name="robots" content="noindex,follow">' . PHP_EOL;
 		}
 	}
@@ -475,3 +477,13 @@ if( ! function_exists( 'ys_the_amphtml' ) ) {
 	}
 }
 add_action( 'wp_head', 'ys_the_amphtml' );
+
+/**
+ * ユーザーカスタムHEAD出力
+ */
+if( ! function_exists( 'ys_the_uc_custom_head' ) ) {
+	function ys_the_uc_custom_head() {
+		get_template_part( 'user-custom-head' );
+	}
+}
+add_action( 'wp_head', 'ys_the_uc_custom_head', 11 );
