@@ -2,7 +2,6 @@ input,
 textarea,
 select,
 button {
-  display: block;
   background-color: #fff;
   border: 1px solid $border-color-gray;
   padding: .5em;
@@ -11,12 +10,12 @@ button {
 }
 input[type="text"],
 input[type="password"],
-input[type="tel"],
 input[type="search"],
 input[type="url"],
 input[type="email"],
 textarea,
 select {
+  display: block;
   width: 100%;
 }
 select:not([size]):not([multiple]) {
