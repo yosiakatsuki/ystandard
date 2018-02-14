@@ -83,6 +83,13 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 	<?php
 	}
 }
+/**
+ * 返信ボタンクラスつける
+ */
+function ys_comment_reply_link( $link ) {
+	return preg_replace( '/class=([\'"])/i', 'class=$1ys-btn comment__reply-link ', $link );
+}
+add_filter( 'comment_reply_link', 'ys_comment_reply_link' );
 
 /**
  * コメント中で使用できるタグを限定

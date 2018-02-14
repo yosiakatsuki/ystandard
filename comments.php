@@ -5,7 +5,7 @@ if ( post_password_required() ) {
 ?>
 <aside id="comments" class="comments-area comments__area entry__footer-section">
 	<?php if ( have_comments() ) : ?>
-		<h2 class="comments-title comments__title">
+		<h2 class="comments-title entry__footer-title">
 			<?php
 				$comments_number = get_comments_number();
 				echo $comments_number.' 件のコメント'
@@ -33,7 +33,8 @@ if ( post_password_required() ) {
 		comment_form( array(
 			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title comment-reply__title">',
 			'title_reply_after'  => '</h2>',
-			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '<span class="required">*</span></label><textarea id="comment" class="comment__text" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>'
+			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '<span class="required">*</span></label><textarea id="comment" class="comment__text" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+			'class_submit' => 'submit ys-btn--fill ys-btn--full'
 		) );
 	?>
 </aside><!-- .comments-area -->

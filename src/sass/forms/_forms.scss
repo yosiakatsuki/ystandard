@@ -1,0 +1,32 @@
+input,
+textarea,
+select,
+button {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid $border-color-gray;
+  padding: .5em;
+  font-size: 1em;
+  border-radius: 2px;
+}
+select:not([size]):not([multiple]) {
+  height: 2em;
+}
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
+  width: auto;
+  padding: .5em 1em;
+}
+//input[type="text"],
+//input[type="email"],
+//input[type="tel"],
+//input[type="url"],
+//input[type="number"],
+//input[type="search"],
+//input[type="password"],
+//input[type="reset"],
+//input[type="submit"],
+//input[type="button"],

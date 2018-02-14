@@ -1,21 +1,37 @@
-.ys-btn {
+[class*="ys-btn"] {
   display: inline-block;
-  padding: .25em 2em;
-  background-color: #fff;
-  border: 1px solid $border-color-dark;
-  color: $font-color-main;
+  padding: .25em 2em .2em;
   text-decoration: none;
   transition: all .3s;
-
   &:hover {
-    color: #fff;
-    background-color: $border-color-dark;
     text-decoration: none;
   }
 }
 
+.ys-btn {
+  background-color: #fff;
+  border: 1px solid $border-color-dark;
+  color: $font-color-main;
+
+  &:hover {
+    color: #fff;
+    background-color: $border-color-dark;
+  }
+}
+.ys-btn--fill {
+  background-color: $border-color-dark;
+  border: 1px solid $border-color-dark;
+  color: #fff;
+  &:hover {
+    background-color: #fff;
+    color: $font-color-main;
+  }
+}
+
+
 .ys-btn--full {
   display: block;
+  width: 100%;
   text-align: center;
 }
 

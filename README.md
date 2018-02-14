@@ -290,6 +290,10 @@ Source : http://w-shadow.com/
 License: MIT
 Source : https://github.com/bfred-it/object-fit-images
 
+### \_decimal.scss
+License: MIT
+Source : https://gist.github.com/terkel/4373420
+
 ## 変更履歴
 
 ### v1.0.x

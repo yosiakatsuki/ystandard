@@ -1,24 +1,19 @@
-/*
-  container
- */
+//
+//  container
+//
 .container {
   @at-root {
     & {
       @include container;
-    }
-
-    .container--wide {
-      max-width: 1200px + ($gutter * 2);
     }
     .container--full {
       max-width: 100%;
     }
   }
 }
-
-/*
-  row
- */
+//
+//  row
+//
 .row {
   @at-root {
     & {
@@ -28,21 +23,11 @@
     .row--slide {
       @include row--slide;
     }
-
-    // screen
-    @include media-breakpoint(pc) {
-      .row--slide {
-        &::-webkit-scrollbar {
-          height: 0;
-        }
-      }
-    }
-
   }// at-root
 }
-/*
-  col
- */
+//
+//  col
+//
 .col {
   @at-root {
 
@@ -51,18 +36,15 @@
       @include col;
       max-width: 100%;
     }
-    .col__2,
-    .col__2--sp {
+    .col__2 {
       flex: 0 0 50%;
       width: 50%;
     }
-    .col__3,
-    .col__3--sp {
+    .col__3 {
       flex: 0 0 33.33%;
       width: 33.33%;
     }
-    .col__4,
-    .col__4--sp {
+    .col__4 {
       flex: 0 0 25%;
       width: 25%;
     }

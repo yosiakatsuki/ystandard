@@ -13,13 +13,13 @@
 	}
 ?>
 <section class="entry-related entry__footer-section">
-	<h2 class="entry-related__section-title">関連記事</h2>
+	<h2 class="entry__footer-title">関連記事</h2>
 	<div class="container">
 		<div class="row--slide">
 			<?php foreach ( $related_posts as $post ): setup_postdata( $post ); ?>
 				<article class="entry-related__item col col__slide color_font-main">
-					<a class="card" href="<?php the_permalink(); ?>">
-						<div class="entry-list__thumbnail entry-list__mask-wrap card__img ratio ratio__4-3">
+					<a class="card entry-list__mask-wrap" href="<?php the_permalink(); ?>">
+						<div class="entry-list__thumbnail card__img ratio ratio__16-9">
 							<div class="ratio__item">
 								<?php if( has_post_thumbnail() ): ?>
 									<figure class="entry-list__figure ratio__image">
@@ -37,8 +37,7 @@
 						</div>
 						<div class="entry-list__detail card__text">
 							<?php the_title( '<h3 class="entry-title entry-related__title">', '</h3>' ); ?>
-							<div class="entry__meta entry-list__meta color__font-sub flex flex--j-between">
-								<p class="entry-list__cat"><i class="fa fa-folder-o" aria-hidden="true"></i><?php ys_the_entry_category( false ); ?></p><!-- .entry-list__cat -->
+							<div class="entry__meta entry-list__meta color__font-sub">
 								<p class="entry-list__date"><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time></p><!-- .entry-list__date -->
 							</div>
 						</div>

@@ -599,15 +599,19 @@ pre code {
 
 a {
 	color: #2980B9;
-	-webkit-transition: color .3s,background-color .3s;
-	transition: color .3s,background-color .3s;
+	-webkit-transition: all .3s;
+	transition: all .3s;
 }
 
 a:hover {
 	color: #409ad5;
 }
 
-label {
+label,
+input[type="reset"],
+input[type="submit"],
+button,
+input[type="button"] {
 	cursor: pointer;
 }
 
@@ -625,10 +629,6 @@ label {
 	zoom: 1;
 }
 
-/*
-  container
- */
-
 .container {
 	position: relative;
 	max-width: 1250px;
@@ -637,17 +637,9 @@ label {
 	padding: 0 15px;
 }
 
-.container--wide {
-	max-width: 1230px;
-}
-
 .container--full {
 	max-width: 100%;
 }
-
-/*
-  row
- */
 
 .row {
 	display: -webkit-box;
@@ -685,34 +677,27 @@ label {
 	border-radius: 4px;
 }
 
-/*
-  col
- */
-
 .col,
 [class*="col_"] {
 	padding: 15px;
 	max-width: 100%;
 }
 
-.col__2,
-.col__2--sp {
+.col__2 {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 50%;
 	flex: 0 0 50%;
 	width: 50%;
 }
 
-.col__3,
-.col__3--sp {
+.col__3 {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 33.33%;
 	flex: 0 0 33.33%;
 	width: 33.33%;
 }
 
-.col__4,
-.col__4--sp {
+.col__4 {
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 25%;
 	flex: 0 0 25%;
@@ -949,11 +934,11 @@ label {
 }
 
 .ratio__16-9 {
-	padding-top: 56.25%;
+	padding-top: 56%;
 }
 
 .ratio__3-1 {
-	padding-top: 33.33333%;
+	padding-top: 33%;
 }
 
 .ratio__2-1 {
@@ -961,7 +946,7 @@ label {
 }
 
 .ratio__1-1 {
-	padding-top: 100%;
+	padding-top: 10000%;
 }
 
 .ratio__item {
@@ -1012,6 +997,31 @@ label {
 .breadcrumbs__item:last-child::after {
 	content: "";
 	margin: 0;
+}
+
+input,
+textarea,
+select,
+button {
+	display: block;
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #bdc3c7;
+	padding: .5em;
+	font-size: 1em;
+	border-radius: 2px;
+}
+
+select:not([size]):not([multiple]) {
+	height: 2em;
+}
+
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
+	width: auto;
+	padding: .5em 1em;
 }
 
 .header__branding {
@@ -1247,6 +1257,11 @@ label {
 .entry__footer > *:first-child,
 .entry__footer-section:first-child {
 	margin-top: 0;
+}
+
+.entry__footer-title {
+	margin-top: 0;
+	font-size: 1.2em;
 }
 
 .entry__author {
@@ -2325,10 +2340,6 @@ div.aligncenter {
 }
 
 @media screen and (min-width: 960px) {
-
-.row--slide::-webkit-scrollbar {
-	height: 0;
-}
 
 .col__2--pc {
 	-webkit-box-flex: 0;

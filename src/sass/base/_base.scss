@@ -98,13 +98,17 @@ pre {
 
 a {
 	color: $link-color;
-	transition: color .3s,background-color .3s;
+	transition: all .3s;
 
 	&:hover {
 		color: $link-color-hover;
 	}
 }
 
-label {
+label,
+input[type="reset"],
+input[type="submit"],
+button,
+input[type="button"] {
   cursor: pointer;
 }

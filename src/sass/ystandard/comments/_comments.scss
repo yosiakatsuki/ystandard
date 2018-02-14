@@ -9,10 +9,6 @@
         margin-left: 1em;
       }
     }
-    .comments__title {
-      margin: 0;
-      font-size: 1.2em;
-    }
     .comment__list {
       margin-top: 0;
     }
@@ -48,20 +44,26 @@
         margin-top: 1em;
       }
     }
-    .comment__reply {
-      a {
-        display: inline-block;
-        padding: .2em 1em;
-        border: 1px solid $font-color-gray;
-        border-radius: 4px;
-        color: $font-color-gray;
-        font-size: .9em;
-        text-decoration: none;
-        &:hover {
-          background-color: $font-color-gray;
-          color: #fff;
-        }
+    .comment-reply__title {
+      margin-top: 2em;
+      margin-bottom: 0;
+      font-size: 1.2em;
+    }
+    .comment__reply-link {
+      padding: .1em 1em;
+      border: 1px solid $font-color-gray;
+      color: $font-color-gray;
+      font-size: .9em;
+      &:hover {
+        background-color: $font-color-gray;
       }
+    }
+    .required {
+      color: #cd201f;
+    }
+    .logged-in-as,
+    .comment-notes {
+      font-size: .8em;
     }
   }// @
 }

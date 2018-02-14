@@ -1,8 +1,5 @@
 .entry__footer-author {
   @at-root {
-    .entry__footer-author-title {
-      font-size: 1em;
-    }
 
     @include media-breakpoint(tb) {
       & {
