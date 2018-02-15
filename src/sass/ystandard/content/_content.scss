@@ -24,7 +24,7 @@
 
       .content__main {
         width: calc( 100% - #{$sidebar-width} );
-        padding: get_margin(2) ( get_margin(2) - 1px ) ;
+        padding: get_margin() ( get_margin(2) - 1px ) ;
         border: 1px solid $border-color-light;
       }
     }

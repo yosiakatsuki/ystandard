@@ -3,7 +3,7 @@
     .entry__title {
       font-size: 1.6em;
       line-height: 1.5;
-      margin: 0 0 5px;
+      margin: get_margin() 0 5px;
       padding: 0;
     }
 

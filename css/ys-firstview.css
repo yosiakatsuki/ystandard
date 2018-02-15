@@ -1252,7 +1252,7 @@ input[type="button"]:hover {
 .entry__title {
 	font-size: 1.6em;
 	line-height: 1.5;
-	margin: 0 0 5px;
+	margin: 15px 0 5px;
 	padding: 0;
 }
 
@@ -2030,12 +2030,16 @@ figcaption {
 	font-style: italic;
 }
 
+.archive__header {
+	padding: 0 0 15px;
+}
+
 .archive__title {
 	margin: 0;
 }
 
 .archive__dscr {
-	padding: 15px 0;
+	margin-top: 15px;
 	font-size: .8em;
 }
 
@@ -2518,7 +2522,7 @@ div.aligncenter {
 
 .content__main {
 	width: calc( 100% - 360px);
-	padding: 30px 29px;
+	padding: 15px 29px;
 	border: 1px solid #ecf0f1;
 }
 
