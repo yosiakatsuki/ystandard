@@ -70,7 +70,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 												''
 											);
 			$pagination[] = ys_set_pagination_item(
-												'1',
+												$total,
 												get_pagenum_link( $total )
 											);
 		}

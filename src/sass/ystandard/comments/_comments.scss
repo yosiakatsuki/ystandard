@@ -42,6 +42,9 @@
       font-size: .9em;
       p {
         margin-top: 1em;
+        &:first-child {
+          margin-top: 0;
+        }
       }
     }
     .comment-reply__title {

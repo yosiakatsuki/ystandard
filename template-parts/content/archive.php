@@ -1,12 +1,12 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class( array( 'entry-list', 'clearfix' ) ); ?>>
 	<div class="entry-list__thumbnail entry-list__mask-wrap">
-		<a href="<?php the_permalink(); ?>" class="entry-list__link">
+		<a href="<?php the_permalink(); ?>" class="entry-list__link ratio ratio__4-3">
 			<?php if( has_post_thumbnail() ): ?>
-				<figure class="entry-list__figure">
+				<figure class="entry-list__figure ratio__item ratio__image">
 					<?php the_post_thumbnail(); ?>
 				</figure>
 			<?php else: ?>
-				<div class="entry-list__no-img flex flex--c-c">
+				<div class="entry-list__no-img ratio__item flex flex--c-c">
 					<i class="fa fa-picture-o" aria-hidden="true"></i>
 				</div><!-- .entry-list__no-img -->
 			<?php endif; ?>

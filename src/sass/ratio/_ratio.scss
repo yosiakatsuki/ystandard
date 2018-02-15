@@ -1,8 +1,9 @@
 .ratio {
   @at-root {
     & {
-      position: relative;
+      display: block;
       width: 100%;
+      position: relative;
       &:before {
         content:"";
         display: block;

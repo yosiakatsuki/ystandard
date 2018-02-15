@@ -15,6 +15,7 @@ body {
   font-family: $font-family;
   letter-spacing: $letter-spacing;
   line-height: $ine-height;
+  word-wrap: break-word;
 
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -55,6 +56,9 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin: 1.5em 0 0;
+  &:first-child {
+    margin-top: 0;
+  }
 }
 
 ul, ol {

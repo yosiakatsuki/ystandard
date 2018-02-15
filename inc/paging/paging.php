@@ -30,7 +30,8 @@ if( ! function_exists( 'ys_paging' ) ) {
 			$paging['prev'] = array(
 													'url' => esc_url( get_permalink( $post_prev->ID ) ),
 													'title' => get_the_title( $post_prev->ID ),
-													'image' => $image_prev
+													'image' => $image_prev,
+													'text' => '«前の記事'
 												);
 		} else {
 			$paging['prev'] = false;
@@ -43,7 +44,8 @@ if( ! function_exists( 'ys_paging' ) ) {
 			$paging['next'] = array(
 													'url' => esc_url( get_permalink( $post_next->ID ) ),
 													'title' => get_the_title( $post_next->ID ),
-													'image' => $image_next
+													'image' => $image_next,
+													'text' => '次の記事»'
 												);
 		} else {
 			$paging['next'] = false;

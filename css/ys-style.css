@@ -311,6 +311,10 @@
 	margin-top: 1em;
 }
 
+.comment__text p:first-child {
+	margin-top: 0;
+}
+
 .comment-reply__title {
 	margin-top: 2em;
 	margin-bottom: 0;
