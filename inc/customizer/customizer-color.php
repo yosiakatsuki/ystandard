@@ -541,7 +541,7 @@ function ys_customizer_inline_css() {
  */
 function ys_customizer_get_footer_sns_css() {
 	$css = '';
-	$footer_sns_opacity = get_option( 'ys_color_footer_sns_bg_opacity', 0.3 );
+	$footer_sns_opacity = get_option( 'ys_color_footer_sns_bg_opacity', 30 );
 	$footer_sns_opacity = ( $footer_sns_opacity / 100 );
 	$footer_sns_hover_opacity = 1 < ( $footer_sns_opacity + 0.2 ) ? 1 : ( $footer_sns_opacity + 0.2 );
 	if( 'light' === get_option( 'ys_color_footer_sns_bg_type', 'light' ) ){
