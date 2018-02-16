@@ -4,9 +4,9 @@
  */
 if( ! function_exists( 'ys_get_the_head_tag' ) ) {
 	function ys_get_the_head_tag() {
-		$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">';
+		$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">' . PHP_EOL;
 		if( is_singular() ){
-			$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">';
+			$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">' . PHP_EOL;
 		}
 		return apply_filters( 'ys_get_the_head_tag', $html );
 	}
@@ -53,7 +53,7 @@ if( ! function_exists( 'ys_the_inline_style' ) ) {
 		} else {
 			$style = sprintf( '<style>%s</style>', $style );
 		}
-		echo $style;
+		echo $style . PHP_EOL;
 	}
 }
 
@@ -76,7 +76,7 @@ add_action( 'wp_head', 'ys_the_meta_description' );
 if( ! function_exists( 'ys_the_pingback_url' ) ) {
 	function ys_the_pingback_url() {
 		if ( is_singular() && pings_open( get_queried_object() ) ){
-			echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '">';
+			echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '">' . PHP_EOL;
 		}
 	}
 }
@@ -91,11 +91,11 @@ if( ! function_exists( 'ys_the_apple_touch_icon' ) ){
 			return;
 		}
 		printf(
-			'<link rel="apple-touch-icon-precomposed" href="%s" />',
+			'<link rel="apple-touch-icon-precomposed" href="%s" />' . PHP_EOL,
 			esc_url( ys_get_apple_touch_icon_url( 180 ) )
 		);
 		printf(
-			'<meta name="msapplication-TileImage" content="%s" />',
+			'<meta name="msapplication-TileImage" content="%s" />' . PHP_EOL,
 			esc_url( ys_get_apple_touch_icon_url( 270 ) )
 		);
 	}
@@ -167,7 +167,7 @@ if( ! function_exists( 'ys_the_canonical_tag' ) ) {
 
 		}
 		if( $canonical !== '' ){
-			printf( '<link rel="canonical" href="%s">', $canonical );
+			printf( '<link rel="canonical" href="%s">' . PHP_EOL, $canonical );
 		}
 	}
 }
@@ -190,14 +190,14 @@ if(!function_exists( 'ys_the_rel_link')) {
 				 * prev
 				 */
 				if( $page > 1 ) {
-					printf( '<link rel="prev" href="%s" />', ys_get_the_link_page( $page - 1 ) );
+					printf( '<link rel="prev" href="%s" />' . PHP_EOL, ys_get_the_link_page( $page - 1 ) );
 				}
 				/**
 				 * next
 				 */
 				if( $page < $pagecnt ) {
 					$page = 0 == $page ? 1 : $page;
-					printf( '<link rel="next" href="%s" />', ys_get_the_link_page( $page + 1 ) );
+					printf( '<link rel="next" href="%s" />' . PHP_EOL, ys_get_the_link_page( $page + 1 ) );
 				}
 			}
 		} else {
@@ -211,10 +211,10 @@ if(!function_exists( 'ys_the_rel_link')) {
 			$total   = isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1;
 			$current = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' )  : 1;
 			if( $current > 1 ) {
-				printf( '<link rel="prev" href="%s" />', get_pagenum_link( $current - 1 ) );
+				printf( '<link rel="prev" href="%s" />' . PHP_EOL, get_pagenum_link( $current - 1 ) );
 			}
 			if($current < $total) {
-				printf( '<link rel="next" href="%s" />', get_pagenum_link( $current + 1 ) );
+				printf( '<link rel="next" href="%s" />' . PHP_EOL, get_pagenum_link( $current + 1 ) );
 			}
 		}
 	}

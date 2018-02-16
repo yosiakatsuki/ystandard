@@ -1,5 +1,7 @@
 @charset "UTF-8";
-/*! yStandard */
+
+// normalize
+@import "normalize";/*! yStandard */
 
 // variables
 @import "variables";
@@ -15,9 +17,6 @@
 @import "function/margin";
 @import "function/sns-color";
 @import "function/decimal";
-
-// normalize
-@import "normalize";
 
 // import scss
 @import "base/base";

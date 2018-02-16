@@ -9,7 +9,7 @@
 	/**
 	 * インラインCSSのセット
 	 */
-	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', false );
+	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', true );
 	ys_set_inline_style( ys_customizer_inline_css() );
 	ys_set_inline_style( locate_template('style-firstview.css') );
 	/**

@@ -4,8 +4,14 @@
  */
 if ( ! function_exists( 'ys_is_top_page') ) {
 	function ys_is_top_page() {
-		if( ( is_home() && ! is_paged() ) || is_front_page() ){
-			return true;
+		if( 'page' === get_option( 'show_on_front' ) ) {
+			if( is_front_page() ) {
+				return true;
+			}
+		} else {
+			if( is_home() && ! is_paged() ) {
+				return true;
+			}
 		}
 		return false;
 	}

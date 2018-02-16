@@ -1,21 +1,3 @@
-/*! yStandard */
-
-/*
-  container
- */
-
-/*
-  row
- */
-
-/*
-  col
- */
-
-/*
-  余白取得
- */
-
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -467,6 +449,24 @@ template {
 [hidden] {
 	display: none;
 }
+
+/*! yStandard */
+
+/*
+  container
+ */
+
+/*
+  row
+ */
+
+/*
+  col
+ */
+
+/*
+  余白取得
+ */
 
 * {
 	-webkit-box-sizing: border-box;
