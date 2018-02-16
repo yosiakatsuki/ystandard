@@ -136,6 +136,13 @@
 - description: Google AnalyticsトラッキングID編集フィルタ
 
 
+## image
+
+### ys_get_the_image_object
+- file: inc/image/image.php
+- description: 投稿内で使われている画像のオブジェクト取得結果の編集フィルタ
+
+
 ## template
 
 ### ys_get_front_page_template

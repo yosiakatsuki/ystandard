@@ -79,6 +79,9 @@ function ys_get_json_ld_article() {
 										);
 	$json['datePublished'] = get_the_date( DATE_ATOM,  $post->ID );
 	$json['dateModified'] = get_post_modified_time( DATE_ATOM, false, $post->ID );
+	/**
+	 * 投稿画像
+	 */
 	$image = ys_get_the_image_object( 'full', $post->ID );
 	if( $image ) {
 		$json['image'] = array(
@@ -93,13 +96,16 @@ function ys_get_json_ld_article() {
 		$json['articleSection'] = esc_html( $category[0]->name );
 	}
 	$json['url'] = $url;
+	/**
+	 * パブリッシャー
+	 */
 	$json['publisher'] = array(
 												'@type' => 'Organization',
 												'name'  => get_bloginfo('name')
 											);
 	$publisher_img = ys_get_publisher_image();
 	if( $publisher_img ) {
-		$publisher_img = ys_calc_logo_image_size( $publisher_img );
+		$publisher_img = ys_calc_publisher_image_size( $publisher_img );
 		$json['publisher']['logo'] = array(
 																		'@type'  => 'ImageObject',
 																		'url'    => $publisher_img[0],
@@ -110,9 +116,9 @@ function ys_get_json_ld_article() {
 	return $json;
 }
 /**
- * ロゴ画像のサイズ判断、相対サイズの計算
+ * パブリッシャー用画像のサイズ判断、相対サイズの計算
  */
-function ys_calc_logo_image_size( $image ) {
+function ys_calc_publisher_image_size( $image ) {
 	if( 60 < $image[2] ) {
 		$height = 60;
 		$width = $height * ( $image[1] / $image[2] );

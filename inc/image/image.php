@@ -12,19 +12,62 @@ function ys_post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $at
 add_filter( 'post_thumbnail_html', 'ys_post_thumbnail_html', 10, 5 );
 
 /**
+ * アイキャッチの画像オブジェクト取得
+ */
+if ( ! function_exists( 'ys_get_the_post_thumbnail_object' ) ) {
+	function ys_get_the_post_thumbnail_object( $size = 'full', $post_id = null ) {
+		$thumbnail_id = get_post_thumbnail_id( $post_id );
+		if( $thumbnail_id ) {
+			$image = wp_get_attachment_image_src( $thumbnail_id, $size );
+			if( $image )  {
+				return $image;
+			}
+		}
+		return false;
+	}
+}
+
+/**
  * 画像オブジェクト取得
  */
 if ( ! function_exists( 'ys_get_the_image_object' ) ) {
 	function ys_get_the_image_object( $size = 'full', $post_id = null ) {
-		$image = false;
-		$thumbnail_id = get_post_thumbnail_id( $post_id );
-		if( $thumbnail_id ) {
-			/**
-			 * 画像オブジェクト取得
-			 */
-			$image = wp_get_attachment_image_src( $thumbnail_id, $size );
+		/**
+		* アイキャッチ画像
+		*/
+		$image = ys_get_the_post_thumbnail_object( $size, $post_id );
+		if( $image )  {
+			return apply_filters( 'ys_get_the_image_object', $image );
 		}
-		return $image;
+		/**
+		 * アイキャッチがない → 投稿先頭画像
+		 */
+		$image = ys_get_the_first_image_object( $post_id );
+		if( $image )  {
+			return apply_filters( 'ys_get_the_image_object', $image );
+		}
+		/**
+		 * アイキャッチもない、先頭画像も取得できない → 外部URL？
+		 */
+		$url = ys_get_the_first_image_url( $post_id );
+		if( false !== $url ) {
+			return apply_filters( 'ys_get_the_image_object', array( $url, 0, 0 ) );
+		}
+		/**
+		 * 投稿内にとにかく画像が無い → OGPデフォルト画像
+		 */
+		$image = ys_get_ogp_default_image_object();
+		if( $image ) {
+			return apply_filters( 'ys_get_the_image_object', $image );
+		}
+		/**
+		 * OGPデフォルト画像も無い → ロゴ画像
+		 */
+		$image = ys_get_custom_logo_image_object();
+		if( $image ) {
+			return apply_filters( 'ys_get_the_image_object', $image );
+		}
+		return false;
 	}
 }
 /**
@@ -33,7 +76,7 @@ if ( ! function_exists( 'ys_get_the_image_object' ) ) {
 if ( ! function_exists( 'get_attachment_id_from_src' ) ) {
 	function get_attachment_id_from_src( $src ) {
 		global $wpdb;
-		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ) );
+		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $src ) );
 		if( empty( $attachment ) ) {
 			return null;
 		}
@@ -86,9 +129,6 @@ if ( ! function_exists( 'ys_get_the_first_image_object' ) ) {
 if ( ! function_exists( 'ys_get_the_image_object_meta' ) ) {
 	function ys_get_the_image_object_meta( $image = null ) {
 		if( empty( $image ) || is_array( $image ) ) {
-			/**
-			 * TODO:構造化エラー対処
-			 */
 			 global $post;
 			 $image = ys_get_the_image_object( 'full', $post->ID );
 		}
@@ -124,7 +164,7 @@ if (!function_exists( 'ys_get_custom_logo_image_object')) {
 /**
  * パブリッシャー用画像取得
  */
-if ( ! function_exists( 'ys_get_publisher_image_url' ) ) {
+if ( ! function_exists( 'ys_get_publisher_image' ) ) {
 	function ys_get_publisher_image() {
 		/**
 		 * ロゴ設定の取得

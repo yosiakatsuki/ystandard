@@ -156,9 +156,13 @@ require_once get_template_directory() . '/inc/paging/paging.php';
  */
 require_once get_template_directory() . '/inc/rss/rss.php';
 /**
- * json-LD作成
+ * json-LD
  */
 require_once get_template_directory() . '/inc/json-ld/json-ld.php';
+/**
+ * OGP
+ */
+require_once get_template_directory() . '/inc/ogp/ogp.php';
 
 
 /**
