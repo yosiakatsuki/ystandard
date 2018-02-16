@@ -5,7 +5,13 @@
 if( ! function_exists( 'ys_the_json_ld' ) ) {
 	function ys_the_json_ld(){
 
-		if ( is_singular() && ! is_front_page() && ! is_home() ) {
+		if( is_home() || is_archive() ) {
+			global $posts;
+			$json = array();
+			foreach ( $posts as $post ) {
+				$json[] = ys_get_json_ld_article( $post );
+			}
+		} elseif ( is_singular() && ! is_front_page() ) {
 			/**
 			 * 個別ページ
 			 */
@@ -68,13 +74,16 @@ function ys_get_json_ld_website() {
 /**
  * json-LD Article 作成
  */
-function ys_get_json_ld_article() {
+function ys_get_json_ld_article( $post_data = null ) {
 	global $post;
+	if( is_null( $post_data ) ) {
+		$post_data = $post;
+	}
 	$json = array();
-	$url = get_the_permalink( $post->ID );
-	$name = get_the_title( $post->ID );
-	$excerpt = esc_html( ys_get_the_custom_excerpt( '', 0, $post->ID ) );
-	$content = esc_html( ys_get_plain_text( $post->post_content ) );
+	$url = get_the_permalink( $post_data->ID );
+	$name = get_the_title( $post_data->ID );
+	$excerpt = esc_html( ys_get_the_custom_excerpt( '', 0, $post_data->ID ) );
+	$content = esc_html( ys_get_plain_text( $post_data->post_content ) );
 	$json['@context'] = 'http://schema.org';
 	$json['@type'] = 'Article';
 	$json['mainEntityOfPage'] = array(
@@ -82,19 +91,19 @@ function ys_get_json_ld_article() {
 																'@id'   => $url
 															);
 	$json['name'] = $name;
-	$json['headline'] = $name;
+	$json['headline'] = mb_substr( $name, 0, 110);
 	$json['description'] = $excerpt;
 	$json['articleBody'] = $content;
 	$json['author'] = array(
 											'@type' => 'Person',
 											'name'  => ys_get_author_display_name()
 										);
-	$json['datePublished'] = get_the_date( DATE_ATOM,  $post->ID );
-	$json['dateModified'] = get_post_modified_time( DATE_ATOM, false, $post->ID );
+	$json['datePublished'] = get_the_date( DATE_ATOM,  $post_data->ID );
+	$json['dateModified'] = get_post_modified_time( DATE_ATOM, false, $post_data->ID );
 	/**
 	 * 投稿画像
 	 */
-	$image = ys_get_the_image_object( 'full', $post->ID );
+	$image = ys_get_the_image_object( 'full', $post_data->ID );
 	if( $image ) {
 		$json['image'] = array(
 											'@type'  => 'ImageObject',
