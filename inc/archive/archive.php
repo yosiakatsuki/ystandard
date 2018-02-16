@@ -14,7 +14,7 @@ if( ! function_exists( 'ys_get_the_archive_title' )){
 		} elseif ( is_tag() ) {
 			$title = sprintf( $title_format, single_tag_title( '', false ) );
 		} elseif ( is_author() ) {
-			$title = sprintf( $title_format, '<span class="vcard">' . get_the_author() . '</span>' );
+			$title = sprintf( $title_format, get_the_author() );
 		} elseif ( is_search() ) {
 			$title_format = '「%s」に関連する記事一覧';
 			$title = sprintf( $title_format, esc_html( get_search_query( false ) ) );
