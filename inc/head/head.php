@@ -63,7 +63,7 @@ if( ! function_exists( 'ys_the_inline_style' ) ) {
 if( ! function_exists( 'ys_the_meta_description' ) ) {
 	function ys_the_meta_description(){
 		$dscr = trim( ys_get_option( 'ys_wp_site_description' ) );
-		if( ys_is_toppage() && '' != $dscr ){
+		if( ys_is_top_page() && '' != $dscr ){
 			echo '<meta name="description"  content="'. $dscr . '">' . PHP_EOL;
 		}
 	}

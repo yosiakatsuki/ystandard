@@ -90,7 +90,7 @@ if( ! function_exists( 'ys_get_ogp_and_twitter_card_param') ) {
 		/**
 		 * 投稿・固定ページ系
 		 */
-		if( is_singular() && ! ys_is_toppage() ) {
+		if( is_singular() && ! ys_is_top_page() ) {
 			$param['title'] = get_the_title();
 			$param['description'] = ys_get_the_custom_excerpt('');
 			$image = ys_get_the_image_object();
@@ -103,7 +103,7 @@ if( ! function_exists( 'ys_get_ogp_and_twitter_card_param') ) {
 		/**
 		 * アーカイブ系
 		 */
-		if( is_archive() && ! ys_is_toppage() ){
+		if( is_archive() && ! ys_is_top_page() ){
 			$param['title'] = ys_get_the_archive_title( '' );
 			$param['url'] = ys_get_the_archive_url();
 		}

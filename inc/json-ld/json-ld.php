@@ -56,6 +56,13 @@ function ys_get_json_ld_website() {
 	$json['url'] = get_bloginfo('url');
 	$json['name'] = get_bloginfo('name');
 	$json['alternateName'] = get_bloginfo('name');
+	if( ys_is_top_page() ) {
+		$json['potentialAction'] = array(
+			'@type' => 'SearchAction',
+			'target' => home_url( '/?s={query}' ),
+			'query-input' => 'required name=query'
+		);
+	}
 	return $json;
 }
 /**
