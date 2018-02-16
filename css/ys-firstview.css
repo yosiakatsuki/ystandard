@@ -1,3 +1,5 @@
+/*! yStandard */
+
 /*
   container
  */
@@ -666,7 +668,6 @@ input[type="button"] {
 	overflow-x: scroll;
 	overflow-y: hidden;
 	-webkit-overflow-scrolling: touch;
-	overflow-scrolling: touch;
 }
 
 .row--slide::-webkit-scrollbar {
@@ -724,7 +725,7 @@ input[type="button"] {
 }
 
 .col__slide:last-child {
-	padding-right: -5px;
+	margin-right: -5px;
 }
 
 .card {
@@ -880,10 +881,10 @@ input[type="button"] {
 	justify-content: center;
 }
 
-.flex--a-top {
-	-webkit-box-align: top;
-	-ms-flex-align: top;
-	align-items: top;
+.flex--a-start {
+	-webkit-box-align: start;
+	-ms-flex-align: start;
+	align-items: flex-start;
 }
 
 .flex--a-center {
@@ -892,22 +893,22 @@ input[type="button"] {
 	align-items: center;
 }
 
-.flex--a-bottom {
-	-webkit-box-align: bottom;
-	-ms-flex-align: bottom;
-	align-items: bottom;
+.flex--a-end {
+	-webkit-box-align: end;
+	-ms-flex-align: end;
+	align-items: flex-end;
 }
 
 .flex--j-start {
 	-webkit-box-pack: start;
 	-ms-flex-pack: start;
-	justify-content: start;
+	justify-content: flex-start;
 }
 
 .flex--j-end {
 	-webkit-box-pack: end;
 	-ms-flex-pack: end;
-	justify-content: end;
+	justify-content: flex-end;
 }
 
 .flex--j-center {

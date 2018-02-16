@@ -1,7 +1,7 @@
 <?php
 get_header(); ?>
 <div class="container">
-	<section class="content-area content__wrap">
+	<div class="content-area content__wrap">
 		<main id="main" class="site-main content__main">
 		<?php if ( have_posts() ) : ?>
 			<header class="page-header archive__header">
@@ -28,6 +28,6 @@ get_header(); ?>
 		?>
 		</main><!-- .site-main -->
 		<?php get_sidebar(); ?>
-	</section><!-- .content-area -->
+	</div><!-- .content-area -->
 </div><!-- .container -->
 <?php get_footer(); ?>

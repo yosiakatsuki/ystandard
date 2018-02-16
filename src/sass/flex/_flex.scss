@@ -12,20 +12,20 @@
       align-items: center;
       justify-content: center;
     }
-    .flex--a-top {
-      align-items: top;
+    .flex--a-start {
+      align-items: flex-start;
     }
     .flex--a-center {
       align-items: center;
     }
-    .flex--a-bottom {
-      align-items: bottom;
+    .flex--a-end {
+      align-items: flex-end;
     }
     .flex--j-start {
-      justify-content: start;
+      justify-content: flex-start;
     }
     .flex--j-end {
-      justify-content: end;
+      justify-content: flex-end;
     }
     .flex--j-center {
       justify-content: center;
