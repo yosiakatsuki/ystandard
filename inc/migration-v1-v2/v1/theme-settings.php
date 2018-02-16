@@ -51,5 +51,3 @@ if (!function_exists( 'ys_settings_get_ogp')) {
 		);
 	}
 }
-
-?>

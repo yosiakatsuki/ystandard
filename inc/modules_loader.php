@@ -25,7 +25,7 @@ require_once get_template_directory() . '/inc/option/option.php';
 /**
  * utilities
  */
-require_once get_template_directory() . '/inc/util/util.php';
+require_once get_template_directory() . '/inc/utility/utility.php';
 /**
  * 画像関連の処理
  */
@@ -121,7 +121,7 @@ require_once get_template_directory() . '/inc/taxonomy/tag.php';
 /**
  * AMP
  */
-require_once get_template_directory() . '/inc/amp/amp-util.php';
+require_once get_template_directory() . '/inc/amp/amp-utility.php';
 require_once get_template_directory() . '/inc/amp/amp-convert.php';
 require_once get_template_directory() . '/inc/amp/amp-filter.php';
 require_once get_template_directory() . '/inc/amp/amp-head.php';
@@ -178,8 +178,6 @@ if( is_admin() ){
 	 */
 	require_once get_template_directory() . '/inc/update-checker/update-checker.php';
 }
-
-
 /**
  * v2でいずれ廃止予定
  */

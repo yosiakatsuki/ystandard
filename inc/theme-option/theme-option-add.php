@@ -49,5 +49,3 @@ function load_ys_settings_start() {
 function load_ys_tools() {
 	include get_template_directory() . '/inc/theme-option/ys-tools.php';
 }
-
-?>

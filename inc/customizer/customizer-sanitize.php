@@ -33,7 +33,6 @@ function ys_customizer_sanitize_number( $number, $setting ) {
  * plain text
  */
 function ys_customizer_sanitize_plain_text( $value ) {
-	$value = wp_filter_nohtml_kses( $value );
-	$value = preg_replace('/(?:\n|\r|\r\n)/', '', $value );
+	$value = wp_strip_all_tags( $value, true );
 	return $value;
 }

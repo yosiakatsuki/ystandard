@@ -3,6 +3,9 @@
  * 画像関連の処理
  */
 
+/**
+ * アイキャッチ画像のAMP対応
+ */
 function ys_post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 	return ys_amp_convert_image( $html );
 }
@@ -15,11 +18,11 @@ if ( ! function_exists( 'ys_get_the_image_object' ) ) {
 	function ys_get_the_image_object( $size = 'full', $post_id = null ) {
 		$image = false;
 		$thumbnail_id = get_post_thumbnail_id( $post_id );
-		if( !empty( $post_thumbnail_id ) ) {
+		if( $thumbnail_id ) {
 			/**
 			 * 画像オブジェクト取得
 			 */
-			$image = wp_get_attachment_image_src( $post_thumbnail_id, $size );
+			$image = wp_get_attachment_image_src( $thumbnail_id, $size );
 		}
 		return $image;
 	}
@@ -96,6 +99,41 @@ if ( ! function_exists( 'ys_get_the_image_object_meta' ) ) {
 			$meta .= '<meta itemprop="height" content="' . $image[2] . '" />';
 		}
 		return $meta;
+	}
+}
+/**
+ * カスタムロゴオブジェクト取得
+ */
+if (!function_exists( 'ys_get_custom_logo_image_object')) {
+	function ys_get_custom_logo_image_object( $blog_id = 0 ) {
+		if ( is_multisite() && (int) $blog_id !== get_current_blog_id() ) {
+				switch_to_blog( $blog_id );
+		}
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+		$image = false;
+		// We have a logo. Logo is go.
+		if ( $custom_logo_id ) {
+				$image = wp_get_attachment_image_src( $custom_logo_id, 'full' );
+		}
+		if ( is_multisite() && ms_is_switched() ) {
+				restore_current_blog();
+		}
+		return $image;
+	}
+}
+/**
+ * パブリッシャー用画像取得
+ */
+if ( ! function_exists( 'ys_get_publisher_image_url' ) ) {
+	function ys_get_publisher_image() {
+		/**
+		 * ロゴ設定の取得
+		 */
+		$image = ys_get_custom_logo_image_object();
+		if( $image ) {
+			return $image;
+		}
+		return false;
 	}
 }
 /**

@@ -64,8 +64,8 @@ add_filter( 'the_content', 'ys_add_iframe_responsive_container' );
  * 投稿抜粋文字数
  */
 if( ! function_exists( 'ys_excerpt_length' ) ){
-	function ys_excerpt_length( $length ) {
-		return 120;
+	function ys_excerpt_length( $length = 120 ) {
+		return $length;
 	}
 }
 add_filter( 'excerpt_length', 'ys_excerpt_length', 999 );
@@ -84,32 +84,31 @@ add_filter( 'excerpt_more', 'ys_excerpt_more' );
  */
 if( ! function_exists( 'ys_get_the_custom_excerpt' ) ) {
 	function ys_get_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ){
-		if( ! is_singular() ) {
-			return '';
-		}
 		if( 0 == $post_id ) {
 			$post_id = get_the_ID();
 		}
 		if( 0 == $length ) {
-			$length = 80;
+			$length = ys_excerpt_length();
 		}
 		$post = get_post( $post_id );
-		$content = $post->post_content;
+		if ( post_password_required( $post ) ){
+			return __( 'There is no excerpt because this is a protected post.' );
+		}
+		$content = $post->post_excerpt;
+		if( '' === $content ) {
+			/**
+			 * excerptが無ければ本文から作る
+			 */
+			$content = $post->post_content;
+			/**
+			* moreタグ以降を削除
+			*/
+			$content = preg_replace( '/<!--more-->.+/is', '', $content );
+			$content = ys_get_plain_text( $content );
+		}
 		/**
-		 * moreタグ以降を削除
-		 */
-		$content = preg_replace( '/<!--more-->.+/is', '', $content );
-		/**
-		 * HTMLタグ削除
-		 */
-		$content = wp_strip_all_tags( $content, true );
-		/**
-		 * ショートコード削除
-		 */
-		$content = strip_shortcodes( $content );
-		/**
-		 * 長さ調節
-		 */
+		* 長さ調節
+		*/
 		if( mb_strlen( $content ) > $length ) {
 			$content =  mb_substr( $content, 0, $length - mb_strlen( $sep ) ) . $sep;
 		}

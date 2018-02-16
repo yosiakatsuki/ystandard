@@ -11,6 +11,3 @@
 //各機能読み込み
 // /inc/modules_loader で分割した各機能を読み込んでいます
 require_once TEMPLATEPATH . '/inc/modules_loader.php';
-
-
-?>

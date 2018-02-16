@@ -19,6 +19,22 @@ if ( ! function_exists( 'ys_get_theme_version') ) {
 }
 
 /**
+ * HTML・改行・ショートコードなしのテキストを取得
+ */
+function ys_get_plain_text( $data ) {
+	/**
+	* ショートコード削除
+	*/
+	$data = strip_shortcodes( $data );
+	/**
+	 * HTMLタグ削除
+	 */
+	$data = wp_strip_all_tags( $data, true );
+	return $data;
+}
+
+
+/**
  * Twitter用javascript URL取得
  */
 if( ! function_exists( 'ys_get_twitter_widgets_js' ) ) {

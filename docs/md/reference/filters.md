@@ -334,17 +334,17 @@
 - description: カスタマイザーの色設定を使用したインラインCSS編集フィルタ
 
 
-## util
+## utility
 
 ### ys_get_the_custom_excerpt
-- file: inc/util/util.php
+- file: inc/utility/utility.php
 - description: カスタム投稿抜粋の結果編集用フィルタ
 
 
-## amp-util
+## amp-utility
 
 ### ys_amp_convert_image
-- file: inc/amp/amp-util.php
+- file: inc/amp/amp-utility.php
 - description: AMP用画像変換の結果編集フィルタ
 
 

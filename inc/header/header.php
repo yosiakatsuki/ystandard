@@ -14,29 +14,10 @@ if( ! function_exists( 'ys_get_header_logo' ) ) {
 		$logo = apply_filters( 'ys_get_header_logo', $logo );
 		$format = '<a href="' . esc_url( home_url( '/' ) )  . '" rel="home">%s</a>';
 		$format = apply_filters( 'ys_get_header_logo_format', $format );
-		return sprintf( $format, $logo );
+		return sprintf( $format, ys_amp_convert_image( $logo ) );
 	}
 }
-/**
- * カスタムロゴオブジェクト取得
- */
-if (!function_exists( 'ys_get_custom_logo_image_object')) {
-	function ys_get_custom_logo_image_object( $blog_id = 0 ) {
-		if ( is_multisite() && (int) $blog_id !== get_current_blog_id() ) {
-				switch_to_blog( $blog_id );
-		}
-		$custom_logo_id = get_theme_mod( 'custom_logo' );
-		$image = false;
-		// We have a logo. Logo is go.
-		if ( $custom_logo_id ) {
-				$image = wp_get_attachment_image_src( $custom_logo_id, 'full' );
-		}
-		if ( is_multisite() && ms_is_switched() ) {
-				restore_current_blog();
-		}
-		return $image;
-	}
-}
+
 /**
  * サイトキャッチフレーズを取得
  */
