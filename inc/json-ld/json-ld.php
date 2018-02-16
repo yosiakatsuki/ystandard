@@ -5,98 +5,10 @@
 if( ! function_exists( 'ys_the_json_ld' ) ) {
 	function ys_the_json_ld(){
 
-		// 全体に関わる部分
-		$context = 'http://schema.org';
-		$logourl = '';
-		$logowidth = 0;
-		$logoheight = 0;
-
-		if(has_custom_logo()){
-			$logo = ys_get_custom_logo_image_object();
-			$logourl = $logo[0];
-			$logowidth = $logo[1];
-			$logoheight = $logo[2];
-		}
-
-		$blogurl = get_bloginfo('url');
-		$blogname = get_bloginfo('name');
-
-
 		if ( is_singular() && ! is_front_page() && ! is_home() ) {
-			// //スキーマ
-			// $type = 'Article';
-			// $mainEntityOfPagetype = 'WebPage';
-			// $name = get_the_title();
-			// //著者情報
-			// $authorType = 'Person';
-			// $authorName = get_the_author();
-			// //時間に関する項目
-			// $dataPublished = get_the_date('Y-n-j');
-			// $dateModified = get_the_modified_date('Y-n-j');
-			// //画像
-			// $imageurl = '';
-			// $image = ys_get_the_image_object( 'full', get_the_ID() );
-			// $imgwidth = 0;
-			// $imgheight = 0;
-			// if($image){
-			// 	$imageurl = $image[0];
-			// 	$imgwidth = $image[1];
-			// 	$imgheight = $image[2];
-			// }
-			// //カテゴリー
-			// $category = get_the_category();
-			// if($category):
-			// 	$articleSection = $category[0]->name;
-			// else:
-			// 	$articleSection = '';
-			// endif;
-      //
-			// //記事内容
-			// $articleBody = get_the_content();
-			// //URL
-			// $url = get_the_permalink();
-			// //パブリッシャー
-			// $publisherType = 'Organization';
-			// $publisherName = get_bloginfo('name');
-			// $imgtype = 'ImageObject';
-			// $publisherlogo = $logourl;
-			// $publisherlogowidth = $logowidth;
-			// $publisherlogoheight = $logoheight;
-      //
-			// $json = "{
-			// 			\"@context\" : \"{$context}\",
-			// 			\"@type\" : \"{$type}\",
-			// 			\"mainEntityOfPage\" : {
-			// 					\"@type\" : \"{$mainEntityOfPagetype}\",
-			// 					\"@id\" : \"{$url}\"
-			// 					},
-			// 			\"name\" : \"{$name}\",
-			// 			\"headline\" : \"{$name}\",
-			// 			\"author\" : {
-			// 					 \"@type\" : \"{$authorType}\",
-			// 					 \"name\" : \"{$authorName}\"
-			// 					 },
-			// 			\"datePublished\" : \"{$dataPublished}\",
-			// 			\"dateModified\" : \"{$dateModified}\",
-			// 			\"image\" : {
-			// 				\"@type\" : \"{$imgtype}\",
-			// 				\"url\" : \"{$imageurl}\",
-			// 				\"width\" : \"{$imgwidth}\",
-			// 				\"height\" : \"{$imgheight}\"
-			// 					},
-			// 			\"articleSection\" : \"{$articleSection}\",
-			// 			\"url\" : \"{$url}\",
-			// 			\"publisher\" : {
-			// 					 \"@type\" : \"{$publisherType}\",
-			// 					 \"name\" : \"{$publisherName}\",
-			// 					 \"logo\" : {
-			// 							\"@type\" : \"{$imgtype}\",
-			// 							\"url\" : \"{$publisherlogo}\",
-			// 							\"width\" : \"{$publisherlogowidth}\",
-			// 							\"height\" : \"{$publisherlogoheight}\"
-			// 							}
-			// 					 }
-			// 			}";
+			/**
+			 * 個別ページ
+			 */
 			$json = ys_get_json_ld_article();
 		} else {
 			/**
@@ -187,12 +99,31 @@ function ys_get_json_ld_article() {
 											);
 	$publisher_img = ys_get_publisher_image();
 	if( $publisher_img ) {
+		$publisher_img = ys_calc_logo_image_size( $publisher_img );
 		$json['publisher']['logo'] = array(
-																		'@type' => 'ImageObject',
-																		'url' => $publisher_img[0],
-																		'width' => $publisher_img[1],
+																		'@type'  => 'ImageObject',
+																		'url'    => $publisher_img[0],
+																		'width'  => $publisher_img[1],
 																		'height' => $publisher_img[2]
 																	);
 	}
 	return $json;
+}
+/**
+ * ロゴ画像のサイズ判断、相対サイズの計算
+ */
+function ys_calc_logo_image_size( $image ) {
+	if( 60 < $image[2] ) {
+		$height = 60;
+		$width = $height * ( $image[1] / $image[2] );
+		$image[1] = (int)$width;
+		$image[2] = (int)$height;
+	}
+	if( 600 < $image[1] ) {
+		$width = 600;
+		$height = $width * ( $image[2] / $image[1] );
+		$image[1] = (int)$width;
+		$image[2] = (int)$height;
+	}
+	return $image;
 }
