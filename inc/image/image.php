@@ -162,10 +162,35 @@ if (!function_exists( 'ys_get_custom_logo_image_object')) {
 	}
 }
 /**
+ * OGPデフォルト画像のimageオブジェクト取得
+ */
+if( ! function_exists( 'ys_get_ogp_default_image_object') ) {
+	function ys_get_ogp_default_image_object() {
+		$image = ys_get_option( 'ys_ogp_default_image' );
+		if( $image ) {
+			$image = wp_get_attachment_image_src( get_attachment_id_from_src( $image ), 'full' );
+			if( $image ) {
+				return $image;
+			}
+		}
+		return false;
+	}
+}
+/**
  * パブリッシャー用画像取得
  */
 if ( ! function_exists( 'ys_get_publisher_image' ) ) {
 	function ys_get_publisher_image() {
+		/**
+		 * パブリッシャー画像の取得
+		 */
+		$image = ys_get_option( 'ys_option_structured_data_publisher_image' );
+		if( $image ) {
+			$image = wp_get_attachment_image_src( get_attachment_id_from_src( $image ), 'full' );
+			if( $image ) {
+				return $image;
+			}
+		}
 		/**
 		 * ロゴ設定の取得
 		 */

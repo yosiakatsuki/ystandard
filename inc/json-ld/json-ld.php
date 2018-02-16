@@ -37,7 +37,12 @@ function ys_get_json_ld_organization() {
 	$json['url'] = get_bloginfo('url');
 	if( has_custom_logo() ){
 		$logo = ys_get_custom_logo_image_object();
-		$json['logo'] = $logo[0];
+		$json['logo'] = array(
+											'@type'  => 'ImageObject',
+											'url'    => $logo[0],
+											'width'  => $logo[1],
+											'height' => $logo[2]
+										);
 	}
 	return $json;
 }
@@ -101,7 +106,7 @@ function ys_get_json_ld_article() {
 	 */
 	$json['publisher'] = array(
 												'@type' => 'Organization',
-												'name'  => get_bloginfo('name')
+												'name'  => ys_get_publisher_name()
 											);
 	$publisher_img = ys_get_publisher_image();
 	if( $publisher_img ) {
@@ -114,6 +119,16 @@ function ys_get_json_ld_article() {
 																	);
 	}
 	return $json;
+}
+/**
+ * パブリッシャー名を取得
+ */
+function ys_get_publisher_name() {
+	$name = ys_get_option( 'ys_option_structured_data_publisher_name' );
+	if( '' === $name ) {
+		$name = get_bloginfo('name');
+	}
+	return $name;
 }
 /**
  * パブリッシャー用画像のサイズ判断、相対サイズの計算

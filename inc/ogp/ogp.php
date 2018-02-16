@@ -113,19 +113,3 @@ if( ! function_exists( 'ys_get_ogp_and_twitter_card_param') ) {
 		return apply_filters( 'ys_get_ogp_and_twitter_card_param', $param );
 	}
 }
-
-/**
- * OGPデフォルト画像のimageオブジェクト取得
- */
-if( ! function_exists( 'ys_get_ogp_default_image_object') ) {
-	function ys_get_ogp_default_image_object() {
-		$image = ys_get_option( 'ys_ogp_default_image' );
-		if( $image ) {
-			$image = wp_get_attachment_image_src( get_attachment_id_from_src( $image ), 'full' );
-			if( $image ) {
-				return $image;
-			}
-		}
-		return false;
-	}
-}

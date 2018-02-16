@@ -184,6 +184,13 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			// ログイン中はアクセス数をカウントしない
 			'ys_ga_exclude_logged_in_user' => get_option( 'ys_ga_exclude_logged_in_user', 0 ),
 			/**
+			 * 構造化データ設定
+			 */
+			// パブリッシャー画像
+			'ys_option_structured_data_publisher_image' => get_option( 'ys_option_structured_data_publisher_image', '' ),
+			// パブリッシャー名
+			'ys_option_structured_data_publisher_name' => get_option( 'ys_option_structured_data_publisher_name', '' ),
+			/**
 			 *
 			 * [ys]サイト高速化設定
 			 *
