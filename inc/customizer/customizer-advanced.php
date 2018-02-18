@@ -18,7 +18,10 @@ function ys_customizer_advanced( $wp_customize ){
 	/**
 	 * テーマカスタマイザーでの色変更機能を無効にする
 	 */
-	ys_customizer_advanced_add_disable_ys_color( $wp_customize );
+	/**
+	 * そもそも色の設定を少なくしたので設定無効機能はいらないのでは？
+	 * ys_customizer_advanced_add_disable_ys_color( $wp_customize );
+	 */
 	/**
 	 * SNS用javascriptの読み込み
 	 */
@@ -55,7 +58,6 @@ function ys_customizer_advanced_add_disable_ys_color( $wp_customize ) {
 			'default'   => 0,
 			'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。余分なCSSコードが出力されなくなります',
 			'section'   => 'ys_customizer_section_disable_ys_color',
-			'transport' => 'postMessage',
 		)
 	);
 }
@@ -127,7 +129,7 @@ function ys_customizer_advanced_add_jquery( $wp_customize ) {
 		$wp_customize,
 		array(
 			'id'        => 'ys_load_cdn_jquery_url',
-			'label'       => 'Twitter用javascriptを読み込む',
+			'label'       => 'CDN経由でjQueryを読み込む',
 			'description' => '※WordPress標準のjQueryを読み込む場合は空白にしてください（デフォルト）<br>※ホストされているjQueryのURLを入力してください。',
 			'default'   => '',
 			'section'   => 'ys_customizer_section_jquery',
