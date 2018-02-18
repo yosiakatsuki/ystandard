@@ -1,14 +1,13 @@
 <?php
 get_header(); ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" >
-
-			<?php get_template_part( 'template-parts/content', 'none' ); ?>
-
+<div class="container">
+	<div class="content-area content__wrap">
+		<main id="main" class="site-main content__main">
+		<?php
+				get_template_part( 'template-parts/content/none' );
+		?>
 		</main><!-- .site-main -->
-
+		<?php get_sidebar(); ?>
 	</div><!-- .content-area -->
-
-<?php get_sidebar(); ?>
+</div><!-- .container -->
 <?php get_footer(); ?>

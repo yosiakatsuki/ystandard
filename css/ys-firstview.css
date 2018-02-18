@@ -1311,6 +1311,27 @@ input[type="button"]:hover {
 	width: 24px;
 }
 
+.archive__header {
+	padding: 0 0 15px;
+}
+
+.archive__title {
+	margin: 0;
+}
+
+.archive__dscr {
+	margin-top: 15px;
+	font-size: .8em;
+}
+
+.archive__dscr p {
+	margin: .5em 0 0;
+}
+
+.no-results__headline {
+	margin-top: 2em;
+}
+
 .author__main {
 	padding: 0 .5em;
 }
@@ -2029,23 +2050,6 @@ figcaption {
 	color: #939393;
 	font-size: .9em;
 	font-style: italic;
-}
-
-.archive__header {
-	padding: 0 0 15px;
-}
-
-.archive__title {
-	margin: 0;
-}
-
-.archive__dscr {
-	margin-top: 15px;
-	font-size: .8em;
-}
-
-.archive__dscr p {
-	margin: .5em 0 0;
 }
 
 .entry-list .entry__author {
