@@ -1,4 +1,9 @@
 <?php
+
+
+
+
+
 get_header(); ?>
 <div class="container">
 	<div class="content-area content__wrap">
