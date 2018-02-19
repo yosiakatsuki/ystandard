@@ -63,12 +63,11 @@ add_action( 'wp_footer', 'ys_the_load_non_critical_css' );
  * non-critical-cssのセット
  */
 if( ! function_exists( 'ys_enqueue_non_critical_css' ) ) {
-	function ys_enqueue_non_critical_css( $src, $var = false ) {
+	function ys_enqueue_non_critical_css( $src, $ver = false ) {
 		global $ys_enqueue;
-		$ys_enqueue->set_non_critical_css( $src, $var );
+		$ys_enqueue->set_non_critical_css( $src, $ver );
 	}
 }
-
 
 /**
  *	追加読み込みスクリプト・CSSの追加(onload)
@@ -107,27 +106,27 @@ add_action( 'script_loader_tag', 'ys_the_onload_scripts' );
  * onload-scriptのセット
  */
 if( ! function_exists( 'ys_enqueue_onload_script' ) ) {
-	function ys_enqueue_onload_script( $id, $url ) {
+	function ys_enqueue_onload_script( $id, $src ) {
 		global $ys_enqueue;
-		$ys_enqueue->set_onload_script( $id, $url );
+		$ys_enqueue->set_onload_script( $id, $src );
 	}
 }
 /**
  * lazyload-scriptのセット
  */
 if( ! function_exists( 'ys_enqueue_lazyload_script' ) ) {
-	function ys_enqueue_lazyload_script( $id, $url ) {
+	function ys_enqueue_lazyload_script( $id, $src ) {
 		global $ys_enqueue;
-		$ys_enqueue->set_lazyload_script( $id, $url );
+		$ys_enqueue->set_lazyload_script( $id, $src );
 	}
 }
 /**
  * lazyload-cssのセット
  */
 if( ! function_exists( 'ys_enqueue_lazyload_css' ) ) {
-	function ys_enqueue_lazyload_css( $id, $url ) {
+	function ys_enqueue_lazyload_css( $id, $src ) {
 		global $ys_enqueue;
-		$ys_enqueue->set_lazyload_css( $id, $url );
+		$ys_enqueue->set_lazyload_css( $id, $src );
 	}
 }
 /**
