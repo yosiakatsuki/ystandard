@@ -162,12 +162,13 @@ class YS_Ranking_Widget extends WP_Widget {
 			</label><br />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'thmbnail_size' ); ?>">表示する画像サイズ</label><br />
+			<label for="<?php echo $this->get_field_id( 'thmbnail_size' ); ?>">表示する画像のサイズ</label><br />
 			<select name="<?php echo $this->get_field_name( 'thmbnail_size' ); ?>">
 				<?php foreach ( $this->get_image_sizes() as $key => $value ) : ?>
-					<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thmbnail_size ); ?>><?php _e( $key );?> (<?php echo esc_html( $value['width'] ) . ' x ' . esc_html( $value['height'] ) ?>)</option>
+					<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thmbnail_size ); ?>><?php _e( $key );?> (<?php echo '横:' . esc_html( $value['width'] ) . ' x 縦:' . esc_html( $value['height'] ) ?>)</option>
 				<?php endforeach; ?>
 			</select>
+			<span style="color:#aaa;font-size:.9em;">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。<br>※横幅300px~480pxの画像がおすすめです</span>
 		</p>
 		<?php
 	}
@@ -198,13 +199,22 @@ class YS_Ranking_Widget extends WP_Widget {
 			$img = get_the_post_thumbnail( get_the_ID(), $thumb_type );
 			$img = apply_filters( 'ys_ranking_widget_image', $img, get_the_ID() );
 			$img = sprintf(
-							'<div class="ys-ranking__img"><figure>%s</figure>',
+							'<figure class="ratio__image">%s</figure>',
 							$img
 						);
 		} else {
-			$img = '<div class="ys-ranking__img"><div class="ys-ranking__no-img flex flex--c-c"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
+			$img = '<div class="ys-ranking__no-img flex flex--c-c"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
 		}
-		$img .= '<div class="entry-list__mask flex flex--c-c"><p class="entry-list__mask-text ">' . ys_get_entry_read_more_text() . '</p></div></div>';
+		$size = '16-9';
+		if( 'thumbnail' === $thumb_type ) {
+			$size = '1-1';
+		}
+		$read_more = '<div class="entry-list__mask flex flex--c-c"><p class="entry-list__mask-text ">' . ys_get_entry_read_more_text() . '</p></div>';
+		$img = sprintf(
+						'<div class="ys-ranking__img"><div class="ratio ratio__' . $size . '"><div class="ratio__item ">%s</div></div>%s</div>',
+						$img,
+						$read_more
+					);
 		return $img;
 	}
 	/**

@@ -1,7 +1,6 @@
-.ys-ranking__list {
-}
+
 .ys-ranking__item {
-  padding: 0 0 2em;
+  padding-bottom: 2em;
 }
 .ys-ranking__title {
   display: block;
@@ -20,20 +19,41 @@
     border-top: 1px solid $border-color-light;
   }
   .ys-ranking__item {
-    padding: 1em 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
     border-bottom: 1px solid $border-color-light;
   }
   .ys-ranking__img {
-    float: left;
+    width: 75px;
     margin-right: 1em;
-    letter-spacing: normal;
     font-size: 0.7em;
-    img {
-      width: 75px;
-    }
+    letter-spacing: normal;
+    float: left;
   }
   .ys-ranking__title {
     padding-top: 0;
     font-size: 1em;
+  }
+}
+@include media-breakpoint(tb) {
+  .ys-ranking__list:not(.ys-ranking__img--no-img) {
+    @include flex;
+    margin-left: -.5em;
+    margin-right: -.5em;
+  }
+  .ys-ranking__item {
+    width: 50%;
+    padding-left: .5em;
+    padding-right: .5em;
+  }
+}
+@include media-breakpoint(pc) {
+  .ys-ranking__list:not(.ys-ranking__img--no-img) {
+    margin-left: 0;
+    margin-right: 0;
+    display: block;
+  }
+  .ys-ranking__item {
+    width: auto;
   }
 }

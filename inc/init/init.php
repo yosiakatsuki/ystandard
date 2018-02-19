@@ -61,10 +61,6 @@ if( ! function_exists( 'ys_init' ) ) {
 		 */
 		add_theme_support( 'post-thumbnails' );
 		/**
-		 * yStandardサムネイルサイズ
-		 */
-		add_image_size( 'yslistthumb', 686, 412, true );
-		/**
 		 * テキストウィジェットでショートコードを有効にする
 		 */
 		add_filter( 'widget_text', 'do_shortcode' );

@@ -17,8 +17,9 @@
     @include media-breakpoint(tb) {
       .ad__left,
       .ad__right {
-        text-align: center;
         width: 50%;
+        text-align: center;
+        overflow: hidden;
       }
     }
   }
