@@ -3,7 +3,7 @@
 		<a href="<?php the_permalink(); ?>" class="entry-list__link ratio ratio__4-3">
 			<?php if( has_post_thumbnail() ): ?>
 				<figure class="entry-list__figure ratio__item ratio__image">
-					<?php the_post_thumbnail(); ?>
+					<?php the_post_thumbnail( 'post-thumbnail', array( 'class' => 'entry-list____image' ) ); ?>
 				</figure>
 			<?php else: ?>
 				<div class="entry-list__no-img ratio__item flex flex--c-c">

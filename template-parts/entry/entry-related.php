@@ -23,7 +23,7 @@
 							<div class="ratio__item">
 								<?php if( has_post_thumbnail() ): ?>
 									<figure class="entry-list__figure ratio__image">
-										<?php the_post_thumbnail(); ?>
+										<?php the_post_thumbnail( 'post-thumbnail', array( 'class' => 'entry-related__image' ) ); ?>
 									</figure>
 								<?php else: ?>
 									<div class="entry-list__no-img flex flex--c-c">
