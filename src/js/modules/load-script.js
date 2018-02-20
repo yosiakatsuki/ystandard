@@ -122,7 +122,6 @@ class YSLoadScript {
   loadScripts () {
     let scripts = this.getScripts(this._scriptOnloadAttribute)
     if (scripts === null || scripts === false) return
-
     for (var i = 0; i < scripts.length; i = (i + 1) | 0) {
       YSLoadScript.loadScript(scripts[i].id, scripts[i].url, '')
     }
@@ -132,9 +131,9 @@ class YSLoadScript {
    * javascript スクロールで読み込み
    */
   lazyLoadScripts () {
+    
     let scripts = this.getLazyScripts()
     if (scripts === null || scripts === false) return
-
     if (scripts.length > 0) {
       if (!this.isWaitingLazyLoad()) {
         this.setWaitingTimeLazyLoad()
@@ -152,10 +151,9 @@ class YSLoadScript {
   /**
    * css スクロールで読み込み
    */
-  lazyLoadCss () {
+  lazyLoadCss () {    
     let cssList = this.getLazyCss()
     if (cssList === null || cssList === false) return
-
     if (cssList.length > 0) {
       if (!this.isWaitingLazyLoad()) {
         this.setWaitingTimeLazyLoad()

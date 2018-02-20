@@ -45,40 +45,48 @@ class YS_Enqueue {
 															);
 	}
 	/**
+	 * non-critical-css,lazyload-cssの配列セット
+	 */
+	private function set_load_css_array( &$arr, $id, $url, $ver = false ) {
+		$ver = false == $ver ? '' : $ver;
+		$arr[ $id ] = array(
+										'id' => esc_attr( $id ),
+										'url' => esc_url_raw( $url ),
+										'ver' => esc_attr( $ver )
+									);
+	}
+	/**
 	 * non-critical CSSのセット
 	 */
-	public function set_non_critical_css( $src, $ver = false ) {
-		$this->non_critical_css[] = array(
-																'src' => esc_url_raw( $src ),
-																'ver' => esc_attr( $ver )
-															);
+	public function set_non_critical_css( $id, $src, $ver = false ) {
+		$this->set_load_css_array( $this->non_critical_css, $id, $src, $ver );
+	}
+	/**
+	 * lazyload-cssのセット
+	 */
+	public function set_lazyload_css( $id, $src, $ver = false ) {
+		$this->set_load_css_array( $this->lazyload_css, $id, $src, $ver );
 	}
 	/**
 	 * onload-script,lazyload-script,lazyload-cssの配列セット
 	 */
 	private function set_load_script_array( &$arr, $id, $url ) {
-		$arr[] = array(
-								'id' => esc_attr( $id ),
-								'url' => esc_url_raw( $url )
-							);
+		$arr[ $id ] = array(
+										'id' => esc_attr( $id ),
+										'url' => esc_url_raw( $url )
+									);
 	}
 	/**
 	 * onload-scriptのセット
 	 */
-	public function set_onload_script( $id, $url ) {
-		$this->set_load_script_array( $this->onload_script, $id, $url );
+	public function set_onload_script( $id, $src ) {
+		$this->set_load_script_array( $this->onload_script, $id, $src );
 	}
 	/**
 	 * lazyload-scriptのセット
 	 */
-	public function set_lazyload_script( $id, $url ) {
-		$this->set_load_script_array( $this->lazyload_script, $id, $url );
-	}
-	/**
-	 * lazyload-cssのセット
-	 */
-	public function set_lazyload_css( $id, $url ) {
-		$this->set_load_script_array( $this->lazyload_css, $id, $url );
+	public function set_lazyload_script( $id, $src ) {
+		$this->set_load_script_array( $this->lazyload_script, $id, $src );
 	}
 
 	/**
@@ -124,9 +132,9 @@ class YS_Enqueue {
 	public function get_non_critical_css_list() {
 		$list = array();
 		$items = apply_filters( 'ys_enqueue_non_critical_css', $this->non_critical_css );
-		foreach( $items as $item ){
-			$src = $item['src'];
-			if( false !== $item['ver'] ) {
+		foreach( $items as $id => $item ){
+			$src = $item['url'];
+			if( '' !== $item['ver'] ) {
 				$src = add_query_arg( $item['ver'], '', $src );
 			}
 			$list[] = $src;
@@ -147,6 +155,7 @@ class YS_Enqueue {
 	 */
 	public function get_onload_script_attr() {
 		$scripts = apply_filters( 'ys_enqueue_onload_scripts', $this->onload_script );
+		$scripts = $this->create_load_array( $scripts );		
 		return 'data-ys-onload-script=' . $this->ys_json_encode( $scripts );
 	}
 	/**
@@ -154,6 +163,7 @@ class YS_Enqueue {
 	 */
 	public function get_lazyload_script_attr() {
 		$scripts = apply_filters( 'ys_enqueue_lazyload_scripts', $this->lazyload_script );
+		$scripts = $this->create_load_array( $scripts );
 		return 'data-ys-lazy-script=' . $this->ys_json_encode( $scripts );
 	}
 	/**
@@ -161,11 +171,12 @@ class YS_Enqueue {
 	 */
 	public function get_lazyload_css_attr() {
 		$css = apply_filters( 'ys_enqueue_lazyload_css', $this->lazyload_css );
+		$css = $this->create_load_array( $css );
 		return 'data-ys-lazy-css=' . $this->ys_json_encode( $css );
 	}
 
 	/**
-	 * CSSへパス文字かどうかの判断
+	 * テーマ内のCSSパスかどうかの判断
 	 */
 	private function is_css_path( $style ) {
 		if( false !== strrpos( $style, get_stylesheet_directory() ) ) {
@@ -176,12 +187,25 @@ class YS_Enqueue {
 		}
 		return false;
 	}
-
+	/**
+	 * 読み込み用配列を作成する
+	 */
+	private function create_load_array( $obj ) {
+		if( empty( $obj ) ) return null;
+		$array = array();
+		foreach ( $obj as $key => $value ) {
+			$array[] = array(
+				'id' => $value['id'],
+				'url' => $value['url']
+			);
+		}
+		return $array;
+	}
 	/**
 	 * non-critical-css出力用javascript取得
 	 */
 	private function get_non_critical_css_script( $css ) {
-		return <<<EOD
+		$script = <<<EOD
 <script>
 	var cb = function() {
 		var list = {$css}
@@ -199,6 +223,11 @@ class YS_Enqueue {
 	else window.addEventListener('load', cb);
 </script>
 EOD;
+		/**
+		 * 改行削除
+		 */
+		$script = str_replace( array( "\r\n", "\r", "\n" ), '', $script );
+		return $script;
 	}
 
 	/**

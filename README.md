@@ -114,24 +114,26 @@
 ### CSS,JSの読み込み
 
 - ファーストビューにかかわらない部分のCSSの追加読み込み
-  - `ys_enqueue_non_critical_css( $src, $ver = false )`
+  - `ys_enqueue_non_critical_css( $id, $src, $ver = false )`
+    - `$id`  : CSSファイルのid(プログラム内で判断する用の文字列)
+    - `$src` : CSSファイルのURL
+    - `$ver` : バージョン文字列(キャッシュ対策用。クエリストリングに追加されます)
+
+- 遅延読み込みさせるCSS
+  - `ys_enqueue_lazyload_css( $id, $src, $ver = false )`
+    - `$id`  : linkタグに追加するid
     - `$src` : CSSファイルのURL
     - `$ver` : バージョン文字列(キャッシュ対策用。クエリストリングに追加されます)
 
 - ページ表示後にすぐ読み込むJavaScript
   - `ys_enqueue_onload_script( $id, $src )`
-    - `$id` : scriptタグに追加するid
+    - `$id`  : scriptタグに追加するid
     - `$src` : JavaScriptファイルのURL
 
 - 遅延読み込みさせるJavaScript
   - `ys_enqueue_lazyload_script( $id, $src )`
-    - `$id` : scriptタグに追加するid
+    - `$id`  : scriptタグに追加するid
     - `$src` : JavaScriptファイルのURL
-
-- 遅延読み込みさせるCSS
-  - `ys_enqueue_lazyload_css( $id, $src )`
-    - `$id` : linkタグに追加するid
-    - `$src` : CSSファイルのURL
 
 ## Third-party resources
 

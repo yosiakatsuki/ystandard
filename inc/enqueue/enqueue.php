@@ -32,25 +32,36 @@ if( ! function_exists( 'ys_enqueue_scripts' ) ) {
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts' );
 
 /**
- * CSS追加読み込み（ファーストビュー以外のCSSをjavascriptで読み込みする）
+ * CSS追加読み込みの指定
  */
-if( ! function_exists( 'ys_the_load_non_critical_css' ) ) {
-	function ys_the_load_non_critical_css() {
+function ys_enqueue_styles_non_critical_css() {
 		/**
-		 * 読み込むCSSをリスト化
+		 * 読み込むCSSを指定する
 		 */
 		ys_enqueue_non_critical_css(
+			'ys-style',
 			get_template_directory_uri() . '/css/ys-style.min.css',
-			ys_get_theme_version(true)
+			ys_get_theme_version( true )
 		);
 		ys_enqueue_non_critical_css(
+			'style-css',
 			get_stylesheet_directory_uri() . '/style.css',
 			ys_get_theme_version()
 		);
 		ys_enqueue_non_critical_css(
+			'font-awesome',
 			get_template_directory_uri() . '/library/font-awesome/css/font-awesome.min.css',
 			'4.7.0'
 		);
+}
+add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles_non_critical_css' );
+
+
+/**
+ * CSS追加読み込み（ファーストビュー以外のCSSをjavascriptで読み込みする）
+ */
+if( ! function_exists( 'ys_the_load_non_critical_css' ) ) {
+	function ys_the_load_non_critical_css() {
 		/**
 		 * CSS出力
 		 */
@@ -63,9 +74,9 @@ add_action( 'wp_footer', 'ys_the_load_non_critical_css' );
  * non-critical-cssのセット
  */
 if( ! function_exists( 'ys_enqueue_non_critical_css' ) ) {
-	function ys_enqueue_non_critical_css( $src, $ver = false ) {
+	function ys_enqueue_non_critical_css( $id, $src, $ver = false ) {
 		global $ys_enqueue;
-		$ys_enqueue->set_non_critical_css( $src, $ver );
+		$ys_enqueue->set_non_critical_css( $id, $src, $ver );
 	}
 }
 
@@ -124,9 +135,9 @@ if( ! function_exists( 'ys_enqueue_lazyload_script' ) ) {
  * lazyload-cssのセット
  */
 if( ! function_exists( 'ys_enqueue_lazyload_css' ) ) {
-	function ys_enqueue_lazyload_css( $id, $src ) {
+	function ys_enqueue_lazyload_css( $id, $src, $ver = false ) {
 		global $ys_enqueue;
-		$ys_enqueue->set_lazyload_css( $id, $src );
+		$ys_enqueue->set_lazyload_css( $id, $src, $ver );
 	}
 }
 /**
