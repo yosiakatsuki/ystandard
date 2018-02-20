@@ -196,6 +196,7 @@ class YS_Ranking_Widget extends WP_Widget {
 	 */
 	private function get_thumbnail( $thumb_type ) {
 		if( has_post_thumbnail() ) {
+			$thumb_type = apply_filters( 'ys_ranking_widget_thumbnail_type', $thumb_type );
 			$img = get_the_post_thumbnail( get_the_ID(), $thumb_type );
 			$img = apply_filters( 'ys_ranking_widget_image', $img, get_the_ID() );
 			$img = sprintf(
@@ -209,9 +210,9 @@ class YS_Ranking_Widget extends WP_Widget {
 		if( 'thumbnail' === $thumb_type ) {
 			$size = '1-1';
 		}
-		$read_more = '<div class="entry-list__mask flex flex--c-c"><p class="entry-list__mask-text ">' . ys_get_entry_read_more_text() . '</p></div>';
+		$read_more = '<div class="entry-list__mask flex flex--c-c"><p class="entry-list__mask-text">' . ys_get_entry_read_more_text() . '</p></div>';
 		$img = sprintf(
-						'<div class="ys-ranking__img"><div class="ratio ratio__' . $size . '"><div class="ratio__item ">%s</div></div>%s</div>',
+						'<div class="ys-ranking__img"><div class="ratio ratio__' . $size . '"><div class="ratio__item">%s</div></div>%s</div>',
 						$img,
 						$read_more
 					);

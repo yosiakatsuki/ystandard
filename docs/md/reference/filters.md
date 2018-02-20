@@ -417,6 +417,10 @@
 - file: inc/classes/class.ys-ranking-widget.php
 - description: ランキングウィジェットのパラメータ編集フィルタ
 
+### ys_ranking_widget_thumbnail_type
+- file: inc/classes/class.ys-ranking-widget.php
+- description: ランキングウィジェットの画像サイズ編集フィルタ
+
 ### ys_ranking_widget_image
 - file: inc/classes/class.ys-ranking-widget.php
 - description: ランキングウィジェットの画像タグ編集フィルタ
