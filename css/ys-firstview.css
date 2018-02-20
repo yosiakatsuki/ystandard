@@ -541,7 +541,8 @@ button {
 	line-height: 1.4;
 }
 
-img {
+img,
+amp-img {
 	height: auto;
 	max-width: 100%;
 	vertical-align: middle;
@@ -1248,7 +1249,7 @@ input[type="button"]:hover {
 }
 
 .sidebar__widget + .sidebar__fixed {
-	padding-top: 30px;
+	margin-top: 30px;
 }
 
 .entry__title {
@@ -2310,6 +2311,10 @@ div.aligncenter {
 	max-width: 860px;
 }
 
+.one-col .content__main {
+	width: 100%;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__2--tb {
@@ -2561,6 +2566,11 @@ div.aligncenter {
 .sidebar__fixed {
 	position: -webkit-sticky;
 	position: sticky;
+	top: 10px;
+}
+
+.sidebar__widget + .sidebar__fixed {
+	margin-top: 60px;
 	top: 10px;
 }
 

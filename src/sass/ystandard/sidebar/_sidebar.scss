@@ -9,7 +9,7 @@
       }
     }
     .sidebar__widget + .sidebar__fixed {
-      padding-top: get_margin(2);
+      margin-top: get_margin(2);
     }
 
     @include media-breakpoint(pc) {
@@ -23,6 +23,10 @@
       }
       .sidebar__fixed {
         position: sticky;
+        top: 10px;
+      }
+      .sidebar__widget + .sidebar__fixed {
+        margin-top: get_margin(4);
         top: 10px;
       }
       .admin-bar .sidebar__fixed {
