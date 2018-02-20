@@ -1,3 +1,6 @@
+ul,
+ol,
+dl,
 blockquote,
 figure,
 hr,
@@ -5,7 +8,7 @@ pre,
 table,
 iframe,
 video {
-  margin: 1.5em 0 0;
+  margin-top: 1.5em;
   &:first-child {
     margin-top: 0;
   }
@@ -97,11 +100,6 @@ th {
 //
 //  リスト
 //
-ul,
-ol,
-dl {
-  margin-top: 1.5em;
-}
 ul,
 ol {
   li {

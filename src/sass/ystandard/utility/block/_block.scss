@@ -1,0 +1,15 @@
+.ys-box {
+	padding: 1em;
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+	background-color: #fff;
+	border: 1px solid $border-color-gray;
+  font-size: .9em;
+  @include clearfix;
+}
+.ys-box-img {
+  width: 75px;
+  height: auto;
+  margin:0 1em 0 0;
+  float: left;
+}

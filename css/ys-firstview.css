@@ -603,6 +603,7 @@ pre code {
 	border: none;
 	color: inherit;
 	padding: 0;
+	line-height: 1.4;
 }
 
 a {
@@ -1903,6 +1904,9 @@ input[type="button"]:hover {
 	margin-right: 5px;
 }
 
+ul,
+ol,
+dl,
 blockquote,
 figure,
 hr,
@@ -1910,9 +1914,12 @@ pre,
 table,
 iframe,
 video {
-	margin: 1.5em 0 0;
+	margin-top: 1.5em;
 }
 
+ul:first-child,
+ol:first-child,
+dl:first-child,
 blockquote:first-child,
 figure:first-child,
 hr:first-child,
@@ -2010,12 +2017,6 @@ th {
 
 th {
 	background-color: #fafafa;
-}
-
-ul,
-ol,
-dl {
-	margin-top: 1.5em;
 }
 
 ul li,

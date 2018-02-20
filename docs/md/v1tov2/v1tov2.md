@@ -6,16 +6,15 @@
   - inc / post-meta.php
 
 ## テンプレート
+
 - template-one-column.php -> page-template/template-one-column.phpに変わることに気をつける
 
-## フッターのSNSリンクの背景色
-- 設定が変わったので実装変える
-- hover時はopacity +20 する
-
 ## css
-- ys-button → btn
+
+- ys-button → ys-btn
 
 ## 設定の再設定が必要な箇所
+
 - OGPデフォルト画像の再設定
 - ヘッダーメニュー(グローバルメニュー)
 - Google Analyticsのトラッキングコードタイプ
@@ -25,6 +24,7 @@
 - サイドバーのidが変わる
 
 ## 削除された設定
+
 - AMP Facebookシェアボタン用 app id (ys_amp_share_fb_app_id)
 - AMP 通常ビューへのリンク表示 (ys_amp_normal_link_share_btn,ys_amp_normal_link)
 - AMP scriptタグを削除してAMPページを作成する  (ys_amp_del_script)
@@ -32,6 +32,7 @@
 - AMP AMPページでも記事下のジェットを表示する (ys_is_active_entry_footer_widget_amp)
 
 ## 変更された関数
+
 - ys_amp_the_amp_script -> ys_the_amp_script
 - ys_extras_apple_touch_icon -> ys_the_apple_touch_icon
 - ys_extras_add_canonical -> ys_the_canonical_tag
@@ -81,10 +82,12 @@
 - ys_utilities_get_the_image_object_meta -> ys_get_the_image_object_meta
 
 ## 削除予定の関数
+
 - ys_settings
 - ys_get_setting
 
 ## 削除された関数
+
 - ys_template_the_related_post
 - ys_utilities_get_post_thumbnail
 - ys_utilities_get_post_thumbnail_url
@@ -191,6 +194,7 @@
 - ys_template_get_the_post_thumbnail
 
 ## 変更されたフィルタ
+
 - ys_ga_tracking_id -> ys_get_google_anarytics_tracking_id
 - ys_header_description -> ys_the_blog_description
 - ys_get_front_page_template_part -> ys_get_front_page_template
@@ -200,8 +204,8 @@
 - ys_convert_amp_before -> ys_amp_convert_before
 - ys_entry_more_text -> ys_entry_read_more_text
 
-
 ## 削除されたフィルタ
+
 - ys_ga_function
 - ys_amp_ga_json
 - ys_the_header_attr
@@ -227,7 +231,7 @@
 - ys_convert_amp_before
 - ys_the_post_paging_next_info
 
-
 ## 削除されたアクション
+
 - ys_breadcrumb_prepend
 - ys_breadcrumb_append

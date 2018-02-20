@@ -288,9 +288,9 @@ function ys_customizer_add_footer_color( $wp_customize ){
  */
 function ys_customizer_inline_css() {
 
-	if( ys_get_option('ys_desabled_color_customizeser') ){
-		return '';
-	}
+	// if( ys_get_option('ys_desabled_color_customizeser') ){
+	// 	return '';
+	// }
 
 	/**
 	 *	設定取得
