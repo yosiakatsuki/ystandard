@@ -14,7 +14,28 @@ if( ! function_exists( 'ys_enqueue_scripts' ) ) {
 		 * Polyfill関連
 		 */
 		if( ys_is_ie() || ys_is_edge() ) {
-			wp_enqueue_script( 'object-fit-images', get_template_directory_uri() . '/library/object-fit-images/ofi.min.js' );
+			/**
+			 * object-fit
+			 */
+			wp_enqueue_script( 
+				'object-fit-images', 
+				get_template_directory_uri() . '/library/object-fit-images/ofi.min.js' 
+			);
+			/**
+			 * sticky
+			 */
+			wp_enqueue_script( 
+				'stickyfill', 
+				get_template_directory_uri() . '/library/stickyfill/stickyfill.min.js' 
+			);
+			/**
+			 * polyfill関連の実行処理など
+			 */
+			wp_enqueue_script( 
+				'ys-polyfill', 
+				get_template_directory_uri() . '/js/polyfill.bundle.js', 
+				array( 'object-fit-images', 'stickyfill' )
+			);
 		}
 		/**
 		 * テーマのjs読み込む

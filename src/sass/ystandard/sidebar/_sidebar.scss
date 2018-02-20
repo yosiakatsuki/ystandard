@@ -8,7 +8,7 @@
         text-decoration: none;
       }
     }
-    .sidebar__fixed {
+    .sidebar__widget + .sidebar__fixed {
       padding-top: get_margin(2);
     }
 
@@ -17,6 +17,13 @@
         flex: 0 0 auto;
         width: $sidebar-width;
         padding: 0 get_margin(2);
+      }
+      .sidebar__fixed {
+        position: sticky;
+        top: 10px;
+      }
+      .admin-bar .sidebar__fixed {
+        top: 10px + 32px;
       }
     }
   }

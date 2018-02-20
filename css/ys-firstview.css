@@ -1247,7 +1247,7 @@ input[type="button"]:hover {
 	text-decoration: none;
 }
 
-.sidebar__fixed {
+.sidebar__widget + .sidebar__fixed {
 	padding-top: 30px;
 }
 
@@ -2552,6 +2552,16 @@ div.aligncenter {
 	flex: 0 0 auto;
 	width: 360px;
 	padding: 0 30px;
+}
+
+.sidebar__fixed {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 10px;
+}
+
+.admin-bar .sidebar__fixed {
+	top: 42px;
 }
 
 .share-btn__item {

@@ -155,12 +155,17 @@ Source : <http://w-shadow.com/>
 
 ### object-fit-images
 
-License: MIT
+License: MIT License
 Source : <https://github.com/bfred-it/object-fit-images>
+
+### stickyfill
+
+License: MIT License
+Source : <https://github.com/wilddeer/stickyfill>
 
 ### \_decimal.scss
 
-License: MIT
+License: MIT License
 Source : <https://gist.github.com/terkel/4373420>
 
 ## 変更履歴

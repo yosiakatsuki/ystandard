@@ -2,7 +2,8 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: {
-    'ystandard': './src/js/ystandard.js'
+    'ystandard': './src/js/ystandard.js',
+    'polyfill': './src/js/polyfill.js'
   },
   output: {
     filename: '[name].bundle.js',
