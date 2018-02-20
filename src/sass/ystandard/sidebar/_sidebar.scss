@@ -18,6 +18,9 @@
         width: $sidebar-width;
         padding: 0 get_margin(2);
       }
+      .sidebar-wrapper {
+        height: 100%;
+      }
       .sidebar__fixed {
         position: sticky;
         top: 10px;

@@ -2554,6 +2554,10 @@ div.aligncenter {
 	padding: 0 30px;
 }
 
+.sidebar-wrapper {
+	height: 100%;
+}
+
 .sidebar__fixed {
 	position: -webkit-sticky;
 	position: sticky;
