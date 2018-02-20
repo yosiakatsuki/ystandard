@@ -25,7 +25,11 @@ if( ! function_exists( 'ys_paging' ) ) {
 		$image_prev = '';
 		if( $post_prev ) {
 			if( has_post_thumbnail( $post_prev->ID ) ) {
-				$image_prev = get_the_post_thumbnail( $post_prev->ID );
+				$image_prev = get_the_post_thumbnail( 
+												$post_prev->ID, 
+												'post-thumbnail', 
+												array( 'class' => 'entry-paging__image' ) 
+											);
 			}
 			$paging['prev'] = array(
 													'url' => esc_url( get_permalink( $post_prev->ID ) ),
@@ -39,7 +43,11 @@ if( ! function_exists( 'ys_paging' ) ) {
 		$image_next = '';
 		if( $post_next ) {
 			if( has_post_thumbnail( $post_next->ID ) ) {
-				$image_next = get_the_post_thumbnail( $post_next->ID );
+				$image_next = get_the_post_thumbnail( 
+												$post_next->ID,
+												'post-thumbnail', 
+												array( 'class' => 'entry-paging__image' ) 
+											);
 			}
 			$paging['next'] = array(
 													'url' => esc_url( get_permalink( $post_next->ID ) ),

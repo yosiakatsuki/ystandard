@@ -14,7 +14,7 @@
 							<p class="entry-paging__info entry-paging__info--<?php echo $key; ?> color__font-sub"><?php echo $value['text']; ?></p>
 							<div class="ratio ratio__16-9">
 								<?php if( $value['image'] ): ?>
-									<figure class="entry-paging__image ratio__item ratio__image">
+									<figure class="entry-paging__figure ratio__item ratio__image">
 										<?php echo $value['image']; ?>
 									</figure>
 								<?php else: ?>
