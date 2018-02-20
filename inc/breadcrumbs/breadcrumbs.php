@@ -117,7 +117,7 @@ function ys_get_breadcrumbs() {
 			}
 			$items = ys_set_breadcrumb_item( $items, $category->name, $link );
 		}
-		$items = ys_set_breadcrumb_item( $items, get_the_title() );
+		// $items = ys_set_breadcrumb_item( $items, get_the_title() );
 	} elseif( is_category() ) {
 		/**
 		 * category
