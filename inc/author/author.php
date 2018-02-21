@@ -147,9 +147,8 @@ if ( ! function_exists( 'ys_get_author_avatar' ) ) {
 		if( '' == $img ) {
 			$img = $user_avatar;
 		}
-		$img = apply_filters( 'ys_get_author_avatar', $img );
 		$img = ys_amp_convert_image( $img );
-		return apply_filters( 'ys_get_author_avatar', $img, $author_id );
+		return apply_filters( 'ys_get_author_avatar', $img, $author_id, $size );
 	}
 }
 function ys_the_author_avatar( $user_id = false, $size = 96 ) {
