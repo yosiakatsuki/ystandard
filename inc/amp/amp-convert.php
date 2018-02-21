@@ -142,7 +142,7 @@ if( ! function_exists( 'ys_amp_convert_twitter') ) {
 		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
 		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 
-		$pattern = '/https:\/\/twitter\.com\/.+?\/status\/(.+?)".+$/i';
+		$pattern = '/^https:\/\/twitter\.com\/.+?\/status\/(.+?)".+$/i';
 		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
 		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		/**
