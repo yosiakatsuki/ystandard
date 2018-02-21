@@ -18,7 +18,7 @@
 		<div class="row--slide">
 			<?php foreach ( $related_posts as $post ): setup_postdata( $post ); ?>
 				<article class="entry-related__item col col__slide color_font-main">
-					<a class="card entry-list__mask-wrap" href="<?php the_permalink(); ?>">
+					<a class="card image-mask__wrap" href="<?php the_permalink(); ?>">
 						<div class="entry-list__thumbnail card__img ratio ratio__16-9">
 							<div class="ratio__item">
 								<?php if( has_post_thumbnail() ): ?>
@@ -30,9 +30,9 @@
 										<i class="fa fa-picture-o" aria-hidden="true"></i>
 									</div><!-- .entry-list__no-img -->
 								<?php endif; ?>
-								<div class="entry-list__mask flex flex--c-c">
-									<p class="entry-list__mask-text "><?php ys_the_entry_read_more_text(); ?></p>
-								</div><!-- .entry-list__mask -->
+								<div class="image-mask flex flex--c-c">
+									<p class="image-mask__text "><?php ys_the_entry_read_more_text(); ?></p>
+								</div><!-- .image-mask -->
 							</div><!-- .ratio -->
 						</div>
 						<div class="entry-list__detail card__text">

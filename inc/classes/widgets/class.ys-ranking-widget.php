@@ -111,7 +111,7 @@ class YS_Ranking_Widget extends WP_Widget {
 				$post_title = get_the_title();
 
 				$html_post = sprintf(
-											'<li class="ys-ranking__item"><a class="entry-list__mask-wrap clearfix" href="%s">%s<span class="ys-ranking__title">%s</span></a></li>',
+											'<li class="ys-ranking__item"><a class="image-mask__wrap clearfix" href="%s">%s<span class="ys-ranking__title">%s</span></a></li>',
 											get_the_permalink(),
 											$img,
 											get_the_title()
@@ -210,7 +210,7 @@ class YS_Ranking_Widget extends WP_Widget {
 		if( 'thumbnail' === $thumb_type ) {
 			$size = '1-1';
 		}
-		$read_more = '<div class="entry-list__mask flex flex--c-c"><p class="entry-list__mask-text">' . ys_get_entry_read_more_text() . '</p></div>';
+		$read_more = '<div class="image-mask flex flex--c-c"><p class="image-mask__text">' . ys_get_entry_read_more_text() . '</p></div>';
 		$img = sprintf(
 						'<div class="ys-ranking__img"><div class="ratio ratio__' . $size . '"><div class="ratio__item">%s</div></div>%s</div>',
 						$img,

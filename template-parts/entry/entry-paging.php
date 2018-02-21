@@ -8,7 +8,7 @@
 	<div class="container">
 		<div class="row">
 			<?php foreach ( $paging as $key => $value ): ?>
-				<div class="col__2 entry-list__mask-wrap">
+				<div class="col__2 image-mask__wrap">
 					<?php if( is_array( $value ) ): ?>
 						<p class="entry-paging__info entry-paging__info--<?php echo $key; ?> color__font-sub"><?php echo $value['text']; ?></p>
 						<a class="entry-paging__<?php echo $key; ?>" href="<?php echo $value['url']; ?>">
@@ -22,9 +22,9 @@
 										<i class="fa fa-picture-o" aria-hidden="true"></i>
 									</div><!-- .entry-list__no-img -->
 								<?php endif;?>
-								<div class="entry-list__mask flex flex--c-c">
-									<p class="entry-list__mask-text "><?php ys_the_entry_read_more_text(); ?></p>
-								</div><!-- .entry-list__mask -->
+								<div class="image-mask flex flex--c-c">
+									<p class="image-mask__text "><?php ys_the_entry_read_more_text(); ?></p>
+								</div><!-- .image-mask -->
 							</div><!-- .ratio -->
 						</a>
 						<h2 class="entry-paging__title clear-headline">
