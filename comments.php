@@ -34,7 +34,7 @@ if ( post_password_required() ) {
 			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title comment-reply__title">',
 			'title_reply_after'  => '</h2>',
 			'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '<span class="required">*</span></label><textarea id="comment" class="comment__text" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
-			'class_submit' => 'submit ys-btn--full'
+			'class_submit' => 'submit comment__submit ys-btn--full'
 		) );
 	?>
 </aside><!-- .comments-area -->
