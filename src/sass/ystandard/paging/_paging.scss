@@ -1,10 +1,6 @@
 .entry-paging {
   @at-root {
     & {
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
     }
     .entry-paging__info {
       font-size: .9em;
@@ -17,13 +13,12 @@
     }
     .entry-paging__title {
       margin: .5em 0 0;
-      padding: 0;
       font-size: .9em;
-      text-decoration: underline;
     }
     .entry-paging__home {
       height: 100%;
       font-size: 3em;
+      text-decoration: none;
     }
     @include media-breakpoint(tb) {
       .entry-paging__title {
