@@ -319,3 +319,10 @@ function ys_is_active_related_post() {
 	}
 	return apply_filters( 'ys_is_active_related_post', $result );
 }
+/**
+ * 管理画面の投稿タイプ判断用
+ */
+function ys_is_post_type_on_admin( $type ){
+	global $post_type;
+	return ( $type == $post_type );
+}
