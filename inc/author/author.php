@@ -43,6 +43,10 @@ if ( ! function_exists( 'ys_get_author_name' ) ) {
 		if( $vcard && ! ys_is_active_entry_footer_author() ) {
 			$vcard = false;
 		}
+		global $ys_author;
+		if( $vcard && false !== $ys_author ) {
+			$vcard = false;
+		}
 		if( $vcard ) {
 			$author_name = sprintf(
 												'<span class="vcard author"><a class="url fn author__link" href="%s">%s</a></span>',
