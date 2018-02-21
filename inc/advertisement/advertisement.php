@@ -9,6 +9,7 @@
 if( ! function_exists( 'ys_get_ad_block_html' ) ) {
 	function ys_get_ad_block_html( $ad ) {
 		$html = '';
+		$ad = apply_filters( 'ys_advertisement_content', $ad );
 		if( '' !== $ad && ! is_feed() ) {
 			$label_text = apply_filters( 'ys_ad_label_text', 'スポンサーリンク' );
 			$html = sprintf(

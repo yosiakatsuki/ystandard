@@ -18,8 +18,13 @@
 - file: inc/init/init.php
 - description: カスタムロゴのサイズ変更用フィルタ
 
-
 ## advertisement
+
+### ys_advertisement_content
+
+- file: inc/advertisement/advertisement.php
+- file: inc/classes/widgets/class.ys-ad-text-widgets.php
+- description: 広告内容の編集用フィルタ
 
 ### ys_ad_label_text
 - file: inc/advertisement/advertisement.php

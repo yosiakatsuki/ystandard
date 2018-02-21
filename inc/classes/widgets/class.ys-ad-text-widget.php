@@ -25,17 +25,19 @@ class YS_AD_Text_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		global $wp_query;
-
 		$text = ! empty( $instance['text'] ) ? $instance['text'] : '';
-
-		$text = apply_filters('ys_ad_text_widget_text', $text, $instance, $this );
-
-		if(!is_404() && !(is_search() && 0 == $wp_query->found_posts) && '' !== $text ) {
-			echo '<div class="widget ys-ad-widget">';
-			echo $instance['text'];
-			echo '</div>';
+		if( '' === $text ) {
+			return;
 		}
-
+		$text = apply_filters( 'ys_advertisement_content', $text );
+		$html = '';
+		if( ! is_404() && ! ( is_search() && 0 == $wp_query->found_posts ) ) {
+			$html .= '<div class="widget ys-ad-widget">';
+			$html .= $text;
+			$html .= '</div>';
+		}
+		$html = apply_filters( 'ys_ad_text_widget_text', $html, $instance, $this );
+		echo $html;
 	}
 
 	/**
@@ -48,8 +50,10 @@ class YS_AD_Text_Widget extends WP_Widget {
 	public function form( $instance ) {
 		$text = ! empty( $instance['text'] ) ? $instance['text'] : '';
 		?>
-		<p><label for="<?php echo $this->get_field_id( 'text' ); ?>">内容:</label>
-		<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea($text); ?></textarea></p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'text' ); ?>">内容:</label>
+			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea($text); ?></textarea>
+		</p>
 		<?php
 	}
 
