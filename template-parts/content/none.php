@@ -1,6 +1,6 @@
 <section class="no-results not-found">
 	<header class="page-header entry__header">
-		<h2 class="page-title entry__title">
+		<h2 class="page-title entry__title clear-headline">
 			<?php if ( is_search() ) : ?>
 				「<?php echo esc_html( get_search_query( false ) ); ?>」の検索結果が見つかりませんでした。
 			<?php else : ?>

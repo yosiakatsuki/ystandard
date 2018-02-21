@@ -22,7 +22,7 @@
 		</div>
 		<?php
 			the_title(
-				'<h3 class="entry-title entry-list__title"><a class="entry-list__link" href="' . get_the_permalink() . '">',
+				'<h3 class="entry-title entry-list__title clear-headline"><a class="entry-list__link" href="' . get_the_permalink() . '">',
 				'</a></h3>'
 			);
 		?>
