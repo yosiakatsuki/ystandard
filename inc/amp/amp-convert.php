@@ -224,6 +224,9 @@ if( ! function_exists( 'ys_amp_convert_vine') ) {
  */
 if( ! function_exists( 'ys_amp_convert_facebook_post') ) {
 	function ys_amp_convert_facebook_post( $content ) {
+		/**
+		 * iframe
+		 */
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/post\.php\?href=(.*?)&.+?".+?><\/iframe>/is';
 		if( 1 === preg_match( $pattern, $content, $matches ) ){
 			$content = preg_replace_callback(
@@ -234,24 +237,12 @@ if( ! function_exists( 'ys_amp_convert_facebook_post') ) {
 										$content
 									);
 		}
-		return $content;
-	}
-}
-/**
- * facebook post埋め込みの置換
- */
-if( ! function_exists( 'ys_amp_convert_facebook_post') ) {
-	function ys_amp_convert_facebook_post( $content ) {
-		$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/post\.php\?href=(.*?)&.+?".+?><\/iframe>/is';
-		if( 1 === preg_match( $pattern, $content, $matches ) ){
-			$content = preg_replace_callback(
-										$pattern,
-										function ($m) {
-											return '<amp-facebook width=486 height=657 layout="responsive" data-href="' . urldecode( $m[1] ) . '"></amp-facebook>';
-										},
-										$content
-									);
-		}
+		/**
+		 * embed
+		 */
+		$pattern = '/<div[^>]+?class="fb-post"[^>]+?data-href="(.+?)".+?<\/div>/is';
+		$replacement = '<amp-facebook width=486 height=657 layout="responsive" data-href="$1"></amp-facebook>';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		return $content;
 	}
 }

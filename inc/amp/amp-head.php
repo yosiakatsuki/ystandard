@@ -162,6 +162,11 @@ function ys_is_load_amp_facebook_script( &$content ) {
 		$content = preg_replace( $pattern, '', $content );
 		return true;
 	}
+	$pattern = '/<div[^>]+?class="fb-post"[^>]+?data-href="(.+?)".+?<\/div>/is';
+	if( 1 === preg_match( $pattern, $content, $matches ) ){
+		$content = preg_replace( $pattern, '', $content );
+		return true;
+	}
 	return false;
 }
 /**
