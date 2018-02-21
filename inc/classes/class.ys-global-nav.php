@@ -10,7 +10,13 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		}
 		$indent = str_repeat( $t, $depth );
 
-		$classes = array( 'sub-menu', 'global-nav__sub-menu' );
+		$classes = array( 
+								'sub-menu',
+								'global-nav__sub-menu',
+								'list-style--none',
+								'color__nav-bg--sp',
+								'color__nav-bg--pc' 
+							);
 
 		$class_names = join( ' ', apply_filters( 'nav_menu_submenu_css_class', $classes, $args, $depth ) );
 		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';

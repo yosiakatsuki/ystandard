@@ -121,7 +121,10 @@
         height: 100%;
       }
       .global-nav__sub-menu {
+        width: 200%;
         position: absolute;
+        left: -100%;
+        right: -100%;
         margin: 0 auto;
         text-align: center;
         opacity: 0;
@@ -129,7 +132,6 @@
         z-index: 0;
 				transition: all 0.3s;
         li {
-          border-bottom: none;
           padding-left: 0;
           opacity: .9;
         }
@@ -139,9 +141,6 @@
           opacity: 1;
           visibility: visible;
           z-index: 3;
-          li {
-            border-bottom: none;
-          }
         }
       }
       /*

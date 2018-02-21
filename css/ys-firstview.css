@@ -2490,7 +2490,10 @@ div.aligncenter {
 }
 
 .global-nav__sub-menu {
+	width: 200%;
 	position: absolute;
+	left: -100%;
+	right: -100%;
 	margin: 0 auto;
 	text-align: center;
 	opacity: 0;
@@ -2501,7 +2504,6 @@ div.aligncenter {
 }
 
 .global-nav__sub-menu li {
-	border-bottom: none;
 	padding-left: 0;
 	opacity: .9;
 }
@@ -2510,10 +2512,6 @@ div.aligncenter {
 	opacity: 1;
 	visibility: visible;
 	z-index: 3;
-}
-
-.menu-item-has-children:hover .global-nav__sub-menu li {
-	border-bottom: none;
 }
 
 /*
