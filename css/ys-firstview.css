@@ -2208,7 +2208,7 @@ figcaption {
 .ys-ranking__title {
 	display: block;
 	padding: .5em 0 0;
-	font-size: 1.1em;
+	line-height: 1.4;
 	overflow: hidden;
 }
 

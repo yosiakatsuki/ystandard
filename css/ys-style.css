@@ -235,8 +235,9 @@
 }
 
 .entry-related__title {
-	font-size: 1em;
 	margin: 0;
+	font-size: 1em;
+	line-height: 1.5;
 }
 
 .pagination {
