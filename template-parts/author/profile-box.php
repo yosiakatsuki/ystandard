@@ -7,7 +7,7 @@
 				<a href="<?php ys_the_author_link(); ?>" rel="author"><?php echo $avatar; ?></a>
 			</figure>
 		<?php endif; ?>
-		<h2 class="author__name"><?php ys_the_author_name(); ?></h2>
+		<h2 class="author__name clear-headline"><?php ys_the_author_name(); ?></h2>
 	</div><!-- .author__main -->
 	<div class="author__sub">
 		<div class="author__dscr">

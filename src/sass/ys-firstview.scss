@@ -12,6 +12,7 @@
 @import "mixins/nav";
 @import "mixins/flex";
 @import "mixins/list";
+@import "mixins/style-clear";
 
 //func
 @import "function/margin";
@@ -21,6 +22,7 @@
 // import scss
 @import "base/base";
 @import "clearfix/clearfix";
+@import "style-clear/style-clear";
 @import "grid/grid";
 @import "card/card";
 @import "section/section";

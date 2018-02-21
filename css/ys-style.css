@@ -164,14 +164,7 @@
 	-webkit-box-flex: 0;
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
-	margin: 0;
-	padding: 0;
 	font-size: 1em;
-}
-
-.entry__footer-tax-title:before,
-.entry__footer-tax-titleafter {
-	content: none;
 }
 
 .entry__footer-tax-container {
@@ -397,11 +390,6 @@
 	padding: 0;
 	font-size: .9em;
 	text-decoration: underline;
-}
-
-.entry-paging__title:before,
-.entry-paging__title:after {
-	content: none;
 }
 
 .entry-paging__home {

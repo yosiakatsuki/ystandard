@@ -23,7 +23,7 @@
 									</div><!-- .entry-list__no-img -->
 								<?php endif;?>
 							</div><!-- .ratio -->
-							<h2 class="entry-paging__title"><?php echo $value['title']; ?></h2>
+							<h2 class="entry-paging__title clear-headline"><?php echo $value['title']; ?></h2>
 						</a>
 					<?php else: ?>
 						<a class="entry-paging__home flex flex--c-c" href="<?php echo home_url( '/' ); ?>">

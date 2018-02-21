@@ -36,7 +36,7 @@
 							</div><!-- .ratio -->
 						</div>
 						<div class="entry-list__detail card__text">
-							<?php the_title( '<h3 class="entry-title entry-related__title">', '</h3>' ); ?>
+							<?php the_title( '<h3 class="entry-title entry-related__title clear-headline">', '</h3>' ); ?>
 							<div class="entry__meta entry-list__meta color__font-sub">
 								<p class="entry-list__date"><i class="fa fa-calendar" aria-hidden="true"></i><time datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time></p><!-- .entry-list__date -->
 							</div>
