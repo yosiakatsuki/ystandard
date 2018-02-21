@@ -30,7 +30,7 @@
     .entry__footer > *,
     .entry__footer-section {
       margin-top: get_margin(2);
-      &:first-child {
+      &:first-child:not(.entry__footer-author) {
         margin-top: 0;
       }
     }

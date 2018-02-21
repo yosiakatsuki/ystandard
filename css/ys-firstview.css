@@ -1303,8 +1303,8 @@ input[type="button"]:hover {
 	margin-top: 30px;
 }
 
-.entry__footer > *:first-child,
-.entry__footer-section:first-child {
+.entry__footer > *:first-child:not(.entry__footer-author),
+.entry__footer-section:first-child:not(.entry__footer-author) {
 	margin-top: 0;
 }
 
