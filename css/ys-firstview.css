@@ -1081,28 +1081,24 @@ input[type="button"]:hover {
 	margin: 0;
 }
 
-.global-nav {
+.global-nav,
+.global-nav--amp {
+	padding: 45px 0 15px;
 	font-size: .8em;
 }
 
-.global-nav li {
+.global-nav li,
+.global-nav--amp li {
 	width: 100%;
 }
 
-.global-nav a {
+.global-nav a,
+.global-nav--amp a {
 	padding: 1em;
 	display: block;
 	text-decoration: none;
 	color: inherit;
 }
-
-.global-nav__sub-menu li {
-	padding-left: 1em;
-}
-
-/*
-      スライドメニュー
-     */
 
 .global-nav {
 	position: fixed;
@@ -1110,8 +1106,6 @@ input[type="button"]:hover {
 	right: 0;
 	bottom: 0;
 	width: 70%;
-	padding: 45px 0 15px;
-	background-color: #292b2c;
 	z-index: 100;
 	overflow-y: scroll;
 	-webkit-transform: translateX(100%);
@@ -1120,6 +1114,10 @@ input[type="button"]:hover {
 	transition: -webkit-transform .3s;
 	transition: transform .3s;
 	transition: transform .3s, -webkit-transform .3s;
+}
+
+.global-nav__sub-menu li {
+	padding-left: 1em;
 }
 
 .admin-bar .global-nav {
@@ -1214,6 +1212,24 @@ input[type="button"]:hover {
 	-webkit-transform: translateX(0);
 	transform: translateX(0);
 	max-width: 500px;
+}
+
+.global-nav__amp-btn--close .middle {
+	opacity: 0;
+}
+
+.global-nav__amp-btn--close .top {
+	-webkit-transform: rotate(-45deg) translateX(-2px);
+	transform: rotate(-45deg) translateX(-2px);
+}
+
+.global-nav__amp-btn--close .bottom {
+	-webkit-transform: rotate(45deg) translateX(-3px);
+	transform: rotate(45deg) translateX(-3px);
+}
+
+.global-nav__amp-btn--close span {
+	background-color: #fff;
 }
 
 .site__content {

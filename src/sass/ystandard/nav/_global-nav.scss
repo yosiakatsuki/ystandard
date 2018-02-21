@@ -1,7 +1,9 @@
 .global-nav {
   @at-root {
-
-    & {
+    //スライドメニュー
+    .global-nav,
+    .global-nav--amp {
+      padding: ($gutter * 3) 0 $gutter;
       font-size: .8em;
 
       li {
@@ -15,25 +17,19 @@
         color: inherit;
       }
     }
-    .global-nav__sub-menu li {
-      padding-left: 1em;
-    }
-
-    /*
-      スライドメニュー
-     */
     .global-nav {
       position: fixed;
       top: 0;
       right: 0;
       bottom: 0;
       width: 70%;
-      padding: ($gutter * 3) 0 $gutter;
-      background-color: $bg-color-dark;
       z-index: 100;
       overflow-y: scroll;
       transform: translateX(100%);
       transition: transform .3s;
+    }
+    .global-nav__sub-menu li {
+      padding-left: 1em;
     }
     .admin-bar .global-nav {
       padding-top: ($gutter * 6)
@@ -100,6 +96,12 @@
     		transform: translateX(0);
         max-width: 500px;
       }
+    }
+    .global-nav__amp-btn--close {
+      @include toggle-hamburger;
+        span {
+          background-color: #fff;
+        }
     }
 
     // screen
