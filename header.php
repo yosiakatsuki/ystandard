@@ -42,9 +42,9 @@
 						$logo = ys_get_header_logo();
 						$class = 'site-title header__title color__site-title';
 						if ( ! is_singular() || is_front_page() ) {
-							printf( '<h1 class="%s">%s</h1>', $class, $logo );
+							printf( '<h1 class="%s clear-headline">%s</h1>', $class, $logo );
 						} else {
-							printf( '<p class="%s">%s</p>', $class, $logo );
+							printf( '<p class="%s clear-headline">%s</p>', $class, $logo );
 						}
 						/**
 						 * 概要
