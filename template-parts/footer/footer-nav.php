@@ -1,6 +1,6 @@
 <?php
 	if ( has_nav_menu( 'footer' ) ) : ?>
-	<nav class="footer-nav">
+	<nav class="footer-nav footer__section">
 		<?php
 			wp_nav_menu( array(
 				'theme_location' => 'footer',

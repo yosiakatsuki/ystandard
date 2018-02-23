@@ -11,10 +11,16 @@
         }
       }
     }
+    .footer__section {
+      margin-top: get_margin();
+    }
     @include media-breakpoint(tb) {
       & {
         padding-top: get_margin(2);
       }
+      .footer__section {
+        margin-top: get_margin(2);
+      }
     }
-  }
+  }// @
 }

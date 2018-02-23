@@ -405,7 +405,7 @@
 	text-decoration: underline;
 }
 
-.footer__widget {
+.footer__section {
 	margin-top: 15px;
 }
 
@@ -419,10 +419,6 @@
 
 .footer__widget-container {
 	padding: 15px 0;
-}
-
-.footer-nav {
-	margin-top: 15px;
 }
 
 .footer__nav-list li {
@@ -455,12 +451,11 @@
 }
 
 .site__info {
-	margin-top: 30px;
+	font-size: .8em;
 }
 
 .footer__poweredby {
 	margin-top: .5em;
-	font-size: .9em;
 }
 
 @media screen and (min-width: 600px) {
@@ -496,6 +491,10 @@
 
 .site__footer {
 	padding-top: 30px;
+}
+
+.footer__section {
+	margin-top: 30px;
 }
 
 .footer__widget-container {

@@ -1,9 +1,5 @@
 .footer-nav {
   @at-root {
-
-    & {
-      margin-top: get_margin();
-    }
     .footer__nav-list {
       li {
         margin: 0 0 5px 15px;
