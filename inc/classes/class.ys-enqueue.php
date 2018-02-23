@@ -81,14 +81,14 @@ class YS_Enqueue {
 	/**
 	 * onload-scriptのセット
 	 */
-	public function set_onload_script( $id, $src ) {
-		$this->set_load_script_array( $this->onload_script, $id, $src );
+	public function set_onload_script( $id, $src, $ver = false ) {
+		$this->set_load_script_array( $this->onload_script, $id, $src, $ver );
 	}
 	/**
 	 * lazyload-scriptのセット
 	 */
-	public function set_lazyload_script( $id, $src ) {
-		$this->set_load_script_array( $this->lazyload_script, $id, $src );
+	public function set_lazyload_script( $id, $src, $ver = false ) {
+		$this->set_load_script_array( $this->lazyload_script, $id, $src, $ver );
 	}
 
 	/**

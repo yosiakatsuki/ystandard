@@ -138,18 +138,18 @@ add_action( 'script_loader_tag', 'ys_the_onload_scripts' );
  * onload-scriptのセット
  */
 if( ! function_exists( 'ys_enqueue_onload_script' ) ) {
-	function ys_enqueue_onload_script( $id, $src ) {
+	function ys_enqueue_onload_script( $id, $src, $ver = false ) {
 		global $ys_enqueue;
-		$ys_enqueue->set_onload_script( $id, $src );
+		$ys_enqueue->set_onload_script( $id, $src, $ver );
 	}
 }
 /**
  * lazyload-scriptのセット
  */
 if( ! function_exists( 'ys_enqueue_lazyload_script' ) ) {
-	function ys_enqueue_lazyload_script( $id, $src ) {
+	function ys_enqueue_lazyload_script( $id, $src, $ver = false) {
 		global $ys_enqueue;
-		$ys_enqueue->set_lazyload_script( $id, $src );
+		$ys_enqueue->set_lazyload_script( $id, $src, $ver );
 	}
 }
 /**
