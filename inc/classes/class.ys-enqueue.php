@@ -70,10 +70,12 @@ class YS_Enqueue {
 	/**
 	 * onload-script,lazyload-script,lazyload-cssの配列セット
 	 */
-	private function set_load_script_array( &$arr, $id, $url ) {
+	private function set_load_script_array( &$arr, $id, $url, $ver = false ) {
+		$ver = false == $ver ? '' : $ver;
 		$arr[ $id ] = array(
 										'id' => esc_attr( $id ),
-										'url' => esc_url_raw( $url )
+										'url' => esc_url_raw( $url ),
+										'ver' => esc_attr( $ver )
 									);
 	}
 	/**
@@ -194,9 +196,13 @@ class YS_Enqueue {
 		if( empty( $obj ) ) return null;
 		$array = array();
 		foreach ( $obj as $key => $value ) {
+			$url = $value['url'];
+			if( '' !== $value['ver'] ) {
+				$url = add_query_arg( $value['ver'], '', $url );
+			}
 			$array[] = array(
 				'id' => $value['id'],
-				'url' => $value['url']
+				'url' => $url
 			);
 		}
 		return $array;
