@@ -163,25 +163,18 @@ require_once get_template_directory() . '/inc/json-ld/json-ld.php';
  * OGP
  */
 require_once get_template_directory() . '/inc/ogp/ogp.php';
-
-
 /**
- * 管理画面メニュー
+ * 管理者向け機能
  */
-if( is_admin() ){
-	/**
-	 * 管理者向け機能
-	 */
-	require_once get_template_directory() . '/inc/admin/admin.php';
-	/**
-	 * テーマ設定画面
-	 */
-	require_once get_template_directory() . '/inc/theme-option/theme-option-add.php';
-	/**
-	 * アップデートチェック
-	 */
-	require_once get_template_directory() . '/inc/update-checker/update-checker.php';
-}
+require_once get_template_directory() . '/inc/admin/admin.php';
+/**
+ * テーマ設定画面
+ */
+require_once get_template_directory() . '/inc/theme-option/theme-option-add.php';
+/**
+ * アップデートチェック
+ */
+require_once get_template_directory() . '/inc/update-checker/update-checker.php';
 /**
  * v2でいずれ廃止予定
  */
