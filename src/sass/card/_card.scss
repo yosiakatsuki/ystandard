@@ -2,12 +2,14 @@
   @at-root {
 
     & {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       height: 100%;
-      text-decoration: none;
       color: $font-color-main;
+      text-decoration: none;
       box-shadow: 0 1px 1px rgba($border-color-gray,0.7);
-      transition: transform .4s;
+      transition: all .4s;
 
       &:hover {
         color: $font-color-main;
@@ -24,33 +26,33 @@
         margin-right: auto;
       }
     }
-
     .card__text {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
       padding: get_margin();
-      font-size: .9em;
     }
-
     .card__title {
-      font-size: 1.2em;
-      margin: 0;
+      font-size: .9em;
+      line-height: 1.5;
     }
 
     .card__dscr {
       color: $font-color-gray;
-      margin-top: 1em;
+      font-size: .9em;
     }
 
     .card__tag {
       list-style: none;
-      margin: 1em 0 0;
+      margin: 0;
       padding: 0;
     }
 
     .card__tag-item {
       display: inline-block;
       background-color: $bg-color-dark-gray;
-      margin-right: .2em;
-      margin-bottom: .2em;
+      margin: 0 .2em .2em 0;
       padding: .2em .6em;
       color: $font-color-gray;
       font-size: .9em;

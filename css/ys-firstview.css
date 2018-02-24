@@ -747,16 +747,23 @@ input[type="button"] {
 }
 
 .card {
-	display: block;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
 	height: 100%;
-	text-decoration: none;
 	color: #222;
+	text-decoration: none;
 	-webkit-box-shadow: 0 1px 1px rgba(189, 195, 199, 0.7);
 	box-shadow: 0 1px 1px rgba(189, 195, 199, 0.7);
-	-webkit-transition: -webkit-transform .4s;
-	transition: -webkit-transform .4s;
-	transition: transform .4s;
-	transition: transform .4s, -webkit-transform .4s;
+	-webkit-transition: all .4s;
+	transition: all .4s;
 }
 
 .card:hover {
@@ -776,31 +783,40 @@ input[type="button"] {
 }
 
 .card__text {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	height: 100%;
 	padding: 15px;
-	font-size: .9em;
 }
 
 .card__title {
-	font-size: 1.2em;
-	margin: 0;
+	font-size: .9em;
+	line-height: 1.5;
 }
 
 .card__dscr {
 	color: #939393;
-	margin-top: 1em;
+	font-size: .9em;
 }
 
 .card__tag {
 	list-style: none;
-	margin: 1em 0 0;
+	margin: 0;
 	padding: 0;
 }
 
 .card__tag-item {
 	display: inline-block;
 	background-color: #e9ecef;
-	margin-right: .2em;
-	margin-bottom: .2em;
+	margin: 0 .2em .2em 0;
 	padding: .2em .6em;
 	color: #939393;
 	font-size: .9em;
