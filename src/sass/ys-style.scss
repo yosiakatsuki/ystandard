@@ -4,16 +4,16 @@
 // variables
 @import "variables";
 // mixins
-@import "mixins/breakpoint";
-@import "mixins/clearfix";
-@import "mixins/grid";
-@import "mixins/flex";
-@import "mixins/list";
+@import "akatsuki-base/mixins/breakpoint";
+@import "akatsuki-base/mixins/clearfix";
+@import "akatsuki-base/mixins/grid";
+@import "akatsuki-base/mixins/flex";
+@import "akatsuki-base/mixins/list";
 
 //func
-@import "function/margin";
-@import "function/sns-color";
-@import "function/decimal";
+@import "akatsuki-base/function/margin";
+@import "akatsuki-base/function/sns-color";
+@import "akatsuki-base/function/decimal";
 
 // normalize
 // @import "~normalize.css";
