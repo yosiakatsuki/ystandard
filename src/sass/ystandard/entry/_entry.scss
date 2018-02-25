@@ -1,7 +1,7 @@
 .entry {
   @at-root {
     .entry__title {
-      font-size: 1.6em;
+      font-size: 1.4em;
       line-height: 1.5;
       margin: get_margin() 0 5px;
       padding: 0;
@@ -42,6 +42,9 @@
     }
 
     @include media-breakpoint(tb) {
+      .entry__title {
+        font-size: 1.5em;
+      }
       .entry__footer > *,
       .entry__footer-section {
         margin-top: get_margin(4);
