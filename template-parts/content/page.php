@@ -5,7 +5,7 @@
 		?>
 		<?php if( ys_is_active_post_thumbnail() ): ?>
 			<figure class="post-thumbnail entry__thumbnail">
-				<?php the_post_thumbnail( 'post-thumbnail', array( 'class' => 'entry__thumbnail__image' ) ) ?>
+				<?php the_post_thumbnail( 'post-thumbnail', array( 'id' => 'entry__thumbnail__image', 'class' => 'entry__thumbnail__image' ) ) ?>
 			</figure><!-- .post-thumbnail -->
 		<?php endif; ?>
 		<?php
