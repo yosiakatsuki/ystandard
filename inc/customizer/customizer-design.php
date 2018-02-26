@@ -51,18 +51,19 @@ function ys_customizer_design_add_header( $wp_customize ) {
 	$row1 = $assets_url . '/design/header/1row.png';
 	$center = $assets_url . '/design/header/center.png';
 	$row2 = $assets_url . '/design/header/2row.png';
+	$img = '<img src="%s" alt="" width="100" height="100" />';
 	ys_customizer_add_setting_image_label_radio(
 		$wp_customize,
 		array(
 			'id'          => 'ys_design_header_type',
 			'default'     => '1row',
 			'label'       => 'ヘッダータイプ',
-			'description' => 'ヘッダーの表示タイプ(※現在機能開発集のため1番目のタイプしか表示できません)',
+			'description' => 'ヘッダーの表示タイプ',
 			'section'     => 'ys_customizer_section_header_design',
 			'choices'     => array(
-												'1row'   => $row1,
-												'center' => $center,
-												'2row'   => $row2
+												'1row'   => sprintf( $img, $row1 ),
+												'center' => sprintf( $img, $center ),
+												'2row'   => sprintf( $img, $row2 )
 											)
 		)
 	);
