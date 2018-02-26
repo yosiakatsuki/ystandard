@@ -33,7 +33,7 @@
 <div id="page" class="site">
 	<header id="masthead" class="header site-header color__site-header">
 		<div class="header__container container">
-			<div class="header--1row">
+			<div class="<?php ys_the_header_type_class(); ?>">
 				<div class="site-branding header__branding">
 					<?php
 						/**
