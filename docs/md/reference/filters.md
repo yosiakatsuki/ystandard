@@ -268,25 +268,32 @@
 - file: inc/entry/entry-meta.php
 - description: 公開日・更新日取得用配列の編集フィルタ
 
-
 ## header
 
 ### ys_get_header_logo
+
 - file: inc/header/header.php
 - description: ヘッダーロゴ編集用フィルタ
 
 ### ys_get_header_logo_format
+
 - file: inc/header/header.php
 - description: aタグを含むヘッダーロゴのラッパーHTMLフォーマット編集フィルタ
 
 ### ys_the_blog_description
+
 - file: inc/header/header.php
 - description: ヘッダーキャッチフレーズ編集用フィルタ
 
 ### ys_the_blog_description_format
+
 - file: inc/header/header.php
 - description: ヘッダーキャッチフレーズのラッパーHTMLフォーマット編集フィルタ
 
+### ys_get_header_type_class
+
+- file: inc/header/header.php
+- description: ヘッダータイプ変更用クラス編集フィルタ
 
 ## archive
 
