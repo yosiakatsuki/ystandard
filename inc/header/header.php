@@ -32,3 +32,10 @@ if( ! function_exists( 'ys_the_blog_description' ) ) {
 		echo sprintf( $format, $dscr );
 	}
 }
+
+if( ! function_exists( 'ys_the_header_type_class' ) ) {
+	function ys_the_header_type_class() {
+		$type = ys_get_option( 'ys_design_header_type' );
+		echo 'header--' . $type;
+	}
+}

@@ -1,0 +1,58 @@
+// variables
+@import "../variables";
+// mixins
+@import "../akatsuki-base/mixins/breakpoint";
+@import "../akatsuki-base/mixins/clearfix";
+@import "../akatsuki-base/mixins/grid";
+@import "../akatsuki-base/mixins/nav";
+@import "../akatsuki-base/mixins/flex";
+@import "../akatsuki-base/mixins/list";
+@import "../akatsuki-base/mixins/style-clear";
+//func
+@import "../akatsuki-base/function/margin";
+@import "../akatsuki-base/function/sns-color";
+@import "../akatsuki-base/function/decimal";
+//
+//  全体設定
+//
+#customize-controls .description {
+  margin-top: .5em;
+  color: $font-color-gray;
+}
+//
+//  サイトアイコン
+//
+#customize-control-site_icon {
+  .app-icon-preview {
+    display: none;
+  }
+}
+#customize-control-ys_apple_touch_icon {
+  .favicon-preview {
+    display: none;
+  }
+}
+//
+//  ヘッダースタイル
+//
+#customize-control-ys_design_header_type {
+  .customize-inside-control-row {
+    margin: 0;
+  }
+  input[type="radio"] {
+    display: none;
+
+    & + label {
+      display: block;
+      img {
+        border: 3px solid transparent;
+        transition: border .3s;
+      }
+    }
+    &:checked + label {
+      img {
+        border-color: $link-color;
+      }
+    }
+  }
+}

@@ -231,7 +231,7 @@ if ( ! function_exists( 'ys_enqueue_customizer_styles' ) ) {
 	function ys_enqueue_customizer_styles( $hook_suffix ){
 		wp_enqueue_style(
 			'ys_customizer_style',
-			get_template_directory_uri().'/css/ys-customizer-style.css',
+			get_template_directory_uri().'/css/customizer/customizer.min.css',
 			array(),
 			ys_get_theme_version(true)
 		);

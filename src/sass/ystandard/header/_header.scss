@@ -22,6 +22,12 @@
       font-size: .8em;
       margin: 0;
     }
+    .header--center {
+      .header__title {
+        text-align: center;
+        padding-left: 20px;
+      }
+    }
 
     // screen
     @include media-breakpoint(pc) {
@@ -29,7 +35,20 @@
       .header--1row {
         @include flex;
         justify-content: space-between;
-      }
+      }//.header--1row 
+      
+      .header--center {
+        text-align: center;
+        .global-nav__menu {
+          justify-content: space-around;
+        }
+      }//.header--center
+
+      .header--2row {
+        .global-nav__item:first-child a {
+          padding-left: 0;
+        }
+      } //header--2row
 
     }
 
