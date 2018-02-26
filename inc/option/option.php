@@ -65,6 +65,13 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			'ys_hide_page_author' => get_option( 'ys_hide_page_author', 0 ),
 			/**
 			 *
+			 * [ys]アーカイブページ設定
+			 *
+			 */
+			// 一覧表示タイプ
+			'ys_archive_type' => get_option( 'ys_archive_type', 'list' ),
+			/**
+			 *
 			 * [ys]SNS設定
 			 *
 			 */

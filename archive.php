@@ -13,14 +13,16 @@ get_header(); ?>
 			<div class="archive__list">
 				<?php
 					while ( have_posts() ) : the_post();
-						get_template_part( 'template-parts/content/archive' );
+						get_template_part( 'template-parts/content/archive', ys_get_option( 'ys_archive_type' ) );
 					endwhile;
-					/**
-					 * ページネーション
-					 */
-					get_template_part( 'template-parts/pagination/pagination' );
 				?>
 			</div><!-- .archive__list -->
+			<?php
+				/**
+				 * ページネーション
+				 */
+				get_template_part( 'template-parts/pagination/pagination' );
+				?>
 		<?php
 			else :
 				get_template_part( 'template-parts/content/none' );

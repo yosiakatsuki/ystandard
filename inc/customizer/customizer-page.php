@@ -18,13 +18,14 @@ function ys_customizer_page( $wp_customize ){
 	// 								);
 	/**
 	 * セクション追加
+	 * 	active_callbackが効かないのでデザイン設定の中に入れる
 	 */
 	$wp_customize->add_section(
 										'ys_customizer_section_page',
 										array(
-											'title'    => '[ys]固定ページ設定',
-											'panel'    => '',
-											'priority' => 1030,
+											'title'    => '固定ページ設定',
+											'panel'    => 'ys_customizer_panel_design',
+											'priority' => 1,
 											'active_callback' => 'ys_customizer_active_callback_page'
 										)
 									);
@@ -37,6 +38,8 @@ function ys_customizer_page( $wp_customize ){
  * 固定ページ設定の表示条件
  */
 function ys_customizer_active_callback_page() {
+	return true;
+	//TODO:active_callbackが効かない
 	return is_page();
 }
 

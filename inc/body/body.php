@@ -31,7 +31,7 @@ function ys_body_classes( $classes ) {
 	 * アーカイブレイアウト
 	 */
 	if( is_archive() || is_home() ){
-		$classes[] = 'entry-list--list';
+		$classes[] = 'entry-list--' . ys_get_option( 'ys_archive_type' );
 	}
 
 	return $classes;

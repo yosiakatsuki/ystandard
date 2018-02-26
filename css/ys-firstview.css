@@ -2127,6 +2127,10 @@ figcaption {
 	margin-right: 5px;
 }
 
+.entry-list__date {
+	white-space: nowrap;
+}
+
 .entry-list__title {
 	margin: .5em 0 0;
 	font-size: 1.2em;
@@ -2152,6 +2156,30 @@ figcaption {
 
 .entry-list--list .entry-list:first-child {
 	border-top: 1px solid #ecf0f1;
+}
+
+.entry-list--card .content__main {
+	padding-right: 0;
+	padding-left: 0;
+	border: none;
+}
+
+.entry-list--card .archive__list {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+.entry-list--card .entry-list {
+	padding: 15px;
+}
+
+.entry-list--card .entry__meta {
+	margin-top: 0;
 }
 
 .image-mask {
@@ -2446,6 +2474,18 @@ div.aligncenter {
 
 .entry-list--list .entry-list__meta {
 	margin: 0;
+}
+
+.entry-list--card .entry-list--card-2 {
+	width: 50%;
+}
+
+.entry-list--card .entry-list--card-3 {
+	width: 33.33%;
+}
+
+.entry-list--card .entry-list--card-4 {
+	width: 25%;
 }
 
 .ys-ranking__list:not(.ys-ranking__img--no-img) {

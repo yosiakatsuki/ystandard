@@ -22,14 +22,15 @@ function ys_customizer_post( $wp_customize ){
 	$wp_customize->add_section(
 										'ys_customizer_section_post',
 										array(
-											'title'    => '[ys]投稿ページ設定',
-											'panel'    => '',
-											'priority' => 1020,
+											'title'    => '投稿ページ設定',
+											'panel'    => 'ys_customizer_panel_design',
+											'priority' => 1,
 											'active_callback' => 'ys_customizer_active_callback_post'
 										)
 									);
 	/**
 	 * 投稿ページ設定
+	 * active_callbackが効かないのでデザイン設定の中に入れる
 	 */
 	ys_customizer_post_add_settings( $wp_customize );
 }
@@ -37,6 +38,8 @@ function ys_customizer_post( $wp_customize ){
  * 投稿ページ設定の表示条件
  */
 function ys_customizer_active_callback_post() {
+	return true;
+	//TODO:active_callbackが効かない
 	return is_single();
 }
 
