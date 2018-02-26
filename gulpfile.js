@@ -10,6 +10,7 @@ var uglify				 = require('gulp-uglify');
 var browserSync		 = require('browser-sync');
 var webpackStream  = require('webpack-stream');
 var webpack        = require('webpack');
+var zip            = require('gulp-zip');
 var cmq						 = require('gulp-combine-media-queries');
 
 var dir = {
@@ -89,6 +90,25 @@ gulp.task('bs-init', function() {
  */
 gulp.task('bs-reload', function() {
   browserSync.reload()
+});
+
+/**
+ * create zip file
+ */
+gulp.task('zip', function(){
+  return gulp.src(
+      [
+        '**',
+        '!node_modules',
+        '!node_modules/**',
+        '!gulpfile.js',
+        '!package.json',
+        '!webpack.config.js',
+      ],
+      {base: './'}
+    )
+    .pipe(zip('ystandard.zip'))
+    .pipe(gulp.dest('./'));
 });
 
 /**

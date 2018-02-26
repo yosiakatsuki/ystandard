@@ -19,11 +19,13 @@
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2",
     "gulp-watch": "^4.3.10",
+    "gulp-zip": "^4.1.0",
     "node-normalize-scss": "^3.0.0",
     "webpack": "^3.10.0",
     "webpack-stream": "^4.0.0"
   },
   "scripts": {
-    "gulp": "gulp watch"
+    "gulp": "gulp watch",
+    "zip": "gulp zip"
   }
 }
