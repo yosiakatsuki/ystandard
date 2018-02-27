@@ -13,5 +13,5 @@ if( is_admin() ) {
 																	'https://wp-ystandard.com/download/ystandard/v2/ystandard-info.json'
 																);
 	}
-	// add_action( 'after_setup_theme', 'ys_update_check' );
+	add_action( 'after_setup_theme', 'ys_update_check' );
 }
