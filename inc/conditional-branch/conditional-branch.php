@@ -116,7 +116,7 @@ if( ! function_exists( 'ys_is_amp_enable' ) ) {
 if( ! function_exists( 'ys_is_one_column' ) ) {
 	function ys_is_one_column(){
 		$one_colmun = false;
-		if( is_page_template( 'template-one-column.php' ) ) {
+		if( is_page_template( 'page-template/template-one-column.php' ) ) {
 			$one_colmun = true;
 		}
 		if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
