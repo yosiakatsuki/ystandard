@@ -36,21 +36,10 @@
       @include col;
       max-width: 100%;
     }
-    .col__2 {
-      flex: 0 0 50%;
-      width: 50%;
-    }
-    .col__3 {
-      flex: 0 0 33.33%;
-      width: 33.33%;
-    }
-    .col__4 {
-      flex: 0 0 25%;
-      width: 25%;
-    }
+    @include make-col();
     .col__slide {
       flex: 0 0 30%;
-      width: 30%;
+      max-width: 30%;
       min-width: 240px;
       padding: get_margin() get_margin(0.5);
       &:first-child {
@@ -63,50 +52,17 @@
 
     // tablet
     @include media-breakpoint(tb) {
-      .col__2--tb {
-        flex: 0 0 50%;
-        width: 50%;
-      }
-      .col__3--tb {
-        flex: 0 0 33.33%;
-        width: 33.33%;
-      }
-      .col__4--tb {
-        flex: 0 0 25%;
-        width: 25%;
-      }
+      @include make-col(tb);
     }
 
     // screen
     @include media-breakpoint(pc) {
-      .col__2--pc {
-        flex: 0 0 50%;
-        width: 50%;
-      }
-      .col__3--pc {
-        flex: 0 0 33.33%;
-        width: 33.33%;
-      }
-      .col__4--pc {
-        flex: 0 0 25%;
-        width: 25%;
-      }
+      @include make-col(pc);
     }
 
     // large screen
     @include media-breakpoint(lg) {
-      .col__2--lg {
-        flex: 0 0 50%;
-        width: 50%;
-      }
-      .col__3--lg {
-        flex: 0 0 33.33%;
-        width: 33.33%;
-      }
-      .col__4--lg {
-        flex: 0 0 25%;
-        width: 25%;
-      }
+      @include make-col(lg);
     }
 
   }// at-root

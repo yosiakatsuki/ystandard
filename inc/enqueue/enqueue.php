@@ -11,7 +11,7 @@ if( ! function_exists( 'ys_enqueue_scripts' ) ) {
 			wp_enqueue_script( 'jquery', ys_get_option( 'ys_load_cdn_jquery_url' ) );
 		}
 		/**
-		 * Polyfill関連
+		 * IE,Edge関連
 		 */
 		if( ys_is_ie() || ys_is_edge() ) {
 			/**
@@ -51,6 +51,26 @@ if( ! function_exists( 'ys_enqueue_scripts' ) ) {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts' );
+
+/**
+ * CSSの読み込み
+ */
+if ( ! function_exists( 'ys_enqueue_styles' ) ) {
+	function ys_enqueue_styles(){
+		/**
+		 * IE,Edge関連
+		 */
+		if( ys_is_ie() || ys_is_edge() ) {
+			wp_enqueue_style(
+				'ys_ie',
+				get_template_directory_uri() . '/css/ys-ie.min.css',
+				array(),
+				ys_get_theme_version( true )
+			);
+		}
+	}
+}
+add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles' );
 
 /**
  * CSS追加読み込みの指定
@@ -182,7 +202,7 @@ if( ! function_exists( 'ys_enqueue_deregister' ) ) {
 		 * WordPressのjqueryを停止
 		 */
 		if( ys_is_deregister_jquery() ){
-			wp_deregister_script('jquery');
+			wp_deregister_script( 'jquery' );
 		}
 
 	}
@@ -201,8 +221,8 @@ if( ! function_exists( 'ys_enqueue_admin_scripts' ) ) {
 		wp_enqueue_script(
 			'ys-custom_uploader-scripts',
 			get_template_directory_uri() . '/js/admin/custom_uploader.js',
-			array('jquery','jquery-core'),
-			ys_get_theme_version(true),
+			array( 'jquery', 'jquery-core' ),
+			ys_get_theme_version( true ),
 			true
 		);
 	}
@@ -216,9 +236,9 @@ if ( ! function_exists( 'ys_enqueue_admin_styles' ) ) {
 	function ys_enqueue_admin_styles( $hook_suffix ){
 			wp_enqueue_style(
 				'ys_admin_style',
-				get_template_directory_uri().'/css/ys-editor-style.css',
+				get_template_directory_uri() . '/css/ys-editor-style.css',
 				array(),
-				ys_get_theme_version(true)
+				ys_get_theme_version( true )
 			);
 	}
 }
@@ -231,9 +251,9 @@ if ( ! function_exists( 'ys_enqueue_customizer_styles' ) ) {
 	function ys_enqueue_customizer_styles( $hook_suffix ){
 		wp_enqueue_style(
 			'ys_customizer_style',
-			get_template_directory_uri().'/css/customizer/customizer.min.css',
+			get_template_directory_uri() . '/css/customizer/customizer.min.css',
 			array(),
-			ys_get_theme_version(true)
+			ys_get_theme_version( true )
 		);
 	}
 }
@@ -248,7 +268,7 @@ if ( ! function_exists( 'ys_enqueue_customize_controls_js' ) ) {
 				'ys_customize_controls_js',
 				get_template_directory_uri() . '/js/admin/customizer-control.js',
 				array( 'customize-controls', 'jquery' ),
-				ys_get_theme_version(true),
+				ys_get_theme_version( true ),
 				true
 			);
 	}

@@ -9,7 +9,7 @@ function ysSticky() {
  * object fit
  */
 function ysObjectfit() {
-  var someImages = document.querySelectorAll('img.subscribe__image,.ratio__image img')
+  let someImages = document.querySelectorAll('img.subscribe__image,.ratio__image img')
   objectFitImages(someImages)
 }
 
