@@ -26,6 +26,7 @@
   },
   "scripts": {
     "gulp": "gulp watch",
-    "zip": "gulp zip"
+    "zip": "gulp zip",
+    "bs": "gulp browsersync"
   }
 }
