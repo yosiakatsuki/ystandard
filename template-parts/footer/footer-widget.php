@@ -1,5 +1,5 @@
 <?php if( ys_is_active_footer_widgets() ): ?>
-<div class="footer__widget flex--tb footer__section">
+<div class="footer__widget flex--pc footer__section">
 	<?php if ( is_active_sidebar( 'footer-left' ) ): ?>
 		<div class="footer__widget-container footer__widget--left">
 			<?php dynamic_sidebar( 'footer-left' ); ?>
