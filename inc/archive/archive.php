@@ -43,7 +43,7 @@ add_filter( 'get_the_archive_title', 'ys_get_the_archive_title' );
 /**
  * アーカイブURL
  */
-if( ! function_exists( 'ys_get_the_archive_url' )){
+if( ! function_exists( 'ys_get_the_archive_url' ) ){
 	function ys_get_the_archive_url() {
 		$url = '';
 		$queried_object = get_queried_object();
@@ -65,5 +65,16 @@ if( ! function_exists( 'ys_get_the_archive_url' )){
 			$url = get_term_link( $tax->name, $queried_object->term_id );
 		}
 		return apply_filters( 'ys_get_the_archive_url', $url );
+	}
+}
+/**
+ * cardタイプ表示の場合のカラム数取得
+ */
+if( ! function_exists( 'ys_get_archive_card_col' ) ){
+	function ys_get_archive_card_col() {
+		if( ys_is_one_column() ) {
+			return 'entry-list--card-3';
+		}
+		return 'entry-list--card-2';
 	}
 }

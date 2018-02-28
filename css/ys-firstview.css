@@ -2394,12 +2394,21 @@ div.aligncenter {
 	text-align: center;
 }
 
-.one-col .container {
-	max-width: 860px;
-}
-
 .one-col .content__main {
 	width: 100%;
+	max-width: 100%;
+	border: none;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.one-col.single .breadcrumbs,
+.one-col.single .content__main,
+.one-col.page .breadcrumbs,
+.one-col.page .content__main {
+	max-width: 900px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 @media screen and (min-width: 600px) {
@@ -2722,6 +2731,11 @@ div.aligncenter {
 
 .ys-ranking__item {
 	width: auto;
+}
+
+.one-col .entry__title {
+	font-size: 1.8em;
+	margin-bottom: 1em;
 }
 
 }

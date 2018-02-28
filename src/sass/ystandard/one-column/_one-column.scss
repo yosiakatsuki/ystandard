@@ -1,8 +1,25 @@
 .one-col {
-  .container {
-    max-width: 860px;
-  }
+
   .content__main {
-    width:100%;
+    width: 100%;
+    max-width: 100%;
+    border: none;
+    padding-right: get_margin();
+    padding-left: get_margin();
+  }
+  &.single,
+  &.page {
+    .breadcrumbs,
+    .content__main {
+      max-width: 900px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  @include media-breakpoint(pc) {
+    .entry__title {
+      font-size: 1.8em;
+      margin-bottom: 1em;
+    }
   }
 }

@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'entry-list', 'entry-list--card-2' ) ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'entry-list', ys_get_archive_card_col() ) ); ?>>
 	<div class="card">
 		<div class="entry-list__thumbnail image-mask__wrap card__img">
 			<a href="<?php the_permalink(); ?>" class="entry-list__link ratio ratio__16-9">
