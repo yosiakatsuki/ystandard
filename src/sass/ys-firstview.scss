@@ -34,6 +34,8 @@
 
 
 // ystandard
+@import "ystandard/mixins/ys-box";
+
 @import "ystandard/header/header";
 @import "ystandard/nav/global-nav";
 @import "ystandard/content/content";
@@ -57,3 +59,4 @@
 @import "ystandard/wordpress/wp-align";
 @import "ystandard/wordpress/wp-gallery";
 @import "ystandard/one-column/one-column";
+@import "ystandard/blog-card/blog-card";

@@ -377,21 +377,34 @@
 - file: inc/amp/amp-head.php
 - description: AMP用scriptタグ読み込みの編集フィルタ
 
-
 ## amp-google-analytics
 
 ### ys_get_amp_google_anarytics_tracking_id
+
 - file: inc/amp/amp-google-analytics.php
 - description: AMP用Google AnalyticsトラッキングID編集フィルタ
 
+## blog-card
+
+### ys_blog_card_thumbnail_size
+
+- file: inc/blog-card/blog-card.php
+- description: ブログカードで使用するサムネイル画像のサイズ編集フィルタ
+
+### ys_blog_card_thumbnail
+
+- file: inc/blog-card/blog-card.php
+- description: ブログカードで使用するサムネイル画像の編集フィルタ
 
 ## shortcode
 
 ### ys_shortcode_author_id
+
 - file: inc/shortcode/shortcode-author.php
 - description: 投稿者表示ショートコード 投稿者ID編集フィルタ
 
 ### ys_shortcode_author_html
+
 - file: inc/shortcode/shortcode-author.php
 - description: 投稿者表示ショートコード結果編集フィルタ
 

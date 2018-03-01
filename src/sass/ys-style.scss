@@ -10,6 +10,9 @@
 @import "akatsuki-base/mixins/flex";
 @import "akatsuki-base/mixins/list";
 
+@import "ystandard/mixins/ys-box";
+
+
 //func
 @import "akatsuki-base/function/margin";
 @import "akatsuki-base/function/sns-color";
@@ -18,15 +21,12 @@
 // normalize
 // @import "~normalize.css";
 
-// import scss
-// @import "card/card";
-// @import "content-list/content-list";
+// ystandard
 @import "ystandard/utility/block/block";
 @import "ystandard/utility/text/text";
 @import "ystandard/utility/button/button";
 @import "ystandard/utility/iframe-responsive/iframe-responsive";
 
-// ystandard
 @import "ystandard/advertisement/advertisement";
 @import "ystandard/taxonomy/taxonomy-entry-footer";
 @import "ystandard/subscribe/subscribe";

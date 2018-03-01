@@ -164,6 +164,10 @@ require_once get_template_directory() . '/inc/json-ld/json-ld.php';
  */
 require_once get_template_directory() . '/inc/ogp/ogp.php';
 /**
+ * ブログカード
+ */
+require_once get_template_directory() . '/inc/blog-card/blog-card.php';
+/**
  * 管理者向け機能
  */
 require_once get_template_directory() . '/inc/admin/admin.php';

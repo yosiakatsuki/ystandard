@@ -11,31 +11,31 @@ if( ! function_exists( 'ys_get_the_ogp') ) {
 		$ogp = '';
 		$param = ys_get_ogp_and_twitter_card_param();
 		if( ! empty( $param['ogp_site_name'] ) ) {
-			$ogp .= '<meta name="og:site_name" content="' . $param['ogp_site_name'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:site_name" content="' . $param['ogp_site_name'] . '" />' . PHP_EOL;
 		}
 		if( ! empty( $param['ogp_locale'] ) ) {
-			$ogp .= '<meta name="og:locale" content="' . $param['ogp_locale'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:locale" content="' . $param['ogp_locale'] . '" />' . PHP_EOL;
 		}
 		if( ! empty( $param['ogp_app_id'] ) ) {
-			$ogp .= '<meta name="og:app_id" content="' . $param['ogp_app_id'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:app_id" content="' . $param['ogp_app_id'] . '" />' . PHP_EOL;
 		}
 		if( ! empty( $param['ogp_admins'] ) ) {
-			$ogp .= '<meta name="og:admins" content="' . $param['ogp_admins'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:admins" content="' . $param['ogp_admins'] . '" />' . PHP_EOL;
 		}
 		if( ! empty( $param['ogp_type'] ) ) {
-			$ogp .= '<meta name="og:type" content="' . $param['ogp_type'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:type" content="' . $param['ogp_type'] . '" />' . PHP_EOL;
 		}
 		if( ! empty( $param['title'] ) ) {
-			$ogp .= '<meta name="og:title" content="' . $param['title'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:title" content="' . $param['title'] . '" />' . PHP_EOL;
 		}
 		if( ! empty( $param['description'] ) ) {
-			$ogp .= '<meta name="og:description" content="' . $param['description'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:description" content="' . $param['description'] . '" />' . PHP_EOL;
 		}
 		if( ! empty( $param['image'] ) ) {
-			$ogp .= '<meta name="og:image" content="' . $param['image'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:image" content="' . $param['image'] . '" />' . PHP_EOL;
 		}
 		if( ! empty( $param['url'] ) ) {
-			$ogp .= '<meta name="og:url" content="' . $param['url'] . '" />' . PHP_EOL;
+			$ogp .= '<meta property="og:url" content="' . $param['url'] . '" />' . PHP_EOL;
 		}
 		return apply_filters( 'ys_get_the_ogp', $ogp );
 	}

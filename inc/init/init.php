@@ -64,14 +64,26 @@ if( ! function_exists( 'ys_init' ) ) {
 		 * テキストウィジェットでショートコードを有効にする
 		 */
 		add_filter( 'widget_text', 'do_shortcode' );
-
+		/**
+		 * テーマカスタマイザーでウィジェットの編集をしやすくする
+		 */
 		add_theme_support( 'customize-selective-refresh-widgets' );
-
+		/**
+		 * WPバージョン削除等
+		 */
 		ys_remove_action();
-
+		/**
+		 * 絵文字の削除
+		 */
 		ys_remove_emoji();
-
+		/**
+		 * oEmbedの削除
+		 */
 		ys_remove_oembed();
+		/**
+		 * yStandardブログカード機能
+		 */
+		ys_blog_card_embed_register_handler();
 	}
 }
 add_action( 'after_setup_theme', 'ys_init' );

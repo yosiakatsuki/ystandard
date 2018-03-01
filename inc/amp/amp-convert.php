@@ -29,8 +29,10 @@ function ys_amp_preg_replace_callback( $pattern, $content, $callback ) {
 /**
  * クエリストリングを削除
  */
-function ys_amp_remove_query( $str ) {
-	return preg_replace( '/\?.*$/', '', $str );
+function ys_amp_remove_query( $url ) {
+	$url = preg_replace( '/\?.*$/', '', $url );
+	$url = preg_replace( '/\#.*$/', '', $url );
+	return $url;
 }
 
 /**
