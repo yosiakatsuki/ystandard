@@ -115,7 +115,7 @@ function ys_is_load_amp_ad_script() {
  * Twitter用スクリプトを読み込むか
  */
 function ys_is_load_amp_twitter_script( &$content ) {
-	$pattern = '/https:\/\/twitter\.com\/.*?\/status\/(.*?)"/i';
+	$pattern = '/https:\/\/twitter\.com\/.*?\/status\/.+/i';
 	if( 1 === preg_match( $pattern, $content, $matches ) ){
 		return true;
 	}
@@ -125,7 +125,7 @@ function ys_is_load_amp_twitter_script( &$content ) {
  * Instagram用スクリプトを読み込むか
  */
 function ys_is_load_amp_instagram_script( &$content ) {
-	$pattern = '/https:\/\/www\.instagram\.com\/p\/(.+?)\/"/i';
+	$pattern = '/https:\/\/www\.instagram\.com\/p\/.+/i';
 	if( 1 === preg_match( $pattern, $content, $matches ) ){
 		return true;
 	}

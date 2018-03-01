@@ -13,6 +13,25 @@ function ys_amp_preg_replace( $pattern, $replacement, $content ) {
 	}
 	return $content;
 }
+/**
+ *	AMP用正規表現置換処理関数
+ */
+function ys_amp_preg_replace_callback( $pattern, $content, $callback ) {
+	if( 1 === preg_match( $pattern, $content, $matches ) ){
+		$content = preg_replace_callback(
+									$pattern,
+									$callback,
+									$content
+								);
+	}
+	return $content;
+}
+/**
+ * クエリストリングを削除
+ */
+function ys_amp_remove_query( $str ) {
+	return preg_replace( '/\?.*$/', '', $str );
+}
 
 /**
  * imgタグの置換
@@ -136,33 +155,19 @@ if( ! function_exists( 'ys_amp_convert_sns') ) {
 if( ! function_exists( 'ys_amp_convert_twitter') ) {
 	function ys_amp_convert_twitter( $content ) {
 		/**
-		 * oembedパターン
-		 */
-		$pattern = '/<p>https:\/\/twitter\.com\/.+?\/status\/(.+?)".+?<\/p>/i';
-		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-
-		$pattern = '/^https:\/\/twitter\.com\/.+?\/status\/(.+?)".+$/i';
-		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-		/**
 		 * blockquote埋め込み（通常パターン）
 		 */
-		$pattern = '/<blockquote class="twitter-tweet".*?>.+?<a href="https:\/\/twitter\.com\/.*?\/status\/(.*?)">.+?<\/blockquote>/is';
-		$replacement = '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="$1"></amp-twitter></p>';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-		/**
-		 * scriptの処理
-		 */
-		// scriptにwpautopが効くパターン
-		$pattern = '/<p><script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script><\/p>/is';
-		$replacement = '';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-		// scriptにwpautopが効かなかったパターン
-		$pattern = '/<script async src="\/\/platform\.twitter\.com\/widgets\.js" charset="utf-8"><\/script>/is';
-		$replacement = '';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
+		$pattern = '/<blockquote class="twitter-tweet".*?>.+?<a href="https:\/\/twitter\.com\/.*?\/status\/(.+?)">.+?<\/blockquote>/is';
+		$content = ys_amp_preg_replace_callback( $pattern, $content, 'ys_amp_convert_twitter_callback' );
 		return $content;
+	}
+}
+/**
+ * Twitter AMP置換用コールバック
+ */
+if( ! function_exists( 'ys_amp_convert_twitter_callback') ) {
+	function ys_amp_convert_twitter_callback( $m ) {
+		return '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="' . ys_amp_remove_query( $m[1] ) . '"></amp-twitter></p>';
 	}
 }
 /**
@@ -176,36 +181,25 @@ if( ! function_exists( 'ys_amp_convert_instagram') ) {
 		$pattern = '/<blockquote class="instagram-media".+?"https:\/\/www\.instagram\.com\/p\/(.+?)\/".+?<\/blockquote>/is';
 		$replacement = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
 		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-		/**
-		 * scriptの処理
-		 */
-		// scriptにwpautopが効くパターン
-		$pattern = '/<p><script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script><\/p>/is';
-		$replacement = '';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-		// scriptにwpautopが効かなかったパターン
-		$pattern = '/<script async defer src="\/\/platform\.instagram\.com\/.+?\/embeds\.js"><\/script>/is';
-		$replacement = '';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		return $content;
 	}
 }
 /**
- * youtube埋め込みの置換
+ * youtube 埋め込みの置換
  */
 if( ! function_exists( 'ys_amp_convert_youtube') ) {
 	function ys_amp_convert_youtube( $content ) {
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.youtube\.com\/embed\/(.+?)(\?feature=oembed)?".*?><\/iframe>/is';
-		if( 1 === preg_match( $pattern, $content, $matches ) ){
-			$content = preg_replace_callback(
-										$pattern,
-										function($m) {
-												return '<amp-youtube layout="responsive" data-videoid="' . preg_replace( '/\?.*$/', '', $m[1] ) . '" width="480" height="270"></amp-youtube>';
-										},
-										$content
-									);
-		}
+		$content = ys_amp_preg_replace_callback( $pattern, $content, 'ys_amp_convert_youtube_callback' );
 		return $content;
+	}
+}
+/**
+ * youtube AMP置換用コールバック
+ */
+if( ! function_exists( 'ys_amp_convert_youtube_callback') ) {
+	function ys_amp_convert_youtube_callback( $m ) {
+		return '<amp-youtube layout="responsive" data-videoid="' . ys_amp_remove_query( $m[1] ) . '" width="480" height="270"></amp-youtube>';
 	}
 }
 /**
@@ -228,15 +222,7 @@ if( ! function_exists( 'ys_amp_convert_facebook_post') ) {
 		 * iframe
 		 */
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/post\.php\?href=(.*?)&.+?".+?><\/iframe>/is';
-		if( 1 === preg_match( $pattern, $content, $matches ) ){
-			$content = preg_replace_callback(
-										$pattern,
-										function ($m) {
-											return '<amp-facebook width=486 height=657 layout="responsive" data-href="' . urldecode( $m[1] ) . '"></amp-facebook>';
-										},
-										$content
-									);
-		}
+		$content = ys_amp_preg_replace_callback( $pattern, $content, 'ys_amp_convert_facebook_post_callback' );
 		/**
 		 * embed
 		 */
@@ -247,20 +233,28 @@ if( ! function_exists( 'ys_amp_convert_facebook_post') ) {
 	}
 }
 /**
+ * facebook post AMP置換用コールバック
+ */
+if( ! function_exists( 'ys_amp_convert_facebook_post_callback') ) {
+	function ys_amp_convert_facebook_post_callback( $m ) {
+		return '<amp-facebook width=486 height=657 layout="responsive" data-href="' . urldecode( $m[1] ) . '"></amp-facebook>';
+	}
+}
+/**
  * facebook video埋め込みの置換
  */
 if( ! function_exists( 'ys_amp_convert_facebook_video') ) {
 	function ys_amp_convert_facebook_video( $content ) {
 		$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/video\.php\?href=(.*?)&.+?".+?><\/iframe>/is';
-		if( 1 === preg_match( $pattern, $content, $matches ) ){
-			$content = preg_replace_callback(
-										$pattern,
-										function ($m) {
-											return '<amp-facebook width=552 height=574 layout="responsive" data-embed-as="video" data-href="' . urldecode( $m[1] ) . '"></amp-facebook>';
-										},
-										$content
-									);
-		}
+		$content = ys_amp_preg_replace_callback( $pattern, $content, 'ys_amp_convert_facebook_video_callback' );
 		return $content;
+	}
+}
+/**
+ * facebook video AMP置換用コールバック
+ */
+if( ! function_exists( 'ys_amp_convert_facebook_video_callback') ) {
+	function ys_amp_convert_facebook_video_callback( $m ) {
+		return '<amp-facebook width=552 height=574 layout="responsive" data-embed-as="video" data-href="' . urldecode( $m[1] ) . '"></amp-facebook>';
 	}
 }
