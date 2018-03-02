@@ -9,8 +9,7 @@ notifications:
     on_failure: change
 
 branches:
-  only:
-    - master
+  except: /^(master).*$/
 
 cache:
   directories:
