@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * post-meta取得
  */
 if( ! function_exists( 'ys_get_post_meta' ) ) {

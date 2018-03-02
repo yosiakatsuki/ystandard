@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * スクリプトの読み込み
  */
 if( ! function_exists( 'ys_enqueue_scripts' ) ) {

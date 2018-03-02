@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * 管理者向け機能
  */
 /**

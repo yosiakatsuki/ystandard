@@ -1,10 +1,12 @@
 <?php
 /**
- *
- * WordPress標準のカスタマイザー項目を変更
- *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
  */
-
+/**
+ * WordPress標準のカスタマイザー項目を変更
+ */
 function ys_customizer_wp( $wp_customize ) {
 	ys_customizer_delete_site_icon( $wp_customize );
 	ys_customizer_add_partial_bloginfo( $wp_customize );

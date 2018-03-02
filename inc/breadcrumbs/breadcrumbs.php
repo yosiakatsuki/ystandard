@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * パンくずリスト
  * 参考：https://github.com/inc2734/wp-breadcrumbs
  */

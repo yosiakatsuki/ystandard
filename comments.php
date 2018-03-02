@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
 if ( post_password_required() ) {
 	return;
 }

@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * 投稿者 管理画面周り
  */
 function ys_add_contact_methods( $wb ) {

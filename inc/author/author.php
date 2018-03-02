@@ -1,10 +1,12 @@
 <?php
 /**
- *
- * author
- *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
  */
-
+/**
+ * author
+ */
 /**
  * 投稿者の記事一覧リンク取得
  */

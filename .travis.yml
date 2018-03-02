@@ -9,7 +9,8 @@ notifications:
     on_failure: change
 
 branches:
-  except: /^(master).*$/
+  except:
+    - test
 
 cache:
   directories:

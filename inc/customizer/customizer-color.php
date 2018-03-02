@@ -1,8 +1,11 @@
 <?php
 /**
- *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  *	色変更
- *
  */
 function ys_customizer_color( $wp_customize ){
 	/**

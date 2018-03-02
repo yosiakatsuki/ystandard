@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * クラス読み込み
  */
 require_once get_template_directory() . '/inc/classes/widgets/class.ys-ad-text-widget.php';

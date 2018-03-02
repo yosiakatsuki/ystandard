@@ -1,9 +1,13 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * 広告表示用テキストウィジェット
  */
 class YS_AD_Text_Widget extends WP_Widget {
-
 	/**
 	 * WordPress でウィジェットを登録
 	 */

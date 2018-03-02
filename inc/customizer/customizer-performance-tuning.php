@@ -1,8 +1,11 @@
 <?php
 /**
- *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  *	高速化設定
- *
  */
 function ys_customizer_performance_tuning( $wp_customize ){
 	/**

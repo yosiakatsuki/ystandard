@@ -1,4 +1,10 @@
-
+<?php
+/**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+?>
 	</div><!-- .site-content -->
 	<footer id="footer" class="site-footer site__footer">
 		<div class="container">

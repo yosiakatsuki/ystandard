@@ -1,8 +1,9 @@
 <?php
 /**
- * advertisement
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
  */
-
 /**
  * 広告コードのhtml整形
  */

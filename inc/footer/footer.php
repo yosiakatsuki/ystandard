@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * フッター
  */
 if( ! function_exists( 'ys_the_uc_custom_append_body' ) ) {

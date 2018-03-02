@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
 class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {

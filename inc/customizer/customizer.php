@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * テーマカスタマイザー
  */
 require_once get_template_directory() . '/inc/customizer/customizer-control.php';

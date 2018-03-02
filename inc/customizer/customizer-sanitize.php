@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * select,radio
  */
 function ys_customizer_sanitize_select( $input, $setting ) {

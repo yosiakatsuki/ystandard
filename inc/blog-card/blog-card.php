@@ -1,8 +1,12 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * ブログカード機能
  */
-
 /**
  * ブログカード形式に変換する命令追加
  */

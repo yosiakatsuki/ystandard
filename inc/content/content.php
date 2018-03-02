@@ -1,8 +1,12 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * コンテンツ周りの処理
  */
-
 /*
  *	ブログタイトルの区切り文字変更
  */

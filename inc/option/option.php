@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * yStandard設定取得
  */
 if( ! function_exists( 'ys_get_options' ) ) {

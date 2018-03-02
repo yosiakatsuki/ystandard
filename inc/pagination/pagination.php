@@ -1,8 +1,11 @@
 <?php
 /**
- *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * ページネーション
- *
  */
 if ( ! function_exists( 'ys_get_pagination' ) ) {
 	function ys_get_pagination( $range = 1 ) {

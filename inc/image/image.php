@@ -1,8 +1,12 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * 画像関連の処理
  */
-
 /**
  * アイキャッチ画像のAMP対応
  */

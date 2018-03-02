@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * TOPページ判断（HOMEの1ページ目 or front-page）
  */
 if ( ! function_exists( 'ys_is_top_page') ) {

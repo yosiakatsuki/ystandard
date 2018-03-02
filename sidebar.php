@@ -1,4 +1,10 @@
-<?php if ( ys_is_active_sidebar_widget() ) : ?>
+<?php
+/**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+if ( ys_is_active_sidebar_widget() ) : ?>
 <aside id="secondary" class="sidebar sidebar-widget widget-area">
 		<div id="sidebar-wrapper" class="sidebar-wrapper">
 			<?php if ( is_active_sidebar( 'sidebar-widget' ) ): ?>

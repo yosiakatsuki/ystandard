@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
 if( ! function_exists( 'ys_init' ) ) {
 	function ys_init() {
 		/**

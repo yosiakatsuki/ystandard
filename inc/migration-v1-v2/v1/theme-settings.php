@@ -1,25 +1,23 @@
 <?php
-//------------------------------------------------------------------------------
-//
-//	設定取得
-//
-//------------------------------------------------------------------------------
-
-//-----------------------------------------------
-//	設定呼び出し
-//-----------------------------------------------
+/**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
+ * 設定取得
+ */
+/**
+ * 設定呼び出し
+ */
 if (!function_exists( 'ys_settings')) {
 	function ys_settings() {
 		return apply_filters( 'ys_settings', ys_get_options() );
 	}
 }
-
-
-
-
-//-----------------------------------------------
-//	設定取得
-//-----------------------------------------------
+/**
+ * 設定取得
+ */
 if (!function_exists( 'ys_get_setting')) {
 	function ys_get_setting($name) {
 		return apply_filters('ys_get_setting',ys_get_option($name),$name);

@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * アーカイブタイトル
  */
 if( ! function_exists( 'ys_get_the_archive_title' )){

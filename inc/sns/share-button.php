@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * share button
  */
 if( ! function_exists( 'ys_get_share_button_data' ) ) {

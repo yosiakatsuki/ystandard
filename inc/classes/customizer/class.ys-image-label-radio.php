@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
 if( class_exists( 'WP_Customize_Control' ) ) {
 	class YS_Customize_Image_Label_Radio_Control extends WP_Customize_Control {
 		public $type = 'image-label-radio';

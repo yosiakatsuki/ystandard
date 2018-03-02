@@ -1,4 +1,9 @@
 <?php
+/**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
 get_header(); ?>
 <div class="container">
 	<section class="content-area content__wrap row">

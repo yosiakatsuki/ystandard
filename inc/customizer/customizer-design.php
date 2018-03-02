@@ -1,8 +1,11 @@
 <?php
 /**
- *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  *	共通デザイン設定
- *
  */
 function ys_customizer_design( $wp_customize ){
 	/**

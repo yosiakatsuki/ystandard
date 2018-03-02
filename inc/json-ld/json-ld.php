@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * json-LD出力
  */
 if( ! function_exists( 'ys_the_json_ld' ) ) {

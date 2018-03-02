@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * フッターSNSフォローリンク用URL取得
  */
 if( ! function_exists( 'ys_get_footer_sns_list' ) ) {

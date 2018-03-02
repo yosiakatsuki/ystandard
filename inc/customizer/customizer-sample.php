@@ -1,8 +1,11 @@
 <?php
 /**
- *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  *	SEO設定
- *
  */
 function ys_customizer_sample( $wp_customize ){
 	/**

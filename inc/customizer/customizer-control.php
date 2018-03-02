@@ -1,5 +1,10 @@
 <?php
 /**
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  * Add setting and control : color
  */
 function ys_customizer_add_setting_color( $wp_customize, $args ) {

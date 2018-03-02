@@ -1,10 +1,11 @@
 <?php
 /**
- *	************************************
- *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+/**
  *	人気記事ランキング
- *
- *	************************************
  */
 class YS_Ranking_Widget extends WP_Widget {
 	/**
