@@ -1,5 +1,7 @@
 <?php
 /**
+ * 404ページテンプレート
+ * 
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
@@ -15,4 +17,5 @@ get_header(); ?>
 		<?php get_sidebar(); ?>
 	</div><!-- .content-area -->
 </div><!-- .container -->
-<?php get_footer(); ?>
+<?php 
+get_footer();
