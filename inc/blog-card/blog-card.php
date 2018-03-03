@@ -136,7 +136,7 @@ functioN ys_blog_card_get_post_data( $data ) {
 	 */
 	$icon = ys_get_apple_touch_icon_url();
 	if( ! empty( $icon ) ) {
-		$icon = '<img class="ys-blog-card__site-icon" src="' . $icon . '" alt="" />';
+		$icon = '<img class="ys-blog-card__site-icon" src="' . $icon . '" alt="" width="10" height="10" />';
 		$icon = ys_amp_convert_image( $icon );
 	} else {
 		$icon = '';
