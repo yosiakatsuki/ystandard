@@ -2474,6 +2474,7 @@ div.aligncenter {
 
 .ys-blog-card .ys-blog-card__domain img,
 .ys-blog-card .ys-blog-card__domain amp-img {
+	display: inline-block;
 	width: 10px;
 	height: auto;
 	margin: 0 5px 0 0;
