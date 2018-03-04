@@ -2409,6 +2409,7 @@ div.aligncenter {
 	max-width: 900px;
 	margin-right: auto;
 	margin-left: auto;
+<<<<<<< Updated upstream
 }
 
 .ys-blog-card {
@@ -2478,6 +2479,8 @@ div.aligncenter {
 	width: 10px;
 	height: auto;
 	margin: 0 5px 0 0;
+=======
+>>>>>>> Stashed changes
 }
 
 @media screen and (min-width: 600px) {
