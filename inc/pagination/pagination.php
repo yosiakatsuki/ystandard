@@ -37,12 +37,12 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		 */
 		if( $range + 2 < $current ){
 			$pagination[] = ys_set_pagination_item(
-												'…',
-												''
-											);
-			$pagination[] = ys_set_pagination_item(
 												'1',
 												get_pagenum_link( 1 )
+											);
+			$pagination[] = ys_set_pagination_item(
+												'…',
+												''
 											);
 		}
 		/**
