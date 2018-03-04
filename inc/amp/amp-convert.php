@@ -70,39 +70,64 @@ if( ! function_exists( 'ys_amp_convert_html' ) ) {
 	}
 }
 /**
- * oembed関連の置換
+ * iframeの変換
  */
-if( ! function_exists( 'ys_amp_convert_oembed' ) ) {
-	function ys_amp_convert_oembed( $content ) {
-		/**
-		 * iframeを削除
-		 */
-		$pattern = '/<p><iframe class="wp-embedded-content".*?>.*?<\/iframe><\/p>/is';
-		$replacement = '';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-		$pattern = '/<iframe class="wp-embedded-content".*?>.*?<\/iframe>/is';
-		$replacement = '';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
+if( ! function_exists( 'ys_amp_convert_iframe' ) ) {
+	function ys_amp_convert_iframe( $content ) {
+		$pattern = '/<iframe([^>]+?)><\/iframe>/i';
+		$content = ys_amp_preg_replace_callback( $pattern, $content, 'ys_amp_convert_iframe_callback' );
 		return $content;
 	}
 }
 /**
- * iframeの変換
+ * iframe AMP置換用コールバック
  */
-if( ! function_exists( 'ys_amp_convert_iframe' ) ) {
-	function ys_amp_convert_iframe( $content, $layout = 'responsive' ) {
-		$pattern = '/<iframe([^>]+?)<\/iframe>/i';
-		$replacement = '<amp-iframe layout="' . $layout . '"$1</amp-iframe>';
-		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-		return $content;
+if( ! function_exists( 'ys_amp_convert_iframe_callback') ) {
+	function ys_amp_convert_iframe_callback( $m ) {
+		$content = '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive"' . $m[1] . '></amp-iframe>';
+		return ys_amp_iframe_kses( $content );
+		
 	}
+}
+/**
+ * amp-iframe用タグのサニタイズ
+ */
+function ys_amp_iframe_kses( $string ) {
+	$allowed_html = array( 
+			'amp-iframe' => array(
+				'class' =>true,
+				'id' => true,
+				'src' => true,
+				'height' => true,
+				'width' => true,
+				'frameborder' => true,
+				'allowfullscreen' => true,
+				'allowtransparency' => true,
+				'allowpaymentrequest' => true,
+				'referrerpolicy' => true,
+				'srcdoc' => true,
+				'sandbox' => true,
+				'layout' => true,
+				'resizable' => true
+			)
+		);
+	return wp_kses( $string, $allowed_html );
 }
 /**
  * scriptタグの削除
  */
 if( ! function_exists( 'ys_amp_delete_script' ) ) {
 	function ys_amp_delete_script( $content ) {
-		$pattern = '/<script.+?<\/script>/is';
+		/**
+		 * wp_autop対策
+		 */
+		$pattern = '/<p>[^<]*?<script[^<]+?<\/script>[^<]*?<\/p>[^<]*?(\r\n|\r|\n)?/is';
+		$replacement = '';
+		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
+		/**
+		 * script 削除
+		 */
+		$pattern = '/<script[^<]+?<\/script>/is';
 		$replacement = '';
 		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		return $content;
@@ -114,9 +139,9 @@ if( ! function_exists( 'ys_amp_delete_script' ) ) {
 if( ! function_exists( 'ys_amp_delete_style' ) ) {
 	function ys_amp_delete_style( $content ) {
 		$replacement = '';
-		$pattern = '/style=["][^"].+?"/i';
+		$pattern = '/style=["][^"]+?"/i';
 		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
-		$pattern = '/style=[\'][^\'].+?\'/i';
+		$pattern = '/style=[\'][^\']+?\'/i';
 		$content = ys_amp_preg_replace( $pattern, $replacement, $content );
 		return $content;
 	}
@@ -172,7 +197,7 @@ if( ! function_exists( 'ys_amp_convert_twitter') ) {
  */
 if( ! function_exists( 'ys_amp_convert_twitter_callback') ) {
 	function ys_amp_convert_twitter_callback( $m ) {
-		return '<p><amp-twitter width=486 height=657 layout="responsive" data-tweetid="' . ys_amp_remove_query( $m[1] ) . '"></amp-twitter></p>';
+		return '<amp-twitter width=486 height=657 layout="responsive" data-tweetid="' . ys_amp_remove_query( $m[1] ) . '"></amp-twitter>';
 	}
 }
 /**
@@ -194,7 +219,9 @@ if( ! function_exists( 'ys_amp_convert_instagram') ) {
  */
 if( ! function_exists( 'ys_amp_convert_youtube') ) {
 	function ys_amp_convert_youtube( $content ) {
-		$pattern = '/<iframe[^>]+?src="https:\/\/www\.youtube\.com\/embed\/(.+?)(\?feature=oembed)?".*?><\/iframe>/is';
+		$pattern = '/<p>[^>]*?<iframe[^>]+?src=["\']https:\/\/www\.youtube\.com\/embed\/(.+?)(\?feature=oembed)?["\'][^>]*?><\/iframe>[^>]*?<\/p>/is';
+		$content = ys_amp_preg_replace_callback( $pattern, $content, 'ys_amp_convert_youtube_callback' );
+		$pattern = '/<iframe[^>]+?src=["\']https:\/\/www\.youtube\.com\/embed\/(.+?)(\?feature=oembed)?["\'][^>]*?><\/iframe>/is';
 		$content = ys_amp_preg_replace_callback( $pattern, $content, 'ys_amp_convert_youtube_callback' );
 		return $content;
 	}
