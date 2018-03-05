@@ -8,6 +8,7 @@ get_header(); ?>
 <div class="container">
 	<div class="content-area content__wrap">
 		<main id="main" class="site-main content__main">
+		<?php do_action( 'ys_site_main_prepend' ) ?>
 		<?php if ( have_posts() ) : ?>
 			<header class="page-header archive__header">
 				<?php
@@ -33,6 +34,7 @@ get_header(); ?>
 				get_template_part( 'template-parts/content/none' );
 			endif;
 		?>
+		<?php do_action( 'ys_site_main_append' ) ?>
 		</main><!-- .site-main -->
 		<?php get_sidebar(); ?>
 	</div><!-- .content-area -->

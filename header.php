@@ -37,6 +37,7 @@
 <?php do_action( 'ys_body_prepend' ); ?>
 <div id="page" class="site">
 	<header id="masthead" class="header site-header color__site-header">
+		<?php do_action( 'ys_site_header_prepend' ) ?>
 		<div class="header__container container">
 			<div class="<?php ys_the_header_type_class(); ?>">
 				<div class="site-branding header__branding">
@@ -62,7 +63,9 @@
 				</div><!-- .header__nav -->
 			</div><!-- .header_row -->
 		</div><!-- .header__container -->
+		<?php do_action( 'ys_site_header_append' ) ?>
 	</header><!-- .header .site-header -->
+	<?php do_action( 'ys_after_site_header' ) ?>
 	<div id="content" class="site-content site__content">
 		<?php
 		/**

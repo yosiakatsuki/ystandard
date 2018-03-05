@@ -6,6 +6,7 @@
  */
 ?>
 	</div><!-- .site-content -->
+	<?php do_action( 'ys_before_site_footer' ) ?>
 	<footer id="footer" class="site-footer site__footer">
 		<div class="container">
 			<?php
