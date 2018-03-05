@@ -157,7 +157,7 @@ if( ! function_exists( 'ys_get_options' ) ) {
 			// facebookフォローURL
 			'ys_follow_url_facebook' => esc_url( get_option( 'ys_follow_url_facebook', '' ) ),
 			// google+フォローURL
-			'ys_follow_url_googlepuls' => esc_url( get_option( 'ys_follow_url_googlepuls', '' ) ),
+			'ys_follow_url_googleplus' => esc_url( get_option( 'ys_follow_url_googleplus', '' ) ),
 			// instagramフォローURL
 			'ys_follow_url_instagram' => esc_url( get_option( 'ys_follow_url_instagram', '' ) ),
 			// tumblrフォローURL
