@@ -1,9 +1,12 @@
 <?php
 /**
+ * フロントページテンプレート
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
  * フロントページテンプレート読み込み
  */

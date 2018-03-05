@@ -1,7 +1,7 @@
 <?php
 /**
  * 404ページテンプレート
- * 
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+

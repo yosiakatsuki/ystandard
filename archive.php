@@ -1,7 +1,7 @@
 <?php
 /**
  * 記事一覧テンプレート
- * 
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
@@ -21,9 +21,10 @@ get_header(); ?>
 				?>
 				<div class="archive__list">
 				<?php
-					while ( have_posts() ) : the_post();
-						get_template_part( 'template-parts/content/archive', ys_get_option( 'ys_archive_type' ) );
-					endwhile;
+				while ( have_posts() ) :
+					the_post();
+					get_template_part( 'template-parts/content/archive', ys_get_option( 'ys_archive_type' ) );
+				endwhile;
 				?>
 				</div><!-- .archive__list -->
 				<?php

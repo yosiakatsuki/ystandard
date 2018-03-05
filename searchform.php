@@ -1,9 +1,12 @@
 <?php
 /**
+ * 検索フォームテンプレート
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 ?>
 <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 	<label>
