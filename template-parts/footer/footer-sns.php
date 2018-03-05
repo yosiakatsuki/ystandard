@@ -1,5 +1,8 @@
 <?php
 	$sns_list = ys_get_footer_sns_list();
+	if( empty( $sns_list ) ) {
+		return;
+	}
 ?>
 <div class="footer-sns">
 	<ul class="footer-sns__list list-style--none flex-wrap flex--j-center">
