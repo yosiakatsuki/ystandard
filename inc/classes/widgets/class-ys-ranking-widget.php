@@ -53,6 +53,21 @@ class YS_Ranking_Widget extends WP_Widget {
 		'd'   => '日別',
 	);
 	/**
+	 * 絞り込み初期値
+	 *
+	 * @var string
+	 */
+	private $default_filtering = 'cat';
+	/**
+	 * 絞り込みオプションの選択値
+	 *
+	 * @var array
+	 */
+	private $filtering_list = array(
+		'cat' => '同じカテゴリーでのランキング',
+		'all' => '全記事ランキング',
+	);
+	/**
 	 * ウィジェット名などを設定
 	 */
 	public function __construct() {
@@ -77,6 +92,7 @@ class YS_Ranking_Widget extends WP_Widget {
 		$show_img      = $this->default_show_img;
 		$thmbnail_size = $this->default_thmbnail_size;
 		$period        = $this->default_period;
+		$filtering     = $this->default_filtering;
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -91,6 +107,9 @@ class YS_Ranking_Widget extends WP_Widget {
 		}
 		if ( isset( $instance['period'] ) ) {
 			$period = esc_attr( $instance['period'] );
+		}
+		if ( isset( $instance['filtering'] ) ) {
+			$filtering = esc_attr( $instance['filtering'] );
 		}
 
 		echo $args['before_widget'];
@@ -111,14 +130,16 @@ class YS_Ranking_Widget extends WP_Widget {
 		 * カスタムタクソノミー対応はそのうち
 		 */
 		if ( is_single() || is_category() ) {
-			/**
-			 * カテゴリーで絞り込む
-			 */
-			$cat_ids = ys_get_the_category_id_list();
-			/**
-			 * オプションパラメータ作成
-			 */
-			$option = array( 'category__in' => $cat_ids );
+			if ( 'cat' === $filtering ) {
+				/**
+				 * カテゴリーで絞り込む
+				 */
+				$cat_ids = ys_get_the_category_id_list();
+				/**
+				 * オプションパラメータ作成
+				 */
+				$option = array( 'category__in' => $cat_ids );
+			}
 			/**
 			 * 投稿ならば表示中の投稿をのぞく
 			 */
@@ -194,6 +215,7 @@ class YS_Ranking_Widget extends WP_Widget {
 		$show_img      = $this->default_show_img;
 		$thmbnail_size = $this->default_thmbnail_size;
 		$period        = $this->default_period;
+		$filtering     = $this->default_filtering;
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -208,6 +230,9 @@ class YS_Ranking_Widget extends WP_Widget {
 		}
 		if ( isset( $instance['period'] ) ) {
 			$period = esc_attr( $instance['period'] );
+		}
+		if ( isset( $instance['filtering'] ) ) {
+			$filtering = esc_attr( $instance['filtering'] );
 		}
 		?>
 		<p>
@@ -246,6 +271,17 @@ class YS_Ranking_Widget extends WP_Widget {
 				</select>
 			</p>
 		</div>
+		<div class="ysadmin-ranking-widget__filtering">
+			<h4>同じカテゴリーでの絞り込み</h4>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'filtering' ); ?>">ランキングの記事絞り込み</label>
+				<select name="<?php echo $this->get_field_name( 'filtering' ); ?>">
+					<?php foreach ( $this->filtering_list as $key => $value ) : ?>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $filtering ); ?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</p>
+		</div>
 		<?php
 	}
 
@@ -265,6 +301,7 @@ class YS_Ranking_Widget extends WP_Widget {
 		$instance['show_img']      = $this->sanitize_checkbox( $new_instance['show_img'] );
 		$instance['thmbnail_size'] = $this->default_thmbnail_size;
 		$instance['period']        = $this->default_period;
+		$instance['filtering']     = $this->default_filtering;
 		/**
 		 * 更新値のセット
 		 */
@@ -279,6 +316,9 @@ class YS_Ranking_Widget extends WP_Widget {
 		}
 		if ( ( ! empty( $new_instance['period'] ) ) ) {
 			$instance['period'] = $new_instance['period'];
+		}
+		if ( ( ! empty( $new_instance['filtering'] ) ) ) {
+			$instance['filtering'] = $new_instance['filtering'];
 		}
 		return $instance;
 	}
