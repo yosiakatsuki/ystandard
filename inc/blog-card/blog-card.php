@@ -91,7 +91,11 @@ function ys_blog_card_shortcode( $args ) {
 		$data['thumbnail'] = sprintf( '<figure class="ys-blog-card__thumb">%s</figure>', $data['thumbnail'] );
 	}
 	if ( '' !== $data['dscr'] ) {
-		$data['dscr'] = sprintf( '<div class="ys-blog-card__dscr">%s</div>', $data['dscr'] );
+		$dscr = mb_substr( $data['dscr'], 0, apply_filters( 'ys_blog_card_dscr_length', 50 ) );
+		if ( $data['dscr'] !== $dscr ) {
+			$dscr .= '...';
+		}
+		$data['dscr'] = sprintf( '<div class="ys-blog-card__dscr">%s</div>', $dscr );
 	}
 	/**
 	 * テンプレート取得
@@ -136,7 +140,7 @@ function ys_blog_card_get_post_data( $data ) {
 	$post_id = $data['post_id'];
 	$post    = get_post( $post_id );
 	if ( has_post_thumbnail( $post_id ) ) {
-		$thumb_size        = apply_filters( 'ys_blog_card_thumbnail_size', 'post-thumbnail' );
+		$thumb_size        = apply_filters( 'ys_blog_card_thumbnail_size', 'thumbnail' );
 		$thumb             = get_the_post_thumbnail( $post_id, $thumb_size, array( 'class' => 'ys-blog-card__img' ) );
 		$thumb             = apply_filters( 'ys_blog_card_thumbnail', $thumb, $post_id );
 		$data['thumbnail'] = ys_amp_convert_image( $thumb );
