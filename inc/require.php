@@ -1,24 +1,20 @@
 <?php
 /**
+ * もろもろ読み込み
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
  * クラス読み込み
  */
 require_once get_template_directory() . '/inc/classes/widgets/class.ys-ad-text-widget.php';
-require_once get_template_directory() . '/inc/classes/widgets/class.ys-ranking-widget.php';
+require_once get_template_directory() . '/inc/classes/widgets/class-ys-ranking-widget.php';
 require_once get_template_directory() . '/inc/classes/customizer/class.ys-image-label-radio.php';
 require_once get_template_directory() . '/inc/classes/class.ys-enqueue.php';
 require_once get_template_directory() . '/inc/classes/class.ys-global-nav.php';
-
-/**
- *
- * 機能読み込み
- *
- */
-
 /**
  * 変数
  */
@@ -28,7 +24,7 @@ require_once get_template_directory() . '/inc/variables/variables.php';
  */
 require_once get_template_directory() . '/inc/option/option.php';
 /**
- * utilities
+ * Utilities
  */
 require_once get_template_directory() . '/inc/utility/utility.php';
 /**
@@ -36,7 +32,7 @@ require_once get_template_directory() . '/inc/utility/utility.php';
  */
 require_once get_template_directory() . '/inc/image/image.php';
 /**
- * sanitize
+ * Sanitize
  */
 require_once get_template_directory() . '/inc/sanitize/sanitize.php';
 /**
@@ -52,11 +48,11 @@ require_once get_template_directory() . '/inc/conditional-branch/conditional-bra
  */
 require_once get_template_directory() . '/inc/init/init.php';
 /**
- * enqueue
+ * Enqueue
  */
 require_once get_template_directory() . '/inc/enqueue/enqueue.php';
 /**
- * post-meta
+ * Post-meta
  */
 require_once get_template_directory() . '/inc/post-meta/post-meta.php';
 /**
@@ -93,7 +89,7 @@ require_once get_template_directory() . '/inc/footer/footer-sns.php';
  */
 require_once get_template_directory() . '/inc/content/content.php';
 /**
- * body ... body_class
+ * Body ... body_class
  */
 require_once get_template_directory() . '/inc/body/body.php';
 /**
@@ -106,7 +102,7 @@ require_once get_template_directory() . '/inc/advertisement/advertisement.php';
 require_once get_template_directory() . '/inc/sns/share-button.php';
 require_once get_template_directory() . '/inc/sns/subscribe.php';
 /**
- * author
+ * Author
  */
 require_once get_template_directory() . '/inc/author/author.php';
 require_once get_template_directory() . '/inc/author/author-option-page.php';
@@ -115,11 +111,11 @@ require_once get_template_directory() . '/inc/author/author-option-page.php';
  */
 require_once get_template_directory() . '/inc/breadcrumbs/breadcrumbs.php';
 /**
- * copyright
+ * Copyright
  */
 require_once get_template_directory() . '/inc/copyright/copyright.php';
 /**
- * taxonomy関連
+ * Taxonomy関連
  */
 require_once get_template_directory() . '/inc/taxonomy/category.php';
 require_once get_template_directory() . '/inc/taxonomy/tag.php';
@@ -161,7 +157,7 @@ require_once get_template_directory() . '/inc/paging/paging.php';
  */
 require_once get_template_directory() . '/inc/rss/rss.php';
 /**
- * json-LD
+ * Json-LD
  */
 require_once get_template_directory() . '/inc/json-ld/json-ld.php';
 /**
@@ -185,7 +181,6 @@ require_once get_template_directory() . '/inc/theme-option/theme-option-add.php'
  */
 require_once get_template_directory() . '/inc/update-checker/update-checker.php';
 /**
- * v2でいずれ廃止予定
+ * V2でいずれ廃止予定
  */
-//設定
 require_once get_template_directory() . '/inc/migration-v1-v2/v1/theme-settings.php';
