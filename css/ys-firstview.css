@@ -2398,8 +2398,6 @@ div.aligncenter {
 	width: 100%;
 	max-width: 100%;
 	border: none;
-	padding-right: 15px;
-	padding-left: 15px;
 }
 
 .one-col.single .breadcrumbs,
@@ -2805,6 +2803,11 @@ div.aligncenter {
 .one-col .entry__title {
 	font-size: 1.8em;
 	margin-bottom: 1em;
+}
+
+.one-col .content__main {
+	padding-right: 15px;
+	padding-left: 15px;
 }
 
 }

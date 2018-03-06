@@ -4,8 +4,6 @@
     width: 100%;
     max-width: 100%;
     border: none;
-    padding-right: get_margin();
-    padding-left: get_margin();
   }
   &.single,
   &.page {
@@ -20,6 +18,10 @@
     .entry__title {
       font-size: 1.8em;
       margin-bottom: 1em;
+    }
+    .content__main {
+      padding-right: get_margin();
+      padding-left: get_margin();
     }
   }
 }
