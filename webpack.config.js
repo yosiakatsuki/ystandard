@@ -1,6 +1,7 @@
 const webpack = require('webpack')
+const env = process.env.NODE_ENV;
 
-module.exports = {
+let config = {
   entry: {
     'ystandard': './src/js/ystandard.js',
     'polyfill': './src/js/polyfill.js'
@@ -27,10 +28,18 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js'
     }
   },
-  devtool: 'source-map',
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true
     })
   ]
 }
+if (env === 'dev') {
+  config.devtool = 'source-map'
+} else {
+  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true
+  }))
+}
+
+module.exports = config;

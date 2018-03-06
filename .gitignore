@@ -19,3 +19,4 @@ wp-content/plugins/hello.php
 node_modules/
 *.sh
 !bin/*.sh
+*.map

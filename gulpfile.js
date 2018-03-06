@@ -1,17 +1,19 @@
-var gulp					 = require('gulp');
-var plumber				 = require('gulp-plumber');
-var watch					 = require('gulp-watch');
-var rename				 = require('gulp-rename');
-var sass					 = require('gulp-sass');
+var gulp           = require('gulp');
+var plumber        = require('gulp-plumber');
+var watch          = require('gulp-watch');
+var rename         = require('gulp-rename');
+var sass           = require('gulp-sass');
 var postcss        = require('gulp-postcss');
 var autoprefixer   = require('autoprefixer');
 var cssnano        = require('cssnano');
-var uglify				 = require('gulp-uglify');
-var browserSync		 = require('browser-sync');
+var uglify         = require('gulp-uglify');
+var browserSync    = require('browser-sync');
 var webpackStream  = require('webpack-stream');
 var webpack        = require('webpack');
 var zip            = require('gulp-zip');
-var cmq						 = require('gulp-combine-media-queries');
+var cmq            = require('gulp-combine-media-queries');
+var del            = require('del');
+var env            = process.env.NODE_ENV;
 
 var dir = {
   src: {
@@ -64,6 +66,7 @@ gulp.task('sass', function() {
  * webpack
  */
 gulp.task('webpack', function(){
+  del(dir.dist.js);
   return plumber({
       errorHandler: function(err) {
         console.log(err.messageFormatted);

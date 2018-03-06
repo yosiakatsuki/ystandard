@@ -2411,6 +2411,75 @@ div.aligncenter {
 	margin-left: auto;
 }
 
+.ys-blog-card {
+	padding: 1em;
+	margin-top: 2.5em;
+	margin-bottom: 2.5em;
+	background-color: #fff;
+	border: 1px solid #bdc3c7;
+	font-size: .9em;
+	border-radius: 4px;
+}
+
+.ys-blog-card:before,
+.ys-blog-card:after {
+	content: "";
+	display: table;
+}
+
+.ys-blog-card:after {
+	clear: both;
+}
+
+.ys-blog-card {
+	zoom: 1;
+}
+
+.ys-blog-card a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.ys-blog-card .ys-blog-card__main {
+	text-decoration: none;
+}
+
+.ys-blog-card .ys-blog-card__thumb {
+	max-width: 150px;
+	margin: 0 1em 0 0;
+	float: left;
+}
+
+.ys-blog-card .ys-blog-card__text {
+	overflow: hidden;
+}
+
+.ys-blog-card .ys-blog-card__title {
+	font-weight: bold;
+}
+
+.ys-blog-card .ys-blog-card__dscr,
+.ys-blog-card .ys-blog-card__domain {
+	margin: 1em 0 0;
+}
+
+.ys-blog-card .ys-blog-card__dscr {
+	font-size: .8em;
+}
+
+.ys-blog-card .ys-blog-card__domain {
+	font-size: 10px;
+	clear: both;
+}
+
+.ys-blog-card .ys-blog-card__domain img,
+.ys-blog-card .ys-blog-card__domain amp-img {
+	display: inline-block;
+	width: 10px;
+	height: auto;
+	margin: 0 5px 0 0;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__1--tb {
@@ -2771,3 +2840,4 @@ div.aligncenter {
 }
 
 }
+
