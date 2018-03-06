@@ -3,11 +3,12 @@
     & {
       @include ys-box;
       border-radius: 4px;
-
       a {
         text-decoration: none;
-        color: inherit;
       }
+    }
+    .ys-blog-card__link:not(:hover) {
+      color: inherit;
     }
     .ys-blog-card__main {
       text-decoration: none;

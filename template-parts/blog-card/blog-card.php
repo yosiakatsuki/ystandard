@@ -24,7 +24,7 @@
  */
 ?>
 <div class="ys-blog-card color__font-main">
-	<a href="{url}"{target}>
+	<a class="ys-blog-card__link" href="{url}"{target}>
 		<div class="ys-blog-card__main clearfix">
 			{thumbnail}
 			<div class="ys-blog-card__text">

@@ -396,6 +396,11 @@
 - file: inc/blog-card/blog-card.php
 - description: ブログカードで使用するサムネイル画像の編集フィルタ
 
+### ys_blog_card_site_thumbnail
+
+- file: inc/blog-card/blog-card.php
+- description: ブログカードで使用する外部サイトのサムネイル画像の編集フィルタ（通常は空白）
+
 ## shortcode
 
 ### ys_shortcode_author_id

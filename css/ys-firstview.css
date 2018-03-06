@@ -2435,6 +2435,9 @@ div.aligncenter {
 
 .ys-blog-card a {
 	text-decoration: none;
+}
+
+.ys-blog-card .ys-blog-card__link:not(:hover) {
 	color: inherit;
 }
 
