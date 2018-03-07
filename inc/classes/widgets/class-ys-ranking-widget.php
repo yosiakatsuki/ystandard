@@ -243,7 +243,7 @@ class YS_Ranking_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id( 'post_count' ); ?>">表示する投稿数:</label>
 			<input class="tiny-text" id="<?php echo $this->get_field_id( 'post_count' ); ?>" name="<?php echo $this->get_field_name( 'post_count' ); ?>" type="number" step="1" min="1" value="<?php echo $post_count; ?>" size="3" />
 		</p>
-		<div class="ysadmin-ranking-widget__thumb">
+		<div class="ys-admin-section">
 			<h4>画像設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_img' ); ?>">
@@ -260,7 +260,7 @@ class YS_Ranking_Widget extends WP_Widget {
 				<span style="color:#aaa;font-size:.9em;">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。<br>※横幅300px~480pxの画像がおすすめです</span>
 			</p>
 		</div>
-		<div class="ysadmin-ranking-widget__period">
+		<div class="ys-admin-section">
 			<h4>期間設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'period' ); ?>">ランキング作成の期間</label>
@@ -271,7 +271,7 @@ class YS_Ranking_Widget extends WP_Widget {
 				</select>
 			</p>
 		</div>
-		<div class="ysadmin-ranking-widget__filtering">
+		<div class="ys-admin-section">
 			<h4>同じカテゴリーでの絞り込み</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'filtering' ); ?>">ランキングの記事絞り込み</label>
