@@ -111,6 +111,12 @@ class YS_Ranking_Widget extends WP_Widget {
 		if ( isset( $instance['filtering'] ) ) {
 			$filtering = esc_attr( $instance['filtering'] );
 		}
+		/**
+		 * 画像なしの場合
+		 */
+		if ( ! $show_img ) {
+			$thmbnail_size = '';
+		}
 
 		echo $args['before_widget'];
 		/**
@@ -160,44 +166,11 @@ class YS_Ranking_Widget extends WP_Widget {
 			wp_reset_postdata();
 			$query = ys_get_post_views_query( $period, $post_count );
 		}
-		if ( $query->have_posts() ) {
-			$html = '';
-			while ( $query->have_posts() ) {
-				$query->the_post();
-				$img      = '';
-				$img_type = 'ys-ranking__img--no-img';
-				if ( $show_img ) {
-					$img      = $this->get_thumbnail( $thmbnail_size );
-					$img_type = 'ys-ranking__img--' . $thmbnail_size;
-				}
-				/**
-				 * HTMLタグ作成
-				 */
-				$post_url   = get_the_permalink();
-				$post_title = get_the_title();
-
-				$html_post = sprintf(
-					'<li class="ys-ranking__item"><a class="image-mask__wrap clearfix" href="%s">%s<span class="ys-ranking__title">%s</span></a></li>',
-					get_the_permalink(),
-					$img,
-					get_the_title()
-				);
-				$html_post = apply_filters( 'ys_ranking_widget_post', $html_post, get_the_ID() );
-				$html     .= $html_post;
-			}
-			$wrap = '<ul class="ys-ranking__list ' . $img_type . '">%s</ul>';
-			$html = sprintf(
-				apply_filters( 'ys_ranking_widget_warp', $wrap ),
-				$html
-			);
-			/**
-			 * 表示
-			 */
-			echo $html;
-		} else {
-			echo '<p>関連する人気記事はありません</p>';
-		}
-		wp_reset_postdata();
+		/**
+		 * 投稿データ取得
+		 */
+		$ys_post_list = new YS_Post_List( '', $query, $thmbnail_size );
+		echo $ys_post_list->get_post_list();
 		echo $args['after_widget'];
 	}
 
@@ -323,36 +296,6 @@ class YS_Ranking_Widget extends WP_Widget {
 		return $instance;
 	}
 
-	/**
-	 * 画像タグ作成
-	 *
-	 * @param [type] $thmbnail_size サムネイルタイプ.
-	 * @return string
-	 */
-	private function get_thumbnail( $thmbnail_size ) {
-		if ( has_post_thumbnail() ) {
-			$thmbnail_size = apply_filters( 'ys_ranking_widget_thumbnail_type', $thmbnail_size );
-			$img           = get_the_post_thumbnail( get_the_ID(), $thmbnail_size );
-			$img           = apply_filters( 'ys_ranking_widget_image', $img, get_the_ID() );
-			$img           = sprintf(
-				'<figure class="ratio__image">%s</figure>',
-				$img
-			);
-		} else {
-			$img = '<div class="ys-ranking__no-img flex flex--c-c"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
-		}
-		$size = '16-9';
-		if ( 'thumbnail' === $thmbnail_size ) {
-			$size = '1-1';
-		}
-		$read_more = '<div class="image-mask flex flex--c-c"><p class="image-mask__text">' . ys_get_entry_read_more_text() . '</p></div>';
-		$img       = sprintf(
-			'<div class="ys-ranking__img"><div class="ratio ratio__' . $size . '"><div class="ratio__item">%s</div></div>%s</div>',
-			$img,
-			$read_more
-		);
-		return $img;
-	}
 	/**
 	 * テーマ内で使える画像サイズ取得
 	 */

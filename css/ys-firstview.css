@@ -2272,44 +2272,6 @@ figcaption {
 	text-decoration: underline;
 }
 
-.ys-ranking__item {
-	padding-bottom: 2em;
-}
-
-.ys-ranking__title {
-	display: block;
-	padding: .5em 0 0;
-	line-height: 1.4;
-	overflow: hidden;
-}
-
-.ys-ranking__img {
-	position: relative;
-}
-
-.ys-ranking__img--thumbnail .ys-ranking__list {
-	border-top: 1px solid #ecf0f1;
-}
-
-.ys-ranking__img--thumbnail .ys-ranking__item {
-	padding-top: 1em;
-	padding-bottom: 1em;
-	border-bottom: 1px solid #ecf0f1;
-}
-
-.ys-ranking__img--thumbnail .ys-ranking__img {
-	width: 75px;
-	margin-right: 1em;
-	font-size: 0.7em;
-	letter-spacing: normal;
-	float: left;
-}
-
-.ys-ranking__img--thumbnail .ys-ranking__title {
-	padding-top: 0;
-	font-size: 1em;
-}
-
 .aligncenter,
 div.aligncenter,
 .alignleft,
@@ -2589,22 +2551,6 @@ div.aligncenter {
 	width: 25%;
 }
 
-.ys-ranking__list:not(.ys-ranking__img--no-img) {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	margin-left: -.5em;
-	margin-right: -.5em;
-}
-
-.ys-ranking__item {
-	width: 50%;
-	padding-left: .5em;
-	padding-right: .5em;
-}
-
 .alignleft {
 	float: left;
 	margin-right: 1em;
@@ -2799,16 +2745,6 @@ div.aligncenter {
 
 .widget {
 	margin-top: 60px;
-}
-
-.ys-ranking__list:not(.ys-ranking__img--no-img) {
-	margin-left: 0;
-	margin-right: 0;
-	display: block;
-}
-
-.ys-ranking__item {
-	width: auto;
 }
 
 .one-col .entry__title {

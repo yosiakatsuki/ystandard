@@ -1,59 +1,59 @@
 
-.ys-ranking__item {
+.ys-post-list__item {
   padding-bottom: 2em;
 }
-.ys-ranking__title {
+.ys-post-list__title {
   display: block;
   padding: .5em 0 0;
   line-height: 1.4;  
   overflow: hidden;
 }
-.ys-ranking__img {
+.ys-post-list__img {
   position: relative;
 }
 //
 // thumbnail
 //
-.ys-ranking__img--thumbnail {
-  .ys-ranking__list {
+.ys-post-list--thumbnail {
+  .ys-post-list__list {
     border-top: 1px solid $border-color-light;
   }
-  .ys-ranking__item {
+  .ys-post-list__item {
     padding-top: 1em;
     padding-bottom: 1em;
     border-bottom: 1px solid $border-color-light;
   }
-  .ys-ranking__img {
+  .ys-post-list__img {
     width: 75px;
     margin-right: 1em;
     font-size: 0.7em;
     letter-spacing: normal;
     float: left;
   }
-  .ys-ranking__title {
+  .ys-post-list__title {
     padding-top: 0;
     font-size: 1em;
   }
 }
 @include media-breakpoint(tb) {
-  .ys-ranking__list:not(.ys-ranking__img--no-img) {
+  .ys-post-list__items:not(.ys-post-list--no-img) {
     @include flex;
     margin-left: -.5em;
     margin-right: -.5em;
   }
-  .ys-ranking__item {
+  .ys-post-list__item {
     width: 50%;
     padding-left: .5em;
     padding-right: .5em;
   }
 }
 @include media-breakpoint(pc) {
-  .ys-ranking__list:not(.ys-ranking__img--no-img) {
+  .ys-post-list__items:not(.ys-post-list--no-img) {
     margin-left: 0;
     margin-right: 0;
     display: block;
   }
-  .ys-ranking__item {
+  .ys-post-list__item {
     width: auto;
   }
 }
