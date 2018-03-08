@@ -358,7 +358,8 @@ function ys_customizer_inline_css() {
 							'.sidebar .widget_pages a:not(:hover)',
 							'.sidebar .widget_meta a:not(:hover)',
 							'.sidebar .widget_calendar a:not(:hover)',
-							'.sidebar .widget_ys_widgets_ranking a:not(:hover)',
+							'.sidebar .widget_ys_ranking a:not(:hover)',
+							'.sidebar .widget_ys_taxonomy_posts a:not(:hover)',
 						),
 						array(
 							'color' => $html_font_sub

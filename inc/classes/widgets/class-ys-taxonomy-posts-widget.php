@@ -10,13 +10,13 @@
 /**
  * 人気記事ランキングウィジェット
  */
-class YS_Ranking_Widget extends YS_Widget_Base {
+class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 	/**
 	 * タイトル
 	 *
 	 * @var string
 	 */
-	private $default_title = '人気記事';
+	private $default_title = '記事一覧';
 	/**
 	 * 表示投稿数
 	 *
@@ -36,46 +36,20 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 	 */
 	private $default_thmbnail_size = 'thumbnail';
 	/**
-	 * 期間
+	 * タクソノミーとタームの区切り文字
 	 *
 	 * @var string
 	 */
-	private $default_period = 'all';
-	/**
-	 * 期間リスト
-	 *
-	 * @var array
-	 */
-	private $period_list = array(
-		'all' => '全期間',
-		'm'   => '月別',
-		'w'   => '週別',
-		'd'   => '日別',
-	);
-	/**
-	 * 絞り込み初期値
-	 *
-	 * @var string
-	 */
-	private $default_filtering = 'cat';
-	/**
-	 * 絞り込みオプションの選択値
-	 *
-	 * @var array
-	 */
-	private $filtering_list = array(
-		'cat' => '同じカテゴリーでのランキング',
-		'all' => '全記事ランキング',
-	);
+	private $delimiter = '__';
 	/**
 	 * ウィジェット名などを設定
 	 */
 	public function __construct() {
 		parent::__construct(
-			'ys_ranking',
-			'[ys]人気記事ランキング',
+			'ys_taxonomy_posts',
+			'[ys]カテゴリー・タグの記事一覧',
 			array(
-				'description' => '個別記事・カテゴリーアーカイブでは関連するカテゴリーのランキング、それ以外ではサイト全体の人気記事ランキングを表示します',
+				'description' => 'カテゴリー・タグが付いている記事一覧',
 			)
 		);
 	}
@@ -91,8 +65,9 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		$post_count    = $this->default_post_count;
 		$show_img      = $this->default_show_img;
 		$thmbnail_size = $this->default_thmbnail_size;
-		$period        = $this->default_period;
-		$filtering     = $this->default_filtering;
+		$taxonomy_name = '';
+		$trem_id       = 0;
+		$term_label    = '';
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -105,11 +80,19 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		if ( isset( $instance['thmbnail_size'] ) ) {
 			$thmbnail_size = esc_attr( $instance['thmbnail_size'] );
 		}
-		if ( isset( $instance['period'] ) ) {
-			$period = esc_attr( $instance['period'] );
-		}
-		if ( isset( $instance['filtering'] ) ) {
-			$filtering = esc_attr( $instance['filtering'] );
+		if ( isset( $instance['taxonomy'] ) ) {
+			$selected = $this->get_selected_taxonomy( $instance['taxonomy'] );
+			if ( ! is_null( $selected ) ) {
+				$trem_id       = $selected['term_id'];
+				$taxonomy_name = $selected['taxonomy_name'];
+				$term          = get_term( $trem_id, $taxonomy_name );
+				if ( ! is_wp_error( $term ) && ! is_null( $term ) ) {
+					$term_label = $term->name;
+				}
+				if ( empty( $title ) ) {
+					$title = sprintf( '%sの記事一覧', $term_label );
+				}
+			}
 		}
 		/**
 		 * 画像なしの場合
@@ -125,51 +108,25 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		if ( empty( $title ) ) {
 			$title = $this->default_title;
 		}
+		$title = sprintf( $title, $term_label );
 		echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
 		/**
-		 * クエリ作成
+		 * パラメータの作成
 		 */
-		$query  = null;
-		$option = null;
-		/**
-		 * 投稿とカテゴリーページの場合
-		 * カスタムタクソノミー対応はそのうち
-		 */
-		if ( is_single() || is_category() ) {
-			if ( 'cat' === $filtering ) {
-				/**
-				 * カテゴリーで絞り込む
-				 */
-				$cat_ids = ys_get_the_category_id_list();
-				/**
-				 * オプションパラメータ作成
-				 */
-				$option = array( 'category__in' => $cat_ids );
-			}
-			/**
-			 * 投稿ならば表示中の投稿をのぞく
-			 */
-			if ( is_single() ) {
-				global $post;
-				$option = wp_parse_args(
-					array( 'post__not_in' => array( $post->ID ) ),
-					$option
-				);
-			}
-		}
-		$option = apply_filters( 'ys_ranking_widget_option', $option, $title );
-		$query  = ys_get_post_views_query( $period, $post_count, $option );
-		/**
-		 * 個別記事・カテゴリーアーカイブで関連記事が取れない場合、全体の人気記事にする
-		 */
-		if ( ( is_single() || is_category() ) && ! $query->have_posts() ) {
-			wp_reset_postdata();
-			$query = ys_get_post_views_query( $period, $post_count );
-		}
+		$post_args = array(
+			'posts_per_page' => $post_count,
+			'tax_query'      => array(
+				array(
+					'taxonomy' => $taxonomy_name,
+					'field'    => 'term_id',
+					'terms'    => $trem_id,
+				),
+			),
+		);
 		/**
 		 * 投稿データ取得
 		 */
-		echo $this->get_ys_post_list( array(), '', $thmbnail_size, $query );
+		echo $this->get_ys_post_list( $post_args, '', $thmbnail_size );
 		echo $args['after_widget'];
 	}
 
@@ -182,12 +139,11 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		/**
 		 * 管理用のオプションのフォームを出力
 		 */
-		$title         = '';
-		$post_count    = $this->default_post_count;
-		$show_img      = $this->default_show_img;
-		$thmbnail_size = $this->default_thmbnail_size;
-		$period        = $this->default_period;
-		$filtering     = $this->default_filtering;
+		$title             = '';
+		$post_count        = $this->default_post_count;
+		$show_img          = $this->default_show_img;
+		$thmbnail_size     = $this->default_thmbnail_size;
+		$selected_taxonomy = '';
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -200,11 +156,8 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		if ( isset( $instance['thmbnail_size'] ) ) {
 			$thmbnail_size = esc_attr( $instance['thmbnail_size'] );
 		}
-		if ( isset( $instance['period'] ) ) {
-			$period = esc_attr( $instance['period'] );
-		}
-		if ( isset( $instance['filtering'] ) ) {
-			$filtering = esc_attr( $instance['filtering'] );
+		if ( isset( $instance['taxonomy'] ) ) {
+			$selected_taxonomy = esc_attr( $instance['taxonomy'] );
 		}
 		?>
 		<p>
@@ -233,25 +186,33 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 			</p>
 		</div>
 		<div class="ys-admin-section">
-			<h4>期間設定</h4>
-			<p>
-				<label for="<?php echo $this->get_field_id( 'period' ); ?>">ランキング作成の期間</label>
-				<select name="<?php echo $this->get_field_name( 'period' ); ?>">
-					<?php foreach ( $this->period_list as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $period ); ?>><?php echo $value; ?></option>
-					<?php endforeach; ?>
-				</select>
-			</p>
-		</div>
-		<div class="ys-admin-section">
-			<h4>同じカテゴリーでの絞り込み</h4>
-			<p>
-				<select name="<?php echo $this->get_field_name( 'filtering' ); ?>">
-					<?php foreach ( $this->filtering_list as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $filtering ); ?>><?php echo $value; ?></option>
-					<?php endforeach; ?>
-				</select>
-			</p>
+			<h4>カテゴリー・タグの選択</h4>
+			<?php
+				$taxonomies = get_taxonomies(
+					array(
+						'object_type' => array( 'post' ),
+						'public'      => true,
+						'show_ui'     => true,
+					),
+					'objects'
+				);
+			if ( ! empty( $taxonomies ) ) :
+			?>
+				<p>
+					<select name="<?php echo $this->get_field_name( 'taxonomy' ); ?>">
+						<option value="">選択してください</option>
+						<?php foreach ( $taxonomies as $taxonomy ) : ?>
+							<optgroup label="<?php echo $taxonomy->label; ?>">
+								<?php foreach ( get_terms( $taxonomy->name ) as $term ) : ?>
+									<option value="<?php echo $this->get_select_taxonomy_value( $taxonomy, $term ); ?>" <?php selected( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy ); ?>><?php echo $term->name; ?></option>
+								<?php endforeach; ?>
+							</optgroup>
+						<?php endforeach; ?>
+					</select>
+				</p>
+			<?php else : ?>
+				<p>選択できるカテゴリー・タグがありません</p>
+			<?php endif; ?>
 		</div>
 		<?php
 	}
@@ -271,8 +232,7 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		$instance['post_count']    = $this->default_post_count;
 		$instance['show_img']      = $this->sanitize_checkbox( $new_instance['show_img'] );
 		$instance['thmbnail_size'] = $this->default_thmbnail_size;
-		$instance['period']        = $this->default_period;
-		$instance['filtering']     = $this->default_filtering;
+		$instance['taxonomy']      = '';
 		/**
 		 * 更新値のセット
 		 */
@@ -285,12 +245,37 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		if ( ( ! empty( $new_instance['thmbnail_size'] ) ) ) {
 			$instance['thmbnail_size'] = $new_instance['thmbnail_size'];
 		}
-		if ( ( ! empty( $new_instance['period'] ) ) ) {
-			$instance['period'] = $new_instance['period'];
-		}
-		if ( ( ! empty( $new_instance['filtering'] ) ) ) {
-			$instance['filtering'] = $new_instance['filtering'];
+		if ( ( ! empty( $new_instance['taxonomy'] ) ) ) {
+			$instance['taxonomy'] = $new_instance['taxonomy'];
 		}
 		return $instance;
+	}
+	/**
+	 * 保存用選択値の作成
+	 *
+	 * @param object $taxonomy タクソノミーオブジェクト.
+	 * @param object $term タームオブジェクト.
+	 * @return string
+	 */
+	private function get_select_taxonomy_value( $taxonomy, $term ) {
+		return esc_attr( $taxonomy->name . $this->delimiter . $term->term_id );
+	}
+	/**
+	 * 選択値をタクソノミーとタームに分割
+	 *
+	 * @param string $value 選択値.
+	 * @return array
+	 */
+	private function get_selected_taxonomy( $value ) {
+		$selected = explode( $this->delimiter, $value );
+		if ( ! is_array( $selected ) ) {
+			return null;
+		}
+		$term_id  = array_pop( $selected );
+		$taxonomy = implode( $this->delimiter, $selected );
+		return array(
+			'term_id'       => $term_id,
+			'taxonomy_name' => $taxonomy,
+		);
 	}
 }

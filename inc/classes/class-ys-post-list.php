@@ -30,12 +30,6 @@ class YS_Post_List {
 	 */
 	private $thumbnail_size = '';
 	/**
-	 * オプション
-	 *
-	 * @var array
-	 */
-	private $options = null;
-	/**
 	 * 結果なしの場合の文言
 	 *
 	 * @var string
@@ -51,15 +45,13 @@ class YS_Post_List {
 	 * コンストラクタ
 	 *
 	 * @param string   $id ID.
-	 * @param WP_Query $query クエリ.
 	 * @param string   $thumbnail_size サムネイルサイズ.
-	 * @param array    $options オプション.
+	 * @param WP_Query $query クエリ.
 	 */
-	public function __construct( $id = '', $query = null, $thumbnail_size = '', $options = null ) {
+	public function __construct( $id = '', $thumbnail_size = '', $query = null ) {
 		$this->id             = $id;
-		$this->query          = $query;
 		$this->thumbnail_size = $thumbnail_size;
-		$this->options        = $options;
+		$this->query          = $query;
 		$this->args_default   = array(
 			'posts_per_page' => 5,
 			'offset'         => 0,
@@ -95,15 +87,6 @@ class YS_Post_List {
 		$this->thumbnail_size = $thumbnail_size;
 	}
 	/**
-	 * オプションのセット
-	 *
-	 * @param array $options オプションのセット.
-	 * @return void
-	 */
-	public function set_options( $options ) {
-		$this->options = $options;
-	}
-	/**
 	 * 結果なしの時の文言をセット
 	 *
 	 * @param string $no_result_info 結果なしの時の文言.
@@ -122,12 +105,6 @@ class YS_Post_List {
 		$args  = wp_parse_args( $args, $this->args_default );
 		$query = $this->query;
 		if ( is_null( $query ) ) {
-			/**
-			 * クエリが指定されていない場合、作成する
-			 */
-			if ( ! is_null( $this->options ) ) {
-				$args = wp_parse_args( $this->options, $args );
-			}
 			$query = new WP_Query( $args );
 		}
 		/**
