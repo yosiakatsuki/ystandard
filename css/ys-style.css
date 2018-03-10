@@ -400,6 +400,17 @@
 	font-size: 1em;
 }
 
+.ys_author_list {
+	border-top: 1px solid #ecf0f1;
+	margin: 30px 0;
+}
+
+.ys_author_list .author__box {
+	padding-bottom: 30px;
+	margin-top: 30px;
+	border-bottom: 1px solid #ecf0f1;
+}
+
 .entry-paging__info {
 	font-size: .9em;
 }
