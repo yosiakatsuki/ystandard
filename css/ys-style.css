@@ -503,20 +503,6 @@
 	width: 25%;
 }
 
-.entry__footer-author .author__main {
-	float: left;
-	margin-right: 1em;
-}
-
-.entry__footer-author .author__sub {
-	overflow: hidden;
-}
-
-.entry__footer-author .author__sns,
-.entry__footer-author .author__archive {
-	text-align: left;
-}
-
 .ys-post-list__items:not(.ys-post-list--no-img) {
 	display: -webkit-box;
 	display: -ms-flexbox;

@@ -72,6 +72,10 @@ if ( ys_is_amp() ) {
 	<div id="content" class="site-content site__content">
 	<?php
 	/**
+	 * ヒーローエリア
+	 */
+	get_template_part( 'template-parts/hero/hero', ys_get_hero_template() );
+	/**
 	 * パンくずリスト
 	 */
 	get_template_part( 'template-parts/breadcrumbs/breadcrumbs' );

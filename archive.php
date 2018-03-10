@@ -17,7 +17,7 @@ get_header(); ?>
 					/**
 					 * アーカイブヘッダーの読み込み
 					 */
-					get_template_part( 'template-parts/archive/archive-header' );
+					get_template_part( 'template-parts/archive/archive-header', ys_get_archive_header_template() );
 				?>
 				<div class="archive__list">
 				<?php

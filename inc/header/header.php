@@ -41,19 +41,25 @@ if( ! function_exists( 'ys_the_blog_description' ) ) {
 /**
  * ヘッダータイプ class取得
  */
-if( ! function_exists( 'ys_get_header_type_class' ) ) {
-	function ys_get_header_type_class() {
-		$type = ys_get_option( 'ys_design_header_type' );
-		$class = apply_filters( 'ys_get_header_type_class', 'header--' . $type, $type );
-		return $class;
-	}
+function ys_get_header_type_class() {
+	$type  = ys_get_option( 'ys_design_header_type' );
+	$class = apply_filters( 'ys_get_header_type_class', 'header--' . $type, $type );
+	return $class;
 }
 
 /**
  * ヘッダータイプ class出力
  */
-if( ! function_exists( 'ys_the_header_type_class' ) ) {
-	function ys_the_header_type_class() {
-		echo ys_get_header_type_class();
-	}
+function ys_the_header_type_class() {
+	echo ys_get_header_type_class();
+}
+
+/**
+ * ヒーローエリアのテンプレート名取得
+ *
+ * @return string
+ */
+function ys_get_hero_template() {
+	$template = '';
+	return apply_filters( 'ys_hero_template', $template );
 }

@@ -30,6 +30,12 @@ var dir = {
  * webpack config
  */
 var webpackConfig = require('./webpack.config');
+/**
+ * clean
+ */
+gulp.task('clean', function(){
+  del(dir.dist.js);
+});
 
 /**
  * sass
@@ -66,7 +72,6 @@ gulp.task('sass', function() {
  * webpack
  */
 gulp.task('webpack', function(){
-  del(dir.dist.js);
   return plumber({
       errorHandler: function(err) {
         console.log(err.messageFormatted);
@@ -107,6 +112,8 @@ gulp.task('zip', function(){
         '!gulpfile.js',
         '!package.json',
         '!webpack.config.js',
+        '!phpcs.xml.dist',
+        '!phpunit.xml.dist',
       ],
       {base: './'}
     )
@@ -122,7 +129,7 @@ gulp.task('zip', function(){
 /**
  * コード
  */
-gulp.task('watch',['sass','webpack'],function() {
+gulp.task('watch',['sass','clean','webpack'],function() {
   watch(dir.src.sass, function(event) {
     gulp.start('sass');
   });
@@ -134,7 +141,7 @@ gulp.task('watch',['sass','webpack'],function() {
 /**
  * browserSync
  */
-gulp.task('browsersync',['bs-init','watch'],function() {
+gulp.task('browsersync',['bs-init','clean','watch'],function() {
   watch(['./css/*.min.css','./js/*.min.js','./**/*.php'], function(event) {
     gulp.start('bs-reload');
   });

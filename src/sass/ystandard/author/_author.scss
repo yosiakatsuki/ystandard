@@ -1,6 +1,6 @@
 .author {
   @at-root {
-    .author__main {
+    .author__avatar {
       padding: 0 .5em;
     }
     .author__img {
@@ -20,26 +20,46 @@
       color: inherit;
     }
     .author__dscr {
-      font-size: .9em;
+      font-size: .85em;
 
       p {
         margin-top: .5em;
       }
     }
-    .author__sns {
-      margin: .5em 0 0;
+    .author__sns,
+    .author__archive {
       text-align: center;
+    }
+    .author__archive {
+      margin-top: 1em;
     }
     .author__sns-item {
       display: inline-block;
-      margin: 0 5px;
+      padding: 0 .1em;
     }
-    .author__sns-link {
-      font-size: 1.1em;
-    }
-    .author__archive {
-      margin-top: .5em;
-      text-align: center;
+  }
+}
+
+.author--2col {
+  @include media-breakpoint(tb) {
+    & {
+      .author__avatar {
+        float: left;
+        margin-right: 1em;
+      }
+      .author__text {
+        overflow: hidden;
+      }
+      .author__name ,
+      .author__sns {
+        display: inline-block;
+        margin: 0 .5em 0 0;
+        text-align: left;
+      }
+      .author__sns,
+      .author__archive {
+        text-align: left;
+      }
     }
   }
 }

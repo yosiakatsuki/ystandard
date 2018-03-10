@@ -1,10 +1,18 @@
 <?php
-	/**
-	 * 投稿者表示
-	 */
-	if( ys_is_active_entry_footer_author() ) : ?>
-	<aside class="entry__footer-author">
-		<h2 class="entry__footer-title">この記事を書いた人</h2>
-		<?php get_template_part( 'template-parts/author/profile-box' ); ?>
-	</aside><!-- .entry__footer-author -->
+/**
+ * 記事下投稿者プロフィール
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+/**
+ * 投稿者表示
+ */
+if ( ys_is_active_entry_footer_author() ) : ?>
+<aside class="entry__footer-author author--2col">
+	<h2 class="entry__footer-title">この記事を書いた人</h2>
+	<?php get_template_part( 'template-parts/author/profile-box' ); ?>
+</aside><!-- .entry__footer-author -->
 <?php endif; ?>

@@ -1389,11 +1389,17 @@ input[type="button"]:hover {
 	margin: .5em 0 0;
 }
 
+.archive__header-author {
+	padding: 30px 15px;
+	margin: 0 -15px 15px;
+	background-color: #fafafa;
+}
+
 .no-results__headline {
 	margin-top: 2em;
 }
 
-.author__main {
+.author__avatar {
 	padding: 0 .5em;
 }
 
@@ -1417,30 +1423,25 @@ input[type="button"]:hover {
 }
 
 .author__dscr {
-	font-size: .9em;
+	font-size: .85em;
 }
 
 .author__dscr p {
 	margin-top: .5em;
 }
 
-.author__sns {
-	margin: .5em 0 0;
+.author__sns,
+.author__archive {
 	text-align: center;
+}
+
+.author__archive {
+	margin-top: 1em;
 }
 
 .author__sns-item {
 	display: inline-block;
-	margin: 0 5px;
-}
-
-.author__sns-link {
-	font-size: 1.1em;
-}
-
-.author__archive {
-	margin-top: .5em;
-	text-align: center;
+	padding: 0 .1em;
 }
 
 .sns__btn--twitter {
@@ -2514,6 +2515,27 @@ div.aligncenter {
 	margin-top: 60px;
 }
 
+.author--2col .author__avatar {
+	float: left;
+	margin-right: 1em;
+}
+
+.author--2col .author__text {
+	overflow: hidden;
+}
+
+.author--2col .author__name,
+.author--2col .author__sns {
+	display: inline-block;
+	margin: 0 .5em 0 0;
+	text-align: left;
+}
+
+.author--2col .author__sns,
+.author--2col .author__archive {
+	text-align: left;
+}
+
 .entry-list--list .entry-list {
 	padding: 30px;
 	margin: 0 -30px;
@@ -2737,6 +2759,11 @@ div.aligncenter {
 
 .admin-bar .sidebar__fixed {
 	top: 42px;
+}
+
+.archive__header-author {
+	padding: 30px;
+	margin: -15px -29px 15px;
 }
 
 .share-btn__item {
