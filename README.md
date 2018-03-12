@@ -143,11 +143,6 @@ Font License: SIL OFL 1.1
 Code License: MIT License
 Source      : <https://fortawesome.github.io/Font-Awesome/>
 
-### IcoMoon
-
-License: GPL / CC BY 4.0
-Source : <https://icomoon.io/#icons-icomoon/>
-
 ### Theme Update Checker Library
 
 License: GPL
