@@ -94,7 +94,7 @@ if ( ! function_exists( 'ys_get_author_sns_list' ) ) {
 		foreach ( $sns_key as $key => $val ) {
 			$arg = ys_get_author_sns_item( $key, $val, $user_id );
 			if ( false !== $arg ) {
-				$list[] = $arg;
+				$list[ $key ] = $arg;
 			}
 		}
 		return apply_filters( 'ys_get_author_sns_list', $list );
@@ -104,18 +104,18 @@ if ( ! function_exists( 'ys_get_author_sns_list' ) ) {
  * 投稿者 SNS一覧用配列取得
  *
  * @param string $key key.
- * @param string $val value.
+ * @param string $icon_class アイコンフォントのクラス
  * @param int    $user_id user id.
  * @return array
  */
-function ys_get_author_sns_item( $key, $val, $user_id ) {
+function ys_get_author_sns_item( $key, $icon_class, $user_id ) {
 	$url = get_the_author_meta( $key, $user_id );
 	if ( '' == $url ) {
 		return false;
 	}
 	return array(
 		'type' => $key,
-		'icon' => esc_attr( $val ),
+		'icon' => esc_attr( $icon_class ),
 		'url'  => esc_url_raw( $url ),
 	);
 }
@@ -130,9 +130,9 @@ function ys_the_author_sns() {
 	if ( ! empty( $sns ) ) :
 	?>
 	<ul class="author__sns list-style--none">
-		<?php foreach ( $sns as $item ) : ?>
+		<?php foreach ( $sns as $key => $value ) : ?>
 			<li class="author__sns-item">
-				<a class="sns__color--<?php echo $item['icon']; ?> author__sns-link" href="<?php echo $item['url']; ?>" target="_blank" rel="nofollow"><i class="fa fa-<?php echo $item['icon']; ?>" aria-hidden="true"></i></a>
+				<a class="sns__color--<?php echo $value['icon']; ?> author__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow"><i class="fa fa-<?php echo $value['icon']; ?>" aria-hidden="true"></i></a>
 			</li>
 		<?php endforeach; ?>
 	</ul><!-- .author__sns -->
