@@ -10,25 +10,14 @@
 <script async src="https://cdn.ampproject.org/v0.js"></script>
 <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
-<?php if( ys_is_enable_google_analytics() ): ?>
+<?php if ( ys_is_enable_google_analytics() ) : ?>
 <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 <?php endif; ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
 <?php
 	/**
-	 * インラインCSSのセット
+	 * AMP用wp_head的な処理
 	 */
-	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', false );
-	ys_set_inline_style( get_template_directory() . '/css/ys-style.min.css', false );
-	ys_set_inline_style( ys_customizer_inline_css() );
-	ys_set_inline_style( locate_template('style-firstview.css') );
-	ys_set_inline_style( locate_template('style.css') );
-	/**
-	 * インラインCSSの出力
-	 */
-	ys_the_inline_style();
-
 	ys_amp_head();
 ?>
 </head>

@@ -1,59 +1,83 @@
 <?php
 /**
+ * <head>タグ周りの関数
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
  * <head>タグ取得
  */
-if( ! function_exists( 'ys_get_the_head_tag' ) ) {
-	function ys_get_the_head_tag() {
-		$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">' . PHP_EOL;
-		if( is_singular() ){
-			$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">' . PHP_EOL;
-		}
-		return apply_filters( 'ys_get_the_head_tag', $html );
+function ys_get_the_head_tag() {
+	$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">';
+	if ( is_singular() ) {
+		$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">';
 	}
+	return apply_filters( 'ys_get_the_head_tag', $html . PHP_EOL );
 }
 
 /**
  * <head>タグ出力
  */
-if( ! function_exists( 'ys_the_head_tag' ) ) {
-	function ys_the_head_tag() {
-		echo ys_get_the_head_tag();
+function ys_the_head_tag() {
+	echo ys_get_the_head_tag();
+}
+
+if ( ! function_exists( 'ys_set_inline_style' ) ) {
+	/**
+	 * インラインCSSセット
+	 *
+	 * @param string  $style インラインCSS.
+	 * @param boolean $minify minifyするかどうか.
+	 * @return void
+	 */
+	function ys_set_inline_style( $style, $minify = true ) {
+		global $ys_enqueue;
+		$ys_enqueue->set_inline_style( $style, $minify );
 	}
 }
 
 /**
- * インラインCSSセット
+ * インラインスタイルのセットと出力
+ *
+ * @return void
  */
-if( ! function_exists( 'ys_set_inline_style' ) ) {
-	function ys_set_inline_style( $style, $minify = true ) {
-		global $ys_enqueue;
-		$style = $ys_enqueue->set_inline_style( $style, $minify );
-	}
+function ys_inline_styles() {
+	/**
+	 * インラインCSSのセット
+	 */
+	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', true );
+	ys_set_inline_style( ys_customizer_inline_css() );
+	ys_set_inline_style( locate_template( 'style-firstview.css' ) );
+	/**
+	 * インラインCSSの出力
+	 */
+	ys_the_inline_style();
 }
+add_action( 'wp_head', 'ys_inline_styles', 2 );
+
 
 /**
  * インラインCSS取得
+ *
+ * @param bool $is_amp AMPかどうか.
  */
-if( ! function_exists( 'ys_get_the_inline_style' ) ) {
-	function ys_get_the_inline_style( $is_amp ) {
-		global $ys_enqueue;
-		$style = $ys_enqueue->get_inline_style( $is_amp );
-		return apply_filters( 'ys_get_the_inline_style', $style );
-	}
+function ys_get_the_inline_style( $is_amp ) {
+	global $ys_enqueue;
+	$style = $ys_enqueue->get_inline_style( $is_amp );
+	return apply_filters( 'ys_get_the_inline_style', $style );
 }
 
-/**
- * インラインCSS出力
- */
-if( ! function_exists( 'ys_the_inline_style' ) ) {
+
+if ( ! function_exists( 'ys_the_inline_style' ) ) {
+	/**
+	 * インラインCSS出力
+	 */
 	function ys_the_inline_style() {
 		$style = ys_get_the_inline_style( ys_is_amp() );
-		if( ys_is_amp() ) {
+		if ( ys_is_amp() ) {
 			$style = sprintf( '<style amp-custom>%s</style>', $style );
 		} else {
 			$style = sprintf( '<style id="ystandard-inline-style">%s</style>', $style );
@@ -62,35 +86,35 @@ if( ! function_exists( 'ys_the_inline_style' ) ) {
 	}
 }
 
-/**
- * TOPページのmeta description出力
- */
-if( ! function_exists( 'ys_the_meta_description' ) ) {
-	function ys_the_meta_description(){
+if ( ! function_exists( 'ys_the_meta_description' ) ) {
+	/**
+	 * TOPページのmeta description出力
+	 */
+	function ys_the_meta_description() {
 		$dscr = trim( ys_get_option( 'ys_wp_site_description' ) );
-		if( ys_is_top_page() && '' != $dscr ){
-			echo '<meta name="description"  content="'. $dscr . '" />' . PHP_EOL;
+		if ( ys_is_top_page() && '' != $dscr ) {
+			echo '<meta name="description" content="' . $dscr . '" />' . PHP_EOL;
 		}
 	}
 }
 add_action( 'wp_head', 'ys_the_meta_description' );
 
-/**
- * ピンバックURLの出力
- */
-if( ! function_exists( 'ys_the_pingback_url' ) ) {
+if ( ! function_exists( 'ys_the_pingback_url' ) ) {
+	/**
+	 * ピンバックURLの出力
+	 */
 	function ys_the_pingback_url() {
-		if ( is_singular() && pings_open( get_queried_object() ) ){
+		if ( is_singular() && pings_open( get_queried_object() ) ) {
 			echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . PHP_EOL;
 		}
 	}
 }
 add_action( 'wp_head', 'ys_the_pingback_url' );
 
-/**
- * apple touch icon
- */
-if( ! function_exists( 'ys_the_apple_touch_icon' ) ){
+if ( ! function_exists( 'ys_the_apple_touch_icon' ) ) {
+	/**
+	 * Apple touch icon
+	 */
 	function ys_the_apple_touch_icon() {
 		if ( ! ys_get_apple_touch_icon_url( 512, '' ) && ! is_customize_preview() ) {
 			return;
@@ -107,13 +131,18 @@ if( ! function_exists( 'ys_the_apple_touch_icon' ) ){
 }
 add_filter( 'wp_head', 'ys_the_apple_touch_icon' );
 
-/**
- * apple touch icon用URLを取得
- */
-if (!function_exists( 'ys_get_apple_touch_icon_url')) {
+if ( ! function_exists( 'ys_get_apple_touch_icon_url' ) ) {
+	/**
+	 * Apple touch icon用URLを取得
+	 *
+	 * @param integer $size サイズ.
+	 * @param string  $url ロゴURL.
+	 * @param integer $blog_id ブログID
+	 * @return string
+	 */
 	function ys_get_apple_touch_icon_url( $size = 512, $url = '', $blog_id = 0 ) {
 
-		if ( is_multisite() && (int) $blog_id !== get_current_blog_id() ) {
+		if ( is_multisite() && get_current_blog_id() !== (int) $blog_id ) {
 			switch_to_blog( $blog_id );
 		}
 
@@ -133,14 +162,16 @@ if (!function_exists( 'ys_get_apple_touch_icon_url')) {
 	}
 }
 
-/**
- * サイトアイコン
- */
-if( ! function_exists( 'ys_site_icon_meta_tags' )){
+if ( ! function_exists( 'ys_site_icon_meta_tags' ) ) {
+	/**
+	 * サイトアイコン
+	 *
+	 * @param mixed $meta_tags meta tag.
+	 */
 	function ys_site_icon_meta_tags( $meta_tags ) {
 		$meta_tags = array(
-				sprintf( '<link rel="icon" href="%s" sizes="32x32" />', esc_url( get_site_icon_url( 32 ) ) ),
-				sprintf( '<link rel="icon" href="%s" sizes="192x192" />', esc_url( get_site_icon_url( 192 ) ) )
+			sprintf( '<link rel="icon" href="%s" sizes="32x32" />', esc_url( get_site_icon_url( 32 ) ) ),
+			sprintf( '<link rel="icon" href="%s" sizes="192x192" />', esc_url( get_site_icon_url( 192 ) ) ),
 		);
 		return $meta_tags;
 	}
@@ -373,10 +404,10 @@ if( ! function_exists( 'ys_the_amphtml' ) ) {
 }
 add_action( 'wp_head', 'ys_the_amphtml' );
 
-/**
- * ユーザーカスタムHEAD出力
- */
-if( ! function_exists( 'ys_the_uc_custom_head' ) ) {
+if ( ! function_exists( 'ys_the_uc_custom_head' ) ) {
+	/**
+	 * ユーザーカスタムHEAD出力
+	 */
 	function ys_the_uc_custom_head() {
 		get_template_part( 'user-custom-head' );
 	}

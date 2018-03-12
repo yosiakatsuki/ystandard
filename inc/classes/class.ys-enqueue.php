@@ -42,12 +42,16 @@ class YS_Enqueue {
 
 	/**
 	 * インラインCSSのセット
+	 *
+	 * @param string  $style インラインCSS.
+	 * @param boolean $minify minifyするかどうか.
+	 * @return void
 	 */
 	public function set_inline_style( $style, $minify = true ) {
 		$this->inline_styles[] = array(
-																'style' => $style,
-																'minify' => $minify
-															);
+			'style'  => $style,
+			'minify' => $minify,
+		);
 	}
 	/**
 	 * non-critical-css,lazyload-cssの配列セット
