@@ -11,13 +11,13 @@
 	 */
 	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', true );
 	ys_set_inline_style( ys_customizer_inline_css() );
-	ys_set_inline_style( locate_template('style-firstview.css') );
+	ys_set_inline_style( locate_template( 'style-firstview.css' ) );
 	/**
 	 * インラインCSSの出力
 	 */
 	ys_the_inline_style();
 	/**
-	 * wp_head
+	 * Wp_head
 	 */
 	wp_head();
 ?>

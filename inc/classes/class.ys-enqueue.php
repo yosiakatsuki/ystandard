@@ -154,6 +154,7 @@ class YS_Enqueue {
 	 */
 	public function get_non_critical_css() {
 		$list = $this->get_non_critical_css_list();
+		$list = array_reverse( $list );
 		return $this->get_non_critical_css_script( $this->ys_json_encode( $list ) );
 	}
 
@@ -198,16 +199,18 @@ class YS_Enqueue {
 	 * 読み込み用配列を作成する
 	 */
 	private function create_load_array( $obj ) {
-		if( empty( $obj ) ) return null;
+		if ( empty( $obj ) ) {
+			return null;
+		}
 		$array = array();
 		foreach ( $obj as $key => $value ) {
 			$url = $value['url'];
-			if( '' !== $value['ver'] ) {
+			if ( '' !== $value['ver'] ) {
 				$url = add_query_arg( $value['ver'], '', $url );
 			}
 			$array[] = array(
-				'id' => $value['id'],
-				'url' => $url
+				'id'  => $value['id'],
+				'url' => $url,
 			);
 		}
 		return $array;
@@ -216,17 +219,25 @@ class YS_Enqueue {
 	 * non-critical-css出力用javascript取得
 	 */
 	private function get_non_critical_css_script( $css ) {
+		if ( empty( $css ) ) {
+			return '';
+		}
 		$script = <<<EOD
 <script>
 	var cb = function() {
 		var list = {$css}
 				,l
-				,h = document.getElementsByTagName('head')[0];
+				,h = document.getElementsByTagName('head')[0]
+				,s = document.getElementById('ystandard-inline-style');
 		for (var i = 0; i < list.length; i++){
 			l = document.createElement('link');
 			l.rel = 'stylesheet';
 			l.href = list[i];
-			h.appendChild(l);
+			if(s) {
+				s.parentNode.insertBefore(l,s.nextSibling);
+			} else {
+				h.appendChild(l);
+			}
 		}
 	};
 	var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
@@ -237,7 +248,7 @@ EOD;
 		/**
 		 * 改行削除
 		 */
-		$script = str_replace( array( "\r\n", "\r", "\n" ), '', $script );
+		// $script = str_replace( array( "\r\n", "\r", "\n", "\t" ), '', $script );
 		return $script;
 	}
 

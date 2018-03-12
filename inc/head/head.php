@@ -56,7 +56,7 @@ if( ! function_exists( 'ys_the_inline_style' ) ) {
 		if( ys_is_amp() ) {
 			$style = sprintf( '<style amp-custom>%s</style>', $style );
 		} else {
-			$style = sprintf( '<style>%s</style>', $style );
+			$style = sprintf( '<style id="ystandard-inline-style">%s</style>', $style );
 		}
 		echo $style . PHP_EOL;
 	}
