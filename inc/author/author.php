@@ -163,18 +163,30 @@ if ( ! function_exists( 'ys_get_author_description' ) ) {
 function ys_the_author_description( $wpautop = true, $user_id = false ) {
 	echo ys_get_author_description( $wpautop, $user_id );
 }
-/**
- * 投稿者画像取得
- */
+
 if ( ! function_exists( 'ys_get_author_avatar' ) ) {
+	/**
+	 * 投稿者画像取得
+	 *
+	 * @param boolean $user_id user id.
+	 * @param integer $size image size.
+	 * @param array   $class class.
+	 * @return string
+	 */
 	function ys_get_author_avatar( $user_id = false, $size = 96, $class = array() ) {
-		$user_id = ys_check_user_id( $user_id );
-		$author_id = false == $user_id ? get_the_author_meta( 'ID' ) : $user_id;
-		$alt = esc_attr( ys_get_author_display_name() );
-		$user_avatar = get_avatar( $author_id, $size, '', $alt, array( 'class' => 'author__img' ) );
+		if ( ! get_option( 'show_avatars', true ) ) {
+			return '';
+		}
+		$user_id   = ys_check_user_id( $user_id );
+		$author_id = $user_id;
+		if ( false == $user_id ) {
+			$author_id = get_the_author_meta( 'ID' );
+		}
+		$alt           = esc_attr( ys_get_author_display_name() );
+		$user_avatar   = get_avatar( $author_id, $size, '', $alt, array( 'class' => 'author__img' ) );
 		$custom_avatar = get_user_meta( $author_id, 'ys_custom_avatar', true );
 		/**
-		 * imgタグ作成
+		 * Imgタグ作成
 		 */
 		$img = '';
 		if ( empty( $class ) ) {
@@ -199,12 +211,21 @@ if ( ! function_exists( 'ys_get_author_avatar' ) ) {
 		return apply_filters( 'ys_get_author_avatar', $img, $author_id, $size );
 	}
 }
+/**
+ * 投稿者画像出力
+ *
+ * @param boolean $user_id user id.
+ * @param integer $size image size.
+ * @param array   $class class.
+ */
 function ys_the_author_avatar( $user_id = false, $size = 96, $class = array() ) {
 	echo ys_get_author_avatar( $user_id, $size, $class );
 }
 /**
  * 投稿者ID 上書きチェック
  * 主にショートコードでの上書きに使用
+ *
+ * @param int $user_id user id.
  */
 function ys_check_user_id( $user_id ) {
 	global $ys_author;

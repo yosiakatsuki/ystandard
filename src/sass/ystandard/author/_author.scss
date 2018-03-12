@@ -3,7 +3,8 @@
     .author__avatar {
       padding: 0 .5em;
     }
-    .author__img {
+    .author__img,
+    .author__no-avatar {
       display: block;
       width: 96px;
       margin: auto;
@@ -37,7 +38,16 @@
       display: inline-block;
       padding: 0 .1em;
     }
-  }
+    .author__no-avatar {
+      height: 96px;
+    }
+    .author__no-avatar-link {
+      text-decoration: none;
+      color: $font-color-gray;
+      font-size: 48px;
+      line-height: 1;
+    }
+  }// @
 }
 
 .author--2col {
