@@ -215,6 +215,8 @@ function ys_get_options() {
 	$result['ys_performance_tuning_disable_emoji'] = get_option( 'ys_performance_tuning_disable_emoji', 1 );
 	// oembedを出力しない.
 	$result['ys_performance_tuning_disable_oembed'] = get_option( 'ys_performance_tuning_disable_oembed', 1 );
+	// CSSの読み込みを最適化する.
+	$result['ys_performance_tuning_optimize_load_css'] = get_option( 'ys_performance_tuning_optimize_load_css', 0 );
 	/**
 	 * **********
 	 * [ys]広告設定

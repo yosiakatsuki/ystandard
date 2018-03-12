@@ -1,62 +1,6 @@
 @charset "UTF-8";
-
-// normalize
-@import "normalize";/*! yStandard */
-
-// variables
-@import "variables";
-// mixins
-@import "akatsuki-base/mixins/breakpoint";
-@import "akatsuki-base/mixins/clearfix";
-@import "akatsuki-base/mixins/grid";
-@import "akatsuki-base/mixins/nav";
-@import "akatsuki-base/mixins/flex";
-@import "akatsuki-base/mixins/list";
-@import "akatsuki-base/mixins/style-clear";
-
-//func
-@import "akatsuki-base/function/margin";
-@import "akatsuki-base/function/sns-color";
-@import "akatsuki-base/function/decimal";
-
-// import scss
-@import "akatsuki-base/base/base";
-@import "akatsuki-base/clearfix/clearfix";
-@import "akatsuki-base/style-clear/style-clear";
-@import "akatsuki-base/grid/grid";
-@import "akatsuki-base/card/card";
-@import "akatsuki-base/section/section";
-@import "akatsuki-base/list/list";
-@import "akatsuki-base/flex/flex";
-@import "akatsuki-base/ratio/ratio";
-@import "akatsuki-base/breadcrumbs/breadcrumbs";
-@import "akatsuki-base/forms/forms";
-
-
-// ystandard
-@import "ystandard/mixins/ys-box";
-
-@import "ystandard/header/header";
-@import "ystandard/nav/global-nav";
-@import "ystandard/content/content";
-@import "ystandard/sidebar/sidebar";
-@import "ystandard/entry/entry";
-@import "ystandard/entry/entry-author";
-@import "ystandard/archive/archive";
-@import "ystandard/archive/archive-header-author";
-@import "ystandard/no-results/no-results";
-@import "ystandard/author/author";
-@import "ystandard/sns/sns";
-@import "ystandard/sns/share-button";
-@import "ystandard/sns/sns-icon";
-@import "ystandard/markup/markup";
-@import "ystandard/entry-list/entry-list";
-@import "ystandard/entry-list/entry-list--list";
-@import "ystandard/entry-list/entry-list--card";
-@import "ystandard/image-mask/image-mask";
-@import "ystandard/search-form/search-form";
-@import "ystandard/widget/widget";
-@import "ystandard/wordpress/wp-align";
-@import "ystandard/wordpress/wp-gallery";
-@import "ystandard/one-column/one-column";
-@import "ystandard/blog-card/blog-card";
+@import "import";
+//
+// ファーストビュー用のスタイル
+//
+@import "firstview";

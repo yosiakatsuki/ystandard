@@ -17,6 +17,6 @@ Use it to make something cool, have fun, and share what you've learned with othe
   サイト独自のスタイルの記述（カスタマイズ）にご利用ください。（オリジナルのスタイルを上書きできます）
 
   テーマで使用しているオリジナルのスタイルシートは./css/ディレクトリにあります。
-    ./css/ys-firstview.css : インライン読み込みさせるスタイル（ファーストビューに関わる部分）
-    ./css/ys-style.css  : ファーストビュー以外のスタイル
+    ./css/ys-firstview.css : インライン読み込みさせるスタイル（ファーストビューに関わる部分。「高速化設定」→「CSS読み込み最適化設定」をONにした場合のみ有効）
+    ./css/ys-style.css     : ファーストビュー以外のスタイル
 */

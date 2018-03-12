@@ -25,67 +25,6 @@ function ys_the_head_tag() {
 	echo ys_get_the_head_tag();
 }
 
-if ( ! function_exists( 'ys_set_inline_style' ) ) {
-	/**
-	 * インラインCSSセット
-	 *
-	 * @param string  $style インラインCSS.
-	 * @param boolean $minify minifyするかどうか.
-	 * @return void
-	 */
-	function ys_set_inline_style( $style, $minify = true ) {
-		global $ys_enqueue;
-		$ys_enqueue->set_inline_style( $style, $minify );
-	}
-}
-
-/**
- * インラインスタイルのセットと出力
- *
- * @return void
- */
-function ys_inline_styles() {
-	/**
-	 * インラインCSSのセット
-	 */
-	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', true );
-	ys_set_inline_style( ys_customizer_inline_css() );
-	ys_set_inline_style( locate_template( 'style-firstview.css' ) );
-	/**
-	 * インラインCSSの出力
-	 */
-	ys_the_inline_style();
-}
-add_action( 'wp_head', 'ys_inline_styles', 2 );
-
-
-/**
- * インラインCSS取得
- *
- * @param bool $is_amp AMPかどうか.
- */
-function ys_get_the_inline_style( $is_amp ) {
-	global $ys_enqueue;
-	$style = $ys_enqueue->get_inline_style( $is_amp );
-	return apply_filters( 'ys_get_the_inline_style', $style );
-}
-
-
-if ( ! function_exists( 'ys_the_inline_style' ) ) {
-	/**
-	 * インラインCSS出力
-	 */
-	function ys_the_inline_style() {
-		$style = ys_get_the_inline_style( ys_is_amp() );
-		if ( ys_is_amp() ) {
-			$style = sprintf( '<style amp-custom>%s</style>', $style );
-		} else {
-			$style = sprintf( '<style id="ystandard-inline-style">%s</style>', $style );
-		}
-		echo $style . PHP_EOL;
-	}
-}
-
 if ( ! function_exists( 'ys_the_meta_description' ) ) {
 	/**
 	 * TOPページのmeta description出力

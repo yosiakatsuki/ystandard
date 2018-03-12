@@ -334,3 +334,12 @@ function ys_is_post_type_on_admin( $type ){
 	global $post_type;
 	return ( $type == $post_type );
 }
+
+/**
+ * CSS読み込みを最適化するか
+ *
+ * @return bool
+ */
+function ys_is_optimize_load_css() {
+	return ys_get_option( 'ys_performance_tuning_optimize_load_css' );
+}

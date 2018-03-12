@@ -26,7 +26,7 @@ if ( ys_is_amp() ) {
 	/**
 	 * AMPフォーマットの場合
 	 */
-	get_template_part( 'template-parts/amp/head-amp' );
+	get_template_part( 'template-parts/amp/amp-head' );
 
 } else {
 	/**

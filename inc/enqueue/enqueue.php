@@ -7,6 +7,92 @@
  * @license GPL-2.0+
  */
 
+if ( ! function_exists( 'ys_set_inline_style' ) ) {
+	/**
+	 * インラインCSSセット
+	 *
+	 * @param string  $style インラインCSS.
+	 * @param boolean $minify minifyするかどうか.
+	 * @return void
+	 */
+	function ys_set_inline_style( $style, $minify = true ) {
+		global $ys_enqueue;
+		$ys_enqueue->set_inline_style( $style, $minify );
+	}
+}
+
+/**
+ * インラインスタイルのセットと出力
+ *
+ * @return void
+ */
+function ys_inline_styles() {
+	if ( ! ys_is_optimize_load_css() ) {
+		return;
+	}
+	/**
+	 * インラインCSSのセット
+	 */
+	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', true );
+	ys_set_inline_style( ys_customizer_inline_css() );
+	ys_set_inline_style( locate_template( 'style-firstview.css' ) );
+	/**
+	 * インラインCSSの出力
+	 */
+	ys_the_inline_style();
+}
+add_action( 'wp_head', 'ys_inline_styles', 2 );
+
+
+/**
+ * インラインCSS取得
+ *
+ * @param bool $is_amp AMPかどうか.
+ */
+function ys_get_the_inline_style( $is_amp ) {
+	global $ys_enqueue;
+	$style = $ys_enqueue->get_inline_style( $is_amp );
+	return apply_filters( 'ys_get_the_inline_style', $style );
+}
+
+
+if ( ! function_exists( 'ys_the_inline_style' ) ) {
+	/**
+	 * インラインCSS出力
+	 */
+	function ys_the_inline_style() {
+		$style = ys_get_the_inline_style( ys_is_amp() );
+		if ( ys_is_amp() ) {
+			$style = sprintf( '<style amp-custom>%s</style>', $style );
+		} else {
+			$style = sprintf( '<style id="ystandard-inline-style">%s</style>', $style );
+		}
+		echo $style . PHP_EOL;
+	}
+}
+
+/**
+ * JSが使えなかった時のお助け処理
+ *
+ * @return void
+ */
+function ys_the_noscript_fallback() {
+	if ( ! ys_is_optimize_load_css() ) {
+		return;
+	}
+	$styles = '';
+	global $ys_enqueue;
+	$list = $ys_enqueue->get_non_critical_css_list();
+	if ( empty( $list ) ) {
+		return;
+	}
+	foreach ( $list as $item ) {
+		$styles .= sprintf( '<link rel="stylesheet" href="%s">', $item );
+	}
+	echo sprintf( '<noscript>%s</noscript>', $styles );
+}
+add_action( 'wp_head', 'ys_the_noscript_fallback', 999 );
+
 /**
  * JavaScriptの読み込み
  *
@@ -76,6 +162,30 @@ function ys_enqueue_styles() {
 			ys_get_theme_version( true )
 		);
 	}
+	/**
+	 * CSS最適化しない場合、通常形式でCSSの読み込み
+	 */
+	if ( ! ys_is_optimize_load_css() ) {
+		wp_enqueue_style(
+			'ys-style-full',
+			get_template_directory_uri() . '/css/ys-style-full.min.css',
+			array(),
+			ys_get_theme_version( true )
+		);
+		wp_add_inline_style( 'ys-style-full', ys_customizer_inline_css() );
+		wp_enqueue_style(
+			'style-css',
+			get_stylesheet_directory_uri() . '/style.css',
+			array( 'ys-style-full' ),
+			ys_get_theme_version( true )
+		);
+		wp_enqueue_style(
+			'font-awesome',
+			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+			array(),
+			''
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles' );
 
@@ -83,24 +193,30 @@ add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles' );
  * CSS追加読み込みの指定
  */
 function ys_enqueue_styles_non_critical_css() {
-		/**
-		 * 読み込むCSSを指定する
-		 */
-		ys_enqueue_non_critical_css(
-			'ys-style',
-			get_template_directory_uri() . '/css/ys-style.min.css',
-			ys_get_theme_version( true )
-		);
-		ys_enqueue_non_critical_css(
-			'style-css',
-			get_stylesheet_directory_uri() . '/style.css',
-			ys_get_theme_version()
-		);
-		ys_enqueue_non_critical_css(
-			'font-awesome',
-			get_template_directory_uri() . '/library/font-awesome/css/font-awesome.min.css',
-			'4.7.0'
-		);
+	if ( ! ys_is_optimize_load_css() ) {
+		return;
+	}
+	/**
+	 * 読み込むCSSを指定する
+	 */
+	ys_enqueue_non_critical_css(
+		'ys-style',
+		get_template_directory_uri() . '/css/ys-style.min.css',
+		ys_get_theme_version( true )
+	);
+	ys_enqueue_non_critical_css(
+		'style-css',
+		get_stylesheet_directory_uri() . '/style.css',
+		ys_get_theme_version()
+	);
+	/**
+	 * キャッシュが効いたりするのでCDN読み込みにする
+	 * get_template_directory_uri() . '/library/font-awesome/css/font-awesome.min.css',
+	 */
+	ys_enqueue_non_critical_css(
+		'font-awesome',
+		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+	);
 }
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles_non_critical_css' );
 
@@ -110,6 +226,9 @@ add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles_non_critical_css' );
  * @return void
  */
 function ys_the_load_non_critical_css() {
+	if ( ! ys_is_optimize_load_css() ) {
+		return;
+	}
 	/**
 	 * CSS出力
 	 */

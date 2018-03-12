@@ -138,17 +138,19 @@ class YS_Enqueue {
 	}
 
 	/**
-	 * non-critical CSS一覧の取得
+	 * Non-critical CSS一覧の取得
 	 */
 	public function get_non_critical_css_list() {
-		$list = array();
+		$list  = array();
 		$items = apply_filters( 'ys_enqueue_non_critical_css', $this->non_critical_css );
-		foreach( $items as $id => $item ){
-			$src = $item['url'];
-			if( '' !== $item['ver'] ) {
-				$src = add_query_arg( $item['ver'], '', $src );
+		if ( is_array( $items ) ) {
+			foreach ( $items as $id => $item ) {
+				$src = $item['url'];
+				if ( '' !== $item['ver'] ) {
+					$src = add_query_arg( $item['ver'], '', $src );
+				}
+				$list[] = $src;
 			}
-			$list[] = $src;
 		}
 		return $list;
 	}
