@@ -1160,6 +1160,10 @@ input[type="button"]:hover {
 	transition: transform .3s, -webkit-transform .3s;
 }
 
+.global-nav__item {
+	padding: 0;
+}
+
 .global-nav__sub-menu li {
 	padding-left: 1em;
 }
