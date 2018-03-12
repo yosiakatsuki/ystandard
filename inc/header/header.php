@@ -1,26 +1,29 @@
 <?php
 /**
+ * ヘッダー関連
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
  * ヘッダーロゴ取得
  */
-if( ! function_exists( 'ys_get_header_logo' ) ) {
-	function ys_get_header_logo() {
-		$logo = get_bloginfo('name');
-		if( has_custom_logo() && ! ys_get_option( 'ys_logo_hidden' ) ) {
-			/**
-			 * ロゴあり・表示する
-			 */
-			$logo = get_custom_logo();
-		}
-		$logo = apply_filters( 'ys_get_header_logo', $logo );
-		$format = '<a href="' . esc_url( home_url( '/' ) )  . '" rel="home">%s</a>';
+function ys_get_header_logo() {
+	if ( has_custom_logo() && ! ys_get_option( 'ys_logo_hidden' ) ) {
+		/**
+		 * ロゴあり・表示する
+		 */
+		$logo = get_custom_logo();
+	} else {
+		$logo   = get_bloginfo( 'name' );
+		$format = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">%s</a>';
 		$format = apply_filters( 'ys_get_header_logo_format', $format );
-		return sprintf( $format, ys_amp_convert_image( $logo ) );
+		$logo   = sprintf( $format, $logo );
 	}
+	$logo = apply_filters( 'ys_get_header_logo', $logo );
+	return ys_amp_convert_image( $logo );
 }
 
 /**
