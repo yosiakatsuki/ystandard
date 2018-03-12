@@ -2,13 +2,12 @@
   @at-root {
     & {
       padding: get_margin(2) get_margin(1);
-      margin: 0 get_margin(-1) get_margin(1);
+      margin-bottom: get_margin(2);
       background-color: $bg-color-gray;
     }
     @include media-breakpoint(pc) {
       & {
         padding: get_margin(2);
-        margin: get_margin(-1) get_margin(-2) + 1px get_margin(1);
       }
     }
     
