@@ -385,6 +385,16 @@
 
 ## pagination
 
+### ys_get_pagination_prev_text
+
+- file: inc/pagination/pagination.php
+- description: ページネーション 前へリンク テキスト編集フィルタ
+
+### ys_get_pagination_next_text
+
+- file: inc/pagination/pagination.php
+- description: ページネーション 次へリンク テキスト編集フィルタ
+
 ### ys_get_pagination
 
 - file: inc/pagination/pagination.php
