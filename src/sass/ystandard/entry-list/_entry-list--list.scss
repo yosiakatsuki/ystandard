@@ -2,21 +2,8 @@
 
   .entry-list {
     padding: get_margin(2) 0;
-    border-bottom: 1px solid $border-color-light;
-    &:first-child {
-      border-top: 1px solid $border-color-light;
-    }
   }
   @include media-breakpoint(tb) {
-
-    .entry-list {
-      padding: get_margin(2);
-      margin: 0 ( -1 * get_margin(2) );
-      transition: all .3s;
-      &:hover {
-        background-color: $bg-color-gray;
-      }
-    }
 
     .entry-list__thumbnail {
       width: 250px;

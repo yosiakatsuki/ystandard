@@ -2159,17 +2159,11 @@ figcaption {
 
 .entry-list--list .entry-list {
 	padding: 30px 0;
-	border-bottom: 1px solid #ecf0f1;
-}
-
-.entry-list--list .entry-list:first-child {
-	border-top: 1px solid #ecf0f1;
 }
 
 .entry-list--card .content__main {
 	padding-right: 0;
 	padding-left: 0;
-	border: none;
 }
 
 .entry-list--card .archive__list {
@@ -2360,7 +2354,6 @@ div.aligncenter {
 .one-col .content__main {
 	width: 100%;
 	max-width: 100%;
-	border: none;
 }
 
 .one-col.single .breadcrumbs,
@@ -2534,17 +2527,6 @@ div.aligncenter {
 .author--2col .author__sns,
 .author--2col .author__archive {
 	text-align: left;
-}
-
-.entry-list--list .entry-list {
-	padding: 30px;
-	margin: 0 -30px;
-	-webkit-transition: all .3s;
-	transition: all .3s;
-}
-
-.entry-list--list .entry-list:hover {
-	background-color: #fafafa;
 }
 
 .entry-list--list .entry-list__thumbnail {
@@ -2729,9 +2711,8 @@ div.aligncenter {
 }
 
 .content__main {
-	width: calc( 100% - 360px);
-	padding: 15px 29px;
-	border: 1px solid #ecf0f1;
+	width: calc( 100% - 390px);
+	margin-right: 30px;
 }
 
 .sidebar {
