@@ -1,12 +1,12 @@
 <?php
 /**
+ * AMPページ用HTML置換関連処理
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- * AMPページ用HTML置換関連処理
- */
+
 /**
  *	AMP用正規表現置換処理関数
  */
