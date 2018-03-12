@@ -402,14 +402,6 @@ function ys_customizer_inline_css() {
 							'border-color' => $html_font_sub
 						)
 					);
-	$css .= ys_customizer_create_inline_css(
-						array(
-							'.search-submit svg',
-						),
-						array(
-							'fill' => $html_font_sub
-						)
-					);
 
 	/**
 	 * ヘッダーカラー
