@@ -69,12 +69,14 @@ if ( ys_is_amp() ) {
 		<?php do_action( 'ys_site_header_append' ); ?>
 	</header><!-- .header .site-header -->
 	<?php do_action( 'ys_after_site_header' ); ?>
-	<div id="content" class="site-content site__content">
 	<?php
 	/**
 	 * ヒーローエリア
 	 */
 	get_template_part( 'template-parts/hero/hero', ys_get_hero_template() );
+	?>
+	<div id="content" class="site-content site__content">
+	<?php
 	/**
 	 * パンくずリスト
 	 */
