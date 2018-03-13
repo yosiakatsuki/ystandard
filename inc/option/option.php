@@ -55,23 +55,27 @@ function ys_get_options() {
 	 * [ys]投稿ページ設定
 	 * **********
 	 */
-	// 個別ページでアイキャッチ画像を表示しない.
-	$result['ys_hide_post_thumbnail'] = get_option( 'ys_hide_post_thumbnail', 0 );
+	// 個別ページでアイキャッチ画像を表示する.
+	$result['ys_show_post_thumbnail'] = get_option( 'ys_show_post_thumbnail', 1 );
+	// カテゴリー・タグ情報を表示する.
+	$result['ys_show_post_category'] = get_option( 'ys_show_post_category', 1 );
+	// ブログフォローボックスを表示する.
+	$result['ys_show_post_follow_box'] = get_option( 'ys_show_post_follow_box', 1 );
+	// 「この記事を書いた人」ボックスを表示する.
+	$result['ys_show_post_author'] = get_option( 'ys_show_post_author', 1 );
 	// 関連記事を出力する.
 	$result['ys_show_post_related'] = get_option( 'ys_show_post_related', 1 );
-	// 次の記事・前の記事を表示しない.
-	$result['ys_hide_post_paging'] = get_option( 'ys_hide_post_paging', 0 );
-	// 「この記事を書いた人」ボックスを表示しない.
-	$result['ys_hide_post_author'] = get_option( 'ys_hide_post_author', 0 );
+	// 次の記事・前の記事を表示する.
+	$result['ys_show_post_paging'] = get_option( 'ys_show_post_paging', 1 );
 	/**
 	 * **********
 	 * [ys]固定ページ設定
 	 * **********
 	 */
-	// 個別ページでアイキャッチ画像を表示しない.
-	$result['ys_hide_page_thumbnail'] = get_option( 'ys_hide_page_thumbnail', 0 );
-	// 「この記事を書いた人」ボックスを表示しない.
-	$result['ys_hide_page_author'] = get_option( 'ys_hide_page_author', 0 );
+	// 個別ページでアイキャッチ画像を表示する.
+	$result['ys_show_page_thumbnail'] = get_option( 'ys_show_page_thumbnail', 1 );
+	// 「この記事を書いた人」ボックスを表示する.
+	$result['ys_show_page_author'] = get_option( 'ys_show_page_author', 1 );
 	/**
 	 * **********
 	 * [ys]アーカイブページ設定

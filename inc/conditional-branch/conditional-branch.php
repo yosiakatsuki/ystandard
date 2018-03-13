@@ -235,7 +235,26 @@ function ys_is_active_oembed() {
  * アイキャッチ画像を表示するか(singlar)
  */
 function ys_is_active_post_thumbnail( $post_id = null ) {
-	$result = ( has_post_thumbnail( $post_id ) && 0 == ys_get_option( 'ys_hide_post_thumbnail' ) );
+	$result = true;
+	if ( ! has_post_thumbnail( $post_id ) ) {
+		$result = false;
+	}
+	/**
+	 * 投稿ページ
+	 */
+	if ( is_single() ) {
+		if ( ! ys_get_option( 'ys_show_post_thumbnail' ) ) {
+			$result = false;
+		}
+	}
+	/**
+	 * 固定ページ
+	 */
+	if ( is_page() ) {
+		if ( ! ys_get_option( 'ys_show_page_thumbnail' ) ) {
+			$result = false;
+		}
+	}
 	return apply_filters( 'ys_is_active_post_thumbnail', $result );
 }
 
@@ -284,10 +303,10 @@ function ys_is_active_entry_footer_widget() {
  */
 function ys_is_active_entry_footer_author() {
 	$result = true;
-	if( is_single() && ys_get_option( 'ys_hide_post_author') ) {
+	if ( is_single() && ! ys_get_option( 'ys_show_post_author' ) ) {
 		$result = false;
 	}
-	if( is_page() && ys_get_option( 'ys_hide_page_author') ) {
+	if ( is_page() && ! ys_get_option( 'ys_show_page_author' ) ) {
 		$result = false;
 	}
 	return apply_filters( 'ys_is_active_entry_footer_author', $result );
@@ -306,12 +325,27 @@ function ys_is_active_footer_widgets() {
 	return apply_filters( 'ys_is_active_footer_widgets', $result );
 }
 /**
+ * フォローBOXを表示するか
+ */
+function ys_is_active_follow_box() {
+	$result = true;
+	if ( ys_is_amp() || ! ys_get_option( 'ys_show_post_follow_box' ) ) {
+		$result = false;
+	}
+	if ( is_singular() ) {
+		if ( '1' === ys_get_post_meta( 'ys_hide_follow' ) ) {
+			$result = false;
+		}
+	}
+	return apply_filters( 'ys_is_active_follow_box', $result );
+}
+/**
  * 広告を表示するか
  */
 function ys_is_active_advertisement() {
 	$result = true;
-	if( is_singular() ) {
-		if( '1' === ys_get_post_meta( 'ys_hide_ad' ) ) {
+	if ( is_singular() ) {
+		if ( '1' === ys_get_post_meta( 'ys_hide_ad' ) ) {
 			$result = false;
 		}
 	}
@@ -322,7 +356,7 @@ function ys_is_active_advertisement() {
  */
 function ys_is_active_related_post() {
 	$result = false;
-	if( ! ys_is_amp() && ys_get_option( 'ys_show_post_related' ) ) {
+	if ( ! ys_is_amp() && ys_get_option( 'ys_show_post_related' ) ) {
 		$result = true;
 	}
 	return apply_filters( 'ys_is_active_related_post', $result );
@@ -330,7 +364,7 @@ function ys_is_active_related_post() {
 /**
  * 管理画面の投稿タイプ判断用
  */
-function ys_is_post_type_on_admin( $type ){
+function ys_is_post_type_on_admin( $type ) {
 	global $post_type;
 	return ( $type == $post_type );
 }

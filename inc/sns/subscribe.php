@@ -14,15 +14,14 @@ if( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 		$subscribe = array();
 		/**
 		 * Twitter
-		 * @var [type]
 		 */
-		if( ys_get_option( 'ys_subscribe_url_twitter' ) ) {
+		if ( ys_get_option( 'ys_subscribe_url_twitter' ) ) {
 			$subscribe['Twitter'] = array(
-																'class' => 'twitter',
-																'icon' => 'twitter',
-																'text' => 'Twitter',
-																'url' => ys_get_option( 'ys_subscribe_url_twitter' )
-															);
+				'class' => 'twitter',
+				'icon'  => 'twitter',
+				'text'  => 'Twitter',
+				'url'   => ys_get_option( 'ys_subscribe_url_twitter' ),
+			);
 		}
 		/**
 		 * Facebook
@@ -57,7 +56,7 @@ if( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 															'url' => ys_get_option( 'ys_subscribe_url_feedly' )
 														);
 		}
-		if( "1" === ys_get_post_meta( 'ys_hide_follow' ) ){
+		if ( ! ys_is_active_follow_box() ) {
 			$subscribe = array();
 		}
 		return apply_filters( 'ys_get_subscribe_buttons', $subscribe );

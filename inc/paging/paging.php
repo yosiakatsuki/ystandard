@@ -10,10 +10,10 @@
 if( ! function_exists( 'ys_paging' ) ) {
 	function ys_paging() {
 		$paging = array();
-		if( ys_get_option( 'ys_hide_post_paging' ) ){
+		if ( ! ys_get_option( 'ys_show_post_paging' ) ) {
 			return false;
 		}
-		if( ys_is_amp() ) {
+		if ( ys_is_amp() ) {
 			return false;
 		}
 		/**
