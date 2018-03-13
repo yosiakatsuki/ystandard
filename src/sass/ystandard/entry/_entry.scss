@@ -3,12 +3,12 @@
     .entry__title {
       font-size: 1.4em;
       line-height: 1.5;
-      margin: get_margin() 0 5px;
+      margin: 0;
       padding: 0;
     }
 
     .entry__thumbnail {
-      margin: 0;
+      margin: 1em 0 0;
       text-align: center;
     }
 
