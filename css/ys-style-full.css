@@ -1280,6 +1280,11 @@ input[type="button"]:hover {
 	background-color: #fff;
 }
 
+.hero + .site__content {
+	margin-top: 0;
+	padding-top: 0;
+}
+
 .site__content {
 	margin-top: 15px;
 	margin-bottom: 15px;
