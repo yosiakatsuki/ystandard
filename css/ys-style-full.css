@@ -1069,6 +1069,7 @@ textarea,
 select {
 	display: block;
 	width: 100%;
+	-webkit-appearance: none;
 }
 
 select:not([size]):not([multiple]) {
