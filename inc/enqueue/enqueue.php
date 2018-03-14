@@ -417,17 +417,24 @@ function ys_enqueue_customize_controls_js() {
 }
 add_action( 'customize_controls_enqueue_scripts', 'ys_enqueue_customize_controls_js' );
 
-if ( ! function_exists( 'ys_add_async_on_js' ) ) {
+if ( ! function_exists( 'ys_script_loader_tag' ) ) {
 	/**
-	 * スクリプトにasync付ける
+	 * 出力される script 要素を加工
 	 *
 	 * @param string $tag tag.
+	 * @param string $handle handle.
+	 * @param string $src src.
 	 * @return string
 	 */
-	function ys_add_async_on_js( $tag ) {
+	function ys_script_loader_tag( $tag, $handle, $src ) {
 		if ( is_admin() ) {
 			return $tag;
 		}
+		/**
+		 * 属性削除 : type.
+		 */
+		$tag = str_replace( "type='text/javascript'", '', $tag );
+		$tag = str_replace( 'type="text/javascript"', '', $tag );
 		/**
 		 * JQuery関連以外のjsにasyncを付ける
 		 */
@@ -437,4 +444,27 @@ if ( ! function_exists( 'ys_add_async_on_js' ) ) {
 		return str_replace( 'src', 'async defer src', $tag );
 	}
 }
-add_filter( 'script_loader_tag', 'ys_add_async_on_js' );
+add_filter( 'script_loader_tag', 'ys_script_loader_tag', 10, 3 );
+
+if ( ! function_exists( 'ys_style_loader_tag' ) ) {
+	/**
+	 * 出力されるcssロード用link要素を加工
+	 *
+	 * @param string $html html.
+	 * @param string $handle handle.
+	 * @param string $href href.
+	 * @return string
+	 */
+	function ys_style_loader_tag( $html, $handle, $href ) {
+		if ( is_admin() ) {
+			return $html;
+		}
+		/**
+		 * 属性削除 : type.
+		 */
+		$html = str_replace( "type='text/css'", '', $html );
+		$html = str_replace( 'type="text/css"', '', $html );
+		return $html;
+	}
+}
+add_filter( 'style_loader_tag', 'ys_style_loader_tag', 10, 3 );
