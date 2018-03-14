@@ -2827,14 +2827,9 @@ div.aligncenter {
 	position: relative;
 }
 
-.ys-post-list--thumbnail .ys-post-list__list {
-	border-top: 1px solid #ecf0f1;
-}
-
 .ys-post-list--thumbnail .ys-post-list__item {
 	padding-top: 1em;
 	padding-bottom: 1em;
-	border-bottom: 1px solid #ecf0f1;
 }
 
 .ys-post-list--thumbnail .ys-post-list__img {
