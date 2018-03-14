@@ -34,8 +34,19 @@ function ys_shortcode_author_list( $args ) {
 	 */
 	$id = $args['id'];
 	if ( '' !== $args['exclude'] ) {
+		/**
+		 * ユーザー名からIDを取得
+		 */
+		$exclude_id   = array();
+		$exclude_name = explode( ',', $args['exclude'] );
+		foreach ( $exclude_name as $value ) {
+			$user = get_user_by( 'slug', $value );
+			if ( $user ) {
+				$exclude_id[] = $user->ID;
+			}
+		}
 		$user_args = wp_parse_args(
-			array( 'exclude' => explode( ',', $args['exclude'] ) ),
+			array( 'exclude' => $exclude_id ),
 			$user_args
 		);
 	}
