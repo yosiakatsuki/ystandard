@@ -25,7 +25,7 @@ if ( ! function_exists( 'ys_is_top_page') ) {
  * ユーザーエージェントのチェック
  */
 function ys_check_user_agent( $ua ) {
-	if( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ); {
+	if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ); {
 		return false;
 	}
 	$pattern = '/' . implode( '|', $ua ) . '/i';

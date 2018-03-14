@@ -52,7 +52,7 @@ if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 		/**
 		 * タクソノミー
 		 */
-		if( is_single() ) {
+		if ( is_single() ) {
 			$templates['taxonomy'] = $dir . 'entry-footer-taxonomy';
 		}
 		/**
