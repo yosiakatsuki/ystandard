@@ -170,7 +170,7 @@ class YS_Enqueue {
 	public function get_onload_script_attr() {
 		$scripts = apply_filters( 'ys_enqueue_onload_scripts', $this->onload_script );
 		$scripts = $this->create_load_array( $scripts );		
-		return 'data-ys-onload-script=' . $this->ys_json_encode( $scripts );
+		return 'data-ys-onload-script=\'' . $this->ys_json_encode( $scripts ) . '\'';
 	}
 	/**
 	 * lazyload-script読み込み用data属性文字列作成
@@ -178,7 +178,7 @@ class YS_Enqueue {
 	public function get_lazyload_script_attr() {
 		$scripts = apply_filters( 'ys_enqueue_lazyload_scripts', $this->lazyload_script );
 		$scripts = $this->create_load_array( $scripts );
-		return 'data-ys-lazy-script=' . $this->ys_json_encode( $scripts );
+		return 'data-ys-lazy-script=\'' . $this->ys_json_encode( $scripts ) . '\'';
 	}
 	/**
 	 * lazyload-css読み込み用data属性文字列作成
@@ -186,7 +186,7 @@ class YS_Enqueue {
 	public function get_lazyload_css_attr() {
 		$css = apply_filters( 'ys_enqueue_lazyload_css', $this->lazyload_css );
 		$css = $this->create_load_array( $css );
-		return 'data-ys-lazy-css=' . $this->ys_json_encode( $css );
+		return 'data-ys-lazy-css=\'' . $this->ys_json_encode( $css ) . '\'';
 	}
 
 	/**

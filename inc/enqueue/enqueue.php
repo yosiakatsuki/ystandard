@@ -434,7 +434,7 @@ if ( ! function_exists( 'ys_add_async_on_js' ) ) {
 		if ( false !== strpos( $tag, 'jquery' ) ) {
 			return $tag;
 		}
-		return str_replace( 'src', 'async src', $tag );
+		return str_replace( 'src', 'async defer src', $tag );
 	}
 }
 add_filter( 'script_loader_tag', 'ys_add_async_on_js' );
