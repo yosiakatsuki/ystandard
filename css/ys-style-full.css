@@ -3072,9 +3072,15 @@ div.aligncenter {
 	margin-bottom: 1em;
 }
 
+.ad__double {
+	margin-right: -5px;
+	margin-left: -5px;
+}
+
 .ad__left,
 .ad__right {
 	width: 50%;
+	padding: 0 5px;
 	text-align: center;
 	overflow: hidden;
 }
