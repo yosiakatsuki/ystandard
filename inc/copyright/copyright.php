@@ -1,63 +1,94 @@
 <?php
 /**
+ * フッター copyright
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- * フッター copyright
- */
-if( ! function_exists( 'ys_get_footer_site_info' ) ) {
+
+if ( ! function_exists( 'ys_get_footer_site_info' ) ) {
+	/**
+	 * フッターコピーライト表示取得
+	 *
+	 * @return string
+	 */
 	function ys_get_footer_site_info() {
-		$copy = ys_get_copyright();
+		$copy      = ys_get_copyright();
 		$poweredby = ys_get_poweredby();
 		return $copy . $poweredby;
 	}
 }
+/**
+ * フッターコピーライト表示
+ *
+ * @return void
+ */
 function ys_the_footer_site_info() {
 	echo ys_get_footer_site_info();
 }
-/**
- * copyright
- */
-if( ! function_exists( 'ys_get_copyright' ) ) {
+
+if ( ! function_exists( 'ys_get_copyright' ) ) {
+	/**
+	 * Copyright
+	 *
+	 * @return string
+	 */
 	function ys_get_copyright() {
 		$year = ys_get_option( 'ys_copyright_year' );
-		if( '' == $year ) {
+		if ( '' == $year ) {
 			$year = date_i18n( 'Y' );
 		}
-		$url = esc_url( home_url( '/' ) );
+		$url       = esc_url( home_url( '/' ) );
 		$blog_name = get_bloginfo( 'name' );
-		$copy = sprintf(
-							'Copyright &copy; %s <a href="%s" rel="home">%s</a> All Rights Reserved.',
-							$year,
-							$url,
-							$blog_name
-						);
+		$copy      = sprintf(
+			'Copyright &copy; %s <a href="%s" rel="home">%s</a> All Rights Reserved.',
+			$year,
+			$url,
+			$blog_name
+		);
+		/**
+		 * Copyright
+		 */
 		$copy = apply_filters( 'ys_copyright', $copy );
-		return sprintf(
-							'<p id="footer-copy" class="footer__copy">%s</p>',
-							$copy
-						);
+		if ( empty( $copy ) ) {
+			$copy = sprintf(
+				'<p id="footer-copy" class="footer__copy">%s</p>',
+				$copy
+			);
+		}
+		return $copy;
 	}
 }
-/**
- * poweredby
- */
-if( ! function_exists( 'ys_get_poweredby' ) ) {
+
+if ( ! function_exists( 'ys_get_poweredby' ) ) {
+	/**
+	 * Powered By
+	 *
+	 * @return string
+	 */
 	function ys_get_poweredby() {
+		/**
+		 * テーマの情報
+		 */
 		$theme = '<a href="https://wp-ystandard.com" target="_blank" rel="nofollow">yStandard Theme</a> by <a href="https://yosiakatsuki.net/blog/" target="_blank" rel="nofollow">yosiakatsuki</a> ';
 		$theme = apply_filters( 'ys_poweredby_theme', $theme );
-		$url = __( 'https://wordpress.org/' );
+		/**
+		 * WordPress
+		 */
+		$url      = __( 'https://wordpress.org/' );
 		$powerdby = sprintf(
-									'Powered by <a href="%s" target="_blank" rel="nofollow">WordPress</a>',
-									$url
-								);
+			'Powered by <a href="%s" target="_blank" rel="nofollow">WordPress</a>',
+			$url
+		);
+		/**
+		 * Powered By
+		 */
 		$html = sprintf(
-							'<p id="footer-poweredby" class="footer__poweredby">%s%s</p>',
-							$theme,
-							$powerdby
-						);
+			'<p id="footer-poweredby" class="footer__poweredby">%s%s</p>',
+			$theme,
+			$powerdby
+		);
 		return apply_filters( 'ys_poweredby', $html );
 	}
 }
