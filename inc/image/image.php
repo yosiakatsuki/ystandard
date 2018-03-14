@@ -145,22 +145,56 @@ if ( ! function_exists( 'ys_get_the_image_object_meta' ) ) {
 		return $meta;
 	}
 }
+if ( ! function_exists( 'ys_get_custom_logo' ) ) {
+	/**
+	 * カスタムロゴ取得
+	 *
+	 * @param integer $blog_id ブログID.
+	 * @return string
+	 */
+	function ys_get_custom_logo( $blog_id = 0 ) {
+		$html          = '';
+		$switched_blog = false;
+
+		if ( is_multisite() && ! empty( $blog_id ) && get_current_blog_id() !== (int) $blog_id ) {
+				switch_to_blog( $blog_id );
+				$switched_blog = true;
+		}
+
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+
+		if ( $custom_logo_id ) {
+			$custom_logo_attr = array( 'class' => 'custom-logo' );
+
+			$image_alt = get_post_meta( $custom_logo_id, '_wp_attachment_image_alt', true );
+			if ( empty( $image_alt ) ) {
+				$custom_logo_attr['alt'] = get_bloginfo( 'name', 'display' );
+			}
+			$html = wp_get_attachment_image( $custom_logo_id, 'full', false, $custom_logo_attr );
+		}
+		if ( $switched_blog ) {
+				restore_current_blog();
+		}
+		return apply_filters( 'ys_get_custom_logo', $html, $blog_id );
+	}
+}
+
 /**
  * カスタムロゴオブジェクト取得
  */
-if (!function_exists( 'ys_get_custom_logo_image_object')) {
+if ( ! function_exists( 'ys_get_custom_logo_image_object' ) ) {
 	function ys_get_custom_logo_image_object( $blog_id = 0 ) {
-		if ( is_multisite() && (int) $blog_id !== get_current_blog_id() ) {
+		if ( is_multisite() && get_current_blog_id() !== (int) $blog_id ) {
 				switch_to_blog( $blog_id );
 		}
 		$custom_logo_id = get_theme_mod( 'custom_logo' );
-		$image = false;
+		$image          = false;
 		// We have a logo. Logo is go.
 		if ( $custom_logo_id ) {
-				$image = wp_get_attachment_image_src( $custom_logo_id, 'full' );
+			$image = wp_get_attachment_image_src( $custom_logo_id, 'full' );
 		}
 		if ( is_multisite() && ms_is_switched() ) {
-				restore_current_blog();
+			restore_current_blog();
 		}
 		return $image;
 	}
