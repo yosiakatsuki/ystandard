@@ -19,22 +19,22 @@ function ys_get_header_logo() {
 	} else {
 		$logo = get_bloginfo( 'name' );
 	}
+	$logo   = apply_filters( 'ys_get_header_logo', $logo );
 	$format = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">%s</a>';
 	$format = apply_filters( 'ys_get_header_logo_format', $format );
 	$logo   = sprintf( $format, $logo );
-	$logo   = apply_filters( 'ys_get_header_logo', $logo );
 	return ys_amp_convert_image( $logo );
 }
 
-/**
- * サイトキャッチフレーズを取得
- */
-if( ! function_exists( 'ys_the_blog_description' ) ) {
+if ( ! function_exists( 'ys_the_blog_description' ) ) {
+	/**
+	 * サイトキャッチフレーズを取得
+	 */
 	function ys_the_blog_description() {
-		if( ys_get_option( 'ys_wp_hidden_blogdescription' ) ) {
+		if ( ys_get_option( 'ys_wp_hidden_blogdescription' ) ) {
 			return;
 		}
-		$dscr = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
+		$dscr   = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
 		$format = '<p class="site-description header__dscr color__font-sub">%s</p>';
 		$format = apply_filters( 'ys_the_blog_description_format', $format );
 		echo sprintf( $format, $dscr );
