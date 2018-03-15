@@ -114,6 +114,7 @@ gulp.task('zip', function(){
         '!webpack.config.js',
         '!phpcs.xml.dist',
         '!phpunit.xml.dist',
+        '!tests',
       ],
       {base: './'}
     )
