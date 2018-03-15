@@ -1023,7 +1023,8 @@ input[type="button"] {
 
 .breadcrumbs {
 	font-size: .7em;
-	line-height: 2;
+	line-height: 1;
+	margin-bottom: 15px;
 }
 
 .breadcrumbs a {
