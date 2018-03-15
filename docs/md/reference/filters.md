@@ -447,6 +447,12 @@
 
 ## blog-card
 
+## enqueue
+
+### ys_exclude_add_async_scripts
+- file: inc/enqueue/enqueue.php
+- description: script要素にasyncを付けないファイルリストの編集フィルタ
+
 ### ys_blog_card_thumbnail_size
 
 - file: inc/blog-card/blog-card.php

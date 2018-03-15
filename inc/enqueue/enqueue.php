@@ -436,10 +436,19 @@ if ( ! function_exists( 'ys_script_loader_tag' ) ) {
 		$tag = str_replace( "type='text/javascript'", '', $tag );
 		$tag = str_replace( 'type="text/javascript"', '', $tag );
 		/**
-		 * JQuery関連以外のjsにasyncを付ける
+		 * JQuery関連以外のjsにasync deferを付ける
 		 */
 		if ( false !== strpos( $tag, 'jquery' ) ) {
 			return $tag;
+		}
+		/**
+		 * 非同期読み込みを除外
+		 */
+		$exclude = apply_filters( 'ys_exclude_add_async_scripts', array() );
+		if ( ! empty( $exclude ) ) {
+			if ( in_array( $handle, $exclude ) ) {
+				return $tag;
+			}
 		}
 		return str_replace( 'src', 'async defer src', $tag );
 	}
