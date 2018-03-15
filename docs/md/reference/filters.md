@@ -342,6 +342,11 @@
 
 ## archive
 
+### ys_archive_title_format
+
+- file: inc/archive/archive.php
+- description: archiveページのタイトルフォーマット編集用フィルタ
+
 ### ys_get_the_archive_title
 
 - file: inc/archive/archive.php

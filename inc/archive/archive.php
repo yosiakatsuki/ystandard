@@ -1,18 +1,23 @@
 <?php
 /**
+ * アーカイブ関連の処理
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- * アーカイブタイトル
- */
-if ( ! function_exists( 'ys_get_the_archive_title' ) ){
+
+if ( ! function_exists( 'ys_get_the_archive_title' ) ) {
+	/**
+	 * アーカイブタイトル
+	 *
+	 * @param string $title title.
+	 */
 	function ys_get_the_archive_title( $title ) {
 		/**
 		 * 標準フォーマット
 		 */
-		$title_format = '「%s」の記事一覧';
+		$title_format = apply_filters( 'ys_archive_title_format', '「%s」の記事一覧' );
 
 		if ( is_category() ) {
 			$title = sprintf( $title_format, single_cat_title( '', false ) );
@@ -50,7 +55,7 @@ if ( ! function_exists( 'ys_get_the_archive_url' ) ) {
 	 * アーカイブURL
 	 */
 	function ys_get_the_archive_url() {
-		$url = '';
+		$url            = '';
 		$queried_object = get_queried_object();
 		if ( is_category() ) {
 			$url = get_category_link( $queried_object->term_id );

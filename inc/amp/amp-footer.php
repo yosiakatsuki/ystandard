@@ -1,12 +1,12 @@
 <?php
 /**
+ * AMP footer関連
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- * AMP footer関連
- */
+
 /**
  * AMPフォーマットフッター処理
  */
@@ -19,6 +19,9 @@ function ys_amp_footer() {
  */
 add_action( 'ys_amp_footer', 'ys_the_json_ld' );
 
+/**
+ * AMP用スライダー
+ */
 function ys_the_amp_slider() {
 	?>
 	<amp-sidebar id="sidebar" layout="nodisplay" side="right" class="amp-slider color__nav-bg--sp">
@@ -35,8 +38,8 @@ function ys_the_amp_slider() {
 					'menu_id'        => 'global-nav__menu',
 					'container'      => false,
 					'depth'          => 2,
-					'walker'         => new YS_Walker_Global_Nav_Menu
-				 ) );
+					'walker'         => new YS_Walker_Global_Nav_Menu,
+				));
 			?>
 	</nav><!-- .main-navigation -->
 </amp-sidebar>

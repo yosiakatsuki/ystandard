@@ -7,22 +7,35 @@
  * @license GPL-2.0+
  */
 
-/**
- * 投稿者の記事一覧リンク取得
- */
 if ( ! function_exists( 'ys_get_author_link' ) ) {
+	/**
+	 * 投稿者の記事一覧リンク取得
+	 *
+	 * @param  boolean $user_id ユーザーID.
+	 * @return string
+	 */
 	function ys_get_author_link( $user_id = false ) {
 		$user_id = ys_check_user_id( $user_id );
 		return esc_url_raw( get_author_posts_url( get_the_author_meta( 'ID', $user_id ) ) );
 	}
 }
+/**
+ * 投稿者記事一覧リンク表示
+ *
+ * @param  boolean $user_id ユーザーID.
+ * @return void
+ */
 function ys_the_author_link( $user_id = false ) {
 	echo ys_get_author_link( $user_id );
 }
-/**
- * 投稿者名取得
- */
+
 if ( ! function_exists( 'ys_get_author_display_name' ) ) {
+	/**
+	 * 投稿者名取得
+	 *
+	 * @param  boolean $user_id ユーザーID.
+	 * @return string
+	 */
 	function ys_get_author_display_name( $user_id = false ) {
 		$user_id = ys_check_user_id( $user_id );
 		return get_the_author_meta( 'display_name', $user_id );
@@ -37,22 +50,27 @@ if ( ! function_exists( 'ys_get_author_display_name' ) ) {
 function ys_the_author_display_name( $user_id = false ) {
 	echo ys_get_author_display_name( $user_id );
 }
-/**
- * 投稿者名（html）取得
- */
+
 if ( ! function_exists( 'ys_get_author_name' ) ) {
+	/**
+	 * 投稿者名（html）取得
+	 *
+	 * @param  boolean $user_id ユーザーID.
+	 * @param  boolean $vcard   vcardでマークアップするか.
+	 * @return string
+	 */
 	function ys_get_author_name( $user_id = false, $vcard = true ) {
-		$user_id = ys_check_user_id( $user_id );
+		$user_id     = ys_check_user_id( $user_id );
 		$author_name = esc_html( ys_get_author_display_name( $user_id ) );
-		$author_url = ys_get_author_link( $user_id );
+		$author_url  = ys_get_author_link( $user_id );
 		/**
 		 * 投稿者非表示オプションによって構造化データつける付けない判断する
 		 */
-		if( $vcard && ! ys_is_active_entry_footer_author() ) {
+		if ( $vcard && ! ys_is_active_entry_footer_author() ) {
 			$vcard = false;
 		}
 		global $ys_author;
-		if( $vcard && false !== $ys_author ) {
+		if ( $vcard && false !== $ys_author ) {
 			$vcard = false;
 		}
 		if ( $vcard ) {
@@ -65,13 +83,24 @@ if ( ! function_exists( 'ys_get_author_name' ) ) {
 		return $author_name;
 	}
 }
-function ys_the_author_name( $user_id = false, $vcard = true ) {
-	echo ys_get_author_name( $user_id = false, $vcard = true );
-}
 /**
- * 投稿者 SNS一覧取得
+ * 投稿者名（html）出力
+ *
+ * @param  boolean $user_id ユーザーID.
+ * @param  boolean $vcard   vcardでマークアップするか.
+ * @return void
  */
+function ys_the_author_name( $user_id = false, $vcard = true ) {
+	echo ys_get_author_name( $user_id, $vcard );
+}
+
 if ( ! function_exists( 'ys_get_author_sns_list' ) ) {
+	/**
+	 * 投稿者 SNS一覧取得
+	 *
+	 * @param  boolean $user_id ユーザーID.
+	 * @return array
+	 */
 	function ys_get_author_sns_list( $user_id = false ) {
 		$user_id = ys_check_user_id( $user_id );
 		/**
@@ -104,7 +133,7 @@ if ( ! function_exists( 'ys_get_author_sns_list' ) ) {
  * 投稿者 SNS一覧用配列取得
  *
  * @param string $key key.
- * @param string $icon_class アイコンフォントのクラス
+ * @param string $icon_class アイコンフォントのクラス.
  * @param int    $user_id user id.
  * @return array
  */
@@ -140,14 +169,18 @@ function ys_the_author_sns() {
 	endif;
 }
 
-/**
- * 投稿者 プロフィール説明文取得
- */
 if ( ! function_exists( 'ys_get_author_description' ) ) {
-	function ys_get_author_description( $wpautop = true, $user_id = false ){
-		$user_id = ys_check_user_id( $user_id );
-		$author_dscr = get_the_author_meta( 'description' , $user_id );
-		if( $wpautop ){
+	/**
+	 * 投稿者 プロフィール説明文取得
+	 *
+	 * @param  boolean $wpautop wpautopを効かせるか.
+	 * @param  boolean $user_id ユーザーID.
+	 * @return string
+	 */
+	function ys_get_author_description( $wpautop = true, $user_id = false ) {
+		$user_id     = ys_check_user_id( $user_id );
+		$author_dscr = get_the_author_meta( 'description', $user_id );
+		if ( $wpautop ) {
 			$author_dscr = wpautop( str_replace( array( "\r\n", "\r", "\n" ), "\n\n", $author_dscr ) );
 		}
 		return $author_dscr;

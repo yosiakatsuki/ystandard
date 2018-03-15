@@ -1,14 +1,21 @@
 <?php
 /**
  * AMPページに関わるフィルター処理
- * 
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-if( ! function_exists( 'ys_amp_convert_content' ) ) {
+
+if ( ! function_exists( 'ys_amp_convert_content' ) ) {
+	/**
+	 * 投稿内容をAMPに変換する
+	 *
+	 * @param  string $content 投稿内容.
+	 * @return string
+	 */
 	function ys_amp_convert_content( $content ) {
-		if( ! ys_is_amp() ) {
+		if ( ! ys_is_amp() ) {
 			return $content;
 		}
 		/**
@@ -21,7 +28,7 @@ if( ! function_exists( 'ys_amp_convert_content' ) ) {
 }
 add_filter( 'the_content', 'ys_amp_convert_content', 11 );
 
-if( ! function_exists( 'ys_amp_convert_all' ) ) {
+if ( ! function_exists( 'ys_amp_convert_all' ) ) {
 	function ys_amp_convert_all( $content ) {
 			/**
 		 * HTMLタグなどの置換

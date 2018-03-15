@@ -65,10 +65,10 @@ if ( ! function_exists( 'ys_the_uc_custom_head_amp' ) ) {
 }
 add_action( 'ys_amp_head', 'ys_the_uc_custom_head_amp', 11 );
 
-/**
- * AMP記事で必要になるスクリプト出力
- */
-if( ! function_exists( 'ys_the_amp_script' ) ) {
+if ( ! function_exists( 'ys_the_amp_script' ) ) {
+	/**
+	 * AMP記事で必要になるスクリプト出力
+	 */
 	function ys_the_amp_script() {
 		global $post;
 
@@ -78,43 +78,43 @@ if( ! function_exists( 'ys_the_amp_script' ) ) {
 		/**
 		 * 広告表示
 		 */
-		if( ys_is_load_amp_ad_script() ){
+		if ( ys_is_load_amp_ad_script() ) {
 			$scripts .= '<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>' . PHP_EOL;
 		}
 		/**
-		 * twitter
+		 * Twitter
 		 */
-		if( ys_is_load_amp_twitter_script( $content ) ) {
+		if ( ys_is_load_amp_twitter_script( $content ) ) {
 			$scripts .= '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>' . PHP_EOL;
 		}
 		/**
 		 * Instagram
 		 */
-		if( ys_is_load_amp_instagram_script( $content ) ){
+		if ( ys_is_load_amp_instagram_script( $content ) ) {
 			$scripts .= '<script custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js" async></script>' . PHP_EOL;
 		}
 		/**
 		 * Youtube
 		 */
-		if( ys_is_load_amp_youtube_script( $content ) ){
+		if ( ys_is_load_amp_youtube_script( $content ) ) {
 			$scripts .= '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>' . PHP_EOL;
 		}
 		/**
 		 * Vine
 		 */
-		if( ys_is_load_amp_vine_script( $content ) ){
+		if ( ys_is_load_amp_vine_script( $content ) ) {
 			$scripts .= '<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/amp-vine-0.1.js"></script>' . PHP_EOL;
 		}
 		/**
-		 * facebook
+		 * Facebook
 		 */
-		if( ys_is_load_amp_facebook_script( $content ) ){
+		if ( ys_is_load_amp_facebook_script( $content ) ) {
 			$scripts .= '<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>' . PHP_EOL;
 		}
 		/**
-		 * iframe
+		 * Iframe
 		 */
-		if( ys_is_load_amp_iframe_script( $content ) ){
+		if ( ys_is_load_amp_iframe_script( $content ) ) {
 			$scripts .= '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>' . PHP_EOL;
 		}
 
@@ -129,81 +129,93 @@ add_action( 'ys_amp_head', 'ys_the_amp_script' );
  */
 function ys_is_load_amp_ad_script() {
 	$result = false;
-	if( '' !== ys_get_option( 'ys_amp_advertisement_under_title' ) ){
+	if ( '' !== ys_get_option( 'ys_amp_advertisement_under_title' ) ) {
 		$result = true;
 	}
-	if( '' !== ys_get_option( 'ys_amp_advertisement_replace_more' ) ){
+	if ( '' !== ys_get_option( 'ys_amp_advertisement_replace_more' ) ) {
 		$result = true;
 	}
-	if( '' !== ys_get_option( 'ys_amp_advertisement_under_content' ) ){
+	if ( '' !== ys_get_option( 'ys_amp_advertisement_under_content' ) ) {
 		$result = true;
 	}
 	return apply_filters( 'ys_is_load_amp_ad_script', $result );
 }
 /**
  * Twitter用スクリプトを読み込むか
+ *
+ * @param string $content 投稿内容.
  */
 function ys_is_load_amp_twitter_script( &$content ) {
 	$pattern = '/https:\/\/twitter\.com\/.*?\/status\/.+/i';
-	if( 1 === preg_match( $pattern, $content, $matches ) ){
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		return true;
 	}
 	return false;
 }
 /**
  * Instagram用スクリプトを読み込むか
+ *
+ * @param string $content 投稿内容.
  */
 function ys_is_load_amp_instagram_script( &$content ) {
 	$pattern = '/https:\/\/www\.instagram\.com\/p\/.+/i';
-	if( 1 === preg_match( $pattern, $content, $matches ) ){
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		return true;
 	}
 	return false;
 }
 /**
- * youtube用スクリプトを読み込むか
+ * Youtube用スクリプトを読み込むか
+ *
+ * @param string $content 投稿内容.
  */
 function ys_is_load_amp_youtube_script( &$content ) {
 	$pattern = '/<iframe.+?src="https:\/\/www\.youtube\.com\/embed\/(.+?)(\?feature=oembed)?".*?><\/iframe>/i';
-	if( 1 === preg_match( $pattern, $content, $matches ) ){
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		$content = preg_replace( $pattern, '', $content );
 		return true;
 	}
 	return false;
 }
 /**
- * vine用スクリプトを読み込むか
+ * Vine用スクリプトを読み込むか
+ *
+ * @param string $content 投稿内容.
  */
 function ys_is_load_amp_vine_script( &$content ) {
 	$pattern = '/<iframe[^>]+?src="https:\/\/vine\.co\/v\/(.+?)\/embed\/simple".+?><\/iframe>/i';
-	if( 1 === preg_match( $pattern, $content, $matches ) ){
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		$content = preg_replace( $pattern, '', $content );
 		return true;
 	}
 	return false;
 }
 /**
- * facebook用スクリプトを読み込むか
+ * Facebook用スクリプトを読み込むか
+ *
+ * @param string $content 投稿内容.
  */
 function ys_is_load_amp_facebook_script( &$content ) {
 	$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/(.*?)&.+?".+?><\/iframe>/i';
-	if( 1 === preg_match( $pattern, $content, $matches ) ){
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		$content = preg_replace( $pattern, '', $content );
 		return true;
 	}
 	$pattern = '/<div[^>]+?class="fb-post"[^>]+?data-href="(.+?)".+?<\/div>/is';
-	if( 1 === preg_match( $pattern, $content, $matches ) ){
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		$content = preg_replace( $pattern, '', $content );
 		return true;
 	}
 	return false;
 }
 /**
- * iframe用スクリプトを読み込むか
+ * Iframe用スクリプトを読み込むか
+ *
+ * @param string $content 投稿内容.
  */
 function ys_is_load_amp_iframe_script( &$content ) {
 	$pattern = '/<iframe/i';
-	if( 1 === preg_match( $pattern, $content, $matches ) ){
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		return true;
 	}
 	return false;

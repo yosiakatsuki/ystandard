@@ -1,16 +1,19 @@
 <?php
 /**
+ * 管理者向け機能
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- * 管理者向け機能
- */
-/**
- * セルフピンバック対策
- */
-if( ! function_exists( 'ys_no_self_ping' ) ) {
+
+if ( ! function_exists( 'ys_no_self_ping' ) ) {
+	/**
+	 * セルフピンバック対策
+	 *
+	 * @param array $links links.
+	 * @return void
+	 */
 	function ys_no_self_ping( &$links ) {
 		$home = get_option( 'home' );
 		foreach ( $links as $l => $link ) {
