@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 /**
- * css,javascript読み込み関連のためのクラス
+ * css,JavaScript読み込み関連のためのクラス
  */
 class YS_Enqueue {
 	/**
@@ -222,7 +222,7 @@ class YS_Enqueue {
 		return $array;
 	}
 	/**
-	 * non-critical-css出力用javascript取得
+	 * non-critical-css出力用JavaScript取得
 	 */
 	private function get_non_critical_css_script( $css ) {
 		if ( empty( $css ) ) {

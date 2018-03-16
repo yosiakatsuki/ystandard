@@ -10,8 +10,7 @@
 /**
  * 高速化設定の追加
  *
- * @param [type] $wp_customize wp_customize.
- * @return void
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_performance_tuning( $wp_customize ) {
 	/**
@@ -27,7 +26,7 @@ function ys_customizer_performance_tuning( $wp_customize ) {
 		)
 	);
 	/**
-	 * WordPress標準機能で読み込むCSS・javascriptの無効化
+	 * WordPress標準機能で読み込むCSS・JavaScriptの無効化
 	 */
 	ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize );
 	/**
@@ -37,9 +36,9 @@ function ys_customizer_performance_tuning( $wp_customize ) {
 }
 
 /**
- * WordPress標準機能で読み込むCSS・javascriptの無効化
+ * WordPress標準機能で読み込むCSS・JavaScriptの無効化
  *
- * @param [type] $wp_customize wp_customize.
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize ) {
 	/**
@@ -48,10 +47,10 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 	$wp_customize->add_section(
 		'ys_customizer_section_disable_wp_scripts',
 		array(
-			'title'           => 'WordPress標準機能で読み込むCSS・javascriptの無効化',
+			'title'           => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化',
 			'panel'           => 'ys_customizer_panel_performance_tuning',
 			'priority'        => 1,
-			'description'     => 'WordPress標準機能で読み込むCSS・javascriptの無効化設定',
+			'description'     => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化設定',
 			'active_callback' => array(),
 		)
 	);
@@ -62,7 +61,7 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 		$wp_customize,
 		array(
 			'id'      => 'ys_performance_tuning_disable_emoji',
-			'label'   => '絵文字関連スタイルシート・スクリプトを出力しない',
+			'label'   => '絵文字関連のスタイルシート・スクリプトを無効化する',
 			'default' => 1,
 			'section' => 'ys_customizer_section_disable_wp_scripts',
 		)
@@ -74,7 +73,7 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 		$wp_customize,
 		array(
 			'id'      => 'ys_performance_tuning_disable_oembed',
-			'label'   => 'oembed関連スタイルシート・スクリプトを出力しない',
+			'label'   => 'oembed関連のスタイルシート・スクリプトを無効化する',
 			'default' => 1,
 			'section' => 'ys_customizer_section_disable_wp_scripts',
 		)
@@ -83,7 +82,7 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 /**
  * CSS読み込みの最適化
  *
- * @param [type] $wp_customize wp_customize.
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_performance_tuning_add_optimize_load_css( $wp_customize ) {
 	/**

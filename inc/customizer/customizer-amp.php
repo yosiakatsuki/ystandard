@@ -61,7 +61,7 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 			'id'        => 'ys_amp_enable_label',
 			'label'       => 'AMP機能を有効化',
 			'section'     => 'ys_customizer_section_amp_enable',
-			'description' => '※AMPページの生成を保証するものではありません。使用しているプラグインや投稿内のHTMLタグ、インラインCSS、javascriptコードによりAMPフォーマットとしてエラーとなる場合もあります。',
+			'description' => '※AMPページの生成を保証するものではありません。使用しているプラグインや投稿内のHTMLタグ、インラインCSS、JavaScriptコードによりAMPフォーマットとしてエラーとなる場合もあります。',
 		)
 	);
 	/**

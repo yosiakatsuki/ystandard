@@ -1,9 +1,12 @@
 <?php
 /**
+ * テーマカスタマイザー
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
  * テーマカスタマイザー
  */
@@ -25,6 +28,8 @@ require_once get_template_directory() . '/inc/customizer/customizer-amp.php';
 
 /**
  * カスタマイザー追加
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_theme_customizer( $wp_customize ) {
 	/**

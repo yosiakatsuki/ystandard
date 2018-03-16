@@ -221,7 +221,7 @@ function ys_enqueue_styles_non_critical_css() {
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles_non_critical_css' );
 
 /**
- * CSS追加読み込み（ファーストビュー以外のCSSをjavascriptで読み込みする）
+ * CSS追加読み込み（ファーストビュー以外のCSSをJavaScriptで読み込みする）
  *
  * @return void
  */
@@ -280,7 +280,7 @@ function ys_the_onload_scripts( $tag ) {
 	$lazyload_scripts = $ys_enqueue->get_lazyload_script_attr();
 	$lazyload_css     = $ys_enqueue->get_lazyload_css_attr();
 	/**
-	 * メインのjavascriptに属性追加
+	 * メインのJavaScriptに属性追加
 	 */
 	$data = $onload_scripts . ' ' . $lazyload_scripts . ' ' . $lazyload_css;
 	return str_replace( 'src', $data . ' id="ys-main-script" src', $tag );
@@ -349,7 +349,7 @@ function ys_enqueue_deregister() {
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_deregister', 9 );
 
 /**
- * 管理画面-javascriptの読み込み
+ * 管理画面-JavaScriptの読み込み
  *
  * @param string $hook_suffix suffix.
  * @return void

@@ -40,7 +40,7 @@ function ys_get_plain_text( $data ) {
 
 
 /**
- * Twitter用javascript URL取得
+ * Twitter用JavaScript URL取得
  */
 if( ! function_exists( 'ys_get_twitter_widgets_js' ) ) {
 	function ys_get_twitter_widgets_js(){
@@ -48,7 +48,7 @@ if( ! function_exists( 'ys_get_twitter_widgets_js' ) ) {
 	}
 }
 /**
- * Facebook用javascript URL取得
+ * Facebook用JavaScript URL取得
  */
 if( ! function_exists( 'ys_get_facebook_sdk_js' ) ) {
 	function ys_get_facebook_sdk_js(){

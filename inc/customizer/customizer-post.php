@@ -10,23 +10,13 @@
 /**
  * 投稿ページの設定追加
  *
- * @param [type] $wp_customize wp_customize.
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  * @return void
  */
 function ys_customizer_post( $wp_customize ) {
 	/**
 	 * パネルの追加
 	 */
-	/*
-	$wp_customize->add_panel(
-										'ys_customizer_panel_post',
-										array(
-											'priority'       => 1020,
-											'title'          => '[ys]投稿ページ設定',
-											'active_callback' => 'ys_customizer_active_callback_post'
-										)
-									);
-	*/
 	/**
 	 * セクション追加
 	 */
@@ -50,12 +40,14 @@ function ys_customizer_post( $wp_customize ) {
  */
 function ys_customizer_active_callback_post() {
 	return true;
-	//TODO:active_callbackが効かない
+	// TODO:active_callbackが効かない.
 	return is_single();
 }
 
 /**
- *	投稿ページ設定
+ * 投稿ページ設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_post_add_settings( $wp_customize ) {
 
@@ -124,7 +116,7 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 		$wp_customize,
 		array(
 			'id'      => 'ys_show_post_related',
-			'label'   => '記事下に関連記事を出力する',
+			'label'   => '記事下に関連記事を表示する',
 			'default' => 1,
 			'section' => 'ys_customizer_section_post',
 		)
@@ -136,7 +128,7 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 		$wp_customize,
 		array(
 			'id'      => 'ys_show_post_paging',
-			'label'   => '次の記事・前の記事のリンクを出力する',
+			'label'   => '次の記事・前の記事のリンクを表示する',
 			'default' => 1,
 			'section' => 'ys_customizer_section_post',
 		)

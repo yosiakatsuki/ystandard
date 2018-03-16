@@ -1,27 +1,21 @@
 <?php
 /**
+ * 投稿ページ設定
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
- *	投稿ページ設定
+ * 投稿ページ設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
-function ys_customizer_page( $wp_customize ){
-	/**
-	 * パネルの追加
-	 */
-	// $wp_customize->add_panel(
-	// 									'ys_customizer_panel_page',
-	// 									array(
-	// 										'priority'       => 1030,
-	// 										'title'          => '[ys]固定ページ設定',
-	// 										'active_callback' => 'ys_customizer_active_callback_page'
-	// 									)
-	// 								);
+function ys_customizer_page( $wp_customize ) {
 	/**
 	 * セクション追加
-	 * 	active_callbackが効かないのでデザイン設定の中に入れる
+	 * active_callbackが効かないのでデザイン設定の中に入れる
 	 */
 	$wp_customize->add_section(
 		'ys_customizer_section_page',
@@ -42,12 +36,14 @@ function ys_customizer_page( $wp_customize ){
  */
 function ys_customizer_active_callback_page() {
 	return true;
-	//TODO:active_callbackが効かない
+	// TODO:active_callbackが効かない.
 	return is_page();
 }
 
 /**
  * 投稿ページ設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_page_add_settings( $wp_customize ) {
 

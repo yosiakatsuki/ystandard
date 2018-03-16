@@ -117,7 +117,7 @@ class YSLoadScript {
   }
 
   /**
-   * javascript ちょっと遅れて読み込み
+   * JavaScript ちょっと遅れて読み込み
    */
   loadScripts () {
     let scripts = this.getScripts(this._scriptOnloadAttribute)
@@ -128,7 +128,7 @@ class YSLoadScript {
   }
 
   /**
-   * javascript スクロールで読み込み
+   * JavaScript スクロールで読み込み
    */
   lazyLoadScripts () {
     

@@ -505,12 +505,12 @@
 ### ys_enqueue_onload_scripts
 
 - file: inc/classes/class.ys-enqueue.php
-- description: onloadイベントで読み込むjavascriptの配列を操作する為のフィルタ
+- description: onloadイベントで読み込むJavaScriptの配列を操作する為のフィルタ
 
 ### ys_enqueue_lazyload_scripts
 
 - file: inc/classes/class.ys-enqueue.php
-- description: スクロール発火で読み込むjavascriptの配列を操作する為のフィルタ
+- description: スクロール発火で読み込むJavaScriptの配列を操作する為のフィルタ
 
 ### ys_enqueue_lazyload_css
 
