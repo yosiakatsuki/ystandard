@@ -1402,7 +1402,7 @@ input[type="button"]:hover {
 
 .archive__header-author {
 	padding: 30px 15px;
-	margin-bottom: 30px;
+	margin: 0 -15px 15px;
 	background-color: #fafafa;
 }
 
@@ -3306,6 +3306,7 @@ div.aligncenter {
 
 .archive__header-author {
 	padding: 30px;
+	margin: 0 0 30px;
 }
 
 .share-btn__item {
