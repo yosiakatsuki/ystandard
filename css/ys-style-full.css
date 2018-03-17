@@ -1282,6 +1282,16 @@ input[type="button"]:hover {
 	background-color: #fff;
 }
 
+.global-nav__search {
+	padding: 1em 45px 1em 1em;
+	margin-top: -48px;
+}
+
+.global-nav__search input {
+	background-color: rgba(255, 255, 255, 0.1);
+	border-color: rgba(255, 255, 255, 0.1);
+}
+
 .hero + .site__content {
 	margin-top: 0;
 	padding-top: 0;
@@ -3269,6 +3279,10 @@ div.aligncenter {
 
 .global-nav__btn,
 .global-nav__cover {
+	display: none;
+}
+
+.global-nav__search {
 	display: none;
 }
 

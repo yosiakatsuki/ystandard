@@ -107,7 +107,20 @@ function ys_customizer_design_add_mobile( $wp_customize ) {
 		array(
 			'id'          => 'ys_show_sidebar_mobile',
 			'label'       => 'モバイル表示でサイドバーを非表示にする',
-			'description' => 'モバイルページではサイドバー部分を表示しない場合にチェックを付けて下さい',
+			'description' => 'モバイルページでサイドバー部分を表示しない場合にチェックを付けて下さい',
+			'default'     => 0,
+			'section'     => 'ys_customizer_section_mobile_design',
+		)
+	);
+	/**
+	 * スライドメニューに検索フォームを出力する
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'          => 'ys_show_search_form_on_slide_menu',
+			'label'       => 'スライドメニューに検索フォームを出力する(モバイル)',
+			'description' => 'モバイルページでスライドメニューに検索フォームを出力する場合にチェックを付けて下さい',
 			'default'     => 0,
 			'section'     => 'ys_customizer_section_mobile_design',
 		)

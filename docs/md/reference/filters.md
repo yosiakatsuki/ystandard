@@ -129,6 +129,11 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: 関連記事表示の編集用フィルタ
 
+### ys_is_active_slide_menu_search_form
+
+- file: inc/conditional-branch/conditional-branch.php
+- description: スライドメニュー内の検索フォーム表示編集用フィルタ
+
 ## head
 
 ### ys_get_the_head_tag

@@ -24,6 +24,11 @@ if ( has_nav_menu( 'global' ) ) :
 	</label>
 	<label class="global-nav__cover" for="header__nav-toggle"></label>
 	<nav id="global-nav" class="global-nav color__nav-bg--sp color__nav-bg--pc">
+		<?php if ( ys_is_active_slide_menu_search_form() ) : ?>
+			<div class="global-nav__search">
+				<?php get_search_form(); ?>
+			</div><!-- .global-nav__search -->
+		<?php endif; ?>
 		<?php
 			wp_nav_menu( array(
 				'theme_location' => 'global',

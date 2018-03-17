@@ -494,7 +494,7 @@ function ys_customizer_inline_css() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 		array(
-			'.color__nav-font--pc',
+			'.color__nav-font--sp',
 		),
 		array(
 			'color' => ys_customizer_get_color_option( 'ys_color_nav_font_sp' ),

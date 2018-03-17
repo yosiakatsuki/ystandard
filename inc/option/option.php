@@ -59,6 +59,8 @@ function ys_get_options() {
 	$result['ys_design_header_type'] = get_option( 'ys_design_header_type', '1row' );
 	// モバイル表示でサイドバーを出力しない.
 	$result['ys_show_sidebar_mobile'] = get_option( 'ys_show_sidebar_mobile', 0 );
+	// スライドメニューに検索フォームを出力する.
+	$result['ys_show_search_form_on_slide_menu'] = get_option( 'ys_show_search_form_on_slide_menu', 0 );
 	/**
 	 * **********
 	 * [ys]投稿ページ設定

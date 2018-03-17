@@ -464,3 +464,14 @@ function ys_is_post_type_on_admin( $type ) {
 function ys_is_optimize_load_css() {
 	return ys_get_option( 'ys_option_optimize_load_css' );
 }
+
+/**
+ * スライドメニュー内に検索フォームを表示するか
+ */
+function ys_is_active_slide_menu_search_form() {
+	$result = false;
+	if ( wp_is_mobile() && ys_get_option( 'ys_show_search_form_on_slide_menu' ) ) {
+		$result = true;
+	}
+	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
+}

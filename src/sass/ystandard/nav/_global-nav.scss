@@ -106,6 +106,14 @@
           background-color: #fff;
         }
     }
+    .global-nav__search {
+      padding: 1em 45px 1em 1em;
+      margin-top: get_margin(-3) - 3px;
+      input {
+        background-color: rgba(#fff,.1);
+        border-color: rgba(#fff,.1);
+      }
+    }
 
     // screen
     @include media-breakpoint(pc) {
@@ -168,7 +176,9 @@
       .global-nav__cover {
         display: none;
       }
+      .global-nav__search {
+        display: none;
+      }
     }
-
   }// at-root
 }
