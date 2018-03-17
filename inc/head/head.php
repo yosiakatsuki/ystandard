@@ -68,14 +68,10 @@ if ( ! function_exists( 'ys_get_meta_description' ) ) {
 				}
 			}
 		}
-		/**
-		 * Metaタグの作成
-		 */
 		if ( '' !== $dscr ) {
 			$dscr = mb_substr( $dscr, 0, $length );
-			$html = '<meta name="description" content="' . wp_strip_all_tags( $dscr, true ) . '" />' . PHP_EOL;
 		}
-		return apply_filters( 'ys_get_meta_description', $html, $dscr );
+		return apply_filters( 'ys_get_meta_description', wp_strip_all_tags( $dscr, true ) );
 	}
 }
 
@@ -84,13 +80,15 @@ if ( ! function_exists( 'ys_the_meta_description' ) ) {
 	 * TOPページのmeta description出力
 	 */
 	function ys_the_meta_description() {
+		$html = '';
+		$dscr = ys_get_meta_description();
 		/**
-		 * 自動生成オプション
+		 * Metaタグの作成
 		 */
-		if ( ! ys_get_option( 'ys_option_create_meta_description' ) ) {
-			return;
+		if ( '' !== $dscr && ys_is_enable_meta_description() ) {
+			$html = '<meta name="description" content="' . $dscr . '" />' . PHP_EOL;
 		}
-		echo ys_get_meta_description();
+		echo $html;
 	}
 }
 add_action( 'wp_head', 'ys_the_meta_description' );

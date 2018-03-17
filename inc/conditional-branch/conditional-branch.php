@@ -242,6 +242,28 @@ function ys_is_enable_google_analytics() {
 	}
 	return apply_filters( 'ys_is_enable_google_analytics', $result );
 }
+
+/**
+ * メタデスクリプションを出力するか
+ *
+ * @return boolean
+ */
+function ys_is_enable_meta_description() {
+	$result = true;
+	/**
+	 * 自動生成オプション
+	 */
+	if ( ! ys_get_option( 'ys_option_create_meta_description' ) ) {
+		$result = false;
+	}
+	if ( is_single() || is_page() ) {
+		if ( '1' === ys_get_post_meta( 'ys_hide_meta_dscr' ) ) {
+			$result = false;
+		}
+	}
+	return apply_filters( 'ys_is_enable_meta_description', $result );
+}
+
 /**
  * サイドバーを表示するか
  */

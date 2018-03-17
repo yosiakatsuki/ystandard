@@ -43,6 +43,9 @@ function ys_add_post_option() {
 	<p>
 		<label for="ys_noindex">
 			<input type="checkbox" id="ys_noindex" name="ys_noindex" value="1" <?php checked( ys_get_post_meta( 'ys_noindex', $post->ID ), '1', true ); ?> />この記事に「noindex,follow」を設定する
+		</label><br>
+		<label for="ys_hide_meta_dscr">
+			<input type="checkbox" id="ys_hide_meta_dscr" name="ys_hide_meta_dscr" value="1" <?php checked( ys_get_post_meta( 'ys_hide_meta_dscr', $post->ID ), '1', true ); ?> />meta descriptionタグを<strong>無効化</strong>する
 		</label>
 	</p>
 	<h3 class="meta-box__headline">投稿オプション</h3>
@@ -88,6 +91,10 @@ function ys_save_post( $post_id ) {
 		 * Noindex設定
 		 */
 		ys_save_post_checkbox( $_POST, $post_id, 'ys_noindex' );
+		/**
+		 * Meta description設定
+		 */
+		ys_save_post_checkbox( $_POST, $post_id, 'ys_hide_meta_dscr' );
 		/**
 		 * 広告非表示設定
 		 */

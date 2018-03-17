@@ -74,6 +74,11 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: Google Analyticsのタグを読み込むかの結果編集用フィルタ
 
+### ys_is_enable_meta_description
+
+- file: inc/conditional-branch/conditional-branch.php
+- description: meta descriptionタグを出力するかの結果編集用フィルタ
+
 ### ys_is_active_sidebar_widget
 
 - file: inc/conditional-branch/conditional-branch.php
@@ -154,7 +159,7 @@
 ### ys_get_meta_description
 
 - file: inc/head/head.php
-- description: meta descriptionタグ編集用フィルタ
+- description: meta description用文字列編集用フィルタ
 
 ### ys_get_the_ogp
 
