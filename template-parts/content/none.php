@@ -1,3 +1,13 @@
+<?php
+/**
+ * 結果なしテンプレート
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+?>
 <section class="no-results not-found">
 	<header class="page-header entry__header">
 		<h2 class="page-title entry__title clear-headline">

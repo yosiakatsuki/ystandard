@@ -1,12 +1,26 @@
+<?php
+/**
+ * 記事一覧テンプレート(カードタイプ)
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( array( 'entry-list', ys_get_archive_card_col() ) ); ?>>
 	<div class="card">
 		<div class="entry-list__thumbnail image-mask__wrap card__img">
 			<a href="<?php the_permalink(); ?>" class="entry-list__link ratio ratio__16-9">
-				<?php if( has_post_thumbnail() ): ?>
+				<?php if ( has_post_thumbnail() ) : ?>
 					<figure class="entry-list__figure ratio__item ratio__image">
-						<?php the_post_thumbnail( 'post-thumbnail', array( 'class' => 'entry-list____image' ) ); ?>
+						<?php
+						the_post_thumbnail( 'post-thumbnail', array(
+							'class' => 'entry-list____image',
+						) );
+						?>
 					</figure>
-				<?php else: ?>
+				<?php else : ?>
 					<div class="entry-list__no-img ratio__item flex flex--c-c">
 						<i class="fa fa-picture-o" aria-hidden="true"></i>
 					</div><!-- .entry-list__no-img -->
