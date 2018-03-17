@@ -133,32 +133,4 @@ function ys_customizer_advanced_add_jquery( $wp_customize ) {
 			'priority' => 1,
 		)
 	);
-	/**
-	 * CDNにホストされているjQueryを読み込む
-	 */
-	ys_customizer_add_setting_url(
-		$wp_customize,
-		array(
-			'id'          => 'ys_load_cdn_jquery_url',
-			'label'       => 'CDN経由でjQueryを読み込む',
-			'description' => '※WordPress標準のjQueryを読み込む場合は空白にしてください（デフォルト）<br>※ホストされているjQueryのURLを入力してください。',
-			'default'     => '',
-			'section'     => 'ys_customizer_section_jquery',
-			'transport'   => 'postMessage',
-		)
-	);
-	/**
-	 *  JQueryを読み込まない
-	 */
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
-		array(
-			'id'          => 'ys_not_load_jquery',
-			'label'       => 'jQueryを無効化する',
-			'description' => '※この設定を有効にするとサイト表示高速化が期待できますが、jQueryを使用している処理が動かなくなります。<br>※プラグインの動作に影響が出る恐れがありますのでご注意ください。<br>※yStandard内のJavaScriptではjQueryを使用する機能は使っていません',
-			'default'     => 0,
-			'section'     => 'ys_customizer_section_jquery',
-			'transport'   => 'postMessage',
-		)
-	);
 }

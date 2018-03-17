@@ -252,9 +252,11 @@ function ys_enqueue_non_critical_css( $id, $src, $ver = false ) {
  * 追加読み込みスクリプト・CSSの追加(onload)
  *
  * @param string $tag tag.
+ * @param string $handle handle.
+ * @param string $src src.
  * @return string
  */
-function ys_the_onload_scripts( $tag ) {
+function ys_the_onload_scripts( $tag, $handle, $src ) {
 	global $ys_enqueue;
 
 	/**
@@ -270,7 +272,7 @@ function ys_the_onload_scripts( $tag ) {
 		ys_enqueue_onload_script( 'facebook-jssdk', '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.11' );
 	}
 
-	if ( false === strpos( $tag, 'ystandard.bundle.js' ) ) {
+	if ( 'ystandard-scripts' !== $handle ) {
 		return $tag;
 	}
 	/**
@@ -285,7 +287,7 @@ function ys_the_onload_scripts( $tag ) {
 	$data = $onload_scripts . ' ' . $lazyload_scripts . ' ' . $lazyload_css;
 	return str_replace( 'src', $data . ' id="ys-main-script" src', $tag );
 }
-add_action( 'script_loader_tag', 'ys_the_onload_scripts' );
+add_action( 'script_loader_tag', 'ys_the_onload_scripts', 10, 3 );
 
 /**
  * Onload-scriptのセット
@@ -431,12 +433,12 @@ if ( ! function_exists( 'ys_script_loader_tag' ) ) {
 			return $tag;
 		}
 		/**
-		 * 属性削除 : type.
+		 * 属性削除 : type
 		 */
 		$tag = str_replace( "type='text/javascript'", '', $tag );
 		$tag = str_replace( 'type="text/javascript"', '', $tag );
 		/**
-		 * JQuery関連以外のjsにasync deferを付ける
+		 * ファイル名にjqueryが付くものは除外
 		 */
 		if ( false !== strpos( $tag, 'jquery' ) ) {
 			return $tag;
@@ -450,7 +452,10 @@ if ( ! function_exists( 'ys_script_loader_tag' ) ) {
 				return $tag;
 			}
 		}
-		return str_replace( 'src', 'async defer src', $tag );
+		if ( 'ystandard-scripts' === $handle || ys_get_option( 'ys_option_optimize_load_js' ) ) {
+			$tag = str_replace( 'src', 'async defer src', $tag );
+		}
+		return $tag;
 	}
 }
 add_filter( 'script_loader_tag', 'ys_script_loader_tag', 10, 3 );

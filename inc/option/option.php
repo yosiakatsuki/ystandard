@@ -215,12 +215,27 @@ function ys_get_options() {
 	 * [ys]サイト高速化設定
 	 * **********
 	 */
+	/**
+	 * WordPress標準機能で読み込むCSS・JavaScriptの無効化
+	 */
 	// 絵文字を出力しない.
-	$result['ys_performance_tuning_disable_emoji'] = get_option( 'ys_performance_tuning_disable_emoji', 1 );
+	$result['ys_option_disable_wp_emoji'] = get_option( 'ys_option_disable_wp_emoji', 1 );
 	// oembedを出力しない.
-	$result['ys_performance_tuning_disable_oembed'] = get_option( 'ys_performance_tuning_disable_oembed', 1 );
+	$result['ys_option_disable_wp_oembed'] = get_option( 'ys_option_disable_wp_oembed', 1 );
+	/**
+	 * CSS読み込みの最適化
+	 */
 	// CSSの読み込みを最適化する.
-	$result['ys_performance_tuning_optimize_load_css'] = get_option( 'ys_performance_tuning_optimize_load_css', 0 );
+	$result['ys_option_optimize_load_css'] = get_option( 'ys_option_optimize_load_css', 0 );
+	/**
+	 * JavaScript読み込みの最適化
+	 */
+	// JavaScriptの読み込みを非同期化する.
+	$result['ys_option_optimize_load_js'] = get_option( 'ys_option_optimize_load_js', 0 );
+	// CDNにホストされているjQueryを読み込む（URLを設定）.
+	$result['ys_load_cdn_jquery_url'] = esc_url( get_option( 'ys_load_cdn_jquery_url', '' ) );
+	// jQueryを読み込まない.
+	$result['ys_not_load_jquery'] = get_option( 'ys_not_load_jquery', 0 );
 	/**
 	 * **********
 	 * [ys]広告設定
@@ -251,10 +266,6 @@ function ys_get_options() {
 	$result['ys_load_script_twitter'] = get_option( 'ys_load_script_twitter', 0 );
 	// Facebook埋め込み用js読み込み.
 	$result['ys_load_script_facebook'] = get_option( 'ys_load_script_facebook', 0 );
-	// CDNにホストされているjQueryを読み込む（URLを設定）.
-	$result['ys_load_cdn_jquery_url'] = esc_url( get_option( 'ys_load_cdn_jquery_url', '' ) );
-	// jQueryを読み込まない.
-	$result['ys_not_load_jquery'] = get_option( 'ys_not_load_jquery', 0 );
 	/**
 	 * **********
 	 * [ys]AMP設定
