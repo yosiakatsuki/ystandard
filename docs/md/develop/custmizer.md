@@ -108,9 +108,9 @@
     - Twitter用JavaScriptを読み込む
     - Facebook用JavaScriptを読み込む
 - [ys]SEO設定(1110)
-  * meta設定
-    * meta descriptionを自動生成する
-    * meta descriptionに使用する文字数
+  - meta設定
+    - meta descriptionを自動生成する
+    - meta descriptionに使用する文字数
   - アーカイブページのnoindex設定
     - カテゴリー一覧ページをnoindexにする
     - タグ一覧ページをnoindexにする

@@ -25,15 +25,72 @@ function ys_the_head_tag() {
 	echo ys_get_the_head_tag();
 }
 
+if ( ! function_exists( 'ys_get_meta_description' ) ) {
+	/**
+	 * メタデスクリプション取得
+	 */
+	function ys_get_meta_description() {
+		global $wp_query;
+		global $post;
+		$length = ys_get_option( 'ys_option_meta_description_length' );
+		$dscr   = '';
+		$html   = '';
+		/**
+		 * TOPページの場合
+		 */
+		if ( ys_is_top_page() ) {
+			$dscr = trim( ys_get_option( 'ys_wp_site_description' ) );
+		} elseif ( is_category() && ! is_paged() ) {
+			/**
+			 * カテゴリー
+			 */
+			$dscr = category_description();
+		} elseif ( is_tag() && ! is_paged() ) {
+			/**
+			 * タグ
+			 */
+			$dscr = tag_description();
+		} elseif ( is_tax() ) {
+			/**
+			 * その他タクソノミー
+			 */
+			$taxonomy = get_query_var( 'taxonomy' );
+			$term     = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
+			$dscr     = term_description( $term->term_id, $taxonomy );
+		} elseif ( is_singular() ) {
+			/**
+			 * 投稿ページ
+			 */
+			if ( ! get_query_var( 'paged' ) ) {
+				$dscr = $post->post_excerpt;
+				if ( ! $dscr ) {
+					$dscr = ys_get_the_custom_excerpt( '', $length, $post->ID );
+				}
+			}
+		}
+		/**
+		 * Metaタグの作成
+		 */
+		if ( '' !== $dscr ) {
+			$dscr = mb_substr( $dscr, 0, $length );
+			$html = '<meta name="description" content="' . wp_strip_all_tags( $dscr, true ) . '" />' . PHP_EOL;
+		}
+		return apply_filters( 'ys_get_meta_description', $html, $dscr );
+	}
+}
+
 if ( ! function_exists( 'ys_the_meta_description' ) ) {
 	/**
 	 * TOPページのmeta description出力
 	 */
 	function ys_the_meta_description() {
-		$dscr = trim( ys_get_option( 'ys_wp_site_description' ) );
-		if ( ys_is_top_page() && '' != $dscr ) {
-			echo '<meta name="description" content="' . $dscr . '" />' . PHP_EOL;
+		/**
+		 * 自動生成オプション
+		 */
+		if ( ! ys_get_option( 'ys_option_create_meta_description' ) ) {
+			return;
 		}
+		echo ys_get_meta_description();
 	}
 }
 add_action( 'wp_head', 'ys_the_meta_description' );
@@ -76,7 +133,7 @@ if ( ! function_exists( 'ys_get_apple_touch_icon_url' ) ) {
 	 *
 	 * @param integer $size サイズ.
 	 * @param string  $url ロゴURL.
-	 * @param integer $blog_id ブログID
+	 * @param integer $blog_id ブログID.
 	 * @return string
 	 */
 	function ys_get_apple_touch_icon_url( $size = 512, $url = '', $blog_id = 0 ) {
@@ -117,21 +174,21 @@ if ( ! function_exists( 'ys_site_icon_meta_tags' ) ) {
 }
 add_filter( 'site_icon_meta_tags', 'ys_site_icon_meta_tags' );
 
-/**
- * canonicalタグ出力
- */
-if( ! function_exists( 'ys_the_canonical_tag' ) ) {
-	function ys_the_canonical_tag(){
+if ( ! function_exists( 'ys_the_canonical_tag' ) ) {
+	/**
+	 * Canonicalタグ出力
+	 */
+	function ys_the_canonical_tag() {
 
 		$canonical = '';
-		if( is_home() || is_front_page() ) {
+		if ( is_home() || is_front_page() ) {
 				$canonical = home_url();
 
 		} elseif ( is_category() ) {
-			$canonical = get_category_link( get_query_var('cat') );
+			$canonical = get_category_link( get_query_var( 'cat' ) );
 
 		} elseif ( is_tag() ) {
-			$tag = get_term_by( 'name', urldecode( get_query_var('tag') ), 'post_tag' );
+			$tag       = get_term_by( 'slug', urldecode( get_query_var( 'tag' ) ), 'post_tag' );
 			$canonical = get_tag_link( $tag->term_id );
 
 		} elseif ( is_search() ) {
@@ -141,36 +198,36 @@ if( ! function_exists( 'ys_the_canonical_tag' ) ) {
 			$canonical = get_permalink();
 
 		}
-		if( $canonical !== '' ){
+		if ( '' !== $canonical ) {
 			printf( '<link rel="canonical" href="%s">' . PHP_EOL, $canonical );
 		}
 	}
 }
 add_action( 'wp_head', 'ys_the_canonical_tag' );
 
-/**
- * next,prevタグ出力
- */
-if(!function_exists( 'ys_the_rel_link')) {
-	function ys_the_rel_link(){
-		if( is_single() || is_page() ) {
+if ( ! function_exists( 'ys_the_rel_link' ) ) {
+	/**
+	 * Next,Prevタグ出力
+	 */
+	function ys_the_rel_link() {
+		if ( is_single() || is_page() ) {
 			/**
 			 * 固定ページ・投稿ページ
 			 */
 			global $post,$page;
 			$pagecnt = substr_count( $post->post_content, '<!--nextpage-->' ) + 1;
 
-			if ( $pagecnt > 1 ){
+			if ( $pagecnt > 1 ) {
 				/**
-				 * prev
+				 * Prev
 				 */
-				if( $page > 1 ) {
+				if ( $page > 1 ) {
 					printf( '<link rel="prev" href="%s" />' . PHP_EOL, ys_get_the_link_page( $page - 1 ) );
 				}
 				/**
-				 * next
+				 * Next
 				 */
-				if( $page < $pagecnt ) {
+				if ( $page < $pagecnt ) {
 					$page = 0 == $page ? 1 : $page;
 					printf( '<link rel="next" href="%s" />' . PHP_EOL, ys_get_the_link_page( $page + 1 ) );
 				}
@@ -184,84 +241,81 @@ if(!function_exists( 'ys_the_rel_link')) {
 			 * MAXページ数と現在ページ数を取得
 			 */
 			$total   = isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1;
-			$current = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' )  : 1;
-			if( $current > 1 ) {
+			$current = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' ) : 1;
+			if ( $current > 1 ) {
 				printf( '<link rel="prev" href="%s" />' . PHP_EOL, get_pagenum_link( $current - 1 ) );
 			}
-			if($current < $total) {
+			if ( $current < $total ) {
 				printf( '<link rel="next" href="%s" />' . PHP_EOL, get_pagenum_link( $current + 1 ) );
 			}
 		}
 	}
 }
 add_action( 'wp_head', 'ys_the_rel_link' );
-/**
- *	prev,next用URL取得
- */
-if ( !function_exists( 'ys_get_the_link_page' ) ) {
+
+if ( ! function_exists( 'ys_get_the_link_page' ) ) {
+	/**
+	 * Prev,Next用URL取得
+	 *
+	 * @param int $i ページ番号.
+	 */
 	function ys_get_the_link_page( $i ) {
 		global $wp_rewrite;
-    $post = get_post();
+		$post = get_post();
 		if ( 1 == $i ) {
 			$url = get_permalink();
 		} else {
-			if ( '' == get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) )
+			if ( '' == get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
 				$url = add_query_arg( 'page', $i, get_permalink() );
-			elseif ( 'page' == get_option( 'show_on_front' ) && $post->ID == get_option( 'page_on_front' ) )
+			} elseif ( 'page' == get_option( 'show_on_front' ) && get_option( 'page_on_front' ) == $post->ID ) {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( "$wp_rewrite->pagination_base/" . $i, 'single_paged' );
-			else
+			} else {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $i, 'single_paged' );
+			}
 		}
 		return $url;
 	}
 }
 
-
-/**
- * noindex
- */
-if( ! function_exists( 'ys_the_noindex' ) ) {
-	function ys_the_noindex(){
+if ( ! function_exists( 'ys_the_noindex' ) ) {
+	/**
+	 * Noindex
+	 */
+	function ys_the_noindex() {
 		$noindex = false;
-
-		if( is_404() ){
+		if ( is_404() ) {
 			/**
 			 * 404ページをnoindex
 			 */
 			$noindex = true;
-
-		} elseif( is_search() ) {
+		} elseif ( is_search() ) {
 			/**
 			 * 検索結果をnoindex
 			 */
 			$noindex = true;
-
-		} elseif( is_category() && ys_get_option( 'ys_archive_noindex_category' ) ) {
+		} elseif ( is_category() && ys_get_option( 'ys_archive_noindex_category' ) ) {
+			/**
+			 * カテゴリーページのnoindex設定がされていればnoindex
+			 */
+			$noindex = true;
+		} elseif ( is_tag() && ys_get_option( 'ys_archive_noindex_tag' ) ) {
+			/**
+			 * カテゴリーページのnoindex設定がされていればnoindex
+			 */
+			$noindex = true;
+		} elseif ( is_author() && ys_get_option( 'ys_archive_noindex_author' ) ) {
 			/**
 			 * カテゴリーページのnoindex設定がされていればnoindex
 			 */
 			$noindex = true;
 
-		} elseif( is_tag() && ys_get_option( 'ys_archive_noindex_tag' ) ){
+		} elseif ( is_date() && ys_get_option( 'ys_archive_noindex_date' ) ) {
 			/**
 			 * カテゴリーページのnoindex設定がされていればnoindex
 			 */
 			$noindex = true;
-
-		} elseif( is_author() && ys_get_option( 'ys_archive_noindex_author' ) ){
-			/**
-			 * カテゴリーページのnoindex設定がされていればnoindex
-			 */
-			$noindex = true;
-
-		} elseif( is_date() && ys_get_option( 'ys_archive_noindex_date' ) ){
-			/**
-			 * カテゴリーページのnoindex設定がされていればnoindex
-			 */
-			$noindex = true;
-
-		} elseif( is_single() || is_page() ){
-			if( '1' === ys_get_post_meta( 'ys_noindex' ) ){
+		} elseif ( is_single() || is_page() ) {
+			if ( '1' === ys_get_post_meta( 'ys_noindex' ) ) {
 				/**
 				 * 投稿・固定ページでnoindex設定されていればnoindex
 				 */
@@ -270,44 +324,44 @@ if( ! function_exists( 'ys_the_noindex' ) ) {
 		}
 		$noindex = apply_filters( 'ys_the_noindex', $noindex );
 		/**
-		 * noindex出力
+		 * Noindex出力
 		 */
-		if( $noindex ){
+		if ( $noindex ) {
 			echo '<meta name="robots" content="noindex,follow">' . PHP_EOL;
 		}
 	}
 }
 add_action( 'wp_head', 'ys_the_noindex' );
 
-/**
- * OGP metaタグ出力
- */
-if( ! function_exists( 'ys_the_ogp') ) {
+if ( ! function_exists( 'ys_the_ogp' ) ) {
+	/**
+	 * OGP metaタグ出力
+	 */
 	function ys_the_ogp() {
 		echo ys_get_the_ogp();
 	}
 }
-add_action( 'wp_head', 'ys_the_ogp');
+add_action( 'wp_head', 'ys_the_ogp' );
 
-/**
- * Twitter Card metaタグ出力
- */
-if( ! function_exists( 'ys_the_twitter_card') ) {
+if ( ! function_exists( 'ys_the_twitter_card' ) ) {
+	/**
+	 * Twitter Card metaタグ出力
+	 */
 	function ys_the_twitter_card() {
 		echo ys_get_the_twitter_card();
 	}
 }
-add_action( 'wp_head', 'ys_the_twitter_card');
+add_action( 'wp_head', 'ys_the_twitter_card' );
 
-/**
- * google analyticsタグ出力
- */
-if( ! function_exists( 'ys_the_google_anarytics' ) ) {
-	function ys_the_google_anarytics(){
+if ( ! function_exists( 'ys_the_google_anarytics' ) ) {
+	/**
+	 * Google Analyticsタグ出力
+	 */
+	function ys_the_google_anarytics() {
 		/**
 		 * 管理画面ログイン中はGAタグを出力しない
 		 */
-		if( ! ys_is_enable_google_analytics() ) {
+		if ( ! ys_is_enable_google_analytics() ) {
 			return;
 		}
 		/**
@@ -319,25 +373,24 @@ if( ! function_exists( 'ys_the_google_anarytics' ) ) {
 }
 add_action( 'wp_head', 'ys_the_google_anarytics', 99 );
 
-
-/**
- * Google Analytics idの取得
- */
-if( ! function_exists( 'ys_get_google_anarytics_tracking_id' ) ) {
+if ( ! function_exists( 'ys_get_google_anarytics_tracking_id' ) ) {
+	/**
+	 * Google Analytics idの取得
+	 */
 	function ys_get_google_anarytics_tracking_id() {
 		return apply_filters( 'ys_get_google_anarytics_tracking_id', trim( ys_get_option( 'ys_ga_tracking_id' ) ) );
 	}
 }
 
-/**
- * ampページの存在タグ出力
- */
-if( ! function_exists( 'ys_the_amphtml' ) ) {
-	function ys_the_amphtml(){
+if ( ! function_exists( 'ys_the_amphtml' ) ) {
+	/**
+	 * AMPページの存在タグ出力
+	 */
+	function ys_the_amphtml() {
 
-		if( is_single() && ys_is_amp_enable() ){
+		if ( is_single() && ys_is_amp_enable() ) {
 			$permalink = add_query_arg( 'amp', '1', get_the_permalink() );
-			echo '<link rel="amphtml" href="'. $permalink . '">' . PHP_EOL;
+			echo '<link rel="amphtml" href="' . $permalink . '">' . PHP_EOL;
 		}
 	}
 }

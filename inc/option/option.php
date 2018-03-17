@@ -204,6 +204,13 @@ function ys_get_options() {
 	 * **********
 	 */
 	/**
+	 * メタデスクリプション設定
+	 */
+	// メタデスクリプションを自動生成する.
+	$result['ys_option_create_meta_description'] = get_option( 'ys_option_create_meta_description', 0 );
+	// メタデスクリプションに使用する文字数.
+	$result['ys_option_meta_description_length'] = get_option( 'ys_option_meta_description_length', 80 );
+	/**
 	 * アーカイブページのnoindex設定
 	 */
 	// カテゴリー一覧をnoindexにする.

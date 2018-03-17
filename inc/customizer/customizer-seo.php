@@ -24,6 +24,10 @@ function ys_customizer_seo( $wp_customize ) {
 		)
 	);
 	/**
+	 * メタデスクリプションの作成
+	 */
+	ys_customizer_seo_add_meta_description( $wp_customize );
+	/**
 	 * アーカイブページのnoindex設定
 	 */
 	ys_customizer_seo_add_noindex( $wp_customize );
@@ -37,6 +41,50 @@ function ys_customizer_seo( $wp_customize ) {
 	ys_customizer_seo_add_structured_data( $wp_customize );
 }
 
+/**
+ * メタデスクリプションの作成
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_seo_add_meta_description( $wp_customize ) {
+	/**
+	 * セクション追加
+	 */
+	$wp_customize->add_section(
+		'ys_customizer_section_meta_description',
+		array(
+			'title'    => 'meta description設定',
+			'panel'    => 'ys_customizer_panel_seo',
+			'priority' => 1,
+		)
+	);
+	/**
+	 * SEO : meta descriptionを自動生成する
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'        => 'ys_option_create_meta_description',
+			'label'     => 'meta descriptionを自動生成する',
+			'default'   => 1,
+			'section'   => 'ys_customizer_section_meta_description',
+			'transport' => 'postMessage',
+		)
+	);
+	/**
+	 * 抜粋文字数
+	 */
+	ys_customizer_add_setting_number(
+		$wp_customize,
+		array(
+			'id'        => 'ys_option_meta_description_length',
+			'default'   => 80,
+			'label'     => 'meta descriptionに使用する文字数',
+			'section'   => 'ys_customizer_section_meta_description',
+			'transport' => 'postMessage',
+		)
+	);
+}
 /**
  * アーカイブページのnoindex設定
  *

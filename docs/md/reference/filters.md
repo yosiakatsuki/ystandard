@@ -146,6 +146,11 @@
 - file: inc/head/head.php
 - description: noindexの条件カスタム用フィルタ
 
+### ys_get_meta_description
+
+- file: inc/head/head.php
+- description: meta descriptionタグ編集用フィルタ
+
 ### ys_get_the_ogp
 
 - file: inc/head/head.php
