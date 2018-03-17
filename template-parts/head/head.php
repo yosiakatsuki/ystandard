@@ -1,3 +1,13 @@
+<?php
+/**
+ * 通常headテンプレート
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+?>
 <html <?php language_attributes(); ?>>
 <?php ys_the_head_tag(); ?>
 <meta charset="<?php bloginfo( 'charset' ); ?>">

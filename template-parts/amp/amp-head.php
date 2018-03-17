@@ -1,3 +1,13 @@
+<?php
+/**
+ * AMP用 headテンプレート
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+?>
 <html ⚡>
 <head>
 <meta charset="utf-8">

@@ -1,4 +1,12 @@
 <?php
+/**
+ * パンくずリストテンプレート
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
 if ( is_front_page() ) {
 	return;
 }

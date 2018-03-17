@@ -1,4 +1,13 @@
-<?php $ga_tracking_id_amp = ys_get_amp_google_anarytics_tracking_id(); ?>
+<?php
+/**
+ * AMP用 Google analyticsテンプレート
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+$ga_tracking_id_amp = ys_get_amp_google_anarytics_tracking_id(); ?>
 <amp-analytics type="googleanalytics" id="analytics1">
 	<script type="application/json">
 	{
