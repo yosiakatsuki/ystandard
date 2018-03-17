@@ -65,4 +65,16 @@ function ys_customizer_site_add_common( $wp_customize ) {
 			),
 		)
 	);
+	/**
+	 * 抜粋文字数
+	 */
+	ys_customizer_add_setting_number(
+		$wp_customize,
+		array(
+			'id'      => 'ys_option_excerpt_length',
+			'default' => 80,
+			'label'   => '投稿抜粋の文字数',
+			'section' => 'ys_customizer_section_site_common',
+		)
+	);
 }
