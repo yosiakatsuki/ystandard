@@ -24,50 +24,11 @@ function ys_customizer_advanced( $wp_customize ) {
 		)
 	);
 	/**
-	 * テーマカスタマイザーでの色変更機能を無効にする
-	 */
-	ys_customizer_advanced_add_disable_ys_color( $wp_customize );
-	/**
 	 * SNS用JavaScriptの読み込み
 	 */
 	ys_customizer_advanced_add_load_script( $wp_customize );
-	/**
-	 * JQuery設定
-	 */
-	ys_customizer_advanced_add_jquery( $wp_customize );
 }
 
-/**
- * テーマカスタマイザーでの色変更機能を無効にする
- *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
- */
-function ys_customizer_advanced_add_disable_ys_color( $wp_customize ) {
-	/**
-	 * セクション追加
-	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_disable_ys_color',
-		array(
-			'title'    => 'テーマカスタマイザーでの色変更機能を無効にする',
-			'panel'    => 'ys_customizer_panel_advanced',
-			'priority' => 1,
-		)
-	);
-	/**
-	 * テーマカスタマイザーでの色変更機能を無効にする
-	 */
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
-		array(
-			'id'          => 'ys_desabled_color_customizeser',
-			'label'       => 'テーマカスタマイザーでの色変更機能を無効にする',
-			'default'     => 0,
-			'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。余分なCSSコードが出力されなくなります',
-			'section'     => 'ys_customizer_section_disable_ys_color',
-		)
-	);
-}
 
 /**
  * SNS用JavaScriptの読み込み
@@ -112,25 +73,6 @@ function ys_customizer_advanced_add_load_script( $wp_customize ) {
 			'default'     => 0,
 			'section'     => 'ys_customizer_section_load_script',
 			'transport'   => 'postMessage',
-		)
-	);
-}
-
-/**
- * JQuery設定
- *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
- */
-function ys_customizer_advanced_add_jquery( $wp_customize ) {
-	/**
-	 * セクション追加
-	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_jquery',
-		array(
-			'title'    => 'jQuery設定',
-			'panel'    => 'ys_customizer_panel_advanced',
-			'priority' => 1,
 		)
 	);
 }

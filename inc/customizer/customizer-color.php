@@ -44,6 +44,11 @@ function ys_customizer_color( $wp_customize ) {
 	 * フッター
 	 */
 	ys_customizer_add_footer_color( $wp_customize );
+
+	/**
+	 * テーマカスタマイザーでの色変更機能を無効にする
+	 */
+	ys_customizer_add_disable_ys_color( $wp_customize );
 }
 
 /**
@@ -60,7 +65,7 @@ function ys_customizer_add_site_color( $wp_customize ) {
 		array(
 			'title'    => 'サイト全体',
 			'panel'    => 'ys_customizer_panel_color',
-			'priority' => 1,
+			'priority' => 0,
 		)
 	);
 	/**
@@ -116,7 +121,7 @@ function ys_customizer_add_header_color( $wp_customize ) {
 			array(
 				'title'    => 'ヘッダー',
 				'panel'    => 'ys_customizer_panel_color',
-				'priority' => 2,
+				'priority' => 0,
 			)
 		);
 		// ヘッダー背景色.
@@ -155,7 +160,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 			array(
 				'title'    => 'グローバルナビゲーション',
 				'panel'    => 'ys_customizer_panel_color',
-				'priority' => 3,
+				'priority' => 0,
 			)
 		);
 
@@ -223,7 +228,7 @@ function ys_customizer_add_footer_color( $wp_customize ) {
 			array(
 				'title'    => 'フッター',
 				'panel'    => 'ys_customizer_panel_color',
-				'priority' => 4,
+				'priority' => 0,
 			)
 		);
 
@@ -288,6 +293,38 @@ function ys_customizer_add_footer_color( $wp_customize ) {
 				'label'   => 'フッター文字色',
 			)
 		);
+}
+
+/**
+ * テーマカスタマイザーでの色変更機能を無効にする
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_add_disable_ys_color( $wp_customize ) {
+	/**
+	 * セクション追加
+	 */
+	$wp_customize->add_section(
+		'ys_customizer_section_disable_ys_color',
+		array(
+			'title'    => '色変更機能を無効にする(上級者向け)',
+			'panel'    => 'ys_customizer_panel_color',
+			'priority' => 0,
+		)
+	);
+	/**
+	 * テーマカスタマイザーでの色変更機能を無効にする
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'          => 'ys_desabled_color_customizeser',
+			'label'       => 'テーマカスタマイザーでの色変更機能を無効にする',
+			'default'     => 0,
+			'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。<br>カスタマイザーで指定している部分のCSSコードが出力されなくなります',
+			'section'     => 'ys_customizer_section_disable_ys_color',
+		)
+	);
 }
 
 /**
