@@ -1,4 +1,13 @@
-<?php // TODO:投稿者非表示の時に消す ?>
+<?php
+/**
+ * 記事先頭部分テンプレート
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+?>
 <div class="entry__author">
 	<figure class="entry__author-figure">
 		<?php ys_the_author_avatar( false, 24 ); ?>
