@@ -52,12 +52,11 @@ function ys_get_breadcrumbs() {
 		/**
 		 * Search
 		 */
+		/* translators: %1$s 検索クエリ. */
+		$title = sprintf( __( 'Search results of "%1$s"', 'ystandard' ), get_search_query() );
 		$items = ys_set_breadcrumb_item(
 			$items,
-			sprintf(
-				__( 'Search results of "%1$s"', 'ystandard' ),
-				get_search_query()
-			)
+			$title
 		);
 	} elseif ( is_tax() ) {
 		/**
@@ -130,7 +129,7 @@ function ys_get_breadcrumbs() {
 			}
 			$items = ys_set_breadcrumb_item( $items, $category->name, $link );
 		}
-		// $items = ys_set_breadcrumb_item( $items, get_the_title() );
+		// items = ys_set_breadcrumb_item( $items, get_the_title() ).
 	} elseif ( is_category() ) {
 		/**
 		 * Category
@@ -222,24 +221,34 @@ function ys_set_breadcrumb_item( $items, $title, $link = '' ) {
 }
 /**
  * フロントページ指定がある時の一覧ページタイトル
+ *
+ * @param  array  $items          items.
+ * @param  string $show_on_front  show_on_front.
+ * @param  int    $page_for_posts page_for_posts.
+ * @return mixed
  */
 function ys_get_page_for_posts_name( $items, $show_on_front, $page_for_posts ) {
 	$post_type = ys_get_post_type();
-	if( ( is_single() && 'post' === $post_type ) || is_date() || is_author() || is_category() || is_tax() ){
+	if ( ( is_single() && 'post' === $post_type ) || is_date() || is_author() || is_category() || is_tax() ) {
 		if ( 'page' === $show_on_front && $page_for_posts ) {
-				return ys_set_breadcrumb_item(
-							$items,
-							get_the_title( $page_for_posts ),
-							get_permalink( $page_for_posts )
-						);
-			}
+			return ys_set_breadcrumb_item(
+				$items,
+				get_the_title( $page_for_posts ),
+				get_permalink( $page_for_posts )
+			);
+		}
 	}
 	return false;
 }
 /**
  * 親の取得と並び替え
+ *
+ * @param  int    $object_id object_id.
+ * @param  string $object_type   object_type.
+ * @param  string $resource_type resource_type.
+ * @return array
  */
-function ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type = '' ){
+function ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type = '' ) {
 	$ancestors = get_ancestors( $object_id, $object_type, $resource_type );
 	krsort( $ancestors );
 	return apply_filters( 'ys_get_breadcrumb_ancestors', $ancestors, $object_id, $object_type, $resource_type );
