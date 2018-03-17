@@ -10,7 +10,7 @@
 /**
  * 投稿者表示
  */
-if ( ys_is_active_entry_footer_author() ) : ?>
+if ( ys_is_display_author_data() ) : ?>
 <aside class="entry__footer-author author--2col">
 	<h2 class="entry__footer-title">この記事を書いた人</h2>
 	<?php get_template_part( 'template-parts/author/profile-box' ); ?>

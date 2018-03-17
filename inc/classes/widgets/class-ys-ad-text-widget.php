@@ -1,9 +1,12 @@
 <?php
 /**
+ * 広告表示用テキストウィジェット
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
  * 広告表示用テキストウィジェット
  */
@@ -13,9 +16,9 @@ class YS_AD_Text_Widget extends WP_Widget {
 	 */
 	function __construct() {
 		parent::__construct(
-			'ys_ad_text_widget', // Base ID
-			'[ys]広告表示用テキストウィジェット', // Name
-			array( 'description' => '404ページと結果0件の検索ページに出力しないテキストウィジェット', ) // Args
+			'ys_ad_text_widget',
+			'[ys]広告表示用テキストウィジェット',
+			array( 'description' => '404ページと結果0件の検索ページに出力しないテキストウィジェット' )
 		);
 	}
 
@@ -24,18 +27,18 @@ class YS_AD_Text_Widget extends WP_Widget {
 	 *
 	 * @see WP_Widget::widget()
 	 *
-	 * @param array $args     ウィジェットの引数
-	 * @param array $instance データベースの保存値
+	 * @param array $args     ウィジェットの引数.
+	 * @param array $instance データベースの保存値.
 	 */
 	public function widget( $args, $instance ) {
 		global $wp_query;
 		$text = ! empty( $instance['text'] ) ? $instance['text'] : '';
-		if( '' === $text ) {
+		if ( '' === $text ) {
 			return;
 		}
 		$text = apply_filters( 'ys_advertisement_content', $text );
 		$html = '';
-		if( ! is_404() && ! ( is_search() && 0 == $wp_query->found_posts ) ) {
+		if ( ! is_404() && ! ( is_search() && 0 == $wp_query->found_posts ) && ys_is_active_advertisement() ) {
 			$html .= '<div class="widget ys-ad-widget">';
 			$html .= $text;
 			$html .= '</div>';
@@ -49,14 +52,14 @@ class YS_AD_Text_Widget extends WP_Widget {
 	 *
 	 * @see WP_Widget::form()
 	 *
-	 * @param array $instance データベースからの前回保存された値
+	 * @param array $instance データベースからの前回保存された値.
 	 */
 	public function form( $instance ) {
 		$text = ! empty( $instance['text'] ) ? $instance['text'] : '';
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'text' ); ?>">内容:</label>
-			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea($text); ?></textarea>
+			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea( $text ); ?></textarea>
 		</p>
 		<?php
 	}
@@ -66,8 +69,8 @@ class YS_AD_Text_Widget extends WP_Widget {
 	 *
 	 * @see WP_Widget::update()
 	 *
-	 * @param array $new_instance 保存用に送信された値
-	 * @param array $old_instance データベースからの以前保存された値
+	 * @param array $new_instance 保存用に送信された値.
+	 * @param array $old_instance データベースからの以前保存された値.
 	 *
 	 * @return array 保存される更新された安全な値
 	 */
@@ -80,5 +83,4 @@ class YS_AD_Text_Widget extends WP_Widget {
 		}
 		return $instance;
 	}
-
-} // class
+}

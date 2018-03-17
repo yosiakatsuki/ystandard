@@ -70,7 +70,7 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 			'id'          => 'ys_below_post_label',
 			'label'       => '記事下表示設定',
 			'section'     => 'ys_customizer_section_post',
-			'description' => '',
+			'description' => '※シェアボタンの表示・非表示は[SNS設定]→[SNSシェアボタン設定]から行って下さい',
 		)
 	);
 	/**
@@ -98,13 +98,13 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 		)
 	);
 	/**
-	 * 「この記事を書いた人」ボックスを表示する
+	 * 著者情報を表示する
 	 */
 	ys_customizer_add_setting_checkbox(
 		$wp_customize,
 		array(
 			'id'      => 'ys_show_post_author',
-			'label'   => '「この記事を書いた人」ボックスを表示する',
+			'label'   => '著者情報を表示する',
 			'default' => 1,
 			'section' => 'ys_customizer_section_post',
 		)

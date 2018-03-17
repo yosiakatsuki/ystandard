@@ -109,7 +109,7 @@
 - file: inc/conditional-branch/conditional-branch.php
 - description: 記事下ウィジェットの出力有無の編集用フィルタ
 
-### ys_is_active_entry_footer_author
+### ys_is_display_author_data
 
 - file: inc/conditional-branch/conditional-branch.php
 - description: 記事下投稿者ボックスの出力有無の編集用フィルタ

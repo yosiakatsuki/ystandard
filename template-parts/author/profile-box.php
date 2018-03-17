@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+if ( ! ys_is_display_author_data() ) {
+	return;
+}
 ?>
 <div class="author__box clearfix">
 	<div class="author__avatar">

@@ -68,4 +68,28 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 			),
 		)
 	);
+	/**
+	 * 著者情報を表示する
+	 */
+	ys_customizer_add_label(
+		$wp_customize,
+		array(
+			'id'          => 'ys_show_archive_author_label',
+			'label'       => '著者情報の表示',
+			'section'     => 'ys_customizer_section_archive',
+			'description' => '',
+		)
+	);
+	/**
+	 * 著者情報を表示する
+	 */
+	ys_customizer_add_setting_checkbox(
+		$wp_customize,
+		array(
+			'id'      => 'ys_show_archive_author',
+			'label'   => '著者情報を表示する',
+			'default' => 1,
+			'section' => 'ys_customizer_section_archive',
+		)
+	);
 }

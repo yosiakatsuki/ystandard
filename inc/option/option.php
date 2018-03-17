@@ -68,7 +68,7 @@ function ys_get_options() {
 	$result['ys_show_post_category'] = get_option( 'ys_show_post_category', 1 );
 	// ブログフォローボックスを表示する.
 	$result['ys_show_post_follow_box'] = get_option( 'ys_show_post_follow_box', 1 );
-	// 「この記事を書いた人」ボックスを表示する.
+	// 著者情報を表示する.
 	$result['ys_show_post_author'] = get_option( 'ys_show_post_author', 1 );
 	// 関連記事を出力する.
 	$result['ys_show_post_related'] = get_option( 'ys_show_post_related', 1 );
@@ -81,7 +81,9 @@ function ys_get_options() {
 	 */
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_page_thumbnail'] = get_option( 'ys_show_page_thumbnail', 1 );
-	// 「この記事を書いた人」ボックスを表示する.
+	// ブログフォローボックスを表示する.
+	$result['ys_show_page_follow_box'] = get_option( 'ys_show_page_follow_box', 1 );
+	// 著者情報を表示する.
 	$result['ys_show_page_author'] = get_option( 'ys_show_page_author', 1 );
 	/**
 	 * **********
@@ -90,6 +92,8 @@ function ys_get_options() {
 	 */
 	// 一覧表示タイプ.
 	$result['ys_archive_type'] = get_option( 'ys_archive_type', 'list' );
+	// 著者情報を表示する.
+	$result['ys_show_archive_author'] = get_option( 'ys_show_archive_author', 1 );
 	/**
 	 * **********
 	 * [ys]SNS設定

@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+if ( ! ys_is_display_author_data() ) {
+	return;
+}
 ?>
 <div class="entry__author">
 	<figure class="entry__author-figure">

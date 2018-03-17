@@ -329,17 +329,38 @@ function ys_is_active_entry_footer_widget() {
 }
 
 /**
- * 記事下投稿者表示するか
+ * 著者情報表示するか
  */
-function ys_is_active_entry_footer_author() {
+function ys_is_display_author_data() {
 	$result = true;
-	if ( is_single() && ! ys_get_option( 'ys_show_post_author' ) ) {
-		$result = false;
+	if ( is_singular() ) {
+		/**
+		 * 投稿個別設定
+		 */
+		if ( '1' === ys_get_post_meta( 'ys_hide_author' ) ) {
+			$result = false;
+		}
+		/**
+		 * 投稿ページ
+		 */
+		if ( is_single() && ! ys_get_option( 'ys_show_post_author' ) ) {
+			$result = false;
+		}
+		/**
+		 * 固定ページ
+		 */
+		if ( is_page() && ! ys_get_option( 'ys_show_page_author' ) ) {
+			$result = false;
+		}
+	} else {
+		/**
+		 * 記事一覧系
+		 */
+		if ( ! ys_get_option( 'ys_show_archive_author' ) ) {
+			$result = false;
+		}
 	}
-	if ( is_page() && ! ys_get_option( 'ys_show_page_author' ) ) {
-		$result = false;
-	}
-	return apply_filters( 'ys_is_active_entry_footer_author', $result );
+	return apply_filters( 'ys_is_display_author_data', $result );
 }
 /**
  * フッターウィジェットが有効か
@@ -359,16 +380,23 @@ function ys_is_active_footer_widgets() {
  */
 function ys_is_active_follow_box() {
 	$result = true;
-	if ( ys_is_amp() || ! ys_get_option( 'ys_show_post_follow_box' ) ) {
-		$result = false;
-	}
 	if ( is_singular() ) {
 		if ( '1' === ys_get_post_meta( 'ys_hide_follow' ) ) {
 			$result = false;
 		}
 	}
+	if ( is_single() && ! ys_get_option( 'ys_show_post_follow_box' ) ) {
+		$result = false;
+	}
+	if ( is_page() && ! ys_get_option( 'ys_show_page_follow_box' ) ) {
+		$result = false;
+	}
+	if ( ys_is_amp() ) {
+		$result = false;
+	}
 	return apply_filters( 'ys_is_active_follow_box', $result );
 }
+
 /**
  * 広告を表示するか
  */
@@ -385,11 +413,37 @@ function ys_is_active_advertisement() {
  * 関連記事を表示するか
  */
 function ys_is_active_related_post() {
-	$result = false;
-	if ( ! ys_is_amp() && ys_get_option( 'ys_show_post_related' ) ) {
-		$result = true;
+	$result = true;
+	if ( is_single() ) {
+		if ( ! ys_get_option( 'ys_show_post_related' ) ) {
+			$result = false;
+		}
+		if ( '1' === ys_get_post_meta( 'ys_hide_related' ) ) {
+			$result = false;
+		}
+	}
+	if ( ys_is_amp() ) {
+		$result = false;
 	}
 	return apply_filters( 'ys_is_active_related_post', $result );
+}
+/**
+ * 前の記事・次の記事を表示するか
+ */
+function ys_is_active_post_paging() {
+	$result = true;
+	if ( is_single() ) {
+		if ( ! ys_get_option( 'ys_show_post_paging' ) ) {
+			$result = false;
+		}
+		if ( '1' === ys_get_post_meta( 'ys_hide_paging' ) ) {
+			$result = false;
+		}
+	}
+	if ( ys_is_amp() ) {
+		$result = false;
+	}
+	return apply_filters( 'ys_is_active_post_paging', $result );
 }
 /**
  * 管理画面の投稿タイプ判断用

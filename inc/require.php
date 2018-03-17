@@ -15,7 +15,7 @@ require_once get_template_directory() . '/inc/classes/class.ys-enqueue.php';
 require_once get_template_directory() . '/inc/classes/class.ys-global-nav.php';
 require_once get_template_directory() . '/inc/classes/customizer/class.ys-image-label-radio.php';
 require_once get_template_directory() . '/inc/classes/widgets/class-ys-widget-base.php';
-require_once get_template_directory() . '/inc/classes/widgets/class.ys-ad-text-widget.php';
+require_once get_template_directory() . '/inc/classes/widgets/class-ys-ad-text-widget.php';
 require_once get_template_directory() . '/inc/classes/widgets/class-ys-ranking-widget.php';
 require_once get_template_directory() . '/inc/classes/widgets/class-ys-taxonomy-posts-widget.php';
 /**

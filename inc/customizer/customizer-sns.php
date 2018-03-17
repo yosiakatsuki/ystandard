@@ -40,7 +40,7 @@ function ys_customizer_sns( $wp_customize ) {
 	 */
 	ys_customizer_sns_add_twitter_share( $wp_customize );
 	/**
-	 * 購読ボタン設定
+	 * フォローボタン設定
 	 */
 	ys_customizer_sns_add_sns_follow( $wp_customize );
 	/**
@@ -487,9 +487,9 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	$wp_customize->add_section(
 		'ys_customizer_section_sns_follow',
 		array(
-			'title'       => '購読ボタン設定',
+			'title'       => 'フォローボタン設定',
 			'panel'       => 'ys_customizer_panel_sns',
-			'description' => '記事下に表示される購読ボタンのリンク先URLの設定',
+			'description' => '記事下に表示されるフォローボタンのリンク先URLの設定',
 		)
 	);
 	/**
@@ -499,9 +499,9 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 		$wp_customize,
 		array(
 			'id'          => 'ys_subscribe_label',
-			'label'       => '購読ボタン設定',
+			'label'       => 'フォローボタン設定',
 			'section'     => 'ys_customizer_section_sns_follow',
-			'description' => '※購読ボタンを表示しない場合は空白にしてください',
+			'description' => '※フォローボタンを表示しない場合は空白にしてください',
 		)
 	);
 	/**

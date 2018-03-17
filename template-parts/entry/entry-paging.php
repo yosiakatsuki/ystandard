@@ -35,7 +35,7 @@ if ( ! $paging ) {
 								</div><!-- .image-mask -->
 							</div><!-- .ratio -->
 						</a>
-						<h2 class="entry-paging__title clear-headline">
+						<h2 class="entry-paging__title clear-headline entry-paging__info--<?php echo $key; ?>">
 							<a class="color__font-main" href="<?php echo $value['url']; ?>"><?php echo $value['title']; ?></a>
 						</h2>
 					<?php else : ?>

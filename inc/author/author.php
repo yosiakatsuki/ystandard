@@ -66,7 +66,7 @@ if ( ! function_exists( 'ys_get_author_name' ) ) {
 		/**
 		 * 投稿者非表示オプションによって構造化データつける付けない判断する
 		 */
-		if ( $vcard && ! ys_is_active_entry_footer_author() ) {
+		if ( $vcard && ! ys_is_display_author_data() ) {
 			$vcard = false;
 		}
 		global $ys_author;
