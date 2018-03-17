@@ -145,6 +145,8 @@ if ( ! function_exists( 'ys_is_amp_enable' ) ) {
 }
 /**
  * Google AMP Client ID API を使用するか
+ *
+ * @return bool
  */
 function ys_is_active_amp_client_id_api() {
 	if ( ! ys_is_enable_google_analytics() ) {
