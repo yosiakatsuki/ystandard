@@ -143,6 +143,22 @@ if ( ! function_exists( 'ys_is_amp_enable' ) ) {
 		return apply_filters( 'ys_is_amp_enable', $result );
 	}
 }
+/**
+ * Google AMP Client ID API を使用するか
+ */
+function ys_is_active_amp_client_id_api() {
+	if ( ! ys_is_enable_google_analytics() ) {
+		return false;
+	}
+	$ga     = ys_get_option( 'ys_ga_tracking_id' );
+	$ga_amp = ys_get_option( 'ys_ga_tracking_id_amp' );
+	if ( '' !== $ga_amp ) {
+		if ( $ga !== $ga_amp ) {
+			return false;
+		}
+	}
+	return true;
+}
 
 if ( ! function_exists( 'ys_is_one_column' ) ) {
 	/**

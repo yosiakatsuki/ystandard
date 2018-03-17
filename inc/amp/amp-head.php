@@ -21,18 +21,29 @@ add_action( 'ys_amp_head', 'ys_the_canonical_tag' );
 add_action( 'ys_amp_head', 'ys_the_rel_link' );
 add_action( 'ys_amp_head', 'ys_the_noindex' );
 
-if ( ! function_exists( 'ys_get_the_amp_document_title' ) ) {
+if ( ! function_exists( 'ys_the_amp_document_title' ) ) {
 	/**
 	 * AMPでのタイトル
 	 */
-	function ys_get_the_amp_document_title() {
+	function ys_the_amp_document_title() {
 		printf(
 			'<title>%s</title>',
-			apply_filters( 'ys_get_the_amp_document_title', wp_get_document_title() )
+			apply_filters( 'ys_the_amp_document_title', wp_get_document_title() )
 		);
 	}
 }
-add_action( 'ys_amp_head', 'ys_get_the_amp_document_title' );
+add_action( 'ys_amp_head', 'ys_the_amp_document_title' );
+
+/**
+ * Google AMP Client ID API を設定する
+ * https://support.google.com/analytics/answer/7486764?hl=ja
+ */
+function ys_the_amp_client_id_api() {
+	if ( ys_is_active_amp_client_id_api() ) {
+		echo '<meta name="amp-google-client-id-api" content="googleanalytics">' . PHP_EOL;
+	}
+}
+add_action( 'ys_amp_head', 'ys_the_amp_client_id_api' );
 
 /**
  * インラインスタイルのセットと出力

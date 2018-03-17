@@ -438,7 +438,7 @@
 
 ## amp-head
 
-### ys_get_the_amp_document_title
+### ys_the_amp_document_title
 
 - file: inc/amp/amp-head.php
 - description: AMPでのページタイトル編集フィルタ
