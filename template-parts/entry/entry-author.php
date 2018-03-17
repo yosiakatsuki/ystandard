@@ -1,6 +1,6 @@
 <?php
 /**
- * 記事先頭部分テンプレート
+ * 記事投稿者テンプレート
  *
  * @package ystandard
  * @author yosiakatsuki

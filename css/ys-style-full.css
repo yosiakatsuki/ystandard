@@ -1337,7 +1337,11 @@ input[type="button"]:hover {
 
 .entry__meta {
 	margin-top: 15px;
-	font-size: .8em;
+	font-size: .6em;
+}
+
+.entry__date {
+	white-space: nowrap;
 }
 
 .entry__date-icon {
@@ -1368,7 +1372,7 @@ input[type="button"]:hover {
 }
 
 .entry__author {
-	font-size: .8em;
+	margin-right: 5px;
 }
 
 .entry__author-figure,
@@ -1376,6 +1380,7 @@ input[type="button"]:hover {
 	display: inline-block;
 	margin: 0;
 	vertical-align: middle;
+	line-height: 1;
 }
 
 .entry__author-figure img,

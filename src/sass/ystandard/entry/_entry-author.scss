@@ -1,13 +1,14 @@
 .entry__author {
   @at-root {
     & {
-      font-size: .8em;
+      margin-right:5px;
     }
     .entry__author-figure,
     .entry__author-name {
       display: inline-block;
       margin: 0;
       vertical-align: middle;
+      line-height: 1;
     }
     .entry__author-figure {
       img,amp-img {

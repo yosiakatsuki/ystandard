@@ -44,7 +44,9 @@
 			<div class="entry-excerpt entry-list__excerpt color__font-sub card__dscr">
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-list__excerpt -->
-			<?php get_template_part( 'template-parts/entry/entry-author' ); ?>
+			<div class="entry__meta">
+				<?php get_template_part( 'template-parts/entry/entry-author' ); ?>
+			</div><!-- .entry__meta -->
 		</div><!-- .entry-list__detail -->
 	</div>
 </article><!-- #post-## -->

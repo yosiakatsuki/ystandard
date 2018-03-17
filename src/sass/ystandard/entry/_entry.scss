@@ -14,9 +14,11 @@
 
     .entry__meta {
       margin-top: get_margin();
-      font-size: .8em;
+      font-size: .6em;
     }
-
+    .entry__date {
+      white-space: nowrap;
+    }
     .entry__date-icon {
       margin-right: 5px;
     }
