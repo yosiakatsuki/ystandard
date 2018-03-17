@@ -23,7 +23,6 @@ require_once get_template_directory() . '/inc/customizer/customizer-sns.php';
 require_once get_template_directory() . '/inc/customizer/customizer-seo.php';
 require_once get_template_directory() . '/inc/customizer/customizer-performance-tuning.php';
 require_once get_template_directory() . '/inc/customizer/customizer-advertisement.php';
-require_once get_template_directory() . '/inc/customizer/customizer-advanced.php';
 require_once get_template_directory() . '/inc/customizer/customizer-amp.php';
 
 /**
@@ -76,10 +75,6 @@ function ys_theme_customizer( $wp_customize ) {
 	 * 広告設定
 	 */
 	ys_customizer_advertisement( $wp_customize );
-	/**
-	 * 上級者向け設定
-	 */
-	ys_customizer_advanced( $wp_customize );
 	/**
 	 * AMP設定
 	 */

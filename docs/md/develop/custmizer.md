@@ -29,6 +29,8 @@
       - ダーク
     - フッターSNSアイコン背景色の不透明度
     - フッター文字色
+  - テーマカスタマイザーでの色変更機能を無効にする
+    - テーマカスタマイザーでの色変更機能を無効にする
 - 背景画像
 - メニュー
 - ウィジェット
@@ -100,6 +102,9 @@
     - GitHub
     - Pinterest
     - LinkedIn
+  - SNS用JavaScriptの読み込み
+    - Twitter用JavaScriptを読み込む
+    - Facebook用JavaScriptを読み込む
 - [ys]SEO設定(1110)
   * meta設定
     * meta descriptionを自動生成する
@@ -123,6 +128,8 @@
     - CSS読み込みを最適化する
   - JavaScript読み込み最適化設定
     - JavaScriptの読み込みを非同期化する
+    - CDNにホストされているjQueryを読み込む
+    - jQueryを読み込まない
   * LazyLoad機能
     * LazyLoad機能を有効化する
 - [ys]広告設定(1130)
@@ -135,15 +142,6 @@
     - 記事タイトル下
     - moreタグ部分
     - 記事本文下
-- [ys]上級者向け設定(1200)
-  - テーマカスタマイザーでの色変更機能を無効にする
-    - テーマカスタマイザーでの色変更機能を無効にする
-  - SNS用JavaScriptの読み込み
-    - Twitter用JavaScriptを読み込む
-    - Facebook用JavaScriptを読み込む
-  - jQuery設定
-    - CDNにホストされているjQueryを読み込む
-    - jQueryを読み込まない
 - [ys]AMP設定(1300)
   - AMP有効化設定
     - AMP機能を有効化する

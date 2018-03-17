@@ -34,6 +34,13 @@ function ys_get_options() {
 	$result['ys_wp_site_description'] = get_option( 'ys_wp_site_description', '' );
 	/**
 	 * **********
+	 * 色 設定
+	 * **********
+	 */
+	// テーマカスタマイザーの色設定を無効にする.
+	$result['ys_desabled_color_customizeser'] = get_option( 'ys_desabled_color_customizeser', 0 );
+	/**
+	 * **********
 	 * [ys]サイト共通設定
 	 * **********
 	 */
@@ -179,6 +186,13 @@ function ys_get_options() {
 	// linkedinフォローURL.
 	$result['ys_follow_url_linkedin'] = esc_url( get_option( 'ys_follow_url_linkedin', '' ) );
 	/**
+	 * SNS用JavaScriptの読み込み
+	 */
+	// Twitter埋め込み用js読み込み.
+	$result['ys_load_script_twitter'] = get_option( 'ys_load_script_twitter', 0 );
+	// Facebook埋め込み用js読み込み.
+	$result['ys_load_script_facebook'] = get_option( 'ys_load_script_facebook', 0 );
+	/**
 	 * **********
 	 * [ys]SEO設定
 	 * **********
@@ -255,17 +269,6 @@ function ys_get_options() {
 	$result['ys_advertisement_replace_more_sp'] = get_option( 'ys_advertisement_replace_more_sp', '' );
 	// 広告　記事下 SP.
 	$result['ys_advertisement_under_content_sp'] = get_option( 'ys_advertisement_under_content_sp', '' );
-	/**
-	 * **********
-	 * [ys]上級者向け設定
-	 * **********
-	 */
-	// テーマカスタマイザーの色設定を無効にする.
-	$result['ys_desabled_color_customizeser'] = get_option( 'ys_desabled_color_customizeser', 0 );
-	// Twitter埋め込み用js読み込み.
-	$result['ys_load_script_twitter'] = get_option( 'ys_load_script_twitter', 0 );
-	// Facebook埋め込み用js読み込み.
-	$result['ys_load_script_facebook'] = get_option( 'ys_load_script_facebook', 0 );
 	/**
 	 * **********
 	 * [ys]AMP設定
