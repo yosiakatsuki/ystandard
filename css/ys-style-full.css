@@ -767,8 +767,8 @@ input[type="button"] {
 	height: 100%;
 	color: #222;
 	text-decoration: none;
-	-webkit-box-shadow: 0 1px 1px rgba(189, 195, 199, 0.7);
-	box-shadow: 0 1px 1px rgba(189, 195, 199, 0.7);
+	-webkit-box-shadow: 0 1px 3px rgba(189, 195, 199, 0.7);
+	box-shadow: 0 1px 3px rgba(189, 195, 199, 0.7);
 	-webkit-transition: all .4s;
 	transition: all .4s;
 }
