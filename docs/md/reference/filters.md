@@ -171,15 +171,37 @@
 - file: inc/head/head.php
 - description: Twitterカードのmetaタグ編集用フィルタ
 
-### ys_get_ogp_and_twitter_card_param
-
-- file: inc/head/head.php
-- description: OGP/Twitterカードの各種パラメータ編集用フィルタ
-
 ### ys_get_google_anarytics_tracking_id
 
 - file: inc/head/head.php
 - description: Google AnalyticsトラッキングID編集フィルタ
+
+## ogp
+
+### ys_ogp_title_singular
+
+- file: inc/ogp/ogp.php
+- description: OGP/Twitterカードのtitleパラメータ編集用フィルタ(投稿・固定ページ)
+
+### ys_ogp_description_singular
+
+- file: inc/ogp/ogp.php
+- description: OGP/Twitterカードのdescriptionパラメータ編集用フィルタ(投稿・固定ページ)
+
+### ys_ogp_title_archive
+
+- file: inc/ogp/ogp.php
+- description: OGP/Twitterカードのtitleパラメータ編集用フィルタ(アーカイブページ)
+
+### ys_ogp_description_archive
+
+- file: inc/ogp/ogp.php
+- description: OGP/Twitterカードのdescriptionパラメータ編集用フィルタ(アーカイブページ)
+
+### ys_get_ogp_and_twitter_card_param
+
+- file: inc/ogp/ogp.php
+- description: OGP/Twitterカードの各種パラメータ編集用フィルタ
 
 ## image
 

@@ -32,3 +32,17 @@
   padding: .5em 0;
   font-size:1em;
 }
+.meta-box__section {
+  margin: 1em 0;
+  label {
+    font-weight: bold;
+  }
+}
+.meta-box__full-w {
+  display: block;
+  width: 100%;
+}
+.meta-box__dscr {
+  color: $font-color-gray;
+  font-size: .8em;
+}

@@ -47,6 +47,12 @@ function ys_add_post_option() {
 		<label for="ys_hide_meta_dscr">
 			<input type="checkbox" id="ys_hide_meta_dscr" name="ys_hide_meta_dscr" value="1" <?php checked( ys_get_post_meta( 'ys_hide_meta_dscr', $post->ID ), '1', true ); ?> />meta descriptionタグを<strong>無効化</strong>する
 		</label>
+		<div id="ys-ogp-description-section" class="meta-box__section">
+			<label for="ys_ogp_description">OGP/Twitter Cards用description</label><br>
+			<textarea id="ys_ogp_description" class="meta-box__full-w" name="ys_ogp_description" rows="4" cols="40"><?php echo ys_get_post_meta( 'ys_ogp_description', $post->ID ); ?></textarea>
+			<div class="meta-box__dscr">※OGP/Twitter Cardsのdescriptionとして出力する文章を設定できます。空白の場合、投稿本文から自動でdescriptionを作成します。</div><!-- .meta-box__dscr -->
+		</div><!-- #ys-ogp-description-section -->
+		<br>
 	</p>
 	<h3 class="meta-box__headline">投稿オプション</h3>
 	<p>
@@ -96,6 +102,10 @@ function ys_save_post( $post_id ) {
 		 */
 		ys_save_post_checkbox( $_POST, $post_id, 'ys_hide_meta_dscr' );
 		/**
+		 * OGP用description
+		 */
+		ys_save_post_textarea( $_POST, $post_id, 'ys_ogp_description' );
+		/**
 		 * 広告非表示設定
 		 */
 		ys_save_post_checkbox( $_POST, $post_id, 'ys_hide_ad' );
@@ -136,6 +146,23 @@ function ys_save_post_checkbox( $post, $post_id, $key ) {
 
 	if ( isset( $post[ $key ] ) && ! empty( $post[ $key ] ) && '1' === $post[ $key ] ) {
 		update_post_meta( $post_id, $key, $post[ $key ] );
+	} else {
+		delete_post_meta( $post_id, $key );
+	}
+}
+/**
+ * 投稿オプションの更新：textarea
+ *
+ * @param  array  $post    POST.
+ * @param  int    $post_id 投稿ID.
+ * @param  string $key     設定キー.
+ * @param  bool   $remove_breaks 改行を削除するか.
+ */
+function ys_save_post_textarea( $post, $post_id, $key, $remove_breaks = true ) {
+
+	if ( isset( $post[ $key ] ) && ! empty( $post[ $key ] ) ) {
+		$text = wp_strip_all_tags( $post[ $key ], $remove_breaks );
+		update_post_meta( $post_id, $key, $text );
 	} else {
 		delete_post_meta( $post_id, $key );
 	}

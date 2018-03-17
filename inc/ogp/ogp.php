@@ -85,9 +85,10 @@ if ( ! function_exists( 'ys_get_ogp_and_twitter_card_param' ) ) {
 	 * @return array
 	 */
 	function ys_get_ogp_and_twitter_card_param() {
+		$dscr  = ys_get_meta_description();
 		$param = array(
 			'title'             => get_bloginfo( 'name' ),
-			'description'       => get_bloginfo( 'description' ),
+			'description'       => $dscr,
 			'image'             => ys_get_option( 'ys_ogp_default_image' ),
 			'url'               => get_bloginfo( 'url' ),
 			'ogp_site_name'     => get_bloginfo( 'name' ),
@@ -102,8 +103,12 @@ if ( ! function_exists( 'ys_get_ogp_and_twitter_card_param' ) ) {
 		 * 投稿・固定ページ系
 		 */
 		if ( is_singular() && ! ys_is_top_page() ) {
-			$param['title']       = get_the_title();
-			$param['description'] = ys_get_the_custom_excerpt( '' );
+			$param['title'] = apply_filters( 'ys_ogp_title_singular', get_the_title() );
+			$dscr_singular  = ys_get_post_meta( 'ys_ogp_description' );
+			if ( '' !== $dscr_singular ) {
+				$dscr = $dscr_singular;
+			}
+			$param['description'] = apply_filters( 'ys_ogp_description_singular', $dscr );
 			$image                = ys_get_the_image_object();
 			if ( $image ) {
 				$param['image'] = $image[0];
@@ -115,8 +120,9 @@ if ( ! function_exists( 'ys_get_ogp_and_twitter_card_param' ) ) {
 		 * アーカイブ系
 		 */
 		if ( is_archive() && ! ys_is_top_page() ) {
-			$param['title'] = ys_get_the_archive_title( '' );
-			$param['url']   = ys_get_the_archive_url();
+			$param['title']       = apply_filters( 'ys_ogp_title_archive', ys_get_the_archive_title( '' ) );
+			$param['url']         = ys_get_the_archive_url();
+			$param['description'] = apply_filters( 'ys_ogp_description_archive', $dscr );
 		}
 		/**
 		 * フィルタ
