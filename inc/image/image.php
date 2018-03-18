@@ -1,29 +1,39 @@
 <?php
 /**
+ * 画像関連の処理
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- * 画像関連の処理
- */
+
 /**
  * アイキャッチ画像のAMP対応
+ *
+ * @param  string $html              The post thumbnail HTML.
+ * @param  int    $post_id           The post ID.
+ * @param  string $post_thumbnail_id The post thumbnail ID.
+ * @param  string $size              The post thumbnail size. Image size or array of width and height values (in that order). Default 'post-thumbnail'.
+ * @param  string $attr              Query string of attributes.
+ * @return string
  */
 function ys_post_thumbnail_html( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 	return ys_amp_convert_image( $html );
 }
 add_filter( 'post_thumbnail_html', 'ys_post_thumbnail_html', 10, 5 );
 
-/**
- * アイキャッチの画像オブジェクト取得
- */
 if ( ! function_exists( 'ys_get_the_post_thumbnail_object' ) ) {
+	/**
+	 * アイキャッチの画像オブジェクト取得
+	 *
+	 * @param string $size thumbnail size.
+	 * @param int    $post_id post ID.
+	 */
 	function ys_get_the_post_thumbnail_object( $size = 'full', $post_id = null ) {
 		$thumbnail_id = get_post_thumbnail_id( $post_id );
-		if( $thumbnail_id ) {
+		if ( $thumbnail_id ) {
 			$image = wp_get_attachment_image_src( $thumbnail_id, $size );
-			if( $image )  {
+			if ( $image ) {
 				return $image;
 			}
 		}
@@ -31,93 +41,105 @@ if ( ! function_exists( 'ys_get_the_post_thumbnail_object' ) ) {
 	}
 }
 
-/**
- * 画像オブジェクト取得
- */
 if ( ! function_exists( 'ys_get_the_image_object' ) ) {
+	/**
+	 * 画像オブジェクト取得
+	 *
+	 * @param string $size thumbnail size.
+	 * @param int    $post_id post ID.
+	 */
 	function ys_get_the_image_object( $size = 'full', $post_id = null ) {
 		/**
 		* アイキャッチ画像
 		*/
 		$image = ys_get_the_post_thumbnail_object( $size, $post_id );
-		if( $image )  {
+		if ( $image ) {
 			return apply_filters( 'ys_get_the_image_object', $image );
 		}
 		/**
 		 * アイキャッチがない → 投稿先頭画像
 		 */
 		$image = ys_get_the_first_image_object( $post_id );
-		if( $image )  {
+		if ( $image ) {
 			return apply_filters( 'ys_get_the_image_object', $image );
 		}
 		/**
 		 * アイキャッチもない、先頭画像も取得できない → 外部URL？
 		 */
 		$url = ys_get_the_first_image_url( $post_id );
-		if( false !== $url ) {
+		if ( false !== $url ) {
 			return apply_filters( 'ys_get_the_image_object', array( $url, 0, 0 ) );
 		}
 		/**
 		 * 投稿内にとにかく画像が無い → OGPデフォルト画像
 		 */
 		$image = ys_get_ogp_default_image_object();
-		if( $image ) {
+		if ( $image ) {
 			return apply_filters( 'ys_get_the_image_object', $image );
 		}
 		/**
 		 * OGPデフォルト画像も無い → ロゴ画像
 		 */
 		$image = ys_get_custom_logo_image_object();
-		if( $image ) {
+		if ( $image ) {
 			return apply_filters( 'ys_get_the_image_object', $image );
 		}
 		return false;
 	}
 }
-/**
- * 画像URLから画像IDを取得する
- */
+
 if ( ! function_exists( 'get_attachment_id_from_src' ) ) {
+	/**
+	 * 画像URLから画像IDを取得する
+	 *
+	 * @param string $src image src.
+	 */
 	function get_attachment_id_from_src( $src ) {
 		global $wpdb;
-		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid='%s';", $src ) );
-		if( empty( $attachment ) ) {
+		$attachment = $wpdb->get_col( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE guid=%s;", $src ) );
+		if ( empty( $attachment ) ) {
 			return null;
 		}
 		return $attachment[0];
 	}
 }
-/**
- * 投稿1番目の画像を取得
- */
+
 if ( ! function_exists( 'ys_get_the_first_image_url' ) ) {
+	/**
+	 * 投稿1番目の画像を取得
+	 *
+	 * @param int $post_id post ID.
+	 */
 	function ys_get_the_first_image_url( $post_id = 0 ) {
-		if( 0 === $post_id ){
+		if ( 0 === $post_id ) {
 			$post_id = get_the_ID();
 		}
 		/**
 		 * 記事内容取得
 		 */
 		$post_content = get_post( $post_id )->post_content;
-		$pattern = '/<img.+src=[\'"]([^\'"]+?)[\'"].*?>/i';
-		$output = preg_match_all( $pattern, $post_content, $matches );
-		if( false === $output || 0 >= $output ) {
+		$pattern      = '/<img.+src=[\'"]([^\'"]+?)[\'"].*?>/i';
+		$output       = preg_match_all( $pattern, $post_content, $matches );
+		if ( false === $output || 0 >= $output ) {
 			return false;
 		}
 		return $matches[1][0];
 	}
 }
-/**
- * 投稿1番目の画像を取得
- */
+
 if ( ! function_exists( 'ys_get_the_first_image_object' ) ) {
+	/**
+	 * 投稿1番目の画像を取得
+	 *
+	 * @param int $post_id post ID.
+	 */
 	function ys_get_the_first_image_object( $post_id = 0 ) {
 		$url = ys_get_the_first_image_url( $post_id );
-		if( false === $url ){
+		if ( false === $url ) {
 			return false;
 		}
 		$attachment_id = get_attachment_id_from_src( $url );
-		if( is_null( $attachment_id ) ){
+		if ( is_null( $attachment_id ) ) {
 			return false;
 		}
 		/**
@@ -127,17 +149,20 @@ if ( ! function_exists( 'ys_get_the_first_image_object' ) ) {
 		return $image;
 	}
 }
-/*
- *	ImageObject用meta
- */
+
 if ( ! function_exists( 'ys_get_the_image_object_meta' ) ) {
+	/**
+	 * ImageObject用meta
+	 *
+	 * @param object $image image object.
+	 */
 	function ys_get_the_image_object_meta( $image = null ) {
-		if( empty( $image ) || is_array( $image ) ) {
-			 global $post;
-			 $image = ys_get_the_image_object( 'full', $post->ID );
+		if ( empty( $image ) || is_array( $image ) ) {
+			global $post;
+			$image = ys_get_the_image_object( 'full', $post->ID );
 		}
 		$meta = '';
-		if( $image ) {
+		if ( $image ) {
 			$meta .= '<meta itemprop="url" content="' . $image[0] . '" />';
 			$meta .= '<meta itemprop="width" content="' . $image[1] . '" />';
 			$meta .= '<meta itemprop="height" content="' . $image[2] . '" />';
@@ -179,10 +204,12 @@ if ( ! function_exists( 'ys_get_custom_logo' ) ) {
 	}
 }
 
-/**
- * カスタムロゴオブジェクト取得
- */
 if ( ! function_exists( 'ys_get_custom_logo_image_object' ) ) {
+	/**
+	 * カスタムロゴオブジェクト取得
+	 *
+	 * @param int $blog_id blog id.
+	 */
 	function ys_get_custom_logo_image_object( $blog_id = 0 ) {
 		if ( is_multisite() && get_current_blog_id() !== (int) $blog_id ) {
 				switch_to_blog( $blog_id );
@@ -199,33 +226,35 @@ if ( ! function_exists( 'ys_get_custom_logo_image_object' ) ) {
 		return $image;
 	}
 }
-/**
- * OGPデフォルト画像のimageオブジェクト取得
- */
-if( ! function_exists( 'ys_get_ogp_default_image_object') ) {
+
+if ( ! function_exists( 'ys_get_ogp_default_image_object' ) ) {
+	/**
+	 * OGPデフォルト画像のimageオブジェクト取得
+	 */
 	function ys_get_ogp_default_image_object() {
 		$image = ys_get_option( 'ys_ogp_default_image' );
-		if( $image ) {
+		if ( $image ) {
 			$image = wp_get_attachment_image_src( get_attachment_id_from_src( $image ), 'full' );
-			if( $image ) {
+			if ( $image ) {
 				return $image;
 			}
 		}
 		return false;
 	}
 }
-/**
- * パブリッシャー用画像取得
- */
+
 if ( ! function_exists( 'ys_get_publisher_image' ) ) {
+	/**
+	 * パブリッシャー用画像取得
+	 */
 	function ys_get_publisher_image() {
 		/**
 		 * パブリッシャー画像の取得
 		 */
 		$image = ys_get_option( 'ys_option_structured_data_publisher_image' );
-		if( $image ) {
+		if ( $image ) {
 			$image = wp_get_attachment_image_src( get_attachment_id_from_src( $image ), 'full' );
-			if( $image ) {
+			if ( $image ) {
 				return $image;
 			}
 		}
@@ -233,16 +262,19 @@ if ( ! function_exists( 'ys_get_publisher_image' ) ) {
 		 * ロゴ設定の取得
 		 */
 		$image = ys_get_custom_logo_image_object();
-		if( $image ) {
+		if ( $image ) {
 			return $image;
 		}
 		return false;
 	}
 }
-/**
- *	画像サイズ取得
- */
+
 if ( ! function_exists( 'ys_get_image_size' ) ) {
+	/**
+	 * 画像サイズ取得
+	 *
+	 * @param string $img_path path.
+	 */
 	function ys_get_image_size( $img_path ) {
 		$size = false;
 		if ( file_exists( $img_path ) ) {

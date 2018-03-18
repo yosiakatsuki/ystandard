@@ -1,23 +1,28 @@
 <?php
 /**
+ * AMP設定
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
- *	AMP設定
+ * AMP設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
-function ys_customizer_amp( $wp_customize ){
+function ys_customizer_amp( $wp_customize ) {
 	/**
 	 * パネルの追加
 	 */
 	$wp_customize->add_panel(
-										'ys_customizer_panel_amp',
-										array(
-											'priority'       => 1300,
-											'title'          => '[ys]AMP設定'
-										)
-									);
+		'ys_customizer_panel_amp',
+		array(
+			'priority' => 1300,
+			'title'    => '[ys]AMP設定',
+		)
+	);
 	/**
 	 * AMP有効化設定
 	 */
@@ -42,23 +47,25 @@ function ys_customizer_active_callback_amp_options() {
 
 /**
  * AMP有効化設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_enable_option( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
 	$wp_customize->add_section(
-										'ys_customizer_section_amp_enable',
-										array(
-											'title'    => 'AMP有効化設定',
-											'panel'    => 'ys_customizer_panel_amp',
-											'priority' => 1,
-										)
-									);
+		'ys_customizer_section_amp_enable',
+		array(
+			'title'    => 'AMP有効化設定',
+			'panel'    => 'ys_customizer_panel_amp',
+			'priority' => 1,
+		)
+	);
 	ys_customizer_add_label(
 		$wp_customize,
 		array(
-			'id'        => 'ys_amp_enable_label',
+			'id'          => 'ys_amp_enable_label',
 			'label'       => 'AMP機能を有効化',
 			'section'     => 'ys_customizer_section_amp_enable',
 			'description' => '※AMPページの生成を保証するものではありません。使用しているプラグインや投稿内のHTMLタグ、インラインCSS、JavaScriptコードによりAMPフォーマットとしてエラーとなる場合もあります。',
@@ -70,12 +77,12 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 	ys_customizer_add_setting_checkbox(
 		$wp_customize,
 		array(
-			'id'        => 'ys_amp_enable',
-			'label'     => 'AMP機能を有効化する',
+			'id'          => 'ys_amp_enable',
+			'label'       => 'AMP機能を有効化する',
 			'description' => '',
-			'default'   => 0,
-			'section'   => 'ys_customizer_section_amp_enable',
-			'transport' => 'postMessage',
+			'default'     => 0,
+			'section'     => 'ys_customizer_section_amp_enable',
+			'transport'   => 'postMessage',
 		)
 	);
 }
@@ -83,79 +90,83 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 
 /**
  * AMP機能設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_amp_options( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
 	$wp_customize->add_section(
-										'ys_customizer_section_amp_options',
-										array(
-											'title'    => 'AMP機能設定',
-											'panel'    => 'ys_customizer_panel_amp',
-											'priority' => 1,
-											'active_callback' => 'ys_customizer_active_callback_amp_options'
-										)
-									);
+		'ys_customizer_section_amp_options',
+		array(
+			'title'           => 'AMP機能設定',
+			'panel'           => 'ys_customizer_panel_amp',
+			'priority'        => 1,
+			'active_callback' => 'ys_customizer_active_callback_amp_options',
+		)
+	);
 	/**
 	 * AMP用 Google Analytics トラッキングID
 	 */
 	ys_customizer_add_setting_text(
 		$wp_customize,
 		array(
-			'id'        => 'ys_ga_tracking_id_amp',
-			'default'   => '',
-			'label'     => 'Google Analytics トラッキングID(AMP)',
-			'section'   => 'ys_customizer_section_amp_options',
-			'transport' => 'postMessage',
+			'id'          => 'ys_ga_tracking_id_amp',
+			'default'     => '',
+			'label'       => 'Google Analytics トラッキングID(AMP)',
+			'section'     => 'ys_customizer_section_amp_options',
+			'transport'   => 'postMessage',
 			'input_attrs' => array(
-												'placeholder' => 'UA-00000000-0'
-											)
+				'placeholder' => 'UA-00000000-0',
+			),
 		)
 	);
 }
 /**
  * AMP広告設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_amp_ads( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
 	$wp_customize->add_section(
-										'ys_customizer_section_amp_ads',
-										array(
-											'title'    => 'AMP広告設定',
-											'panel'    => 'ys_customizer_panel_amp',
-											'priority' => 1,
-											'active_callback' => 'ys_customizer_active_callback_amp_options'
-										)
-									);
+		'ys_customizer_section_amp_ads',
+		array(
+			'title'           => 'AMP広告設定',
+			'panel'           => 'ys_customizer_panel_amp',
+			'priority'        => 1,
+			'active_callback' => 'ys_customizer_active_callback_amp_options',
+		)
+	);
 	/**
 	 * 記事タイトル下
 	 */
 	ys_customizer_add_setting_textarea(
 		$wp_customize,
 		array(
-			'id'        => 'ys_amp_advertisement_under_title',
-			'default'   => '',
-			'label'     => '記事タイトル下',
+			'id'          => 'ys_amp_advertisement_under_title',
+			'default'     => '',
+			'label'       => '記事タイトル下',
 			'description' => '',
-			'section'   => 'ys_customizer_section_amp_ads',
-			'transport' => 'postMessage',
+			'section'     => 'ys_customizer_section_amp_ads',
+			'transport'   => 'postMessage',
 		)
 	);
 	/**
-	 * moreタグ部分
+	 * Moreタグ部分
 	 */
 	ys_customizer_add_setting_textarea(
 		$wp_customize,
 		array(
-			'id'        => 'ys_amp_advertisement_replace_more',
-			'default'   => '',
-			'label'     => 'moreタグ部分',
+			'id'          => 'ys_amp_advertisement_replace_more',
+			'default'     => '',
+			'label'       => 'moreタグ部分',
 			'description' => '',
-			'section'   => 'ys_customizer_section_amp_ads',
-			'transport' => 'postMessage',
+			'section'     => 'ys_customizer_section_amp_ads',
+			'transport'   => 'postMessage',
 		)
 	);
 	/**
@@ -164,12 +175,12 @@ function ys_customizer_amp_add_amp_ads( $wp_customize ) {
 	ys_customizer_add_setting_textarea(
 		$wp_customize,
 		array(
-			'id'        => 'ys_amp_advertisement_under_content',
-			'default'   => '',
-			'label'     => '記事本文下',
+			'id'          => 'ys_amp_advertisement_under_content',
+			'default'     => '',
+			'label'       => '記事本文下',
 			'description' => '',
-			'section'   => 'ys_customizer_section_amp_ads',
-			'transport' => 'postMessage',
+			'section'     => 'ys_customizer_section_amp_ads',
+			'transport'   => 'postMessage',
 		)
 	);
 }

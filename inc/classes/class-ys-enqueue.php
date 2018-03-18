@@ -1,43 +1,56 @@
 <?php
 /**
+ * CSS,JavaScript読み込み関連のためのクラス
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
- * css,JavaScript読み込み関連のためのクラス
+ * CSS,JavaScript読み込み関連のためのクラス
  */
 class YS_Enqueue {
 	/**
 	 * インラインCSS
+	 *
+	 * @var array
 	 */
 	private $inline_styles;
 	/**
-	 * non-critical-css
+	 * Non-critical-css
+	 *
+	 * @var array
 	 */
 	private $non_critical_css;
 	/**
-	 * onload-script
+	 * Onload-script
+	 *
+	 * @var array
 	 */
 	private $onload_script;
 	/**
-	 * lazyload-script
+	 * Lazyload-script
+	 *
+	 * @var array
 	 */
 	private $lazyload_script;
 	/**
-	 * lazyload-css_lazyload
+	 * Lazyload-css_lazyload
+	 *
+	 * @var array
 	 */
 	private $lazyload_css;
 
 	/**
-	 * construct
+	 * Construct
 	 */
 	public function __construct() {
-		$inline_styles = array();
+		$inline_styles    = array();
 		$non_critical_css = array();
-		$onload_script = array();
-		$lazyload_script = array();
-		$lazyload_css = array();
+		$onload_script    = array();
+		$lazyload_script  = array();
+		$lazyload_css     = array();
 	}
 
 	/**
@@ -54,65 +67,92 @@ class YS_Enqueue {
 		);
 	}
 	/**
-	 * non-critical-css,lazyload-cssの配列セット
+	 * Non-critical-css,lazyload-cssの配列セット
+	 *
+	 * @param array   $arr css list.
+	 * @param string  $id  id.
+	 * @param string  $url url.
+	 * @param boolean $ver varsion.
 	 */
 	private function set_load_css_array( &$arr, $id, $url, $ver = false ) {
-		$ver = false == $ver ? '' : $ver;
+		$ver        = false == $ver ? '' : $ver;
 		$arr[ $id ] = array(
-										'id' => esc_attr( $id ),
-										'url' => esc_url_raw( $url ),
-										'ver' => esc_attr( $ver )
-									);
+			'id'  => esc_attr( $id ),
+			'url' => esc_url_raw( $url ),
+			'ver' => esc_attr( $ver ),
+		);
 	}
 	/**
-	 * non-critical CSSのセット
+	 * Non-critical CSSのセット
+	 *
+	 * @param string  $id  id.
+	 * @param string  $src url.
+	 * @param boolean $ver varsion.
 	 */
 	public function set_non_critical_css( $id, $src, $ver = false ) {
 		$this->set_load_css_array( $this->non_critical_css, $id, $src, $ver );
 	}
 	/**
-	 * lazyload-cssのセット
+	 * Lazyload-cssのセット
+	 *
+	 * @param string  $id  id.
+	 * @param string  $src url.
+	 * @param boolean $ver varsion.
 	 */
 	public function set_lazyload_css( $id, $src, $ver = false ) {
 		$this->set_load_css_array( $this->lazyload_css, $id, $src, $ver );
 	}
 	/**
-	 * onload-script,lazyload-script,lazyload-cssの配列セット
+	 * Onload-script,lazyload-script,lazyload-cssの配列セット
+	 *
+	 * @param array   $arr css list.
+	 * @param string  $id  id.
+	 * @param string  $url url.
+	 * @param boolean $ver varsion.
 	 */
 	private function set_load_script_array( &$arr, $id, $url, $ver = false ) {
-		$ver = false == $ver ? '' : $ver;
+		$ver        = false == $ver ? '' : $ver;
 		$arr[ $id ] = array(
-										'id' => esc_attr( $id ),
-										'url' => esc_url_raw( $url ),
-										'ver' => esc_attr( $ver )
-									);
+			'id'  => esc_attr( $id ),
+			'url' => esc_url_raw( $url ),
+			'ver' => esc_attr( $ver ),
+		);
 	}
 	/**
-	 * onload-scriptのセット
+	 * Onload-scriptのセット
+	 *
+	 * @param string  $id  id.
+	 * @param string  $src url.
+	 * @param boolean $ver varsion.
 	 */
 	public function set_onload_script( $id, $src, $ver = false ) {
 		$this->set_load_script_array( $this->onload_script, $id, $src, $ver );
 	}
 	/**
-	 * lazyload-scriptのセット
+	 * Lazyload-scriptのセット
+	 *
+	 * @param string  $id  id.
+	 * @param string  $src url.
+	 * @param boolean $ver varsion.
 	 */
 	public function set_lazyload_script( $id, $src, $ver = false ) {
 		$this->set_load_script_array( $this->lazyload_script, $id, $src, $ver );
 	}
-
 	/**
 	 * インラインCSSの取得
+	 *
+	 * @param boolean $amp is amp.
 	 */
 	public function get_inline_style( $amp ) {
-		$style = '';
+		$style             = '';
 		$inline_style_list = apply_filters( 'ys_enqueue_inline_styles', $this->inline_styles );
-		foreach( $inline_style_list as $inline_style_item ){
+		foreach ( $inline_style_list as $inline_style_item ) {
 			$inline_style = $inline_style_item['style'];
 			/**
 			 * パス文字の場合、中身を取得
 			 */
-			if( $this->is_css_path( $inline_style ) ) {
-				if( file_exists( $inline_style ) ) {
+			if ( $this->is_css_path( $inline_style ) ) {
+				if ( file_exists( $inline_style ) ) {
 					$inline_style = file_get_contents( $inline_style );
 				} else {
 					$inline_style = '';
@@ -120,15 +160,14 @@ class YS_Enqueue {
 			}
 			/**
 			 * AMPの場合、「@charset "UTF-8";」を削除
-			 * @var [type]
 			 */
-			if( $amp ) {
+			if ( $amp ) {
 				$inline_style = str_replace( '@charset "UTF-8";', '', $inline_style );
 			}
 			/**
-			 * minifyする
+			 * Minifyする
 			 */
-			if( true === $inline_style_item['minify'] ) {
+			if ( true === $inline_style_item['minify'] ) {
 				$style .= $this->minify_css( $inline_style );
 			} else {
 				$style .= $inline_style;
@@ -156,7 +195,7 @@ class YS_Enqueue {
 	}
 
 	/**
-	 * non-critical-css読み込み用script作成
+	 * Non-critical-css読み込み用script作成
 	 */
 	public function get_non_critical_css() {
 		$list = $this->get_non_critical_css_list();
@@ -165,15 +204,15 @@ class YS_Enqueue {
 	}
 
 	/**
-	 * onload-script読み込み用data属性文字列作成
+	 * Onload-script読み込み用data属性文字列作成
 	 */
 	public function get_onload_script_attr() {
 		$scripts = apply_filters( 'ys_enqueue_onload_scripts', $this->onload_script );
-		$scripts = $this->create_load_array( $scripts );		
+		$scripts = $this->create_load_array( $scripts );
 		return 'data-ys-onload-script=\'' . $this->ys_json_encode( $scripts ) . '\'';
 	}
 	/**
-	 * lazyload-script読み込み用data属性文字列作成
+	 * Lazyload-script読み込み用data属性文字列作成
 	 */
 	public function get_lazyload_script_attr() {
 		$scripts = apply_filters( 'ys_enqueue_lazyload_scripts', $this->lazyload_script );
@@ -181,28 +220,31 @@ class YS_Enqueue {
 		return 'data-ys-lazy-script=\'' . $this->ys_json_encode( $scripts ) . '\'';
 	}
 	/**
-	 * lazyload-css読み込み用data属性文字列作成
+	 * Lazyload-css読み込み用data属性文字列作成
 	 */
 	public function get_lazyload_css_attr() {
 		$css = apply_filters( 'ys_enqueue_lazyload_css', $this->lazyload_css );
 		$css = $this->create_load_array( $css );
 		return 'data-ys-lazy-css=\'' . $this->ys_json_encode( $css ) . '\'';
 	}
-
 	/**
 	 * テーマ内のCSSパスかどうかの判断
+	 *
+	 * @param string $style style or url.
 	 */
 	private function is_css_path( $style ) {
-		if( false !== strrpos( $style, get_stylesheet_directory() ) ) {
+		if ( false !== strrpos( $style, get_stylesheet_directory() ) ) {
 			return true;
 		}
-		if( false !== strrpos( $style, get_template_directory() ) ) {
+		if ( false !== strrpos( $style, get_template_directory() ) ) {
 			return true;
 		}
 		return false;
 	}
 	/**
 	 * 読み込み用配列を作成する
+	 *
+	 * @param array $obj 読み込み対象のものをまとめた配列.
 	 */
 	private function create_load_array( $obj ) {
 		if ( empty( $obj ) ) {
@@ -222,7 +264,9 @@ class YS_Enqueue {
 		return $array;
 	}
 	/**
-	 * non-critical-css出力用JavaScript取得
+	 * Non-critical-css出力用JavaScript取得
+	 *
+	 * @param string $css inline css styles.
 	 */
 	private function get_non_critical_css_script( $css ) {
 		if ( empty( $css ) ) {
@@ -254,12 +298,14 @@ EOD;
 		/**
 		 * 改行削除
 		 */
-		// $script = str_replace( array( "\r\n", "\r", "\n", "\t" ), '', $script );
+		$script = str_replace( array( "\r\n", "\r", "\n", "\t" ), '', $script );
 		return $script;
 	}
 
 	/**
-	 * cssの圧縮
+	 * CSSの圧縮
+	 *
+	 * @param string $style inline css styles.
 	 */
 	public function minify_css( $style ) {
 		/**
@@ -278,7 +324,9 @@ EOD;
 		return apply_filters( 'ys_enqueue_minify_css', $style );
 	}
 	/**
-	 * jsで扱える形式のjsonを作る
+	 * JSで扱える形式のjsonを作る
+	 *
+	 * @param array $array JavaScript情報をまとめた配列.
 	 */
 	public function ys_json_encode( $array ) {
 		return json_encode( $array, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES );

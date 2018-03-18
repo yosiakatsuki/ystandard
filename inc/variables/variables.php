@@ -1,14 +1,12 @@
 <?php
 /**
+ * 変数
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- *
- * 変数
- *
- */
+
 /**
  * CSS関連のクラス
  */

@@ -1,9 +1,12 @@
 <?php
 /**
+ * 便利ツール
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 if ( ! current_user_can( 'manage_options' ) ) {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 }
@@ -23,7 +26,7 @@ if ( ! current_user_can( 'manage_options' ) ) {
 						<div>
 							<span style="display:inline-block;width:70px;">yStandard</span>：<?php echo ys_get_theme_version( true ); ?>
 						</div>
-						<?php if( get_template() != get_stylesheet() ): ?>
+						<?php if ( get_template() != get_stylesheet() ) : ?>
 							<div>
 								<span style="display:inline-block;width:70px;">子テーマ</span>：<?php echo ys_get_theme_version(); ?>
 							</div>

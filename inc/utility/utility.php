@@ -1,30 +1,37 @@
 <?php
 /**
+ * Utility
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- *	テーマバージョン取得
- */
-if ( ! function_exists( 'ys_get_theme_version') ) {
+
+if ( ! function_exists( 'ys_get_theme_version' ) ) {
+	/**
+	 * テーマバージョン取得
+	 *
+	 * @param boolean $template 親テーマ情報かどうか.
+	 */
 	function ys_get_theme_version( $template = false ) {
 		/**
 		 * 子テーマ情報
 		 */
 		$theme = wp_get_theme();
-		if( $template && get_template() != get_stylesheet() ){
+		if ( $template && get_template() != get_stylesheet() ) {
 			/**
 			 * 親テーマ情報
 			 */
 			$theme = wp_get_theme( get_template() );
 		}
-		return $theme->Version;
+		return $theme->get( 'Version' );
 	}
 }
 
 /**
  * HTML・改行・ショートコードなしのテキストを取得
+ *
+ * @param string $data content.
  */
 function ys_get_plain_text( $data ) {
 	/**
@@ -38,51 +45,64 @@ function ys_get_plain_text( $data ) {
 	return $data;
 }
 
-
-/**
- * Twitter用JavaScript URL取得
- */
-if( ! function_exists( 'ys_get_twitter_widgets_js' ) ) {
-	function ys_get_twitter_widgets_js(){
+if ( ! function_exists( 'ys_get_twitter_widgets_js' ) ) {
+	/**
+	 * Twitter用JavaScript URL取得
+	 */
+	function ys_get_twitter_widgets_js() {
 		return apply_filters( 'ys_get_twitter_widgets_js', '//platform.twitter.com/widgets.js' );
 	}
 }
-/**
- * Facebook用JavaScript URL取得
- */
-if( ! function_exists( 'ys_get_facebook_sdk_js' ) ) {
-	function ys_get_facebook_sdk_js(){
+
+if ( ! function_exists( 'ys_get_facebook_sdk_js' ) ) {
+	/**
+	 * Facebook用JavaScript URL取得
+	 */
+	function ys_get_facebook_sdk_js() {
 		return apply_filters( 'ys_get_facebook_sdk_js', '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8' );
 	}
 }
-/**
- * Feedly 購読URL作成
- */
-if( ! function_exists( 'ys_get_feedly_subscribe_url' ) ) {
+
+if ( ! function_exists( 'ys_get_feedly_subscribe_url' ) ) {
+	/**
+	 * Feedly 購読URL作成
+	 *
+	 * @param string $type feed type.
+	 */
 	function ys_get_feedly_subscribe_url( $type = '' ) {
 		return 'https://feedly.com/i/subscription/feed/' . urlencode( get_feed_link( $type ) );
 	}
 }
-/**
- * get_posts で使うクエリパラメータを作る : 基本部分
- */
+
 if ( ! function_exists( 'ys_get_posts_args' ) ) {
-	function ys_get_posts_args( $posts_per_page = 4, $args = array() ){
+	/**
+	 * Get_posts で使うクエリパラメータを作る : 基本部分
+	 *
+	 * @param  integer $posts_per_page 記事数.
+	 * @param  array   $args           パラメータ.
+	 * @return array
+	 */
+	function ys_get_posts_args( $posts_per_page = 4, $args = array() ) {
 		$defaults = array(
-									'post_type' => 'post',
-									'posts_per_page' => $posts_per_page,
-									'no_found_rows' => true,
-									'ignore_sticky_posts'=> true
-								);
-		$args = wp_parse_args( $args, $defaults );
+			'post_type'           => 'post',
+			'posts_per_page'      => $posts_per_page,
+			'no_found_rows'       => true,
+			'ignore_sticky_posts' => true,
+		);
+		$args     = wp_parse_args( $args, $defaults );
 		return $args;
 	}
 }
-/**
- * get_posts で使うクエリパラメータを作る : ランダムに取得
- */
+
 if ( ! function_exists( 'ys_get_posts_args_rand' ) ) {
-	function ys_get_posts_args_rand( $posts_per_page = 4, $args = array() ){
+	/**
+	 * Get_posts で使うクエリパラメータを作る : ランダムに取得
+	 *
+	 * @param  integer $posts_per_page 記事数.
+	 * @param  array   $args           パラメータ.
+	 * @return array
+	 */
+	function ys_get_posts_args_rand( $posts_per_page = 4, $args = array() ) {
 		$rand_args = array( 'orderby' => 'rand' );
 		$rand_args = wp_parse_args( $rand_args, $args );
 		/**

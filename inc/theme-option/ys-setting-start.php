@@ -1,13 +1,15 @@
 <?php
 /**
+ * 設定スタートページ
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-if (!current_user_can('manage_options'))
-	{
-		wp_die( __('You do not have sufficient permissions to access this page.') );
-	}
+
+if ( ! current_user_can( 'manage_options' ) ) {
+	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+}
 $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
 <div class="wrap">

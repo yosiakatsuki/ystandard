@@ -1,9 +1,12 @@
 <?php
 /**
+ * 投稿タイプ
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
+
 /**
  * 投稿タイプ取得
  */

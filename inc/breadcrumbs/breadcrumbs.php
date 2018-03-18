@@ -255,49 +255,63 @@ function ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type =
 }
 /**
  * Set ancestors and krsort
+ *
+ * @param  array  $items items.
+ * @param  int    $object_id object_id.
+ * @param  string $object_type   object_type.
+ * @param  string $resource_type resource_type.
  */
-function ys_set_breadcrumb_ancestors( $items, $object_id, $object_type, $resource_type = '' ){
+function ys_set_breadcrumb_ancestors( $items, $object_id, $object_type, $resource_type = '' ) {
 	$ancestors = ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type );
 	foreach ( $ancestors as $ancestor_id ) {
-		if( 'page' == $object_type ){
+		if ( 'page' == $object_type ) {
 			$items = ys_set_breadcrumb_item(
-									$items,
-									get_the_title( $ancestor_id ),
-									get_permalink( $ancestor_id )
-								);
+				$items,
+				get_the_title( $ancestor_id ),
+				get_permalink( $ancestor_id )
+			);
 		} else {
 			$ancestors_term = get_term_by( 'id', $ancestor_id, $object_type );
-			if( $ancestors_term ) {
+			if ( $ancestors_term ) {
 				$items = ys_set_breadcrumb_item(
-									$items,
-									$ancestors_term->name,
-									get_term_link( $ancestor_id, $object_type )
-								);
+					$items,
+					$ancestors_term->name,
+					get_term_link( $ancestor_id, $object_type )
+				);
 			}
 		}
 	}
 	return apply_filters( 'ys_set_breadcrumb_ancestors', $items, $object_id, $object_type, $resource_type );
 }
 /**
- * 年
+ * 年のセット
+ *
+ * @param array   $items items.
+ * @param int     $year year.
+ * @param boolean $link set url.
  */
-function ys_set_breadcrumb_year( $items, $year, $link = true ){
+function ys_set_breadcrumb_year( $items, $year, $link = true ) {
 	$label = $year;
-	$url = '';
+	$url   = '';
 	if ( 'ja' === get_locale() ) {
 		$label .= '年';
 	}
-	if( $link ) {
+	if ( $link ) {
 		$url = get_year_link( $year );
 	}
 	return ys_set_breadcrumb_item( $items, $label, $url );
 }
 /**
  * 月
+ *
+ * @param array   $items items.
+ * @param int     $year  year.
+ * @param int     $month month.
+ * @param boolean $link set url.
  */
-function ys_set_breadcrumb_month( $items, $year, $month, $link = true ){
+function ys_set_breadcrumb_month( $items, $year, $month, $link = true ) {
 	$label = $month;
-	$url = '';
+	$url   = '';
 	if ( 'ja' === get_locale() ) {
 		$label .= '月';
 	} else {
@@ -315,17 +329,20 @@ function ys_set_breadcrumb_month( $items, $year, $month, $link = true ){
 				11 => 'November',
 				12 => 'December',
 			);
-			$label = $monthes[ $month ];
+			$label   = $monthes[ $month ];
 	}
-	if( $link ) {
+	if ( $link ) {
 		$url = get_month_link( $year, $month );
 	}
 	return ys_set_breadcrumb_item( $items, $label, $url );
 }
 /**
  * 日
+ *
+ * @param array $items items.
+ * @param int   $day   day.
  */
-function ys_set_breadcrumb_day( $items, $day ){
+function ys_set_breadcrumb_day( $items, $day ) {
 	$label = $day;
 	if ( 'ja' === get_locale() ) {
 		$label .= '日';
