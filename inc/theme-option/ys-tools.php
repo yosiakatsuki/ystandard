@@ -11,11 +11,9 @@ if ( ! current_user_can( 'manage_options' ) ) {
 	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 }
 ?>
-
 <div class="wrap">
 <h2>便利ツール</h2>
 <div id="poststuff">
-
 	<div class="postbox">
 		<h2>yStandard情報</h2>
 		<div class="inside">
@@ -36,6 +34,5 @@ if ( ! current_user_can( 'manage_options' ) ) {
 			</table>
 		</div>
 	</div>
-
 </div><!-- /#poststuff -->
 </div><!-- /.warp -->

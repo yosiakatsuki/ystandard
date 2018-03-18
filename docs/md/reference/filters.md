@@ -161,6 +161,11 @@
 - file: inc/head/head.php
 - description: meta description用文字列編集用フィルタ
 
+### ys_prefetch_list
+
+- file: inc/head/head.php
+- description: prefetchリソースヒントに追加するリスト編集用フィルタ
+
 ### ys_get_the_ogp
 
 - file: inc/head/head.php

@@ -43,4 +43,4 @@ if ( has_nav_menu( 'global' ) ) :
 	</nav><!-- .global-nav -->
 <?php
 		endif;
-	endif; ?>
+	endif;

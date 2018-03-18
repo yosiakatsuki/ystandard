@@ -67,10 +67,6 @@ require_once get_template_directory() . '/inc/customizer/customizer.php';
  */
 require_once get_template_directory() . '/inc/template/template.php';
 /**
- * 投稿
- */
-require_once get_template_directory() . '/inc/entry/entry-meta.php';
-/**
  * アーカイブ
  */
 require_once get_template_directory() . '/inc/archive/archive.php';
@@ -125,7 +121,6 @@ require_once get_template_directory() . '/inc/taxonomy/tag.php';
 /**
  * AMP
  */
-require_once get_template_directory() . '/inc/amp/amp-utility.php';
 require_once get_template_directory() . '/inc/amp/amp-convert.php';
 require_once get_template_directory() . '/inc/amp/amp-filter.php';
 require_once get_template_directory() . '/inc/amp/amp-head.php';

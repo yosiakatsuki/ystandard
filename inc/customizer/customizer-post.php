@@ -133,5 +133,4 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 			'section' => 'ys_customizer_section_post',
 		)
 	);
-
 }

@@ -208,8 +208,8 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		}
 		?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'post_count' ); ?>">表示する投稿数:</label>
@@ -253,7 +253,7 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 				</select>
 			</p>
 		</div>
-		<?php
+	<?php
 	}
 
 	/**

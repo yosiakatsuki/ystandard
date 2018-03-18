@@ -105,6 +105,41 @@ if ( ! function_exists( 'ys_the_pingback_url' ) ) {
 }
 add_action( 'wp_head', 'ys_the_pingback_url' );
 
+if ( ! function_exists( 'ys_the_prefetch' ) ) {
+	/**
+	 * Prefetch
+	 */
+	function ys_the_prefetch() {
+		$prefetch = array();
+		/**
+		 * Prefetchタグを追加するリソースのセット
+		 */
+		$prefetch['font-awesome-woff2'] = array(
+			'url'  => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0',
+			'as'   => 'font',
+			'type' => 'font/woff2',
+		);
+		$prefetch['font-awesome-woff']  = array(
+			'url'  => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0',
+			'as'   => 'font',
+			'type' => 'font/woff',
+		);
+		/**
+		 * リストの編集
+		 */
+		$prefetch = apply_filters( 'ys_prefetch_list', $prefetch );
+		foreach ( $prefetch as $key => $value ) {
+			printf(
+				'<link rel="preload" as="%s" type="%s" href="%s" crossorigin />' . PHP_EOL,
+				$value['as'],
+				$value['type'],
+				$value['url']
+			);
+		}
+	}
+}
+add_action( 'wp_head', 'ys_the_prefetch', 2 );
+
 if ( ! function_exists( 'ys_the_apple_touch_icon' ) ) {
 	/**
 	 * Apple touch icon

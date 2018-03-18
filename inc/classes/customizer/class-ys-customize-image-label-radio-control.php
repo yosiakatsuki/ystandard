@@ -68,7 +68,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<?php endforeach; ?>
 				</div>
 			</div>
-			<?php
+		<?php
 		}
 	}
 }

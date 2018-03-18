@@ -157,15 +157,14 @@ function ys_get_author_sns_item( $key, $icon_class, $user_id ) {
 function ys_the_author_sns() {
 	$sns = ys_get_author_sns_list();
 	if ( ! empty( $sns ) ) :
-	?>
-	<ul class="author__sns list-style--none">
-		<?php foreach ( $sns as $key => $value ) : ?>
-			<li class="author__sns-item">
-				<a class="sns__color--<?php echo $value['icon']; ?> author__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow"><i class="fa fa-<?php echo $value['icon']; ?>" aria-hidden="true"></i></a>
-			</li>
-		<?php endforeach; ?>
-	</ul><!-- .author__sns -->
-	<?php
+	?><ul class="author__sns list-style--none">
+	<?php foreach ( $sns as $key => $value ) : ?>
+		<li class="author__sns-item">
+			<a class="sns__color--<?php echo $value['icon']; ?> author__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow"><i class="fa fa-<?php echo $value['icon']; ?>" aria-hidden="true"></i></a>
+		</li>
+	<?php endforeach; ?>
+</ul><!-- .author__sns -->
+<?php
 	endif;
 }
 

@@ -41,7 +41,7 @@ function ys_inline_styles() {
 	 */
 	ys_the_inline_style();
 }
-add_action( 'wp_head', 'ys_inline_styles', 2 );
+add_action( 'wp_head', 'ys_inline_styles', 5 );
 
 
 /**

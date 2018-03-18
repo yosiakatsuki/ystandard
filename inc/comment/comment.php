@@ -30,72 +30,72 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 			$comment_class[] = 'comment__parent';
 		}
 	?>
-		<<?php echo $tag; ?> <?php comment_class( $comment_class ); ?> id="comment-<?php comment_ID(); ?>">
-			<?php if ( 'div' != $args['style'] ) : ?>
-			<div id="div-comment-<?php comment_ID(); ?>" class="comment-body comment__body">
-			<?php endif; ?>
-			<div class="comments__header flex flex--j-between">
-				<div class="comment-author comment__author clearfix">
-					<?php
-					if ( get_option( 'show_avatars' ) ) :
-					?>
-						<figure class="comment__author-image">
-							<?php
-							if ( 0 != $args['avatar_size'] ) {
-								if ( get_the_author_meta( 'user_email' ) == $comment->comment_author_email ) {
-									echo ys_get_author_avatar( false, $args['avatar_size'] );
-								} else {
-									echo get_avatar( $comment, $args['avatar_size'] );
-								}
-							}
-							?>
-						</figure>
-				<?php endif; ?>
-				<div class="comment__meta color__font-sub">
-					<?php
-					/* translators: 1: comment name. */
-					printf( __( '<cite class="comment__name">%s</cite>' ), get_comment_author_link() );
-					?>
-					<?php if ( '0' == $comment->comment_approved ) : ?>
-						<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></span>
-					<?php endif; ?>
-						<div class="comment__meta-data">
-								<a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
-								<?php
-								/* translators: 1: date, 2: time */
-								printf( __( '%1$s at %2$s' ), get_comment_date(), get_comment_time() );
-								?>
-							</a>
-							<?php
-							edit_comment_link( __( '(Edit)' ), '  ', '' );
-							?>
-						</div>
-					</div><!-- .comment__meta -->
-				</div>
+	<<?php echo $tag; ?> <?php comment_class( $comment_class ); ?> id="comment-<?php comment_ID(); ?>">
+		<?php if ( 'div' != $args['style'] ) : ?>
+		<div id="div-comment-<?php comment_ID(); ?>" class="comment-body comment__body">
+		<?php endif; ?>
+		<div class="comments__header flex flex--j-between">
+			<div class="comment-author comment__author clearfix">
 				<?php
-					$args  = array_merge(
-						$args,
-						array(
-							'add_below' => $add_below,
-							'depth'     => $depth,
-							'max_depth' => $args['max_depth'],
-						)
-					);
-					$reply = get_comment_reply_link( $args );
-				if ( '' != $reply ) :
+				if ( get_option( 'show_avatars' ) ) :
 				?>
-				<div class="reply comment__reply">
-					<?php echo $reply; ?>
-				</div>
+					<figure class="comment__author-image">
+						<?php
+						if ( 0 != $args['avatar_size'] ) {
+							if ( get_the_author_meta( 'user_email' ) == $comment->comment_author_email ) {
+								echo ys_get_author_avatar( false, $args['avatar_size'] );
+							} else {
+								echo get_avatar( $comment, $args['avatar_size'] );
+							}
+						}
+						?>
+					</figure>
+			<?php endif; ?>
+			<div class="comment__meta color__font-sub">
+				<?php
+				/* translators: 1: comment name. */
+				printf( __( '<cite class="comment__name">%s</cite>' ), get_comment_author_link() );
+				?>
+				<?php if ( '0' == $comment->comment_approved ) : ?>
+					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></span>
 				<?php endif; ?>
-			</div><!-- .comments__header -->
-			<div class="comment-text comment__text">
-				<?php comment_text(); ?>
+					<div class="comment__meta-data">
+							<a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
+							<?php
+							/* translators: 1: date, 2: time */
+							printf( __( '%1$s at %2$s' ), get_comment_date(), get_comment_time() );
+							?>
+						</a>
+						<?php
+						edit_comment_link( __( '(Edit)' ), '  ', '' );
+						?>
+					</div>
+				</div><!-- .comment__meta -->
 			</div>
-			<?php if ( 'div' != $args['style'] ) : ?>
+			<?php
+				$args  = array_merge(
+					$args,
+					array(
+						'add_below' => $add_below,
+						'depth'     => $depth,
+						'max_depth' => $args['max_depth'],
+					)
+				);
+				$reply = get_comment_reply_link( $args );
+			if ( '' != $reply ) :
+			?>
+			<div class="reply comment__reply">
+				<?php echo $reply; ?>
 			</div>
 			<?php endif; ?>
-	<?php
+		</div><!-- .comments__header -->
+		<div class="comment-text comment__text">
+			<?php comment_text(); ?>
+		</div>
+		<?php if ( 'div' != $args['style'] ) : ?>
+	</div>
+<?php
+	endif;
 	}
 }
 /**

@@ -85,7 +85,7 @@ function ys_add_post_option() {
 			<?php endif; ?>
 		<?php endif; ?>
 	</p>
-	<?php
+<?php
 }
 /**
  * 投稿オプションの保存
