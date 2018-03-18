@@ -222,6 +222,26 @@
 - file: inc/template/tempalte.php
 - description: 記事フッターで読み込むテンプレートファイルの編集フィルタ
 
+### ys_hero_template
+
+- file: inc/template/tempalte.php
+- description: ヒーローエリアに読み込むテンプレートファイルの編集フィルタ
+
+### ys_get_archive_header_template
+
+- file: inc/template/tempalte.php
+- description: アーカイブヘッダーに読み込むテンプレートファイルの編集フィルタ
+
+### ys_get_page_template
+
+- file: inc/template/tempalte.php
+- description: 固定ページに読み込むテンプレートファイルの編集フィルタ
+
+### ys_get_single_template
+
+- file: inc/template/tempalte.php
+- description: 投稿ページに読み込むテンプレートファイルの編集フィルタ
+
 ## share-button
 
 ### ys_get_share_button_data

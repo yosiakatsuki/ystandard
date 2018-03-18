@@ -1,6 +1,6 @@
 <?php
 /**
- * 固定ページテンプレート
+ * 固定ページテンプレート(1カラム)
  *
  * @package ystandard
  * @author yosiakatsuki
@@ -10,19 +10,21 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header entry__header">
-		<?php
-		the_title( '<h1 class="entry-title entry__title">', '</h1>' );
-		if ( ys_is_active_post_thumbnail() ) :
-		?>
-		<figure class="post-thumbnail entry__thumbnail">
+		<div class="entry__header--one-col section--full flex flex--a-center">
 			<?php
-			the_post_thumbnail( 'post-thumbnail', array(
-				'id'    => 'entry__thumbnail-image',
-				'class' => 'entry__thumbnail-image',
-			) );
+			the_title( '<h1 class="entry-title entry__title entry__title--one-col">', '</h1>' );
+			if ( ys_is_active_post_thumbnail() ) :
 			?>
-		</figure><!-- .post-thumbnail -->
-		<?php endif; ?>
+			<figure class="post-thumbnail entry__thumbnail">
+				<?php
+				the_post_thumbnail( 'post-thumbnail', array(
+					'id'    => 'entry__thumbnail-image',
+					'class' => 'entry__thumbnail-image',
+				) );
+				?>
+			</figure><!-- .post-thumbnail -->
+			<?php endif; ?>
+		</div><!-- .entry__header-one-col -->
 		<?php
 			get_template_part( 'template-parts/entry/entry-header' );
 		?>

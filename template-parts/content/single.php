@@ -11,23 +11,23 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header entry__header">
 		<?php
-			the_title( '<h1 class="entry-title entry__title">', '</h1>' );
+		the_title( '<h1 class="entry-title entry__title">', '</h1>' );
+		if ( ys_is_active_post_thumbnail() ) :
 		?>
-		<?php if ( ys_is_active_post_thumbnail() ) : ?>
-			<figure class="post-thumbnail entry__thumbnail">
-				<?php
-				the_post_thumbnail( 'post-thumbnail', array(
-					'id'    => 'entry__thumbnail__image',
-					'class' => 'entry__thumbnail__image',
-				) );
-				?>
-			</figure><!-- .post-thumbnail -->
+		<figure class="post-thumbnail entry__thumbnail">
+			<?php
+			the_post_thumbnail( 'post-thumbnail', array(
+				'id'    => 'entry__thumbnail-image',
+				'class' => 'entry__thumbnail-image',
+			) );
+			?>
+		</figure><!-- .post-thumbnail -->
 		<?php endif; ?>
 		<?php
 			get_template_part( 'template-parts/entry/entry-header' );
 		?>
 	</header><!-- .entry-header -->
-		<div class="entry-content entry__content">
+	<div class="entry-content entry__content">
 		<?php
 			the_content();
 			wp_link_pages( array(

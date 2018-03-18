@@ -1,26 +1,23 @@
 <?php
 /**
+ * テンプレートのロード等関連の関数
+ *
  * @package ystandard
  * @author yosiakatsuki
  * @license GPL-2.0+
  */
-/**
- *
- * テンプレート関連の関数
- *
- */
 
-/**
- * front-pageでロードするテンプレート
- */
-if( ! function_exists( 'ys_get_front_page_template' ) ) {
+if ( ! function_exists( 'ys_get_front_page_template' ) ) {
+	/**
+	 * Front-pageでロードするテンプレート
+	 */
 	function ys_get_front_page_template() {
 		$type = get_option( 'show_on_front' );
-		if( 'page' == $type ){
-			$template = 'page';
+		if ( 'page' == $type ) {
+			$template      = 'page';
 			$page_template = get_page_template_slug();
 
-			if( $page_template ) {
+			if ( $page_template ) {
 				$template = str_replace( '.php', '', $page_template );
 			}
 		} else {
@@ -30,12 +27,12 @@ if( ! function_exists( 'ys_get_front_page_template' ) ) {
 	}
 }
 
-/**
- * 記事フッターでロードするテンプレート
- */
-if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
+if ( ! function_exists( 'ys_get_entry_footer_template' ) ) {
+	/**
+	 * 記事フッターでロードするテンプレート
+	 */
 	function ys_get_entry_footer_template() {
-		$dir = 'template-parts/entry/entry-footer-block/';
+		$dir       = 'template-parts/entry/entry-footer-block/';
 		$templates = array();
 		/**
 		 * フッターウィジェット
@@ -65,4 +62,49 @@ if( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 		$templates['author'] = $dir . 'entry-footer-author';
 		return apply_filters( 'ys_get_entry_footer_template', $templates );
 	}
+}
+/**
+ * ヒーローエリアのテンプレート名取得
+ *
+ * @return string
+ */
+function ys_get_hero_template() {
+	$template = '';
+	return apply_filters( 'ys_hero_template', $template );
+}
+/**
+ * アーカイブヘッダーテンプレート名取得
+ *
+ * @return string
+ */
+function ys_get_archive_header_template() {
+	$template = '';
+	if ( is_author() ) {
+		$template = 'author';
+	}
+	return apply_filters( 'ys_get_archive_header_template', $template );
+}
+/**
+ * ページテンプレート名取得
+ *
+ * @return string
+ */
+function ys_get_page_template() {
+	$template = '';
+	if ( ys_is_one_column() ) {
+		$template = 'one-column';
+	}
+	return apply_filters( 'ys_get_page_template', $template );
+}
+/**
+ * 投稿テンプレート名取得
+ *
+ * @return string
+ */
+function ys_get_single_template() {
+	$template = '';
+	if ( ys_is_one_column() || ys_is_amp() ) {
+		$template = 'one-column';
+	}
+	return apply_filters( 'ys_get_single_template', $template );
 }

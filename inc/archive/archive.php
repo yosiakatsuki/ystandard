@@ -87,15 +87,3 @@ function ys_get_archive_card_col() {
 	}
 	return 'entry-list--card-2';
 }
-/**
- * アーカイブヘッダーテンプレート名取得
- *
- * @return string
- */
-function ys_get_archive_header_template() {
-	$template = '';
-	if ( is_author() ) {
-		$template = 'author';
-	}
-	return apply_filters( 'ys_get_archive_header_template', $template );
-}

@@ -56,13 +56,3 @@ function ys_get_header_type_class() {
 function ys_the_header_type_class() {
 	echo ys_get_header_type_class();
 }
-
-/**
- * ヒーローエリアのテンプレート名取得
- *
- * @return string
- */
-function ys_get_hero_template() {
-	$template = '';
-	return apply_filters( 'ys_hero_template', $template );
-}

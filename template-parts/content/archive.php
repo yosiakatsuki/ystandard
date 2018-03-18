@@ -15,7 +15,7 @@
 				<figure class="entry-list__figure ratio__item ratio__image">
 					<?php
 					the_post_thumbnail( 'post-thumbnail', array(
-						'class' => 'entry-list____image',
+						'class' => 'entry-list__image',
 					) );
 					?>
 				</figure>
