@@ -63,7 +63,7 @@ if ( ! function_exists( 'ys_amp_convert_image' ) ) {
 		if ( ! ys_is_amp() ) {
 			return $img;
 		}
-		$pattern     = '/<img(.+?)?>/i';
+		$pattern     = '/<img(.+?)\/?>/i';
 		$replacement = '<amp-img layout="' . $layout . '"$1></amp-img>';
 		$amp_img     = ys_amp_preg_replace( $pattern, $replacement, $img );
 

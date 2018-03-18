@@ -115,6 +115,36 @@ EOD;
 		$this->assertFalse( ys_is_amp() );
 	}
 	/**
+	 * amp-img変換テスト
+	 */
+	function test_amp_img_1() {
+		$post_id = $this->setup_postdata();
+		/**
+		 * スラッシュ付き
+		 */
+		$content = '<img src="https://amp-test.test/image.png" alt="amp img test" />';
+		$content = ys_amp_convert_image( $content );
+		$this->assertSame(
+			'<amp-img layout="responsive" src="https://amp-test.test/image.png" alt="amp img test" ></amp-img>',
+			$content
+		);
+	}
+	/**
+	 * amp-img変換テスト
+	 */
+	function test_amp_img_2() {
+		$post_id = $this->setup_postdata();
+		/**
+		 * スラッシュなし
+		 */
+		$content = '<img src="https://amp-test.test/image.png" alt="amp img test" >';
+		$content = ys_amp_convert_image( $content );
+		$this->assertSame(
+			'<amp-img layout="responsive" src="https://amp-test.test/image.png" alt="amp img test" ></amp-img>',
+			$content
+		);
+	}
+	/**
 	 * iframe変換テスト
 	 */
 	function test_amp_iframe() {
