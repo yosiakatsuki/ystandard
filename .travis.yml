@@ -54,5 +54,5 @@ script:
   fi
 - |
   if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
-    phpcs
+    phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')
   fi

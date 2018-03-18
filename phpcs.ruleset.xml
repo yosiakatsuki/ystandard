@@ -12,4 +12,5 @@
 	<exclude-pattern>*/tests/*.php</exclude-pattern>
 	<exclude-pattern>*/docs/*</exclude-pattern>
 	<exclude-pattern>*/library/*</exclude-pattern>
+	<exclude-pattern>user-custom-*</exclude-pattern>
 </ruleset>
