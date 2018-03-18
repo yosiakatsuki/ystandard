@@ -42,7 +42,7 @@ function ys_add_post_option() {
 	<h3 class="meta-box__headline">SEO設定</h3>
 	<p>
 		<label for="ys_noindex">
-			<input type="checkbox" id="ys_noindex" name="ys_noindex" value="1" <?php checked( ys_get_post_meta( 'ys_noindex', $post->ID ), '1', true ); ?> />この記事に「noindex,follow」を設定する
+			<input type="checkbox" id="ys_noindex" name="ys_noindex" value="1" <?php checked( ys_get_post_meta( 'ys_noindex', $post->ID ), '1', true ); ?> />この記事をnoindexにする
 		</label><br>
 		<label for="ys_hide_meta_dscr">
 			<input type="checkbox" id="ys_hide_meta_dscr" name="ys_hide_meta_dscr" value="1" <?php checked( ys_get_post_meta( 'ys_hide_meta_dscr', $post->ID ), '1', true ); ?> />meta descriptionタグを<strong>無効化</strong>する
@@ -80,7 +80,7 @@ function ys_add_post_option() {
 			<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
 				<br />
 				<label for="ys_post_meta_amp_desable">
-					<input type="checkbox" id="ys_post_meta_amp_desable" name="ys_post_meta_amp_desable" value="1" <?php checked( ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ), '1', true ); ?> />AMPページを<strong>作成しない</strong>
+					<input type="checkbox" id="ys_post_meta_amp_desable" name="ys_post_meta_amp_desable" value="1" <?php checked( ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ), '1', true ); ?> />AMPページ生成を<strong>作無効化</strong>する
 				</label>
 			<?php endif; ?>
 		<?php endif; ?>
