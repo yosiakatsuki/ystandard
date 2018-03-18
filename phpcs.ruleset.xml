@@ -3,7 +3,7 @@
 	<description>Generally-applicable sniffs for WordPress plugins</description>
 
 	<rule ref="WordPress-Core">
-    <exclude name="Generic.Files.EndFileNewline.NotFound" />
+		<exclude name="Generic.Files.EndFileNewline.NotFound" />
 	</rule>
 	<rule ref="WordPress-Docs" />
 
@@ -12,5 +12,4 @@
 	<exclude-pattern>*/tests/*.php</exclude-pattern>
 	<exclude-pattern>*/docs/*</exclude-pattern>
 	<exclude-pattern>*/library/*</exclude-pattern>
-	<exclude-pattern>user-custom-*</exclude-pattern>
 </ruleset>
