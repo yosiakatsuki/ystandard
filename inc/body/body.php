@@ -35,6 +35,11 @@ function ys_body_classes( $classes ) {
 	 */
 	if ( ys_is_one_column() || ys_is_amp() ) {
 		$classes[] = 'one-col';
+		if ( is_singular() || is_404() ) {
+			$classes[] = 'one-col--singular';
+		} else {
+			$classes[] = 'one-col--archive';
+		}
 	}
 
 	/**

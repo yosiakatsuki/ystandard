@@ -657,7 +657,7 @@ input[type="button"] {
 
 .container {
 	position: relative;
-	max-width: 1250px;
+	max-width: 1220px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0 15px;
@@ -1315,7 +1315,7 @@ input[type="button"]:hover {
 	-ms-flex: none;
 	flex: none;
 	width: 100%;
-	max-width: 860px;
+	max-width: 830px;
 	background-color: #fff;
 	padding: 0 0 15px;
 }
@@ -2392,15 +2392,17 @@ div.aligncenter {
 .one-col .content__main {
 	width: 100%;
 	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.one-col.single .breadcrumbs,
-.one-col.single .content__main,
-.one-col.page .breadcrumbs,
-.one-col.page .content__main {
+.one-col--singular .breadcrumbs__list,
+.one-col--singular .content__main {
 	max-width: 900px;
-	margin-right: auto;
 	margin-left: auto;
+	margin-right: auto;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .ys-blog-card {
@@ -3339,11 +3341,6 @@ div.aligncenter {
 .one-col .entry__title {
 	font-size: 1.8em;
 	margin-bottom: 1em;
-}
-
-.one-col .content__main {
-	padding-right: 15px;
-	padding-left: 15px;
 }
 
 .ys-post-list__items:not(.ys-post-list--no-img) {
