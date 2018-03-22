@@ -110,27 +110,17 @@ if ( ! function_exists( 'ys_the_prefetch' ) ) {
 	 * Prefetch
 	 */
 	function ys_the_prefetch() {
-		$prefetch = array();
 		/**
 		 * Prefetchタグを追加するリソースのセット
 		 */
-		$prefetch['font-awesome-woff2'] = array(
-			'url'  => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0',
-			'as'   => 'font',
-			'type' => 'font/woff2',
-		);
-		$prefetch['font-awesome-woff']  = array(
-			'url'  => 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0',
-			'as'   => 'font',
-			'type' => 'font/woff',
-		);
+		$prefetch = ys_get_prefetch_list();
 		/**
-		 * リストの編集
+		 * Prefetchタグ展開
 		 */
-		$prefetch = apply_filters( 'ys_prefetch_list', $prefetch );
 		foreach ( $prefetch as $key => $value ) {
 			printf(
-				'<link rel="preload" as="%s" type="%s" href="%s" crossorigin />' . PHP_EOL,
+				'<link id="%s" rel="preload" as="%s" type="%s" href="%s" crossorigin />' . PHP_EOL,
+				$key,
 				$value['as'],
 				$value['type'],
 				$value['url']
@@ -139,6 +129,57 @@ if ( ! function_exists( 'ys_the_prefetch' ) ) {
 	}
 }
 add_action( 'wp_head', 'ys_the_prefetch', 2 );
+
+/**
+ * Prefetchタグを追加するリソースの一覧取得
+ */
+function ys_get_prefetch_list() {
+	$prefetch = array();
+	/**
+	 * Font Awesome
+	 */
+	$prefetch = ys_set_prefetch_item(
+		$prefetch,
+		'font-awesome',
+		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?ver=4.7.0',
+		'style',
+		'text/css'
+	);
+	$prefetch = ys_set_prefetch_item(
+		$prefetch,
+		'font-awesome-woff2',
+		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0',
+		'font',
+		'font/woff2'
+	);
+	$prefetch = ys_set_prefetch_item(
+		$prefetch,
+		'font-awesome-woff',
+		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0',
+		'font',
+		'font/woff'
+	);
+	return apply_filters( 'ys_prefetch_list', $prefetch );
+}
+
+/**
+ * Prefetchタグを追加するリソースの登録（一覧作成用）
+ *
+ * @param array  $list 一覧作成用配列.
+ * @param string $id   識別子.
+ * @param string $url  URL.
+ * @param string $as   as.
+ * @param string $type type.
+ */
+function ys_set_prefetch_item( $list, $id, $url, $as, $type ) {
+	$list[ $id ] = array(
+		'url'  => $url,
+		'as'   => $as,
+		'type' => $type,
+	);
+	return $list;
+}
+
 
 if ( ! function_exists( 'ys_the_apple_touch_icon' ) ) {
 	/**

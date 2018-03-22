@@ -183,7 +183,7 @@ function ys_enqueue_styles() {
 			'font-awesome',
 			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 			array(),
-			''
+			'4.7.0'
 		);
 	}
 }
@@ -215,7 +215,8 @@ function ys_enqueue_styles_non_critical_css() {
 	 */
 	ys_enqueue_non_critical_css(
 		'font-awesome',
-		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+		'4.7.0'
 	);
 }
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles_non_critical_css' );

@@ -186,7 +186,7 @@ class YS_Enqueue {
 			foreach ( $items as $id => $item ) {
 				$src = $item['url'];
 				if ( '' !== $item['ver'] ) {
-					$src = add_query_arg( $item['ver'], '', $src );
+					$src = add_query_arg( 'ver', $item['ver'], $src );
 				}
 				$list[] = $src;
 			}
