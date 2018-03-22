@@ -15,8 +15,11 @@
  *
  *     yStandardではAMPフォーマット対応の為にheadタグをheader.php以外のファイルに書いています
  *     もし、Google Fontsや広告など、何かタグを追加しようとこのファイルをひらいたのであれば、
- *     yStandardではuser-custom-head.php というファイルに追加したいタグを書き込むだけで
+ *     yStandardでは user-custom-head.php というファイルに追加したいタグを書き込むだけで
  *     headに出力出来るようになっています。
+ *
+ *     https://wp-ystandard.com/ で配布している子テーマでは上書き用のファイルが含まれていますので
+ *     子テーマの user-custom-head.php を編集して下さい。
  *
  *     自分で追加した部分も見やすくなりますのでぜひご活用下さい。
  *
@@ -53,7 +56,7 @@ if ( ys_is_amp() ) {
 					if ( ! is_singular() || is_front_page() ) {
 						printf( '<h1 class="%s clear-headline">%s</h1>', $class, $logo );
 					} else {
-						printf( '<p class="%s clear-headline">%s</p>', $class, $logo );
+						printf( '<div class="%s clear-headline">%s</div>', $class, $logo );
 					}
 					/**
 					 * 概要
