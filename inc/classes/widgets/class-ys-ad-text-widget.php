@@ -57,9 +57,10 @@ class YS_AD_Text_Widget extends WP_Widget {
 	public function form( $instance ) {
 		$text = ! empty( $instance['text'] ) ? $instance['text'] : '';
 		?><p>
-	<label for="<?php echo $this->get_field_id( 'text' ); ?>">内容:</label>
-	<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea( $text ); ?></textarea>
-</p><?php
+				<label for="<?php echo $this->get_field_id( 'text' ); ?>">内容:</label>
+				<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea( $text ); ?></textarea>
+			</p>
+		<?php
 	}
 
 	/**
