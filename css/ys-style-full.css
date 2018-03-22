@@ -2842,10 +2842,6 @@ div.aligncenter {
 	margin-top: 1em;
 }
 
-.comment__text p:first-child {
-	margin-top: 0;
-}
-
 .comment-reply__title {
 	margin-top: 2em;
 	margin-bottom: 0;
@@ -2870,6 +2866,10 @@ div.aligncenter {
 .logged-in-as,
 .comment-notes {
 	font-size: .8em;
+}
+
+.comment-form {
+	margin-top: .5em;
 }
 
 .ys-post-list__item {
