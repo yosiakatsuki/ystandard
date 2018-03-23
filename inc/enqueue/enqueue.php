@@ -716,12 +716,25 @@ add_action( 'admin_enqueue_scripts', 'ys_enqueue_admin_scripts' );
  * @return void
  */
 function ys_admin_enqueue_scripts( $hook_suffix ) {
+	wp_enqueue_style(
+		'ys_admin_style',
+		get_template_directory_uri() . '/css/admin/admin.min.css',
+		array(),
+		ys_get_theme_version( true )
+	);
+	/**
+	 * テーマ独自の設定ページ
+	 */
+	if ( 'toplevel_page_ys_settings_start' === $hook_suffix ) {
 		wp_enqueue_style(
-			'ys_admin_style',
-			get_template_directory_uri() . '/css/admin/admin.min.css',
-			array(),
-			ys_get_theme_version( true )
+			'ys_settings_style',
+			get_template_directory_uri() . '/css/admin/ystandard-settings.min.css'
 		);
+		wp_enqueue_style(
+			'ys_settings_font',
+			'https://fonts.googleapis.com/css?family=Orbitron'
+		);
+	}
 }
 add_action( 'admin_enqueue_scripts', 'ys_admin_enqueue_scripts' );
 
