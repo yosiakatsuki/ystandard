@@ -48,7 +48,7 @@ function ys_get_json_ld_organization() {
 	$json             = array();
 	$json['@context'] = 'http://schema.org';
 	$json['@type']    = 'Organization';
-	$json['url']      = get_bloginfo( 'url' );
+	$json['url']      = home_url( '/' );
 	if ( has_custom_logo() ) {
 		$logo         = ys_get_custom_logo_image_object();
 		$json['logo'] = array(
@@ -67,7 +67,7 @@ function ys_get_json_ld_website() {
 	$json                  = array();
 	$json['@context']      = 'http://schema.org';
 	$json['@type']         = 'Website';
-	$json['url']           = get_bloginfo( 'url' );
+	$json['url']           = home_url( '/' );
 	$json['name']          = get_bloginfo( 'name' );
 	$json['alternateName'] = get_bloginfo( 'name' );
 	if ( ys_is_top_page() ) {

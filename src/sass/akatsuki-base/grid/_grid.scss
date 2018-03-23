@@ -23,6 +23,10 @@
     .row--slide {
       @include row--slide;
     }
+    .row--no-gutter {
+      margin-right: 0;
+      margin-left: 0;
+    }
   }// at-root
 }
 //
@@ -34,6 +38,7 @@
     &,
     [class*="col_"] {
       @include col;
+      width: 100%;
       max-width: 100%;
     }
     @include make-col();
@@ -63,6 +68,10 @@
     // large screen
     @include media-breakpoint(lg) {
       @include make-col(lg);
+    }
+    
+    .col--no-gutter {
+      padding: 0;
     }
 
   }// at-root

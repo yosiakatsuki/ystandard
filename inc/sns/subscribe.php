@@ -66,26 +66,48 @@ if ( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 	}
 }
 
-if ( ! function_exists( 'ys_get_subscribe_background_image' ) ) {
+if ( ! function_exists( 'ys_get_subscribe_image' ) ) {
 	/**
 	 * 購読リンク 背景画像取得
 	 */
-	function ys_get_subscribe_background_image() {
+	function ys_get_subscribe_image() {
 		$image = '';
 		if ( has_post_thumbnail() ) {
 			$image = get_the_post_thumbnail( get_the_ID(), 'post-thmbnail', array( 'class' => 'subscribe__image' ) );
+		} else {
+			/**
+			 * OGP画像
+			 */
+			$image = ys_get_option( 'ys_ogp_default_image' );
+			if ( ! $image ) {
+				/**
+				 * カスタムロゴ
+				 */
+				$image = ys_get_custom_logo_image_object();
+				if ( $image ) {
+					$image = $image[0];
+				}
+			}
+			if ( $image ) {
+				$image = sprintf(
+					'<img class="subscribe__image" src="%s" />',
+					$image
+				);
+			} else {
+				$image = '<div class="flex flex--c-c color__font-sub"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
+			}
 		}
 		if ( ys_is_amp() ) {
 			$image = ys_amp_convert_image( $image );
 		}
-		return apply_filters( 'ys_get_subscribe_background_image', $image );
+		return apply_filters( 'ys_get_subscribe_image', $image );
 	}
 }
-if ( ! function_exists( 'ys_the_subscribe_background_image' ) ) {
+if ( ! function_exists( 'ys_the_subscribe_image' ) ) {
 	/**
 	 * 購読リンク 背景画像表示
 	 */
-	function ys_the_subscribe_background_image() {
-		echo ys_get_subscribe_background_image();
+	function ys_the_subscribe_image() {
+		echo ys_get_subscribe_image();
 	}
 }

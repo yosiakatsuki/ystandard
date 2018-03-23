@@ -702,9 +702,15 @@ input[type="button"] {
 	border-radius: 4px;
 }
 
+.row--no-gutter {
+	margin-right: 0;
+	margin-left: 0;
+}
+
 .col,
 [class*="col_"] {
 	padding: 15px;
+	width: 100%;
 	max-width: 100%;
 }
 
@@ -751,6 +757,10 @@ input[type="button"] {
 
 .col__slide:last-child {
 	margin-right: -5px;
+}
+
+.col--no-gutter {
+	padding: 0;
 }
 
 .card {

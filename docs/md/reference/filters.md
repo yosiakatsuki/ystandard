@@ -351,7 +351,7 @@
 - file: inc/sns/subscribe.php
 - description: 購読ボタン表示一覧配列編集フィルタ
 
-### ys_get_subscribe_background_image
+### ys_get_subscribe_image
 
 - file: inc/sns/subscribe.php
 - description: 購読ボタン背景画像編集フィルタ

@@ -90,7 +90,7 @@ if ( ! function_exists( 'ys_get_ogp_and_twitter_card_param' ) ) {
 			'title'             => get_bloginfo( 'name' ),
 			'description'       => $dscr,
 			'image'             => ys_get_option( 'ys_ogp_default_image' ),
-			'url'               => get_bloginfo( 'url' ),
+			'url'               => home_url( '/' ),
 			'ogp_site_name'     => get_bloginfo( 'name' ),
 			'ogp_locale'        => 'ja_JP',
 			'ogp_type'          => 'website',
