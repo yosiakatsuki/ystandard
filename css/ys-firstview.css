@@ -2339,6 +2339,59 @@ div.aligncenter {
 	padding: 0;
 }
 
+.wp-caption-text {
+	padding: .1em .5em .5em;
+	color: #939393;
+	font-size: .9em;
+	font-style: italic;
+}
+
+.sticky {
+	-webkit-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+.bypostauthor {
+	display: block;
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	-webkit-clip-path: inset(50%);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto;
+	-webkit-clip-path: none;
+	clip-path: none;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar. */
+}
+
 .gallery {
 	display: -webkit-box;
 	display: -ms-flexbox;

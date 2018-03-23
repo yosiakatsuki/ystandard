@@ -42,6 +42,7 @@ if ( ys_is_amp() ) {
 <body <?php body_class(); ?>>
 <?php do_action( 'ys_body_prepend' ); ?>
 <div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ystandard' ); ?></a>
 	<header id="masthead" class="header site-header color__site-header">
 		<?php do_action( 'ys_site_header_prepend' ); ?>
 		<div class="header__container container">

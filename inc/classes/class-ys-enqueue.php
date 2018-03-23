@@ -153,7 +153,7 @@ class YS_Enqueue {
 			 */
 			if ( $this->is_css_path( $inline_style ) ) {
 				if ( file_exists( $inline_style ) ) {
-					$inline_style = file_get_contents( $inline_style );
+					$inline_style = ys_file_get_contents( $inline_style );
 				} else {
 					$inline_style = '';
 				}

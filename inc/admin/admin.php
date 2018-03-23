@@ -15,7 +15,7 @@ if ( ! function_exists( 'ys_no_self_ping' ) ) {
 	 * @return void
 	 */
 	function ys_no_self_ping( &$links ) {
-		$home = get_option( 'home' );
+		$home = home_url();
 		foreach ( $links as $l => $link ) {
 			if ( 0 === strpos( $link, $home ) ) {
 				unset( $links[ $l ] );

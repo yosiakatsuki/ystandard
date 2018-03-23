@@ -111,3 +111,20 @@ if ( ! function_exists( 'ys_get_posts_args_rand' ) ) {
 		return ys_get_posts_args( $posts_per_page, $rand_args );
 	}
 }
+
+/**
+ * ファイル内容の取得
+ *
+ * @param  string $file ファイルパス.
+ */
+function ys_file_get_contents( $file ) {
+	global $wp_filesystem;
+	$content = false;
+	if ( empty( $wp_filesystem ) ) {
+		require_once ABSPATH . '/wp-admin/includes/file.php';
+	}
+	if ( WP_Filesystem() ) {
+		$content = $wp_filesystem->get_contents( $file );
+	}
+	return $content;
+}
