@@ -4,7 +4,8 @@ const env = process.env.NODE_ENV;
 let config = {
   entry: {
     'ystandard': './src/js/ystandard.js',
-    'polyfill': './src/js/polyfill.js'
+    'polyfill': './src/js/polyfill.js',
+    'admin': './src/js/admin/custom_uploader.js'
   },
   output: {
     filename: '[name].bundle.js',

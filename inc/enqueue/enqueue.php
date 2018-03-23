@@ -700,8 +700,8 @@ function ys_enqueue_admin_scripts( $hook_suffix ) {
 	 */
 	wp_enqueue_media();
 	wp_enqueue_script(
-		'ys-custom_uploader-scripts',
-		get_template_directory_uri() . '/js/admin/custom_uploader.js',
+		'ys-admin-scripts',
+		get_template_directory_uri() . '/js/admin.bundle.js',
 		array( 'jquery', 'jquery-core' ),
 		ys_get_theme_version( true ),
 		true
