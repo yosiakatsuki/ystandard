@@ -23,6 +23,7 @@
       margin: 0;
     }
     .header--center {
+      text-align: center;
       .header__title {
         text-align: center;
         padding-left: 20px;
@@ -38,7 +39,6 @@
       }//.header--1row 
       
       .header--center {
-        text-align: center;
         .global-nav__menu {
           justify-content: space-around;
         }
