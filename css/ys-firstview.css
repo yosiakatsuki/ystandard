@@ -2225,6 +2225,7 @@ figcaption {
 }
 
 .entry-list--card .entry-list {
+	width: 100%;
 	padding: 15px;
 }
 
