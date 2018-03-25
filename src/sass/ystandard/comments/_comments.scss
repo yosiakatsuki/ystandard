@@ -44,6 +44,9 @@
         margin-top: 1em;
       }
     }
+    .comment__reply {
+      
+    }
     .comment-reply__title {
       margin-top: 2em;
       margin-bottom: 0;
@@ -51,9 +54,11 @@
     }
     .comment__reply-link {
       padding: .1em 1em;
+      margin-left: .5em;
       border: 1px solid $font-color-gray;
       color: $font-color-gray;
       font-size: .9em;
+      white-space: nowrap;
       &:hover {
         background-color: $font-color-gray;
       }

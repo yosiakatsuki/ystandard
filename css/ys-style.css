@@ -329,9 +329,11 @@
 
 .comment__reply-link {
 	padding: .1em 1em;
+	margin-left: .5em;
 	border: 1px solid #939393;
 	color: #939393;
 	font-size: .9em;
+	white-space: nowrap;
 }
 
 .comment__reply-link:hover {
