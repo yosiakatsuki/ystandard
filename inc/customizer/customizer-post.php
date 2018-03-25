@@ -50,7 +50,14 @@ function ys_customizer_active_callback_post() {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_post_add_settings( $wp_customize ) {
-
+	ys_customizer_add_label(
+		$wp_customize,
+		array(
+			'id'      => 'ys_post_thumbnail_label',
+			'label'   => 'アイキャッチ画像設定',
+			'section' => 'ys_customizer_section_post',
+		)
+	);
 	/**
 	 * アイキャッチ画像を表示する
 	 */
