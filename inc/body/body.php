@@ -12,7 +12,7 @@
  *
  * @param array $classes body classes.
  */
-function ys_body_classes( $classes ) {
+function ys_body_class( $classes ) {
 
 	/**
 	 * 背景画像があればクラス追加
@@ -51,4 +51,4 @@ function ys_body_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'ys_body_classes' );
+add_filter( 'body_class', 'ys_body_class' );

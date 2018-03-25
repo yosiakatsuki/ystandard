@@ -35,18 +35,7 @@ if ( ! function_exists( 'ys_get_copyright' ) ) {
 	 * @return string
 	 */
 	function ys_get_copyright() {
-		$year = ys_get_option( 'ys_copyright_year' );
-		if ( '' == $year ) {
-			$year = date_i18n( 'Y' );
-		}
-		$url       = esc_url( home_url( '/' ) );
-		$blog_name = get_bloginfo( 'name' );
-		$copy      = sprintf(
-			'Copyright &copy; %s <a href="%s" rel="home">%s</a> All Rights Reserved.',
-			$year,
-			$url,
-			$blog_name
-		);
+		$copy = ys_get_copyright_default();
 		/**
 		 * Copyright
 		 */
@@ -60,6 +49,27 @@ if ( ! function_exists( 'ys_get_copyright' ) ) {
 		return $copy;
 	}
 }
+
+/**
+ * Copyrightのデフォルト文字列を作成
+ *
+ * @return string
+ */
+function ys_get_copyright_default() {
+	$year = ys_get_option( 'ys_copyright_year' );
+	if ( '' == $year ) {
+		$year = date_i18n( 'Y' );
+	}
+	$url       = esc_url( home_url( '/' ) );
+	$blog_name = get_bloginfo( 'name' );
+	return sprintf(
+		'Copyright &copy; %s <a href="%s" rel="home">%s</a> All Rights Reserved.',
+		$year,
+		$url,
+		$blog_name
+	);
+}
+
 
 if ( ! function_exists( 'ys_get_poweredby' ) ) {
 	/**

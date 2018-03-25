@@ -24,7 +24,7 @@
 ### ys_advertisement_content
 
 - file: inc/advertisement/advertisement.php
-- file: inc/classes/widgets/class.ys-ad-text-widgets.php
+- file: inc/class/widgets/class.ys-ad-text-widgets.php
 - description: 広告内容の編集用フィルタ
 
 ### ys_ad_label_text
@@ -551,59 +551,59 @@
 
 ### ys_enqueue_minify_css
 
-- file: inc/classes/class.ys-enqueue.php
+- file: inc/class/class.ys-enqueue.php
 - description: インラインCSSのminify結果の編集フィルタ
 
 ### ys_enqueue_inline_styles
 
-- file: inc/classes/class.ys-enqueue.php
+- file: inc/class/class.ys-enqueue.php
 - description: インラインCSSを作成する前にインライン化するCSSの配列を操作する為のフィルタ
 
 ### ys_enqueue_non_critical_css
 
-- file: inc/classes/class.ys-enqueue.php
+- file: inc/class/class.ys-enqueue.php
 - description: ファーストビュー以外のCSSの配列を操作する為のフィルタ
 
 ### ys_enqueue_onload_scripts
 
-- file: inc/classes/class.ys-enqueue.php
+- file: inc/class/class.ys-enqueue.php
 - description: onloadイベントで読み込むJavaScriptの配列を操作する為のフィルタ
 
 ### ys_enqueue_lazyload_scripts
 
-- file: inc/classes/class.ys-enqueue.php
+- file: inc/class/class.ys-enqueue.php
 - description: スクロール発火で読み込むJavaScriptの配列を操作する為のフィルタ
 
 ### ys_enqueue_lazyload_css
 
-- file: inc/classes/class.ys-enqueue.php
+- file: inc/class/class.ys-enqueue.php
 - description: スクロール発火で読み込むcssの配列を操作する為のフィルタ
 
 ## class-ys-post-list
 
 ### ys_post_list_thmbnail_size
 
-- file: inc/classes/class-ys-post-list.php
+- file: inc/class/class-ys-post-list.php
 - description: 投稿リストの画像サイズ編集フィルタ
 
 ### ys_ranking_widget_image
 
-- file: inc/classes/class-ys-post-list.php
+- file: inc/class/class-ys-post-list.php
 - description: 投稿リストの画像タグ編集フィルタ
 
 ### ys_post_list_item
 
-- file: inc/classes/class.ys-ranking-widget.php
+- file: inc/class/class.ys-ranking-widget.php
 - description: 投稿リストの投稿HTMLタグ編集フィルタ
 
 ### ys_post_list_warp
 
-- file: inc/classes/class.ys-ranking-widget.php
+- file: inc/class/class.ys-ranking-widget.php
 - description: 投稿リストのラッパーHTMLタグ編集フィルタ
 
 ## class-ys-ranking-widget
 
 ### ys_ranking_widget_option
 
-- file: inc/classes/class.ys-ranking-widget.php
+- file: inc/class/class.ys-ranking-widget.php
 - description: ランキングウィジェットのパラメータ編集フィルタ

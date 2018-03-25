@@ -10,7 +10,7 @@
 /**
  * テーマカスタマイザー
  */
-require_once get_template_directory() . '/inc/classes/customizer/class-ys-customize-image-label-radio-control.php';
+require_once get_template_directory() . '/inc/class/customizer/class-ys-customize-image-label-radio-control.php';
 require_once get_template_directory() . '/inc/customizer/customizer-control.php';
 require_once get_template_directory() . '/inc/customizer/customizer-sanitize.php';
 require_once get_template_directory() . '/inc/customizer/customizer-wp.php';
@@ -25,6 +25,7 @@ require_once get_template_directory() . '/inc/customizer/customizer-seo.php';
 require_once get_template_directory() . '/inc/customizer/customizer-performance-tuning.php';
 require_once get_template_directory() . '/inc/customizer/customizer-advertisement.php';
 require_once get_template_directory() . '/inc/customizer/customizer-amp.php';
+require_once get_template_directory() . '/inc/customizer/customizer-extension.php';
 
 /**
  * カスタマイザー追加
@@ -80,7 +81,10 @@ function ys_theme_customizer( $wp_customize ) {
 	 * AMP設定
 	 */
 	ys_customizer_amp( $wp_customize );
-
+	/**
+	 * 拡張機能
+	 */
+	ys_customizer_extension( $wp_customize );
 }
 add_action( 'customize_register', 'ys_theme_customizer' );
 /**

@@ -10,13 +10,13 @@
 /**
  * クラス読み込み
  */
-require_once get_template_directory() . '/inc/classes/class-ys-post-list.php';
-require_once get_template_directory() . '/inc/classes/class-ys-enqueue.php';
-require_once get_template_directory() . '/inc/classes/class-ys-walker-global-nav-menu.php';
-require_once get_template_directory() . '/inc/classes/widgets/class-ys-widget-base.php';
-require_once get_template_directory() . '/inc/classes/widgets/class-ys-ad-text-widget.php';
-require_once get_template_directory() . '/inc/classes/widgets/class-ys-ranking-widget.php';
-require_once get_template_directory() . '/inc/classes/widgets/class-ys-taxonomy-posts-widget.php';
+require_once get_template_directory() . '/inc/class/class-ys-post-list.php';
+require_once get_template_directory() . '/inc/class/class-ys-enqueue.php';
+require_once get_template_directory() . '/inc/class/class-ys-walker-global-nav-menu.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-base.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-ad-text-widget.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-ranking-widget.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-taxonomy-posts-widget.php';
 /**
  * 変数
  */
@@ -166,10 +166,6 @@ require_once get_template_directory() . '/inc/ogp/ogp.php';
  */
 require_once get_template_directory() . '/inc/blog-card/blog-card.php';
 if ( is_admin() ) {
-	/**
-	 * 管理者向け機能
-	 */
-	require_once get_template_directory() . '/inc/admin/admin.php';
 	/**
 	 * テーマ設定画面
 	 */
