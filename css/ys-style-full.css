@@ -800,6 +800,10 @@ input[type="button"] {
 }
 
 .card__text {
+	position: relative;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -807,10 +811,6 @@ input[type="button"] {
 	-webkit-box-direction: normal;
 	-ms-flex-direction: column;
 	flex-direction: column;
-	-webkit-box-pack: justify;
-	-ms-flex-pack: justify;
-	justify-content: space-between;
-	height: 100%;
 	padding: 15px;
 }
 
@@ -822,6 +822,9 @@ input[type="button"] {
 .card__dscr {
 	color: #939393;
 	font-size: .9em;
+	-webkit-box-flex: 1;
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
 }
 
 .card__tag {
@@ -990,23 +993,23 @@ input[type="button"] {
 	display: block;
 }
 
-.ratio__4-3 {
+.ratio__4-3:before {
 	padding-top: 75%;
 }
 
-.ratio__16-9 {
+.ratio__16-9:before {
 	padding-top: 56%;
 }
 
-.ratio__3-1 {
+.ratio__3-1:before {
 	padding-top: 33%;
 }
 
-.ratio__2-1 {
+.ratio__2-1:before {
 	padding-top: 50%;
 }
 
-.ratio__1-1 {
+.ratio__1-1:before {
 	padding-top: 100%;
 }
 

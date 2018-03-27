@@ -152,17 +152,6 @@ add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts' );
  */
 function ys_enqueue_styles() {
 	/**
-	 * IE,Edge関連
-	 */
-	if ( ys_is_ie() || ys_is_edge() ) {
-		wp_enqueue_style(
-			'ys_ie',
-			get_template_directory_uri() . '/css/ys-ie.min.css',
-			array(),
-			ys_get_theme_version( true )
-		);
-	}
-	/**
 	 * CSS最適化しない場合、通常形式でCSSの読み込み
 	 */
 	if ( ! ys_is_optimize_load_css() ) {
@@ -184,6 +173,17 @@ function ys_enqueue_styles() {
 			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 			array(),
 			'4.7.0'
+		);
+	}
+	/**
+	 * IE,Edge関連
+	 */
+	if ( ys_is_ie() || ys_is_edge() ) {
+		wp_enqueue_style(
+			'ys_ie',
+			get_template_directory_uri() . '/css/ys-ie.min.css',
+			array(),
+			ys_get_theme_version( true )
 		);
 	}
 }

@@ -27,10 +27,10 @@
       }
     }
     .card__text {
+      position: relative;
+      flex: 1 1 auto;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
       padding: get_margin();
     }
     .card__title {
@@ -41,6 +41,7 @@
     .card__dscr {
       color: $font-color-gray;
       font-size: .9em;
+      flex: 1 1 auto;
     }
 
     .card__tag {

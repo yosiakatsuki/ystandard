@@ -280,23 +280,23 @@
 	display: block;
 }
 
-.ratio__4-3 {
+.ratio__4-3:before {
 	padding-top: 75%;
 }
 
-.ratio__16-9 {
+.ratio__16-9:before {
 	padding-top: 56%;
 }
 
-.ratio__3-1 {
+.ratio__3-1:before {
 	padding-top: 33%;
 }
 
-.ratio__2-1 {
+.ratio__2-1:before {
 	padding-top: 50%;
 }
 
-.ratio__1-1 {
+.ratio__1-1:before {
 	padding-top: 100%;
 }
 

@@ -9,23 +9,23 @@
         display: block;
       }
     }
-    .ratio__4-3 {
+    .ratio__4-3:before {
       padding-top: (decimal-floor(( 3 / 4 ), 2) * 100)#{"%"};
     }
 
-    .ratio__16-9 {
+    .ratio__16-9:before {
       padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
     }
 
-    .ratio__3-1 {
+    .ratio__3-1:before {
       padding-top: (decimal-floor(( 1 / 3 ), 2) * 100)#{"%"};
     }
 
-    .ratio__2-1 {
+    .ratio__2-1:before {
       padding-top: (decimal-floor(( 1 / 2 ), 2) * 100)#{"%"};
     }
 
-    .ratio__1-1 {
+    .ratio__1-1:before {
       padding-top: (decimal-floor(( 1 / 1 ), 2) * 100)#{"%"};
     }
 
