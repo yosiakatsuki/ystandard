@@ -18,9 +18,6 @@ select {
   width: 100%;
   -webkit-appearance: none;
 }
-select:not([size]):not([multiple]) {
-  height: 2em;
-}
 
 button,
 input[type="reset"],

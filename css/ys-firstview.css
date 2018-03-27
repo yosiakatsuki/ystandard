@@ -1083,10 +1083,6 @@ select {
 	-webkit-appearance: none;
 }
 
-select:not([size]):not([multiple]) {
-	height: 2em;
-}
-
 button,
 input[type="reset"],
 input[type="submit"],
