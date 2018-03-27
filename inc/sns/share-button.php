@@ -113,7 +113,7 @@ if ( ! function_exists( 'ys_get_share_button_data_facebook' ) ) {
 	 * @param string $share_title title.
 	 */
 	function ys_get_share_button_data_facebook( $share_url, $share_title ) {
-		$share_url   = 'https://www.facebook.com/sharer.php?src =bm&u =' . $share_url . '&t =' . $share_title;
+		$share_url   = 'https://www.facebook.com/sharer.php?src=bm&u=' . $share_url . '&t =' . $share_title;
 		$button_text = apply_filters( 'ys_facebook_button_text', 'Facebook' );
 		return array(
 			'type'        => esc_attr( 'facebook' ),
@@ -132,7 +132,7 @@ if ( ! function_exists( 'ys_get_share_button_data_hatenabookmark' ) ) {
 	 * @param string $share_title title.
 	 */
 	function ys_get_share_button_data_hatenabookmark( $share_url, $share_title ) {
-		$share_url   = 'https://b.hatena.ne.jp/add?mode =confirm&url =' . $share_url;
+		$share_url   = 'https://b.hatena.ne.jp/add?mode=confirm&url=' . $share_url;
 		$button_text = apply_filters( 'ys_hatenabookmark_button_text', 'はてブ' );
 		return array(
 			'type'        => esc_attr( 'hatenabookmark' ),
@@ -151,7 +151,7 @@ if ( ! function_exists( 'ys_get_share_button_data_google_plus' ) ) {
 	 * @param string $share_title title.
 	 */
 	function ys_get_share_button_data_google_plus( $share_url, $share_title ) {
-		$share_url   = 'https://plus.google.com/share?url =' . $share_url;
+		$share_url   = 'https://plus.google.com/share?url=' . $share_url;
 		$button_text = apply_filters( 'ys_googleplus_button_text', 'Google+' );
 		return array(
 			'type'        => esc_attr( 'google-plus' ),
@@ -170,7 +170,7 @@ if ( ! function_exists( 'ys_get_share_button_data_pocket' ) ) {
 	 * @param string $share_title title.
 	 */
 	function ys_get_share_button_data_pocket( $share_url, $share_title ) {
-		$share_url   = 'https://getpocket.com/edit?url =' . $share_url . '&title =' . $share_title;
+		$share_url   = 'https://getpocket.com/edit?url=' . $share_url . '&title=' . $share_title;
 		$button_text = apply_filters( 'ys_pocket_button_text', 'Pocket' );
 		return array(
 			'type'        => esc_attr( 'pocket' ),
