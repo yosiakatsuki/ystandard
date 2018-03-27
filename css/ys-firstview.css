@@ -1113,11 +1113,6 @@ input[type="button"]:hover {
 	font-size: 1.7em;
 }
 
-.header__title img,
-.header__title amp-img {
-	max-width: 300px;
-}
-
 .header__title a {
 	color: inherit;
 	text-decoration: none;

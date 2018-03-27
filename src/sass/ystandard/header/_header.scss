@@ -9,10 +9,6 @@
       margin: 0;
       padding: 0 20px 0 0;
       font-size: 1.7em;
-
-      img,amp-img {
-        max-width: 300px;
-      }
       a {
         color: inherit;
         text-decoration: none;
@@ -29,15 +25,14 @@
         padding-left: 20px;
       }
     }
-
     // screen
     @include media-breakpoint(pc) {
 
       .header--1row {
         @include flex;
         justify-content: space-between;
-      }//.header--1row 
-      
+      }//.header--1row
+
       .header--center {
         .global-nav__menu {
           justify-content: space-around;
