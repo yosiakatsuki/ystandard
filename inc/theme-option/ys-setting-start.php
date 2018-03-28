@@ -34,23 +34,4 @@ $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $
 			<?php endif; ?>
 		</p>
 	</div>
-	<div class="ystandard-settings__section">
-		<h3><span class="orbitron">yStandard</span>を応援する</h3>
-		<div class="flex">
-			<div class="ystandard-settings__flex50 ys-text-center ystandard-settings__peing">
-				<h4>フォロー・メッセージ</h4>
-				<p><img class="ystandard-settings__icon" src="https://pbs.twimg.com/profile_images/914315796389564417/ie5KjEtn_400x400.jpg" alt=""></p>
-				<p><a href="https://twitter.com/yosiakatsuki?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @yosiakatsuki</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-				<p><a class="ys-btn" href="https://peing.net/ja/yosiakatsuki">Peingで質問を送る</a></p>
-			</div>
-			<div class="ystandard-settings__flex50 ys-text-center flex ystandard-setting__support">
-				<h4>なにか送る</h4>
-				<div class="flex flex--c-c">
-					<div>
-						<p><span style="display:inline-block"><a href="https://osushi.love/intent/post/d57eb961b970410c91001ca3093b9f75" class="ossh-post-btn" data-type="large">お寿司を送る</a><script src="https://platform.osushi.love/widgets.js"></script></span></p>
-					</div>
-				</div><!-- .flex flex--c-c -->
-			</div>
-		</div><!-- .flex -->
-	</div>
 </div><!-- /.warp -->
