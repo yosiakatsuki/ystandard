@@ -707,7 +707,7 @@ if( ! function_exists( 'ys_template_get_the_sns_share' ) ) {
 			$html = '';
 		}
 		// シェアボタンが非表示なら表示消す
-		if( 0 == ys_get_setting( 'ys_sns_share_on_entry_header' ) ){
+		if( 0 == ys_get_setting( 'ys_sns_share_on_below_entry' ) ){
 			$html = '';
 		}
 

@@ -160,10 +160,14 @@ add_action( 'profile_update', 'ys_admin_save_custom_avatar', 10, 2 );
 //-------------------------------------------------------
 // テーマの更新確認
 //-------------------------------------------------------
+$update_json = 'https://wp-ystandard.com/download/ystandard/ystandard-info.json';
+if ( 1 == ys_get_setting( 'ys_v2_migration' ) ) {
+	$update_json = 'https://wp-ystandard.com/download/ystandard/v2/ystandard-info.json';
+}
 $theme_update_checker = new ThemeUpdateChecker(
-																					'ystandard',
-																					'https://wp-ystandard.com/download/ystandard/ystandard-info.json'
-																				);
+	'ystandard',
+	$update_json
+);
 
 
 ?>
