@@ -2517,8 +2517,10 @@ div.aligncenter {
 	background-color: #fff;
 	border: 1px solid #bdc3c7;
 	font-size: .9em;
-	border-radius: 4px;
+	border-radius: 2px;
 	max-width: 600px;
+	-webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .ys-blog-card:before,

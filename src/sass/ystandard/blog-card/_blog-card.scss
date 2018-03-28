@@ -2,8 +2,9 @@
 
     & {
       @include ys-box;
-      border-radius: 4px;
+      border-radius: 2px;
       max-width: 600px;
+      box-shadow: 1px 1px 1px rgba(#000,.1);
       a {
         text-decoration: none;
       }
@@ -29,7 +30,7 @@
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
-    } 
+    }
     .ys-blog-card__title {
       font-weight: bold;
     }
