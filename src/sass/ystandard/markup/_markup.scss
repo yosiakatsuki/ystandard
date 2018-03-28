@@ -1,0 +1,132 @@
+ul,
+ol,
+dl,
+blockquote,
+figure,
+hr,
+pre,
+table,
+iframe,
+video {
+  margin-top: 1.5em;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+//
+//  見出し
+//
+h1,h2 {
+  margin: 5em 0 1em;
+  font-size: 1.5em;
+}
+h3 {
+  margin: 4.5em 0 1em;
+  font-size: 1.4em;
+}
+h4 {
+  margin: 4em 0 1em;
+  font-size: 1.3em;
+}
+h5 {
+  margin: 3.5em 0 1em;
+  font-size: 1.2em;
+}
+h6 {
+  margin: 3em 0 1em;
+  font-size: 1.2em;
+}
+
+h1 + h2,
+h2 + h3,
+h3 + h4,
+h4 + h5,
+h5 + h6 {
+  margin-top: 2em;
+}
+//
+//  blockquote
+//
+blockquote {
+  position: relative;
+  padding: get_margin();
+  background-color: $bg-color-gray;
+  border-left: 2px solid $border-color-gray;
+  color: $font-color-gray;
+  font-size: .95em;
+
+  &:after {
+    position: absolute;
+    content: "”";
+    top: get_margin(0.5);
+    right: get_margin(0.5);
+    font-family: sans-serif;
+    font-size: 5em;
+    line-height: 1;
+    opacity: .1;
+  }
+  a {
+    text-decoration: underline;
+  }
+  cite {
+    font-size: .9em;
+    &::before {
+			content: "-";
+			margin-right: 5px;
+		}
+  }
+}
+//
+//  table
+//
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-top: 1px solid $border-color-gray;
+  border-left: 1px solid $border-color-gray;
+  border-collapse: collapse;
+}
+tr {
+  border-bottom: 1px solid $border-color-gray;
+}
+td,
+th {
+  padding: .5em;
+  border-right: 1px solid $border-color-gray;
+}
+th {
+  background-color: $bg-color-gray;
+}
+//
+//  リスト
+//
+ul,
+ol {
+  li {
+    padding: .1em 0;
+  }
+  ul,
+  ol {
+    margin-top: 0;
+
+    li:last-child {
+      padding: .1em 0 0;
+    }
+  }
+}
+
+dt {
+  margin: 1em 0 .1em;
+}
+dd {
+  margin: 0 0 .2em 1em;
+}
+//
+//  画像関連
+//
+figcaption {
+  padding: .1em .5em .5em;
+  color: $font-color-gray;
+  font-size: .9em;
+  font-style: italic;
+}

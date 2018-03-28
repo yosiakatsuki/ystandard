@@ -1,0 +1,27 @@
+.gallery {
+  @at-root {
+    & {
+      @include flex;
+      margin: 1.5em -1px;
+    }
+
+    .gallery-item {
+      align-items: flex-start;
+      flex: 0 1 auto;
+      padding: 1px;
+      margin:0;
+
+      a:hover {
+        opacity: .8;
+      }
+    }
+    @for $i from 2 through 9 {
+      .gallery-columns-#{$i}  .gallery-item {
+        width: (100% / $i);
+      }
+    }
+    .gallery-caption {
+      text-align: center;
+    }
+  }// @
+}

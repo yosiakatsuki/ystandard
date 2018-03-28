@@ -1,0 +1,78 @@
+//
+//  container
+//
+.container {
+  @at-root {
+    & {
+      @include container;
+    }
+    .container--full {
+      max-width: 100%;
+    }
+  }
+}
+//
+//  row
+//
+.row {
+  @at-root {
+    & {
+      @include row;
+    }
+
+    .row--slide {
+      @include row--slide;
+    }
+    .row--no-gutter {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }// at-root
+}
+//
+//  col
+//
+.col {
+  @at-root {
+
+    &,
+    [class*="col_"] {
+      @include col;
+      width: 100%;
+      max-width: 100%;
+    }
+    @include make-col();
+    .col__slide {
+      flex: 0 0 30%;
+      max-width: 30%;
+      min-width: 240px;
+      padding: get_margin() get_margin(0.5);
+      &:first-child {
+        margin-left: -5px;
+      }
+      &:last-child {
+        margin-right: -5px;
+      }
+    }
+
+    // tablet
+    @include media-breakpoint(tb) {
+      @include make-col(tb);
+    }
+
+    // screen
+    @include media-breakpoint(pc) {
+      @include make-col(pc);
+    }
+
+    // large screen
+    @include media-breakpoint(lg) {
+      @include make-col(lg);
+    }
+    
+    .col--no-gutter {
+      padding: 0;
+    }
+
+  }// at-root
+}

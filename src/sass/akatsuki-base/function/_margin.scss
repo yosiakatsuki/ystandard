@@ -1,0 +1,11 @@
+/*
+  余白取得
+ */
+
+@function get_margin($x:1) {
+ @return $gutter * $x;
+}
+
+@function get_section_margin($type:sp) {
+  @return if($type == sp,$gutter * 2,$gutter * 4);
+}

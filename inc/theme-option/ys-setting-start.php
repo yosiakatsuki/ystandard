@@ -1,50 +1,37 @@
 <?php
-	if (!current_user_can('manage_options'))
-		{
-			wp_die( __('You do not have sufficient permissions to access this page.') );
-		}
-	$theme_name = get_template();
+/**
+ * 設定スタートページ
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+if ( ! current_user_can( 'manage_options' ) ) {
+	wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+}
+$current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 ?>
-
-<div class="wrap">
-<h2><?php echo $theme_name; ?>の設定を始める</h2>
-<div id="poststuff">
-	<div class="postbox">
-		<h2>簡単設定</h2>
-		<div class="inside">
-			<p>Twitterユーザー名やFacebookのAppIDなど、複数箇所に入力する必要がある項目についてまとめて設定します</p>
-			<p>※このテーマでは役割ごとに別々のSNSアカウントを設定可能です</p>
-			<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_collective_settings'; ?>">設定を始める»</a></strong></p>
+<div class="wrap ystandard-settings">
+	<h2><span class="orbitron">yStandard</span> 設定ページ</h2>
+	<div class="ystandard-settings__section">
+		<h3><span class="orbitron">yStandard</span> の設定はテーマカスタマイザーから!</h3>
+		<p>yStandardの設定はテーマカスタマイザーから行って下さい。</p>
+		<p><a class="ys-btn" href="<?php echo esc_url( add_query_arg( 'return', urlencode( $current_url ), wp_customize_url() ) ); ?>">テーマカスタマイザーを開く</a></p>
+		<div class="ys-smaller">
+			<p>
+				※ version 2.0.0 以降はテーマカスタマイザーから設定を行う方式になりました<br>
+				※「<a href="https://www.amazon.co.jp/%E3%81%AF%E3%81%98%E3%82%81%E3%81%A6%E3%81%AE%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E3%83%AF%E3%83%BC%E3%83%89%E3%83%97%E3%83%AC%E3%82%B9%E3%81%A7%E4%BD%9C%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E6%9C%AC-%E3%81%98%E3%81%87%E3%81%BF%E3%81%98%E3%81%87%E3%81%BF%E5%AD%90/dp/4798052817/" target="_blank">はじめてのブログをワードプレスで作るための本</a>」発売後に大きなバージョンアップを行ったため、書籍記載の設定内容と異なっていますがご了承下さい。
+			</p>
 		</div>
-	</div>
-
-	<div class="postbox">
-		<h2>基本設定</h2>
-		<div class="inside">
-			<p>Google AnalyticsのトラッキングIDやOGP設定など</p>
-			<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_main_settings'; ?>">設定を始める»</a></strong></p>
-		</div>
-	</div>
-
-	<div class="postbox">
-		<h2>高度な設定</h2>
-		<div class="inside">
-			<p>css,javascriptの読み込み設定、AMP有効化設定など</p>
-			<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_advanced_settings'; ?>">設定を始める»</a></strong></p>
-		</div>
-	</div>
-
-	<div class="postbox">
-		<h2>AMP設定</h2>
-		<div class="inside">
-			<p>AMPページ作成の条件や通常ページへのリンク出力設定など</p>
-			<?php if( 0 == ys_get_setting( 'ys_amp_enable' ) ): ?>
-				<p><strong>※AMPページを生成が有効になっていません。</strong><br><a href="<?php echo get_admin_url().'/admin.php?page=ys_advanced_settings'; ?>">高度な設定</a>から「AMPページを生成する」にチェックを入れて下さい</p>
-			<?php else: ?>
-				<p><strong><a href="<?php echo get_admin_url().'/admin.php?page=ys_amp_settings'; ?>">設定を始める»</a></strong></p>
+	</div><!-- .ys-info__section -->
+	<div class="ystandard-settings__section">
+		<h3><span class="orbitron">yStandard</span>情報</h3>
+		<p>
+			<span class="ys-info-h"><span class="orbitron">yStandard</span>本体</span>: <?php echo ys_get_theme_version( true ); ?>
+			<?php if ( get_template() != get_stylesheet() ) : ?>
+				<br><span class="ys-info-h">子テーマ</span>: <?php echo ys_get_theme_version(); ?>
 			<?php endif; ?>
-		</div>
+		</p>
 	</div>
-
-</div><!-- /#poststuff -->
 </div><!-- /.warp -->

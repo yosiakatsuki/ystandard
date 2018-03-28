@@ -1,39 +1,46 @@
 <?php
+/**
+ * 記事一覧テンプレート
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
+
 get_header(); ?>
-
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" >
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
+<div class="container">
+	<div class="content-area content__wrap">
+		<main id="main" class="site-main content__main">
+			<?php do_action( 'ys_site_main_prepend' ); ?>
+			<?php if ( have_posts() ) : ?>
 				<?php
-					the_archive_title( '<h2 class="page-title">', '</h2>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
+					/**
+					 * アーカイブヘッダーの読み込み
+					 */
+					get_template_part( 'template-parts/archive/archive-header', ys_get_archive_header_template() );
 				?>
-			</header><!-- .page-header -->
-
+				<div class="archive__list">
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					get_template_part( 'template-parts/content/archive', ys_get_option( 'ys_archive_type' ) );
+				endwhile;
+				?>
+				</div><!-- .archive__list -->
+				<?php
+					/**
+					 * ページネーション
+					 */
+					get_template_part( 'template-parts/pagination/pagination' );
+					?>
 			<?php
-			// Start the Loop.
-			while ( have_posts() ) : the_post();
-
-				get_template_part( 'template-parts/content', get_post_format() );
-
-			// End the loop.
-			endwhile;
-
-			// ページネーション
-			ys_pagination();
-
-		// If no content, include the "No posts found" template.
-		else :
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
-		?>
-
+				else :
+					get_template_part( 'template-parts/content/none' );
+				endif;
+			?>
+			<?php do_action( 'ys_site_main_append' ); ?>
 		</main><!-- .site-main -->
-	</section><!-- .content-area -->
-
-<?php get_sidebar(); ?>
+		<?php get_sidebar(); ?>
+	</div><!-- .content-area -->
+</div><!-- .container -->
 <?php get_footer(); ?>

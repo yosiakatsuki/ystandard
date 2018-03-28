@@ -1,0 +1,9 @@
+.ys_author_list {
+  border-top: 1px solid $border-color-light;
+  margin: get_margin(2) 0 0;
+  
+  .author__box {
+    padding: get_margin(2) 0;
+    border-bottom: 1px solid $border-color-light;
+  }
+}

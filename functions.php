@@ -1,16 +1,13 @@
 <?php
-//------------------------------------------------------------------------------
-//
-//	テーマ内で使用する関数群
-//		各関数は子テーマで処理を上書き可能です。
-//
-//		必要な動作環境：WordPress 4.5以上 php 5.6以上
-//
-//------------------------------------------------------------------------------
+/**
+ * テーマ内で使用する関数
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
 
-//各機能読み込み
-// /inc/modules_loader で分割した各機能を読み込んでいます
-require_once TEMPLATEPATH . '/inc/modules_loader.php';
-
-
-?>
+/**
+ * 関数群を読み込み
+ */
+require_once get_template_directory() . '/inc/require.php';

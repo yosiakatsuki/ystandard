@@ -1,0 +1,49 @@
+@charset "UTF-8";
+// variables
+@import "../variables";
+// mixins
+@import "../akatsuki-base/mixins/breakpoint";
+@import "../akatsuki-base/mixins/clearfix";
+@import "../akatsuki-base/mixins/grid";
+@import "../akatsuki-base/mixins/nav";
+@import "../akatsuki-base/mixins/flex";
+@import "../akatsuki-base/mixins/list";
+@import "../akatsuki-base/mixins/style-clear";
+//func
+@import "../akatsuki-base/function/margin";
+@import "../akatsuki-base/function/sns-color";
+@import "../akatsuki-base/function/decimal";
+
+.ys-admin-section {
+  h4 {
+    border-bottom: 1px solid #222;
+    margin-bottom: .5em;
+    padding: .5em 0;
+    
+    & + p {
+      margin-top: 0;
+    }
+  }
+}
+
+// meta box
+.meta-box__headline {
+  border-bottom: 1px solid #222;
+  margin-bottom: .5em;
+  padding: .5em 0;
+  font-size:1em;
+}
+.meta-box__section {
+  margin: 1em 0;
+  label {
+    font-weight: bold;
+  }
+}
+.meta-box__full-w {
+  display: block;
+  width: 100%;
+}
+.meta-box__dscr {
+  color: $font-color-gray;
+  font-size: .8em;
+}

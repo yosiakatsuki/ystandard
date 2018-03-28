@@ -1,0 +1,35 @@
+input,
+textarea,
+select,
+button {
+  background-color: #fff;
+  border: 1px solid $border-color-gray;
+  padding: .5em;
+  font-size: 1em;
+  border-radius: 2px;
+}
+input[type="text"],
+input[type="search"],
+input[type="url"],
+input[type="email"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  -webkit-appearance: none;
+}
+
+button,
+input[type="reset"],
+input[type="submit"],
+input[type="button"] {
+  padding: .5em 2em;
+  background-color: $border-color-dark;
+  border: 1px solid $border-color-dark;
+  color: #fff;
+  transition: all .3s;
+  &:hover {
+    background-color: #fff;
+    color: $font-color-main;
+  }
+}

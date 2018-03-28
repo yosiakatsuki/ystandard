@@ -1,0 +1,37 @@
+.sidebar {
+  @at-root {
+    & {
+      width: 100%;
+      padding: get_margin() 0;
+
+      a {
+        text-decoration: none;
+      }
+    }
+    .sidebar__widget + .sidebar__fixed {
+      margin-top: get_margin(2);
+    }
+
+    @include media-breakpoint(pc) {
+      & {
+        flex: 0 0 auto;
+        width: $sidebar-width;
+        padding: 0 get_margin(2);
+      }
+      .sidebar-wrapper {
+        height: 100%;
+      }
+      .sidebar__fixed {
+        position: sticky;
+        top: 10px;
+      }
+      .sidebar__widget + .sidebar__fixed {
+        margin-top: get_margin(4);
+        top: 10px;
+      }
+      .admin-bar .sidebar__fixed {
+        top: 10px + 32px;
+      }
+    }
+  }
+}

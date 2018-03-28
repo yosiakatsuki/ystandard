@@ -1,0 +1,12 @@
+.footer-nav {
+  @at-root {
+    .footer__nav-list {
+      li {
+        margin: 0 0 5px 15px;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+  }// @
+}

@@ -18,3 +18,5 @@ wp-content/plugins/hello.php
 .DS_Store
 node_modules/
 *.sh
+!bin/*.sh
+*.map

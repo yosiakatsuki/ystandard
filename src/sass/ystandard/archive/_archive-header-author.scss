@@ -1,0 +1,16 @@
+.archive__header-author {
+  @at-root {
+    & {
+      padding: get_margin(2) get_margin(1);
+      margin: 0 get_margin(-1) get_margin();
+      background-color: $bg-color-gray;
+    }
+    @include media-breakpoint(pc) {
+      & {
+        padding: get_margin(2);
+        margin: 0 0 get_margin(2);
+      }
+    }
+    
+  }// @
+}

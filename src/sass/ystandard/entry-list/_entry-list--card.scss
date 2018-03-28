@@ -1,0 +1,32 @@
+.entry-list--card {
+
+  .content__main {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .archive__list {
+    @include flex;
+    margin-right: get_margin(-1);
+    margin-left: get_margin(-1);
+  }
+  .entry-list {
+    width: 100%;
+    padding: get_margin();
+  }
+  .entry__meta {
+    margin-top: 0;
+  }
+
+  @include media-breakpoint(tb) {
+    .entry-list--card-2 {
+      width: 50%;
+    }
+    .entry-list--card-3 {
+      width: 33.33%;
+    }
+    .entry-list--card-4 {
+      width: 25%;
+    }
+  }
+}

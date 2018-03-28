@@ -1,45 +1,87 @@
 <!DOCTYPE html>
 <?php
-	// html~headタグは関数で出力
-	ys_template_the_head_tag();
-?>
+/**
+ * ヘッダーテンプレート
+ *
+ * @package ystandard
+ * @author yosiakatsuki
+ * @license GPL-2.0+
+ */
 
-<body <?php body_class(); ?>><div id="fb-root"></div>
-<?php
- 	if(ys_is_amp()) {
-		// Google Analytics
-		ys_extras_add_googleanarytics();
-	}
+/**
+ * *********************************************************************************
+ *
+ *     Head内にタグを追記したいあなたへ
+ *
+ *     yStandardではAMPフォーマット対応の為にheadタグをheader.php以外のファイルに書いています
+ *     もし、Google Fontsや広告など、何かタグを追加しようとこのファイルをひらいたのであれば、
+ *     yStandardでは user-custom-head.php というファイルに追加したいタグを書き込むだけで
+ *     headに出力出来るようになっています。
+ *
+ *     https://wp-ystandard.com/ で配布している子テーマでは上書き用のファイルが含まれていますので
+ *     子テーマの user-custom-head.php を編集して下さい。
+ *
+ *     自分で追加した部分も見やすくなりますのでぜひご活用下さい。
+ *
+ * *********************************************************************************
+ */
+if ( ys_is_amp() ) {
+	/**
+	 * AMPフォーマットの場合
+	 */
+	get_template_part( 'template-parts/amp/amp-head' );
+
+} else {
+	/**
+	 * 通常フォーマットの場合
+	 */
+	get_template_part( 'template-parts/head/head' );
+}
 ?>
+<!-- head -->
+<body <?php body_class(); ?>>
+<?php do_action( 'ys_body_prepend' ); ?>
 <div id="page" class="site">
-	<div class="site-inner">
-
-		<header id="masthead" class="site-header color-site-header" itemprop="publisher" itemscope itemtype="https://schema.org/Organization" <?php ys_template_the_header_attr(); ?>>
-			<div class="site-header-main wrap">
-
-				<div class="site-header-wrap clearfix">
-					<div class="site-branding">
-
-						<?php
-						// ロゴ
-							ys_template_the_header_site_title_logo();
-						 ?>
-					</div><!-- .site-branding -->
-
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ystandard' ); ?></a>
+	<header id="masthead" class="header site-header color__site-header">
+		<?php do_action( 'ys_site_header_prepend' ); ?>
+		<div class="header__container container">
+			<div class="<?php ys_the_header_type_class(); ?>">
+				<div class="site-branding header__branding">
 					<?php
-					// グローバルメニュー
-						ys_template_the_header_global_menu();
+					/**
+					 * ヘッダーロゴ
+					 */
+					$logo  = ys_get_header_logo();
+					$class = 'site-title header__title color__site-title';
+					if ( ! is_singular() || is_front_page() ) {
+						printf( '<h1 class="%s clear-headline">%s</h1>', $class, $logo );
+					} else {
+						printf( '<div class="%s clear-headline">%s</div>', $class, $logo );
+					}
+					/**
+					 * 概要
+					 */
+					ys_the_blog_description();
 					?>
-				</div><!-- .wrap -->
-			</div><!-- .site-header-main -->
-
-		</header><!-- .site-header -->
-
-		<?php
-			// パンくず
-			ys_breadcrumb();
-			// ヒーローエリア
-			ys_template_the_site_hero();
-		?>
-
-		<div id="content" class="site-content wrap clearfix" <?php ys_template_the_content_attr(); ?>>
+				</div><!-- .site-branding -->
+				<div class="header__nav">
+					<?php get_template_part( 'template-parts/nav/global-nav' ); ?>
+				</div><!-- .header__nav -->
+			</div><!-- .header_row -->
+		</div><!-- .header__container -->
+		<?php do_action( 'ys_site_header_append' ); ?>
+	</header><!-- .header .site-header -->
+	<?php do_action( 'ys_after_site_header' ); ?>
+	<?php
+	/**
+	 * ヒーローエリア
+	 */
+	get_template_part( 'template-parts/hero/hero', ys_get_hero_template() );
+	?>
+	<div id="content" class="site-content site__content">
+	<?php
+	/**
+	 * パンくずリスト
+	 */
+	get_template_part( 'template-parts/breadcrumbs/breadcrumbs' );

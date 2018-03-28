@@ -1,0 +1,17 @@
+.page-links {
+  @at-root {
+    & {
+      margin-top: 1em;
+      a {
+        margin-right: 5px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    & > .page-links__item {
+      background-color: $bg-color-dark;
+      color: #fff;
+    }
+  }// @
+}
