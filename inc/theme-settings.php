@@ -107,6 +107,9 @@ if (!function_exists( 'ys_settings')) {
 		$ys_amp_advertisement_under_content = get_option('ys_amp_advertisement_under_content','') ;
 
 
+		$ys_v2_migration = get_option('ys_v2_migration',0) ;
+
+
 		// 配列作成
 		$result = array(
 										'ys_title_separate' => $ys_title_separate,	//タイトルの区切り文字
@@ -179,7 +182,9 @@ if (!function_exists( 'ys_settings')) {
 
 										'ys_amp_advertisement_under_title' => $ys_amp_advertisement_under_title,	//広告　タイトル下
 										'ys_amp_advertisement_replace_more' => $ys_amp_advertisement_replace_more,	//moreタグ置換
-										'ys_amp_advertisement_under_content' => $ys_amp_advertisement_under_content	//記事下　左
+										'ys_amp_advertisement_under_content' => $ys_amp_advertisement_under_content,	//記事下　左
+
+										'ys_v2_migration' => $ys_v2_migration	//記事下　左
 
 									);
 

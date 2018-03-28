@@ -21,6 +21,15 @@ function ys_add_admin_menu() {
 				'',
 				3);
 
+	// V2アップグレードページ追加
+	add_submenu_page(
+		'ys_settings_start',
+		'Version2アップグレード',
+		'Version2アップグレード',
+		'manage_options',
+		'ys_v2_migration',
+		'load_ys_v2_migration'
+	);
 	// 簡単設定ページ追加
 	add_submenu_page(
 		'ys_settings_start',
@@ -164,6 +173,7 @@ function ys_register_settings() {
 	register_setting( 'ys_amp_settings', 'ys_amp_advertisement_replace_more' );
 	register_setting( 'ys_amp_settings', 'ys_amp_advertisement_under_content' );
 
+	register_setting( 'ys_v2_migration', 'ys_v2_migration' );
 
 
 
@@ -212,6 +222,13 @@ function load_ys_amp_settings() {
  */
 function load_ys_tools() {
 	include TEMPLATEPATH . '/inc/theme-option/ys-tools.php';
+}
+
+/**
+ *	V2アップグレード
+ */
+function load_ys_v2_migration() {
+	include TEMPLATEPATH . '/inc/theme-option/v2-migration.php';
 }
 
 ?>
