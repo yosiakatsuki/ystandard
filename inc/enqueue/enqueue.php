@@ -734,6 +734,12 @@ function ys_admin_enqueue_scripts( $hook_suffix ) {
 			'ys_settings_font',
 			'https://fonts.googleapis.com/css?family=Orbitron'
 		);
+		wp_enqueue_style(
+			'font-awesome',
+			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+			array(),
+			'4.7.0'
+		);
 	}
 }
 add_action( 'admin_enqueue_scripts', 'ys_admin_enqueue_scripts' );

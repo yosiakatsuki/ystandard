@@ -14,6 +14,12 @@
   余白取得
  */
 
+.col,
+[class*=col_] {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 .ys-admin-section h4 {
 	border-bottom: 1px solid #222;
 	margin-bottom: .5em;
@@ -22,6 +28,19 @@
 
 .ys-admin-section h4 + p {
 	margin-top: 0;
+}
+
+.ystandard-settings__section .card {
+	max-width: 100%;
+	height: 100%;
+	margin: 0 0 1em;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.ystandard__info-icon {
+	padding: .5em 0;
+	font-size: 3em;
 }
 
 .meta-box__headline {
