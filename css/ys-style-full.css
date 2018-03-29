@@ -2302,12 +2302,13 @@ figcaption {
 	margin-top: 0;
 }
 
-.widget_recent_entries li,
-.widget_categories li,
-.widget_archive li,
-.widget_nav_menu li,
-.widget_pages li {
-	margin: 0 0 .5em;
+.widget_recent_entries li a,
+.widget_categories li a,
+.widget_archive li a,
+.widget_nav_menu li a,
+.widget_pages li a {
+	display: block;
+	padding: .5em 0;
 }
 
 .widget_calendar a {
