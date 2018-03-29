@@ -450,11 +450,12 @@
 }
 
 .footer__nav-list li {
-	margin: 0 0 5px 15px;
+	font-size: .9em;
+	margin: 0 15px 5px 0;
 }
 
-.footer__nav-list li:first-child {
-	margin-left: 0;
+.footer__nav-list li:last-child {
+	margin-right: 0;
 }
 
 .footer-sns a:hover {
