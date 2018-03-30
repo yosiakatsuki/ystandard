@@ -37,7 +37,7 @@ if ( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 		/**
 		 * フッターウィジェット
 		 */
-		$templates['wdget'] = $dir . 'entry-footer-wdget';
+		$templates['widget'] = $dir . 'entry-footer-widget';
 		/**
 		 * 広告
 		 */

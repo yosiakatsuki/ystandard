@@ -2302,12 +2302,13 @@ figcaption {
 	margin-top: 0;
 }
 
-.widget_recent_entries li,
-.widget_categories li,
-.widget_archive li,
-.widget_nav_menu li,
-.widget_pages li {
-	margin: 0 0 .5em;
+.widget_recent_entries li a,
+.widget_categories li a,
+.widget_archive li a,
+.widget_nav_menu li a,
+.widget_pages li a {
+	display: block;
+	padding: .5em 0;
 }
 
 .widget_calendar a {
@@ -2592,6 +2593,21 @@ div.aligncenter {
 	margin: 0 5px 0 0;
 }
 
+.ad__container {
+	padding: 15px 0;
+}
+
+.ad__label {
+	font-size: .8em;
+	color: #939393;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.ad__content {
+	text-align: center;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__1--tb {
@@ -2712,6 +2728,17 @@ div.aligncenter {
 	float: right;
 	margin-left: 1em;
 	margin-bottom: 1em;
+}
+
+.ad__double {
+	margin-right: -5px;
+	margin-left: -5px;
+}
+
+.ad__left,
+.ad__right {
+	padding: 0 5px;
+	text-align: center;
 }
 
 }

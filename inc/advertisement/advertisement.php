@@ -110,9 +110,9 @@ if ( ! function_exists( 'ys_get_ad_entry_footer' ) ) {
 		}
 		if ( '' !== $ad_left && '' !== $ad_right ) {
 			$ad = sprintf(
-				'<div class="ad__double flex-wrap--tb flex--a-start flex--j-center">
-					<div class="ad__left">%s</div>
-					<div class="ad__right">%s</div>
+				'<div class="ad__double row">
+					<div class="ad__left col__2--tb">%s</div>
+					<div class="ad__right col__2--tb">%s</div>
 				</div>',
 				$ad_left,
 				$ad_right
