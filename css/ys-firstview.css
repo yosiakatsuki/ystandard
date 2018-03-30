@@ -2593,6 +2593,21 @@ div.aligncenter {
 	margin: 0 5px 0 0;
 }
 
+.ad__container {
+	padding: 15px 0;
+}
+
+.ad__label {
+	font-size: .8em;
+	color: #939393;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.ad__content {
+	text-align: center;
+}
+
 @media screen and (min-width: 600px) {
 
 .col__1--tb {
@@ -2713,6 +2728,17 @@ div.aligncenter {
 	float: right;
 	margin-left: 1em;
 	margin-bottom: 1em;
+}
+
+.ad__double {
+	margin-right: -5px;
+	margin-left: -5px;
+}
+
+.ad__left,
+.ad__right {
+	padding: 0 5px;
+	text-align: center;
 }
 
 }
