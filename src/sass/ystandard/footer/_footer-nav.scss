@@ -2,9 +2,10 @@
   @at-root {
     .footer__nav-list {
       li {
-        margin: 0 0 5px 15px;
-        &:first-child {
-          margin-left: 0;
+        font-size: .9em;
+        margin: 0 15px 5px 0;
+        &:last-child {
+          margin-right: 0;
         }
       }
     }
