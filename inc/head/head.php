@@ -105,61 +105,52 @@ if ( ! function_exists( 'ys_the_pingback_url' ) ) {
 }
 add_action( 'wp_head', 'ys_the_pingback_url' );
 
-if ( ! function_exists( 'ys_the_prefetch' ) ) {
+/**
+ * Preload
+ */
+function ys_the_preload() {
 	/**
-	 * Prefetch
+	 * Preloadタグを追加するリソースのセット
 	 */
-	function ys_the_prefetch() {
-		/**
-		 * Prefetchタグを追加するリソースのセット
-		 */
-		$prefetch = ys_get_prefetch_list();
-		/**
-		 * Prefetchタグ展開
-		 */
-		foreach ( $prefetch as $key => $value ) {
-			printf(
-				'<link id="%s" rel="preload" as="%s" type="%s" href="%s" crossorigin />' . PHP_EOL,
-				$key,
-				$value['as'],
-				$value['type'],
-				$value['url']
-			);
-		}
+	$preload = ys_get_preload_list();
+	/**
+	 * Preloadタグ展開
+	 */
+	foreach ( $preload as $key => $value ) {
+		printf(
+			'<link id="%s" rel="preload" as="%s" type="%s" href="%s" crossorigin />' . PHP_EOL,
+			$key,
+			$value['as'],
+			$value['type'],
+			$value['url']
+		);
 	}
 }
-add_action( 'wp_head', 'ys_the_prefetch', 2 );
+add_action( 'wp_head', 'ys_the_preload', 2 );
 
 /**
  * Prefetchタグを追加するリソースの一覧取得
  */
-function ys_get_prefetch_list() {
-	$prefetch = array();
+function ys_get_preload_list() {
+	$preload = array();
 	/**
 	 * Font Awesome
 	 */
-	$prefetch = ys_set_prefetch_item(
-		$prefetch,
-		'font-awesome',
-		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?ver=4.7.0',
-		'style',
-		'text/css'
-	);
-	$prefetch = ys_set_prefetch_item(
-		$prefetch,
+	$preload = ys_set_preload_item(
+		$preload,
 		'font-awesome-woff2',
 		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0',
 		'font',
 		'font/woff2'
 	);
-	$prefetch = ys_set_prefetch_item(
-		$prefetch,
+	$preload = ys_set_preload_item(
+		$preload,
 		'font-awesome-woff',
 		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0',
 		'font',
 		'font/woff'
 	);
-	return apply_filters( 'ys_prefetch_list', $prefetch );
+	return apply_filters( 'ys_preload_list', $preload );
 }
 
 /**
@@ -171,7 +162,7 @@ function ys_get_prefetch_list() {
  * @param string $as   as.
  * @param string $type type.
  */
-function ys_set_prefetch_item( $list, $id, $url, $as, $type ) {
+function ys_set_preload_item( $list, $id, $url, $as, $type ) {
 	$list[ $id ] = array(
 		'url'  => $url,
 		'as'   => $as,

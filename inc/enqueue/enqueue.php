@@ -172,7 +172,7 @@ function ys_enqueue_styles() {
 			'font-awesome',
 			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 			array(),
-			'4.7.0'
+			''
 		);
 	}
 	/**
@@ -216,7 +216,7 @@ function ys_enqueue_styles_non_critical_css() {
 	ys_enqueue_non_critical_css(
 		'font-awesome',
 		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
-		'4.7.0'
+		''
 	);
 }
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles_non_critical_css' );
@@ -738,7 +738,7 @@ function ys_admin_enqueue_scripts( $hook_suffix ) {
 			'font-awesome',
 			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 			array(),
-			'4.7.0'
+			''
 		);
 	}
 }
@@ -839,3 +839,17 @@ if ( ! function_exists( 'ys_style_loader_tag' ) ) {
 	}
 }
 add_filter( 'style_loader_tag', 'ys_style_loader_tag', 10, 3 );
+
+/**
+ * スタイルシートのURLを加工
+ *
+ * @param  string $src    The source URL of the enqueued style.
+ * @param  string $handle The style's registered handle.
+ */
+function ys_style_loader_src( $src, $handle ) {
+	if ( strpos( $src, 'font-awesome.min.css' ) ) {
+		$src = remove_query_arg( 'ver', $src );
+	}
+	return $src;
+}
+add_filter( 'style_loader_src', 'ys_style_loader_src', 10, 2 );
