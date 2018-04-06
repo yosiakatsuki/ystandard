@@ -2105,7 +2105,6 @@ blockquote cite::before {
 
 table {
 	width: 100%;
-	table-layout: fixed;
 	border-top: 1px solid #bdc3c7;
 	border-left: 1px solid #bdc3c7;
 	border-collapse: collapse;

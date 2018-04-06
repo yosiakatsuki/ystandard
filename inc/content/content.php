@@ -66,7 +66,7 @@ if ( ! function_exists( 'ys_add_iframe_responsive_container' ) ) {
 			 */
 			foreach ( $pattern_list as $value ) {
 				$pattern     = '/<iframe[^>]+?' . $value . '[^<]+?<\/iframe>/is';
-				$the_content = preg_replace( $pattern, '<div class="responsive__container"><div class="responsive__item">${0}</div></div>', $the_content );
+				$the_content = preg_replace( $pattern, '<div class="embed__container"><div class="embed__item">${0}</div></div>', $the_content );
 			}
 		}
 		return $the_content;
