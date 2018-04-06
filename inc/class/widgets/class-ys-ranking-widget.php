@@ -140,7 +140,7 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 				/**
 				 * カテゴリーで絞り込む
 				 */
-				$cat_ids = ys_get_the_category_id_list();
+				$cat_ids = ys_get_the_category_id_list( true );
 				/**
 				 * オプションパラメータ作成
 				 */
