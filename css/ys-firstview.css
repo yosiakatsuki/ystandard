@@ -1323,7 +1323,6 @@ input[type="button"]:hover {
 	-ms-flex: none;
 	flex: none;
 	width: 100%;
-	max-width: 830px;
 	background-color: #fff;
 	padding: 0 0 15px;
 }
@@ -2886,6 +2885,7 @@ div.aligncenter {
 
 .content__main {
 	width: calc( 100% - 390px);
+	max-width: 830px;
 	margin-right: 30px;
 }
 

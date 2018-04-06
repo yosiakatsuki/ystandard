@@ -34,6 +34,9 @@ function ys_inline_styles() {
 	 * インラインCSSのセット
 	 */
 	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', true );
+	if ( ys_is_use_background_color() ) {
+		ys_set_inline_style( get_template_directory() . '/css/ys-use-bgc.min.css', true );
+	}
 	ys_set_inline_style( ys_get_customizer_inline_css() );
 	ys_set_inline_style( locate_template( 'style-firstview.css' ) );
 	/**
@@ -162,6 +165,14 @@ function ys_enqueue_styles() {
 			ys_get_theme_version( true )
 		);
 		wp_add_inline_style( 'ys-style-full', ys_get_customizer_inline_css() );
+		if ( ys_is_use_background_color() ) {
+			wp_enqueue_style(
+				'ys-style-use-bgc',
+				get_template_directory_uri() . '/css/ys-use-bgc.min.css',
+				array(),
+				ys_get_theme_version( true )
+			);
+		}
 		wp_enqueue_style(
 			'style-css',
 			get_stylesheet_directory_uri() . '/style.css',

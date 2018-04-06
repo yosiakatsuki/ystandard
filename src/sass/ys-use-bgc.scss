@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@import "import";
+//*********************
+//背景色ありに対応させる
+//*********************
+
+.content__wrap {
+  margin-left: get_margin(-1);
+  margin-right: get_margin(-1);
+}
+.archive__header-author {
+  margin-top: get_margin(-1);
+}
+.content__main,
+.entry-list--card .content__main {
+  padding: get_margin() get_margin();
+}
+.sidebar {
+  padding: get_margin();
+}
+@include media-breakpoint(pc) {
+  .content__wrap {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .archive__header-author {
+    margin-left: get_margin(-1);
+    margin-right: get_margin(-1);
+  }
+}
+@include media-breakpoint(lg) {
+  .content__wrap,
+  .archive__header-author {
+    margin-left: get_margin(-2);
+    margin-right: get_margin(-2);
+  }
+  .content__main,
+  .entry-list--card .content__main  {
+    padding: get_margin() get_margin(2);
+  }
+}
