@@ -2,7 +2,7 @@
   @at-root {
     & {
       width: 100%;
-      padding: get_margin();
+      padding: get_margin() 0;
 
       a {
         text-decoration: none;
@@ -16,8 +16,7 @@
       & {
         flex: 0 0 auto;
         width: $sidebar-width;
-        padding-right: get_margin(2);
-        padding-left: get_margin(2);
+        padding: 0 get_margin(2);
       }
       .sidebar-wrapper {
         height: 100%;

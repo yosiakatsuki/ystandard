@@ -7,35 +7,25 @@
 
     .content__wrap {
       @include flex;
-      margin: 0 (-1 * $contents-margin-horizon-sp);
     }
 
     .content__main {
       flex: none;
       width: 100%;
+      max-width: $contents-max-width;
       background-color: #fff;
-      padding: $contents-margin-vertical-sp $contents-margin-horizon-sp;
+      padding: 0 0 get_margin();
     }
     @include media-breakpoint(pc) {
       & {
         margin-top: get_margin(2);
         margin-bottom: get_margin(2);
       }
-      .content__wrap {
-        margin: 0;
-      }
+
       .content__main {
-        width: calc( 100% - #{( $sidebar-width + $contents-margin )} );
-        max-width: $contents-max-width;
-        margin-right: $contents-margin;
-      }
-    }
-    @include media-breakpoint(lg) {
-      .content__main {
-        padding: $contents-margin-vertical-pc $contents-margin-horizon-pc;
-      }
-      .content__wrap {
-        margin: 0 (-1 * $contents-margin-horizon-pc);
+        $content-margin: get_margin(2);
+        width: calc( 100% - #{( $sidebar-width + $content-margin )} );
+        margin-right: $content-margin;
       }
     }
   }

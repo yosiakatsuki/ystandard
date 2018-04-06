@@ -7,17 +7,12 @@ $breakpoints-setting: (
 );
 
 // コンテンツ幅
-$gutter                      : 15px;
-$contents-width              : 800px;
-$contents-margin-horizon-sp  : $gutter;
-$contents-margin-vertical-sp : $gutter;
-$contents-margin-horizon-pc  : $gutter * 2;
-$contents-margin-vertical-pc : $gutter;
-$contents-margin             : $contents-margin-horizon-pc;
-$contents-max-width          : $contents-width + $contents-margin;
-$sidebar-width               : 300px + ($gutter * 4);
-$sidebar-margin              : 0;
-$container-max-width         : $contents-max-width + $sidebar-width + $sidebar-margin;
+$gutter              : 15px;
+$contents-width      : 800px;
+$contents-max-width  : $contents-width + ($gutter * 2);
+$sidebar-width       : 300px + ($gutter * 4);
+$sidebar-margin      : $gutter * 2;
+$container-max-width : $contents-max-width + $sidebar-width + $sidebar-margin;
 
 // 色
 $font-color-main    : #222;
