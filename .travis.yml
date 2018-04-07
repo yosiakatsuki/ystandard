@@ -8,11 +8,19 @@ notifications:
   slack:
     secure: hJ0O3OcvCYzbvmOkHoqZIoayZY83lD+GDKNsCjc0HfdxQefkoN8U123b6ixRA+wXk8FMmHJDNKD3eX6OVLBtyu5f5KD7vEj3A16mecHlQFdgKtctFjI43WqIvUyPB8aIUBPkxVS3QCaAner9rCBDPlpyg6fFkbSs36bpwN2vwRV+W07ZrVcacUuFMiA3ZqNrRzUbxXShL/rTR/HfCM1DZmHMDLbzFebG1vQdzop/63i+i+LFN9wBhGs6nV4fEcmZl8CZKNCHQeSIYW38xCVSJBjglWFy8JXTnyNoPufUXb8SAeBAnsivDyRvpciz9HdVts3EnlhXmHryzdyXPwSXtnBs8jivPu8sDjLi8CAf/bbaMoR4Hz96mkqmq9V4KTknMrSJ/1Vb/DlPlz+mRh3KyCWYhP61+iPfzh5Tfb/PHuEOyXJSN1DwiSZE0pbDPiPaQzzKkwQnJUSDZDFHdOI6q6ItL3TjH+zL9nAisiNg2wO2hMaY2+z+bxZbMHqjGpgly3wduKvQ3qtkBXEPRVNGXP27gd6amfUYYaI3F/vpP1N81o+noBKQ4TL4zflQXKQuRV0MWzb0pi/hoYyyQujb0oi0HN1MKIoMhjba4OX50mRvmxxRQ7tjQsBq/ptxBs+WVVCVy1UjbCEV0ZXgkQtftB64Q3sAet9h7DnQkxjfrp4=
 branches:
-  except:
-  - test
+  only:
+  - master
+  - develop
+  - "/v\\d+\\.\\d+\\.\\d+?.*/"
 cache:
   directories:
   - "$HOME/.composer/cache"
+before_install:
+- openssl aes-256-cbc -K $encrypted_18a4f32e6c4a_key -iv $encrypted_18a4f32e6c4a_iv
+  -in .travis/github_deploy_key.enc -out .travis/github_deploy_key -d
+- mv .travis/github_deploy_key ~/.ssh/id_rsa
+- chmod 600 ~/.ssh/id_rsa
+- echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 matrix:
   include:
   - php: 7.1
@@ -56,3 +64,18 @@ script:
   if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
     phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')
   fi
+before_deploy:
+- git clone git@github.com:yosiakatsuki/ystandard.git ystandard
+- cd ystandard
+- npm install
+- npm run zip
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: i6QqhcX069RtptPltdRoHrHW7PXaKiDggUeTAOZLB7lHrMjnh2ffXGv0vbpD5MZzpPO7ORlBfmOT+bQhma+LROxVOd2ipY0Zq6Y/ZSHotkNWTTC5S6dUlzDnOyq03NpR1psePMZUS08CpQfAYsjfFnb5W1+5LP47jREIX/wY7KaiG/GIu3AXc+sHdkqfYDUA+Opb3MmyuvXjozOg8xKQFxlAdAfsBxYHaeS/7GFL3K8sqn/oahIURLHbowF5N6fR7gEbILxykeh2Y4di4iriIas2Es59FFlLcssgK+XH+HrvoZV2qwQO/JM4bI4Tdk8iYI+IvJPkBZPPfSANIYEUeuTJCrkIwEn39INcH4r73rEqqnH3OGMpDDNICJ4TmzOSTS2eVUfquyRguCh7/BvgKMfBDzdcKzAnYh6e8GQCFl6h2BtvKCovCxWNBxm1W5/Jv4dcj9diyilUQStF3xm11wfuZ4ydEwzfsliHfHI/vuAkm2JsRMjFp4E0l7e8rPzg5OPpRomp1Htqgghv7TSrwKi7amYae38AwBqsnXzMj8sTZtO6czdkOFSWA1+CmBQUcyKLDIc7rhkDPrFr7gy6k6cGNTrYw+GCoXtykDoQVCuCF308PmRbMs96IjBIgxmXG8xaZJFCA7kpHklS1VYwhxQVpUNU51ueapao6L7IEfg=
+  file: ystandard/ystandard.zip
+  on:
+    tags: true
+    all_branches: true
+    repo: yosiakatsuki/ystandard

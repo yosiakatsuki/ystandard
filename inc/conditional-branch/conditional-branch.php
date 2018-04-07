@@ -522,3 +522,13 @@ function ys_is_active_slide_menu_search_form() {
 	}
 	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
 }
+
+/**
+ * コンテンツ背景色を使っているか
+ */
+function ys_is_use_background_color() {
+	if ( '#ffffff' == ys_customizer_get_color_option( 'ys_color_site_bg' ) ) {
+		return false;
+	}
+	return true;
+}

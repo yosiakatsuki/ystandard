@@ -23,3 +23,6 @@ insert_final_newline = true
 [*.js]
 indent_style = space
 insert_final_newline = true
+
+[*.yml]
+indent_style = space

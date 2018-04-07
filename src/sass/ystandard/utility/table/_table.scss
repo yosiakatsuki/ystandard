@@ -1,0 +1,15 @@
+.ys-table--fixed {
+  table-layout: fixed;
+}
+.ys-table--scroll {
+  display: block;
+  overflow: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+@include media-breakpoint(pc) {
+  .ys-table--scroll {
+    display: table;
+    white-space: inherit;
+  }
+}
