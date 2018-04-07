@@ -478,6 +478,7 @@
 
 .ys-table--scroll {
 	display: block;
+	margin-top: 1.5em;
 	overflow: auto;
 	white-space: nowrap;
 	-webkit-overflow-scrolling: touch;
