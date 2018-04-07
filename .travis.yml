@@ -67,7 +67,7 @@ script:
 before_deploy:
 - git clone git@github.com:yosiakatsuki/ystandard.git ystandard
 - cd ystandard
-- npm install
+- travis_retry npm install
 - npm run zip
 deploy:
   provider: releases
