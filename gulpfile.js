@@ -112,9 +112,10 @@ gulp.task('zip', function(){
         '!gulpfile.js',
         '!package.json',
         '!webpack.config.js',
-        '!phpcs.xml.dist',
+        '!phpcs.ruleset.dist',
         '!phpunit.xml.dist',
         '!tests',
+        '!Bin',
       ],
       {base: './'}
     )

@@ -20,3 +20,4 @@ node_modules/
 *.sh
 !bin/*.sh
 *.map
+.travis/github_deploy_key
