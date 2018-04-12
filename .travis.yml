@@ -21,8 +21,8 @@ before_install:
 - mv .travis/github_deploy_key ~/.ssh/id_rsa
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- nvm install --lts
-- nvm use --lts
+- nvm install 6
+- nvm use 6
 - node -v
 matrix:
   include:
