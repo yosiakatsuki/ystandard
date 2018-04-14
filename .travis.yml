@@ -77,7 +77,7 @@ deploy:
   skip_cleanup: true
   api_key:
     secure: i6QqhcX069RtptPltdRoHrHW7PXaKiDggUeTAOZLB7lHrMjnh2ffXGv0vbpD5MZzpPO7ORlBfmOT+bQhma+LROxVOd2ipY0Zq6Y/ZSHotkNWTTC5S6dUlzDnOyq03NpR1psePMZUS08CpQfAYsjfFnb5W1+5LP47jREIX/wY7KaiG/GIu3AXc+sHdkqfYDUA+Opb3MmyuvXjozOg8xKQFxlAdAfsBxYHaeS/7GFL3K8sqn/oahIURLHbowF5N6fR7gEbILxykeh2Y4di4iriIas2Es59FFlLcssgK+XH+HrvoZV2qwQO/JM4bI4Tdk8iYI+IvJPkBZPPfSANIYEUeuTJCrkIwEn39INcH4r73rEqqnH3OGMpDDNICJ4TmzOSTS2eVUfquyRguCh7/BvgKMfBDzdcKzAnYh6e8GQCFl6h2BtvKCovCxWNBxm1W5/Jv4dcj9diyilUQStF3xm11wfuZ4ydEwzfsliHfHI/vuAkm2JsRMjFp4E0l7e8rPzg5OPpRomp1Htqgghv7TSrwKi7amYae38AwBqsnXzMj8sTZtO6czdkOFSWA1+CmBQUcyKLDIc7rhkDPrFr7gy6k6cGNTrYw+GCoXtykDoQVCuCF308PmRbMs96IjBIgxmXG8xaZJFCA7kpHklS1VYwhxQVpUNU51ueapao6L7IEfg=
-  file: ystandard/ystandard.zip
+  file: ystandard.zip
   on:
     tags: true
     all_branches: true
