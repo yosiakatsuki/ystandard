@@ -189,7 +189,7 @@ if ( ! function_exists( 'ys_get_share_button_data_line' ) ) {
 	 * @param string $share_title title.
 	 */
 	function ys_get_share_button_data_line( $share_url, $share_title ) {
-		$share_url   = 'https://line.me/R/msg/text/?' . $share_title . '%0A' . $share_url;
+		$share_url   = 'https://social-plugins.line.me/lineit/share?url=' . $share_url;
 		$button_text = apply_filters( 'ys_line_button_text', 'LINE' );
 		return array(
 			'type'        => esc_attr( 'line' ),
