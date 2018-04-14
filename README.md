@@ -88,28 +88,28 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 ### Font Awesome
 
-Font License: SIL OFL 1.1
-Code License: MIT License
+Font License: SIL OFL 1.1  
+Code License: MIT License  
 Source      : <https://fortawesome.github.io/Font-Awesome/>
 
 ### Theme Update Checker Library
 
-License: GPL
+License: GPL  
 Source : <http://w-shadow.com/>
 
 ### object-fit-images
 
-License: MIT License
+License: MIT License  
 Source : <https://github.com/bfred-it/object-fit-images>
 
 ### stickyfill
 
-License: MIT License
+License: MIT License  
 Source : <https://github.com/wilddeer/stickyfill>
 
 ### \_decimal.scss
 
-License: MIT License
+License: MIT License  
 Source : <https://gist.github.com/terkel/4373420>
 
 ## 変更履歴
