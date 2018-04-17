@@ -88,33 +88,36 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 ### Font Awesome
 
-Font License: SIL OFL 1.1
-Code License: MIT License
+Font License: SIL OFL 1.1  
+Code License: MIT License  
 Source      : <https://fortawesome.github.io/Font-Awesome/>
 
 ### Theme Update Checker Library
 
-License: GPL
+License: GPL  
 Source : <http://w-shadow.com/>
 
 ### object-fit-images
 
-License: MIT License
+License: MIT License  
 Source : <https://github.com/bfred-it/object-fit-images>
 
 ### stickyfill
 
-License: MIT License
+License: MIT License  
 Source : <https://github.com/wilddeer/stickyfill>
 
 ### \_decimal.scss
 
-License: MIT License
+License: MIT License  
 Source : <https://gist.github.com/terkel/4373420>
 
 ## 変更履歴
 
 ### v2.0.x
+- v2.1.3 : 2018/04/17
+  - 不具合修正
+    - OGPのapp_id,adminsの指定誤り修正
 - v2.1.2 : 2018/04/15
   - 不具合修正
     - LINE共有ボタンで送信した内容ががリンクとして機能しない点の修正

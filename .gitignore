@@ -21,3 +21,4 @@ node_modules/
 !bin/*.sh
 *.map
 .travis/github_deploy_key
+ystandard.zip

@@ -23,12 +23,6 @@ if ( ! function_exists( 'ys_get_the_ogp' ) ) {
 		if ( ! empty( $param['ogp_locale'] ) ) {
 			$ogp .= '<meta property="og:locale" content="' . $param['ogp_locale'] . '" />' . PHP_EOL;
 		}
-		if ( ! empty( $param['ogp_app_id'] ) ) {
-			$ogp .= '<meta property="og:app_id" content="' . $param['ogp_app_id'] . '" />' . PHP_EOL;
-		}
-		if ( ! empty( $param['ogp_admins'] ) ) {
-			$ogp .= '<meta property="og:admins" content="' . $param['ogp_admins'] . '" />' . PHP_EOL;
-		}
 		if ( ! empty( $param['ogp_type'] ) ) {
 			$ogp .= '<meta property="og:type" content="' . $param['ogp_type'] . '" />' . PHP_EOL;
 		}
@@ -43,6 +37,12 @@ if ( ! function_exists( 'ys_get_the_ogp' ) ) {
 		}
 		if ( ! empty( $param['url'] ) ) {
 			$ogp .= '<meta property="og:url" content="' . $param['url'] . '" />' . PHP_EOL;
+		}
+		if ( ! empty( $param['ogp_app_id'] ) ) {
+			$ogp .= '<meta property="fb:app_id" content="' . $param['ogp_app_id'] . '" />' . PHP_EOL;
+		}
+		if ( ! empty( $param['ogp_admins'] ) ) {
+			$ogp .= '<meta property="fb:admins" content="' . $param['ogp_admins'] . '" />' . PHP_EOL;
 		}
 		return apply_filters( 'ys_get_the_ogp', $ogp );
 	}
