@@ -114,7 +114,7 @@ Source : <https://gist.github.com/terkel/4373420>
 
 ## 変更履歴
 
-### v2.0.x
+### v2.x.x
 - v2.1.3 : 2018/04/17
   - 不具合修正
     - OGPのapp_id,adminsの指定誤り修正
@@ -142,7 +142,7 @@ Source : <https://gist.github.com/terkel/4373420>
 - v2.0.0 : 2018/03/28
   - 大幅リニューアル版をリリース
 
-### v1.0.x
+### v1.x.x
 
 - v1.1.1 : 2017/11/30
   - 不具合修正
