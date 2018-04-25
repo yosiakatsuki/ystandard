@@ -67,24 +67,39 @@ function ys_blog_card_handler( $matches, $attr, $url, $rawattr ) {
  * @return void
  */
 function ys_blog_card_shortcode( $args ) {
-	$pairs = array( 'url' => '' );
+	$pairs = array(
+		'url'         => '',
+		'title'       => '',
+		'dscr'        => '',
+		'description' => '',
+		'domain'      => '',
+		'thumbnail'   => '',
+		'target'      => '',
+	);
 	$args  = shortcode_atts( $pairs, $args );
 	if ( '' === $args['url'] ) {
 		return;
 	}
 	$url = $args['url'];
 	if ( ! wp_http_validate_url( $url ) ) {
-		return $url;
+		return ys_blog_card_create_a_tag( $url );
 	}
 	/**
-	 * ブログカード用データ取得
+	 * TitleとURLがセットされている場合はマニュアルでデータ作成
 	 */
-	$data = ys_blog_card_get_data( $url );
+	if ( '' !== $args['title'] && '' !== $args['url'] ) {
+		$data = ys_blog_card_create_data_by_param( $args, $data );
+	} else {
+		/**
+		 * ブログカード用データ取得
+		 */
+		$data = ys_blog_card_get_data( $url );
+	}
 	/**
 	 * データが取れていなければ中断
 	 */
 	if ( ! $data['blog_card'] ) {
-		return $url;
+		return ys_blog_card_create_a_tag( $url );
 	}
 	/**
 	 * 整形
@@ -383,6 +398,25 @@ function ys_blog_card_update_cache( $url, $data ) {
 }
 
 /**
+ * URLからaタグを作る(ブログカード展開できなかった時用)
+ *
+ * @param  string $url URL.
+ */
+function ys_blog_card_create_a_tag( $url ) {
+	$url = sprintf(
+		'<a href="%s" target="_blank">%s</a>',
+		$url,
+		$url
+	);
+	if ( has_filter( 'the_content', 'wpautop' ) ) {
+		$url = wpautop( $url );
+	} else {
+		$url = '<br>' . $url;
+	}
+	return $url;
+}
+
+/**
  * ブログカード作成用データのガワの作成
  */
 function ys_blog_card_get_data_array() {
@@ -397,6 +431,39 @@ function ys_blog_card_get_data_array() {
 		'blog_card' => false,
 		'create_at' => date_i18n( 'Y-m-d' ),
 	);
+}
+
+/**
+ * パラメータからブログカード用データを作成
+ *
+ * @param  array $args パラメータ.
+ * @param  array $data ブログカード用データ.
+ * @return array       ブログカード用データ.
+ */
+function ys_blog_card_create_data_by_param( $args, $data ) {
+	$data              = ys_blog_card_get_data_array();
+	$data['blog_card'] = true;
+	$data['title']     = $args['title'];
+	$data['url']       = $args['url'];
+	if ( '' !== $args['dscr'] ) {
+		$data['dscr'] = $args['dscr'];
+	}
+	if ( '' !== $args['description'] ) {
+		$data['dscr'] = $args['description'];
+	}
+	if ( '' !== $args['thumbnail'] ) {
+		$data['thumbnail'] = $args['thumbnail'];
+	}
+	if ( '' !== $args['domain'] ) {
+		$data['domain'] = $args['domain'];
+	}
+	if ( false === strpos( $data['url'], home_url() ) ) {
+		$data['target'] = ' target="_blank"';
+	}
+	if ( '' !== $args['target'] ) {
+		$data['target'] = ' target="' . $args['target'] . '"';
+	}
+	return $data;
 }
 
 /**
