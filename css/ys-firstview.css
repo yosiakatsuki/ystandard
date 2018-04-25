@@ -2108,6 +2108,7 @@ table {
 	border-top: 1px solid #bdc3c7;
 	border-left: 1px solid #bdc3c7;
 	border-collapse: collapse;
+	word-break: break-word;
 }
 
 tr {
