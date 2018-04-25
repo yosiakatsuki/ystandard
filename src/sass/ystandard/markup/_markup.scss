@@ -84,6 +84,7 @@ table {
   border-top: 1px solid $border-color-gray;
   border-left: 1px solid $border-color-gray;
   border-collapse: collapse;
+  word-break: break-word;
 }
 tr {
   border-bottom: 1px solid $border-color-gray;
