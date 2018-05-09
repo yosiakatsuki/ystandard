@@ -124,7 +124,15 @@ function ys_get_json_ld_article( $post_data = null ) {
 	}
 	$category = get_the_category();
 	if ( $category ) {
-		$json['articleSection'] = esc_html( $category[0]->name );
+		if ( 1 < count( $category ) ) {
+			$article_section = array();
+			foreach ( $category as $item ) {
+				$article_section[] = $item->name;
+			}
+			$json['articleSection'] = $article_section;
+		} else {
+			$json['articleSection'] = esc_html( $category[0]->name );
+		}
 	}
 	$json['url'] = $url;
 	/**

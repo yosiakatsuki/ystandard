@@ -37,6 +37,23 @@ if ( ! function_exists( 'ys_get_the_category' ) ) {
 		$categories = get_the_category( $post_id );
 		$list       = array();
 		/**
+		 * カテゴリー一覧ページの場合は現在のカテゴリーを先頭にする
+		 */
+		if ( is_category() ) {
+			if ( $categories ) {
+				$cat_main = array();
+				$cat_sub  = array();
+				foreach ( $categories as $category ) {
+					if ( single_cat_title( '', false ) == $category->name ) {
+						$cat_main[] = $category;
+					} else {
+						$cat_sub[] = $category;
+					}
+				}
+				$categories = array_merge( $cat_main, $cat_sub );
+			}
+		}
+		/**
 		 * 一覧作成
 		 */
 		$i = 0;
