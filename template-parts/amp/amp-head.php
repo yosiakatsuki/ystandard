@@ -12,7 +12,6 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="referrer" content="origin-when-crossorigin">
 <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 <meta name="format-detection" content="telephone=no" />
 <meta itemscope id="EntityOfPageid" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
