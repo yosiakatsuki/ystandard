@@ -11,6 +11,7 @@
  * テーマカスタマイザー
  */
 require_once get_template_directory() . '/inc/class/customizer/class-ys-customize-image-label-radio-control.php';
+require_once get_template_directory() . '/inc/class/customizer/class-ys-customizer.php';
 require_once get_template_directory() . '/inc/customizer/customizer-control.php';
 require_once get_template_directory() . '/inc/customizer/customizer-sanitize.php';
 require_once get_template_directory() . '/inc/customizer/customizer-wp.php';

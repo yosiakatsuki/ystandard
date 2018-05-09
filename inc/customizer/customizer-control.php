@@ -8,103 +8,13 @@
  */
 
 /**
- * Add setting and control : color
- *
- * @param WP_Customize_Manager $wp_customize wp_customize.
- * @param array                $args オプション.
- */
-function ys_customizer_add_setting_color( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
-	$wp_customize->add_setting(
-		$args['id'],
-		array(
-			'default'           => $args['default'],
-			'type'              => $args['setting_type'],
-			'transport'         => $args['transport'],
-			'sanitize_callback' => 'sanitize_hex_color',
-		)
-	);
-	$wp_customize->add_control(
-		new WP_Customize_Color_Control(
-			$wp_customize,
-			$args['id'],
-			array(
-				'description' => $args['description'],
-				'label'       => $args['label'],
-				'section'     => $args['section'],
-				'settings'    => $args['id'],
-				'priority'    => $args['priority'],
-			)
-		)
-	);
-}
-/**
- * Add setting and control : image
- *
- * @param WP_Customize_Manager $wp_customize wp_customize.
- * @param array                $args オプション.
- */
-function ys_customizer_add_setting_image( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
-	$wp_customize->add_setting(
-		$args['id'],
-		array(
-			'type'      => $args['setting_type'],
-			'transport' => $args['transport'],
-		)
-	);
-	$wp_customize->add_control(
-		new WP_Customize_Image_Control(
-			$wp_customize,
-			$args['id'],
-			array(
-				'description' => $args['description'],
-				'label'       => $args['label'],
-				'section'     => $args['section'],
-				'settings'    => $args['id'],
-				'priority'    => $args['priority'],
-			)
-		)
-	);
-}
-/**
- * Add setting and control : radio
- *
- * @param WP_Customize_Manager $wp_customize wp_customize.
- * @param array                $args オプション.
- */
-function ys_customizer_add_setting_radio( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
-	$wp_customize->add_setting(
-		$args['id'],
-		array(
-			'default'           => $args['default'],
-			'type'              => $args['setting_type'],
-			'transport'         => $args['transport'],
-			'sanitize_callback' => 'ys_customizer_sanitize_select',
-		)
-	);
-	$wp_customize->add_control(
-		$args['id'],
-		array(
-			'choices'     => $args['choices'],
-			'description' => $args['description'],
-			'label'       => $args['label'],
-			'priority'    => $args['priority'],
-			'section'     => $args['section'],
-			'settings'    => $args['id'],
-			'type'        => 'radio',
-		)
-	);
-}
-/**
  * Add setting and control : radio
  *
  * @param WP_Customize_Manager $wp_customize wp_customize.
  * @param array                $args オプション.
  */
 function ys_customizer_add_setting_image_label_radio( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
+	$args = ys_customizer_parse_args( $wp_customize,$args );
 	$wp_customize->add_setting(
 		$args['id'],
 		array(
@@ -137,7 +47,7 @@ function ys_customizer_add_setting_image_label_radio( $wp_customize, $args ) {
  * @param array                $args オプション.
  */
 function ys_customizer_add_setting_checkbox( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
+	$args = ys_customizer_parse_args( $wp_customize,$args );
 	$wp_customize->add_setting(
 		$args['id'],
 		array(
@@ -166,7 +76,7 @@ function ys_customizer_add_setting_checkbox( $wp_customize, $args ) {
  * @param array                $args オプション.
  */
 function ys_customizer_add_setting_text( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
+	$args = ys_customizer_parse_args( $wp_customize,$args );
 	$wp_customize->add_setting(
 		$args['id'],
 		array(
@@ -196,7 +106,7 @@ function ys_customizer_add_setting_text( $wp_customize, $args ) {
  * @param array                $args オプション.
  */
 function ys_customizer_add_setting_number( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
+	$args = ys_customizer_parse_args( $wp_customize,$args );
 	$wp_customize->add_setting(
 		$args['id'],
 		array(
@@ -226,7 +136,7 @@ function ys_customizer_add_setting_number( $wp_customize, $args ) {
  * @param array                $args オプション.
  */
 function ys_customizer_add_setting_textarea( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
+	$args = ys_customizer_parse_args( $wp_customize,$args );
 	$wp_customize->add_setting(
 		$args['id'],
 		array(
@@ -255,7 +165,7 @@ function ys_customizer_add_setting_textarea( $wp_customize, $args ) {
  * @param array                $args オプション.
  */
 function ys_customizer_add_setting_plain_textarea( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
+	$args = ys_customizer_parse_args( $wp_customize,$args );
 	$wp_customize->add_setting(
 		$args['id'],
 		array(
@@ -284,7 +194,7 @@ function ys_customizer_add_setting_plain_textarea( $wp_customize, $args ) {
  * @param array                $args オプション.
  */
 function ys_customizer_add_setting_url( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
+	$args = ys_customizer_parse_args( $wp_customize,$args );
 	$wp_customize->add_setting(
 		$args['id'],
 		array(
@@ -313,7 +223,7 @@ function ys_customizer_add_setting_url( $wp_customize, $args ) {
  * @param array                $args オプション.
  */
 function ys_customizer_add_label( $wp_customize, $args ) {
-	$args = ys_customizer_parse_args( $args );
+	$args = ys_customizer_parse_args( $wp_customize,$args );
 	$wp_customize->add_setting(
 		$args['id'],
 		array(
@@ -334,20 +244,7 @@ function ys_customizer_add_label( $wp_customize, $args ) {
 	);
 }
 
-/**
- * デフォルト値
- *
- * @param array $args オプション.
- */
-function ys_customizer_parse_args( $args ) {
-	$defaults = array(
-		'setting_type'      => 'option',
-		'description'       => '',
-		'transport'         => 'refresh',
-		'priority'          => 1,
-		'default'           => '',
-		'input_attrs'       => array(),
-		'sanitize_callback' => '',
-	);
-	return wp_parse_args( $args, $defaults );
+function ys_customizer_parse_args( $wp_customize, $args ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	return $ys_customizer->parse_args( $args );
 }

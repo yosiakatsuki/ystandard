@@ -161,17 +161,16 @@ function ys_customizer_seo_add_noindex( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_seo_add_google_analytics( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_google_analytics',
-		array(
-			'title'    => 'Google Analytics設定',
-			'panel'    => 'ys_customizer_panel_seo',
-			'priority' => 1,
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section'  => 'ys_customizer_section_google_analytics',
+		'title'    => 'Google Analytics設定',
+		'panel'    => 'ys_customizer_panel_seo',
+		'priority' => 1,
+	) );
 	/**
 	 * Google Analytics トラッキングID
 	 */
@@ -191,21 +190,17 @@ function ys_customizer_seo_add_google_analytics( $wp_customize ) {
 	/**
 	 * トラッキングコードタイプ
 	 */
-	ys_customizer_add_setting_radio(
-		$wp_customize,
-		array(
-			'id'          => 'ys_ga_tracking_type',
-			'default'     => 'gtag',
-			'label'       => 'トラッキングコードタイプ',
-			'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。※デフォルトはグローバル サイトタグ(gtag.js)です。',
-			'section'     => 'ys_customizer_section_google_analytics',
-			'transport'   => 'postMessage',
-			'choices'     => array(
-				'gtag'      => 'グローバル サイトタグ(gtag.js)',
-				'analytics' => 'ユニバーサルアナリティクス(analytics.js)',
-			),
-		)
-	);
+	$ys_customizer->add_radio( array(
+		'id'          => 'ys_ga_tracking_type',
+		'default'     => 'gtag',
+		'label'       => 'トラッキングコードタイプ',
+		'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。※デフォルトはグローバル サイトタグ(gtag.js)です。',
+		'transport'   => 'postMessage',
+		'choices'     => array(
+			'gtag'      => 'グローバル サイトタグ(gtag.js)',
+			'analytics' => 'ユニバーサルアナリティクス(analytics.js)',
+		),
+	) );
 	/**
 	 * ログイン中はアクセス数をカウントしない
 	 */
@@ -228,31 +223,27 @@ function ys_customizer_seo_add_google_analytics( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_seo_add_structured_data( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_structured_data',
-		array(
-			'title'    => '構造化データ 設定',
-			'panel'    => 'ys_customizer_panel_seo',
-			'priority' => 1,
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section'  => 'ys_customizer_section_structured_data',
+		'title'    => '構造化データ 設定',
+		'panel'    => 'ys_customizer_panel_seo',
+		'priority' => 1,
+	) );
 	/**
 	 * Publisher画像
 	 */
-	ys_customizer_add_setting_image(
-		$wp_customize,
-		array(
-			'id'          => 'ys_option_structured_data_publisher_image',
-			'default'     => '',
-			'label'       => 'Publisher Logo',
-			'description' => '構造化データのPublisherに使用する画像です。サイトの顔になるような画像を設定すると良いかと思います。 推奨サイズ:縦60px以下,横600px以下 ',
-			'section'     => 'ys_customizer_section_structured_data',
-			'transport'   => 'postMessage',
-		)
-	);
+	$ys_customizer->add_image( array(
+		'id'          => 'ys_option_structured_data_publisher_image',
+		'default'     => '',
+		'label'       => 'Publisher Logo',
+		'description' => '構造化データのPublisherに使用する画像です。サイトの顔になるような画像を設定すると良いかと思います。 推奨サイズ:縦60px以下,横600px以下 ',
+		'section'     => 'ys_customizer_section_structured_data',
+		'transport'   => 'postMessage',
+	) );
 	/**
 	 * Publisher名
 	 */

@@ -59,16 +59,16 @@ function ys_customizer_sns( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_sns_add_ogp( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_ogp',
-		array(
-			'title' => 'OGP設定',
-			'panel' => 'ys_customizer_panel_sns',
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section' => 'ys_customizer_section_ogp',
+		'title'   => 'OGP設定',
+		'panel'   => 'ys_customizer_panel_sns',
+	) );
+
 	/**
 	 * OGP metaタグを出力する
 	 */
@@ -127,17 +127,13 @@ function ys_customizer_sns_add_ogp( $wp_customize ) {
 	/**
 	 * OGPデフォルト画像
 	 */
-	ys_customizer_add_setting_image(
-		$wp_customize,
-		array(
-			'id'          => 'ys_ogp_default_image',
-			'default'     => '',
-			'label'       => 'OGPデフォルト画像',
-			'description' => 'トップページ・アーカイブページ・投稿にアイキャッチ画像が無かった場合のデフォルト画像を指定して下さい。<br>おすすめサイズ：横1200px - 縦630px ',
-			'section'     => 'ys_customizer_section_ogp',
-			'transport'   => 'postMessage',
-		)
-	);
+	$ys_customizer->add_image( array(
+		'id'          => 'ys_ogp_default_image',
+		'default'     => '',
+		'label'       => 'OGPデフォルト画像',
+		'description' => 'トップページ・アーカイブページ・投稿にアイキャッチ画像が無かった場合のデフォルト画像を指定して下さい。<br>おすすめサイズ：横1200px - 縦630px ',
+		'transport'   => 'postMessage',
+	) );
 }
 
 /**
@@ -146,16 +142,15 @@ function ys_customizer_sns_add_ogp( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_twitter_cards',
-		array(
-			'title' => 'Twitterカード設定',
-			'panel' => 'ys_customizer_panel_sns',
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section' => 'ys_customizer_section_twitter_cards',
+		'title'   => 'Twitterカード設定',
+		'panel'   => 'ys_customizer_panel_sns',
+	) );
 	/**
 	 * Twitterカードのmetaタグを出力する
 	 */
@@ -198,20 +193,16 @@ function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
 	/**
 	 * カードタイプ
 	 */
-	ys_customizer_add_setting_radio(
-		$wp_customize,
-		array(
-			'id'        => 'ys_twittercard_type',
-			'default'   => 'summary_large_image',
-			'label'     => 'カードタイプ',
-			'section'   => 'ys_customizer_section_twitter_cards',
-			'transport' => 'postMessage',
-			'choices'   => array(
-				'summary_large_image' => 'Summary Card with Large Image',
-				'summary'             => 'Summary Card',
-			),
-		)
-	);
+	$ys_customizer->add_radio( array(
+		'id'        => 'ys_twittercard_type',
+		'default'   => 'summary_large_image',
+		'label'     => 'カードタイプ',
+		'transport' => 'postMessage',
+		'choices'   => array(
+			'summary_large_image' => 'Summary Card with Large Image',
+			'summary'             => 'Summary Card',
+		),
+	) );
 }
 
 /**
