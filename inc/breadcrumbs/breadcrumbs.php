@@ -65,6 +65,7 @@ function ys_get_breadcrumbs() {
 		$taxonomy         = get_query_var( 'taxonomy' );
 		$term             = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
 		$taxonomy_objects = get_taxonomy( $taxonomy );
+		$post_types       = $taxonomy_objects->object_type;
 		$post_type        = array_shift( $post_types );
 		if ( $post_type ) {
 			$post_type_object = get_post_type_object( $post_type );

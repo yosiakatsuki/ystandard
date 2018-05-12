@@ -72,7 +72,7 @@ if ( ! function_exists( 'ys_get_the_archive_url' ) ) {
 			$url       = get_post_type_archive_link( $post_type );
 		} elseif ( is_tax() ) {
 			$tax = get_taxonomy( $queried_object->taxonomy );
-			$url = get_term_link( $tax->name, $queried_object->term_id );
+			$url = get_term_link( $queried_object->term_id, $tax->name );
 		}
 		return apply_filters( 'ys_get_the_archive_url', $url );
 	}
