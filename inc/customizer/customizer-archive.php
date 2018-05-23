@@ -21,8 +21,8 @@ function ys_customizer_archive( $wp_customize ) {
 		'ys_customizer_section_archive',
 		array(
 			'title'           => 'アーカイブページ設定',
-			'panel'           => 'ys_customizer_panel_design',
 			'priority'        => 1,
+			'panel'           => 'ys_customizer_panel_design',
 			'active_callback' => 'ys_customizer_active_callback_archive',
 		)
 	);
@@ -46,7 +46,7 @@ function ys_customizer_active_callback_archive() {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_archive_add_settings( $wp_customize ) {
-
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * 一覧タイプ
 	 */
@@ -54,8 +54,7 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 	$list       = $assets_url . '/design/archive/list.png';
 	$card       = $assets_url . '/design/archive/card.png';
 	$img        = '<img src="%s" alt="" width="100" height="100" />';
-	ys_customizer_add_setting_image_label_radio(
-		$wp_customize,
+	$ys_customizer->add_image_label_radio(
 		array(
 			'id'          => 'ys_archive_type',
 			'default'     => 'list',
@@ -71,24 +70,19 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 	/**
 	 * 著者情報を表示する
 	 */
-	ys_customizer_add_label(
-		$wp_customize,
-		array(
-			'id'          => 'ys_show_archive_author_label',
-			'label'       => '著者情報の表示',
-			'section'     => 'ys_customizer_section_archive',
-			'description' => '',
-		)
-	);
+	$ys_customizer->add_label( array(
+		'id'      => 'ys_show_archive_author_label',
+		'label'   => '著者情報の表示',
+		'section' => 'ys_customizer_section_archive',
+	) );
 	/**
 	 * 著者情報を表示する
 	 */
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
+	$ys_customizer->add_checkbox(
 		array(
 			'id'      => 'ys_show_archive_author',
-			'label'   => '著者情報を表示する',
 			'default' => 1,
+			'label'   => '著者情報を表示する',
 			'section' => 'ys_customizer_section_archive',
 		)
 	);

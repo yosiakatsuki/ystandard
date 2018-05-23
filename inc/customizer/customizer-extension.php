@@ -19,8 +19,8 @@ function ys_customizer_extension( $wp_customize ) {
 	$wp_customize->add_panel(
 		'ys_customizer_panel_extension',
 		array(
-			'priority'        => 2000,
 			'title'           => '[ys]拡張機能設定',
+			'priority'        => 2000,
 			'description'     => 'yStandard専用プラグイン等による拡張機能の設定',
 			'active_callback' => array(),
 		)
