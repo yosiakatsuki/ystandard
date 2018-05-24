@@ -199,9 +199,10 @@ function ys_blog_card_get_post_data( $data ) {
 	$post_id = $data['post_id'];
 	$post    = get_post( $post_id );
 	if ( has_post_thumbnail( $post_id ) ) {
-		$thumb_size = apply_filters( 'ys_blog_card_thumbnail_size', 'thumbnail' );
-		$thumb      = get_the_post_thumbnail( $post_id, $thumb_size, array( 'class' => 'ys-blog-card__img' ) );
-		$thumb      = apply_filters( 'ys_blog_card_thumbnail', $thumb, $post_id );
+		$thumb_size        = apply_filters( 'ys_blog_card_thumbnail_size', 'thumbnail' );
+		$thumb             = get_the_post_thumbnail( $post_id, $thumb_size, array( 'class' => 'ys-blog-card__img' ) );
+		$thumb             = apply_filters( 'ys_blog_card_thumbnail', $thumb, $post_id );
+		$data['thumbnail'] = $thumb;
 	}
 	/**
 	 * タイトルの取得
