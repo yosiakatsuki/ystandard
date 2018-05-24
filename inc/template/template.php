@@ -92,7 +92,9 @@ function ys_get_archive_header_template() {
 function ys_get_page_template() {
 	$template = '';
 	if ( ys_is_one_column() ) {
-		$template = 'one-column';
+		if ( ys_is_one_column_thumbnail_type() ) {
+			$template = 'one-column';
+		}
 	}
 	return apply_filters( 'ys_get_page_template', $template );
 }
@@ -104,7 +106,9 @@ function ys_get_page_template() {
 function ys_get_single_template() {
 	$template = '';
 	if ( ys_is_one_column() || ys_is_amp() ) {
-		$template = 'one-column';
+		if ( ys_is_one_column_thumbnail_type() ) {
+			$template = 'one-column';
+		}
 	}
 	return apply_filters( 'ys_get_single_template', $template );
 }

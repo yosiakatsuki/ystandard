@@ -33,6 +33,10 @@ function ys_customizer_design( $wp_customize ) {
 	 * モバイルページ設定
 	 */
 	ys_customizer_design_add_mobile( $wp_customize );
+	/**
+	 * ワンカラムテンプレート設定
+	 */
+	ys_customizer_design_add_one_column_template( $wp_customize );
 }
 
 /**
@@ -114,6 +118,44 @@ function ys_customizer_design_add_mobile( $wp_customize ) {
 			'default'     => 0,
 			'label'       => 'スライドメニューに検索フォームを出力する(モバイル)',
 			'description' => 'モバイルページでスライドメニューに検索フォームを出力する場合にチェックを付けて下さい',
+		)
+	);
+}
+
+/**
+ * ワンカラムテンプレート設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_design_add_one_column_template( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	/**
+	 * セクション追加
+	 */
+	$ys_customizer->add_section( array(
+		'section'     => 'ys_customizer_section_one_column_template',
+		'title'       => 'ワンカラムテンプレート設定',
+		'priority'    => 10,
+		'description' => 'ワンカラムテンプレートの設定',
+		'panel'       => 'ys_customizer_panel_design',
+	) );
+	/**
+	 * ヘッダータイプ
+	 */
+	$assets_url = ys_get_template_customizer_assets_img_dir_uri();
+	$row1       = $assets_url . '/design/one-col-template/full.png';
+	$center     = $assets_url . '/design/one-col-template/normal.png';
+	$img        = '<img src="%s" alt="" width="100" height="100" />';
+	$ys_customizer->add_image_label_radio(
+		array(
+			'id'          => 'ys_design_one_col_tumbnail_type',
+			'default'     => 'full',
+			'label'       => 'アイキャッチ画像表示タイプ',
+			'description' => 'アイキャッチ画像の表示タイプ',
+			'choices'     => array(
+				'full'   => sprintf( $img, $row1 ),
+				'normal' => sprintf( $img, $center ),
+			),
 		)
 	);
 }

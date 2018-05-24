@@ -35,6 +35,10 @@ function ys_customizer_amp( $wp_customize ) {
 	 * AMP広告設定
 	 */
 	ys_customizer_amp_add_amp_ads( $wp_customize );
+	/**
+	 * AMPテンプレート設定
+	 */
+	ys_customizer_amp_add_template( $wp_customize );
 }
 
 /**
@@ -161,6 +165,45 @@ function ys_customizer_amp_add_amp_ads( $wp_customize ) {
 			'default'   => '',
 			'transport' => 'postMessage',
 			'label'     => '記事本文下',
+		)
+	);
+}
+
+/**
+ * AMPテンプレート設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_amp_add_template( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	/**
+	 * セクション追加
+	 */
+	$ys_customizer->add_section( array(
+		'section'     => 'ys_customizer_section_amp_template',
+		'title'       => 'AMPテンプレート設定',
+		'priority'    => 1,
+		'description' => 'AMPテンプレートの設定',
+		'panel'       => 'ys_customizer_panel_amp',
+	) );
+	/**
+	 * ヘッダータイプ
+	 */
+	$assets_url = ys_get_template_customizer_assets_img_dir_uri();
+	$row1       = $assets_url . '/design/one-col-template/full.png';
+	$center     = $assets_url . '/design/one-col-template/normal.png';
+	$img        = '<img src="%s" alt="" width="100" height="100" />';
+	$ys_customizer->add_image_label_radio(
+		array(
+			'id'          => 'ys_amp_tumbnail_type',
+			'default'     => 'full',
+			'transport'   => 'postMessage',
+			'label'       => 'アイキャッチ画像表示タイプ',
+			'description' => 'アイキャッチ画像の表示タイプ',
+			'choices'     => array(
+				'full'   => sprintf( $img, $row1 ),
+				'normal' => sprintf( $img, $center ),
+			),
 		)
 	);
 }

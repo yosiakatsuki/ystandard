@@ -62,9 +62,7 @@ function ys_get_options() {
 	// スライドメニューに検索フォームを出力する.
 	$result['ys_show_search_form_on_slide_menu'] = get_option( 'ys_show_search_form_on_slide_menu', 0 );
 	/**
-	 * **********
 	 * [ys]投稿ページ設定
-	 * **********
 	 */
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_post_thumbnail'] = get_option( 'ys_show_post_thumbnail', 1 );
@@ -79,9 +77,7 @@ function ys_get_options() {
 	// 次の記事・前の記事を表示する.
 	$result['ys_show_post_paging'] = get_option( 'ys_show_post_paging', 1 );
 	/**
-	 * **********
 	 * [ys]固定ページ設定
-	 * **********
 	 */
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_page_thumbnail'] = get_option( 'ys_show_page_thumbnail', 1 );
@@ -90,14 +86,17 @@ function ys_get_options() {
 	// 著者情報を表示する.
 	$result['ys_show_page_author'] = get_option( 'ys_show_page_author', 1 );
 	/**
-	 * **********
 	 * [ys]アーカイブページ設定
-	 * **********
 	 */
 	// 一覧表示タイプ.
 	$result['ys_archive_type'] = get_option( 'ys_archive_type', 'list' );
 	// 著者情報を表示する.
 	$result['ys_show_archive_author'] = get_option( 'ys_show_archive_author', 1 );
+	/**
+	 * [ys]ワンカラムテンプレート設定設定
+	 */
+	// アイキャッチ画像表示タイプ.
+	$result['ys_design_one_col_tumbnail_type'] = get_option( 'ys_design_one_col_tumbnail_type', 'full' );
 	/**
 	 * **********
 	 * [ys]SNS設定
@@ -299,6 +298,8 @@ function ys_get_options() {
 	$result['ys_amp_advertisement_replace_more'] = get_option( 'ys_amp_advertisement_replace_more', '' );
 	// 記事下　左.
 	$result['ys_amp_advertisement_under_content'] = get_option( 'ys_amp_advertisement_under_content', '' );
+	// アイキャッチ画像表示タイプ.
+	$result['ys_amp_tumbnail_type'] = get_option( 'ys_amp_tumbnail_type', 'full' );
 
 	return apply_filters( 'ys_get_options', $result );
 }
