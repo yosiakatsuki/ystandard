@@ -35,25 +35,24 @@ function ys_customizer_site( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_site_add_common( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * Titleタグの区切り文字
 	 */
-	ys_customizer_add_setting_text(
-		$wp_customize,
+	$ys_customizer->add_text(
 		array(
 			'id'          => 'ys_title_separate',
 			'default'     => '-',
+			'transport'   => 'postMessage',
 			'label'       => 'titleタグの区切り文字',
 			'description' => '※区切り文字の前後に半角空白が自動で挿入されます',
 			'section'     => 'ys_customizer_section_site_common',
-			'transport'   => 'postMessage',
 		)
 	);
 	/**
 	 * 発行年数
 	 */
-	ys_customizer_add_setting_number(
-		$wp_customize,
+	$ys_customizer->add_number(
 		array(
 			'id'          => 'ys_copyright_year',
 			'default'     => (int) date_i18n( 'Y' ),
@@ -68,8 +67,7 @@ function ys_customizer_site_add_common( $wp_customize ) {
 	/**
 	 * 抜粋文字数
 	 */
-	ys_customizer_add_setting_number(
-		$wp_customize,
+	$ys_customizer->add_number(
 		array(
 			'id'      => 'ys_option_excerpt_length',
 			'default' => 80,

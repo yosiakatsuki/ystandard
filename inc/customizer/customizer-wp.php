@@ -69,14 +69,14 @@ function ys_customizer_add_partial_bloginfo( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_add_logo( $wp_customize ) {
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_logo_hidden',
-			'section'     => 'title_tagline',
+			'default'     => 0,
 			'label'       => 'ロゴを非表示にする',
 			'description' => 'サイトヘッダーにロゴ画像を表示しない場合はチェックをつけてください<br>（ロゴの指定がないと構造化データでエラーになるので、仮のロゴ画像でも良いので設定することを推奨します）',
-			'default'     => 0,
+			'section'     => 'title_tagline',
 			'priority'    => 9,
 		)
 	);
@@ -88,25 +88,24 @@ function ys_customizer_add_logo( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_add_description( $wp_customize ) {
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_wp_hidden_blogdescription',
-			'section'     => 'title_tagline',
+			'default'     => 0,
 			'label'       => 'キャッチフレーズを非表示にする',
 			'description' => 'サイトタイトル・ロゴの下にキャッチフレーズを表示したくない場合はチェックを付けて下さい',
-			'default'     => 0,
+			'section'     => 'title_tagline',
 			'priority'    => 20,
 		)
 	);
-	ys_customizer_add_setting_plain_textarea(
-		$wp_customize,
+	$ys_customizer->add_plain_textarea(
 		array(
 			'id'          => 'ys_wp_site_description',
-			'section'     => 'title_tagline',
 			'transport'   => 'postMessage',
 			'label'       => 'TOPページのmeta description',
 			'description' => '※HTMLタグ・改行は削除されます',
+			'section'     => 'title_tagline',
 			'priority'    => 21,
 		)
 	);

@@ -80,7 +80,7 @@ function ys_add_post_option() {
 			<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
 				<br />
 				<label for="ys_post_meta_amp_desable">
-					<input type="checkbox" id="ys_post_meta_amp_desable" name="ys_post_meta_amp_desable" value="1" <?php checked( ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ), '1', true ); ?> />AMPページ生成を<strong>作無効化</strong>する
+					<input type="checkbox" id="ys_post_meta_amp_desable" name="ys_post_meta_amp_desable" value="1" <?php checked( ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ), '1', true ); ?> />AMPページ生成を<strong>無効化</strong>する
 				</label>
 			<?php endif; ?>
 		<?php endif; ?>

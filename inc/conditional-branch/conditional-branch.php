@@ -179,6 +179,25 @@ if ( ! function_exists( 'ys_is_one_column' ) ) {
 		return apply_filters( 'ys_is_one_column', $one_colmun );
 	}
 }
+/**
+ * ワンカラムテンプレート : アイキャッチ表示タイプがワンカラムか
+ *
+ * @return bool
+ */
+function ys_is_one_column_thumbnail_type() {
+	$result = false;
+	if ( ys_is_amp() ) {
+		if ( 'full' == ys_get_option( 'ys_amp_tumbnail_type' ) ) {
+			$result = true;
+		}
+	} else {
+		if ( 'full' == ys_get_option( 'ys_design_one_col_tumbnail_type' ) ) {
+			$result = true;
+		}
+	}
+	return apply_filters( 'ys_is_one_column_thumbnail_type', $result );
+}
+
 
 /**
  * WordPressのjQueryを停止するかどうか
