@@ -19,8 +19,8 @@ function ys_customizer_design( $wp_customize ) {
 	$wp_customize->add_panel(
 		'ys_customizer_panel_design',
 		array(
-			'priority'        => 1010,
 			'title'           => '[ys]デザイン設定',
+			'priority'        => 1010,
 			'description'     => 'サイト共通部分のデザイン設定',
 			'active_callback' => array(),
 		)
@@ -41,19 +41,17 @@ function ys_customizer_design( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_design_add_header( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_header_design',
-		array(
-			'title'           => 'ヘッダー設定',
-			'panel'           => 'ys_customizer_panel_design',
-			'priority'        => 1,
-			'description'     => 'ヘッダー部分のデザイン設定',
-			'active_callback' => array(),
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section'     => 'ys_customizer_section_header_design',
+		'title'       => 'ヘッダー設定',
+		'priority'    => 1,
+		'description' => 'ヘッダー部分のデザイン設定',
+		'panel'       => 'ys_customizer_panel_design',
+	) );
 	/**
 	 * ヘッダータイプ
 	 */
@@ -62,8 +60,7 @@ function ys_customizer_design_add_header( $wp_customize ) {
 	$center     = $assets_url . '/design/header/center.png';
 	$row2       = $assets_url . '/design/header/2row.png';
 	$img        = '<img src="%s" alt="" width="100" height="100" />';
-	ys_customizer_add_setting_image_label_radio(
-		$wp_customize,
+	$ys_customizer->add_image_label_radio(
 		array(
 			'id'          => 'ys_design_header_type',
 			'default'     => '1row',
@@ -86,43 +83,37 @@ function ys_customizer_design_add_header( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_design_add_mobile( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_mobile_design',
-		array(
-			'title'           => 'モバイルページ設定',
-			'panel'           => 'ys_customizer_panel_design',
-			'priority'        => 1,
-			'description'     => 'モバイルページのデザイン設定',
-			'active_callback' => array(),
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section'     => 'ys_customizer_section_mobile_design',
+		'title'       => 'モバイルページ設定',
+		'priority'    => 1,
+		'description' => 'モバイルページのデザイン設定',
+		'panel'       => 'ys_customizer_panel_design',
+	) );
 	/**
 	 * サイドバー出力
 	 */
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
+	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_show_sidebar_mobile',
+			'default'     => 0,
 			'label'       => 'モバイル表示でサイドバーを非表示にする',
 			'description' => 'モバイルページでサイドバー部分を表示しない場合にチェックを付けて下さい',
-			'default'     => 0,
-			'section'     => 'ys_customizer_section_mobile_design',
 		)
 	);
 	/**
 	 * スライドメニューに検索フォームを出力する
 	 */
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
+	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_show_search_form_on_slide_menu',
+			'default'     => 0,
 			'label'       => 'スライドメニューに検索フォームを出力する(モバイル)',
 			'description' => 'モバイルページでスライドメニューに検索フォームを出力する場合にチェックを付けて下さい',
-			'default'     => 0,
-			'section'     => 'ys_customizer_section_mobile_design',
 		)
 	);
 }

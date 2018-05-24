@@ -19,8 +19,8 @@ function ys_customizer_amp( $wp_customize ) {
 	$wp_customize->add_panel(
 		'ys_customizer_panel_amp',
 		array(
-			'priority' => 1300,
 			'title'    => '[ys]AMP設定',
+			'priority' => 1300,
 		)
 	);
 	/**
@@ -51,38 +51,31 @@ function ys_customizer_active_callback_amp_options() {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_enable_option( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_amp_enable',
-		array(
-			'title'    => 'AMP有効化設定',
-			'panel'    => 'ys_customizer_panel_amp',
-			'priority' => 1,
-		)
-	);
-	ys_customizer_add_label(
-		$wp_customize,
-		array(
-			'id'          => 'ys_amp_enable_label',
-			'label'       => 'AMP機能を有効化',
-			'section'     => 'ys_customizer_section_amp_enable',
-			'description' => '※AMPページの生成を保証するものではありません。使用しているプラグインや投稿内のHTMLタグ、インラインCSS、JavaScriptコードによりAMPフォーマットとしてエラーとなる場合もあります。',
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section'  => 'ys_customizer_section_amp_enable',
+		'title'    => 'AMP有効化設定',
+		'priority' => 1,
+		'panel'    => 'ys_customizer_panel_amp',
+	) );
 	/**
-	 * AMP機能を有効化する
-	 */
-	ys_customizer_add_setting_checkbox(
-		$wp_customize,
+	* AMP機能を有効化する
+	*/
+	$ys_customizer->add_label( array(
+		'id'          => 'ys_amp_enable_label',
+		'label'       => 'AMP機能を有効化',
+		'description' => '※AMPページの生成を保証するものではありません。<br>※使用しているプラグインや投稿内のHTMLタグ、インラインCSS、JavaScriptコードによりAMPフォーマットとしてエラーとなる場合もあります。',
+	) );
+	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_amp_enable',
-			'label'       => 'AMP機能を有効化する',
-			'description' => '',
 			'default'     => 0,
-			'section'     => 'ys_customizer_section_amp_enable',
 			'transport'   => 'postMessage',
+			'label'       => 'AMP機能を有効化する',
+			'description' => '※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。',
 		)
 	);
 }
@@ -94,29 +87,26 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_amp_options( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_amp_options',
-		array(
-			'title'           => 'AMP機能設定',
-			'panel'           => 'ys_customizer_panel_amp',
-			'priority'        => 1,
-			'active_callback' => 'ys_customizer_active_callback_amp_options',
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section'         => 'ys_customizer_section_amp_options',
+		'title'           => 'AMP機能設定',
+		'priority'        => 1,
+		'panel'           => 'ys_customizer_panel_amp',
+		'active_callback' => 'ys_customizer_active_callback_amp_options',
+	) );
 	/**
 	 * AMP用 Google Analytics トラッキングID
 	 */
-	ys_customizer_add_setting_text(
-		$wp_customize,
+	$ys_customizer->add_text(
 		array(
 			'id'          => 'ys_ga_tracking_id_amp',
 			'default'     => '',
-			'label'       => 'Google Analytics トラッキングID(AMP)',
-			'section'     => 'ys_customizer_section_amp_options',
 			'transport'   => 'postMessage',
+			'label'       => 'Google Analytics トラッキングID(AMP)',
 			'input_attrs' => array(
 				'placeholder' => 'UA-00000000-0',
 			),
@@ -129,58 +119,48 @@ function ys_customizer_amp_add_amp_options( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_amp_ads( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * セクション追加
 	 */
-	$wp_customize->add_section(
-		'ys_customizer_section_amp_ads',
-		array(
-			'title'           => 'AMP広告設定',
-			'panel'           => 'ys_customizer_panel_amp',
-			'priority'        => 1,
-			'active_callback' => 'ys_customizer_active_callback_amp_options',
-		)
-	);
+	$ys_customizer->add_section( array(
+		'section'         => 'ys_customizer_section_amp_ads',
+		'title'           => 'AMP広告設定',
+		'priority'        => 1,
+		'panel'           => 'ys_customizer_panel_amp',
+		'active_callback' => 'ys_customizer_active_callback_amp_options',
+	) );
 	/**
 	 * 記事タイトル下
 	 */
-	ys_customizer_add_setting_textarea(
-		$wp_customize,
+	$ys_customizer->add_textarea(
 		array(
-			'id'          => 'ys_amp_advertisement_under_title',
-			'default'     => '',
-			'label'       => '記事タイトル下',
-			'description' => '',
-			'section'     => 'ys_customizer_section_amp_ads',
-			'transport'   => 'postMessage',
+			'id'        => 'ys_amp_advertisement_under_title',
+			'default'   => '',
+			'transport' => 'postMessage',
+			'label'     => '記事タイトル下',
 		)
 	);
 	/**
 	 * Moreタグ部分
 	 */
-	ys_customizer_add_setting_textarea(
-		$wp_customize,
+	$ys_customizer->add_textarea(
 		array(
-			'id'          => 'ys_amp_advertisement_replace_more',
-			'default'     => '',
-			'label'       => 'moreタグ部分',
-			'description' => '',
-			'section'     => 'ys_customizer_section_amp_ads',
-			'transport'   => 'postMessage',
+			'id'        => 'ys_amp_advertisement_replace_more',
+			'default'   => '',
+			'transport' => 'postMessage',
+			'label'     => 'moreタグ部分',
 		)
 	);
 	/**
 	 * 記事下
 	 */
-	ys_customizer_add_setting_textarea(
-		$wp_customize,
+	$ys_customizer->add_textarea(
 		array(
-			'id'          => 'ys_amp_advertisement_under_content',
-			'default'     => '',
-			'label'       => '記事本文下',
-			'description' => '',
-			'section'     => 'ys_customizer_section_amp_ads',
-			'transport'   => 'postMessage',
+			'id'        => 'ys_amp_advertisement_under_content',
+			'default'   => '',
+			'transport' => 'postMessage',
+			'label'     => '記事本文下',
 		)
 	);
 }
