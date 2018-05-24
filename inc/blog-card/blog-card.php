@@ -88,7 +88,7 @@ function ys_blog_card_shortcode( $args ) {
 	 * TitleとURLがセットされている場合はマニュアルでデータ作成
 	 */
 	if ( '' !== $args['title'] && '' !== $args['url'] ) {
-		$data = ys_blog_card_create_data_by_param( $args, $data );
+		$data = ys_blog_card_create_data_by_param( $args );
 	} else {
 		/**
 		 * ブログカード用データ取得
@@ -105,7 +105,10 @@ function ys_blog_card_shortcode( $args ) {
 	 * 整形
 	 */
 	if ( '' !== $data['thumbnail'] ) {
-		$data['thumbnail'] = sprintf( '<figure class="ys-blog-card__thumb">%s</figure>', $data['thumbnail'] );
+		$data['thumbnail'] = sprintf(
+			'<figure class="ys-blog-card__thumb">%s</figure>',
+			ys_amp_convert_image( $data['thumbnail'] )
+		);
 	}
 	if ( '' !== $data['dscr'] ) {
 		$dscr = mb_substr( $data['dscr'], 0, apply_filters( 'ys_blog_card_dscr_length', 50 ) );
@@ -196,10 +199,9 @@ function ys_blog_card_get_post_data( $data ) {
 	$post_id = $data['post_id'];
 	$post    = get_post( $post_id );
 	if ( has_post_thumbnail( $post_id ) ) {
-		$thumb_size        = apply_filters( 'ys_blog_card_thumbnail_size', 'thumbnail' );
-		$thumb             = get_the_post_thumbnail( $post_id, $thumb_size, array( 'class' => 'ys-blog-card__img' ) );
-		$thumb             = apply_filters( 'ys_blog_card_thumbnail', $thumb, $post_id );
-		$data['thumbnail'] = ys_amp_convert_image( $thumb );
+		$thumb_size = apply_filters( 'ys_blog_card_thumbnail_size', 'thumbnail' );
+		$thumb      = get_the_post_thumbnail( $post_id, $thumb_size, array( 'class' => 'ys-blog-card__img' ) );
+		$thumb      = apply_filters( 'ys_blog_card_thumbnail', $thumb, $post_id );
 	}
 	/**
 	 * タイトルの取得
@@ -437,10 +439,9 @@ function ys_blog_card_get_data_array() {
  * パラメータからブログカード用データを作成
  *
  * @param  array $args パラメータ.
- * @param  array $data ブログカード用データ.
  * @return array       ブログカード用データ.
  */
-function ys_blog_card_create_data_by_param( $args, $data ) {
+function ys_blog_card_create_data_by_param( $args ) {
 	$data              = ys_blog_card_get_data_array();
 	$data['blog_card'] = true;
 	$data['title']     = $args['title'];
@@ -463,7 +464,7 @@ function ys_blog_card_create_data_by_param( $args, $data ) {
 	if ( '' !== $args['target'] ) {
 		$data['target'] = ' target="' . $args['target'] . '"';
 	}
-	return $data;
+	return apply_filters( 'ys_blog_card_create_data_by_param', $data );
 }
 
 /**
