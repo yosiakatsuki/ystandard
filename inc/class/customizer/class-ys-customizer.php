@@ -250,6 +250,9 @@ class YS_Customizer {
 	 * @param array $args オプション.
 	 */
 	public function add_text( $args ) {
+		if ( ! isset( $args['sanitize_callback'] ) ) {
+			$args['sanitize_callback'] = 'sanitize_text_field';
+		}
 		$args = $this->parse_args( $args );
 		$this->wp_customize->add_setting(
 			$args['id'],
@@ -257,7 +260,7 @@ class YS_Customizer {
 				'default'           => $args['default'],
 				'type'              => $args['setting_type'],
 				'transport'         => $args['transport'],
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => $args['sanitize_callback'],
 			)
 		);
 		$this->wp_customize->add_control(
