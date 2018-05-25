@@ -260,6 +260,8 @@ function ys_get_options() {
 	 */
 	// JavaScriptの読み込みを非同期化する.
 	$result['ys_option_optimize_load_js'] = get_option( 'ys_option_optimize_load_js', 0 );
+	// jQueryをフッターで読み込む.
+	$result['ys_load_jquery_in_footer'] = get_option( 'ys_load_jquery_in_footer', 0 );
 	// CDNにホストされているjQueryを読み込む（URLを設定）.
 	$result['ys_load_cdn_jquery_url'] = esc_url( get_option( 'ys_load_cdn_jquery_url', '' ) );
 	// jQueryを読み込まない.

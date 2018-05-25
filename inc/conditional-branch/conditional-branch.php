@@ -210,7 +210,30 @@ function ys_is_deregister_jquery() {
 	if ( ys_get_option( 'ys_not_load_jquery' ) ) {
 		$result = true;
 	}
+	if ( ys_get_option( 'ys_load_jquery_in_footer' ) ) {
+		$result = true;
+	}
 	return apply_filters( 'ys_is_deregister_jquery', $result );
+}
+/**
+ * WordPressのjQueryを無効化するかどうか
+ */
+function ys_is_disable_jquery() {
+	$result = false;
+	if ( ys_get_option( 'ys_not_load_jquery' ) ) {
+		$result = true;
+	}
+	return apply_filters( 'ys_is_disable_jquery', $result );
+}
+/**
+ * WordPressのjQueryをフッターで読み込むか
+ */
+function ys_is_load_jquery_in_footer() {
+	$result = false;
+	if ( ys_get_option( 'ys_load_jquery_in_footer' ) ) {
+		$result = true;
+	}
+	return apply_filters( 'ys_is_load_jquery_in_footer', $result );
 }
 
 /**

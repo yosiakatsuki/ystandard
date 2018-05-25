@@ -103,12 +103,6 @@ add_action( 'wp_head', 'ys_the_noscript_fallback', 999 );
  */
 function ys_enqueue_scripts() {
 	/**
-	 * JavaScript
-	 */
-	if ( ys_is_load_cdn_jquery() ) {
-		wp_enqueue_script( 'jquery', ys_get_option( 'ys_load_cdn_jquery_url' ) );
-	}
-	/**
 	 * IE,Edge関連
 	 */
 	if ( ys_is_ie() || ys_is_edge() ) {
@@ -690,14 +684,58 @@ function ys_customizer_get_defaults() {
  * スタイルシート・スクリプトの読み込み停止
  */
 function ys_enqueue_deregister() {
+	if ( is_admin() ) {
+		return;
+	}
 	/**
 	 * WordPressのjqueryを停止
 	 */
 	if ( ys_is_deregister_jquery() ) {
+		global $wp_scripts;
+		$jquery     = $wp_scripts->registered['jquery-core'];
+		$jquery_ver = $jquery->ver;
+		$jquery_src = $jquery->src;
+		/**
+		 * [jQuery削除]
+		 */
+		wp_deregister_script( 'jquery-core' );
 		wp_deregister_script( 'jquery' );
+		/**
+		 * [jQueryを読み込まない場合はここで終了]
+		 */
+		if ( ys_is_disable_jquery() ) {
+			return;
+		}
+		/**
+		 * CDN経由の場合
+		 */
+		if ( ys_is_load_cdn_jquery() ) {
+			$jquery_src = ys_get_option( 'ys_load_cdn_jquery_url' );
+		}
+		/**
+		 * フッターで読み込むか
+		 */
+		$in_footer = ys_is_load_jquery_in_footer();
+		/**
+		* [jQueryをフッターに移動]
+		*/
+		wp_register_script(
+			'jquery',
+			false,
+			array( 'jquery-core' ),
+			$jquery_ver,
+			$in_footer
+		);
+		wp_register_script(
+			'jquery-core',
+			$jquery_src,
+			array(),
+			$jquery_ver,
+			$in_footer
+		);
 	}
 }
-add_action( 'wp_enqueue_scripts', 'ys_enqueue_deregister', 9 );
+add_action( 'init', 'ys_enqueue_deregister' );
 
 /**
  * 管理画面-JavaScriptの読み込み
