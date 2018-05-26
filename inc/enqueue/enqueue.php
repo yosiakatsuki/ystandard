@@ -681,9 +681,9 @@ function ys_customizer_get_defaults() {
 }
 
 /**
- * スタイルシート・スクリプトの読み込み停止
+ * [jQuery]読み込み最適化
  */
-function ys_enqueue_deregister() {
+function ys_enqueue_jquery() {
 	if ( is_admin() ) {
 		return;
 	}
@@ -692,9 +692,9 @@ function ys_enqueue_deregister() {
 	 */
 	if ( ys_is_deregister_jquery() ) {
 		global $wp_scripts;
-		$jquery     = $wp_scripts->registered['jquery-core'];
-		$jquery_ver = $jquery->ver;
-		$jquery_src = $jquery->src;
+		$jquery = $wp_scripts->registered['jquery-core'];
+		$ver    = $jquery->ver;
+		$src    = $jquery->src;
 		/**
 		 * [jQuery削除]
 		 */
@@ -710,7 +710,7 @@ function ys_enqueue_deregister() {
 		 * CDN経由の場合
 		 */
 		if ( ys_is_load_cdn_jquery() ) {
-			$jquery_src = ys_get_option( 'ys_load_cdn_jquery_url' );
+			$src = ys_get_option( 'ys_load_cdn_jquery_url' );
 		}
 		/**
 		 * フッターで読み込むか
@@ -723,19 +723,19 @@ function ys_enqueue_deregister() {
 			'jquery',
 			false,
 			array( 'jquery-core' ),
-			$jquery_ver,
+			$ver,
 			$in_footer
 		);
 		wp_register_script(
 			'jquery-core',
-			$jquery_src,
+			$src,
 			array(),
-			$jquery_ver,
+			$ver,
 			$in_footer
 		);
 	}
 }
-add_action( 'init', 'ys_enqueue_deregister' );
+add_action( 'init', 'ys_enqueue_jquery' );
 
 /**
  * 管理画面-JavaScriptの読み込み
