@@ -147,6 +147,7 @@ function ys_get_ad_infeed() {
 	} else {
 		$ad = ys_get_option( 'ys_advertisement_infeed_pc' );
 	}
+	$ad = ys_fix_ad_previw_error( $ad );
 	return apply_filters( 'ys_get_ad_infeed', $ad );
 }
 /**
@@ -171,4 +172,33 @@ function ys_get_template_ad_infeed( $num, $template ) {
 	if ( 0 == ( $num % $step ) && '' !== ys_get_ad_infeed() ) {
 		get_template_part( 'template-parts/advertisement/infeed', $template );
 	}
+}
+
+/**
+ * インフィード広告のプレビュー画面でのエラー対処
+ *
+ * @param  string $ad 広告コード.
+ */
+function ys_fix_ad_previw_error( $ad ) {
+	if ( ! is_customize_preview() ) {
+		return apply_filters( 'ys_fix_ad_infeed_error', $ad );
+	}
+	/**
+	 * Google Adsense コード貼り付けでのエラー対処
+	 */
+	$adsense_script = '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>';
+	if ( false !== strpos( $ad, $adsense_script ) ) {
+		/**
+		 * プレビューでのエラー対策
+		 */
+		$ad = str_replace( $adsense_script, '', $ad );
+		wp_enqueue_script(
+			'google-ads',
+			'//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
+			array(),
+			false,
+			true
+		);
+	}
+	return apply_filters( 'ys_fix_ad_infeed_error', $ad );
 }
