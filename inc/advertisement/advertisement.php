@@ -136,3 +136,39 @@ function ys_the_ad_entry_footer() {
 		echo ys_get_ad_entry_footer();
 	}
 }
+
+/**
+ * インフィード広告
+ */
+function ys_get_ad_infeed() {
+	$ad = '';
+	if ( ys_is_mobile() ) {
+		$ad = ys_get_option( 'ys_advertisement_infeed_sp' );
+	} else {
+		$ad = ys_get_option( 'ys_advertisement_infeed_pc' );
+	}
+	return apply_filters( 'ys_get_ad_infeed', $ad );
+}
+/**
+ * インフィード広告の表示
+ */
+function ys_the_ad_infeed() {
+	echo ys_get_ad_infeed();
+}
+/**
+ * インフィード広告の表示
+ *
+ * @param integer $num 記事番号.
+ * @param string  $template テンプレート名.
+ */
+function ys_get_template_ad_infeed( $num, $template ) {
+	$step = 3;
+	if ( ys_is_mobile() ) {
+		$step = ys_get_option( 'ys_advertisement_infeed_sp_step' );
+	} else {
+		$step = ys_get_option( 'ys_advertisement_infeed_pc_step' );
+	}
+	if ( 0 == ( $num % $step ) && '' !== ys_get_ad_infeed() ) {
+		get_template_part( 'template-parts/advertisement/infeed', $template );
+	}
+}

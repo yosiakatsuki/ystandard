@@ -87,3 +87,10 @@ function ys_get_archive_card_col() {
 	}
 	return 'entry-list--card-2';
 }
+
+/**
+ * アーカイブテンプレートタイプ取得
+ */
+function ys_get_archive_template_type() {
+	return apply_filters( 'ys_get_archive_template_type', ys_get_option( 'ys_archive_type' ) );
+}

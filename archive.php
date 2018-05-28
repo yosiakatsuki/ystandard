@@ -21,9 +21,18 @@ get_header(); ?>
 				?>
 				<div class="archive__list">
 				<?php
+				$num = 1;
 				while ( have_posts() ) :
 					the_post();
-					get_template_part( 'template-parts/content/archive', ys_get_option( 'ys_archive_type' ) );
+					get_template_part(
+						'template-parts/content/archive',
+						ys_get_archive_template_type()
+					);
+					/**
+					 * インフィード広告表示
+					 */
+					ys_get_template_ad_infeed( $num, ys_get_archive_template_type() );
+					$num++;
 				endwhile;
 				?>
 				</div><!-- .archive__list -->
