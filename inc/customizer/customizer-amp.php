@@ -77,7 +77,6 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 		array(
 			'id'          => 'ys_amp_enable',
 			'default'     => 0,
-			'transport'   => 'postMessage',
 			'label'       => 'AMP機能を有効化する',
 			'description' => '※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。',
 		)
@@ -180,11 +179,12 @@ function ys_customizer_amp_add_template( $wp_customize ) {
 	 * セクション追加
 	 */
 	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_amp_template',
-		'title'       => 'AMPテンプレート設定',
-		'priority'    => 1,
-		'description' => 'AMPテンプレートの設定',
-		'panel'       => 'ys_customizer_panel_amp',
+		'section'         => 'ys_customizer_section_amp_template',
+		'title'           => 'AMPテンプレート設定',
+		'priority'        => 1,
+		'description'     => 'AMPテンプレートの設定',
+		'panel'           => 'ys_customizer_panel_amp',
+		'active_callback' => 'ys_customizer_active_callback_amp_options',
 	) );
 	/**
 	 * ヘッダータイプ
