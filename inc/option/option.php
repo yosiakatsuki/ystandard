@@ -298,6 +298,14 @@ function ys_get_options() {
 	$result['ys_advertisement_replace_more_sp'] = get_option( 'ys_advertisement_replace_more_sp', '' );
 	// 広告　記事下 SP.
 	$result['ys_advertisement_under_content_sp'] = get_option( 'ys_advertisement_under_content_sp', '' );
+	// インフィード広告 PC.
+	$result['ys_advertisement_infeed_pc'] = get_option( 'ys_advertisement_infeed_pc', '' );
+	// インフィード広告 広告を表示する間隔 PC.
+	$result['ys_advertisement_infeed_pc_step'] = get_option( 'ys_advertisement_infeed_pc_step', 3 );
+	// インフィード広告 SP.
+	$result['ys_advertisement_infeed_sp'] = get_option( 'ys_advertisement_infeed_sp', '' );
+	// インフィード広告 広告を表示する間隔 SP.
+	$result['ys_advertisement_infeed_sp_step'] = get_option( 'ys_advertisement_infeed_sp_step', 3 );
 	/**
 	 * **********
 	 * [ys]AMP設定
