@@ -18,6 +18,7 @@ require_once get_template_directory() . '/inc/customizer/customizer-site.php';
 require_once get_template_directory() . '/inc/customizer/customizer-design.php';
 require_once get_template_directory() . '/inc/customizer/customizer-post.php';
 require_once get_template_directory() . '/inc/customizer/customizer-page.php';
+require_once get_template_directory() . '/inc/customizer/customizer-front-page.php';
 require_once get_template_directory() . '/inc/customizer/customizer-archive.php';
 require_once get_template_directory() . '/inc/customizer/customizer-sns.php';
 require_once get_template_directory() . '/inc/customizer/customizer-seo.php';
@@ -60,6 +61,10 @@ function ys_theme_customizer( $wp_customize ) {
 	 * デザイン設定 > アーカイブページ設定
 	 */
 	ys_customizer_archive( $wp_customize );
+	/**
+	 * フロントページ設定
+	 */
+	ys_customizer_front_page( $wp_customize );
 	/**
 	 * SNS設定
 	 */

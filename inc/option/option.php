@@ -64,6 +64,8 @@ function ys_get_options() {
 	/**
 	 * [ys]投稿ページ設定
 	 */
+	// 表示レウアウト.
+	$result['ys_post_layout'] = get_option( 'ys_post_layout', '2col' );
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_post_thumbnail'] = get_option( 'ys_show_post_thumbnail', 1 );
 	// カテゴリー・タグ情報を表示する.
@@ -79,6 +81,8 @@ function ys_get_options() {
 	/**
 	 * [ys]固定ページ設定
 	 */
+	// 表示レウアウト.
+	$result['ys_page_layout'] = get_option( 'ys_page_layout', '2col' );
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_page_thumbnail'] = get_option( 'ys_show_page_thumbnail', 1 );
 	// ブログフォローボックスを表示する.
@@ -88,6 +92,8 @@ function ys_get_options() {
 	/**
 	 * [ys]アーカイブページ設定
 	 */
+	// 表示レウアウト.
+	$result['ys_archive_layout'] = get_option( 'ys_archive_layout', '2col' );
 	// 一覧表示タイプ.
 	$result['ys_archive_type'] = get_option( 'ys_archive_type', 'list' );
 	// 著者情報を表示する.
@@ -97,6 +103,13 @@ function ys_get_options() {
 	 */
 	// アイキャッチ画像表示タイプ.
 	$result['ys_design_one_col_tumbnail_type'] = get_option( 'ys_design_one_col_tumbnail_type', 'full' );
+	/**
+	 * **********
+	 * [ys]フロントページ設定
+	 * **********
+	 */
+	// 表示レイアウト.
+	$result['ys_front_page_layout'] = get_option( 'ys_front_page_layout', '2col' );
 	/**
 	 * **********
 	 * [ys]SNS設定
