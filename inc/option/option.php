@@ -110,6 +110,8 @@ function ys_get_options() {
 	 */
 	// 表示レイアウト.
 	$result['ys_front_page_layout'] = get_option( 'ys_front_page_layout', '2col' );
+	// フロントページ作成タイプ.
+	$result['ys_front_page_type'] = get_option( 'ys_front_page_type', 'normal' );
 	/**
 	 * **********
 	 * [ys]SNS設定

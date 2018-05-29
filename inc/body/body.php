@@ -49,6 +49,14 @@ function ys_body_class( $classes ) {
 		$classes[] = 'entry-list--' . ys_get_option( 'ys_archive_type' );
 	}
 
+	/**
+	 * フロントページタイプ
+	 */
+	if ( is_front_page() && 'normal' !== ys_get_option( 'ys_front_page_type' ) ) {
+		$classes[] = 'front-page--cunstom';
+		$classes[] = 'front-page--' . ys_get_option( 'ys_front_page_type' );
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'ys_body_class' );

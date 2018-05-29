@@ -2453,6 +2453,10 @@ div.aligncenter {
 	margin-bottom: .5em;
 }
 
+.one-col.front-page--cunstom .site__content {
+	margin: 0;
+}
+
 .one-col--singular .breadcrumbs__list,
 .one-col--singular .content__main {
 	max-width: 900px;
