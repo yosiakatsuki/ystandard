@@ -34,7 +34,7 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 	 *
 	 * @var string
 	 */
-	private $default_thmbnail_size = 'thumbnail';
+	private $default_thumbnail_size = 'thumbnail';
 	/**
 	 * 期間
 	 *
@@ -87,12 +87,12 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 	 * @param array $instance instance.
 	 */
 	public function widget( $args, $instance ) {
-		$title         = '';
-		$post_count    = $this->default_post_count;
-		$show_img      = $this->default_show_img;
-		$thmbnail_size = $this->default_thmbnail_size;
-		$period        = $this->default_period;
-		$filtering     = $this->default_filtering;
+		$title          = '';
+		$post_count     = $this->default_post_count;
+		$show_img       = $this->default_show_img;
+		$thumbnail_size = $this->default_thumbnail_size;
+		$period         = $this->default_period;
+		$filtering      = $this->default_filtering;
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -103,7 +103,10 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 			$show_img = esc_attr( $instance['show_img'] );
 		}
 		if ( isset( $instance['thmbnail_size'] ) ) {
-			$thmbnail_size = esc_attr( $instance['thmbnail_size'] );
+			$thumbnail_size = esc_attr( $instance['thmbnail_size'] );
+		}
+		if ( isset( $instance['thumbnail_size'] ) ) {
+			$thumbnail_size = esc_attr( $instance['thumbnail_size'] );
 		}
 		if ( isset( $instance['period'] ) ) {
 			$period = esc_attr( $instance['period'] );
@@ -115,7 +118,7 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		 * 画像なしの場合
 		 */
 		if ( ! $show_img ) {
-			$thmbnail_size = '';
+			$thumbnail_size = '';
 		}
 
 		echo $args['before_widget'];
@@ -126,50 +129,15 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 			$title = $this->default_title;
 		}
 		echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
-		/**
-		 * クエリ作成
-		 */
-		$query  = null;
-		$option = null;
-		/**
-		 * 投稿とカテゴリーページの場合
-		 * カスタムタクソノミー対応はそのうち
-		 */
-		if ( is_single() || is_category() ) {
-			if ( 'cat' === $filtering ) {
-				/**
-				 * カテゴリーで絞り込む
-				 */
-				$cat_ids = ys_get_the_category_id_list( true );
-				/**
-				 * オプションパラメータ作成
-				 */
-				$option = array( 'category__in' => $cat_ids );
-			}
-			/**
-			 * 投稿ならば表示中の投稿をのぞく
-			 */
-			if ( is_single() ) {
-				global $post;
-				$option = wp_parse_args(
-					array( 'post__not_in' => array( $post->ID ) ),
-					$option
-				);
-			}
-		}
-		$option = apply_filters( 'ys_ranking_widget_option', $option, $title );
-		$query  = ys_get_post_views_query( $period, $post_count, $option );
-		/**
-		 * 個別記事・カテゴリーアーカイブで関連記事が取れない場合、全体の人気記事にする
-		 */
-		if ( ( is_single() || is_category() ) && ! $query->have_posts() ) {
-			wp_reset_postdata();
-			$query = ys_get_post_views_query( $period, $post_count );
-		}
-		/**
-		 * 投稿データ取得
-		 */
-		echo $this->get_ys_post_list( array(), '', $thmbnail_size, $query );
+		echo do_shortcode( sprintf(
+			'[ys_post_ranking title="%s" post_count="%s" show_img="%s" thumbnail_size="%s" period="%s" filter="%s"]',
+			$title,
+			$post_count,
+			$show_img,
+			$thumbnail_size,
+			$period,
+			$filtering
+		) );
 		echo $args['after_widget'];
 	}
 
@@ -182,12 +150,12 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		/**
 		 * 管理用のオプションのフォームを出力
 		 */
-		$title         = '';
-		$post_count    = $this->default_post_count;
-		$show_img      = $this->default_show_img;
-		$thmbnail_size = $this->default_thmbnail_size;
-		$period        = $this->default_period;
-		$filtering     = $this->default_filtering;
+		$title          = '';
+		$post_count     = $this->default_post_count;
+		$show_img       = $this->default_show_img;
+		$thumbnail_size = $this->default_thumbnail_size;
+		$period         = $this->default_period;
+		$filtering      = $this->default_filtering;
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -198,7 +166,10 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 			$show_img = esc_attr( $instance['show_img'] );
 		}
 		if ( isset( $instance['thmbnail_size'] ) ) {
-			$thmbnail_size = esc_attr( $instance['thmbnail_size'] );
+			$thumbnail_size = esc_attr( $instance['thmbnail_size'] );
+		}
+		if ( isset( $instance['thumbnail_size'] ) ) {
+			$thumbnail_size = esc_attr( $instance['thumbnail_size'] );
 		}
 		if ( isset( $instance['period'] ) ) {
 			$period = esc_attr( $instance['period'] );
@@ -223,10 +194,10 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 				</label><br />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'thmbnail_size' ); ?>">表示する画像のサイズ</label><br />
-				<select name="<?php echo $this->get_field_name( 'thmbnail_size' ); ?>">
+				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ</label><br />
+				<select name="<?php echo $this->get_field_name( 'thumbnail_size' ); ?>">
 					<?php foreach ( $this->get_image_sizes() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thmbnail_size ); ?>><?php echo $key; ?> (横:<?php echo esc_html( $value['width'] ); ?> x 縦:<?php echo esc_html( $value['height'] ); ?>)</option>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thumbnail_size ); ?>><?php echo $key; ?> (横:<?php echo esc_html( $value['width'] ); ?> x 縦:<?php echo esc_html( $value['height'] ); ?>)</option>
 					<?php endforeach; ?>
 				</select>
 				<span style="color:#aaa;font-size:.9em;">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。<br>※横幅300px~480pxの画像がおすすめです</span>
@@ -266,13 +237,13 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		/**
 		 * 初期値のセット
 		 */
-		$instance                  = array();
-		$instance['title']         = '';
-		$instance['post_count']    = $this->default_post_count;
-		$instance['show_img']      = $this->sanitize_checkbox( $new_instance['show_img'] );
-		$instance['thmbnail_size'] = $this->default_thmbnail_size;
-		$instance['period']        = $this->default_period;
-		$instance['filtering']     = $this->default_filtering;
+		$instance                   = array();
+		$instance['title']          = '';
+		$instance['post_count']     = $this->default_post_count;
+		$instance['show_img']       = $this->sanitize_checkbox( $new_instance['show_img'] );
+		$instance['thumbnail_size'] = $this->default_thumbnail_size;
+		$instance['period']         = $this->default_period;
+		$instance['filtering']      = $this->default_filtering;
 		/**
 		 * 更新値のセット
 		 */
@@ -282,8 +253,8 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		if ( ( is_numeric( $new_instance['post_count'] ) ) ) {
 			$instance['post_count'] = (int) $new_instance['post_count'];
 		}
-		if ( ( ! empty( $new_instance['thmbnail_size'] ) ) ) {
-			$instance['thmbnail_size'] = $new_instance['thmbnail_size'];
+		if ( ( ! empty( $new_instance['thumbnail_size'] ) ) ) {
+			$instance['thumbnail_size'] = $new_instance['thumbnail_size'];
 		}
 		if ( ( ! empty( $new_instance['period'] ) ) ) {
 			$instance['period'] = $new_instance['period'];

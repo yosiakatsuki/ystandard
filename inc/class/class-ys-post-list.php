@@ -18,6 +18,12 @@ class YS_Post_List {
 	 */
 	private $id = '';
 	/**
+	 * Class
+	 *
+	 * @var string
+	 */
+	private $class = '';
+	/**
 	 * 記事一覧取得用クエリ(get_posts)
 	 *
 	 * @var WP_Query
@@ -45,11 +51,13 @@ class YS_Post_List {
 	 * コンストラクタ
 	 *
 	 * @param string   $id ID.
+	 * @param string   $class class.
 	 * @param string   $thumbnail_size サムネイルサイズ.
 	 * @param WP_Query $query クエリ.
 	 */
-	public function __construct( $id = '', $thumbnail_size = '', $query = null ) {
+	public function __construct( $id = '', $class = '', $thumbnail_size = '', $query = null ) {
 		$this->id             = $id;
+		$this->class          = $class;
 		$this->thumbnail_size = $thumbnail_size;
 		$this->query          = $query;
 		$this->args_default   = array(
@@ -152,13 +160,18 @@ class YS_Post_List {
 	 * @return string
 	 */
 	private function get_wrap( $html ) {
-		$id = '';
+		$id    = '';
+		$class = ' class="ys-post-list"';
 		if ( '' !== $this->id ) {
-			$id = 'id="' . $this->id . '" ';
+			$id = ' id="' . $this->id . '" ';
+		}
+		if ( '' !== $this->class ) {
+			$class = ' class="ys-post-list ' . $this->class . '" ';
 		}
 		return sprintf(
-			apply_filters( 'ys_post_list_warp', '<div %sclass="ys-post-list">%s</div>' ),
+			apply_filters( 'ys_post_list_warp', '<div%s%s>%s</div>' ),
 			$id,
+			$class,
 			$html
 		);
 	}

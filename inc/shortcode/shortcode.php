@@ -19,3 +19,7 @@ require_once get_template_directory() . '/inc/shortcode/shortcode-author-list.ph
  * 広告表示ショートコード
  */
 require_once get_template_directory() . '/inc/shortcode/shortcode-ad.php';
+/**
+ * ランキングショートコード
+ */
+require_once get_template_directory() . '/inc/shortcode/shortcode-post-ranking.php';
