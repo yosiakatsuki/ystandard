@@ -16,7 +16,7 @@ get_header(); ?>
 			while ( have_posts() ) :
 				the_post();
 			?>
-				<div class="entry-content entry__content">
+				<div class="entry-content entry__content--diy">
 					<?php the_content(); ?>
 				</div><!-- .entry-content -->
 				<?php
