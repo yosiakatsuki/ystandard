@@ -22,11 +22,14 @@ function ys_shortcode_ad_block( $args, $content = null ) {
 	$html = '';
 	$args = shortcode_atts(
 		array(
-			'id'      => '',
-			'class'   => 'ys-ad-block',
+			'id'    => '',
+			'class' => 'ys-ad-block',
 		),
 		$args
 	);
+	/**
+	 * パラメータ取得
+	 */
 	$id    = '';
 	$class = '';
 	if ( '' !== $args['id'] ) {

@@ -58,7 +58,7 @@ function ys_shortcode_tax_posts( $args ) {
 		$post_args = wp_parse_args(
 			$post_args,
 			array(
-				'tax_query'      => array(
+				'tax_query' => array(
 					array(
 						'taxonomy' => $args['taxonomy'],
 						'field'    => 'slug',

@@ -14,7 +14,8 @@ get_header(); ?>
 			<?php do_action( 'ys_site_main_prepend' ); ?>
 			<?php
 			while ( have_posts() ) :
-				the_post();?>
+				the_post();
+			?>
 				<div class="entry-content entry__content">
 					<?php the_content(); ?>
 				</div><!-- .entry-content -->
