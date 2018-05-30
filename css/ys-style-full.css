@@ -1127,10 +1127,6 @@ input[type="button"]:hover {
 	margin: 0;
 }
 
-.header--center {
-	text-align: center;
-}
-
 .header--center .header__title {
 	text-align: center;
 	padding-left: 20px;
@@ -3328,6 +3324,10 @@ div.aligncenter {
 	-webkit-box-pack: justify;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
+}
+
+.header--center {
+	text-align: center;
 }
 
 .header--center .global-nav__menu {
