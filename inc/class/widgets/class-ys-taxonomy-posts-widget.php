@@ -34,7 +34,7 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 	 *
 	 * @var string
 	 */
-	private $default_thmbnail_size = 'thumbnail';
+	private $default_thumbnail_size = 'thumbnail';
 	/**
 	 * タクソノミーとタームの区切り文字
 	 *
@@ -61,13 +61,14 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 	 * @param array $instance instance.
 	 */
 	public function widget( $args, $instance ) {
-		$title         = '';
-		$post_count    = $this->default_post_count;
-		$show_img      = $this->default_show_img;
-		$thmbnail_size = $this->default_thmbnail_size;
-		$taxonomy_name = '';
-		$trem_id       = 0;
-		$term_label    = '';
+		$title          = '';
+		$post_count     = $this->default_post_count;
+		$show_img       = $this->default_show_img;
+		$thumbnail_size = $this->default_thumbnail_size;
+		$taxonomy_name  = '';
+		$term_id        = 0;
+		$term_slug      = '';
+		$term_label     = '';
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -78,16 +79,20 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 			$show_img = esc_attr( $instance['show_img'] );
 		}
 		if ( isset( $instance['thmbnail_size'] ) ) {
-			$thmbnail_size = esc_attr( $instance['thmbnail_size'] );
+			$thumbnail_size = esc_attr( $instance['thmbnail_size'] );
+		}
+		if ( isset( $instance['thumbnail_size'] ) ) {
+			$thumbnail_size = esc_attr( $instance['thumbnail_size'] );
 		}
 		if ( isset( $instance['taxonomy'] ) ) {
 			$selected = $this->get_selected_taxonomy( $instance['taxonomy'] );
 			if ( ! is_null( $selected ) ) {
-				$trem_id       = $selected['term_id'];
+				$term_id       = $selected['term_id'];
 				$taxonomy_name = $selected['taxonomy_name'];
-				$term          = get_term( $trem_id, $taxonomy_name );
+				$term          = get_term( $term_id, $taxonomy_name );
 				if ( ! is_wp_error( $term ) && ! is_null( $term ) ) {
 					$term_label = $term->name;
+					$term_slug  = $term->slug;
 				}
 				if ( empty( $title ) ) {
 					$title = sprintf( '%sの記事一覧', $term_label );
@@ -98,7 +103,7 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		 * 画像なしの場合
 		 */
 		if ( ! $show_img ) {
-			$thmbnail_size = '';
+			$thumbnail_size = '';
 		}
 
 		echo $args['before_widget'];
@@ -110,23 +115,15 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		}
 		$title = sprintf( $title, $term_label );
 		echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
-		/**
-		 * パラメータの作成
-		 */
-		$post_args = array(
-			'posts_per_page' => $post_count,
-			'tax_query'      => array(
-				array(
-					'taxonomy' => $taxonomy_name,
-					'field'    => 'term_id',
-					'terms'    => $trem_id,
-				),
-			),
-		);
-		/**
-		 * 投稿データ取得
-		 */
-		echo $this->get_ys_post_list( $post_args, '', $thmbnail_size );
+		echo do_shortcode( sprintf(
+			'[ys_tax_posts title="%s" post_count="%s" show_img="%s" thumbnail_size="%s" taxonomy="%s" term_slug="%s"]',
+			$title,
+			$post_count,
+			$show_img,
+			$thumbnail_size,
+			$taxonomy_name,
+			$term_slug
+		) );
 		echo $args['after_widget'];
 	}
 
@@ -142,7 +139,7 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		$title             = '';
 		$post_count        = $this->default_post_count;
 		$show_img          = $this->default_show_img;
-		$thmbnail_size     = $this->default_thmbnail_size;
+		$thumbnail_size    = $this->default_thumbnail_size;
 		$selected_taxonomy = '';
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
@@ -154,7 +151,10 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 			$show_img = esc_attr( $instance['show_img'] );
 		}
 		if ( isset( $instance['thmbnail_size'] ) ) {
-			$thmbnail_size = esc_attr( $instance['thmbnail_size'] );
+			$thumbnail_size = esc_attr( $instance['thmbnail_size'] );
+		}
+		if ( isset( $instance['thumbnail_size'] ) ) {
+			$thumbnail_size = esc_attr( $instance['thumbnail_size'] );
 		}
 		if ( isset( $instance['taxonomy'] ) ) {
 			$selected_taxonomy = esc_attr( $instance['taxonomy'] );
@@ -176,10 +176,10 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 				</label><br />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'thmbnail_size' ); ?>">表示する画像のサイズ</label><br />
-				<select name="<?php echo $this->get_field_name( 'thmbnail_size' ); ?>">
+				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ</label><br />
+				<select name="<?php echo $this->get_field_name( 'thumbnail_size' ); ?>">
 					<?php foreach ( $this->get_image_sizes() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thmbnail_size ); ?>><?php echo $key; ?> (横:<?php echo esc_html( $value['width'] ); ?> x 縦:<?php echo esc_html( $value['height'] ); ?>)</option>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thumbnail_size ); ?>><?php echo $key; ?> (横:<?php echo esc_html( $value['width'] ); ?> x 縦:<?php echo esc_html( $value['height'] ); ?>)</option>
 					<?php endforeach; ?>
 				</select>
 				<span style="color:#aaa;font-size:.9em;">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。<br>※横幅300px~480pxの画像がおすすめです</span>
@@ -227,12 +227,12 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		/**
 		 * 初期値のセット
 		 */
-		$instance                  = array();
-		$instance['title']         = '';
-		$instance['post_count']    = $this->default_post_count;
-		$instance['show_img']      = $this->sanitize_checkbox( $new_instance['show_img'] );
-		$instance['thmbnail_size'] = $this->default_thmbnail_size;
-		$instance['taxonomy']      = '';
+		$instance                   = array();
+		$instance['title']          = '';
+		$instance['post_count']     = $this->default_post_count;
+		$instance['show_img']       = $this->sanitize_checkbox( $new_instance['show_img'] );
+		$instance['thumbnail_size'] = $this->default_thumbnail_size;
+		$instance['taxonomy']       = '';
 		/**
 		 * 更新値のセット
 		 */
@@ -242,8 +242,8 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		if ( ( is_numeric( $new_instance['post_count'] ) ) ) {
 			$instance['post_count'] = (int) $new_instance['post_count'];
 		}
-		if ( ( ! empty( $new_instance['thmbnail_size'] ) ) ) {
-			$instance['thmbnail_size'] = $new_instance['thmbnail_size'];
+		if ( ( ! empty( $new_instance['thumbnail_size'] ) ) ) {
+			$instance['thumbnail_size'] = $new_instance['thumbnail_size'];
 		}
 		if ( ( ! empty( $new_instance['taxonomy'] ) ) ) {
 			$instance['taxonomy'] = $new_instance['taxonomy'];

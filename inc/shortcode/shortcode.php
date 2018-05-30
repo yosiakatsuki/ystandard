@@ -23,3 +23,7 @@ require_once get_template_directory() . '/inc/shortcode/shortcode-ad.php';
  * ランキングショートコード
  */
 require_once get_template_directory() . '/inc/shortcode/shortcode-post-ranking.php';
+/**
+ * タクソノミー絞り込み記事一覧ショートコード
+ */
+require_once get_template_directory() . '/inc/shortcode/shortcode-taxonomy-posts.php';
