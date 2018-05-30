@@ -115,11 +115,17 @@ function ys_customizer_add_header_color( $wp_customize ) {
 		'default' => ys_customizer_get_default_color( 'ys_color_header_bg' ),
 		'label'   => 'ヘッダー背景色',
 	) );
-	// ヘッダー文字色.
+	// サイトタイトル文字色.
 	$ys_customizer->add_color( array(
 		'id'      => 'ys_color_header_font',
 		'default' => ys_customizer_get_default_color( 'ys_color_header_font' ),
-		'label'   => 'ヘッダー文字色',
+		'label'   => 'サイトタイトルの文字色',
+	) );
+	// サイト概要の文字色.
+	$ys_customizer->add_color( array(
+		'id'      => 'ys_color_header_dscr_font',
+		'default' => ys_customizer_get_default_color( 'ys_color_header_dscr_font' ),
+		'label'   => 'サイト概要の文字色',
 	) );
 }
 
@@ -135,7 +141,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	 */
 	$ys_customizer->add_section( array(
 		'section'  => 'ys_color_nav',
-		'title'    => 'ヘッダー/スライド メニュー',
+		'title'    => 'ヘッダーメニュー(PC)/スライドメニュー(SP)',
 		'priority' => 0,
 		'panel'    => 'ys_customizer_panel_color',
 	) );

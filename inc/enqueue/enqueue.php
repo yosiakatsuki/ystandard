@@ -480,10 +480,20 @@ function ys_get_customizer_inline_css() {
 		array(
 			'.color__site-header',
 			'.color__site-title, .color__site-title:hover',
-			'.color__site-dscr',
 		),
 		array(
 			'color' => $header_font,
+		)
+	);
+	/**
+	 * 概要文字色（テキストの場合のみ）
+	 */
+	$css .= ys_customizer_create_inline_css(
+		array(
+			'.color__site-dscr',
+		),
+		array(
+			'color' => ys_customizer_get_color_option( 'ys_color_header_dscr_font' ),
 		)
 	);
 
@@ -688,18 +698,19 @@ function ys_customizer_get_default_color( $setting_name ) {
  */
 function ys_customizer_get_defaults() {
 	return array(
-		'ys_color_site_bg'       => '#ffffff',
-		'ys_color_site_font'     => '#222222',
-		'ys_color_site_font_sub' => '#939393',
-		'ys_color_header_bg'     => '#ffffff',
-		'ys_color_header_font'   => '#222222',
-		'ys_color_nav_bg_pc'     => '#ffffff',
-		'ys_color_nav_font_pc'   => '#939393',
-		'ys_color_nav_bg_sp'     => '#292b2c',
-		'ys_color_nav_btn_sp'    => '#292b2c',
-		'ys_color_nav_font_sp'   => '#ffffff',
-		'ys_color_footer_bg'     => '#292b2c',
-		'ys_color_footer_font'   => '#ffffff',
+		'ys_color_site_bg'          => '#ffffff',
+		'ys_color_site_font'        => '#222222',
+		'ys_color_site_font_sub'    => '#939393',
+		'ys_color_header_bg'        => '#ffffff',
+		'ys_color_header_font'      => '#222222',
+		'ys_color_header_dscr_font' => '#939393',
+		'ys_color_nav_bg_pc'        => '#ffffff',
+		'ys_color_nav_font_pc'      => '#939393',
+		'ys_color_nav_bg_sp'        => '#292b2c',
+		'ys_color_nav_btn_sp'       => '#292b2c',
+		'ys_color_nav_font_sp'      => '#ffffff',
+		'ys_color_footer_bg'        => '#292b2c',
+		'ys_color_footer_font'      => '#ffffff',
 	);
 }
 
