@@ -1205,7 +1205,7 @@ input[type="button"]:hover {
 	display: block;
 	width: 20px;
 	height: 2px;
-	background-color: #222;
+	background-color: #292b2c;
 	-webkit-transform: rotate(0deg);
 	transform: rotate(0deg);
 	-webkit-transition: -webkit-transform 0.3s;

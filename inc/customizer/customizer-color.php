@@ -155,7 +155,6 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 		'default' => ys_customizer_get_default_color( 'ys_color_nav_font_pc' ),
 		'label'   => '[PC]ヘッダーメニュー文字色',
 	) );
-
 	/**
 	 * ナビゲーション背景色（SP）
 	 */
@@ -163,6 +162,14 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 		'id'      => 'ys_color_nav_bg_sp',
 		'default' => ys_customizer_get_default_color( 'ys_color_nav_bg_sp' ),
 		'label'   => '[SP]スライドメニュー背景色',
+	) );
+	/**
+	 * ナビゲーションボタン色（SP）
+	 */
+	$ys_customizer->add_color( array(
+		'id'      => 'ys_color_nav_btn_sp',
+		'default' => ys_customizer_get_default_color( 'ys_color_nav_btn_sp' ),
+		'label'   => '[SP]スライドメニューボタン色',
 	) );
 	/**
 	 * ナビゲーション文字色（SP）

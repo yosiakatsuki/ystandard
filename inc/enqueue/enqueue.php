@@ -516,6 +516,28 @@ function ys_get_customizer_inline_css() {
 			'color' => ys_customizer_get_color_option( 'ys_color_nav_font_sp' ),
 		)
 	);
+	/**
+	 * ボタン
+	 */
+	$css .= ys_customizer_create_inline_css(
+		array(
+			'.global-nav__btn span',
+		),
+		array(
+			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_btn_sp' ),
+		)
+	);
+	/**
+	 * ボタン（OPEN）
+	 */
+	$css .= ys_customizer_create_inline_css(
+		array(
+			'#header__nav-toggle:checked~.global-nav__btn span',
+		),
+		array(
+			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_font_sp' ),
+		)
+	);
 	$css .= '}';
 
 	/**
@@ -674,6 +696,7 @@ function ys_customizer_get_defaults() {
 		'ys_color_nav_bg_pc'     => '#ffffff',
 		'ys_color_nav_font_pc'   => '#939393',
 		'ys_color_nav_bg_sp'     => '#292b2c',
+		'ys_color_nav_btn_sp'    => '#292b2c',
 		'ys_color_nav_font_sp'   => '#ffffff',
 		'ys_color_footer_bg'     => '#292b2c',
 		'ys_color_footer_font'   => '#ffffff',
