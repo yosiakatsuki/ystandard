@@ -73,6 +73,7 @@ if ( ! function_exists( 'ys_add_iframe_responsive_container' ) ) {
 	}
 }
 add_filter( 'the_content', 'ys_add_iframe_responsive_container' );
+add_filter( 'widget_text', 'ys_add_iframe_responsive_container' );
 
 if ( ! function_exists( 'ys_excerpt_length' ) ) {
 	/**
@@ -80,7 +81,10 @@ if ( ! function_exists( 'ys_excerpt_length' ) ) {
 	 *
 	 * @param int $length 抜粋文字数.
 	 */
-	function ys_excerpt_length( $length = 80 ) {
+	function ys_excerpt_length( $length = null ) {
+		if ( ! is_null( $length ) ) {
+			return $length;
+		}
 		return ys_get_option( 'ys_option_excerpt_length' );
 	}
 }
@@ -93,11 +97,14 @@ if ( ! function_exists( 'ys_excerpt_more' ) ) {
 	 * @param string $more 抜粋につける文字.
 	 */
 	function ys_excerpt_more( $more ) {
-		$more = '…';
-		if ( 0 == ys_excerpt_length() ) {
-			$more = '';
+		$more_str = '…';
+		if ( '' !== $more ) {
+			$more_str = $more;
 		}
-		return $more;
+		if ( 0 == ys_excerpt_length() ) {
+			$more_str = '';
+		}
+		return $more_str;
 	}
 }
 add_filter( 'excerpt_more', 'ys_excerpt_more' );
