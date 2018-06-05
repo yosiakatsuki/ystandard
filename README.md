@@ -1,6 +1,6 @@
-# ystandard
+# yStandard
 
-![ystandard](./screenshot.png "ystandard")
+![yStandard](./screenshot.png "yStandard")
 
 ## カスタマイズありきの一風変わったWordPressテーマ「yStandard」
 
@@ -10,10 +10,10 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 [yStandard](https://wp-ystandard.com/)
 
-## 「ystandard」の由来
+## 「yStandard」の由来
 
-「標準」といった意味の「Standard」に作者が自作物やハンドルネームによく使う「ys」というプレフィックスをくっつけて、「ystandard」にしました。
-（「ys-standard」という案もありました。）
+「標準」といった意味の「Standard」に作者が自作物やハンドルネームによく使う「ys」というフレーズをくっつけて、「yStandard」にしました。
+（「ys-standard」という案もありましたがなんとなくやめておきました。）
 
 先頭の「y」に意味はなく、発音する必要も無いと思っておりましたが、「yStandard」を「y」の部分まで発音すると「why standard」に聞こえることから"一風変わった"というコンセプトを掲げています
 
@@ -120,8 +120,9 @@ Source : <https://gist.github.com/terkel/4373420>
     - jQueryのフッター移動機能追加
     - インフィード広告挿入機能追加
     - 一覧ページと投稿ページのカラム数変更機能 機能追加
-    - フロントページ作成タイプの追加 β版（DIY）
     - yStandardウィジェットアイテムのショートコード化
+    - 投稿タイトル前後で実行するアクションフックを追加（`ys_before_entry_title`,`ys_after_entry_title`）
+    - フロントページ作成タイプの追加 β版（DIY）
   - 調整
     - 背景色ありの場合のスタイル調整
     - カテゴリー・タグの記事一覧ウィジェットでカテゴリー・タグ未選択の場合は最新の記事一覧を表示するように修正

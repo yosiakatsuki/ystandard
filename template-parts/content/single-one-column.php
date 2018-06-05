@@ -12,7 +12,10 @@
 	<header class="entry-header entry__header">
 		<div class="entry__header--one-col section--full flex flex--a-end">
 			<?php
+			do_action( 'ys_before_entry_title' );
 			the_title( '<h1 class="entry-title entry__title entry__title--one-col">', '</h1>' );
+			do_action( 'ys_after_entry_title' );
+
 			if ( ys_is_active_post_thumbnail() ) :
 			?>
 			<figure class="post-thumbnail entry__thumbnail">
