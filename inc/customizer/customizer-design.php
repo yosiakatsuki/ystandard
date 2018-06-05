@@ -148,7 +148,7 @@ function ys_customizer_design_add_one_column_template( $wp_customize ) {
 	$img        = '<img src="%s" alt="" width="100" height="100" />';
 	$ys_customizer->add_image_label_radio(
 		array(
-			'id'          => 'ys_design_one_col_tumbnail_type',
+			'id'          => 'ys_design_one_col_thumbnail_type',
 			'default'     => 'full',
 			'label'       => 'アイキャッチ画像表示タイプ',
 			'description' => 'アイキャッチ画像の表示タイプ',

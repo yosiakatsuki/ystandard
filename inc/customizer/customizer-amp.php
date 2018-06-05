@@ -134,14 +134,15 @@ function ys_customizer_amp_add_amp_ads( $wp_customize ) {
 		'active_callback' => 'ys_customizer_active_callback_amp_options',
 	) );
 	/**
-	 * 記事タイトル下
+	 * 記事本文上
+	 * 旧ys_amp_advertisement_under_title
 	 */
 	$ys_customizer->add_textarea(
 		array(
-			'id'        => 'ys_amp_advertisement_under_title',
+			'id'        => 'ys_amp_advertisement_before_content',
 			'default'   => '',
 			'transport' => 'postMessage',
-			'label'     => '記事タイトル下',
+			'label'     => '記事本文上',
 		)
 	);
 	/**
@@ -195,7 +196,7 @@ function ys_customizer_amp_add_template( $wp_customize ) {
 	$img        = '<img src="%s" alt="" width="100" height="100" />';
 	$ys_customizer->add_image_label_radio(
 		array(
-			'id'          => 'ys_amp_tumbnail_type',
+			'id'          => 'ys_amp_thumbnail_type',
 			'default'     => 'full',
 			'transport'   => 'postMessage',
 			'label'       => 'アイキャッチ画像表示タイプ',

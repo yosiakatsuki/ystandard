@@ -52,14 +52,25 @@ function ys_customizer_advertisement_add_ads_pc( $wp_customize ) {
 		'title'   => 'PC広告設定',
 		'panel'   => 'ys_customizer_panel_advertisement',
 	) );
+//	/**
+//	 * 記事本文上
+//	 */
+//	$ys_customizer->add_textarea(
+//		array(
+//			'id'      => 'ys_advertisement_under_title',
+//			'default' => '',
+//			'label'   => '記事本文上(PC)',
+//		)
+//	);
 	/**
-	 * 記事タイトル下
+	 * 記事本文上
+	 * 旧ys_advertisement_under_title
 	 */
 	$ys_customizer->add_textarea(
 		array(
-			'id'      => 'ys_advertisement_under_title',
+			'id'      => 'ys_advertisement_before_content',
 			'default' => '',
-			'label'   => '記事タイトル下(PC)',
+			'label'   => '記事本文上(PC)',
 		)
 	);
 	/**
@@ -110,13 +121,14 @@ function ys_customizer_advertisement_add_ads_sp( $wp_customize ) {
 		'panel'   => 'ys_customizer_panel_advertisement',
 	) );
 	/**
-	 * 記事タイトル下
+	 * 記事本文上
+	 * 旧ys_advertisement_under_title_sp
 	 */
 	$ys_customizer->add_textarea(
 		array(
-			'id'      => 'ys_advertisement_under_title_sp',
+			'id'      => 'ys_advertisement_before_content_sp',
 			'default' => '',
-			'label'   => '記事タイトル下(SP)',
+			'label'   => '記事本文上(SP)',
 		)
 	);
 	/**

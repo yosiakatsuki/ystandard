@@ -219,11 +219,11 @@ if ( ! function_exists( 'ys_is_one_column' ) ) {
 function ys_is_one_column_thumbnail_type() {
 	$result = false;
 	if ( ys_is_amp() ) {
-		if ( 'full' == ys_get_option( 'ys_amp_tumbnail_type' ) ) {
+		if ( 'full' == ys_get_option( 'ys_amp_thumbnail_type' ) ) {
 			$result = true;
 		}
 	} else {
-		if ( 'full' == ys_get_option( 'ys_design_one_col_tumbnail_type' ) ) {
+		if ( 'full' == ys_get_option( 'ys_design_one_col_thumbnail_type' ) ) {
 			$result = true;
 		}
 	}

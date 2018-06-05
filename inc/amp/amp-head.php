@@ -141,7 +141,7 @@ add_action( 'ys_amp_head', 'ys_the_amp_script' );
  */
 function ys_is_load_amp_ad_script() {
 	$result = false;
-	if ( '' !== ys_get_option( 'ys_amp_advertisement_under_title' ) ) {
+	if ( '' !== ys_get_option( 'ys_amp_advertisement_before_content' ) ) {
 		$result = true;
 	}
 	if ( '' !== ys_get_option( 'ys_amp_advertisement_replace_more' ) ) {

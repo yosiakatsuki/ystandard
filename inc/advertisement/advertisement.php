@@ -40,14 +40,13 @@ if ( ! function_exists( 'ys_get_ad_entry_header' ) ) {
 	 * 記事上広告の取得
 	 */
 	function ys_get_ad_entry_header() {
-		$key = 'ys_advertisement_under_title';
+		$key = 'ys_advertisement_before_content';
 		if ( ys_is_mobile() ) {
-			$key = 'ys_advertisement_under_title_sp';
+			$key = 'ys_advertisement_before_content_sp';
 		}
 		if ( ys_is_amp() ) {
-			$key = 'ys_amp_advertisement_under_title';
+			$key = 'ys_amp_advertisement_before_content';
 		}
-		$ad = '';
 		$ad = ys_get_option( $key );
 
 		return apply_filters( 'ys_get_ad_entry_header', ys_get_ad_block_html( $ad ) );
