@@ -223,7 +223,7 @@ function ys_customizer_seo_add_structured_data( $wp_customize ) {
 		'default'     => '',
 		'transport'   => 'postMessage',
 		'label'       => 'Publisher Logo',
-		'description' => '構造化データのPublisherに使用する画像です。サイトの顔になるような画像を設定すると良いかと思います。 推奨サイズ:縦60px以下,横600px以下 ',
+		'description' => '構造化データのPublisherに使用する画像です。サイトの顔になるような画像を設定すると良いかと思います。 推奨サイズ:横600px以下,縦60px以下',
 	) );
 	/**
 	 * Publisher名
