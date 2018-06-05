@@ -12,6 +12,7 @@ if ( ! function_exists( 'ys_document_title_separator' ) ) {
 	 * ブログ名区切り文字設定
 	 *
 	 * @param  string $sep 区切り文字.
+	 *
 	 * @return string
 	 */
 	function ys_document_title_separator( $sep ) {
@@ -19,6 +20,7 @@ if ( ! function_exists( 'ys_document_title_separator' ) ) {
 		if ( '' != $sep_option ) {
 			$sep = $sep_option;
 		}
+
 		return $sep;
 	}
 }
@@ -29,9 +31,14 @@ if ( ! function_exists( 'ys_more_tag_replace' ) ) {
 	 * Moreタグの置換
 	 *
 	 * @param string $the_content 投稿本文.
+	 *
+	 * @return string
 	 */
 	function ys_more_tag_replace( $the_content ) {
-		$replace = ys_get_ad_more_tag();
+		$replace = '';
+		if ( ys_is_active_advertisement() ) {
+			$replace = ys_get_ad_more_tag();
+		}
 		$replace = apply_filters( 'ys_more_tag_replace', $replace );
 		if ( '' !== $replace ) {
 			$the_content = preg_replace( '/<p><span id="more-[0-9]+"><\/span><\/p>/', $replace, $the_content );
@@ -40,6 +47,7 @@ if ( ! function_exists( 'ys_more_tag_replace' ) ) {
 			 */
 			$the_content = preg_replace( '/<span id="more-[0-9]+"><\/span>/', $replace, $the_content );
 		}
+
 		return $the_content;
 	}
 }
@@ -69,6 +77,7 @@ if ( ! function_exists( 'ys_add_iframe_responsive_container' ) ) {
 				$the_content = preg_replace( $pattern, '<div class="embed__container"><div class="embed__item">${0}</div></div>', $the_content );
 			}
 		}
+
 		return $the_content;
 	}
 }
@@ -85,6 +94,7 @@ if ( ! function_exists( 'ys_excerpt_length' ) ) {
 		if ( ! is_null( $length ) ) {
 			return $length;
 		}
+
 		return ys_get_option( 'ys_option_excerpt_length' );
 	}
 }
@@ -104,6 +114,7 @@ if ( ! function_exists( 'ys_excerpt_more' ) ) {
 		if ( 0 == ys_excerpt_length() ) {
 			$more_str = '';
 		}
+
 		return $more_str;
 	}
 }
@@ -113,9 +124,10 @@ if ( ! function_exists( 'ys_get_the_custom_excerpt' ) ) {
 	/**
 	 * 投稿抜粋文を作成
 	 *
-	 * @param  string  $sep     抜粋最後の文字.
-	 * @param  integer $length  抜粋長さ.
+	 * @param  string $sep 抜粋最後の文字.
+	 * @param  integer $length 抜粋長さ.
 	 * @param  integer $post_id 投稿ID.
+	 *
 	 * @return string
 	 */
 	function ys_get_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
@@ -136,17 +148,18 @@ if ( ! function_exists( 'ys_get_the_custom_excerpt' ) ) {
 			 */
 			$content = $post->post_content;
 			/**
-			* Moreタグ以降を削除
-			*/
+			 * Moreタグ以降を削除
+			 */
 			$content = preg_replace( '/<!--more-->.+/is', '', $content );
 			$content = ys_get_plain_text( $content );
 		}
 		/**
-		* 長さ調節
-		*/
+		 * 長さ調節
+		 */
 		if ( mb_strlen( $content ) > $length ) {
 			$content = mb_substr( $content, 0, $length - mb_strlen( $sep ) ) . $sep;
 		}
+
 		return apply_filters( 'ys_get_the_custom_excerpt', $content, $post_id );
 	}
 }
@@ -154,8 +167,8 @@ if ( ! function_exists( 'ys_the_custom_excerpt' ) ) {
 	/**
 	 * 投稿抜粋文を出力
 	 *
-	 * @param  string  $sep     抜粋最後の文字.
-	 * @param  integer $length  抜粋長さ.
+	 * @param  string $sep 抜粋最後の文字.
+	 * @param  integer $length 抜粋長さ.
 	 * @param  integer $post_id 投稿ID.
 	 */
 	function ys_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
@@ -169,6 +182,7 @@ if ( ! function_exists( 'ys_get_entry_read_more_text' ) ) {
 	 */
 	function ys_get_entry_read_more_text() {
 		$read_more = 'READ MORE';
+
 		return apply_filters( 'ys_entry_read_more_text', $read_more );
 	}
 }

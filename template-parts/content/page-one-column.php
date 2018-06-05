@@ -10,11 +10,10 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header entry__header">
-		<div class="entry__header--one-col section--full flex flex--a-end">
+		<?php do_action( 'ys_before_entry_title' ); ?>
+        <div class="entry__header--one-col section--full flex flex--a-end">
 			<?php
-			do_action( 'ys_before_entry_title' );
 			the_title( '<h1 class="entry-title entry__title entry__title--one-col">', '</h1>' );
-			do_action( 'ys_after_entry_title' );
 
 			if ( ys_is_active_post_thumbnail() ) :
 			?>
@@ -29,7 +28,8 @@
 			<?php endif; ?>
 		</div><!-- .entry__header-one-col -->
 		<?php
-			get_template_part( 'template-parts/entry/entry-header' );
+		do_action( 'ys_after_entry_title' );
+		get_template_part( 'template-parts/entry/entry-header' );
 		?>
 	</header><!-- .entry-header -->
 	<div class="entry-content entry__content">

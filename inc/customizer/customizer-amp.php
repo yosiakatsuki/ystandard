@@ -66,8 +66,8 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 		'panel'    => 'ys_customizer_panel_amp',
 	) );
 	/**
-	* AMP機能を有効化する
-	*/
+	 * AMP機能を有効化する
+	 */
 	$ys_customizer->add_label( array(
 		'id'          => 'ys_amp_enable_label',
 		'label'       => 'AMP機能を有効化',
@@ -116,6 +116,7 @@ function ys_customizer_amp_add_amp_options( $wp_customize ) {
 		)
 	);
 }
+
 /**
  * AMP広告設定
  *
@@ -133,6 +134,28 @@ function ys_customizer_amp_add_amp_ads( $wp_customize ) {
 		'panel'           => 'ys_customizer_panel_amp',
 		'active_callback' => 'ys_customizer_active_callback_amp_options',
 	) );
+	/**
+	 * 記事タイトル上
+	 */
+	$ys_customizer->add_textarea(
+		array(
+			'id'        => 'ys_amp_advertisement_before_title',
+			'default'   => '',
+			'transport' => 'postMessage',
+			'label'     => '記事タイトル上',
+		)
+	);
+	/**
+	 * 記事タイトル下
+	 */
+	$ys_customizer->add_textarea(
+		array(
+			'id'        => 'ys_amp_advertisement_after_title',
+			'default'   => '',
+			'transport' => 'postMessage',
+			'label'     => '記事タイトル下',
+		)
+	);
 	/**
 	 * 記事本文上
 	 * 旧ys_amp_advertisement_under_title

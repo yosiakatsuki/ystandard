@@ -296,7 +296,10 @@ function ys_get_options() {
 	 * [ys]広告設定
 	 * **********
 	 */
+	// 広告　タイトル上.
+	$result['ys_advertisement_before_title'] = get_option( 'ys_advertisement_before_title', '' );
 	// 広告　タイトル下.
+	$result['ys_advertisement_after_title'] = get_option( 'ys_advertisement_after_title', '' );
 	/**
 	 * 記事本文上（旧 タイトル下）
 	 * TODO: ys_advertisement_under_title の削除 v2.5.0くらいで
@@ -317,6 +320,10 @@ function ys_get_options() {
 	$result['ys_advertisement_under_content_left'] = get_option( 'ys_advertisement_under_content_left', '' );
 	// 広告　記事下　右.
 	$result['ys_advertisement_under_content_right'] = get_option( 'ys_advertisement_under_content_right', '' );
+	// 広告　タイトル上 SP.
+	$result['ys_advertisement_before_title_sp'] = get_option( 'ys_advertisement_before_title_sp', '' );
+	// 広告　タイトル下 SP.
+	$result['ys_advertisement_after_title_sp'] = get_option( 'ys_advertisement_after_title_sp', '' );
 	/**
 	 * 記事本文上 SP（旧 タイトル下 SP）
 	 * TODO: ys_advertisement_under_title_sp の削除 v2.5.0くらいで
@@ -353,8 +360,12 @@ function ys_get_options() {
 	$result['ys_amp_enable'] = get_option( 'ys_amp_enable', 0 );
 	// AMPのGoogle Analyticsトラッキングコード.
 	$result['ys_ga_tracking_id_amp'] = esc_attr( get_option( 'ys_ga_tracking_id_amp', '' ) );
+	// 広告　タイトル上 SP.
+	$result['ys_amp_advertisement_before_title'] = get_option( 'ys_amp_advertisement_before_title', '' );
+	// 広告　タイトル下 SP.
+	$result['ys_amp_advertisement_after_title'] = get_option( 'ys_amp_advertisement_after_title', '' );
 	/**
-	 * 記事本文上 SP（旧 タイトル下）
+	 * 広告　記事本文上 SP（旧 タイトル下）
 	 * TODO: ys_amp_advertisement_under_title の削除 v2.5.0くらいで
 	 */
 	ys_change_option_key(
@@ -364,9 +375,9 @@ function ys_get_options() {
 		''
 	);
 	$result['ys_amp_advertisement_before_content'] = get_option( 'ys_amp_advertisement_before_content', '' );
-	// moreタグ置換.
+	// 広告　moreタグ置換.
 	$result['ys_amp_advertisement_replace_more'] = get_option( 'ys_amp_advertisement_replace_more', '' );
-	// 記事下　左.
+	// 広告　記事下.
 	$result['ys_amp_advertisement_under_content'] = get_option( 'ys_amp_advertisement_under_content', '' );
 	// アイキャッチ画像表示タイプ.
 	/**

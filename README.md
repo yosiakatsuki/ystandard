@@ -121,7 +121,8 @@ Source : <https://gist.github.com/terkel/4373420>
     - インフィード広告挿入機能追加
     - 一覧ページと投稿ページのカラム数変更機能 機能追加
     - yStandardウィジェットアイテムのショートコード化
-    - 投稿タイトル前後で実行するアクションフックを追加（`ys_before_entry_title`,`ys_after_entry_title`）
+    - 投稿タイトル上・下で実行するアクションフックを追加（`ys_before_entry_title`,`ys_after_entry_title`）
+    - 記事タイトル上・下に広告枠を追加（PC,SP,AMP）
     - フロントページ作成タイプの追加 β版（DIY）
   - 調整
     - 背景色ありの場合のスタイル調整
