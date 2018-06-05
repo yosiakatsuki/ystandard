@@ -173,7 +173,20 @@ function ys_customizer_advertisement_add_infeed( $wp_customize ) {
 			'id'          => 'ys_advertisement_infeed_pc_step',
 			'default'     => 3,
 			'label'       => '広告を表示する間隔(PC)',
-			'section'     => 'ys_customizer_section_infeed',
+			'input_attrs' => array(
+				'min' => 1,
+				'max' => 100,
+			),
+		)
+	);
+	/**
+	 * 表示する広告の最大数
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_advertisement_infeed_pc_limit',
+			'default'     => 3,
+			'label'       => '表示する広告の最大数(PC)',
 			'input_attrs' => array(
 				'min' => 1,
 				'max' => 100,
@@ -198,7 +211,20 @@ function ys_customizer_advertisement_add_infeed( $wp_customize ) {
 			'id'          => 'ys_advertisement_infeed_sp_step',
 			'default'     => 3,
 			'label'       => '広告を表示する間隔(SP)',
-			'section'     => 'ys_customizer_section_infeed',
+			'input_attrs' => array(
+				'min' => 1,
+				'max' => 100,
+			),
+		)
+	);
+	/**
+	 * 表示する広告の最大数
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_advertisement_infeed_sp_limit',
+			'default'     => 3,
+			'label'       => '表示する広告の最大数(SP)',
 			'input_attrs' => array(
 				'min' => 1,
 				'max' => 100,

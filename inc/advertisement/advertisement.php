@@ -12,6 +12,7 @@ if ( ! function_exists( 'ys_get_ad_block_html' ) ) {
 	 * 広告コードのhtml整形
 	 *
 	 * @param string $ad 広告.
+	 *
 	 * @return string
 	 */
 	function ys_get_ad_block_html( $ad ) {
@@ -29,6 +30,7 @@ if ( ! function_exists( 'ys_get_ad_block_html' ) ) {
 				$ad
 			);
 		}
+
 		return apply_filters( 'ys_get_ad_block_html', $html );
 	}
 }
@@ -47,6 +49,7 @@ if ( ! function_exists( 'ys_get_ad_entry_header' ) ) {
 		}
 		$ad = '';
 		$ad = ys_get_option( $key );
+
 		return apply_filters( 'ys_get_ad_entry_header', ys_get_ad_block_html( $ad ) );
 	}
 }
@@ -73,6 +76,7 @@ if ( ! function_exists( 'ys_get_ad_more_tag' ) ) {
 		}
 		$ad = '';
 		$ad = ys_get_option( $key );
+
 		return apply_filters( 'ys_get_ad_more_tag', ys_get_ad_block_html( $ad ) );
 	}
 }
@@ -126,6 +130,7 @@ if ( ! function_exists( 'ys_get_ad_entry_footer' ) ) {
 				$ad = $ad_left;
 			}
 		}
+
 		return apply_filters( 'ys_get_ad_entry_footer', ys_get_ad_block_html( $ad ) );
 	}
 }
@@ -149,29 +154,35 @@ function ys_get_ad_infeed() {
 		$ad = ys_get_option( 'ys_advertisement_infeed_pc' );
 	}
 	$ad = ys_fix_ad_previw_error( $ad );
+
 	return apply_filters( 'ys_get_ad_infeed', $ad );
 }
+
 /**
  * インフィード広告の表示
  */
 function ys_the_ad_infeed() {
 	echo ys_get_ad_infeed();
 }
+
 /**
  * インフィード広告の表示
  *
  * @param integer $num 記事番号.
- * @param string  $template テンプレート名.
+ * @param string $template テンプレート名.
  */
 function ys_get_template_ad_infeed( $num, $template ) {
-	$step = 3;
 	if ( ys_is_mobile() ) {
-		$step = ys_get_option( 'ys_advertisement_infeed_sp_step' );
+		$step  = ys_get_option( 'ys_advertisement_infeed_sp_step' );
+		$limit = ys_get_option( 'ys_advertisement_infeed_sp_limit' );
 	} else {
-		$step = ys_get_option( 'ys_advertisement_infeed_pc_step' );
+		$step  = ys_get_option( 'ys_advertisement_infeed_pc_step' );
+		$limit = ys_get_option( 'ys_advertisement_infeed_pc_limit' );
 	}
-	if ( 0 == ( $num % $step ) && '' !== ys_get_ad_infeed() ) {
-		get_template_part( 'template-parts/advertisement/infeed', $template );
+	if ( 0 == ( $num % $step ) && $limit >= ( $num / $step ) ) {
+		if ( '' !== ys_get_ad_infeed() ) {
+			get_template_part( 'template-parts/advertisement/infeed', $template );
+		}
 	}
 }
 
@@ -201,5 +212,6 @@ function ys_fix_ad_previw_error( $ad ) {
 			true
 		);
 	}
+
 	return apply_filters( 'ys_fix_ad_infeed_error', $ad );
 }
