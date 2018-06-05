@@ -11,10 +11,10 @@
  * 記事ランキング
  *
  * @param array $args パラメーター.
+ *
  * @return string
  */
 function ys_shortcode_post_ranking( $args ) {
-	$html = '';
 	$args = shortcode_atts(
 		array(
 			'id'             => '',
@@ -25,25 +25,18 @@ function ys_shortcode_post_ranking( $args ) {
 			'thumbnail_size' => 'thumbnail',
 			'period'         => 'all',
 			'filter'         => 'cat',
+			'template'       => '',
 		),
 		$args
 	);
 	/**
 	 * 変数
 	 */
-	$id         = '';
-	$class      = '';
-	$title      = $args['title'];
-	$period     = $args['period'];
-	$post_count = $args['post_count'];
-	if ( '' !== $args['id'] ) {
-		$id = sprintf( ' id="%s"', $args['id'] );
-	}
-	if ( '' !== $args['class'] ) {
-		$class = sprintf( ' class="%s"', $args['class'] );
-	}
+	$title          = $args['title'];
+	$period         = $args['period'];
+	$post_count     = $args['post_count'];
 	$thumbnail_size = $args['thumbnail_size'];
-	if ( ! $args['show_img'] ) {
+	if ( ! $args['show_img'] || 'false' === $args['show_img'] ) {
 		$thumbnail_size = '';
 	}
 	/**
@@ -95,7 +88,12 @@ function ys_shortcode_post_ranking( $args ) {
 	 * 投稿データ取得
 	 */
 	$ys_post_list = new YS_Post_List( $args['id'], $args['class'], $thumbnail_size, $query );
-	$html         = $ys_post_list->get_post_list( array() );
+	if ( '' !== $args['template'] ) {
+		$ys_post_list->set_template( $args['template'] );
+	}
+	$html = $ys_post_list->get_post_list( array() );
+
 	return apply_filters( 'ys_shortcode_post_ranking', $html, $args['id'] );
 }
+
 add_shortcode( 'ys_post_ranking', 'ys_shortcode_post_ranking' );
