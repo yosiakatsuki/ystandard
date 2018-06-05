@@ -48,11 +48,18 @@ class YS_Post_List {
 	 */
 	private $args_default = array();
 	/**
+	 * カスタムテンプレートのパス(get_template_partで指定するパス)
+	 *
+	 * @var string
+	 */
+	private $template_li = '';
+
+	/**
 	 * コンストラクタ
 	 *
-	 * @param string   $id ID.
-	 * @param string   $class class.
-	 * @param string   $thumbnail_size サムネイルサイズ.
+	 * @param string $id ID.
+	 * @param string $class class.
+	 * @param string $thumbnail_size サムネイルサイズ.
 	 * @param WP_Query $query クエリ.
 	 */
 	public function __construct( $id = '', $class = '', $thumbnail_size = '', $query = null ) {
@@ -69,6 +76,7 @@ class YS_Post_List {
 			'post_status'    => 'publish',
 		);
 	}
+
 	/**
 	 * IDのセット
 	 *
@@ -77,6 +85,7 @@ class YS_Post_List {
 	public function set_id( $id ) {
 		$this->id = $id;
 	}
+
 	/**
 	 * クエリのセット
 	 *
@@ -85,28 +94,45 @@ class YS_Post_List {
 	public function set_query( $query ) {
 		$this->query = $query;
 	}
+
 	/**
 	 * サムネイルサイズのセット
 	 *
 	 * @param string $thumbnail_size サムネイルのサイズ.
+	 *
 	 * @return void
 	 */
 	public function set_thumbnail_size( $thumbnail_size ) {
 		$this->thumbnail_size = $thumbnail_size;
 	}
+
 	/**
 	 * 結果なしの時の文言をセット
 	 *
 	 * @param string $no_result_info 結果なしの時の文言.
+	 *
 	 * @return void
 	 */
 	public function set_no_result_info( $no_result_info ) {
 		$this->no_result_info = $no_result_info;
 	}
+
+	/**
+	 * テンプレートパスのセット
+	 *
+	 * @param string $template カスタムテンプレートのパス.
+	 *
+	 * @return void
+	 */
+	public function set_template( $template ) {
+		$this->template_li = $template;
+	}
+
 	/**
 	 * 投稿一覧作成
 	 *
 	 * @param array $args パラメーター.
+	 *
 	 * @return string
 	 */
 	public function get_post_list( $args = array() ) {
@@ -127,36 +153,48 @@ class YS_Post_List {
 		$html = '';
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			/**
-			 * 画像取得
-			 */
-			$image      = '';
 			$image_type = 'ys-post-list--no-img';
-			if ( '' !== $this->thumbnail_size ) {
-				$image      = $this->get_thumbnail( $this->thumbnail_size );
-				$image_type = 'ys-post-list--' . $this->thumbnail_size;
-			}
 			/**
-			 * 投稿部分のHTML作成
+			 * テンプレート取得
 			 */
-			$html_post = sprintf(
-				'<li class="ys-post-list__item"><a class="image-mask__wrap clearfix" href="%s">%s<span class="ys-post-list__title">%s</span></a></li>',
-				get_the_permalink(),
-				$image,
-				get_the_title()
-			);
+			if ( '' === $this->template_li ) {
+				/**
+				 * 画像取得
+				 */
+				$image = '';
+				if ( '' !== $this->thumbnail_size ) {
+					$image      = $this->get_thumbnail( $this->thumbnail_size );
+					$image_type = 'ys-post-list--' . $this->thumbnail_size;
+				}
+				/**
+				 * 投稿部分のHTML作成
+				 */
+				$html_post = sprintf(
+					'<li class="ys-post-list__item"><a class="image-mask__wrap clearfix" href="%s">%s<span class="ys-post-list__title">%s</span></a></li>',
+					get_the_permalink(),
+					$image,
+					get_the_title()
+				);
+			} else {
+				ob_start();
+				get_template_part( $this->template_li );
+				$html_post = ob_get_clean();
+			}
 			/**
 			 * 結合
 			 */
 			$html .= apply_filters( 'ys_post_list_item', $html_post, $this->id, get_the_ID() );
 		}
 		wp_reset_postdata();
+
 		return $this->get_wrap( sprintf( '<ul class="ys-post-list__items %s">%s</ul>', $image_type, $html ) );
 	}
+
 	/**
 	 * ラッパーで囲む
 	 *
 	 * @param string $html 内包するhtml.
+	 *
 	 * @return string
 	 */
 	private function get_wrap( $html ) {
@@ -168,6 +206,7 @@ class YS_Post_List {
 		if ( '' !== $this->class ) {
 			$class = ' class="ys-post-list ' . $this->class . '" ';
 		}
+
 		return sprintf(
 			apply_filters( 'ys_post_list_warp', '<div%s%s>%s</div>' ),
 			$id,
@@ -175,19 +214,21 @@ class YS_Post_List {
 			$html
 		);
 	}
+
 	/**
 	 * 画像タグ作成
 	 *
-	 * @param string $thmbnail_size サムネイルタイプ.
+	 * @param string $thumbnail_size サムネイルタイプ.
+	 *
 	 * @return string
 	 */
-	private function get_thumbnail( $thmbnail_size ) {
+	private function get_thumbnail( $thumbnail_size ) {
 		if ( has_post_thumbnail() ) {
-			$thmbnail_size = apply_filters( 'ys_post_list_thmbnail_size', $thmbnail_size, $this->id );
+			$thumbnail_size = apply_filters( 'ys_post_list_thumbnail_size', $thumbnail_size, $this->id );
 			/**
 			 * 画像取得
 			 */
-			$image = get_the_post_thumbnail( get_the_ID(), $thmbnail_size );
+			$image = get_the_post_thumbnail( get_the_ID(), $thumbnail_size );
 			$image = apply_filters( 'ys_post_list_image', $image, get_the_ID() );
 			$image = sprintf(
 				'<figure class="ratio__image">%s</figure>',
@@ -203,7 +244,7 @@ class YS_Post_List {
 		 * 画像表示比率
 		 */
 		$size = '16-9';
-		if ( 'thumbnail' === $thmbnail_size ) {
+		if ( 'thumbnail' === $thumbnail_size ) {
 			$size = '1-1';
 		}
 		$read_more = sprintf(
@@ -216,6 +257,7 @@ class YS_Post_List {
 			$image,
 			$read_more
 		);
+
 		return $image;
 	}
 }

@@ -11,38 +11,29 @@
  * タクソノミー指定の記事一覧
  *
  * @param array $args パラメーター.
+ *
  * @return string
  */
 function ys_shortcode_tax_posts( $args ) {
-	$html = '';
 	$args = shortcode_atts(
 		array(
 			'id'             => '',
 			'class'          => '',
-			'title'          => '',
 			'taxonomy'       => '',
 			'term_slug'      => '',
 			'post_count'     => 5,
 			'show_img'       => true,
 			'thumbnail_size' => 'thumbnail',
+			'template'       => '',
 		),
 		$args
 	);
 	/**
 	 * 変数
 	 */
-	$id         = '';
-	$class      = '';
-	$title      = $args['title'];
-	$post_count = $args['post_count'];
-	if ( '' !== $args['id'] ) {
-		$id = sprintf( ' id="%s"', $args['id'] );
-	}
-	if ( '' !== $args['class'] ) {
-		$class = sprintf( ' class="%s"', $args['class'] );
-	}
+	$post_count     = $args['post_count'];
 	$thumbnail_size = $args['thumbnail_size'];
-	if ( ! $args['show_img'] ) {
+	if ( ! $args['show_img'] || 'false' === $args['show_img'] ) {
 		$thumbnail_size = '';
 	}
 	/**
@@ -72,7 +63,11 @@ function ys_shortcode_tax_posts( $args ) {
 	 * 投稿データ取得
 	 */
 	$ys_post_list = new YS_Post_List( $args['id'], $args['class'], $thumbnail_size );
-	$html         = $ys_post_list->get_post_list( $post_args );
+	if ( '' !== $args['template'] ) {
+		$ys_post_list->set_template( $args['template'] );
+	}
+	$html = $ys_post_list->get_post_list( $post_args );
 	return apply_filters( 'ys_shortcode_tax_posts', $html, $args['id'] );
 }
+
 add_shortcode( 'ys_tax_posts', 'ys_shortcode_tax_posts' );
