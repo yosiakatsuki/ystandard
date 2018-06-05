@@ -10,7 +10,7 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header entry__header">
-        <?php do_action( 'ys_before_entry_title' ); ?>
+		<?php do_action( 'ys_before_entry_title' ); ?>
 		<div class="entry__header--one-col section--full flex flex--a-end">
 			<?php
 			the_title( '<h1 class="entry-title entry__title entry__title--one-col">', '</h1>' );

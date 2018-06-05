@@ -3,7 +3,7 @@
  * 記事一覧作成クラス
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -57,10 +57,10 @@ class YS_Post_List {
 	/**
 	 * コンストラクタ
 	 *
-	 * @param string $id ID.
-	 * @param string $class class.
-	 * @param string $thumbnail_size サムネイルサイズ.
-	 * @param WP_Query $query クエリ.
+	 * @param string   $id             ID.
+	 * @param string   $class          class.
+	 * @param string   $thumbnail_size サムネイルサイズ.
+	 * @param WP_Query $query          クエリ.
 	 */
 	public function __construct( $id = '', $class = '', $thumbnail_size = '', $query = null ) {
 		$this->id             = $id;

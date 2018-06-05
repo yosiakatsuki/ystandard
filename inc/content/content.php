@@ -3,7 +3,7 @@
  * コンテンツ周りの処理
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -124,8 +124,8 @@ if ( ! function_exists( 'ys_get_the_custom_excerpt' ) ) {
 	/**
 	 * 投稿抜粋文を作成
 	 *
-	 * @param  string $sep 抜粋最後の文字.
-	 * @param  integer $length 抜粋長さ.
+	 * @param  string  $sep     抜粋最後の文字.
+	 * @param  integer $length  抜粋長さ.
 	 * @param  integer $post_id 投稿ID.
 	 *
 	 * @return string
@@ -167,8 +167,8 @@ if ( ! function_exists( 'ys_the_custom_excerpt' ) ) {
 	/**
 	 * 投稿抜粋文を出力
 	 *
-	 * @param  string $sep 抜粋最後の文字.
-	 * @param  integer $length 抜粋長さ.
+	 * @param  string  $sep     抜粋最後の文字.
+	 * @param  integer $length  抜粋長さ.
 	 * @param  integer $post_id 投稿ID.
 	 */
 	function ys_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
