@@ -776,6 +776,7 @@ input[type="button"] {
 	justify-content: space-between;
 	height: 100%;
 	color: #222;
+	background-color: #fff;
 	text-decoration: none;
 	-webkit-box-shadow: 0 1px 3px rgba(189, 195, 199, 0.7);
 	box-shadow: 0 1px 3px rgba(189, 195, 199, 0.7);
@@ -1126,10 +1127,6 @@ input[type="button"]:hover {
 	margin: 0;
 }
 
-.header--center {
-	text-align: center;
-}
-
 .header--center .header__title {
 	text-align: center;
 	padding-left: 20px;
@@ -1204,7 +1201,7 @@ input[type="button"]:hover {
 	display: block;
 	width: 20px;
 	height: 2px;
-	background-color: #222;
+	background-color: #292b2c;
 	-webkit-transform: rotate(0deg);
 	transform: rotate(0deg);
 	-webkit-transition: -webkit-transform 0.3s;
@@ -2204,6 +2201,7 @@ figcaption {
 
 .entry-list--list .entry-list {
 	padding: 30px 0;
+	background-color: #fff;
 }
 
 .entry-list--card .content__main {
@@ -2449,6 +2447,10 @@ div.aligncenter {
 .one-col .entry__title {
 	font-size: 1.2em;
 	margin-bottom: .5em;
+}
+
+.one-col.front-page--cunstom .site__content {
+	margin: 0;
 }
 
 .one-col--singular .breadcrumbs__list,
@@ -2802,6 +2804,10 @@ div.aligncenter {
 	justify-content: space-between;
 }
 
+.header--center {
+	text-align: center;
+}
+
 .header--center .global-nav__menu {
 	-ms-flex-pack: distribute;
 	justify-content: space-around;
@@ -2932,12 +2938,6 @@ div.aligncenter {
 
 .one-col .entry__title {
 	font-size: 1.4em;
-}
-
-.one-col--singular .breadcrumbs__list,
-.one-col--singular .content__main {
-	padding-left: 30px;
-	padding-right: 30px;
 }
 
 .entry__header--one-col {

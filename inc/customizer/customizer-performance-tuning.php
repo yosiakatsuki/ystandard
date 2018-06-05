@@ -130,15 +130,27 @@ function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) 
 		'id'    => 'ys_optimize_load_js_label',
 		'label' => 'JavaScriptの読み込みを非同期化する',
 	) );
-	/**
-	 * JavaScriptの読み込みを非同期化する
-	 */
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_option_optimize_load_js',
 			'default'     => 0,
 			'label'       => 'JavaScriptの読み込みを非同期化する',
 			'description' => 'この設定をONにすると、jQuery以外のJavaScriptの読み込みを非同期化します（scriptタグにasyncとdefer属性を追加します）',
+		)
+	);
+	/**
+	 * [jQueryをフッターで読み込む]
+	 */
+	$ys_customizer->add_label( array(
+		'id'    => 'ys_load_jquery_in_footer_label',
+		'label' => 'jQueryをフッターで読み込む',
+	) );
+	$ys_customizer->add_checkbox(
+		array(
+			'id'          => 'ys_load_jquery_in_footer',
+			'default'     => 0,
+			'label'       => 'jQueryをフッターで読み込む',
+			'description' => '※この設定を有効にすると利用しているプラグインの動作が不安定になる恐れがあります。<br>プラグインの機能が正常に動作しなくなる場合は設定を無効化してください。',
 		)
 	);
 	/**
@@ -154,15 +166,12 @@ function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) 
 		)
 	);
 	/**
-	 * ラベル : jQueryを無効化する
+	 * [jQueryを無効化する]
 	 */
 	$ys_customizer->add_label( array(
 		'id'    => 'ys_not_load_jquery_label',
 		'label' => 'jQueryを無効化する',
 	) );
-	/**
-	 *  JQueryを読み込まない
-	 */
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_not_load_jquery',

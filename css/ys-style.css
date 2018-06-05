@@ -387,6 +387,14 @@
 	zoom: 1;
 }
 
+.ys-box:first-child {
+	margin-top: 0;
+}
+
+.ys-box:last-child {
+	margin-bottom: 0;
+}
+
 .ys-box-img {
 	width: 75px;
 	height: auto;

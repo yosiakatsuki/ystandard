@@ -66,8 +66,8 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 		'panel'    => 'ys_customizer_panel_amp',
 	) );
 	/**
-	* AMP機能を有効化する
-	*/
+	 * AMP機能を有効化する
+	 */
 	$ys_customizer->add_label( array(
 		'id'          => 'ys_amp_enable_label',
 		'label'       => 'AMP機能を有効化',
@@ -77,7 +77,6 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 		array(
 			'id'          => 'ys_amp_enable',
 			'default'     => 0,
-			'transport'   => 'postMessage',
 			'label'       => 'AMP機能を有効化する',
 			'description' => '※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。',
 		)
@@ -117,6 +116,7 @@ function ys_customizer_amp_add_amp_options( $wp_customize ) {
 		)
 	);
 }
+
 /**
  * AMP広告設定
  *
@@ -135,14 +135,37 @@ function ys_customizer_amp_add_amp_ads( $wp_customize ) {
 		'active_callback' => 'ys_customizer_active_callback_amp_options',
 	) );
 	/**
+	 * 記事タイトル上
+	 */
+	$ys_customizer->add_textarea(
+		array(
+			'id'        => 'ys_amp_advertisement_before_title',
+			'default'   => '',
+			'transport' => 'postMessage',
+			'label'     => '記事タイトル上',
+		)
+	);
+	/**
 	 * 記事タイトル下
 	 */
 	$ys_customizer->add_textarea(
 		array(
-			'id'        => 'ys_amp_advertisement_under_title',
+			'id'        => 'ys_amp_advertisement_after_title',
 			'default'   => '',
 			'transport' => 'postMessage',
 			'label'     => '記事タイトル下',
+		)
+	);
+	/**
+	 * 記事本文上
+	 * 旧ys_amp_advertisement_under_title
+	 */
+	$ys_customizer->add_textarea(
+		array(
+			'id'        => 'ys_amp_advertisement_before_content',
+			'default'   => '',
+			'transport' => 'postMessage',
+			'label'     => '記事本文上',
 		)
 	);
 	/**
@@ -180,11 +203,12 @@ function ys_customizer_amp_add_template( $wp_customize ) {
 	 * セクション追加
 	 */
 	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_amp_template',
-		'title'       => 'AMPテンプレート設定',
-		'priority'    => 1,
-		'description' => 'AMPテンプレートの設定',
-		'panel'       => 'ys_customizer_panel_amp',
+		'section'         => 'ys_customizer_section_amp_template',
+		'title'           => 'AMPテンプレート設定',
+		'priority'        => 1,
+		'description'     => 'AMPテンプレートの設定',
+		'panel'           => 'ys_customizer_panel_amp',
+		'active_callback' => 'ys_customizer_active_callback_amp_options',
 	) );
 	/**
 	 * ヘッダータイプ
@@ -195,7 +219,7 @@ function ys_customizer_amp_add_template( $wp_customize ) {
 	$img        = '<img src="%s" alt="" width="100" height="100" />';
 	$ys_customizer->add_image_label_radio(
 		array(
-			'id'          => 'ys_amp_tumbnail_type',
+			'id'          => 'ys_amp_thumbnail_type',
 			'default'     => 'full',
 			'transport'   => 'postMessage',
 			'label'       => 'アイキャッチ画像表示タイプ',

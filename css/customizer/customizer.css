@@ -51,8 +51,7 @@
 	border-color: #2980B9;
 }
 
-#customize-control-ys_design_header_type .customizeer__image-label-radio-list,
-#customize-control-ys_archive_type .customizeer__image-label-radio-list {
+.customizeer__image-label-radio-list {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -60,8 +59,7 @@
 	margin-right: -5px;
 }
 
-#customize-control-ys_design_header_type .customize-inside-control-row,
-#customize-control-ys_archive_type .customize-inside-control-row {
+.customizeer__image-label-radio-list .customize-inside-control-row {
 	padding: 0 5px;
 }
 

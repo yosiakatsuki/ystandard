@@ -11,7 +11,10 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header entry__header">
 		<?php
+		do_action( 'ys_before_entry_title' );
 		the_title( '<h1 class="entry-title entry__title">', '</h1>' );
+		do_action( 'ys_after_entry_title' );
+
 		if ( ys_is_active_post_thumbnail() ) :
 		?>
 		<figure class="post-thumbnail entry__thumbnail">

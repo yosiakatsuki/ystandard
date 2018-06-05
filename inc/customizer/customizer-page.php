@@ -41,12 +41,32 @@ function ys_customizer_active_callback_page() {
 }
 
 /**
- * 投稿ページ設定
+ * 固定ページ設定
  *
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_page_add_settings( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
+	/**
+	 * 表示カラム数
+	 */
+	$assets_url = ys_get_template_customizer_assets_img_dir_uri();
+	$col1       = $assets_url . '/design/column-type/col-1.png';
+	$col2       = $assets_url . '/design/column-type/col-2.png';
+	$img        = '<img src="%s" alt="" width="100" height="100" />';
+	$ys_customizer->add_image_label_radio(
+		array(
+			'id'          => 'ys_page_layout',
+			'default'     => '2col',
+			'label'       => 'レイアウト',
+			'description' => '固定ページの表示レイアウト<br>※デフォルトテンプレートの表示レイアウト',
+			'section'     => 'ys_customizer_section_page',
+			'choices'     => array(
+				'2col' => sprintf( $img, $col2 ),
+				'1col' => sprintf( $img, $col1 ),
+			),
+		)
+	);
 	/**
 	* アイキャッチ画像を表示する
 	*/

@@ -48,6 +48,26 @@ function ys_customizer_active_callback_archive() {
 function ys_customizer_archive_add_settings( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
+	 * 表示カラム数
+	 */
+	$assets_url = ys_get_template_customizer_assets_img_dir_uri();
+	$col1       = $assets_url . '/design/column-type/col-1.png';
+	$col2       = $assets_url . '/design/column-type/col-2.png';
+	$img        = '<img src="%s" alt="" width="100" height="100" />';
+	$ys_customizer->add_image_label_radio(
+		array(
+			'id'          => 'ys_archive_layout',
+			'default'     => '2col',
+			'label'       => 'レイアウト',
+			'description' => 'アーカイブページの表示レイアウト',
+			'section'     => 'ys_customizer_section_archive',
+			'choices'     => array(
+				'2col' => sprintf( $img, $col2 ),
+				'1col' => sprintf( $img, $col1 ),
+			),
+		)
+	);
+	/**
 	 * 一覧タイプ
 	 */
 	$assets_url = ys_get_template_customizer_assets_img_dir_uri();

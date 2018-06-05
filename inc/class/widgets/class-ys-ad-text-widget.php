@@ -37,12 +37,7 @@ class YS_AD_Text_Widget extends WP_Widget {
 			return;
 		}
 		$text = apply_filters( 'ys_advertisement_content', $text );
-		$html = '';
-		if ( ! is_404() && ! ( is_search() && 0 == $wp_query->found_posts ) && ys_is_active_advertisement() ) {
-			$html .= '<div class="widget ys-ad-widget">';
-			$html .= $text;
-			$html .= '</div>';
-		}
+		$html = do_shortcode( '[ys_ad_block class="widget ys-ad-widget"]' . $text . '[/ys_ad_block]' );
 		$html = apply_filters( 'ys_ad_text_widget_text', $html, $instance, $this );
 		echo $html;
 	}

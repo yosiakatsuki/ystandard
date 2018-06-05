@@ -35,7 +35,7 @@ if ( ! function_exists( 'ys_the_json_ld' ) ) {
 		}
 		$json = json_encode( $json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
 		if ( '' !== $json ) {
-			echo '<script type="application/ld+json">' . $json . '</script>';
+			echo '<script type="application/ld+json">' . $json . '</script>' . PHP_EOL;
 		}
 	}
 }

@@ -4,38 +4,60 @@
 //背景色ありに対応させる
 //*********************
 
-.content__wrap {
-  margin-left: get_margin(-1);
-  margin-right: get_margin(-1);
+.content__main {
+  padding: get_margin();
 }
-.archive__header-author {
-  margin-top: get_margin(-1);
+.archive__main {
+  background-color: unset;
+  padding: 0;
 }
-.content__main,
-.entry-list--card .content__main {
-  padding: get_margin() get_margin();
+.archive__title {
+  padding: get_margin();
+  background-color: #fff;
 }
 .sidebar {
+  padding: 0;
+}
+.widget {
   padding: get_margin();
+  background-color: #fff;
+}
+.pagination {
+  padding: get_margin();
+  background-color: #fff;
+}
+.entry-list--list {
+  .entry-list {
+    padding-right: get_margin();
+    padding-left: get_margin();
+    margin-bottom: get_margin();
+  }
 }
 @include media-breakpoint(pc) {
   .content__wrap {
     margin-left: 0;
     margin-right: 0;
   }
-  .archive__header-author {
-    margin-left: get_margin(-1);
-    margin-right: get_margin(-1);
+  .widget,
+  .sidebar__widget+.sidebar__fixed {
+    margin-top: 30px;
+  }
+  .sidebar__widget+.sidebar__fixed {
+    top:30px;
+  }
+  .entry-list--list {
+    .entry-list {
+      padding-right: get_margin(2);
+      padding-left: get_margin(2);
+      margin: get_margin(2) 0;
+    }
   }
 }
 @include media-breakpoint(lg) {
-  .content__wrap,
-  .archive__header-author {
-    margin-left: get_margin(-2);
-    margin-right: get_margin(-2);
+  .content__main {
+    padding: get_margin(2);
   }
-  .content__main,
-  .entry-list--card .content__main  {
-    padding: get_margin() get_margin(2);
+  .archive__main {
+    padding: 0;
   }
 }

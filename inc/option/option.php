@@ -64,6 +64,8 @@ function ys_get_options() {
 	/**
 	 * [ys]投稿ページ設定
 	 */
+	// 表示レウアウト.
+	$result['ys_post_layout'] = get_option( 'ys_post_layout', '2col' );
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_post_thumbnail'] = get_option( 'ys_show_post_thumbnail', 1 );
 	// カテゴリー・タグ情報を表示する.
@@ -79,6 +81,8 @@ function ys_get_options() {
 	/**
 	 * [ys]固定ページ設定
 	 */
+	// 表示レウアウト.
+	$result['ys_page_layout'] = get_option( 'ys_page_layout', '2col' );
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_page_thumbnail'] = get_option( 'ys_show_page_thumbnail', 1 );
 	// ブログフォローボックスを表示する.
@@ -88,6 +92,8 @@ function ys_get_options() {
 	/**
 	 * [ys]アーカイブページ設定
 	 */
+	// 表示レウアウト.
+	$result['ys_archive_layout'] = get_option( 'ys_archive_layout', '2col' );
 	// 一覧表示タイプ.
 	$result['ys_archive_type'] = get_option( 'ys_archive_type', 'list' );
 	// 著者情報を表示する.
@@ -96,7 +102,26 @@ function ys_get_options() {
 	 * [ys]ワンカラムテンプレート設定設定
 	 */
 	// アイキャッチ画像表示タイプ.
-	$result['ys_design_one_col_tumbnail_type'] = get_option( 'ys_design_one_col_tumbnail_type', 'full' );
+	/**
+	 * Typo吸収
+	 * TODO: 設定変更の削除 v2.5.0くらいで
+	 */
+	ys_change_option_key(
+		'ys_design_one_col_tumbnail_type',
+		'full',
+		'ys_design_one_col_thumbnail_type',
+		'full'
+	);
+	$result['ys_design_one_col_thumbnail_type'] = get_option( 'ys_design_one_col_thumbnail_type', 'full' );
+	/**
+	 * **********
+	 * [ys]フロントページ設定
+	 * **********
+	 */
+	// 表示レイアウト.
+	$result['ys_front_page_layout'] = get_option( 'ys_front_page_layout', '2col' );
+	// フロントページ作成タイプ.
+	$result['ys_front_page_type'] = get_option( 'ys_front_page_type', 'normal' );
 	/**
 	 * **********
 	 * [ys]SNS設定
@@ -225,9 +250,9 @@ function ys_get_options() {
 	/**
 	 * Google Analytics
 	 */
-	// Google Aanalytics トラッキングID.
+	// Google Analytics トラッキングID.
 	$result['ys_ga_tracking_id'] = esc_attr( get_option( 'ys_ga_tracking_id', '' ) );
-	// Google Aanalytics トラッキングコードタイプ.
+	// Google Analytics トラッキングコードタイプ.
 	$result['ys_ga_tracking_type'] = esc_attr( get_option( 'ys_ga_tracking_type', 'gtag' ) );
 	// ログイン中はアクセス数をカウントしない.
 	$result['ys_ga_exclude_logged_in_user'] = get_option( 'ys_ga_exclude_logged_in_user', 0 );
@@ -260,6 +285,8 @@ function ys_get_options() {
 	 */
 	// JavaScriptの読み込みを非同期化する.
 	$result['ys_option_optimize_load_js'] = get_option( 'ys_option_optimize_load_js', 0 );
+	// jQueryをフッターで読み込む.
+	$result['ys_load_jquery_in_footer'] = get_option( 'ys_load_jquery_in_footer', 0 );
 	// CDNにホストされているjQueryを読み込む（URLを設定）.
 	$result['ys_load_cdn_jquery_url'] = esc_url( get_option( 'ys_load_cdn_jquery_url', '' ) );
 	// jQueryを読み込まない.
@@ -269,20 +296,61 @@ function ys_get_options() {
 	 * [ys]広告設定
 	 * **********
 	 */
+	// 広告　タイトル上.
+	$result['ys_advertisement_before_title'] = get_option( 'ys_advertisement_before_title', '' );
 	// 広告　タイトル下.
-	$result['ys_advertisement_under_title'] = get_option( 'ys_advertisement_under_title', '' );
+	$result['ys_advertisement_after_title'] = get_option( 'ys_advertisement_after_title', '' );
+	/**
+	 * 記事本文上（旧 タイトル下）
+	 * TODO: ys_advertisement_under_title の削除 v2.5.0くらいで
+	 */
+	/**
+	 * 設定変換処理
+	 */
+	ys_change_option_key(
+		'ys_advertisement_under_title',
+		'',
+		'ys_advertisement_before_content',
+		''
+	);
+	$result['ys_advertisement_before_content'] = get_option( 'ys_advertisement_before_content', '' );
 	// 広告　moreタグ置換.
 	$result['ys_advertisement_replace_more'] = get_option( 'ys_advertisement_replace_more', '' );
 	// 広告　記事下　左.
 	$result['ys_advertisement_under_content_left'] = get_option( 'ys_advertisement_under_content_left', '' );
 	// 広告　記事下　右.
 	$result['ys_advertisement_under_content_right'] = get_option( 'ys_advertisement_under_content_right', '' );
+	// 広告　タイトル上 SP.
+	$result['ys_advertisement_before_title_sp'] = get_option( 'ys_advertisement_before_title_sp', '' );
 	// 広告　タイトル下 SP.
-	$result['ys_advertisement_under_title_sp'] = get_option( 'ys_advertisement_under_title_sp', '' );
+	$result['ys_advertisement_after_title_sp'] = get_option( 'ys_advertisement_after_title_sp', '' );
+	/**
+	 * 記事本文上 SP（旧 タイトル下 SP）
+	 * TODO: ys_advertisement_under_title_sp の削除 v2.5.0くらいで
+	 */
+	ys_change_option_key(
+		'ys_advertisement_under_title_sp',
+		'',
+		'ys_advertisement_before_content_sp',
+		''
+	);
+	$result['ys_advertisement_before_content_sp'] = get_option( 'ys_advertisement_before_content_sp', '' );
 	// 広告　moreタグ置換 SP.
 	$result['ys_advertisement_replace_more_sp'] = get_option( 'ys_advertisement_replace_more_sp', '' );
 	// 広告　記事下 SP.
 	$result['ys_advertisement_under_content_sp'] = get_option( 'ys_advertisement_under_content_sp', '' );
+	// インフィード広告 PC.
+	$result['ys_advertisement_infeed_pc'] = get_option( 'ys_advertisement_infeed_pc', '' );
+	// インフィード広告 広告を表示する間隔 PC.
+	$result['ys_advertisement_infeed_pc_step'] = get_option( 'ys_advertisement_infeed_pc_step', 3 );
+	// インフィード広告 表示する広告の最大数 PC.
+	$result['ys_advertisement_infeed_pc_limit'] = get_option( 'ys_advertisement_infeed_pc_limit', 3 );
+	// インフィード広告 SP.
+	$result['ys_advertisement_infeed_sp'] = get_option( 'ys_advertisement_infeed_sp', '' );
+	// インフィード広告 広告を表示する間隔 SP.
+	$result['ys_advertisement_infeed_sp_step'] = get_option( 'ys_advertisement_infeed_sp_step', 3 );
+	// インフィード広告 表示する広告の最大数 SP.
+	$result['ys_advertisement_infeed_sp_limit'] = get_option( 'ys_advertisement_infeed_sp_limit', 3 );
 	/**
 	 * **********
 	 * [ys]AMP設定
@@ -292,14 +360,37 @@ function ys_get_options() {
 	$result['ys_amp_enable'] = get_option( 'ys_amp_enable', 0 );
 	// AMPのGoogle Analyticsトラッキングコード.
 	$result['ys_ga_tracking_id_amp'] = esc_attr( get_option( 'ys_ga_tracking_id_amp', '' ) );
-	// 広告　タイトル下.
-	$result['ys_amp_advertisement_under_title'] = get_option( 'ys_amp_advertisement_under_title', '' );
-	// moreタグ置換.
+	// 広告　タイトル上 SP.
+	$result['ys_amp_advertisement_before_title'] = get_option( 'ys_amp_advertisement_before_title', '' );
+	// 広告　タイトル下 SP.
+	$result['ys_amp_advertisement_after_title'] = get_option( 'ys_amp_advertisement_after_title', '' );
+	/**
+	 * 広告　記事本文上 SP（旧 タイトル下）
+	 * TODO: ys_amp_advertisement_under_title の削除 v2.5.0くらいで
+	 */
+	ys_change_option_key(
+		'ys_amp_advertisement_under_title',
+		'',
+		'ys_amp_advertisement_before_content',
+		''
+	);
+	$result['ys_amp_advertisement_before_content'] = get_option( 'ys_amp_advertisement_before_content', '' );
+	// 広告　moreタグ置換.
 	$result['ys_amp_advertisement_replace_more'] = get_option( 'ys_amp_advertisement_replace_more', '' );
-	// 記事下　左.
+	// 広告　記事下.
 	$result['ys_amp_advertisement_under_content'] = get_option( 'ys_amp_advertisement_under_content', '' );
 	// アイキャッチ画像表示タイプ.
-	$result['ys_amp_tumbnail_type'] = get_option( 'ys_amp_tumbnail_type', 'full' );
+	/**
+	 * Typo吸収
+	 * TODO: 設定変更の削除 v2.5.0くらいで
+	 */
+	ys_change_option_key(
+		'ys_amp_tumbnail_type',
+		'full',
+		'ys_amp_thumbnail_type',
+		'full'
+	);
+	$result['ys_amp_thumbnail_type'] = get_option( 'ys_amp_thumbnail_type', 'full' );
 
 	return apply_filters( 'ys_get_options', $result );
 }
@@ -308,10 +399,16 @@ function ys_get_options() {
  * 設定取得
  *
  * @param string $name option key.
+ * @return mixed
  */
 function ys_get_option( $name ) {
 	$options = ys_get_options();
-	return apply_filters( 'ys_get_option', $options[ $name ], $name );
+	$result  = '';
+	if ( isset( $options[ $name ] ) ) {
+		$result = $options[ $name ];
+	}
+
+	return apply_filters( 'ys_get_option', $result, $name );
 }
 
 /**
@@ -319,5 +416,26 @@ function ys_get_option( $name ) {
  */
 function ys_get_copyright_year_option() {
 	$copyright_year = esc_attr( get_option( 'ys_copyright_year', date_i18n( 'Y' ) ) );
+
 	return '' == $copyright_year ? date_i18n( 'Y' ) : $copyright_year;
+}
+
+/**
+ * 設定の変更処理
+ *
+ * @param string $old_key 旧設定.
+ * @param mixed  $old_default 旧設定の初期値.
+ * @param string $new_key 新設定.
+ * @param mixed  $new_default 新設定の初期値.
+ */
+function ys_change_option_key( $old_key, $old_default, $new_key, $new_default ) {
+	if ( get_option( $new_key, $new_default ) === $new_default ) {
+		if ( get_option( $old_key, $old_default ) !== $old_default ) {
+			update_option(
+				$new_key,
+				get_option( $old_key, $new_default )
+			);
+			delete_option( $old_key );
+		}
+	}
 }
