@@ -717,7 +717,7 @@ function ys_customizer_get_defaults() {
 /**
  * [jQuery]読み込み最適化
  */
-function ys_enqueue_jquery() {
+function ys_optimize_jquery() {
 	/**
 	 * 管理画面 or ログインページは操作しない
 	 */
@@ -730,10 +730,12 @@ function ys_enqueue_jquery() {
 	if ( ! ys_is_deregister_jquery() ) {
 		return;
 	}
-	$ver = ys_get_theme_version();
-	$src = false;
-
 	global $wp_scripts;
+	$ver = ys_get_theme_version();
+	$src = '';
+	/**
+	 * 必要があればwp_scriptsを初期化
+	 */
 	if ( is_null( $wp_scripts ) ) {
 		wp_scripts();
 	}
@@ -743,22 +745,20 @@ function ys_enqueue_jquery() {
 		$src    = $jquery->src;
 	}
 	/**
-	 * [jQuery削除]
-	 */
-	wp_deregister_script( 'jquery' );
-	wp_deregister_script( 'jquery-core' );
-	/**
-	 * [jQueryを読み込まない場合はここで終了]
-	 */
-	if ( ys_is_disable_jquery() ) {
-		return;
-	}
-	/**
 	 * CDN経由の場合
 	 */
 	if ( ys_is_load_cdn_jquery() ) {
 		$src = ys_get_option( 'ys_load_cdn_jquery_url' );
+		$ver = null;
 	}
+	if ( '' === $src ) {
+		return;
+	}
+	/**
+	 * [jQuery削除]
+	 */
+	wp_deregister_script( 'jquery' );
+	wp_deregister_script( 'jquery-core' );
 	/**
 	 * フッターで読み込むか
 	 */
@@ -773,7 +773,6 @@ function ys_enqueue_jquery() {
 		$ver,
 		$in_footer
 	);
-	var_dump($src);
 	wp_register_script(
 		'jquery-core',
 		$src,
@@ -782,7 +781,22 @@ function ys_enqueue_jquery() {
 		$in_footer
 	);
 }
-add_action( 'init', 'ys_enqueue_jquery' );
+add_action( 'init', 'ys_optimize_jquery' );
+
+/**
+ * [jQueryの読み込み]
+ */
+function ys_enqueue_jquery() {
+	/**
+	 * [jQueryを読み込まない場合]
+	 */
+	if ( ys_is_disable_jquery() ) {
+		return;
+	}
+	wp_enqueue_script( 'jquery' );
+	wp_enqueue_script( 'jquery-core' );
+}
+add_action( 'wp_enqueue_scripts', 'ys_enqueue_jquery' );
 
 /**
  * 管理画面-JavaScriptの読み込み
