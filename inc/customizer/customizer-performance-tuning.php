@@ -50,7 +50,7 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 	 * セクション追加
 	 */
 	$ys_customizer->add_section( array(
-		'section'     => 'ys_cusomizer_section_disable_wp_scripts',
+		'section'     => 'ys_customizer_section_disable_wp_scripts',
 		'title'       => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化',
 		'priority'    => 1,
 		'description' => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化設定',
@@ -135,7 +135,7 @@ function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) 
 			'id'          => 'ys_option_optimize_load_js',
 			'default'     => 0,
 			'label'       => 'JavaScriptの読み込みを非同期化する',
-			'description' => 'この設定をONにすると、jQuery以外のJavaScriptの読み込みを非同期化します（scriptタグにasyncとdefer属性を追加します）',
+			'description' => 'この設定をONにすると、jQuery以外のJavaScriptの読み込みを非同期化します。',
 		)
 	);
 	/**
@@ -143,14 +143,14 @@ function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) 
 	 */
 	$ys_customizer->add_label( array(
 		'id'    => 'ys_load_jquery_in_footer_label',
-		'label' => 'jQueryをフッターで読み込む',
+		'label' => 'jQueryの読み込みを最適化する',
 	) );
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_load_jquery_in_footer',
 			'default'     => 0,
-			'label'       => 'jQueryをフッターで読み込む',
-			'description' => '※この設定を有効にすると利用しているプラグインの動作が不安定になる恐れがあります。<br>プラグインの機能が正常に動作しなくなる場合は設定を無効化してください。',
+			'label'       => 'jQueryの読み込みを最適化する',
+			'description' => 'jQueryをフッターで読み込み、サイトの高速化を図ります。<br>※この設定を有効にすると利用しているプラグインの動作が不安定になる恐れがあります。<br>プラグインの機能が正常に動作しなくなる場合は設定を無効化してください。',
 		)
 	);
 	/**
