@@ -39,6 +39,20 @@ function ys_check_user_agent( $ua ) {
 	return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
 }
 
+/**
+ * ログインページの判定
+ *
+ * @return bool
+ */
+function ys_is_login_page() {
+	if ( in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+
 if ( ! function_exists( 'ys_is_mobile' ) ) {
 	/**
 	 * モバイル判定
