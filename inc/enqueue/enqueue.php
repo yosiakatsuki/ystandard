@@ -718,56 +718,69 @@ function ys_customizer_get_defaults() {
  * [jQuery]読み込み最適化
  */
 function ys_enqueue_jquery() {
-	if ( is_admin() ) {
+	/**
+	 * 管理画面 or ログインページは操作しない
+	 */
+	if ( is_admin() || ys_is_login_page() ) {
 		return;
 	}
 	/**
 	 * WordPressのjqueryを停止
 	 */
-	if ( ys_is_deregister_jquery() ) {
-		global $wp_scripts;
+	if ( ! ys_is_deregister_jquery() ) {
+		return;
+	}
+	$ver = ys_get_theme_version();
+	$src = false;
+
+	global $wp_scripts;
+	if ( is_null( $wp_scripts ) ) {
+		wp_scripts();
+	}
+	if ( ! is_null( $wp_scripts ) ) {
 		$jquery = $wp_scripts->registered['jquery-core'];
 		$ver    = $jquery->ver;
 		$src    = $jquery->src;
-		/**
-		 * [jQuery削除]
-		 */
-		wp_deregister_script( 'jquery-core' );
-		wp_deregister_script( 'jquery' );
-		/**
-		 * [jQueryを読み込まない場合はここで終了]
-		 */
-		if ( ys_is_disable_jquery() ) {
-			return;
-		}
-		/**
-		 * CDN経由の場合
-		 */
-		if ( ys_is_load_cdn_jquery() ) {
-			$src = ys_get_option( 'ys_load_cdn_jquery_url' );
-		}
-		/**
-		 * フッターで読み込むか
-		 */
-		$in_footer = ys_is_load_jquery_in_footer();
-		/**
-		* [jQueryをフッターに移動]
-		*/
-		wp_register_script(
-			'jquery',
-			false,
-			array( 'jquery-core' ),
-			$ver,
-			$in_footer
-		);
-		wp_register_script(
-			'jquery-core',
-			$src,
-			array(),
-			$ver,
-			$in_footer
-		);
 	}
+	/**
+	 * [jQuery削除]
+	 */
+	wp_deregister_script( 'jquery' );
+	wp_deregister_script( 'jquery-core' );
+	/**
+	 * [jQueryを読み込まない場合はここで終了]
+	 */
+	if ( ys_is_disable_jquery() ) {
+		return;
+	}
+	/**
+	 * CDN経由の場合
+	 */
+	if ( ys_is_load_cdn_jquery() ) {
+		$src = ys_get_option( 'ys_load_cdn_jquery_url' );
+	}
+	/**
+	 * フッターで読み込むか
+	 */
+	$in_footer = ys_is_load_jquery_in_footer();
+	/**
+	* [jQueryをフッターに移動]
+	*/
+	wp_register_script(
+		'jquery',
+		false,
+		array( 'jquery-core' ),
+		$ver,
+		$in_footer
+	);
+	var_dump($src);
+	wp_register_script(
+		'jquery-core',
+		$src,
+		array(),
+		$ver,
+		$in_footer
+	);
 }
 add_action( 'init', 'ys_enqueue_jquery' );
 
