@@ -3,7 +3,7 @@
  * タクソノミー表示
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -19,7 +19,7 @@ if ( ! ys_get_option( 'ys_show_post_category' ) ) {
 	<?php
 	$tags = ys_get_the_tag_list( ' /' );
 	if ( $tags ) :
-	?>
+		?>
 		<div class="entry__footer-tag flex">
 			<h2 class="entry__footer-tax-title clear-headline"><i class="fa fa-tag entry__footer-tax-icon" aria-hidden="true"></i>Tags :</h2>
 			<p class="entry__footer-tax-container color__font-sub"><?php echo $tags; ?></p>

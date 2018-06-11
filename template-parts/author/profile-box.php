@@ -3,7 +3,7 @@
  * プロフィール表示テンプレート
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -16,7 +16,7 @@ if ( ! ys_is_display_author_data() ) {
 		<?php
 		$avatar = ys_get_author_avatar();
 		if ( $avatar ) :
-		?>
+			?>
 			<figure class="author__icon">
 				<a href="<?php ys_the_author_link(); ?>" rel="author"><?php echo $avatar; ?></a>
 			</figure>
@@ -31,9 +31,9 @@ if ( ! ys_is_display_author_data() ) {
 			<?php ys_the_author_description(); ?>
 		</div><!-- .author__dscr -->
 		<?php if ( ! is_author() ) : ?>
-		<p class="author__archive">
-			<a class="ys-btn author__link" href="<?php ys_the_author_link(); ?>">記事一覧</a>
-		</p><!-- .author__archive -->
+			<p class="author__archive">
+				<a class="ys-btn author__link" href="<?php ys_the_author_link(); ?>">記事一覧</a>
+			</p><!-- .author__archive -->
 		<?php endif; ?>
 	</div><!-- .author__text -->
 </div><!-- .author -->

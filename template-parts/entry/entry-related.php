@@ -3,7 +3,7 @@
  * 関連記事テンプレート
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -52,7 +52,8 @@ if ( empty( $related_posts ) ) {
 						<div class="card__text">
 							<?php the_title( '<h3 class="entry-title card__title clear-headline">', '</h3>' ); ?>
 							<p class="entry__meta entry-list__meta entry-list__date color__font-sub">
-								<i class="fa fa-calendar" aria-hidden="true"></i><time datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
+								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<time datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
 							</p><!-- .entry-list__date -->
 						</div>
 					</a>
