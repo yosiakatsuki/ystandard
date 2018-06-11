@@ -80,7 +80,7 @@ function ys_customizer_advertisement_add_ads_pc( $wp_customize ) {
 		array(
 			'id'      => 'ys_advertisement_before_content',
 			'default' => '',
-			'label'   => '記事本文上(PC)',
+			'label'   => '記事本文上',
 		)
 	);
 	/**
@@ -90,7 +90,7 @@ function ys_customizer_advertisement_add_ads_pc( $wp_customize ) {
 		array(
 			'id'      => 'ys_advertisement_replace_more',
 			'default' => '',
-			'label'   => 'moreタグ部分(PC)',
+			'label'   => 'moreタグ部分',
 		)
 	);
 	/**
@@ -158,7 +158,7 @@ function ys_customizer_advertisement_add_ads_sp( $wp_customize ) {
 		array(
 			'id'      => 'ys_advertisement_before_content_sp',
 			'default' => '',
-			'label'   => '記事本文上(SP)',
+			'label'   => '記事本文上',
 		)
 	);
 	/**
@@ -168,7 +168,7 @@ function ys_customizer_advertisement_add_ads_sp( $wp_customize ) {
 		array(
 			'id'      => 'ys_advertisement_replace_more_sp',
 			'default' => '',
-			'label'   => 'moreタグ部分(SP)',
+			'label'   => 'moreタグ部分',
 		)
 	);
 	/**
@@ -178,7 +178,7 @@ function ys_customizer_advertisement_add_ads_sp( $wp_customize ) {
 		array(
 			'id'      => 'ys_advertisement_under_content_sp',
 			'default' => '',
-			'label'   => '記事本文下（SP）',
+			'label'   => '記事本文下',
 		)
 	);
 }
@@ -242,7 +242,7 @@ function ys_customizer_advertisement_add_infeed( $wp_customize ) {
 		array(
 			'id'      => 'ys_advertisement_infeed_sp',
 			'default' => '',
-			'label'   => 'SP用広告',
+			'label'   => 'モバイル用広告',
 		)
 	);
 	/**
@@ -252,7 +252,7 @@ function ys_customizer_advertisement_add_infeed( $wp_customize ) {
 		array(
 			'id'          => 'ys_advertisement_infeed_sp_step',
 			'default'     => 3,
-			'label'       => '広告を表示する間隔(SP)',
+			'label'       => '広告を表示する間隔(モバイル)',
 			'input_attrs' => array(
 				'min' => 1,
 				'max' => 100,
@@ -266,7 +266,7 @@ function ys_customizer_advertisement_add_infeed( $wp_customize ) {
 		array(
 			'id'          => 'ys_advertisement_infeed_sp_limit',
 			'default'     => 3,
-			'label'       => '表示する広告の最大数(SP)',
+			'label'       => '表示する広告の最大数(モバイル)',
 			'input_attrs' => array(
 				'min' => 1,
 				'max' => 100,

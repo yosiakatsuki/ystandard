@@ -141,7 +141,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	 */
 	$ys_customizer->add_section( array(
 		'section'  => 'ys_color_nav',
-		'title'    => 'ヘッダーメニュー(PC)/スライドメニュー(SP)',
+		'title'    => 'ヘッダーメニュー(PC)/スライドメニュー(モバイル)',
 		'priority' => 0,
 		'panel'    => 'ys_customizer_panel_color',
 	) );
@@ -151,7 +151,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color( array(
 		'id'      => 'ys_color_nav_bg_pc',
 		'default' => ys_customizer_get_default_color( 'ys_color_nav_bg_pc' ),
-		'label'   => '[PC]ヘッダーメニュー背景色',
+		'label'   => '【PC】ヘッダーメニュー背景色',
 	) );
 	/**
 	 * ナビゲーション文字色（PC）
@@ -159,7 +159,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color( array(
 		'id'      => 'ys_color_nav_font_pc',
 		'default' => ys_customizer_get_default_color( 'ys_color_nav_font_pc' ),
-		'label'   => '[PC]ヘッダーメニュー文字色',
+		'label'   => '【PC】ヘッダーメニュー文字色',
 	) );
 	/**
 	 * ナビゲーション背景色（SP）
@@ -167,7 +167,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color( array(
 		'id'      => 'ys_color_nav_bg_sp',
 		'default' => ys_customizer_get_default_color( 'ys_color_nav_bg_sp' ),
-		'label'   => '[SP]スライドメニュー背景色',
+		'label'   => '【モバイル】スライドメニュー背景色',
 	) );
 	/**
 	 * ナビゲーションボタン色（SP）
@@ -175,7 +175,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color( array(
 		'id'      => 'ys_color_nav_btn_sp',
 		'default' => ys_customizer_get_default_color( 'ys_color_nav_btn_sp' ),
-		'label'   => '[SP]スライドメニューボタン色',
+		'label'   => '【モバイル】スライドメニューボタン色',
 	) );
 	/**
 	 * ナビゲーション文字色（SP）
@@ -183,7 +183,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color( array(
 		'id'      => 'ys_color_nav_font_sp',
 		'default' => ys_customizer_get_default_color( 'ys_color_nav_font_sp' ),
-		'label'   => '[SP]スライドメニュー文字色',
+		'label'   => '【モバイル】スライドメニュー文字色',
 	) );
 }
 /**
