@@ -11,6 +11,7 @@
  * SNS関連の情報入力域追加
  *
  * @param  array $wb wb.
+ *
  * @return array
  */
 function ys_add_contact_methods( $wb ) {
@@ -33,6 +34,7 @@ add_filter( 'user_contactmethods', 'ys_add_contact_methods' );
  * カスタムユーザー画像追加
  *
  * @param  bool $bool bool.
+ *
  * @return bool
  */
 function ys_add_custom_avatar_option( $bool ) {
@@ -52,7 +54,7 @@ function ys_add_custom_avatar_option( $bool ) {
 					}
 					?>
 				</div>
-				<input type="text" id="ys_custom_avatar" name="ys_custom_avatar"  class="regular-text ys-custom-image-upload-url"  value="<?php echo get_user_meta( $profileuser->ID, 'ys_custom_avatar', true ); ?>" style="display:none;"/>
+				<input type="text" id="ys_custom_avatar" name="ys_custom_avatar" class="regular-text ys-custom-image-upload-url" value="<?php echo get_user_meta( $profileuser->ID, 'ys_custom_avatar', true ); ?>" style="display:none;"/>
 				<?php
 				$uploadbutton_hidden = '';
 				$clearbutton_hidden  = 'style="display:none;"';
@@ -64,8 +66,7 @@ function ys_add_custom_avatar_option( $bool ) {
 				<button id="ys_admin_show_custom_avatar_upload" class="button ys-custom-image-upload"
 				        type="button" <?php echo $uploadbutton_hidden; ?>>プロフィール画像をアップロード
 				</button>
-				<button id="ys_admin_show_custom_avatar_clear" class="button ys-custom-image-clear"
-				        type="button" <?php echo $clearbutton_hidden; ?>>プロフィール画像を削除
+				<button id="ys_admin_show_custom_avatar_clear" class="button ys-custom-image-clear"  type="button" <?php echo $clearbutton_hidden; ?>>プロフィール画像を削除
 				</button>
 				<p class="description">96px×96pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
 			</td>

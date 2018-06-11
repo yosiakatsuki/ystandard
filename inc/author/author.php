@@ -172,11 +172,11 @@ function ys_the_author_sns() {
 	if ( ! empty( $sns ) ) :
 		?>
 		<ul class="author__sns list-style--none">
-		<?php foreach ( $sns as $key => $value ) : ?>
-		<li class="author__sns-item">
-			<a class="sns__color--<?php echo $value['icon']; ?> author__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow"><i class="fa fa-<?php echo $value['icon']; ?>" aria-hidden="true"></i></a>
-		</li>
-	<?php endforeach; ?>
+			<?php foreach ( $sns as $key => $value ) : ?>
+				<li class="author__sns-item">
+					<a class="sns__color--<?php echo $value['icon']; ?> author__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow"><i class="fa fa-<?php echo $value['icon']; ?>" aria-hidden="true"></i></a>
+				</li>
+			<?php endforeach; ?>
 		</ul><!-- .author__sns -->
 	<?php
 	endif;
@@ -292,6 +292,7 @@ function ys_check_user_id( $user_id ) {
  * 著者情報を隠す場合、hentryクラスを削除する
  *
  * @param  array $classes Classes.
+ *
  * @return array
  */
 function ys_hide_author_remove_hentry( $classes ) {

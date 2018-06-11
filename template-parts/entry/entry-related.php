@@ -58,7 +58,7 @@ if ( empty( $related_posts ) ) {
 						</div>
 					</a>
 				</article>
-			<?php
+				<?php
 			endforeach;
 			wp_reset_postdata();
 			?>
