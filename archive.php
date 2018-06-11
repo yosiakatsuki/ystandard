@@ -42,11 +42,9 @@ get_header(); ?>
 				 */
 				get_template_part( 'template-parts/pagination/pagination' );
 				?>
-			<?php
-			else :
-				get_template_part( 'template-parts/content/none' );
-			endif;
-			?>
+			<?php else : ?>
+				<?php get_template_part( 'template-parts/content/none' ); ?>
+			<?php endif; ?>
 			<?php do_action( 'ys_site_main_append' ); ?>
 		</main><!-- .site-main -->
 		<?php get_sidebar(); ?>

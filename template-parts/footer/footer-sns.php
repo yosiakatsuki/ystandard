@@ -25,7 +25,7 @@ if ( empty( $sns_list ) ) {
 						<?php endif; ?>
 					</a>
 				</li>
-			<?php
+				<?php
 			endif;
 		endforeach;
 		?>
