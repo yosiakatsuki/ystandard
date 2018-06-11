@@ -3,7 +3,7 @@
  * 人気記事ランキング
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -67,6 +67,7 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		'cat' => '同じカテゴリーでのランキング',
 		'all' => '全記事ランキング',
 	);
+
 	/**
 	 * ウィジェット名などを設定
 	 */
@@ -83,7 +84,7 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 	/**
 	 * ウィジェットの内容を出力
 	 *
-	 * @param array $args args.
+	 * @param array $args     args.
 	 * @param array $instance instance.
 	 */
 	public function widget( $args, $instance ) {
@@ -184,20 +185,24 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'post_count' ); ?>">表示する投稿数:</label>
-			<input class="tiny-text" id="<?php echo $this->get_field_id( 'post_count' ); ?>" name="<?php echo $this->get_field_name( 'post_count' ); ?>" type="number" step="1" min="1" value="<?php echo $post_count; ?>" size="3" />
+			<input class="tiny-text" id="<?php echo $this->get_field_id( 'post_count' ); ?>" name="<?php echo $this->get_field_name( 'post_count' ); ?>" type="number" step="1" min="1" value="<?php echo $post_count; ?>" size="3"/>
 		</p>
 		<div class="ys-admin-section">
 			<h4>画像設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_img' ); ?>">
 					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_img' ); ?>" name="<?php echo $this->get_field_name( 'show_img' ); ?>" value="1" <?php checked( $show_img, 1 ); ?> />アイキャッチ画像を表示する
-				</label><br />
+				</label><br/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ</label><br />
+				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ</label><br/>
 				<select name="<?php echo $this->get_field_name( 'thumbnail_size' ); ?>">
 					<?php foreach ( $this->get_image_sizes() as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thumbnail_size ); ?>><?php echo $key; ?> (横:<?php echo esc_html( $value['width'] ); ?> x 縦:<?php echo esc_html( $value['height'] ); ?>)</option>
+						<option
+							value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thumbnail_size ); ?>><?php echo $key; ?>
+							(横:<?php echo esc_html( $value['width'] ); ?> x
+							縦:<?php echo esc_html( $value['height'] ); ?>)
+						</option>
 					<?php endforeach; ?>
 				</select>
 				<span style="color:#aaa;font-size:.9em;">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。<br>※横幅300px~480pxの画像がおすすめです</span>
@@ -209,7 +214,8 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 				<label for="<?php echo $this->get_field_id( 'period' ); ?>">ランキング作成の期間</label>
 				<select name="<?php echo $this->get_field_name( 'period' ); ?>">
 					<?php foreach ( $this->period_list as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $period ); ?>><?php echo $value; ?></option>
+						<option
+							value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $period ); ?>><?php echo $value; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</p>
@@ -219,12 +225,13 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 			<p>
 				<select name="<?php echo $this->get_field_name( 'filtering' ); ?>">
 					<?php foreach ( $this->filtering_list as $key => $value ) : ?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $filtering ); ?>><?php echo $value; ?></option>
+						<option
+							value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $filtering ); ?>><?php echo $value; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</p>
 		</div>
-	<?php
+		<?php
 	}
 
 	/**
@@ -262,6 +269,7 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		if ( ( ! empty( $new_instance['filtering'] ) ) ) {
 			$instance['filtering'] = $new_instance['filtering'];
 		}
+
 		return $instance;
 	}
 }

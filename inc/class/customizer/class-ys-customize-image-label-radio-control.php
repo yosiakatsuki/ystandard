@@ -3,7 +3,7 @@
  * カスタマイザーコントロール : 画像選択ラジオボタン
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -18,6 +18,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * @var string
 		 */
 		public $type = 'image-label-radio';
+
 		/**
 		 * カスタマイザー出力
 		 */
@@ -57,18 +58,19 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 								name="<?php echo esc_attr( $name ); ?>"
 								<?php $this->link(); ?>
 								<?php checked( $this->value(), $value ); ?>
-								/>
-								<?php
-								/**
-								 * <label for="<?php echo esc_attr( $input_id . '-radio-' . $value ); ?>"><?php echo esc_html( $label ); ?></label>
-								 */
-								?>
-							<label for="<?php echo esc_attr( $input_id . '-radio-' . $value ); ?>"><?php echo wp_kses( $label, $allowed_html ); ?></label>
+							/>
+							<?php
+							/**
+							 * <label for="<?php echo esc_attr( $input_id . '-radio-' . $value ); ?>"><?php echo esc_html( $label ); ?></label>
+							 */
+							?>
+							<label
+								for="<?php echo esc_attr( $input_id . '-radio-' . $value ); ?>"><?php echo wp_kses( $label, $allowed_html ); ?></label>
 						</span>
 					<?php endforeach; ?>
 				</div>
 			</div>
-		<?php
+			<?php
 		}
 	}
 }
