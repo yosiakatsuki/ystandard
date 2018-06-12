@@ -70,8 +70,8 @@ function ys_add_custom_avatar_option( $bool ) {
 				<p class="description">96px×96pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
 			</td>
 		</tr>
-	<?php
-		endif;
+		<?php
+	endif;
 
 	return $bool;
 }
