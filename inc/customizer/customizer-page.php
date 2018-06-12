@@ -3,7 +3,7 @@
  * 固定ページ設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -31,11 +31,13 @@ function ys_customizer_page( $wp_customize ) {
 	 */
 	ys_customizer_page_add_settings( $wp_customize );
 }
+
 /**
  * 固定ページ設定の表示条件
  */
 function ys_customizer_active_callback_page() {
 	return true;
+
 	// TODO:active_callbackが効かない.
 	return is_page();
 }
@@ -68,13 +70,16 @@ function ys_customizer_page_add_settings( $wp_customize ) {
 		)
 	);
 	/**
-	* アイキャッチ画像を表示する
-	*/
+	 * 記事上部表示設定
+	 */
 	$ys_customizer->add_label( array(
-		'id'      => 'ys_page_thumbnail_label',
-		'label'   => 'アイキャッチ画像設定',
+		'id'      => 'ys_above_page_label',
+		'label'   => '記事上部設定',
 		'section' => 'ys_customizer_section_page',
 	) );
+	/**
+	 * アイキャッチ画像を表示する
+	 */
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_show_page_thumbnail',
@@ -84,6 +89,20 @@ function ys_customizer_page_add_settings( $wp_customize ) {
 			'section'     => 'ys_customizer_section_page',
 		)
 	);
+	/**
+	 * 投稿日時を表示する
+	 */
+	$ys_customizer->add_checkbox(
+		array(
+			'id'      => 'ys_show_page_publish_date',
+			'default' => 1,
+			'label'   => '投稿日・更新日を表示する',
+			'section' => 'ys_customizer_section_page',
+		)
+	);
+	/**
+	 * 記事下表示設定
+	 */
 	$ys_customizer->add_label( array(
 		'id'          => 'ys_below_page_label',
 		'label'       => '記事下表示設定',

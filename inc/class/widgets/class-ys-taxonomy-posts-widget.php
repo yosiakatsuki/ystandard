@@ -3,7 +3,7 @@
  * 人気記事ランキング
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -41,6 +41,7 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 	 * @var string
 	 */
 	private $delimiter = '__';
+
 	/**
 	 * ウィジェット名などを設定
 	 */
@@ -57,7 +58,7 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 	/**
 	 * ウィジェットの内容を出力
 	 *
-	 * @param array $args args.
+	 * @param array $args     args.
 	 * @param array $instance instance.
 	 */
 	public function widget( $args, $instance ) {
@@ -166,17 +167,17 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'post_count' ); ?>">表示する投稿数:</label>
-			<input class="tiny-text" id="<?php echo $this->get_field_id( 'post_count' ); ?>" name="<?php echo $this->get_field_name( 'post_count' ); ?>" type="number" step="1" min="1" value="<?php echo $post_count; ?>" size="3" />
+			<input class="tiny-text" id="<?php echo $this->get_field_id( 'post_count' ); ?>" name="<?php echo $this->get_field_name( 'post_count' ); ?>" type="number" step="1" min="1" value="<?php echo $post_count; ?>" size="3"/>
 		</p>
 		<div class="ys-admin-section">
 			<h4>画像設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_img' ); ?>">
 					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_img' ); ?>" name="<?php echo $this->get_field_name( 'show_img' ); ?>" value="1" <?php checked( $show_img, 1 ); ?> />アイキャッチ画像を表示する
-				</label><br />
+				</label><br/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ</label><br />
+				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ</label><br/>
 				<select name="<?php echo $this->get_field_name( 'thumbnail_size' ); ?>">
 					<?php foreach ( $this->get_image_sizes() as $key => $value ) : ?>
 						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $thumbnail_size ); ?>><?php echo $key; ?> (横:<?php echo esc_html( $value['width'] ); ?> x 縦:<?php echo esc_html( $value['height'] ); ?>)</option>
@@ -188,16 +189,16 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		<div class="ys-admin-section">
 			<h4>カテゴリー・タグの選択</h4>
 			<?php
-				$taxonomies = get_taxonomies(
-					array(
-						'object_type' => array( 'post' ),
-						'public'      => true,
-						'show_ui'     => true,
-					),
-					'objects'
-				);
+			$taxonomies = get_taxonomies(
+				array(
+					'object_type' => array( 'post' ),
+					'public'      => true,
+					'show_ui'     => true,
+				),
+				'objects'
+			);
 			if ( ! empty( $taxonomies ) ) :
-			?>
+				?>
 				<p>
 					<select name="<?php echo $this->get_field_name( 'taxonomy' ); ?>">
 						<option value="">選択してください</option>
@@ -214,7 +215,7 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 				<p>選択できるカテゴリー・タグがありません</p>
 			<?php endif; ?>
 		</div>
-	<?php
+		<?php
 	}
 
 	/**
@@ -248,22 +249,27 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		if ( ( ! empty( $new_instance['taxonomy'] ) ) ) {
 			$instance['taxonomy'] = $new_instance['taxonomy'];
 		}
+
 		return $instance;
 	}
+
 	/**
 	 * 保存用選択値の作成
 	 *
 	 * @param object $taxonomy タクソノミーオブジェクト.
-	 * @param object $term タームオブジェクト.
+	 * @param object $term     タームオブジェクト.
+	 *
 	 * @return string
 	 */
 	private function get_select_taxonomy_value( $taxonomy, $term ) {
 		return esc_attr( $taxonomy->name . $this->delimiter . $term->term_id );
 	}
+
 	/**
 	 * 選択値をタクソノミーとタームに分割
 	 *
 	 * @param string $value 選択値.
+	 *
 	 * @return array
 	 */
 	private function get_selected_taxonomy( $value ) {
@@ -273,6 +279,7 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Base {
 		}
 		$term_id  = array_pop( $selected );
 		$taxonomy = implode( $this->delimiter, $selected );
+
 		return array(
 			'term_id'       => $term_id,
 			'taxonomy_name' => $taxonomy,
