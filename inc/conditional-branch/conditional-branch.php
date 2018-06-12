@@ -3,7 +3,7 @@
  * 条件判断用関数群
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -23,6 +23,7 @@ if ( ! function_exists( 'ys_is_top_page' ) ) {
 				return true;
 			}
 		}
+
 		return false;
 	}
 }
@@ -36,6 +37,7 @@ function ys_check_user_agent( $ua ) {
 		return false;
 	}
 	$pattern = '/' . implode( '|', $ua ) . '/i';
+
 	return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
 }
 
@@ -76,6 +78,7 @@ if ( ! function_exists( 'ys_is_mobile' ) ) {
 			'incognito',
 			'webmate',
 		);
+
 		return ys_check_user_agent( $ua );
 	}
 }
@@ -91,6 +94,7 @@ if ( ! function_exists( 'ys_is_ie' ) ) {
 			'Trident',
 			'MSIE',
 		);
+
 		return ys_check_user_agent( $ua );
 	}
 }
@@ -105,6 +109,7 @@ if ( ! function_exists( 'ys_is_edge' ) ) {
 		$ua = array(
 			'Edge',
 		);
+
 		return ys_check_user_agent( $ua );
 	}
 }
@@ -129,6 +134,7 @@ if ( ! function_exists( 'ys_is_amp' ) ) {
 		} else {
 			$ys_amp = false;
 		}
+
 		return apply_filters( 'ys_is_amp', $ys_amp );
 	}
 }
@@ -154,6 +160,7 @@ if ( ! function_exists( 'ys_is_amp_enable' ) ) {
 		if ( '1' === ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ) ) {
 			$result = false;
 		}
+
 		return apply_filters( 'ys_is_amp_enable', $result );
 	}
 }
@@ -173,6 +180,7 @@ function ys_is_active_amp_client_id_api() {
 			return false;
 		}
 	}
+
 	return true;
 }
 
@@ -222,6 +230,7 @@ if ( ! function_exists( 'ys_is_one_column' ) ) {
 		if ( ( is_singular() && ! is_page() ) && '1col' === ys_get_option( 'ys_post_layout' ) ) {
 			$one_colmun = true;
 		}
+
 		return apply_filters( 'ys_is_one_column', $one_colmun );
 	}
 }
@@ -241,6 +250,7 @@ function ys_is_one_column_thumbnail_type() {
 			$result = true;
 		}
 	}
+
 	return apply_filters( 'ys_is_one_column_thumbnail_type', $result );
 }
 
@@ -259,8 +269,10 @@ function ys_is_deregister_jquery() {
 	if ( ys_get_option( 'ys_load_jquery_in_footer' ) ) {
 		$result = true;
 	}
+
 	return apply_filters( 'ys_is_deregister_jquery', $result );
 }
+
 /**
  * WordPressのjQueryを無効化するかどうか
  */
@@ -269,8 +281,10 @@ function ys_is_disable_jquery() {
 	if ( ys_get_option( 'ys_not_load_jquery' ) ) {
 		$result = true;
 	}
+
 	return apply_filters( 'ys_is_disable_jquery', $result );
 }
+
 /**
  * WordPressのjQueryをフッターで読み込むか
  */
@@ -279,6 +293,7 @@ function ys_is_load_jquery_in_footer() {
 	if ( ys_get_option( 'ys_load_jquery_in_footer' ) ) {
 		$result = true;
 	}
+
 	return apply_filters( 'ys_is_load_jquery_in_footer', $result );
 }
 
@@ -293,6 +308,7 @@ function ys_is_load_cdn_jquery() {
 	if ( ys_get_option( 'ys_not_load_jquery' ) ) {
 		$result = false;
 	}
+
 	return apply_filters( 'ys_is_load_cdn_jquery', $result );
 }
 
@@ -328,6 +344,7 @@ function ys_is_enable_google_analytics() {
 			$result = false;
 		}
 	}
+
 	return apply_filters( 'ys_is_enable_google_analytics', $result );
 }
 
@@ -349,6 +366,7 @@ function ys_is_enable_meta_description() {
 			$result = false;
 		}
 	}
+
 	return apply_filters( 'ys_is_enable_meta_description', $result );
 }
 
@@ -369,8 +387,10 @@ function ys_is_active_sidebar_widget() {
 	if ( ys_is_one_column() ) {
 		$show_sidebar = false;
 	}
+
 	return apply_filters( 'ys_is_active_sidebar_widget', $show_sidebar );
 }
+
 /**
  * 絵文字用 css / js を出力するか
  */
@@ -379,8 +399,10 @@ function ys_is_active_emoji() {
 	if ( ys_get_option( 'ys_option_disable_wp_emoji' ) ) {
 		$show_emoji = false;
 	}
+
 	return apply_filters( 'ys_is_active_emoji', $show_emoji );
 }
+
 /**
  * Oembed css / js を出力するか
  */
@@ -389,6 +411,7 @@ function ys_is_active_oembed() {
 	if ( ys_get_option( 'ys_option_disable_wp_oembed' ) ) {
 		$show_emoji = false;
 	}
+
 	return apply_filters( 'ys_is_active_oembed', $show_emoji );
 }
 
@@ -418,7 +441,39 @@ function ys_is_active_post_thumbnail( $post_id = null ) {
 			$result = false;
 		}
 	}
+
 	return apply_filters( 'ys_is_active_post_thumbnail', $result );
+}
+
+/**
+ * 投稿日・更新日を表示するかどうか
+ *
+ * @return bool
+ */
+function ys_is_active_publish_date() {
+	$result = true;
+	if ( is_page() ) {
+		if ( ! ys_get_option( 'ys_show_page_publish_date' ) ) {
+			$result = false;
+		}
+	}
+	if ( is_single() ) {
+		if ( ! ys_get_option( 'ys_show_post_publish_date' ) ) {
+			$result = false;
+		}
+	}
+	if ( is_archive() || is_search() || is_home() ) {
+		if ( ! ys_get_option( 'ys_show_archive_publish_date' ) ) {
+			$result = false;
+		}
+	}
+	if ( is_singular() ) {
+		if ( '1' === ys_get_post_meta( 'ys_hide_publish_date' ) ) {
+			$result = false;
+		}
+	}
+
+	return apply_filters( 'ys_is_active_publish_date', $result );
 }
 
 /**
@@ -434,8 +489,10 @@ function ys_is_active_entry_header_share() {
 	if ( ! ys_get_option( 'ys_sns_share_on_entry_header' ) ) {
 		$result = false;
 	}
+
 	return apply_filters( 'ys_is_active_entry_header_share', $result );
 }
+
 /**
  * 記事下シェアボタンを表示するか
  */
@@ -449,6 +506,7 @@ function ys_is_active_entry_footer_share() {
 	if ( ! ys_get_option( 'ys_sns_share_on_below_entry' ) ) {
 		$result = false;
 	}
+
 	return apply_filters( 'ys_is_active_entry_footer_share', $result );
 }
 
@@ -458,6 +516,7 @@ function ys_is_active_entry_footer_share() {
  */
 function ys_is_active_entry_footer_widget() {
 	$result = ( is_active_sidebar( 'entry-footer' ) && ! ys_is_amp() );
+
 	return apply_filters( 'ys_is_active_entry_footer_widget', $result );
 }
 
@@ -498,10 +557,12 @@ function ys_is_display_author_data() {
 	 */
 	global $ys_author;
 	if ( false !== $ys_author ) {
-			$result = true;
+		$result = true;
 	}
+
 	return apply_filters( 'ys_is_display_author_data', $result );
 }
+
 /**
  * フッターウィジェットが有効か
  */
@@ -513,8 +574,10 @@ function ys_is_active_footer_widgets() {
 	if ( ! is_active_sidebar( 'footer-left' ) && ! is_active_sidebar( 'footer-center' ) && ! is_active_sidebar( 'footer-right' ) ) {
 		$result = false;
 	}
+
 	return apply_filters( 'ys_is_active_footer_widgets', $result );
 }
+
 /**
  * フォローBOXを表示するか
  */
@@ -534,6 +597,7 @@ function ys_is_active_follow_box() {
 	if ( ys_is_amp() ) {
 		$result = false;
 	}
+
 	return apply_filters( 'ys_is_active_follow_box', $result );
 }
 
@@ -547,8 +611,10 @@ function ys_is_active_advertisement() {
 			$result = false;
 		}
 	}
+
 	return apply_filters( 'ys_is_active_advertisement', $result );
 }
+
 /**
  * 関連記事を表示するか
  */
@@ -565,8 +631,10 @@ function ys_is_active_related_post() {
 	if ( ys_is_amp() ) {
 		$result = false;
 	}
+
 	return apply_filters( 'ys_is_active_related_post', $result );
 }
+
 /**
  * 前の記事・次の記事を表示するか
  */
@@ -583,16 +651,20 @@ function ys_is_active_post_paging() {
 	if ( ys_is_amp() ) {
 		$result = false;
 	}
+
 	return apply_filters( 'ys_is_active_post_paging', $result );
 }
+
 /**
  * 管理画面の投稿タイプ判断用
  *
  * @param  string $type post type.
+ *
  * @return boolean
  */
 function ys_is_post_type_on_admin( $type ) {
 	global $post_type;
+
 	return ( $type == $post_type );
 }
 
@@ -613,6 +685,7 @@ function ys_is_active_slide_menu_search_form() {
 	if ( wp_is_mobile() && ys_get_option( 'ys_show_search_form_on_slide_menu' ) ) {
 		$result = true;
 	}
+
 	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
 }
 
@@ -623,5 +696,6 @@ function ys_is_use_background_color() {
 	if ( '#ffffff' == ys_customizer_get_color_option( 'ys_color_site_bg' ) ) {
 		return false;
 	}
+
 	return true;
 }

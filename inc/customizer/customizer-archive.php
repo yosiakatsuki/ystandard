@@ -88,6 +88,22 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 		)
 	);
 	/**
+	 * 投稿日を表示する
+	 */
+	$ys_customizer->add_label( array(
+		'id'      => 'ys_show_archive_publish_date_label',
+		'label'   => '投稿日の表示',
+		'section' => 'ys_customizer_section_archive',
+	) );
+	$ys_customizer->add_checkbox(
+		array(
+			'id'      => 'ys_show_archive_publish_date',
+			'default' => 1,
+			'label'   => '投稿日・更新日を表示する',
+			'section' => 'ys_customizer_section_archive',
+		)
+	);
+	/**
 	 * 著者情報を表示する
 	 */
 	$ys_customizer->add_label( array(
@@ -95,9 +111,6 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 		'label'   => '著者情報の表示',
 		'section' => 'ys_customizer_section_archive',
 	) );
-	/**
-	 * 著者情報を表示する
-	 */
 	$ys_customizer->add_checkbox(
 		array(
 			'id'      => 'ys_show_archive_author',
