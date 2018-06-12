@@ -94,7 +94,7 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 		</div>
 		<?php if ( 'div' != $args['style'] ) : ?>
 			</div>
-		<?php
+			<?php
 		endif;
 	}
 }
