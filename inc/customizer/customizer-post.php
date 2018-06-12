@@ -72,11 +72,11 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 		)
 	);
 	/**
-	 * アイキャッチ画像を表示する
+	 * 記事上部表示設定
 	 */
 	$ys_customizer->add_label( array(
-		'id'      => 'ys_post_thumbnail_label',
-		'label'   => 'アイキャッチ画像設定',
+		'id'      => 'ys_above_post_label',
+		'label'   => '記事上部設定',
 		'section' => 'ys_customizer_section_post',
 	) );
 	$ys_customizer->add_checkbox(
@@ -88,6 +88,20 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 			'section'     => 'ys_customizer_section_post',
 		)
 	);
+	/**
+	 * 投稿日時を表示する
+	 */
+	$ys_customizer->add_checkbox(
+		array(
+			'id'      => 'ys_show_post_publish_date',
+			'default' => 1,
+			'label'   => '投稿日・更新日を表示する',
+			'section' => 'ys_customizer_section_post',
+		)
+	);
+	/**
+	 * 記事下表示設定
+	 */
 	$ys_customizer->add_label( array(
 		'id'          => 'ys_below_post_label',
 		'label'       => '記事下表示設定',

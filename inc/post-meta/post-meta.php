@@ -65,6 +65,9 @@ function ys_add_post_option() {
 		<label for="ys_hide_follow">
 			<input type="checkbox" id="ys_hide_follow" name="ys_hide_follow" value="1" <?php checked( ys_get_post_meta( 'ys_hide_follow', $post->ID ), '1', true ); ?> />フォローボタンを<strong>非表示</strong>にする
 		</label><br />
+		<label for="ys_hide_publish_date">
+			<input type="checkbox" id="ys_hide_publish_date" name="ys_hide_publish_date" value="1" <?php checked( ys_get_post_meta( 'ys_hide_publish_date', $post->ID ), '1', true ); ?> />投稿日・更新日を<strong>非表示</strong>にする
+		</label><br />
 		<label for="ys_hide_author">
 			<input type="checkbox" id="ys_hide_author" name="ys_hide_author" value="1" <?php checked( ys_get_post_meta( 'ys_hide_author', $post->ID ), '1', true ); ?> />著者情報を<strong>非表示</strong>にする
 		</label>
@@ -117,6 +120,10 @@ function ys_save_post( $post_id ) {
 		 * フォローボタン非表示設定
 		 */
 		ys_save_post_checkbox( $_POST, $post_id, 'ys_hide_follow' );
+		/**
+		 * 投稿日・更新日非表示設定
+		 */
+		ys_save_post_checkbox( $_POST, $post_id, 'ys_hide_publish_date' );
 		/**
 		 * 投稿者非表示設定
 		 */
