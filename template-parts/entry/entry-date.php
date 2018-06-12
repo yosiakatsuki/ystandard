@@ -7,6 +7,10 @@
  * @license GPL-2.0+
  */
 
+if ( ! ys_is_active_publish_date() ) {
+	return;
+}
+
 $format = get_option( 'date_format' ); ?>
 <div class="entry__date">
 	<?php if ( get_the_time( 'Ymd' ) >= get_the_modified_time( 'Ymd' ) ) : ?>

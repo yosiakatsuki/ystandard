@@ -91,6 +91,10 @@ require_once get_template_directory() . '/inc/content/content.php';
  */
 require_once get_template_directory() . '/inc/body/body.php';
 /**
+ * Post Class ... post_class
+ */
+require_once get_template_directory() . '/inc/post-class/post-class.php';
+/**
  * 広告
  */
 require_once get_template_directory() . '/inc/advertisement/advertisement.php';
