@@ -63,16 +63,15 @@ function ys_add_custom_avatar_option( $bool ) {
 					$clearbutton_hidden  = '';
 				endif;
 				?>
-				<button id="ys_admin_show_custom_avatar_upload" class="button ys-custom-image-upload"
-				        type="button" <?php echo $uploadbutton_hidden; ?>>プロフィール画像をアップロード
+				<button id="ys_admin_show_custom_avatar_upload" class="button ys-custom-image-upload" type="button" <?php echo $uploadbutton_hidden; ?>>プロフィール画像をアップロード
 				</button>
-				<button id="ys_admin_show_custom_avatar_clear" class="button ys-custom-image-clear"  type="button" <?php echo $clearbutton_hidden; ?>>プロフィール画像を削除
+				<button id="ys_admin_show_custom_avatar_clear" class="button ys-custom-image-clear" type="button" <?php echo $clearbutton_hidden; ?>>プロフィール画像を削除
 				</button>
 				<p class="description">96px×96pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
 			</td>
 		</tr>
 	<?php
-	endif;
+		endif;
 
 	return $bool;
 }

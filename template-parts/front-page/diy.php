@@ -19,7 +19,7 @@ get_header(); ?>
 				<div class="entry-content entry__content--diy">
 					<?php the_content(); ?>
 				</div><!-- .entry-content -->
-			<?php
+				<?php
 			endwhile;
 			?>
 			<?php do_action( 'ys_site_main_append' ); ?>
