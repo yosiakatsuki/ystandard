@@ -27,8 +27,9 @@ if ( ! function_exists( 'ys_get_ad_block_html' ) ) {
 			 */
 			$label_text = '';
 			if ( $label ) {
-				$label_text = apply_filters( 'ys_ad_label_text', 'スポンサーリンク', $key );
+				$label_text = 'スポンサーリンク';
 			}
+			$label_text = apply_filters( 'ys_ad_label_text', $label_text, $key );
 			if ( '' !== $label_text ) {
 				$label_text = sprintf( '<div class="ad__label">%s</div>', $label_text );
 			}
@@ -70,7 +71,7 @@ function ys_get_ad( $key_pc, $key_sp = '', $key_amp = '', $filter = '', $label =
 	}
 	$ad = ys_get_ad_block_html( ys_get_option( $key ), $key, $label );
 	if ( $filter ) {
-		$ad = apply_filters( $filter, $ad );
+		$ad = apply_filters( $filter, $ad, $key, $label );
 	}
 
 	return $ad;
