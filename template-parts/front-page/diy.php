@@ -3,7 +3,7 @@
  * フロントページテンプレート：DIYタイプ
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -15,7 +15,7 @@ get_header(); ?>
 			<?php
 			while ( have_posts() ) :
 				the_post();
-			?>
+				?>
 				<div class="entry-content entry__content--diy">
 					<?php the_content(); ?>
 				</div><!-- .entry-content -->
