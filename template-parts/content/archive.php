@@ -32,9 +32,11 @@
 	<div class="entry-list__detail">
 		<div class="entry__meta entry-list__meta color__font-sub flex flex--j-between">
 			<p class="entry-list__cat"><i class="fa fa-folder-o" aria-hidden="true"></i><?php ys_the_entry_category( false ); ?></p><!-- .entry-list__cat -->
-			<p class="entry-list__date"><i class="fa fa-calendar" aria-hidden="true"></i>
-				<time class="updated" datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
-			</p><!-- .entry-list__date -->
+			<?php if ( ys_is_active_publish_date() ) : ?>
+				<p class="entry-list__date"><i class="fa fa-calendar" aria-hidden="true"></i>
+					<time class="updated" datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
+				</p><!-- .entry-list__date -->
+			<?php endif; ?>
 		</div>
 		<?php
 		the_title(

@@ -68,6 +68,8 @@ function ys_get_options() {
 	$result['ys_post_layout'] = get_option( 'ys_post_layout', '2col' );
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_post_thumbnail'] = get_option( 'ys_show_post_thumbnail', 1 );
+	// 個別ページで投稿日・更新日を表示する.
+	$result['ys_show_post_publish_date'] = get_option( 'ys_show_post_publish_date', 1 );
 	// カテゴリー・タグ情報を表示する.
 	$result['ys_show_post_category'] = get_option( 'ys_show_post_category', 1 );
 	// ブログフォローボックスを表示する.
@@ -85,6 +87,8 @@ function ys_get_options() {
 	$result['ys_page_layout'] = get_option( 'ys_page_layout', '2col' );
 	// 個別ページでアイキャッチ画像を表示する.
 	$result['ys_show_page_thumbnail'] = get_option( 'ys_show_page_thumbnail', 1 );
+	// 個別ページで投稿日時を表示する.
+	$result['ys_show_page_publish_date'] = get_option( 'ys_show_page_publish_date', 1 );
 	// ブログフォローボックスを表示する.
 	$result['ys_show_page_follow_box'] = get_option( 'ys_show_page_follow_box', 1 );
 	// 著者情報を表示する.
@@ -96,6 +100,8 @@ function ys_get_options() {
 	$result['ys_archive_layout'] = get_option( 'ys_archive_layout', '2col' );
 	// 一覧表示タイプ.
 	$result['ys_archive_type'] = get_option( 'ys_archive_type', 'list' );
+	// 投稿日を表示する.
+	$result['ys_show_archive_publish_date'] = get_option( 'ys_show_archive_publish_date', 1 );
 	// 著者情報を表示する.
 	$result['ys_show_archive_author'] = get_option( 'ys_show_archive_author', 1 );
 	/**

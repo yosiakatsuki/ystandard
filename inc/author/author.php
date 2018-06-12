@@ -287,21 +287,3 @@ function ys_check_user_id( $user_id ) {
 
 	return $user_id;
 }
-
-/**
- * 著者情報を隠す場合、hentryクラスを削除する
- *
- * @param  array $classes Classes.
- *
- * @return array
- */
-function ys_hide_author_remove_hentry( $classes ) {
-	$flag = ! ys_is_display_author_data();
-	if ( apply_filters( 'ys_hide_author_remove_hentry', $flag ) ) {
-		$classes = array_diff( $classes, array( 'hentry' ) );
-	}
-
-	return $classes;
-}
-
-add_filter( 'post_class', 'ys_hide_author_remove_hentry' );
