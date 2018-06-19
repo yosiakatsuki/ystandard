@@ -3,7 +3,7 @@
  * ショートコード: タクソノミー指定の記事一覧
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -19,6 +19,8 @@ function ys_shortcode_tax_posts( $args ) {
 		array(
 			'id'             => '',
 			'class'          => '',
+			'class_list'     => '',
+			'class_item'     => '',
 			'taxonomy'       => '',
 			'term_slug'      => '',
 			'post_count'     => 5,
@@ -66,7 +68,10 @@ function ys_shortcode_tax_posts( $args ) {
 	if ( '' !== $args['template'] ) {
 		$ys_post_list->set_template( $args['template'] );
 	}
+	$ys_post_list->set_class_list( $args['class_list'] );
+	$ys_post_list->set_class_item( $args['class_item'] );
 	$html = $ys_post_list->get_post_list( $post_args );
+
 	return apply_filters( 'ys_shortcode_tax_posts', $html, $args['id'] );
 }
 

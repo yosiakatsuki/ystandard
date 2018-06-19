@@ -24,6 +24,18 @@ class YS_Post_List {
 	 */
 	private $class = '';
 	/**
+	 * Class ul
+	 *
+	 * @var string
+	 */
+	private $class_list = '';
+	/**
+	 * Class li
+	 *
+	 * @var string
+	 */
+	private $class_item = '';
+	/**
 	 * 記事一覧取得用クエリ(get_posts)
 	 *
 	 * @var WP_Query
@@ -84,6 +96,33 @@ class YS_Post_List {
 	 */
 	public function set_id( $id ) {
 		$this->id = $id;
+	}
+
+	/**
+	 * Classのセット
+	 *
+	 * @param string $class クラス.
+	 */
+	public function set_class( $class ) {
+		$this->class = $class;
+	}
+
+	/**
+	 * Classのセット : ul
+	 *
+	 * @param string $class クラス.
+	 */
+	public function set_class_list( $class ) {
+		$this->class_list = $class;
+	}
+
+	/**
+	 * Classのセット : li
+	 *
+	 * @param string $class クラス.
+	 */
+	public function set_class_item( $class ) {
+		$this->class_item = $class;
 	}
 
 	/**
@@ -148,6 +187,13 @@ class YS_Post_List {
 			return $this->get_wrap( sprintf( '<p>%s</p>', $this->no_result_info ) );
 		}
 		/**
+		 * クラス展開
+		 */
+		$class_item = $this->class_item;
+		if ( '' !== $class_item ) {
+			$class_item = ' ' . $class_item;
+		}
+		/**
 		 * 一覧の作成
 		 */
 		$html = '';
@@ -170,7 +216,8 @@ class YS_Post_List {
 				 * 投稿部分のHTML作成
 				 */
 				$html_post = sprintf(
-					'<li class="ys-post-list__item"><a class="image-mask__wrap clearfix" href="%s">%s<span class="ys-post-list__title">%s</span></a></li>',
+					'<li class="ys-post-list__item%s"><a class="image-mask__wrap clearfix" href="%s">%s<span class="ys-post-list__title">%s</span></a></li>',
+					$class_item,
 					get_the_permalink(),
 					$image,
 					get_the_title()
@@ -187,7 +234,21 @@ class YS_Post_List {
 		}
 		wp_reset_postdata();
 
-		return $this->get_wrap( sprintf( '<ul class="ys-post-list__items %s">%s</ul>', $image_type, $html ) );
+		/**
+		 * クラス
+		 */
+		$class_list = $this->class_list;
+		if ( '' !== $class_list ) {
+			$class_list = ' ' . $class_list;
+		}
+		return $this->get_wrap(
+			sprintf(
+				'<ul class="ys-post-list__items%s %s">%s</ul>',
+				$class_list,
+				$image_type,
+				$html
+			)
+		);
 	}
 
 	/**
