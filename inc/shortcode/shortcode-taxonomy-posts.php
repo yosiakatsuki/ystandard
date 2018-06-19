@@ -21,6 +21,7 @@ function ys_shortcode_tax_posts( $args ) {
 			'class'          => '',
 			'class_list'     => '',
 			'class_item'     => '',
+			'class_link'     => '',
 			'taxonomy'       => '',
 			'term_slug'      => '',
 			'post_count'     => 5,
@@ -70,6 +71,7 @@ function ys_shortcode_tax_posts( $args ) {
 	}
 	$ys_post_list->set_class_list( $args['class_list'] );
 	$ys_post_list->set_class_item( $args['class_item'] );
+	$ys_post_list->set_class_link( $args['class_link'] );
 	$html = $ys_post_list->get_post_list( $post_args );
 
 	return apply_filters( 'ys_shortcode_tax_posts', $html, $args['id'] );
