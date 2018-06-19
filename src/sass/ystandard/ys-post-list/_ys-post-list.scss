@@ -34,8 +34,6 @@
 @include media-breakpoint(tb) {
   .ys-post-list__items:not(.ys-post-list--no-img) {
     @include flex;
-    margin-left: -.5em;
-    margin-right: -.5em;
   }
   .ys-post-list__item {
     width: 50%;
@@ -44,12 +42,9 @@
   }
 }
 @include media-breakpoint(pc) {
-  .ys-post-list__items:not(.ys-post-list--no-img) {
-    margin-left: 0;
-    margin-right: 0;
-    display: block;
-  }
   .ys-post-list__item {
-    width: auto;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
