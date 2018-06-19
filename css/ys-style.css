@@ -501,8 +501,6 @@
 	display: flex;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	margin-left: -.5em;
-	margin-right: -.5em;
 }
 
 .ys-post-list__item {
@@ -542,14 +540,10 @@
 
 @media screen and (min-width: 960px) {
 
-.ys-post-list__items:not(.ys-post-list--no-img) {
-	margin-left: 0;
-	margin-right: 0;
-	display: block;
-}
-
 .ys-post-list__item {
-	width: auto;
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .ys-table--scroll {
