@@ -19,6 +19,8 @@ function ys_shortcode_post_ranking( $args ) {
 		array(
 			'id'             => '',
 			'class'          => '',
+			'class_list'     => '',
+			'class_item'     => '',
 			'title'          => '',
 			'post_count'     => 5,
 			'show_img'       => true,
@@ -91,6 +93,8 @@ function ys_shortcode_post_ranking( $args ) {
 	if ( '' !== $args['template'] ) {
 		$ys_post_list->set_template( $args['template'] );
 	}
+	$ys_post_list->set_class_list( $args['class_list'] );
+	$ys_post_list->set_class_item( $args['class_item'] );
 	$html = $ys_post_list->get_post_list( array() );
 
 	return apply_filters( 'ys_shortcode_post_ranking', $html, $args['id'] );
