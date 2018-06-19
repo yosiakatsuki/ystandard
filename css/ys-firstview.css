@@ -1312,6 +1312,7 @@ input[type="button"]:hover {
 .site__content {
 	margin-top: 15px;
 	margin-bottom: 15px;
+	overflow: hidden;
 }
 
 .content__wrap {
