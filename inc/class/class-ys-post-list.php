@@ -36,6 +36,12 @@ class YS_Post_List {
 	 */
 	private $class_item = '';
 	/**
+	 * Class a
+	 *
+	 * @var string
+	 */
+	private $class_link = '';
+	/**
 	 * 記事一覧取得用クエリ(get_posts)
 	 *
 	 * @var WP_Query
@@ -124,6 +130,14 @@ class YS_Post_List {
 	public function set_class_item( $class ) {
 		$this->class_item = $class;
 	}
+	/**
+	 * Classのセット : a
+	 *
+	 * @param string $class クラス.
+	 */
+	public function set_class_link( $class ) {
+		$this->class_link = $class;
+	}
 
 	/**
 	 * クエリのセット
@@ -193,6 +207,10 @@ class YS_Post_List {
 		if ( '' !== $class_item ) {
 			$class_item = ' ' . $class_item;
 		}
+		$class_link = $this->class_link;
+		if ( '' !== $class_link ) {
+			$class_link = ' ' . $class_link;
+		}
 		/**
 		 * 一覧の作成
 		 */
@@ -216,8 +234,9 @@ class YS_Post_List {
 				 * 投稿部分のHTML作成
 				 */
 				$html_post = sprintf(
-					'<li class="ys-post-list__item%s"><a class="image-mask__wrap clearfix" href="%s">%s<span class="ys-post-list__title">%s</span></a></li>',
+					'<li class="ys-post-list__item%s"><a class="image-mask__wrap clearfix %s" href="%s">%s<span class="ys-post-list__title">%s</span></a></li>',
 					$class_item,
+					$class_link,
 					get_the_permalink(),
 					$image,
 					get_the_title()
