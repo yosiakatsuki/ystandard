@@ -3492,6 +3492,9 @@ div.aligncenter {
 
 .ys-post-list__item {
 	width: 100%;
+}
+
+.ys-post-list__item:not(.horizon) {
 	padding-left: 0;
 	padding-right: 0;
 }
