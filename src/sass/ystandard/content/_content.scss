@@ -3,6 +3,7 @@
     & {
       margin-top: get_margin();
       margin-bottom: get_margin();
+      overflow: hidden;
     }
 
     .content__wrap {
