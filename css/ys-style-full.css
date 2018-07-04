@@ -2963,27 +2963,29 @@ div.aligncenter {
 	margin-top: .5em;
 }
 
-.ys-post-list__item {
-	padding-bottom: 2em;
+.ys-post-list__items.row {
+	margin: 0 -.4em;
 }
 
-.ys-post-list__title {
-	display: block;
-	padding: .5em 0 0;
-	line-height: 1.4;
-	overflow: hidden;
+.ys-post-list__item {
+	padding-top: .25em;
+	padding-bottom: .25em;
+}
+
+.ys-post-list__item.has-image {
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 .ys-post-list__img {
 	position: relative;
 }
 
-.ys-post-list--thumbnail .ys-post-list__item {
-	padding-top: 1em;
-	padding-bottom: 1em;
+.ys-post-list__img.vertical {
+	margin-bottom: .5em;
 }
 
-.ys-post-list--thumbnail .ys-post-list__img {
+.ys-post-list__img.horizon {
 	width: 75px;
 	margin-right: 1em;
 	font-size: 0.7em;
@@ -2991,9 +2993,14 @@ div.aligncenter {
 	float: left;
 }
 
-.ys-post-list--thumbnail .ys-post-list__title {
-	padding-top: 0;
-	font-size: 1em;
+.ys-post-list__title {
+	display: block;
+	line-height: 1.4;
+	overflow: hidden;
+}
+
+.ys-post-list--col {
+	padding: .5em;
 }
 
 .ys_author_list {
@@ -3237,7 +3244,7 @@ div.aligncenter {
 	text-align: center;
 }
 
-.ys-post-list__items:not(.ys-post-list--no-img) {
+.ys-post-list__items.vertical {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -3245,7 +3252,7 @@ div.aligncenter {
 	flex-wrap: wrap;
 }
 
-.ys-post-list__item {
+.ys-post-list__item.v-img {
 	width: 50%;
 	padding-left: .5em;
 	padding-right: .5em;
@@ -3496,11 +3503,8 @@ div.aligncenter {
 	white-space: inherit;
 }
 
-.ys-post-list__item {
+.ys-post-list__item.v-img {
 	width: 100%;
-}
-
-.ys-post-list__item:not(.horizon) {
 	padding-left: 0;
 	padding-right: 0;
 }
