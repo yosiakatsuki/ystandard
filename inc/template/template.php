@@ -37,10 +37,6 @@ if ( ! function_exists( 'ys_get_entry_footer_template' ) ) {
 		$dir       = 'template-parts/entry/entry-footer-block/';
 		$templates = array();
 		/**
-		 * フッターウィジェット
-		 */
-		$templates['widget'] = $dir . 'entry-footer-widget';
-		/**
 		 * 広告
 		 */
 		$templates['ad'] = $dir . 'entry-footer-ad';
