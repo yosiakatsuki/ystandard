@@ -3,7 +3,7 @@
  * ウィジェット基本クラス
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -29,12 +29,15 @@ class YS_Widget_Base extends WP_Widget {
 
 			}
 		}
+
 		return $sizes;
 	}
+
 	/**
 	 * チェックボックスのサニタイズ
 	 *
 	 * @param [type] $value チェックボックスのvalue.
+	 *
 	 * @return bool
 	 */
 	protected function sanitize_checkbox( $value ) {

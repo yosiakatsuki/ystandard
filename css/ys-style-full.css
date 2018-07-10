@@ -2987,6 +2987,7 @@ div.aligncenter {
 
 .ys-post-list__img.horizon {
 	width: 75px;
+	max-width: 100%;
 	margin-right: 1em;
 	font-size: 0.7em;
 	letter-spacing: normal;
