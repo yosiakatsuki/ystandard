@@ -473,4 +473,17 @@ class YS_Post_List {
 
 		return $class;
 	}
+
+	/**
+	 * 表示モードを取得
+	 *
+	 * @return array
+	 */
+	public static function get_mode() {
+		return array(
+			'vertical' => '縦並び',
+			'horizon'  => '横並び',
+			'slide'    => '横スライド',
+		);
+	}
 }
