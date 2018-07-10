@@ -2320,6 +2320,10 @@ figcaption {
 	text-decoration: underline;
 }
 
+.after-content-widget {
+	margin: 1.5em 0 0;
+}
+
 .aligncenter,
 div.aligncenter,
 .alignleft,
