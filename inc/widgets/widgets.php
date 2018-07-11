@@ -102,6 +102,7 @@ function ys_widgets_register_widget() {
 	register_widget( 'YS_Ranking_Widget' );
 	register_widget( 'YS_AD_Text_Widget' );
 	register_widget( 'YS_Taxonomy_Posts_Widget' );
+	register_widget( 'YS_Widget_Custom_HTML' );
 }
 
 add_action( 'widgets_init', 'ys_widgets_register_widget' );

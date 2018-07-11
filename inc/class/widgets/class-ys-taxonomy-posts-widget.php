@@ -19,13 +19,6 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Post_List {
 	private $default_title = '記事一覧';
 
 	/**
-	 * タクソノミーとタームの区切り文字
-	 *
-	 * @var string
-	 */
-	private $delimiter = '__';
-
-	/**
 	 * ウィジェット名などを設定
 	 */
 	public function __construct() {
@@ -72,15 +65,8 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Post_List {
 		if ( isset( $instance['taxonomy'] ) ) {
 			$selected = $this->get_selected_taxonomy( $instance['taxonomy'] );
 			if ( ! is_null( $selected ) ) {
-				$term_id       = $selected['term_id'];
-				$taxonomy_name = $selected['taxonomy_name'];
-				$term          = get_term( $term_id, $taxonomy_name );
-				if ( ! is_wp_error( $term ) && ! is_null( $term ) ) {
-					$term_label = $term->name;
-					$term_slug  = $term->slug;
-				}
 				if ( empty( $title ) ) {
-					$title = sprintf( '%sの記事一覧', $term_label );
+					$title = sprintf( '%sの記事一覧', $selected['term_label'] );
 				}
 			}
 		}
@@ -104,7 +90,7 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Post_List {
 		if ( empty( $title ) ) {
 			$title = $this->default_title;
 		}
-		$title = sprintf( $title, $term_label );
+		$title = sprintf( $title, $selected['term_label'] );
 		echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
 		echo do_shortcode( sprintf(
 			'[ys_tax_posts title="%s" post_count="%s" show_img="%s" thumbnail_size="%s" taxonomy="%s" term_slug="%s" mode="%s" cols="%s"]',
@@ -112,8 +98,8 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Post_List {
 			$post_count,
 			$show_img,
 			$thumbnail_size,
-			$taxonomy_name,
-			$term_slug,
+			$selected['taxonomy_name'],
+			$selected['term_slug'],
 			$mode,
 			$cols
 		) );
@@ -208,32 +194,9 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Post_List {
 		</div>
 		<div class="ys-admin-section">
 			<h4>カテゴリー・タグの選択</h4>
-			<?php
-			$taxonomies = get_taxonomies(
-				array(
-					'object_type' => array( 'post' ),
-					'public'      => true,
-					'show_ui'     => true,
-				),
-				'objects'
-			);
-			if ( ! empty( $taxonomies ) ) :
-				?>
-				<p>
-					<select name="<?php echo $this->get_field_name( 'taxonomy' ); ?>">
-						<option value="">選択してください</option>
-						<?php foreach ( $taxonomies as $taxonomy ) : ?>
-							<optgroup label="<?php echo $taxonomy->label; ?>">
-								<?php foreach ( get_terms( $taxonomy->name ) as $term ) : ?>
-									<option value="<?php echo $this->get_select_taxonomy_value( $taxonomy, $term ); ?>" <?php selected( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy ); ?>><?php echo $term->name; ?></option>
-								<?php endforeach; ?>
-							</optgroup>
-						<?php endforeach; ?>
-					</select>
-				</p>
-			<?php else : ?>
-				<p>選択できるカテゴリー・タグがありません</p>
-			<?php endif; ?>
+			<p>
+				<?php $this->the_taxonomies_select_html( $this, $selected_taxonomy ); ?>
+			</p>
 		</div>
 		<?php
 	}
@@ -278,38 +241,5 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Post_List {
 		}
 
 		return $instance;
-	}
-
-	/**
-	 * 保存用選択値の作成
-	 *
-	 * @param object $taxonomy タクソノミーオブジェクト.
-	 * @param object $term     タームオブジェクト.
-	 *
-	 * @return string
-	 */
-	private function get_select_taxonomy_value( $taxonomy, $term ) {
-		return esc_attr( $taxonomy->name . $this->delimiter . $term->term_id );
-	}
-
-	/**
-	 * 選択値をタクソノミーとタームに分割
-	 *
-	 * @param string $value 選択値.
-	 *
-	 * @return array
-	 */
-	private function get_selected_taxonomy( $value ) {
-		$selected = explode( $this->delimiter, $value );
-		if ( ! is_array( $selected ) ) {
-			return null;
-		}
-		$term_id  = array_pop( $selected );
-		$taxonomy = implode( $this->delimiter, $selected );
-
-		return array(
-			'term_id'       => $term_id,
-			'taxonomy_name' => $taxonomy,
-		);
 	}
 }
