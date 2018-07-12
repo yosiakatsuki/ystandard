@@ -220,7 +220,7 @@ class YS_Ranking_Widget extends YS_Widget_Post_List {
 						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $mode ); ?>><?php echo $value; ?></option>
 					<?php endforeach; ?>
 				</select><br>
-				<span class="ystandard-info--sub">※表示モードが「横並び」の場合、「表示する画像サイズ」は「thumbnail」以外を選択して下さい。</span>
+				<span class="ystandard-info--sub">※表示モードが「横並び」「横スライド」の場合、「表示する画像サイズ」は「thumbnail」以外を選択して下さい。</span>
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'cols' ); ?>">列数</label>
