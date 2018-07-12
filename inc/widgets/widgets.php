@@ -90,7 +90,6 @@ function ys_widget_init() {
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
-	
 }
 
 add_action( 'widgets_init', 'ys_widget_init' );
@@ -103,6 +102,7 @@ function ys_widgets_register_widget() {
 	register_widget( 'YS_AD_Text_Widget' );
 	register_widget( 'YS_Taxonomy_Posts_Widget' );
 	register_widget( 'YS_Widget_Custom_HTML' );
+	register_widget( 'YS_Widget_Text' );
 }
 
 add_action( 'widgets_init', 'ys_widgets_register_widget' );
