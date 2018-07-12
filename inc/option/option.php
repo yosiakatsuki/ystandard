@@ -382,6 +382,14 @@ function ys_get_options() {
 	$result['ys_amp_enable'] = get_option( 'ys_amp_enable', 0 );
 	// AMPのGoogle Analyticsトラッキングコード.
 	$result['ys_ga_tracking_id_amp'] = esc_attr( get_option( 'ys_ga_tracking_id_amp', '' ) );
+	// 記事上ウィジェットを出力する.
+	$result['ys_show_amp_before_content_widget'] = get_option( 'ys_show_amp_before_content_widget', 0 );
+	// 記事上ウィジェットの優先順位.
+	$result['ys_amp_before_content_widget_priority'] = get_option( 'ys_amp_before_content_widget_priority', 10 );
+	// 記事下ウィジェットを出力する.
+	$result['ys_show_amp_after_content_widget'] = get_option( 'ys_show_amp_after_content_widget', 0 );
+	// 記事下ウィジェットの優先順位.
+	$result['ys_amp_after_content_widget_priority'] = get_option( 'ys_amp_after_content_widget_priority', 10 );
 	// 広告　タイトル上 SP.
 	$result['ys_amp_advertisement_before_title'] = get_option( 'ys_amp_advertisement_before_title', '' );
 	// 広告　タイトル下 SP.
