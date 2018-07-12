@@ -3,7 +3,7 @@
  * AMP用 headタグ関連処理
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -43,6 +43,7 @@ function ys_the_amp_client_id_api() {
 		echo '<meta name="amp-google-client-id-api" content="googleanalytics">' . PHP_EOL;
 	}
 }
+
 add_action( 'ys_amp_head', 'ys_the_amp_client_id_api' );
 
 /**
@@ -65,6 +66,7 @@ function ys_amp_inline_styles() {
 	 */
 	ys_the_inline_style();
 }
+
 add_action( 'ys_amp_head', 'ys_amp_inline_styles', 2 );
 
 if ( ! function_exists( 'ys_the_uc_custom_head_amp' ) ) {
@@ -85,7 +87,7 @@ if ( ! function_exists( 'ys_the_amp_script' ) ) {
 		global $post;
 
 		$scripts = '';
-		$content = $post->post_content;
+		$content = apply_filters( 'the_content', $post->post_content );
 
 		/**
 		 * 広告表示
@@ -150,85 +152,132 @@ function ys_is_load_amp_ad_script() {
 	if ( '' !== ys_get_option( 'ys_amp_advertisement_under_content' ) ) {
 		$result = true;
 	}
+
 	return apply_filters( 'ys_is_load_amp_ad_script', $result );
 }
+
 /**
  * Twitter用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ * @return bool
  */
 function ys_is_load_amp_twitter_script( &$content ) {
+	$pattern = '/amp-twitter/i';
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
+		return true;
+	}
 	$pattern = '/https:\/\/twitter\.com\/.*?\/status\/.+/i';
 	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		return true;
 	}
+
 	return false;
 }
+
 /**
  * Instagram用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ * @return bool
  */
 function ys_is_load_amp_instagram_script( &$content ) {
+	$pattern = '/amp-instagram/i';
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
+		return true;
+	}
 	$pattern = '/https:\/\/www\.instagram\.com\/p\/.+/i';
 	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		return true;
 	}
+
 	return false;
 }
+
 /**
  * Youtube用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ * @return bool
  */
 function ys_is_load_amp_youtube_script( &$content ) {
+	$pattern = '/amp-youtube/i';
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
+		return true;
+	}
 	$pattern = '/<iframe.+?src="https:\/\/www\.youtube\.com\/embed\/(.+?)(\?feature=oembed)?".*?><\/iframe>/i';
 	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		$content = preg_replace( $pattern, '', $content );
+
 		return true;
 	}
+
 	return false;
 }
+
 /**
  * Vine用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ * @return bool
  */
 function ys_is_load_amp_vine_script( &$content ) {
+	$pattern = '/amp-vine/i';
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
+		return true;
+	}
 	$pattern = '/<iframe[^>]+?src="https:\/\/vine\.co\/v\/(.+?)\/embed\/simple".+?><\/iframe>/i';
 	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		$content = preg_replace( $pattern, '', $content );
+
 		return true;
 	}
+
 	return false;
 }
+
 /**
  * Facebook用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ * @return bool
  */
 function ys_is_load_amp_facebook_script( &$content ) {
+	$pattern = '/amp-facebook/i';
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
+		return true;
+	}
 	$pattern = '/<iframe[^>]+?src="https:\/\/www\.facebook\.com\/plugins\/(.*?)&.+?".+?><\/iframe>/i';
 	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		$content = preg_replace( $pattern, '', $content );
+
 		return true;
 	}
 	$pattern = '/<div[^>]+?class="fb-post"[^>]+?data-href="(.+?)".+?<\/div>/is';
 	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		$content = preg_replace( $pattern, '', $content );
+
 		return true;
 	}
+
 	return false;
 }
+
 /**
  * Iframe用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ * @return bool
  */
 function ys_is_load_amp_iframe_script( &$content ) {
+	$pattern = '/amp-iframe/i';
+	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
+		return true;
+	}
 	$pattern = '/<iframe/i';
 	if ( 1 === preg_match( $pattern, $content, $matches ) ) {
 		return true;
 	}
+
 	return false;
 }

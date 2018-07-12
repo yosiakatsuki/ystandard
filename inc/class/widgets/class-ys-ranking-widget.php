@@ -10,31 +10,13 @@
 /**
  * 人気記事ランキングウィジェット
  */
-class YS_Ranking_Widget extends YS_Widget_Base {
+class YS_Ranking_Widget extends YS_Widget_Post_List {
 	/**
 	 * タイトル
 	 *
 	 * @var string
 	 */
 	private $default_title = '人気記事';
-	/**
-	 * 表示投稿数
-	 *
-	 * @var integer
-	 */
-	private $default_post_count = 5;
-	/**
-	 * 画像表示有無
-	 *
-	 * @var integer
-	 */
-	private $default_show_img = 1;
-	/**
-	 * 画像サイズ
-	 *
-	 * @var string
-	 */
-	private $default_thumbnail_size = 'thumbnail';
 	/**
 	 * 期間
 	 *
@@ -94,6 +76,8 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		$thumbnail_size = $this->default_thumbnail_size;
 		$period         = $this->default_period;
 		$filtering      = $this->default_filtering;
+		$mode           = $this->default_mode;
+		$cols           = $this->default_cols;
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -115,6 +99,12 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		if ( isset( $instance['filtering'] ) ) {
 			$filtering = esc_attr( $instance['filtering'] );
 		}
+		if ( isset( $instance['mode'] ) ) {
+			$mode = esc_attr( $instance['mode'] );
+		}
+		if ( isset( $instance['cols'] ) ) {
+			$cols = esc_attr( $instance['cols'] );
+		}
 		/**
 		 * 画像なしの場合
 		 */
@@ -131,13 +121,15 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		}
 		echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
 		echo do_shortcode( sprintf(
-			'[ys_post_ranking title="%s" post_count="%s" show_img="%s" thumbnail_size="%s" period="%s" filter="%s"]',
+			'[ys_post_ranking title="%s" post_count="%s" show_img="%s" thumbnail_size="%s" period="%s" filter="%s" mode="%s" cols="%s"]',
 			$title,
 			$post_count,
 			$show_img,
 			$thumbnail_size,
 			$period,
-			$filtering
+			$filtering,
+			$mode,
+			$cols
 		) );
 		echo $args['after_widget'];
 	}
@@ -157,6 +149,8 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		$thumbnail_size = $this->default_thumbnail_size;
 		$period         = $this->default_period;
 		$filtering      = $this->default_filtering;
+		$mode           = $this->default_mode;
+		$cols           = $this->default_cols;
 		if ( ! empty( $instance['title'] ) ) {
 			$title = $instance['title'];
 		}
@@ -177,6 +171,12 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		}
 		if ( isset( $instance['filtering'] ) ) {
 			$filtering = esc_attr( $instance['filtering'] );
+		}
+		if ( isset( $instance['mode'] ) ) {
+			$mode = esc_attr( $instance['mode'] );
+		}
+		if ( isset( $instance['cols'] ) ) {
+			$cols = esc_attr( $instance['cols'] );
 		}
 		?>
 		<p>
@@ -205,7 +205,27 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 						</option>
 					<?php endforeach; ?>
 				</select>
-				<span style="color:#aaa;font-size:.9em;">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。<br>※横幅300px~480pxの画像がおすすめです</span>
+				<span class="ystandard-info--sub">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。<br>※横幅300px~480pxの画像がおすすめです</span>
+			</p>
+		</div>
+		<div class="ys-admin-section">
+			<h4>表示モード</h4>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'mode' ); ?>">表示モード</label>
+				<select name="<?php echo $this->get_field_name( 'mode' ); ?>">
+					<?php
+					$mode_list = YS_Post_List::get_mode();
+					foreach ( $mode_list as $key => $value ) :
+						?>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $mode ); ?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select><br>
+				<span class="ystandard-info--sub">※表示モードが「横並び」「横スライド」の場合、「表示する画像サイズ」は「thumbnail」以外を選択して下さい。</span>
+			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'cols' ); ?>">列数</label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'cols' ); ?>" name="<?php echo $this->get_field_name( 'cols' ); ?>" type="number" step="1" min="1" max="4" value="<?php echo $cols; ?>" size="2"/><br>
+				<span class="ystandard-info--sub">※表示モードが「横並び」の場合の表示列数を設定します。</span>
 			</p>
 		</div>
 		<div class="ys-admin-section">
@@ -239,6 +259,8 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 	 *
 	 * @param array $new_instance 新しいオプション.
 	 * @param array $old_instance 以前のオプション.
+	 *
+	 * @return array
 	 */
 	public function update( $new_instance, $old_instance ) {
 		/**
@@ -251,6 +273,8 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		$instance['thumbnail_size'] = $this->default_thumbnail_size;
 		$instance['period']         = $this->default_period;
 		$instance['filtering']      = $this->default_filtering;
+		$instance['mode']           = $this->default_mode;
+		$instance['cols']           = $this->sanitize_cols( $new_instance['cols'] );
 		/**
 		 * 更新値のセット
 		 */
@@ -268,6 +292,9 @@ class YS_Ranking_Widget extends YS_Widget_Base {
 		}
 		if ( ( ! empty( $new_instance['filtering'] ) ) ) {
 			$instance['filtering'] = $new_instance['filtering'];
+		}
+		if ( ( ! empty( $new_instance['mode'] ) ) ) {
+			$instance['mode'] = $new_instance['mode'];
 		}
 
 		return $instance;

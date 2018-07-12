@@ -3,7 +3,7 @@
  * 投稿ページ設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -11,6 +11,7 @@
  * 投稿ページの設定追加
  *
  * @param  WP_Customize_Manager $wp_customize wp_customize.
+ *
  * @return void
  */
 function ys_customizer_post( $wp_customize ) {
@@ -35,11 +36,13 @@ function ys_customizer_post( $wp_customize ) {
 	 */
 	ys_customizer_post_add_settings( $wp_customize );
 }
+
 /**
  * 投稿ページ設定の表示条件
  */
 function ys_customizer_active_callback_post() {
 	return true;
+
 	// TODO:active_callbackが効かない.
 	return is_single();
 }
@@ -161,6 +164,61 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 			'default' => 1,
 			'label'   => '次の記事・前の記事のリンクを表示する',
 			'section' => 'ys_customizer_section_post',
+		)
+	);
+	/**
+	 * 記事前後のウィジェット表示設定
+	 */
+	$ys_customizer->add_label( array(
+		'id'          => 'ys_post_content_widget_label',
+		'label'       => '記事前後のウィジェット表示設定',
+		'description' => '記事前後に表示するウィジェットの設定',
+		'section'     => 'ys_customizer_section_post',
+	) );
+	/**
+	 * 記事上ウィジェットを出力する
+	 */
+	$ys_customizer->add_checkbox(
+		array(
+			'id'      => 'ys_show_post_before_content_widget',
+			'default' => 0,
+			'label'   => '記事上ウィジェットを出力する',
+			'section' => 'ys_customizer_section_post',
+		)
+	);
+	/**
+	 * 記事上ウィジェットの優先順位
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_post_before_content_widget_priority',
+			'default'     => 10,
+			'label'       => '記事上ウィジェットの優先順位',
+			'description' => '記事上ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
+			'section'     => 'ys_customizer_section_post',
+		)
+	);
+	/**
+	 * 記事下ウィジェットを出力する
+	 */
+	$ys_customizer->add_checkbox(
+		array(
+			'id'      => 'ys_show_post_after_content_widget',
+			'default' => 0,
+			'label'   => '記事下ウィジェットを出力する',
+			'section' => 'ys_customizer_section_post',
+		)
+	);
+	/**
+	 * 記事下ウィジェットの優先順位
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_post_after_content_widget_priority',
+			'default'     => 10,
+			'label'       => '記事下ウィジェットの優先順位',
+			'description' => '記事下ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
+			'section'     => 'ys_customizer_section_post',
 		)
 	);
 }
