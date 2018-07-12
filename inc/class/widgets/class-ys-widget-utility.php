@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * Class YS_Widget_Utility
+ */
 class YS_Widget_Utility {
 
 	/**

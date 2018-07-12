@@ -39,27 +39,27 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	 *
 	 * @var WP_Widget_Custom_HTML
 	 */
-	protected $wp_widget_custom_html;
+	private $wp_widget_custom_html;
 
 	/**
 	 * ウィジェットID
 	 *
 	 * @var string
 	 */
-	protected $ys_widget_id = 'ys_custom_html';
+	private $ys_widget_id = 'ys_custom_html';
 	/**
 	 * ウィジェット名
 	 *
 	 * @var string
 	 */
-	protected $ys_widget_name = '[ys]表示条件付きカスタムHTML';
+	private $ys_widget_name = '[ys]表示条件付きカスタムHTML';
 
 	/**
 	 * ウィジェットオプション
 	 *
 	 * @var array
 	 */
-	protected $ys_widget_ops = array(
+	private $ys_widget_ops = array(
 		'classname'                   => 'ys_widget_custom_html',
 		'description'                 => '表示条件付きカスタムHTML',
 		'customize_selective_refresh' => true,
@@ -69,7 +69,7 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	 *
 	 * @var array
 	 */
-	protected $ys_control_ops = array(
+	private $ys_control_ops = array(
 		'width'  => 400,
 		'height' => 350,
 	);
@@ -210,21 +210,10 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	 */
 	public function _register_one( $number = - 1 ) {
 		parent::_register_one( $number );
-		$this->wp_widget_custom_html->_register_one( $number );
-	}
-
-	/**
-	 * Filter gallery shortcode attributes.
-	 *
-	 * Prevents all of a site's attachments from being shown in a gallery displayed on a
-	 * non-singular template where a $post context is not available.
-	 *
-	 * @param array $attrs Attributes.
-	 *
-	 * @return array Attributes.
-	 */
-	public function _filter_gallery_shortcode_attrs( $attrs ) {
-		return $this->wp_widget_custom_html->_filter_gallery_shortcode_attrs( $attrs );
+		wp_add_inline_script( 'custom-html-widgets', sprintf( 'wp.customHtmlWidgets.idBases.push( %s );', wp_json_encode( $this->id_base ) ) );
+		add_action( 'admin_print_scripts-widgets.php', array( $this, 'enqueue_admin_scripts' ) );
+		add_action( 'admin_footer-widgets.php', array( 'WP_Widget_Custom_HTML', 'render_control_template_scripts' ) );
+		add_action( 'admin_head-widgets.php', array( 'WP_Widget_Custom_HTML', 'add_help_text' ) );
 	}
 
 	/**
