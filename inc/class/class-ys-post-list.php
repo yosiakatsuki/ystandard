@@ -24,6 +24,24 @@ class YS_Post_List {
 	 */
 	private $class = '';
 	/**
+	 * Class ul
+	 *
+	 * @var string
+	 */
+	private $class_list = '';
+	/**
+	 * Class li
+	 *
+	 * @var string
+	 */
+	private $class_item = '';
+	/**
+	 * Class a
+	 *
+	 * @var string
+	 */
+	private $class_link = '';
+	/**
 	 * 記事一覧取得用クエリ(get_posts)
 	 *
 	 * @var WP_Query
@@ -53,28 +71,64 @@ class YS_Post_List {
 	 * @var string
 	 */
 	private $template_li = '';
+	/**
+	 * 表示モード
+	 *
+	 * @var string
+	 */
+	private $mode = 'vertical';
+	/**
+	 * 横並びモードの列数
+	 *
+	 * @var string
+	 */
+	private $cols = '1';
 
 	/**
 	 * コンストラクタ
 	 *
-	 * @param string   $id             ID.
-	 * @param string   $class          class.
-	 * @param string   $thumbnail_size サムネイルサイズ.
-	 * @param WP_Query $query          クエリ.
+	 * @param array $args パラメータ.
 	 */
-	public function __construct( $id = '', $class = '', $thumbnail_size = '', $query = null ) {
-		$this->id             = $id;
-		$this->class          = $class;
-		$this->thumbnail_size = $thumbnail_size;
-		$this->query          = $query;
-		$this->args_default   = array(
-			'posts_per_page' => 5,
-			'offset'         => 0,
-			'orderby'        => 'date',
-			'order'          => 'DESC',
-			'post_type'      => 'post',
-			'post_status'    => 'publish',
+	public function __construct( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'id'             => $this->id,
+				'class'          => $this->class,
+				'thumbnail_size' => $this->thumbnail_size,
+				'query'          => $this->query,
+				'args_default'   => array(
+					'posts_per_page' => 5,
+					'offset'         => 0,
+					'orderby'        => 'date',
+					'order'          => 'DESC',
+					'post_type'      => 'post',
+					'post_status'    => 'publish',
+				),
+				'class_list'     => $this->class_list,
+				'class_item'     => $this->class_item,
+				'class_link'     => $this->class_link,
+				'template'       => $this->template_li,
+				'no_result_info' => $this->no_result_info,
+				'mode'           => $this->mode,
+				'cols'           => $this->cols,
+			)
 		);
+		/**
+		 * パラメータの展開
+		 */
+		$this->id             = $args['id'];
+		$this->class          = $args['class'];
+		$this->thumbnail_size = $args['thumbnail_size'];
+		$this->query          = $args['query'];
+		$this->args_default   = $args['args_default'];
+		$this->class_list     = $args['class_list'];
+		$this->class_item     = $args['class_item'];
+		$this->class_link     = $args['class_link'];
+		$this->template_li    = $args['template'];
+		$this->no_result_info = $args['no_result_info'];
+		$this->mode           = $args['mode'];
+		$this->cols           = $args['cols'];
 	}
 
 	/**
@@ -84,6 +138,42 @@ class YS_Post_List {
 	 */
 	public function set_id( $id ) {
 		$this->id = $id;
+	}
+
+	/**
+	 * Classのセット
+	 *
+	 * @param string $class クラス.
+	 */
+	public function set_class( $class ) {
+		$this->class = $class;
+	}
+
+	/**
+	 * Classのセット : ul
+	 *
+	 * @param string $class クラス.
+	 */
+	public function set_class_list( $class ) {
+		$this->class_list = $class;
+	}
+
+	/**
+	 * Classのセット : li
+	 *
+	 * @param string $class クラス.
+	 */
+	public function set_class_item( $class ) {
+		$this->class_item = $class;
+	}
+
+	/**
+	 * Classのセット : a
+	 *
+	 * @param string $class クラス.
+	 */
+	public function set_class_link( $class ) {
+		$this->class_link = $class;
 	}
 
 	/**
@@ -129,6 +219,24 @@ class YS_Post_List {
 	}
 
 	/**
+	 * モードのセット
+	 *
+	 * @param string $mode モード.
+	 */
+	public function set_mode( $mode ) {
+		$this->mode = $mode;
+	}
+
+	/**
+	 * 列数のセット
+	 *
+	 * @param string $cols 列数.
+	 */
+	public function set_cols( $cols ) {
+		$this->cols = $cols;
+	}
+
+	/**
 	 * 投稿一覧作成
 	 *
 	 * @param array $args パラメーター.
@@ -148,12 +256,19 @@ class YS_Post_List {
 			return $this->get_wrap( sprintf( '<p>%s</p>', $this->no_result_info ) );
 		}
 		/**
+		 * クラス展開
+		 */
+		$this->set_classes();
+		$class_list = '';
+		$class_item = $this->combine_class( '', $this->class_item );
+		$class_link = $this->combine_class( '', $this->class_link );
+		/**
 		 * 一覧の作成
 		 */
-		$html = '';
+		$html       = '';
+		$image_type = 'ys-post-list--no-img';
 		while ( $query->have_posts() ) {
 			$query->the_post();
-			$image_type = 'ys-post-list--no-img';
 			/**
 			 * テンプレート取得
 			 */
@@ -161,18 +276,30 @@ class YS_Post_List {
 				/**
 				 * 画像取得
 				 */
-				$image = '';
+				$image       = '';
+				$has_image   = '';
+				$title_class = '';
 				if ( '' !== $this->thumbnail_size ) {
 					$image      = $this->get_thumbnail( $this->thumbnail_size );
 					$image_type = 'ys-post-list--' . $this->thumbnail_size;
 				}
+				if ( 'vertical' !== $this->mode ) {
+					$title_class = ' card__text';
+				} else {
+					$has_image = ' v-img';
+				}
+				$li_class = $class_item . $has_image;
+
 				/**
 				 * 投稿部分のHTML作成
 				 */
 				$html_post = sprintf(
-					'<li class="ys-post-list__item"><a class="image-mask__wrap clearfix" href="%s">%s<span class="ys-post-list__title">%s</span></a></li>',
+					'<li class="ys-post-list__item%s"><a class="image-mask__wrap clearfix%s" href="%s">%s<span class="ys-post-list__title%s">%s</span></a></li>',
+					$li_class,
+					$class_link,
 					get_the_permalink(),
 					$image,
+					$title_class,
 					get_the_title()
 				);
 			} else {
@@ -187,7 +314,73 @@ class YS_Post_List {
 		}
 		wp_reset_postdata();
 
-		return $this->get_wrap( sprintf( '<ul class="ys-post-list__items %s">%s</ul>', $image_type, $html ) );
+		/**
+		 * クラス
+		 */
+		$class_list = $this->combine_class( $class_list, $this->class_list );
+		if ( '' !== $this->thumbnail_size ) {
+			$class_list = $this->combine_class( $class_list, 'list-style--none' );
+		}
+
+		return $this->get_wrap(
+			sprintf(
+				'<ul class="ys-post-list__items%s %s">%s</ul>',
+				$class_list,
+				$image_type,
+				$html
+			)
+		);
+	}
+
+	/**
+	 * モードからクラスをセットする
+	 */
+	private function set_classes() {
+		$this->class_list = $this->combine_class( $this->class_list, $this->mode );
+		/**
+		 * 横並び
+		 */
+		if ( 'horizon' === $this->mode ) {
+			if ( ! is_numeric( $this->cols ) ) {
+				$args['cols'] = '1';
+			} elseif ( 1 > (int) $this->cols || 4 < (int) $this->cols ) {
+				$this->cols = '4';
+			}
+			$this->class_list = $this->combine_class(
+				$this->class_list,
+				'row'
+			);
+			$this->class_item = $this->combine_class(
+				$this->class_item,
+				'col__' . $this->cols . '--tb'
+			);
+		}
+		/**
+		 * スライド
+		 */
+		if ( 'slide' === $this->mode ) {
+			$this->class_list = $this->combine_class(
+				$this->class_list,
+				'row--slide'
+			);
+			$this->class_item = $this->combine_class(
+				$this->class_item,
+				'col__slide'
+			);
+		}
+		/**
+		 * 縦以外
+		 */
+		if ( 'vertical' !== $this->mode ) {
+			$this->class_item = $this->combine_class(
+				$this->class_item,
+				'ys-post-list--col'
+			);
+			$this->class_link = $this->combine_class(
+				$this->class_link,
+				'card'
+			);
+		}
 	}
 
 	/**
@@ -244,20 +437,53 @@ class YS_Post_List {
 		 * 画像表示比率
 		 */
 		$size = '16-9';
+		$type = 'vertical';
 		if ( 'thumbnail' === $thumbnail_size ) {
 			$size = '1-1';
+			$type = 'horizon';
 		}
 		$read_more = sprintf(
 			'<div class="image-mask flex flex--c-c"><p class="image-mask__text">%s</p></div>',
 			ys_get_entry_read_more_text()
 		);
 		$image     = sprintf(
-			'<div class="ys-post-list__img"><div class="ratio ratio__%s"><div class="ratio__item">%s</div></div>%s</div>',
+			'<div class="ys-post-list__img %s"><div class="ratio ratio__%s"><div class="ratio__item">%s</div></div>%s</div>',
+			$type,
 			$size,
 			$image,
 			$read_more
 		);
 
 		return $image;
+	}
+
+	/**
+	 * クラス文字列の結合 空白を付けて結合する
+	 *
+	 * @param string $class     クラス文字列.
+	 * @param string $add_class 結合するクラス.
+	 *
+	 * @return string
+	 */
+	public function combine_class( $class, $add_class ) {
+		$add_class = ltrim( $add_class );
+		if ( '' !== $add_class ) {
+			$class .= ' ' . $add_class;
+		}
+
+		return $class;
+	}
+
+	/**
+	 * 表示モードを取得
+	 *
+	 * @return array
+	 */
+	public static function get_mode() {
+		return array(
+			'vertical' => '縦並び',
+			'horizon'  => '横並び',
+			'slide'    => '横スライド',
+		);
 	}
 }

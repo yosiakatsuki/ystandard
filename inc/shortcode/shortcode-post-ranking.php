@@ -3,7 +3,7 @@
  * ショートコード: 記事ランキング
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -19,6 +19,11 @@ function ys_shortcode_post_ranking( $args ) {
 		array(
 			'id'             => '',
 			'class'          => '',
+			'class_list'     => '',
+			'class_item'     => '',
+			'class_link'     => '',
+			'mode'           => 'vertical',
+			'cols'           => '1',
 			'title'          => '',
 			'post_count'     => 5,
 			'show_img'       => true,
@@ -87,11 +92,23 @@ function ys_shortcode_post_ranking( $args ) {
 	/**
 	 * 投稿データ取得
 	 */
-	$ys_post_list = new YS_Post_List( $args['id'], $args['class'], $thumbnail_size, $query );
-	if ( '' !== $args['template'] ) {
-		$ys_post_list->set_template( $args['template'] );
-	}
-	$html = $ys_post_list->get_post_list( array() );
+	$args = array(
+		'id'             => $args['id'],
+		'class'          => $args['class'],
+		'thumbnail_size' => $thumbnail_size,
+		'query'          => $query,
+		'template'       => $args['template'],
+		'class_list'     => $args['class_list'],
+		'class_item'     => $args['class_item'],
+		'class_link'     => $args['class_link'],
+		'mode'           => $args['mode'],
+		'cols'           => $args['cols'],
+	);
+	/**
+	 * HTML取得
+	 */
+	$ys_post_list = new YS_Post_List( $args );
+	$html         = $ys_post_list->get_post_list( array() );
 
 	return apply_filters( 'ys_shortcode_post_ranking', $html, $args['id'] );
 }

@@ -43,6 +43,11 @@
 	font-size: 3em;
 }
 
+.ystandard-info--sub {
+	color: #aaa;
+	font-size: .9em;
+}
+
 .meta-box__headline {
 	border-bottom: 1px solid #222;
 	margin-bottom: .5em;

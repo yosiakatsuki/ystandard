@@ -115,6 +115,56 @@ function ys_customizer_amp_add_amp_options( $wp_customize ) {
 			),
 		)
 	);
+	/**
+	 * 記事前後のウィジェット表示設定
+	 */
+	$ys_customizer->add_label( array(
+		'id'          => 'ys_amp_content_widget_label',
+		'label'       => '記事前後のウィジェット表示設定',
+		'description' => '記事前後に表示するウィジェットの設定',
+	) );
+	/**
+	 * 記事上ウィジェットを出力する
+	 */
+	$ys_customizer->add_checkbox(
+		array(
+			'id'      => 'ys_show_amp_before_content_widget',
+			'default' => 0,
+			'label'   => '記事上ウィジェットを出力する',
+		)
+	);
+	/**
+	 * 記事上ウィジェットの優先順位
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_amp_before_content_widget_priority',
+			'default'     => 10,
+			'label'       => '記事上ウィジェットの優先順位',
+			'description' => '記事上ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
+		)
+	);
+	/**
+	 * 記事下ウィジェットを出力する
+	 */
+	$ys_customizer->add_checkbox(
+		array(
+			'id'      => 'ys_show_amp_after_content_widget',
+			'default' => 0,
+			'label'   => '記事下ウィジェットを出力する',
+		)
+	);
+	/**
+	 * 記事下ウィジェットの優先順位
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_amp_after_content_widget_priority',
+			'default'     => 10,
+			'label'       => '記事下ウィジェットの優先順位',
+			'description' => '記事下ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
+		)
+	);
 }
 
 /**

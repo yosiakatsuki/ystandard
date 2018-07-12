@@ -13,10 +13,14 @@
 require_once get_template_directory() . '/inc/class/class-ys-post-list.php';
 require_once get_template_directory() . '/inc/class/class-ys-enqueue.php';
 require_once get_template_directory() . '/inc/class/class-ys-walker-global-nav-menu.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-utility.php';
 require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-base.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-post-list.php';
 require_once get_template_directory() . '/inc/class/widgets/class-ys-ad-text-widget.php';
 require_once get_template_directory() . '/inc/class/widgets/class-ys-ranking-widget.php';
 require_once get_template_directory() . '/inc/class/widgets/class-ys-taxonomy-posts-widget.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-custom-html.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-text.php';
 /**
  * 変数
  */

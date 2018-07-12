@@ -26,7 +26,7 @@ if ( ! function_exists( 'ys_amp_convert_content' ) ) {
 		return apply_filters( 'ys_convert_amp', $content );
 	}
 }
-add_filter( 'the_content', 'ys_amp_convert_content', 11 );
+add_filter( 'the_content', 'ys_amp_convert_content', 999 );
 
 if ( ! function_exists( 'ys_amp_convert_all' ) ) {
 	/**

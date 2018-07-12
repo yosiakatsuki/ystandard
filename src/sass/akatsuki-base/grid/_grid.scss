@@ -27,6 +27,26 @@
       margin-right: 0;
       margin-left: 0;
     }
+    .row--reverse {
+      flex-flow: row-reverse;
+    }
+    @include media-breakpoint(tb) {
+      .row--reverse-tb {
+        flex-flow: row-reverse;
+      }
+    }
+    // screen
+    @include media-breakpoint(pc) {
+      .row--reverse-pc {
+        flex-flow: row-reverse;
+      }
+    }
+    // large screen
+    @include media-breakpoint(lg) {
+      .row--reverse-lg {
+        flex-flow: row-reverse;
+      }
+    }
   }// at-root
 }
 //
