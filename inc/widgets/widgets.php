@@ -121,7 +121,7 @@ function ys_before_content_widget( $content ) {
 	if ( ys_is_active_before_content_widget() ) {
 		ob_start();
 		dynamic_sidebar( 'before-content' );
-		$content = ys_amp_convert_content( ob_get_clean() ) . $content;
+		$content = ob_get_clean() . $content;
 	}
 
 	return $content;
@@ -141,7 +141,7 @@ function ys_after_content_widget( $content ) {
 	if ( ys_is_active_after_content_widget() ) {
 		ob_start();
 		dynamic_sidebar( 'after-content' );
-		$content = $content . ys_amp_convert_content( ob_get_clean() );
+		$content = $content . ob_get_clean();
 	}
 
 	return $content;
@@ -184,6 +184,9 @@ function ys_get_before_content_widget_priority() {
 	if ( is_page() ) {
 		$priority = ys_get_option( 'ys_page_before_content_widget_priority' );
 	}
+	if ( ys_is_amp() ) {
+		$priority = ys_get_option( 'ys_amp_before_content_widget_priority' );
+	}
 
 	return apply_filters( 'ys_get_before_content_widget_priority', $priority );
 }
@@ -200,6 +203,9 @@ function ys_get_after_content_widget_priority() {
 	}
 	if ( is_page() ) {
 		$priority = ys_get_option( 'ys_page_after_content_widget_priority' );
+	}
+	if ( ys_is_amp() ) {
+		$priority = ys_get_option( 'ys_amp_after_content_widget_priority' );
 	}
 
 	return apply_filters( 'ys_get_after_content_widget_priority', $priority );
