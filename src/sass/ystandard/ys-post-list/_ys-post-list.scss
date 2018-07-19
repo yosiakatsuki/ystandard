@@ -38,7 +38,7 @@
 }
 @include media-breakpoint(tb) {
   .ys-post-list__items {
-    &.vertical {
+    &.vertical.ys-post-list--has-img {
       @include flex;
     }
   }

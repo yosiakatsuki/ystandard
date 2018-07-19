@@ -374,7 +374,7 @@
 
 @media screen and (min-width: 600px) {
 
-.ys-post-list__items.vertical {
+.ys-post-list__items.vertical.ys-post-list--has-img {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
