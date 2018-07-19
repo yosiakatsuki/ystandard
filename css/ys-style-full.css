@@ -1312,7 +1312,6 @@ input[type="button"]:hover {
 .site__content {
 	margin-top: 15px;
 	margin-bottom: 15px;
-	overflow: hidden;
 }
 
 .content__wrap {
@@ -2463,6 +2462,7 @@ div.aligncenter {
 
 .one-col.front-page--cunstom .site__content {
 	margin: 0;
+	overflow: hidden;
 }
 
 .one-col--singular .breadcrumbs__list,
@@ -3249,7 +3249,7 @@ div.aligncenter {
 	text-align: center;
 }
 
-.ys-post-list__items.vertical {
+.ys-post-list__items.vertical.ys-post-list--has-img {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;

@@ -281,12 +281,14 @@ class YS_Post_List {
 				$title_class = '';
 				if ( '' !== $this->thumbnail_size ) {
 					$image      = $this->get_thumbnail( $this->thumbnail_size );
-					$image_type = 'ys-post-list--' . $this->thumbnail_size;
+					$image_type = 'ys-post-list--has-img ys-post-list--' . $this->thumbnail_size;
+					$has_image  = $has_image . ' has-image';
+					if ( 'vertical' == $this->mode ) {
+						$has_image .= ' v-img';
+					}
 				}
 				if ( 'vertical' !== $this->mode ) {
 					$title_class = ' card__text';
-				} else {
-					$has_image = ' v-img';
 				}
 				$li_class = $class_item . $has_image;
 
