@@ -95,6 +95,10 @@ if ( ! function_exists( 'ys_init' ) ) {
 		 * [yStandard]ブログカード機能
 		 */
 		ys_blog_card_embed_register_handler();
+		/**
+		 * カテゴリー説明の拡張
+		 */
+		ys_tax_dscr_allowed_option();
 	}
 }
 add_action( 'after_setup_theme', 'ys_init' );
