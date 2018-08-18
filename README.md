@@ -118,6 +118,8 @@ Source : <https://gist.github.com/terkel/4373420>
 - 2.5.2 :
   - 不具合修正
     - `search.php`テンプレートの追加
+  - 調整
+    - conditional-branch -> conditional-tag に名前変更
 - 2.5.1 : 2018/07/20
   - 不具合修正
     - サイドバーの追従機能が動作しない点の修正
