@@ -45,11 +45,12 @@ if ( ! function_exists( 'ys_get_the_archive_title' ) ) {
 		/**
 		 * ページング
 		 */
-		if ( get_query_var( 'paged' ) ) {
-			$title .= ' ' . get_query_var( 'paged' ) . 'ページ';
+		$paged = get_query_var( 'paged' );
+		if ( $paged ) {
+			$title .= ' ' . $paged . 'ページ';
 		}
 
-		return apply_filters( 'ys_get_the_archive_title', $title );
+		return apply_filters( 'ys_get_the_archive_title', $title, $paged );
 	}
 }
 add_filter( 'get_the_archive_title', 'ys_get_the_archive_title' );

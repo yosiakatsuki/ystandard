@@ -48,7 +48,7 @@ require_once get_template_directory() . '/inc/post-type/post-type.php';
 /**
  * 条件分岐
  */
-require_once get_template_directory() . '/inc/conditional-branch/conditional-branch.php';
+require_once get_template_directory() . '/inc/conditional-tag/conditional-tag.php';
 /**
  * 初期化
  */
@@ -123,6 +123,7 @@ require_once get_template_directory() . '/inc/copyright/copyright.php';
 /**
  * Taxonomy関連
  */
+require_once get_template_directory() . '/inc/taxonomy/taxonomy.php';
 require_once get_template_directory() . '/inc/taxonomy/category.php';
 require_once get_template_directory() . '/inc/taxonomy/tag.php';
 /**

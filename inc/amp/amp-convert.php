@@ -260,7 +260,7 @@ if ( ! function_exists( 'ys_amp_convert_instagram' ) ) {
 		/**
 		 * Blockquote
 		 */
-		$pattern     = '/<blockquote class="instagram-media".+?"https:\/\/www\.instagram\.com\/p\/(.+?)\/".+?<\/blockquote>/is';
+		$pattern     = '/<blockquote class="instagram-media".+?"https:\/\/www\.instagram\.com\/p\/(.+?)\/.*?".+?<\/blockquote>/is';
 		$replacement = '<amp-instagram layout="responsive" data-shortcode="$1" width="400" height="400" ></amp-instagram>';
 		$content     = ys_amp_preg_replace( $pattern, $replacement, $content );
 		return $content;
