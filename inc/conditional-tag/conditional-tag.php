@@ -31,6 +31,7 @@ if ( ! function_exists( 'ys_is_top_page' ) ) {
  * ユーザーエージェントのチェック
  *
  * @param array $ua 対象ユーザーエージェントのリスト.
+ * @return boolean
  */
 function ys_check_user_agent( $ua ) {
 	if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
