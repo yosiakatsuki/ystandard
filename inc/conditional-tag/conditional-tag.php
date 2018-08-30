@@ -424,15 +424,17 @@ function ys_is_active_oembed() {
  */
 function ys_is_active_custom_header() {
 	$result = false;
-	if ( ys_is_top_page() ) {
-		if ( ys_has_header_image() ) {
+	if ( ! ys_is_amp() ) {
+		if ( ys_is_top_page() ) {
+			if ( ys_has_header_image() ) {
+				$result = true;
+			}
+			if ( ys_get_option( 'ys_wp_header_media_shortcode' ) ) {
+				$result = true;
+			}
+		} elseif ( ys_get_option( 'ys_wp_header_media_all_page' ) ) {
 			$result = true;
 		}
-		if ( ys_get_option( 'ys_wp_header_media_shortcode' ) ) {
-			$result = true;
-		}
-	} elseif ( ys_get_option( 'ys_wp_header_media_all_page' ) ) {
-		$result = true;
 	}
 
 	return apply_filters( 'ys_is_active_custom_header', $result );
