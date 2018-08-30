@@ -192,13 +192,31 @@ function ys_customizer_add_header_media( $wp_customize ) {
 		array(
 			'id'          => 'ys_wp_header_media_full_type',
 			'default'     => 'dark',
-			'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）：メニュー表示タイプ',
-			'description' => 'PC表示でヘッダーメディア（画像・動画）の上にサイトヘッダーを重ねる場合のメニュー表示タイプ',
+			'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）：サイトヘッダー表示タイプ',
+			'description' => 'PC表示でヘッダーメディア（画像・動画）の上にサイトヘッダーを重ねる場合のサイトヘッダー表示タイプ',
 			'section'     => 'header_image',
 			'priority'    => 22,
 			'choices'     => array(
 				'dark'  => 'ダーク',
 				'light' => 'ライト',
+			),
+		)
+	);
+	/**
+	 * メニュー不透明度
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_wp_header_media_full_opacity',
+			'default'     => 50,
+			'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）：サイトヘッダー不透明度',
+			'description' => 'サイトヘッダーの不透明度を設定します。0~100の間で入力して下さい。（数値が小さいほど透明になります。）',
+			'section'     => 'header_image',
+			'priority'    => 23,
+			'input_attrs' => array(
+				'min'  => 0,
+				'max'  => 100,
+				'size' => 20,
 			),
 		)
 	);
@@ -210,7 +228,7 @@ function ys_customizer_add_header_media( $wp_customize ) {
 			'id'       => 'ys_wp_header_media_all_page_label',
 			'label'    => '[ys]ヘッダーメディアを全ページ表示する',
 			'section'  => 'header_image',
-			'priority' => 23,
+			'priority' => 24,
 		)
 	);
 	$ys_customizer->add_checkbox(
