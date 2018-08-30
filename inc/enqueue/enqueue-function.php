@@ -7,7 +7,6 @@
  * @license GPL-2.0+
  */
 
-
 if ( ! function_exists( 'ys_set_inline_style' ) ) {
 	/**
 	 * インラインCSSセット
