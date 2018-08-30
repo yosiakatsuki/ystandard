@@ -3,7 +3,7 @@
  * Init
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -61,6 +61,21 @@ if ( ! function_exists( 'ys_init' ) ) {
 					'flex-height' => true,
 					'flex-width'  => true,
 				)
+			)
+		);
+		/**
+		 * カスタムヘッダー
+		 */
+		add_theme_support(
+			'custom-header',
+			array(
+				'width'              => 1920,
+				'height'             => 1080,
+				'flex-width'         => true,
+				'flex-height'        => true,
+				'header-text'        => true,
+				'video'              => true,
+				'default-text-color' => '000000',
 			)
 		);
 		/**

@@ -1,6 +1,6 @@
-/*
-  余白取得
- */
+//
+// 余白取得
+//
 
 @function get_margin($x:1) {
  @return $gutter * $x;
