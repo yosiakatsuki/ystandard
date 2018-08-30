@@ -57,6 +57,17 @@ function ys_body_class( $classes ) {
 		$classes[] = 'front-page--' . ys_get_option( 'ys_front_page_type' );
 	}
 
+	/**
+	 * カスタムヘッダー
+	 */
+	if ( ys_is_active_custom_header() ) {
+		$classes[] = 'has-cunstom-header';
+		$classes[] = 'cunstom-header--' . ys_get_custom_header_type();
+		if ( ys_get_option( 'ys_wp_header_media_full' ) ) {
+			$classes[] = 'cunstom-header--full';
+		}
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'ys_body_class' );

@@ -1,6 +1,6 @@
-/*
-  container
- */
+//
+// container
+//
 @mixin container {
   position: relative;
   max-width: $container-max-width;
@@ -8,9 +8,9 @@
   margin-right: auto;
   padding: 0 get_margin();
 }
-/*
-  row
- */
+//
+// row
+//
 @mixin row {
   @include flex;
   margin-right: get_margin(-1);
@@ -36,9 +36,9 @@
     border-radius: 4px;
   }
 }
-/*
-  col
- */
+//
+// col
+//
 @mixin col {
   // flex: 1 1 auto;
   padding: get_margin();
