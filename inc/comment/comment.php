@@ -30,7 +30,7 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 			$comment_class[] = 'comment__parent';
 		}
 		?>
-		<<?php echo $tag; ?><?php comment_class( $comment_class ); ?> id="comment-<?php comment_ID(); ?>">
+		<<?php echo $tag; ?> <?php comment_class( $comment_class ); ?> id="comment-<?php comment_ID(); ?>">
 		<?php if ( 'div' != $args['style'] ) : ?>
 			<div id="div-comment-<?php comment_ID(); ?>" class="comment-body comment__body">
 		<?php endif; ?>
@@ -102,6 +102,7 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
  * 返信ボタンクラスつける
  *
  * @param string $link link.
+ * @return string
  */
 function ys_comment_reply_link( $link ) {
 	return preg_replace( '/class=([\'"])/i', 'class=$1ys-btn comment__reply-link ', $link );
@@ -113,6 +114,7 @@ add_filter( 'comment_reply_link', 'ys_comment_reply_link' );
  * コメント中で使用できるタグを限定
  *
  * @param array $data data.
+ * @return array
  */
 function ys_comment_tags( $data ) {
 	global $allowedtags;
@@ -153,6 +155,7 @@ if ( ! function_exists( 'ys_comment_form_fields' ) ) {
 	 * コメントフォームの順番を入れ替える
 	 *
 	 * @param array $fields コメントフィールド.
+	 * @return array
 	 */
 	function ys_comment_form_fields( $fields ) {
 		$comment = $fields['comment'];
