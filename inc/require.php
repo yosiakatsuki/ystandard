@@ -56,7 +56,13 @@ require_once get_template_directory() . '/inc/init/init.php';
 /**
  * Enqueue
  */
+require_once get_template_directory() . '/inc/enqueue/enqueue-function.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue-admin.php';
 require_once get_template_directory() . '/inc/enqueue/enqueue.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue-optimize.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue-customizer.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue-customizer-color.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue-customizer-custom-header.php';
 /**
  * Post-meta
  */
@@ -81,6 +87,7 @@ require_once get_template_directory() . '/inc/head/head.php';
  * ヘッダー
  */
 require_once get_template_directory() . '/inc/header/header.php';
+require_once get_template_directory() . '/inc/header/custom-header.php';
 /**
  * フッター
  */

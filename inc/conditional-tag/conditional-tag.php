@@ -31,6 +31,7 @@ if ( ! function_exists( 'ys_is_top_page' ) ) {
  * ユーザーエージェントのチェック
  *
  * @param array $ua 対象ユーザーエージェントのリスト.
+ *
  * @return boolean
  */
 function ys_check_user_agent( $ua ) {
@@ -417,9 +418,32 @@ function ys_is_active_oembed() {
 }
 
 /**
+ * カスタムヘッダーを表示するか
+ *
+ * @return bool
+ */
+function ys_is_active_custom_header() {
+	$result = false;
+	if ( ys_is_top_page() ) {
+		if ( ys_has_header_image() ) {
+			$result = true;
+		}
+		if ( ys_get_option( 'ys_wp_header_media_shortcode' ) ) {
+			$result = true;
+		}
+	} elseif ( ys_get_option( 'ys_wp_header_media_all_page' ) ) {
+		$result = true;
+	}
+
+	return apply_filters( 'ys_is_active_custom_header', $result );
+}
+
+/**
  * アイキャッチ画像を表示するか(singlar)
  *
  * @param int $post_id 投稿ID.
+ *
+ * @return bool
  */
 function ys_is_active_post_thumbnail( $post_id = null ) {
 	$result = true;

@@ -75,6 +75,12 @@ if ( ys_is_amp() ) {
 	<?php do_action( 'ys_after_site_header' ); ?>
 	<?php
 	/**
+	 * カスタムヘッダー
+	 */
+	get_template_part( 'template-parts/header/custom-header' );
+	?>
+	<?php
+	/**
 	 * ヒーローエリア
 	 */
 	get_template_part( 'template-parts/hero/hero', ys_get_hero_template() );
