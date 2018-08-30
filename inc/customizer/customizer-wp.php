@@ -3,7 +3,7 @@
  * WordPress標準のカスタマイザー項目のカスタマイズ
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -18,6 +18,7 @@ function ys_customizer_wp( $wp_customize ) {
 	ys_customizer_add_apple_touch_icon( $wp_customize );
 	ys_customizer_add_logo( $wp_customize );
 	ys_customizer_add_description( $wp_customize );
+	ys_customizer_add_header_media( $wp_customize );
 }
 
 /**
@@ -45,7 +46,7 @@ function ys_customizer_add_partial_bloginfo( $wp_customize ) {
 			array(
 				'selector'            => '.site-title a',
 				'container_inclusive' => false,
-				'render_callback'     => function() {
+				'render_callback'     => function () {
 					bloginfo( 'name' );
 				},
 			)
@@ -55,7 +56,7 @@ function ys_customizer_add_partial_bloginfo( $wp_customize ) {
 			array(
 				'selector'            => '.site-description',
 				'container_inclusive' => false,
-				'render_callback'     => function() {
+				'render_callback'     => function () {
 					bloginfo( 'description' );
 				},
 			)
@@ -128,7 +129,7 @@ function ys_customizer_add_apple_touch_icon( $wp_customize ) {
 	$wp_customize->add_setting( 'ys_apple_touch_icon', array(
 		'type'       => 'option',
 		'capability' => 'manage_options',
-		'transport'  => 'refresh',
+		'transport'  => 'postMessage',
 	) );
 
 	$wp_customize->add_control( new WP_Customize_Site_Icon_Control( $wp_customize, 'ys_apple_touch_icon', array(
@@ -142,4 +143,84 @@ function ys_customizer_add_apple_touch_icon( $wp_customize ) {
 		'height'      => 512,
 		'width'       => 512,
 	) ) );
+}
+
+/**
+ * ヘッダーメディア設定追加
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_add_header_media( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	/**
+	 * ヘッダーメディアショートコード
+	 */
+	$ys_customizer->add_text(
+		array(
+			'id'          => 'ys_wp_header_media_shortcode',
+			'label'       => '[ys]ヘッダーメディア用ショートコード',
+			'description' => 'ヘッダー画像をプラグイン等のショートコードで出力する場合、ショートコードを入力してください。',
+			'section'     => 'header_image',
+			'priority'    => 0,
+		)
+	);
+	/**
+	 * ヘッダーメディアに動画を使う場合、メニューを動画の上に重ねるか
+	 */
+	$ys_customizer->add_label(
+		array(
+			'id'       => 'ys_wp_header_media_full_label',
+			'label'    => '[ys]ヘッダーメディアにメニューを重ねる（PC）',
+			'section'  => 'header_image',
+			'priority' => 20,
+		)
+	);
+	$ys_customizer->add_checkbox(
+		array(
+			'id'          => 'ys_wp_header_media_full',
+			'default'     => 0,
+			'label'       => '[ys]ヘッダーメディアにメニューを重ねる（PC）',
+			'description' => 'PC表示でヘッダーメディア（画像・動画）の上にメニューを重ねる。',
+			'section'     => 'header_image',
+			'priority'    => 21,
+		)
+	);
+	/**
+	 * メニュー表示タイプ
+	 */
+	$ys_customizer->add_radio(
+		array(
+			'id'          => 'ys_wp_header_media_full_type',
+			'default'     => 'dark',
+			'label'       => '[ys]ヘッダーメディアにメニューを重ねる（PC）：メニュー表示タイプ',
+			'description' => 'PC表示でヘッダーメディア（画像・動画）の上にメニューを重ねる場合のメニュー表示タイプ',
+			'section'     => 'header_image',
+			'priority'    => 22,
+			'choices'     => array(
+				'dark'  => 'ダーク',
+				'light' => 'ライト',
+			),
+		)
+	);
+	/**
+	 * カスタムヘッダーの全ページ表示
+	 */
+	$ys_customizer->add_label(
+		array(
+			'id'       => 'ys_wp_header_media_all_page_label',
+			'label'    => '[ys]ヘッダーメディアを全ページ表示する',
+			'section'  => 'header_image',
+			'priority' => 23,
+		)
+	);
+	$ys_customizer->add_checkbox(
+		array(
+			'id'          => 'ys_wp_header_media_all_page',
+			'default'     => 0,
+			'label'       => '[ys]ヘッダーメディアを全ページ表示する',
+			'description' => 'TOPページ以外の全ページでヘッダーメディアを表示する。',
+			'section'     => 'header_image',
+			'priority'    => 24,
+		)
+	);
 }

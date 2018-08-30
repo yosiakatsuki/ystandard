@@ -40,6 +40,17 @@ function ys_get_options() {
 	// テーマカスタマイザーの色設定を無効にする.
 	$result['ys_desabled_color_customizeser'] = get_option( 'ys_desabled_color_customizeser', 0 );
 	/**
+	 * ヘッダーメディア
+	 */
+	// ヘッダーメディア用ショートコード.
+	$result['ys_wp_header_media_shortcode'] = get_option( 'ys_wp_header_media_shortcode', '' );
+	// 画像・動画の全面表示.
+	$result['ys_wp_header_media_full'] = get_option( 'ys_wp_header_media_full', 0 );
+	// 画像・動画の全面表示 表示タイプ.
+	$result['ys_wp_header_media_full_type'] = get_option( 'ys_wp_header_media_full_type', 'dark' );
+	// カスタムヘッダーの全ページ表示.
+	$result['ys_wp_header_media_all_page'] = get_option( 'ys_wp_header_media_all_page', 0 );
+	/**
 	 * **********
 	 * [ys]サイト共通設定
 	 * **********
