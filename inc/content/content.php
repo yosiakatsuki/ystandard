@@ -58,37 +58,72 @@ if ( ! function_exists( 'ys_add_iframe_responsive_container' ) ) {
 	 * Iframeのレスポンシブ化
 	 *
 	 * @param string $the_content 投稿本文.
+	 * @param string $type        タイプ.
+	 *
+	 * @return string
 	 */
-	function ys_add_iframe_responsive_container( $the_content ) {
-		if ( is_singular() && ! ys_is_amp() ) {
-			/**
-			 * マッチさせたいiframeのURLをリスト化
-			 */
-			$pattern_list = array(
-				'youtube\.com',
-				'vine\.co',
-				'https:\/\/www\.google\.com\/maps\/embed',
-			);
-			/**
-			 * 置換する
-			 */
-			foreach ( $pattern_list as $value ) {
-				$pattern     = '/<iframe[^>]+?' . $value . '[^<]+?<\/iframe>/is';
-				$the_content = preg_replace( $pattern, '<div class="embed__container"><div class="embed__item">${0}</div></div>', $the_content );
-			}
+	function ys_add_iframe_responsive_container( $the_content, $type = '' ) {
+		if ( ys_is_amp() ) {
+			return $the_content;
+		}
+		/**
+		 * マッチさせたいiframeのURLをリスト化
+		 */
+		$pattern_list = array(
+			'youtube\.com',
+			'vine\.co',
+			'https:\/\/www\.google\.com\/maps\/embed',
+		);
+		$pattern_list = apply_filters( 'ys_iframe_responsive_pattern_list', $pattern_list, $type );
+		/**
+		 * 置換する
+		 */
+		$replace = apply_filters( 'ys_iframe_responsive_wrap', '<div class="embed__container"><div class="embed__item">${0}</div></div>' );
+		foreach ( $pattern_list as $value ) {
+			$pattern     = '/<iframe[^>]+?' . $value . '[^<]+?<\/iframe>/is';
+			$the_content = preg_replace( $pattern, $replace, $the_content );
 		}
 
 		return $the_content;
 	}
 }
-add_filter( 'the_content', 'ys_add_iframe_responsive_container' );
-add_filter( 'widget_text', 'ys_add_iframe_responsive_container' );
+
+/**
+ * 投稿本文内のiframeレスポンシブ対応
+ *
+ * @param string $the_content コンテンツ.
+ *
+ * @return string
+ */
+function ys_iframe_responsive_content( $the_content ) {
+	$the_content = ys_add_iframe_responsive_container( $the_content, 'the_content' );
+
+	return $the_content;
+}
+
+add_filter( 'the_content', 'ys_iframe_responsive_content' );
+
+/**
+ * ウィジェット内のiframeレスポンシブ対応
+ *
+ * @param string $the_content コンテンツ.
+ *
+ * @return string
+ */
+function ys_iframe_responsive_widget( $the_content ) {
+	$the_content = ys_add_iframe_responsive_container( $the_content, 'widget_text' );
+
+	return $the_content;
+}
+
+add_filter( 'widget_text', 'ys_iframe_responsive_widget' );
 
 if ( ! function_exists( 'ys_excerpt_length' ) ) {
 	/**
 	 * 投稿抜粋文字数
 	 *
 	 * @param int $length 抜粋文字数.
+	 * @return string
 	 */
 	function ys_excerpt_length( $length = null ) {
 		if ( ! is_null( $length ) ) {
@@ -105,6 +140,7 @@ if ( ! function_exists( 'ys_excerpt_more' ) ) {
 	 * 投稿抜粋の最後につける文字
 	 *
 	 * @param string $more 抜粋につける文字.
+	 * @return string
 	 */
 	function ys_excerpt_more( $more ) {
 		$more_str = '…';
