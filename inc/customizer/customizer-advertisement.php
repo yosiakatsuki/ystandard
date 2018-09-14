@@ -3,7 +3,7 @@
  * 広告設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -47,11 +47,13 @@ function ys_customizer_advertisement_add_ads_pc( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section' => 'ys_customizer_section_ads_pc',
-		'title'   => 'PC広告設定',
-		'panel'   => 'ys_customizer_panel_advertisement',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section' => 'ys_customizer_section_ads_pc',
+			'title'   => 'PC広告設定',
+			'panel'   => 'ys_customizer_panel_advertisement',
+		)
+	);
 	/**
 	 * 記事タイトル上
 	 */
@@ -125,11 +127,13 @@ function ys_customizer_advertisement_add_ads_sp( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section' => 'ys_customizer_section_ads_sp',
-		'title'   => 'モバイル広告設定',
-		'panel'   => 'ys_customizer_panel_advertisement',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section' => 'ys_customizer_section_ads_sp',
+			'title'   => 'モバイル広告設定',
+			'panel'   => 'ys_customizer_panel_advertisement',
+		)
+	);
 	/**
 	 * 記事タイトル上
 	 */
@@ -182,6 +186,7 @@ function ys_customizer_advertisement_add_ads_sp( $wp_customize ) {
 		)
 	);
 }
+
 /**
  * インフィード広告
  *
@@ -192,11 +197,13 @@ function ys_customizer_advertisement_add_infeed( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section' => 'ys_customizer_section_infeed',
-		'title'   => 'インフィード広告設定',
-		'panel'   => 'ys_customizer_panel_advertisement',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section' => 'ys_customizer_section_infeed',
+			'title'   => 'インフィード広告設定',
+			'panel'   => 'ys_customizer_panel_advertisement',
+		)
+	);
 	/**
 	 * PC用広告
 	 */

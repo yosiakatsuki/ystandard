@@ -15,9 +15,12 @@
 				<?php if ( has_post_thumbnail() ) : ?>
 					<figure class="entry-list__figure ratio__item ratio__image">
 						<?php
-						the_post_thumbnail( 'post-thumbnail', array(
-							'class' => 'entry-list__image',
-						) );
+						the_post_thumbnail(
+							'post-thumbnail',
+							array(
+								'class' => 'entry-list__image',
+							)
+						);
 						?>
 					</figure>
 				<?php else : ?>

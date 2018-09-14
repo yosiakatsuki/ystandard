@@ -72,11 +72,13 @@ function ys_customizer_page_add_settings( $wp_customize ) {
 	/**
 	 * 記事上部表示設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'      => 'ys_above_page_label',
-		'label'   => '記事上部設定',
-		'section' => 'ys_customizer_section_page',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'      => 'ys_above_page_label',
+			'label'   => '記事上部設定',
+			'section' => 'ys_customizer_section_page',
+		)
+	);
 	/**
 	 * アイキャッチ画像を表示する
 	 */
@@ -103,12 +105,14 @@ function ys_customizer_page_add_settings( $wp_customize ) {
 	/**
 	 * 記事下表示設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'          => 'ys_below_page_label',
-		'label'       => '記事下表示設定',
-		'description' => '※シェアボタンの表示・非表示は[SNS設定]→[SNSシェアボタン設定]から行って下さい',
-		'section'     => 'ys_customizer_section_page',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'          => 'ys_below_page_label',
+			'label'       => '記事下表示設定',
+			'description' => '※シェアボタンの表示・非表示は[SNS設定]→[SNSシェアボタン設定]から行って下さい',
+			'section'     => 'ys_customizer_section_page',
+		)
+	);
 	/**
 	 * ブログフォローボックスを表示する
 	 */
@@ -134,12 +138,14 @@ function ys_customizer_page_add_settings( $wp_customize ) {
 	/**
 	 * 記事前後のウィジェット表示設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'          => 'ys_page_content_widget_label',
-		'label'       => '記事前後のウィジェット表示設定',
-		'description' => '記事前後に表示するウィジェットの設定',
-		'section'     => 'ys_customizer_section_page',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'          => 'ys_page_content_widget_label',
+			'label'       => '記事前後のウィジェット表示設定',
+			'description' => '記事前後に表示するウィジェットの設定',
+			'section'     => 'ys_customizer_section_page',
+		)
+	);
 	/**
 	 * 記事上ウィジェットを出力する
 	 */

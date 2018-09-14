@@ -126,23 +126,32 @@ function ys_customizer_add_apple_touch_icon( $wp_customize ) {
 		'<strong>512</strong>'
 	);
 
-	$wp_customize->add_setting( 'ys_apple_touch_icon', array(
-		'type'       => 'option',
-		'capability' => 'manage_options',
-		'transport'  => 'postMessage',
-	) );
+	$wp_customize->add_setting(
+		'ys_apple_touch_icon',
+		array(
+			'type'       => 'option',
+			'capability' => 'manage_options',
+			'transport'  => 'postMessage',
+		)
+	);
 
-	$wp_customize->add_control( new WP_Customize_Site_Icon_Control( $wp_customize, 'ys_apple_touch_icon', array(
-		'label'       => 'apple touch icon',
-		'description' => sprintf(
-			'apple touch icon用の画像を設定して下さい。縦横%spx以上である必要があります。',
-			'<strong>512</strong>'
-		),
-		'section'     => 'title_tagline',
-		'priority'    => 61,
-		'height'      => 512,
-		'width'       => 512,
-	) ) );
+	$wp_customize->add_control(
+		new WP_Customize_Site_Icon_Control(
+			$wp_customize,
+			'ys_apple_touch_icon',
+			array(
+				'label'       => 'apple touch icon',
+				'description' => sprintf(
+					'apple touch icon用の画像を設定して下さい。縦横%spx以上である必要があります。',
+					'<strong>512</strong>'
+				),
+				'section'     => 'title_tagline',
+				'priority'    => 61,
+				'height'      => 512,
+				'width'       => 512,
+			)
+		)
+	);
 }
 
 /**

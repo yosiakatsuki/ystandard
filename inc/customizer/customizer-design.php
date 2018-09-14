@@ -3,7 +3,7 @@
  * デザイン設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -49,13 +49,15 @@ function ys_customizer_design_add_header( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_header_design',
-		'title'       => 'ヘッダー設定',
-		'priority'    => 1,
-		'description' => 'ヘッダー部分のデザイン設定',
-		'panel'       => 'ys_customizer_panel_design',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_header_design',
+			'title'       => 'ヘッダー設定',
+			'priority'    => 1,
+			'description' => 'ヘッダー部分のデザイン設定',
+			'panel'       => 'ys_customizer_panel_design',
+		)
+	);
 	/**
 	 * ヘッダータイプ
 	 */
@@ -91,13 +93,15 @@ function ys_customizer_design_add_mobile( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_mobile_design',
-		'title'       => 'モバイルページ設定',
-		'priority'    => 1,
-		'description' => 'モバイルページのデザイン設定',
-		'panel'       => 'ys_customizer_panel_design',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_mobile_design',
+			'title'       => 'モバイルページ設定',
+			'priority'    => 1,
+			'description' => 'モバイルページのデザイン設定',
+			'panel'       => 'ys_customizer_panel_design',
+		)
+	);
 	/**
 	 * サイドバー出力
 	 */
@@ -132,13 +136,15 @@ function ys_customizer_design_add_one_column_template( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_one_column_template',
-		'title'       => 'ワンカラムテンプレート設定',
-		'priority'    => 10,
-		'description' => 'ワンカラムテンプレートの設定',
-		'panel'       => 'ys_customizer_panel_design',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_one_column_template',
+			'title'       => 'ワンカラムテンプレート設定',
+			'priority'    => 10,
+			'description' => 'ワンカラムテンプレートの設定',
+			'panel'       => 'ys_customizer_panel_design',
+		)
+	);
 	/**
 	 * ヘッダータイプ
 	 */
