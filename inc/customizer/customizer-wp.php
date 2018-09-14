@@ -136,7 +136,9 @@ function ys_customizer_add_apple_touch_icon( $wp_customize ) {
 	);
 
 	$wp_customize->add_control(
-		new WP_Customize_Site_Icon_Control( $wp_customize, 'ys_apple_touch_icon',
+		new WP_Customize_Site_Icon_Control(
+			$wp_customize,
+			'ys_apple_touch_icon',
 			array(
 				'label'       => 'apple touch icon',
 				'description' => sprintf(
