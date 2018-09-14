@@ -3,7 +3,7 @@
  * カスタマイザーコントロール
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -42,6 +42,7 @@ class YS_Customizer {
 		$this->defaults     = $this->get_default_option();
 		$this->wp_customize = $wp_customize;
 	}
+
 	/**
 	 * パネル追加
 	 *
@@ -68,6 +69,7 @@ class YS_Customizer {
 			$this->panel = $args['panel'];
 		}
 	}
+
 	/**
 	 * セクション追加
 	 *
@@ -92,11 +94,14 @@ class YS_Customizer {
 			/**
 			 * セクション情報をセット
 			 */
-			$this->defaults = $this->parse_args( array(
-				'section' => $args['section'],
-			) );
+			$this->defaults = $this->parse_args(
+				array(
+					'section' => $args['section'],
+				)
+			);
 		}
 	}
+
 	/**
 	 * Add setting and control : color
 	 *
@@ -127,6 +132,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : image
 	 *
@@ -155,6 +161,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : radio
 	 *
@@ -184,6 +191,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : radio
 	 *
@@ -216,6 +224,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : checkbox
 	 *
@@ -244,6 +253,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : text
 	 *
@@ -276,6 +286,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : number
 	 *
@@ -305,6 +316,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : textarea
 	 *
@@ -333,6 +345,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : textarea(no html)
 	 *
@@ -346,6 +359,7 @@ class YS_Customizer {
 		$args['sanitize_callback'] = array( $this, 'sanitize_plain_text' );
 		$this->add_textarea( $args );
 	}
+
 	/**
 	 * Add setting and control : url
 	 *
@@ -374,6 +388,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * Add setting and control : label
 	 *
@@ -400,6 +415,7 @@ class YS_Customizer {
 			)
 		);
 	}
+
 	/**
 	 * デフォルト値のセット
 	 *
@@ -408,6 +424,7 @@ class YS_Customizer {
 	public function parse_args( $args ) {
 		return wp_parse_args( $args, $this->defaults );
 	}
+
 	/**
 	 * カスタマイザーのデフォルト値を取得
 	 */
@@ -422,33 +439,38 @@ class YS_Customizer {
 			'sanitize_callback' => '',
 		);
 	}
+
 	/**
 	 * Select,radio
 	 *
-	 * @param string $input input.
+	 * @param string $input   input.
 	 * @param object $setting setting.
 	 */
 	public static function sanitize_select( $input, $setting ) {
 		$input   = sanitize_key( $input );
 		$choices = $setting->manager->get_control( $setting->id )->choices;
+
 		return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
 	}
+
 	/**
 	 * Checkbox
 	 *
-	 * @param string $value input.
+	 * @param string $value   input.
 	 * @param object $setting setting.
 	 */
 	public static function sanitize_checkbox( $value, $setting ) {
 		if ( 'option' == $setting->manager->get_setting( $setting->id )->type ) {
-			return  ( ( isset( $value ) && true == $value ) ? true : '' );
+			return ( ( isset( $value ) && true == $value ) ? true : '' );
 		}
-		return  ( ( isset( $value ) && true == $value ) ? true : false );
+
+		return ( ( isset( $value ) && true == $value ) ? true : false );
 	}
+
 	/**
 	 * Number
 	 *
-	 * @param string $number number.
+	 * @param string $number  number.
 	 * @param object $setting setting.
 	 */
 	public static function sanitize_number( $number, $setting ) {
@@ -459,8 +481,10 @@ class YS_Customizer {
 		$min  = ( isset( $atts['min'] ) ? $atts['min'] : $number );
 		$max  = ( isset( $atts['max'] ) ? $atts['max'] : $number );
 		$step = ( isset( $atts['step'] ) ? $atts['step'] : 1 );
+
 		return ( $min <= $number && $number <= $max && is_int( $number / $step ) ? $number : $setting->default );
 	}
+
 	/**
 	 * Plain text
 	 *
@@ -468,6 +492,7 @@ class YS_Customizer {
 	 */
 	public static function sanitize_plain_text( $value ) {
 		$value = wp_strip_all_tags( $value, true );
+
 		return $value;
 	}
 }

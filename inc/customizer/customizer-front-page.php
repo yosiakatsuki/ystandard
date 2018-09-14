@@ -3,7 +3,7 @@
  * フロントページ設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -27,6 +27,7 @@ function ys_customizer_front_page( $wp_customize ) {
 	 */
 	ys_customizer_front_page_design( $wp_customize );
 }
+
 /**
  * フロントページ設定の表示条件
  */
@@ -36,6 +37,7 @@ function ys_customizer_active_callback_front_page_panel() {
 	if ( 'page' === $show_on_front && $page_on_front ) {
 		return true;
 	}
+
 	return false;
 }
 
@@ -49,13 +51,15 @@ function ys_customizer_front_page_design( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_front_page_design',
-		'title'       => 'デザイン設定',
-		'priority'    => 1,
-		'description' => 'フロントページのデザイン設定',
-		'panel'       => 'ys_customizer_panel_font_page',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_front_page_design',
+			'title'       => 'デザイン設定',
+			'priority'    => 1,
+			'description' => 'フロントページのデザイン設定',
+			'panel'       => 'ys_customizer_panel_font_page',
+		)
+	);
 	/**
 	 * 表示カラム数
 	 */

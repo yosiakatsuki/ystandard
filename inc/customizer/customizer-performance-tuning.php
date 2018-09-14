@@ -3,7 +3,7 @@
  * 高速化設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -49,13 +49,15 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_disable_wp_scripts',
-		'title'       => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化',
-		'priority'    => 1,
-		'description' => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化設定',
-		'panel'       => 'ys_customizer_panel_performance_tuning',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_disable_wp_scripts',
+			'title'       => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化',
+			'priority'    => 1,
+			'description' => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化設定',
+			'panel'       => 'ys_customizer_panel_performance_tuning',
+		)
+	);
 	/**
 	 * 絵文字を出力しない
 	 */
@@ -77,6 +79,7 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 		)
 	);
 }
+
 /**
  * CSS読み込みの最適化
  *
@@ -87,13 +90,15 @@ function ys_customizer_performance_tuning_add_optimize_load_css( $wp_customize )
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_optimize_load_css',
-		'title'       => 'CSS読み込み最適化設定（上級者向け）',
-		'priority'    => 1,
-		'description' => 'CSSの読み込み方式を最適化します。',
-		'panel'       => 'ys_customizer_panel_performance_tuning',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_optimize_load_css',
+			'title'       => 'CSS読み込み最適化設定（上級者向け）',
+			'priority'    => 1,
+			'description' => 'CSSの読み込み方式を最適化します。',
+			'panel'       => 'ys_customizer_panel_performance_tuning',
+		)
+	);
 	/**
 	 * CSSの読み込みを最適化する
 	 */
@@ -106,6 +111,7 @@ function ys_customizer_performance_tuning_add_optimize_load_css( $wp_customize )
 		)
 	);
 }
+
 /**
  * JavaScript読み込みの最適化
  *
@@ -116,20 +122,24 @@ function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) 
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_optimize_load_js',
-		'title'       => 'JavaScript読み込み最適化設定（上級者向け）',
-		'priority'    => 1,
-		'description' => 'JavaScriptの読み込み方式を最適化します。',
-		'panel'       => 'ys_customizer_panel_performance_tuning',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_optimize_load_js',
+			'title'       => 'JavaScript読み込み最適化設定（上級者向け）',
+			'priority'    => 1,
+			'description' => 'JavaScriptの読み込み方式を最適化します。',
+			'panel'       => 'ys_customizer_panel_performance_tuning',
+		)
+	);
 	/**
 	 * JavaScriptの読み込みを非同期化する
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_optimize_load_js_label',
-		'label' => 'JavaScriptの読み込みを非同期化する',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_optimize_load_js_label',
+			'label' => 'JavaScriptの読み込みを非同期化する',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_option_optimize_load_js',
@@ -141,10 +151,12 @@ function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) 
 	/**
 	 * [jQueryをフッターで読み込む]
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_load_jquery_in_footer_label',
-		'label' => 'jQueryの読み込みを最適化する',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_load_jquery_in_footer_label',
+			'label' => 'jQueryの読み込みを最適化する',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_load_jquery_in_footer',
@@ -168,10 +180,12 @@ function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) 
 	/**
 	 * [jQueryを無効化する]
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_not_load_jquery_label',
-		'label' => 'jQueryを無効化する',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_not_load_jquery_label',
+			'label' => 'jQueryを無効化する',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_not_load_jquery',

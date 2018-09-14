@@ -3,7 +3,7 @@
  * アーカイブページ設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -31,11 +31,13 @@ function ys_customizer_archive( $wp_customize ) {
 	 */
 	ys_customizer_archive_add_settings( $wp_customize );
 }
+
 /**
  * アーカイブページ設定の表示条件
  */
 function ys_customizer_active_callback_archive() {
 	return true;
+
 	// TODO:active_callbackが効かない.
 	return is_archive();
 }
@@ -90,11 +92,13 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 	/**
 	 * 投稿日を表示する
 	 */
-	$ys_customizer->add_label( array(
-		'id'      => 'ys_show_archive_publish_date_label',
-		'label'   => '投稿日の表示',
-		'section' => 'ys_customizer_section_archive',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'      => 'ys_show_archive_publish_date_label',
+			'label'   => '投稿日の表示',
+			'section' => 'ys_customizer_section_archive',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'      => 'ys_show_archive_publish_date',
@@ -106,11 +110,13 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 	/**
 	 * 著者情報を表示する
 	 */
-	$ys_customizer->add_label( array(
-		'id'      => 'ys_show_archive_author_label',
-		'label'   => '著者情報の表示',
-		'section' => 'ys_customizer_section_archive',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'      => 'ys_show_archive_author_label',
+			'label'   => '著者情報の表示',
+			'section' => 'ys_customizer_section_archive',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'      => 'ys_show_archive_author',
