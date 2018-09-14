@@ -30,15 +30,17 @@ if ( has_nav_menu( 'global' ) ) :
 				</div><!-- .global-nav__search -->
 			<?php endif; ?>
 			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'global',
-				'menu_class'     => 'global-nav__menu row flex--a-center list-style--none',
-				'menu_id'        => 'global-nav__menu',
-				'container'      => false,
-				'depth'          => 2,
-				'fallback_cb'    => '',
-				'walker'         => new YS_Walker_Global_Nav_Menu,
-			) );
+			wp_nav_menu(
+				array(
+					'theme_location' => 'global',
+					'menu_class'     => 'global-nav__menu row flex--a-center list-style--none',
+					'menu_id'        => 'global-nav__menu',
+					'container'      => false,
+					'depth'          => 2,
+					'fallback_cb'    => '',
+					'walker'         => new YS_Walker_Global_Nav_Menu,
+				)
+			);
 			?>
 		</nav><!-- .global-nav -->
 	<?php

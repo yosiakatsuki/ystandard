@@ -3,7 +3,7 @@
  * SNS設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -63,19 +63,23 @@ function ys_customizer_sns_add_ogp( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section' => 'ys_customizer_section_ogp',
-		'title'   => 'OGP設定',
-		'panel'   => 'ys_customizer_panel_sns',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section' => 'ys_customizer_section_ogp',
+			'title'   => 'OGP設定',
+			'panel'   => 'ys_customizer_panel_sns',
+		)
+	);
 
 	/**
 	 * OGP metaタグを出力する
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_ogp_enable_label',
-		'label' => 'OGP metaタグ',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_ogp_enable_label',
+			'label' => 'OGP metaタグ',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'        => 'ys_ogp_enable',
@@ -136,18 +140,22 @@ function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section' => 'ys_customizer_section_twitter_cards',
-		'title'   => 'Twitterカード設定',
-		'panel'   => 'ys_customizer_panel_sns',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section' => 'ys_customizer_section_twitter_cards',
+			'title'   => 'Twitterカード設定',
+			'panel'   => 'ys_customizer_panel_sns',
+		)
+	);
 	/**
 	 * Twitterカードのmetaタグを出力する
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_twittercard_enable_label',
-		'label' => 'Twitterカードmetaタグ',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_twittercard_enable_label',
+			'label' => 'Twitterカードmetaタグ',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'        => 'ys_twittercard_enable',
@@ -174,16 +182,18 @@ function ys_customizer_sns_add_twitter_cards( $wp_customize ) {
 	/**
 	 * カードタイプ
 	 */
-	$ys_customizer->add_radio( array(
-		'id'        => 'ys_twittercard_type',
-		'default'   => 'summary_large_image',
-		'transport' => 'postMessage',
-		'label'     => 'カードタイプ',
-		'choices'   => array(
-			'summary_large_image' => 'Summary Card with Large Image',
-			'summary'             => 'Summary Card',
-		),
-	) );
+	$ys_customizer->add_radio(
+		array(
+			'id'        => 'ys_twittercard_type',
+			'default'   => 'summary_large_image',
+			'transport' => 'postMessage',
+			'label'     => 'カードタイプ',
+			'choices'   => array(
+				'summary_large_image' => 'Summary Card with Large Image',
+				'summary'             => 'Summary Card',
+			),
+		)
+	);
 }
 
 /**
@@ -196,19 +206,23 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_sns_share_button',
-		'title'       => 'SNSシェアボタン設定',
-		'description' => '記事詳細ページに表示するSNSシェアボタンの設定',
-		'panel'       => 'ys_customizer_panel_sns',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_sns_share_button',
+			'title'       => 'SNSシェアボタン設定',
+			'description' => '記事詳細ページに表示するSNSシェアボタンの設定',
+			'panel'       => 'ys_customizer_panel_sns',
+		)
+	);
 	/**
 	 * シェアボタン表示設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_sns_share_button_label',
-		'label' => '表示するSNSシェアボタン',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_sns_share_button_label',
+			'label' => '表示するSNSシェアボタン',
+		)
+	);
 	/**
 	 * Twitter
 	 */
@@ -292,10 +306,12 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 	/**
 	 * シェアボタン表示位置
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_sns_share_on_label',
-		'label' => 'シェアボタンの表示位置',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_sns_share_on_label',
+			'label' => 'シェアボタンの表示位置',
+		)
+	);
 	/**
 	 * 記事上部に表示する
 	 */
@@ -328,18 +344,22 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section' => 'ys_customizer_section_twitter_share',
-		'title'   => 'Twitterシェアボタン設定',
-		'panel'   => 'ys_customizer_panel_sns',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section' => 'ys_customizer_section_twitter_share',
+			'title'   => 'Twitterシェアボタン設定',
+			'panel'   => 'ys_customizer_panel_sns',
+		)
+	);
 	/**
 	 * 投稿ユーザー（via）の設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_sns_share_tweet_via_label',
-		'label' => '投稿ユーザー（via）の設定',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_sns_share_tweet_via_label',
+			'label' => '投稿ユーザー（via）の設定',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_sns_share_tweet_via',
@@ -367,10 +387,12 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 	/**
 	 * おすすめアカウントの設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'    => 'ys_sns_share_tweet_related_label',
-		'label' => 'おすすめアカウントの設定',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_sns_share_tweet_related_label',
+			'label' => 'おすすめアカウントの設定',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_sns_share_tweet_related',
@@ -407,20 +429,24 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_sns_follow',
-		'title'       => 'フォローボタン設定',
-		'description' => '記事下に表示されるフォローボタンのリンク先URLの設定',
-		'panel'       => 'ys_customizer_panel_sns',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_sns_follow',
+			'title'       => 'フォローボタン設定',
+			'description' => '記事下に表示されるフォローボタンのリンク先URLの設定',
+			'panel'       => 'ys_customizer_panel_sns',
+		)
+	);
 	/**
 	 * SNS購読ボタン設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'          => 'ys_subscribe_label',
-		'label'       => 'フォローボタン設定',
-		'description' => '※フォローボタンを表示しない場合は空白にしてください',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'          => 'ys_subscribe_label',
+			'label'       => 'フォローボタン設定',
+			'description' => '※フォローボタンを表示しない場合は空白にしてください',
+		)
+	);
 	/**
 	 * Twitter
 	 */
@@ -474,12 +500,14 @@ function ys_customizer_sns_add_footer_sns_follow( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_footer_sns_follow',
-		'title'       => 'フッターSNSフォローリンク設定',
-		'description' => 'フッターに表示するSNSフォローボタンの設定<br>リンクする各SNSのプロフィールページ等のURLを入力して下さい',
-		'panel'       => 'ys_customizer_panel_sns',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_footer_sns_follow',
+			'title'       => 'フッターSNSフォローリンク設定',
+			'description' => 'フッターに表示するSNSフォローボタンの設定<br>リンクする各SNSのプロフィールページ等のURLを入力して下さい',
+			'panel'       => 'ys_customizer_panel_sns',
+		)
+	);
 	/**
 	 * Twitter
 	 */
@@ -571,6 +599,7 @@ function ys_customizer_sns_add_footer_sns_follow( $wp_customize ) {
 		)
 	);
 }
+
 /**
  * SNS用JavaScriptの読み込み
  *
@@ -581,12 +610,14 @@ function ys_customizer_advanced_add_load_script( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'     => 'ys_customizer_section_load_script',
-		'title'       => 'SNS用JavaScriptの読み込み(上級者向け)',
-		'description' => 'SNS用のJavaScriptを読み込みます。<br>通常、各SNSで発行した埋め込みコードにはJavaScriptのコードも含まれるのでこの設定は不要です。<br>独自に読み込み位置などを調整する場合はご利用下さい。',
-		'panel'       => 'ys_customizer_panel_sns',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_load_script',
+			'title'       => 'SNS用JavaScriptの読み込み(上級者向け)',
+			'description' => 'SNS用のJavaScriptを読み込みます。<br>通常、各SNSで発行した埋め込みコードにはJavaScriptのコードも含まれるのでこの設定は不要です。<br>独自に読み込み位置などを調整する場合はご利用下さい。',
+			'panel'       => 'ys_customizer_panel_sns',
+		)
+	);
 	/**
 	 * Twitter用JavaScriptを読み込む
 	 */

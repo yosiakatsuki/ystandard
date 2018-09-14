@@ -92,17 +92,19 @@ class YS_Taxonomy_Posts_Widget extends YS_Widget_Post_List {
 		}
 		$title = sprintf( $title, $selected['term_label'] );
 		echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
-		echo do_shortcode( sprintf(
-			'[ys_tax_posts title="%s" post_count="%s" show_img="%s" thumbnail_size="%s" taxonomy="%s" term_slug="%s" mode="%s" cols="%s"]',
-			$title,
-			$post_count,
-			$show_img,
-			$thumbnail_size,
-			$selected['taxonomy_name'],
-			$selected['term_slug'],
-			$mode,
-			$cols
-		) );
+		echo do_shortcode(
+			sprintf(
+				'[ys_tax_posts title="%s" post_count="%s" show_img="%s" thumbnail_size="%s" taxonomy="%s" term_slug="%s" mode="%s" cols="%s"]',
+				$title,
+				$post_count,
+				$show_img,
+				$thumbnail_size,
+				$selected['taxonomy_name'],
+				$selected['term_slug'],
+				$mode,
+				$cols
+			)
+		);
 		echo $args['after_widget'];
 	}
 
