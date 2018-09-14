@@ -121,13 +121,15 @@ function ys_customizer_sns_add_ogp( $wp_customize ) {
 	/**
 	 * OGPデフォルト画像
 	 */
-	$ys_customizer->add_image( array(
-		'id'          => 'ys_ogp_default_image',
-		'default'     => '',
-		'transport'   => 'postMessage',
-		'label'       => 'OGPデフォルト画像',
-		'description' => 'トップページ・アーカイブページ・投稿にアイキャッチ画像が無かった場合のデフォルト画像を指定して下さい。<br>おすすめサイズ：横1200px - 縦630px ',
-	) );
+	$ys_customizer->add_image(
+		array(
+			'id'          => 'ys_ogp_default_image',
+			'default'     => '',
+			'transport'   => 'postMessage',
+			'label'       => 'OGPデフォルト画像',
+			'description' => 'トップページ・アーカイブページ・投稿にアイキャッチ画像が無かった場合のデフォルト画像を指定して下さい。<br>おすすめサイズ：横1200px - 縦630px ',
+		)
+	);
 }
 
 /**
