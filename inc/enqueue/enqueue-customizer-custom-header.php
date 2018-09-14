@@ -100,7 +100,7 @@ function ys_get_customizer_inline_css_custom_header() {
 EOD;
 	$opacity = ys_get_option( 'ys_wp_header_media_full_opacity' );
 	$opacity = $opacity / 100;
-	if ( 'light' == ys_get_option( 'ys_wp_header_media_menu_on_media_type' ) ) {
+	if ( 'light' == ys_get_option( 'ys_wp_header_media_full_type' ) ) {
 		$css = str_replace( '\'#text_color#\'', '#222', $css );
 		$css = str_replace( '\'#bg_color#\'', 'rgba(255,255,255,' . $opacity . ')', $css );
 	} else {
