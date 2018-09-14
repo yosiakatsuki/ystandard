@@ -3,7 +3,7 @@
  * SEO設定
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -51,12 +51,14 @@ function ys_customizer_seo_add_meta_description( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'  => 'ys_customizer_section_meta_description',
-		'title'    => 'meta description設定',
-		'priority' => 1,
-		'panel'    => 'ys_customizer_panel_seo',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'  => 'ys_customizer_section_meta_description',
+			'title'    => 'meta description設定',
+			'priority' => 1,
+			'panel'    => 'ys_customizer_panel_seo',
+		)
+	);
 	/**
 	 * SEO : meta descriptionを自動生成する
 	 */
@@ -80,6 +82,7 @@ function ys_customizer_seo_add_meta_description( $wp_customize ) {
 		)
 	);
 }
+
 /**
  * アーカイブページのnoindex設定
  *
@@ -90,12 +93,14 @@ function ys_customizer_seo_add_noindex( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'  => 'ys_customizer_section_noindex',
-		'title'    => 'アーカイブページのnoindex設定',
-		'priority' => 1,
-		'panel'    => 'ys_customizer_panel_seo',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'  => 'ys_customizer_section_noindex',
+			'title'    => 'アーカイブページのnoindex設定',
+			'priority' => 1,
+			'panel'    => 'ys_customizer_panel_seo',
+		)
+	);
 	/**
 	 * カテゴリー一覧をnoindexにする
 	 */
@@ -141,6 +146,7 @@ function ys_customizer_seo_add_noindex( $wp_customize ) {
 		)
 	);
 }
+
 /**
  * Google Analytics設定
  *
@@ -151,12 +157,14 @@ function ys_customizer_seo_add_google_analytics( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'  => 'ys_customizer_section_google_analytics',
-		'title'    => 'Google Analytics設定',
-		'priority' => 1,
-		'panel'    => 'ys_customizer_panel_seo',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'  => 'ys_customizer_section_google_analytics',
+			'title'    => 'Google Analytics設定',
+			'priority' => 1,
+			'panel'    => 'ys_customizer_panel_seo',
+		)
+	);
 	/**
 	 * Google Analytics トラッキングID
 	 */
@@ -174,17 +182,19 @@ function ys_customizer_seo_add_google_analytics( $wp_customize ) {
 	/**
 	 * トラッキングコードタイプ
 	 */
-	$ys_customizer->add_radio( array(
-		'id'          => 'ys_ga_tracking_type',
-		'default'     => 'gtag',
-		'transport'   => 'postMessage',
-		'label'       => 'トラッキングコードタイプ',
-		'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。※デフォルトはグローバル サイトタグ(gtag.js)です。',
-		'choices'     => array(
-			'gtag'      => 'グローバル サイトタグ(gtag.js)',
-			'analytics' => 'ユニバーサルアナリティクス(analytics.js)',
-		),
-	) );
+	$ys_customizer->add_radio(
+		array(
+			'id'          => 'ys_ga_tracking_type',
+			'default'     => 'gtag',
+			'transport'   => 'postMessage',
+			'label'       => 'トラッキングコードタイプ',
+			'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。※デフォルトはグローバル サイトタグ(gtag.js)です。',
+			'choices'     => array(
+				'gtag'      => 'グローバル サイトタグ(gtag.js)',
+				'analytics' => 'ユニバーサルアナリティクス(analytics.js)',
+			),
+		)
+	);
 	/**
 	 * ログイン中はアクセス数をカウントしない
 	 */
@@ -209,22 +219,26 @@ function ys_customizer_seo_add_structured_data( $wp_customize ) {
 	/**
 	 * セクション追加
 	 */
-	$ys_customizer->add_section( array(
-		'section'  => 'ys_customizer_section_structured_data',
-		'title'    => '構造化データ 設定',
-		'priority' => 1,
-		'panel'    => 'ys_customizer_panel_seo',
-	) );
+	$ys_customizer->add_section(
+		array(
+			'section'  => 'ys_customizer_section_structured_data',
+			'title'    => '構造化データ 設定',
+			'priority' => 1,
+			'panel'    => 'ys_customizer_panel_seo',
+		)
+	);
 	/**
 	 * Publisher画像
 	 */
-	$ys_customizer->add_image( array(
-		'id'          => 'ys_option_structured_data_publisher_image',
-		'default'     => '',
-		'transport'   => 'postMessage',
-		'label'       => 'Publisher Logo',
-		'description' => '構造化データのPublisherに使用する画像です。サイトの顔になるような画像を設定すると良いかと思います。 推奨サイズ:横600px以下,縦60px以下',
-	) );
+	$ys_customizer->add_image(
+		array(
+			'id'          => 'ys_option_structured_data_publisher_image',
+			'default'     => '',
+			'transport'   => 'postMessage',
+			'label'       => 'Publisher Logo',
+			'description' => '構造化データのPublisherに使用する画像です。サイトの顔になるような画像を設定すると良いかと思います。 推奨サイズ:横600px以下,縦60px以下',
+		)
+	);
 	/**
 	 * Publisher名
 	 */

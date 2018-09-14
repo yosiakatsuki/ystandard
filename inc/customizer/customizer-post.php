@@ -77,11 +77,13 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 	/**
 	 * 記事上部表示設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'      => 'ys_above_post_label',
-		'label'   => '記事上部設定',
-		'section' => 'ys_customizer_section_post',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'      => 'ys_above_post_label',
+			'label'   => '記事上部設定',
+			'section' => 'ys_customizer_section_post',
+		)
+	);
 	$ys_customizer->add_checkbox(
 		array(
 			'id'          => 'ys_show_post_thumbnail',
@@ -105,12 +107,14 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 	/**
 	 * 記事下表示設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'          => 'ys_below_post_label',
-		'label'       => '記事下表示設定',
-		'description' => '※シェアボタンの表示・非表示は[SNS設定]→[SNSシェアボタン設定]から行って下さい',
-		'section'     => 'ys_customizer_section_post',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'          => 'ys_below_post_label',
+			'label'       => '記事下表示設定',
+			'description' => '※シェアボタンの表示・非表示は[SNS設定]→[SNSシェアボタン設定]から行って下さい',
+			'section'     => 'ys_customizer_section_post',
+		)
+	);
 	/**
 	 * カテゴリー・タグ情報を表示する
 	 */
@@ -169,12 +173,14 @@ function ys_customizer_post_add_settings( $wp_customize ) {
 	/**
 	 * 記事前後のウィジェット表示設定
 	 */
-	$ys_customizer->add_label( array(
-		'id'          => 'ys_post_content_widget_label',
-		'label'       => '記事前後のウィジェット表示設定',
-		'description' => '記事前後に表示するウィジェットの設定',
-		'section'     => 'ys_customizer_section_post',
-	) );
+	$ys_customizer->add_label(
+		array(
+			'id'          => 'ys_post_content_widget_label',
+			'label'       => '記事前後のウィジェット表示設定',
+			'description' => '記事前後に表示するウィジェットの設定',
+			'section'     => 'ys_customizer_section_post',
+		)
+	);
 	/**
 	 * 記事上ウィジェットを出力する
 	 */
