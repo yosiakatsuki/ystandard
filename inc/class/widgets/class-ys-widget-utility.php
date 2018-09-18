@@ -239,7 +239,12 @@ class YS_Widget_Utility {
 				selected( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy ),
 				esc_html( $indent . $term->name )
 			);
-			$result .= $this->get_taxonomies_option_html( $taxonomy, $term->term_id, $selected_taxonomy, $indent );
+			/**
+			 * 階層設定に対応したタクソノミーは再帰処理
+			 */
+			if ( $taxonomy->hierarchical ) {
+				$result .= $this->get_taxonomies_option_html( $taxonomy, $term->term_id, $selected_taxonomy, $indent );
+			}
 		}
 
 		return $result;
