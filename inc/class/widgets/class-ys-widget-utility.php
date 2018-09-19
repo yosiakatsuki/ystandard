@@ -105,9 +105,14 @@ class YS_Widget_Utility {
 		if ( empty( $instance['taxonomy'] ) ) {
 			return true;
 		}
-		if ( is_single() ) {
-			$selected = $this->get_selected_taxonomy( $instance['taxonomy'] );
-			if ( has_term( $selected['term_id'], $selected['taxonomy_name'] ) ) {
+		$selected = $this->get_selected_taxonomy( $instance['taxonomy'] );
+		if ( is_single() || is_category() || is_tag() || is_tax() ) {
+			$terms = get_term_children( $selected['term_id'], $selected['taxonomy_name'] );
+			if ( is_wp_error( $terms ) ) {
+				$terms = array();
+			}
+			$terms[] = $selected['term_id'];
+			if ( has_term( $terms, $selected['taxonomy_name'] ) ) {
 				return true;
 			}
 		}
@@ -201,16 +206,51 @@ class YS_Widget_Utility {
 		if ( ! empty( $taxonomies ) ) {
 			foreach ( $taxonomies as $taxonomy ) {
 				echo '<optgroup label="' . $taxonomy->label . '">';
-				foreach ( get_terms( $taxonomy->name ) as $term ) {
-					echo '<option value="' . $this->get_select_taxonomy_value( $taxonomy, $term ) . '" ';
-					echo selected( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy ) . '>';
-					echo esc_html( $term->name );
-					echo '</option>';
-				}
+				echo $this->get_taxonomies_option_html( $taxonomy, 0, $selected_taxonomy );
 				echo '</optgroup>';
 			}
 		}
 		echo '</select>';
+	}
+
+	/**
+	 * タクソノミー一覧を階層構造を保ったまま作成する
+	 *
+	 * @param WP_Taxonomy $taxonomy          タクソノミー.
+	 * @param integer     $parent            親タームID.
+	 * @param string      $selected_taxonomy 選択中タクソノミー.
+	 * @param string      $indent            インデント.
+	 *
+	 * @return string
+	 */
+	private function get_taxonomies_option_html( $taxonomy, $parent, $selected_taxonomy, $indent = '' ) {
+		$result = '';
+		$terms  = get_terms(
+			$taxonomy->name,
+			array(
+				'parent'     => $parent,
+				'hide_empty' => false,
+			)
+		);
+		if ( 0 <> $parent ) {
+			$indent .= '　';
+		}
+		foreach ( $terms as $term ) {
+			$result .= sprintf(
+				'<option value="%s" %s>%s</option>',
+				$this->get_select_taxonomy_value( $taxonomy, $term ),
+				selected( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy ),
+				esc_html( $indent . $term->name )
+			);
+			/**
+			 * 階層設定に対応したタクソノミーは再帰処理
+			 */
+			if ( $taxonomy->hierarchical ) {
+				$result .= $this->get_taxonomies_option_html( $taxonomy, $term->term_id, $selected_taxonomy, $indent );
+			}
+		}
+
+		return $result;
 	}
 
 	/**
