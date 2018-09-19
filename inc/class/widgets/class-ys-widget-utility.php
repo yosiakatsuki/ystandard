@@ -107,7 +107,10 @@ class YS_Widget_Utility {
 		}
 		$selected = $this->get_selected_taxonomy( $instance['taxonomy'] );
 		if ( is_single() || is_category() || is_tag() || is_tax() ) {
-			$terms   = get_term_children( $selected['term_id'], $selected['taxonomy_name'] );
+			$terms = get_term_children( $selected['term_id'], $selected['taxonomy_name'] );
+			if ( is_wp_error( $terms ) ) {
+				$terms = array();
+			}
 			$terms[] = $selected['term_id'];
 			if ( has_term( $terms, $selected['taxonomy_name'] ) ) {
 				return true;
