@@ -95,11 +95,43 @@ function ys_add_post_option() {
 }
 
 /**
+ * カスタムフィールドの登録指示
+ *
+ * @param string  $new_status 新しい投稿ステータス.
+ * @param string  $old_status 古い投稿ステータス.
+ * @param WP_Post $post       投稿データ.
+ */
+function ys_update_post_meta( $new_status, $old_status, $post ) {
+	/**
+	 * 予約済み→公開は何もしない
+	 */
+	if ( 'future' == $old_status && 'publish' == $new_status ) {
+		return;
+	}
+	/**
+	 * クイック編集
+	 */
+	if ( isset( $_POST['action'] ) && 'inline-save' == $_POST['action'] ) {
+		return;
+	}
+	add_action( 'save_post', 'ys_save_post' );
+}
+
+add_action( 'transition_post_status', 'ys_update_post_meta', 10, 3 );
+
+/**
  * 投稿オプションの保存
  *
  * @param  int $post_id 投稿ID.
  */
 function ys_save_post( $post_id ) {
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+
 	/**
 	 * Noindex設定
 	 */
@@ -146,7 +178,6 @@ function ys_save_post( $post_id ) {
 	ys_save_post_checkbox( $_POST, $post_id, 'ys_post_meta_amp_desable' );
 }
 
-add_action( 'save_post', 'ys_save_post' );
 /**
  * 投稿オプションの更新：チェックボックス
  *
@@ -155,8 +186,7 @@ add_action( 'save_post', 'ys_save_post' );
  * @param  string $key     設定キー.
  */
 function ys_save_post_checkbox( $post, $post_id, $key ) {
-
-	if ( isset( $post[ $key ] ) && ! empty( $post[ $key ] ) && '1' === $post[ $key ] ) {
+	if ( isset( $_POST[ $key ] ) ) {
 		update_post_meta( $post_id, $key, $post[ $key ] );
 	} else {
 		delete_post_meta( $post_id, $key );
@@ -172,8 +202,10 @@ function ys_save_post_checkbox( $post, $post_id, $key ) {
  * @param  bool   $remove_breaks 改行を削除するか.
  */
 function ys_save_post_textarea( $post, $post_id, $key, $remove_breaks = true ) {
-
-	if ( isset( $post[ $key ] ) && ! empty( $post[ $key ] ) ) {
+	if ( ! isset( $_POST[ $key ] ) ) {
+		return;
+	}
+	if ( ! empty( $post[ $key ] ) ) {
 		$text = wp_strip_all_tags( $post[ $key ], $remove_breaks );
 		update_post_meta( $post_id, $key, $text );
 	} else {
