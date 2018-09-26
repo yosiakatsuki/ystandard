@@ -4,6 +4,8 @@
 // ビジュアルエディタ用スタイル
 //
 body#tinymce.wp-editor {
+  @import "akatsuki-base/base/base";
+  
   color: $font-color-main;
   font-size: $font-size;
   font-family: $font-family;
@@ -16,3 +18,4 @@ body#tinymce.wp-editor {
     margin-top: 1em;
   }
 }
+@import "ystandard/blog-card/blog-card";
