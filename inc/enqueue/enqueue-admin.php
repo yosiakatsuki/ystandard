@@ -67,3 +67,39 @@ function ys_admin_enqueue_scripts( $hook_suffix ) {
 }
 
 add_action( 'admin_enqueue_scripts', 'ys_admin_enqueue_scripts' );
+
+
+/**
+ * ビジュアルエディタ用CSS追加
+ */
+function ys_add_editor_styles() {
+	/**
+	 * ビジュアルエディターへのCSSセット
+	 */
+	if ( ys_get_option( 'ys_admin_enable_tiny_mce_style' ) ) {
+		add_editor_style( get_template_directory_uri() . '/css/ys-editor-style.css' );
+		add_editor_style( get_stylesheet_directory_uri() . '/style.css' );
+	}
+}
+
+add_action( 'admin_init', 'ys_add_editor_styles' );
+
+/**
+ * TinyMCEに追加CSSを適用させる
+ *
+ * @param array $settings TinyMCE設定.
+ *
+ * @return array;
+ */
+function ys_tiny_mce_inline_style( $settings ) {
+	/**
+	 * ビジュアルエディターへのCSSセット
+	 */
+	if ( ys_get_option( 'ys_admin_enable_tiny_mce_style' ) ) {
+		$settings['content_style'] = wp_get_custom_css();
+	}
+
+	return $settings;
+}
+
+add_filter( 'tiny_mce_before_init', 'ys_tiny_mce_inline_style' );

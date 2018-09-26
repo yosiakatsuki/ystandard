@@ -3,7 +3,7 @@
  * ブログカード用データ作成
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -45,6 +45,7 @@ function ys_blog_card_get_register_pattern() {
 	foreach ( $providers as $key => $value ) {
 		$providers[ $key ] = preg_replace( '/^#(.+)#.*$/', '$1', $value );
 	}
+
 	return '#^(?!.*(' . implode( '|', $providers ) . '))https?://.*$#i';
 }
 
@@ -55,34 +56,60 @@ function ys_blog_card_get_register_pattern() {
  * @param [type] $attr attr.
  * @param [type] $url url.
  * @param [type] $rawattr rawattr.
- * @return single ブログカード用ショートコード
+ *
+ * @return string ブログカード用ショートコード
  */
 function ys_blog_card_handler( $matches, $attr, $url, $rawattr ) {
-	return '[ys_blog_card url="' . $url . '"]';
+	$blog_card = '[ys_blog_card url="' . $url . '"]';
+	/**
+	 * ビジュアルエディタ用処理
+	 */
+	if ( is_admin() ) {
+		/**
+		 * ビジュアルエディタの中でショートコードを展開する
+		 */
+		add_shortcode( 'ys_blog_card', 'ys_blog_card_shortcode' );
+		$shortcode = str_replace(
+			'ys_blog_card',
+			'ys_blog_card cache_refresh="true"',
+			$blog_card
+		);
+		$blog_card = do_shortcode( $shortcode );
+		$blog_card = str_replace( '<a ', '<span ', $blog_card );
+		$blog_card = str_replace( '</a>', '</span>', $blog_card );
+	}
+	return $blog_card;
 }
+
 /**
  * ブログカード展開用ショートコード
  *
  * @param array $args パラメーター.
- * @return void
+ *
+ * @return string
  */
 function ys_blog_card_shortcode( $args ) {
 	$pairs = array(
-		'url'         => '',
-		'title'       => '',
-		'dscr'        => '',
-		'description' => '',
-		'domain'      => '',
-		'thumbnail'   => '',
-		'target'      => '',
+		'url'           => '',
+		'title'         => '',
+		'dscr'          => '',
+		'description'   => '',
+		'domain'        => '',
+		'thumbnail'     => '',
+		'target'        => '',
+		'cache_refresh' => false,
 	);
 	$args  = shortcode_atts( $pairs, $args );
 	if ( '' === $args['url'] ) {
-		return;
+		return '';
 	}
 	$url = $args['url'];
 	if ( ! wp_http_validate_url( $url ) ) {
 		return ys_blog_card_create_a_tag( $url );
+	}
+	$cache_refresh = false;
+	if ( $args['cache_refresh'] || 'true' === $args['cache_refresh'] ) {
+		$cache_refresh = true;
 	}
 	/**
 	 * TitleとURLがセットされている場合はマニュアルでデータ作成
@@ -93,7 +120,7 @@ function ys_blog_card_shortcode( $args ) {
 		/**
 		 * ブログカード用データ取得
 		 */
-		$data = ys_blog_card_get_data( $url );
+		$data = ys_blog_card_get_data( $url, $cache_refresh );
 	}
 	/**
 	 * データが取れていなければ中断
@@ -132,15 +159,19 @@ function ys_blog_card_shortcode( $args ) {
 	$template = preg_replace( '/\{title\}/', $data['title'], $template );
 	$template = preg_replace( '/\{dscr\}/', $data['dscr'], $template );
 	$template = preg_replace( '/\{domain\}/', $data['domain'], $template );
+
 	return $template;
 }
+
 add_shortcode( 'ys_blog_card', 'ys_blog_card_shortcode' );
 
 /**
  * ブログカード用データ取得
  *
- * @param  string  $url url.
+ * @param  string  $url           url.
  * @param  boolean $cache_refresh cache refresh flag.
+ *
+ * @return array
  */
 function ys_blog_card_get_data( $url, $cache_refresh = false ) {
 	/**
@@ -172,24 +203,31 @@ function ys_blog_card_get_data( $url, $cache_refresh = false ) {
 	 * キャッシュ更新
 	 */
 	ys_blog_card_update_cache( $url, $data );
+
 	return $data;
 }
+
 /**
  * URLからPost ID取得
  *
  * @param [type] $url Url.
+ *
  * @return integer Post ID.
  */
 function ys_blog_card_get_post_id( $url ) {
 	if ( false === strpos( $url, home_url() ) ) {
 		return 0;
 	}
+
 	return url_to_postid( $url );
 }
+
 /**
  * 自サイトの情報取得
  *
  * @param array $data data.
+ *
+ * @return array
  */
 function ys_blog_card_get_post_data( $data ) {
 	/**
@@ -225,6 +263,7 @@ function ys_blog_card_get_post_data( $data ) {
 	}
 	$data['domain']    = $icon . ys_blog_card_get_domain_string( $url );
 	$data['blog_card'] = true;
+
 	return $data;
 }
 
@@ -232,6 +271,8 @@ function ys_blog_card_get_post_data( $data ) {
  * 外部サイト、自サイトの個別投稿以外 の情報取得
  *
  * @param array $data data.
+ *
+ * @return array
  */
 function ys_blog_card_get_site_data( $data ) {
 	$url     = $data['url'];
@@ -253,6 +294,7 @@ function ys_blog_card_get_site_data( $data ) {
 	$data['target']    = ' target="_blank"';
 	$data['domain']    = ys_blog_card_get_domain_string( $url );
 	$data['blog_card'] = true;
+
 	return $data;
 }
 
@@ -260,18 +302,22 @@ function ys_blog_card_get_site_data( $data ) {
  * ブログカード表示用 ドメイン取得
  *
  * @param string $url url.
+ *
  * @return string 表示用ドメイン
  */
 function ys_blog_card_get_domain_string( $url ) {
 	if ( false !== strpos( $url, home_url() ) ) {
 		return rtrim( preg_replace( '/https?:\/\//i', '', home_url() ), '/' );
 	}
+
 	return parse_url( $url, PHP_URL_HOST );
 }
+
 /**
  * コンテンツ部分の抽出
  *
  * @param string $url url.
+ *
  * @return string レスポンスbody
  */
 function ys_blog_card_get_site_content( $url ) {
@@ -279,13 +325,16 @@ function ys_blog_card_get_site_content( $url ) {
 	if ( ! is_array( $response ) || 200 !== $response['response']['code'] ) {
 		return false;
 	}
+
 	return $response['body'];
 }
+
 /**
  * サイトタイトル取得
  *
- * @param single $content コンテンツ.
- * @return single ページタイトル
+ * @param string $content コンテンツ.
+ *
+ * @return string ページタイトル
  */
 function ys_blog_card_get_site_title( $content ) {
 	if ( 1 === preg_match( '/<title>(.+?)<\/title>/is', $content, $matches ) ) {
@@ -294,13 +343,16 @@ function ys_blog_card_get_site_title( $content ) {
 	if ( 1 === preg_match( '/<meta.+?property=["\']og:title["\'][^\/>]*?content=["\']([^"\']+?)["\'].*?\/?>/is', $content, $matches ) ) {
 		return $matches[1];
 	}
+
 	return '';
 }
+
 /**
  * サイトdescription
  *
- * @param single $content コンテンツ.
- * @return single description
+ * @param string $content コンテンツ.
+ *
+ * @return string description
  */
 function ys_blog_card_get_site_description( $content ) {
 	if ( 1 === preg_match( '/<meta.+?name=["\']description["\'][^\/>]*?content=["\']([^"\']+?)["\'].*?\/?>/is', $content, $matches ) ) {
@@ -309,6 +361,7 @@ function ys_blog_card_get_site_description( $content ) {
 	if ( 1 === preg_match( '/<meta.+?property=["\']og:description["\'][^\/>]*?content=["\']([^"\']+?)["\'].*?\/?>/is', $content, $matches ) ) {
 		return $matches[1];
 	}
+
 	return '';
 }
 
@@ -329,8 +382,10 @@ function ys_blog_card_get_cache_list() {
 		}
 		array_walk_recursive( $cache, 'ys_blog_card_decode_cache' );
 	}
+
 	return $cache;
 }
+
 /**
  * ブログカード用キャッシュ取得
  *
@@ -359,6 +414,8 @@ function ys_blog_card_decode_cache( &$item, $key ) {
  * ブログカードのキャッシュデータを取得
  *
  * @param  string $url url.
+ *
+ * @return mixed
  */
 function ys_blog_card_get_cache_data( $url ) {
 	$cache = ys_blog_card_get_cache_list();
@@ -378,6 +435,7 @@ function ys_blog_card_get_cache_data( $url ) {
 	if ( $chach_date < $today ) {
 		return false;
 	}
+
 	return $data;
 }
 
@@ -404,6 +462,8 @@ function ys_blog_card_update_cache( $url, $data ) {
  * URLからaタグを作る(ブログカード展開できなかった時用)
  *
  * @param  string $url URL.
+ *
+ * @return string
  */
 function ys_blog_card_create_a_tag( $url ) {
 	$url = sprintf(
@@ -416,6 +476,7 @@ function ys_blog_card_create_a_tag( $url ) {
 	} else {
 		$url = '<br>' . $url;
 	}
+
 	return $url;
 }
 
@@ -440,6 +501,7 @@ function ys_blog_card_get_data_array() {
  * パラメータからブログカード用データを作成
  *
  * @param  array $args パラメータ.
+ *
  * @return array       ブログカード用データ.
  */
 function ys_blog_card_create_data_by_param( $args ) {
@@ -465,6 +527,7 @@ function ys_blog_card_create_data_by_param( $args ) {
 	if ( '' !== $args['target'] ) {
 		$data['target'] = ' target="' . $args['target'] . '"';
 	}
+
 	return apply_filters( 'ys_blog_card_create_data_by_param', $data );
 }
 
@@ -494,4 +557,5 @@ function ys_blog_card_refresh_cache( $new_status, $old_status, $post ) {
 		}
 	}
 }
+
 add_action( 'transition_post_status', 'ys_blog_card_refresh_cache', 10, 3 );
