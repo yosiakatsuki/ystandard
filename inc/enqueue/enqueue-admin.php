@@ -84,6 +84,25 @@ function ys_add_editor_styles() {
 
 add_action( 'admin_init', 'ys_add_editor_styles' );
 
+
+/**
+ * Enqueue block editor style
+ */
+function ys_enqueue_block_editor_assets() {
+	wp_enqueue_style(
+		'ys-block-editor-styles',
+		get_template_directory_uri() . '/css/ys-editor-style.css'
+	);
+	wp_enqueue_style(
+		'site-block-editor-styles',
+		get_template_directory_uri() . '/style.css',
+		array( 'ys-block-editor-styles' )
+	);
+	wp_add_inline_style( 'ys-block-editor-styles', wp_get_custom_css() );
+}
+
+add_action( 'enqueue_block_editor_assets', 'ys_enqueue_block_editor_assets' );
+
 /**
  * TinyMCEに追加CSSを適用させる
  *
