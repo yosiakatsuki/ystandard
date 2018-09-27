@@ -114,10 +114,6 @@ if ( ! function_exists( 'ys_init' ) ) {
 		 * カテゴリー説明の拡張
 		 */
 		ys_tax_dscr_allowed_option();
-		/**
-		 * エディタースタイルの有効化
-		 */
-		add_theme_support( 'editor-styles' );
 	}
 }
 add_action( 'after_setup_theme', 'ys_init' );
