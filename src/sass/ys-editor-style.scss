@@ -41,6 +41,13 @@ body#tinymce.wp-editor,
 @import "ystandard/utility/embed-responsive/embed-responsive";
 @import "ystandard/utility/table/table";
 
+// Gutenberg タイトル
 .editor-post-title__block .editor-post-title__input {
   font-family: $font-family;
+}
+// Gutenberg オプションリセット
+.components-panel__body>.components-panel__body-title {
+  background-color: unset !important;
+  border: none !important;
+  font-weight: normal; !important;
 }

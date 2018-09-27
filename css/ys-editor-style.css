@@ -1222,6 +1222,11 @@ div.aligncenter {
 	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
 }
 
+.components-panel__body > .components-panel__body-title {
+	background-color: unset !important;
+	border: none !important;
+}
+
 @media screen and (min-width: 600px) {
 
 .row--reverse-tb {
