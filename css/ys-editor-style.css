@@ -1,4 +1,5 @@
-body#tinymce.wp-editor {
+body#tinymce.wp-editor,
+#editor.gutenberg__editor .editor-block-list__block {
 	color: #222;
 	font-size: 16px;
 	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
@@ -6,22 +7,27 @@ body#tinymce.wp-editor {
 	line-height: 1.7;
 }
 
-body#tinymce.wp-editor * {
+body#tinymce.wp-editor *,
+#editor.gutenberg__editor .editor-block-list__block * {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
 body#tinymce.wp-editor *:before,
-body#tinymce.wp-editor *:after {
+body#tinymce.wp-editor *:after,
+#editor.gutenberg__editor .editor-block-list__block *:before,
+#editor.gutenberg__editor .editor-block-list__block *:after {
 	-webkit-box-sizing: inherit;
 	box-sizing: inherit;
 }
 
-body#tinymce.wp-editor html {
+body#tinymce.wp-editor html,
+#editor.gutenberg__editor .editor-block-list__block html {
 	font-size: 16px;
 }
 
-body#tinymce.wp-editor body {
+body#tinymce.wp-editor body,
+#editor.gutenberg__editor .editor-block-list__block body {
 	color: #222;
 	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
 	letter-spacing: 0.1em;
@@ -57,7 +63,31 @@ body#tinymce.wp-editor h2,
 body#tinymce.wp-editor h3,
 body#tinymce.wp-editor h4,
 body#tinymce.wp-editor h5,
-body#tinymce.wp-editor h6 {
+body#tinymce.wp-editor h6,
+#editor.gutenberg__editor .editor-block-list__block html,
+#editor.gutenberg__editor .editor-block-list__block body,
+#editor.gutenberg__editor .editor-block-list__block p,
+#editor.gutenberg__editor .editor-block-list__block ol,
+#editor.gutenberg__editor .editor-block-list__block ul,
+#editor.gutenberg__editor .editor-block-list__block li,
+#editor.gutenberg__editor .editor-block-list__block dl,
+#editor.gutenberg__editor .editor-block-list__block dt,
+#editor.gutenberg__editor .editor-block-list__block dd,
+#editor.gutenberg__editor .editor-block-list__block table,
+#editor.gutenberg__editor .editor-block-list__block blockquote,
+#editor.gutenberg__editor .editor-block-list__block figure,
+#editor.gutenberg__editor .editor-block-list__block fieldset,
+#editor.gutenberg__editor .editor-block-list__block legend,
+#editor.gutenberg__editor .editor-block-list__block textarea,
+#editor.gutenberg__editor .editor-block-list__block pre,
+#editor.gutenberg__editor .editor-block-list__block iframe,
+#editor.gutenberg__editor .editor-block-list__block hr,
+#editor.gutenberg__editor .editor-block-list__block h1,
+#editor.gutenberg__editor .editor-block-list__block h2,
+#editor.gutenberg__editor .editor-block-list__block h3,
+#editor.gutenberg__editor .editor-block-list__block h4,
+#editor.gutenberg__editor .editor-block-list__block h5,
+#editor.gutenberg__editor .editor-block-list__block h6 {
 	margin: 0;
 	padding: 0;
 }
@@ -65,7 +95,11 @@ body#tinymce.wp-editor h6 {
 body#tinymce.wp-editor code,
 body#tinymce.wp-editor kbd,
 body#tinymce.wp-editor pre,
-body#tinymce.wp-editor samp {
+body#tinymce.wp-editor samp,
+#editor.gutenberg__editor .editor-block-list__block code,
+#editor.gutenberg__editor .editor-block-list__block kbd,
+#editor.gutenberg__editor .editor-block-list__block pre,
+#editor.gutenberg__editor .editor-block-list__block samp {
 	font-family: Consolas, Monaco, monospace;
 	line-height: 1;
 }
@@ -74,13 +108,20 @@ body#tinymce.wp-editor input,
 body#tinymce.wp-editor textarea,
 body#tinymce.wp-editor optgroup,
 body#tinymce.wp-editor select,
-body#tinymce.wp-editor button {
+body#tinymce.wp-editor button,
+#editor.gutenberg__editor .editor-block-list__block input,
+#editor.gutenberg__editor .editor-block-list__block textarea,
+#editor.gutenberg__editor .editor-block-list__block optgroup,
+#editor.gutenberg__editor .editor-block-list__block select,
+#editor.gutenberg__editor .editor-block-list__block button {
 	font-family: inherit;
 	line-height: 1.4;
 }
 
 body#tinymce.wp-editor img,
-body#tinymce.wp-editor amp-img {
+body#tinymce.wp-editor amp-img,
+#editor.gutenberg__editor .editor-block-list__block img,
+#editor.gutenberg__editor .editor-block-list__block amp-img {
 	height: auto;
 	max-width: 100%;
 	vertical-align: middle;
@@ -91,37 +132,51 @@ body#tinymce.wp-editor h2,
 body#tinymce.wp-editor h3,
 body#tinymce.wp-editor h4,
 body#tinymce.wp-editor h5,
-body#tinymce.wp-editor h6 {
+body#tinymce.wp-editor h6,
+#editor.gutenberg__editor .editor-block-list__block h1,
+#editor.gutenberg__editor .editor-block-list__block h2,
+#editor.gutenberg__editor .editor-block-list__block h3,
+#editor.gutenberg__editor .editor-block-list__block h4,
+#editor.gutenberg__editor .editor-block-list__block h5,
+#editor.gutenberg__editor .editor-block-list__block h6 {
 	font-weight: normal;
 	margin-bottom: .5em;
 }
 
-body#tinymce.wp-editor p {
+body#tinymce.wp-editor p,
+#editor.gutenberg__editor .editor-block-list__block p {
 	margin: 1.5em 0 0;
 }
 
-body#tinymce.wp-editor p:first-child {
+body#tinymce.wp-editor p:first-child,
+#editor.gutenberg__editor .editor-block-list__block p:first-child {
 	margin-top: 0;
 }
 
 body#tinymce.wp-editor ul,
-body#tinymce.wp-editor ol {
+body#tinymce.wp-editor ol,
+#editor.gutenberg__editor .editor-block-list__block ul,
+#editor.gutenberg__editor .editor-block-list__block ol {
 	margin-left: 1.8em;
 }
 
-body#tinymce.wp-editor dt {
+body#tinymce.wp-editor dt,
+#editor.gutenberg__editor .editor-block-list__block dt {
 	font-weight: bold;
 }
 
-body#tinymce.wp-editor dd {
+body#tinymce.wp-editor dd,
+#editor.gutenberg__editor .editor-block-list__block dd {
 	margin-left: 0;
 }
 
-body#tinymce.wp-editor blockquote *:last-child {
+body#tinymce.wp-editor blockquote *:last-child,
+#editor.gutenberg__editor .editor-block-list__block blockquote *:last-child {
 	margin-bottom: 0;
 }
 
-body#tinymce.wp-editor code {
+body#tinymce.wp-editor code,
+#editor.gutenberg__editor .editor-block-list__block code {
 	background-color: #fafafa;
 	border-radius: 3px;
 	padding: 2px 4px;
@@ -129,7 +184,8 @@ body#tinymce.wp-editor code {
 	letter-spacing: normal;
 }
 
-body#tinymce.wp-editor pre {
+body#tinymce.wp-editor pre,
+#editor.gutenberg__editor .editor-block-list__block pre {
 	background-color: #fafafa;
 	padding: 15px;
 	overflow: auto;
@@ -137,7 +193,8 @@ body#tinymce.wp-editor pre {
 	line-height: 1.4;
 }
 
-body#tinymce.wp-editor pre code {
+body#tinymce.wp-editor pre code,
+#editor.gutenberg__editor .editor-block-list__block pre code {
 	background-color: transparent;
 	border: none;
 	color: inherit;
@@ -147,13 +204,15 @@ body#tinymce.wp-editor pre code {
 	white-space: pre;
 }
 
-body#tinymce.wp-editor a {
+body#tinymce.wp-editor a,
+#editor.gutenberg__editor .editor-block-list__block a {
 	color: #2980B9;
 	-webkit-transition: all .3s;
 	transition: all .3s;
 }
 
-body#tinymce.wp-editor a:hover {
+body#tinymce.wp-editor a:hover,
+#editor.gutenberg__editor .editor-block-list__block a:hover {
 	color: #409ad5;
 }
 
@@ -161,50 +220,13 @@ body#tinymce.wp-editor label,
 body#tinymce.wp-editor input[type="reset"],
 body#tinymce.wp-editor input[type="submit"],
 body#tinymce.wp-editor button,
-body#tinymce.wp-editor input[type="button"] {
+body#tinymce.wp-editor input[type="button"],
+#editor.gutenberg__editor .editor-block-list__block label,
+#editor.gutenberg__editor .editor-block-list__block input[type="reset"],
+#editor.gutenberg__editor .editor-block-list__block input[type="submit"],
+#editor.gutenberg__editor .editor-block-list__block button,
+#editor.gutenberg__editor .editor-block-list__block input[type="button"] {
 	cursor: pointer;
-}
-
-body#tinymce.wp-editor input,
-body#tinymce.wp-editor textarea,
-body#tinymce.wp-editor select,
-body#tinymce.wp-editor button {
-	background-color: #fff;
-	border: 1px solid #bdc3c7;
-	padding: .5em;
-	font-size: 1em;
-	border-radius: 2px;
-}
-
-body#tinymce.wp-editor input[type="text"],
-body#tinymce.wp-editor input[type="search"],
-body#tinymce.wp-editor input[type="url"],
-body#tinymce.wp-editor input[type="email"],
-body#tinymce.wp-editor textarea,
-body#tinymce.wp-editor select {
-	display: block;
-	width: 100%;
-	-webkit-appearance: none;
-}
-
-body#tinymce.wp-editor button,
-body#tinymce.wp-editor input[type="reset"],
-body#tinymce.wp-editor input[type="submit"],
-body#tinymce.wp-editor input[type="button"] {
-	padding: .5em 2em;
-	background-color: #292b2c;
-	border: 1px solid #292b2c;
-	color: #fff;
-	-webkit-transition: all .3s;
-	transition: all .3s;
-}
-
-body#tinymce.wp-editor button:hover,
-body#tinymce.wp-editor input[type="reset"]:hover,
-body#tinymce.wp-editor input[type="submit"]:hover,
-body#tinymce.wp-editor input[type="button"]:hover {
-	background-color: #fff;
-	color: #222;
 }
 
 body#tinymce.wp-editor ul,
@@ -216,7 +238,17 @@ body#tinymce.wp-editor hr,
 body#tinymce.wp-editor pre,
 body#tinymce.wp-editor table,
 body#tinymce.wp-editor iframe,
-body#tinymce.wp-editor video {
+body#tinymce.wp-editor video,
+#editor.gutenberg__editor .editor-block-list__block ul,
+#editor.gutenberg__editor .editor-block-list__block ol,
+#editor.gutenberg__editor .editor-block-list__block dl,
+#editor.gutenberg__editor .editor-block-list__block blockquote,
+#editor.gutenberg__editor .editor-block-list__block figure,
+#editor.gutenberg__editor .editor-block-list__block hr,
+#editor.gutenberg__editor .editor-block-list__block pre,
+#editor.gutenberg__editor .editor-block-list__block table,
+#editor.gutenberg__editor .editor-block-list__block iframe,
+#editor.gutenberg__editor .editor-block-list__block video {
 	margin-top: 1.5em;
 }
 
@@ -229,32 +261,48 @@ body#tinymce.wp-editor hr:first-child,
 body#tinymce.wp-editor pre:first-child,
 body#tinymce.wp-editor table:first-child,
 body#tinymce.wp-editor iframe:first-child,
-body#tinymce.wp-editor video:first-child {
+body#tinymce.wp-editor video:first-child,
+#editor.gutenberg__editor .editor-block-list__block ul:first-child,
+#editor.gutenberg__editor .editor-block-list__block ol:first-child,
+#editor.gutenberg__editor .editor-block-list__block dl:first-child,
+#editor.gutenberg__editor .editor-block-list__block blockquote:first-child,
+#editor.gutenberg__editor .editor-block-list__block figure:first-child,
+#editor.gutenberg__editor .editor-block-list__block hr:first-child,
+#editor.gutenberg__editor .editor-block-list__block pre:first-child,
+#editor.gutenberg__editor .editor-block-list__block table:first-child,
+#editor.gutenberg__editor .editor-block-list__block iframe:first-child,
+#editor.gutenberg__editor .editor-block-list__block video:first-child {
 	margin-top: 0;
 }
 
 body#tinymce.wp-editor h1,
-body#tinymce.wp-editor h2 {
+body#tinymce.wp-editor h2,
+#editor.gutenberg__editor .editor-block-list__block h1,
+#editor.gutenberg__editor .editor-block-list__block h2 {
 	margin: 5em 0 1em;
 	font-size: 1.5em;
 }
 
-body#tinymce.wp-editor h3 {
+body#tinymce.wp-editor h3,
+#editor.gutenberg__editor .editor-block-list__block h3 {
 	margin: 4.5em 0 1em;
 	font-size: 1.4em;
 }
 
-body#tinymce.wp-editor h4 {
+body#tinymce.wp-editor h4,
+#editor.gutenberg__editor .editor-block-list__block h4 {
 	margin: 4em 0 1em;
 	font-size: 1.3em;
 }
 
-body#tinymce.wp-editor h5 {
+body#tinymce.wp-editor h5,
+#editor.gutenberg__editor .editor-block-list__block h5 {
 	margin: 3.5em 0 1em;
 	font-size: 1.2em;
 }
 
-body#tinymce.wp-editor h6 {
+body#tinymce.wp-editor h6,
+#editor.gutenberg__editor .editor-block-list__block h6 {
 	margin: 3em 0 1em;
 	font-size: 1.2em;
 }
@@ -263,11 +311,17 @@ body#tinymce.wp-editor h1 + h2,
 body#tinymce.wp-editor h2 + h3,
 body#tinymce.wp-editor h3 + h4,
 body#tinymce.wp-editor h4 + h5,
-body#tinymce.wp-editor h5 + h6 {
+body#tinymce.wp-editor h5 + h6,
+#editor.gutenberg__editor .editor-block-list__block h1 + h2,
+#editor.gutenberg__editor .editor-block-list__block h2 + h3,
+#editor.gutenberg__editor .editor-block-list__block h3 + h4,
+#editor.gutenberg__editor .editor-block-list__block h4 + h5,
+#editor.gutenberg__editor .editor-block-list__block h5 + h6 {
 	margin-top: 2em;
 }
 
-body#tinymce.wp-editor blockquote {
+body#tinymce.wp-editor blockquote,
+#editor.gutenberg__editor .editor-block-list__block blockquote {
 	position: relative;
 	padding: 15px;
 	background-color: #fafafa;
@@ -276,7 +330,8 @@ body#tinymce.wp-editor blockquote {
 	font-size: .95em;
 }
 
-body#tinymce.wp-editor blockquote:after {
+body#tinymce.wp-editor blockquote:after,
+#editor.gutenberg__editor .editor-block-list__block blockquote:after {
 	position: absolute;
 	content: "”";
 	top: 7.5px;
@@ -287,20 +342,24 @@ body#tinymce.wp-editor blockquote:after {
 	opacity: .1;
 }
 
-body#tinymce.wp-editor blockquote a {
+body#tinymce.wp-editor blockquote a,
+#editor.gutenberg__editor .editor-block-list__block blockquote a {
 	text-decoration: underline;
 }
 
-body#tinymce.wp-editor blockquote cite {
+body#tinymce.wp-editor blockquote cite,
+#editor.gutenberg__editor .editor-block-list__block blockquote cite {
 	font-size: .9em;
 }
 
-body#tinymce.wp-editor blockquote cite::before {
+body#tinymce.wp-editor blockquote cite::before,
+#editor.gutenberg__editor .editor-block-list__block blockquote cite::before {
 	content: "-";
 	margin-right: 5px;
 }
 
-body#tinymce.wp-editor table {
+body#tinymce.wp-editor table,
+#editor.gutenberg__editor .editor-block-list__block table {
 	width: 100%;
 	border-top: 1px solid #bdc3c7;
 	border-left: 1px solid #bdc3c7;
@@ -308,48 +367,65 @@ body#tinymce.wp-editor table {
 	word-break: break-word;
 }
 
-body#tinymce.wp-editor tr {
+body#tinymce.wp-editor tr,
+#editor.gutenberg__editor .editor-block-list__block tr {
 	border-bottom: 1px solid #bdc3c7;
 }
 
 body#tinymce.wp-editor td,
-body#tinymce.wp-editor th {
+body#tinymce.wp-editor th,
+#editor.gutenberg__editor .editor-block-list__block td,
+#editor.gutenberg__editor .editor-block-list__block th {
 	padding: .5em;
 	border-right: 1px solid #bdc3c7;
 }
 
-body#tinymce.wp-editor th {
+body#tinymce.wp-editor th,
+#editor.gutenberg__editor .editor-block-list__block th {
 	background-color: #fafafa;
 }
 
 body#tinymce.wp-editor ul li,
-body#tinymce.wp-editor ol li {
+body#tinymce.wp-editor ol li,
+#editor.gutenberg__editor .editor-block-list__block ul li,
+#editor.gutenberg__editor .editor-block-list__block ol li {
 	padding: .1em 0;
 }
 
 body#tinymce.wp-editor ul ul,
 body#tinymce.wp-editor ul ol,
 body#tinymce.wp-editor ol ul,
-body#tinymce.wp-editor ol ol {
+body#tinymce.wp-editor ol ol,
+#editor.gutenberg__editor .editor-block-list__block ul ul,
+#editor.gutenberg__editor .editor-block-list__block ul ol,
+#editor.gutenberg__editor .editor-block-list__block ol ul,
+#editor.gutenberg__editor .editor-block-list__block ol ol {
 	margin-top: 0;
 }
 
 body#tinymce.wp-editor ul ul li:last-child,
 body#tinymce.wp-editor ul ol li:last-child,
 body#tinymce.wp-editor ol ul li:last-child,
-body#tinymce.wp-editor ol ol li:last-child {
+body#tinymce.wp-editor ol ol li:last-child,
+#editor.gutenberg__editor .editor-block-list__block ul ul li:last-child,
+#editor.gutenberg__editor .editor-block-list__block ul ol li:last-child,
+#editor.gutenberg__editor .editor-block-list__block ol ul li:last-child,
+#editor.gutenberg__editor .editor-block-list__block ol ol li:last-child {
 	padding: .1em 0 0;
 }
 
-body#tinymce.wp-editor dt {
+body#tinymce.wp-editor dt,
+#editor.gutenberg__editor .editor-block-list__block dt {
 	margin: 1em 0 .1em;
 }
 
-body#tinymce.wp-editor dd {
+body#tinymce.wp-editor dd,
+#editor.gutenberg__editor .editor-block-list__block dd {
 	margin: 0 0 .2em 1em;
 }
 
-body#tinymce.wp-editor figcaption {
+body#tinymce.wp-editor figcaption,
+#editor.gutenberg__editor .editor-block-list__block figcaption {
 	padding: .1em .5em .5em;
 	color: #939393;
 	font-size: .9em;
@@ -361,8 +437,19 @@ body#tinymce.wp-editor h2,
 body#tinymce.wp-editor h3,
 body#tinymce.wp-editor h4,
 body#tinymce.wp-editor h5,
-body#tinymce.wp-editor h6 {
+body#tinymce.wp-editor h6,
+#editor.gutenberg__editor .editor-block-list__block h1,
+#editor.gutenberg__editor .editor-block-list__block h2,
+#editor.gutenberg__editor .editor-block-list__block h3,
+#editor.gutenberg__editor .editor-block-list__block h4,
+#editor.gutenberg__editor .editor-block-list__block h5,
+#editor.gutenberg__editor .editor-block-list__block h6 {
 	margin-top: 1em;
+}
+
+body#tinymce.wp-editor .wp-block-paragraph:not(.mce-content-body),
+#editor.gutenberg__editor .editor-block-list__block .wp-block-paragraph:not(.mce-content-body) {
+	font-size: 13px;
 }
 
 .clearfix:before,
@@ -1129,6 +1216,10 @@ div.aligncenter {
 	overflow: auto;
 	white-space: nowrap;
 	-webkit-overflow-scrolling: touch;
+}
+
+.editor-post-title__block .editor-post-title__input {
+	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
 }
 
 @media screen and (min-width: 600px) {

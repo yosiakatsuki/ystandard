@@ -3,9 +3,9 @@
 //
 // ビジュアルエディタ用スタイル
 //
-body#tinymce.wp-editor {
+body#tinymce.wp-editor,
+#editor.gutenberg__editor .editor-block-list__block {
   @import "akatsuki-base/base/base";
-  @import "akatsuki-base/forms/forms";
 
   color: $font-color-main;
   font-size: $font-size;
@@ -17,6 +17,9 @@ body#tinymce.wp-editor {
   
   h1,h2,h3,h4,h5,h6 {
     margin-top: 1em;
+  }
+  .wp-block-paragraph:not(.mce-content-body) {
+    font-size: 13px;
   }
 }
 @import "akatsuki-base/clearfix/clearfix";
@@ -37,3 +40,7 @@ body#tinymce.wp-editor {
 @import "ystandard/utility/button/button";
 @import "ystandard/utility/embed-responsive/embed-responsive";
 @import "ystandard/utility/table/table";
+
+.editor-post-title__block .editor-post-title__input {
+  font-family: $font-family;
+}
