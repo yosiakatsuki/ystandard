@@ -3,7 +3,7 @@
  * テーマカスタマイザー
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -85,7 +85,7 @@ function ys_theme_customizer( $wp_customize ) {
 	/**
 	 * AMP設定
 	 */
-	ys_customizer_amp( $wp_customize );	
+	ys_customizer_amp( $wp_customize );
 	/**
 	 * サイト運営支援
 	 */
@@ -95,6 +95,7 @@ function ys_theme_customizer( $wp_customize ) {
 	 */
 	ys_customizer_extension( $wp_customize );
 }
+
 add_action( 'customize_register', 'ys_theme_customizer' );
 /**
  * カスタマイザー用画像アセットURL取得

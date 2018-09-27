@@ -3,7 +3,7 @@
  * Utility
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -12,6 +12,7 @@ if ( ! function_exists( 'ys_no_self_ping' ) ) {
 	 * セルフピンバック対策
 	 *
 	 * @param array $links links.
+	 *
 	 * @return void
 	 */
 	function ys_no_self_ping( &$links ) {
@@ -42,6 +43,7 @@ if ( ! function_exists( 'ys_get_theme_version' ) ) {
 			 */
 			$theme = wp_get_theme( get_template() );
 		}
+
 		return $theme->get( 'Version' );
 	}
 }
@@ -53,13 +55,14 @@ if ( ! function_exists( 'ys_get_theme_version' ) ) {
  */
 function ys_get_plain_text( $data ) {
 	/**
-	* ショートコード削除
-	*/
+	 * ショートコード削除
+	 */
 	$data = strip_shortcodes( $data );
 	/**
 	 * HTMLタグ削除
 	 */
 	$data = wp_strip_all_tags( $data, true );
+
 	return $data;
 }
 
@@ -98,6 +101,7 @@ if ( ! function_exists( 'ys_get_posts_args' ) ) {
 	 *
 	 * @param  integer $posts_per_page 記事数.
 	 * @param  array   $args           パラメータ.
+	 *
 	 * @return array
 	 */
 	function ys_get_posts_args( $posts_per_page = 4, $args = array() ) {
@@ -108,6 +112,7 @@ if ( ! function_exists( 'ys_get_posts_args' ) ) {
 			'ignore_sticky_posts' => true,
 		);
 		$args     = wp_parse_args( $args, $defaults );
+
 		return $args;
 	}
 }
@@ -118,11 +123,13 @@ if ( ! function_exists( 'ys_get_posts_args_rand' ) ) {
 	 *
 	 * @param  integer $posts_per_page 記事数.
 	 * @param  array   $args           パラメータ.
+	 *
 	 * @return array
 	 */
 	function ys_get_posts_args_rand( $posts_per_page = 4, $args = array() ) {
 		$rand_args = array( 'orderby' => 'rand' );
 		$rand_args = wp_parse_args( $rand_args, $args );
+
 		/**
 		 * ランダムなクエリを取得
 		 */
@@ -134,15 +141,47 @@ if ( ! function_exists( 'ys_get_posts_args_rand' ) ) {
  * ファイル内容の取得
  *
  * @param  string $file ファイルパス.
+ *
+ * @return string
  */
 function ys_file_get_contents( $file ) {
-	global $wp_filesystem;
 	$content = false;
+	if ( ys_init_filesystem() ) {
+		global $wp_filesystem;
+		$content = $wp_filesystem->get_contents( $file );
+	}
+
+	return $content;
+}
+
+/**
+ * ファイルシステムの初期化
+ *
+ * @return bool|null
+ */
+function ys_init_filesystem() {
+	global $wp_filesystem;
 	if ( empty( $wp_filesystem ) ) {
 		require_once ABSPATH . '/wp-admin/includes/file.php';
 	}
-	if ( WP_Filesystem() ) {
-		$content = $wp_filesystem->get_contents( $file );
+
+	return WP_Filesystem();
+}
+
+/**
+ * テーマ内のファイルURLを取得する
+ *
+ * @param string $file ファイルパス.
+ *
+ * @return string
+ */
+function ys_get_theme_file_uri( $file ) {
+	/**
+	 * 4.7以下の場合 親テーマのファイルを返す
+	 */
+	if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
+		return get_template_directory_uri() . $file;
 	}
-	return $content;
+
+	return get_theme_file_uri( $file );
 }
