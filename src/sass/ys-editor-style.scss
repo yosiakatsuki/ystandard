@@ -1,0 +1,53 @@
+@charset "UTF-8";
+@import "import";
+//
+// ビジュアルエディタ用スタイル
+//
+body#tinymce.wp-editor,
+#editor.gutenberg__editor .editor-block-list__block {
+  @import "akatsuki-base/base/base";
+
+  color: $font-color-main;
+  font-size: $font-size;
+  font-family: $font-family;
+  letter-spacing: $letter-spacing;
+  line-height: $ine-height;
+  
+  @import "ystandard/markup/markup";
+  
+  h1,h2,h3,h4,h5,h6 {
+    margin-top: 1em;
+  }
+  .wp-block-paragraph:not(.mce-content-body) {
+    font-size: 13px;
+  }
+}
+@import "akatsuki-base/clearfix/clearfix";
+@import "akatsuki-base/style-clear/style-clear";
+@import "akatsuki-base/grid/grid";
+@import "akatsuki-base/card/card";
+@import "akatsuki-base/section/section";
+@import "akatsuki-base/list/list";
+@import "akatsuki-base/flex/flex";
+@import "akatsuki-base/ratio/ratio";
+
+@import "ystandard/blog-card/blog-card";
+@import "ystandard/wordpress/wp";
+@import "ystandard/wordpress/wp-gallery";
+@import "ystandard/advertisement/advertisement";
+@import "ystandard/utility/block/block";
+@import "ystandard/utility/text/text";
+@import "ystandard/utility/button/button";
+@import "ystandard/utility/embed-responsive/embed-responsive";
+@import "ystandard/utility/table/table";
+
+// Gutenberg タイトル
+.editor-post-title__block .editor-post-title__input {
+  font-family: $font-family;
+}
+// Gutenberg オプションリセット
+.components-panel__body>.components-panel__body-title {
+  background-color: unset !important;
+  border: none !important;
+  font-weight: normal; !important;
+}

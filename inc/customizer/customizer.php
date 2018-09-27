@@ -3,7 +3,7 @@
  * テーマカスタマイザー
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -25,6 +25,7 @@ require_once get_template_directory() . '/inc/customizer/customizer-seo.php';
 require_once get_template_directory() . '/inc/customizer/customizer-performance-tuning.php';
 require_once get_template_directory() . '/inc/customizer/customizer-advertisement.php';
 require_once get_template_directory() . '/inc/customizer/customizer-amp.php';
+require_once get_template_directory() . '/inc/customizer/customizer-admin.php';
 require_once get_template_directory() . '/inc/customizer/customizer-extension.php';
 
 /**
@@ -86,10 +87,15 @@ function ys_theme_customizer( $wp_customize ) {
 	 */
 	ys_customizer_amp( $wp_customize );
 	/**
+	 * サイト運営支援
+	 */
+	ys_customizer_admin( $wp_customize );
+	/**
 	 * 拡張機能
 	 */
 	ys_customizer_extension( $wp_customize );
 }
+
 add_action( 'customize_register', 'ys_theme_customizer' );
 /**
  * カスタマイザー用画像アセットURL取得

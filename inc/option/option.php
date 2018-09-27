@@ -3,7 +3,7 @@
  * 設定取得
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -434,6 +434,15 @@ function ys_get_options() {
 		'full'
 	);
 	$result['ys_amp_thumbnail_type'] = get_option( 'ys_amp_thumbnail_type', 'full' );
+	/**
+	 * **********
+	 * [ys]サイト運営支援
+	 * **********
+	 */
+	// Gutenberg用CSSを追加する.
+	$result['ys_admin_enable_block_editor_style'] = get_option( 'ys_admin_enable_block_editor_style', 1 );
+	// ビジュアルエディタ用CSSを追加する.
+	$result['ys_admin_enable_tiny_mce_style'] = get_option( 'ys_admin_enable_tiny_mce_style', 1 );
 
 	return apply_filters( 'ys_get_options', $result );
 }
@@ -442,6 +451,7 @@ function ys_get_options() {
  * 設定取得
  *
  * @param string $name option key.
+ *
  * @return mixed
  */
 function ys_get_option( $name ) {
@@ -466,9 +476,9 @@ function ys_get_copyright_year_option() {
 /**
  * 設定の変更処理
  *
- * @param string $old_key 旧設定.
+ * @param string $old_key     旧設定.
  * @param mixed  $old_default 旧設定の初期値.
- * @param string $new_key 新設定.
+ * @param string $new_key     新設定.
  * @param mixed  $new_default 新設定の初期値.
  */
 function ys_change_option_key( $old_key, $old_default, $new_key, $new_default ) {
