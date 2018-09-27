@@ -77,7 +77,7 @@ function ys_add_editor_styles() {
 	 * ビジュアルエディターへのCSSセット
 	 */
 	if ( ys_get_option( 'ys_admin_enable_tiny_mce_style' ) ) {
-		add_editor_style( get_template_directory_uri() . '/css/ys-editor-style.css' );
+		add_editor_style( get_template_directory_uri() . '/css/ys-user-custom-editor-style.css' );
 		add_editor_style( get_stylesheet_directory_uri() . '/style.css' );
 	}
 }
@@ -89,16 +89,18 @@ add_action( 'admin_init', 'ys_add_editor_styles' );
  * Enqueue block editor style
  */
 function ys_enqueue_block_editor_assets() {
-	wp_enqueue_style(
-		'ys-block-editor-styles',
-		get_template_directory_uri() . '/css/ys-editor-style.css'
-	);
-	wp_enqueue_style(
-		'site-block-editor-styles',
-		get_template_directory_uri() . '/style.css',
-		array( 'ys-block-editor-styles' )
-	);
-	wp_add_inline_style( 'ys-block-editor-styles', wp_get_custom_css() );
+	if ( ys_get_option( 'ys_admin_enable_block_editor_style' ) ) {
+		wp_enqueue_style(
+			'ys-block-editor-styles',
+			get_template_directory_uri() . '/css/ys-user-custom-editor-style.css'
+		);
+		wp_enqueue_style(
+			'site-block-editor-styles',
+			get_template_directory_uri() . '/style.css',
+			array( 'ys-block-editor-styles' )
+		);
+		wp_add_inline_style( 'ys-block-editor-styles', wp_get_custom_css() );
+	}
 }
 
 add_action( 'enqueue_block_editor_assets', 'ys_enqueue_block_editor_assets' );
