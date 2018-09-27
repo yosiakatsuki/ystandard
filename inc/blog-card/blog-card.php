@@ -64,20 +64,21 @@ function ys_blog_card_handler( $matches, $attr, $url, $rawattr ) {
 	/**
 	 * ビジュアルエディタ用処理
 	 */
-	if ( is_admin() ) {
+	if ( is_admin() && ys_get_option( 'ys_admin_enable_tiny_mce_style' ) ) {
 		/**
 		 * ビジュアルエディタの中でショートコードを展開する
 		 */
 		add_shortcode( 'ys_blog_card', 'ys_blog_card_shortcode' );
 		$shortcode = str_replace(
 			'ys_blog_card',
-			'ys_blog_card cache_refresh="true"',
+			'ys_blog_card cache="disable"',
 			$blog_card
 		);
 		$blog_card = do_shortcode( $shortcode );
 		$blog_card = str_replace( '<a ', '<span ', $blog_card );
 		$blog_card = str_replace( '</a>', '</span>', $blog_card );
 	}
+
 	return $blog_card;
 }
 
@@ -90,14 +91,14 @@ function ys_blog_card_handler( $matches, $attr, $url, $rawattr ) {
  */
 function ys_blog_card_shortcode( $args ) {
 	$pairs = array(
-		'url'           => '',
-		'title'         => '',
-		'dscr'          => '',
-		'description'   => '',
-		'domain'        => '',
-		'thumbnail'     => '',
-		'target'        => '',
-		'cache_refresh' => false,
+		'url'         => '',
+		'title'       => '',
+		'dscr'        => '',
+		'description' => '',
+		'domain'      => '',
+		'thumbnail'   => '',
+		'target'      => '',
+		'cache'       => '',
 	);
 	$args  = shortcode_atts( $pairs, $args );
 	if ( '' === $args['url'] ) {
@@ -108,8 +109,12 @@ function ys_blog_card_shortcode( $args ) {
 		return ys_blog_card_create_a_tag( $url );
 	}
 	$cache_refresh = false;
-	if ( $args['cache_refresh'] || 'true' === $args['cache_refresh'] ) {
+	if ( 'refresh' == $args['cache'] ) {
 		$cache_refresh = true;
+	}
+	$cache_disable = false;
+	if ( 'disable' == $args['cache'] ) {
+		$cache_disable = true;
 	}
 	/**
 	 * TitleとURLがセットされている場合はマニュアルでデータ作成
@@ -120,7 +125,7 @@ function ys_blog_card_shortcode( $args ) {
 		/**
 		 * ブログカード用データ取得
 		 */
-		$data = ys_blog_card_get_data( $url, $cache_refresh );
+		$data = ys_blog_card_get_data( $url, $cache_refresh, $cache_disable );
 	}
 	/**
 	 * データが取れていなければ中断
@@ -170,15 +175,16 @@ add_shortcode( 'ys_blog_card', 'ys_blog_card_shortcode' );
  *
  * @param  string  $url           url.
  * @param  boolean $cache_refresh cache refresh flag.
+ * @param  boolean $cache_disable cache disable flag.
  *
  * @return array
  */
-function ys_blog_card_get_data( $url, $cache_refresh = false ) {
+function ys_blog_card_get_data( $url, $cache_refresh = false, $cache_disable = false ) {
 	/**
 	 * キャッシュがあればそちらを返す
 	 */
 	$cache = ys_blog_card_get_cache_data( $url );
-	if ( false !== $cache && ! $cache_refresh ) {
+	if ( false !== $cache && ! $cache_refresh && ! $cache_disable ) {
 		return $cache;
 	}
 	/**
@@ -199,10 +205,12 @@ function ys_blog_card_get_data( $url, $cache_refresh = false ) {
 	} else {
 		$data = ys_blog_card_get_site_data( $data );
 	}
-	/**
-	 * キャッシュ更新
-	 */
-	ys_blog_card_update_cache( $url, $data );
+	if ( ! $cache_disable ) {
+		/**
+		 * キャッシュ更新
+		 */
+		ys_blog_card_update_cache( $url, $data );
+	}
 
 	return $data;
 }
