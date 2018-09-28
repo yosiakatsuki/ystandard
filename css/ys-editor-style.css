@@ -7,126 +7,6 @@ body#tinymce.wp-editor,
 	line-height: 1.7;
 }
 
-body#tinymce.wp-editor *,
-#editor.gutenberg__editor .editor-block-list__block * {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-body#tinymce.wp-editor *:before,
-body#tinymce.wp-editor *:after,
-#editor.gutenberg__editor .editor-block-list__block *:before,
-#editor.gutenberg__editor .editor-block-list__block *:after {
-	-webkit-box-sizing: inherit;
-	box-sizing: inherit;
-}
-
-body#tinymce.wp-editor html,
-#editor.gutenberg__editor .editor-block-list__block html {
-	font-size: 16px;
-}
-
-body#tinymce.wp-editor body,
-#editor.gutenberg__editor .editor-block-list__block body {
-	color: #222;
-	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
-	letter-spacing: 0.1em;
-	line-height: 1.7;
-	word-wrap: break-word;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
-}
-
-body#tinymce.wp-editor html,
-body#tinymce.wp-editor body,
-body#tinymce.wp-editor p,
-body#tinymce.wp-editor ol,
-body#tinymce.wp-editor ul,
-body#tinymce.wp-editor li,
-body#tinymce.wp-editor dl,
-body#tinymce.wp-editor dt,
-body#tinymce.wp-editor dd,
-body#tinymce.wp-editor table,
-body#tinymce.wp-editor blockquote,
-body#tinymce.wp-editor figure,
-body#tinymce.wp-editor fieldset,
-body#tinymce.wp-editor legend,
-body#tinymce.wp-editor textarea,
-body#tinymce.wp-editor pre,
-body#tinymce.wp-editor iframe,
-body#tinymce.wp-editor hr,
-body#tinymce.wp-editor h1,
-body#tinymce.wp-editor h2,
-body#tinymce.wp-editor h3,
-body#tinymce.wp-editor h4,
-body#tinymce.wp-editor h5,
-body#tinymce.wp-editor h6,
-#editor.gutenberg__editor .editor-block-list__block html,
-#editor.gutenberg__editor .editor-block-list__block body,
-#editor.gutenberg__editor .editor-block-list__block p,
-#editor.gutenberg__editor .editor-block-list__block ol,
-#editor.gutenberg__editor .editor-block-list__block ul,
-#editor.gutenberg__editor .editor-block-list__block li,
-#editor.gutenberg__editor .editor-block-list__block dl,
-#editor.gutenberg__editor .editor-block-list__block dt,
-#editor.gutenberg__editor .editor-block-list__block dd,
-#editor.gutenberg__editor .editor-block-list__block table,
-#editor.gutenberg__editor .editor-block-list__block blockquote,
-#editor.gutenberg__editor .editor-block-list__block figure,
-#editor.gutenberg__editor .editor-block-list__block fieldset,
-#editor.gutenberg__editor .editor-block-list__block legend,
-#editor.gutenberg__editor .editor-block-list__block textarea,
-#editor.gutenberg__editor .editor-block-list__block pre,
-#editor.gutenberg__editor .editor-block-list__block iframe,
-#editor.gutenberg__editor .editor-block-list__block hr,
-#editor.gutenberg__editor .editor-block-list__block h1,
-#editor.gutenberg__editor .editor-block-list__block h2,
-#editor.gutenberg__editor .editor-block-list__block h3,
-#editor.gutenberg__editor .editor-block-list__block h4,
-#editor.gutenberg__editor .editor-block-list__block h5,
-#editor.gutenberg__editor .editor-block-list__block h6 {
-	margin: 0;
-	padding: 0;
-}
-
-body#tinymce.wp-editor code,
-body#tinymce.wp-editor kbd,
-body#tinymce.wp-editor pre,
-body#tinymce.wp-editor samp,
-#editor.gutenberg__editor .editor-block-list__block code,
-#editor.gutenberg__editor .editor-block-list__block kbd,
-#editor.gutenberg__editor .editor-block-list__block pre,
-#editor.gutenberg__editor .editor-block-list__block samp {
-	font-family: Consolas, Monaco, monospace;
-	line-height: 1;
-}
-
-body#tinymce.wp-editor input,
-body#tinymce.wp-editor textarea,
-body#tinymce.wp-editor optgroup,
-body#tinymce.wp-editor select,
-body#tinymce.wp-editor button,
-#editor.gutenberg__editor .editor-block-list__block input,
-#editor.gutenberg__editor .editor-block-list__block textarea,
-#editor.gutenberg__editor .editor-block-list__block optgroup,
-#editor.gutenberg__editor .editor-block-list__block select,
-#editor.gutenberg__editor .editor-block-list__block button {
-	font-family: inherit;
-	line-height: 1.4;
-}
-
-body#tinymce.wp-editor img,
-body#tinymce.wp-editor amp-img,
-#editor.gutenberg__editor .editor-block-list__block img,
-#editor.gutenberg__editor .editor-block-list__block amp-img {
-	height: auto;
-	max-width: 100%;
-	vertical-align: middle;
-}
-
 body#tinymce.wp-editor h1,
 body#tinymce.wp-editor h2,
 body#tinymce.wp-editor h3,
@@ -214,19 +94,6 @@ body#tinymce.wp-editor a,
 body#tinymce.wp-editor a:hover,
 #editor.gutenberg__editor .editor-block-list__block a:hover {
 	color: #409ad5;
-}
-
-body#tinymce.wp-editor label,
-body#tinymce.wp-editor input[type="reset"],
-body#tinymce.wp-editor input[type="submit"],
-body#tinymce.wp-editor button,
-body#tinymce.wp-editor input[type="button"],
-#editor.gutenberg__editor .editor-block-list__block label,
-#editor.gutenberg__editor .editor-block-list__block input[type="reset"],
-#editor.gutenberg__editor .editor-block-list__block input[type="submit"],
-#editor.gutenberg__editor .editor-block-list__block button,
-#editor.gutenberg__editor .editor-block-list__block input[type="button"] {
-	cursor: pointer;
 }
 
 body#tinymce.wp-editor ul,
@@ -1218,13 +1085,28 @@ div.aligncenter {
 	-webkit-overflow-scrolling: touch;
 }
 
-.editor-post-title__block .editor-post-title__input {
+#editor.gutenberg__editor .editor-post-title__block .editor-post-title__input {
 	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+}
+
+#editor.gutenberg__editor .editor-block-list__block[data-type="core/image"][data-align=center] .wp-block-image,
+#editor.gutenberg__editor .editor-block-list__block[data-type="core/image"][data-align=center][data-resized=false] .wp-block-image > div {
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .components-panel__body > .components-panel__body-title {
 	background-color: unset !important;
 	border: none !important;
+	font-weight: normal !important;
+}
+
+#editor .edit-post-meta-boxes-area #poststuff h3,
+#editor .edit-post-meta-boxes-area #poststuff h2 {
+	background-color: unset !important;
+	border-top: none !important;
+	border-right: none !important;
+	border-left: none !important;
 }
 
 @media screen and (min-width: 600px) {

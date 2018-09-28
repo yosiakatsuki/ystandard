@@ -42,12 +42,34 @@ body#tinymce.wp-editor,
 @import "ystandard/utility/table/table";
 
 // Gutenberg タイトル
-.editor-post-title__block .editor-post-title__input {
-  font-family: $font-family;
+#editor.gutenberg__editor .editor-post-title__block {
+  .editor-post-title__input {
+    font-family: $font-family;
+  }
 }
+// Gutenberg 画像
+#editor.gutenberg__editor .editor-block-list__block {
+  // Gutenberg 画像
+  &[data-type="core/image"][data-align=center] {
+    .wp-block-image,
+    &[data-resized=false] .wp-block-image>div {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
 // Gutenberg オプションリセット
 .components-panel__body>.components-panel__body-title {
   background-color: unset !important;
   border: none !important;
-  font-weight: normal; !important;
+  font-weight: normal !important;
+}
+,
+#editor .edit-post-meta-boxes-area #poststuff h3,
+#editor .edit-post-meta-boxes-area #poststuff h2 {
+  background-color: unset !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
 }
