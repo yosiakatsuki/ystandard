@@ -118,6 +118,7 @@ Source : <https://gist.github.com/terkel/4373420>
 - 2.9.2 : 2018/09/28
   - 機能追加
     - Gutenberg対応：Youtube埋め込み表示対応
+    - Gutenberg対応：yStandardオリジナルブログカードの展開対応
 - 2.9.1 : 2018/09/28
   - 不具合修正
     - Gutenberg 編集画面にテーマのスタイルシート調整
