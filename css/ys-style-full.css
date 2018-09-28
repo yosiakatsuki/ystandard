@@ -2450,6 +2450,11 @@ div.aligncenter {
 	padding: 0;
 }
 
+.wp-block-embed.is-type-wp-embed.is-provider-ystandard .wp-block-embed__wrapper:before {
+	display: none;
+	padding: 0;
+}
+
 .one-col .content__main {
 	width: 100%;
 	max-width: 100%;

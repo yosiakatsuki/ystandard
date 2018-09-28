@@ -41,21 +41,50 @@ body#tinymce.wp-editor,
 @import "ystandard/utility/embed-responsive/embed-responsive";
 @import "ystandard/utility/table/table";
 
-// Gutenberg タイトル
-#editor.gutenberg__editor .editor-post-title__block {
-  .editor-post-title__input {
-    font-family: $font-family;
-  }
-}
-// Gutenberg 画像
-#editor.gutenberg__editor .editor-block-list__block {
-  // Gutenberg 画像
-  &[data-type="core/image"][data-align=center] {
-    .wp-block-image,
-    &[data-resized=false] .wp-block-image>div {
-      margin-left: auto;
-      margin-right: auto;
+// Gutenberg
+#editor.gutenberg__editor {
+  // Gutenberg タイトル
+  .editor-post-title__block {
+    .editor-post-title__input {
+      font-family: $font-family;
     }
+  }
+  // Gutenberg 画像
+  .editor-block-list__block {
+    // Gutenberg 画像
+    &[data-type="core/image"][data-align=center] {
+      .wp-block-image,
+      &[data-resized=false] .wp-block-image>div {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+  //Gutenberg yStandard blog card
+  .editor-block-list__block-edit .wp-block-embed {
+    &:not([class*="is-"]) {
+      .wp-block-embed__wrapper {
+        &:before {
+          display: none;
+          padding: 0;
+        }
+        iframe {
+          position: static;
+        }
+        &+.editor-rich-text {
+          display: none;
+        }
+      }
+    }
+    
+  }
+  //Gutenberg meta box
+  .edit-post-meta-boxes-area #poststuff h3,
+  .edit-post-meta-boxes-area #poststuff h2 {
+    background-color: unset !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
   }
 }
 
@@ -64,12 +93,4 @@ body#tinymce.wp-editor,
   background-color: unset !important;
   border: none !important;
   font-weight: normal !important;
-}
-,
-#editor .edit-post-meta-boxes-area #poststuff h3,
-#editor .edit-post-meta-boxes-area #poststuff h2 {
-  background-color: unset !important;
-  border-top: none !important;
-  border-right: none !important;
-  border-left: none !important;
 }
