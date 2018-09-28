@@ -532,6 +532,14 @@ amp-img {
 	vertical-align: middle;
 }
 
+label,
+input[type="reset"],
+input[type="submit"],
+button,
+input[type="button"] {
+	cursor: pointer;
+}
+
 h1,
 h2,
 h3,
@@ -601,14 +609,6 @@ a {
 
 a:hover {
 	color: #409ad5;
-}
-
-label,
-input[type="reset"],
-input[type="submit"],
-button,
-input[type="button"] {
-	cursor: pointer;
 }
 
 .clearfix:before,
