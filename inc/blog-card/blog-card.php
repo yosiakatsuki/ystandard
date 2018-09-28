@@ -596,7 +596,16 @@ function ys_blog_card_refresh_cache( $new_status, $old_status, $post ) {
 add_action( 'transition_post_status', 'ys_blog_card_refresh_cache', 10, 3 );
 
 
-function ys_oembed_dataparse( $return, $data, $url ) {
+/**
+ * Embedでのブログカードの展開
+ *
+ * @param string $return HTML.
+ * @param object $data Data.
+ * @param string $url URL.
+ *
+ * @return null|string|string[]
+ */
+function ys_blog_card_oembed_dataparse( $return, $data, $url ) {
 
 	if ( 'rich' == $data->type ) {
 		if ( 1 === preg_match( ys_blog_card_get_register_pattern(), $url ) ) {
@@ -617,4 +626,4 @@ function ys_oembed_dataparse( $return, $data, $url ) {
 	return $return;
 }
 
-add_filter( 'oembed_dataparse', 'ys_oembed_dataparse', 11, 3 );
+add_filter( 'oembed_dataparse', 'ys_blog_card_oembed_dataparse', 11, 3 );
