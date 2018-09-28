@@ -90,7 +90,26 @@ function ys_blog_card_handler( $matches, $attr, $url, $rawattr ) {
  * @return string
  */
 function ys_blog_card_shortcode( $args ) {
-	$pairs = array(
+	/**
+	 * デフォルト値取得
+	 */
+	$pairs = ys_blog_card_get_default_param();
+
+	/**
+	 * ブログカードHTML作成
+	 */
+	return ys_blog_card_get_html( shortcode_atts( $pairs, $args ) );
+}
+
+add_shortcode( 'ys_blog_card', 'ys_blog_card_shortcode' );
+
+/**
+ * ブログカードで使用するデフォルト値の作成
+ *
+ * @return array
+ */
+function ys_blog_card_get_default_param() {
+	return array(
 		'url'         => '',
 		'title'       => '',
 		'dscr'        => '',
@@ -100,7 +119,17 @@ function ys_blog_card_shortcode( $args ) {
 		'target'      => '',
 		'cache'       => '',
 	);
-	$args  = shortcode_atts( $pairs, $args );
+}
+
+
+/**
+ * ブログカードHTMLを取得
+ *
+ * @param array $args パラメーター.
+ *
+ * @return null|string|string[]
+ */
+function ys_blog_card_get_html( $args ) {
 	if ( '' === $args['url'] ) {
 		return '';
 	}
@@ -167,8 +196,6 @@ function ys_blog_card_shortcode( $args ) {
 
 	return $template;
 }
-
-add_shortcode( 'ys_blog_card', 'ys_blog_card_shortcode' );
 
 /**
  * ブログカード用データ取得
@@ -567,3 +594,36 @@ function ys_blog_card_refresh_cache( $new_status, $old_status, $post ) {
 }
 
 add_action( 'transition_post_status', 'ys_blog_card_refresh_cache', 10, 3 );
+
+
+/**
+ * Embedでのブログカードの展開
+ *
+ * @param string $return HTML.
+ * @param object $data Data.
+ * @param string $url URL.
+ *
+ * @return null|string|string[]
+ */
+function ys_blog_card_oembed_dataparse( $return, $data, $url ) {
+
+	if ( 'rich' == $data->type ) {
+		if ( 1 === preg_match( ys_blog_card_get_register_pattern(), $url ) ) {
+			/**
+			 * ブログカードの展開
+			 */
+			$args          = ys_blog_card_get_default_param();
+			$args['url']   = $url;
+			$args['cache'] = 'disable';
+			$return        = ys_blog_card_get_html( $args );
+			/**
+			 * ブログカード用CSS追加
+			 */
+			$return .= '<style>' . ys_file_get_contents( get_template_directory() . '/css/admin/blog-card.min.css' ) . '</style>';
+		}
+	}
+
+	return $return;
+}
+
+add_filter( 'oembed_dataparse', 'ys_blog_card_oembed_dataparse', 11, 3 );
