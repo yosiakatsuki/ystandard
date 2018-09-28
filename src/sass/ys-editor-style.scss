@@ -42,7 +42,7 @@ body#tinymce.wp-editor,
 @import "ystandard/utility/table/table";
 
 // Gutenberg タイトル
-#editor.editor-post-title__block {
+#editor.gutenberg__editor .editor-post-title__block {
   .editor-post-title__input {
     font-family: $font-family;
   }
