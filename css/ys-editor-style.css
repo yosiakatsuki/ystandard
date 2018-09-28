@@ -1085,7 +1085,7 @@ div.aligncenter {
 	-webkit-overflow-scrolling: touch;
 }
 
-#editor.editor-post-title__block .editor-post-title__input {
+#editor.gutenberg__editor .editor-post-title__block .editor-post-title__input {
 	font-family: Avenir, "Helvetica neue", Helvetica, YuGothic, "Yu Gothic", "Hiragino Sans", "ヒラギノ角ゴシック", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
 }
 
