@@ -74,7 +74,7 @@ function ys_customizer_add_admin( $wp_customize ) {
 		array(
 			'id'          => 'ys_admin_enable_tiny_mce_style_label',
 			'label'       => 'ビジュアルエディタ用CSSの追加',
-			'description' => '※クラシックエディターで有効な設定です。',
+			'description' => '※クラシックエディターで有効な設定です。<br>※ビジュアルエディタとテキストエディタの切り替えができなくなる等問題がある場合はチェックを外してください。',
 		)
 	);
 	$ys_customizer->add_checkbox(
