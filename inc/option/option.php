@@ -440,9 +440,9 @@ function ys_get_options() {
 	 * **********
 	 */
 	// Gutenberg用CSSを追加する.
-	$result['ys_admin_enable_block_editor_style'] = get_option( 'ys_admin_enable_block_editor_style', 1 );
+	$result['ys_admin_enable_block_editor_style'] = get_option( 'ys_admin_enable_block_editor_style', 0 );
 	// ビジュアルエディタ用CSSを追加する.
-	$result['ys_admin_enable_tiny_mce_style'] = get_option( 'ys_admin_enable_tiny_mce_style', 1 );
+	$result['ys_admin_enable_tiny_mce_style'] = get_option( 'ys_admin_enable_tiny_mce_style', 0 );
 
 	return apply_filters( 'ys_get_options', $result );
 }
