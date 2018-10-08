@@ -46,7 +46,7 @@ function ys_widget_init() {
 		array(
 			'name'          => '記事上エリア',
 			'id'            => 'before-content',
-			'description'   => '記事直上に表示されるウィジェット(表示する場合は投稿設定・固定ページ設定で記事上ウィジェットを有効にして下さい)',
+			'description'   => '記事直上に表示されるウィジェット(<small>※表示する場合はカスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事上ウィジェットを有効にして下さい</small>)',
 			'before_widget' => '<div id="%1$s" class="content-widget before-content-widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -60,7 +60,7 @@ function ys_widget_init() {
 		array(
 			'name'          => '記事下エリア',
 			'id'            => 'after-content',
-			'description'   => '記事直下に表示されるウィジェット(表示する場合は投稿設定・固定ページ設定で記事上ウィジェットを有効にして下さい)',
+			'description'   => '記事直下に表示されるウィジェット(<small>※表示する場合はカスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事下ウィジェットを有効にして下さい</small>)',
 			'before_widget' => '<div id="%1$s" class="content-widget after-content-widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
