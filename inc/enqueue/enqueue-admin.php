@@ -34,11 +34,11 @@ add_action( 'admin_enqueue_scripts', 'ys_enqueue_admin_scripts' );
 /**
  * 管理画面-スタイルシートの読み込み
  *
- * @param string $hook_suffix suffix.
+ * @param string $hook suffix.
  *
  * @return void
  */
-function ys_admin_enqueue_scripts( $hook_suffix ) {
+function ys_admin_enqueue_scripts( $hook ) {
 	wp_enqueue_style(
 		'ys_admin_style',
 		get_template_directory_uri() . '/css/admin/admin.min.css',
@@ -48,7 +48,7 @@ function ys_admin_enqueue_scripts( $hook_suffix ) {
 	/**
 	 * テーマ独自の設定ページ
 	 */
-	if ( 'toplevel_page_ys_settings_start' === $hook_suffix ) {
+	if ( 'toplevel_page_ys_settings_start' === $hook ) {
 		wp_enqueue_style(
 			'ys_settings_style',
 			get_template_directory_uri() . '/css/admin/ystandard-settings.min.css'
@@ -62,6 +62,15 @@ function ys_admin_enqueue_scripts( $hook_suffix ) {
 			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
 			array(),
 			''
+		);
+	}
+	/**
+	 * Widget
+	 */
+	if ( 'widgets.php' === $hook ) {
+		wp_enqueue_style(
+			'ys-admin-widget',
+			get_template_directory_uri() . '/css/admin/widget.min.css'
 		);
 	}
 }
