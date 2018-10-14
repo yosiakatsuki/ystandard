@@ -126,11 +126,15 @@ if ( ! function_exists( 'ys_excerpt_length' ) ) {
 	 * @return string
 	 */
 	function ys_excerpt_length( $length = null ) {
+		$option_length = ys_get_option( 'ys_option_excerpt_length' );
+		/**
+		 * 直接呼び出しでもフックでも設定値を返す
+		 */
 		if ( ! is_null( $length ) ) {
-			return $length;
+			return $option_length;
 		}
 
-		return ys_get_option( 'ys_option_excerpt_length' );
+		return $option_length;
 	}
 }
 add_filter( 'excerpt_length', 'ys_excerpt_length', 999 );
@@ -143,10 +147,7 @@ if ( ! function_exists( 'ys_excerpt_more' ) ) {
 	 * @return string
 	 */
 	function ys_excerpt_more( $more ) {
-		$more_str = '…';
-		if ( '' !== $more ) {
-			$more_str = $more;
-		}
+		$more_str = ' …';
 		if ( 0 == ys_excerpt_length() ) {
 			$more_str = '';
 		}
