@@ -62,7 +62,7 @@ function ys_get_options() {
 	// 発行年.
 	$result['ys_copyright_year'] = ys_get_copyright_year_option();
 	// 発行年.
-	$result['ys_option_excerpt_length'] = get_option( 'ys_option_excerpt_length', 80 );
+	$result['ys_option_excerpt_length'] = get_option( 'ys_option_excerpt_length', 110 );
 	/**
 	 * **********
 	 * [ys]デザイン設定
