@@ -13,6 +13,8 @@
  * @return void
  */
 function ys_widget_init() {
+	$current_url    = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$customizer_url = esc_url( add_query_arg( 'return', urlencode( $current_url ), wp_customize_url() ) );
 	/**
 	 * サイドバー
 	 */
@@ -38,7 +40,6 @@ function ys_widget_init() {
 			'after_title'   => '</h2>',
 		)
 	);
-
 	/**
 	 * 記事上下エリア
 	 */
@@ -46,7 +47,7 @@ function ys_widget_init() {
 		array(
 			'name'          => '記事上エリア',
 			'id'            => 'before-content',
-			'description'   => '記事直上に表示されるウィジェット(<small>※表示する場合はカスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事上ウィジェットを有効にして下さい</small>)',
+			'description'   => '記事直上に表示されるウィジェット<a href="' . $customizer_url . '">※カスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事上ウィジェットを有効にして下さい</a>',
 			'before_widget' => '<div id="%1$s" class="content-widget before-content-widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -60,7 +61,7 @@ function ys_widget_init() {
 		array(
 			'name'          => '記事下エリア',
 			'id'            => 'after-content',
-			'description'   => '記事直下に表示されるウィジェット(<small>※表示する場合はカスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事下ウィジェットを有効にして下さい</small>)',
+			'description'   => '記事直下に表示されるウィジェット<a href="' . $customizer_url . '">※カスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事下ウィジェットを有効にして下さい</a>',
 			'before_widget' => '<div id="%1$s" class="content-widget after-content-widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
