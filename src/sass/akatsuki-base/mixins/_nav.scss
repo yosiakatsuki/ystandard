@@ -3,9 +3,9 @@
     opacity: 0;
   }
   .top {
-    transform: rotate(-45deg) translateX(-2px);
+    transform: translateY(5px) rotate(-45deg);
   }
   .bottom {
-    transform: rotate(45deg) translateX(-3px);
+    transform: translateY(-5px) rotate(45deg);
   }
 }

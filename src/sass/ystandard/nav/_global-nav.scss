@@ -47,23 +47,29 @@
       right: $gutter;
       border: 0;
       background: 0;
-      padding: 5px 0;
+      width: 30px;
+      height: 22px;
       outline: none;
       z-index: 102;
 
       span {
+        position: absolute;
         display: block;
-        width: 20px;
+        width: 100%;
         height: 2px;
+        left: 0;
         background-color: #292b2c;
         transform: rotate(0deg);
         transition: transform 0.3s;
       }
       .top {
-        transform: translateY(-5px);
+        top:0;
+      }
+      .top {
+        top:10px;
       }
       .bottom {
-        transform: translateY(5px);
+        bottom: 0;
       }
     }
     .global-nav__cover {
@@ -84,6 +90,7 @@
      */
     #header__nav-toggle:checked {
       & ~ .global-nav__btn {
+        top: $gutter - 5px;
         @include toggle-hamburger;
         span {
           background-color: #fff;
@@ -95,7 +102,7 @@
         z-index: 100;
       }
       & ~ .global-nav {
-    		transform: translateX(0);
+        transform: translateX(0);
         max-width: 500px;
       }
     }
@@ -106,7 +113,7 @@
         }
     }
     .global-nav__search {
-      padding: 1em 45px 1em 1em;
+      padding: 1em 50px 1em 1em;
       margin-top: get_margin(-3) - 3px;
       input {
         background-color: rgba(#fff,.1);
@@ -162,7 +169,6 @@
         height: 100%;
         width: auto;
         position: relative;
-        // TODO:PCの時のナビゲーション色
         background-color: transparent;
         transform: none;
         overflow-y: visible;
