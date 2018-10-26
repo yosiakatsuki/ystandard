@@ -1183,15 +1183,18 @@ input[type="button"]:hover {
 	right: 15px;
 	border: 0;
 	background: 0;
-	padding: 5px 0;
+	width: 30px;
+	height: 22px;
 	outline: none;
 	z-index: 102;
 }
 
 .global-nav__btn span {
+	position: absolute;
 	display: block;
-	width: 20px;
+	width: 100%;
 	height: 2px;
+	left: 0;
 	background-color: #292b2c;
 	-webkit-transform: rotate(0deg);
 	transform: rotate(0deg);
@@ -1202,13 +1205,15 @@ input[type="button"]:hover {
 }
 
 .global-nav__btn .top {
-	-webkit-transform: translateY(-5px);
-	transform: translateY(-5px);
+	top: 0;
+}
+
+.global-nav__btn .top {
+	top: 10px;
 }
 
 .global-nav__btn .bottom {
-	-webkit-transform: translateY(5px);
-	transform: translateY(5px);
+	bottom: 0;
 }
 
 .global-nav__cover {
@@ -1230,18 +1235,22 @@ input[type="button"]:hover {
       メニューがチェックされた時
      */
 
+#header__nav-toggle:checked ~ .global-nav__btn {
+	top: 10px;
+}
+
 #header__nav-toggle:checked ~ .global-nav__btn .middle {
 	opacity: 0;
 }
 
 #header__nav-toggle:checked ~ .global-nav__btn .top {
-	-webkit-transform: rotate(-45deg) translateX(-2px);
-	transform: rotate(-45deg) translateX(-2px);
+	-webkit-transform: translateY(5px) rotate(-45deg);
+	transform: translateY(5px) rotate(-45deg);
 }
 
 #header__nav-toggle:checked ~ .global-nav__btn .bottom {
-	-webkit-transform: rotate(45deg) translateX(-3px);
-	transform: rotate(45deg) translateX(-3px);
+	-webkit-transform: translateY(-5px) rotate(45deg);
+	transform: translateY(-5px) rotate(45deg);
 }
 
 #header__nav-toggle:checked ~ .global-nav__btn span {
@@ -1265,13 +1274,13 @@ input[type="button"]:hover {
 }
 
 .global-nav__amp-btn--close .top {
-	-webkit-transform: rotate(-45deg) translateX(-2px);
-	transform: rotate(-45deg) translateX(-2px);
+	-webkit-transform: translateY(5px) rotate(-45deg);
+	transform: translateY(5px) rotate(-45deg);
 }
 
 .global-nav__amp-btn--close .bottom {
-	-webkit-transform: rotate(45deg) translateX(-3px);
-	transform: rotate(45deg) translateX(-3px);
+	-webkit-transform: translateY(-5px) rotate(45deg);
+	transform: translateY(-5px) rotate(45deg);
 }
 
 .global-nav__amp-btn--close span {
@@ -1279,7 +1288,7 @@ input[type="button"]:hover {
 }
 
 .global-nav__search {
-	padding: 1em 45px 1em 1em;
+	padding: 1em 50px 1em 1em;
 	margin-top: -48px;
 }
 
@@ -2129,7 +2138,7 @@ ul ul li:last-child,
 ul ol li:last-child,
 ol ul li:last-child,
 ol ol li:last-child {
-	padding: .1em 0 0;
+	padding-bottom: 0;
 }
 
 dt {

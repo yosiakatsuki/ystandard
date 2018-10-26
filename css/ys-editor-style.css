@@ -278,7 +278,7 @@ body#tinymce.wp-editor ol ol li:last-child,
 #editor.gutenberg__editor .editor-block-list__block ul ol li:last-child,
 #editor.gutenberg__editor .editor-block-list__block ol ul li:last-child,
 #editor.gutenberg__editor .editor-block-list__block ol ol li:last-child {
-	padding: .1em 0 0;
+	padding-bottom: 0;
 }
 
 body#tinymce.wp-editor dt,
