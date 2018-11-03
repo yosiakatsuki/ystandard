@@ -21,6 +21,7 @@ require_once get_template_directory() . '/inc/class/widgets/class-ys-ranking-wid
 require_once get_template_directory() . '/inc/class/widgets/class-ys-taxonomy-posts-widget.php';
 require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-custom-html.php';
 require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-text.php';
+require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-profile-box.php';
 /**
  * 変数
  */
