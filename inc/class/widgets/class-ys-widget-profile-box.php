@@ -155,7 +155,6 @@ class YS_Widget_Profile_Box extends YS_Widget_Base {
 		<div class="ys-admin-section">
 			<h4>特定のユーザーの表示</h4>
 			<p><span class="ystandard-info--sub">※特定のユーザー情報を常に表示する場合は選択して下さい。</span><br><span class="ystandard-info--sub">※デフォルトユーザーと特定のユーザーの両方を指定している場合、特定ユーザーの表示が優先されます。</span></p>
-			
 			<select name="<?php echo $this->get_field_name( 'user_name' ); ?>">
 				<option value="">選択して下さい</option>
 				<?php foreach ( $user_list as $key => $value ) : ?>
