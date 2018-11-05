@@ -123,6 +123,7 @@ if ( ! function_exists( 'ys_excerpt_length' ) ) {
 	 * 投稿抜粋文字数
 	 *
 	 * @param int $length 抜粋文字数.
+	 *
 	 * @return string
 	 */
 	function ys_excerpt_length( $length = null ) {
@@ -144,6 +145,7 @@ if ( ! function_exists( 'ys_excerpt_more' ) ) {
 	 * 投稿抜粋の最後につける文字
 	 *
 	 * @param string $more 抜粋につける文字.
+	 *
 	 * @return string
 	 */
 	function ys_excerpt_more( $more ) {
@@ -228,4 +230,46 @@ if ( ! function_exists( 'ys_get_entry_read_more_text' ) ) {
  */
 function ys_the_entry_read_more_text() {
 	echo ys_get_entry_read_more_text();
+}
+
+/**
+ * 関連記事データ取得
+ *
+ * @return bool|mixed
+ */
+function ys_get_related_posts_data() {
+
+	if ( ! ys_is_active_related_post() ) {
+		return false;
+	}
+	$categories = ys_get_the_category_id_list();
+	$args       = array(
+		'post__not_in' => array( get_the_ID() ),
+		'category__in' => $categories,
+	);
+
+	/**
+	 * キャッシュデータ作成・取得の準備
+	 */
+	$expiration = ys_get_option( 'ys_query_cache_related_posts' );
+	$cache_key  = YS_Cache::get_cache_key( 'ys_related_posts', $args );
+	$cache_data = YS_Cache::get_cache( $cache_key );
+	$cache_args = array(
+		'category__in' => $categories,
+	);
+	/**
+	 * 関連記事データの取得
+	 */
+	if ( false === $cache_data ) {
+		$related_posts = get_posts( ys_get_posts_args_rand( 5, $args ) );
+		/**
+		 * キャッシュ作成
+		 */
+		YS_Cache::set_cache( $cache_key, $related_posts, $cache_args, $expiration );
+
+	} else {
+		$related_posts = $cache_data;
+	}
+
+	return apply_filters( 'ys_get_related_posts_data', $related_posts, $args );
 }
