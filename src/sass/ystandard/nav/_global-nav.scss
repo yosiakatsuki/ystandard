@@ -43,12 +43,13 @@
     }
     .global-nav__btn {
       position: absolute;
-      top: $gutter;
-      right: $gutter;
-      border: 0;
-      background: 0;
       width: 30px;
       height: 22px;
+      top: $gutter;
+      right: $gutter;
+      padding: 0;
+      border: none;
+      background: none;
       outline: none;
       z-index: 102;
 
@@ -65,7 +66,7 @@
       .top {
         top:0;
       }
-      .top {
+      .middle {
         top:10px;
       }
       .bottom {
@@ -90,7 +91,7 @@
      */
     #header__nav-toggle:checked {
       & ~ .global-nav__btn {
-        top: $gutter - 5px;
+        top: $gutter - 2px;
         @include toggle-hamburger;
         span {
           background-color: #fff;
