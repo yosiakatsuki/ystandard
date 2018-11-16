@@ -1118,8 +1118,12 @@ input[type="button"]:hover {
 	margin: 0;
 }
 
-.header--center .header__title {
+.header--center .header__title,
+.header--center .header__dscr {
 	text-align: center;
+}
+
+.header--center .header__title {
 	padding-left: 20px;
 }
 
