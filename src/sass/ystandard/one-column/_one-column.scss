@@ -1,5 +1,7 @@
 .one-col {
-
+  .site__content {
+    overflow: hidden;
+  }
   .content__main {
     width: 100%;
     max-width: 100%;
@@ -30,9 +32,19 @@
     margin-right: auto;
   }
 }
+.has-thumbnail {
+  .entry__header--one-col {
+    min-height: 200px;
+    @include media-breakpoint(pc) {
+      min-height: 300px;
+    }
+  }
+  .entry__title--one-col {
+    color: #fff;
+  }
+}
 .entry__header--one-col {
   position: relative;
-  min-height: 200px;
   .entry__thumbnail {
     position: absolute;
     width: 100%;
@@ -62,22 +74,14 @@
       object-fit: cover;
     }
   }
-  @include media-breakpoint(pc) {
-    min-height: 300px;
-  }
 }
 .entry__title--one-col {
   position: relative;
   width: 100%;
-  max-width: 900px;
+  max-width: ( 900px + get_margin(2) );
   margin-left: auto;
   margin-right: auto;
   padding-left: get_margin(1);
   padding-right: get_margin(1);
-  color: #fff;
   z-index: 3;
-  @include media-breakpoint(pc) {
-    padding-left: get_margin(2);
-    padding-right: get_margin(2);
-  }
 }
