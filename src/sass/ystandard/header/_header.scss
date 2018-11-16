@@ -19,8 +19,11 @@
       margin: 0;
     }
     .header--center {
-      .header__title {
+      .header__title ,
+      .header__dscr {
         text-align: center;
+      }
+      .header__title {
         padding-left: 20px;
       }
     }
