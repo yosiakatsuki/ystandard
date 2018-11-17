@@ -83,7 +83,7 @@ function ys_shortcode_tax_posts( $args ) {
 	 */
 	$ys_post_list = new YS_Post_List( $args );
 	$expiration   = ys_get_option( 'ys_query_cache_taxonomy_posts' );
-	$ys_post_list->set_cache_key( 'ys_tax_posts' );
+	$ys_post_list->set_cache_key( 'tax_posts' );
 	$ys_post_list->set_cache_expiration( $expiration );
 	/**
 	 * HTML作成

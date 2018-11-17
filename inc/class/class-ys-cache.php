@@ -30,13 +30,25 @@ class YS_Cache {
 		/**
 		 * キー文字列の作成
 		 */
-		$cache_key = $key . md5( serialize( $args ) );
+		$cache_key = YS_Cache::get_cache_key_prefix( $key, $args ) . md5( serialize( $args ) );
 		$cache_key = apply_filters( 'ys_cache_get_cache_key', $cache_key, $key, $args );
 
 		/**
 		 * Transientとして有効な文字数45文字にカットして返す
 		 */
 		return substr( $cache_key, 0, 45 );
+	}
+
+	/**
+	 * キャッシュキーのプレフィックス作成
+	 *
+	 * @param string $key  キー.
+	 * @param array  $args オプション.
+	 *
+	 * @return string
+	 */
+	public static function get_cache_key_prefix( $key, $args ) {
+		return apply_filters( 'ys_get_cache_key_prefix', 'yscache_' . $key, $key, $args );
 	}
 
 	/**
@@ -57,7 +69,7 @@ class YS_Cache {
 			/**
 			 * キャッシュの取得・判定、キャッシュがあれば返す
 			 */
-			$cache = YS_Cache::get_cache( $cache_key );
+			$cache = YS_Cache::get_transient( $cache_key );
 			if ( false !== $cache ) {
 				return $cache;
 			}
@@ -77,11 +89,25 @@ class YS_Cache {
 	/**
 	 * キャッシュを取得
 	 *
+	 * @param string $key  キー.
+	 * @param array  $args オプション.
+	 *
+	 * @return mixed
+	 */
+	public static function get_cache( $key, $args ) {
+		$cache_key = YS_Cache::get_cache_key( $key, $args );
+
+		return get_transient( $cache_key );
+	}
+
+	/**
+	 * キャッシュを取得
+	 *
 	 * @param string $key キー.
 	 *
 	 * @return mixed
 	 */
-	public static function get_cache( $key ) {
+	public static function get_transient( $key ) {
 		return get_transient( $key );
 	}
 
