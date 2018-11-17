@@ -252,11 +252,11 @@ function ys_get_related_posts_data() {
 	 * キャッシュデータ作成・取得の準備
 	 */
 	$expiration = ys_get_option( 'ys_query_cache_related_posts' );
-	$cache_key  = YS_Cache::get_cache_key( 'ys_related_posts', $args );
-	$cache_data = YS_Cache::get_cache( $cache_key );
 	$cache_args = array(
 		'category__in' => $categories,
 	);
+	$cache_key  = 'related_posts';
+	$cache_data = YS_Cache::get_cache( $cache_key, $cache_args );
 	/**
 	 * 関連記事データの取得
 	 */
