@@ -3,7 +3,7 @@
  * 簡易的なビュー数カウント
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -23,7 +23,8 @@ if ( ! function_exists( 'ys_get_post_view_count' ) ) {
 	 * ビュー数の取得
 	 *
 	 * @param integer $post_id post_id.
-	 * @param string  $type type.
+	 * @param string  $type    type.
+	 *
 	 * @return integer
 	 */
 	function ys_get_post_view_count( $post_id, $type = 'all' ) {
@@ -69,7 +70,8 @@ if ( ! function_exists( 'ys_get_post_view_count_format' ) ) {
 	 * ビュー数の取得(文字列)
 	 *
 	 * @param integer $post_id postid.
-	 * @param string  $type 期間.
+	 * @param string  $type    期間.
+	 *
 	 * @return string
 	 */
 	function ys_get_post_view_count_format( $post_id, $type = 'all' ) {
@@ -88,6 +90,7 @@ if ( ! function_exists( 'ys_get_post_view_count_format' ) ) {
 		} else {
 			$result = (string) $views;
 		}
+
 		return $result;
 	}
 }
@@ -142,8 +145,9 @@ add_filter( 'wp_head', 'ys_update_post_views' );
 /**
  * 更新後のView数取得
  *
- * @param integer $view view.
+ * @param integer $view      view.
  * @param integer $increment incriment.
+ *
  * @return integer
  */
 function ys_get_update_post_view( $view, $increment = 1 ) {
@@ -152,15 +156,18 @@ function ys_get_update_post_view( $view, $increment = 1 ) {
 	} else {
 		$view = 1;
 	}
+
 	return $view;
 }
+
 /**
  * Post　meta にPV数登録・更新
  *
- * @param integer $post_id post id.
- * @param string  $meta_key meta key.
+ * @param integer $post_id     post id.
+ * @param string  $meta_key    meta key.
  * @param string  $meta_pv_key pv key.
  * @param string  $meta_pv_val val key.
+ *
  * @return void
  */
 function ys_update_post_view_meta( $post_id, $meta_key, $meta_pv_key, $meta_pv_val ) {
@@ -180,8 +187,9 @@ if ( ! function_exists( 'ys_get_post_views_query_base' ) ) {
 	 * ランキング表示用query作成
 	 *
 	 * @param integer $posts_per_page 投稿数.
-	 * @param string  $meta key.
-	 * @param array   $option オプション.
+	 * @param array   $meta           key.
+	 * @param array   $option         オプション.
+	 *
 	 * @return WP_Query
 	 */
 	function ys_get_post_views_query_base( $posts_per_page, $meta, $option ) {
@@ -203,7 +211,18 @@ if ( ! function_exists( 'ys_get_post_views_query_base' ) ) {
 		/**
 		 * WP_Queryを作成
 		 */
-		return new WP_Query( $args );
+		$query = null;
+		if ( isset( $meta['meta_key'] ) && YS_METAKEY_PV_DAY_VAL === $meta['meta_key'] ) {
+			/**
+			 * 日別の場合はキャッシュ作らない
+			 */
+			$query = new WP_Query( $args );
+		} else {
+			$expiration = ys_get_option( 'ys_query_cache_ranking' );
+			$query      = YS_Cache::get_query( 'ranking', $args, $expiration );
+		}
+
+		return apply_filters( 'ys_get_post_views_query', $query, $posts_per_page, $meta, $option );
 	}
 }
 
@@ -211,9 +230,10 @@ if ( ! function_exists( 'ys_get_post_views_query' ) ) {
 	/**
 	 * ランキング作成クエリ取得
 	 *
-	 * @param string  $type 期間.
+	 * @param string  $type           期間.
 	 * @param integer $posts_per_page 表示数.
-	 * @param array   $option オプション.
+	 * @param array   $option         オプション.
+	 *
 	 * @return WP_Query
 	 */
 	function ys_get_post_views_query( $type = 'all', $posts_per_page = 4, $option = null ) {
@@ -224,6 +244,7 @@ if ( ! function_exists( 'ys_get_post_views_query' ) ) {
 		} elseif ( 'm' === $type ) {
 			return ys_get_post_views_query_month( $posts_per_page, $option );
 		}
+
 		return ys_get_post_views_query_all( $posts_per_page, $option );
 	}
 }
@@ -233,7 +254,8 @@ if ( ! function_exists( 'ys_get_post_views_query_all' ) ) {
 	 * 全ランキング表示用query作成
 	 *
 	 * @param integer $posts_per_page 表示数.
-	 * @param array   $option オプション.
+	 * @param array   $option         オプション.
+	 *
 	 * @return WP_Query
 	 */
 	function ys_get_post_views_query_all( $posts_per_page = 4, $option = null ) {
@@ -241,6 +263,7 @@ if ( ! function_exists( 'ys_get_post_views_query_all' ) ) {
 		 * ランキングの条件部分を作成
 		 */
 		$meta = array( 'meta_key' => YS_METAKEY_PV_ALL );
+
 		/**
 		 * WP_Queryを作成
 		 */
@@ -253,7 +276,8 @@ if ( ! function_exists( 'ys_get_post_views_query_day' ) ) {
 	 * 日別ランキング表示用query作成
 	 *
 	 * @param integer $posts_per_page 表示数.
-	 * @param array   $option オプション.
+	 * @param array   $option         オプション.
+	 *
 	 * @return WP_Query
 	 */
 	function ys_get_post_views_query_day( $posts_per_page = 4, $option = null ) {
@@ -270,6 +294,7 @@ if ( ! function_exists( 'ys_get_post_views_query_day' ) ) {
 				),
 			),
 		);
+
 		/**
 		 * WP_Queryを作成
 		 */
@@ -282,7 +307,8 @@ if ( ! function_exists( 'ys_get_post_views_query_week' ) ) {
 	 * 週別ランキング表示用query作成
 	 *
 	 * @param integer $posts_per_page 投稿数.
-	 * @param array   $option オプション.
+	 * @param array   $option         オプション.
+	 *
 	 * @return WP_Query
 	 */
 	function ys_get_post_views_query_week( $posts_per_page = 4, $option = null ) {
@@ -299,6 +325,7 @@ if ( ! function_exists( 'ys_get_post_views_query_week' ) ) {
 				),
 			),
 		);
+
 		/**
 		 * WP_Queryを作成
 		 */
@@ -311,7 +338,8 @@ if ( ! function_exists( 'ys_get_post_views_query_month' ) ) {
 	 * 月別ランキング表示用query作成
 	 *
 	 * @param integer $posts_per_page 表示数.
-	 * @param array   $option オプション.
+	 * @param array   $option         オプション.
+	 *
 	 * @return WP_Query
 	 */
 	function ys_get_post_views_query_month( $posts_per_page = 4, $option = null ) {
@@ -328,6 +356,7 @@ if ( ! function_exists( 'ys_get_post_views_query_month' ) ) {
 				),
 			),
 		);
+
 		/**
 		 * WP_Queryを作成
 		 */

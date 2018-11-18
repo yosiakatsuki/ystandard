@@ -79,10 +79,16 @@ function ys_shortcode_tax_posts( $args ) {
 		'cols'           => $args['cols'],
 	);
 	/**
-	 * HTML取得
+	 * データ取得準備
 	 */
 	$ys_post_list = new YS_Post_List( $args );
-	$html         = $ys_post_list->get_post_list( $post_args );
+	$expiration   = ys_get_option( 'ys_query_cache_taxonomy_posts' );
+	$ys_post_list->set_cache_key( 'tax_posts' );
+	$ys_post_list->set_cache_expiration( $expiration );
+	/**
+	 * HTML作成
+	 */
+	$html = $ys_post_list->get_post_list( $post_args );
 
 	return apply_filters( 'ys_shortcode_tax_posts', $html, $args['id'] );
 }
