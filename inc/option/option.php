@@ -304,6 +304,15 @@ function ys_get_options() {
 	 * **********
 	 */
 	/**
+	 * ランキング、カテゴリー・タグの記事一覧、関連記事のクエリ結果キャッシュ
+	 */
+	// 「[ys]人気ランキングウィジェット」の結果キャッシュ.
+	$result['ys_query_cache_ranking'] = get_option( 'ys_query_cache_ranking', 'none' );
+	// 「[ys]カテゴリー・タグの記事一覧」の結果キャッシュ.
+	$result['ys_query_cache_taxonomy_posts'] = get_option( 'ys_query_cache_taxonomy_posts', 'none' );
+	// 記事下エリア「関連記事」の結果キャッシュ.
+	$result['ys_query_cache_related_posts'] = get_option( 'ys_query_cache_related_posts', 'none' );
+	/**
 	 * WordPress標準機能で読み込むCSS・JavaScriptの無効化
 	 */
 	// 絵文字を出力しない.

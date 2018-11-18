@@ -12,6 +12,7 @@
  */
 require_once get_template_directory() . '/inc/class/class-ys-post-list.php';
 require_once get_template_directory() . '/inc/class/class-ys-enqueue.php';
+require_once get_template_directory() . '/inc/class/class-ys-cache.php';
 require_once get_template_directory() . '/inc/class/class-ys-walker-global-nav-menu.php';
 require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-utility.php';
 require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-base.php';

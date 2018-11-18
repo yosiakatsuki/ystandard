@@ -26,6 +26,10 @@ function ys_customizer_performance_tuning( $wp_customize ) {
 		)
 	);
 	/**
+	 * ランキング、カテゴリー・タグの記事一覧、関連記事のクエリ結果キャッシュ
+	 */
+	ys_customizer_performance_tuning_add_cache_query( $wp_customize );
+	/**
 	 * WordPress標準機能で読み込むCSS・JavaScriptの無効化
 	 */
 	ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize );
@@ -37,6 +41,80 @@ function ys_customizer_performance_tuning( $wp_customize ) {
 	 * JavaScript読み込みの最適化
 	 */
 	ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize );
+}
+
+/**
+ * ランキング、カテゴリー・タグの記事一覧、関連記事のクエリ結果キャッシュ
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	/**
+	 * セクション追加
+	 */
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_performance_tuning_add_cache_query',
+			'title'       => '記事一覧作成機能の結果キャッシュ',
+			'description' => 'ランキング、カテゴリー・タグの記事一覧、関連記事のクエリ結果キャッシュ設定',
+			'panel'       => 'ys_customizer_panel_performance_tuning',
+		)
+	);
+	/**
+	 * [ys]人気ランキングの結果キャッシュ
+	 */
+	$ys_customizer->add_radio(
+		array(
+			'id'          => 'ys_query_cache_ranking',
+			'default'     => 'none',
+			'transport'   => 'postMessage',
+			'label'       => '人気記事ランキングの結果キャッシュ',
+			'description' => '「[ys]人気ランキングウィジェット」・人気記事ランキング表示ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。<br>※日別のランキングについてはキャッシュを作成しません。',
+			'choices'     => array(
+				'none' => 'キャッシュしない',
+				'1'    => '1日',
+				'7'    => '7日',
+				'30'   => '30日',
+			),
+		)
+	);
+	/**
+	 * [ys]カテゴリー・タグの記事一覧の結果キャッシュ
+	 */
+	$ys_customizer->add_radio(
+		array(
+			'id'          => 'ys_query_cache_taxonomy_posts',
+			'default'     => 'none',
+			'transport'   => 'postMessage',
+			'label'       => 'カテゴリー・タグの記事一覧の結果キャッシュ',
+			'description' => '「[ys]カテゴリー・タグの記事一覧」・カテゴリー・タグの記事一覧ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
+			'choices'     => array(
+				'none' => 'キャッシュしない',
+				'1'    => '1日',
+				'7'    => '7日',
+				'30'   => '30日',
+			),
+		)
+	);
+	/**
+	 * 関連記事の結果キャッシュ
+	 */
+	$ys_customizer->add_radio(
+		array(
+			'id'          => 'ys_query_cache_related_posts',
+			'default'     => 'none',
+			'transport'   => 'postMessage',
+			'label'       => '記事下エリア「関連記事」の結果キャッシュ',
+			'description' => '記事下エリア「関連記事」の結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
+			'choices'     => array(
+				'none' => 'キャッシュしない',
+				'1'    => '1日',
+				'7'    => '7日',
+				'30'   => '30日',
+			),
+		)
+	);
 }
 
 /**
@@ -53,7 +131,6 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 		array(
 			'section'     => 'ys_customizer_section_disable_wp_scripts',
 			'title'       => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化',
-			'priority'    => 1,
 			'description' => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化設定',
 			'panel'       => 'ys_customizer_panel_performance_tuning',
 		)
@@ -94,7 +171,6 @@ function ys_customizer_performance_tuning_add_optimize_load_css( $wp_customize )
 		array(
 			'section'     => 'ys_customizer_section_optimize_load_css',
 			'title'       => 'CSS読み込み最適化設定（上級者向け）',
-			'priority'    => 1,
 			'description' => 'CSSの読み込み方式を最適化します。',
 			'panel'       => 'ys_customizer_panel_performance_tuning',
 		)
@@ -126,7 +202,6 @@ function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) 
 		array(
 			'section'     => 'ys_customizer_section_optimize_load_js',
 			'title'       => 'JavaScript読み込み最適化設定（上級者向け）',
-			'priority'    => 1,
 			'description' => 'JavaScriptの読み込み方式を最適化します。',
 			'panel'       => 'ys_customizer_panel_performance_tuning',
 		)
