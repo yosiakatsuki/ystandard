@@ -7,18 +7,7 @@
  * @license GPL-2.0+
  */
 
-if ( ! ys_is_active_related_post() ) {
-	return;
-}
-$categories = ys_get_the_category_id_list();
-$args       = array(
-	'post__not_in' => array( get_the_ID() ),
-	'category__in' => $categories,
-);
-/**
- * 関連記事データの取得
- */
-$related_posts = get_posts( ys_get_posts_args_rand( 5, $args ) );
+$related_posts = ys_get_related_posts_data();
 if ( empty( $related_posts ) ) {
 	return;
 }

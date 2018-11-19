@@ -58,3 +58,30 @@
 .ystandard-setting__support {
   flex-direction: column;
 }
+
+.ystandard-setting-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th,
+  td {
+    padding: .5rem;
+    margin: 0;
+  }
+  
+  thead {
+    text-align: left;
+    font-weight: bold;
+    th,
+    td {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+  tbody {
+    text-align: left;
+    th,
+    td {
+      font-weight: normal;
+    }
+  }
+}

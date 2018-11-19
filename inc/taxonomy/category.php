@@ -31,6 +31,7 @@ if ( ! function_exists( 'ys_get_the_category' ) ) {
 	 * @param int     $count count.
 	 * @param boolean $link create link.
 	 * @param int     $post_id post ID.
+	 * @return array
 	 */
 	function ys_get_the_category( $count = 0, $link = true, $post_id = 0 ) {
 		$post_id    = 0 == $post_id ? get_the_ID() : $post_id;
@@ -92,9 +93,11 @@ if ( ! function_exists( 'ys_the_category_list' ) ) {
 	 */
 	function ys_the_category_list( $separator = '', $link = true, $post_id = 0 ) {
 		$list = ys_get_the_category( 0, $link, $post_id );
-		echo implode( $separator, $list );
+		ys_the_array_implode( $list, $separator );
 	}
 }
+
+
 
 if ( ! function_exists( 'ys_get_the_category_id_list' ) ) {
 	/**
