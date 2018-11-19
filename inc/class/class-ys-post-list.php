@@ -83,6 +83,18 @@ class YS_Post_List {
 	 * @var string
 	 */
 	private $cols = '1';
+	/**
+	 * クエリキャッシュ作成・取得に使用するキー
+	 *
+	 * @var string
+	 */
+	private $cache_key = '';
+	/**
+	 * クエリキャッシュの有効期限
+	 *
+	 * @var mixed
+	 */
+	private $cache_expiration = 'none';
 
 	/**
 	 * コンストラクタ
@@ -237,6 +249,24 @@ class YS_Post_List {
 	}
 
 	/**
+	 * クエリキャッシュキーのセット
+	 *
+	 * @param string $key クエリキャッシュキーに使用する文字列.
+	 */
+	public function set_cache_key( $key ) {
+		$this->cache_key = $key;
+	}
+
+	/**
+	 * クエリキャッシュの有効期限をセット
+	 *
+	 * @param string $day クエリキャッシュの有効期限.
+	 */
+	public function set_cache_expiration( $day ) {
+		$this->cache_expiration = $day;
+	}
+
+	/**
 	 * 投稿一覧作成
 	 *
 	 * @param array $args パラメーター.
@@ -247,7 +277,18 @@ class YS_Post_List {
 		$args  = wp_parse_args( $args, $this->args_default );
 		$query = $this->query;
 		if ( is_null( $query ) ) {
-			$query = new WP_Query( $args );
+			if ( ! empty( $this->cache_key ) ) {
+				/**
+				 * クエリの作成（キャッシュ有効）
+				 */
+				$query = YS_Cache::get_query(
+					$this->cache_key,
+					$args,
+					$this->cache_expiration
+				);
+			} else {
+				$query = new WP_Query( $args );
+			}
 		}
 		/**
 		 * 結果無し

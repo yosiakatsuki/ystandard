@@ -7,6 +7,26 @@
  * @license GPL-2.0+
  */
 
+/**
+ * 配列を区切り文字で文字列にして表示
+ *
+ * @param array  $arg 配列.
+ * @param string $separator 区切り文字.
+ */
+function ys_the_array_implode( $arg, $separator = ', ' ) {
+	echo ys_get_array_implode( $arg, $separator );
+}
+/**
+ * 配列を区切り文字で文字列にして返却
+ *
+ * @param array  $arg 配列.
+ * @param string $separator 区切り文字.
+ * @return string
+ */
+function ys_get_array_implode( $arg, $separator = ', ' ) {
+	return implode( $separator, $arg );
+}
+
 if ( ! function_exists( 'ys_no_self_ping' ) ) {
 	/**
 	 * セルフピンバック対策
@@ -31,6 +51,8 @@ if ( ! function_exists( 'ys_get_theme_version' ) ) {
 	 * テーマバージョン取得
 	 *
 	 * @param boolean $template 親テーマ情報かどうか.
+	 *
+	 * @return string
 	 */
 	function ys_get_theme_version( $template = false ) {
 		/**
@@ -52,6 +74,8 @@ if ( ! function_exists( 'ys_get_theme_version' ) ) {
  * HTML・改行・ショートコードなしのテキストを取得
  *
  * @param string $data content.
+ *
+ * @return string
  */
 function ys_get_plain_text( $data ) {
 	/**
@@ -69,6 +93,8 @@ function ys_get_plain_text( $data ) {
 if ( ! function_exists( 'ys_get_twitter_widgets_js' ) ) {
 	/**
 	 * Twitter用JavaScript URL取得
+	 *
+	 * @return string
 	 */
 	function ys_get_twitter_widgets_js() {
 		return apply_filters( 'ys_get_twitter_widgets_js', '//platform.twitter.com/widgets.js' );
@@ -78,6 +104,8 @@ if ( ! function_exists( 'ys_get_twitter_widgets_js' ) ) {
 if ( ! function_exists( 'ys_get_facebook_sdk_js' ) ) {
 	/**
 	 * Facebook用JavaScript URL取得
+	 *
+	 * @return string
 	 */
 	function ys_get_facebook_sdk_js() {
 		return apply_filters( 'ys_get_facebook_sdk_js', '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8' );
@@ -89,6 +117,8 @@ if ( ! function_exists( 'ys_get_feedly_subscribe_url' ) ) {
 	 * Feedly 購読URL作成
 	 *
 	 * @param string $type feed type.
+	 *
+	 * @return string
 	 */
 	function ys_get_feedly_subscribe_url( $type = '' ) {
 		return 'https://feedly.com/i/subscription/feed/' . urlencode( get_feed_link( $type ) );

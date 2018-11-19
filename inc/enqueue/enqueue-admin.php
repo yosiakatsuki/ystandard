@@ -48,7 +48,7 @@ function ys_admin_enqueue_scripts( $hook ) {
 	/**
 	 * テーマ独自の設定ページ
 	 */
-	if ( 'toplevel_page_ys_settings_start' === $hook ) {
+	if ( false !== strpos( $hook, 'page_ys_settings' ) ) {
 		wp_enqueue_style(
 			'ys_settings_style',
 			get_template_directory_uri() . '/css/admin/ystandard-settings.min.css'
