@@ -210,7 +210,7 @@ function ys_the_author_sns() {
 				</li>
 			<?php endforeach; ?>
 		</ul><!-- .author__sns -->
-	<?php
+		<?php
 	endif;
 }
 
