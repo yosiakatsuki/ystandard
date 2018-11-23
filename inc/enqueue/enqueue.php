@@ -102,7 +102,7 @@ function ys_enqueue_styles() {
 		 */
 		wp_enqueue_style(
 			'font-awesome',
-			'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+			ys_get_font_awesome_url(),
 			array(),
 			''
 		);
@@ -181,7 +181,7 @@ function ys_enqueue_styles_non_critical_css() {
 	 */
 	ys_enqueue_non_critical_css(
 		'font-awesome',
-		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+		ys_get_font_awesome_url(),
 		''
 	);
 }

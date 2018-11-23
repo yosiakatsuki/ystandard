@@ -1990,9 +1990,6 @@ input[type="button"]:hover {
 	left: 0;
 	opacity: .2;
 	z-index: 1;
-}
-
-.share-btn__icon.fa {
 	font-size: 3em;
 }
 

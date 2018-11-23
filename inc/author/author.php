@@ -118,20 +118,50 @@ if ( ! function_exists( 'ys_get_author_sns_list' ) ) {
 		 * キーがmeta key,valueがfontawesomeのクラス
 		 */
 		$sns_key = array(
-			'url'           => 'globe',
-			'ys_twitter'    => 'twitter',
-			'ys_facebook'   => 'facebook',
-			'ys_googleplus' => 'google-plus',
-			'ys_instagram'  => 'instagram',
-			'ys_tumblr'     => 'tumblr',
-			'ys_youtube'    => 'youtube-play',
-			'ys_github'     => 'github',
-			'ys_pinterest'  => 'pinterest',
-			'ys_linkedin'   => 'linkedin',
+			'url'           => array(
+				'icon'  => 'fas fa-globe-asia',
+				'color' => 'globe',
+			),
+			'ys_twitter'    => array(
+				'icon'  => 'fab fa-twitter',
+				'color' => 'twitter',
+			),
+			'ys_facebook'   => array(
+				'icon'  => 'fab fa-facebook-f',
+				'color' => 'facebook',
+			),
+			'ys_googleplus' => array(
+				'icon'  => 'fab fa-google-plus-g',
+				'color' => 'google-plus',
+			),
+			'ys_instagram'  => array(
+				'icon'  => 'fab fa-instagram',
+				'color' => 'instagram',
+			),
+			'ys_tumblr'     => array(
+				'icon'  => 'fab fa-tumblr',
+				'color' => 'tumblr',
+			),
+			'ys_youtube'    => array(
+				'icon'  => 'fab fa-youtube',
+				'color' => 'youtube-play',
+			),
+			'ys_github'     => array(
+				'icon'  => 'fab fa-github',
+				'color' => 'github',
+			),
+			'ys_pinterest'  => array(
+				'icon'  => 'fab fa-pinterest',
+				'color' => 'pinterest',
+			),
+			'ys_linkedin'   => array(
+				'icon'  => 'fab fa-linkedin',
+				'color' => 'linkedin',
+			),
 		);
 		$list    = array();
 		foreach ( $sns_key as $key => $val ) {
-			$arg = ys_get_author_sns_item( $key, $val, $user_id );
+			$arg = ys_get_author_sns_item( $key, $val['icon'], $val['color'], $user_id );
 			if ( false !== $arg ) {
 				$list[ $key ] = $arg;
 			}
@@ -143,22 +173,24 @@ if ( ! function_exists( 'ys_get_author_sns_list' ) ) {
 /**
  * 投稿者 SNS一覧用配列取得
  *
- * @param string $key        key.
- * @param string $icon_class アイコンフォントのクラス.
- * @param int    $user_id    user id.
+ * @param string $key         key.
+ * @param string $icon_class  アイコンフォントのクラス.
+ * @param string $color_class 色指定用クラス.
+ * @param int    $user_id     user id.
  *
  * @return mixed
  */
-function ys_get_author_sns_item( $key, $icon_class, $user_id ) {
+function ys_get_author_sns_item( $key, $icon_class, $color_class, $user_id ) {
 	$url = get_the_author_meta( $key, $user_id );
 	if ( '' == $url ) {
 		return false;
 	}
 
 	return array(
-		'type' => $key,
-		'icon' => esc_attr( $icon_class ),
-		'url'  => esc_url_raw( $url ),
+		'type'  => $key,
+		'icon'  => esc_attr( $icon_class ),
+		'color' => esc_attr( $color_class ),
+		'url'   => esc_url_raw( $url ),
 	);
 }
 
@@ -174,11 +206,11 @@ function ys_the_author_sns() {
 		<ul class="author__sns list-style--none">
 			<?php foreach ( $sns as $key => $value ) : ?>
 				<li class="author__sns-item">
-					<a class="sns__color--<?php echo $value['icon']; ?> author__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow"><i class="fa fa-<?php echo $value['icon']; ?>" aria-hidden="true"></i></a>
+					<a class="sns__color--<?php echo $value['color']; ?> author__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow"><i class="<?php echo $value['icon']; ?>" aria-hidden="true"></i></a>
 				</li>
 			<?php endforeach; ?>
 		</ul><!-- .author__sns -->
-		<?php
+	<?php
 	endif;
 }
 

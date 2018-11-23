@@ -14,6 +14,7 @@
       padding: 1px;
       flex: 0 0 auto;
     }
+
     .share-btn__link {
       position: relative;
       display: block;
@@ -33,9 +34,7 @@
       left: 0;
       opacity: .2;
       z-index: 1;
-      &.fa {
-        font-size: 3em;
-      }
+      font-size: 3em;
     }
 
     @include media-breakpoint(pc) {
