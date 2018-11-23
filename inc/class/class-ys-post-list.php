@@ -474,7 +474,7 @@ class YS_Post_List {
 			/**
 			 * アイキャッチが見つからない場合
 			 */
-			$image = '<div class="ys-post-list__no-img flex flex--c-c"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
+			$image = '<div class="ys-post-list__no-img flex flex--c-c"><i class="far fa-image"></i></div>';
 		}
 		/**
 		 * 画像表示比率

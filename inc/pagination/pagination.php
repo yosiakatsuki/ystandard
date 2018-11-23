@@ -34,7 +34,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		 */
 		if ( 1 < $current ) {
 			$pagination[] = ys_set_pagination_item(
-				apply_filters( 'ys_get_pagination_prev_text', '<i class="fa fa-angle-left" aria-hidden="true"></i>' ),
+				apply_filters( 'ys_get_pagination_prev_text', '<i class="fas fa-angle-left"></i>' ),
 				get_pagenum_link( $current - 1 )
 			);
 		}
@@ -88,7 +88,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		 */
 		if ( $current < $total ) {
 			$pagination[] = ys_set_pagination_item(
-				apply_filters( 'ys_get_pagination_next_text', '<i class="fa fa-angle-right" aria-hidden="true"></i>' ),
+				apply_filters( 'ys_get_pagination_next_text', '<i class="fas fa-angle-right"></i>' ),
 				get_pagenum_link( $current + 1 )
 			);
 		}

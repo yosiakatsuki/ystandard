@@ -8,19 +8,31 @@
  */
 
 /**
+ * Font Awesome CDN
+ *
+ * @return string
+ */
+function ys_get_font_awesome_url() {
+	return apply_filters( 'ys_get_font_awesome_url', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css' );
+}
+
+
+/**
  * 配列を区切り文字で文字列にして表示
  *
- * @param array  $arg 配列.
+ * @param array  $arg       配列.
  * @param string $separator 区切り文字.
  */
 function ys_the_array_implode( $arg, $separator = ', ' ) {
 	echo ys_get_array_implode( $arg, $separator );
 }
+
 /**
  * 配列を区切り文字で文字列にして返却
  *
- * @param array  $arg 配列.
+ * @param array  $arg       配列.
  * @param string $separator 区切り文字.
+ *
  * @return string
  */
 function ys_get_array_implode( $arg, $separator = ', ' ) {

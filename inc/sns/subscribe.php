@@ -21,7 +21,7 @@ if ( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 		if ( ys_get_option( 'ys_subscribe_url_twitter' ) ) {
 			$subscribe['Twitter'] = array(
 				'class' => 'twitter',
-				'icon'  => 'twitter',
+				'icon'  => 'fab fa-twitter',
 				'text'  => 'Twitter',
 				'url'   => ys_get_option( 'ys_subscribe_url_twitter' ),
 			);
@@ -32,7 +32,7 @@ if ( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 		if ( ys_get_option( 'ys_subscribe_url_facebook' ) ) {
 			$subscribe['Facebook'] = array(
 				'class' => 'facebook',
-				'icon'  => 'facebook',
+				'icon'  => 'fab fa-facebook-f',
 				'text'  => 'Facebook',
 				'url'   => ys_get_option( 'ys_subscribe_url_facebook' ),
 			);
@@ -43,7 +43,7 @@ if ( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 		if ( ys_get_option( 'ys_subscribe_url_googleplus' ) ) {
 			$subscribe['Google+'] = array(
 				'class' => 'google-plus',
-				'icon'  => 'google-plus',
+				'icon'  => 'fab fa-google-plus-g',
 				'text'  => 'Google+',
 				'url'   => ys_get_option( 'ys_subscribe_url_googleplus' ),
 			);
@@ -54,7 +54,7 @@ if ( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 		if ( ys_get_option( 'ys_subscribe_url_feedly' ) ) {
 			$subscribe['Feedly'] = array(
 				'class' => 'feedly',
-				'icon'  => 'feedly',
+				'icon'  => 'fas fa-rss',
 				'text'  => 'Feedly',
 				'url'   => ys_get_option( 'ys_subscribe_url_feedly' ),
 			);
@@ -94,7 +94,7 @@ if ( ! function_exists( 'ys_get_subscribe_image' ) ) {
 					$image
 				);
 			} else {
-				$image = '<div class="flex flex--c-c color__font-sub"><i class="fa fa-picture-o" aria-hidden="true"></i></div>';
+				$image = '<div class="flex flex--c-c color__font-sub"><i class="far fa-image"></i></div>';
 			}
 		}
 		if ( ys_is_amp() ) {

@@ -23,7 +23,7 @@ if ( ! empty( $subscribe ) ) :
 							<ul class="subscribe__list list-style--none">
 								<?php foreach ( $subscribe as $key => $value ) : ?>
 									<li class="subscribe__item">
-										<a class="subscribe__link <?php echo 'sns__btn--' . esc_attr( $value['class'] ); ?>" href="<?php echo esc_url_raw( $value['url'] ); ?>" target="_blank" rel="nofollow"><i class="fa fa-<?php echo $value['icon']; ?> sns-icon--left" aria-hidden="true"></i><?php echo esc_html( $value['text'] ); ?></a>
+										<a class="subscribe__link <?php echo 'sns__btn--' . esc_attr( $value['class'] ); ?>" href="<?php echo esc_url_raw( $value['url'] ); ?>" target="_blank" rel="nofollow"><i class="<?php echo $value['icon']; ?> sns-icon--left" aria-hidden="true"></i><?php echo esc_html( $value['text'] ); ?></a>
 									</li>
 								<?php endforeach; ?>
 							</ul>
