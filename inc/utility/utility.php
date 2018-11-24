@@ -13,7 +13,15 @@
  * @return string
  */
 function ys_get_font_awesome_url() {
-	return apply_filters( 'ys_get_font_awesome_url', 'https://use.fontawesome.com/releases/v5.5.0/css/all.css' );
+	return apply_filters( 'ys_get_font_awesome_url', ys_get_font_awesome_dir() . '/css/all.css' );
+}
+/**
+ * Font Awesome CDN DIR
+ *
+ * @return string
+ */
+function ys_get_font_awesome_dir() {
+	return apply_filters( 'ys_get_font_awesome_dir', 'https://use.fontawesome.com/releases/v5.5.0' );
 }
 
 
