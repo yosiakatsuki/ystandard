@@ -133,6 +133,8 @@ function ys_get_options() {
 	$result['ys_show_archive_publish_date'] = get_option( 'ys_show_archive_publish_date', 1 );
 	// 著者情報を表示する.
 	$result['ys_show_archive_author'] = get_option( 'ys_show_archive_author', 1 );
+	// パンくずリストの「投稿ページ」表示.
+	$result['ys_show_page_for_posts_on_breadcrumbs'] = get_option( 'ys_show_page_for_posts_on_breadcrumbs', 1 );
 	/**
 	 * [ys]ワンカラムテンプレート設定設定
 	 */
