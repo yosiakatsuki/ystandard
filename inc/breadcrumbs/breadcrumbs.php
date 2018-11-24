@@ -3,7 +3,7 @@
  * パンくずリスト
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -30,6 +30,7 @@ function ys_get_breadcrumbs() {
 			$label = get_the_title( $page_on_front );
 		}
 		$items = ys_set_breadcrumb_item( $items, $label );
+
 		return apply_filters( 'ys_get_breadcrumbs', $items );
 	}
 	$items = ys_set_breadcrumb_item( $items, $label, home_url( '/' ) );
@@ -60,8 +61,8 @@ function ys_get_breadcrumbs() {
 		);
 	} elseif ( is_tax() ) {
 		/**
-		* Taxonomy
-		*/
+		 * Taxonomy
+		 */
 		$taxonomy         = get_query_var( 'taxonomy' );
 		$term             = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
 		$taxonomy_objects = get_taxonomy( $taxonomy );
@@ -80,19 +81,19 @@ function ys_get_breadcrumbs() {
 		$items = ys_set_breadcrumb_item( $items, $term->name );
 	} elseif ( is_attachment() ) {
 		/**
-		* Attachment
-		*/
+		 * Attachment
+		 */
 		$items = ys_set_breadcrumb_item( $items, get_the_title() );
 	} elseif ( is_page() ) {
 		/**
-		* Page
-		*/
+		 * Page
+		 */
 		$items = ys_set_breadcrumb_ancestors( $items, get_the_ID(), 'page' );
 		$items = ys_set_breadcrumb_item( $items, get_the_title() );
 	} elseif ( is_post_type_archive() ) {
 		/**
-		* Post_type_archive
-		*/
+		 * Post_type_archive
+		 */
 		$post_type = ys_get_post_type();
 		if ( $post_type && 'post' !== $post_type ) {
 			$post_type_object = get_post_type_object( $post_type );
@@ -101,8 +102,8 @@ function ys_get_breadcrumbs() {
 		}
 	} elseif ( is_single() ) {
 		/**
-		* Single
-		*/
+		 * Single
+		 */
 		$post_type = ys_get_post_type();
 		if ( $post_type && 'post' !== $post_type ) {
 			$post_type_object = get_post_type_object( $post_type );
@@ -162,7 +163,7 @@ function ys_get_breadcrumbs() {
 			$ymd   = get_query_var( 'm' );
 			$year  = substr( $ymd, 0, 4 );
 			$month = substr( $ymd, 4, 2 );
-			$day   = substr( $ymd, -2 );
+			$day   = substr( $ymd, - 2 );
 		}
 		$items = ys_set_breadcrumb_year( $items, $year );
 		$items = ys_set_breadcrumb_month( $items, $year, $month );
@@ -177,7 +178,7 @@ function ys_get_breadcrumbs() {
 		} else {
 			$ymd   = get_query_var( 'm' );
 			$year  = substr( $ymd, 0, 4 );
-			$month = substr( $ymd, -2 );
+			$month = substr( $ymd, - 2 );
 		}
 		$items = ys_set_breadcrumb_year( $items, $year );
 		$items = ys_set_breadcrumb_month( $items, $year, $month, false );
@@ -199,6 +200,7 @@ function ys_get_breadcrumbs() {
 			$items = ys_set_breadcrumb_item( $items, get_the_title( $page_for_posts ) );
 		}
 	}
+
 	return apply_filters( 'ys_get_breadcrumbs', $items );
 }
 
@@ -207,7 +209,8 @@ function ys_get_breadcrumbs() {
  *
  * @param array  $items items.
  * @param string $title title.
- * @param string $link url.
+ * @param string $link  url.
+ *
  * @return array
  */
 function ys_set_breadcrumb_item( $items, $title, $link = '' ) {
@@ -218,20 +221,23 @@ function ys_set_breadcrumb_item( $items, $title, $link = '' ) {
 		'title' => $title,
 		'link'  => $link,
 	);
+
 	return apply_filters( 'ys_set_breadcrumb_item', $items, $title, $link );
 }
+
 /**
  * フロントページ指定がある時の一覧ページタイトル
  *
  * @param  array  $items          items.
  * @param  string $show_on_front  show_on_front.
  * @param  int    $page_for_posts page_for_posts.
+ *
  * @return mixed
  */
 function ys_get_page_for_posts_name( $items, $show_on_front, $page_for_posts ) {
 	$post_type = ys_get_post_type();
 	if ( ( is_single() && 'post' === $post_type ) || is_date() || is_author() || is_category() || is_tax() ) {
-		if ( 'page' === $show_on_front && $page_for_posts ) {
+		if ( 'page' === $show_on_front && $page_for_posts && ys_get_option( 'ys_show_page_for_posts_on_breadcrumbs' ) ) {
 			return ys_set_breadcrumb_item(
 				$items,
 				get_the_title( $page_for_posts ),
@@ -239,26 +245,31 @@ function ys_get_page_for_posts_name( $items, $show_on_front, $page_for_posts ) {
 			);
 		}
 	}
+
 	return false;
 }
+
 /**
  * 親の取得と並び替え
  *
- * @param  int    $object_id object_id.
+ * @param  int    $object_id     object_id.
  * @param  string $object_type   object_type.
  * @param  string $resource_type resource_type.
+ *
  * @return array
  */
 function ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type = '' ) {
 	$ancestors = get_ancestors( $object_id, $object_type, $resource_type );
 	krsort( $ancestors );
+
 	return apply_filters( 'ys_get_breadcrumb_ancestors', $ancestors, $object_id, $object_type, $resource_type );
 }
+
 /**
  * Set ancestors and krsort
  *
- * @param  array  $items items.
- * @param  int    $object_id object_id.
+ * @param  array  $items         items.
+ * @param  int    $object_id     object_id.
  * @param  string $object_type   object_type.
  * @param  string $resource_type resource_type.
  */
@@ -282,14 +293,16 @@ function ys_set_breadcrumb_ancestors( $items, $object_id, $object_type, $resourc
 			}
 		}
 	}
+
 	return apply_filters( 'ys_set_breadcrumb_ancestors', $items, $object_id, $object_type, $resource_type );
 }
+
 /**
  * 年のセット
  *
  * @param array   $items items.
- * @param int     $year year.
- * @param boolean $link set url.
+ * @param int     $year  year.
+ * @param boolean $link  set url.
  */
 function ys_set_breadcrumb_year( $items, $year, $link = true ) {
 	$label = $year;
@@ -300,15 +313,17 @@ function ys_set_breadcrumb_year( $items, $year, $link = true ) {
 	if ( $link ) {
 		$url = get_year_link( $year );
 	}
+
 	return ys_set_breadcrumb_item( $items, $label, $url );
 }
+
 /**
  * 月
  *
  * @param array   $items items.
  * @param int     $year  year.
  * @param int     $month month.
- * @param boolean $link set url.
+ * @param boolean $link  set url.
  */
 function ys_set_breadcrumb_month( $items, $year, $month, $link = true ) {
 	$label = $month;
@@ -316,27 +331,29 @@ function ys_set_breadcrumb_month( $items, $year, $month, $link = true ) {
 	if ( 'ja' === get_locale() ) {
 		$label .= '月';
 	} else {
-			$monthes = array(
-				1  => 'January',
-				2  => 'February',
-				3  => 'March',
-				4  => 'April',
-				5  => 'May',
-				6  => 'June',
-				7  => 'July',
-				8  => 'August',
-				9  => 'September',
-				10 => 'October',
-				11 => 'November',
-				12 => 'December',
-			);
-			$label   = $monthes[ $month ];
+		$monthes = array(
+			1  => 'January',
+			2  => 'February',
+			3  => 'March',
+			4  => 'April',
+			5  => 'May',
+			6  => 'June',
+			7  => 'July',
+			8  => 'August',
+			9  => 'September',
+			10 => 'October',
+			11 => 'November',
+			12 => 'December',
+		);
+		$label   = $monthes[ $month ];
 	}
 	if ( $link ) {
 		$url = get_month_link( $year, $month );
 	}
+
 	return ys_set_breadcrumb_item( $items, $label, $url );
 }
+
 /**
  * 日
  *
@@ -348,5 +365,6 @@ function ys_set_breadcrumb_day( $items, $day ) {
 	if ( 'ja' === get_locale() ) {
 		$label .= '日';
 	}
+
 	return ys_set_breadcrumb_item( $items, $label );
 }
