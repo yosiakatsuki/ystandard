@@ -147,7 +147,7 @@ function ys_amp_get_amp_image_attr( $attr, $layout = 'responsive' ) {
 	 */
 	$layout = apply_filters( 'ys_amp_get_amp_image_attr_layout', $layout, $src );
 	if ( $layout ) {
-		$layout = 'layout="' . $layout . '" ';
+		$layout = 'layout="' . $layout . '"';
 	}
 
 	/**
