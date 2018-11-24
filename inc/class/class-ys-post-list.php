@@ -468,7 +468,7 @@ class YS_Post_List {
 			$image = apply_filters( 'ys_post_list_image', $image, get_the_ID() );
 			$image = sprintf(
 				'<figure class="ratio__image">%s</figure>',
-				ys_amp_convert_image( $image )
+				ys_amp_get_amp_image_tag( $image )
 			);
 		} else {
 			/**
