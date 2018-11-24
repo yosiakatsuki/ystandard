@@ -289,7 +289,7 @@ if ( ! function_exists( 'ys_get_author_avatar' ) ) {
 		if ( '' == $img ) {
 			$img = $user_avatar;
 		}
-		$img = ys_amp_convert_image( $img );
+		$img = ys_amp_get_amp_image_tag( $img );
 
 		return apply_filters( 'ys_get_author_avatar', $img, $author_id, $size );
 	}

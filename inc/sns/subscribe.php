@@ -3,7 +3,7 @@
  * フォローボックス表示データの作成
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -62,6 +62,7 @@ if ( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 		if ( ! ys_is_active_follow_box() ) {
 			$subscribe = array();
 		}
+
 		return apply_filters( 'ys_get_subscribe_buttons', $subscribe );
 	}
 }
@@ -93,13 +94,21 @@ if ( ! function_exists( 'ys_get_subscribe_image' ) ) {
 					'<img class="subscribe__image" src="%s" />',
 					$image
 				);
-			} else {
-				$image = '<div class="flex flex--c-c color__font-sub"><i class="far fa-image"></i></div>';
 			}
 		}
+		/**
+		 * AMPの場合、画像を置換
+		 */
 		if ( ys_is_amp() ) {
-			$image = ys_amp_convert_image( $image );
+			$image = ys_amp_get_amp_image_tag( $image );
 		}
+		/**
+		 * 画像がなければアイコン表示
+		 */
+		if ( empty( $image ) ) {
+			$image = '<div class="flex flex--c-c color__font-sub"><i class="far fa-image"></i></div>';
+		}
+
 		return apply_filters( 'ys_get_subscribe_image', $image );
 	}
 }

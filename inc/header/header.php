@@ -20,10 +20,11 @@ function ys_get_header_logo() {
 		$logo = get_bloginfo( 'name' );
 	}
 	$logo   = apply_filters( 'ys_get_header_logo', $logo );
+	$logo   = ys_amp_get_amp_image_tag( $logo );
 	$format = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">%s</a>';
 	$format = apply_filters( 'ys_get_header_logo_format', $format );
 	$logo   = sprintf( $format, $logo );
-	return ys_amp_convert_image( $logo );
+	return $logo;
 }
 
 if ( ! function_exists( 'ys_the_blog_description' ) ) {
