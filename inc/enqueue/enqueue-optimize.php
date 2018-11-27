@@ -166,7 +166,6 @@ if ( ! function_exists( 'ys_style_loader_tag' ) ) {
 		 */
 		$html = str_replace( "type='text/css'", '', $html );
 		$html = str_replace( 'type="text/css"', '', $html );
-
 		return $html;
 	}
 }
@@ -177,6 +176,7 @@ add_filter( 'style_loader_tag', 'ys_style_loader_tag', 10, 3 );
  *
  * @param  string $src    The source URL of the enqueued style.
  * @param  string $handle The style's registered handle.
+ *
  * @return string
  */
 function ys_style_loader_src( $src, $handle ) {

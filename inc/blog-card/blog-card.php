@@ -168,7 +168,7 @@ function ys_blog_card_get_html( $args ) {
 	if ( '' !== $data['thumbnail'] ) {
 		$data['thumbnail'] = sprintf(
 			'<figure class="ys-blog-card__thumb">%s</figure>',
-			ys_amp_convert_image( $data['thumbnail'] )
+			ys_amp_get_amp_image_tag( $data['thumbnail'] )
 		);
 	}
 	if ( '' !== $data['dscr'] ) {
@@ -292,7 +292,7 @@ function ys_blog_card_get_post_data( $data ) {
 	$icon = ys_get_apple_touch_icon_url();
 	if ( ! empty( $icon ) ) {
 		$icon = '<img class="ys-blog-card__site-icon" src="' . $icon . '" alt="" width="10" height="10" />';
-		$icon = ys_amp_convert_image( $icon );
+		$icon = ys_amp_get_amp_image_tag( $icon );
 	} else {
 		$icon = '';
 	}

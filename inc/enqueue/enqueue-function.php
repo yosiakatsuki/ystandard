@@ -45,10 +45,37 @@ if ( ! function_exists( 'ys_the_inline_style' ) ) {
 		if ( ys_is_amp() ) {
 			$style = sprintf( '<style amp-custom>%s</style>', $style );
 		} else {
-			$style = sprintf( '<style id="ystandard-inline-style">%s</style>', $style );
+			/**
+			 * インラインCSS出力用にダミーでenqueueする.
+			 */
+			wp_enqueue_style( 'ystandard', get_template_directory_uri() . '/css/ys-style.min.css' );
+			/**
+			 * インラインCSSの登録
+			 */
+			wp_add_inline_style( 'ystandard', $style );
+			/**
+			 * ダミー削除用フック登録
+			 */
+			add_filter( 'style_loader_tag', 'ys_delete_ystandard_css', 10, 2 );
+			$style = '';
 		}
 		echo $style . PHP_EOL;
 	}
+}
+/**
+ * ダミーで追加したCSSを削除
+ *
+ * @param string $html linkタグ.
+ * @param string $handle キー.
+ *
+ * @return string
+ */
+function ys_delete_ystandard_css( $html, $handle ) {
+	if ( 'ystandard' === $handle ) {
+		$html = '';
+	}
+
+	return $html;
 }
 
 /**

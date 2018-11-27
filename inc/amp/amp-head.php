@@ -58,6 +58,13 @@ function ys_amp_inline_styles() {
 	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', false );
 	ys_set_inline_style( get_template_directory() . '/css/ys-style.min.css', false );
 	ys_set_inline_style( ys_get_customizer_inline_css() );
+	$enqueue_gutenberg_css = apply_filters(
+		'ys_amp_enqueue_gutenberg_css',
+		ys_is_active_gutenberg_css()
+	);
+	if ( $enqueue_gutenberg_css ) {
+		ys_set_inline_style( get_template_directory() . '/css/ys-wp-blocks.min.css', false );
+	}
 	ys_set_inline_style( wp_get_custom_css() );
 	ys_set_inline_style( locate_template( 'style-firstview.css' ) );
 	ys_set_inline_style( locate_template( 'style.css' ) );

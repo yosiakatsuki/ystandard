@@ -57,8 +57,8 @@ function ys_the_custom_header_markup() {
  */
 function ys_header_video_settings( $settings ) {
 	$settings['l10n'] = array(
-		'pause'      => '<i class="fa fa-pause" aria-hidden="true"></i>',
-		'play'       => '<i class="fa fa-play" aria-hidden="true"></i>',
+		'pause'      => '<i class="fas fa-pause"></i>',
+		'play'       => '<i class="fas fa-play"></i>',
 		'pauseSpeak' => __( 'Video is paused.' ),
 		'playSpeak'  => __( 'Video is playing.' ),
 	);

@@ -114,6 +114,14 @@ if ( ! function_exists( 'ys_init' ) ) {
 		 * カテゴリー説明の拡張
 		 */
 		ys_tax_dscr_allowed_option();
+		/**
+		 * Gutenbergサポート
+		 */
+		add_theme_support( 'wp-block-styles' );
+		/**
+		 * 幅広画像のサポート
+		 */
+		add_theme_support( 'align-wide' );
 	}
 }
 add_action( 'after_setup_theme', 'ys_init' );

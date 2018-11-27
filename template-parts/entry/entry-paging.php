@@ -26,7 +26,7 @@ if ( ! $paging ) {
 								</figure>
 							<?php else : ?>
 								<div class="entry-list__no-img ratio__item flex flex--c-c">
-									<i class="fa fa-picture-o" aria-hidden="true"></i>
+									<i class="far fa-image"></i>
 								</div><!-- .entry-list__no-img -->
 							<?php endif; ?>
 							<div class="image-mask flex flex--c-c">
@@ -39,7 +39,7 @@ if ( ! $paging ) {
 					</h2>
 				<?php else : ?>
 					<a class="entry-paging__home flex flex--c-c color__font-main" href="<?php echo home_url( '/' ); ?>">
-						<i class="fa fa-home" aria-hidden="true"></i>
+						<i class="fas fa-home"></i>
 					</a><!-- .entry-paging__home -->
 				<?php endif; ?>
 			</div><!-- .col__2 -->

@@ -30,7 +30,7 @@ if ( empty( $related_posts ) ) {
 									</figure>
 								<?php else : ?>
 									<div class="entry-list__no-img flex flex--c-c">
-										<i class="fa fa-picture-o" aria-hidden="true"></i>
+										<i class="far fa-image"></i>
 									</div><!-- .entry-list__no-img -->
 								<?php endif; ?>
 								<div class="image-mask flex flex--c-c">
@@ -41,7 +41,7 @@ if ( empty( $related_posts ) ) {
 						<div class="card__text">
 							<?php the_title( '<h3 class="entry-title card__title clear-headline">', '</h3>' ); ?>
 							<p class="entry__meta entry-list__meta entry-list__date color__font-sub">
-								<i class="fa fa-calendar" aria-hidden="true"></i>
+								<i class="far fa-calendar entry__date-icon"></i>
 								<time datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
 							</p><!-- .entry-list__date -->
 						</div>

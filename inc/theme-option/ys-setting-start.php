@@ -41,7 +41,7 @@ $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $
 			<div class="col col__2--tb">
 				<div class="card">
 					<h3><span class="orbitron">yStandard</span>を応援する</h3>
-					<div class="ystandard__info-icon"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></div>
+					<div class="ystandard__info-icon"><i class="far fa-thumbs-up"></i></div>
 					<div class="card__text">
 						<ul>
 							<li>「知り合いにyStandardを紹介する」</li>
@@ -59,7 +59,7 @@ $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $
 			<div class="col col__2--tb">
 				<div class="card">
 					<h3><span class="orbitron">yStandard</span>ユーザーコミュニティ</h3>
-					<div class="ystandard__info-icon"><i class="fa fa-slack" aria-hidden="true"></i></div>
+					<div class="ystandard__info-icon"><i class="fab fa-slack"></i></div>
 					<div class="card__text">
 						<p>
 							yStandard利用者同士での交流を目的としたSlackチームです<br><br>
