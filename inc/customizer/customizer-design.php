@@ -170,7 +170,11 @@ function ys_customizer_design_add_one_column_template( $wp_customize ) {
 	);
 }
 
-
+/**
+ * ブロックエディターCSS設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
 function ys_customizer_design_add_gutenberg_css( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
