@@ -125,4 +125,25 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 			'section' => 'ys_customizer_section_archive',
 		)
 	);
+	if ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
+		/**
+		 * パンくずリストに「投稿ページ」を表示する
+		 */
+		$ys_customizer->add_label(
+			array(
+				'id'          => 'ys_show_page_for_posts_on_breadcrumbs_label',
+				'label'       => 'パンくずリストの「投稿ページ」表示',
+				'description' => 'パンくずリストに「設定」→「表示設定」→「ホームページの表示」で「投稿ページ」で指定したページを表示する。',
+				'section'     => 'ys_customizer_section_archive',
+			)
+		);
+		$ys_customizer->add_checkbox(
+			array(
+				'id'      => 'ys_show_page_for_posts_on_breadcrumbs',
+				'default' => 1,
+				'label'   => 'パンくずリストに「投稿ページ」を表示する',
+				'section' => 'ys_customizer_section_archive',
+			)
+		);
+	}
 }

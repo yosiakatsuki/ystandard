@@ -136,19 +136,48 @@ function ys_get_preload_list() {
 	/**
 	 * Font Awesome
 	 */
+	$dir_url = ys_get_font_awesome_dir() . '/webfonts/';
 	$preload = ys_set_preload_item(
 		$preload,
-		'font-awesome-woff2',
-		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0',
+		'font-awesome-fa-brands-400-2',
+		$dir_url . 'fa-brands-400.woff2',
 		'font',
 		'font/woff2'
 	);
 	$preload = ys_set_preload_item(
 		$preload,
-		'font-awesome-woff',
-		'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0',
+		'font-awesome-fa-regular-400-2',
+		$dir_url . 'fa-regular-400.woff2',
 		'font',
-		'font/woff'
+		'font/woff2'
+	);
+	$preload = ys_set_preload_item(
+		$preload,
+		'font-awesome-fa-solid-900-2',
+		$dir_url . 'fa-solid-900.woff2',
+		'font',
+		'font/woff2'
+	);
+	$preload = ys_set_preload_item(
+		$preload,
+		'font-awesome-fa-brands-400',
+		$dir_url . 'fa-brands-400.woff',
+		'font',
+		'font/woff2'
+	);
+	$preload = ys_set_preload_item(
+		$preload,
+		'font-awesome-fa-regular-400',
+		$dir_url . 'fa-regular-400.woff',
+		'font',
+		'font/woff2'
+	);
+	$preload = ys_set_preload_item(
+		$preload,
+		'font-awesome-fa-solid-900',
+		$dir_url . 'fa-solid-900.woff',
+		'font',
+		'font/woff2'
 	);
 	return apply_filters( 'ys_preload_list', $preload );
 }

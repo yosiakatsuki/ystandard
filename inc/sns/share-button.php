@@ -97,7 +97,7 @@ if ( ! function_exists( 'ys_get_share_button_data_twitter' ) ) {
 
 		return array(
 			'type'        => esc_attr( 'twitter' ),
-			'icon'        => esc_attr( 'twitter' ),
+			'icon'        => esc_attr( 'fab fa-twitter' ),
 			'url'         => esc_url_raw( $twitter_share_url ),
 			'button-text' => esc_html( $twitter_button_text ),
 		);
@@ -117,7 +117,7 @@ if ( ! function_exists( 'ys_get_share_button_data_facebook' ) ) {
 		$button_text = apply_filters( 'ys_facebook_button_text', 'Facebook' );
 		return array(
 			'type'        => esc_attr( 'facebook' ),
-			'icon'        => esc_attr( 'facebook' ),
+			'icon'        => esc_attr( 'fab fa-facebook-f' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);
@@ -136,7 +136,7 @@ if ( ! function_exists( 'ys_get_share_button_data_hatenabookmark' ) ) {
 		$button_text = apply_filters( 'ys_hatenabookmark_button_text', 'はてブ' );
 		return array(
 			'type'        => esc_attr( 'hatenabookmark' ),
-			'icon'        => esc_attr( 'hatenabookmark' ),
+			'icon'        => esc_attr( 'fa fa-hatenabookmark' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);
@@ -155,7 +155,7 @@ if ( ! function_exists( 'ys_get_share_button_data_google_plus' ) ) {
 		$button_text = apply_filters( 'ys_googleplus_button_text', 'Google+' );
 		return array(
 			'type'        => esc_attr( 'google-plus' ),
-			'icon'        => esc_attr( 'google-plus' ),
+			'icon'        => esc_attr( 'fab fa-google-plus-g' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);
@@ -174,7 +174,7 @@ if ( ! function_exists( 'ys_get_share_button_data_pocket' ) ) {
 		$button_text = apply_filters( 'ys_pocket_button_text', 'Pocket' );
 		return array(
 			'type'        => esc_attr( 'pocket' ),
-			'icon'        => esc_attr( 'get-pocket' ),
+			'icon'        => esc_attr( 'fab fa-get-pocket' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);
@@ -193,7 +193,7 @@ if ( ! function_exists( 'ys_get_share_button_data_line' ) ) {
 		$button_text = apply_filters( 'ys_line_button_text', 'LINE' );
 		return array(
 			'type'        => esc_attr( 'line' ),
-			'icon'        => esc_attr( 'comment' ),
+			'icon'        => esc_attr( 'fab fa-line' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);
@@ -212,7 +212,7 @@ if ( ! function_exists( 'ys_get_share_button_data_feedly' ) ) {
 		$button_text = apply_filters( 'ys_feedly_button_text', 'Feedly' );
 		return array(
 			'type'        => esc_attr( 'feedly' ),
-			'icon'        => esc_attr( 'feedly' ),
+			'icon'        => esc_attr( 'fa fa-feedly' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);
@@ -231,7 +231,7 @@ if ( ! function_exists( 'ys_get_share_button_data_rss' ) ) {
 		$button_text = apply_filters( 'ys_rss_button_text', 'フィード' );
 		return array(
 			'type'        => esc_attr( 'rss' ),
-			'icon'        => esc_attr( 'rss' ),
+			'icon'        => esc_attr( 'fas fa-rss' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);

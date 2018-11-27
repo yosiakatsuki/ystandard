@@ -3,7 +3,7 @@
  * AMPページに関わるフィルター処理
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -12,6 +12,7 @@ if ( ! function_exists( 'ys_amp_convert_content' ) ) {
 	 * 投稿内容をAMPに変換する
 	 *
 	 * @param  string $content 投稿内容.
+	 *
 	 * @return string
 	 */
 	function ys_amp_convert_content( $content ) {
@@ -23,6 +24,7 @@ if ( ! function_exists( 'ys_amp_convert_content' ) ) {
 		 */
 		$content = apply_filters( 'ys_amp_convert_before', $content );
 		$content = ys_amp_convert_all( $content );
+
 		return apply_filters( 'ys_convert_amp', $content );
 	}
 }
@@ -33,10 +35,11 @@ if ( ! function_exists( 'ys_amp_convert_all' ) ) {
 	 * AMPフォーマットへ変換
 	 *
 	 * @param  string $content content.
+	 *
 	 * @return string
 	 */
 	function ys_amp_convert_all( $content ) {
-			/**
+		/**
 		 * HTMLタグなどの置換
 		 */
 		$content = ys_amp_convert_html( $content );
@@ -45,7 +48,7 @@ if ( ! function_exists( 'ys_amp_convert_all' ) ) {
 		 */
 		$content = ys_amp_convert_sns( $content );
 		/**
-		 * Imgの置換
+		 * 画像の置換
 		 */
 		$content = ys_amp_convert_image( $content );
 		/**
@@ -60,6 +63,7 @@ if ( ! function_exists( 'ys_amp_convert_all' ) ) {
 		 * Styleの削除
 		 */
 		$content = ys_amp_delete_style( $content );
+
 		return $content;
 	}
 }

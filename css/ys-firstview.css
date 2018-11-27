@@ -1373,7 +1373,6 @@ input[type="button"]:hover {
 
 .entry__content {
 	padding: 1.5em 0 1em;
-	overflow: hidden;
 }
 
 .entry__footer > *,
@@ -1990,9 +1989,6 @@ input[type="button"]:hover {
 	left: 0;
 	opacity: .2;
 	z-index: 1;
-}
-
-.share-btn__icon.fa {
 	font-size: 3em;
 }
 
@@ -2017,7 +2013,6 @@ ol,
 dl,
 blockquote,
 figure,
-hr,
 pre,
 table,
 iframe,
@@ -2030,7 +2025,6 @@ ol:first-child,
 dl:first-child,
 blockquote:first-child,
 figure:first-child,
-hr:first-child,
 pre:first-child,
 table:first-child,
 iframe:first-child,
@@ -2337,7 +2331,7 @@ div.aligncenter {
 .wp-caption {
 	max-width: 100%;
 	text-align: center;
-	font-size: .9em;
+	font-size: .8em;
 	padding: .1em .5em .5em;
 }
 
@@ -2349,7 +2343,7 @@ div.aligncenter {
 .wp-caption-text {
 	padding: .1em .5em .5em;
 	color: #939393;
-	font-size: .9em;
+	font-size: .8em;
 	font-style: italic;
 }
 
@@ -2384,6 +2378,10 @@ div.aligncenter {
 	background-color: #f1f1f1;
 	clip: auto;
 	z-index: 100000;
+}
+
+.emoji {
+	width: 1em;
 }
 
 .gallery {
@@ -2446,29 +2444,6 @@ div.aligncenter {
 	text-align: center;
 }
 
-.wp-block-embed__wrapper .embed__container {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	max-width: 100%;
-}
-
-.wp-block-embed__wrapper .embed__item {
-	position: static;
-	height: 100%;
-	padding: 0;
-}
-
-.wp-block-embed.is-type-wp-embed.is-provider-ystandard .wp-block-embed__wrapper:before {
-	display: none;
-	padding: 0;
-}
-
 .one-col .site__content {
 	overflow: hidden;
 }
@@ -2485,7 +2460,7 @@ div.aligncenter {
 	margin-bottom: .5em;
 }
 
-.one-col.front-page--cunstom .site__content {
+.one-col.front-page--custom .site__content {
 	margin: 0;
 	overflow: hidden;
 }
@@ -2756,16 +2731,18 @@ div.aligncenter {
 
 .embed__item {
 	position: relative;
-	padding-bottom: 56.25%;
-	padding-top: 30px;
-	height: 0;
-	overflow: hidden;
+}
+
+.embed__item:before {
+	content: "";
+	display: block;
+	padding-top: 56.25%;
 }
 
 .embed__item iframe {
+	position: absolute;
 	width: 100%;
 	height: 100%;
-	position: absolute;
 	top: 0;
 	left: 0;
 }
