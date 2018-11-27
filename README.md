@@ -119,6 +119,7 @@ Source : <https://gist.github.com/terkel/4373420>
   - 機能追加
     - Font Awesome 5 対応
     - パンくずリストに表示設定の「投稿ページ」に設定している固定ページの情報が出ないようにする設定追加
+    - Gutenberg用 CSS 暫定追加
   - 機能調整
     - AMP画像置換処理の調整
       - imgタグを1つづつ置換する方式に変更
