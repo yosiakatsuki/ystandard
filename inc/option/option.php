@@ -151,6 +151,11 @@ function ys_get_options() {
 	);
 	$result['ys_design_one_col_thumbnail_type'] = get_option( 'ys_design_one_col_thumbnail_type', 'full' );
 	/**
+	 * Gutenberg設定
+	 */
+	$result['ys_enqueue_gutenberg_css'] = get_option( 'ys_enqueue_gutenberg_css', 1 );
+
+	/**
 	 * **********
 	 * [ys]フロントページ設定
 	 * **********
