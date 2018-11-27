@@ -59,7 +59,7 @@ function ys_get_customizer_inline_css_custom_header() {
 
 @media screen and (min-width: 960px) {
 
-.cunstom-header--full .site-header {
+.custom-header--full .site-header {
 	width: 100%;
 	position: absolute;
 	top: 0;
@@ -69,27 +69,27 @@ function ys_get_customizer_inline_css_custom_header() {
 	color: '#text_color#';
 }
 
-.cunstom-header--full .color__site-header,
-.cunstom-header--full .color__site-title,
-.cunstom-header--full .color__site-title:hover,
-.cunstom-header--full .color__site-dscr {
+.custom-header--full .color__site-header,
+.custom-header--full .color__site-title,
+.custom-header--full .color__site-title:hover,
+.custom-header--full .color__site-dscr {
 	color: '#text_color#';
 }
 
-.cunstom-header--full .color__nav-font--pc {
+.custom-header--full .color__nav-font--pc {
 	color: '#text_color#';
 }
 
-.cunstom-header--full .color__nav-bg--pc,
-.cunstom-header--full .global-nav__sub-menu li {
+.custom-header--full .color__nav-bg--pc,
+.custom-header--full .global-nav__sub-menu li {
 	background-color: transparent;
 }
 
-.cunstom-header--full .global-nav__item:not(.menu-item-has-children):hover {
+.custom-header--full .global-nav__item:not(.menu-item-has-children):hover {
 	border-bottom-color: '#text_color#';
 }
 
-.cunstom-header--full.admin-bar .site-header {
+.custom-header--full.admin-bar .site-header {
 	top: 32px;
 }
 

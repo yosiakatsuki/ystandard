@@ -5,17 +5,19 @@
 div.aligncenter,
 .alignleft,
 .alignright {
-	 display: block;
+  display: block;
 }
+
 .aligncenter,
 div.aligncenter {
   margin-left: auto;
   margin-right: auto;
 }
+
 .wp-caption {
   max-width: 100%;
   text-align: center;
-  font-size: .9em;
+  font-size: .8em;
   padding: .1em .5em .5em;
   img {
     margin: 0;
@@ -27,25 +29,28 @@ div.aligncenter {
 .wp-caption-text {
   padding: .1em .5em .5em;
   color: $font-color-gray;
-  font-size: .9em;
+  font-size: .8em;
   font-style: italic;
 }
+
 //
 .sticky {
   box-sizing: inherit;
 }
+
 .bypostauthor {
-	display: block;
+  display: block;
 }
+
 .screen-reader-text {
   position: absolute;
   width: 1px;
   height: 1px;
   padding: 0;
-  margin: 0; 
+  margin: 0;
   border: 0;
-	clip: rect(1px, 1px, 1px, 1px);
-	overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
   &:focus {
     display: block;
     height: auto;
@@ -53,22 +58,26 @@ div.aligncenter {
     top: 5px;
     left: 5px;
     padding: 1em;
-    margin: 0; 
-  	background-color: #f1f1f1;
-  	clip: auto;
-  	z-index: 100000;
+    margin: 0;
+    background-color: #f1f1f1;
+    clip: auto;
+    z-index: 100000;
   }
 }
 
+.emoji {
+  width: 1em;
+}
+
 @include media-breakpoint(tb) {
-  	.alignleft {
-  		 float: left;
-       margin-right: 1em;
-       margin-bottom: 1em;
-  	}
-  	.alignright {
-  		 float: right;
-       margin-left: 1em;
-       margin-bottom: 1em;
-  	}
+  .alignleft {
+    float: left;
+    margin-right: 1em;
+    margin-bottom: 1em;
+  }
+  .alignright {
+    float: right;
+    margin-left: 1em;
+    margin-bottom: 1em;
+  }
 }
