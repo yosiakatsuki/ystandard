@@ -11,9 +11,12 @@
  * Body class
  *
  * @param array $classes body classes.
+ * @return array
  */
 function ys_body_class( $classes ) {
 
+	$classes[] = 'ystandard';
+	$classes[] = 'ystd'; // CSS用.
 	/**
 	 * 背景画像があればクラス追加
 	 */
@@ -53,7 +56,7 @@ function ys_body_class( $classes ) {
 	 * フロントページタイプ
 	 */
 	if ( is_front_page() && 'normal' !== ys_get_option( 'ys_front_page_type' ) ) {
-		$classes[] = 'front-page--cunstom';
+		$classes[] = 'front-page--custom';
 		$classes[] = 'front-page--' . ys_get_option( 'ys_front_page_type' );
 	}
 
@@ -61,10 +64,10 @@ function ys_body_class( $classes ) {
 	 * カスタムヘッダー
 	 */
 	if ( ys_is_active_custom_header() ) {
-		$classes[] = 'has-cunstom-header';
-		$classes[] = 'cunstom-header--' . ys_get_custom_header_type();
+		$classes[] = 'has-custom-header';
+		$classes[] = 'custom-header--' . ys_get_custom_header_type();
 		if ( ys_get_option( 'ys_wp_header_media_full' ) ) {
-			$classes[] = 'cunstom-header--full';
+			$classes[] = 'custom-header--full';
 		}
 	}
 

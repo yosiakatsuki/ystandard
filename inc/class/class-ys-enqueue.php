@@ -278,7 +278,7 @@ class YS_Enqueue {
 		var list = {$css}
 				,l
 				,h = document.getElementsByTagName('head')[0]
-				,s = document.getElementById('ystandard-inline-style');
+				,s = document.getElementById('ystandard-inline-css');
 		for (var i = 0; i < list.length; i++){
 			l = document.createElement('link');
 			l.rel = 'stylesheet';
