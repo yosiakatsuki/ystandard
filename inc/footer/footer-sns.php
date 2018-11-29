@@ -24,9 +24,9 @@ if ( ! function_exists( 'ys_get_footer_sns_list' ) ) {
 				'icon-class' => 'fab fa-facebook-f',
 			),
 			'google-plus' => array(
-				'class'      => 'twitter',
-				'option_key' => 'twitter',
-				'icon-class' => 'fab fa-twitter',
+				'class'      => 'google-plus',
+				'option_key' => 'google-plus',
+				'icon-class' => 'fab fa-google-plus-g',
 			),
 			'instagram'   => array(
 				'class'      => 'instagram',
@@ -66,14 +66,13 @@ if ( ! function_exists( 'ys_get_footer_sns_list' ) ) {
 		foreach ( $sns as $value ) {
 			$option = ys_create_footer_sns_link(
 				$value['class'],
-				'ys_follow_url_' . str_replace( '-', '', $value['option_key'] ),
+				'ys_follow_url_' . str_replace( '-', '_', $value['option_key'] ),
 				$value['icon-class']
 			);
 			if ( '' !== trim( $option['url'] ) ) {
 				$list[] = $option;
 			}
 		}
-
 		return apply_filters( 'ys_get_footer_sns_list', $list );
 	}
 }
