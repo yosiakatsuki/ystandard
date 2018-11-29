@@ -115,6 +115,9 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 
 ### v2.x.x
+- 2.12.1 : 2018/11/30
+  - 不具合修正
+    - フッターのSNS表示にTwitterが２つ出てる不具合の修正
 - 2.12.0 : 2018/11/27
   - 機能追加
     - Font Awesome 5 対応
