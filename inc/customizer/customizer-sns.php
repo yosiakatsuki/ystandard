@@ -535,7 +535,7 @@ function ys_customizer_sns_add_footer_sns_follow( $wp_customize ) {
 	 */
 	$ys_customizer->add_url(
 		array(
-			'id'      => 'ys_follow_url_googlepuls',
+			'id'      => 'ys_follow_url_google_plus',
 			'default' => '',
 			'label'   => 'Google+',
 		)

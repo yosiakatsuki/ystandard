@@ -246,7 +246,7 @@ function ys_get_options() {
 	// facebookフォローURL.
 	$result['ys_follow_url_facebook'] = esc_url( get_option( 'ys_follow_url_facebook', '' ) );
 	// google+フォローURL.
-	$result['ys_follow_url_googleplus'] = esc_url( get_option( 'ys_follow_url_googleplus', '' ) );
+	$result['ys_follow_url_google_plus'] = esc_url( get_option( 'ys_follow_url_google_plus', '' ) );
 	// instagramフォローURL.
 	$result['ys_follow_url_instagram'] = esc_url( get_option( 'ys_follow_url_instagram', '' ) );
 	// tumblrフォローURL.
