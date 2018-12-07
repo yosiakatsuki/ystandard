@@ -27,6 +27,7 @@ function ys_shortcode_tax_posts( $args ) {
 			'taxonomy'       => '',
 			'term_slug'      => '',
 			'post_count'     => 5,
+			'post_type'      => 'post',
 			'show_img'       => true,
 			'thumbnail_size' => 'thumbnail',
 			'template'       => '',
@@ -36,7 +37,6 @@ function ys_shortcode_tax_posts( $args ) {
 	/**
 	 * 変数
 	 */
-	$post_count     = $args['post_count'];
 	$thumbnail_size = $args['thumbnail_size'];
 	if ( ! $args['show_img'] || 'false' === $args['show_img'] ) {
 		$thumbnail_size = '';
@@ -45,7 +45,8 @@ function ys_shortcode_tax_posts( $args ) {
 	 * パラメータの作成
 	 */
 	$post_args = array(
-		'posts_per_page' => $post_count,
+		'post_type'      => $args['post_type'],
+		'posts_per_page' => $args['post_count'],
 	);
 	/**
 	 * タクソノミーがあればタクソノミー指定
