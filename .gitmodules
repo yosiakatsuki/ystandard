@@ -1,0 +1,3 @@
+[submodule "src/sass/akatsuki-base"]
+	path = src/sass/akatsuki-base
+	url = git@github.com:yosiakatsuki/akatsuki-base.git
