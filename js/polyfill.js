@@ -1,0 +1,1 @@
+'use strict';function ysSticky(){var a=document.getElementById('sidebar-fixed');Stickyfill.add(a)}function ysObjectfit(){var a=document.querySelectorAll('img.subscribe__image,.ratio__image img');objectFitImages(a)}function ysPolyfill(){ysSticky(),ysObjectfit()}window.addEventListener('load',function(){ysPolyfill()});

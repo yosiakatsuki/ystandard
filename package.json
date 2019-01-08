@@ -1,34 +1,41 @@
 {
-  "name": "ystandard",
-  "version": "1.0.0",
-  "author": "yosiakatuki",
-  "license": "GPLv2",
-  "devDependencies": {
-    "autoprefixer": "^7.2.5",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "browser-sync": "^2.23.1",
-    "cssnano": "^3.10.0",
-    "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0",
-    "gulp-combine-media-queries": "^0.2.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-postcss": "^7.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^2.1.2",
-    "gulp-watch": "^4.3.10",
-    "gulp-zip": "^4.1.0",
-    "node-normalize-scss": "^3.0.0",
-    "webpack": "^3.10.0",
-    "webpack-stream": "^4.0.0"
-  },
-  "scripts": {
-    "w": "gulp watch",
-    "dev": "NODE_ENV=dev gulp watch",
-    "zip": "gulp zip",
-    "bs": "gulp browsersync"
-  }
+	"name": "ystandard",
+	"version": "1.0.0",
+	"author": "yosiakatuki",
+	"license": "GPLv2",
+	"devDependencies": {
+		"autoprefixer": "^9.4.2",
+		"babel-cli": "^6.26.0",
+		"babel-preset-env": "^1.7.0",
+		"babel-preset-minify": "^0.5.0",
+		"browser-sync": "^2.26.3",
+		"css-mqpacker": "^7.0.0",
+		"gulp": "^4.0.0",
+		"gulp-zip": "^4.2.0",
+		"node-sass": "^4.11.0",
+		"node-sass-package-importer": "^5.2.0",
+		"normalize.css": "^8.0.1",
+		"postcss-clean": "^1.1.0",
+		"postcss-cli": "^6.0.1",
+		"rename-cli": "^5.1.2",
+		"watch": "^1.0.2"
+	},
+	"scripts": {
+		"zip": "gulp zip",
+		"build:sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/sass -o src/css",
+		"build:postcss": "postcss src/css/*.css -u autoprefixer postcss-clean css-mqpacker -d css --no-map",
+		"build:cssrename": "rename -f './css/!(*.min.css)' {{f}}.min.css",
+		"build:css": "npm run build:sass && npm run build:postcss && npm run build:cssrename",
+		"build:js": "babel ./src/js -d ./js --presets=env,minify --compact=true --no-comments --ignore 'src/js/modules/**'",
+		"build:js-dev": "babel ./src/js -d ./js --presets=env,minify --compact=true --source-maps --no-comments --ignore 'src/js/modules/**'",
+		"watch:css": "watch 'npm run build:css' src/sass",
+		"watch:js": "watch 'npm run build:js' ./src/js/",
+		"watch:js-dev": "watch 'npm run build:js-dev' ./src/js/",
+		"bs": "browser-sync start -p http://wp-ystandard.lo -f './css/*.css, ./js/*.min.js, ./**/*.php' -w",
+		"watch_s": "npm run watch:css & npm run watch:js & npm rum bs"
+	},
+	"browserslist": [
+		"last 2 versions",
+		"not ie < 11"
+	]
 }
