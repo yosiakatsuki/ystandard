@@ -23,9 +23,9 @@
 	"scripts": {
 		"zip": "gulp zip",
 		"build:sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/sass -o src/css",
-		"build:postcss": "postcss src/css/*.css -u autoprefixer postcss-clean css-mqpacker -d css --no-map",
+		"build:postcss": "postcss src/css/*.css -u autoprefixer postcss-clean css-mqpacker --dir css --no-map",
 		"build:cssrename": "rename -f './css/!(*.min.css)' {{f}}.min.css",
-		"build:css": "npm run build:sass && npm run build:postcss && npm run build:cssrename",
+		"build:css": "npm run build:sass && npm run build:postcss",
 		"build:js": "babel ./src/js -d ./js --presets=env,minify --compact=true --no-comments --ignore 'src/js/modules/**'",
 		"build:js-dev": "babel ./src/js -d ./js --presets=env,minify --compact=true --source-maps --no-comments --ignore 'src/js/modules/**'",
 		"watch:css": "watch 'npm run build:css' src/sass",
