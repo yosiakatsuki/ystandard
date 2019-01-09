@@ -15,6 +15,7 @@
 function ys_get_font_awesome_url() {
 	return apply_filters( 'ys_get_font_awesome_url', ys_get_font_awesome_dir() . '/css/all.css' );
 }
+
 /**
  * Font Awesome CDN DIR
  *
@@ -234,4 +235,23 @@ function ys_get_theme_file_uri( $file ) {
 	}
 
 	return get_theme_file_uri( $file );
+}
+
+/**
+ * 非推奨メッセージを表示する
+ *
+ * @param string $func    関数.
+ * @param string $since   いつから.
+ * @param string $comment コメント.
+ */
+function ys_deprecated( $func, $since, $comment = '' ) {
+	$message = sprintf(
+		'<span style="color:red"><code>%s</code>は%sで非推奨になった関数です。</span>',
+		$func,
+		$since
+	);
+	if ( $comment ) {
+		$message .= '<br><span style="color:#999">' . $comment . '</span>';
+	}
+	echo $message;
 }

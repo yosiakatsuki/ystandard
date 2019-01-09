@@ -3,7 +3,7 @@
  * フッター copyright
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -16,6 +16,7 @@ if ( ! function_exists( 'ys_get_footer_site_info' ) ) {
 	function ys_get_footer_site_info() {
 		$copy      = ys_get_copyright();
 		$poweredby = ys_get_poweredby();
+
 		return $copy . $poweredby;
 	}
 }
@@ -46,6 +47,7 @@ if ( ! function_exists( 'ys_get_copyright' ) ) {
 				$copy
 			);
 		}
+
 		return $copy;
 	}
 }
@@ -62,9 +64,10 @@ function ys_get_copyright_default() {
 	}
 	$url       = esc_url( home_url( '/' ) );
 	$blog_name = get_bloginfo( 'name' );
+
 	return sprintf(
 		'Copyright &copy; %s <a href="%s" rel="home">%s</a> All Rights Reserved.',
-		$year,
+		esc_html( $year ),
 		$url,
 		$blog_name
 	);
@@ -99,6 +102,7 @@ if ( ! function_exists( 'ys_get_poweredby' ) ) {
 			$theme,
 			$powerdby
 		);
+
 		return apply_filters( 'ys_poweredby', $html );
 	}
 }
