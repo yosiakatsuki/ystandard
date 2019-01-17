@@ -10,6 +10,7 @@
 		"babel-preset-minify": "^0.5.0",
 		"browser-sync": "^2.26.3",
 		"css-mqpacker": "^7.0.0",
+		"ejs-cli": "^2.0.1",
 		"gulp": "^4.0.0",
 		"gulp-zip": "^4.2.0",
 		"node-sass": "^4.11.0",
@@ -23,7 +24,7 @@
 	},
 	"scripts": {
 		"zip": "gulp zip",
-	  	"clean": "rimraf src/css",
+		"clean": "rimraf src/css",
 		"build:sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/sass -o src/css",
 		"build:postcss": "postcss src/css/*.css -u autoprefixer postcss-clean css-mqpacker --dir css --no-map",
 		"build:cssrename": "rename -f './css/!(*.min.css)' {{f}}.min.css",
