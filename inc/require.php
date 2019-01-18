@@ -58,13 +58,7 @@ require_once get_template_directory() . '/inc/init/init.php';
 /**
  * Enqueue
  */
-require_once get_template_directory() . '/inc/enqueue/enqueue-function.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-admin.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-optimize.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-customizer.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-customizer-color.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-customizer-custom-header.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue-loader.php';
 /**
  * Post-meta
  */
@@ -193,7 +187,3 @@ if ( is_admin() ) {
 	 */
 	require_once get_template_directory() . '/inc/update-checker/update-checker.php';
 }
-/**
- * V2でいずれ廃止予定
- */
-require_once get_template_directory() . '/inc/migration-v1-v2/v1/theme-settings.php';
