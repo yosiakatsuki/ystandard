@@ -59,7 +59,7 @@ function ys_admin_enqueue_scripts( $hook ) {
 		);
 		wp_enqueue_style(
 			'font-awesome',
-			ys_get_font_awesome_url(),
+			ys_get_font_awesome_css_url(),
 			array(),
 			''
 		);
