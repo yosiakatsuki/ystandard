@@ -8,7 +8,7 @@
  */
 
 ?>
-<div class="<?php ys_the_header_col_class( array( 'site-branding', 'header__branding' ) ); ?>">
+<div class="<?php ys_the_header_col_class( 'logo', array( 'site-branding', 'header__branding' ) ); ?>">
 	<?php
 	/**
 	 * ヘッダーロゴ
