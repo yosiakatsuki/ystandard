@@ -8,103 +8,109 @@
  */
 
 /**
- * <head>タグ取得
+ * <html>タグにつける属性
  */
-function ys_get_the_head_tag() {
-	$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#">';
-	if ( is_singular() ) {
-		$html = '<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">';
+function ys_the_html_attr() {
+	$attr = array();
+	if ( ys_is_amp() ) {
+		$attr[] = 'amp';
 	}
+	$attr[] = get_language_attributes();
+	$attr   = apply_filters( 'ys_the_html_attr', $attr );
 
-	return apply_filters( 'ys_get_the_head_tag', $html . PHP_EOL );
+	echo implode( ' ', $attr );
 }
 
 /**
- * <head>タグ出力
+ * <head>タグにつける属性取得
  */
-function ys_the_head_tag() {
-	echo ys_get_the_head_tag();
+function ys_the_head_attr() {
+	$attr = array();
+	if ( ! ys_is_amp() ) {
+		if ( is_singular() ) {
+			$attr[] = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"';
+		} else {
+			$attr[] = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#"';
+		}
+	}
+	$attr = apply_filters( 'ys_get_head_attr', $attr );
+
+	echo implode( ' ', $attr );
 }
 
-if ( ! function_exists( 'ys_get_meta_description' ) ) {
+/**
+ * メタデスクリプション取得
+ */
+function ys_get_meta_description() {
+	global $post;
+	$length = ys_get_option( 'ys_option_meta_description_length' );
+	$dscr   = '';
 	/**
-	 * メタデスクリプション取得
+	 * TOPページの場合
 	 */
-	function ys_get_meta_description() {
-		global $wp_query;
-		global $post;
-		$length = ys_get_option( 'ys_option_meta_description_length' );
-		$dscr   = '';
-		$html   = '';
+	if ( ys_is_top_page() ) {
+		$dscr = trim( ys_get_option( 'ys_wp_site_description' ) );
+	} elseif ( is_category() && ! is_paged() ) {
 		/**
-		 * TOPページの場合
+		 * カテゴリー
 		 */
-		if ( ys_is_top_page() ) {
-			$dscr = trim( ys_get_option( 'ys_wp_site_description' ) );
-		} elseif ( is_category() && ! is_paged() ) {
-			/**
-			 * カテゴリー
-			 */
-			$dscr = category_description();
-		} elseif ( is_tag() && ! is_paged() ) {
-			/**
-			 * タグ
-			 */
-			$dscr = tag_description();
-		} elseif ( is_tax() ) {
-			/**
-			 * その他タクソノミー
-			 */
-			$taxonomy = get_query_var( 'taxonomy' );
-			$term     = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
-			$dscr     = term_description( $term->term_id, $taxonomy );
-		} elseif ( is_singular() ) {
-			/**
-			 * 投稿ページ
-			 */
-			if ( ! get_query_var( 'paged' ) ) {
-				$dscr = $post->post_excerpt;
-				if ( ! $dscr ) {
-					$dscr = ys_get_the_custom_excerpt( '', $length, $post->ID );
-				}
+		$dscr = category_description();
+	} elseif ( is_tag() && ! is_paged() ) {
+		/**
+		 * タグ
+		 */
+		$dscr = tag_description();
+	} elseif ( is_tax() ) {
+		/**
+		 * その他タクソノミー
+		 */
+		$taxonomy = get_query_var( 'taxonomy' );
+		$term     = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
+		$dscr     = term_description( $term->term_id, $taxonomy );
+	} elseif ( is_singular() ) {
+		/**
+		 * 投稿ページ
+		 */
+		if ( ! get_query_var( 'paged' ) ) {
+			$dscr = $post->post_excerpt;
+			if ( ! $dscr ) {
+				$dscr = ys_get_the_custom_excerpt( '', $length, $post->ID );
 			}
 		}
-		if ( '' !== $dscr ) {
-			$dscr = mb_substr( $dscr, 0, $length );
-		}
-
-		return apply_filters( 'ys_get_meta_description', wp_strip_all_tags( $dscr, true ) );
 	}
+	if ( '' !== $dscr ) {
+		$dscr = mb_substr( $dscr, 0, $length );
+	}
+
+	return apply_filters( 'ys_get_meta_description', wp_strip_all_tags( $dscr, true ) );
 }
 
-if ( ! function_exists( 'ys_the_meta_description' ) ) {
+/**
+ * TOPページのmeta description出力
+ */
+function ys_the_meta_description() {
+	$html = '';
+	$dscr = ys_get_meta_description();
 	/**
-	 * TOPページのmeta description出力
+	 * Metaタグの作成
 	 */
-	function ys_the_meta_description() {
-		$html = '';
-		$dscr = ys_get_meta_description();
-		/**
-		 * Metaタグの作成
-		 */
-		if ( '' !== $dscr && ys_is_enable_meta_description() ) {
-			$html = '<meta name="description" content="' . $dscr . '" />' . PHP_EOL;
-		}
-		echo $html;
+	if ( '' !== $dscr && ys_is_enable_meta_description() ) {
+		$html = '<meta name="description" content="' . $dscr . '" />' . PHP_EOL;
 	}
+	echo $html;
 }
+
 add_action( 'wp_head', 'ys_the_meta_description' );
 
-if ( ! function_exists( 'ys_the_pingback_url' ) ) {
-	/**
-	 * ピンバックURLの出力
-	 */
-	function ys_the_pingback_url() {
-		if ( is_singular() && pings_open( get_queried_object() ) ) {
-			echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . PHP_EOL;
-		}
+/**
+ * ピンバックURLの出力
+ */
+function ys_the_pingback_url() {
+	if ( is_singular() && pings_open( get_queried_object() ) ) {
+		echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . PHP_EOL;
 	}
 }
+
 add_action( 'wp_head', 'ys_the_pingback_url' );
 
 /**

@@ -3,7 +3,7 @@
  * ヘッダー関連
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -24,6 +24,7 @@ function ys_get_header_logo() {
 	$format = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">%s</a>';
 	$format = apply_filters( 'ys_get_header_logo_format', $format );
 	$logo   = sprintf( $format, $logo );
+
 	return $logo;
 }
 
@@ -36,24 +37,89 @@ if ( ! function_exists( 'ys_the_blog_description' ) ) {
 			return;
 		}
 		$dscr   = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
-		$format = '<p class="site-description header__dscr color__site-dscr">%s</p>';
+		$format = '<p class="site-description header__dscr">%s</p>';
 		$format = apply_filters( 'ys_the_blog_description_format', $format );
 		echo sprintf( $format, $dscr );
 	}
 }
 
 /**
- * ヘッダータイプ class取得
+ * ヘッダー row class取得
+ *
+ * @param array $class 追加クラス.
+ *
+ * @return array
  */
-function ys_get_header_type_class() {
-	$type  = ys_get_option( 'ys_design_header_type' );
-	$class = apply_filters( 'ys_get_header_type_class', 'header--' . $type, $type );
-	return $class;
+function ys_get_header_row_class( $class = array() ) {
+	$classes = array();
+	if ( is_array( $class ) && ! empty( $class ) ) {
+		$classes = array_merge( $classes, $class );
+	}
+	$type      = ys_get_option( 'ys_design_header_type' );
+	$classes[] = 'flex';
+	$classes[] = 'flex--row';
+	/**
+	 * 1行タイプ
+	 */
+	if ( '1row' == $type ) {
+		$classes[] = 'flex--a-center';
+		$classes[] = 'flex--j-between';
+	}
+	/**
+	 * 中央寄せタイプ
+	 */
+	if ( 'center' == $type ) {
+		$classes[] = 'flex--j-center';
+	}
+	$classes = apply_filters( 'ys_get_header_row_class', $classes, $type );
+
+	return $classes;
 }
 
 /**
- * ヘッダータイプ class出力
+ * ヘッダー row class出力
+ *
+ * @param array $class 追加クラス.
  */
-function ys_the_header_type_class() {
-	echo ys_get_header_type_class();
+function ys_the_header_row_class( $class = array() ) {
+	echo implode( ' ', ys_get_header_row_class( $class ) );
+}
+
+/**
+ * ヘッダー col class取得
+ *
+ * @param array $class 追加クラス.
+ *
+ * @return array
+ */
+function ys_get_header_col_class( $class = array() ) {
+	$classes = array();
+	if ( is_array( $class ) && ! empty( $class ) ) {
+		$classes = array_merge( $classes, $class );
+	}
+	$type = ys_get_option( 'ys_design_header_type' );
+	/**
+	 * 1行タイプ
+	 */
+	if ( '1row' == $type ) {
+		$classes[] = 'flex__col';
+	}
+	/**
+	 * 中央寄せタイプ
+	 */
+	if ( 'center' == $type ) {
+		$classes[] = 'flex__col-12';
+	}
+	$classes = apply_filters( 'ys_get_header_col_class', $classes, $type );
+
+	return $classes;
+}
+
+/**
+ * ヘッダー col class出力
+ *
+ * @param array $class 追加クラス.
+ */
+function ys_the_header_col_class( $class = array() ) {
+	echo implode( ' ', ys_get_header_col_class( $class ) );
 }

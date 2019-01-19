@@ -76,12 +76,9 @@ require_once get_template_directory() . '/inc/template/template.php';
  */
 require_once get_template_directory() . '/inc/archive/archive.php';
 /**
- * <head>
- */
-require_once get_template_directory() . '/inc/head/head.php';
-/**
  * ヘッダー
  */
+require_once get_template_directory() . '/inc/header/head.php';
 require_once get_template_directory() . '/inc/header/header.php';
 require_once get_template_directory() . '/inc/header/custom-header.php';
 /**
@@ -132,11 +129,7 @@ require_once get_template_directory() . '/inc/taxonomy/tag.php';
 /**
  * AMP
  */
-require_once get_template_directory() . '/inc/amp/amp-convert.php';
-require_once get_template_directory() . '/inc/amp/amp-filter.php';
-require_once get_template_directory() . '/inc/amp/amp-head.php';
-require_once get_template_directory() . '/inc/amp/amp-footer.php';
-require_once get_template_directory() . '/inc/amp/amp-google-analytics.php';
+require_once get_template_directory() . '/inc/amp/amp-loader.php';
 /**
  * ショートコード
  */

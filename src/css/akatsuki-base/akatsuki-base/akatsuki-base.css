@@ -771,6 +771,10 @@ input[type="button"] {
     color: #222;
     text-decoration: none; }
 
+.header__dscr {
+  margin: 0;
+  font-size: .8rem; }
+
 .site-footer {
   margin-top: 1rem;
   background-color: #292b2c;

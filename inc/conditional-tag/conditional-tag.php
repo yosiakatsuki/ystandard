@@ -7,26 +7,26 @@
  * @license GPL-2.0+
  */
 
-if ( ! function_exists( 'ys_is_top_page' ) ) {
-	/**
-	 * TOPページ判断（HOMEの1ページ目 or front-page）
-	 *
-	 * @return bool
-	 */
-	function ys_is_top_page() {
-		if ( 'page' === get_option( 'show_on_front' ) ) {
-			if ( is_front_page() ) {
-				return true;
-			}
-		} else {
-			if ( is_home() && ! is_paged() ) {
-				return true;
-			}
+/**
+ * TOPページ判断（HOMEの1ページ目 or front-page）
+ *
+ * @return bool
+ */
+function ys_is_top_page() {
+	$result = false;
+	if ( 'page' === get_option( 'show_on_front' ) ) {
+		if ( is_front_page() ) {
+			$result = true;
 		}
-
-		return false;
+	} else {
+		if ( is_home() && ! is_paged() ) {
+			$result = true;
+		}
 	}
+
+	return apply_filters( 'ys_is_top_page', $result );
 }
+
 /**
  * ユーザーエージェントのチェック
  *
@@ -57,115 +57,124 @@ function ys_is_login_page() {
 }
 
 
-if ( ! function_exists( 'ys_is_mobile' ) ) {
+/**
+ * モバイル判定
+ *
+ * @return bool
+ */
+function ys_is_mobile() {
 	/**
-	 * モバイル判定
-	 *
-	 * @return bool
+	 * [^(?!.*iPad).*iPhone] : iPadとiPhoneが混ざるUAがあるらしい
 	 */
-	function ys_is_mobile() {
+	$ua = array(
+		'^(?!.*iPad).*iPhone',
+		'iPod',
+		'Android.*Mobile',
+		'Mobile.*Firefox',
+		'Windows.*Phone',
+		'blackberry',
+		'dream',
+		'CUPCAKE',
+		'webOS',
+		'incognito',
+		'webmate',
+	);
+
+	$ua = apply_filters( 'ys_is_mobile_ua_list', $ua );
+
+	return ys_check_user_agent( $ua );
+}
+
+/**
+ * IE判定
+ *
+ * @return bool
+ */
+function ys_is_ie() {
+	$ua = array(
+		'Trident',
+		'MSIE',
+	);
+	$ua = apply_filters( 'ys_is_ie_ua_list', $ua );
+
+	return ys_check_user_agent( $ua );
+}
+
+/**
+ * Edge判定
+ *
+ * @return bool
+ */
+function ys_is_edge() {
+	$ua = array(
+		'Edge',
+	);
+	$ua = apply_filters( 'ys_is_edge_ua_list', $ua );
+
+	return ys_check_user_agent( $ua );
+}
+
+/**
+ * AMP判定
+ *
+ * @return bool
+ */
+function ys_is_amp() {
+	global $ys_amp;
+	if ( null !== $ys_amp ) {
+		return $ys_amp;
+	}
+	$param_amp = '';
+	if ( isset( $_GET['amp'] ) ) {
+		$param_amp = $_GET['amp'];
+	}
+	if ( '1' === $param_amp && ys_is_amp_enable() ) {
+		$ys_amp = true;
+	} else {
+		$ys_amp = false;
+	}
+
+	return apply_filters( 'ys_is_amp', $ys_amp );
+}
+
+/**
+ * AMPページにできるか判断
+ *
+ * @return bool
+ */
+function ys_is_amp_enable() {
+	global $post;
+	$result = true;
+	/**
+	 * AMP有効化設定チェック
+	 */
+	if ( 1 == ys_get_option( 'ys_amp_enable' ) ) {
 		/**
-		 * [^(?!.*iPad).*iPhone] : iPadとiPhoneが混ざるUAがあるらしい
+		 * AMP設定有効
 		 */
-		$ua = array(
-			'^(?!.*iPad).*iPhone',
-			'iPod',
-			'Android.*Mobile',
-			'Mobile.*Firefox',
-			'Windows.*Phone',
-			'blackberry',
-			'dream',
-			'CUPCAKE',
-			'webOS',
-			'incognito',
-			'webmate',
-		);
-
-		return ys_check_user_agent( $ua );
-	}
-}
-
-if ( ! function_exists( 'ys_is_ie' ) ) {
-	/**
-	 * IE判定
-	 *
-	 * @return bool
-	 */
-	function ys_is_ie() {
-		$ua = array(
-			'Trident',
-			'MSIE',
-		);
-
-		return ys_check_user_agent( $ua );
-	}
-}
-
-if ( ! function_exists( 'ys_is_edge' ) ) {
-	/**
-	 * Edge判定
-	 *
-	 * @return bool
-	 */
-	function ys_is_edge() {
-		$ua = array(
-			'Edge',
-		);
-
-		return ys_check_user_agent( $ua );
-	}
-}
-
-if ( ! function_exists( 'ys_is_amp' ) ) {
-	/**
-	 * AMP判定
-	 *
-	 * @return bool
-	 */
-	function ys_is_amp() {
-		global $ys_amp;
-		if ( null !== $ys_amp ) {
-			return $ys_amp;
-		}
-		$param_amp = '';
-		if ( isset( $_GET['amp'] ) ) {
-			$param_amp = $_GET['amp'];
-		}
-		if ( '1' === $param_amp && ys_is_amp_enable() ) {
-			$ys_amp = true;
+		if ( is_single() ) {
+			/**
+			 * 投稿ごとのAMPページ生成判断
+			 */
+			if ( '1' === ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ) ) {
+				$result = false;
+			}
 		} else {
-			$ys_amp = false;
-		}
-
-		return apply_filters( 'ys_is_amp', $ys_amp );
-	}
-}
-
-if ( ! function_exists( 'ys_is_amp_enable' ) ) {
-	/**
-	 * AMPページにできるか判断
-	 *
-	 * @return bool
-	 */
-	function ys_is_amp_enable() {
-		global $post;
-		$result = true;
-		if ( 0 == ys_get_option( 'ys_amp_enable' ) ) {
-			return apply_filters( 'ys_is_amp_enable', false );
-		}
-		if ( ! is_single() ) {
-			return apply_filters( 'ys_is_amp_enable', false );
-		}
-		/**
-		 * 投稿ごとのAMPページ生成判断
-		 */
-		if ( '1' === ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ) ) {
+			/**
+			 * 投稿詳細以外はNG
+			 */
 			$result = false;
 		}
-
-		return apply_filters( 'ys_is_amp_enable', $result );
+	} else {
+		/**
+		 * AMP設定無効
+		 */
+		$result = false;
 	}
+
+	return apply_filters( 'ys_is_amp_enable', $result );
 }
+
 /**
  * Google AMP Client ID API を使用するか
  *
@@ -755,8 +764,11 @@ function ys_is_optimize_load_css() {
  */
 function ys_is_active_slide_menu_search_form() {
 	$result = false;
-	if ( wp_is_mobile() && ys_get_option( 'ys_show_search_form_on_slide_menu' ) ) {
+	if ( ys_is_mobile() && ys_get_option( 'ys_show_search_form_on_slide_menu' ) ) {
 		$result = true;
+	}
+	if ( ys_is_amp() ) {
+		$result = false;
 	}
 
 	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
