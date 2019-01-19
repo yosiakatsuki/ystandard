@@ -8,24 +8,19 @@
  */
 
 if ( has_nav_menu( 'global' ) ) :
-	if ( ys_is_amp() ) : ?>
-		<button class="global-nav__btn" on="tap:sidebar.toggle">
-			<span class="top"></span>
-			<span class="middle"></span>
-			<span class="bottom"></span>
-		</button>
-		<?php // AMPスライダーは親がbodyである必要があるのでamp-footerで出力. ?>
-	<?php else : ?>
-		<input type="checkbox" id="header__nav-toggle" class="header__nav-toggle" hidden />
-		<label class="global-nav__btn" for="header__nav-toggle">
-			<span class="top"></span>
-			<span class="middle"></span>
-			<span class="bottom"></span>
+	?>
+	<div class="<?php ys_the_header_col_class( array( 'h-nav', 'rwd' ) ); ?>">
+		<input type="checkbox" id="h-nav__toggle" class="h-nav__toggle" hidden/>
+		<label class="h-nav__btn" for="h-nav__toggle">
+			<span class="hamburger">
+				<span class="top"></span>
+				<span class="middle"></span>
+				<span class="bottom"></span>
+			</span>
 		</label>
-		<label class="global-nav__cover" for="header__nav-toggle"></label>
-		<nav id="global-nav" class="global-nav color__nav-bg--sp color__nav-bg--pc">
+		<nav id="h-nav__main" class="h-nav__main">
 			<?php if ( ys_is_active_slide_menu_search_form() ) : ?>
-				<div class="global-nav__search">
+				<div class="h-nav__search">
 					<?php get_search_form(); ?>
 				</div><!-- .global-nav__search -->
 			<?php endif; ?>
@@ -43,6 +38,5 @@ if ( has_nav_menu( 'global' ) ) :
 			);
 			?>
 		</nav><!-- .global-nav -->
-	<?php
-	endif;
-endif;
+	</div><!-- .header__nav -->
+<?php endif; ?>

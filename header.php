@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+<html <?php ys_the_html_attr(); ?>>
 <?php
 /**
  * ヘッダーテンプレート
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -35,7 +36,7 @@ if ( ys_is_amp() ) {
 	/**
 	 * 通常フォーマットの場合
 	 */
-	get_template_part( 'template-parts/head/head' );
+	get_template_part( 'template-parts/header/head' );
 }
 ?>
 <!-- head -->
@@ -43,31 +44,23 @@ if ( ys_is_amp() ) {
 <?php do_action( 'ys_body_prepend' ); ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ystandard' ); ?></a>
-	<header id="masthead" class="header site-header color__site-header">
+	<header id="masthead" class="header site-header">
 		<?php do_action( 'ys_site_header_prepend' ); ?>
-		<div class="header__container container">
-			<div class="<?php ys_the_header_type_class(); ?>">
-				<div class="site-branding header__branding">
-					<?php
-					/**
-					 * ヘッダーロゴ
-					 */
-					$logo  = ys_get_header_logo();
-					$class = 'site-title header__title color__site-title';
-					if ( ! is_singular() || is_front_page() ) {
-						printf( '<h1 class="%s clear-headline">%s</h1>', $class, $logo );
-					} else {
-						printf( '<div class="%s clear-headline">%s</div>', $class, $logo );
-					}
-					/**
-					 * 概要
-					 */
-					ys_the_blog_description();
-					?>
-				</div><!-- .site-branding -->
-				<div class="header__nav">
-					<?php get_template_part( 'template-parts/nav/global-nav' ); ?>
-				</div><!-- .header__nav -->
+		<div class="site-header__container container">
+			<div class="<?php ys_the_header_row_class(); ?>">
+				<?php
+				/**
+				 * サイトタイトル・ロゴの出力
+				 */
+				get_template_part( 'template-parts/header/header-logo' );
+				?>
+
+				<?php
+				/**
+				 * グローバルナビゲーション
+				 */
+				get_template_part( 'template-parts/nav/global-nav' );
+				?>
 			</div><!-- .header_row -->
 		</div><!-- .header__container -->
 		<?php do_action( 'ys_site_header_append' ); ?>
@@ -78,16 +71,14 @@ if ( ys_is_amp() ) {
 	 * カスタムヘッダー
 	 */
 	get_template_part( 'template-parts/header/custom-header' );
-	?>
-	<?php
 	/**
 	 * ヒーローエリア
 	 */
 	get_template_part( 'template-parts/hero/hero', ys_get_hero_template() );
 	?>
 	<div id="content" class="site-content site__content">
-	<?php
-	/**
-	 * パンくずリスト
-	 */
-	get_template_part( 'template-parts/breadcrumbs/breadcrumbs' );
+<?php
+/**
+ * パンくずリスト
+ */
+get_template_part( 'template-parts/breadcrumbs/breadcrumbs' );

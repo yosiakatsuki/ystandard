@@ -864,6 +864,10 @@ input[type="button"] {
     color: #222;
     text-decoration: none; }
 
+.header__dscr {
+  margin: 0;
+  font-size: .8rem; }
+
 .site-footer {
   margin-top: 1rem;
   background-color: #292b2c;
@@ -983,7 +987,8 @@ input[type="button"] {
         max-width: unset;
         overflow-y: visible; }
       .h-nav.rwd .h-nav__main a {
-        color: inherit; }
+        color: inherit;
+        font-size: .9rem; }
     .h-nav.rwd li {
       position: relative;
       border-bottom: 1px solid transparent;
@@ -1008,6 +1013,7 @@ input[type="button"] {
       .h-nav.rwd li:hover:not(.has-child) {
         border-bottom: 1px solid #292b2c; }
       .h-nav.rwd li:hover ul {
+        min-width: 100%;
         height: auto;
         background-color: rgba(255, 255, 255, 0.9);
         opacity: 1;
