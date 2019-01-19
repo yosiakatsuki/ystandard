@@ -88,11 +88,12 @@ function ys_the_header_row_class( $class = array() ) {
 /**
  * ヘッダー col class取得
  *
- * @param array $class 追加クラス.
+ * @param string $pos   logo or nav.
+ * @param array  $class 追加クラス.
  *
  * @return array
  */
-function ys_get_header_col_class( $class = array() ) {
+function ys_get_header_col_class( $pos, $class = array() ) {
 	$classes = array();
 	if ( is_array( $class ) && ! empty( $class ) ) {
 		$classes = array_merge( $classes, $class );
@@ -108,7 +109,13 @@ function ys_get_header_col_class( $class = array() ) {
 	 * 中央寄せタイプ
 	 */
 	if ( 'center' == $type ) {
-		$classes[] = 'flex__col-12';
+		if ( 'logo' == $pos ) {
+			$classes[] = 'flex__col--lg-1';
+		} else {
+			$classes[] = 'flex__col';
+			$classes[] = '-center';
+		}
+		$classes[] = 'text--center';
 	}
 	$classes = apply_filters( 'ys_get_header_col_class', $classes, $type );
 
@@ -118,8 +125,9 @@ function ys_get_header_col_class( $class = array() ) {
 /**
  * ヘッダー col class出力
  *
- * @param array $class 追加クラス.
+ * @param string $pos   logo or nav.
+ * @param array  $class 追加クラス.
  */
-function ys_the_header_col_class( $class = array() ) {
-	echo implode( ' ', ys_get_header_col_class( $class ) );
+function ys_the_header_col_class( $pos, $class = array() ) {
+	echo implode( ' ', ys_get_header_col_class( $pos, $class ) );
 }
