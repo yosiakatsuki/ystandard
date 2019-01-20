@@ -179,4 +179,8 @@ if ( is_admin() ) {
 	 * アップデートチェック
 	 */
 	require_once get_template_directory() . '/inc/update-checker/update-checker.php';
+	/**
+	 * 新しい設定への変更
+	 */
+	require_once get_template_directory() . '/inc/migration/option-migration.php';
 }

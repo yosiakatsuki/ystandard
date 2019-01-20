@@ -453,6 +453,16 @@ template {
   .h-nav.-center li ul a {
     padding-left: 2rem; } }
 
+@media screen and (min-width: 1025px) {
+  .h-nav.-row2 a {
+    padding: 1rem 0; }
+  .h-nav.-row2 li {
+    margin-right: 1.5rem; }
+    .h-nav.-row2 li ul a {
+      padding: 1rem 0; }
+    .h-nav.-row2 li ul li {
+      margin-right: 0; } }
+
 @media screen and (min-width: 600px) {
   .item-list__item {
     padding: 2rem 0; }
