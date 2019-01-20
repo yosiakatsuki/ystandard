@@ -78,9 +78,9 @@ function ys_customizer_design_add_header( $wp_customize ) {
 			'description' => 'ヘッダーの表示タイプ',
 			'section'     => 'ys_customizer_section_header_design',
 			'choices'     => array(
-				'1row'   => sprintf( $img, $row1 ),
+				'row1'   => sprintf( $img, $row1 ),
 				'center' => sprintf( $img, $center ),
-				'2row'   => sprintf( $img, $row2 ),
+				'row2'   => sprintf( $img, $row2 ),
 			),
 		)
 	);

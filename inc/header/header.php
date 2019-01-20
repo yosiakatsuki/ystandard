@@ -61,7 +61,7 @@ function ys_get_header_row_class( $class = array() ) {
 	/**
 	 * 1行タイプ
 	 */
-	if ( '1row' == $type ) {
+	if ( 'row1' == $type ) {
 		$classes[] = 'flex--a-center';
 		$classes[] = 'flex--j-between';
 	}
@@ -98,11 +98,12 @@ function ys_get_header_col_class( $pos, $class = array() ) {
 	if ( is_array( $class ) && ! empty( $class ) ) {
 		$classes = array_merge( $classes, $class );
 	}
-	$type = ys_get_option( 'ys_design_header_type' );
+	$type      = ys_get_option( 'ys_design_header_type' );
+	$classes[] = '-' . $type;
 	/**
 	 * 1行タイプ
 	 */
-	if ( '1row' == $type ) {
+	if ( 'row1' == $type ) {
 		$classes[] = 'flex__col';
 	}
 	/**
@@ -113,11 +114,20 @@ function ys_get_header_col_class( $pos, $class = array() ) {
 			$classes[] = 'flex__col--lg-1';
 		} else {
 			$classes[] = 'flex__col';
-			$classes[] = '-center';
 		}
 		$classes[] = 'text--center';
 	}
-	$classes = apply_filters( 'ys_get_header_col_class', $classes, $type );
+	/**
+	 * 2行表示
+	 */
+	if ( 'row2' == $type ) {
+		if ( 'logo' == $pos ) {
+			$classes[] = 'flex__col--lg-1';
+		} else {
+			$classes[] = 'flex__col';
+		}
+	}
+	$classes = apply_filters( 'ys_get_header_col_class', $classes, $type, $pos );
 
 	return $classes;
 }

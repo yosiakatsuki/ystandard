@@ -47,7 +47,7 @@ function ys_get_option_default( $name ) {
 		'ys_copyright_year'                         => date_i18n( 'Y' ), // 発行年.
 		'ys_option_excerpt_length'                  => 110, // 抜粋文字数.
 		// [ys]デザイン設定.
-		'ys_design_header_type'                     => '1row', // ヘッダータイプ.
+		'ys_design_header_type'                     => 'row1', // ヘッダータイプ.
 		'ys_show_sidebar_mobile'                    => 0, // モバイル表示でサイドバーを出力しない.
 		'ys_show_search_form_on_slide_menu'         => 0, // スライドメニューに検索フォームを出力する.
 		// [ys]投稿ページ設定.
