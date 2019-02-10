@@ -25,7 +25,7 @@
   .alignwide {
     margin-right: -15px;
     margin-left: -15px;
-    
+
     @include media-breakpoint(tb) {
       margin-right: -30px;
       margin-left: -30px;
@@ -205,7 +205,8 @@ hr,
       margin: 0;
     }
     & > * {
-      margin: 0 0 1em;
+      margin-top: 0;
+      margin-bottom: 1em;
     }
   }
   @include media-breakpoint(tb) {
@@ -216,7 +217,7 @@ hr,
       }
     }
   }
-  
+
 }
 
 // Pull Quote
@@ -243,6 +244,36 @@ hr,
     }
   }
 }
+
+// wp-block-media-text
+.wp-block-media-text__content {
+  & > * {
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+@include media-breakpoint-down(tb) {
+  .wp-block-media-text {
+    &:not(.is-stacked-on-mobile),
+    &.has-media-on-the-right:not(.is-stacked-on-mobile) {
+      grid-template-columns:1fr;
+      grid-template-areas:"media-text-media" "media-text-content";
+      .wp-block-media-text__media,
+      .wp-block-media-text__content {
+        grid-area:auto;
+      }
+      .wp-block-media-text__content {
+        padding: 0;
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
 
 // button
 .wp-block-button {
