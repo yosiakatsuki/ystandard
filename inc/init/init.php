@@ -117,11 +117,7 @@ if ( ! function_exists( 'ys_init' ) ) {
 		/**
 		 * Gutenbergサポート
 		 */
-		add_theme_support( 'wp-block-styles' );
-		/**
-		 * 幅広画像のサポート
-		 */
-		add_theme_support( 'align-wide' );
+		ystd_theme_support_gutenberg();
 	}
 }
 add_action( 'after_setup_theme', 'ys_init' );
@@ -169,5 +165,28 @@ if ( ! function_exists( 'ys_remove_oembed' ) ) {
 			remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
 			remove_action( 'wp_head', 'wp_oembed_add_host_js' );
 		}
+	}
+}
+
+
+/**
+ * Gutenbergテーマサポート
+ */
+function ystd_theme_support_gutenberg() {
+	/**
+	 * Gutenbergデフォルトスタイル読み込み
+	 */
+	add_theme_support( 'wp-block-styles' );
+	/**
+	 * 幅広画像のサポート
+	 */
+	add_theme_support( 'align-wide' );
+	/**
+	 * エディタースタイルの適用
+	 */
+	if ( ys_get_option( 'ys_admin_enable_block_editor_style' ) ) {
+		add_theme_support( 'editor-styles' );
+		add_editor_style( 'css/ys-block-editor-style.min.css' );
+		add_editor_style( 'user-custom-editor-style.css' );
 	}
 }

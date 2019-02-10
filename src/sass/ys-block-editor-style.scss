@@ -1,0 +1,40 @@
+@charset "UTF-8";
+@import "import";
+//
+// ブロックエディタ用スタイル
+//
+
+//Gutenberg yStandard blog card
+.wp-block-embed {
+  &:not([class*="is-"]) {
+    .wp-block-embed__wrapper {
+      &:before {
+        display: none;
+        padding: 0;
+      }
+      iframe {
+        position: static;
+      }
+      & + .editor-rich-text {
+        display: none;
+      }
+    }
+  }
+
+}
+
+// Column
+.wp-block-columns.has-1-columns>.editor-inner-blocks>.editor-block-list__layout>[data-type="core/column"] {
+  flex-basis: 100%;
+  flex-grow: 1;
+  margin: 0 14px;
+}
+
+//Gutenberg meta box
+.edit-post-meta-boxes-area #poststuff h3,
+.edit-post-meta-boxes-area #poststuff h2 {
+  background-color: unset !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+}

@@ -9,3 +9,15 @@
 				+ "Please make sure it is defined in `$breakpoints-setting` map.";
 	}
 }
+
+@mixin media-breakpoint-down($name,$breakpoints:$breakpoints-setting) {
+  $breakpoint: map-get($breakpoints, $name);
+  @if $breakpoint {
+    @media screen and (max-width: ($breakpoint - 0.1px) ) {
+      @content;
+    }
+  } @else {
+    @warn "`#{$name}` is not found. "
+				+ "Please make sure it is defined in `$breakpoints-setting` map.";
+  }
+}
