@@ -456,7 +456,7 @@ function ys_get_options() {
 	 * **********
 	 */
 	// Gutenberg用CSSを追加する.
-	$result['ys_admin_enable_block_editor_style'] = get_option( 'ys_admin_enable_block_editor_style', 0 );
+	$result['ys_admin_enable_block_editor_style'] = get_option( 'ys_admin_enable_block_editor_style', 1 );
 	// ビジュアルエディタ用CSSを追加する.
 	$result['ys_admin_enable_tiny_mce_style'] = get_option( 'ys_admin_enable_tiny_mce_style', 0 );
 

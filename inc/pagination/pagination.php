@@ -3,7 +3,7 @@
  * ページネーション
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -12,6 +12,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 	 * ページネーション用データ取得
 	 *
 	 * @param integer $range 現在ページの前後に何ページリンクを出力するか.
+	 *
 	 * @return array
 	 */
 	function ys_get_pagination( $range = 1 ) {
@@ -54,7 +55,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		/**
 		 * 各ページへのリンク作る
 		 */
-		for ( $i = 1; $i <= $total; $i++ ) {
+		for ( $i = 1; $i <= $total; $i ++ ) {
 			if ( $current - $range <= $i && $i <= $current + $range ) {
 				if ( $i == $current ) {
 					$pagination[] = ys_set_pagination_item(
@@ -92,15 +93,17 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 				get_pagenum_link( $current + 1 )
 			);
 		}
+
 		return apply_filters( 'ys_get_pagination', $pagination );
 	}
 }
 /**
  * ページネーション用配列作成
  *
- * @param string  $text テキスト.
- * @param string  $url リンクURL.
+ * @param string  $text    テキスト.
+ * @param string  $url     リンクURL.
  * @param boolean $current カレントかどうか.
+ *
  * @return array
  */
 function ys_set_pagination_item( $text, $url, $current = false ) {
@@ -108,6 +111,7 @@ function ys_set_pagination_item( $text, $url, $current = false ) {
 	if ( $current ) {
 		$class .= ' pagination__item--current';
 	}
+
 	return array(
 		'text'  => $text,
 		'url'   => $url,
