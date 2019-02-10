@@ -20,7 +20,7 @@ if ( empty( $pagination ) ) {
 			<a class="<?php echo $item['class']; ?> flex flex--c-c" href="<?php echo $item['url']; ?>"><?php echo $item['text']; ?></a>
 		<?php else : ?>
 			<span class="<?php echo $item['class']; ?> flex flex--c-c"><?php echo $item['text']; ?></span>
-		<?php
+			<?php
 		endif;
 	endforeach;
 	?>
