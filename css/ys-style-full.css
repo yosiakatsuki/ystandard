@@ -673,17 +673,17 @@ a:hover {
 }
 
 .row--slide::-webkit-scrollbar {
-	height: 4px;
+	height: 8px;
 }
 
 .row--slide::-webkit-scrollbar-track {
-	border-radius: 4px;
+	border-radius: 8px;
 	background-color: #fafafa;
 }
 
 .row--slide::-webkit-scrollbar-thumb {
 	background-color: #bdc3c7;
-	border-radius: 4px;
+	border-radius: 8px;
 }
 
 .row--no-gutter {
