@@ -118,7 +118,6 @@ if ( ! function_exists( 'ys_init' ) ) {
 		 * Gutenbergサポート
 		 */
 		ystd_theme_support_gutenberg();
-		
 	}
 }
 add_action( 'after_setup_theme', 'ys_init' );

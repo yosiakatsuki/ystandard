@@ -43,6 +43,6 @@ if ( has_nav_menu( 'global' ) ) :
 			);
 			?>
 		</nav><!-- .global-nav -->
-	<?php
+		<?php
 	endif;
 endif;

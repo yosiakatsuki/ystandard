@@ -99,14 +99,9 @@ add_action( 'admin_init', 'ys_add_editor_styles' );
  * Enqueue block editor style
  */
 function ys_enqueue_block_editor_assets() {
-	wp_enqueue_style(
-		'ys-block-editor-styles',
-		get_stylesheet_directory_uri() . '/user-custom-editor-style.css'
-	);
-	wp_add_inline_style( 'ys-block-editor-styles', wp_get_custom_css() );
-}
 
-//add_action( 'enqueue_block_editor_assets', 'ys_enqueue_block_editor_assets' );
+}
+add_action( 'enqueue_block_editor_assets', 'ys_enqueue_block_editor_assets' );
 
 /**
  * TinyMCEに追加CSSを適用させる
