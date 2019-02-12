@@ -1,0 +1,17 @@
+@mixin button() {
+  display: inline-block;
+  padding: .5rem 1.5rem;
+  background-color: $color__btn-bg;
+  border: 1px solid $color__btn-border;
+  border-radius: 4px;
+  color: $color__btn-text;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all .3s;
+
+  &:hover {
+    color: $color__btn-text-hover;
+    background-color: $color__btn-bg-hover;
+    border-color: $color__btn-border-hover;
+  }
+}

@@ -1,0 +1,8 @@
+@include media-breakpoint(lg) {
+  .tbl-scroll {
+    white-space: normal;
+    table {
+      width: 100%;
+    }
+  }
+}

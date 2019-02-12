@@ -1,0 +1,8 @@
+//object-fit画像
+.image-fit--cover {
+  &,
+  img,
+  amp-img {
+    object-fit: cover;
+  }
+}

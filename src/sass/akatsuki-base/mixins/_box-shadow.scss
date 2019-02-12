@@ -1,0 +1,6 @@
+@mixin box-shadow($offset : 1px, $blur : 0 ) {
+  @if $blur == 0 {
+    $blur : $offset + 2px;
+  }
+  box-shadow: $offset $offset $blur rgba($color__border-gray,0.7);
+}

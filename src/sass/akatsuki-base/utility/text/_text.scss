@@ -1,0 +1,19 @@
+.text--sm {
+  font-size: .8em;
+}
+.text--lg {
+  font-size: 1.2em;
+}
+.text--b {
+  font-weight: bold;
+}
+.text-sub {
+  color: $color__text-light;
+}
+.clear-a {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+@include make-text();
