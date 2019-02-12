@@ -1,0 +1,19 @@
+
+.item-list {
+  @at-root {
+    // tablet
+    @include media-breakpoint(md) {
+
+      .item-list__item {
+        padding: 2rem 0;
+      }
+
+      .item-list__img {
+        width: 250px;
+      }
+      .item-list__title {
+        font-size: 1.2rem;
+      }
+    }
+  }// at-root
+}

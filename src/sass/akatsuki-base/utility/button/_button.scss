@@ -1,0 +1,10 @@
+.btn {
+  @include button();
+}
+
+.btn--lg {
+  padding: .75rem 3rem;
+}
+.btn--block {
+  display: block;
+}

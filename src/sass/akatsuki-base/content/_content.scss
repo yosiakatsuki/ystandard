@@ -1,0 +1,17 @@
+.site__content {
+  overflow: hidden;
+}
+
+.content__main {
+  flex: 1 1 100%;
+  width: 100%;
+  max-width: $width__content;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+}
+
+.content__title {
+  margin: 0 0 1em;
+}
