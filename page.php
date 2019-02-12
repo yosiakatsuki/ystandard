@@ -3,24 +3,22 @@
  * 固定ページテンプレート
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
 get_header(); ?>
-<div class="container">
-	<div class="content-area content__wrap">
-		<main id="main" class="site-main content__main">
-			<?php do_action( 'ys_site_main_prepend' ); ?>
-			<?php
-			while ( have_posts() ) :
-				the_post();
-				get_template_part( 'template-parts/content/page', ys_get_page_template() );
-			endwhile;
-			?>
-			<?php do_action( 'ys_site_main_append' ); ?>
-		</main><!-- .site-main -->
-		<?php get_sidebar(); ?>
-	</div><!-- .content-area -->
-</div><!-- .container -->
+	<div class="container">
+		<div class="flex flex--row">
+			<div class="content-area flex__col--1">
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					get_template_part( 'template-parts/page/content', ys_get_page_template() );
+				endwhile;
+				?>
+				<?php get_sidebar(); ?>
+			</div><!-- .content-area -->
+		</div>
+	</div><!-- .container -->
 <?php get_footer(); ?>

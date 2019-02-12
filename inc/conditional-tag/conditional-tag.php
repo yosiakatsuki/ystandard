@@ -264,6 +264,25 @@ function ys_is_one_column_thumbnail_type() {
 
 	return apply_filters( 'ys_is_one_column_thumbnail_type', $result );
 }
+/**
+ * アイキャッチ表示タイプがフル幅か
+ *
+ * @return bool
+ */
+function ys_is_full_width_thumbnail() {
+	$result = false;
+	if ( ys_is_amp() ) {
+		if ( 'full' == ys_get_option( 'ys_amp_thumbnail_type' ) ) {
+			$result = true;
+		}
+	} else {
+		if ( 'full' == ys_get_option( 'ys_design_one_col_thumbnail_type' ) ) {
+			$result = true;
+		}
+	}
+
+	return apply_filters( 'ys_is_full_width_thumbnail', $result );
+}
 
 
 /**

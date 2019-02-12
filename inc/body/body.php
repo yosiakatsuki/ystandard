@@ -3,7 +3,7 @@
  * Body関連
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -11,6 +11,7 @@
  * Body class
  *
  * @param array $classes body classes.
+ *
  * @return array
  */
 function ys_body_class( $classes ) {
@@ -36,13 +37,8 @@ function ys_body_class( $classes ) {
 	/**
 	 * 1カラム,AMPの場合
 	 */
-	if ( ys_is_one_column() || ys_is_amp() ) {
-		$classes[] = 'one-col';
-		if ( is_singular() || is_404() ) {
-			$classes[] = 'one-col--singular';
-		} else {
-			$classes[] = 'one-col--archive';
-		}
+	if ( ! ys_is_one_column() ) {
+		$classes[] = 'has-sidebar';
 	}
 
 	/**
@@ -73,4 +69,5 @@ function ys_body_class( $classes ) {
 
 	return $classes;
 }
+
 add_filter( 'body_class', 'ys_body_class' );

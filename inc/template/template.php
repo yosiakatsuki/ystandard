@@ -92,10 +92,8 @@ function ys_get_archive_header_template() {
  */
 function ys_get_page_template() {
 	$template = '';
-	if ( ys_is_one_column() ) {
-		if ( ys_is_one_column_thumbnail_type() ) {
-			$template = 'one-column';
-		}
+	if ( ! ys_is_one_column() ) {
+		$template = 'has-sidebar';
 	}
 
 	return apply_filters( 'ys_get_page_template', $template );
@@ -115,4 +113,14 @@ function ys_get_single_template() {
 	}
 
 	return apply_filters( 'ys_get_single_template', $template );
+}
+
+/**
+ * 投稿・固定ページのヘッダーに表示するメタ情報
+ */
+function ys_get_singular_header_parts() {
+	do_action( 'ys_singular_header_parts' );
+	if ( apply_filters( 'ys_show_singular_header_parts', true ) ) {
+		get_template_part( 'template-parts/singular/header-parts' );
+	}
 }
