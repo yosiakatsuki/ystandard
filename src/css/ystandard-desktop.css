@@ -463,6 +463,10 @@ template {
     .h-nav.-row2 li ul li {
       margin-right: 0; } }
 
+@media screen and (min-width: 1025px) {
+  .content__main {
+    padding: 1rem 3rem; } }
+
 @media screen and (min-width: 600px) {
   .item-list__item {
     padding: 2rem 0; }
@@ -492,3 +496,20 @@ template {
     white-space: normal; }
     .tbl-scroll table {
       width: 100%; } }
+
+@media screen and (min-width: 1025px) {
+  .full-thumbnail {
+    max-height: 400px; }
+    .full-thumbnail:before {
+      padding-top: 33%; }
+    .full-thumbnail > * {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden; }
+    .full-thumbnail img {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%); } }

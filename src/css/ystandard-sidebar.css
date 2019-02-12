@@ -14,17 +14,20 @@
   position: sticky;
   top: 1rem; }
 
-.has-sidebar .site-content {
+.has-sidebar .site__content {
   overflow: unset; }
 
 .has-sidebar .sidebar {
-  max-width: 912px;
+  max-width: 996px;
   margin-right: auto;
   margin-left: auto; }
 
 @media screen and (min-width: 1025px) {
+  .has-sidebar .content-area {
+    display: flex; }
   .has-sidebar .content__main {
-    flex: 1 1 calc(100% - 400px); }
+    flex: 1 1 calc(100% - 400px);
+    padding: 1rem; }
   .has-sidebar .sidebar {
     flex: 1 1 400px;
     max-width: 400px;

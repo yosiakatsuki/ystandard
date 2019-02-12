@@ -330,7 +330,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 2em 0 .5em;
   padding: 0;
   font-weight: normal;
-  letter-spacing: 0.1em; }
+  letter-spacing: 0.05em; }
 
 h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
   margin-top: 0; }
@@ -368,7 +368,7 @@ dl,
 blockquote,
 pre,
 table {
-  margin-top: 1.5em; }
+  margin: 1.5em 0 0; }
   p:first-child,
   ul:first-child,
   ol:first-child,
@@ -901,16 +901,17 @@ input[type="button"] {
     content: "/";
     margin: 0 .25rem; }
 
-.site-content {
+.site__content {
   overflow: hidden; }
 
 .content__main {
   flex: 1 1 100%;
   width: 100%;
-  max-width: 912px;
+  max-width: 996px;
   padding: 1rem;
   margin-left: auto;
-  margin-right: auto; }
+  margin-right: auto;
+  background-color: #fff; }
 
 .content__title {
   margin: 0 0 1em; }
@@ -1091,6 +1092,13 @@ input[type="button"] {
 .text--b {
   font-weight: bold; }
 
+.text-sub {
+  color: #757575; }
+
+.clear-a a {
+  color: inherit;
+  text-decoration: none; }
+
 .text--center {
   text-align: center; }
 
@@ -1144,3 +1152,28 @@ input[type="button"] {
   height: 1px;
   clip: rect(1px, 1px, 1px, 1px);
   visibility: hidden; }
+
+.full-thumbnail img,
+.full-thumbnail amp-img {
+  width: 100%; }
+
+.singular-date__icon {
+  margin-right: .25rem; }
+
+.singular-date__update {
+  margin-left: .5rem; }
+
+.singular__title {
+  margin: .5rem 0; }
+
+.singular-header-meta {
+  margin-top: .5rem; }
+
+.entry__content {
+  margin-top: 1.5rem; }
+
+.small-author__name {
+  margin: 0 0 0 .2rem; }
+
+.small-author__figure img, .small-author__figure amp-img {
+  border-radius: 50%; }

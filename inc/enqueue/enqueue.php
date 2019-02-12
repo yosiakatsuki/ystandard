@@ -124,13 +124,21 @@ function ys_enqueue_styles_normal() {
 		array( 'ystandard' ),
 		ys_get_theme_version( true )
 	);
-	/**
-	 * Font Awesomeの読み込み
-	 */
-	wp_enqueue_style(
-		'font-awesome',
-		ys_get_font_awesome_css_url(),
-		array(),
-		''
-	);
+	if ( ! ys_is_one_column() ) {
+		wp_enqueue_style(
+			'ystandard-sidebar',
+			get_template_directory_uri() . '/css/ystandard-sidebar.css',
+			array(),
+			ys_get_theme_version( true )
+		);
+	}
+//	/**
+//	 * Font Awesomeの読み込み
+//	 */
+//	wp_enqueue_style(
+//		'font-awesome',
+//		ys_get_font_awesome_css_url(),
+//		array(),
+//		''
+//	);
 }

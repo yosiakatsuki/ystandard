@@ -1,0 +1,14 @@
+.small-author {
+  @at-root {
+    .small-author__name {
+      margin: 0 0 0 .2rem;
+    }
+
+    .small-author__figure {
+      img, amp-img {
+        border-radius: 50%;
+      }
+    }
+  }
+  //@
+}

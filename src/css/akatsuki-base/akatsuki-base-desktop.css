@@ -463,6 +463,10 @@ template {
     .h-nav.-row2 li ul li {
       margin-right: 0; } }
 
+@media screen and (min-width: 1025px) {
+  .content__main {
+    padding: 1rem 3rem; } }
+
 @media screen and (min-width: 600px) {
   .item-list__item {
     padding: 2rem 0; }
