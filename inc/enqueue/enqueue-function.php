@@ -143,7 +143,7 @@ function ys_the_onload_scripts( $tag, $handle, $src ) {
 		ys_enqueue_onload_script( 'facebook-jssdk', '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.11' );
 	}
 
-	if ( 'ystandard-scripts' !== $handle ) {
+	if ( 'ystandard-script' !== $handle ) {
 		return $tag;
 	}
 	/**

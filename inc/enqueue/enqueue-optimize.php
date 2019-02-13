@@ -93,98 +93,101 @@ function ys_optimize_jquery() {
 
 add_action( 'init', 'ys_optimize_jquery' );
 
-if ( ! function_exists( 'ys_script_loader_tag' ) ) {
-	/**
-	 * 出力される script 要素を加工
-	 *
-	 * @param string $tag    tag.
-	 * @param string $handle handle.
-	 * @param string $src    src.
-	 *
-	 * @return string
-	 */
-	function ys_script_loader_tag( $tag, $handle, $src ) {
-		if ( is_admin() ) {
-			return $tag;
-		}
-		/**
-		 * 属性削除 : type
-		 */
-		$tag = str_replace( "type='text/javascript'", '', $tag );
-		$tag = str_replace( 'type="text/javascript"', '', $tag );
-		/**
-		 * ファイル名にjqueryが付くものは除外
-		 */
-		$exclude_file = array(
-			'jquery',
-			'wp-custom-header',
-			'wp-a11y',
-		);
-		$exclude_file = apply_filters( 'ys_exclude_add_async_scripts_file', $exclude_file );
-		if ( ! empty( $exclude_file ) ) {
-			foreach ( $exclude_file as $val ) {
-				if ( false !== strpos( $tag, $val ) ) {
-					return $tag;
-				}
-			}
-		}
-
-		/**
-		 * 非同期読み込みを除外
-		 */
-		$exclude = apply_filters( 'ys_exclude_add_async_scripts', array() );
-		if ( ! empty( $exclude ) ) {
-			if ( in_array( $handle, $exclude ) ) {
-				return $tag;
-			}
-		}
-		if ( 'ystandard-scripts' === $handle || ys_get_option( 'ys_option_optimize_load_js' ) ) {
-			$tag = str_replace( 'src', 'async defer src', $tag );
-		}
-
-		return $tag;
-	}
-}
-add_filter( 'script_loader_tag', 'ys_script_loader_tag', 10, 3 );
-
-if ( ! function_exists( 'ys_style_loader_tag' ) ) {
-	/**
-	 * 出力されるcssロード用link要素を加工
-	 *
-	 * @param string $html   html.
-	 * @param string $handle handle.
-	 * @param string $href   href.
-	 *
-	 * @return string
-	 */
-	function ys_style_loader_tag( $html, $handle, $href ) {
-		if ( is_admin() ) {
-			return $html;
-		}
-		/**
-		 * 属性削除 : type.
-		 */
-		$html = str_replace( "type='text/css'", '', $html );
-		$html = str_replace( 'type="text/css"', '', $html );
-		return $html;
-	}
-}
-add_filter( 'style_loader_tag', 'ys_style_loader_tag', 10, 3 );
-
 /**
- * スタイルシートのURLを加工
+ * 出力される script 要素を加工
  *
- * @param  string $src    The source URL of the enqueued style.
- * @param  string $handle The style's registered handle.
+ * @param string $tag    tag.
+ * @param string $handle handle.
+ * @param string $src    src.
  *
  * @return string
  */
-function ys_style_loader_src( $src, $handle ) {
-	if ( strpos( $src, 'font-awesome.min.css' ) ) {
-		$src = remove_query_arg( 'ver', $src );
+function ys_script_loader_tag( $tag, $handle, $src ) {
+	if ( is_admin() ) {
+		return $tag;
+	}
+	/**
+	 * 属性削除 : type
+	 */
+	$tag = str_replace( "type='text/javascript'", '', $tag );
+	$tag = str_replace( 'type="text/javascript"', '', $tag );
+	/**
+	 * ファイル名にjqueryが付くものは除外
+	 */
+	$exclude_file = array(
+		'jquery',
+		'wp-custom-header',
+		'wp-a11y',
+	);
+	$exclude_file = apply_filters(
+		'ys_exclude_add_async_scripts_file',
+		$exclude_file
+	);
+	if ( ! empty( $exclude_file ) ) {
+		foreach ( $exclude_file as $val ) {
+			if ( false !== strpos( $tag, $val ) ) {
+				return $tag;
+			}
+		}
 	}
 
-	return $src;
+	/**
+	 * 非同期読み込みを除外
+	 */
+	$exclude = apply_filters( 'ys_exclude_add_async_scripts', array() );
+	if ( ! empty( $exclude ) ) {
+		if ( in_array( $handle, $exclude ) ) {
+			return $tag;
+		}
+	}
+	/**
+	 * デフォルトで非同期読み込みさせるスクリプト
+	 */
+	$async_list = array(
+		'ystandard-script',
+		'font-awesome',
+	);
+	$async_list = apply_filters(
+		'ys_add_async_scripts_list',
+		$async_list
+	);
+	if ( ! empty( $async_list ) ) {
+		if ( in_array( $handle, $async_list ) ) {
+			return str_replace( 'src', 'async defer src', $tag );
+		}
+	}
+	/**
+	 * 除外・デフォルトで非同期以外は設定に従う
+	 */
+	if ( ys_get_option( 'ys_option_optimize_load_js' ) ) {
+		$tag = str_replace( 'src', 'async defer src', $tag );
+	}
+
+	return $tag;
 }
 
-add_filter( 'style_loader_src', 'ys_style_loader_src', 10, 2 );
+add_filter( 'script_loader_tag', 'ys_script_loader_tag', 10, 3 );
+
+/**
+ * 出力されるcssロード用link要素を加工
+ *
+ * @param string $html   html.
+ * @param string $handle handle.
+ * @param string $href   href.
+ *
+ * @return string
+ */
+function ys_style_loader_tag( $html, $handle, $href ) {
+	if ( is_admin() ) {
+		return $html;
+	}
+	/**
+	 * 属性削除 : type.
+	 */
+	$html = str_replace( "type='text/css'", '', $html );
+	$html = str_replace( 'type="text/css"', '', $html );
+
+	return $html;
+}
+
+add_filter( 'style_loader_tag', 'ys_style_loader_tag', 10, 3 );
