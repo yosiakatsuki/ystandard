@@ -17,7 +17,7 @@ function ys_enqueue_scripts() {
 	 * テーマのjs読み込む
 	 */
 	wp_enqueue_script(
-		'ystandard-scripts',
+		'ystandard-script',
 		get_template_directory_uri() . '/js/ystandard.js',
 		array(),
 		ys_get_theme_version( true ),
@@ -32,6 +32,11 @@ function ys_enqueue_scripts() {
 		array(),
 		ys_get_font_awesome_svg_version(),
 		true
+	);
+	wp_add_inline_script(
+		'font-awesome',
+		'FontAwesomeConfig = { searchPseudoElements: true };',
+		'before'
 	);
 }
 
@@ -132,13 +137,4 @@ function ys_enqueue_styles_normal() {
 			ys_get_theme_version( true )
 		);
 	}
-//	/**
-//	 * Font Awesomeの読み込み
-//	 */
-//	wp_enqueue_style(
-//		'font-awesome',
-//		ys_get_font_awesome_css_url(),
-//		array(),
-//		''
-//	);
 }
