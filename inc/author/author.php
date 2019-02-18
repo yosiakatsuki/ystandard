@@ -203,7 +203,7 @@ function ys_the_author_sns() {
 	$sns = ys_get_author_sns_list();
 	if ( ! empty( $sns ) ) :
 		?>
-		<ul class="author__sns list-style--none">
+		<ul class="author__sns li-clear">
 			<?php foreach ( $sns as $key => $value ) : ?>
 				<li class="author__sns-item">
 					<a class="sns__color--<?php echo $value['color']; ?> author__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow"><i class="<?php echo $value['icon']; ?>" aria-hidden="true"></i></a>

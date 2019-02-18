@@ -362,7 +362,7 @@ class YS_Post_List {
 		 */
 		$class_list = $this->combine_class( $class_list, $this->class_list );
 		if ( '' !== $this->thumbnail_size ) {
-			$class_list = $this->combine_class( $class_list, 'list-style--none' );
+			$class_list = $this->combine_class( $class_list, 'li-clear' );
 		}
 
 		return $this->get_wrap(

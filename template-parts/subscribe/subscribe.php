@@ -20,7 +20,7 @@ if ( ! empty( $subscribe ) ) :
 					<div class="flex flex--c-c">
 						<div class="subscribe__buttons">
 							<p class="subscribe__title">この記事が気に入ったらフォロー！</p>
-							<ul class="subscribe__list list-style--none">
+							<ul class="subscribe__list li-clear">
 								<?php foreach ( $subscribe as $key => $value ) : ?>
 									<li class="subscribe__item">
 										<a class="subscribe__link <?php echo 'sns__btn--' . esc_attr( $value['class'] ); ?>" href="<?php echo esc_url_raw( $value['url'] ); ?>" target="_blank" rel="nofollow"><i class="<?php echo $value['icon']; ?> sns-icon--left" aria-hidden="true"></i><?php echo esc_html( $value['text'] ); ?></a>

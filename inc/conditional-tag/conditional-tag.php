@@ -534,7 +534,7 @@ function ys_is_active_publish_date() {
 /**
  * 記事先頭シェアボタンを表示するか
  */
-function ys_is_active_entry_header_share() {
+function ys_is_active_sns_share_on_header() {
 	$result = true;
 	if ( is_singular() ) {
 		if ( '1' === ys_get_post_meta( 'ys_hide_share' ) ) {
@@ -545,7 +545,7 @@ function ys_is_active_entry_header_share() {
 		$result = false;
 	}
 
-	return apply_filters( 'ys_is_active_entry_header_share', $result );
+	return apply_filters( 'ys_is_active_sns_share_on_header', $result );
 }
 
 /**

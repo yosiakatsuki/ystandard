@@ -31,7 +31,7 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		$classes = array(
 			'sub-menu',
 			'global-nav__sub-menu',
-			'list-style--none',
+			'li-clear',
 			'color__nav-bg--sp',
 			'color__nav-bg--pc',
 		);

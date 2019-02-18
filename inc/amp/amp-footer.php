@@ -35,7 +35,7 @@ function ys_the_amp_slider() {
 			wp_nav_menu(
 				array(
 					'theme_location' => 'global',
-					'menu_class'     => 'global-nav__menu row flex--a-center list-style--none',
+					'menu_class'     => 'global-nav__menu row flex--a-center li-clear',
 					'menu_id'        => 'global-nav__menu',
 					'container'      => false,
 					'depth'          => 2,

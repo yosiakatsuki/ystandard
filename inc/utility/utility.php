@@ -30,7 +30,7 @@ function ys_get_font_awesome_css_url() {
  * @return string
  */
 function ys_get_font_awesome_css_version() {
-	return apply_filters( 'ys_get_font_awesome_css_version', 'v5.6.3' );
+	return apply_filters( 'ys_get_font_awesome_css_version', 'v5.7.2' );
 }
 
 /**
@@ -56,7 +56,7 @@ function ys_get_font_awesome_svg_url() {
  * @return string
  */
 function ys_get_font_awesome_svg_version() {
-	return apply_filters( 'ys_get_font_awesome_svg_version', 'v5.6.3' );
+	return apply_filters( 'ys_get_font_awesome_svg_version', 'v5.7.2' );
 }
 
 /**

@@ -334,6 +334,51 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 			'label'   => '記事下部にシェアボタンを表示する',
 		)
 	);
+	/**
+	 * シェアボタン表示列数
+	 */
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_sns_share_col_label',
+			'label' => 'シェアボタンの表示列数',
+		)
+	);
+	/**
+	 * PCでの列数
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_sns_share_col_pc',
+			'default'     => 4,
+			'label'       => 'PCでの列数(1~6)',
+			'input_attrs' => array(
+				'min' => 1,
+				'max' => 6,
+			),
+		)
+	);
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_sns_share_col_tablet',
+			'default'     => 3,
+			'label'       => 'タブレットでの列数(1~6)',
+			'input_attrs' => array(
+				'min' => 1,
+				'max' => 6,
+			),
+		)
+	);
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_sns_share_col_sp',
+			'default'     => 3,
+			'label'       => 'スマートフォンでの列数(1~6)',
+			'input_attrs' => array(
+				'min' => 1,
+				'max' => 6,
+			),
+		)
+	);
 }
 
 /**
