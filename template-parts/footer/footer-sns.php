@@ -13,7 +13,7 @@ if ( empty( $sns_list ) ) {
 }
 ?>
 <div class="footer-sns">
-	<ul class="footer-sns__list list-style--none flex-wrap flex--j-center">
+	<ul class="footer-sns__list li-clear flex-wrap flex--j-center">
 		<?php
 		foreach ( $sns_list as $value ) :
 			if ( '' != $value['url'] ) :

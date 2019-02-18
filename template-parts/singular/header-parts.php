@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * 日付と著者情報
+ */
 if ( ys_is_active_publish_date() || ys_is_display_author_data() ) :
 	?>
 	<div class="singular-header-meta flex flex--j-between flex--a-center text-sub text--sm">
@@ -15,3 +18,10 @@ if ( ys_is_active_publish_date() || ys_is_display_author_data() ) :
 	</div><!-- .entry-meta -->
 	<?php
 endif;
+
+/**
+ * SNSシェアボタン
+ */
+if ( ys_is_active_sns_share_on_header() ) {
+	ys_get_sns_share_button();
+}

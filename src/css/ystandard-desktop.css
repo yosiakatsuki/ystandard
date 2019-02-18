@@ -347,7 +347,13 @@ template {
     max-width: 33.33%; }
   .flex__col--md-4 {
     flex: 0 0 25%;
-    max-width: 25%; } }
+    max-width: 25%; }
+  .flex__col--md-5 {
+    flex: 0 0 20%;
+    max-width: 20%; }
+  .flex__col--md-6 {
+    flex: 0 0 16.66%;
+    max-width: 16.66%; } }
 
 @media screen and (min-width: 1025px) {
   .flex__col--lg-1 {
@@ -361,7 +367,13 @@ template {
     max-width: 33.33%; }
   .flex__col--lg-4 {
     flex: 0 0 25%;
-    max-width: 25%; } }
+    max-width: 25%; }
+  .flex__col--lg-5 {
+    flex: 0 0 20%;
+    max-width: 20%; }
+  .flex__col--lg-6 {
+    flex: 0 0 16.66%;
+    max-width: 16.66%; } }
 
 @media screen and (min-width: 600px) {
   .section {

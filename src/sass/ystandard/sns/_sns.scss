@@ -1,0 +1,26 @@
+.share-btn {
+  margin: 1rem -1px;
+}
+
+.share-btn__item {
+  border: 1px solid #fff;
+}
+
+.share-btn__link {
+  position: relative;
+  display: block;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  text-align: center;
+  overflow: hidden;
+  z-index: 2;
+}
+.share-btn__icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: .2;
+  z-index: 1;
+  font-size: 3em;
+  line-height: 1;
+}

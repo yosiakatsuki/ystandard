@@ -35,7 +35,7 @@
 //  col作成
 //
 @mixin make-col($breakpoint : "") {
-  $columns : 4;
+  $columns : 6;
   $prefix: "";
   @if $breakpoint != "" {
     $prefix: #{$breakpoint}#{"-"};

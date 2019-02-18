@@ -14,7 +14,7 @@ $items = ys_get_breadcrumbs();
 ?>
 <div id="breadcrumbs" class="breadcrumbs">
 	<div class="container">
-		<ol class="breadcrumbs__list list-style--none color__font-sub" itemscope itemtype="http://schema.org/BreadcrumbList">
+		<ol class="breadcrumbs__list li-clear color__font-sub" itemscope itemtype="http://schema.org/BreadcrumbList">
 			<?php foreach ( $items as $key => $item ) : ?>
 				<li class="breadcrumbs__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 					<?php if ( empty( $item['link'] ) ) : ?>

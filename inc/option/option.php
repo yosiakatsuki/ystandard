@@ -107,6 +107,9 @@ function ys_get_option_default( $name ) {
 		'ys_sns_share_button_rss'                   => 1, // RSS.
 		'ys_sns_share_on_entry_header'              => 1, // シェアボタンを投稿上部に表示する.
 		'ys_sns_share_on_below_entry'               => 1, // シェアボタンを投稿下に表示する.
+		'ys_sns_share_col_pc'                       => 4, // PCでの列数.
+		'ys_sns_share_col_tablet'                   => 3, // タブレットでの列数.
+		'ys_sns_share_col_sp'                       => 3, // スマホでの列数.
 		// Twitterシェアボタン.
 		'ys_sns_share_tweet_via'                    => 0, // Tweetポタンに via を出力するか.
 		'ys_sns_share_tweet_via_account'            => '', // Twitter via アカウント.
