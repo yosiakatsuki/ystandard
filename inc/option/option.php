@@ -100,7 +100,7 @@ function ys_get_option_default( $name ) {
 		'ys_sns_share_button_twitter'               => 1, // Twitter.
 		'ys_sns_share_button_facebook'              => 1, // Facebook.
 		'ys_sns_share_button_hatenabookmark'        => 1, // はてブ.
-		'ys_sns_share_button_googlepuls'            => 1, // Google+.
+		'ys_sns_share_button_googleplus'            => 1, // Google+.
 		'ys_sns_share_button_pocket'                => 1, // Pocket.
 		'ys_sns_share_button_line'                  => 1, // LINE.
 		'ys_sns_share_button_feedly'                => 1, // Feedly.
@@ -111,9 +111,7 @@ function ys_get_option_default( $name ) {
 		'ys_sns_share_col_tablet'                   => 3, // タブレットでの列数.
 		'ys_sns_share_col_sp'                       => 3, // スマホでの列数.
 		// Twitterシェアボタン.
-		'ys_sns_share_tweet_via'                    => 0, // Tweetポタンに via を出力するか.
 		'ys_sns_share_tweet_via_account'            => '', // Twitter via アカウント.
-		'ys_sns_share_tweet_related'                => 0, // ツイート後におすすめアカウントを表示する.
 		'ys_sns_share_tweet_related_account'        => '', // Twitter related アカウント.
 		// 購読ボタン設定.
 		'ys_subscribe_url_twitter'                  => '', // Twitterフォローリンク.

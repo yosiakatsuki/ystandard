@@ -23,5 +23,5 @@ endif;
  * SNSシェアボタン
  */
 if ( ys_is_active_sns_share_on_header() ) {
-	ys_get_sns_share_button();
+	ys_the_sns_share_button();
 }

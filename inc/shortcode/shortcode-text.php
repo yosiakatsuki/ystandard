@@ -15,7 +15,7 @@
  *
  * @return string
  */
-function ys_sc_text_shortcode( $args, $content = null ) {
+function ys_shortcode_text( $args, $content = null ) {
 	$sc_text = new YS_Shortcode_Text( $args );
 
 	return apply_filters(
@@ -25,4 +25,4 @@ function ys_sc_text_shortcode( $args, $content = null ) {
 	);
 }
 
-add_shortcode( 'ys_text_shortcode', 'ys_sc_text_shortcode' );
+add_shortcode( 'ys_text', 'ys_shortcode_text' );

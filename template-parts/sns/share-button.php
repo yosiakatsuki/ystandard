@@ -7,11 +7,26 @@
  * @license GPL-2.0+
  */
 
-$data = ys_get_share_button_data();
+/**
+ * シェアボタンの表示は基本的にショートコードで処理しています。
+ * YS_Shortcode_Share_Buttonクラス内でデータを作成し、このファイルをテンプレートとしてHTMLを生成します。
+ * (inc/class/shortcode/class-ys-shortcode-share-button.php)
+ */
+global $sns_share_btn_data;
+$data     = $sns_share_btn_data['data'];
+$col      = $sns_share_btn_data['col'];
+$headline = $sns_share_btn_data['headline '];
 if ( ! empty( $data ) ) :
-	$col = ys_get_sns_share_button_col();
 	?>
 	<aside class="share-btn">
+		<?php
+		/**
+		 * 見出し
+		 */
+		if ( '' != $headline ) {
+			echo $headline;
+		}
+		?>
 		<ul class="share-btn__list li-clear flex flex--row -no-gutter -all">
 			<?php foreach ( $data as $value ) : ?>
 				<li class="share-btn__item <?php echo esc_attr( $col ); ?>">
