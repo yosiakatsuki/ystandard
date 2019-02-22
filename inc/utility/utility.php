@@ -8,6 +8,20 @@
  */
 
 /**
+ * 現在ページのURLを取得
+ *
+ * @return string
+ */
+function ys_get_page_url() {
+	$protocol = 'https://';
+	if ( ! is_ssl() ) {
+		$protocol = 'http://';
+	}
+
+	return $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+}
+
+/**
  * Font Awesome CDN - CSS
  *
  * @return string

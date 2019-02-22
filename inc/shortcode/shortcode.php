@@ -13,7 +13,6 @@ $shortcode_dir = get_template_directory() . '/inc/shortcode/';
  * 汎用テキスト
  */
 require_once $shortcode_dir . 'shortcode-text.php';
-
 /**
  * 投稿者表示ショートコード
  */
@@ -34,3 +33,7 @@ require_once $shortcode_dir . 'shortcode-post-ranking.php';
  * タクソノミー絞り込み記事一覧ショートコード
  */
 require_once $shortcode_dir . 'shortcode-taxonomy-posts.php';
+/**
+ * シェアボタン
+ */
+require_once $shortcode_dir . 'shortcode-share-button.php';

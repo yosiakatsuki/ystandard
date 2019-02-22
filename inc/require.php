@@ -34,6 +34,7 @@ require_once $class_widget_dir . 'class-ys-widget-profile-box.php';
 $class_sc_dir = get_template_directory() . '/inc/class/shortcode/';
 require_once $class_sc_dir . 'class-ys-shortcode-base.php';
 require_once $class_sc_dir . 'class-ys-shortcode-text.php';
+require_once $class_sc_dir . 'class-ys-shortcode-share-button.php';
 
 
 /**

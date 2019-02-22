@@ -8,5 +8,5 @@
  */
 
 if ( ys_is_active_entry_footer_share() ) {
-	get_template_part( 'template-parts/sns/share-button' );
+	ys_the_sns_share_button();
 }
