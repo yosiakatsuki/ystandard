@@ -40,7 +40,7 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 			'rss'                  => true,
 			'col_sp'               => 3,
 			'col_tablet'           => 3,
-			'col_pc'               => 4,
+			'col_pc'               => 6,
 			'twitter_via_user'     => '',
 			'twitter_related_user' => '',
 			'headline'             => '',
