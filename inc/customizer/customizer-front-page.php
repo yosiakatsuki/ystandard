@@ -83,8 +83,8 @@ function ys_customizer_front_page_design( $wp_customize ) {
 		array(
 			'id'          => 'ys_front_page_type',
 			'default'     => 'normal',
-			'label'       => 'フロントページ作成タイプ（※β版機能）',
-			'description' => 'フロントページ作成方法を変更できます<br><br><ul><li>【ノーマル】通常の投稿と同じように作成</li><li>【DIY】投稿本文でページを作成（アイキャッチ画像・タイトルなど投稿本文以外のものが表示されません）</li></ul>',
+			'label'       => 'フロントページ作成タイプ（※廃止予定）',
+			'description' => '※この設定はversion 3.0.0で廃止の予定です。<br>この設定を使用するかわりに投稿編集画面から「ページ属性」のテンプレートを「1カラム(タイトル・アイキャッチ画像・パンくずなし)」を選択して下さい。',
 			'choices'     => array(
 				'normal' => 'ノーマル',
 				'diy'    => 'DIY',

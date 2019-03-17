@@ -3,7 +3,7 @@
  * Body関連
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -11,6 +11,7 @@
  * Body class
  *
  * @param array $classes body classes.
+ *
  * @return array
  */
 function ys_body_class( $classes ) {
@@ -39,7 +40,11 @@ function ys_body_class( $classes ) {
 	if ( ys_is_one_column() || ys_is_amp() ) {
 		$classes[] = 'one-col';
 		if ( is_singular() || is_404() ) {
-			$classes[] = 'one-col--singular';
+			if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+				$classes[] = 'one-col--no-title';
+			} else {
+				$classes[] = 'one-col--singular';
+			}
 		} else {
 			$classes[] = 'one-col--archive';
 		}
@@ -73,4 +78,5 @@ function ys_body_class( $classes ) {
 
 	return $classes;
 }
+
 add_filter( 'body_class', 'ys_body_class' );
