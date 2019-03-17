@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-if ( is_front_page() ) {
+if ( is_front_page() || is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
 	return;
 }
 $items = ys_get_breadcrumbs();
