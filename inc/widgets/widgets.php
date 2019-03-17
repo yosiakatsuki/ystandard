@@ -13,7 +13,7 @@
  * @return void
  */
 function ys_widget_init() {
-	$current_url    = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$current_url    = ys_get_page_url();
 	$customizer_url = esc_url( add_query_arg( 'return', urlencode( $current_url ), wp_customize_url() ) );
 	/**
 	 * サイドバー
@@ -113,11 +113,12 @@ add_action( 'widgets_init', 'ys_widget_init' );
  * ウィジェットの登録
  */
 function ys_widgets_register_widget() {
-	register_widget( 'YS_Ranking_Widget' );
-	register_widget( 'YS_AD_Text_Widget' );
-	register_widget( 'YS_Taxonomy_Posts_Widget' );
-	register_widget( 'YS_Widget_Custom_HTML' );
+//	register_widget( 'YS_Ranking_Widget' );
+//	register_widget( 'YS_AD_Text_Widget' );
+//	register_widget( 'YS_Taxonomy_Posts_Widget' );
+//	register_widget( 'YS_Widget_Custom_HTML' );
 	register_widget( 'YS_Widget_Text' );
+//	register_widget( 'YS_Widget_Profile_Box' );
 	register_widget( 'YS_Widget_Profile_Box' );
 }
 
