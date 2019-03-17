@@ -40,12 +40,6 @@ class YS_Shortcode_Base {
 	 */
 	protected $err = array();
 
-	/**
-	 * 日付フォーマット
-	 *
-	 * @var string
-	 */
-	protected $date_format = 'Y/m/d H:i:s';
 
 	/**
 	 * コンストラクタ
@@ -87,6 +81,15 @@ class YS_Shortcode_Base {
 			'display_normal'     => true,
 			'display_amp'        => true,
 		);
+	}
+
+	/**
+	 * 日付フォーマットの取得
+	 *
+	 * @return string
+	 */
+	static public function get_date_format() {
+		return 'Y/m/d H:i:00';
 	}
 
 	/**
@@ -178,7 +181,8 @@ class YS_Shortcode_Base {
 				 * 時間で取得
 				 */
 				if ( 'date' == $type ) {
-					$date = Datetime::createFromFormat( $this->date_format, $result );
+					$format = YS_Shortcode_Base::get_date_format();
+					$date   = Datetime::createFromFormat( $format, $result );
 					if ( '' != $result && false === $date ) {
 						$this->set_error_message( '日付(' . $key . ')の指定にエラーがあります' );
 					}
@@ -259,9 +263,10 @@ class YS_Shortcode_Base {
 		if ( empty( $start_date ) && empty( $end_date ) ) {
 			return true;
 		}
-		$start_date = Datetime::createFromFormat( $this->date_format, $start_date );
-		$end_date   = Datetime::createFromFormat( $this->date_format, $end_date );
-		$now_date   = Datetime::createFromFormat( $this->date_format, date_i18n( $this->date_format ) );
+		$format     = YS_Shortcode_Base::get_date_format();
+		$start_date = Datetime::createFromFormat( $format, $start_date );
+		$end_date   = Datetime::createFromFormat( $format, $end_date );
+		$now_date   = Datetime::createFromFormat( $format, date_i18n( $format ) );
 		/**
 		 * 開始判断
 		 */
