@@ -41,6 +41,10 @@ function ys_customizer_design( $wp_customize ) {
 	 * ブロックエディター対応
 	 */
 	ys_customizer_design_add_gutenberg_css( $wp_customize );
+	/**
+	 * アイコンフォント設定
+	 */
+	ys_customizer_design_add_icon_font( $wp_customize );
 }
 
 /**
@@ -198,6 +202,45 @@ function ys_customizer_design_add_gutenberg_css( $wp_customize ) {
 			'default'     => 1,
 			'label'       => 'ブロックエディター対応のCSSを読み込む',
 			'description' => 'WordPress 5.0から登場するブロックエディターに対応したCSSを読み込みます。<br><br><string>※yStandardのAMP機能を使っている場合、CSS容量オーバーのエラーが発生する恐れがありますので有効化の際はご注意下さい。</string><br><br>ブロックエディター対応のCSSを読み込む場合、yStandardテーマ本体のCSS容量が43KBとなり、上限値の50KBまで余裕がありません。子テーマなどで独自に追加したCSSの量によってはエラーになる恐れがあります。',
+		)
+	);
+}
+
+
+/**
+ * アイコンフォント設定
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_design_add_icon_font( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	/**
+	 * セクション追加
+	 */
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_customizer_section_icon_fonts',
+			'title'       => 'アイコンフォント設定',
+			'priority'    => 10,
+			'description' => 'アイコンフォントに関する設定',
+			'panel'       => 'ys_customizer_panel_design',
+		)
+	);
+	/**
+	 * アイコンフォント読み込み方式
+	 */
+	$ys_customizer->add_radio(
+		array(
+			'id'          => 'ys_enqueue_icon_font_type',
+			'default'     => 'js',
+			'transport'   => 'postMessage',
+			'label'       => 'アイコンフォント（Font Awesome）読み込み方式',
+			'description' => 'Font Awesome読み込み方式を設定できます。',
+			'choices'     => array(
+				'js'   => 'JavaScript(推奨)',
+				'css'  => 'CSS',
+				'none' => '読み込まない(※表示が崩れる場合があります。プラグイン等でFont Awesomeを読み込む場合の設定)',
+			),
 		)
 	);
 }

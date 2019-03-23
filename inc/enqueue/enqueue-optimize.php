@@ -138,7 +138,14 @@ if ( ! function_exists( 'ys_script_loader_tag' ) ) {
 				return $tag;
 			}
 		}
-		if ( 'ystandard-scripts' === $handle || ys_get_option( 'ys_option_optimize_load_js' ) ) {
+		/**
+		 * 非同期読み込みさせるリスト
+		 */
+		$async = array(
+			'ystandard-scripts',
+			'font-awesome-js',
+		);
+		if ( in_array( $handle, $async ) || ys_get_option( 'ys_option_optimize_load_js' ) ) {
 			$tag = str_replace( 'src', 'async defer src', $tag );
 		}
 
@@ -166,6 +173,7 @@ if ( ! function_exists( 'ys_style_loader_tag' ) ) {
 		 */
 		$html = str_replace( "type='text/css'", '', $html );
 		$html = str_replace( 'type="text/css"', '', $html );
+
 		return $html;
 	}
 }
