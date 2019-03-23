@@ -154,6 +154,10 @@ function ys_get_options() {
 	 * Gutenberg設定
 	 */
 	$result['ys_enqueue_gutenberg_css'] = get_option( 'ys_enqueue_gutenberg_css', 1 );
+	/**
+	 * アイコンフォント設定
+	 */
+	$result['ys_enqueue_icon_font_type'] = get_option( 'ys_enqueue_icon_font_type', 'js' );
 
 	/**
 	 * **********

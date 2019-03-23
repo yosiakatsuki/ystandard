@@ -1,19 +1,12 @@
-.fa-hatenabookmark {
-	&::before {
-		content: "B!";
+.icon-hatenabookmark {
+  &::before {
+    content: "B!";
     font-family: Verdana;
     font-weight: bold;
-		font-style: normal;
-		letter-spacing: 0;
-	}
-}
-
-.fa-feedly {
-  &::before {
-    content: "\f09e";
+    font-style: normal;
+    letter-spacing: 0;
   }
 }
-
 .sns-icon--left {
   margin-right: 5px;
 }

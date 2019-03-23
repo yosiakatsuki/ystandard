@@ -23,6 +23,26 @@ function ys_enqueue_scripts() {
 		ys_get_theme_version( true ),
 		true
 	);
+	/**
+	 * アイコンフォント JS読み込み方式
+	 */
+	if ( 'js' == ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+		/**
+		 * Font Awesomeの読み込み
+		 */
+		wp_add_inline_script(
+			'font-awesome-js',
+			'FontAwesomeConfig = { searchPseudoElements: true };',
+			'before'
+		);
+		wp_enqueue_script(
+			'font-awesome-js',
+			ys_get_font_awesome_js_url(),
+			array(),
+			ys_get_font_awesome_js_ver(),
+			true
+		);
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts' );
@@ -132,14 +152,19 @@ function ys_enqueue_styles_normal() {
 		ys_get_theme_version( true )
 	);
 	/**
-	 * Font Awesomeの読み込み
+	 * CSS読み込み方式のみCSS読み込み
 	 */
-	wp_enqueue_style(
-		'font-awesome',
-		ys_get_font_awesome_url(),
-		array(),
-		''
-	);
+	if ( 'css' == ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+		/**
+		 * Font Awesomeの読み込み
+		 */
+		wp_enqueue_style(
+			'font-awesome',
+			ys_get_font_awesome_url(),
+			array(),
+			''
+		);
+	}
 }
 
 /**
@@ -207,14 +232,19 @@ function ys_enqueue_styles_non_critical_css() {
 		ys_get_theme_version()
 	);
 	/**
-	 * キャッシュが効いたりするのでCDN読み込みにする
-	 * get_template_directory_uri() . '/library/font-awesome/css/font-awesome.min.css',
+	 * CSS読み込み方式のみCSS読み込み
 	 */
-	ys_enqueue_non_critical_css(
-		'font-awesome',
-		ys_get_font_awesome_url(),
-		''
-	);
+	if ( 'css' == ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+		/**
+		 * キャッシュが効いたりするのでCDN読み込みにする
+		 * get_template_directory_uri() . '/library/font-awesome/css/font-awesome.min.css',
+		 */
+		ys_enqueue_non_critical_css(
+			'font-awesome',
+			ys_get_font_awesome_url(),
+			''
+		);
+	}
 }
 
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles_non_critical_css' );

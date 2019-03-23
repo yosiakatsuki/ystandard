@@ -1992,16 +1992,12 @@ input[type="button"]:hover {
 	font-size: 3em;
 }
 
-.fa-hatenabookmark::before {
+.icon-hatenabookmark::before {
 	content: "B!";
 	font-family: Verdana;
 	font-weight: bold;
 	font-style: normal;
 	letter-spacing: 0;
-}
-
-.fa-feedly::before {
-	content: "\f09e";
 }
 
 .sns-icon--left {
