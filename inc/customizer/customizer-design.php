@@ -234,7 +234,7 @@ function ys_customizer_design_add_icon_font( $wp_customize ) {
 			'id'          => 'ys_enqueue_icon_font_type',
 			'default'     => 'js',
 			'transport'   => 'postMessage',
-			'label'       => 'トラッキングコードタイプ',
+			'label'       => 'アイコンフォント（Font Awesome）読み込み方式',
 			'description' => 'Font Awesome読み込み方式を設定できます。',
 			'choices'     => array(
 				'js'   => 'JavaScript(推奨)',
