@@ -311,6 +311,7 @@ if ( ! function_exists( 'ys_the_canonical_tag' ) ) {
 			$canonical = get_permalink();
 
 		}
+		$canonical = apply_filters( 'ys_the_canonical_tag', $canonical );
 		if ( '' !== $canonical ) {
 			printf( '<link rel="canonical" href="%s">' . PHP_EOL, $canonical );
 		}
