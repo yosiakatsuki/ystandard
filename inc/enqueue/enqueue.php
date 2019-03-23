@@ -245,8 +245,6 @@ function ys_enqueue_styles_non_critical_css() {
 			''
 		);
 	}
-
-
 }
 
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles_non_critical_css' );
