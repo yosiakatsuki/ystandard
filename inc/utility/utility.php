@@ -15,15 +15,36 @@
 function ys_get_font_awesome_url() {
 	return apply_filters( 'ys_get_font_awesome_url', ys_get_font_awesome_dir() . '/css/all.css' );
 }
+
 /**
  * Font Awesome CDN DIR
  *
  * @return string
  */
 function ys_get_font_awesome_dir() {
-	return apply_filters( 'ys_get_font_awesome_dir', 'https://use.fontawesome.com/releases/v5.5.0' );
+	return apply_filters( 'ys_get_font_awesome_dir', 'https://use.fontawesome.com/releases/v5.8.1' );
 }
 
+/**
+ * Font Awesome CDN(JS)
+ *
+ * @return string
+ */
+function ys_get_font_awesome_js_url() {
+	$version = ys_get_font_awesome_js_ver();
+	$url     = 'https://use.fontawesome.com/releases/' . $version . '/js/all.js';
+
+	return apply_filters( 'ys_get_font_awesome_js_url', $url );
+}
+
+/**
+ * Font Awesome CDN Version(JS)
+ *
+ * @return string
+ */
+function ys_get_font_awesome_js_ver() {
+	return apply_filters( 'ys_get_font_awesome_js_ver', 'v5.8.1' );
+}
 
 /**
  * 配列を区切り文字で文字列にして表示

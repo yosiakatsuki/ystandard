@@ -136,7 +136,7 @@ if ( ! function_exists( 'ys_get_share_button_data_hatenabookmark' ) ) {
 		$button_text = apply_filters( 'ys_hatenabookmark_button_text', 'はてブ' );
 		return array(
 			'type'        => esc_attr( 'hatenabookmark' ),
-			'icon'        => esc_attr( 'fa fa-hatenabookmark' ),
+			'icon'        => esc_attr( 'ys-icon icon-hatenabookmark' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);
@@ -212,7 +212,7 @@ if ( ! function_exists( 'ys_get_share_button_data_feedly' ) ) {
 		$button_text = apply_filters( 'ys_feedly_button_text', 'Feedly' );
 		return array(
 			'type'        => esc_attr( 'feedly' ),
-			'icon'        => esc_attr( 'fa fa-feedly' ),
+			'icon'        => esc_attr( 'fa fa-rss' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);
