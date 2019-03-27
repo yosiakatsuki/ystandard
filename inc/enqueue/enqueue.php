@@ -97,13 +97,20 @@ function ys_inline_styles() {
  */
 function ys_enqueue_styles_normal() {
 	/**
-	 * 完全版CSSの読み込み
+	 * CSSの読み込み
 	 */
 	wp_enqueue_style(
 		'ystandard',
-		get_template_directory_uri() . '/css/ystandard.css',
+		ys_get_enqueue_css_file_uri(),
 		array(),
 		ys_get_theme_version( true )
+	);
+	/**
+	 * カスタマイザーで設定変更可能なインラインCSSを追加
+	 */
+	wp_add_inline_style(
+		'ystandard',
+		ys_get_customizer_inline_css()
 	);
 	/**
 	 * ブロックエディタのCSS
@@ -117,10 +124,6 @@ function ys_enqueue_styles_normal() {
 		);
 	}
 	/**
-	 * カスタマイザーで設定変更可能なインラインCSSを追加
-	 */
-	wp_add_inline_style( 'ys-style-full', ys_get_customizer_inline_css() );
-	/**
 	 * ユーザーカスタマイズ用CSSの読み込み（style.css）
 	 */
 	wp_enqueue_style(
@@ -129,12 +132,45 @@ function ys_enqueue_styles_normal() {
 		array( 'ystandard' ),
 		ys_get_theme_version( true )
 	);
-	if ( ! ys_is_one_column() ) {
-		wp_enqueue_style(
-			'ystandard-sidebar',
-			get_template_directory_uri() . '/css/ystandard-sidebar.css',
-			array(),
-			ys_get_theme_version( true )
-		);
+}
+
+/**
+ * 読み込むCSSファイルのURLを取得する
+ *
+ * @return string
+ */
+function ys_get_enqueue_css_file_uri() {
+	return get_template_directory_uri() . '/css/' . ys_get_enqueue_css_file_name();
+}
+
+/**
+ * 読み込むCSSファイルのパスを取得する
+ *
+ * @return string
+ */
+function ys_get_enqueue_css_file_path() {
+	return get_template_directory() . '/css/' . ys_get_enqueue_css_file_name();
+}
+
+/**
+ * 読み込むCSSファイルの名前を取得する
+ *
+ * @return string
+ */
+function ys_get_enqueue_css_file_name() {
+	$file = 'ystandard-light.css';
+	/**
+	 * PC表示
+	 */
+	if ( ! ys_is_mobile() ) {
+		$file = 'ystandard-desktop.css';
+		/**
+		 * PC & サイドバーあり
+		 */
+		if ( ! ys_is_one_column() ) {
+			$file = 'ystandard-has-sidebar-desktop.css';
+		}
 	}
+
+	return $file;
 }
