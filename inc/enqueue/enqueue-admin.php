@@ -21,7 +21,7 @@ function ys_enqueue_admin_scripts( $hook_suffix ) {
 	wp_enqueue_media();
 	wp_enqueue_script(
 		'ys-admin-scripts',
-		get_template_directory_uri() . '/js/admin.bundle.js',
+		get_template_directory_uri() . '/js/admin.js',
 		array( 'jquery', 'jquery-core' ),
 		ys_get_theme_version( true ),
 		true
