@@ -117,9 +117,9 @@ function ys_widgets_register_widget() {
 //	register_widget( 'YS_AD_Text_Widget' );
 //	register_widget( 'YS_Taxonomy_Posts_Widget' );
 //	register_widget( 'YS_Widget_Custom_HTML' );
-	register_widget( 'YS_Widget_Text' );
+//	register_widget( 'YS_Widget_Text' );
 //	register_widget( 'YS_Widget_Profile_Box' );
-	register_widget( 'YS_Widget_Profile_Box' );
+//	register_widget( 'YS_Widget_Profile_Box' );
 }
 
 add_action( 'widgets_init', 'ys_widgets_register_widget' );

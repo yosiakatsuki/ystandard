@@ -8,36 +8,6 @@
  */
 
 /**
- * クラス読み込み
- */
-$class_dir = get_template_directory() . '/inc/class/';
-require_once $class_dir . 'class-ys-post-list.php';
-require_once $class_dir . 'class-ys-enqueue.php';
-require_once $class_dir . 'class-ys-cache.php';
-require_once $class_dir . 'class-ys-walker-global-nav-menu.php';
-/**
- * ウィジェットクラス
- */
-$class_widget_dir = get_template_directory() . '/inc/class/widgets/';
-require_once $class_widget_dir . 'class-ys-widget-utility.php';
-require_once $class_widget_dir . 'class-ys-widget-base.php';
-require_once $class_widget_dir . 'class-ys-widget-post-list.php';
-require_once $class_widget_dir . 'class-ys-ad-text-widget.php';
-require_once $class_widget_dir . 'class-ys-ranking-widget.php';
-require_once $class_widget_dir . 'class-ys-taxonomy-posts-widget.php';
-require_once $class_widget_dir . 'class-ys-widget-custom-html.php';
-require_once $class_widget_dir . 'class-ys-widget-text.php';
-require_once $class_widget_dir . 'class-ys-widget-profile-box.php';
-/**
- * ショートコードクラス
- */
-$class_sc_dir = get_template_directory() . '/inc/class/shortcode/';
-require_once $class_sc_dir . 'class-ys-shortcode-base.php';
-require_once $class_sc_dir . 'class-ys-shortcode-text.php';
-require_once $class_sc_dir . 'class-ys-shortcode-share-button.php';
-
-
-/**
  * 変数
  */
 require_once get_template_directory() . '/inc/variables/variables.php';
