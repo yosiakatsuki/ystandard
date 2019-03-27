@@ -15,7 +15,7 @@
 global $sns_share_btn_data;
 $data     = $sns_share_btn_data['data'];
 $col      = $sns_share_btn_data['col'];
-$headline = $sns_share_btn_data['headline '];
+$headline = $sns_share_btn_data['headline'];
 if ( ! empty( $data ) ) :
 	?>
 	<aside class="share-btn">
