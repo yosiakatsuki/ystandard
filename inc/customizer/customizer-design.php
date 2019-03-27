@@ -159,12 +159,12 @@ function ys_customizer_design_add_one_column_template( $wp_customize ) {
 	$ys_customizer->add_image_label_radio(
 		array(
 			'id'          => 'ys_design_one_col_thumbnail_type',
-			'default'     => 'full',
+			'default'     => 'normal',
 			'label'       => 'アイキャッチ画像表示タイプ',
 			'description' => 'アイキャッチ画像の表示タイプ',
 			'choices'     => array(
-				'full'   => sprintf( $img, $row1 ),
 				'normal' => sprintf( $img, $center ),
+				'full'   => sprintf( $img, $row1 ),
 			),
 		)
 	);
