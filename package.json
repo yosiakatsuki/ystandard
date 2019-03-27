@@ -24,7 +24,7 @@
 	},
 	"scripts": {
 		"zip": "gulp zip",
-		"clean": "rimraf src/css",
+		"clean": "rimraf src/css && rimraf css",
 		"build:sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js src/sass -o src/css",
 		"build:postcss": "postcss src/css/*.css -u autoprefixer postcss-clean css-mqpacker --dir css --no-map",
 		"build:cssrename": "rename -f './css/!(*.min.css)' {{f}}.min.css",
