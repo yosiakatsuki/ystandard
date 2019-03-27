@@ -3,12 +3,12 @@
  * サイドバーテンプレート
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
 if ( ys_is_active_sidebar_widget() ) : ?>
-<aside id="secondary" class="sidebar sidebar-widget widget-area">
+	<aside id="secondary" class="sidebar sidebar-widget widget-area flex__col">
 		<div id="sidebar-wrapper" class="sidebar-wrapper">
 			<?php if ( is_active_sidebar( 'sidebar-widget' ) ) : ?>
 				<div id="sidebar-widget" class="sidebar__widget clearfix">
@@ -21,5 +21,5 @@ if ( ys_is_active_sidebar_widget() ) : ?>
 				</div>
 			<?php endif; ?>
 		</div>
-</aside><!-- .sidebar .widget-area -->
+	</aside><!-- .sidebar .widget-area -->
 <?php endif; ?>

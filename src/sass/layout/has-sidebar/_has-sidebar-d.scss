@@ -1,0 +1,12 @@
+@include media-breakpoint(lg) {
+  .has-sidebar {
+    .sidebar__fixed {
+      position: sticky;
+      top: 1rem;
+    }
+    .sidebar {
+      flex: 1 1 $width__sidebar;
+      max-width: $width__sidebar;
+    }
+  }
+}

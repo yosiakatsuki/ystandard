@@ -6,7 +6,7 @@
     //
     &.rwd {
       @include media-breakpoint(lg) {
-        padding: 0 1rem;
+        padding: 0;
         .h-nav__btn {
           display: none;
         }

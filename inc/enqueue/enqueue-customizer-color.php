@@ -61,6 +61,37 @@ function ys_get_customizer_inline_css_color() {
 			'color'            => $html_font,
 		)
 	);
+	/**
+	 * 背景色がデフォルト以外の場合
+	 */
+	if ( ys_customizer_get_default_color( 'ys_color_site_bg' ) !== $html_bg ) {
+		$css_temp = '';
+		/**
+		 * 追加CSS
+		 */
+		$css_temp .= ys_customizer_create_inline_css(
+			array(
+				'.content__main',
+			),
+			array(
+				'background-color' => 'transparent',
+				'margin-right'     => '0',
+			)
+		);
+		$css_temp .= ys_customizer_create_inline_css(
+			array(
+				'.content__article',
+			),
+			array(
+				'background-color' => '#fff',
+				'padding'          => '1rem',
+			)
+		);
+		/**
+		 * PC only
+		 */
+		$css .= ys_customizer_add_media_query( $css_temp, 'lg' );
+	}
 
 	/**
 	 * 文字色を使っている部分
@@ -369,4 +400,42 @@ function ys_customizer_get_default_color( $setting_name ) {
 	$default_colors = ys_customizer_get_defaults();
 
 	return $default_colors[ $setting_name ];
+}
+
+/**
+ * カスタマイザー設定のCSSにメディアクエリを追加
+ *
+ * @param string $css        Styles.
+ * @param string $breakpoint Breakpoint.
+ * @param string $type       Breakpoint type(min or max).
+ *
+ * @return string
+ */
+function ys_customizer_add_media_query( $css, $breakpoint, $type = 'min' ) {
+	/**
+	 * ブレークポイント
+	 */
+	$breakpoints = array(
+		'md' => '600px',
+		'lg' => '1025px',
+	);
+	/**
+	 * 切り替え位置取得
+	 */
+	if ( isset( $breakpoints[ $breakpoint ] ) ) {
+		$breakpoint = $breakpoints[ $breakpoint ];
+	}
+	/**
+	 * 以上・以下判断
+	 */
+	if ( 'min' != $type && 'max' != $type ) {
+		return $css;
+	}
+
+	return sprintf(
+		'@media screen and (%s-width: %s) {%s}',
+		$type,
+		$breakpoint,
+		$css
+	);
 }

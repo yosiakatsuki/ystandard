@@ -159,6 +159,9 @@ function ys_get_enqueue_css_file_path() {
  */
 function ys_get_enqueue_css_file_name() {
 	$file = 'ystandard-light.css';
+	if ( ys_is_active_sidebar_widget() ) {
+		$file = 'ystandard-has-sidebar.css';
+	}
 	/**
 	 * PC表示
 	 */
