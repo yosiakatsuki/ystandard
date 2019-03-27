@@ -1,20 +1,20 @@
 // ブレークポイント
 $breakpoints: (
-  md : 600px,
-  lg : 1025px,
+        md : 600px,
+        lg : 1025px,
 ) !default;
 
 // コンテンツ幅
 $gutter: 1rem !default;
-$width__content-inner: 900px !default;
-$width__content: $width__content-inner + ($font__size * 6) !default;
+$width__content-inner: 800px !default;
+$width__content: $width__content-inner + ($font__size * 4) !default;
 $width__sidebar-inner: 336px !default;
-$width__sidebar: $width__sidebar-inner + ($font__size * 4) !default;
-$width__container:  1280px !default;
+$width__sidebar: $width__sidebar-inner + ($font__size * 2) !default;
+$width__container: ($width__content + $width__sidebar) !default;
 
 //セクションマージン
 $section-gutter: (
-  sm : 1,
-  md : 1.5,
-  lg : 2,
+        sm : 1,
+        md : 1.5,
+        lg : 2,
 ) !default;

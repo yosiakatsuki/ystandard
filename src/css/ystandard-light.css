@@ -489,7 +489,7 @@ hr {
 
 .container {
   position: relative;
-  max-width: 1280px;
+  max-width: 1232px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem; }
@@ -506,10 +506,7 @@ hr {
   overflow: hidden; }
 
 .content__main {
-  flex: 1 1 100%;
   width: 100%;
-  max-width: 996px;
-  padding: 1rem;
   margin-left: auto;
   margin-right: auto;
   background-color: #fff; }
@@ -719,6 +716,10 @@ hr {
 [class*="flex__col"] {
   max-width: 100%;
   padding: 1rem; }
+
+.flex__col {
+  flex-grow: 1;
+  flex-basis: 0; }
 
 .flex__col--1 {
   flex: 0 0 100%;

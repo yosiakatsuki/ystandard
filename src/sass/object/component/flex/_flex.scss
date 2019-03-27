@@ -1,30 +1,35 @@
 .flex {
   @at-root {
     @include make-flex();
-    
+
     .flex--row {
       flex-wrap: wrap;
       margin-right: -1rem;
       margin-left: -1rem;
+
       &.-no-gutter {
         margin-right: 0;
         margin-left: 0;
+
         [class*="flex__col"] {
           padding-right: 0;
           padding-left: 0;
         }
+
         &.-all {
           [class*="flex__col"] {
             padding-top: 0;
             padding-bottom: 0;
-          }  
+          }
         }
       }
+
       &.-slide {
         flex-wrap: nowrap;
         margin: 0;
         overflow: scroll hidden;
         -webkit-overflow-scrolling: touch;
+
         &::-webkit-scrollbar {
           height: 8px;
         }
@@ -36,11 +41,13 @@
           background-color: $color__bg-gray-dark;
           border-radius: 8px;
         }
+
         .flex__col {
           flex: 0 0 30%;
           max-width: 30%;
           min-width: 240px;
           padding: 1rem .5rem;
+
           &:first-child {
             margin-left: -.5rem;
           }
@@ -50,44 +57,61 @@
         }
       }
     }
+
     .flex--c-c {
       height: 100%;
       width: 100%;
       align-items: center;
       justify-content: center;
     }
+
     .flex--a-start {
       align-items: flex-start;
     }
+
     .flex--a-center {
       align-items: center;
     }
+
     .flex--a-end {
       align-items: flex-end;
     }
+
     .flex--j-start {
       justify-content: flex-start;
     }
+
     .flex--j-end {
       justify-content: flex-end;
     }
+
     .flex--j-center {
       justify-content: center;
     }
+
     .flex--j-between {
       justify-content: space-between;
     }
+
     .flex--j-around {
       justify-content: space-around;
     }
-  }// @
+  }
+  // @
 }
+
 .flex__col {
   @at-root {
     [class*="flex__col"] {
       max-width: 100%;
       padding: 1rem;
     }
+    & {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+
     @include make-col();
-  }//@
+  }
+  //@
 }

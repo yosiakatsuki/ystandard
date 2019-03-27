@@ -408,7 +408,7 @@ function ys_is_active_sidebar_widget() {
 	if ( ys_is_amp() ) {
 		$show_sidebar = false;
 	}
-	if ( ys_is_mobile() && 1 == ys_get_setting( 'ys_show_sidebar_mobile' ) ) {
+	if ( ys_is_mobile() && 1 == ys_get_option( 'ys_show_sidebar_mobile' ) ) {
 		$show_sidebar = false;
 	}
 	if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
@@ -791,17 +791,6 @@ function ys_is_active_slide_menu_search_form() {
 	}
 
 	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
-}
-
-/**
- * コンテンツ背景色を使っているか
- */
-function ys_is_use_background_color() {
-	if ( '#ffffff' == ys_customizer_get_color_option( 'ys_color_site_bg' ) ) {
-		return false;
-	}
-
-	return true;
 }
 
 /**

@@ -489,7 +489,7 @@ hr {
 
 .container {
   position: relative;
-  max-width: 1280px;
+  max-width: 1232px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem; }
@@ -506,10 +506,7 @@ hr {
   overflow: hidden; }
 
 .content__main {
-  flex: 1 1 100%;
   width: 100%;
-  max-width: 996px;
-  padding: 1rem;
   margin-left: auto;
   margin-right: auto;
   background-color: #fff; }
@@ -719,6 +716,10 @@ hr {
 [class*="flex__col"] {
   max-width: 100%;
   padding: 1rem; }
+
+.flex__col {
+  flex-grow: 1;
+  flex-basis: 0; }
 
 .flex__col--1 {
   flex: 0 0 100%;
@@ -1424,7 +1425,7 @@ input[type="button"] {
 
 @media screen and (min-width: 1025px) {
   .content__main {
-    padding: 1rem 3rem; } }
+    margin-right: 2rem; } }
 
 @media screen and (min-width: 600px) {
   .section {
@@ -1575,7 +1576,7 @@ input[type="button"] {
 
 @media screen and (min-width: 1025px) {
   .h-nav.rwd {
-    padding: 0 1rem; }
+    padding: 0; }
     .h-nav.rwd .h-nav__btn {
       display: none; }
     .h-nav.rwd .h-nav__main {
@@ -1661,3 +1662,28 @@ input[type="button"] {
     white-space: normal; }
     .tbl-scroll table {
       width: 100%; } }
+
+.sidebar {
+  flex: 1 1 100%;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto; }
+
+.sidebar__item {
+  margin-top: 1rem;
+  padding: 1rem; }
+  .sidebar__item:first-child {
+    margin-top: 0; }
+  .sidebar__item > *:first-child {
+    margin-top: 0; }
+
+.has-sidebar .site__content {
+  overflow: unset; }
+
+@media screen and (min-width: 1025px) {
+  .has-sidebar .sidebar__fixed {
+    position: sticky;
+    top: 1rem; }
+  .has-sidebar .sidebar {
+    flex: 1 1 368px;
+    max-width: 368px; } }

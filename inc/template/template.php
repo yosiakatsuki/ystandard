@@ -91,10 +91,13 @@ function ys_get_archive_header_template() {
  * @return string
  */
 function ys_get_page_template() {
+	/**
+	 * TODO:この関数が本当に必要か精査する
+	 */
 	$template = '';
-	if ( ! ys_is_one_column() ) {
-		$template = 'has-sidebar';
-	}
+//	if ( ! ys_is_one_column() ) {
+//		$template = 'has-sidebar';
+//	}
 
 	return apply_filters( 'ys_get_page_template', $template );
 }
