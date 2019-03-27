@@ -1,2 +1,16 @@
-@import "akatsuki-base/akatsuki-base-desktop";
-@import "ystandard/ystandard-desktop";
+//モバイルベース部分
+@import "ystandard-light";
+
+//PC用CSS
+
+//Layout
+@import "layout/layout-d";
+
+//Component
+@import "object/component/component-d";
+
+//Project
+@import "object/project/project-d";
+
+//Utility
+@import "object/utility/utility-d";

@@ -1,2 +1,20 @@
-@import "akatsuki-base/akatsuki-base";
-@import "ystandard/ystandard";
+//変数、mixin、functionなど
+@import "foundation/import";
+
+//スタイル
+
+//Base
+@import "~normalize.css";
+@import "foundation/base/base";
+
+//Layout
+@import "layout/layout";
+
+//Component
+@import "object/component/component";
+
+//Project
+@import "object/project/project";
+
+//Utility
+@import "object/utility/utility";
