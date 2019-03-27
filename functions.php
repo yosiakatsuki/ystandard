@@ -10,4 +10,5 @@
 /**
  * 関数群を読み込み
  */
+require_once get_template_directory() . '/class/require.php';
 require_once get_template_directory() . '/inc/require.php';
