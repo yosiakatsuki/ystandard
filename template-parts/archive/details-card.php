@@ -8,53 +8,55 @@
  */
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'entry-list', ys_get_archive_card_col() ) ); ?>>
-	<div class="card">
-		<div class="entry-list__thumbnail image-mask__wrap card__img">
-			<a href="<?php the_permalink(); ?>" class="entry-list__link ratio ratio__16-9">
-				<?php if ( has_post_thumbnail() ) : ?>
-					<figure class="entry-list__figure ratio__item ratio__image">
-						<?php
-						the_post_thumbnail(
-							'post-thumbnail',
-							array(
-								'class' => 'entry-list__image',
-							)
-						);
-						?>
-					</figure>
-				<?php else : ?>
-					<div class="entry-list__no-img ratio__item flex flex--c-c">
-						<i class="far fa-image"></i>
-					</div><!-- .entry-list__no-img -->
-				<?php endif; ?>
-				<div class="image-mask flex flex--c-c">
-					<p class="image-mask__text "><?php ys_the_entry_read_more_text(); ?></p>
-				</div><!-- .image-mask -->
-			</a>
-		</div>
-		<div class="entry-list__detail card__text">
-			<div class="entry__meta entry-list__meta color__font-sub flex flex--j-between">
-				<?php if ( ! empty( ys_get_the_category( 1, false ) ) ) : ?>
-					<p class="entry-list__cat"><i class="far fa-folder"></i><?php ys_the_entry_category( false ); ?></p><!-- .entry-list__cat -->
-				<?php endif; ?>
-				<?php if ( ys_is_active_publish_date() ) : ?>
-					<p class="entry-list__date"><i class="far fa-calendar"></i><time class="updated" datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
-					</p><!-- .entry-list__date -->
-				<?php endif; ?>
+<article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_post_class() ); ?>>
+	<div class="card card__content">
+		<div class="flex flex--column">
+			<div class="card__img">
+				<div class="archive__image -card img-hover img-scale">
+					<a href="<?php the_permalink(); ?>" class="ratio -r-4-3">
+						<?php if ( has_post_thumbnail() ) : ?>
+							<div class="ratio__item">
+								<figure class="ratio__image">
+									<?php
+									the_post_thumbnail(
+										'post-thumbnail',
+										array(
+											'class' => 'archive__image',
+											'alt'   => get_the_title(),
+										)
+									);
+									?>
+								</figure>
+							</div>
+						<?php else : ?>
+							<div class="archive__no-img ratio__item flex flex--c-c">
+								<i class="far fa-image"></i>
+							</div><!-- .entry-list__no-img -->
+						<?php endif; ?>
+					</a>
+				</div>
 			</div>
-			<?php
-			the_title(
-				'<h3 class="entry-title entry-list__title clear-headline card__title"><a class="entry-list__link" href="' . get_the_permalink() . '">',
-				'</a></h3>'
-			);
-			?>
-			<div class="entry-excerpt entry-list__excerpt color__font-sub card__dscr">
-				<?php the_excerpt(); ?>
-			</div><!-- .entry-list__excerpt -->
-			<div class="entry__meta">
-				<?php get_template_part( 'template-parts/entry/entry-author' ); ?>
-			</div><!-- .entry__meta -->
-		</div><!-- .entry-list__detail -->
+			<div class="archive__detail card__text">
+				<div class="archive__meta flex flex--j-between text-sub">
+					<?php if ( ! empty( ys_get_the_category( 1, false ) ) ) : ?>
+						<span class="archive__cat"><i class="far fa-folder icon-l"></i><?php ys_the_entry_category( false ); ?></span><!-- .entry-list__cat -->
+					<?php endif; ?>
+					<?php if ( ys_is_active_publish_date() ) : ?>
+						<span class="archive__date"><i class="far fa-calendar icon-l"></i>
+						<time class="updated" datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
+					</span><!-- .entry-list__date -->
+					<?php endif; ?>
+				</div>
+				<?php
+				the_title(
+					'<h3 class="clear-h archive__detail-title -card"><a class="archive__link" href="' . get_the_permalink() . '">',
+					'</a></h3>'
+				);
+				?>
+				<div class="archive__meta text-sub">
+					<?php the_excerpt(); ?>
+				</div><!-- .entry-list__excerpt -->
+			</div>
+		</div><!-- flex -->
 	</div>
 </article><!-- #post-## -->

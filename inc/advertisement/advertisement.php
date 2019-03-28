@@ -231,7 +231,6 @@ function ys_the_ad_entry_footer() {
  * インフィード広告
  */
 function ys_get_ad_infeed() {
-	$ad = '';
 	if ( ys_is_mobile() ) {
 		$ad = ys_get_option( 'ys_advertisement_infeed_sp' );
 	} else {
@@ -251,11 +250,10 @@ function ys_the_ad_infeed() {
 
 /**
  * インフィード広告の表示
+ * ys_get_template_ad_infeed
  *
- * @param integer $num      記事番号.
- * @param string  $template テンプレート名.
  */
-function ys_get_template_ad_infeed( $num, $template ) {
+function ys_get_template_infeed_ad() {
 	if ( ys_is_mobile() ) {
 		$step  = ys_get_option( 'ys_advertisement_infeed_sp_step' );
 		$limit = ys_get_option( 'ys_advertisement_infeed_sp_limit' );
@@ -263,9 +261,11 @@ function ys_get_template_ad_infeed( $num, $template ) {
 		$step  = ys_get_option( 'ys_advertisement_infeed_pc_step' );
 		$limit = ys_get_option( 'ys_advertisement_infeed_pc_limit' );
 	}
+	global $wp_query;
+	$num = $wp_query->current_post + 1;
 	if ( 0 == ( $num % $step ) && $limit >= ( $num / $step ) ) {
 		if ( '' !== ys_get_ad_infeed() ) {
-			get_template_part( 'template-parts/advertisement/infeed', $template );
+			get_template_part( 'template-parts/archive/infeed' );
 		}
 	}
 }

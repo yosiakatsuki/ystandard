@@ -8,7 +8,14 @@
 
   .archive__item {
     &.-list {
-      padding: 2rem 0;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    &.-card {
+      transition: transform .3s;
+      &:hover {
+        transform: translateY(-.25rem);
+      }
     }
   }
   .archive__detail-title {

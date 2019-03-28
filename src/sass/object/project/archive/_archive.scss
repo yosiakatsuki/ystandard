@@ -5,6 +5,7 @@
   margin: 0 0 1rem;
   font-size: 1.3rem;
 }
+
 .archive__dscr {
   margin: 0 0 1rem;
   font-size: .9rem;
@@ -18,7 +19,9 @@
 }
 
 .archive__detail {
-  margin-top: .5rem;
+  &.-list {
+    margin-top: .5rem;
+  }
 }
 
 .archive__meta {
@@ -26,11 +29,10 @@
 }
 
 .archive__detail-title {
+  margin: 1em 0;
+
   a {
     color: $color__text-main;
-  }
-  &.-list {
-    margin: 1em 0;
   }
 }
 

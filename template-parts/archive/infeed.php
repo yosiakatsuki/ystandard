@@ -8,6 +8,6 @@
  */
 
 ?>
-<aside class="entry-list clearfix">
+<aside class="<?php ys_the_archive_post_class(); ?>">
 	<?php ys_the_ad_infeed(); ?>
 </aside>
