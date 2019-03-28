@@ -71,20 +71,11 @@ function ys_get_customizer_inline_css_color() {
 		 */
 		$css_temp .= ys_customizer_create_inline_css(
 			array(
-				'.content__main',
-			),
-			array(
-				'background-color' => 'transparent',
-				'margin-right'     => '0',
-			)
-		);
-		$css_temp .= ys_customizer_create_inline_css(
-			array(
-				'.content__article',
+				'.content__wrap',
 			),
 			array(
 				'background-color' => '#fff',
-				'padding'          => '1rem',
+				'padding'          => '1rem 2rem',
 			)
 		);
 		/**
