@@ -18,7 +18,7 @@ $col      = $sns_share_btn_data['col'];
 $headline = $sns_share_btn_data['headline'];
 if ( ! empty( $data ) ) :
 	?>
-	<aside class="share-btn">
+	<div class="share-btn">
 		<?php
 		/**
 		 * 見出し
@@ -34,5 +34,5 @@ if ( ! empty( $data ) ) :
 				</li>
 			<?php endforeach; ?>
 		</ul>
-	</aside>
+	</div>
 <?php endif; ?>

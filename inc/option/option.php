@@ -51,7 +51,7 @@ function ys_get_option_default( $name ) {
 		'ys_show_sidebar_mobile'                    => 0, // モバイル表示でサイドバーを出力しない.
 		'ys_show_search_form_on_slide_menu'         => 0, // スライドメニューに検索フォームを出力する.
 		// [ys]投稿ページ設定.
-		'ys_post_layout'                            => '1col', // 表示レウアウト.
+		'ys_post_layout'                            => '2col', // 表示レウアウト.
 		'ys_show_post_thumbnail'                    => 1, // 個別ページでアイキャッチ画像を表示する.
 		'ys_show_post_publish_date'                 => 1, // 個別ページで投稿日・更新日を表示する.
 		'ys_show_post_category'                     => 1, // カテゴリー・タグ情報を表示する.
@@ -64,7 +64,7 @@ function ys_get_option_default( $name ) {
 		'ys_show_post_after_content_widget'         => 0, // 記事下ウィジェットを出力する.
 		'ys_post_after_content_widget_priority'     => 10, // 記事下ウィジェットの優先順位.
 		// [ys]固定ページ設定.
-		'ys_page_layout'                            => '1col', // 表示レウアウト.
+		'ys_page_layout'                            => '2col', // 表示レウアウト.
 		'ys_show_page_thumbnail'                    => 1, // 個別ページでアイキャッチ画像を表示する.
 		'ys_show_page_publish_date'                 => 1, // 個別ページで投稿日時を表示する.
 		'ys_show_page_follow_box'                   => 1, // ブログフォローボックスを表示する.
@@ -74,7 +74,7 @@ function ys_get_option_default( $name ) {
 		'ys_show_page_after_content_widget'         => 0, // 記事下ウィジェットを出力する.
 		'ys_page_after_content_widget_priority'     => 10, // 記事下ウィジェットの優先順位.
 		// [ys]アーカイブページ設定.
-		'ys_archive_layout'                         => '1col', // 表示レウアウト.
+		'ys_archive_layout'                         => '2col', // 表示レウアウト.
 		'ys_archive_type'                           => 'list', // 一覧表示タイプ.
 		'ys_show_archive_publish_date'              => 1, // 投稿日を表示する.
 		'ys_show_archive_author'                    => 1, // 著者情報を表示する.
