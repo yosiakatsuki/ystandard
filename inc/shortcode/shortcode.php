@@ -37,3 +37,68 @@ require_once $shortcode_dir . 'shortcode-taxonomy-posts.php';
  * シェアボタン
  */
 require_once $shortcode_dir . 'shortcode-share-button.php';
+
+/**
+ * ショートコードの作成と実行
+ *
+ * @param string $name  ショートコード名.
+ * @param array  $param パラメーター.
+ * @param bool   $echo  出力.
+ *
+ * @return string
+ */
+function ys_echo_do_shortcode( $name, $param = array(), $echo = true ) {
+	$shortcode = ys_get_shortcode( $name, $param );
+	/**
+	 * ショートコード実行
+	 */
+	$result = do_shortcode( $shortcode );
+	/**
+	 * 表示 or 取得
+	 */
+	if ( $echo ) {
+		echo $result;
+
+		return '';
+	} else {
+		return $result;
+	}
+}
+
+/**
+ * ショートコードの作成
+ *
+ * @param string $name  ショートコード名.
+ * @param array  $param パラメーター.
+ *
+ * @return string
+ */
+function ys_get_shortcode( $name, $param = array() ) {
+	$sc_param   = array();
+	$param_text = '';
+	/**
+	 * パラメーター展開
+	 */
+	if ( ! empty( $param ) ) {
+		foreach ( $param as $key => $value ) {
+			$sc_param[] = sprintf(
+				'%s="%s"',
+				$key,
+				$value
+			);
+		}
+	}
+
+	if ( ! empty( $sc_param ) ) {
+		$param_text = ' ' . implode( ' ', $sc_param );
+	}
+
+	/**
+	 * ショートコード作成
+	 */
+	return sprintf(
+		'[%s%s]',
+		$name,
+		$param_text
+	);
+}
