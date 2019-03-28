@@ -1,3 +1,16 @@
+//
+// 一覧ページ
+//
+.archive__title {
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+}
+.archive__dscr {
+  margin: 0 0 1rem;
+  font-size: .9rem;
+}
+
+
 .archive__item {
   a {
     text-decoration: none;
@@ -12,9 +25,12 @@
   font-size: .8rem;
 }
 
-.archive__title {
+.archive__detail-title {
   a {
     color: $color__text-main;
+  }
+  &.-list {
+    margin: 1em 0;
   }
 }
 

@@ -1,0 +1,10 @@
+.header {
+  @at-root {
+    @include media-breakpoint(md) {
+      .header__title {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+

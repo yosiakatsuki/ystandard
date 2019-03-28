@@ -487,6 +487,21 @@ hr {
   margin: 1.5em 0;
   border: 0.05rem solid #EEEEEE; }
 
+.li-clear {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+
+.clear-h {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  font-weight: normal; }
+  .clear-h:before, .clear-h:after {
+    content: "";
+    display: none; }
+
 .container {
   position: relative;
   max-width: 1232px;
@@ -827,8 +842,7 @@ hr {
     width: 75px; }
 
 .item-list__title {
-  font-size: 1rem;
-  margin: 1em 0; }
+  font-size: 1rem; }
 
 .item-list__dscr,
 .item-list__meta {
@@ -960,7 +974,7 @@ input[type="button"] {
   margin-right: .25rem; }
 
 .header__title {
-  margin: 0; }
+  font-size: 1.5rem; }
   .header__title a {
     color: #222;
     text-decoration: none; }
@@ -1062,6 +1076,14 @@ input[type="button"] {
   opacity: 1;
   visibility: visible; }
 
+.archive__title {
+  margin: 0 0 1rem;
+  font-size: 1.3rem; }
+
+.archive__dscr {
+  margin: 0 0 1rem;
+  font-size: .9rem; }
+
 .archive__item a {
   text-decoration: none; }
 
@@ -1071,8 +1093,11 @@ input[type="button"] {
 .archive__meta {
   font-size: .8rem; }
 
-.archive__title a {
+.archive__detail-title a {
   color: #222; }
+
+.archive__detail-title.-list {
+  margin: 1em 0; }
 
 .archive__date {
   white-space: nowrap; }
@@ -1107,21 +1132,6 @@ input[type="button"] {
   color: #fff; }
   .site-footer a {
     color: #fff; }
-
-.li-clear {
-  padding: 0;
-  margin: 0;
-  list-style: none; }
-
-.clear-h {
-  padding: 0;
-  margin: 0;
-  background: none;
-  border: none;
-  font-weight: normal; }
-  .clear-h:before, .clear-h:after {
-    content: "";
-    display: none; }
 
 .image-fit--cover,
 .image-fit--cover img,
@@ -1549,6 +1559,10 @@ a.text-sub,
   .item-list__img:hover img, .item-list__img:hover amp-img {
     transform: scale(1.1, 1.1); } }
 
+@media screen and (min-width: 600px) {
+  .header__title {
+    font-size: 1.8rem; } }
+
 @media screen and (min-width: 1025px) {
   .h-nav.rwd {
     padding: 0; }
@@ -1617,11 +1631,13 @@ a.text-sub,
       margin-right: 0; } }
 
 @media screen and (min-width: 600px) {
-  .archive__item {
-    padding: 2rem 0; }
   .archive__title {
+    font-size: 1.6rem; }
+  .archive__item.-list {
+    padding: 2rem 0; }
+  .archive__detail-title {
     font-size: 1.2rem; }
-  .archive__image--list {
+  .archive__image.-list {
     width: 250px; }
   .archive__detail.-list {
     margin-top: 0;
