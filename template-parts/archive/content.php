@@ -17,7 +17,7 @@
 		 */
 		get_template_part( 'template-parts/archive/header' );
 		?>
-		<div class="archive__list">
+		<div class="flex flex--row -no-gutter">
 			<?php
 			$num = 1;
 			while ( have_posts() ) :
