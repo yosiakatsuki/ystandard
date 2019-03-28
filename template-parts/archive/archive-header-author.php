@@ -1,6 +1,7 @@
 <?php
 /**
  * ヒーローエリア : 投稿者
+ * TODO:テンプレート削除
  *
  * @package ystandard
  * @author  yosiakatsuki

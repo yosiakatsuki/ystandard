@@ -72,20 +72,6 @@ function ys_get_hero_template() {
 }
 
 /**
- * アーカイブヘッダーテンプレート名取得
- *
- * @return string
- */
-function ys_get_archive_header_template() {
-	$template = '';
-	if ( is_author() ) {
-		$template = 'author';
-	}
-
-	return apply_filters( 'ys_get_archive_header_template', $template );
-}
-
-/**
  * 投稿・固定ページのヘッダーに表示するメタ情報
  */
 function ys_get_singular_header_parts() {
