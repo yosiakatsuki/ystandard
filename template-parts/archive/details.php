@@ -8,10 +8,10 @@
  */
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'archive__item', 'item-list__item' ) ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'archive__item', '-list', 'item-list__item' ) ); ?>>
 	<div class="flex flex--row -no-gutter -all">
 		<div class="flex__col--1 flex__col--md-auto">
-			<div class="item-list__img archive__image--list">
+			<div class="item-list__img archive__image -list">
 				<a href="<?php the_permalink(); ?>" class="ratio -r-4-3">
 					<?php if ( has_post_thumbnail() ) : ?>
 						<div class="ratio__item">
@@ -48,7 +48,7 @@
 			</div>
 			<?php
 			the_title(
-				'<h3 class="archive__title item-list__title"><a class="entry-list__link" href="' . get_the_permalink() . '">',
+				'<h3 class="clear-h item-list__title archive__detail-title -list"><a class="entry-list__link" href="' . get_the_permalink() . '">',
 				'</a></h3>'
 			);
 			?>

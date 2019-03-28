@@ -10,7 +10,7 @@
 ?>
 <header class="page-header archive__header">
 	<?php
-	the_archive_title( '<h2 class="page-title archive__title clear-headline">', '</h2>' );
-	the_archive_description( '<div class="taxonomy-description archive__dscr color__font-sub">', '</div>' );
+	the_archive_title( '<h1 class="page-title clear-h archive__title">', '</h1>' );
+	the_archive_description( '<div class="taxonomy-description archive__dscr">', '</div>' );
 	?>
 </header><!-- .page-header -->

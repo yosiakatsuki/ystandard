@@ -37,7 +37,7 @@ if ( ! function_exists( 'ys_the_blog_description' ) ) {
 			return;
 		}
 		$dscr   = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
-		$format = '<p class="site-description header__dscr">%s</p>';
+		$format = '<p class="site-description header__dscr text-sub">%s</p>';
 		$format = apply_filters( 'ys_the_blog_description_format', $format );
 		echo sprintf( $format, $dscr );
 	}

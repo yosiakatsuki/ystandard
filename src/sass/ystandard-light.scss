@@ -6,6 +6,8 @@
 //Base
 @import "~normalize.css";
 @import "foundation/base/base";
+@import "foundation/reset/reset";//Utilityだが、順序は先に読ませたい
+
 
 //Layout
 @import "layout/layout";

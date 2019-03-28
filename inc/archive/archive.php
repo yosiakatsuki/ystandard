@@ -7,52 +7,50 @@
  * @license GPL-2.0+
  */
 
-if ( ! function_exists( 'ys_get_the_archive_title' ) ) {
+/**
+ * アーカイブタイトル
+ *
+ * @param string $title title.
+ *
+ * @return string
+ */
+function ys_get_the_archive_title( $title ) {
 	/**
-	 * アーカイブタイトル
-	 *
-	 * @param string $title title.
+	 * 標準フォーマット
 	 */
-	function ys_get_the_archive_title( $title ) {
-		/**
-		 * 標準フォーマット
-		 */
-		$title_format = apply_filters( 'ys_archive_title_format', '「%s」の記事一覧' );
+	$title_format = apply_filters( 'ys_archive_title_format', '%s' );
 
-		if ( is_category() ) {
-			$title = sprintf( $title_format, single_cat_title( '', false ) );
-		} elseif ( is_tag() ) {
-			$title = sprintf( $title_format, single_tag_title( '', false ) );
-		} elseif ( is_author() ) {
-			$title = sprintf( $title_format, get_the_author() );
-		} elseif ( is_search() ) {
-			$title_format = '「%s」に関連する記事一覧';
-			$title        = sprintf( $title_format, esc_html( get_search_query( false ) ) );
-		} elseif ( is_post_type_archive() ) {
-			$title = sprintf( $title_format, post_type_archive_title( '', false ) );
-		} elseif ( is_tax() ) {
-			$object = get_queried_object();
-			$tax    = get_taxonomy( $object->taxonomy );
-			/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
-			$title = sprintf( '%1$s「%2$s」の投稿一覧', $tax->labels->singular_name, single_term_title( '', false ) );
-		} elseif ( is_home() ) {
-			if ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
-				$title = get_the_title( get_option( 'page_for_posts' ) );
-			} else {
-				$title = '記事一覧';
-			}
+	if ( is_category() ) {
+		$title = sprintf( $title_format, single_cat_title( '', false ) );
+	} elseif ( is_tag() ) {
+		$title = sprintf( $title_format, single_tag_title( '', false ) );
+	} elseif ( is_author() ) {
+		$title = sprintf( $title_format, get_the_author() );
+	} elseif ( is_search() ) {
+		$title_format = '「%s」の検索結果';
+		$title        = sprintf( $title_format, esc_html( get_search_query( false ) ) );
+	} elseif ( is_post_type_archive() ) {
+		$title = sprintf( $title_format, post_type_archive_title( '', false ) );
+	} elseif ( is_tax() ) {
+		$object = get_queried_object();
+		$tax    = get_taxonomy( $object->taxonomy );
+		/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
+		$title = sprintf( '%1$s : %2$s', $tax->labels->singular_name, single_term_title( '', false ) );
+	} elseif ( is_home() ) {
+		if ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
+			$title = get_the_title( get_option( 'page_for_posts' ) );
+		} else {
+			$title = '';
 		}
-		/**
-		 * ページング
-		 */
-		$paged = get_query_var( 'paged' );
-		if ( $paged ) {
-			$title .= ' ' . $paged . 'ページ';
-		}
-
-		return apply_filters( 'ys_get_the_archive_title', $title, $paged );
 	}
+	/**
+	 * ページング
+	 */
+	$paged = get_query_var( 'paged' );
+
+	return apply_filters( 'ys_get_the_archive_title', $title, $paged );
 }
+
 add_filter( 'get_the_archive_title', 'ys_get_the_archive_title' );
 
 if ( ! function_exists( 'ys_get_the_archive_url' ) ) {
