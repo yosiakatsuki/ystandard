@@ -14,7 +14,7 @@ function ys_customizer_get_defaults() {
 	return array(
 		'ys_color_site_bg'          => '#ffffff',
 		'ys_color_site_font'        => '#222222',
-		'ys_color_site_font_sub'    => '#939393',
+		'ys_color_site_font_sub'    => '#757575',
 		'ys_color_header_bg'        => '#ffffff',
 		'ys_color_header_font'      => '#222222',
 		'ys_color_header_dscr_font' => '#939393',
@@ -111,17 +111,11 @@ function ys_get_customizer_inline_css_color() {
 	 */
 	$css .= ys_customizer_create_inline_css(
 		array(
-			'.color__font-sub',
-			'input:placeholder-shown',
-			'.sidebar .widget_recent_entries a:not(:hover)',
-			'.sidebar .widget_categories a:not(:hover)',
-			'.sidebar .widget_archive a:not(:hover)',
-			'.sidebar .widget_nav_menu a:not(:hover)',
-			'.sidebar .widget_pages a:not(:hover)',
-			'.sidebar .widget_meta a:not(:hover)',
-			'.sidebar .widget_calendar a:not(:hover)',
-			'.sidebar .widget_ys_ranking a:not(:hover)',
-			'.sidebar .widget_ys_taxonomy_posts a:not(:hover)',
+			'.text-sub',
+			'.text-sub a',
+			'a.text-sub',
+			'.text-sub a:hover',
+			'a.text-sub:hover',
 		),
 		array(
 			'color' => $html_font_sub,

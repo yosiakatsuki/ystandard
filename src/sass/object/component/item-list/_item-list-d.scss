@@ -1,18 +1,15 @@
-
 .item-list {
   @at-root {
-    // tablet
     @include media-breakpoint(md) {
-
-      .item-list__item {
-        padding: 2rem 0;
-      }
-
       .item-list__img {
-        width: 250px;
-      }
-      .item-list__title {
-        font-size: 1.2rem;
+        img, amp-img {
+          transition: all .3s;
+        }
+        &:hover {
+          img, amp-img {
+            transform: scale(1.1,1.1);
+          }
+        }
       }
     }
   }// at-root

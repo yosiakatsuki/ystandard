@@ -5,50 +5,32 @@
       margin: 0;
       padding: 0;
       list-style: none;
-      border-top: 1px solid $color__border-gray;
     }
 
     .item-list__item {
       margin: 0;
       padding: 2rem 0;
       border-bottom: 1px solid $color__border-gray;
-      overflow: hidden;
-      zoom: 1;
+      &:first-child {
+        border-top: 1px solid $color__border-gray;
+      }
     }
     .item-list__img {
-      width: 100px;
-      margin: 0 1rem 0 0;
-      float: left;
+      width: 100%;
       text-align: center;
 
       img, amp-img {
         margin: 0;
         padding: 0;
-        transition: all .3s;
       }
-      &:hover {
-        img, amp-img {
-          transform: scale(1.1,1.1);
-        }
-      }
-    }
-    &.-alternate {
-      .item-list__item:nth-child(even) {
-        .item-list__img {
-          float: right;
-          margin: 0 0 0 1rem;
-        }
-      }
-    }
-    
-    .item-list__text {
-      overflow: hidden;
-      &>*:not(:first-child) {
-        margin: 1em 0 0;
+      
+      &.thumb {
+        width: 75px;
       }
     }
     .item-list__title {
       font-size: 1rem;
+      margin: 1em 0;
     }
     .item-list__dscr,
     .item-list__meta {

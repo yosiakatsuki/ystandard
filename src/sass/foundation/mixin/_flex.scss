@@ -40,6 +40,11 @@
   @if $breakpoint != "" {
     $prefix: #{$breakpoint}#{"-"};
   }
+  .flex__col--#{$prefix}auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+  }
   @for $i from 1 through $columns {
     .flex__col--#{$prefix}#{$i} {
       flex: 0 0 decimal-floor( 1 / $i , 4) * 100#{"%"};

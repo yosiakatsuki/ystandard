@@ -18,22 +18,9 @@ function ys_ystd_post_class( $classes ) {
 	/**
 	 * [hentryの削除]
 	 */
-	/**
-	 * 著者情報
-	 */
-	$flag = ! ys_is_display_author_data();
-	if ( apply_filters( 'ys_remove_hentry_author', $flag ) ) {
+	if ( apply_filters( 'ystd_remove_hentry', true ) ) {
 		$classes = array_diff( $classes, array( 'hentry' ) );
 	}
-
-	/**
-	 * 投稿日・更新日
-	 */
-	$flag = ! ys_is_active_publish_date();
-	if ( apply_filters( 'ys_remove_hentry_publish_date', $flag ) ) {
-		$classes = array_diff( $classes, array( 'hentry' ) );
-	}
-
 	/**
 	 * アイキャッチ画像の有無
 	 */

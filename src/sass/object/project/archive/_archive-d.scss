@@ -1,0 +1,26 @@
+//
+// 一覧ページ(PC)
+//
+@include media-breakpoint(md) {
+  .archive__item {
+    padding: 2rem 0;
+  }
+  .archive__title {
+    font-size: 1.2rem;
+  }
+  .archive__image--list {
+    width: 250px;
+  }
+  .archive__detail {
+    &.-list {
+      margin-top: 0;
+      margin-left: 1rem;
+    }
+  }
+  .archive__no-img {
+    transition: font-size .3s;
+    &:hover {
+      font-size: 2rem;
+    }
+  }
+}

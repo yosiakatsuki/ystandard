@@ -3,37 +3,27 @@
     text-decoration: none;
   }
 }
-.archive__meta {
-  font-size: .8rem;
-  color: $color__text-light;
-  a {
-    color: $color__text-light;
-  }
-}
-.archive__cat {
-  position: absolute;
-  top: .3rem;
-  right: .3rem;
-  padding: .3rem .5rem;
-  background-color: #fff;
-  color: $color__text-light;
-  font-size: .7rem;
+
+.archive__detail {
+  margin-top: .5rem;
 }
 
+.archive__meta {
+  font-size: .8rem;
+}
 
 .archive__title {
   a {
     color: $color__text-main;
   }
 }
-.archive__time {
-  time {
-    margin-left: .2rem;
-  }
+
+.archive__date {
+  white-space: nowrap;
 }
 
 .archive__no-img {
   background-color: $color__bg-gray-light;
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: $color__text-light;
 }

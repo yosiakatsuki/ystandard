@@ -49,6 +49,18 @@
         height: auto;
       }
     }
+    @supports ( object-fit: cover ) {
+      .ratio__image {
+        top: 0;
+        transform: none;
+        height: 100%;
+        img,
+        amp-img {
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
   }
   //at-root
 }

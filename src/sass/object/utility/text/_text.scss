@@ -7,8 +7,13 @@
 .text--b {
   font-weight: bold;
 }
-.text-sub {
+.text-sub,
+a.text-sub,
+.text-sub a {
   color: $color__text-light;
+  &:hover {
+    color: $color__text-light;
+  }
 }
 .clear-a {
   a {
