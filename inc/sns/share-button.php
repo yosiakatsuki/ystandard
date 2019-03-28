@@ -10,7 +10,7 @@
 
 function ys_the_sns_share_button( $headline = '' ) {
 	/**
-	 * 表示確認
+	 * 記事別の表示設定確認
 	 */
 	if ( is_singular() ) {
 		if ( '1' === ys_get_post_meta( 'ys_hide_share' ) ) {

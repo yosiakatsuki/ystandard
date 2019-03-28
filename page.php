@@ -13,10 +13,7 @@ get_header(); ?>
 			<?php
 			while ( have_posts() ) :
 				the_post();
-				get_template_part(
-					'template-parts/page/content',
-					ys_get_page_template()
-				);
+				get_template_part( 'template-parts/page/content' );
 			endwhile;
 			?>
 			<?php get_sidebar(); ?>

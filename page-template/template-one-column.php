@@ -18,9 +18,9 @@ get_header(); ?>
 			while ( have_posts() ) :
 				the_post();
 				if ( is_page() ) {
-					get_template_part( 'template-parts/content/page', ys_get_page_template() );
+					get_template_part( 'template-parts/content/page' );
 				} else {
-					get_template_part( 'template-parts/content/single', ys_get_single_template() );
+					get_template_part( 'template-parts/content/single' );
 				}
 			endwhile;
 			?>

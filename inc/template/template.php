@@ -86,44 +86,21 @@ function ys_get_archive_header_template() {
 }
 
 /**
- * ページテンプレート名取得
- *
- * @return string
- */
-function ys_get_page_template() {
-	/**
-	 * TODO:この関数が本当に必要か精査する
-	 */
-	$template = '';
-//	if ( ! ys_is_one_column() ) {
-//		$template = 'has-sidebar';
-//	}
-
-	return apply_filters( 'ys_get_page_template', $template );
-}
-
-/**
- * 投稿テンプレート名取得
- *
- * @return string
- */
-function ys_get_single_template() {
-	$template = '';
-	if ( ys_is_one_column() || ys_is_amp() ) {
-		if ( ys_is_one_column_thumbnail_type() ) {
-			$template = 'one-column';
-		}
-	}
-
-	return apply_filters( 'ys_get_single_template', $template );
-}
-
-/**
  * 投稿・固定ページのヘッダーに表示するメタ情報
  */
 function ys_get_singular_header_parts() {
 	do_action( 'ys_singular_header_parts' );
 	if ( apply_filters( 'ys_show_singular_header_parts', true ) ) {
 		get_template_part( 'template-parts/singular/header-parts' );
+	}
+}
+
+/**
+ * 投稿・固定ページのフッターに表示するパーツ
+ */
+function ys_get_singular_footer_parts() {
+	do_action( 'ys_singular_footer_parts' );
+	if ( apply_filters( 'ys_show_singular_footer_parts', true ) ) {
+		get_template_part( 'template-parts/singular/footer-parts' );
 	}
 }

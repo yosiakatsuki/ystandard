@@ -1,6 +1,6 @@
 <?php
 /**
- * 固定ページテンプレート(1カラム)
+ * 固定ページテンプレート
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -27,12 +27,7 @@
 			);
 			?>
 		</div><!-- .entry-content -->
-		<footer class="entry__footer">
-			<?php
-			// 記事下部分.
-			get_template_part( 'template-parts/entry/entry-footer' );
-			?>
-		</footer><!-- .entry__footer -->
+		<?php get_template_part( 'template-parts/page/footer' ); ?>
 	</article>
 	<?php do_action( 'ys_content_main_append' ); ?>
 </main><!-- .site-main -->
