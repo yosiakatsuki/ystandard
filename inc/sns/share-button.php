@@ -20,24 +20,24 @@ function ys_the_sns_share_button( $headline = '' ) {
 	/**
 	 * パラメータ作成
 	 */
-	$param   = array();
-	$param[] = 'twitter="' . ys_get_option( 'ys_sns_share_button_twitter' ) . '"';
-	$param[] = 'twitter_via_user="' . ys_get_option( 'ys_sns_share_tweet_via_account' ) . '"';
-	$param[] = 'twitter_related_user="' . ys_get_option( 'ys_sns_share_tweet_related_account' ) . '"';
-	$param[] = 'facebook="' . ys_get_option( 'ys_sns_share_button_facebook' ) . '"';
-	$param[] = 'hatenabookmark="' . ys_get_option( 'ys_sns_share_button_hatenabookmark' ) . '"';
-	$param[] = 'googleplus="' . ys_get_option( 'ys_sns_share_button_googleplus' ) . '"';
-	$param[] = 'pocket="' . ys_get_option( 'ys_sns_share_button_pocket' ) . '"';
-	$param[] = 'line="' . ys_get_option( 'ys_sns_share_button_line' ) . '"';
-	$param[] = 'feedly="' . ys_get_option( 'ys_sns_share_button_feedly' ) . '"';
-	$param[] = 'rss="' . ys_get_option( 'ys_sns_share_button_rss' ) . '"';
-	$param[] = 'col_sp="' . ys_get_option( 'ys_sns_share_col_sp' ) . '"';
-	$param[] = 'col_tablet="' . ys_get_option( 'ys_sns_share_col_tablet' ) . '"';
-	$param[] = 'col_pc="' . ys_get_option( 'ys_sns_share_col_pc' ) . '"';
-	$param[] = 'headline="' . $headline . '"';
-
+	$param = array(
+		'twitter'              => ys_get_option( 'ys_sns_share_button_twitter' ),
+		'twitter_via_user'     => ys_get_option( 'ys_sns_share_tweet_via_account' ),
+		'twitter_related_user' => ys_get_option( 'ys_sns_share_tweet_related_account' ),
+		'facebook'             => ys_get_option( 'ys_sns_share_button_facebook' ),
+		'hatenabookmark'       => ys_get_option( 'ys_sns_share_button_hatenabookmark' ),
+		'googleplus'           => ys_get_option( 'ys_sns_share_button_googleplus' ),
+		'pocket'               => ys_get_option( 'ys_sns_share_button_pocket' ),
+		'line'                 => ys_get_option( 'ys_sns_share_button_line' ),
+		'feedly'               => ys_get_option( 'ys_sns_share_button_feedly' ),
+		'rss'                  => ys_get_option( 'ys_sns_share_button_rss' ),
+		'col_sp'               => ys_get_option( 'ys_sns_share_col_sp' ),
+		'col_tablet'           => ys_get_option( 'ys_sns_share_col_tablet' ),
+		'col_pc'               => ys_get_option( 'ys_sns_share_col_pc' ),
+		'headline'             => $headline,
+	);
 	/**
 	 * ショートコード実行
 	 */
-	echo do_shortcode( '[ys_share_button ' . implode( ' ', $param ) . ']' );
+	ys_echo_do_shortcode( 'ys_share_button', $param );
 }
