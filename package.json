@@ -35,6 +35,7 @@
 		"watch:js": "watch 'npm run build:js' ./src/js/",
 		"watch:js-dev": "watch 'npm run build:js-dev' ./src/js/",
 		"bs": "browser-sync start -p http://wp-ystandard.lo -f './css/*.css, ./js/*.min.js, ./**/*.php' -w",
+		"watch": "npm run watch:css & npm run watch:js",
 		"watch_s": "npm run watch:css & npm run watch:js & npm rum bs"
 	},
 	"browserslist": [
