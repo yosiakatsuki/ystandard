@@ -2,71 +2,28 @@
   @at-root {
 
     & {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      color: $color__text-main;
       background-color: #fff;
+      color: $color__text-main;
       text-decoration: none;
       @include box-shadow;
-      transition: all .4s;
 
       &:hover {
         color: $color__text-main;;
-        transform: translateY(-0.3rem);
       }
+    }
+
+    .card__content {
+      height: 100%;
     }
 
     .card__img {
       border-bottom: 1px solid $color__border-gray-light;
-
-      img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
     }
 
     .card__text {
       position: relative;
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
       padding: 1.5rem;
-      & > * {
-        margin: 1rem 0 0;
-        &:first-child {
-          margin-top: 0;
-        }
-      }
     }
-    .card__title {
-      font-size: 1.1rem;
-    }
-
-    .card__dscr {
-      color: $color__text-light;
-      font-size: .8rem;
-      flex: 1 1 auto;
-    }
-
-    .card__tag {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 0;
-    }
-
-    .card__tag-item {
-      display: inline-block;
-      background-color: $color__bg-gray-light;
-      margin: 0 .2rem .2rem 0;
-      padding: .2rem .6rem;
-      color: $color__text-light;
-      font-size: .7rem;
-      vertical-align: top;
-    }
-
-  }//at-root
+  }
+  //at-root
 }

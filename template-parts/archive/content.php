@@ -17,9 +17,8 @@
 		 */
 		get_template_part( 'template-parts/archive/header' );
 		?>
-		<div class="flex flex--row -no-gutter">
+		<div class="flex flex--row">
 			<?php
-			$num = 1;
 			while ( have_posts() ) :
 				the_post();
 				get_template_part(
@@ -27,10 +26,9 @@
 					ys_get_archive_template_type()
 				);
 				/**
-				 * インフィード広告表示
+				 * インフィード広告
 				 */
-				ys_get_template_ad_infeed( $num, ys_get_archive_template_type() );
-				$num ++;
+				ys_get_template_infeed_ad();
 			endwhile;
 			?>
 		</div><!-- .archive__list -->
