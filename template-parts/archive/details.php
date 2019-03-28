@@ -8,7 +8,7 @@
  */
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'archive__item', '-list', 'item-list__item' ) ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'archive__item', '-list', 'item-list__item', 'flex__col--1' ) ); ?>>
 	<div class="flex flex--row -no-gutter -all">
 		<div class="flex__col--1 flex__col--md-auto">
 			<div class="item-list__img archive__image -list">
