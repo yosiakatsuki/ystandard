@@ -104,10 +104,11 @@ hr,
     flex: 0 1 100%;
     max-width: 100%;
   }
-  @for $i from 3 through 9 {
+  @for $i from 3 through 8 {
     &.columns-#{$i} .blocks-gallery-item {
       flex: 0 1 (100% / $i);
       max-width: (100% / $i);
+      margin: 0;
     }
   }
   &.is-cropped {
