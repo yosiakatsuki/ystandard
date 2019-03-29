@@ -115,6 +115,10 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 
 ### v2.x.x
+- 2.14.1 : 2019/03/29
+  - 不具合修正
+    - Gutenbergのギャラリーブロック表示不具合修正
+    - Font Awesome(js)の疑似要素検索オプションが追加されない点の修正
 - 2.14.0 : 2019/03/24
   - 機能追加
     - Font Awesome読み込み方式選択機能追加、JavaScript読み込み(SVG)をデフォルトとして変更
