@@ -30,17 +30,17 @@ function ys_enqueue_scripts() {
 		/**
 		 * Font Awesomeの読み込み
 		 */
-		wp_add_inline_script(
-			'font-awesome-js',
-			'FontAwesomeConfig = { searchPseudoElements: true };',
-			'before'
-		);
 		wp_enqueue_script(
 			'font-awesome-js',
 			ys_get_font_awesome_js_url(),
 			array(),
 			ys_get_font_awesome_js_ver(),
 			true
+		);
+		wp_add_inline_script(
+			'font-awesome-js',
+			'FontAwesomeConfig = { searchPseudoElements: true };',
+			'before'
 		);
 	}
 }
