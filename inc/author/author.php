@@ -118,43 +118,39 @@ if ( ! function_exists( 'ys_get_author_sns_list' ) ) {
 		 * キーがmeta key,valueがfontawesomeのクラス
 		 */
 		$sns_key = array(
-			'url'           => array(
+			'url'          => array(
 				'icon'  => 'fas fa-globe-asia',
 				'color' => 'globe',
 			),
-			'ys_twitter'    => array(
+			'ys_twitter'   => array(
 				'icon'  => 'fab fa-twitter',
 				'color' => 'twitter',
 			),
-			'ys_facebook'   => array(
+			'ys_facebook'  => array(
 				'icon'  => 'fab fa-facebook-f',
 				'color' => 'facebook',
 			),
-			'ys_googleplus' => array(
-				'icon'  => 'fab fa-google-plus-g',
-				'color' => 'google-plus',
-			),
-			'ys_instagram'  => array(
+			'ys_instagram' => array(
 				'icon'  => 'fab fa-instagram',
 				'color' => 'instagram',
 			),
-			'ys_tumblr'     => array(
+			'ys_tumblr'    => array(
 				'icon'  => 'fab fa-tumblr',
 				'color' => 'tumblr',
 			),
-			'ys_youtube'    => array(
+			'ys_youtube'   => array(
 				'icon'  => 'fab fa-youtube',
 				'color' => 'youtube-play',
 			),
-			'ys_github'     => array(
+			'ys_github'    => array(
 				'icon'  => 'fab fa-github',
 				'color' => 'github',
 			),
-			'ys_pinterest'  => array(
+			'ys_pinterest' => array(
 				'icon'  => 'fab fa-pinterest',
 				'color' => 'pinterest',
 			),
-			'ys_linkedin'   => array(
+			'ys_linkedin'  => array(
 				'icon'  => 'fab fa-linkedin',
 				'color' => 'linkedin',
 			),
