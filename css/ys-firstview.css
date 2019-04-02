@@ -2168,7 +2168,8 @@ figcaption {
 	margin: 0;
 }
 
-.entry-list__meta i {
+.entry-list__meta i,
+.entry-list__meta svg {
 	margin-right: 5px;
 }
 
