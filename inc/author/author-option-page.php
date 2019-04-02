@@ -15,14 +15,14 @@
  * @return array
  */
 function ys_add_contact_methods( $wb ) {
-	$wb['ys_twitter']    = 'Twitter';
-	$wb['ys_facebook']   = 'Facebook';
-	$wb['ys_instagram']  = 'Instargram';
-	$wb['ys_tumblr']     = 'Tumblr';
-	$wb['ys_youtube']    = 'Youtube';
-	$wb['ys_github']     = 'GitHub';
-	$wb['ys_pinterest']  = 'Pinterest';
-	$wb['ys_linkedin']   = 'LinkedIn';
+	$wb['ys_twitter']   = 'Twitter';
+	$wb['ys_facebook']  = 'Facebook';
+	$wb['ys_instagram'] = 'Instargram';
+	$wb['ys_tumblr']    = 'Tumblr';
+	$wb['ys_youtube']   = 'Youtube';
+	$wb['ys_github']    = 'GitHub';
+	$wb['ys_pinterest'] = 'Pinterest';
+	$wb['ys_linkedin']  = 'LinkedIn';
 
 	return $wb;
 }
