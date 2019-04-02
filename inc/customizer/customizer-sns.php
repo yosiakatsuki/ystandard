@@ -256,16 +256,6 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 		)
 	);
 	/**
-	 * Google+
-	 */
-	$ys_customizer->add_checkbox(
-		array(
-			'id'      => 'ys_sns_share_button_googlepuls',
-			'default' => 1,
-			'label'   => 'Google+',
-		)
-	);
-	/**
 	 * Pocket
 	 */
 	$ys_customizer->add_checkbox(
@@ -470,16 +460,6 @@ function ys_customizer_sns_add_sns_follow( $wp_customize ) {
 		)
 	);
 	/**
-	 * Facebookページ
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_subscribe_url_googleplus',
-			'default' => '',
-			'label'   => 'Google+',
-		)
-	);
-	/**
 	 * Feedly
 	 */
 	$ys_customizer->add_url(
@@ -528,16 +508,6 @@ function ys_customizer_sns_add_footer_sns_follow( $wp_customize ) {
 			'id'      => 'ys_follow_url_facebook',
 			'default' => '',
 			'label'   => 'Facebook',
-		)
-	);
-	/**
-	 * Google+
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_google_plus',
-			'default' => '',
-			'label'   => 'Google+',
 		)
 	);
 	/**

@@ -38,12 +38,6 @@ if ( ! function_exists( 'ys_get_share_button_data' ) ) {
 			$data[] = ys_get_share_button_data_hatenabookmark( $share_url, $share_title );
 		}
 		/**
-		 * Google+
-		 */
-		if ( apply_filters( 'ys_show_share_button_googlepuls', ys_get_option( 'ys_sns_share_button_googlepuls' ) ) ) {
-			$data[] = ys_get_share_button_data_google_plus( $share_url, $share_title );
-		}
-		/**
 		 * Pocket
 		 */
 		if ( apply_filters( 'ys_show_share_button_pocket', ys_get_option( 'ys_sns_share_button_pocket' ) ) ) {
@@ -137,25 +131,6 @@ if ( ! function_exists( 'ys_get_share_button_data_hatenabookmark' ) ) {
 		return array(
 			'type'        => esc_attr( 'hatenabookmark' ),
 			'icon'        => esc_attr( 'ys-icon icon-hatenabookmark' ),
-			'url'         => esc_url_raw( $share_url ),
-			'button-text' => esc_html( $button_text ),
-		);
-	}
-}
-
-if ( ! function_exists( 'ys_get_share_button_data_google_plus' ) ) {
-	/**
-	 * シェアボタン用データ : Google+
-	 *
-	 * @param string $share_url url.
-	 * @param string $share_title title.
-	 */
-	function ys_get_share_button_data_google_plus( $share_url, $share_title ) {
-		$share_url   = 'https://plus.google.com/share?url=' . $share_url;
-		$button_text = apply_filters( 'ys_googleplus_button_text', 'Google+' );
-		return array(
-			'type'        => esc_attr( 'google-plus' ),
-			'icon'        => esc_attr( 'fab fa-google-plus-g' ),
 			'url'         => esc_url_raw( $share_url ),
 			'button-text' => esc_html( $button_text ),
 		);

@@ -17,7 +17,6 @@
 function ys_add_contact_methods( $wb ) {
 	$wb['ys_twitter']    = 'Twitter';
 	$wb['ys_facebook']   = 'Facebook';
-	$wb['ys_googleplus'] = 'Google+';
 	$wb['ys_instagram']  = 'Instargram';
 	$wb['ys_tumblr']     = 'Tumblr';
 	$wb['ys_youtube']    = 'Youtube';
