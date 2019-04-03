@@ -100,7 +100,6 @@ function ys_get_option_default( $name ) {
 		'ys_sns_share_button_twitter'               => 1, // Twitter.
 		'ys_sns_share_button_facebook'              => 1, // Facebook.
 		'ys_sns_share_button_hatenabookmark'        => 1, // はてブ.
-		'ys_sns_share_button_googleplus'            => 1, // Google+.
 		'ys_sns_share_button_pocket'                => 1, // Pocket.
 		'ys_sns_share_button_line'                  => 1, // LINE.
 		'ys_sns_share_button_feedly'                => 1, // Feedly.
@@ -116,14 +115,12 @@ function ys_get_option_default( $name ) {
 		// 購読ボタン設定.
 		'ys_subscribe_url_twitter'                  => '', // Twitterフォローリンク.
 		'ys_subscribe_url_facebook'                 => '', // Facebookページフォローリンク.
-		'ys_subscribe_url_googleplus'               => '', // Google＋ページフォローリンク.
 		'ys_subscribe_url_feedly'                   => '', // Feedlyフォローリンク.
 		'ys_subscribe_col_sp'                       => '2', // SP表示列数.
 		'ys_subscribe_col_pc'                       => '4', // PC表示列数.
 		// フッターSNSフォローリンク.
 		'ys_follow_url_twitter'                     => '', // TwitterフォローURL.
 		'ys_follow_url_facebook'                    => '', // facebookフォローURL.
-		'ys_follow_url_google_plus'                 => '', // google+フォローURL.
 		'ys_follow_url_instagram'                   => '', // instagramフォローURL.
 		'ys_follow_url_tumblr'                      => '', // tumblrフォローURL.
 		'ys_follow_url_youtube'                     => '', // YouTubeフォローURL.

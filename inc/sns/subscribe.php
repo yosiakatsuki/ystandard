@@ -38,17 +38,6 @@ if ( ! function_exists( 'ys_get_subscribe_buttons' ) ) {
 			);
 		}
 		/**
-		 * Google +
-		 */
-		if ( ys_get_option( 'ys_subscribe_url_googleplus' ) ) {
-			$subscribe['Google+'] = array(
-				'class' => 'google-plus',
-				'icon'  => 'fab fa-google-plus-g',
-				'text'  => 'Google+',
-				'url'   => ys_get_option( 'ys_subscribe_url_googleplus' ),
-			);
-		}
-		/**
 		 * Feedly
 		 */
 		if ( ys_get_option( 'ys_subscribe_url_feedly' ) ) {

@@ -26,7 +26,6 @@ function ys_the_sns_share_button( $headline = '' ) {
 		'twitter_related_user' => ys_get_option( 'ys_sns_share_tweet_related_account' ),
 		'facebook'             => ys_get_option( 'ys_sns_share_button_facebook' ),
 		'hatenabookmark'       => ys_get_option( 'ys_sns_share_button_hatenabookmark' ),
-		'googleplus'           => ys_get_option( 'ys_sns_share_button_googleplus' ),
 		'pocket'               => ys_get_option( 'ys_sns_share_button_pocket' ),
 		'line'                 => ys_get_option( 'ys_sns_share_button_line' ),
 		'feedly'               => ys_get_option( 'ys_sns_share_button_feedly' ),
