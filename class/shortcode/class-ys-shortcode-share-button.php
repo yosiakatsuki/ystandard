@@ -33,7 +33,6 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 			'twitter'              => true,
 			'facebook'             => true,
 			'hatenabookmark'       => true,
-			'googleplus'           => true,
 			'pocket'               => true,
 			'line'                 => true,
 			'feedly'               => true,
@@ -128,17 +127,6 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 				'icon-hatenabookmark',
 				'https://b.hatena.ne.jp/add?mode=confirm&url=' . $this->share_url,
 				'はてブ'
-			);
-		}
-		/**
-		 * Google+
-		 */
-		if ( $this->is_active_sns_type( 'googleplus' ) ) {
-			$data['google-plus'] = $this->get_button_data(
-				'google-plus',
-				'fab fa-google-plus-g',
-				'https://plus.google.com/share?url=' . $this->share_url,
-				'Google+'
 			);
 		}
 		/**

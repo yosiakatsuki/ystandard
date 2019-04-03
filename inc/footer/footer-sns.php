@@ -13,47 +13,42 @@ if ( ! function_exists( 'ys_get_footer_sns_list' ) ) {
 	 */
 	function ys_get_footer_sns_list() {
 		$sns = array(
-			'twitter'     => array(
+			'twitter'   => array(
 				'class'      => 'twitter',
 				'option_key' => 'twitter',
 				'icon-class' => 'fab fa-twitter',
 			),
-			'facebook'    => array(
+			'facebook'  => array(
 				'class'      => 'facebook',
 				'option_key' => 'facebook',
 				'icon-class' => 'fab fa-facebook-f',
 			),
-			'google-plus' => array(
-				'class'      => 'google-plus',
-				'option_key' => 'google-plus',
-				'icon-class' => 'fab fa-google-plus-g',
-			),
-			'instagram'   => array(
+			'instagram' => array(
 				'class'      => 'instagram',
 				'option_key' => 'instagram',
 				'icon-class' => 'fab fa-instagram',
 			),
-			'tumblr'      => array(
+			'tumblr'    => array(
 				'class'      => 'tumblr',
 				'option_key' => 'tumblr',
 				'icon-class' => 'fab fa-tumblr',
 			),
-			'youtube'     => array(
+			'youtube'   => array(
 				'class'      => 'youtube',
 				'option_key' => 'youtube',
 				'icon-class' => 'fab fa-youtube',
 			),
-			'github'      => array(
+			'github'    => array(
 				'class'      => 'github',
 				'option_key' => 'github',
 				'icon-class' => 'fab fa-github',
 			),
-			'pinterest'   => array(
+			'pinterest' => array(
 				'class'      => 'pinterest',
 				'option_key' => 'pinterest',
 				'icon-class' => 'fab fa-pinterest-p',
 			),
-			'linkedin'    => array(
+			'linkedin'  => array(
 				'class'      => 'linkedin',
 				'option_key' => 'linkedin',
 				'icon-class' => 'fab fa-linkedin-in',
@@ -73,6 +68,7 @@ if ( ! function_exists( 'ys_get_footer_sns_list' ) ) {
 				$list[] = $option;
 			}
 		}
+
 		return apply_filters( 'ys_get_footer_sns_list', $list );
 	}
 }
