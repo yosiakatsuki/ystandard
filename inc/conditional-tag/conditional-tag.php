@@ -245,25 +245,6 @@ if ( ! function_exists( 'ys_is_one_column' ) ) {
 		return apply_filters( 'ys_is_one_column', $one_colmun );
 	}
 }
-/**
- * ワンカラムテンプレート : アイキャッチ表示タイプがワンカラムか
- *
- * @return bool
- */
-function ys_is_one_column_thumbnail_type() {
-	$result = false;
-	if ( ys_is_amp() ) {
-		if ( 'full' == ys_get_option( 'ys_amp_thumbnail_type' ) ) {
-			$result = true;
-		}
-	} else {
-		if ( 'full' == ys_get_option( 'ys_design_one_col_thumbnail_type' ) ) {
-			$result = true;
-		}
-	}
-
-	return apply_filters( 'ys_is_one_column_thumbnail_type', $result );
-}
 
 /**
  * アイキャッチ表示タイプがフル幅か
@@ -462,6 +443,9 @@ function ys_is_active_oembed() {
  */
 function ys_is_active_custom_header() {
 	$result = false;
+	/**
+	 * カスタムヘッダーの確認
+	 */
 	if ( ! ys_is_amp() ) {
 		if ( ys_is_top_page() ) {
 			if ( ys_has_header_image() ) {
@@ -473,6 +457,13 @@ function ys_is_active_custom_header() {
 		} elseif ( ys_get_option( 'ys_wp_header_media_all_page' ) ) {
 			$result = true;
 		}
+	}
+
+	/**
+	 * フル幅サムネイルの確認
+	 */
+	if ( is_singular() && ys_is_full_width_thumbnail() ) {
+		$result = true;
 	}
 
 	return apply_filters( 'ys_is_active_custom_header', $result );

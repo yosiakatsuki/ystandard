@@ -1070,13 +1070,6 @@ input[type="button"] {
   font-size: 1.5rem;
   color: #757575; }
 
-.full-thumbnail img,
-.full-thumbnail amp-img {
-  width: 100%; }
-
-.singular-date__icon {
-  margin-right: .25rem; }
-
 .singular-date__update {
   margin-left: .5rem; }
 
@@ -1095,6 +1088,10 @@ input[type="button"] {
   color: #fff; }
   .site-footer a {
     color: #fff; }
+
+.ys-custom-header--full-thumb img,
+.ys-custom-header--full-thumb amp-img {
+  width: 100%; }
 
 .btn {
   display: inline-block;
