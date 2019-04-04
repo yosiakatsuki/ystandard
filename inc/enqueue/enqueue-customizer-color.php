@@ -258,15 +258,15 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * 背景
 	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.color__nav-bg--pc',
-			'.global-nav__sub-menu li',
-		),
-		array(
-			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_bg_pc' ),
-		)
-	);
+//	$css .= ys_customizer_create_inline_css(
+//		array(
+//			'.color__nav-bg--pc',
+//			'.global-nav__sub-menu li',
+//		),
+//		array(
+//			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_bg_pc' ),
+//		)
+//	);
 	/**
 	 * 文字
 	 */

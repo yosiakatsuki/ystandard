@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-if ( ! ys_is_active_custom_header() ) {
+if ( ! ys_is_active_custom_header() && ! ys_is_full_width_thumbnail() ) {
 	return;
 }
 ?>
