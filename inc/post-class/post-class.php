@@ -14,7 +14,7 @@
  *
  * @return array
  */
-function ys_ystd_post_class( $classes ) {
+function ys_post_class( $classes ) {
 	/**
 	 * [hentryの削除]
 	 */
@@ -33,7 +33,37 @@ function ys_ystd_post_class( $classes ) {
 	return $classes;
 }
 
-add_filter( 'post_class', 'ys_ystd_post_class' );
+add_filter( 'post_class', 'ys_post_class' );
 
+/**
+ * Single,Pageで振り分けるクラスを作成する
+ *
+ * @param string $class 作成するクラス.
+ *
+ */
+function ys_the_singular_class( $class ) {
+	echo ys_get_singular_class( $class );
+}
 
+/**
+ * Single,Pageで振り分けるクラスを作成する
+ *
+ * @param string $class 作成するクラス.
+ *
+ * @return string
+ */
+function ys_get_singular_class( $class ) {
+	$prefix = '';
+	if ( is_single() ) {
+		$prefix = 'single';
+	} elseif ( is_page() ) {
+		$prefix = 'page';
+	}
+	$prefix = apply_filters( 'ys_get_singular_class_prefix', $prefix );
+	if ( '' !== $prefix ) {
+		$prefix .= '__';
+	}
+
+	return $prefix . $class;
+}
 
