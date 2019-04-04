@@ -71,10 +71,6 @@ if ( ys_is_amp() ) {
 	 * カスタムヘッダー
 	 */
 	get_template_part( 'template-parts/header/custom-header' );
-	/**
-	 * ヒーローエリア
-	 */
-	get_template_part( 'template-parts/hero/hero', ys_get_hero_template() );
 	?>
 	<div id="content" class="site-content site__content">
 <?php
