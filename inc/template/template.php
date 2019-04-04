@@ -61,17 +61,6 @@ function ys_get_entry_footer_template() {
 }
 
 /**
- * ヒーローエリアのテンプレート名取得
- *
- * @return string
- */
-function ys_get_hero_template() {
-	$template = '';
-
-	return apply_filters( 'ys_hero_template', $template );
-}
-
-/**
  * 投稿・固定ページのヘッダーに表示するメタ情報
  */
 function ys_get_singular_header_parts() {
