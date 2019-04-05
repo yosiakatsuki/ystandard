@@ -1090,10 +1090,9 @@ input[type="button"] {
   .site-footer a {
     color: #fff; }
 
-.ys-custom-header--full-thumb img,
-.ys-custom-header--full-thumb amp-img {
-  width: 100%; }
-
+/**
+ * カスタムヘッダー基本クラス
+ */
 .wp-custom-header {
   position: relative; }
   .wp-custom-header img {
@@ -1102,6 +1101,9 @@ input[type="button"] {
     width: 100%;
     margin: 0 auto; }
 
+/**
+ * ビデオ表示
+ */
 .ys-custom-header--video .wp-custom-header {
   width: 100%;
   padding-top: 56.25%; }
@@ -1124,6 +1126,26 @@ input[type="button"] {
   font-size: .8em;
   line-height: 1;
   color: rgba(255, 255, 255, 0.3); }
+
+/**
+ * ヘッダー重ねるタイプ
+ */
+.custom-header--full .site-header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11; }
+
+.custom-header--full.admin-bar .site-header {
+  top: 46px; }
+
+/**
+ * 固定ページ・詳細ページ ヘッダーサムネイル
+ */
+.ys-custom-header--full-thumb img,
+.ys-custom-header--full-thumb amp-img {
+  width: 100%; }
 
 .btn {
   display: inline-block;

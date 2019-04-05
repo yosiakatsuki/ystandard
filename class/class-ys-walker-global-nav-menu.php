@@ -3,7 +3,7 @@
  * グローバルナビゲーション用ワーカー
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -20,11 +20,11 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 	 */
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
-				$t = '';
-				$n = '';
+			$t = '';
+			$n = '';
 		} else {
-				$t = "\t";
-				$n = "\n";
+			$t = "\t";
+			$n = "\n";
 		}
 		$indent = str_repeat( $t, $depth );
 
@@ -32,8 +32,6 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 			'sub-menu',
 			'global-nav__sub-menu',
 			'li-clear',
-			'color__nav-bg--sp',
-			'color__nav-bg--pc',
 		);
 
 		$class_names = join( ' ', apply_filters( 'nav_menu_submenu_css_class', $classes, $args, $depth ) );
@@ -41,6 +39,7 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 
 		$output .= "{$n}{$indent}<ul$class_names>{$n}";
 	}
+
 	/**
 	 * Starts the element output.
 	 *
@@ -52,19 +51,17 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 	 */
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
-				$t = '';
-				$n = '';
+			$t = '';
+			$n = '';
 		} else {
-				$t = "\t";
-				$n = "\n";
+			$t = "\t";
+			$n = "\n";
 		}
 		$indent = ( $depth ) ? str_repeat( $t, $depth ) : '';
 
 		$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
 		$classes[] = 'global-nav__item';
-		$classes[] = 'color__nav-font--pc';
-		$classes[] = 'color__nav-font--sp';
 
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
@@ -87,8 +84,8 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {
 			if ( ! empty( $value ) ) {
-					$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
-					$attributes .= ' ' . $attr . ' ="' . $value . '"';
+				$value      = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				$attributes .= ' ' . $attr . ' ="' . $value . '"';
 			}
 		}
 
@@ -101,7 +98,7 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		$link_after  = empty( $args->link_after ) ? '' : $args->link_after;
 		$after       = empty( $args->after ) ? '' : $args->after;
 
-		$item_output  = $before;
+		$item_output = $before;
 		$item_output .= '<a' . $attributes . '>';
 		$item_output .= $link_before . $title . $link_after;
 		$item_output .= '</a>';

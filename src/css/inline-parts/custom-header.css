@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/**
+ * ヘッダー重ねるタイプ
+ */
+.custom-header--full .site-header,
+.custom-header--full .h-nav.rwd li:hover ul {
+  background-color: ${bg_color}; }
+
+.custom-header--full .hamburger span {
+  background-color: ${text_color}; }
+
+.custom-header--full .h-nav.rwd li:hover:not(.has-child) {
+  border-bottom-color: ${text_color}; }
+
+.custom-header--full .site-header,
+.custom-header--full .header__title a,
+.custom-header--full .header__title a:hover,
+.custom-header--full .header__dscr,
+.custom-header--full .h-nav.rwd .h-nav__main a,
+.custom-header--full .h-nav.rwd .h-nav__main a:hover {
+  color: ${text_color}; }
