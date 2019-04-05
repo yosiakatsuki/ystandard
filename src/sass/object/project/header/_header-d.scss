@@ -4,6 +4,11 @@
       .header__title {
         font-size: 1.8rem;
       }
+      .header__branding {
+        &.-row1 {
+          padding-right: 1rem;
+        }
+      }
     }
   }
 }

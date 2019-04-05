@@ -948,6 +948,9 @@ input[type="button"] {
   margin: 0;
   font-size: .8rem; }
 
+.header__branding.-row1 {
+  padding-right: 4rem; }
+
 .h-nav ul,
 .h-nav li {
   padding: 0;
@@ -1564,7 +1567,9 @@ a.text-sub,
 
 @media screen and (min-width: 600px) {
   .header__title {
-    font-size: 1.8rem; } }
+    font-size: 1.8rem; }
+  .header__branding.-row1 {
+    padding-right: 1rem; } }
 
 @media screen and (min-width: 1025px) {
   .h-nav.rwd {
