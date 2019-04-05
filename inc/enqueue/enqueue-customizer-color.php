@@ -208,14 +208,14 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * 背景
 	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.color__nav-bg--sp',
-		),
-		array(
-			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_bg_sp' ),
-		)
-	);
+//	$css .= ys_customizer_create_inline_css(
+//		array(
+//			'.color__nav-bg--sp',
+//		),
+//		array(
+//			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_bg_sp' ),
+//		)
+//	);
 	/**
 	 * 文字
 	 */

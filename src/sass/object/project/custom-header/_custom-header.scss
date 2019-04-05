@@ -1,16 +1,10 @@
-//
-// カスタムヘッダー
-//
-.ys-custom-header--full-thumb {
-  img,
-  amp-img {
-    width: 100%;
-  }
-}
 
-
+/**
+ * カスタムヘッダー基本クラス
+ */
 .wp-custom-header {
   position: relative;
+
   img {
     display: block;
     height: auto;
@@ -19,7 +13,9 @@
   }
 }
 
-
+/**
+ * ビデオ表示
+ */
 .ys-custom-header--video {
   .wp-custom-header {
     width: 100%;
@@ -49,3 +45,31 @@
   color: rgba(255, 255, 255, 0.3);
 }
 
+/**
+ * ヘッダー重ねるタイプ
+ */
+.custom-header--full {
+  .site-header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+  }
+
+  &.admin-bar .site-header {
+    top: 46px;
+  }
+}
+
+
+
+/**
+ * 固定ページ・詳細ページ ヘッダーサムネイル
+ */
+.ys-custom-header--full-thumb {
+  img,
+  amp-img {
+    width: 100%;
+  }
+}
