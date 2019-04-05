@@ -12,6 +12,11 @@
       margin: 0;
       font-size: .8rem;
     }
+    .header__branding {
+      &.-row1 {
+        padding-right: 4rem;
+      }
+    }
   }
 }
 

@@ -104,7 +104,7 @@ function ys_get_header_col_class( $pos, $class = array() ) {
 	 * 1行タイプ
 	 */
 	if ( 'row1' == $type ) {
-		$classes[] = 'flex__col';
+		$classes[] = 'flex__col--auto';
 	}
 	/**
 	 * 中央寄せタイプ
