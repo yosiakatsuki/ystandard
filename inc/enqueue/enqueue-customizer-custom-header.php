@@ -51,5 +51,21 @@ EOD;
 		$css .= $css_media_full;
 	}
 
+	/**
+	 * カスタマイザープレビュー用
+	 */
+	if ( is_customize_preview() ) {
+		$css_customize_preview = <<<EOD
+.customize-partial-edit-shortcut-custom_header {
+  top: 0;
+  left: 0;
+}
+EOD;
+		/**
+		 * CSS結合
+		 */
+		$css .= $css_customize_preview;
+	}
+
 	return apply_filters( 'ys_get_customizer_inline_css_custom_header', $css );
 }
