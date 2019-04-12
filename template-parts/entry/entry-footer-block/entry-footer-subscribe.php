@@ -7,4 +7,4 @@
  * @license GPL-2.0+
  */
 
-get_template_part( 'template-parts/subscribe/subscribe' );
+get_template_part( 'template-parts/parts/sns-subscribe' );

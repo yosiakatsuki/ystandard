@@ -182,7 +182,7 @@ function ys_blog_card_get_html( $args ) {
 	 * テンプレート取得
 	 */
 	ob_start();
-	get_template_part( 'template-parts/blog-card/blog-card' );
+	get_template_part( 'template-parts/parts/blog-card' );
 	$template = ob_get_clean();
 	/**
 	 * 置換

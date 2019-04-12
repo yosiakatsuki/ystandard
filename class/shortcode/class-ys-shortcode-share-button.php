@@ -69,7 +69,7 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 		 * ボタン部分のHTML作成
 		 */
 		ob_start();
-		get_template_part( 'template-parts/sns/share-button', $template_type );
+		get_template_part( 'template-parts/parts/sns-share-button', $template_type );
 		$content = ob_get_clean();
 
 		return parent::get_html( $content );

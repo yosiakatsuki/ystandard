@@ -18,8 +18,6 @@ function ys_get_front_page_template() {
 
 		if ( $page_template ) {
 			$template = str_replace( '.php', '', $page_template );
-		} elseif ( 'normal' !== ys_get_option( 'ys_front_page_type' ) ) {
-			$template = 'template-parts/front-page/' . ys_get_option( 'ys_front_page_type' );
 		}
 	} else {
 		$template = 'home';

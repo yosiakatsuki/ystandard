@@ -59,7 +59,7 @@ function ys_shortcode_author_list( $args ) {
 		$ys_author_temp = $ys_author;
 		$ys_author      = $user->ID;
 		ob_start();
-		get_template_part( 'template-parts/author/profile-box' );
+		get_template_part( 'template-parts/parts/author-box' );
 		$html .= apply_filters( 'ys_shortcode_author_list_html', ob_get_clean(), $ys_author, $id );
 		/**
 		 * 戻す

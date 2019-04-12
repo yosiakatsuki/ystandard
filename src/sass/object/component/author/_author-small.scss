@@ -1,10 +1,10 @@
-.small-author {
+.author-small {
   @at-root {
-    .small-author__name {
+    .author-small__name {
       margin: 0 0 0 .2rem;
     }
 
-    .small-author__figure {
+    .author-small__figure {
       img, amp-img {
         border-radius: 50%;
       }

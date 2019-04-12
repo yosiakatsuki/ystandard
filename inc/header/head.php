@@ -436,7 +436,7 @@ function ys_the_google_anarytics() {
 	 * トラッキング タイプ
 	 */
 	$ga_type = ys_get_option( 'ys_ga_tracking_type' );
-	get_template_part( 'template-parts/google-analytics/' . $ga_type );
+	get_template_part( 'template-parts/parts/ga', $ga_type );
 }
 
 add_action( 'wp_head', 'ys_the_google_anarytics', 99 );

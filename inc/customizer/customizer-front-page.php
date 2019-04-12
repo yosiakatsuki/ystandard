@@ -79,16 +79,4 @@ function ys_customizer_front_page_design( $wp_customize ) {
 			),
 		)
 	);
-	$ys_customizer->add_radio(
-		array(
-			'id'          => 'ys_front_page_type',
-			'default'     => 'normal',
-			'label'       => 'フロントページ作成タイプ（※β版機能）',
-			'description' => 'フロントページ作成方法を変更できます<br><br><ul><li>【ノーマル】通常の投稿と同じように作成</li><li>【DIY】投稿本文でページを作成（アイキャッチ画像・タイトルなど投稿本文以外のものが表示されません）</li></ul>',
-			'choices'     => array(
-				'normal' => 'ノーマル',
-				'diy'    => 'DIY',
-			),
-		)
-	);
 }
