@@ -160,6 +160,15 @@ function ys_customizer_add_apple_touch_icon( $wp_customize ) {
  * @param  WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_add_header_media( $wp_customize ) {
+	/**
+	 * 既存設定をrefreshに
+	 */
+	$wp_customize->get_setting( 'header_video' )->transport          = 'refresh';
+	$wp_customize->get_setting( 'external_header_video' )->transport = 'refresh';
+	$wp_customize->get_setting( 'header_image_data' )->transport     = 'refresh';
+	/**
+	 * YS_Customizer
+	 */
 	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
 	 * ヘッダーメディアショートコード

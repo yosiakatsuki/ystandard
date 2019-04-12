@@ -28,7 +28,7 @@ function ys_has_header_image() {
  */
 function ys_get_custom_header_type() {
 	$type = 'image';
-	if ( is_header_video_active() && ( has_header_video() || is_customize_preview() ) ) {
+	if ( is_header_video_active() && has_header_video() ) {
 		$type = 'video';
 	}
 	/**
