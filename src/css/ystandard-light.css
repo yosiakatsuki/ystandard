@@ -937,6 +937,27 @@ input[type="button"] {
 .icon-l {
   margin-right: .25rem; }
 
+.pagination {
+  margin-top: 2rem; }
+
+.pagination__item {
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
+  transition: all .3s;
+  margin: 0 .5rem .5rem 0;
+  text-decoration: none; }
+  .pagination__item:hover {
+    text-decoration: none; }
+  .pagination__item:last-child {
+    margin-right: 0; }
+
+.pagination__dot {
+  width: auto;
+  height: 44px;
+  align-items: flex-end;
+  margin: 0 .5rem .5rem 0; }
+
 .header__title {
   font-size: 1.5rem;
   letter-spacing: .05em; }
@@ -1171,6 +1192,22 @@ input[type="button"] {
 
 .btn--block {
   display: block; }
+
+.btn--color {
+  background-color: #fff;
+  border: 1px solid #222;
+  color: #222; }
+  .btn--color:not(.-no-h):hover {
+    background-color: #292b2c;
+    color: #fff; }
+
+.btn--color-r {
+  background-color: #222;
+  border: 1px solid #fff;
+  color: #fff; }
+  .btn--color-r:not(.-no-h):hover {
+    background-color: #fff;
+    color: #292b2c; }
 
 .text--sm {
   font-size: .8em; }

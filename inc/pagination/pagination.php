@@ -3,7 +3,7 @@
  * ページネーション
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -12,6 +12,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 	 * ページネーション用データ取得
 	 *
 	 * @param integer $range 現在ページの前後に何ページリンクを出力するか.
+	 *
 	 * @return array
 	 */
 	function ys_get_pagination( $range = 1 ) {
@@ -48,18 +49,20 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 			);
 			$pagination[] = ys_set_pagination_item(
 				'…',
-				''
+				'',
+				'pagination__dot'
 			);
 		}
 		/**
 		 * 各ページへのリンク作る
 		 */
-		for ( $i = 1; $i <= $total; $i++ ) {
+		for ( $i = 1; $i <= $total; $i ++ ) {
 			if ( $current - $range <= $i && $i <= $current + $range ) {
 				if ( $i == $current ) {
 					$pagination[] = ys_set_pagination_item(
 						$i,
 						'',
+						'pagination__item -current btn--color-r -no-h',
 						true
 					);
 				} else {
@@ -76,7 +79,8 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		if ( $current + $range + 1 < $total ) {
 			$pagination[] = ys_set_pagination_item(
 				'…',
-				''
+				'',
+				'pagination__dot'
 			);
 			$pagination[] = ys_set_pagination_item(
 				$total,
@@ -92,22 +96,29 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 				get_pagenum_link( $current + 1 )
 			);
 		}
+
 		return apply_filters( 'ys_get_pagination', $pagination );
 	}
 }
 /**
  * ページネーション用配列作成
  *
- * @param string  $text テキスト.
- * @param string  $url リンクURL.
- * @param boolean $current カレントかどうか.
+ * @param string  $text      テキスト.
+ * @param string  $url       リンクURL.
+ * @param string  $class_opt 共通以外のクラス指定.
+ * @param boolean $current   カレントかどうか.
+ *
  * @return array
  */
-function ys_set_pagination_item( $text, $url, $current = false ) {
-	$class = 'pagination__item';
-	if ( $current ) {
-		$class .= ' pagination__item--current';
+function ys_set_pagination_item( $text, $url, $class_opt = '', $current = false ) {
+	$class = 'pagination__item btn--color';
+	/**
+	 * クラス指定
+	 */
+	if ( '' != $class_opt ) {
+		$class = $class_opt;
 	}
+
 	return array(
 		'text'  => $text,
 		'url'   => $url,

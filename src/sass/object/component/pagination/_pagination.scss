@@ -1,0 +1,27 @@
+//
+// pagination
+//
+.pagination {
+  margin-top: 2rem;
+}
+
+.pagination__item {
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
+  transition: all .3s;
+  margin: 0 .5rem .5rem 0;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+  &:last-child {
+    margin-right: 0;
+  }
+}
+.pagination__dot {
+  width: auto;
+  height: 44px;
+  align-items: flex-end;
+  margin: 0 .5rem .5rem 0;
+}
