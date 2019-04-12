@@ -36,7 +36,7 @@
 		/**
 		 * ページネーション
 		 */
-		get_template_part( 'template-parts/pagination/pagination' );
+		get_template_part( 'template-parts/parts/pagination' );
 		?>
 	<?php else : ?>
 		<?php get_template_part( 'template-parts/content/none' ); ?>
