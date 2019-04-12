@@ -14,9 +14,9 @@ if ( ! ys_is_display_author_data() ) {
 	return;
 }
 ?>
-<div class="small-author flex flex--a-center">
-	<figure class="small-author__figure">
+<div class="author-small flex flex--a-center">
+	<figure class="author-small__figure">
 		<?php ys_the_author_avatar( false, 24 ); ?>
 	</figure>
-	<p class="small-author__name"><?php ys_the_author_name(); ?></p>
+	<p class="author-small__name"><?php ys_the_author_name(); ?></p>
 </div><!-- .entry-list__author -->

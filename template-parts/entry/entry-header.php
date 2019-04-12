@@ -15,7 +15,7 @@ get_template_part( 'template-parts/entry/entry-meta' );
  * シェアボタン
  */
 if ( ys_is_active_sns_share_on_header() ) {
-	get_template_part( 'template-parts/sns/share-button' );
+	get_template_part( 'template-parts/parts/sns-share-button' );
 }
 /**
  * 広告表示

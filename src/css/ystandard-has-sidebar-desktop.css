@@ -887,10 +887,10 @@ hr {
   font-size: 3em;
   line-height: 1; }
 
-.small-author__name {
+.author-small__name {
   margin: 0 0 0 .2rem; }
 
-.small-author__figure img, .small-author__figure amp-img {
+.author-small__figure img, .author-small__figure amp-img {
   border-radius: 50%; }
 
 input,

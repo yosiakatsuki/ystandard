@@ -64,7 +64,7 @@ function ys_shortcode_author( $args ) {
 	 * バッファリング
 	 */
 	ob_start();
-	get_template_part( 'template-parts/author/profile-box' );
+	get_template_part( 'template-parts/parts/author-box' );
 	$html = ob_get_clean();
 	/**
 	 * 投稿者情報を戻す
