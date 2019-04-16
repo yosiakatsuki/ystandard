@@ -30,7 +30,7 @@ $current_url = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $
 		<h3><span class="orbitron">yStandard</span>情報</h3>
 		<p>
 			<span class="ys-info-h"><span class="orbitron">yStandard</span>本体</span>: <?php echo ys_get_theme_version( true ); ?>
-			<?php if ( get_template() != get_stylesheet() ) : ?>
+			<?php if ( get_template() !== get_stylesheet() ) : ?>
 				<br><span class="ys-info-h">子テーマ</span>: <?php echo ys_get_theme_version(); ?>
 			<?php endif; ?>
 		</p>
