@@ -34,7 +34,7 @@ if ( ! function_exists( 'ys_get_the_category' ) ) {
 	 * @return array
 	 */
 	function ys_get_the_category( $count = 0, $link = true, $post_id = 0 ) {
-		$post_id    = 0 == $post_id ? get_the_ID() : $post_id;
+		$post_id    = 0 === $post_id ? get_the_ID() : $post_id;
 		$categories = get_the_category( $post_id );
 		$list       = array();
 		/**
@@ -45,7 +45,7 @@ if ( ! function_exists( 'ys_get_the_category' ) ) {
 				$cat_main = array();
 				$cat_sub  = array();
 				foreach ( $categories as $category ) {
-					if ( single_cat_title( '', false ) == $category->name ) {
+					if ( single_cat_title( '', false ) === $category->name ) {
 						$cat_main[] = $category;
 					} else {
 						$cat_sub[] = $category;

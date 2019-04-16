@@ -16,7 +16,7 @@ if ( ! function_exists( 'ys_get_the_tag' ) ) {
 	 * @param int     $post_id post ID.
 	 */
 	function ys_get_the_tag( $count = 0, $link = true, $post_id = 0 ) {
-		$post_id = 0 == $post_id ? get_the_ID() : $post_id;
+		$post_id = 0 === $post_id ? get_the_ID() : $post_id;
 		$tags    = get_the_tags( $post_id );
 		$list    = array();
 		/**

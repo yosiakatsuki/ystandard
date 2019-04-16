@@ -263,7 +263,7 @@ function ys_get_template_ad_infeed( $num, $template ) {
 		$step  = ys_get_option( 'ys_advertisement_infeed_pc_step' );
 		$limit = ys_get_option( 'ys_advertisement_infeed_pc_limit' );
 	}
-	if ( 0 == ( $num % $step ) && $limit >= ( $num / $step ) ) {
+	if ( 0 === ( $num % $step ) && $limit >= ( $num / $step ) ) {
 		if ( '' !== ys_get_ad_infeed() ) {
 			get_template_part( 'template-parts/advertisement/infeed', $template );
 		}

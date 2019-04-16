@@ -13,7 +13,7 @@ if ( ! function_exists( 'ys_get_front_page_template' ) ) {
 	 */
 	function ys_get_front_page_template() {
 		$type = get_option( 'show_on_front' );
-		if ( 'page' == $type ) {
+		if ( 'page' === $type ) {
 			$template      = 'page';
 			$page_template = get_page_template_slug();
 
