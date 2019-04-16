@@ -115,15 +115,15 @@
 	margin-top: 1em;
 }
 
-.page-links a {
+.post-page-numbers {
 	margin-right: 5px;
 }
 
-.page-links a:last-child {
+.post-page-numbers:last-child {
 	margin-right: 0;
 }
 
-.page-links > .page-links__item {
+.post-page-numbers.current .pagination__item {
 	background-color: #292b2c;
 	color: #fff;
 }

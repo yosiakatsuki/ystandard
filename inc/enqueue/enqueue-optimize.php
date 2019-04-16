@@ -134,7 +134,7 @@ if ( ! function_exists( 'ys_script_loader_tag' ) ) {
 		 */
 		$exclude = apply_filters( 'ys_exclude_add_async_scripts', array() );
 		if ( ! empty( $exclude ) ) {
-			if ( in_array( $handle, $exclude ) ) {
+			if ( in_array( $handle, $exclude, true ) ) {
 				return $tag;
 			}
 		}
@@ -145,7 +145,7 @@ if ( ! function_exists( 'ys_script_loader_tag' ) ) {
 			'ystandard-scripts',
 			'font-awesome-js',
 		);
-		if ( in_array( $handle, $async ) || ys_get_option( 'ys_option_optimize_load_js' ) ) {
+		if ( in_array( $handle, $async, true ) || ys_get_option( 'ys_option_optimize_load_js' ) ) {
 			$tag = str_replace( 'src', 'async defer src', $tag );
 		}
 

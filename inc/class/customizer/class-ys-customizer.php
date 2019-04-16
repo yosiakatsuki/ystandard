@@ -460,11 +460,11 @@ class YS_Customizer {
 	 * @param object $setting setting.
 	 */
 	public static function sanitize_checkbox( $value, $setting ) {
-		if ( 'option' == $setting->manager->get_setting( $setting->id )->type ) {
-			return ( ( isset( $value ) && true == $value ) ? true : '' );
+		if ( 'option' === $setting->manager->get_setting( $setting->id )->type ) {
+			return ( ( isset( $value ) && ( true === $value || '1' === $value ) ) ? true : '' );
 		}
 
-		return ( ( isset( $value ) && true == $value ) ? true : false );
+		return ( ( isset( $value ) && ( true === $value || '1' === $value ) ) ? true : false );
 	}
 
 	/**

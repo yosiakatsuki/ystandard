@@ -57,7 +57,7 @@ if ( ! function_exists( 'ys_get_copyright' ) ) {
  */
 function ys_get_copyright_default() {
 	$year = ys_get_option( 'ys_copyright_year' );
-	if ( '' == $year ) {
+	if ( '' === $year ) {
 		$year = date_i18n( 'Y' );
 	}
 	$url       = esc_url( home_url( '/' ) );

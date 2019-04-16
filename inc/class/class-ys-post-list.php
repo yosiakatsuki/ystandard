@@ -324,7 +324,7 @@ class YS_Post_List {
 					$image      = $this->get_thumbnail( $this->thumbnail_size );
 					$image_type = 'ys-post-list--has-img ys-post-list--' . $this->thumbnail_size;
 					$has_image  = $has_image . ' has-image';
-					if ( 'vertical' == $this->mode ) {
+					if ( 'vertical' === $this->mode ) {
 						$has_image .= ' v-img';
 					}
 				}

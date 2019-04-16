@@ -75,7 +75,7 @@ class YS_Enqueue {
 	 * @param boolean $ver varsion.
 	 */
 	private function set_load_css_array( &$arr, $id, $url, $ver = false ) {
-		$ver        = false == $ver ? '' : $ver;
+		$ver        = false === $ver ? '' : $ver;
 		$arr[ $id ] = array(
 			'id'  => esc_attr( $id ),
 			'url' => esc_url_raw( $url ),
@@ -111,7 +111,7 @@ class YS_Enqueue {
 	 * @param boolean $ver varsion.
 	 */
 	private function set_load_script_array( &$arr, $id, $url, $ver = false ) {
-		$ver        = false == $ver ? '' : $ver;
+		$ver        = false === $ver ? '' : $ver;
 		$arr[ $id ] = array(
 			'id'  => esc_attr( $id ),
 			'url' => esc_url_raw( $url ),

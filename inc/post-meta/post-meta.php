@@ -105,13 +105,13 @@ function ys_update_post_meta( $new_status, $old_status, $post ) {
 	/**
 	 * 予約済み→公開は何もしない
 	 */
-	if ( 'future' == $old_status && 'publish' == $new_status ) {
+	if ( 'future' === $old_status && 'publish' === $new_status ) {
 		return;
 	}
 	/**
 	 * クイック編集
 	 */
-	if ( isset( $_POST['action'] ) && 'inline-save' == $_POST['action'] ) {
+	if ( isset( $_POST['action'] ) && 'inline-save' === $_POST['action'] ) {
 		return;
 	}
 	add_action( 'save_post', 'ys_save_post' );
