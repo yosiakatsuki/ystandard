@@ -17,7 +17,7 @@ if ( ! function_exists( 'ys_document_title_separator' ) ) {
 	 */
 	function ys_document_title_separator( $sep ) {
 		$sep_option = ys_get_option( 'ys_title_separate' );
-		if ( '' != $sep_option ) {
+		if ( '' !== $sep_option ) {
 			$sep = $sep_option;
 		}
 
@@ -150,7 +150,7 @@ if ( ! function_exists( 'ys_excerpt_more' ) ) {
 	 */
 	function ys_excerpt_more( $more ) {
 		$more_str = ' …';
-		if ( 0 == ys_excerpt_length() ) {
+		if ( 0 === ys_excerpt_length() ) {
 			$more_str = '';
 		}
 
@@ -170,10 +170,10 @@ if ( ! function_exists( 'ys_get_the_custom_excerpt' ) ) {
 	 * @return string
 	 */
 	function ys_get_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
-		if ( 0 == $post_id ) {
+		if ( 0 === $post_id ) {
 			$post_id = get_the_ID();
 		}
-		if ( 0 == $length ) {
+		if ( 0 === $length ) {
 			$length = ys_excerpt_length();
 		}
 		$post = get_post( $post_id );

@@ -33,7 +33,7 @@ class YS_Widget_Utility {
 		global $_wp_additional_image_sizes;
 		$sizes = array();
 		foreach ( get_intermediate_image_sizes() as $size ) {
-			if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ) ) ) {
+			if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ), true ) ) {
 				$sizes[ $size ]['width']  = get_option( "{$size}_size_w" );
 				$sizes[ $size ]['height'] = get_option( "{$size}_size_h" );
 			} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
@@ -232,7 +232,7 @@ class YS_Widget_Utility {
 				'hide_empty' => false,
 			)
 		);
-		if ( 0 <> $parent ) {
+		if ( 0 !== $parent ) {
 			$indent .= '　';
 		}
 		foreach ( $terms as $term ) {
@@ -261,7 +261,7 @@ class YS_Widget_Utility {
 	 * @return bool
 	 */
 	public function sanitize_checkbox( $value ) {
-		if ( true == $value || 'true' === $value ) {
+		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
 			return true;
 		} else {
 			return false;

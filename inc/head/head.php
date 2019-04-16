@@ -115,7 +115,7 @@ function ys_the_preload() {
 	/**
 	 * CSS読み込み方式のみCSS読み込み
 	 */
-	if ( 'css' != ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+	if ( 'css' !== ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
 		return;
 	}
 	/**
@@ -342,7 +342,7 @@ if ( ! function_exists( 'ys_the_rel_link' ) ) {
 				 * Next
 				 */
 				if ( $page < $pagecnt ) {
-					$page = 0 == $page ? 1 : $page;
+					$page = 0 === $page ? 1 : $page;
 					printf( '<link rel="next" href="%s" />' . PHP_EOL, ys_get_the_link_page( $page + 1 ) );
 				}
 			}
@@ -378,12 +378,12 @@ if ( ! function_exists( 'ys_get_the_link_page' ) ) {
 	function ys_get_the_link_page( $i ) {
 		global $wp_rewrite;
 		$post = get_post();
-		if ( 1 == $i ) {
+		if ( 1 === $i ) {
 			$url = get_permalink();
 		} else {
-			if ( '' == get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ) ) ) {
+			if ( '' === get_option( 'permalink_structure' ) || in_array( $post->post_status, array( 'draft', 'pending' ), true ) ) {
 				$url = add_query_arg( 'page', $i, get_permalink() );
-			} elseif ( 'page' == get_option( 'show_on_front' ) && get_option( 'page_on_front' ) == $post->ID ) {
+			} elseif ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_on_front' ) === $post->ID ) {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( "$wp_rewrite->pagination_base/" . $i, 'single_paged' );
 			} else {
 				$url = trailingslashit( get_permalink() ) . user_trailingslashit( $i, 'single_paged' );

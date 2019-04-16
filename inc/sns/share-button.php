@@ -75,12 +75,12 @@ if ( ! function_exists( 'ys_get_share_button_data_twitter' ) ) {
 	function ys_get_share_button_data_twitter( $share_url, $share_title ) {
 		$tweet_via         = '';
 		$tweet_via_account = apply_filters( 'ys_share_tweet_via_account', ys_get_option( 'ys_sns_share_tweet_via_account' ) );
-		if ( 1 == ys_get_option( 'ys_sns_share_tweet_via' ) && '' != $tweet_via_account ) {
+		if ( 1 === ys_get_option( 'ys_sns_share_tweet_via' ) && '' !== $tweet_via_account ) {
 			$tweet_via = '&via=' . $tweet_via_account;
 		}
 		$tweet_related         = '';
 		$tweet_related_account = apply_filters( 'ys_share_tweet_related_account', ys_get_option( 'ys_sns_share_tweet_related_account' ) );
-		if ( '' != $tweet_related_account ) {
+		if ( '' !== $tweet_related_account ) {
 			$tweet_related = '&related=' . $tweet_related_account;
 		}
 		$twitter_share_text  = apply_filters( 'ys_share_twitter_text', $share_title );

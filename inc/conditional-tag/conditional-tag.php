@@ -49,7 +49,7 @@ function ys_check_user_agent( $ua ) {
  * @return bool
  */
 function ys_is_login_page() {
-	if ( in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ) ) ) {
+	if ( in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ), true ) ) {
 		return true;
 	} else {
 		return false;
@@ -150,7 +150,7 @@ if ( ! function_exists( 'ys_is_amp_enable' ) ) {
 	function ys_is_amp_enable() {
 		global $post;
 		$result = true;
-		if ( 0 == ys_get_option( 'ys_amp_enable' ) ) {
+		if ( 0 === ys_get_option( 'ys_amp_enable' ) ) {
 			return apply_filters( 'ys_is_amp_enable', false );
 		}
 		if ( ! is_single() ) {
@@ -245,11 +245,11 @@ if ( ! function_exists( 'ys_is_one_column' ) ) {
 function ys_is_one_column_thumbnail_type() {
 	$result = false;
 	if ( ys_is_amp() ) {
-		if ( 'full' == ys_get_option( 'ys_amp_thumbnail_type' ) ) {
+		if ( 'full' === ys_get_option( 'ys_amp_thumbnail_type' ) ) {
 			$result = true;
 		}
 	} else {
-		if ( 'full' == ys_get_option( 'ys_design_one_col_thumbnail_type' ) ) {
+		if ( 'full' === ys_get_option( 'ys_design_one_col_thumbnail_type' ) ) {
 			$result = true;
 		}
 	}
@@ -335,15 +335,15 @@ function ys_is_enable_google_analytics() {
 	}
 	$ga_id     = ys_get_google_anarytics_tracking_id();
 	$ga_id_amp = ys_get_amp_google_anarytics_tracking_id();
-	if ( '' == $ga_id_amp && '' != $ga_id ) {
+	if ( '' === $ga_id_amp && '' !== $ga_id ) {
 		$ga_id_amp = $ga_id;
 	}
 	if ( ys_is_amp() ) {
-		if ( '' == $ga_id_amp ) {
+		if ( '' === $ga_id_amp ) {
 			$result = false;
 		}
 	} else {
-		if ( '' == $ga_id ) {
+		if ( '' === $ga_id ) {
 			$result = false;
 		}
 	}
@@ -381,7 +381,7 @@ function ys_is_active_sidebar_widget() {
 	if ( ys_is_amp() ) {
 		$show_sidebar = false;
 	}
-	if ( ys_is_mobile() && 1 == ys_get_setting( 'ys_show_sidebar_mobile' ) ) {
+	if ( ys_is_mobile() && 1 === ys_get_setting( 'ys_show_sidebar_mobile' ) ) {
 		$show_sidebar = false;
 	}
 	if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
@@ -739,7 +739,7 @@ function ys_is_active_post_paging() {
 function ys_is_post_type_on_admin( $type ) {
 	global $post_type;
 
-	return ( $type == $post_type );
+	return ( $type === $post_type );
 }
 
 /**
@@ -767,7 +767,7 @@ function ys_is_active_slide_menu_search_form() {
  * コンテンツ背景色を使っているか
  */
 function ys_is_use_background_color() {
-	if ( '#ffffff' == ys_customizer_get_color_option( 'ys_color_site_bg' ) ) {
+	if ( '#ffffff' === ys_customizer_get_color_option( 'ys_color_site_bg' ) ) {
 		return false;
 	}
 

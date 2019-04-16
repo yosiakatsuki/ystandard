@@ -490,7 +490,7 @@ function ys_get_option( $name ) {
 function ys_get_copyright_year_option() {
 	$copyright_year = esc_attr( get_option( 'ys_copyright_year', date_i18n( 'Y' ) ) );
 
-	return '' == $copyright_year ? date_i18n( 'Y' ) : $copyright_year;
+	return '' === $copyright_year ? date_i18n( 'Y' ) : $copyright_year;
 }
 
 /**

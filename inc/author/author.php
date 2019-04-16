@@ -178,7 +178,7 @@ if ( ! function_exists( 'ys_get_author_sns_list' ) ) {
  */
 function ys_get_author_sns_item( $key, $icon_class, $color_class, $user_id ) {
 	$url = get_the_author_meta( $key, $user_id );
-	if ( '' == $url ) {
+	if ( '' === $url ) {
 		return false;
 	}
 
@@ -257,7 +257,7 @@ if ( ! function_exists( 'ys_get_author_avatar' ) ) {
 		}
 		$user_id   = ys_check_user_id( $user_id );
 		$author_id = $user_id;
-		if ( false == $user_id ) {
+		if ( false === $user_id ) {
 			$author_id = get_the_author_meta( 'ID' );
 		}
 		$alt           = esc_attr( ys_get_author_display_name() );
@@ -282,7 +282,7 @@ if ( ! function_exists( 'ys_get_author_avatar' ) ) {
 		/**
 		 * カスタムアバターが無ければ通常アバター
 		 */
-		if ( '' == $img ) {
+		if ( '' === $img ) {
 			$img = $user_avatar;
 		}
 		$img = ys_amp_get_amp_image_tag( $img );
