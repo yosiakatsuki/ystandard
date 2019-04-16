@@ -138,11 +138,11 @@ function ys_blog_card_get_html( $args ) {
 		return ys_blog_card_create_a_tag( $url );
 	}
 	$cache_refresh = false;
-	if ( 'refresh' == $args['cache'] ) {
+	if ( 'refresh' === $args['cache'] ) {
 		$cache_refresh = true;
 	}
 	$cache_disable = false;
-	if ( 'disable' == $args['cache'] ) {
+	if ( 'disable' === $args['cache'] ) {
 		$cache_disable = true;
 	}
 	/**
@@ -580,7 +580,7 @@ function ys_blog_card_refresh_cache( $new_status, $old_status, $post ) {
 	$status = array(
 		'publish',
 	);
-	if ( in_array( $new_status, $status ) ) {
+	if ( in_array( $new_status, $status, true ) ) {
 		$pattern = '#^https?://[-_.!~*\'()a-zA-Z0-9;/?:@&=+$,%\#]+#im';
 		if ( false !== preg_match_all( $pattern, $post->post_content, $matches ) ) {
 			foreach ( $matches[0] as $url ) {
@@ -600,14 +600,14 @@ add_action( 'transition_post_status', 'ys_blog_card_refresh_cache', 10, 3 );
  * Embedでのブログカードの展開
  *
  * @param string $return HTML.
- * @param object $data Data.
- * @param string $url URL.
+ * @param object $data   Data.
+ * @param string $url    URL.
  *
  * @return null|string|string[]
  */
 function ys_blog_card_oembed_dataparse( $return, $data, $url ) {
 
-	if ( 'rich' == $data->type ) {
+	if ( 'rich' === $data->type ) {
 		if ( 1 === preg_match( ys_blog_card_get_register_pattern(), $url ) ) {
 			/**
 			 * ブログカードの展開

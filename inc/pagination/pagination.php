@@ -27,7 +27,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		/**
 		 * 全部で１ページなら出力しない
 		 */
-		if ( 1 == $total ) {
+		if ( 1 === $total ) {
 			return $pagination;
 		}
 		/**
@@ -57,7 +57,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		 */
 		for ( $i = 1; $i <= $total; $i ++ ) {
 			if ( $current - $range <= $i && $i <= $current + $range ) {
-				if ( $i == $current ) {
+				if ( $i === $current ) {
 					$pagination[] = ys_set_pagination_item(
 						$i,
 						'',

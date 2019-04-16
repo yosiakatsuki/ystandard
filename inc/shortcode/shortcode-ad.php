@@ -38,7 +38,7 @@ function ys_shortcode_ad_block( $args, $content = null ) {
 	if ( '' !== $args['class'] ) {
 		$class = sprintf( ' class="%s"', $args['class'] );
 	}
-	if ( ! is_404() && ! ( is_search() && 0 == $wp_query->found_posts ) && ys_is_active_advertisement() ) {
+	if ( ! is_404() && ! ( is_search() && 0 === $wp_query->found_posts ) && ys_is_active_advertisement() ) {
 		$html = sprintf(
 			'<div%s%s>%s</div>',
 			$id,

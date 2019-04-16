@@ -17,7 +17,7 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 	 */
 	function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
-		if ( 'div' == $args['style'] ) {
+		if ( 'div' === $args['style'] ) {
 			$tag       = 'div';
 			$add_below = 'comment';
 		} else {
@@ -30,8 +30,8 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 			$comment_class[] = 'comment__parent';
 		}
 		?>
-		<<?php echo $tag; ?> <?php comment_class( $comment_class ); ?> id="comment-<?php comment_ID(); ?>">
-		<?php if ( 'div' != $args['style'] ) : ?>
+		<<?php echo $tag; ?><?php comment_class( $comment_class ); ?> id="comment-<?php comment_ID(); ?>">
+		<?php if ( 'div' !== $args['style'] ) : ?>
 			<div id="div-comment-<?php comment_ID(); ?>" class="comment-body comment__body">
 		<?php endif; ?>
 		<div class="comments__header flex flex--j-between">
@@ -41,8 +41,8 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 					?>
 					<figure class="comment__author-image">
 						<?php
-						if ( 0 != $args['avatar_size'] ) {
-							if ( get_the_author_meta( 'user_email' ) == $comment->comment_author_email ) {
+						if ( 0 !== $args['avatar_size'] ) {
+							if ( get_the_author_meta( 'user_email' ) === $comment->comment_author_email ) {
 								echo ys_get_author_avatar( false, $args['avatar_size'] );
 							} else {
 								echo get_avatar( $comment, $args['avatar_size'] );
@@ -56,7 +56,7 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 					/* translators: 1: comment name. */
 					printf( __( '<cite class="comment__name">%s</cite>' ), get_comment_author_link() );
 					?>
-					<?php if ( '0' == $comment->comment_approved ) : ?>
+					<?php if ( '0' === $comment->comment_approved ) : ?>
 						<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></span>
 					<?php endif; ?>
 					<div class="comment__meta-data">
@@ -82,7 +82,7 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 				)
 			);
 			$reply = get_comment_reply_link( $args );
-			if ( '' != $reply ) :
+			if ( '' !== $reply ) :
 				?>
 				<div class="reply comment__reply">
 					<?php echo $reply; ?>
@@ -92,7 +92,7 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
 		<div class="comment-text comment__text">
 			<?php comment_text(); ?>
 		</div>
-		<?php if ( 'div' != $args['style'] ) : ?>
+		<?php if ( 'div' !== $args['style'] ) : ?>
 			</div>
 			<?php
 		endif;
@@ -102,6 +102,7 @@ if ( ! function_exists( 'ys_wp_list_comments_callback' ) ) {
  * 返信ボタンクラスつける
  *
  * @param string $link link.
+ *
  * @return string
  */
 function ys_comment_reply_link( $link ) {
@@ -114,6 +115,7 @@ add_filter( 'comment_reply_link', 'ys_comment_reply_link' );
  * コメント中で使用できるタグを限定
  *
  * @param array $data data.
+ *
  * @return array
  */
 function ys_comment_tags( $data ) {
@@ -155,6 +157,7 @@ if ( ! function_exists( 'ys_comment_form_fields' ) ) {
 	 * コメントフォームの順番を入れ替える
 	 *
 	 * @param array $fields コメントフィールド.
+	 *
 	 * @return array
 	 */
 	function ys_comment_form_fields( $fields ) {

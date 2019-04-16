@@ -26,7 +26,7 @@ function ys_enqueue_scripts() {
 	/**
 	 * アイコンフォント JS読み込み方式
 	 */
-	if ( 'js' == ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+	if ( 'js' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
 		/**
 		 * Font Awesomeの読み込み
 		 */
@@ -154,7 +154,7 @@ function ys_enqueue_styles_normal() {
 	/**
 	 * CSS読み込み方式のみCSS読み込み
 	 */
-	if ( 'css' == ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+	if ( 'css' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
 		/**
 		 * Font Awesomeの読み込み
 		 */
@@ -234,7 +234,7 @@ function ys_enqueue_styles_non_critical_css() {
 	/**
 	 * CSS読み込み方式のみCSS読み込み
 	 */
-	if ( 'css' == ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+	if ( 'css' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
 		/**
 		 * キャッシュが効いたりするのでCDN読み込みにする
 		 * get_template_directory_uri() . '/library/font-awesome/css/font-awesome.min.css',
