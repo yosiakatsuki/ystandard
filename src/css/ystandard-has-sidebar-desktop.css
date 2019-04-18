@@ -1118,7 +1118,8 @@ input[type="button"] {
   border-top: 1px solid transparent;
   color: #fff; }
   .site-footer a {
-    color: #fff; }
+    color: #fff;
+    text-decoration: none; }
 
 .footer-sns {
   margin-top: 1rem; }
@@ -1132,6 +1133,13 @@ input[type="button"] {
   width: 44px;
   height: 44px;
   border-radius: 50%; }
+
+.footer-nav {
+  margin-top: 1rem; }
+  .footer-nav .menu-item {
+    margin-right: 1rem; }
+    .footer-nav .menu-item:last-child {
+      margin-right: 0; }
 
 /**
  * カスタムヘッダー基本クラス
