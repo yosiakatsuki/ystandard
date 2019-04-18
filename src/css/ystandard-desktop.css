@@ -1124,7 +1124,7 @@ input[type="button"] {
     color: #fff;
     text-decoration: none; }
 
-.footer-sns {
+.footer-section {
   margin-top: 1rem; }
 
 .footer-sns__item {
@@ -1137,21 +1137,21 @@ input[type="button"] {
   height: 44px;
   border-radius: 50%; }
 
-.footer-nav {
-  margin-top: 1rem; }
-  .footer-nav .menu-item {
-    margin-right: 1rem; }
-    .footer-nav .menu-item:last-child {
-      margin-right: 0; }
-
-.footer-widget {
-  margin-top: 1rem; }
+.footer-nav .menu-item {
+  margin-right: 1rem; }
+  .footer-nav .menu-item:last-child {
+    margin-right: 0; }
 
 .footer-widget th {
   color: #222; }
 
 .footer-widget .widget_calendar a {
   text-decoration: underline; }
+
+.footer-copy {
+  margin-top: 2rem; }
+  .footer-copy p {
+    margin: 0; }
 
 /**
  * カスタムヘッダー基本クラス

@@ -12,7 +12,7 @@ if ( empty( $sns_list ) ) {
 	return;
 }
 ?>
-<div class="footer-sns">
+<div class="footer-sns footer-section">
 	<ul class="footer-sns__list li-clear flex flex-wrap flex--j-center">
 		<?php
 		foreach ( $sns_list as $value ) :
