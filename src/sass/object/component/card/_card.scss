@@ -6,9 +6,14 @@
       color: $color__text-main;
       text-decoration: none;
       @include box-shadow;
+      transition: all .3s;
 
       &:hover {
-        color: $color__text-main;;
+        color: $color__text-main;
+      }
+
+      &.-hover:hover {
+        @include box-shadow(0, 3px, 40px);
       }
     }
 
