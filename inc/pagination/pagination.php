@@ -79,7 +79,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 			$pagination[] = ys_set_pagination_item(
 				'…',
 				'',
-				'pagination__dot'
+				'pagination__item pagination__dot'
 			);
 			$pagination[] = ys_set_pagination_item(
 				$total,
