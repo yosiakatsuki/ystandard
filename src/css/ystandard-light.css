@@ -1111,6 +1111,9 @@ input[type="button"] {
 .entry__content {
   margin-top: 1.5rem; }
 
+.widget-title {
+  margin-top: 0; }
+
 .site-footer {
   margin-top: 1rem;
   padding-bottom: 1rem;
@@ -1140,6 +1143,15 @@ input[type="button"] {
     margin-right: 1rem; }
     .footer-nav .menu-item:last-child {
       margin-right: 0; }
+
+.footer-widget {
+  margin-top: 1rem; }
+
+.footer-widget th {
+  color: #222; }
+
+.footer-widget .widget_calendar a {
+  text-decoration: underline; }
 
 /**
  * カスタムヘッダー基本クラス
