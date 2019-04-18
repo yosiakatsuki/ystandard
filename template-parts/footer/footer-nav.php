@@ -8,7 +8,7 @@
  */
 
 if ( has_nav_menu( 'footer' ) ) : ?>
-	<nav class="footer-nav footer__section">
+	<nav class="footer-nav footer-section">
 		<?php
 		wp_nav_menu(
 			array(

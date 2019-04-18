@@ -8,7 +8,7 @@
  */
 
 if ( ys_is_active_footer_widgets() ) : ?>
-	<div class="footer-widget flex flex--row footer__section">
+	<div class="footer-widget flex flex--row footer-section">
 		<?php if ( is_active_sidebar( 'footer-left' ) ) : ?>
 			<div class="footer-widget__container footer-widget--left flex__col--1 flex__col--lg-3">
 				<?php dynamic_sidebar( 'footer-left' ); ?>
