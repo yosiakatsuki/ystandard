@@ -769,9 +769,12 @@ hr {
   background-color: #fff;
   color: #222;
   text-decoration: none;
-  box-shadow: 1px 1px 3px rgba(189, 195, 199, 0.7); }
+  box-shadow: 0 3px 15px rgba(189, 195, 199, 0.7);
+  transition: all .3s; }
   .card:hover {
     color: #222; }
+  .card.-hover:hover {
+    box-shadow: 0 3px 40px rgba(189, 195, 199, 0.7); }
 
 .card__content {
   height: 100%; }
@@ -1252,10 +1255,10 @@ a.text-sub,
   zoom: 1; }
 
 .box-shadow {
-  box-shadow: 1px 1px 3px rgba(189, 195, 199, 0.7); }
+  box-shadow: 0 3px 15px rgba(189, 195, 199, 0.7); }
 
 .box-shadow--lg {
-  box-shadow: 3px 3px 5px rgba(189, 195, 199, 0.7); }
+  box-shadow: 3px 3px 15px rgba(189, 195, 199, 0.7); }
 
 .tbl-fixed {
   table-layout: fixed; }

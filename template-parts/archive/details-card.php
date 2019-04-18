@@ -9,11 +9,11 @@
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_post_class() ); ?>>
-	<div class="card card__content">
+	<div class="card -hover card__content">
 		<div class="flex flex--column">
 			<div class="card__img">
 				<div class="archive__image -card img-hover img-scale">
-					<a href="<?php the_permalink(); ?>" class="ratio -r-4-3">
+					<a href="<?php the_permalink(); ?>" class="ratio -r-16-9">
 						<?php if ( has_post_thumbnail() ) : ?>
 							<div class="ratio__item">
 								<figure class="ratio__image">
