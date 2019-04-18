@@ -943,20 +943,21 @@ input[type="button"] {
 .pagination__item {
   width: 44px;
   height: 44px;
-  border-radius: 0;
-  transition: all .3s;
-  margin: 0 .5rem .5rem 0;
-  text-decoration: none; }
+  margin: 0 .25rem .25rem 0;
+  background-color: #e9ecef;
+  color: #222;
+  text-decoration: none;
+  transition: all .3s; }
   .pagination__item:hover {
-    text-decoration: none; }
+    color: #222;
+    opacity: .6; }
   .pagination__item:last-child {
     margin-right: 0; }
-
-.pagination__dot {
-  width: auto;
-  height: 44px;
-  align-items: flex-end;
-  margin: 0 .5rem .5rem 0; }
+  .pagination__item.-current {
+    background-color: #292b2c;
+    color: #fff; }
+    .pagination__item.-current:hover {
+      opacity: 1; }
 
 .header__title {
   font-size: 1.5rem;
