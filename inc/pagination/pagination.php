@@ -27,7 +27,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		/**
 		 * 全部で１ページなら出力しない
 		 */
-		if ( 1 == $total ) {
+		if ( 1 === $total ) {
 			return $pagination;
 		}
 		/**
@@ -50,7 +50,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 			$pagination[] = ys_set_pagination_item(
 				'…',
 				'',
-				'pagination__dot'
+				'pagination__item pagination__dot'
 			);
 		}
 		/**
@@ -58,12 +58,11 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		 */
 		for ( $i = 1; $i <= $total; $i ++ ) {
 			if ( $current - $range <= $i && $i <= $current + $range ) {
-				if ( $i == $current ) {
+				if ( $i === $current ) {
 					$pagination[] = ys_set_pagination_item(
 						$i,
 						'',
-						'pagination__item -current btn--color-r -no-h',
-						true
+						'pagination__item -current'
 					);
 				} else {
 					$pagination[] = ys_set_pagination_item(
@@ -103,21 +102,13 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 /**
  * ページネーション用配列作成
  *
- * @param string  $text      テキスト.
- * @param string  $url       リンクURL.
- * @param string  $class_opt 共通以外のクラス指定.
- * @param boolean $current   カレントかどうか.
+ * @param string $text  テキスト.
+ * @param string $url   リンクURL.
+ * @param string $class 共通以外のクラス指定.
  *
  * @return array
  */
-function ys_set_pagination_item( $text, $url, $class_opt = '', $current = false ) {
-	$class = 'pagination__item btn--color';
-	/**
-	 * クラス指定
-	 */
-	if ( '' != $class_opt ) {
-		$class = $class_opt;
-	}
+function ys_set_pagination_item( $text, $url, $class = 'pagination__item' ) {
 
 	return array(
 		'text'  => $text,
