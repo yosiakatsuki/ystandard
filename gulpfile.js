@@ -87,7 +87,7 @@ gulp.task('webpack', function(){
  */
 gulp.task('bs-init', function() {
   browserSync.init({
-    proxy: "wp-ystandard.local",
+    proxy: "wp-ystandard.lo",
     open : "external",
     port : "3000"
   });
