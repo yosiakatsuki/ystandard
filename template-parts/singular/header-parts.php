@@ -25,3 +25,8 @@ endif;
 if ( ys_is_active_sns_share_on_header() ) {
 	ys_the_sns_share_button();
 }
+
+/**
+ * 広告表示
+ */
+ys_the_ad_entry_header();

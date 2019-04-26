@@ -1,6 +1,6 @@
 /*
 Theme Name:yStandard
-Theme URI: http://ystandard.net
+Theme URI: https://wp-ystandard.com
 Author: yosiakatsuki
 Author URI: http://yosiakatsuki.net
 Description:サイト高速化、Google PageSpeed Insightsでの高得点獲得に重点を置きながら、比較的カスタマイズしやすい形を目指したテーマ
@@ -13,11 +13,7 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
 
-/*
-  子テーマ作るときにぶつかって面倒だから何も入れていませんが、CSS自体は読み込まれます。
-  サイト独自のスタイルの記述（カスタマイズ）にご利用ください。（オリジナルのスタイルを上書きできます）
-
-  テーマで使用しているオリジナルのスタイルシートは./css/ディレクトリにあります。
-    ./css/ys-firstview.css : インライン読み込みさせるスタイル（ファーストビューに関わる部分。「高速化設定」→「CSS読み込み最適化設定」をONにした場合のみ有効）
-    ./css/ys-style.css     : ファーストビュー以外のスタイル
-*/
+/**
+ * 子テーマ作るときにぶつかって面倒だから何も入れていませんが、CSS自体は読み込まれます。
+ * サイト独自のスタイルの記述（カスタマイズ）にご利用ください。（オリジナルのスタイルを上書きできます）
+ */

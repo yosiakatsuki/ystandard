@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name:1カラム
+ * Template Name:1カラム(タイトル・アイキャッチ画像・パンくずなし)
  * Template Post Type:post,page
  * Description:ワンカラムテンプレート
  *

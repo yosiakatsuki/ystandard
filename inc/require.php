@@ -154,6 +154,10 @@ require_once get_template_directory() . '/inc/ogp/ogp.php';
  * ブログカード
  */
 require_once get_template_directory() . '/inc/blog-card/blog-card.php';
+/**
+ * 後々削除
+ */
+require_once get_template_directory() . '/inc/deprecated/deprecated.php';
 if ( is_admin() ) {
 	/**
 	 * テーマ設定画面
