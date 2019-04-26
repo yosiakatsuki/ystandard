@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * TODO:ショートコード化
+ */
 $related_posts = ys_get_related_posts_data();
 if ( empty( $related_posts ) ) {
 	return;

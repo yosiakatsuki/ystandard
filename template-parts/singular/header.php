@@ -7,6 +7,13 @@
  * @license GPL-2.0+
  */
 
+
+/**
+ * 投稿ヘッダー情報無しの場合はスキップ
+ */
+if ( ys_is_hide_post_header() ) {
+	return;
+}
 ?>
 
 <header class="entry-header singular__header <?php ys_the_singular_class( 'header' ); ?>">
@@ -37,7 +44,7 @@
 			);
 			?>
 		</figure><!-- .post-thumbnail -->
-		<?php
+	<?php
 	endif;
 	/**
 	 * 投稿日やシェアボタン等のメタ情報表示

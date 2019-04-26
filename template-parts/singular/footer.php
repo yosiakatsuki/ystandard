@@ -8,7 +8,7 @@
  */
 
 ?>
-<footer class="entry__footer">
+<footer class="entry-footer singular__footer <?php ys_the_singular_class( 'footer' ); ?>">
 	<?php
 	/**
 	 * フッターパーツ呼び出し

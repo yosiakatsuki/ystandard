@@ -37,9 +37,6 @@ function ys_customizer_page( $wp_customize ) {
  */
 function ys_customizer_active_callback_page() {
 	return true;
-
-	// TODO:active_callbackが効かない.
-	return is_page();
 }
 
 /**

@@ -42,9 +42,6 @@ function ys_customizer_post( $wp_customize ) {
  */
 function ys_customizer_active_callback_post() {
 	return true;
-
-	// TODO:active_callbackが効かない.
-	return is_single();
 }
 
 /**
