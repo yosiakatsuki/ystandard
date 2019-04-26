@@ -54,14 +54,13 @@ class YS_Widget_Base extends WP_Widget {
 		 * ウィジェットオプション追加
 		 */
 		$widget_options = array_merge(
-			$widget_options,
-			array( 'customize_selective_refresh' => true )
+			array( 'customize_selective_refresh' => true ),
+			$widget_options
 		);
 		parent::__construct( $id_base, $name, $widget_options, $control_options );
 		/**
 		 * オプション初期値を作成
 		 */
-
 		$this->base_options = array_merge(
 			YS_Shortcode_Base::get_base_attr(),
 			array(
@@ -111,7 +110,8 @@ class YS_Widget_Base extends WP_Widget {
 		 */
 		$this->update_default = $this->default_instance;
 		unset( $this->update_default['end_flag'] );
-		unset( $this->update_default['display_normal'] );
+		unset( $this->update_default['display_pc'] );
+		unset( $this->update_default['display_mobile'] );
 		unset( $this->update_default['display_amp'] );
 	}
 
@@ -122,7 +122,7 @@ class YS_Widget_Base extends WP_Widget {
 		global $_wp_additional_image_sizes;
 		$sizes = array();
 		foreach ( get_intermediate_image_sizes() as $size ) {
-			if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ) ) ) {
+			if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ), true ) ) {
 				$sizes[ $size ]['width']  = get_option( "{$size}_size_w" );
 				$sizes[ $size ]['height'] = get_option( "{$size}_size_h" );
 			} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
@@ -258,14 +258,14 @@ class YS_Widget_Base extends WP_Widget {
 				'hide_empty' => false,
 			)
 		);
-		if ( 0 <> $parent ) {
+		if ( 0 !== $parent ) {
 			$indent .= '　';
 		}
 		foreach ( $terms as $term ) {
 			$result .= sprintf(
 				'<option value="%s" %s>%s</option>',
 				$this->get_select_taxonomy_value( $taxonomy, $term ),
-				selected( in_array( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy ) ),
+				selected( in_array( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy, true ) ),
 				esc_html( $indent . $term->name )
 			);
 			/**
@@ -320,10 +320,12 @@ class YS_Widget_Base extends WP_Widget {
 				</div>
 				<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
 					<div class="ys-admin-section">
-						<h5>通常・AMPの表示選択</h5>
+						<h5>PC・モバイル・AMPの表示選択</h5>
 						<p>
-							<label for="<?php echo $this->get_field_id( 'display_normal' ); ?>">
-								<input type="checkbox" id="<?php echo $this->get_field_id( 'display_normal' ); ?>" name="<?php echo $this->get_field_name( 'display_normal' ); ?>" value="1" <?php checked( $instance['display_normal'], 1 ); ?> />通常ページで表示する</label><br>
+							<label for="<?php echo $this->get_field_id( 'display_pc' ); ?>">
+								<input type="checkbox" id="<?php echo $this->get_field_id( 'display_pc' ); ?>" name="<?php echo $this->get_field_name( 'display_pc' ); ?>" value="1" <?php checked( $instance['display_pc'], 1 ); ?> />PCページで表示する</label><br>
+							<label for="<?php echo $this->get_field_id( 'display_mobile' ); ?>">
+								<input type="checkbox" id="<?php echo $this->get_field_id( 'display_mobile' ); ?>" name="<?php echo $this->get_field_name( 'display_mobile' ); ?>" value="1" <?php checked( $instance['display_mobile'], 1 ); ?> />モバイルページで表示する</label><br>
 							<label for="<?php echo $this->get_field_id( 'display_amp' ); ?>">
 								<input type="checkbox" id="<?php echo $this->get_field_id( 'display_amp' ); ?>" name="<?php echo $this->get_field_name( 'display_amp' ); ?>" value="1" <?php checked( $instance['display_amp'], 1 ); ?> />AMPページで表示する</label>
 						</p>
@@ -342,28 +344,20 @@ class YS_Widget_Base extends WP_Widget {
 	 *
 	 * @return bool
 	 */
-	protected function is_during_the_period( $instance ) {
-		$date_format = YS_Shortcode_Base::get_date_format();
-		$start_date  = DateTime::createFromFormat( $date_format, $instance['start_date'] . ' ' . $instance['start_time'] );
-		$end_date    = new DateTime( $instance['end_date'] . ' ' . $instance['end_time'] );
-		$now_date    = new DateTime( date_i18n( 'Y-m-d H:i:s' ) );
+	protected function is_active_period( $instance ) {
 		/**
 		 * 日付判断
 		 */
-		if ( $now_date < $start_date ) {
-			return false;
-		}
-		if ( $instance['end_flag'] ) {
-			if ( $end_date < $now_date ) {
-				return false;
-			}
-		}
-
-		return true;
+		return YS_Shortcode_Base::is_active_period(
+			$instance['start_date'] . ' ' . $instance['start_time'],
+			$instance['end_date'] . ' ' . $instance['end_time'],
+			$instance['end_flag']
+		);
 	}
 
 	/**
 	 * 特定タクソノミーのみ表示判断
+	 * TODO:タクソノミーの分割機能実装
 	 *
 	 * @param array $instance instance.
 	 *
@@ -391,6 +385,24 @@ class YS_Widget_Base extends WP_Widget {
 	}
 
 	/**
+	 * PC・SP・AMPの判断
+	 *
+	 * @param array $instance instance.
+	 *
+	 * @return bool
+	 */
+	protected function is_active_display_html_type( $instance ) {
+		/**
+		 * 表示タイプ判断
+		 */
+		return YS_Shortcode_Base::is_active_display_html_type(
+			$instance['display_pc'],
+			$instance['display_mobile'],
+			$instance['display_amp']
+		);
+	}
+
+	/**
 	 * 共通部分の設定保存
 	 *
 	 * @param array $new_instance New settings for this instance as input by the user via
@@ -402,9 +414,6 @@ class YS_Widget_Base extends WP_Widget {
 	protected function update_base_options( $new_instance, $old_instance ) {
 		$new_instance = wp_parse_args( $new_instance, $this->update_default );
 		$instance     = $old_instance;
-		/**
-		 * 共通部分の値保存
-		 */
 		/**
 		 * タイトル
 		 */
@@ -418,7 +427,7 @@ class YS_Widget_Base extends WP_Widget {
 		);
 		$instance['start_time'] = $this->sanitize_time(
 			$new_instance['start_time'],
-			$this->default_instance['end_time']
+			$this->default_instance['start_time']
 		);
 		/**
 		 * 掲載終了
@@ -437,9 +446,10 @@ class YS_Widget_Base extends WP_Widget {
 		 */
 		$instance['taxonomy'] = $new_instance['taxonomy'];
 		/**
-		 * 通常・AMP表示
+		 * PC/モバイル・AMP表示
 		 */
-		$instance['display_normal'] = $this->get_checkbox_value( 'display_normal', $new_instance );
+		$instance['display_pc']     = $this->get_checkbox_value( 'display_pc', $new_instance );
+		$instance['display_mobile'] = $this->get_checkbox_value( 'display_mobile', $new_instance );
 		$instance['display_amp']    = $this->get_checkbox_value( 'display_amp', $new_instance );
 
 		return $instance;
@@ -469,7 +479,7 @@ class YS_Widget_Base extends WP_Widget {
 	 * @return bool
 	 */
 	protected function sanitize_checkbox( $value ) {
-		if ( true == $value || 'true' === $value ) {
+		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
 			return true;
 		} else {
 			return false;

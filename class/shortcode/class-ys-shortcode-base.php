@@ -78,7 +78,8 @@ class YS_Shortcode_Base {
 			'display_tax_term'   => '',
 			'display_category'   => '',
 			'display_tag'        => '',
-			'display_normal'     => true,
+			'display_pc'         => true,
+			'display_mobile'     => true,
 			'display_amp'        => true,
 		);
 	}
@@ -166,11 +167,11 @@ class YS_Shortcode_Base {
 		if ( isset( $this->args[ $key ] ) ) {
 			$result = $this->args[ $key ];
 
-			if ( '' != $type ) {
+			if ( '' !== $type ) {
 				/**
 				 * 真・偽で取得
 				 */
-				if ( 'bool' == $type ) {
+				if ( 'bool' === $type ) {
 					if ( 1 === $result || '1' === $result || true === $result || 'true' === $result ) {
 						return true;
 					} else {
@@ -180,10 +181,10 @@ class YS_Shortcode_Base {
 				/**
 				 * 時間で取得
 				 */
-				if ( 'date' == $type ) {
+				if ( 'date' === $type ) {
 					$format = YS_Shortcode_Base::get_date_format();
 					$date   = Datetime::createFromFormat( $format, $result );
-					if ( '' != $result && false === $date ) {
+					if ( '' !== $result && false === $date ) {
 						$this->set_error_message( '日付(' . $key . ')の指定にエラーがあります' );
 					}
 
@@ -215,23 +216,23 @@ class YS_Shortcode_Base {
 		/**
 		 * HTML属性 id,classの作成
 		 */
-		if ( '' != $this->get_param( 'id' ) ) {
+		if ( '' !== $this->get_param( 'id' ) ) {
 			$html_attr .= sprintf( ' id="%s"', esc_attr( $this->get_param( 'id' ) ) );
 		}
-		if ( '' != $this->get_param( 'class' ) ) {
+		if ( '' !== $this->get_param( 'class' ) ) {
 			$html_attr .= sprintf( ' class="%s"', esc_attr( $this->get_param( 'class' ) ) );
 		}
 		/**
 		 * フォーマット判断
 		 */
-		if ( ! $this->is_active_display_html_type() ) {
+		if ( ! $this->_is_active_display_html_type() ) {
 			return '';
 		}
 
 		/**
 		 * 日付判断
 		 */
-		if ( ! $this->is_active_period() ) {
+		if ( ! $this->_is_active_period() ) {
 			return '';
 		}
 
@@ -250,20 +251,40 @@ class YS_Shortcode_Base {
 	 *
 	 * @return bool
 	 */
-	protected function is_active_period() {
+	protected function _is_active_period() {
 		/**
-		 * パラメータ判断
+		 * パラメータ取得＆判断
 		 */
-		$start_date = $this->get_param( 'display_start_date', 'date' );
-		$end_date   = $this->get_param( 'display_end_date', 'date' );
-		$end_flg    = $this->get_param( 'enable_end_date', 'bool' );
+		return YS_Shortcode_Base::is_active_period(
+			$this->get_param( 'display_start_date', 'date' ),
+			$this->get_param( 'display_end_date', 'date' ),
+			$this->get_param( 'enable_end_date', 'bool' )
+		);
+	}
+
+	/**
+	 * 日付の判断
+	 *
+	 * @param string $start_date 開始日時.
+	 * @param string $end_date   終了日時.
+	 * @param bool   $end_flg    終了時刻使用フラグ.
+	 * @param string $format     時刻フォーマット.
+	 *
+	 * @return bool
+	 */
+	public static function is_active_period( $start_date, $end_date, $end_flg, $format = '' ) {
 		/**
 		 * 指定が無ければtrue
 		 */
 		if ( empty( $start_date ) && empty( $end_date ) ) {
 			return true;
 		}
-		$format     = YS_Shortcode_Base::get_date_format();
+		/**
+		 * 日時作成
+		 */
+		if ( empty( $format ) ) {
+			$format = YS_Shortcode_Base::get_date_format();
+		}
 		$start_date = Datetime::createFromFormat( $format, $start_date );
 		$end_date   = Datetime::createFromFormat( $format, $end_date );
 		$now_date   = Datetime::createFromFormat( $format, date_i18n( $format ) );
@@ -292,25 +313,55 @@ class YS_Shortcode_Base {
 		return true;
 	}
 
+
 	/**
-	 * 通常・AMPの判断
+	 * PC・SP・AMPの判断(クラス内)
 	 *
 	 * @return bool
 	 */
-	protected function is_active_display_html_type() {
+	protected function _is_active_display_html_type() {
+		/**
+		 * パラメータ取得＆判断
+		 */
+		return YS_Shortcode_Base::is_active_display_html_type(
+			$this->get_param( 'display_pc', 'bool' ),
+			$this->get_param( 'display_mobile', 'bool' ),
+			$this->get_param( 'display_amp', 'bool' )
+		);
+	}
+
+	/**
+	 * PC・SP・AMPの判断
+	 *
+	 * @param bool $pc     PC.
+	 * @param bool $mobile Mobile.
+	 * @param bool $amp    AMP.
+	 *
+	 * @return bool
+	 */
+	public static function is_active_display_html_type( $pc, $mobile, $amp ) {
 		if ( ys_is_amp() ) {
-			if ( ! $this->get_param( 'display_amp', 'bool' ) ) {
+			if ( ! $amp ) {
 				/**
 				 * AMPフォーマットでAMP NGの場合はfalse
 				 */
 				return false;
 			}
 		} else {
-			if ( ! $this->get_param( 'display_normal', 'bool' ) ) {
-				/**
-				 * 通常フォーマットでNGの場合はfalse
-				 */
-				return false;
+			if ( ys_is_mobile() ) {
+				if ( ! $mobile ) {
+					/**
+					 * 通常フォーマット(SP)でNGの場合はfalse
+					 */
+					return false;
+				}
+			} else {
+				if ( ! $pc ) {
+					/**
+					 * 通常フォーマット(PC)でNGの場合はfalse
+					 */
+					return false;
+				}
 			}
 		}
 
