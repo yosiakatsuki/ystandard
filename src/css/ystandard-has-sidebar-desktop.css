@@ -942,24 +942,35 @@ input[type="button"] {
 
 .pagination {
   margin-top: 2rem; }
+  .pagination a {
+    text-decoration: none; }
 
 .pagination__item {
   width: 44px;
   height: 44px;
-  margin: 0 .25rem .25rem 0;
   background-color: #e9ecef;
   color: #222;
-  text-decoration: none;
   transition: all .3s; }
   .pagination__item:hover {
     color: #222;
     opacity: .6; }
-  .pagination__item:last-child {
+
+.pagination__item,
+.post-page-numbers {
+  margin: 0 .25rem .25rem 0; }
+  .pagination__item:last-child,
+  .post-page-numbers:last-child {
     margin-right: 0; }
-  .pagination__item.-current {
+  .pagination__item.-current,
+  .pagination__item.current .page-links__item,
+  .post-page-numbers.-current,
+  .post-page-numbers.current .page-links__item {
     background-color: #292b2c;
     color: #fff; }
-    .pagination__item.-current:hover {
+    .pagination__item.-current:hover,
+    .pagination__item.current .page-links__item:hover,
+    .post-page-numbers.-current:hover,
+    .post-page-numbers.current .page-links__item:hover {
       opacity: 1; }
 
 .header__title {
