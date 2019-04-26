@@ -124,7 +124,7 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 		/**
 		 * タクソノミー判断
 		 */
-		if ( ! $this->has_term( $instance ) ) {
+		if ( ! $this->is_active_term( $instance ) ) {
 			return;
 		}
 
