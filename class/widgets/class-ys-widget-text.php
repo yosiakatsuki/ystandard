@@ -105,13 +105,22 @@ class YS_Widget_Text extends YS_Widget_Base {
 	 */
 	public function widget( $args, $instance ) {
 		$instance = array_merge( $this->default_instance, $instance );
-		if ( ! $this->is_during_the_period( $instance ) ) {
+		/**
+		 * 日付判断
+		 */
+		if ( ! $this->is_active_period( $instance ) ) {
 			return;
 		}
 		/**
 		 * タクソノミー判断
 		 */
 		if ( ! $this->has_term( $instance ) ) {
+			return;
+		}
+		/**
+		 * 表示ディスプレイタイプ判断
+		 */
+		if ( ! $this->is_active_display_html_type( $instance ) ) {
 			return;
 		}
 
@@ -128,7 +137,9 @@ class YS_Widget_Text extends YS_Widget_Base {
 	 * @return array Settings to save or bool false to cancel saving.
 	 */
 	public function update( $new_instance, $old_instance ) {
-
+		/**
+		 * 共通設定保存
+		 */
 		$instance = $this->update_base_options( $new_instance, $old_instance );
 
 
@@ -219,8 +230,11 @@ class YS_Widget_Text extends YS_Widget_Base {
 			<p>
 				<input id="<?php echo $this->get_field_id( 'filter' ); ?>" name="<?php echo $this->get_field_name( 'filter' ); ?>" type="checkbox"<?php checked( ! empty( $instance['filter'] ) ); ?> />&nbsp;<label for="<?php echo $this->get_field_id( 'filter' ); ?>"><?php _e( 'Automatically add paragraphs' ); ?></label>
 			</p>
-		<?php
+			<?php
 		endif;
+		/**
+		 * 共通設定
+		 */
 		$this->form_ys_advanced( $instance );
 	}
 
@@ -243,7 +257,7 @@ class YS_Widget_Text extends YS_Widget_Base {
 	/**
 	 * Determines whether a given instance is legacy and should bypass using TinyMCE.
 	 *
-	 * @param array      $instance Instance data.
+	 * @param array $instance Instance data.
 	 *
 	 * @type string      $text     Content.
 	 * @type bool|string $filter   Whether autop or content filters should apply.

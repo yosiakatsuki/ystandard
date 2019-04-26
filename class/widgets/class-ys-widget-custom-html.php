@@ -118,7 +118,7 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	 */
 	public function widget( $args, $instance ) {
 		$instance = array_merge( $this->default_instance, $instance );
-		if ( ! $this->is_during_the_period( $instance ) ) {
+		if ( ! $this->is_active_period( $instance ) ) {
 			return;
 		}
 		/**
