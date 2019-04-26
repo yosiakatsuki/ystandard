@@ -363,7 +363,7 @@ class YS_Widget_Base extends WP_Widget {
 	 *
 	 * @return bool
 	 */
-	protected function has_term( $instance ) {
+	protected function is_active_term( $instance ) {
 		if ( empty( $instance['taxonomy'] ) ) {
 			return true;
 		}
