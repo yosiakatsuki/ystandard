@@ -36,7 +36,7 @@ class YS_Widget_Text extends YS_Widget_Base {
 	 *
 	 * @var string
 	 */
-	private $widget_name = '[ys]表示条件付きテキスト';
+	private $widget_name = '[ys]yStandardテキスト';
 
 	/**
 	 * ウィジェットオプション
@@ -45,7 +45,7 @@ class YS_Widget_Text extends YS_Widget_Base {
 	 */
 	public $widget_options = array(
 		'classname'   => 'ys_widget_text',
-		'description' => '表示条件付きテキスト',
+		'description' => '表示条件機能がついたyStandard拡張テキストウィジェット',
 	);
 	/**
 	 * コントロールオプション
@@ -106,24 +106,14 @@ class YS_Widget_Text extends YS_Widget_Base {
 	public function widget( $args, $instance ) {
 		$instance = array_merge( $this->default_instance, $instance );
 		/**
-		 * 日付判断
+		 * テーマ独自設定条件の確認
 		 */
-		if ( ! $this->is_active_period( $instance ) ) {
+		if ( ! $this->is_active_ystandard_widget( $instance ) ) {
 			return;
 		}
 		/**
-		 * タクソノミー判断
+		 * ウィジェット内容表示
 		 */
-		if ( ! $this->is_active_term( $instance ) ) {
-			return;
-		}
-		/**
-		 * 表示ディスプレイタイプ判断
-		 */
-		if ( ! $this->is_active_display_html_type( $instance ) ) {
-			return;
-		}
-
 		$this->wp_widget_text->widget( $args, $instance );
 	}
 

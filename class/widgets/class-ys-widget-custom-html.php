@@ -19,22 +19,6 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	protected $registered = false;
 
 	/**
-	 * Default instance.
-	 *
-	 * @var array
-	 */
-	protected $default_instance = array(
-		'title'      => '',
-		'content'    => '',
-		'taxonomy'   => '',
-		'start_date' => '',
-		'start_time' => '',
-		'end_flag'   => 0,
-		'end_date'   => '',
-		'end_time'   => '',
-	);
-
-	/**
 	 * WP_Widget_Custom_HTML
 	 *
 	 * @var WP_Widget_Custom_HTML
@@ -46,30 +30,29 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	 *
 	 * @var string
 	 */
-	private $ys_widget_id = 'ys_custom_html';
+	private $widget_id = 'ys_custom_html';
 	/**
 	 * ウィジェット名
 	 *
 	 * @var string
 	 */
-	private $ys_widget_name = '[ys]表示条件付きカスタムHTML';
+	private $widget_name = '[ys]yStandardカスタムHTML';
 
 	/**
 	 * ウィジェットオプション
 	 *
 	 * @var array
 	 */
-	private $ys_widget_ops = array(
-		'classname'                   => 'ys_widget_custom_html',
-		'description'                 => '表示条件付きカスタムHTML',
-		'customize_selective_refresh' => true,
+	public $widget_options = array(
+		'classname'   => 'ys_widget_custom_html',
+		'description' => '表示条件機能がついたyStandard拡張カスタムHTMLウィジェット',
 	);
 	/**
 	 * コントロールオプション
 	 *
 	 * @var array
 	 */
-	private $ys_control_ops = array(
+	public $control_options = array(
 		'width'  => 400,
 		'height' => 350,
 	);
@@ -79,17 +62,19 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	 */
 	public function __construct() {
 		parent::__construct(
-			$this->ys_widget_id,
-			$this->ys_widget_name,
-			$this->ys_widget_ops,
-			$this->ys_control_ops
+			$this->widget_id,
+			$this->widget_name,
+			$this->widget_options,
+			$this->control_options
 		);
 		/**
-		 * 初期値更新
+		 * 初期値セット
 		 */
-		$this->default_instance = wp_parse_args(
-			YS_Widget_Utility::get_default_date(),
-			$this->default_instance
+		$this->set_default_instance(
+			array(
+				'title'   => '',
+				'content' => '',
+			)
 		);
 		/**
 		 * WP_Widget_Custom_HTML
@@ -98,14 +83,14 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 		/**
 		 * 設定書き換え
 		 */
-		$this->wp_widget_custom_html->id_base         = $this->ys_widget_id;
-		$this->wp_widget_custom_html->name            = $this->ys_widget_name;
+		$this->wp_widget_custom_html->id_base         = $this->widget_id;
+		$this->wp_widget_custom_html->name            = $this->widget_name;
 		$this->wp_widget_custom_html->widget_options  = wp_parse_args(
-			$this->ys_widget_ops,
+			$this->widget_options,
 			$this->wp_widget_custom_html->widget_options
 		);
 		$this->wp_widget_custom_html->control_options = wp_parse_args(
-			$this->ys_control_ops,
+			$this->control_options,
 			$this->wp_widget_custom_html->control_options
 		);
 	}
@@ -118,16 +103,15 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	 */
 	public function widget( $args, $instance ) {
 		$instance = array_merge( $this->default_instance, $instance );
-		if ( ! $this->is_active_period( $instance ) ) {
+		/**
+		 * テーマ独自設定条件の確認
+		 */
+		if ( ! $this->is_active_ystandard_widget( $instance ) ) {
 			return;
 		}
 		/**
-		 * タクソノミー判断
+		 * ウィジェット内容表示
 		 */
-		if ( ! $this->is_active_term( $instance ) ) {
-			return;
-		}
-
 		$this->wp_widget_custom_html->widget( $args, $instance );
 	}
 
@@ -141,19 +125,16 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 	 * @return array Settings to save or bool false to cancel saving.
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$instance               = array_merge( $this->default_instance, $old_instance );
-		$instance['title']      = sanitize_text_field( $new_instance['title'] );
-		$instance['start_date'] = $this->sanitize_date( $new_instance['start_date'], $this->default_instance['start_date'] );
-		$instance['start_time'] = $this->sanitize_time( $new_instance['start_time'], $this->default_instance['end_time'] );
-		$instance['end_flag']   = $this->sanitize_checkbox( $new_instance['end_flag'] );
-		$instance['end_date']   = $this->sanitize_date( $new_instance['end_date'], $this->default_instance['end_date'] );
-		$instance['end_time']   = $this->sanitize_time( $new_instance['end_time'], $this->default_instance['end_time'] );
+		/**
+		 * 共通設定保存
+		 */
+		$instance = $this->update_base_options( $new_instance, $old_instance );
+
 		if ( current_user_can( 'unfiltered_html' ) ) {
 			$instance['content'] = $new_instance['content'];
 		} else {
 			$instance['content'] = wp_kses_post( $new_instance['content'] );
 		}
-		$instance['taxonomy'] = $new_instance['taxonomy'];
 
 		return $instance;
 	}
@@ -170,36 +151,11 @@ class YS_Widget_Custom_HTML extends YS_Widget_Base {
 		?>
 		<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" class="title sync-input" type="hidden" value="<?php echo esc_attr( $instance['title'] ); ?>"/>
 		<textarea id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" class="content sync-input" hidden><?php echo esc_textarea( $instance['content'] ); ?></textarea>
-		<div class="ys-admin-section">
-			<h4>掲載開始条件</h4>
-			<p>
-				<label for="<?php echo $this->get_field_id( 'start_date' ); ?>">開始日付</label>
-				<input class="" id="<?php echo $this->get_field_id( 'start_date' ); ?>" name="<?php echo $this->get_field_name( 'start_date' ); ?>" type="date" value="<?php echo esc_attr( $instance['start_date'] ); ?>"/><br>
-				<label for="<?php echo $this->get_field_id( 'start_time' ); ?>">開始時間</label>
-				<input class="" id="<?php echo $this->get_field_id( 'start_time' ); ?>" name="<?php echo $this->get_field_name( 'start_time' ); ?>" type="time" value="<?php echo esc_attr( $instance['start_time'] ); ?>"/>
-			</p>
-		</div>
-		<div class="ys-admin-section">
-			<h4>掲載終了条件</h4>
-			<p>
-				<label for="<?php echo $this->get_field_id( 'end_flag' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'end_flag' ); ?>" name="<?php echo $this->get_field_name( 'end_flag' ); ?>" value="1" <?php checked( $instance['end_flag'], 1 ); ?> />終了条件を有効にする</label>
-			</p>
-			<p>
-				<label for="<?php echo $this->get_field_id( 'end_date' ); ?>">終了日付</label>
-				<input class="" id="<?php echo $this->get_field_id( 'end_date' ); ?>" name="<?php echo $this->get_field_name( 'end_date' ); ?>" type="date" value="<?php echo esc_attr( $instance['end_date'] ); ?>"/><br>
-				<label for="<?php echo $this->get_field_id( 'end_time' ); ?>">終了時間</label>
-				<input class="" id="<?php echo $this->get_field_id( 'end_time' ); ?>" name="<?php echo $this->get_field_name( 'end_time' ); ?>" type="time" value="<?php echo esc_attr( $instance['end_time'] ); ?>"/>
-			</p>
-		</div>
-		<div class="ys-admin-section">
-			<h4>掲載するカテゴリー・タグ</h4>
-			<p>
-				<?php $this->the_taxonomies_select_html( $this, $instance['taxonomy'] ); ?><br>
-				<span class="ystandard-info--sub">※カテゴリー・タグを選択した場合、投稿詳細ページ かつ 該当のカテゴリー・タグをもつ投稿ページしか表示されません。（一覧ページなどでは表示されません）</span>
-			</p>
-		</div>
 		<?php
+		/**
+		 * 共通設定
+		 */
+		$this->form_ys_advanced( $instance );
 	}
 
 	/**
