@@ -403,6 +403,36 @@ class YS_Widget_Base extends WP_Widget {
 	}
 
 	/**
+	 * テーマ独自条件設定の確認
+	 *
+	 * @param array $instance Instance.
+	 *
+	 * @return bool
+	 */
+	protected function is_active_ystandard_widget( $instance ) {
+		/**
+		 * 日付判断
+		 */
+		if ( ! $this->is_active_period( $instance ) ) {
+			return false;
+		}
+		/**
+		 * タクソノミー判断
+		 */
+		if ( ! $this->is_active_term( $instance ) ) {
+			return false;
+		}
+		/**
+		 * 表示ディスプレイタイプ判断
+		 */
+		if ( ! $this->is_active_display_html_type( $instance ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * 共通部分の設定保存
 	 *
 	 * @param array $new_instance New settings for this instance as input by the user via
