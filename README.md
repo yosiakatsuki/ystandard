@@ -98,3 +98,4 @@ Source : <https://gist.github.com/terkel/4373420>
 
 - v3.0.0-alpha-1
   - `template-parts`内のテンプレート構造をほぼ固めた
+  - 不足機能多数だが、テンプレート構造のチャック用として案内
