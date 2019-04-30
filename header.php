@@ -59,7 +59,7 @@ if ( ys_is_amp() ) {
 				/**
 				 * グローバルナビゲーション
 				 */
-				get_template_part( 'template-parts/nav/global-nav' );
+				get_template_part( 'template-parts/header/global-nav' );
 				?>
 			</div><!-- .header_row -->
 		</div><!-- .header__container -->
