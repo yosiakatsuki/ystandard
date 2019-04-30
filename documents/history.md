@@ -1,120 +1,27 @@
-# yStandard
+# 変更履歴
 
-![yStandard](./screenshot.png "yStandard")
-
-## カスタマイズありきの一風変わったWordPressテーマ「yStandard」
-
-yStandardは「自分色に染めた、自分だけのサイトを作る楽しさ」を感じてもらうために作った一風変わったテーマです
-
-詳しくは公式サイトをご覧ください
-
-[yStandard](https://wp-ystandard.com/)
-
-## 「yStandard」の由来
-
-「標準」といった意味の「Standard」に作者が自作物やハンドルネームによく使う「ys」というフレーズをくっつけて、「yStandard」にしました。
-（「ys-standard」という案もありましたがなんとなくやめておきました。）
-
-先頭の「y」に意味はなく、発音する必要も無いと思っておりましたが、「yStandard」を「y」の部分まで発音すると「why standard」に聞こえることから"一風変わった"というコンセプトを掲げています
-
-## 必要な動作環境
-
-- WordPress : 4.5以上
-- PHP : 5.6以上
-
-## スタイルについて
-
-### ブレークポイント
-
-- SP
-  - 指定なし
-- Tablet
-  - `@media (min-width: 600px) {}`（テーマデフォルト）
-- PC
-  - `@media (min-width: 960px) {}`（テーマデフォルト）
-- 大画面
-  - `@media (min-width: 1200px) {}`（テーマデフォルト）
-
-### 汎用的なスタイル
-
-- `.ys-box`
-  - 囲みブロック用クラス
-- `.ys-btn`
-  - ボタン用クラス
-- `.ys-btn--full`
-  - 幅100%用ボタンクラス
-- `.ys-btn--large`
-  - 大きめボタン用クラス
-- `.ys-text-left`
-  - テキストの左寄せ
-- `.ys-text-center`
-  - テキストのセンタリング
-- `.ys-text-right`
-  - テキストの右寄せ
-- `.ys-smaller`
-  - フォントサイズを少し小さくする(0.8倍)
-- `.ys-larger`
-  - フォントサイズを少し大きくする(1.2倍)
-- `.ys-normal`
-  - フォントサイズをメインサイズにする
-
-## カスタマイズ
-
-### CSS,JSの読み込み
-
-- ファーストビューにかかわらない部分のCSSの追加読み込み
-  - `ys_enqueue_non_critical_css( $id, $src, $ver = false )`
-    - `$id`  : CSSファイルのid(プログラム内で判断する用の文字列)
-    - `$src` : CSSファイルのURL
-    - `$ver` : バージョン文字列(キャッシュ対策用。クエリストリングに追加されます)
-
-- 遅延読み込みさせるCSS
-  - `ys_enqueue_lazyload_css( $id, $src, $ver = false )`
-    - `$id`  : linkタグに追加するid
-    - `$src` : CSSファイルのURL
-    - `$ver` : バージョン文字列(キャッシュ対策用。クエリストリングに追加されます)
-
-- ページ表示後にすぐ読み込むJavaScript
-  - `ys_enqueue_onload_script( $id, $src )`
-    - `$id`  : scriptタグに追加するid
-    - `$src` : JavaScriptファイルのURL
-
-- 遅延読み込みさせるJavaScript
-  - `ys_enqueue_lazyload_script( $id, $src )`
-    - `$id`  : scriptタグに追加するid
-    - `$src` : JavaScriptファイルのURL
-
-## Third-party resources
-
-### Font Awesome
-
-Font License: SIL OFL 1.1  
-Code License: MIT License  
-Source      : <https://fortawesome.github.io/Font-Awesome/>
-
-### Theme Update Checker Library
-
-License: GPL  
-Source : <http://w-shadow.com/>
-
-### object-fit-images
-
-License: MIT License  
-Source : <https://github.com/bfred-it/object-fit-images>
-
-### stickyfill
-
-License: MIT License  
-Source : <https://github.com/wilddeer/stickyfill>
-
-### \_decimal.scss
-
-License: MIT License  
-Source : <https://gist.github.com/terkel/4373420>
-
-## 変更履歴
-
-### v2.x.x
+## v2.x.x
+- 2.15.1 : 2019/04/18
+  - 不具合修正
+    - IEギャラリー表示不具合修正（Gutenbergブロック）
+-2.15.1 : 2019/04/17
+  - 不具合修正
+    - 詳細ページをページ分割した場合のページャースタイル不具合修正
+- 2.15.0 : 2019/04/02
+  - 機能調整
+    - Google+関連の設定削除
+    - アイコンフォント周りのレイアウト調整
+- 2.14.1 : 2019/03/29
+  - 不具合修正
+    - Gutenbergのギャラリーブロック表示不具合修正
+    - Font Awesome(js)の疑似要素検索オプションが追加されない点の修正
+- 2.14.0 : 2019/03/24
+  - 機能追加
+    - Font Awesome読み込み方式選択機能追加、JavaScript読み込み(SVG)をデフォルトとして変更
+    - canonical URLを変更できるフックを追加
+- 2.13.0 : 2019/03/17
+  - 機能追加
+    - 「1カラム(タイトル・アイキャッチ画像・パンくずなし)」テンプレート追加
 - 2.12.2 : 2018/12/07
   - 機能追加
     - カテゴリー・タグの記事一覧表示ショートコードにカスタム投稿タイプの指定を追加
@@ -280,7 +187,7 @@ Source : <https://gist.github.com/terkel/4373420>
 - v2.0.0 : 2018/03/28
   - 大幅リニューアル版をリリース
 
-### v1.x.x
+## v1.x.x
 
 - v1.1.1 : 2017/11/30
   - 不具合修正
@@ -320,7 +227,7 @@ Source : <https://gist.github.com/terkel/4373420>
     - 記事下広告に高さの違うものを設定した時、上揃えにする
     - apple touch iconが反映されていない点の修正
 
-### v0.7.x
+## v0.7.x
 
 - v0.7.0
   - 不具合修正
@@ -333,7 +240,7 @@ Source : <https://gist.github.com/terkel/4373420>
     - ツイート後におすすめユーザーを表示するオプションの追加
     - ワンカラム機能の追加
 
-### v0.6.x
+## v0.6.x
 
 - v0.6.2 : 2017/05/15
   - 不具合修正
@@ -355,7 +262,7 @@ Source : <https://gist.github.com/terkel/4373420>
   - 構造化データhentryでauthorがありませんのエラーが出る点の対処
   - 固定ページでは記事内に広告を表示しないように修正
 
-### v0.5.x
+## v0.5.x
 
 - v0.5.0 : 2017/04/21
   - 追加機能
@@ -367,14 +274,14 @@ Source : <https://gist.github.com/terkel/4373420>
     - 長いブログ名の時、ブログ名がハンバーガーアイコンに激突する不具合修正
     - パンくずが2段になるときの余白が足りない不具合修正
 
-### v0.4.x
+## v0.4.x
 
 - v0.4.0 : 2017/04/14
   - 記事直下に表示するウィジェット機能追加(スタイリングは`.widget-entry-footer`にて可能)
   - Twitterカードのカード種類を`summary_large_image`に変更
   - 次の記事・前の記事のリンクに画像を追加
 
-### v0.3.x
+## v0.3.x
 
 - v0.3.2 : 2017/04/08
   - RSSフィードにアイキャッチ画像を表示
@@ -388,13 +295,13 @@ Source : <https://gist.github.com/terkel/4373420>
   - 広告用ウィジェットのスタイル調整
 - v0.3.0 : 2017/03/24 全体的な色調整、シェアボタンのフック追加、購読リンク4種設定、jQuery読み込みオプション、遅延js,css読み込み機能、コンテンツ幅調整（800px）
 
-### v0.2.x
+## v0.2.x
 
 - v0.2.2 : 2017/03/17 構造化エラー対処、次の記事・前の記事スタイル調整
 - v0.2.1 : 2017/03/10 HTML5 バリデーションエラー対処等のバグフィックス（#8~#11,#14~#23,#25）
 - v0.2.0 : 2017/03/01 ベータ版一般公開
 
-### v0.1.x
+## v0.1.x
 
 - v0.1.4 : 2017/02/27 テーマカスタマイザーに色変更機能を追加
 - v0.1.3 : 2017/02/19 ログイン中はGoogle Analyticsのトラッキングタグを出力しないように調整、一覧ページの画像が縦横比固定で出力されるように調整
@@ -402,7 +309,7 @@ Source : <https://gist.github.com/terkel/4373420>
 - v0.1.1 : 2017/02/12 個別投稿の構造化データでauthorがエラーになる問題対処
 - v0.1.0 : ~~2017/02/12 ベータ版公開~~
 
-### v0.0.x
+## v0.0.x
 
 - 2017/02/06：ソース管理をGitHubに移行
 - 2016/12/xx：「Google PageSpeed Insightsでの高得点を出しやすい」「速い」をコンセプトに再作成開始
