@@ -3,7 +3,7 @@
  * テーマ更新確認
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -15,9 +15,17 @@ require_once get_template_directory() . '/library/theme-update-checker/theme-upd
  * アップデートのチェック
  */
 function ys_update_check() {
+	$check_url = apply_filters(
+		'ys_update_check_url',
+		'https://wp-ystandard.com/download/ystandard/v3/ystandard-info.json'
+	);
+	/**
+	 * アップデート確認
+	 */
 	$theme_update_checker = new ThemeUpdateChecker(
 		'ystandard',
-		'https://wp-ystandard.com/download/ystandard/v2/ystandard-info.json'
+		$check_url
 	);
 }
+
 add_action( 'after_setup_theme', 'ys_update_check' );
