@@ -20,7 +20,7 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 ## 必要な動作環境
 
 - WordPress : 4.9以上
-- PHP : 7.2以上
+- PHP : 5.6以上
 
 ## スタイルシートについて
 
@@ -99,3 +99,7 @@ Source : <https://gist.github.com/terkel/4373420>
 - v3.0.0-alpha-1
   - `template-parts`内のテンプレート構造をほぼ固めた
   - 不足機能多数だが、テンプレート構造のチャック用として案内
+  
+### v2までの更新履歴
+
+- [v2までの更新履歴はこちら](./docs/md/history.md)
