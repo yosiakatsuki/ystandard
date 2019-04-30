@@ -25,7 +25,6 @@ gulp.task('zip', function () {
             '!src/**',
             '!docs',
             '!docs/**',
-            '!documents/**',
             '!temp',
             '!temp/**',
         ],
