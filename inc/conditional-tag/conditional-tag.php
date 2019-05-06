@@ -150,7 +150,7 @@ if ( ! function_exists( 'ys_is_amp_enable' ) ) {
 	function ys_is_amp_enable() {
 		global $post;
 		$result = true;
-		if ( 0 === ys_get_option( 'ys_amp_enable' ) ) {
+		if ( 0 === ys_get_option( 'ys_amp_enable' ) || '' === ys_get_option( 'ys_amp_enable' ) ) {
 			return apply_filters( 'ys_is_amp_enable', false );
 		}
 		if ( ! is_single() ) {
