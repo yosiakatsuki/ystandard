@@ -155,6 +155,10 @@ require_once get_template_directory() . '/inc/ogp/ogp.php';
  */
 require_once get_template_directory() . '/inc/blog-card/blog-card.php';
 /**
+ * 互換関連
+ */
+require_once get_template_directory() . '/inc/compatibility/compatibility.php';
+/**
  * 後々削除
  */
 require_once get_template_directory() . '/inc/deprecated/deprecated.php';
