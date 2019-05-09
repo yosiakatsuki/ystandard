@@ -183,6 +183,10 @@ require_once get_template_directory() . '/inc/ogp/ogp.php';
  * ブログカード
  */
 require_once get_template_directory() . '/inc/blog-card/blog-card.php';
+/**
+ * 互換関連
+ */
+require_once get_template_directory() . '/inc/compatibility/compatibility.php';
 if ( is_admin() ) {
 	/**
 	 * テーマ設定画面
