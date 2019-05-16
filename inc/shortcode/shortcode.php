@@ -41,14 +41,15 @@ require_once $shortcode_dir . 'shortcode-share-button.php';
 /**
  * ショートコードの作成と実行
  *
- * @param string $name  ショートコード名.
- * @param array  $param パラメーター.
- * @param bool   $echo  出力.
+ * @param string $name    ショートコード名.
+ * @param array  $param   パラメーター.
+ * @param mixed  $content コンテンツ.
+ * @param bool   $echo    出力.
  *
  * @return string
  */
-function ys_echo_do_shortcode( $name, $param = array(), $echo = true ) {
-	$shortcode = ys_get_shortcode( $name, $param );
+function ys_do_shortcode( $name, $param = array(), $content = null, $echo = true ) {
+	$shortcode = ys_get_shortcode( $name, $param, $content );
 	/**
 	 * ショートコード実行
 	 */
@@ -68,12 +69,13 @@ function ys_echo_do_shortcode( $name, $param = array(), $echo = true ) {
 /**
  * ショートコードの作成
  *
- * @param string $name  ショートコード名.
- * @param array  $param パラメーター.
+ * @param string $name    ショートコード名.
+ * @param array  $param   パラメーター.
+ * @param mixed  $content コンテンツ.
  *
  * @return string
  */
-function ys_get_shortcode( $name, $param = array() ) {
+function ys_get_shortcode( $name, $param = array(), $content = null ) {
 	$sc_param   = array();
 	$param_text = '';
 	/**
@@ -88,17 +90,31 @@ function ys_get_shortcode( $name, $param = array() ) {
 			);
 		}
 	}
-
 	if ( ! empty( $sc_param ) ) {
 		$param_text = ' ' . implode( ' ', $sc_param );
 	}
-
 	/**
 	 * ショートコード作成
 	 */
-	return sprintf(
-		'[%s%s]',
-		$name,
-		$param_text
-	);
+	if ( is_null( $content ) ) {
+		/**
+		 * コンテンツなし
+		 */
+		return sprintf(
+			'[%s%s]',
+			$name,
+			$param_text
+		);
+	} else {
+		/**
+		 * コンテンツあり
+		 */
+		return sprintf(
+			'[%s%s]%s[/%s]',
+			$name,
+			$param_text,
+			$content,
+			$name
+		);
+	}
 }

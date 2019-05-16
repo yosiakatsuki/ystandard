@@ -447,7 +447,9 @@ class YS_Widget_Base extends WP_Widget {
 		/**
 		 * タイトル
 		 */
-		$instance['title'] = sanitize_text_field( $new_instance['title'] );
+		if ( isset( $new_instance['title'] ) ) {
+			$instance['title'] = sanitize_text_field( $new_instance['title'] );
+		}
 		/**
 		 * 掲載開始
 		 */

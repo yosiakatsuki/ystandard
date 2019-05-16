@@ -13,9 +13,9 @@
  * (inc/class/shortcode/class-ys-shortcode-share-button.php)
  */
 global $sns_share_btn_data;
-$data     = $sns_share_btn_data['data'];
-$col      = $sns_share_btn_data['col'];
-$headline = $sns_share_btn_data['headline'];
+$data  = $sns_share_btn_data['data'];
+$col   = $sns_share_btn_data['col'];
+$title = $sns_share_btn_data['title'];
 if ( ! empty( $data ) ) :
 	?>
 	<div class="share-btn">
@@ -23,8 +23,8 @@ if ( ! empty( $data ) ) :
 		/**
 		 * 見出し
 		 */
-		if ( '' != $headline ) {
-			echo $headline;
+		if ( '' !== $title ) {
+			echo $title;
 		}
 		?>
 		<ul class="share-btn__list li-clear flex flex--row -no-gutter -all">

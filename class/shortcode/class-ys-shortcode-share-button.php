@@ -42,7 +42,6 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 			'col_pc'               => 6,
 			'twitter_via_user'     => '',
 			'twitter_related_user' => '',
-			'headline'             => '',
 		);
 		parent::__construct( $args, $attr );
 	}
@@ -57,10 +56,14 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 	public function get_html( $template_type = '' ) {
 		global $sns_share_btn_data;
 		$sns_share_btn_data = array(
-			'headline' => $this->get_param( 'headline' ),
-			'col'      => $this->get_share_btn_col(),
-			'data'     => $this->get_share_button_data(),
+			'title' => $this->get_param( 'title' ),
+			'col'   => $this->get_share_btn_col(),
+			'data'  => $this->get_share_button_data(),
 		);
+		/**
+		 * [get_html]でのタイトル表示を消す
+		 */
+		$this->set_title( '' );
 		/**
 		 * シェアボタンテンプレート拡張
 		 */
@@ -236,7 +239,7 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 			'ys_share_tweet_via_account',
 			$this->get_param( 'twitter_via_user' )
 		);
-		if ( '' != $via_account ) {
+		if ( '' !== $via_account ) {
 			$via = '&via=' . $via_account;
 		}
 		/**
@@ -247,7 +250,7 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 			'ys_share_tweet_related_account',
 			$this->get_param( 'twitter_via_user' )
 		);
-		if ( '' != $related_account ) {
+		if ( '' !== $related_account ) {
 			$related = '&related=' . $related_account;
 		}
 		/**
