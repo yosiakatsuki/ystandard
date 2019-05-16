@@ -8,7 +8,7 @@
  */
 
 
-function ys_the_sns_share_button( $headline = '' ) {
+function ys_the_sns_share_button( $title = '' ) {
 	/**
 	 * 記事別の表示設定確認
 	 */
@@ -33,10 +33,10 @@ function ys_the_sns_share_button( $headline = '' ) {
 		'col_sp'               => ys_get_option( 'ys_sns_share_col_sp' ),
 		'col_tablet'           => ys_get_option( 'ys_sns_share_col_tablet' ),
 		'col_pc'               => ys_get_option( 'ys_sns_share_col_pc' ),
-		'headline'             => $headline,
+		'title'                => $title,
 	);
 	/**
 	 * ショートコード実行
 	 */
-	ys_echo_do_shortcode( 'ys_share_button', $param );
+	ys_do_shortcode( 'ys_share_button', $param );
 }

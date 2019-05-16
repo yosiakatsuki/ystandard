@@ -22,7 +22,7 @@ $class_dir = get_template_directory() . '/class/widgets/';
 require_once $class_dir . 'class-ys-widget-utility.php';
 require_once $class_dir . 'class-ys-widget-base.php';
 require_once $class_dir . 'class-ys-widget-post-list.php';
-require_once $class_dir . 'class-ys-ad-text-widget.php';
+require_once $class_dir . 'class-ys-widget-advertisement.php';
 require_once $class_dir . 'class-ys-ranking-widget.php';
 require_once $class_dir . 'class-ys-taxonomy-posts-widget.php';
 require_once $class_dir . 'class-ys-widget-custom-html.php';
@@ -35,6 +35,7 @@ $class_dir = get_template_directory() . '/class/shortcode/';
 require_once $class_dir . 'class-ys-shortcode-base.php';
 require_once $class_dir . 'class-ys-shortcode-text.php';
 require_once $class_dir . 'class-ys-shortcode-share-button.php';
+require_once $class_dir . 'class-ys-shortcode-advertisement.php';
 
 /**
  * テーマカスタマイザー

@@ -13,13 +13,6 @@
 class YS_Shortcode_Base {
 
 	/**
-	 * ラッパーHTML
-	 *
-	 * @var string
-	 */
-	protected $wrap_html = '<div%s>%s</div>';
-
-	/**
 	 * 基本パラメーター
 	 *
 	 * @var array
@@ -81,6 +74,10 @@ class YS_Shortcode_Base {
 			'display_pc'         => true,
 			'display_mobile'     => true,
 			'display_amp'        => true,
+			'title'              => '',
+			'title_tag'          => 'h2',
+			'title_class'        => '',
+			'wrap_html'          => '<div%s>%s</div>',
 		);
 	}
 
@@ -120,7 +117,29 @@ class YS_Shortcode_Base {
 	 * @param string $format HTMLフォーマット.
 	 */
 	public function set_wrap_html( $format ) {
-		$this->wrap_html = $format;
+		$this->args['wrap_html'] = $format;
+	}
+
+	/**
+	 * クラス追加
+	 *
+	 * @param string $class Class.
+	 */
+	public function add_class( $class ) {
+		if ( '' !== $this->args['class'] ) {
+			$this->args['class'] = $this->args['class'] . ' ' . $class;
+		} else {
+			$this->args['class'] = $class;
+		}
+	}
+
+	/**
+	 * タイトル設定
+	 *
+	 * @param string $title タイトル.
+	 */
+	public function set_title( $title ) {
+		$this->args['title'] = $title;
 	}
 
 	/**
@@ -223,11 +242,14 @@ class YS_Shortcode_Base {
 			$html_attr .= sprintf( ' class="%s"', esc_attr( $this->get_param( 'class' ) ) );
 		}
 		/**
-		 * フォーマット判断
+		 * 表示ディスプレイタイプ判断
 		 */
 		if ( ! $this->_is_active_display_html_type() ) {
 			return '';
 		}
+		/**
+		 * TODO:タクソノミー判断追加する
+		 */
 
 		/**
 		 * 日付判断
@@ -235,15 +257,34 @@ class YS_Shortcode_Base {
 		if ( ! $this->_is_active_period() ) {
 			return '';
 		}
-
+		/**
+		 * タイトル作成
+		 */
+		$title = $this->get_param( 'title' );
+		if ( '' !== $title ) {
+			/**
+			 * タイトル追加
+			 */
+			$tag     = $this->get_param( 'title_tag' );
+			$title   = sprintf(
+				'<%s class="%s">%s</%s>',
+				$tag,
+				$this->get_param( 'title_class' ),
+				$title,
+				$tag
+			);
+			$content = $title . $content;
+		}
 		/**
 		 * HTML作成
 		 */
-		return sprintf(
-			$this->wrap_html . $this->get_error_message(),
+		$result = sprintf(
+			$this->args['wrap_html'],
 			$html_attr,
 			$content
 		);
+
+		return $result . $this->get_error_message();
 	}
 
 	/**
