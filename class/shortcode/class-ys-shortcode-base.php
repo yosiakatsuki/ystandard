@@ -191,11 +191,7 @@ class YS_Shortcode_Base {
 				 * 真・偽で取得
 				 */
 				if ( 'bool' === $type ) {
-					if ( 1 === $result || '1' === $result || true === $result || 'true' === $result ) {
-						return true;
-					} else {
-						return false;
-					}
+					return ys_sanitize_bool( $result );
 				}
 				/**
 				 * 時間で取得
@@ -265,11 +261,15 @@ class YS_Shortcode_Base {
 			/**
 			 * タイトル追加
 			 */
-			$tag     = $this->get_param( 'title_tag' );
+			$tag         = $this->get_param( 'title_tag' );
+			$title_class = $this->get_param( 'title_class' );
+			if ( '' !== $title_class ) {
+				$title_class = ' class="' . $title_class . '"';
+			}
 			$title   = sprintf(
-				'<%s class="%s">%s</%s>',
+				'<%s%s>%s</%s>',
 				$tag,
-				$this->get_param( 'title_class' ),
+				$title_class,
 				$title,
 				$tag
 			);

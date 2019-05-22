@@ -328,7 +328,7 @@ body {
  * headline
  */
 h1, h2, h3, h4, h5, h6 {
-  margin: 2em 0 .5em;
+  margin: 3em 0 .25em;
   padding: 0;
   font-weight: normal;
   letter-spacing: 0.05em; }
@@ -336,14 +336,17 @@ h1, h2, h3, h4, h5, h6 {
 h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
   margin-top: 0; }
 
-h1, h2 {
-  font-size: 1.8em; }
+h1 {
+  font-size: 1.6em; }
+
+h2 {
+  font-size: 1.4em; }
 
 h3 {
-  font-size: 1.5em; }
+  font-size: 1.3em; }
 
 h4 {
-  font-size: 1.3em; }
+  font-size: 1.2em; }
 
 h5, h6 {
   font-size: 1.1em; }
@@ -896,6 +899,28 @@ hr {
 .author-small__figure img, .author-small__figure amp-img {
   border-radius: 50%; }
 
+.author-box__block {
+  margin-top: .5em; }
+
+.author-box__img {
+  width: 96px;
+  height: auto;
+  border-radius: 50%; }
+
+.author-box__name {
+  font-size: 1.1em; }
+
+.author-box__sns {
+  display: inline-block; }
+
+.author-box__sns-item {
+  margin-right: .5em; }
+  .author-box__sns-item:last-child {
+    margin-right: 0; }
+
+.author-box__dscr p {
+  margin-top: .25em; }
+
 input,
 textarea,
 select,
@@ -972,6 +997,24 @@ input[type="button"] {
     .post-page-numbers.-current:hover,
     .post-page-numbers.current .page-links__item:hover {
       opacity: 1; }
+
+.has-x-small-font-size {
+  font-size: 0.75em; }
+
+.has-small-font-size {
+  font-size: 0.9em; }
+
+.has-medium-font-size {
+  font-size: 1rem; }
+
+.has-large-font-size {
+  font-size: 1.3em; }
+
+.has-x-large-font-size {
+  font-size: 1.4em; }
+
+.has-xx-large-font-size {
+  font-size: 1.6em; }
 
 .header__title {
   font-size: 1.5rem;
@@ -1337,6 +1380,8 @@ a.text-sub,
 
 .sns-text--twitter {
   color: #2b97f0; }
+  .sns-text--twitter.-hover:hover {
+    color: #8ac6f7; }
 
 .sns-border--twitter {
   border: 1px solid #2b97f0; }
@@ -1350,6 +1395,8 @@ a.text-sub,
 
 .sns-text--facebook {
   color: #3b5a9b; }
+  .sns-text--facebook.-hover:hover {
+    color: #728fca; }
 
 .sns-border--facebook {
   border: 1px solid #3b5a9b; }
@@ -1363,6 +1410,8 @@ a.text-sub,
 
 .sns-text--google-plus {
   color: #db2814; }
+  .sns-text--google-plus.-hover:hover {
+    color: #f17264; }
 
 .sns-border--google-plus {
   border: 1px solid #db2814; }
@@ -1376,6 +1425,8 @@ a.text-sub,
 
 .sns-text--hatenabookmark {
   color: #007ad2; }
+  .sns-text--hatenabookmark.-hover:hover {
+    color: #39acff; }
 
 .sns-border--hatenabookmark {
   border: 1px solid #007ad2; }
@@ -1389,6 +1440,8 @@ a.text-sub,
 
 .sns-text--rss {
   color: #fb8501; }
+  .sns-text--rss.-hover:hover {
+    color: #feb564; }
 
 .sns-border--rss {
   border: 1px solid #fb8501; }
@@ -1402,6 +1455,8 @@ a.text-sub,
 
 .sns-text--feedly {
   color: #8cba43; }
+  .sns-text--feedly.-hover:hover {
+    color: #bad68d; }
 
 .sns-border--feedly {
   border: 1px solid #8cba43; }
@@ -1415,6 +1470,8 @@ a.text-sub,
 
 .sns-text--pocket {
   color: #ea4654; }
+  .sns-text--pocket.-hover:hover {
+    color: #f4a2a9; }
 
 .sns-border--pocket {
   border: 1px solid #ea4654; }
@@ -1428,6 +1485,8 @@ a.text-sub,
 
 .sns-text--instagram {
   color: #3f729b; }
+  .sns-text--instagram.-hover:hover {
+    color: #78a4c8; }
 
 .sns-border--instagram {
   border: 1px solid #3f729b; }
@@ -1441,6 +1500,8 @@ a.text-sub,
 
 .sns-text--line {
   color: #2cbf13; }
+  .sns-text--line.-hover:hover {
+    color: #62ed4b; }
 
 .sns-border--line {
   border: 1px solid #2cbf13; }
@@ -1454,6 +1515,8 @@ a.text-sub,
 
 .sns-text--tumblr {
   color: #35465c; }
+  .sns-text--tumblr.-hover:hover {
+    color: #5a779d; }
 
 .sns-border--tumblr {
   border: 1px solid #35465c; }
@@ -1467,6 +1530,8 @@ a.text-sub,
 
 .sns-text--youtube-play {
   color: #cd201f; }
+  .sns-text--youtube-play.-hover:hover {
+    color: #e86a6a; }
 
 .sns-border--youtube-play {
   border: 1px solid #cd201f; }
@@ -1480,6 +1545,8 @@ a.text-sub,
 
 .sns-text--vine {
   color: #00b389; }
+  .sns-text--vine.-hover:hover {
+    color: #1affc9; }
 
 .sns-border--vine {
   border: 1px solid #00b389; }
@@ -1493,6 +1560,8 @@ a.text-sub,
 
 .sns-text--github {
   color: #4183c4; }
+  .sns-text--github.-hover:hover {
+    color: #8fb6dc; }
 
 .sns-border--github {
   border: 1px solid #4183c4; }
@@ -1506,6 +1575,8 @@ a.text-sub,
 
 .sns-text--pinterest {
   color: #cb2027; }
+  .sns-text--pinterest.-hover:hover {
+    color: #e76a6f; }
 
 .sns-border--pinterest {
   border: 1px solid #cb2027; }
@@ -1519,6 +1590,8 @@ a.text-sub,
 
 .sns-text--linkedin {
   color: #0e76a8; }
+  .sns-text--linkedin.-hover:hover {
+    color: #2eb0ee; }
 
 .sns-border--linkedin {
   border: 1px solid #0e76a8; }
@@ -1528,7 +1601,7 @@ a.text-sub,
   display: inline-block;
   font-weight: bold;
   letter-spacing: 0;
-  font-family: Verdana,sans-serif;
+  font-family: Verdana, sans-serif;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;

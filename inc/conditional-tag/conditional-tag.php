@@ -662,13 +662,6 @@ function ys_is_display_author_data() {
 			$result = false;
 		}
 	}
-	/**
-	 * ショートコードの場合は表示させる
-	 */
-	global $ys_author;
-	if ( false !== $ys_author ) {
-		$result = true;
-	}
 
 	return apply_filters( 'ys_is_display_author_data', $result );
 }

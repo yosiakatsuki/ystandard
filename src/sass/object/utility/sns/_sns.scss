@@ -2,6 +2,7 @@
   .sns-bg--#{$key} {
     background-color: $color;
     color: #fff;
+
     &.-hover:hover {
       background-color: #fff;
       color: $color;
@@ -9,6 +10,10 @@
   }
   .sns-text--#{$key} {
     color: $color;
+
+    &.-hover:hover {
+      color: lighten($color, 20%);
+    }
   }
   .sns-border--#{$key} {
     border: 1px solid $color;
@@ -22,7 +27,7 @@
     display: inline-block;
     font-weight: bold;
     letter-spacing: 0;
-    font-family: Verdana,sans-serif;
+    font-family: Verdana, sans-serif;
     font-style: normal;
     font-variant: normal;
     text-rendering: auto;

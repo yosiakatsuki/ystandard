@@ -458,13 +458,15 @@ class YS_Customizer {
 	 *
 	 * @param string $value   input.
 	 * @param object $setting setting.
+	 *
+	 * @return bool
 	 */
 	public static function sanitize_checkbox( $value, $setting ) {
-		if ( 'option' == $setting->manager->get_setting( $setting->id )->type ) {
-			return ( ( isset( $value ) && true == $value ) ? true : '' );
+		if ( 'option' === $setting->manager->get_setting( $setting->id )->type ) {
+			return ( ( isset( $value ) && ys_sanitize_bool( $value ) ) ? true : '' );
 		}
 
-		return ( ( isset( $value ) && true == $value ) ? true : false );
+		return ( ( isset( $value ) && ys_sanitize_bool( $value ) ) ? true : false );
 	}
 
 	/**
@@ -472,6 +474,8 @@ class YS_Customizer {
 	 *
 	 * @param string $number  number.
 	 * @param object $setting setting.
+	 *
+	 * @return int
 	 */
 	public static function sanitize_number( $number, $setting ) {
 		if ( 1 !== preg_match( '/^\d+$/', $number ) ) {
