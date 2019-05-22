@@ -21,15 +21,10 @@ if ( ys_is_active_sns_share_on_footer() ) {
 
 /**
  * 投稿者表示
- * TODO:ショートコード化
  */
-if ( ys_is_display_author_data() ) : ?>
-	<div class="entry__footer-author author--2col">
-		<h2 class="entry__footer-title">この記事を書いた人</h2>
-		<?php get_template_part( 'template-parts/parts/author-box' ); ?>
-	</div><!-- .entry__footer-author -->
-<?php
-endif;
+if ( ys_is_display_author_data() ) {
+	ys_the_author_box();
+}
 
 /**
  * コメントテンプレート

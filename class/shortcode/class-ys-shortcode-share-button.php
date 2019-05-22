@@ -30,6 +30,7 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 	 */
 	public function __construct( $args = array() ) {
 		$attr = array(
+			'class'                => 'share-btn',
 			'twitter'              => true,
 			'facebook'             => true,
 			'hatenabookmark'       => true,
@@ -54,8 +55,8 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 	 * @return string
 	 */
 	public function get_html( $template_type = '' ) {
-		global $sns_share_btn_data;
-		$sns_share_btn_data = array(
+		global $ys_sns_share_btn_data;
+		$ys_sns_share_btn_data = array(
 			'title' => $this->get_param( 'title' ),
 			'col'   => $this->get_share_btn_col(),
 			'data'  => $this->get_share_button_data(),

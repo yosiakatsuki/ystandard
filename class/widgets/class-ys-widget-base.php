@@ -511,11 +511,7 @@ class YS_Widget_Base extends WP_Widget {
 	 * @return bool
 	 */
 	protected function sanitize_checkbox( $value ) {
-		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
-			return true;
-		} else {
-			return false;
-		}
+		return ys_sanitize_bool( $value );
 	}
 
 
