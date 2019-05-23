@@ -28,6 +28,7 @@ require_once $class_dir . 'class-ys-taxonomy-posts-widget.php';
 require_once $class_dir . 'class-ys-widget-custom-html.php';
 require_once $class_dir . 'class-ys-widget-text.php';
 require_once $class_dir . 'class-ys-widget-author-box.php';
+require_once $class_dir . 'class-ys-widget-share-button.php';
 /**
  * ショートコードクラス
  */

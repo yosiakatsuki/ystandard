@@ -10,6 +10,19 @@ html {
   -ms-text-size-adjust: 100%;
 }
 
+//mqpacker対策
+@include media-breakpoint(md) {
+  html {
+    zoom: 1;
+  }
+}
+//mqpacker対策
+@include media-breakpoint(lg) {
+  html {
+    zoom: 1;
+  }
+}
+
 body {
   color: $color__text-main;
   font-family: $font__body;
