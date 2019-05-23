@@ -1,6 +1,6 @@
 <?php
 /**
- * プロフィールボックス
+ * 投稿者ボックス
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -8,9 +8,9 @@
  */
 
 /**
- * プロフィールボックス
+ * 投稿者ボックス
  */
-class YS_Widget_Profile_Box extends YS_Widget_Base {
+class YS_Widget_Author_Box extends YS_Widget_Base {
 	/**
 	 * Default instance.
 	 *
@@ -27,20 +27,20 @@ class YS_Widget_Profile_Box extends YS_Widget_Base {
 	 *
 	 * @var string
 	 */
-	private $ys_widget_id = 'ys_profile_box';
+	private $widget_id = 'ys_profile_box';
 	/**
 	 * ウィジェット名
 	 *
 	 * @var string
 	 */
-	private $ys_widget_name = '[ys]著者情報表示';
+	private $widget_name = '[ys]著者情報表示';
 
 	/**
 	 * ウィジェットオプション
 	 *
 	 * @var array
 	 */
-	private $ys_widget_ops = array(
+	public $widget_options = array(
 		'classname'                   => 'ys_profile_box',
 		'description'                 => '著者情報を表示します',
 		'customize_selective_refresh' => true,
@@ -51,9 +51,22 @@ class YS_Widget_Profile_Box extends YS_Widget_Base {
 	 */
 	public function __construct() {
 		parent::__construct(
-			$this->ys_widget_id,
-			$this->ys_widget_name,
-			$this->ys_widget_ops
+			$this->widget_id,
+			$this->widget_name,
+			$this->widget_options
+		);
+		/**
+		 * 初期値セット
+		 */
+		$this->set_default_instance(
+			array(
+				'title'                 => '',
+				'default_user_name'     => false,
+				'user_name'             => false,
+				'enable_archive_link'   => true,
+				'enable_archive_button' => true,
+				'layout'                => 'horizon', // vertical or horizon.
+			)
 		);
 	}
 
@@ -64,41 +77,110 @@ class YS_Widget_Profile_Box extends YS_Widget_Base {
 	 * @param array $instance instance.
 	 */
 	public function widget( $args, $instance ) {
-		$instance = wp_parse_args( $instance, $this->default_instance );
-		/**
-		 * 変数
-		 */
-		$default_user_name = '';
-		$user_name         = '';
-		/**
-		 * 設定取得
-		 */
-		if ( '' !== $instance['default_user_name'] ) {
-			$default_user_name = ' default_user_name="' . $instance['default_user_name'] . '"';
-		}
-		if ( '' !== $instance['user_name'] ) {
-			$user_name = ' user_name="' . $instance['user_name'] . '"';
-		}
 
 		echo $args['before_widget'];
+		$author_name_tag = 'h2';
 		/**
 		 * ウィジェットタイトル
 		 */
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+			/**
+			 * タイトルがあれば投稿者はh3で作成
+			 */
+			$author_name_tag = 'h3';
 		}
-
 		/**
 		 * ショートコード実行
 		 */
-		echo do_shortcode(
-			sprintf(
-				'[ys_author%s%s]',
-				$default_user_name,
-				$user_name
+		ys_do_shortcode(
+			'ys_author',
+			array(
+				'title'                 => '',
+				'author_name_tag'       => $author_name_tag,
+				'default_user_name'     => $instance['default_user_name'],
+				'user_name'             => $instance['user_name'],
+				'mode'                  => 'widget',
+				'enable_archive_link'   => $instance['enable_archive_link'],
+				'enable_archive_button' => $instance['enable_archive_button'],
+				'layout'                => $instance['layout'],
 			)
 		);
 		echo $args['after_widget'];
+	}
+
+	/**
+	 * ウィジェット設定フォーム
+	 *
+	 * @param array $instance Current instance.
+	 *
+	 * @returns void
+	 */
+	public function form( $instance ) {
+		$instance = wp_parse_args(
+			(array) $instance,
+			$this->default_instance
+		);
+		/**
+		 * ユーザーリストの作成
+		 */
+		$user_list = $this->get_author_list();
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>">
+		</p>
+		<div class="ys-admin-section">
+			<h4>デフォルトユーザー</h4>
+			<p>
+				<span class="ystandard-info--sub">※TOPページや一覧ページなどに表示するユーザー</span>
+			</p>
+			<select name="<?php echo $this->get_field_name( 'default_user_name' ); ?>">
+				<option value="">選択して下さい</option>
+				<?php foreach ( $user_list as $key => $value ) : ?>
+					<option
+						value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['default_user_name'] ); ?>><?php echo $value; ?>
+					</option>
+				<?php endforeach; ?>
+			</select>
+		</div>
+		<div class="ys-admin-section">
+			<h4>特定のユーザーの表示</h4>
+			<p>
+				<span class="ystandard-info--sub">※特定のユーザー情報を常に表示する場合は選択して下さい。</span><br><span class="ystandard-info--sub">※デフォルトユーザーと特定のユーザーの両方を指定している場合、特定ユーザーの表示が優先されます。</span>
+			</p>
+			<select name="<?php echo $this->get_field_name( 'user_name' ); ?>">
+				<option value="">選択して下さい</option>
+				<?php foreach ( $user_list as $key => $value ) : ?>
+					<option
+						value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['user_name'] ); ?>><?php echo $value; ?>
+					</option>
+				<?php endforeach; ?>
+			</select>
+		</div>
+		<div class="ys-admin-section">
+			<h4>レイアウト</h4>
+			<label>
+				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="horizon" <?php checked( $instance['layout'], 'horizon' ); ?>>レスポンシブ
+			</label>
+			<label>
+				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="vertical" <?php checked( $instance['layout'], 'vertical' ); ?>>縦一列
+			</label>
+		</div>
+		<div class="ys-admin-section">
+			<h4>リンク設定</h4>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'enable_archive_link' ); ?>">
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'enable_archive_link' ); ?>" name="<?php echo $this->get_field_name( 'enable_archive_link' ); ?>" value="1" <?php checked( $this->sanitize_checkbox( $instance['enable_archive_link'] ), true ); ?> />投稿者の記事一覧ページへのリンクを作成する</label><br>
+				<label for="<?php echo $this->get_field_id( 'enable_archive_button' ); ?>">
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'enable_archive_button' ); ?>" name="<?php echo $this->get_field_name( 'enable_archive_button' ); ?>" value="1" <?php checked( $this->sanitize_checkbox( $instance['enable_archive_button'] ), true ); ?> />「記事一覧」ボタンを表示する</label>
+			</p>
+		</div>
+		<?php
+		/**
+		 * 共通設定
+		 */
+		$this->form_ys_advanced( $instance );
 	}
 
 	/**
@@ -111,60 +193,20 @@ class YS_Widget_Profile_Box extends YS_Widget_Base {
 	 * @return array Settings to save or bool false to cancel saving.
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$new_instance = wp_parse_args( $new_instance, $this->default_instance );
-
-		$instance = $old_instance;
-
-		$instance['title']             = sanitize_text_field( $new_instance['title'] );
-		$instance['default_user_name'] = $this->sanitize_author( $new_instance['default_user_name'] );
-		$instance['user_name']         = $this->sanitize_author( $new_instance['user_name'] );
+		/**
+		 * 共通設定保存
+		 */
+		$instance = $this->update_base_options( $new_instance, $old_instance );
+		/**
+		 * Author Box 設定
+		 */
+		$instance['default_user_name']     = $this->sanitize_author( $new_instance['default_user_name'] );
+		$instance['user_name']             = $this->sanitize_author( $new_instance['user_name'] );
+		$instance['layout']                = $this->sanitize_layout( $new_instance['layout'] );
+		$instance['enable_archive_link']   = $this->sanitize_checkbox( $new_instance['enable_archive_link'] );
+		$instance['enable_archive_button'] = $this->sanitize_checkbox( $new_instance['enable_archive_button'] );
 
 		return $instance;
-	}
-
-	/**
-	 * ウィジェット設定フォーム
-	 *
-	 * @param array $instance Current instance.
-	 *
-	 * @returns void
-	 */
-	public function form( $instance ) {
-		$instance  = wp_parse_args(
-			(array) $instance,
-			$this->default_instance
-		);
-		$user_list = $this->get_author_list();
-		?>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>">
-		</p>
-		<div class="ys-admin-section">
-			<h4>デフォルトユーザー</h4>
-			<p><span class="ystandard-info--sub">※TOPページや一覧ページなどに表示するユーザー</span></p>
-			<select name="<?php echo $this->get_field_name( 'default_user_name' ); ?>">
-				<option value="">選択して下さい</option>
-				<?php foreach ( $user_list as $key => $value ) : ?>
-					<option
-						value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['default_user_name'] ); ?>><?php echo $value; ?>
-					</option>
-				<?php endforeach; ?>
-			</select>
-		</div>
-		<div class="ys-admin-section">
-			<h4>特定のユーザーの表示</h4>
-			<p><span class="ystandard-info--sub">※特定のユーザー情報を常に表示する場合は選択して下さい。</span><br><span class="ystandard-info--sub">※デフォルトユーザーと特定のユーザーの両方を指定している場合、特定ユーザーの表示が優先されます。</span></p>
-			<select name="<?php echo $this->get_field_name( 'user_name' ); ?>">
-				<option value="">選択して下さい</option>
-				<?php foreach ( $user_list as $key => $value ) : ?>
-					<option
-						value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['user_name'] ); ?>><?php echo $value; ?>
-					</option>
-				<?php endforeach; ?>
-			</select>
-		</div>
-		<?php
 	}
 
 	/**
@@ -173,13 +215,19 @@ class YS_Widget_Profile_Box extends YS_Widget_Base {
 	 * @return array
 	 */
 	private function get_author_list() {
+		/**
+		 * クエリの作成
+		 */
 		$user_query = new WP_User_Query(
 			array(
 				'role__not_in' => 'Subscriber',
 			)
 		);
-		$user_list  = array();
-		$users      = $user_query->get_results();
+		/**
+		 * ユーザーリスト作成
+		 */
+		$user_list = array();
+		$users     = $user_query->get_results();
 		foreach ( $users as $user ) {
 			$user_list[ $user->data->user_login ] = $user->data->display_name;
 		}
@@ -201,5 +249,21 @@ class YS_Widget_Profile_Box extends YS_Widget_Base {
 		} else {
 			return '';
 		}
+	}
+
+	/**
+	 * レイアウト設定のサニタイズ
+	 *
+	 * @param string $layout レイアウト.
+	 *
+	 * @return string
+	 */
+	private function sanitize_layout( $layout ) {
+
+		if ( 'vertical' === $layout ) {
+			return $layout;
+		}
+
+		return 'horizon';
 	}
 }
