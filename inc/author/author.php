@@ -263,7 +263,7 @@ function ys_get_author_avatar( $user_id = false, $size = 96, $class = array() ) 
 	}
 	$user_id   = ys_check_user_id( $user_id );
 	$author_id = $user_id;
-	if ( false === $user_id ) {
+	if ( ! $user_id ) {
 		$author_id = get_the_author_meta( 'ID' );
 	}
 	$alt           = esc_attr( ys_get_author_display_name() );
