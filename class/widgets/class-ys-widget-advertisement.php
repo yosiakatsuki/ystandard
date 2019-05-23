@@ -81,7 +81,7 @@ class YS_Widget_Advertisement extends YS_Widget_Base {
 		ys_do_shortcode(
 			'ys_ad_block',
 			array(
-				'class' => 'widget ys-ad-widget',
+				'class' => 'ys-ad-widget',
 			),
 			$instance['text'],
 			true
