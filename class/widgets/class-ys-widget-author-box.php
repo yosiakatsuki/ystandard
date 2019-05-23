@@ -17,9 +17,12 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 	 * @var array
 	 */
 	protected $default_instance = array(
-		'title'             => '',
-		'default_user_name' => '',
-		'user_name'         => '',
+		'title'                 => '',
+		'default_user_name'     => false,
+		'user_name'             => false,
+		'enable_archive_link'   => true,
+		'enable_archive_button' => true,
+		'layout'                => 'horizon',
 	);
 
 	/**
@@ -59,14 +62,7 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 		 * 初期値セット
 		 */
 		$this->set_default_instance(
-			array(
-				'title'                 => '',
-				'default_user_name'     => false,
-				'user_name'             => false,
-				'enable_archive_link'   => true,
-				'enable_archive_button' => true,
-				'layout'                => 'horizon', // vertical or horizon.
-			)
+			$this->default_instance
 		);
 	}
 
