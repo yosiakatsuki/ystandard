@@ -1,0 +1,41 @@
+.ys-posts__link {
+  color: $color__text-main;
+  text-decoration: none;
+}
+.ys-posts__title,
+.ys-posts__excerpt {
+  display: block;
+}
+.ys-posts__excerpt {
+  margin-top: 1em;
+}
+
+//リストタイプ
+.ys-posts__list {
+  &.-list {
+    border-top: 1px solid $color__border-gray-light;
+  }
+}
+.ys-posts__item {
+  &.-list {
+    border-bottom: 1px solid $color__border-gray-light;
+  }
+}
+.ys-posts__design--list {
+  .ys-posts__img {
+    width: 100px;
+  }
+  .ys-posts__content {
+    margin: 0 1rem;
+  }
+}
+//カードタイプ
+.ys-posts__design--card {
+  height: 100%;
+  .ys-posts__img {
+    border-bottom: 1px solid $color__border-gray-light;
+  }
+  .ys-posts__content {
+    margin: 1rem;
+  }
+}

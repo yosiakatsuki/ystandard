@@ -37,6 +37,10 @@ require_once $shortcode_dir . 'shortcode-taxonomy-posts.php';
  * シェアボタン
  */
 require_once $shortcode_dir . 'shortcode-share-button.php';
+/**
+ * シェアボタン
+ */
+require_once $shortcode_dir . 'shortcode-get-posts.php';
 
 /**
  * ショートコードの作成と実行
