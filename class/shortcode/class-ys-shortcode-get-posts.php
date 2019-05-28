@@ -116,6 +116,10 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 		 * 列の見た目を決めるクラスのチェック
 		 */
 		$this->check_col_design();
+		/**
+		 * キャッシュのチェック
+		 */
+		$this->check_cache();
 	}
 
 	/**
@@ -263,6 +267,18 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 			} else {
 				$this->set_param( 'class_col_design', 'ys-posts__design--card card' );
 			}
+		}
+	}
+
+	/**
+	 * キャッシュのチェック
+	 */
+	private function check_cache() {
+		/**
+		 * 日別ランキングはキャッシュしない
+		 */
+		if ( 'd' === $this->get_param( 'ranking_type' ) ) {
+			$this->set_param( 'cache_expiration', 'none' );
 		}
 	}
 
