@@ -288,3 +288,15 @@ function ys_deprecated( $func, $since, $comment = '' ) {
 	}
 	echo $message;
 }
+
+/**
+ * 配列チェック
+ *
+ * @param mixed $needle   needle.
+ * @param array $haystack haystack.
+ *
+ * @return bool
+ */
+function ys_in_array( $needle, $haystack ) {
+	return in_array( $needle, $haystack, true );
+}

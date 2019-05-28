@@ -159,49 +159,48 @@ if ( ! function_exists( 'ys_excerpt_more' ) ) {
 }
 add_filter( 'excerpt_more', 'ys_excerpt_more' );
 
-if ( ! function_exists( 'ys_get_the_custom_excerpt' ) ) {
-	/**
-	 * 投稿抜粋文を作成
-	 *
-	 * @param  string  $sep     抜粋最後の文字.
-	 * @param  integer $length  抜粋長さ.
-	 * @param  integer $post_id 投稿ID.
-	 *
-	 * @return string
-	 */
-	function ys_get_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
-		if ( 0 == $post_id ) {
-			$post_id = get_the_ID();
-		}
-		if ( 0 == $length ) {
-			$length = ys_excerpt_length();
-		}
-		$post = get_post( $post_id );
-		if ( post_password_required( $post ) ) {
-			return __( 'There is no excerpt because this is a protected post.' );
-		}
-		$content = $post->post_excerpt;
-		if ( '' === $content ) {
-			/**
-			 * Excerptが無ければ本文から作る
-			 */
-			$content = $post->post_content;
-			/**
-			 * Moreタグ以降を削除
-			 */
-			$content = preg_replace( '/<!--more-->.+/is', '', $content );
-			$content = ys_get_plain_text( $content );
-		}
-		/**
-		 * 長さ調節
-		 */
-		if ( mb_strlen( $content ) > $length ) {
-			$content = mb_substr( $content, 0, $length - mb_strlen( $sep ) ) . $sep;
-		}
-
-		return apply_filters( 'ys_get_the_custom_excerpt', $content, $post_id );
+/**
+ * 投稿抜粋文を作成
+ *
+ * @param  string  $sep     抜粋最後の文字.
+ * @param  integer $length  抜粋長さ.
+ * @param  integer $post_id 投稿ID.
+ *
+ * @return string
+ */
+function ys_get_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
+	if ( 0 === $post_id ) {
+		$post_id = get_the_ID();
 	}
+	if ( 0 === $length ) {
+		$length = ys_excerpt_length();
+	}
+	$post = get_post( $post_id );
+	if ( post_password_required( $post ) ) {
+		return __( 'There is no excerpt because this is a protected post.' );
+	}
+	$content = $post->post_excerpt;
+	if ( '' === $content ) {
+		/**
+		 * Excerptが無ければ本文から作る
+		 */
+		$content = $post->post_content;
+		/**
+		 * Moreタグ以降を削除
+		 */
+		$content = preg_replace( '/<!--more-->.+/is', '', $content );
+		$content = ys_get_plain_text( $content );
+	}
+	/**
+	 * 長さ調節
+	 */
+	if ( mb_strlen( $content ) > $length ) {
+		$content = mb_substr( $content, 0, $length - mb_strlen( $sep ) ) . $sep;
+	}
+
+	return apply_filters( 'ys_get_the_custom_excerpt', $content, $post_id );
 }
+
 if ( ! function_exists( 'ys_the_custom_excerpt' ) ) {
 	/**
 	 * 投稿抜粋文を出力

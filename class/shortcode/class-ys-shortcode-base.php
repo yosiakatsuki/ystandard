@@ -33,7 +33,6 @@ class YS_Shortcode_Base {
 	 */
 	protected $err = array();
 
-
 	/**
 	 * コンストラクタ
 	 *
@@ -80,6 +79,7 @@ class YS_Shortcode_Base {
 			'wrap_html'          => '<div%s>%s</div>',
 		);
 	}
+
 
 	/**
 	 * 日付フォーマットの取得
@@ -190,7 +190,7 @@ class YS_Shortcode_Base {
 				/**
 				 * 真・偽で取得
 				 */
-				if ( 'bool' === $type ) {
+				if ( 'bool' === $type || 'boolean' === $type ) {
 					return ys_sanitize_bool( $result );
 				}
 				/**
@@ -205,12 +205,32 @@ class YS_Shortcode_Base {
 
 					return $result;
 				}
+				/**
+				 * 数値で取得
+				 */
+				if ( 'int' === $type || 'integer' === $type ) {
+					if ( ! is_numeric( $result ) ) {
+						return 0;
+					}
+
+					return (int) $result;
+				}
 			}
 
 			return $result;
 		}
 
 		return '';
+	}
+
+	/**
+	 * パラメーターのセット
+	 *
+	 * @param string $key   key.
+	 * @param string $value value.
+	 */
+	public function set_param( $key, $value ) {
+		$this->args[ $key ] = $value;
 	}
 
 	/**
