@@ -704,10 +704,6 @@ hr {
       max-width: 30%;
       min-width: 240px;
       padding: 1rem .5rem; }
-      .flex--row.-slide .flex__col:first-child {
-        margin-left: -.5rem; }
-      .flex--row.-slide .flex__col:last-child {
-        margin-right: -.5rem; }
 
 .flex--c-c {
   height: 100%;
