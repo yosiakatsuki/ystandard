@@ -11,7 +11,6 @@
  * クラス読み込み
  */
 $class_dir = get_template_directory() . '/class/';
-require_once $class_dir . 'class-ys-post-list.php';
 require_once $class_dir . 'class-ys-enqueue.php';
 require_once $class_dir . 'class-ys-cache.php';
 require_once $class_dir . 'class-ys-walker-global-nav-menu.php';
@@ -40,6 +39,7 @@ require_once $class_dir . 'class-ys-shortcode-advertisement.php';
 require_once $class_dir . 'class-ys-shortcode-author-box.php';
 require_once $class_dir . 'class-ys-shortcode-get-posts.php';
 require_once $class_dir . 'class-ys-shortcode-post-ranking.php';
+require_once $class_dir . 'class-ys-shortcode-recent-posts.php';
 
 /**
  * テーマカスタマイザー

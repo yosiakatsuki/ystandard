@@ -149,7 +149,7 @@ function ys_get_option_default( $name ) {
 		// [ys]サイト高速化設定.
 		// ランキング、カテゴリー・タグの記事一覧、関連記事のクエリ結果キャッシュ.
 		'ys_query_cache_ranking'                    => 'none', // 「[ys]人気ランキングウィジェット」の結果キャッシュ.
-		'ys_query_cache_taxonomy_posts'             => 'none', // 「[ys]カテゴリー・タグの記事一覧」の結果キャッシュ.
+		'ys_query_cache_recent_posts'               => 'none', // 「[ys]新着記事一覧」の結果キャッシュ.
 		'ys_query_cache_related_posts'              => 'none', // 記事下エリア「関連記事」の結果キャッシュ.
 		// WordPress標準機能で読み込むCSS・JavaScriptの無効化.
 		'ys_option_disable_wp_emoji'                => 1, // 絵文字を出力しない.

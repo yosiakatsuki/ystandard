@@ -1,6 +1,6 @@
 <?php
 /**
- * ランキング ショートコード クラス
+ * 最近の投稿 ショートコード クラス
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -8,11 +8,11 @@
  */
 
 /**
- * Class YS_Shortcode_Post_Ranking
+ * Class YS_Shortcode_Recent_Posts
  */
-class YS_Shortcode_Post_Ranking extends YS_Shortcode_Get_Posts {
+class YS_Shortcode_Recent_Posts extends YS_Shortcode_Get_Posts {
 
-	const CACHE_KEY = 'ranking';
+	const CACHE_KEY = 'recent_posts';
 
 	/**
 	 * Constructor.
@@ -21,14 +21,15 @@ class YS_Shortcode_Post_Ranking extends YS_Shortcode_Get_Posts {
 	 */
 	public function __construct( $args = array() ) {
 		/**
-		 * ランキング用のパラメーター指定
+		 * ランキング用のパラメーター削除
 		 */
+		unset(
+			$args['ranking_type']
+		);
 		$args = array_merge(
 			array(
-				'ranking_type'     => 'all',
-				'filter'           => 'category',
 				'cache_key'        => self::CACHE_KEY,
-				'cache_expiration' => ys_get_option( 'ys_query_cache_ranking' ),
+				'cache_expiration' => ys_get_option( 'ys_query_cache_recent_posts' ),
 			),
 			$args
 		);

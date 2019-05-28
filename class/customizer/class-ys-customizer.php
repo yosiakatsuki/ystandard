@@ -420,8 +420,19 @@ class YS_Customizer {
 	 * デフォルト値のセット
 	 *
 	 * @param array $args オプション.
+	 *
+	 * @return array
 	 */
 	public function parse_args( $args ) {
+		/**
+		 * デフォルト指定チェック
+		 */
+		if ( ! isset( $args['default'] ) ) {
+			if ( isset( $args['id'] ) ) {
+				$args['default'] = ys_get_option_default( $args['id'] );
+			}
+		}
+
 		return wp_parse_args( $args, $this->defaults );
 	}
 
