@@ -67,7 +67,6 @@ function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
 	$ys_customizer->add_radio(
 		array(
 			'id'          => 'ys_query_cache_ranking',
-			'default'     => 'none',
 			'transport'   => 'postMessage',
 			'label'       => '人気記事ランキングの結果キャッシュ',
 			'description' => '「[ys]人気ランキングウィジェット」・人気記事ランキング表示ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。<br>※日別のランキングについてはキャッシュを作成しません。',
@@ -80,15 +79,14 @@ function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
 		)
 	);
 	/**
-	 * [ys]カテゴリー・タグの記事一覧の結果キャッシュ
+	 * [ys]新着記事一覧の結果キャッシュ
 	 */
 	$ys_customizer->add_radio(
 		array(
-			'id'          => 'ys_query_cache_taxonomy_posts',
-			'default'     => 'none',
+			'id'          => 'ys_query_cache_recent_posts',
 			'transport'   => 'postMessage',
-			'label'       => 'カテゴリー・タグの記事一覧の結果キャッシュ',
-			'description' => '「[ys]カテゴリー・タグの記事一覧」・カテゴリー・タグの記事一覧ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
+			'label'       => '新着記事一覧の結果キャッシュ',
+			'description' => '「[ys]新着記事一覧ウィジェット」・新着記事一覧ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
 			'choices'     => array(
 				'none' => 'キャッシュしない',
 				'1'    => '1日',

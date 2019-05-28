@@ -30,9 +30,9 @@ require_once $shortcode_dir . 'shortcode-ad.php';
  */
 require_once $shortcode_dir . 'shortcode-post-ranking.php';
 /**
- * タクソノミー絞り込み記事一覧ショートコード
+ * 新着記事一覧ショートコード
  */
-require_once $shortcode_dir . 'shortcode-taxonomy-posts.php';
+require_once $shortcode_dir . 'shortcode-recent-posts.php';
 /**
  * シェアボタン
  */
