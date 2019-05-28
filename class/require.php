@@ -39,6 +39,7 @@ require_once $class_dir . 'class-ys-shortcode-share-button.php';
 require_once $class_dir . 'class-ys-shortcode-advertisement.php';
 require_once $class_dir . 'class-ys-shortcode-author-box.php';
 require_once $class_dir . 'class-ys-shortcode-get-posts.php';
+require_once $class_dir . 'class-ys-shortcode-post-ranking.php';
 
 /**
  * テーマカスタマイザー
