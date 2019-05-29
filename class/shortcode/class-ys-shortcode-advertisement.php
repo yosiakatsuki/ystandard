@@ -13,6 +13,15 @@
 class YS_Shortcode_Advertisement extends YS_Shortcode_Base {
 
 	/**
+	 * ショートコードパラメーター
+	 */
+	const SHORTCODE_PARAM = array(
+		'title'       => self::TITLE,
+		'title_class' => 'ys-ad-title',
+		'wrap_html'   => '<aside%s>%s</aside>',
+		'text'        => '',
+	);
+	/**
 	 * タイトル
 	 */
 	const TITLE = 'スポンサーリンク';
@@ -26,12 +35,7 @@ class YS_Shortcode_Advertisement extends YS_Shortcode_Base {
 		/**
 		 * 初期値セット＆広告ショートコード用パラメーター追加
 		 */
-		$attr = array(
-			'title'       => self::TITLE,
-			'title_class' => 'ys-ad-title',
-			'wrap_html'   => '<aside%s>%s</aside>',
-		);
-		parent::__construct( $args, $attr );
+		parent::__construct( $args, self::SHORTCODE_PARAM );
 		parent::add_class( 'ys-ad-block' );
 	}
 

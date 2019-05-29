@@ -58,9 +58,9 @@ class YS_Widget_Advertisement extends YS_Widget_Base {
 		 * 初期値セット
 		 */
 		$this->set_default_instance(
-			array(
-				'title' => YS_Shortcode_Advertisement::TITLE,
-				'text'  => '',
+			array_merge(
+				YS_Shortcode_Advertisement::SHORTCODE_PARAM,
+				array( 'class' => 'ys-ad-widget' )
 			)
 		);
 	}
@@ -74,19 +74,21 @@ class YS_Widget_Advertisement extends YS_Widget_Base {
 	 * @param array $instance データベースの保存値.
 	 */
 	public function widget( $args, $instance ) {
-		echo $args['before_widget'];
 		/**
 		 * ショートコード実行
 		 */
-		ys_do_shortcode(
+		$sc_result = ys_do_shortcode(
 			'ys_ad_block',
-			array(
-				'class' => 'ys-ad-widget',
-			),
+			array_merge( $this->default_instance, $instance ),
 			$instance['text'],
-			true
+			false
 		);
-		echo $args['after_widget'];
+		if ( $sc_result ) {
+			echo $args['before_widget'];
+			echo $sc_result;
+			echo $args['after_widget'];
+		}
+
 	}
 
 	/**
@@ -102,9 +104,15 @@ class YS_Widget_Advertisement extends YS_Widget_Base {
 			$this->default_instance
 		);
 		?>
-		<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" class="title sync-input" type="hidden" value="<?php echo esc_attr( $instance['title'] ); ?>">
-		<label for="<?php echo $this->get_field_id( 'text' ); ?>">内容:</label>
-		<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
+			<input class="widefat sync-input" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'text' ); ?>">内容:</label>
+			<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id( 'text' ); ?>" name="<?php echo $this->get_field_name( 'text' ); ?>"><?php echo esc_textarea( $instance['text'] ); ?></textarea>
+		</p>
+
 		<?php
 		/**
 		 * 共通設定
