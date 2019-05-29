@@ -680,10 +680,10 @@ hr {
   .flex--row.-no-gutter {
     margin-right: 0;
     margin-left: 0; }
-    .flex--row.-no-gutter [class*="flex__col"] {
+    .flex--row.-no-gutter > [class*="flex__col"] {
       padding-right: 0;
       padding-left: 0; }
-    .flex--row.-no-gutter.-all [class*="flex__col"] {
+    .flex--row.-no-gutter.-all > [class*="flex__col"] {
       padding-top: 0;
       padding-bottom: 0; }
   .flex--row.-slide {
@@ -699,11 +699,10 @@ hr {
     .flex--row.-slide::-webkit-scrollbar-thumb {
       background-color: #e9ecef;
       border-radius: 8px; }
-    .flex--row.-slide .flex__col {
+    .flex--row.-slide > .flex__col {
       flex: 0 0 30%;
       max-width: 30%;
-      min-width: 240px;
-      padding: 1rem .5rem; }
+      min-width: 240px; }
 
 .flex--c-c {
   height: 100%;

@@ -11,13 +11,13 @@
         margin-right: 0;
         margin-left: 0;
 
-        [class*="flex__col"] {
+        & > [class*="flex__col"] {
           padding-right: 0;
           padding-left: 0;
         }
 
         &.-all {
-          [class*="flex__col"] {
+          & > [class*="flex__col"] {
             padding-top: 0;
             padding-bottom: 0;
           }
@@ -42,11 +42,10 @@
           border-radius: 8px;
         }
 
-        .flex__col {
+        & > .flex__col {
           flex: 0 0 30%;
           max-width: 30%;
           min-width: 240px;
-          padding: 1rem .5rem;
         }
       }
     }
