@@ -213,7 +213,9 @@ class YS_Shortcode_Base {
 					$format = YS_Shortcode_Base::get_date_format();
 					$date   = Datetime::createFromFormat( $format, $result );
 					if ( '' !== $result && false === $date ) {
-						$this->set_error_message( '日付(' . $key . ')の指定にエラーがあります' );
+						$this->set_error_message(
+							'日付「' . $key . '」の指定にエラーがあります。 ' . $format . ' の形式で設定してください。'
+						);
 					}
 
 					return $result;

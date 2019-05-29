@@ -11,7 +11,18 @@
  * テーマ内で作成するウィジェットのベース
  */
 class YS_Widget_Base extends WP_Widget {
-
+	/**
+	 * 日付部分のフォーマット
+	 */
+	const DATE_FORMAT = 'Y-m-d';
+	/**
+	 * 時間部分のフォーマット
+	 */
+	const TIME_FORMAT = 'H:i:00';
+	/**
+	 * 日時フォーマット
+	 */
+	const DATETIME_FORMAT = self::DATE_FORMAT . ' ' . self::TIME_FORMAT;
 	/**
 	 * 共通オプション
 	 *
@@ -69,15 +80,14 @@ class YS_Widget_Base extends WP_Widget {
 	 * @return array
 	 */
 	public static function get_default_date() {
-		$date_format = YS_Shortcode_Base::get_date_format();
-		$start_date  = date_i18n( 'Y-m-d' );
-		$start_time  = date_i18n( 'H:i:00' );
-		$end_date    = Datetime::createFromFormat(
-			$date_format,
-			date_i18n( $date_format )
+		$start_date = date_i18n( self::DATE_FORMAT );
+		$start_time = date_i18n( self::TIME_FORMAT );
+		$end_date   = Datetime::createFromFormat(
+			self::DATETIME_FORMAT,
+			date_i18n( self::DATETIME_FORMAT )
 		);
 		$end_date->modify( '+7 days' );
-		$end_date = $end_date->format( 'Y-m-d' );
+		$end_date = $end_date->format( self::DATE_FORMAT );
 
 		return array(
 			'start_date' => $start_date,
@@ -298,7 +308,7 @@ class YS_Widget_Base extends WP_Widget {
 			<h4 class="ys-widget-advanced-option__title">詳細設定</h4>
 			<div class="ys-widget-advanced-option__toggle">
 				<div class="ys-admin-section">
-					<h5>掲載開始条件</h5>
+					<h5>掲載開始時間</h5>
 					<p>
 						<label for="<?php echo $this->get_field_id( 'start_date' ); ?>">開始日付</label>
 						<input class="" id="<?php echo $this->get_field_id( 'start_date' ); ?>" name="<?php echo $this->get_field_name( 'start_date' ); ?>" type="date" value="<?php echo esc_attr( $instance['start_date'] ); ?>"/><br>
@@ -307,10 +317,10 @@ class YS_Widget_Base extends WP_Widget {
 					</p>
 				</div>
 				<div class="ys-admin-section">
-					<h5>掲載終了条件</h5>
+					<h5>掲載終了時間</h5>
 					<p>
 						<label for="<?php echo $this->get_field_id( 'end_flag' ); ?>">
-							<input type="checkbox" id="<?php echo $this->get_field_id( 'end_flag' ); ?>" name="<?php echo $this->get_field_name( 'end_flag' ); ?>" value="1" <?php checked( $instance['end_flag'], 1 ); ?> />終了条件を有効にする</label>
+							<input type="checkbox" id="<?php echo $this->get_field_id( 'end_flag' ); ?>" name="<?php echo $this->get_field_name( 'end_flag' ); ?>" value="1" <?php checked( $instance['end_flag'], 1 ); ?> />掲載終了時間を有効にする</label>
 					</p>
 					<p>
 						<label for="<?php echo $this->get_field_id( 'end_date' ); ?>">終了日付</label>
@@ -357,39 +367,22 @@ class YS_Widget_Base extends WP_Widget {
 		 * 日付判断
 		 */
 		return YS_Shortcode_Base::is_active_period(
-			$instance['start_date'] . ' ' . $instance['start_time'],
-			$instance['end_date'] . ' ' . $instance['end_time'],
-			$instance['end_flag']
+			$instance['display_start_date'],
+			$instance['display_end_date'],
+			$instance['enable_end_date']
 		);
 	}
 
 	/**
 	 * 特定タクソノミーのみ表示判断
-	 * TODO:タクソノミーの分割機能実装
 	 *
 	 * @param array $instance instance.
 	 *
 	 * @return bool
 	 */
 	protected function is_active_term( $instance ) {
-		if ( empty( $instance['taxonomy'] ) ) {
-			return true;
-		}
-		foreach ( $instance['taxonomy'] as $selected_taxonomy ) {
-			$selected = $this->get_selected_taxonomy( $selected_taxonomy );
-			if ( is_single() || is_category() || is_tag() || is_tax() ) {
-				$terms = get_term_children( $selected['term_id'], $selected['taxonomy_name'] );
-				if ( is_wp_error( $terms ) ) {
-					$terms = array();
-				}
-				$terms[] = $selected['term_id'];
-				if ( has_term( $terms, $selected['taxonomy_name'] ) ) {
-					return true;
-				}
-			}
-		}
 
-		return false;
+		return YS_Shortcode_Base::is_active_display_term( $instance['display_tax_list'] );
 	}
 
 	/**
@@ -461,26 +454,30 @@ class YS_Widget_Base extends WP_Widget {
 		/**
 		 * 掲載開始
 		 */
-		$instance['start_date'] = $this->sanitize_date(
+		$instance['start_date']         = $this->sanitize_date(
 			$new_instance['start_date'],
 			$this->default_instance['start_date']
 		);
-		$instance['start_time'] = $this->sanitize_time(
+		$instance['start_time']         = $this->sanitize_time(
 			$new_instance['start_time'],
 			$this->default_instance['start_time']
 		);
+		$instance['display_start_date'] = $this->get_display_date( $instance['start_date'], $instance['start_time'] );
 		/**
 		 * 掲載終了
 		 */
-		$instance['end_flag'] = $this->get_checkbox_value( 'end_flag', $new_instance );
-		$instance['end_date'] = $this->sanitize_date(
+		$instance['end_flag']         = $this->get_checkbox_value( 'end_flag', $new_instance );
+		$instance['end_date']         = $this->sanitize_date(
 			$new_instance['end_date'],
 			$this->default_instance['end_date']
 		);
-		$instance['end_time'] = $this->sanitize_time(
+		$instance['end_time']         = $this->sanitize_time(
 			$new_instance['end_time'],
 			$this->default_instance['end_time']
 		);
+		$instance['display_end_date'] = $this->get_display_date( $instance['end_date'], $instance['end_time'] );
+		$instance['enable_end_date']  = $instance['end_flag'];
+
 		/**
 		 * カテゴリー・タグ
 		 */
@@ -494,6 +491,45 @@ class YS_Widget_Base extends WP_Widget {
 		$instance['display_amp']    = $this->get_checkbox_value( 'display_amp', $new_instance );
 
 		return $instance;
+	}
+
+	/**
+	 * ショートコードで使う日付文字列に変換する
+	 *
+	 * @param string $date 日付.
+	 * @param string $time 時間.
+	 *
+	 * @return string
+	 */
+	private function get_display_date( $date, $time ) {
+		if ( '' === $date || '' === $time ) {
+			return '';
+		}
+
+		/**
+		 * 時間部分の補完
+		 */
+		if ( 5 === strlen( $time ) ) {
+			$time = $time . ':00';
+		}
+		/**
+		 * Date作成
+		 */
+		$datetime = DateTime::createFromFormat(
+			self::DATETIME_FORMAT,
+			$date . ' ' . $time
+		);
+		/**
+		 * 変換できなければ空を返す
+		 */
+		if ( ! $datetime ) {
+			return '';
+		}
+
+		/**
+		 * ショートコード側で使う日付フォーマットで変換する
+		 */
+		return $datetime->format( YS_Shortcode_Base::get_date_format() );
 	}
 
 	/**
