@@ -8,7 +8,24 @@
  */
 
 class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
-
+	/**
+	 * ショートコードパラメーター
+	 */
+	const SHORTCODE_PARAM = array(
+		'class'                => 'share-btn',
+		'twitter'              => true,
+		'facebook'             => true,
+		'hatenabookmark'       => true,
+		'pocket'               => true,
+		'line'                 => true,
+		'feedly'               => true,
+		'rss'                  => true,
+		'col_sp'               => 3,
+		'col_tablet'           => 3,
+		'col_pc'               => 6,
+		'twitter_via_user'     => '',
+		'twitter_related_user' => '',
+	);
 	/**
 	 * URL
 	 *
@@ -29,22 +46,7 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 	 * @param array $args ユーザー指定パラメーター.
 	 */
 	public function __construct( $args = array() ) {
-		$attr = array(
-			'class'                => 'share-btn',
-			'twitter'              => true,
-			'facebook'             => true,
-			'hatenabookmark'       => true,
-			'pocket'               => true,
-			'line'                 => true,
-			'feedly'               => true,
-			'rss'                  => true,
-			'col_sp'               => 3,
-			'col_tablet'           => 3,
-			'col_pc'               => 6,
-			'twitter_via_user'     => '',
-			'twitter_related_user' => '',
-		);
-		parent::__construct( $args, $attr );
+		parent::__construct( $args, self::SHORTCODE_PARAM );
 	}
 
 	/**
