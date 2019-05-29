@@ -117,9 +117,14 @@ function ys_widgets_register_widget() {
 	register_widget( 'YS_Widget_Custom_HTML' );
 	register_widget( 'YS_Widget_Advertisement' );
 	register_widget( 'YS_Widget_Author_Box' );
-	register_widget( 'YS_Widget_Share_Button' );
 	register_widget( 'YS_Widget_Post_Ranking' );
 	register_widget( 'YS_Widget_Recant_Posts' );
+	/**
+	 * 以下はアドオン購入で使えるようになる予定です。
+	 * 子テーマカスタマイズで有効化してもらっても大丈夫ですが、
+	 * アドオン販売するまではカスタマイズ記事などにはしてほしくないです。
+	 */
+	register_widget( 'YS_Widget_Share_Button' );
 }
 
 add_action( 'widgets_init', 'ys_widgets_register_widget' );

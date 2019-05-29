@@ -12,27 +12,6 @@
  */
 class YS_Widget_Share_Button extends YS_Widget_Base {
 	/**
-	 * Default instance.
-	 *
-	 * @var array
-	 */
-	protected $default_instance = array(
-		'title'                => '',
-		'twitter'              => true,
-		'facebook'             => true,
-		'hatenabookmark'       => true,
-		'pocket'               => true,
-		'line'                 => true,
-		'feedly'               => true,
-		'rss'                  => true,
-		'col_sp'               => 3,
-		'col_tablet'           => 3,
-		'col_pc'               => 6,
-		'twitter_via_user'     => '',
-		'twitter_related_user' => '',
-	);
-
-	/**
 	 * ウィジェットID
 	 *
 	 * @var string
@@ -69,7 +48,10 @@ class YS_Widget_Share_Button extends YS_Widget_Base {
 		 * 初期値セット
 		 */
 		$this->set_default_instance(
-			$this->default_instance
+			array_merge(
+				YS_Shortcode_Share_Button::SHORTCODE_PARAM,
+				array( 'title' => '' )
+			)
 		);
 	}
 
@@ -81,29 +63,20 @@ class YS_Widget_Share_Button extends YS_Widget_Base {
 	 */
 	public function widget( $args, $instance ) {
 
-		echo $args['before_widget'];
 		/**
 		 * ショートコード実行
 		 */
-		ys_do_shortcode(
+		$sc_result = ys_do_shortcode(
 			'ys_share_button',
-			array(
-				'title'                => $instance['title'],
-				'twitter'              => $instance['twitter'],
-				'facebook'             => $instance['facebook'],
-				'hatenabookmark'       => $instance['hatenabookmark'],
-				'pocket'               => $instance['pocket'],
-				'line'                 => $instance['line'],
-				'feedly'               => $instance['feedly'],
-				'rss'                  => $instance['rss'],
-				'col_sp'               => $instance['col_sp'],
-				'col_tablet'           => $instance['col_tablet'],
-				'col_pc'               => $instance['col_pc'],
-				'twitter_via_user'     => $instance['twitter_via_user'],
-				'twitter_related_user' => $instance['twitter_related_user'],
-			)
+			array_merge( $this->default_instance, $instance ),
+			null,
+			false
 		);
-		echo $args['after_widget'];
+		if ( $sc_result ) {
+			echo $args['before_widget'];
+			echo $sc_result;
+			echo $args['after_widget'];
+		}
 	}
 
 	/**
@@ -145,12 +118,12 @@ class YS_Widget_Share_Button extends YS_Widget_Base {
 		<div class="ys-admin-section">
 			<h4>Twitter詳細設定</h4>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'twitter_via_user' ); ?>">投稿ユーザー（via）アカウント名</label>
+				<label for="<?php echo $this->get_field_id( 'twitter_via_user' ); ?>">投稿ユーザー（via）アカウント名:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'twitter_via_user' ); ?>" name="<?php echo $this->get_field_name( 'twitter_via_user' ); ?>" type="text" value="<?php echo esc_attr( $instance['twitter_via_user'] ); ?>"><br>
 				<span class="ystandard-info--sub">※「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」→入力…「yosiakatsuki」<br>未入力の場合viaは設定されません。</span>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'twitter_related_user' ); ?>">おすすめアカウント名</label>
+				<label for="<?php echo $this->get_field_id( 'twitter_related_user' ); ?>">おすすめアカウント名:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'twitter_related_user' ); ?>" name="<?php echo $this->get_field_name( 'twitter_related_user' ); ?>" type="text" value="<?php echo esc_attr( $instance['twitter_related_user'] ); ?>"><br>
 				<span class="ystandard-info--sub">※ツイート後に表示するおすすめアカウントの設定。<br>「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」→入力…「yosiakatsuki」<br>複数のアカウントをおすすめ表示する場合はカンマで区切って下さい。<br>未入力の場合おすすめアカウントは設定されません。</span>
 			</p>
