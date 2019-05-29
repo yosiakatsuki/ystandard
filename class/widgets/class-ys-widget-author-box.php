@@ -12,20 +12,6 @@
  */
 class YS_Widget_Author_Box extends YS_Widget_Base {
 	/**
-	 * Default instance.
-	 *
-	 * @var array
-	 */
-	protected $default_instance = array(
-		'title'                 => '',
-		'default_user_name'     => false,
-		'user_name'             => false,
-		'enable_archive_link'   => true,
-		'enable_archive_button' => true,
-		'layout'                => 'horizon',
-	);
-
-	/**
 	 * ウィジェットID
 	 *
 	 * @var string
@@ -62,7 +48,10 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 		 * 初期値セット
 		 */
 		$this->set_default_instance(
-			$this->default_instance
+			array_merge(
+				YS_Shortcode_Author_Box::SHORTCODE_PARAM,
+				array( 'title' => '' )
+			)
 		);
 	}
 
@@ -74,35 +63,36 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 	 */
 	public function widget( $args, $instance ) {
 
-		echo $args['before_widget'];
 		$author_name_tag = 'h2';
-		/**
-		 * ウィジェットタイトル
-		 */
+		$widget_title    = '';
 		if ( ! empty( $instance['title'] ) ) {
-			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+			$widget_title = $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 			/**
 			 * タイトルがあれば投稿者はh3で作成
 			 */
 			$author_name_tag = 'h3';
 		}
 		/**
+		 * ショートコード用にパラメーター調整
+		 */
+		$instance['title']           = '';
+		$instance['author_name_tag'] = $author_name_tag;
+		/**
 		 * ショートコード実行
 		 */
-		ys_do_shortcode(
+		$sc_result = ys_do_shortcode(
 			'ys_author',
-			array(
-				'title'                 => '',
-				'author_name_tag'       => $author_name_tag,
-				'default_user_name'     => $instance['default_user_name'],
-				'user_name'             => $instance['user_name'],
-				'mode'                  => 'widget',
-				'enable_archive_link'   => $instance['enable_archive_link'],
-				'enable_archive_button' => $instance['enable_archive_button'],
-				'layout'                => $instance['layout'],
-			)
+			array_merge( $this->default_instance, $instance ),
+			null,
+			false
 		);
-		echo $args['after_widget'];
+		if ( $sc_result ) {
+			echo $args['before_widget'];
+			echo $widget_title;
+			echo $sc_result;
+			echo $args['after_widget'];
+		}
+
 	}
 
 	/**
@@ -129,30 +119,30 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 		<div class="ys-admin-section">
 			<h4>デフォルトユーザー</h4>
 			<p>
+				<select name="<?php echo $this->get_field_name( 'default_user_name' ); ?>">
+					<option value="">選択して下さい</option>
+					<?php foreach ( $user_list as $key => $value ) : ?>
+						<option
+							value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['default_user_name'] ); ?>><?php echo $value; ?>
+						</option>
+					<?php endforeach; ?>
+				</select><br>
 				<span class="ystandard-info--sub">※TOPページや一覧ページなどに表示するユーザー</span>
 			</p>
-			<select name="<?php echo $this->get_field_name( 'default_user_name' ); ?>">
-				<option value="">選択して下さい</option>
-				<?php foreach ( $user_list as $key => $value ) : ?>
-					<option
-						value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['default_user_name'] ); ?>><?php echo $value; ?>
-					</option>
-				<?php endforeach; ?>
-			</select>
 		</div>
 		<div class="ys-admin-section">
 			<h4>特定のユーザーの表示</h4>
 			<p>
+				<select name="<?php echo $this->get_field_name( 'user_name' ); ?>">
+					<option value="">選択して下さい</option>
+					<?php foreach ( $user_list as $key => $value ) : ?>
+						<option
+							value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['user_name'] ); ?>><?php echo $value; ?>
+						</option>
+					<?php endforeach; ?>
+				</select><br>
 				<span class="ystandard-info--sub">※特定のユーザー情報を常に表示する場合は選択して下さい。</span><br><span class="ystandard-info--sub">※デフォルトユーザーと特定のユーザーの両方を指定している場合、特定ユーザーの表示が優先されます。</span>
 			</p>
-			<select name="<?php echo $this->get_field_name( 'user_name' ); ?>">
-				<option value="">選択して下さい</option>
-				<?php foreach ( $user_list as $key => $value ) : ?>
-					<option
-						value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['user_name'] ); ?>><?php echo $value; ?>
-					</option>
-				<?php endforeach; ?>
-			</select>
 		</div>
 		<div class="ys-admin-section">
 			<h4>レイアウト</h4>
@@ -161,7 +151,8 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 			</label>
 			<label>
 				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="vertical" <?php checked( $instance['layout'], 'vertical' ); ?>>縦一列
-			</label>
+			</label><br>
+			<span class="ystandard-info--sub">※サイドバーなどに表示する場合は「縦一列」がおすすめです。</span>
 		</div>
 		<div class="ys-admin-section">
 			<h4>リンク設定</h4>
