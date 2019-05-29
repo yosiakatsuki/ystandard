@@ -13,13 +13,6 @@
 class YS_Widget_Base extends WP_Widget {
 
 	/**
-	 * タクソノミーとタームの区切り文字
-	 *
-	 * @var string
-	 */
-	protected $delimiter = '__';
-
-	/**
 	 * 共通オプション
 	 *
 	 * @var array
@@ -63,10 +56,10 @@ class YS_Widget_Base extends WP_Widget {
 		 */
 		$this->base_options = array_merge(
 			YS_Shortcode_Base::get_base_attr(),
+			$this->get_default_date(),
 			array(
-				'taxonomy' => '',
-			),
-			$this->get_default_date()
+				'display_tax_select' => array(),
+			)
 		);
 	}
 
@@ -133,6 +126,13 @@ class YS_Widget_Base extends WP_Widget {
 
 			}
 		}
+		/**
+		 * フルサイズ追加
+		 */
+		$sizes['full'] = array(
+			'width'  => '-',
+			'height' => '-',
+		);
 
 		return $sizes;
 	}
@@ -146,7 +146,26 @@ class YS_Widget_Base extends WP_Widget {
 	 * @return string
 	 */
 	protected function get_select_taxonomy_value( $taxonomy, $term ) {
-		return esc_attr( $taxonomy->name . $this->delimiter . $term->term_id );
+		return YS_Shortcode_Base::join_tax_term( $taxonomy->name, $term->term_id );
+	}
+
+	/**
+	 * 選択値のリストをタクソノミーとタームに分割
+	 *
+	 * @param array $list 選択値のリスト.
+	 *
+	 * @return array|bool
+	 */
+	protected function get_selected_taxonomy_list( $list ) {
+		$result = array();
+		if ( empty( $list ) ) {
+			return false;
+		}
+		foreach ( $list as $item ) {
+			$result[] = $this->get_selected_taxonomy( $item );
+		}
+
+		return $result;
 	}
 
 	/**
@@ -157,41 +176,18 @@ class YS_Widget_Base extends WP_Widget {
 	 * @return array
 	 */
 	protected function get_selected_taxonomy( $value ) {
-		$selected = explode( $this->delimiter, $value );
-		if ( ! is_array( $selected ) ) {
-			return null;
-		}
-		$term_label = '';
-		$term_slug  = '';
-		/**
-		 * 最後の要素をtermとして取り出す
-		 */
-		$term_id = array_pop( $selected );
-		/**
-		 * 残りをつなげてタクソノミーとする
-		 */
-		$taxonomy = implode( $this->delimiter, $selected );
-		$term     = get_term( $term_id, $taxonomy );
-		if ( ! is_wp_error( $term ) && ! is_null( $term ) ) {
-			$term_label = $term->name;
-			$term_slug  = $term->slug;
-		}
-
-		return array(
-			'taxonomy_name' => $taxonomy,
-			'term_id'       => $term_id,
-			'term_label'    => $term_label,
-			'term_slug'     => $term_slug,
-		);
+		return YS_Shortcode_Base::split_tax_term( $value );
 	}
 
 	/**
 	 * タクソノミー選択用Select出力
 	 *
-	 * @param string $selected_taxonomy 選択中ターム.
+	 * @param string $form_name         項目名.
+	 * @param array  $selected_taxonomy 選択中ターム.
+	 * @param bool   $multiple          複数選択.
 	 * @param array  $args              パラメータ.
 	 */
-	protected function the_taxonomies_select_html( $selected_taxonomy, $args = array() ) {
+	protected function the_taxonomies_select_html( $form_name, $selected_taxonomy, $multiple = false, $args = array() ) {
 		/**
 		 * パラメーター初期化
 		 */
@@ -214,7 +210,14 @@ class YS_Widget_Base extends WP_Widget {
 			),
 			'objects'
 		);
-		echo '<select name="' . $this->get_field_name( 'taxonomy' ) . '[]" multiple>';
+		/**
+		 * 複数選択
+		 */
+		$multiple_attr = '';
+		if ( $multiple ) {
+			$multiple_attr = ' multiple';
+		}
+		echo '<select name="' . $this->get_field_name( $form_name ) . '[]"' . $multiple_attr . '>';
 		if ( empty( $taxonomies ) ) {
 			echo '<option value="">';
 			if ( empty( $args['empty_message'] ) ) {
@@ -236,7 +239,12 @@ class YS_Widget_Base extends WP_Widget {
 			}
 		}
 		echo '</select><br>';
-		echo '<span class="ystandard-info--sub">※CtrlまたはCmdやShiftを押しながらクリックすることで複数選択することも可能です。<br>※選択解除する場合はCtrlまたはCmdを押しながらクリックして下さい。</span>';
+		/**
+		 * 案内文
+		 */
+		if ( $multiple ) {
+			echo '<span class="ystandard-info--sub">※CtrlまたはCmdやShiftを押しながらクリックすることで複数選択することも可能です。<br>※選択解除する場合はCtrlまたはCmdを押しながらクリックして下さい。</span>';
+		}
 	}
 
 	/**
@@ -265,7 +273,7 @@ class YS_Widget_Base extends WP_Widget {
 			$result .= sprintf(
 				'<option value="%s" %s>%s</option>',
 				$this->get_select_taxonomy_value( $taxonomy, $term ),
-				selected( in_array( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy, true ) ),
+				selected( ys_in_array( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy ) ),
 				esc_html( $indent . $term->name )
 			);
 			/**
@@ -314,7 +322,7 @@ class YS_Widget_Base extends WP_Widget {
 				<div class="ys-admin-section">
 					<h5>掲載するカテゴリー・タグ</h5>
 					<p>
-						<?php $this->the_taxonomies_select_html( $instance['taxonomy'] ); ?><br>
+						<?php $this->the_taxonomies_select_html( 'display_tax_select', $instance['display_tax_select'], true ); ?><br>
 						<span class="ystandard-info--sub">※カテゴリー・タグを選択した場合、投稿詳細ページ かつ 該当のカテゴリー・タグをもつ投稿ページしか表示されません。（一覧ページなどでは表示されません）</span>
 					</p>
 				</div>
@@ -476,7 +484,8 @@ class YS_Widget_Base extends WP_Widget {
 		/**
 		 * カテゴリー・タグ
 		 */
-		$instance['taxonomy'] = $new_instance['taxonomy'];
+		$instance['display_tax_select'] = $new_instance['display_tax_select'];
+		$instance['display_tax_list']   = $this->get_display_tax_list( $new_instance['display_tax_select'] );
 		/**
 		 * PC/モバイル・AMP表示
 		 */
@@ -501,6 +510,34 @@ class YS_Widget_Base extends WP_Widget {
 		}
 
 		return $this->sanitize_checkbox( $instance[ $key ] );
+	}
+
+	/**
+	 * ショートコード動作用のタクソノミー・ターム文字列を作る
+	 *
+	 * @param array $display_tax_select 選択した表示タクソノミー情報.
+	 *
+	 * @return string
+	 */
+	private function get_display_tax_list( $display_tax_select ) {
+		/**
+		 * 無ければ空文字
+		 */
+		if ( empty( $display_tax_select ) ) {
+			return '';
+		}
+		$result = '';
+		/**
+		 * 選択されたタクソノミー + タームidをタクソノミー + タームslug にしてすべて結合する
+		 */
+		foreach ( $display_tax_select as $item ) {
+			$tax = $this->get_selected_taxonomy( $item );
+			if ( ! is_null( $tax ) ) {
+				$result .= YS_Shortcode_Base::join_tax_term( $tax['taxonomy_name'], $tax['term_slug'] ) . YS_Shortcode_Base::TAX_LIST_DELIMITER;
+			}
+		}
+
+		return trim( $result );
 	}
 
 	/**
@@ -549,5 +586,21 @@ class YS_Widget_Base extends WP_Widget {
 		}
 
 		return $time;
+	}
+
+	/**
+	 * 数値チェック
+	 *
+	 * @param int $value   value.
+	 * @param int $default default.
+	 *
+	 * @return int
+	 */
+	protected function sanitize_num( $value, $default = 1 ) {
+		if ( ! is_numeric( $value ) ) {
+			return $default;
+		}
+
+		return $value;
 	}
 }

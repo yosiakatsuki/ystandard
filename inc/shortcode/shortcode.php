@@ -87,6 +87,9 @@ function ys_get_shortcode( $name, $param = array(), $content = null ) {
 	 */
 	if ( ! empty( $param ) ) {
 		foreach ( $param as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$value = implode( ',', $value );
+			}
 			$sc_param[] = sprintf(
 				'%s="%s"',
 				$key,

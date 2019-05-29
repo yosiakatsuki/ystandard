@@ -13,6 +13,19 @@
 class YS_Shortcode_Base {
 
 	/**
+	 * タクソノミーとタームの区切り文字
+	 *
+	 * @var string
+	 */
+	const TAX_DELIMITER = '__';
+	/**
+	 * タクソノミーとタームのリストの区切り文字
+	 *
+	 * @var string
+	 */
+	const TAX_LIST_DELIMITER = ' ';
+
+	/**
 	 * 基本パラメーター
 	 *
 	 * @var array
@@ -264,9 +277,11 @@ class YS_Shortcode_Base {
 			return '';
 		}
 		/**
-		 * TODO:タクソノミー判断追加する
+		 * タクソノミー判断
 		 */
-
+		if ( ! $this->_is_active_display_term() ) {
+			return '';
+		}
 		/**
 		 * 日付判断
 		 */
@@ -305,6 +320,54 @@ class YS_Shortcode_Base {
 		);
 
 		return $result . $this->get_error_message();
+	}
+
+	/**
+	 * 保存用選択値の作成
+	 *
+	 * @param string $taxonomy タクソノミー.
+	 * @param string $term     ターム.
+	 *
+	 * @return string
+	 */
+	public static function join_tax_term( $taxonomy, $term ) {
+		return esc_attr( $taxonomy . self::TAX_DELIMITER . $term );
+	}
+
+	/**
+	 * タクソノミーとタームを分割する
+	 *
+	 * @param string $value タクソノミーとタームの結合文字.
+	 *
+	 * @return array|null
+	 */
+	public static function split_tax_term( $value ) {
+		$selected = explode( self::TAX_DELIMITER, $value );
+		if ( ! is_array( $selected ) ) {
+			return null;
+		}
+		$term_label = '';
+		$term_slug  = '';
+		/**
+		 * 最後の要素をtermとして取り出す
+		 */
+		$term_id = array_pop( $selected );
+		/**
+		 * 残りをつなげてタクソノミーとする
+		 */
+		$taxonomy = implode( self::TAX_DELIMITER, $selected );
+		$term     = get_term( $term_id, $taxonomy );
+		if ( ! is_wp_error( $term ) && ! is_null( $term ) ) {
+			$term_label = $term->name;
+			$term_slug  = $term->slug;
+		}
+
+		return array(
+			'taxonomy_name' => $taxonomy,
+			'term_id'       => $term_id,
+			'term_label'    => $term_label,
+			'term_slug'     => $term_slug,
+		);
 	}
 
 	/**
@@ -427,5 +490,116 @@ class YS_Shortcode_Base {
 		}
 
 		return true;
+	}
+
+
+	/**
+	 * 表示タクソノミー設定の判断
+	 *
+	 * @return bool
+	 */
+	protected function _is_active_display_term() {
+		$tax_list = $this->get_tax_list();
+
+		return $this->is_active_display_term( $tax_list );
+	}
+
+	/**
+	 * 表示タクソノミー設定の判断
+	 *
+	 * @param string $tax_list  タクソノミー・タームの一覧.
+	 * @param string $delimiter リストの区切り文字.
+	 *
+	 * @return bool
+	 */
+	public static function is_active_display_term( $tax_list, $delimiter = self::TAX_LIST_DELIMITER ) {
+		/**
+		 * 設定が無ければ絞り込みなし
+		 */
+		if ( '' === $tax_list ) {
+			return true;
+		}
+
+		$result   = false;
+		$tax_list = explode( $delimiter, $tax_list );
+
+		/**
+		 * タクソノミーアーカイブページの場合
+		 */
+		if ( is_tax() || is_category() || is_tag() ) {
+			$queried_obj = get_queried_object();
+			$taxonomy    = $queried_obj->taxonomy;
+			$term        = $queried_obj->slug;
+			if ( $term ) {
+				$tax = self::join_tax_term( $taxonomy, $term );
+				if ( ys_in_array( $tax, $tax_list ) ) {
+					return true;
+				};
+			}
+		}
+		/**
+		 * 詳細系ページ
+		 */
+		if ( is_singular() ) {
+			$post_type = ys_get_post_type();
+			if ( $post_type ) {
+				$post_type_object = get_post_type_object( $post_type );
+				$taxonomies       = $post_type_object->taxonomies;
+				/**
+				 * 各タクソノミーについて検査
+				 */
+				foreach ( $taxonomies as $taxonomy ) {
+					$terms = get_the_terms( get_the_ID(), $taxonomy );
+					/**
+					 * 各タームについて検査
+					 */
+					foreach ( $terms as $term ) {
+						$tax = self::join_tax_term( $taxonomy, $term->slug );
+						if ( ys_in_array( $tax, $tax_list ) ) {
+							return true;
+						};
+					}
+				}
+			}
+		}
+
+		return $result;
+	}
+
+	/**
+	 * タクソノミー指定設定の取得
+	 *
+	 * @return string
+	 */
+	public function get_tax_list() {
+		$tax_list = '';
+
+		/**
+		 * タグが指定されてる
+		 */
+		if ( '' !== $this->get_param( 'display_tag' ) ) {
+			$tax_list = $this->join_tax_term( 'post_tag', $this->get_param( 'display_tag' ) );
+		}
+
+		/**
+		 * カテゴリーが指定されている
+		 */
+		if ( '' !== $this->get_param( 'display_category' ) ) {
+			$tax_list = $this->join_tax_term( 'category', $this->get_param( 'display_category' ) );
+		}
+		/**
+		 * タクソノミーとタームのセットが指定されている
+		 */
+		if ( '' !== $this->get_param( 'display_tax' ) && '' !== $this->get_param( 'display_tax_term' ) ) {
+			$tax_list = $this->join_tax_term( $this->get_param( 'display_tax' ), $this->get_param( 'display_tax_term' ) );
+		}
+		/**
+		 * リストで指定されている
+		 */
+		if ( '' !== $this->get_param( 'display_tax_list' ) ) {
+			$tax_list = $this->get_param( 'display_tax_list' );
+		}
+
+		return $tax_list;
 	}
 }
