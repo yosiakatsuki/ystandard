@@ -11,6 +11,22 @@
  * Class YS_Shortcode_Author
  */
 class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
+
+	/**
+	 * ショートコードパラメーター
+	 */
+	const SHORTCODE_PARAM = array(
+		'class'                 => 'author__box',
+		'default_user_name'     => false,
+		'user_name'             => false,
+		'enable_archive_link'   => true,
+		'enable_archive_button' => true,
+		'archive_button_text'   => '記事一覧',
+		'show_avatar'           => true,
+		'mode'                  => 'shortcode',
+		'layout'                => 'horizon', // vertical or horizon.
+		'author_name_tag'       => '',
+	);
 	/**
 	 * 投稿者一覧ページURL
 	 *
@@ -24,19 +40,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 * @param array $args ユーザー指定パラメーター.
 	 */
 	public function __construct( $args = array() ) {
-		$attr = array(
-			'class'                 => 'author__box',
-			'default_user_name'     => false,
-			'user_name'             => false,
-			'enable_archive_link'   => true,
-			'enable_archive_button' => true,
-			'archive_button_text'   => '記事一覧',
-			'show_avatar'           => true,
-			'mode'                  => 'shortcode',
-			'layout'                => 'horizon', // vertical or horizon.
-			'author_name_tag'       => '',
-		);
-		parent::__construct( $args, $attr );
+		parent::__construct( $args, self::SHORTCODE_PARAM );
 	}
 
 	/**
