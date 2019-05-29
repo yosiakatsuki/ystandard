@@ -50,6 +50,24 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 		'class_item'       => '', // 互換性.
 		'template'         => '', // 廃止.
 	);
+	/**
+	 * 表示タイプ
+	 */
+	const LIST_TYPE = array(
+		'list'  => 'リスト',
+		'card'  => 'カード',
+		'slide' => '横スライド',
+	);
+
+	/**
+	 * ランキングタイプ
+	 */
+	const RANKING_TYPE = array(
+		'all' => '全期間',
+		'd'   => '日別',
+		'w'   => '週別',
+		'm'   => '月別',
+	);
 
 	/**
 	 * Constructor.
@@ -144,7 +162,6 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 		 * タクソノミーオプション
 		 */
 		$query_args = array_merge( $query_args, $this->get_taxonomy_args() );
-
 		/**
 		 * クエリ作成
 		 */
@@ -307,17 +324,18 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 		/**
 		 * 3.0.0 カテゴリーのみ対応
 		 */
+
+		if ( ( is_single() || is_category() ) && 'category' === $this->get_param( 'filter' ) ) {
+			/**
+			 * カテゴリーで絞り込む
+			 */
+			$cat_ids = ys_get_the_category_id_list( true );
+			/**
+			 * オプションパラメータ作成
+			 */
+			$args = array( 'category__in' => $cat_ids );
+		}
 		if ( is_single() ) {
-			if ( ( is_single() || is_category() ) && 'category' === $this->get_param( 'filter' ) ) {
-				/**
-				 * カテゴリーで絞り込む
-				 */
-				$cat_ids = ys_get_the_category_id_list( true );
-				/**
-				 * オプションパラメータ作成
-				 */
-				$args = array( 'category__in' => $cat_ids );
-			}
 			/**
 			 * 投稿ならば表示中の投稿をのぞく
 			 */
