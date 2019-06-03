@@ -968,6 +968,30 @@ input[type="button"] {
 .icon-l {
   margin-right: .25rem; }
 
+.post-paging__item {
+  border-top: 1px solid #EEEEEE;
+  color: #222;
+  text-decoration: none; }
+  .post-paging__item:last-child {
+    border-bottom: 1px solid #EEEEEE; }
+
+.post-paging__detail {
+  padding: .5rem; }
+
+.post-paging__navi.-prev {
+  text-align: left; }
+
+.post-paging__navi.-next {
+  text-align: right; }
+
+.post-paging__image img,
+.post-paging__image amp-img {
+  max-width: 75px; }
+
+.post-paging__home {
+  padding: 1rem;
+  height: 100%; }
+
 .pagination {
   margin-top: 2rem; }
   .pagination a {
@@ -1194,6 +1218,9 @@ input[type="button"] {
 
 .singular-header-meta {
   margin-top: .5rem; }
+
+.singular-footer__block {
+  margin-top: 4.2em; }
 
 .entry__content {
   margin-top: 1.5rem; }
