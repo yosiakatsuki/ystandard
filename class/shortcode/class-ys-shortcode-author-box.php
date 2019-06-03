@@ -259,7 +259,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 		$col = 'flex flex--row';
 
 		if ( $this->is_layout_horizon() ) {
-			$col .= 'flex--md-nowrap';
+			$col .= ' flex--md-nowrap';
 		}
 
 		return $col;
