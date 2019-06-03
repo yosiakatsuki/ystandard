@@ -135,10 +135,6 @@ require_once get_template_directory() . '/inc/pagination/pagination.php';
  */
 require_once get_template_directory() . '/inc/comment/comment.php';
 /**
- * ページング
- */
-require_once get_template_directory() . '/inc/paging/paging.php';
-/**
  * RSS
  */
 require_once get_template_directory() . '/inc/rss/rss.php';

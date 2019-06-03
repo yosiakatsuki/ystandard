@@ -38,9 +38,13 @@ require_once $shortcode_dir . 'shortcode-recent-posts.php';
  */
 require_once $shortcode_dir . 'shortcode-share-button.php';
 /**
- * シェアボタン
+ * 投稿一覧取得
  */
 require_once $shortcode_dir . 'shortcode-get-posts.php';
+/**
+ * 前後の記事
+ */
+require_once $shortcode_dir . 'shortcode-post-paging.php';
 
 /**
  * ショートコードの作成と実行
