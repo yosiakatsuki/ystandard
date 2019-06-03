@@ -27,19 +27,9 @@ if ( ys_is_display_author_data() ) {
 }
 
 /**
- * コメントテンプレート
- *
- * @package ystandard
- * @author  yosiakatsuki
- * @license GPL-2.0+
+ * コメント
  */
-
-/**
- * TODO:ショートコード化
- */
-if ( ! ys_is_amp() && ( comments_open() || get_comments_number() ) ) {
-	comments_template();
-}
+get_template_part( 'template-parts/parts/post-comments' );
 
 /**
  * 関連記事
