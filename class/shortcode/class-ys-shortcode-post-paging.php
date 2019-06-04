@@ -71,14 +71,17 @@ class YS_Shortcode_Post_Paging extends YS_Shortcode_Base {
 			/**
 			 * データありの場合
 			 */
-			$image   = sprintf(
-				'<figure class="post-paging__image flex__col--auto">%s</figure>',
-				$data['image']
-			);
+			$image = '';
+			if ( $data['image'] ) {
+				$image = sprintf(
+					'<figure class="post-paging__image flex__col--auto">%s</figure>',
+					$data['image']
+				);
+			}
+
 			$content = sprintf(
-				'<div class="post-paging__detail"><div class="post-paging__navi %s has-x-small-font-size">%s</div><div class="flex flex--row %s">%s<span class="post-paging__title flex__col">%s</span></div></div>',
+				'<div class="post-paging__detail %s"><div class="flex flex--row %s">%s<span class="post-paging__title flex__col">%s</span></div></div>',
 				'-' . $next_prev,
-				$data['text'],
 				$row_class,
 				$image,
 				$data['title']
