@@ -7,6 +7,10 @@
  * @license GPL-2.0+
  */
 
+if ( ! is_single() ) {
+	return;
+}
+
 /**
  * 関連記事
  */
