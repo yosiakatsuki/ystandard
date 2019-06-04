@@ -8,15 +8,13 @@
 }
 .post-paging__detail {
   padding: .5rem;
-}
-.post-paging__navi {
   &.-prev {
     text-align: left;
   }
   &.-next {
     text-align: right;
   }
-} 
+}
 .post-paging__image {
   img,
   amp-img {

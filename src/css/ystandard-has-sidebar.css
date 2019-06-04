@@ -977,12 +977,10 @@ input[type="button"] {
 
 .post-paging__detail {
   padding: .5rem; }
-
-.post-paging__navi.-prev {
-  text-align: left; }
-
-.post-paging__navi.-next {
-  text-align: right; }
+  .post-paging__detail.-prev {
+    text-align: left; }
+  .post-paging__detail.-next {
+    text-align: right; }
 
 .post-paging__image img,
 .post-paging__image amp-img {

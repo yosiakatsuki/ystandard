@@ -977,12 +977,10 @@ input[type="button"] {
 
 .post-paging__detail {
   padding: .5rem; }
-
-.post-paging__navi.-prev {
-  text-align: left; }
-
-.post-paging__navi.-next {
-  text-align: right; }
+  .post-paging__detail.-prev {
+    text-align: left; }
+  .post-paging__detail.-next {
+    text-align: right; }
 
 .post-paging__image img,
 .post-paging__image amp-img {
@@ -1795,10 +1793,7 @@ a.text-sub,
 @media screen and (min-width: 600px) {
   .post-paging__item {
     border-top: 1px solid #EEEEEE;
-    border-bottom: 1px solid #EEEEEE;
-    border-left: 1px solid #EEEEEE; }
-    .post-paging__item:last-child {
-      border-right: 1px solid #EEEEEE; }
+    border-bottom: 1px solid #EEEEEE; }
   .post-paging__detail {
     padding: 1rem; } }
 
