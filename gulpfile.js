@@ -1,5 +1,5 @@
 let gulp = require('gulp');
-let zip  = require('gulp-zip');
+let zip = require('gulp-zip');
 
 
 /**
@@ -27,6 +27,7 @@ gulp.task('zip', function () {
             '!docs/**',
             '!temp',
             '!temp/**',
+            '!*.zip',
         ],
         {base: './'}
     )
