@@ -43,15 +43,15 @@ $attr = $ys_blog_card_data['attr'];
 $btn_text = $ys_blog_card_data['btn_text'];
 ?>
 <div class="ys-blog-card">
-	<a class="ys-blog-card__link card" href="<?php echo $url; ?>" data-btn="<?php echo $btn_text; ?>" <?php echo $attr; ?>>
-		<div class="ys-blog-card__row flex flex--row flex--nowrap">
+	<a class="ys-blog-card__link card -hover" href="<?php echo $url; ?>" data-btn="<?php echo $btn_text; ?>" <?php echo $attr; ?>>
+		<div class="ys-blog-card__row flex flex--row flex--nowrap -no-gutter">
 			<?php if ( $thumbnail ) : ?>
 				<figure class="ys-blog-card__image flex__col--auto">
 					<?php echo ys_amp_get_amp_image_tag( $thumbnail ); ?>
 				</figure>
 			<?php endif; ?>
 			<div class="ys-blog-card__text flex__col">
-				<div class="ys-blog-card__title has-medium-font-size"><?php echo $title; ?></div>
+				<div class="ys-blog-card__title"><?php echo $title; ?></div>
 				<?php if ( $dscr ) : ?>
 				<div class="ys-blog-card__dscr text-sub has-small-font-size"><?php echo $dscr; ?></div>
 				<?php endif; ?>

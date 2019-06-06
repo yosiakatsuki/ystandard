@@ -29,7 +29,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		'dscr'           => '',
 		'description'    => '',
 		'thumbnail'      => '',
-		'thumbnail_size' => 'thumbnail',
+		'thumbnail_size' => 'post-thumbnail',
 		'target'         => '',
 		'btn_text'       => 'この記事を見る',
 		'btn_ex_text'    => 'このサイトを見る',
@@ -395,7 +395,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 				/**
 				 * 画像タグ作成 width,heightは仮で指定する
 				 */
-				return $this->get_image_tag( $image, 150, 150, '' );
+				return $this->get_image_tag( $image, 250, 250, '' );
 			}
 		}
 

@@ -4,7 +4,7 @@
 .ys-blog-card__link {
   display: block;
   position: relative;
-  padding: 1rem 1rem 2rem;
+  padding: 0 1rem 2rem;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
   &::after {
@@ -20,11 +20,13 @@
     font-size: .7em;
     color:#fff;
     line-height: 1;
+    z-index: 2;
   }
 }
 .ys-blog-card__dscr {
   display: none;
 }
 .ys-blog-card__image {
-  max-width: 75px;
+  max-width: 100px;
+  margin-right: 1rem;
 }
