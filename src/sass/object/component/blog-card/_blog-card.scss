@@ -1,0 +1,30 @@
+//
+// ブログカード
+//
+.ys-blog-card__link {
+  display: block;
+  position: relative;
+  padding: 1rem 1rem 2rem;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  &::after {
+    content: attr(data-btn);
+    display: inline-block;
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    padding: .5em .75em;
+    border: 1px solid $color__border-dark;
+    background-color: $color__bg-dark;
+    border-radius: 4px;
+    font-size: .7em;
+    color:#fff;
+    line-height: 1;
+  }
+}
+.ys-blog-card__dscr {
+  display: none;
+}
+.ys-blog-card__image {
+  max-width: 75px;
+}

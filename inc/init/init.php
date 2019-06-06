@@ -122,6 +122,10 @@ function ys_init() {
 	 * 幅広画像のサポート
 	 */
 	add_theme_support( 'align-wide' );
+	/**
+	 * Gutenbergの文字サイズ選択設定
+	 */
+	add_theme_support( 'editor-font-sizes', ys_get_editor_font_sizes() );
 }
 
 add_action( 'after_setup_theme', 'ys_init' );
@@ -164,4 +168,58 @@ function ys_remove_oembed() {
 		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
 		remove_action( 'wp_head', 'wp_oembed_add_host_js' );
 	}
+}
+
+/**
+ * Gutenberg文字サイズ設定
+ *
+ * @return array
+ */
+function ys_get_editor_font_sizes() {
+	$size = array(
+		array(
+			'name'      => __( '極小', 'ystandard' ),
+			'shortName' => __( 'x-small', 'ystandard' ),
+			'size'      => 12,
+			'slug'      => 'x-small',
+		),
+		array(
+			'name'      => __( '小', 'ystandard' ),
+			'shortName' => __( 'small', 'ystandard' ),
+			'size'      => 14,
+			'slug'      => 'small',
+		),
+		array(
+			'name'      => __( '標準', 'ystandard' ),
+			'shortName' => __( 'normal', 'ystandard' ),
+			'size'      => 16,
+			'slug'      => 'normal',
+		),
+		array(
+			'name'      => __( '中', 'ystandard' ),
+			'shortName' => __( 'medium', 'ystandard' ),
+			'size'      => 18,
+			'slug'      => 'medium',
+		),
+		array(
+			'name'      => __( '大', 'ystandard' ),
+			'shortName' => __( 'large', 'ystandard' ),
+			'size'      => 20,
+			'slug'      => 'large',
+		),
+		array(
+			'name'      => __( '極大', 'ystandard' ),
+			'shortName' => __( 'x-large', 'ystandard' ),
+			'size'      => 22,
+			'slug'      => 'x-large',
+		),
+		array(
+			'name'      => __( '巨大', 'ystandard' ),
+			'shortName' => __( 'xx-large', 'ystandard' ),
+			'size'      => 26,
+			'slug'      => 'xx-large',
+		),
+	);
+
+	return apply_filters( 'ys_editor_font_sizes', $size );
 }

@@ -1,0 +1,18 @@
+//
+// ブログカード
+//
+@include media-breakpoint(md) {
+  .ys-blog-card__link {
+    &::after {
+      font-size: .8em;
+    }
+  }
+  .ys-blog-card__dscr {
+    display: block;
+    margin-top: 1em;
+  }
+  .ys-blog-card__image {
+    max-width: 150px;
+  }
+}
+
