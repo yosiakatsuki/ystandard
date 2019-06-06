@@ -1,13 +1,14 @@
 <?php
 /**
- * AMP用 headテンプレート
+ * AMP用 headerテンプレート
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-?>
+?><!DOCTYPE html>
+<html <?php ys_the_html_attr(); ?>>
 <head>
 	<meta charset="utf-8">
 	<script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -74,7 +75,7 @@
 
 	<meta name="format-detection" content="telephone=no"/>
 	<meta itemscope id="EntityOfPageid" itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?php echo the_permalink(); ?>"/>
-	
+
 	<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
 	<script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
 	<?php if ( ys_is_enable_google_analytics() ) : ?>
@@ -88,3 +89,42 @@
 	ys_amp_head();
 	?>
 </head>
+<body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<?php do_action( 'ys_body_prepend' ); ?>
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ystandard' ); ?></a>
+	<header id="masthead" class="header site-header">
+		<?php do_action( 'ys_site_header_prepend' ); ?>
+		<div class="site-header__container container">
+			<div class="<?php ys_the_header_row_class(); ?>">
+				<?php
+				/**
+				 * サイトタイトル・ロゴの出力
+				 */
+				get_template_part( 'template-parts/header/header-logo' );
+				?>
+
+				<?php
+				/**
+				 * グローバルナビゲーション
+				 */
+				get_template_part( 'template-parts/header/global-nav' );
+				?>
+			</div><!-- .header_row -->
+		</div><!-- .header__container -->
+		<?php do_action( 'ys_site_header_append' ); ?>
+	</header><!-- .header .site-header -->
+	<?php do_action( 'ys_after_site_header' ); ?>
+	<?php
+	/**
+	 * カスタムヘッダー
+	 */
+	get_template_part( 'template-parts/header/custom-header' );
+	?>
+	<div id="content" class="site-content site__content">
+<?php
+/**
+ * パンくずリスト
+ */
+get_template_part( 'template-parts/parts/breadcrumbs' );
