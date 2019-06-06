@@ -1,6 +1,6 @@
 <?php
 /**
- * スクリプトの読み込み
+ * スクリプトの読み込み関連
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -8,36 +8,28 @@
  */
 
 /**
+ * スクリプト関連のクラス準備
+ *
+ * @return YS_Scripts
+ */
+function ys_scripts() {
+	global $ys_scripts;
+	if ( ! ( $ys_scripts instanceof YS_Scripts ) ) {
+		$ys_scripts = new YS_Scripts();
+	}
+
+	return $ys_scripts;
+}
+
+
+/**
  * JavaScriptの読み込み
  *
  * @return void
  */
 function ys_enqueue_scripts() {
-	/**
-	 * テーマのjs読み込む
-	 */
-	wp_enqueue_script(
-		'ystandard-script',
-		get_template_directory_uri() . '/js/ystandard.js',
-		array(),
-		ys_get_theme_version( true ),
-		true
-	);
-	/**
-	 * Font Awesome
-	 */
-	wp_enqueue_script(
-		'font-awesome',
-		ys_get_font_awesome_svg_url(),
-		array(),
-		ys_get_font_awesome_svg_version(),
-		true
-	);
-	wp_add_inline_script(
-		'font-awesome',
-		'FontAwesomeConfig = { searchPseudoElements: true };',
-		'before'
-	);
+	$scripts = ys_scripts();
+	$scripts->enqueue_script();
 }
 
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts' );
@@ -48,91 +40,55 @@ add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts' );
  * @return void
  */
 function ys_enqueue_styles() {
+	$scripts = ys_scripts();
 	/**
-	 * ブロックのスタイルを削除
+	 * CSSエンキュー処理
 	 */
-	if ( ! ys_is_active_gutenberg_css() ) {
-		wp_dequeue_style( 'wp-block-library' );
-		wp_dequeue_style( 'wp-block-library-theme' );
-	}
-	/**
-	 * テーマのCSSを読み込み
-	 */
-	if ( ys_is_optimize_load_css() ) {
-		/**
-		 * CSS最適化する場合、インラインでCSS読み込み
-		 */
-		ys_inline_styles();
-	} else {
-		/**
-		 * CSS最適化しない場合、通常形式でCSSの読み込み
-		 */
-		ys_enqueue_styles_normal();
-	}
+	$scripts->enqueue_styles();
 }
 
-add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles' );
+add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles', 9 );
 
 /**
- * インラインスタイルのセットと出力
- *
- * @return void
+ * CSS読み込み
  */
-function ys_inline_styles() {
-	/**
-	 * インラインCSSのセット
-	 */
-	ys_set_inline_style( ys_get_customizer_inline_css() );
-	if ( ys_is_active_gutenberg_css() ) {
-		ys_set_inline_style( get_template_directory() . '/css/ys-wp-blocks.min.css', false );
-	}
-	/**
-	 * インラインCSSの出力
-	 */
-	ys_the_inline_style();
-}
-
-/**
- * 通常のCSS読み込み
- */
-function ys_enqueue_styles_normal() {
+function ys_set_enqueue_css() {
+	$scripts = ys_scripts();
 	/**
 	 * CSSの読み込み
 	 */
-	wp_enqueue_style(
-		'ystandard',
+	ys_enqueue_css(
+		'ystandard-style',
 		ys_get_enqueue_css_file_uri(),
+		ys_is_optimize_load_css(),
 		array(),
 		ys_get_theme_version( true )
 	);
 	/**
-	 * カスタマイザーで設定変更可能なインラインCSSを追加
+	 * カスタマイザー関連
 	 */
-	wp_add_inline_style(
-		'ystandard',
-		ys_get_customizer_inline_css()
-	);
+	ys_enqueue_inline_css( ys_get_customizer_inline_css() );
 	/**
-	 * ブロックエディタのCSS
+	 * Gutenbergフォントサイズ
 	 */
-	if ( ys_is_active_gutenberg_css() ) {
-		wp_enqueue_style(
-			'ys-style-block',
-			get_template_directory_uri() . '/css/ys-wp-blocks.css',
-			array( 'ystandard' ),
-			ys_get_theme_version( true )
-		);
-	}
+	ys_enqueue_inline_css( $scripts->get_editor_font_size_css() );
 	/**
-	 * ユーザーカスタマイズ用CSSの読み込み（style.css）
+	 * 追加CSS
 	 */
-	wp_enqueue_style(
+	ys_enqueue_inline_css( wp_get_custom_css() );
+	/**
+	 * Style.css
+	 */
+	ys_enqueue_css(
 		'style-css',
-		get_stylesheet_directory_uri() . '/style.css',
-		array( 'ystandard' ),
+		get_stylesheet_uri(),
+		ys_is_optimize_load_css(),
+		array(),
 		ys_get_theme_version( true )
 	);
 }
+
+add_action( 'ys_enqueue_styles', 'ys_set_enqueue_css' );
 
 /**
  * 読み込むCSSファイルのURLを取得する

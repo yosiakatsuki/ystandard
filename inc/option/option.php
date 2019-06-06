@@ -82,7 +82,7 @@ function ys_get_option_default( $name ) {
 		// [ys]ワンカラムテンプレート設定.
 		'ys_design_one_col_thumbnail_type'          => 'normal', // アイキャッチ画像表示タイプ.
 		// Gutenberg設定.
-		'ys_enqueue_gutenberg_css'                  => 1, // ブロックエディター対応のCSSを読み込む.
+		'ys_enqueue_gutenberg_css'                  => 0, // ブロックエディター対応のCSSを読み込む.
 		// [ys]フロントページ設定.
 		'ys_front_page_layout'                      => '1col', // 表示レイアウト.
 		'ys_front_page_type'                        => 'normal', // フロントページ作成タイプ.

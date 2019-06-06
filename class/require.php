@@ -11,7 +11,7 @@
  * クラス読み込み
  */
 $class_dir = get_template_directory() . '/class/';
-require_once $class_dir . 'class-ys-enqueue.php';
+require_once $class_dir . 'class-ys-scripts.php';
 require_once $class_dir . 'class-ys-cache.php';
 require_once $class_dir . 'class-ys-walker-global-nav-menu.php';
 /**
