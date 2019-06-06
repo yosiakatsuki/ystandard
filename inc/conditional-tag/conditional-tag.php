@@ -64,6 +64,12 @@ function ys_is_login_page() {
  */
 function ys_is_mobile() {
 	/**
+	 * AMPはモバイル
+	 */
+	if ( ys_is_amp() ) {
+		return true;
+	}
+	/**
 	 * [^(?!.*iPad).*iPhone] : iPadとiPhoneが混ざるUAがあるらしい
 	 */
 	$ua = array(
@@ -768,7 +774,7 @@ function ys_is_active_post_paging() {
 function ys_is_post_type_on_admin( $type ) {
 	global $post_type;
 
-	return ( $type == $post_type );
+	return ( $type === $post_type );
 }
 
 /**
@@ -777,7 +783,15 @@ function ys_is_post_type_on_admin( $type ) {
  * @return bool
  */
 function ys_is_optimize_load_css() {
-	return ys_get_option( 'ys_option_optimize_load_css' );
+	$result = false;
+	if ( ys_sanitize_bool( ys_get_option( 'ys_option_optimize_load_css' ) ) ) {
+		$result = true;
+	}
+	if ( ys_is_amp() ) {
+		$result = true;
+	}
+
+	return $result;
 }
 
 /**

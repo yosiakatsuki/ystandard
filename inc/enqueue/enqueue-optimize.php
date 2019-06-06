@@ -136,7 +136,7 @@ function ys_script_loader_tag( $tag, $handle, $src ) {
 	 */
 	$exclude = apply_filters( 'ys_exclude_add_async_scripts', array() );
 	if ( ! empty( $exclude ) ) {
-		if ( in_array( $handle, $exclude ) ) {
+		if ( ys_in_array( $handle, $exclude ) ) {
 			return $tag;
 		}
 	}
@@ -152,7 +152,7 @@ function ys_script_loader_tag( $tag, $handle, $src ) {
 		$async_list
 	);
 	if ( ! empty( $async_list ) ) {
-		if ( in_array( $handle, $async_list ) ) {
+		if ( ys_in_array( $handle, $async_list ) ) {
 			return str_replace( 'src', 'async defer src', $tag );
 		}
 	}

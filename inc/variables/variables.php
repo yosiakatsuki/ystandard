@@ -8,12 +8,6 @@
  */
 
 /**
- * CSS関連のクラス
- */
-global $ys_enqueue;
-$ys_enqueue = new YS_Enqueue();
-
-/**
  * AMP判断用変数
  */
 global $ys_amp;
