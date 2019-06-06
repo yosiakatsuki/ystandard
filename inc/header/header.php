@@ -13,6 +13,10 @@
  * @param string $name The name of the specialised header.
  */
 function ys_get_header( $name = null ) {
+	$name = apply_filters( 'ys_get_header_name', $name );
+	/**
+	 * AMPの時とテンプレート分ける
+	 */
 	if ( ys_is_amp() ) {
 		get_template_part( '/template-parts/amp/amp-header', $name );
 	} else {
