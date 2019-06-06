@@ -12,6 +12,14 @@
  */
 class YS_Scripts {
 	/**
+	 * インラインCSS読み込み時のダミーCSS
+	 */
+	const CSS_HANDLE_DUMMY = 'ystandard';
+	/**
+	 * メインCSS
+	 */
+	const CSS_HANDLE_MAIN = 'ystandard-style';
+	/**
 	 * 読み込むCSS
 	 *
 	 * @var array
@@ -50,7 +58,7 @@ class YS_Scripts {
 	}
 
 	/**
-	 * スクリプト読み込み指定
+	 * スクリプトのエンキュー
 	 */
 	public function enqueue_script() {
 		/**
@@ -99,14 +107,10 @@ class YS_Scripts {
 		}
 	}
 
+	/**
+	 * CSSのエンキュー
+	 */
 	public function enqueue_styles() {
-		/**
-		 * 本体側のブロックのスタイルを削除
-		 */
-		if ( ! ys_is_active_gutenberg_css() ) {
-			wp_dequeue_style( 'wp-block-library' );
-			wp_dequeue_style( 'wp-block-library-theme' );
-		}
 		/**
 		 * CSS enqueue前アクション
 		 */
@@ -115,15 +119,8 @@ class YS_Scripts {
 		 * インラインCSS出力用にダミーでenqueueする.
 		 */
 		wp_enqueue_style(
-			'ystandard',
+			self::CSS_HANDLE_DUMMY,
 			get_template_directory_uri() . '/css/ystandard.css'
-		);
-		/**
-		 * インラインCSSの登録
-		 */
-		wp_add_inline_style(
-			'ystandard',
-			$this->get_inline_style( ys_is_amp() )
 		);
 		/**
 		 * ダミー削除用フック登録
@@ -141,6 +138,26 @@ class YS_Scripts {
 				$item['media']
 			);
 		}
+		/**
+		 * インラインCSSの登録
+		 */
+		wp_add_inline_style(
+			$this->get_inline_css_handle(),
+			$this->get_inline_style( ys_is_amp() )
+		);
+	}
+
+	/**
+	 * インラインCSSをくっつけるハンドル名を取得
+	 *
+	 * @return string
+	 */
+	private function get_inline_css_handle() {
+		if ( ys_is_optimize_load_css() ) {
+			return self::CSS_HANDLE_DUMMY;
+		}
+
+		return self::CSS_HANDLE_MAIN;
 	}
 
 	/**
@@ -199,7 +216,7 @@ class YS_Scripts {
 	 * @return string
 	 */
 	public function delete_ystandard_css( $html, $handle ) {
-		if ( 'ystandard' === $handle ) {
+		if ( self::CSS_HANDLE_DUMMY === $handle ) {
 			$html = '';
 		}
 

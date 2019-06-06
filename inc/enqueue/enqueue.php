@@ -50,6 +50,20 @@ function ys_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles', 9 );
 
 /**
+ * Gutenberg用WP標準CSSの削除
+ */
+function ys_dequeue_wp_block_css() {
+	/**
+	 * 本体側のブロックのスタイルを削除
+	 */
+	if ( ! ys_is_active_gutenberg_css() ) {
+		wp_dequeue_style( 'wp-block-library' );
+		wp_dequeue_style( 'wp-block-library-theme' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'ys_dequeue_wp_block_css' );
+
+/**
  * CSS読み込み
  */
 function ys_set_enqueue_css() {
@@ -58,7 +72,7 @@ function ys_set_enqueue_css() {
 	 * CSSの読み込み
 	 */
 	ys_enqueue_css(
-		'ystandard-style',
+		YS_Scripts::CSS_HANDLE_MAIN,
 		ys_get_enqueue_css_file_uri(),
 		ys_is_optimize_load_css(),
 		array(),
@@ -76,6 +90,10 @@ function ys_set_enqueue_css() {
 	 * 追加CSS
 	 */
 	ys_enqueue_inline_css( wp_get_custom_css() );
+	/**
+	 * 追加CSSの出力削除
+	 */
+	remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
 	/**
 	 * Style.css
 	 */
