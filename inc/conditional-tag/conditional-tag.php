@@ -148,7 +148,7 @@ function ys_is_amp_enable() {
 	/**
 	 * AMP有効化設定チェック
 	 */
-	if ( 1 === ys_get_option( 'ys_amp_enable' ) ) {
+	if ( ys_sanitize_bool( ys_get_option( 'ys_amp_enable' ) ) ) {
 		/**
 		 * AMP設定有効
 		 */
@@ -156,7 +156,7 @@ function ys_is_amp_enable() {
 			/**
 			 * 投稿ごとのAMPページ生成判断
 			 */
-			if ( '1' === ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ) ) {
+			if ( ys_sanitize_bool( ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ) ) ) {
 				$result = false;
 			}
 		} else {
