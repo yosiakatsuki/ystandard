@@ -10,7 +10,7 @@
 if ( has_nav_menu( 'global' ) ) :
 	?>
 	<div class="<?php ys_the_header_col_class( 'nav', array( 'h-nav', 'rwd' ) ); ?>">
-		<input type="checkbox" id="h-nav__toggle" class="h-nav__toggle" hidden/>
+		<input type="checkbox" id="h-nav__toggle" class="h-nav__toggle" hidden>
 		<label class="h-nav__btn" for="h-nav__toggle">
 			<span class="hamburger">
 				<span class="top"></span>

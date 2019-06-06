@@ -8,6 +8,19 @@
  */
 
 /**
+ * テーマ用get_header
+ *
+ * @param string $name The name of the specialised header.
+ */
+function ys_get_header( $name = null ) {
+	if ( ys_is_amp() ) {
+		get_template_part( '/template-parts/amp/amp-header', $name );
+	} else {
+		get_header( $name );
+	}
+}
+
+/**
  * ヘッダーロゴ取得
  */
 function ys_get_header_logo() {
