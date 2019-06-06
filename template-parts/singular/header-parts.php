@@ -12,7 +12,7 @@
  */
 if ( ys_is_active_publish_date() || ys_is_display_author_data() ) :
 	?>
-	<div class="singular-header-meta flex flex--j-between flex--a-center text-sub text--sm">
+	<div class="singular-header-meta flex flex--j-between flex--a-center text-sub has-x-small-font-size">
 		<?php get_template_part( 'template-parts/singular/singular-date' ); ?>
 		<?php get_template_part( 'template-parts/parts/author-small' ); ?>
 	</div><!-- .entry-meta -->

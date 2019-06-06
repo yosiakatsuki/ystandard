@@ -45,6 +45,10 @@ require_once $shortcode_dir . 'shortcode-get-posts.php';
  * 前後の記事
  */
 require_once $shortcode_dir . 'shortcode-post-paging.php';
+/**
+ * 前後の記事
+ */
+require_once $shortcode_dir . 'shortcode-blog-card.php';
 
 /**
  * ショートコードの作成と実行
