@@ -102,7 +102,7 @@ function ys_enqueue_block_editor_assets() {
 	if ( ys_get_option( 'ys_admin_enable_block_editor_style' ) ) {
 		wp_enqueue_style(
 			'ys-block-editor-styles',
-			get_template_directory_uri() . '/css/ys-editor-style.css'
+			get_template_directory_uri() . '/css/ystandard-admin-block.css'
 		);
 		wp_enqueue_style(
 			'site-block-editor-styles',
