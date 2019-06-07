@@ -825,3 +825,20 @@ function ys_is_active_gutenberg_css() {
 
 	return apply_filters( 'ys_is_active_gutenberg_css', $result );
 }
+
+/**
+ * キャッシュ設定が有効か判定
+ */
+function ys_is_enable_cache_setting() {
+	if ( 'none' !== ys_get_option( 'ys_query_cache_recent_posts' ) ) {
+		return true;
+	}
+	if ( 'none' !== ys_get_option( 'ys_query_cache_related_posts' ) ) {
+		return true;
+	}
+	if ( 'none' !== ys_get_option( 'ys_query_cache_ranking' ) ) {
+		return true;
+	}
+
+	return false;
+}

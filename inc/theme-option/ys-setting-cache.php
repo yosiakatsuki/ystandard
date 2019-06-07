@@ -28,11 +28,11 @@ $result = ys_setting_cache_post();
 			<p><?php echo $result; ?></p>
 		</div>
 	<?php endif; ?>
-	<div class="ystandard-settings">
-		<div class="ystandard-settings__section">
+	<div class="ystd-settings">
+		<div class="ystd-settings__section">
 			<form method="post" action="" id="cache-clear">
 				<p>テーマ内で作成したキャッシュの件数確認・削除を行います。</p>
-				<table class="ystandard-setting-table" border="0">
+				<table class="ystd-settings__table" border="0">
 					<thead>
 					<tr>
 						<th>種類</th>
@@ -48,7 +48,7 @@ $result = ys_setting_cache_post();
 					</tr>
 					<th>カテゴリー・タグの記事一覧</th>
 					<td><?php echo ys_setting_cache_get_tax_posts_count(); ?></td>
-						<td><input type="submit" name="delete[tax_posts]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
+					<td><input type="submit" name="delete[tax_posts]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
 					</tr>
 					<tr>
 						<th>記事下エリア「関連記事」</th>
@@ -56,7 +56,7 @@ $result = ys_setting_cache_post();
 						<td><input type="submit" name="delete[related_posts]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
 					</tr>
 					<tr>
-					<?php do_action( 'ys_settings_cache_table_row' ); ?>
+						<?php do_action( 'ys_settings_cache_table_row' ); ?>
 					</tbody>
 				</table>
 				<p><input type="submit" name="delete_all" id="submit" class="button button-primary" value="すべてのキャッシュを削除"></p>
