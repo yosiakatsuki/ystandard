@@ -124,7 +124,7 @@ function ys_get_theme_version( $template = false ) {
 	 * 子テーマ情報
 	 */
 	$theme = wp_get_theme();
-	if ( $template && get_template() != get_stylesheet() ) {
+	if ( $template && get_template() !== get_stylesheet() ) {
 		/**
 		 * 親テーマ情報
 		 */

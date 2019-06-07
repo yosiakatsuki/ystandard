@@ -41,7 +41,7 @@ add_action( 'admin_enqueue_scripts', 'ys_enqueue_admin_scripts' );
 function ys_admin_enqueue_scripts( $hook ) {
 	wp_enqueue_style(
 		'ys_admin_style',
-		get_template_directory_uri() . '/css/admin/admin.min.css',
+		get_template_directory_uri() . '/css/ystandard-admin.css',
 		array(),
 		ys_get_theme_version( true )
 	);
@@ -51,7 +51,7 @@ function ys_admin_enqueue_scripts( $hook ) {
 	if ( false !== strpos( $hook, 'page_ys_settings' ) ) {
 		wp_enqueue_style(
 			'ys_settings_style',
-			get_template_directory_uri() . '/css/admin/ystandard-settings.min.css'
+			get_template_directory_uri() . '/css/ystandard-admin-settings.css'
 		);
 		wp_enqueue_style(
 			'ys_settings_font',
@@ -70,7 +70,7 @@ function ys_admin_enqueue_scripts( $hook ) {
 	if ( 'widgets.php' === $hook ) {
 		wp_enqueue_style(
 			'ys-admin-widget',
-			get_template_directory_uri() . '/css/admin/widget.min.css'
+			get_template_directory_uri() . '/css/ystandard-admin-widget.css'
 		);
 	}
 }

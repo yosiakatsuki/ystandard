@@ -103,13 +103,13 @@ class YS_Scripts {
 		 * Twitter関連スクリプト読み込み
 		 */
 		if ( ys_get_option( 'ys_load_script_twitter' ) ) {
-			$this->set_onload_script( 'twitter-wjs', '//platform.twitter.com/widgets.js' );
+			$this->set_onload_script( 'twitter-wjs', ys_get_twitter_widgets_js() );
 		}
 		/**
 		 * Facebook関連スクリプト読み込み
 		 */
 		if ( ys_get_option( 'ys_load_script_facebook' ) ) {
-			$this->set_onload_script( 'facebook-jssdk', '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.11' );
+			$this->set_onload_script( 'facebook-jssdk', ys_get_facebook_sdk_js() );
 		}
 		/**
 		 * インラインスクリプトをセット

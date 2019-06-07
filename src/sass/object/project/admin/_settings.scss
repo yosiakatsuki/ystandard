@@ -1,0 +1,52 @@
+.ystd-settings__section {
+  padding: 2em 0;
+  border-bottom: 1px solid $color__border-gray;
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  & > *:first-child {
+    margin-top: 0;
+  }
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    margin: 2em 0 1em;
+    font-size: 1.5em;
+  }
+  .card {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+  }
+}
+
+.ystd-settings__icon {
+  margin-top: 2rem;
+  margin-bottom: .5rem;
+  font-size: 1.5em;
+}
+.ystd-settings__btn {
+  margin-top: 1.5rem;
+}
+.orbitron {
+  font-family: Orbitron, sans-serif;
+}
+
+.ystd-settings__table {
+  width: 100%;
+  border-collapse: collapse;
+  thead,
+  th {
+    text-align: left;
+    font-weight: bold;
+  }
+  th,
+  td {
+    padding: .5em;
+    margin: 0;
+  }
+}
