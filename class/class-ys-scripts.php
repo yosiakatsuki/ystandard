@@ -20,11 +20,31 @@ class YS_Scripts {
 	 */
 	const CSS_HANDLE_MAIN = 'ystandard-style';
 	/**
+	 * インラインのハンドルにするダミーJS
+	 */
+	const SCRIPT_HANDLE_DUMMY = 'ystandard-s';
+	/**
+	 * メインJS
+	 */
+	const SCRIPT_HANDLE_MAIN = 'ystandard-script';
+	/**
 	 * 読み込むCSS
 	 *
 	 * @var array
 	 */
 	private $enqueue_styles = array();
+	/**
+	 * 読み込むJS
+	 *
+	 * @var array
+	 */
+	private $enqueue_scripts = array();
+	/**
+	 * 読み込むインラインJS
+	 *
+	 * @var array
+	 */
+	private $enqueue_inline_scripts = array();
 	/**
 	 * インラインCSS
 	 *
@@ -62,37 +82,23 @@ class YS_Scripts {
 	 */
 	public function enqueue_script() {
 		/**
+		 * ダミーjsの指定
+		 */
+		wp_enqueue_script(
+			self::SCRIPT_HANDLE_DUMMY,
+			get_template_directory_uri() . '/js/ystandard-s.js',
+			array(),
+			'',
+			true
+		);
+		/**
+		 * ダミー削除用フック登録
+		 */
+		add_filter( 'script_loader_tag', array( $this, 'delete_ystandard_script' ), 999, 3 );
+		/**
 		 * JS enqueue前アクション
 		 */
 		do_action( 'ys_enqueue_scripts' );
-		/**
-		 * テーマのjs読み込む
-		 */
-		wp_enqueue_script(
-			'ystandard-script',
-			get_template_directory_uri() . '/js/ystandard.js',
-			array(),
-			ys_get_theme_version( true ),
-			true
-		);
-		/**
-		 * Font Awesome
-		 */
-		wp_enqueue_script(
-			'font-awesome',
-			ys_get_font_awesome_svg_url(),
-			array(),
-			ys_get_font_awesome_svg_version(),
-			true
-		);
-		wp_add_inline_script(
-			'font-awesome',
-			'FontAwesomeConfig = { searchPseudoElements: true };',
-			'before'
-		);
-		/**
-		 * TODO:wp_localize_scriptに移行予定
-		 */
 		/**
 		 * Twitter関連スクリプト読み込み
 		 */
@@ -105,6 +111,36 @@ class YS_Scripts {
 		if ( ys_get_option( 'ys_load_script_facebook' ) ) {
 			$this->set_onload_script( 'facebook-jssdk', '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.11' );
 		}
+		/**
+		 * インラインスクリプトをセット
+		 */
+		$this->add_ystandard_inline_script();
+	}
+
+	/**
+	 * インラインスクリプトのセット
+	 */
+	private function add_ystandard_inline_script() {
+		/**
+		 * パラメーターを渡す
+		 */
+		wp_localize_script(
+			self::SCRIPT_HANDLE_DUMMY,
+			'ys_onload_script',
+			$this->onload_script
+		);
+		wp_localize_script(
+			self::SCRIPT_HANDLE_DUMMY,
+			'ys_Lazyload_script',
+			$this->lazyload_script
+		);
+		/**
+		 * インラインJSのセット
+		 */
+		wp_add_inline_script(
+			self::SCRIPT_HANDLE_DUMMY,
+			$this->get_inline_js()
+		);
 	}
 
 	/**
@@ -224,6 +260,22 @@ class YS_Scripts {
 	}
 
 	/**
+	 * ダミーで追加したJSを削除
+	 *
+	 * @param string $html   scriptタグ.
+	 * @param string $handle キー.
+	 *
+	 * @return string
+	 */
+	public function delete_ystandard_script( $html, $handle ) {
+		if ( self::SCRIPT_HANDLE_DUMMY === $handle ) {
+			$html = preg_replace( '/<script.+src=["\'].+?["\']><\/script>/is', '', $html );
+		}
+
+		return $html;
+	}
+
+	/**
 	 * インラインCSSのセット
 	 *
 	 * @param string  $style  インラインCSS.
@@ -265,7 +317,7 @@ class YS_Scripts {
 	 * @param boolean $ver varsion.
 	 */
 	public function set_onload_script( $id, $src, $ver = false ) {
-		$this->onload_script[ $id ] = $this->get_load_script_array( $id, $src, $ver );
+		$this->onload_script[] = $this->get_load_script_array( $id, $src, $ver );
 	}
 
 	/**
@@ -276,7 +328,7 @@ class YS_Scripts {
 	 * @param boolean $ver varsion.
 	 */
 	public function set_lazyload_script( $id, $src, $ver = false ) {
-		$this->lazyload_script[ $id ] = $this->get_load_script_array( $id, $src, $ver );
+		$this->lazyload_script[] = $this->get_load_script_array( $id, $src, $ver );
 	}
 
 	/**
@@ -311,7 +363,7 @@ class YS_Scripts {
 			 * Minifyする
 			 */
 			if ( true === $item['minify'] ) {
-				$style .= $this->minify_css( $inline_style );
+				$style .= $this->minify( $inline_style );
 			} else {
 				$style .= $inline_style;
 			}
@@ -362,7 +414,7 @@ class YS_Scripts {
 	 *
 	 * @return string
 	 */
-	public function minify_css( $style ) {
+	public function minify( $style ) {
 		/**
 		 * コメント削除
 		 */
@@ -376,7 +428,7 @@ class YS_Scripts {
 		 */
 		$style = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ' ), '', $style );
 
-		return apply_filters( 'ys_enqueue_minify_css', $style );
+		return apply_filters( 'ys_enqueue_minify', $style );
 	}
 
 	/**
@@ -399,5 +451,53 @@ class YS_Scripts {
 		}
 
 		return $css;
+	}
+
+	/**
+	 * インラインJS作成
+	 *
+	 * @return string
+	 */
+	private function get_inline_js() {
+		return <<<EOD
+ysSetTimeoutId = null
+var ysLoadScript = function(id, src) {
+	d = document
+	if (!document.getElementById(id)) {
+		js = d.createElement('script')
+		js.id = id
+		js.src = src
+		js.async = true
+		d.body.appendChild(js)
+	}
+}
+var ysGetSrc = function(url,ver) {
+	if( ver ) {
+		url += '?' + ver
+	}
+	return url
+}
+window.addEventListener('load',function() {
+	setTimeout(function() {
+		for(var i=0; i < ys_onload_script.length; i++) {
+			var item = ys_onload_script[i] 
+			ysLoadScript(item.id,ysGetSrc(item.url,item.ver))
+		}
+	}, 100)
+})
+window.addEventListener('scroll', function() {
+	if (ysSetTimeoutId) {
+		return false
+	}
+	ysSetTimeoutId = setTimeout(function() {
+		if(0 < ys_Lazyload_script.length) {
+			var item = ys_Lazyload_script[0]
+			ysLoadScript(item.id,ysGetSrc(item.url,item.ver))
+			ys_Lazyload_script.shift()
+			ysSetTimeoutId = null
+		}
+	}, 200)
+})
+EOD;
 	}
 }

@@ -29,10 +29,13 @@ function ys_scripts() {
  */
 function ys_enqueue_scripts() {
 	$scripts = ys_scripts();
+	/**
+	 * JSエンキュー処理
+	 */
 	$scripts->enqueue_script();
 }
 
-add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts', 9 );
 
 /**
  * CSSの読み込み
@@ -61,6 +64,7 @@ function ys_dequeue_wp_block_css() {
 		wp_dequeue_style( 'wp-block-library-theme' );
 	}
 }
+
 add_action( 'wp_enqueue_scripts', 'ys_dequeue_wp_block_css' );
 
 /**
@@ -107,6 +111,28 @@ function ys_set_enqueue_css() {
 }
 
 add_action( 'ys_enqueue_styles', 'ys_set_enqueue_css' );
+
+/**
+ * JavaScript読み込み指定
+ */
+function ys_set_enqueue_scripts() {
+	/**
+	 * Font Awesome
+	 */
+	wp_enqueue_script(
+		'font-awesome',
+		ys_get_font_awesome_svg_url(),
+		array(),
+		ys_get_font_awesome_svg_version(),
+		true
+	);
+	wp_add_inline_script(
+		'font-awesome',
+		'FontAwesomeConfig = { searchPseudoElements: true };',
+		'before'
+	);
+}
+add_action( 'ys_enqueue_scripts', 'ys_set_enqueue_scripts' );
 
 /**
  * 読み込むCSSファイルのURLを取得する
