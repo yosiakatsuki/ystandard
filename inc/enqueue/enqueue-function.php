@@ -8,17 +8,6 @@
  */
 
 /**
- * インラインCSS出力
- */
-function ys_the_inline_style() {
-	$style = ys_get_the_inline_style( ys_is_amp() );
-	if ( ys_is_amp() ) {
-		$style = sprintf( '<style amp-custom>%s</style>', $style );
-	}
-	echo $style . PHP_EOL;
-}
-
-/**
  * CSSのセット
  *
  * @param string $handle Handle.
