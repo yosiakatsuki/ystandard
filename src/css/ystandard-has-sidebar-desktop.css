@@ -1251,8 +1251,12 @@ input[type="button"] {
 .entry__content {
   margin-top: 1.5rem; }
 
+.widget {
+  margin-bottom: 2rem; }
+
 .widget-title {
-  margin-top: 0; }
+  margin-top: 0;
+  margin-bottom: 1rem; }
 
 .site-footer {
   margin-top: 1rem;
@@ -1922,6 +1926,10 @@ a.text-sub,
     transition: font-size .3s; }
     .archive__no-img:hover {
       font-size: 2rem; } }
+
+@media screen and (min-width: 1025px) {
+  .widget {
+    margin-bottom: 4rem; } }
 
 @media screen and (min-width: 1025px) {
   /**
