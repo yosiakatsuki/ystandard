@@ -96,7 +96,7 @@ class YS_Widget_Share_Button extends YS_Widget_Base {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>">
 		</p>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>表示するシェアボタン</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'twitter' ); ?>">
@@ -115,28 +115,28 @@ class YS_Widget_Share_Button extends YS_Widget_Base {
 					<input type="checkbox" id="<?php echo $this->get_field_id( 'rss' ); ?>" name="<?php echo $this->get_field_name( 'rss' ); ?>" value="1" <?php checked( $this->sanitize_checkbox( $instance['rss'] ), true ); ?> />RSS</label><br>
 			</p>
 		</div>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>Twitter詳細設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'twitter_via_user' ); ?>">投稿ユーザー（via）アカウント名:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'twitter_via_user' ); ?>" name="<?php echo $this->get_field_name( 'twitter_via_user' ); ?>" type="text" value="<?php echo esc_attr( $instance['twitter_via_user'] ); ?>"><br>
-				<span class="ystandard-info--sub">※「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」→入力…「yosiakatsuki」<br>未入力の場合viaは設定されません。</span>
+				<span class="ys-widget-option__sub">※「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」→入力…「yosiakatsuki」<br>未入力の場合viaは設定されません。</span>
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'twitter_related_user' ); ?>">おすすめアカウント名:</label>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'twitter_related_user' ); ?>" name="<?php echo $this->get_field_name( 'twitter_related_user' ); ?>" type="text" value="<?php echo esc_attr( $instance['twitter_related_user'] ); ?>"><br>
-				<span class="ystandard-info--sub">※ツイート後に表示するおすすめアカウントの設定。<br>「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」→入力…「yosiakatsuki」<br>複数のアカウントをおすすめ表示する場合はカンマで区切って下さい。<br>未入力の場合おすすめアカウントは設定されません。</span>
+				<span class="ys-widget-option__sub">※ツイート後に表示するおすすめアカウントの設定。<br>「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」→入力…「yosiakatsuki」<br>複数のアカウントをおすすめ表示する場合はカンマで区切って下さい。<br>未入力の場合おすすめアカウントは設定されません。</span>
 			</p>
 		</div>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>表示列数設定</h4>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'col_sp' ); ?>">スマートフォン</label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_sp' ); ?>" name="<?php echo $this->get_field_name( 'col_sp' ); ?>" type="number" value="<?php echo esc_attr( $instance['col_sp'] ); ?>" min="1" max="6" size="3"><br>
-				<label for="<?php echo $this->get_field_id( 'col_tablet' ); ?>">タブレット</label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_tablet' ); ?>" name="<?php echo $this->get_field_name( 'col_tablet' ); ?>" type="number" value="<?php echo esc_attr( $instance['col_tablet'] ); ?>" min="1" max="6" size="3"><br>
-				<label for="<?php echo $this->get_field_id( 'col_pc' ); ?>">PC</label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_pc' ); ?>" name="<?php echo $this->get_field_name( 'col_pc' ); ?>" type="number" value="<?php echo esc_attr( $instance['col_pc'] ); ?>" min="1" max="6" size="3">
+				<label for="<?php echo $this->get_field_id( 'col_sp' ); ?>"><i class="fas fa-mobile-alt fa-fw"></i></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_sp' ); ?>" name="<?php echo $this->get_field_name( 'col_sp' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_sp'] ); ?>" size="1"/><br>
+				<label for="<?php echo $this->get_field_id( 'col_tablet' ); ?>"><i class="fas fa-tablet-alt fa-fw"></i></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_tablet' ); ?>" name="<?php echo $this->get_field_name( 'col_tablet' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_tablet'] ); ?>" size="1"/><br>
+				<label for="<?php echo $this->get_field_id( 'col_pc' ); ?>"><i class="fas fa-desktop fa-fw"></i></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_pc' ); ?>" name="<?php echo $this->get_field_name( 'col_pc' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_pc'] ); ?>" size="1"/><br>
 			</p>
 		</div>
 		<?php

@@ -116,7 +116,7 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>">
 		</p>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>デフォルトユーザー</h4>
 			<p>
 				<select name="<?php echo $this->get_field_name( 'default_user_name' ); ?>">
@@ -127,10 +127,10 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 						</option>
 					<?php endforeach; ?>
 				</select><br>
-				<span class="ystandard-info--sub">※TOPページや一覧ページなどに表示するユーザー</span>
+				<span class="ys-widget-option__sub">※TOPページや一覧ページなどに表示するユーザー</span>
 			</p>
 		</div>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>特定のユーザーの表示</h4>
 			<p>
 				<select name="<?php echo $this->get_field_name( 'user_name' ); ?>">
@@ -141,10 +141,10 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 						</option>
 					<?php endforeach; ?>
 				</select><br>
-				<span class="ystandard-info--sub">※特定のユーザー情報を常に表示する場合は選択して下さい。</span><br><span class="ystandard-info--sub">※デフォルトユーザーと特定のユーザーの両方を指定している場合、特定ユーザーの表示が優先されます。</span>
+				<span class="ys-widget-option__sub">※特定のユーザー情報を常に表示する場合は選択して下さい。</span><br><span class="ys-widget-option__sub">※デフォルトユーザーと特定のユーザーの両方を指定している場合、特定ユーザーの表示が優先されます。</span>
 			</p>
 		</div>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>レイアウト</h4>
 			<label>
 				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="horizon" <?php checked( $instance['layout'], 'horizon' ); ?>>レスポンシブ
@@ -152,9 +152,9 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 			<label>
 				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="vertical" <?php checked( $instance['layout'], 'vertical' ); ?>>縦一列
 			</label><br>
-			<span class="ystandard-info--sub">※サイドバーなどに表示する場合は「縦一列」がおすすめです。</span>
+			<span class="ys-widget-option__sub">※サイドバーなどに表示する場合は「縦一列」がおすすめです。</span>
 		</div>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>リンク設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'enable_archive_link' ); ?>">

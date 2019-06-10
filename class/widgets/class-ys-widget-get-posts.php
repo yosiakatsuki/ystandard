@@ -230,19 +230,14 @@ abstract class YS_Widget_Get_Posts extends YS_Widget_Base {
 	 */
 	private function form_display( $instance ) {
 		?>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>表示設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'count' ); ?>">表示する投稿数:</label>
 				<input class="tiny-text" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php echo $this->get_field_name( 'count' ); ?>" type="number" step="1" min="1" value="<?php echo $instance['count']; ?>" size="3"/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php checked( ys_sanitize_bool( $instance['show_excerpt'] ), true ); ?> />抜粋を表示する
-				</label>
-			</p>
-			<p>
-				<label for="<?php echo $this->get_field_id( 'list_type' ); ?>">表示タイプ</label>
+				<label for="<?php echo $this->get_field_id( 'list_type' ); ?>">表示タイプ:</label>
 				<select name="<?php echo $this->get_field_name( 'list_type' ); ?>">
 					<?php
 					$list_type = YS_Shortcode_Get_Posts::LIST_TYPE;
@@ -253,13 +248,21 @@ abstract class YS_Widget_Get_Posts extends YS_Widget_Base {
 				</select>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'col_sp' ); ?>">列数(スマホ)</label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_sp' ); ?>" name="<?php echo $this->get_field_name( 'col_sp' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_sp'] ); ?>" size="2"/><br>
-				<label for="<?php echo $this->get_field_id( 'col_tablet' ); ?>">列数(タブレット)</label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_tablet' ); ?>" name="<?php echo $this->get_field_name( 'col_tablet' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_tablet'] ); ?>" size="2"/><br>
-				<label for="<?php echo $this->get_field_id( 'col_pc' ); ?>">列数(PC)</label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_pc' ); ?>" name="<?php echo $this->get_field_name( 'col_pc' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_pc'] ); ?>" size="2"/><br>
-				<span class="ystandard-info--sub">※表示タイプが「横スライド」の場合、列設定は無視されます。</span>
+				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>">
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php checked( ys_sanitize_bool( $instance['show_excerpt'] ), true ); ?> />抜粋を表示する
+				</label>
+			</p>
+		</div>
+		<div class="ys-widget-option__section">
+			<h4>表示列数設定</h4>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'col_sp' ); ?>"><i class="fas fa-mobile-alt fa-fw"></i></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_sp' ); ?>" name="<?php echo $this->get_field_name( 'col_sp' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_sp'] ); ?>" size="1"/><br>
+				<label for="<?php echo $this->get_field_id( 'col_tablet' ); ?>"><i class="fas fa-tablet-alt fa-fw"></i></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_tablet' ); ?>" name="<?php echo $this->get_field_name( 'col_tablet' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_tablet'] ); ?>" size="1"/><br>
+				<label for="<?php echo $this->get_field_id( 'col_pc' ); ?>"><i class="fas fa-desktop fa-fw"></i></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_pc' ); ?>" name="<?php echo $this->get_field_name( 'col_pc' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_pc'] ); ?>" size="1"/><br>
+				<span class="ys-widget-option__sub">※表示タイプが「横スライド」の場合、列設定は無視されます。</span>
 			</p>
 		</div>
 		<?php
@@ -272,7 +275,7 @@ abstract class YS_Widget_Get_Posts extends YS_Widget_Base {
 	 */
 	private function form_image( $instance ) {
 		?>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>画像設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_img' ); ?>">
@@ -280,7 +283,7 @@ abstract class YS_Widget_Get_Posts extends YS_Widget_Base {
 				</label><br/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ</label><br/>
+				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ:</label><br/>
 				<select name="<?php echo $this->get_field_name( 'thumbnail_size' ); ?>">
 					<?php foreach ( $this->get_image_sizes() as $key => $value ) : ?>
 						<option
@@ -289,9 +292,9 @@ abstract class YS_Widget_Get_Posts extends YS_Widget_Base {
 							縦:<?php echo esc_html( $value['height'] ); ?>)
 						</option>
 					<?php endforeach; ?>
-				</select>
-				<span class="ystandard-info--sub">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。</span>
-				<span class="ystandard-info--sub">※表示タイプが「カード」「横スライド」の場合、「表示する画像サイズ」は「thumbnail」以外を選択して下さい。</span>
+				</select><br/>
+				<span class="ys-widget-option__sub">※「thumbnail」の場合、75pxの正方形で表示されます<br>※それ以外の画像はウィジェットの横幅に対して16:9の比率で表示されます。</span>
+				<span class="ys-widget-option__sub">※表示タイプが「カード」「横スライド」の場合、「表示する画像サイズ」は「thumbnail」以外を選択して下さい。</span>
 			</p>
 		</div>
 		<?php

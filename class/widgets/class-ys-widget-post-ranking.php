@@ -67,10 +67,10 @@ class YS_Widget_Post_Ranking extends YS_Widget_Get_Posts {
 	 */
 	protected function form_widget( $instance ) {
 		?>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>ランキング設定</h4>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'ranking_type' ); ?>">ランキングタイプ</label>
+				<label for="<?php echo $this->get_field_id( 'ranking_type' ); ?>">ランキングタイプ:</label>
 				<select name="<?php echo $this->get_field_name( 'ranking_type' ); ?>">
 					<?php foreach ( YS_Shortcode_Get_Posts::RANKING_TYPE as $key => $value ) : ?>
 						<option

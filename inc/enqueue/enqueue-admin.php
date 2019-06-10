@@ -45,6 +45,12 @@ function ys_admin_enqueue_scripts( $hook ) {
 		array(),
 		ys_get_theme_version( true )
 	);
+	wp_enqueue_style(
+		'font-awesome',
+		ys_get_font_awesome_css_url(),
+		array(),
+		''
+	);
 	/**
 	 * テーマ独自の設定ページ
 	 */
@@ -56,12 +62,6 @@ function ys_admin_enqueue_scripts( $hook ) {
 		wp_enqueue_style(
 			'ys_settings_font',
 			'https://fonts.googleapis.com/css?family=Orbitron'
-		);
-		wp_enqueue_style(
-			'font-awesome',
-			ys_get_font_awesome_css_url(),
-			array(),
-			''
 		);
 	}
 	/**
