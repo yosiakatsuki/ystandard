@@ -67,7 +67,7 @@ class YS_Widget_Recant_Posts extends YS_Widget_Get_Posts {
 	 */
 	public function form_widget( $instance ) {
 		?>
-		<div class="ys-admin-section">
+		<div class="ys-widget-option__section">
 			<h4>カテゴリー・タグで記事を絞り込む</h4>
 			<p>
 				<?php $this->the_taxonomies_select_html( 'taxonomy_select', $instance['taxonomy_select'] ); ?>

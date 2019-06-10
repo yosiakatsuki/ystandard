@@ -223,11 +223,13 @@ class YS_Widget_Base extends WP_Widget {
 		/**
 		 * 複数選択
 		 */
-		$multiple_attr = '';
+		$multiple_attr  = '';
+		$multiple_class = '';
 		if ( $multiple ) {
-			$multiple_attr = ' multiple';
+			$multiple_attr  = ' size="6" multiple';
+			$multiple_class = ' multiple';
 		}
-		echo '<select name="' . $this->get_field_name( $form_name ) . '[]"' . $multiple_attr . '>';
+		echo '<select name="' . $this->get_field_name( $form_name ) . '[]" class="ys-widget-option__select' . $multiple_class . '"' . $multiple_attr . '>';
 		if ( empty( $taxonomies ) ) {
 			echo '<option value="">';
 			if ( empty( $args['empty_message'] ) ) {
@@ -253,7 +255,7 @@ class YS_Widget_Base extends WP_Widget {
 		 * 案内文
 		 */
 		if ( $multiple ) {
-			echo '<span class="ystandard-info--sub">※CtrlまたはCmdやShiftを押しながらクリックすることで複数選択することも可能です。<br>※選択解除する場合はCtrlまたはCmdを押しながらクリックして下さい。</span>';
+			echo '<span class="ys-widget-option__sub">※CtrlまたはCmdやShiftを押しながらクリックすることで複数選択することも可能です。<br>※選択解除する場合はCtrlまたはCmdを押しながらクリックして下さい。</span>';
 		}
 	}
 
@@ -304,11 +306,15 @@ class YS_Widget_Base extends WP_Widget {
 	 */
 	protected function form_ys_advanced( $instance ) {
 		?>
-		<div class="ys-widget-advanced-option">
-			<h4 class="ys-widget-advanced-option__title">詳細設定</h4>
-			<div class="ys-widget-advanced-option__toggle">
-				<div class="ys-admin-section">
-					<h5>掲載開始時間</h5>
+		<div class="ys-widget-option">
+			<h4 class="ys-widget-option__title">詳細設定</h4>
+			<input type="checkbox" id="ys-widget-<?php echo $this->get_field_id( 'option__toggle' ); ?>" class="fas ys-widget-option__toggle">
+			<label class="ys-widget-option__toggle-label" for="ys-widget-<?php echo $this->get_field_id( 'option__toggle' ); ?>">
+				<span class="fas ys-widget-option__toggle-icon"></span>
+			</label>
+			<div class="ys-widget-option__container">
+				<div class="ys-widget-option__section">
+					<h4>掲載開始時間</h4>
 					<p>
 						<label for="<?php echo $this->get_field_id( 'start_date' ); ?>">開始日付</label>
 						<input class="" id="<?php echo $this->get_field_id( 'start_date' ); ?>" name="<?php echo $this->get_field_name( 'start_date' ); ?>" type="date" value="<?php echo esc_attr( $instance['start_date'] ); ?>"/><br>
@@ -316,8 +322,8 @@ class YS_Widget_Base extends WP_Widget {
 						<input class="" id="<?php echo $this->get_field_id( 'start_time' ); ?>" name="<?php echo $this->get_field_name( 'start_time' ); ?>" type="time" value="<?php echo esc_attr( $instance['start_time'] ); ?>"/>
 					</p>
 				</div>
-				<div class="ys-admin-section">
-					<h5>掲載終了時間</h5>
+				<div class="ys-widget-option__section">
+					<h4>掲載終了時間</h4>
 					<p>
 						<label for="<?php echo $this->get_field_id( 'end_flag' ); ?>">
 							<input type="checkbox" id="<?php echo $this->get_field_id( 'end_flag' ); ?>" name="<?php echo $this->get_field_name( 'end_flag' ); ?>" value="1" <?php checked( $instance['end_flag'], 1 ); ?> />掲載終了時間を有効にする</label>
@@ -329,16 +335,16 @@ class YS_Widget_Base extends WP_Widget {
 						<input class="" id="<?php echo $this->get_field_id( 'end_time' ); ?>" name="<?php echo $this->get_field_name( 'end_time' ); ?>" type="time" value="<?php echo esc_attr( $instance['end_time'] ); ?>"/>
 					</p>
 				</div>
-				<div class="ys-admin-section">
-					<h5>掲載するカテゴリー・タグ</h5>
+				<div class="ys-widget-option__section">
+					<h4>掲載するカテゴリー・タグ</h4>
 					<p>
 						<?php $this->the_taxonomies_select_html( 'display_tax_select', $instance['display_tax_select'], true ); ?><br>
-						<span class="ystandard-info--sub">※カテゴリー・タグを選択した場合、投稿詳細ページ かつ 該当のカテゴリー・タグをもつ投稿ページしか表示されません。（一覧ページなどでは表示されません）</span>
+						<span class="ys-widget-option__sub">※カテゴリー・タグを選択した場合、投稿詳細ページ かつ 該当のカテゴリー・タグをもつ投稿ページしか表示されません。（一覧ページなどでは表示されません）</span>
 					</p>
 				</div>
 				<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
-					<div class="ys-admin-section">
-						<h5>PC・モバイル・AMPの表示選択</h5>
+					<div class="ys-widget-option__section">
+						<h4>PC・モバイル・AMPの表示選択</h4>
 						<p>
 							<label for="<?php echo $this->get_field_id( 'display_pc' ); ?>">
 								<input type="checkbox" id="<?php echo $this->get_field_id( 'display_pc' ); ?>" name="<?php echo $this->get_field_name( 'display_pc' ); ?>" value="1" <?php checked( $instance['display_pc'], 1 ); ?> />PCページで表示する</label><br>
@@ -349,7 +355,7 @@ class YS_Widget_Base extends WP_Widget {
 						</p>
 					</div>
 				<?php endif; ?>
-			</div><!-- /.ys-widget-advanced-option__toggle -->
+			</div><!-- /.ys-widget-option__toggle -->
 		</div>
 		<?php
 	}
