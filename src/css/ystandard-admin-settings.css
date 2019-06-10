@@ -539,6 +539,26 @@ input[type="button"] {
   max-width: 100px;
   margin-right: 1rem; }
 
+.search-form {
+  position: relative; }
+
+.search-field {
+  padding-right: 3.5rem; }
+
+.search-submit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: .5rem 1rem;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 1px solid #bdc3c7;
+  background-color: transparent;
+  border-radius: 0;
+  -webkit-appearance: none; }
+
 .has-x-small-font-size {
   font-size: 0.75em; }
 
