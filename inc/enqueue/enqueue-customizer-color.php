@@ -95,25 +95,19 @@ function ys_get_customizer_inline_css_color() {
 			/**
 			 * PC
 			 */
-			$css .= ys_customizer_add_media_query(
-				ys_customizer_create_inline_css(
-					array(
-						'.sidebar',
-					),
-					array(
-						'background-color' => '#fff',
-						'padding'          => '2rem 1rem',
-					)
+			$css .= ys_customizer_create_inline_css(
+				array(
+					'.sidebar',
 				),
-				'lg'
+				array(
+					'background-color' => '#fff',
+					'padding'          => '2rem 1rem',
+				)
 			);
 		}
 	}
 	/**
-	 * ヘッダー
-	 */
-	/**
-	 * 背景色
+	 * ヘッダー 背景色
 	 */
 	$css .= ys_customizer_create_inline_css(
 		array(
@@ -124,7 +118,7 @@ function ys_get_customizer_inline_css_color() {
 		)
 	);
 	/**
-	 * PC
+	 * ヘッダー 背景色 PC
 	 */
 	$css .= ys_customizer_add_media_query(
 		ys_customizer_create_inline_css(
@@ -151,7 +145,7 @@ function ys_get_customizer_inline_css_color() {
 		)
 	);
 	/**
-	 * PC
+	 * ヘッダーナビゲーション PC
 	 */
 	$css .= ys_customizer_add_media_query(
 		ys_customizer_create_inline_css(
