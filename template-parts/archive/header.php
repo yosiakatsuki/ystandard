@@ -3,10 +3,16 @@
  * アーカイブヘッダー
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
+/**
+ * Homeテンプレートは出さない
+ */
+if ( is_home() ) {
+	return;
+}
 ?>
 <header class="page-header archive__header">
 	<?php
