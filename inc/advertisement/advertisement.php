@@ -173,57 +173,64 @@ function ys_the_ad_more_tag() {
 	}
 }
 
-if ( ! function_exists( 'ys_get_ad_entry_footer' ) ) {
-	/**
-	 * 記事下広告の取得
-	 */
-	function ys_get_ad_entry_footer() {
+/**
+ * 記事下広告の取得
+ */
+function ys_get_ad_entry_footer() {
 
-		$key_left  = 'ys_advertisement_under_content_left';
-		$key_right = 'ys_advertisement_under_content_right';
+	$key_left  = 'ys_advertisement_under_content_left';
+	$key_right = 'ys_advertisement_under_content_right';
 
-		if ( ys_is_mobile() ) {
-			$key_left  = 'ys_advertisement_under_content_sp';
-			$key_right = '';
-		}
-		if ( ys_is_amp() ) {
-			$key_left  = 'ys_amp_advertisement_under_content';
-			$key_right = '';
-		}
-
-		$ad       = '';
-		$ad_left  = ys_get_option( $key_left );
-		$ad_right = '';
-		if ( '' !== $key_right ) {
-			$ad_right = ys_get_option( $key_right );
-		}
-		if ( '' !== $ad_left && '' !== $ad_right ) {
-			$ad = sprintf(
-				'<div class="ad__double row">
-					<div class="ad__left col__2--tb">%s</div>
-					<div class="ad__right col__2--tb">%s</div>
-				</div>',
-				$ad_left,
-				$ad_right
-			);
-		} else {
-			if ( '' !== $ad_right ) {
-				$ad = $ad_right;
-			}
-			if ( '' !== $ad_left ) {
-				$ad = $ad_left;
-			}
-		}
-
-		return apply_filters( 'ys_get_ad_entry_footer', ys_get_ad_block_html( $ad ) );
+	if ( ys_is_mobile() ) {
+		$key_left  = 'ys_advertisement_under_content_sp';
+		$key_right = '';
 	}
+	if ( ys_is_amp() ) {
+		$key_left  = 'ys_amp_advertisement_under_content';
+		$key_right = '';
+	}
+
+	$ad       = '';
+	$ad_left  = ys_get_option( $key_left );
+	$ad_right = '';
+	if ( '' !== $key_right ) {
+		$ad_right = ys_get_option( $key_right );
+	}
+	if ( '' !== $ad_left && '' !== $ad_right ) {
+		$ad = sprintf(
+			'<div class="ad__double flex flex--row flex--a-center -no-gutter -all">
+					<div class="ad__left flex__col--md-2">%s</div>
+					<div class="ad__right flex__col--md-2">%s</div>
+				</div>',
+			$ad_left,
+			$ad_right
+		);
+	} else {
+		if ( '' !== $ad_right ) {
+			$ad = $ad_right;
+		}
+		if ( '' !== $ad_left ) {
+			$ad = $ad_left;
+		}
+	}
+
+	return apply_filters( 'ys_get_ad_entry_footer', $ad );
 }
+
 /**
  * 記事下広告の出力
  */
 function ys_the_ad_entry_footer() {
 	if ( ys_is_active_advertisement() ) {
-		echo ys_get_ad_entry_footer();
+		$ad_footer = ys_do_shortcode(
+			'ys_ad_block',
+			array(),
+			ys_get_ad_entry_footer(),
+			false
+		);
+		if ( $ad_footer ) {
+			echo $ad_footer;
+		}
 	}
 }
 
@@ -263,7 +270,7 @@ function ys_get_template_infeed_ad() {
 	}
 	global $wp_query;
 	$num = $wp_query->current_post + 1;
-	if ( 0 == ( $num % $step ) && $limit >= ( $num / $step ) ) {
+	if ( 0 === ( $num % $step ) && $limit >= ( $num / $step ) ) {
 		if ( '' !== ys_get_ad_infeed() ) {
 			get_template_part( 'template-parts/archive/infeed' );
 		}
@@ -274,6 +281,8 @@ function ys_get_template_infeed_ad() {
  * インフィード広告のプレビュー画面でのエラー対処
  *
  * @param  string $ad 広告コード.
+ *
+ * @return string
  */
 function ys_fix_ad_previw_error( $ad ) {
 	if ( ! is_customize_preview() ) {

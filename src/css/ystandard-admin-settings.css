@@ -26,6 +26,17 @@
     content: "/";
     margin: 0 .25rem; }
 
+.ys-ad-block {
+  margin: 2rem 0;
+  text-align: center; }
+  .ys-ad-block.ys-ad-widget {
+    margin: 0; }
+
+.ys-ad-title {
+  margin: 0 0 .5rem;
+  font-size: .8rem;
+  color: #757575; }
+
 .section {
   padding-top: 2rem;
   padding-bottom: 2rem; }
