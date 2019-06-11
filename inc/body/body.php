@@ -35,7 +35,7 @@ function ys_body_class( $classes ) {
 	}
 
 	/**
-	 * 1カラム,AMPの場合
+	 * サイドバーありの場合
 	 */
 	if ( ! ys_is_one_column() ) {
 		$classes[] = 'has-sidebar';
@@ -65,6 +65,13 @@ function ys_body_class( $classes ) {
 		if ( ys_get_option( 'ys_wp_header_media_full' ) ) {
 			$classes[] = 'custom-header--full';
 		}
+	}
+
+	/**
+	 * タイトルなしテンプレート
+	 */
+	if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+		$classes[] = 'one-column-no-title';
 	}
 
 	return $classes;

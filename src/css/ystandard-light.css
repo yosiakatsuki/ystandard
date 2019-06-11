@@ -539,6 +539,13 @@ hr {
 .content__title {
   margin: 0 0 1em; }
 
+.one-column-no-title .site__content,
+.one-column-no-title .entry__content {
+  margin-top: 0; }
+
+.one-column-no-title .content__main {
+  padding-top: 0; }
+
 .screen-reader-text {
   position: absolute;
   width: 1px;
