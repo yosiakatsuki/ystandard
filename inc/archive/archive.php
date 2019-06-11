@@ -19,6 +19,10 @@ function ys_get_the_archive_title( $title ) {
 	 * 標準フォーマット
 	 */
 	$title_format = apply_filters( 'ys_archive_title_format', '%s' );
+	/**
+	 * ページング
+	 */
+	$paged = get_query_var( 'paged' );
 
 	if ( is_category() ) {
 		$title = sprintf( $title_format, single_cat_title( '', false ) );
@@ -43,10 +47,6 @@ function ys_get_the_archive_title( $title ) {
 			$title = '';
 		}
 	}
-	/**
-	 * ページング
-	 */
-	$paged = get_query_var( 'paged' );
 
 	return apply_filters( 'ys_get_the_archive_title', $title, $paged );
 }
