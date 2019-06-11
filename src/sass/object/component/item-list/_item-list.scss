@@ -11,9 +11,9 @@
       margin: 0;
       padding-top: 1rem;
       padding-bottom: 1rem;
-      border-bottom: 1px solid $color__border-gray;
+      border-bottom: 1px solid $color__border-gray-light;
       &:first-child {
-        border-top: 1px solid $color__border-gray;
+        border-top: 1px solid $color__border-gray-light;
       }
     }
     .item-list__img {

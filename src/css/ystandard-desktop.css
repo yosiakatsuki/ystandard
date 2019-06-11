@@ -818,9 +818,9 @@ hr {
   margin: 0;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #bdc3c7; }
+  border-bottom: 1px solid #EEEEEE; }
   .item-list__item:first-child {
-    border-top: 1px solid #bdc3c7; }
+    border-top: 1px solid #EEEEEE; }
 
 .item-list__img {
   width: 100%;
@@ -1970,7 +1970,7 @@ a.text-sub,
     padding-top: 2rem;
     padding-bottom: 2rem; }
   .archive__detail-title {
-    font-size: 1.2rem; }
+    font-size: 1.1rem; }
   .archive__image.-list {
     width: 250px; }
   .archive__detail.-list {
