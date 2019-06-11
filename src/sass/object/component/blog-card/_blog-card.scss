@@ -7,6 +7,14 @@
   padding: 0 1rem 2rem;
   margin-top: 1.5em;
   margin-bottom: 1.5em;
+  text-decoration: none;
+  @include box-shadow(0, 1px, 5px);
+
+  &:hover {
+    text-decoration: none;
+    @include box-shadow(0, 1px, 10px);
+  }
+
   &::after {
     content: attr(data-btn);
     display: inline-block;
@@ -18,14 +26,20 @@
     background-color: $color__bg-dark;
     border-radius: 4px;
     font-size: .7em;
-    color:#fff;
+    color: #fff;
     line-height: 1;
     z-index: 2;
   }
 }
+
+.ys-blog-card__title {
+  color: $color__text-main;
+}
+
 .ys-blog-card__dscr {
   display: none;
 }
+
 .ys-blog-card__image {
   max-width: 100px;
   margin-right: 1rem;
