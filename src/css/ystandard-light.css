@@ -527,6 +527,7 @@ hr {
   overflow: hidden; }
 
 .site__content {
+  margin-top: 2rem;
   overflow: hidden; }
 
 .content__main {
@@ -547,7 +548,7 @@ hr {
 
 .breadcrumbs {
   padding: .5rem 0;
-  margin: 0;
+  margin: -2rem 0 0;
   font-size: 0;
   line-height: 1.2;
   white-space: nowrap;
@@ -1300,7 +1301,7 @@ input[type="button"] {
   font-size: 1.2rem; }
 
 .site-footer {
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding-bottom: 1rem;
   background-color: #292b2c;
   border-top: 1px solid transparent;
