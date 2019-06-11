@@ -111,10 +111,9 @@ function ys_customizer_design_add_mobile( $wp_customize ) {
 	 */
 	$ys_customizer->add_checkbox(
 		array(
-			'id'          => 'ys_show_sidebar_mobile',
-			'default'     => 0,
-			'label'       => 'モバイル表示でサイドバーを非表示にする',
-			'description' => 'モバイルページでサイドバー部分を表示しない場合にチェックを付けて下さい',
+			'id'      => 'ys_show_sidebar_mobile',
+			'default' => 0,
+			'label'   => 'モバイル表示でサイドバーを非表示にする',
 		)
 	);
 	/**
@@ -122,10 +121,9 @@ function ys_customizer_design_add_mobile( $wp_customize ) {
 	 */
 	$ys_customizer->add_checkbox(
 		array(
-			'id'          => 'ys_show_search_form_on_slide_menu',
-			'default'     => 0,
-			'label'       => 'スライドメニューに検索フォームを出力する(モバイル)',
-			'description' => 'モバイルページでスライドメニューに検索フォームを出力する場合にチェックを付けて下さい',
+			'id'      => 'ys_show_search_form_on_slide_menu',
+			'default' => 0,
+			'label'   => 'モバイルメニューに検索フォームを表示する',
 		)
 	);
 }

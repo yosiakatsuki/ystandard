@@ -72,6 +72,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column-reverse;
       position: fixed;
       width: 100%;
       height: 100%;
@@ -127,6 +128,18 @@
       & ~ .h-nav__main {
         opacity: 1;
         visibility: visible;
+      }
+    }
+    
+    &.rwd {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .h-nav__search {
+      margin-top: 1rem;
+      input,
+      button {
+        background-color: transparent;
       }
     }
   }

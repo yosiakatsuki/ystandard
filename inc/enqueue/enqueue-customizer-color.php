@@ -188,7 +188,7 @@ function ys_get_customizer_inline_css_color() {
 				'background-color' => $mobile_nav_bg,
 			)
 		),
-		'md',
+		'lg',
 		'max'
 	);
 	/**
@@ -203,7 +203,20 @@ function ys_get_customizer_inline_css_color() {
 				'color' => $mobile_nav_font,
 			)
 		),
-		'md',
+		'lg',
+		'max'
+	);
+	$css .= ys_customizer_add_media_query(
+		ys_customizer_create_inline_css(
+			array(
+				'.h-nav__search input',
+				'.h-nav__search button',
+			),
+			array(
+				'border-color' => $mobile_nav_font,
+			)
+		),
+		'lg',
 		'max'
 	);
 	/**
@@ -218,7 +231,7 @@ function ys_get_customizer_inline_css_color() {
 				'background-color' => $mobile_nav_btn,
 			)
 		),
-		'md',
+		'lg',
 		'max'
 	);
 	/**
