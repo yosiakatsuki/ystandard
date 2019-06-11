@@ -41,7 +41,7 @@ function ys_get_copyright() {
 	$copy = apply_filters( 'ys_copyright', $copy );
 	if ( $copy ) {
 		$copy = sprintf(
-			'<p id="footer-copy" class="copyright flex__col">%s</p>',
+			'<p id="footer-copy" class="copyright">%s</p>',
 			$copy
 		);
 	}
@@ -94,7 +94,7 @@ function ys_get_poweredby() {
 	 * Powered By
 	 */
 	$html = sprintf(
-		'<p id="footer-poweredby" class="footer-poweredby flex__col text--lg-right">%s%s</p>',
+		'<p id="footer-poweredby" class="footer-poweredby">%s%s</p>',
 		$theme,
 		$powerdby
 	);

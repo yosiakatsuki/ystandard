@@ -1311,7 +1311,8 @@ input[type="button"] {
   border-radius: 50%; }
 
 .footer-nav .menu-item {
-  margin-right: 1rem; }
+  margin-right: 1rem;
+  font-size: .9rem; }
   .footer-nav .menu-item:last-child {
     margin-right: 0; }
 
@@ -1324,7 +1325,11 @@ input[type="button"] {
 .footer-copy {
   margin-top: 2rem; }
   .footer-copy p {
-    margin: 0; }
+    margin-bottom: 0; }
+
+.footer-poweredby {
+  margin-top: 1rem;
+  font-size: .8rem; }
 
 /**
  * カスタムヘッダー基本クラス
