@@ -43,7 +43,7 @@ $attr = $ys_blog_card_data['attr'];
 $btn_text = $ys_blog_card_data['btn_text'];
 ?>
 <div class="ys-blog-card">
-	<a class="ys-blog-card__link card -hover" href="<?php echo $url; ?>" data-btn="<?php echo $btn_text; ?>" <?php echo $attr; ?>>
+	<a class="ys-blog-card__link" href="<?php echo $url; ?>" data-btn="<?php echo $btn_text; ?>" <?php echo $attr; ?>>
 		<div class="ys-blog-card__row flex flex--row flex--nowrap -no-gutter">
 			<?php if ( $thumbnail ) : ?>
 				<figure class="ys-blog-card__image flex__col--auto">

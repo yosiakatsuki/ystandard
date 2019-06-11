@@ -527,7 +527,12 @@ input[type="button"] {
   position: relative;
   padding: 0 1rem 2rem;
   margin-top: 1.5em;
-  margin-bottom: 1.5em; }
+  margin-bottom: 1.5em;
+  text-decoration: none;
+  box-shadow: 0 1px 5px rgba(189, 195, 199, 0.7); }
+  .ys-blog-card__link:hover {
+    text-decoration: none;
+    box-shadow: 0 1px 10px rgba(189, 195, 199, 0.7); }
   .ys-blog-card__link::after {
     content: attr(data-btn);
     display: inline-block;
@@ -542,6 +547,9 @@ input[type="button"] {
     color: #fff;
     line-height: 1;
     z-index: 2; }
+
+.ys-blog-card__title {
+  color: #222; }
 
 .ys-blog-card__dscr {
   display: none; }
