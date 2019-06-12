@@ -43,7 +43,7 @@ $attr = $ys_blog_card_data['attr'];
 $btn_text = $ys_blog_card_data['btn_text'];
 ?>
 <div class="ys-blog-card">
-	<a class="ys-blog-card__link" href="<?php echo $url; ?>" data-btn="<?php echo $btn_text; ?>" <?php echo $attr; ?>>
+	<a class="ys-blog-card__link" href="<?php echo $url; ?>" <?php echo $attr; ?>>
 		<div class="ys-blog-card__row flex flex--row flex--nowrap -no-gutter">
 			<?php if ( $thumbnail ) : ?>
 				<figure class="ys-blog-card__image flex__col--auto">
@@ -53,8 +53,11 @@ $btn_text = $ys_blog_card_data['btn_text'];
 			<div class="ys-blog-card__text flex__col">
 				<div class="ys-blog-card__title"><?php echo $title; ?></div>
 				<?php if ( $dscr ) : ?>
-				<div class="ys-blog-card__dscr text-sub has-small-font-size"><?php echo $dscr; ?></div>
+					<div class="ys-blog-card__dscr text-sub has-small-font-size"><?php echo $dscr; ?></div>
 				<?php endif; ?>
+				<div class="text--right">
+					<span class="ys-blog-card__btn"><?php echo $btn_text; ?><i class="fas fa-angle-right"></i></span>
+				</div>
 			</div>
 		</div>
 	</a>
