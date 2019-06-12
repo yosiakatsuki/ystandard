@@ -20,6 +20,11 @@ if ( ys_is_active_sns_share_on_footer() ) {
 }
 
 /**
+ * カテゴリー・タグ
+ */
+get_template_part( 'template-parts/parts/post-taxonomy' );
+
+/**
  * 投稿者表示
  */
 if ( ys_is_display_author_data() ) {

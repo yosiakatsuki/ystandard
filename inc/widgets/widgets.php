@@ -125,6 +125,7 @@ function ys_widgets_register_widget() {
 	 * アドオン販売するまではカスタマイズ記事などにはしてほしくないです。
 	 */
 	register_widget( 'YS_Widget_Share_Button' );
+	register_widget( 'YS_Widget_Post_Taxonomy' );
 }
 
 add_action( 'widgets_init', 'ys_widgets_register_widget' );

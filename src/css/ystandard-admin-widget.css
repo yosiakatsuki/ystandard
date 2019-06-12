@@ -37,7 +37,7 @@
 
 .ys-widget-option__section h4 {
   padding-bottom: .25em;
-  margin: 2em 0 .5em;
+  margin: 2em 0 1em;
   border-bottom: 1px solid #bdc3c7;
   font-size: 1.05em; }
 
@@ -58,3 +58,12 @@
 .ys-widget-option__sub {
   font-size: .8em;
   color: #757575; }
+
+.ys-widget-option__check-list {
+  max-height: 7.5rem;
+  padding: .5rem 0;
+  border: 1px solid #bdc3c7;
+  overflow-y: scroll; }
+  .ys-widget-option__check-list label {
+    display: block;
+    padding: .25rem .5rem; }

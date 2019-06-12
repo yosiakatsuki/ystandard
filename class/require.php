@@ -28,6 +28,7 @@ require_once $class_dir . 'class-ys-widget-custom-html.php';
 require_once $class_dir . 'class-ys-widget-text.php';
 require_once $class_dir . 'class-ys-widget-author-box.php';
 require_once $class_dir . 'class-ys-widget-share-button.php';
+require_once $class_dir . 'class-ys-widget-post-taxonomy.php';
 /**
  * ショートコードクラス
  */
@@ -42,6 +43,7 @@ require_once $class_dir . 'class-ys-shortcode-post-ranking.php';
 require_once $class_dir . 'class-ys-shortcode-recent-posts.php';
 require_once $class_dir . 'class-ys-shortcode-post-paging.php';
 require_once $class_dir . 'class-ys-shortcode-blog-card.php';
+require_once $class_dir . 'class-ys-shortcode-post-taxonomy.php';
 
 /**
  * テーマカスタマイザー

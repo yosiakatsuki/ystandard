@@ -46,9 +46,13 @@ require_once $shortcode_dir . 'shortcode-get-posts.php';
  */
 require_once $shortcode_dir . 'shortcode-post-paging.php';
 /**
- * 前後の記事
+ * ブログカード
  */
 require_once $shortcode_dir . 'shortcode-blog-card.php';
+/**
+ * 投稿カテゴリー・タグ表示
+ */
+require_once $shortcode_dir . 'shortcode-post-taxonomy.php';
 
 /**
  * ショートコードの作成と実行
