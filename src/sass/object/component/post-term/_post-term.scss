@@ -1,0 +1,20 @@
+.post-term__item {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: .5rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.post-term__link {
+  display: block;
+  font-size: .9rem;
+  color: $color__text-main;
+  text-decoration: none;
+
+  i,
+  svg {
+    margin-right: .1rem;
+  }
+}

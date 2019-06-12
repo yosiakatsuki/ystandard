@@ -558,6 +558,22 @@ input[type="button"] {
   max-width: 100px;
   margin-right: 1rem; }
 
+.post-term__item {
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: .5rem; }
+  .post-term__item:last-child {
+    margin-right: 0; }
+
+.post-term__link {
+  display: block;
+  font-size: .9rem;
+  color: #222;
+  text-decoration: none; }
+  .post-term__link i,
+  .post-term__link svg {
+    margin-right: .1rem; }
+
 .search-form {
   position: relative; }
 
