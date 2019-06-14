@@ -621,6 +621,46 @@ div.aligncenter {
   font-size: .9em;
   font-style: italic; }
 
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1.5rem -1px; }
+
+.gallery-item {
+  align-items: flex-start;
+  flex: 0 1 auto;
+  padding: 1px;
+  margin: 0; }
+  .gallery-item a:hover {
+    opacity: .8; }
+
+.gallery-columns-2 .gallery-item {
+  width: 50%; }
+
+.gallery-columns-3 .gallery-item {
+  width: 33.33333%; }
+
+.gallery-columns-4 .gallery-item {
+  width: 25%; }
+
+.gallery-columns-5 .gallery-item {
+  width: 20%; }
+
+.gallery-columns-6 .gallery-item {
+  width: 16.66667%; }
+
+.gallery-columns-7 .gallery-item {
+  width: 14.28571%; }
+
+.gallery-columns-8 .gallery-item {
+  width: 12.5%; }
+
+.gallery-columns-9 .gallery-item {
+  width: 11.11111%; }
+
+.gallery-caption {
+  text-align: center; }
+
 .has-x-small-font-size {
   font-size: 0.75em; }
 
