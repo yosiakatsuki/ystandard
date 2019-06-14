@@ -1209,6 +1209,15 @@ div.aligncenter {
 .gallery-caption {
   text-align: center; }
 
+.sticky {
+  box-sizing: inherit; }
+
+.bypostauthor {
+  display: block; }
+
+.emoji {
+  width: 1em; }
+
 .has-x-small-font-size {
   font-size: 0.75em; }
 
