@@ -80,10 +80,6 @@ img, amp-img {
   vertical-align: middle;
 }
 
-figure {
-  margin: 0;
-}
-
 /**
  * block margin
  */
@@ -91,6 +87,7 @@ p,
 ul,
 ol,
 dl,
+figure,
 blockquote,
 pre,
 table {
