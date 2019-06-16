@@ -87,9 +87,10 @@ function ys_set_enqueue_css() {
 	 */
 	ys_enqueue_inline_css( ys_get_customizer_inline_css() );
 	/**
-	 * Gutenbergフォントサイズ
+	 * Gutenberg
 	 */
 	ys_enqueue_inline_css( $scripts->get_editor_font_size_css() );
+	ys_enqueue_inline_css( $scripts->get_editor_color_palette() );
 	/**
 	 * 追加CSS
 	 */

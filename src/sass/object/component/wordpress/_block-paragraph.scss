@@ -1,0 +1,5 @@
+.has-drop-cap {
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}

@@ -688,6 +688,9 @@ div.aligncenter {
 .has-xx-large-font-size {
   font-size: 1.6em; }
 
+.has-drop-cap:first-letter {
+  text-transform: uppercase; }
+
 @media screen and (min-width: 600px) {
   .section {
     padding-top: 3rem;

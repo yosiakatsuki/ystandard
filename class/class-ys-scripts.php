@@ -454,6 +454,30 @@ class YS_Scripts {
 	}
 
 	/**
+	 * Gutenberg色設定
+	 *
+	 * @return string
+	 */
+	public function get_editor_color_palette() {
+		$color = ys_get_editor_color_palette();
+		$css   = '';
+		foreach ( $color as $value ) {
+			$css .= sprintf(
+				'.has-%s-background-color{background-color:%s;}',
+				$value['slug'],
+				$value['color']
+			);
+			$css .= sprintf(
+				'.has-%s-color{color:%s;}',
+				$value['slug'],
+				$value['color']
+			);
+		}
+
+		return $css;
+	}
+
+	/**
 	 * インラインJS作成
 	 *
 	 * @return string
