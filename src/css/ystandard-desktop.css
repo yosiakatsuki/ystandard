@@ -1236,6 +1236,9 @@ div.aligncenter {
 .has-xx-large-font-size {
   font-size: 1.6em; }
 
+.has-drop-cap:first-letter {
+  text-transform: uppercase; }
+
 .header__title {
   font-size: 1.5rem;
   letter-spacing: .05em; }

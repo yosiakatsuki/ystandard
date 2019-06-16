@@ -126,6 +126,10 @@ function ys_init() {
 	 * Gutenbergの文字サイズ選択設定
 	 */
 	add_theme_support( 'editor-font-sizes', ys_get_editor_font_sizes() );
+	/**
+	 * Gutenberg色設定
+	 */
+	add_theme_support( 'editor-color-palette', ys_get_editor_color_palette() );
 }
 
 add_action( 'after_setup_theme', 'ys_init' );
@@ -222,4 +226,67 @@ function ys_get_editor_font_sizes() {
 	);
 
 	return apply_filters( 'ys_editor_font_sizes', $size );
+}
+
+/**
+ * 色設定の定義
+ *
+ * @return array
+ */
+function ys_get_editor_color_palette() {
+	$color = array(
+		array(
+			'name'  => '青',
+			'slug'  => 'ys-blue',
+			'color' => '#216497',
+		),
+
+		array(
+			'name'  => '水色',
+			'slug'  => 'ys-light-blue',
+			'color' => '#37ADD7',
+		),
+		array(
+			'name'  => '赤',
+			'slug'  => 'ys-red',
+			'color' => '#A42323',
+		),
+		array(
+			'name'  => '緑',
+			'slug'  => 'ys-green',
+			'color' => '#3C773C',
+		),
+		array(
+			'name'  => '黄',
+			'slug'  => 'ys-yellow',
+			'color' => '#ECA713',
+		),
+		array(
+			'name'  => '紫',
+			'slug'  => 'ys-purple',
+			'color' => '#5C2F65',
+		),
+		array(
+			'name'  => '灰色',
+			'slug'  => 'ys-gray',
+			'color' => '#757575',
+		),
+		array(
+			'name'  => '薄灰色',
+			'slug'  => 'ys-light-gray',
+			'color' => '#FAFAFA',
+		),
+		array(
+			'name'  => '黒',
+			'slug'  => 'ys-black',
+			'color' => '#000',
+		),
+		array(
+			'name'  => '白',
+			'slug'  => 'ys-white',
+			'color' => '#fff',
+		),
+	);
+
+	return apply_filters( 'ys_editor_color_palette', $color );
 }
