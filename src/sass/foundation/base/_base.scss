@@ -160,7 +160,10 @@ blockquote {
   }
 
   cite {
+    display: block;
+    margin-top: 1rem;
     color: $color__text-light;
+    font-size: .9em;
 
     &:before {
       content: "-";
