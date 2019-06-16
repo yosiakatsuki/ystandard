@@ -435,7 +435,10 @@ blockquote {
   blockquote a {
     color: inherit; }
   blockquote cite {
-    color: #757575; }
+    display: block;
+    margin-top: 1rem;
+    color: #757575;
+    font-size: .9em; }
     blockquote cite:before {
       content: "-";
       margin-right: .5rem; }
