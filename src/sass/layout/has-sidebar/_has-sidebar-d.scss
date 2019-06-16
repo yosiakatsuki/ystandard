@@ -4,9 +4,16 @@
       position: sticky;
       top: 1rem;
     }
+
     .sidebar {
       flex: 1 1 $width__sidebar;
       max-width: $width__sidebar;
+    }
+
+    .alignwide,
+    .alignfull {
+      margin-right: 0;
+      margin-left: 0;
     }
   }
 }
