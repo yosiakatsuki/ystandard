@@ -732,9 +732,309 @@ figcaption {
     height: 100%;
     width: 100%;
     object-fit: cover; }
+  .wp-block-gallery.alignfull {
+    padding-right: 0;
+    padding-left: 0; }
 
 .blocks-gallery-item {
   border: 1px solid transparent; }
+
+.wp-block-cover {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  background-size: cover;
+  color: #fff; }
+  .wp-block-cover.has-background-dim:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: inherit;
+    opacity: .5;
+    z-index: 1; }
+  .wp-block-cover.has-parallax {
+    background-attachment: fixed;
+    background-position: center; }
+
+.wp-block-cover.has-background-dim-10:before {
+  opacity: 0.1; }
+
+.wp-block-cover.has-background-dim-11:before {
+  opacity: 0.11; }
+
+.wp-block-cover.has-background-dim-12:before {
+  opacity: 0.12; }
+
+.wp-block-cover.has-background-dim-13:before {
+  opacity: 0.13; }
+
+.wp-block-cover.has-background-dim-14:before {
+  opacity: 0.14; }
+
+.wp-block-cover.has-background-dim-15:before {
+  opacity: 0.15; }
+
+.wp-block-cover.has-background-dim-16:before {
+  opacity: 0.16; }
+
+.wp-block-cover.has-background-dim-17:before {
+  opacity: 0.17; }
+
+.wp-block-cover.has-background-dim-18:before {
+  opacity: 0.18; }
+
+.wp-block-cover.has-background-dim-19:before {
+  opacity: 0.19; }
+
+.wp-block-cover.has-background-dim-20:before {
+  opacity: 0.2; }
+
+.wp-block-cover.has-background-dim-21:before {
+  opacity: 0.21; }
+
+.wp-block-cover.has-background-dim-22:before {
+  opacity: 0.22; }
+
+.wp-block-cover.has-background-dim-23:before {
+  opacity: 0.23; }
+
+.wp-block-cover.has-background-dim-24:before {
+  opacity: 0.24; }
+
+.wp-block-cover.has-background-dim-25:before {
+  opacity: 0.25; }
+
+.wp-block-cover.has-background-dim-26:before {
+  opacity: 0.26; }
+
+.wp-block-cover.has-background-dim-27:before {
+  opacity: 0.27; }
+
+.wp-block-cover.has-background-dim-28:before {
+  opacity: 0.28; }
+
+.wp-block-cover.has-background-dim-29:before {
+  opacity: 0.29; }
+
+.wp-block-cover.has-background-dim-30:before {
+  opacity: 0.3; }
+
+.wp-block-cover.has-background-dim-31:before {
+  opacity: 0.31; }
+
+.wp-block-cover.has-background-dim-32:before {
+  opacity: 0.32; }
+
+.wp-block-cover.has-background-dim-33:before {
+  opacity: 0.33; }
+
+.wp-block-cover.has-background-dim-34:before {
+  opacity: 0.34; }
+
+.wp-block-cover.has-background-dim-35:before {
+  opacity: 0.35; }
+
+.wp-block-cover.has-background-dim-36:before {
+  opacity: 0.36; }
+
+.wp-block-cover.has-background-dim-37:before {
+  opacity: 0.37; }
+
+.wp-block-cover.has-background-dim-38:before {
+  opacity: 0.38; }
+
+.wp-block-cover.has-background-dim-39:before {
+  opacity: 0.39; }
+
+.wp-block-cover.has-background-dim-40:before {
+  opacity: 0.4; }
+
+.wp-block-cover.has-background-dim-41:before {
+  opacity: 0.41; }
+
+.wp-block-cover.has-background-dim-42:before {
+  opacity: 0.42; }
+
+.wp-block-cover.has-background-dim-43:before {
+  opacity: 0.43; }
+
+.wp-block-cover.has-background-dim-44:before {
+  opacity: 0.44; }
+
+.wp-block-cover.has-background-dim-45:before {
+  opacity: 0.45; }
+
+.wp-block-cover.has-background-dim-46:before {
+  opacity: 0.46; }
+
+.wp-block-cover.has-background-dim-47:before {
+  opacity: 0.47; }
+
+.wp-block-cover.has-background-dim-48:before {
+  opacity: 0.48; }
+
+.wp-block-cover.has-background-dim-49:before {
+  opacity: 0.49; }
+
+.wp-block-cover.has-background-dim-50:before {
+  opacity: 0.5; }
+
+.wp-block-cover.has-background-dim-51:before {
+  opacity: 0.51; }
+
+.wp-block-cover.has-background-dim-52:before {
+  opacity: 0.52; }
+
+.wp-block-cover.has-background-dim-53:before {
+  opacity: 0.53; }
+
+.wp-block-cover.has-background-dim-54:before {
+  opacity: 0.54; }
+
+.wp-block-cover.has-background-dim-55:before {
+  opacity: 0.55; }
+
+.wp-block-cover.has-background-dim-56:before {
+  opacity: 0.56; }
+
+.wp-block-cover.has-background-dim-57:before {
+  opacity: 0.57; }
+
+.wp-block-cover.has-background-dim-58:before {
+  opacity: 0.58; }
+
+.wp-block-cover.has-background-dim-59:before {
+  opacity: 0.59; }
+
+.wp-block-cover.has-background-dim-60:before {
+  opacity: 0.6; }
+
+.wp-block-cover.has-background-dim-61:before {
+  opacity: 0.61; }
+
+.wp-block-cover.has-background-dim-62:before {
+  opacity: 0.62; }
+
+.wp-block-cover.has-background-dim-63:before {
+  opacity: 0.63; }
+
+.wp-block-cover.has-background-dim-64:before {
+  opacity: 0.64; }
+
+.wp-block-cover.has-background-dim-65:before {
+  opacity: 0.65; }
+
+.wp-block-cover.has-background-dim-66:before {
+  opacity: 0.66; }
+
+.wp-block-cover.has-background-dim-67:before {
+  opacity: 0.67; }
+
+.wp-block-cover.has-background-dim-68:before {
+  opacity: 0.68; }
+
+.wp-block-cover.has-background-dim-69:before {
+  opacity: 0.69; }
+
+.wp-block-cover.has-background-dim-70:before {
+  opacity: 0.7; }
+
+.wp-block-cover.has-background-dim-71:before {
+  opacity: 0.71; }
+
+.wp-block-cover.has-background-dim-72:before {
+  opacity: 0.72; }
+
+.wp-block-cover.has-background-dim-73:before {
+  opacity: 0.73; }
+
+.wp-block-cover.has-background-dim-74:before {
+  opacity: 0.74; }
+
+.wp-block-cover.has-background-dim-75:before {
+  opacity: 0.75; }
+
+.wp-block-cover.has-background-dim-76:before {
+  opacity: 0.76; }
+
+.wp-block-cover.has-background-dim-77:before {
+  opacity: 0.77; }
+
+.wp-block-cover.has-background-dim-78:before {
+  opacity: 0.78; }
+
+.wp-block-cover.has-background-dim-79:before {
+  opacity: 0.79; }
+
+.wp-block-cover.has-background-dim-80:before {
+  opacity: 0.8; }
+
+.wp-block-cover.has-background-dim-81:before {
+  opacity: 0.81; }
+
+.wp-block-cover.has-background-dim-82:before {
+  opacity: 0.82; }
+
+.wp-block-cover.has-background-dim-83:before {
+  opacity: 0.83; }
+
+.wp-block-cover.has-background-dim-84:before {
+  opacity: 0.84; }
+
+.wp-block-cover.has-background-dim-85:before {
+  opacity: 0.85; }
+
+.wp-block-cover.has-background-dim-86:before {
+  opacity: 0.86; }
+
+.wp-block-cover.has-background-dim-87:before {
+  opacity: 0.87; }
+
+.wp-block-cover.has-background-dim-88:before {
+  opacity: 0.88; }
+
+.wp-block-cover.has-background-dim-89:before {
+  opacity: 0.89; }
+
+.wp-block-cover.has-background-dim-90:before {
+  opacity: 0.9; }
+
+.wp-block-cover.has-background-dim-91:before {
+  opacity: 0.91; }
+
+.wp-block-cover.has-background-dim-92:before {
+  opacity: 0.92; }
+
+.wp-block-cover.has-background-dim-93:before {
+  opacity: 0.93; }
+
+.wp-block-cover.has-background-dim-94:before {
+  opacity: 0.94; }
+
+.wp-block-cover.has-background-dim-95:before {
+  opacity: 0.95; }
+
+.wp-block-cover.has-background-dim-96:before {
+  opacity: 0.96; }
+
+.wp-block-cover.has-background-dim-97:before {
+  opacity: 0.97; }
+
+.wp-block-cover.has-background-dim-98:before {
+  opacity: 0.98; }
+
+.wp-block-cover.has-background-dim-99:before {
+  opacity: 0.99; }
+
+.wp-block-cover.has-background-dim-100:before {
+  opacity: 1; }
 
 .alignwide,
 .alignfull {
@@ -896,7 +1196,9 @@ figcaption {
     margin-left: -2rem; }
   .alignfull {
     margin-right: calc(-50vw + 50%);
-    margin-left: calc(-50vw + 50%); } }
+    margin-left: calc(-50vw + 50%);
+    padding-right: calc(-50% + 50vw);
+    padding-left: calc(-50% + 50vw); } }
 
 .btn {
   display: inline-block;
