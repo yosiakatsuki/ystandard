@@ -1,0 +1,8 @@
+.wp-block-cover {
+  @for $i from 10 through 100 {
+    &.has-background-dim-#{$i}:before {
+      opacity: ($i / 100);
+    }
+  }
+}
+
