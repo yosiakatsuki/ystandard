@@ -1627,6 +1627,13 @@ figcaption {
 .wp-block-pullquote p {
   margin-top: .5em; }
 
+.wp-block-verse {
+  background-color: rgba(255, 255, 255, 0);
+  color: #757575;
+  line-height: 1.8;
+  font-style: italic;
+  letter-spacing: .1em; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;
