@@ -499,6 +499,10 @@ hr {
   border: 0.05rem solid #EEEEEE;
   clear: both; }
 
+iframe,
+video {
+  max-width: 100%; }
+
 .li-clear {
   padding: 0;
   margin: 0;
@@ -1607,6 +1611,9 @@ figcaption {
     color: #fff;
     background-color: #292b2c;
     border-color: #292b2c; }
+
+.wp-block-video {
+  max-width: 100%; }
 
 .alignwide,
 .alignfull {

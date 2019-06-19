@@ -1057,6 +1057,9 @@ figcaption {
     background-color: #292b2c;
     border-color: #292b2c; }
 
+.wp-block-video {
+  max-width: 100%; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;

@@ -123,6 +123,10 @@ function ys_init() {
 	 */
 	add_theme_support( 'align-wide' );
 	/**
+	 * レスポンシブ
+	 */
+	add_theme_support( 'responsive-embeds' );
+	/**
 	 * Gutenbergの文字サイズ選択設定
 	 */
 	add_theme_support( 'editor-font-sizes', ys_get_editor_font_sizes() );
