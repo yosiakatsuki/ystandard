@@ -1060,6 +1060,18 @@ figcaption {
 .wp-block-video {
   max-width: 100%; }
 
+.wp-block-pullquote blockquote {
+  font-size: 2em;
+  border: 0;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 1.5rem 2.5rem; }
+  .wp-block-pullquote blockquote:before {
+    font-size: 14rem;
+    opacity: .05; }
+
+.wp-block-pullquote p {
+  margin-top: .5em; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;
