@@ -4,12 +4,15 @@
   margin-right: auto;
   margin-left: auto;
 }
+
 .sidebar__item {
   margin-top: 1rem;
   padding: 1rem;
+
   &:first-child {
     margin-top: 0;
   }
+
   & > * {
     &:first-child {
       margin-top: 0;

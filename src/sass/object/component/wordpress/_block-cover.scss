@@ -1,28 +1,32 @@
 .wp-block-cover {
-  position: relative;
-  min-height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 1rem;
-  background-size: cover;
-  color: #fff;
+  @at-root {
+    & {
+      position: relative;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+      background-size: cover;
+      color: #fff;
+    }
 
-  &.has-background-dim:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: inherit;
-    opacity: .5;
-    z-index: 1;
-  }
+    &.has-background-dim:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: inherit;
+      opacity: .5;
+      z-index: 1;
+    }
 
-  &.has-parallax {
-    background-attachment: fixed;
-    background-position: center;
+    &.has-parallax {
+      background-attachment: fixed;
+      background-position: center;
+    }
   }
 }

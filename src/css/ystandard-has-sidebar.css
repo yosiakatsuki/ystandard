@@ -1300,19 +1300,21 @@ figcaption {
   padding: 2rem 1rem;
   background-size: cover;
   color: #fff; }
-  .wp-block-cover.has-background-dim:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: inherit;
-    opacity: .5;
-    z-index: 1; }
-  .wp-block-cover.has-parallax {
-    background-attachment: fixed;
-    background-position: center; }
+
+.wp-block-cover.has-background-dim:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: inherit;
+  opacity: .5;
+  z-index: 1; }
+
+.wp-block-cover.has-parallax {
+  background-attachment: fixed;
+  background-position: center; }
 
 .wp-block-cover.has-background-dim-10:before {
   opacity: 0.1; }
