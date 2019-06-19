@@ -2549,6 +2549,8 @@ a.text-sub,
   .has-sidebar .sidebar {
     flex: 1 1 368px;
     max-width: 368px; }
+  .has-sidebar .sidebar-wrapper {
+    height: 100%; }
   .has-sidebar .content__main {
     margin-right: 2rem; }
   .has-sidebar .alignwide,
