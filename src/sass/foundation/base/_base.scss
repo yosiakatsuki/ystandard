@@ -238,3 +238,8 @@ hr {
   border: .05rem solid $color__border-gray-light;
   clear: both;
 }
+
+iframe,
+video {
+  max-width: 100%;
+}
