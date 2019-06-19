@@ -1079,6 +1079,11 @@ figcaption {
   font-style: italic;
   letter-spacing: .1em; }
 
+.wp-block-spacer {
+  margin: 0;
+  padding: 0;
+  border: 0; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;
