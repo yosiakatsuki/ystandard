@@ -1,0 +1,27 @@
+.wp-block-button {
+  margin-top: 1.5em;
+}
+
+.wp-block-button__link {
+  @at-root {
+    & {
+      @include button();
+
+      .is-style-outline & {
+        background-color: $color__btn-text;
+        border: 1px solid $color__btn-border;
+        color: $color__btn-bg;
+
+        &:hover {
+          background-color: $color__btn-bg;
+          color: $color__btn-text;
+          border-color: $color__btn-border;
+        }
+      }
+
+      .is-style-squared & {
+        border-radius: 0;
+      }
+    }
+  }
+}

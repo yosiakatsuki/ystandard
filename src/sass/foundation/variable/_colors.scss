@@ -21,9 +21,9 @@ $color__link: #2980B9 !default;
 $color__link-hover: lighten($color__link, 10%) !default;
 
 //ボタン
-$color__btn-text: $color__text-main !default;
-$color__btn-bg: #fff !default;
-$color__btn-border: $color__border-gray !default;
+$color__btn-text: #fff !default;
+$color__btn-bg: $color__text-main !default;
+$color__btn-border: $color__text-main !default;
 $color__btn-text-hover: #fff !default;
 $color__btn-bg-hover: #292b2c !default;
 $color__btn-border-hover: #292b2c !default;

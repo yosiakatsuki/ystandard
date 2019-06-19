@@ -1,17 +1,25 @@
-@mixin button() {
+@mixin button(
+  $bgc:$color__btn-bg,
+  $text_color:$color__btn-text,
+  $border:$color__btn-border,
+  $radius:4px) {
+
+  $bgc_hover: $text_color;
+  $text_hover: $bgc;
+
   display: inline-block;
-  padding: .5rem 1.5rem;
-  background-color: $color__btn-bg;
-  border: 1px solid $color__btn-border;
-  border-radius: 4px;
-  color: $color__btn-text;
-  font-size: 1rem;
   text-decoration: none;
   transition: all .3s;
-
+  padding: .5rem 1.5rem;
+  background-color: $bgc;
+  border: 1px solid $border;
+  border-radius: $radius;
+  color: $text_color;
+  font-size: 1rem;
+  
   &:hover {
-    color: $color__btn-text-hover;
-    background-color: $color__btn-bg-hover;
-    border-color: $color__btn-border-hover;
+    background-color: $bgc_hover;
+    color: $text_hover;
+    border-color: $border;
   }
 }

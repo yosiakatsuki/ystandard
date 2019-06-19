@@ -418,21 +418,21 @@ input[type="reset"],
 input[type="submit"],
 input[type="button"] {
   display: inline-block;
-  padding: .5rem 1.5rem;
-  background-color: #fff;
-  border: 1px solid #bdc3c7;
-  border-radius: 4px;
-  color: #222;
-  font-size: 1rem;
   text-decoration: none;
-  transition: all .3s; }
+  transition: all .3s;
+  padding: .5rem 1.5rem;
+  background-color: #222;
+  border: 1px solid #222;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem; }
   button:hover,
   input[type="reset"]:hover,
   input[type="submit"]:hover,
   input[type="button"]:hover {
-    color: #fff;
-    background-color: #292b2c;
-    border-color: #292b2c; }
+    background-color: #fff;
+    color: #222;
+    border-color: #222; }
 
 .icon-l {
   margin-right: .25rem; }
@@ -1043,19 +1043,19 @@ figcaption {
 
 .wp-block-file__button {
   display: inline-block;
-  padding: .5rem 1.5rem;
-  background-color: #fff;
-  border: 1px solid #bdc3c7;
-  border-radius: 4px;
-  color: #222;
-  font-size: 1rem;
   text-decoration: none;
   transition: all .3s;
+  padding: .5rem 1.5rem;
+  background-color: #222;
+  border: 1px solid #222;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
   margin-left: 1em; }
   .wp-block-file__button:hover {
-    color: #fff;
-    background-color: #292b2c;
-    border-color: #292b2c; }
+    background-color: #fff;
+    color: #222;
+    border-color: #222; }
 
 .wp-block-video {
   max-width: 100%; }
@@ -1083,6 +1083,34 @@ figcaption {
   margin: 0;
   padding: 0;
   border: 0; }
+
+.wp-block-button {
+  margin-top: 1.5em; }
+
+.wp-block-button__link {
+  display: inline-block;
+  text-decoration: none;
+  transition: all .3s;
+  padding: .5rem 1.5rem;
+  background-color: #222;
+  border: 1px solid #222;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem; }
+  .wp-block-button__link:hover {
+    background-color: #fff;
+    color: #222;
+    border-color: #222; }
+  .is-style-outline .wp-block-button__link {
+    background-color: #fff;
+    border: 1px solid #222;
+    color: #222; }
+    .is-style-outline .wp-block-button__link:hover {
+      background-color: #222;
+      color: #fff;
+      border-color: #222; }
+  .is-style-squared .wp-block-button__link {
+    border-radius: 0; }
 
 .alignwide,
 .alignfull {
@@ -1250,18 +1278,18 @@ figcaption {
 
 .btn {
   display: inline-block;
-  padding: .5rem 1.5rem;
-  background-color: #fff;
-  border: 1px solid #bdc3c7;
-  border-radius: 4px;
-  color: #222;
-  font-size: 1rem;
   text-decoration: none;
-  transition: all .3s; }
+  transition: all .3s;
+  padding: .5rem 1.5rem;
+  background-color: #222;
+  border: 1px solid #222;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem; }
   .btn:hover {
-    color: #fff;
-    background-color: #292b2c;
-    border-color: #292b2c; }
+    background-color: #fff;
+    color: #222;
+    border-color: #222; }
 
 .btn--lg {
   padding: .75rem 3rem; }
@@ -1270,17 +1298,17 @@ figcaption {
   display: block; }
 
 .btn--color {
-  background-color: #fff;
-  border: 1px solid #222;
-  color: #222; }
+  background-color: #222;
+  border: 1px solid #fff;
+  color: #fff; }
   .btn--color:not(.-no-h):hover {
     background-color: #292b2c;
     color: #fff; }
 
 .btn--color-r {
-  background-color: #222;
-  border: 1px solid #fff;
-  color: #fff; }
+  background-color: #fff;
+  border: 1px solid #222;
+  color: #222; }
   .btn--color-r:not(.-no-h):hover {
     background-color: #fff;
     color: #292b2c; }
