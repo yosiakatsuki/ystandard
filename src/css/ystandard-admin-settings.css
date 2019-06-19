@@ -1038,6 +1038,25 @@ figcaption {
 .wp-block-cover.has-background-dim-100:before {
   opacity: 1; }
 
+.wp-block-file {
+  margin-top: 1.5em; }
+
+.wp-block-file__button {
+  display: inline-block;
+  padding: .5rem 1.5rem;
+  background-color: #fff;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  color: #222;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all .3s;
+  margin-left: 1em; }
+  .wp-block-file__button:hover {
+    color: #fff;
+    background-color: #292b2c;
+    border-color: #292b2c; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;
