@@ -1,0 +1,20 @@
+.wp-block-columns {
+  display: flex;
+  margin-top: 1.5rem;
+  margin-right: -1rem;
+  margin-left: -1rem;
+  
+  @for $i from 1 through 6 {
+    &.has-#{$i}-columns {
+      .wp-block-column {
+        flex: 0 0 decimal-floor( 1 / $i , 4) * 100#{"%"};
+        max-width: decimal-floor( 1 / $i , 4) * 100#{"%"};
+      }
+    }
+  }
+}
+
+.wp-block-column {
+  padding: 1rem;
+  max-width: 100%;
+}
