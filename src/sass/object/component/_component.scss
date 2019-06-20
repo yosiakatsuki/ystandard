@@ -16,20 +16,8 @@
 @import "blog-card/blog-card";
 @import "post-term/post-term";
 @import "search-form/search-form";
-@import "wordpress/align";
-@import "wordpress/caption";
-@import "wordpress/gallery";
 @import "wordpress/wp";
-@import "wordpress/block-text";
-@import "wordpress/block-paragraph";
-@import "wordpress/block-gallery";
-@import "wordpress/block-cover";
-@import "wordpress/block-background-dim";
-@import "wordpress/block-file";
-@import "wordpress/block-video";
-@import "wordpress/block-pullquote";
-@import "wordpress/block-verse";
-@import "wordpress/block-spacer";
-@import "wordpress/block-button";
+@import "gutenberg/block";
 
-@import "wordpress/block-align";
+
+@import "gutenberg/block-align";
