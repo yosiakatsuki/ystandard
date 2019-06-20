@@ -1208,6 +1208,31 @@ figcaption {
   font-size: .8rem;
   color: #757575; }
 
+.wp-block-search {
+  position: relative;
+  background-color: #fff; }
+
+.wp-block-search__input {
+  padding-right: 3.5rem; }
+
+.wp-block-search__label {
+  display: none; }
+
+.wp-block-search__button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: .5rem 1rem;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 1px solid #bdc3c7;
+  background-color: #222;
+  border-radius: 0;
+  color: #fff;
+  -webkit-appearance: none; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;
