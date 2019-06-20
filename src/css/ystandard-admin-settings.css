@@ -1178,6 +1178,22 @@ figcaption {
     padding: 2rem;
     color: #fff; }
 
+.wp-block-separator {
+  width: 60%; }
+  .wp-block-separator.is-style-wide {
+    width: 100%; }
+  .wp-block-separator.is-style-dots {
+    border: 0; }
+    .wp-block-separator.is-style-dots:after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 5px;
+      background-image: linear-gradient(to right, #EEEEEE, #EEEEEE 5px, transparent 5px, transparent 5px);
+      background-size: 50px 5px;
+      background-position: bottom;
+      background-repeat: repeat-x; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;
