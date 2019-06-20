@@ -1695,6 +1695,44 @@ figcaption {
   padding: 1rem;
   max-width: 100%; }
 
+.wp-block-media-text {
+  display: flex;
+  flex-direction: column; }
+
+.wp-block-media-text__content {
+  padding: 1rem 0; }
+
+.is-stacked-on-mobile {
+  position: relative;
+  background-color: #000; }
+  .is-stacked-on-mobile .wp-block-media-text__media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: inherit;
+    z-index: 1; }
+    .is-stacked-on-mobile .wp-block-media-text__media:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: inherit;
+      opacity: .75;
+      z-index: 2; }
+    .is-stacked-on-mobile .wp-block-media-text__media img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover; }
+  .is-stacked-on-mobile .wp-block-media-text__content {
+    position: relative;
+    z-index: 3;
+    padding: 2rem;
+    color: #fff; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;
