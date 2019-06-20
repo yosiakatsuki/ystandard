@@ -1194,6 +1194,20 @@ figcaption {
       background-position: bottom;
       background-repeat: repeat-x; }
 
+.wp-block-latest-posts {
+  list-style: none;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0; }
+  .wp-block-latest-posts li {
+    padding: .5rem 0; }
+
+.wp-block-latest-posts__post-date {
+  display: block;
+  font-size: .8rem;
+  color: #757575; }
+
 .alignwide,
 .alignfull {
   margin-right: -1rem;
