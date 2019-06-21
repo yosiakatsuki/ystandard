@@ -543,6 +543,9 @@ video {
   margin-right: auto;
   background-color: #fff; }
 
+.has-sidebar .content__main {
+  flex: 1 1 100%; }
+
 .content__title {
   margin: 0 0 1em; }
 
@@ -2032,6 +2035,9 @@ figcaption {
 .ys-custom-header--full-thumb img,
 .ys-custom-header--full-thumb amp-img {
   width: 100%; }
+
+.not-found {
+  margin-bottom: 5rem; }
 
 .btn {
   display: inline-block;

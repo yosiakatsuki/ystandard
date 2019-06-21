@@ -8,7 +8,7 @@
  */
 
 ?>
-<section class="site-main no-results not-found flex__col">
+<main id="main" class="site-main content__main no-results not-found flex__col">
 	<?php do_action( 'ys_content_main_prepend' ); ?>
 	<div class="no-results__header not-found__header">
 		<h2 class="singular__title entry__title no-results__title not-found__title clear-headline">
@@ -25,4 +25,4 @@
 		<?php get_search_form(); ?>
 	</div><!-- .no-results__search -->
 	<?php do_action( 'ys_content_main_append' ); ?>
-</section><!-- .site-main -->
+</main>
