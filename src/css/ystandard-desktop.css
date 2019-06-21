@@ -606,90 +606,6 @@ video {
   font-size: .8rem;
   color: #757575; }
 
-.section {
-  padding-top: 2rem;
-  padding-bottom: 2rem; }
-
-.section--sm {
-  padding-top: 1rem;
-  padding-bottom: 1rem; }
-
-.section--lg {
-  padding-top: 3rem;
-  padding-bottom: 3rem; }
-
-.section--rotate {
-  padding-top: 5rem;
-  padding-bottom: 5rem; }
-
-.section--full,
-.section--bg-full,
-.section--screen {
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw); }
-
-.section--screen {
-  min-height: 640px;
-  height: 100vh; }
-
-.section--bg-full {
-  padding-right: calc(50vw - 50%);
-  padding-left: calc(50vw - 50%); }
-
-.section--gray {
-  background-color: #fafafa; }
-
-.section__headline {
-  position: relative;
-  margin-bottom: 1rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  text-align: center;
-  line-height: 1.2; }
-  .section__headline:after {
-    content: "";
-    position: absolute;
-    height: 1px;
-    width: 60px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    background-color: rgba(41, 43, 44, 0.7); }
-
-.section--rotate {
-  position: relative;
-  overflow: hidden; }
-  .section--rotate:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 120%;
-    height: 90%;
-    margin: 5% -10% 0;
-    background: #fafafa;
-    z-index: -1; }
-  .section--rotate.-right:before {
-    transform-origin: left center;
-    transform: rotate(3deg); }
-  .section--rotate.-left:before {
-    transform-origin: right center;
-    transform: rotate(-3deg); }
-
-.section__title,
-.section__sub-title {
-  display: block; }
-
-.section__title {
-  font-size: 2rem;
-  margin: 0; }
-
-.section__sub-title {
-  color: #757575;
-  font-size: .8rem;
-  margin-top: .5rem; }
-
 .flex {
   display: flex; }
 
@@ -1245,6 +1161,11 @@ figcaption {
 
 .emoji {
   width: 1em; }
+
+.alignwide,
+.alignfull {
+  margin-right: -1rem;
+  margin-left: -1rem; }
 
 .has-x-small-font-size {
   font-size: 0.75em; }
@@ -1838,11 +1759,6 @@ figcaption {
 .wp-embed-aspect-1-2 .wp-block-embed__wrapper::before {
   padding-top: 200%; }
 
-.alignwide,
-.alignfull {
-  margin-right: -1rem;
-  margin-left: -1rem; }
-
 .header__title {
   font-size: 1.5rem;
   letter-spacing: .05em; }
@@ -2136,22 +2052,6 @@ figcaption {
 
 .btn--block {
   display: block; }
-
-.btn--color {
-  background-color: #222;
-  border: 1px solid #fff;
-  color: #fff; }
-  .btn--color:not(.-no-h):hover {
-    background-color: #292b2c;
-    color: #fff; }
-
-.btn--color-r {
-  background-color: #fff;
-  border: 1px solid #222;
-  color: #222; }
-  .btn--color-r:not(.-no-h):hover {
-    background-color: #fff;
-    color: #292b2c; }
 
 .text--b {
   font-weight: bold; }
@@ -2454,6 +2354,19 @@ a.text-sub,
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased; }
 
+.section {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+
+.section.-tall {
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+
+.section.-screen {
+  min-height: 100vh; }
+
 @media screen and (min-width: 1025px) {
   .has-sidebar .site__content {
     overflow: unset; }
@@ -2470,39 +2383,6 @@ a.text-sub,
     top: 1rem; }
   .has-sidebar .sidebar-wrapper {
     height: 100%; } }
-
-@media screen and (min-width: 600px) {
-  .section {
-    padding-top: 3rem;
-    padding-bottom: 3rem; }
-  .section--sm {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem; }
-  .section--lg {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem; }
-  .section--rotate {
-    padding-top: 7.5rem;
-    padding-bottom: 7.5rem; } }
-
-@media screen and (min-width: 1025px) {
-  .section {
-    padding-top: 4rem;
-    padding-bottom: 4rem; }
-  .section--sm {
-    padding-top: 2rem;
-    padding-bottom: 2rem; }
-  .section--lg {
-    padding-top: 6rem;
-    padding-bottom: 6rem; }
-  .section--rotate {
-    padding-top: 10rem;
-    padding-bottom: 10rem; }
-  .section--screen {
-    min-height: 768px; }
-  .section--rotate:before {
-    margin-top: 2%;
-    height: 80%; } }
 
 @media screen and (min-width: 600px) {
   .flex--md {
@@ -2825,3 +2705,11 @@ a.text-sub,
     transition: all .3s; }
   .img-scale:hover img, .img-scale:hover amp-img {
     transform: scale(1.1, 1.1); } }
+
+@media screen and (min-width: 600px) {
+  .section {
+    padding-top: 2rem;
+    padding-bottom: 2rem; }
+  .section.-tall {
+    padding-top: 6rem;
+    padding-bottom: 6rem; } }
