@@ -1881,6 +1881,9 @@ figcaption {
   .h-nav__search button {
     background-color: transparent; }
 
+.h-nav__dscr {
+  display: none; }
+
 .archive__title {
   margin: 0 0 1rem;
   font-size: 1.3rem; }

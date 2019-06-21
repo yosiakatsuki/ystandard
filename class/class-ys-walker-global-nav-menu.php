@@ -93,6 +93,15 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 
 		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
 
+		/**
+		 * 説明対応
+		 */
+		$description = '';
+		
+		if( 0 === $depth && $item->description ) {
+			$description = '<small class="h-nav__dscr text--center">' . $item->description . '</small>';
+		}
+		
 		$before      = empty( $args->before ) ? '' : $args->before;
 		$link_before = empty( $args->link_before ) ? '' : $args->link_before;
 		$link_after  = empty( $args->link_after ) ? '' : $args->link_after;
@@ -101,6 +110,7 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		$item_output = $before;
 		$item_output .= '<a' . $attributes . '>';
 		$item_output .= $link_before . $title . $link_after;
+		$item_output .= $description;
 		$item_output .= '</a>';
 		$item_output .= $after;
 
