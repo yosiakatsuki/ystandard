@@ -28,12 +28,12 @@ if ( has_nav_menu( 'global' ) ) :
 			wp_nav_menu(
 				array(
 					'theme_location' => 'global',
-					'menu_class'     => 'global-nav__menu row flex--a-center li-clear',
-					'menu_id'        => 'global-nav__menu',
+					'menu_class'     => 'h-nav__menu row flex--a-center li-clear',
+					'menu_id'        => 'h-nav__menu',
 					'container'      => false,
 					'depth'          => 2,
 					'fallback_cb'    => '',
-					'walker'         => new YS_Walker_Global_Nav_Menu,
+					'walker'         => new YS_Walker_Global_Nav_Menu(),
 				)
 			);
 			?>
