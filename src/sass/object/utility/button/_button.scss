@@ -13,26 +13,3 @@
 .btn--block {
   display: block;
 }
-
-// テーマ設定で色を変更するクラス
-.btn--color {
-  background-color: $color__btn-bg;
-  border: 1px solid $color__btn-text;
-  color: $color__btn-text;
-
-  &:not(.-no-h):hover {
-    background-color: $color__btn-bg-hover;
-    color: $color__btn-text-hover;
-  }
-}
-// テーマ設定の反転
-.btn--color-r {
-  background-color: $color__btn-text;
-  border: 1px solid $color__btn-bg;
-  color: $color__btn-bg;
-
-  &:not(.-no-h):hover {
-    background-color: $color__btn-text-hover;
-    color: $color__btn-bg-hover;
-  }
-}
