@@ -139,7 +139,7 @@ class YS_Scripts {
 		 */
 		wp_add_inline_script(
 			self::SCRIPT_HANDLE_DUMMY,
-			$this->get_inline_js()
+			str_replace( array( "\r\n", "\r", "\n", "\t" ), '', $this->get_inline_js() )
 		);
 	}
 
@@ -507,45 +507,45 @@ class YS_Scripts {
 	 * @return string
 	 */
 	private function get_inline_js() {
-		return <<<EOD
-ysSetTimeoutId = null
-var ysLoadScript = function(id, src) {
-	d = document
-	if (!document.getElementById(id)) {
-		js = d.createElement('script')
-		js.id = id
-		js.src = src
-		js.async = true
-		d.body.appendChild(js)
-	}
-}
-var ysGetSrc = function(url,ver) {
-	if( ver ) {
-		url += '?' + ver
-	}
-	return url
-}
-window.addEventListener('load',function() {
-	setTimeout(function() {
-		for(var i=0; i < ys_onload_script.length; i++) {
-			var item = ys_onload_script[i] 
-			ysLoadScript(item.id,ysGetSrc(item.url,item.ver))
-		}
-	}, 100)
-})
-window.addEventListener('scroll', function() {
-	if (ysSetTimeoutId) {
-		return false
-	}
-	ysSetTimeoutId = setTimeout(function() {
-		if(0 < ys_Lazyload_script.length) {
-			var item = ys_Lazyload_script[0]
-			ysLoadScript(item.id,ysGetSrc(item.url,item.ver))
-			ys_Lazyload_script.shift()
-			ysSetTimeoutId = null
-		}
-	}, 200)
-})
-EOD;
+		return "
+		(function(d) {
+			window.ysSetTimeoutId = null;
+			var ysLoadScript = function(id, src) {
+				if (!d.getElementById(id)) {
+					var js = d.createElement('script');
+					js.id = id;
+					js.src = src;
+					js.defer = true;
+					d.body.appendChild(js);
+				}
+			};
+			var ysGetSrc = function(url,ver) {
+				if( ver ) {
+					url += '?' + ver;
+				}
+				return url;
+			};
+			window.addEventListener('DOMContentLoaded',function() {
+				setTimeout(function() {
+					for(var i=0; i < ys_onload_script.length; i++) {
+						var item = ys_onload_script[i];
+						ysLoadScript(item.id,ysGetSrc(item.url,item.ver));
+					}
+				}, 100);
+			});
+			window.addEventListener('scroll', function() {
+				if (window.ysSetTimeoutId) {
+					return false;
+				}
+				window.ysSetTimeoutId = setTimeout(function() {
+					if(0 < ys_Lazyload_script.length) {
+						var item = ys_Lazyload_script[0];
+						ysLoadScript(item.id,ysGetSrc(item.url,item.ver));
+						ys_Lazyload_script.shift();
+						ysSetTimeoutId = null;
+					}
+				}, 200);
+			});
+		})(document);";
 	}
 }

@@ -120,7 +120,7 @@ function ys_script_loader_tag( $tag, $handle, $src ) {
 		'wp-a11y',
 	);
 	$exclude_file = apply_filters(
-		'ys_exclude_add_async_scripts_file',
+		'ys_exclude_add_defer_scripts_file',
 		$exclude_file
 	);
 	if ( ! empty( $exclude_file ) ) {
@@ -134,7 +134,7 @@ function ys_script_loader_tag( $tag, $handle, $src ) {
 	/**
 	 * 非同期読み込みを除外
 	 */
-	$exclude = apply_filters( 'ys_exclude_add_async_scripts', array() );
+	$exclude = apply_filters( 'ys_exclude_add_defer_scripts', array() );
 	if ( ! empty( $exclude ) ) {
 		if ( ys_in_array( $handle, $exclude ) ) {
 			return $tag;
@@ -143,51 +143,27 @@ function ys_script_loader_tag( $tag, $handle, $src ) {
 	/**
 	 * デフォルトで非同期読み込みさせるスクリプト
 	 */
-	$async_list = array(
+	$defer_list = array(
 		'ystandard-script',
 		'font-awesome',
 	);
-	$async_list = apply_filters(
-		'ys_add_async_scripts_list',
-		$async_list
+	$defer_list = apply_filters(
+		'ys_add_defer_scripts_list',
+		$defer_list
 	);
-	if ( ! empty( $async_list ) ) {
-		if ( ys_in_array( $handle, $async_list ) ) {
-			return str_replace( 'src', 'async defer src', $tag );
+	if ( ! empty( $defer_list ) ) {
+		if ( ys_in_array( $handle, $defer_list ) ) {
+			return str_replace( 'src', 'defer src', $tag );
 		}
 	}
 	/**
 	 * 除外・デフォルトで非同期以外は設定に従う
 	 */
 	if ( ys_get_option( 'ys_option_optimize_load_js' ) ) {
-		$tag = str_replace( 'src', 'async defer src', $tag );
+		$tag = str_replace( 'src', 'defer src', $tag );
 	}
 
 	return $tag;
 }
 
 add_filter( 'script_loader_tag', 'ys_script_loader_tag', 10, 3 );
-
-/**
- * 出力されるcssロード用link要素を加工
- *
- * @param string $html   html.
- * @param string $handle handle.
- * @param string $href   href.
- *
- * @return string
- */
-function ys_style_loader_tag( $html, $handle, $href ) {
-	if ( is_admin() ) {
-		return $html;
-	}
-	/**
-	 * 属性削除 : type.
-	 */
-	$html = str_replace( "type='text/css'", '', $html );
-	$html = str_replace( 'type="text/css"', '', $html );
-
-	return $html;
-}
-
-add_filter( 'style_loader_tag', 'ys_style_loader_tag', 10, 3 );
