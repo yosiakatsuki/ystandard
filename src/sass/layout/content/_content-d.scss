@@ -1,3 +1,18 @@
-
 @include media-breakpoint(lg) {
+  .site__content {
+    @at-root {
+      .has-sidebar & {
+        overflow: unset;
+      }
+    }
+  }
+  
+  .content__main {
+    @at-root {
+      .has-sidebar & {
+        margin-right: 2rem;
+        max-width: calc(100% - 368px - 2rem);
+      }
+    }
+  }
 }

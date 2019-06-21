@@ -546,6 +546,20 @@ video {
 .content__title {
   margin: 0 0 1em; }
 
+.sidebar {
+  flex: 1 1 100%;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto; }
+
+.sidebar__item {
+  margin-top: 1rem;
+  padding: 1rem; }
+  .sidebar__item:first-child {
+    margin-top: 0; }
+  .sidebar__item > *:first-child {
+    margin-top: 0; }
+
 .one-column-no-title .site__content,
 .one-column-no-title .entry__content {
   margin-top: 0; }

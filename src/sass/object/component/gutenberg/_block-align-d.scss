@@ -1,13 +1,30 @@
 @include media-breakpoint(lg) {
   .alignwide {
-    margin-right: -2rem;
-    margin-left: -2rem;
+    @at-root {
+      & {
+        margin-right: -2rem;
+        margin-left: -2rem;
+      }
+      .has-sidebar & {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
   }
+  
   .alignfull {
-    margin-right: calc(-50vw + 50%);
-    margin-left: calc(-50vw + 50%);
-    padding-right: calc(-50% + 50vw);
-    padding-left: calc(-50% + 50vw);
+    @at-root {
+      & {
+        margin-right: calc(-50vw + 50%);
+        margin-left: calc(-50vw + 50%);
+        padding-right: calc(-50% + 50vw);
+        padding-left: calc(-50% + 50vw);
+      }
+      .has-sidebar & {
+        margin-right: 0;
+        margin-left: 0;
+      }
+    }
   }
 }
 

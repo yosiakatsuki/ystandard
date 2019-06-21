@@ -1,6 +1,10 @@
 .site__content {
-  margin-top: 2rem;
-  overflow: hidden;
+  @at-root {
+    & {
+      margin-top: 2rem;
+      overflow: hidden;
+    }
+  }
 }
 
 .content__main {
