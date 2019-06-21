@@ -192,6 +192,8 @@ function ys_get_customizer_inline_css_color() {
 		ys_customizer_create_inline_css(
 			array(
 				'.h-nav__main a',
+				'.h-nav__search input',
+				'.h-nav__search button',
 			),
 			array(
 				'color' => $mobile_nav_font,
