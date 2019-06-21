@@ -1078,6 +1078,7 @@ input[type="button"] {
   border-left: 1px solid #bdc3c7;
   background-color: transparent;
   border-radius: 0;
+  color: #222;
   -webkit-appearance: none; }
 
 .aligncenter,
