@@ -160,20 +160,11 @@ function ys_get_enqueue_css_file_path() {
  */
 function ys_get_enqueue_css_file_name() {
 	$file = 'ystandard-light.css';
-	if ( ys_is_active_sidebar_widget() ) {
-		$file = 'ystandard-has-sidebar.css';
-	}
 	/**
 	 * PC表示
 	 */
 	if ( ! ys_is_mobile() ) {
 		$file = 'ystandard-desktop.css';
-		/**
-		 * PC & サイドバーあり
-		 */
-		if ( ! ys_is_one_column() ) {
-			$file = 'ystandard-has-sidebar-desktop.css';
-		}
 	}
 
 	return $file;
