@@ -13,7 +13,7 @@ if ( has_nav_menu( 'footer' ) ) : ?>
 		wp_nav_menu(
 			array(
 				'theme_location' => 'footer',
-				'menu_class'     => 'footer__nav-list li-clear flex flex-wrap',
+				'menu_class'     => 'footer__nav-list li-clear flex flex--wrap',
 				'container'      => false,
 				'fallback_cb'    => '',
 				'depth'          => 1,
