@@ -496,6 +496,15 @@ input[type="button"] {
 
 .search-field {
   padding-right: 3.5rem; }
+  .search-field::placeholder {
+    color: inherit;
+    opacity: .7; }
+  .search-field:-ms-input-placeholder {
+    color: inherit;
+    opacity: .7; }
+  .search-field::-ms-input-placeholder {
+    color: inherit;
+    opacity: .7; }
 
 .search-submit {
   position: absolute;

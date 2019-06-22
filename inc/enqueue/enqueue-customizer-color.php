@@ -215,6 +215,20 @@ function ys_get_customizer_inline_css_color() {
 		'lg',
 		'max'
 	);
+	$css .= ys_customizer_add_media_query(
+		ys_customizer_create_inline_css(
+			array(
+				'.h-nav__main a',
+				'.h-nav__search input',
+				'.h-nav__search button',
+			),
+			array(
+				'color' => $mobile_nav_font,
+			)
+		),
+		'lg',
+		'max'
+	);
 	/**
 	 * モバイルナビゲーション 閉じるボタン
 	 */

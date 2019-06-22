@@ -1,9 +1,26 @@
 .search-form {
   position: relative;
 }
+
 .search-field {
   padding-right: 3.5rem;
+
+  &::placeholder {
+    color: inherit;
+    opacity: .7;
+  }
+
+  &:-ms-input-placeholder {
+    color: inherit;
+    opacity: .7;
+  }
+
+  &::-ms-input-placeholder {
+    color: inherit;
+    opacity: .7;
+  }
 }
+
 .search-submit {
   position: absolute;
   top: 0;
