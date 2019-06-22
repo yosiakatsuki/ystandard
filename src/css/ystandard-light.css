@@ -1764,6 +1764,16 @@ figcaption {
 .wp-embed-aspect-1-2 .wp-has-aspect-ratio .wp-block-embed__wrapper::before {
   padding-top: 200%; }
 
+.wp-block-calendar tbody,
+.widget_calendar tbody {
+  text-align: center; }
+
+.wp-block-calendar td,
+.wp-block-calendar th,
+.widget_calendar td,
+.widget_calendar th {
+  padding: .5rem; }
+
 .header__title {
   font-size: 1.5rem;
   letter-spacing: .05em; }
@@ -1937,13 +1947,6 @@ figcaption {
   margin-top: 0;
   margin-bottom: 1rem;
   font-size: 1.2rem; }
-
-.widget_calendar tbody {
-  text-align: center; }
-
-.widget_calendar td,
-.widget_calendar th {
-  padding: .5rem; }
 
 .site-footer {
   margin-top: 2rem;
