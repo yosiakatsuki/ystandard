@@ -6,7 +6,9 @@
     //
     &.rwd {
       @include media-breakpoint(lg) {
-        padding: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+        
         .h-nav__btn {
           display: none;
         }
@@ -17,6 +19,7 @@
           background-color: unset;
           opacity: 1;
           visibility: visible;
+
           & > ul {
             display: flex;
             align-items: center;
@@ -24,6 +27,7 @@
             max-width: unset;
             overflow-y: visible;
           }
+
           a {
             color: inherit;
             font-size: .9rem;
@@ -43,13 +47,16 @@
             white-space: nowrap;
             opacity: 0;
             transition: all .3s;
+
             a {
               padding-left: 1rem;
             }
+
             li {
               border-bottom: 1px solid $color__border-gray-light;
             }
           }
+
           &:last-child {
             ul {
               left: unset;
@@ -57,11 +64,13 @@
               text-align: right;
             }
           }
+
           //2層ul
           &:hover {
             &:not(.has-child) {
               border-bottom: 1px solid $color__border-dark;
             }
+
             ul {
               min-width: 100%;
               height: auto;
@@ -70,6 +79,7 @@
               visibility: visible;
             }
           }
+
           // &:hover
         }
         //li
@@ -78,6 +88,9 @@
 
     &.-center {
       @include media-breakpoint(lg) {
+        .h-nav__main > ul {
+          justify-content: center;
+        }
         a {
           padding: 1rem 2rem;
         }
@@ -90,17 +103,23 @@
         }
       }
     }
+
     &.-row2 {
       @include media-breakpoint(lg) {
+        .h-nav__main > ul {
+          justify-content: flex-start;
+        }
         a {
           padding: 1rem 0;
         }
         li {
           margin-right: 1.5rem;
+
           ul {
             a {
               padding: 1rem 0;
             }
+
             li {
               margin-right: 0;
             }

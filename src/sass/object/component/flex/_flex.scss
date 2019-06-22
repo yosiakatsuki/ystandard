@@ -1,6 +1,5 @@
 .flex {
   @at-root {
-    @include make-flex();
 
     .flex--row {
       flex-wrap: wrap;
@@ -33,10 +32,12 @@
         &::-webkit-scrollbar {
           height: 8px;
         }
+
         &::-webkit-scrollbar-track {
           border-radius: 8px;
           background-color: $color__bg-gray-light;
         }
+
         &::-webkit-scrollbar-thumb {
           background-color: $color__bg-gray-dark;
           border-radius: 8px;
@@ -88,6 +89,8 @@
     .flex--j-around {
       justify-content: space-around;
     }
+
+    @include make-flex();
   }
   // @
 }
@@ -98,6 +101,7 @@
       max-width: 100%;
       padding: 1rem;
     }
+
     & {
       flex-grow: 1;
       flex-basis: 0;
