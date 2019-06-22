@@ -2085,6 +2085,10 @@ figcaption {
     color: #222;
     border-color: #222; }
 
+.btn--sm {
+  padding-top: .25rem;
+  padding-bottom: .25rem; }
+
 .btn--lg {
   padding: .75rem 3rem; }
 
