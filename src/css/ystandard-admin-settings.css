@@ -1191,6 +1191,16 @@ figcaption {
 .wp-embed-aspect-1-2 .wp-has-aspect-ratio .wp-block-embed__wrapper::before {
   padding-top: 200%; }
 
+.wp-block-calendar tbody,
+.widget_calendar tbody {
+  text-align: center; }
+
+.wp-block-calendar td,
+.wp-block-calendar th,
+.widget_calendar td,
+.widget_calendar th {
+  padding: .5rem; }
+
 @media screen and (min-width: 600px) {
   .flex--md {
     display: flex; }
