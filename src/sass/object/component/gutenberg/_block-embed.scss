@@ -1,29 +1,27 @@
-.wp-block-embed {
+.wp-has-aspect-ratio {
+  .wp-block-embed__wrapper {
+    position: relative;
 
-}
+    //16-9をデフォルトにする
+    &::before {
+      content: "";
+      display: block;
+      padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
+    }
 
-.wp-block-embed__wrapper {
-  position: relative;
-
-  //16-9をデフォルトにする
-  &::before {
-    content: "";
-    display: block;
-    padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
-  }
-
-  iframe {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    iframe {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
-.wp-block-embed__wrapper::before {
+.wp-has-aspect-ratio .wp-block-embed__wrapper::before {
   @at-root {
     .wp-embed-aspect-21-9 & {
       padding-top: (decimal-floor(( 9 / 21 ), 2) * 100)#{"%"};
