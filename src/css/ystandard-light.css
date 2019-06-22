@@ -1937,6 +1937,13 @@ figcaption {
   margin-bottom: 1rem;
   font-size: 1.2rem; }
 
+.widget_calendar tbody {
+  text-align: center; }
+
+.widget_calendar td,
+.widget_calendar th {
+  padding: .5rem; }
+
 .site-footer {
   margin-top: 2rem;
   padding-bottom: 1rem;
