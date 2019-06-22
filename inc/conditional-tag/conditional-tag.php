@@ -437,7 +437,7 @@ function ys_is_active_sidebar_widget() {
 	if ( ys_is_amp() ) {
 		$show_sidebar = false;
 	}
-	if ( ys_is_mobile() && 1 === ys_get_option( 'ys_show_sidebar_mobile' ) ) {
+	if ( ys_is_mobile() && ys_sanitize_bool( ys_get_option( 'ys_show_sidebar_mobile' ) ) ) {
 		$show_sidebar = false;
 	}
 	if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
