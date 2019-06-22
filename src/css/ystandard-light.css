@@ -2408,3 +2408,13 @@ a.text-sub,
 
 .section.-screen {
   min-height: 100vh; }
+
+.ys-box {
+  border: 1px solid #bdc3c7;
+  background-color: #fafafa;
+  padding: 1rem;
+  margin: 1rem 0; }
+  .ys-box > *:first-child {
+    margin-top: 0; }
+  .ys-box > *:last-child {
+    margin-bottom: 0; }
