@@ -74,6 +74,13 @@ function ys_body_class( $classes ) {
 		$classes[] = 'one-column-no-title';
 	}
 
+	/**
+	 * フル幅テンプレート
+	 */
+	if ( ys_is_full_width() ) {
+		$classes[] = 'full-width';
+	}
+
 	return $classes;
 }
 
