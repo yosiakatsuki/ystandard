@@ -211,13 +211,8 @@ function ys_is_one_column() {
 	/**
 	 * ワンカラムテンプレート
 	 */
-	if ( is_page_template( 'page-template/template-one-column.php' ) ) {
-		$one_column = true;
-	}
-	/**
-	 * ワンカラムテンプレート
-	 */
-	if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+	if ( is_page_template( 'page-template/template-one-column.php' )
+	     || is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
 		$one_column = true;
 	}
 	/**
@@ -254,6 +249,26 @@ function ys_is_one_column() {
 	}
 
 	return apply_filters( 'ys_is_one_column', $one_column );
+}
+
+/**
+ * フル幅判定
+ */
+function ys_is_full_width() {
+	$full_width = false;
+	/**
+	 * 1カラムの場合のみ判定できる
+	 */
+	if ( ys_is_one_column() ) {
+		/**
+		 * フル幅にするテンプレート
+		 */
+		if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+			$full_width = true;
+		}
+	}
+
+	return apply_filters( 'ys_is_full_width', $full_width );
 }
 
 /**

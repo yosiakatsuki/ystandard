@@ -10,7 +10,7 @@
 ?>
 <main id="main" class="site-main content__main flex__col">
 	<?php do_action( 'ys_content_main_prepend' ); ?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'singular-article' ) ); ?>>
 		<?php get_template_part( 'template-parts/single/header' ); ?>
 		<div class="entry-content entry__content">
 			<?php

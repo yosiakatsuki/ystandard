@@ -521,7 +521,7 @@ video {
 
 .container {
   position: relative;
-  max-width: 1232px;
+  max-width: 1264px;
   margin-left: auto;
   margin-right: auto;
   padding: 0 1rem; }
@@ -536,7 +536,13 @@ video {
 
 .site__content {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   overflow: hidden; }
+
+.full-width .site__content {
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: #fff; }
 
 .content__main {
   width: 100%;
@@ -564,7 +570,6 @@ video {
   .sidebar__item > *:first-child {
     margin-top: 0; }
 
-.one-column-no-title .site__content,
 .one-column-no-title .entry__content {
   margin-top: 0; }
 
@@ -1940,6 +1945,15 @@ figcaption {
 .entry__content {
   margin-top: 1.5rem; }
 
+.singular-article {
+  max-width: 800px;
+  margin-right: auto;
+  margin-left: auto; }
+
+.full-width .singular-article,
+.has-sidebar .singular-article {
+  max-width: unset; }
+
 .widget {
   margin-bottom: 2rem; }
 
@@ -1949,7 +1963,6 @@ figcaption {
   font-size: 1.2rem; }
 
 .site-footer {
-  margin-top: 2rem;
   padding-bottom: 1rem;
   background-color: #292b2c;
   border-top: 1px solid transparent;

@@ -2,7 +2,14 @@
   @at-root {
     & {
       margin-top: 2rem;
+      margin-bottom: 2rem;
       overflow: hidden;
+    }
+
+    .full-width & {
+      margin-top: 0;
+      margin-bottom: 0;
+      background-color: #fff;
     }
   }
 }
