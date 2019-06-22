@@ -73,8 +73,13 @@ function ys_get_header_row_class( $class = array() ) {
 		$classes = array_merge( $classes, $class );
 	}
 	$type      = ys_get_option( 'ys_design_header_type' );
+	$classes[] = 'header__row';
+	$classes[] = '-' . $type;
 	$classes[] = 'flex';
 	$classes[] = 'flex--row';
+	$classes[] = 'flex--nowrap';
+	$classes[] = 'flex--lg-wrap';
+	
 	/**
 	 * 1行タイプ
 	 */
@@ -86,7 +91,7 @@ function ys_get_header_row_class( $class = array() ) {
 	 * 中央寄せタイプ
 	 */
 	if ( 'center' == $type ) {
-		$classes[] = 'flex--j-center';
+		$classes[] = 'flex--j-between';
 	}
 	$classes = apply_filters( 'ys_get_header_row_class', $classes, $type );
 

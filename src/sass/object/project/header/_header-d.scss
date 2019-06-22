@@ -1,12 +1,29 @@
 .header {
   @at-root {
     @include media-breakpoint(md) {
+
       .header__title {
         font-size: 1.8rem;
       }
       .header__branding {
         &.-row1 {
           padding-right: 1rem;
+        }
+      }
+    }
+
+    @include media-breakpoint(lg) {
+      .header__row {
+        &.-center {
+          &:before {
+            display: none;
+          }
+        }
+      }
+      .header__branding {
+        &.-row2,
+        &.-center {
+          padding-bottom: 0;
         }
       }
     }
