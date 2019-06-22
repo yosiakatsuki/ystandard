@@ -1,0 +1,16 @@
+.ys-box {
+  border: 1px solid $color__border-gray;
+  background-color: $color__bg-gray-light;
+  padding: 1rem;
+  margin: 1rem 0;
+
+  & > * {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
