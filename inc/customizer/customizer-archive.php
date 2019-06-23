@@ -27,7 +27,7 @@ function ys_customizer_archive( $wp_customize ) {
 		)
 	);
 	/**
-	 * 固定ページ設定
+	 * アーカイブページ設定
 	 */
 	ys_customizer_archive_add_settings( $wp_customize );
 }
@@ -101,24 +101,6 @@ function ys_customizer_archive_add_settings( $wp_customize ) {
 			'id'      => 'ys_show_archive_publish_date',
 			'default' => 1,
 			'label'   => '投稿日・更新日を表示する',
-			'section' => 'ys_customizer_section_archive',
-		)
-	);
-	/**
-	 * 著者情報を表示する
-	 */
-	$ys_customizer->add_label(
-		array(
-			'id'      => 'ys_show_archive_author_label',
-			'label'   => '著者情報の表示',
-			'section' => 'ys_customizer_section_archive',
-		)
-	);
-	$ys_customizer->add_checkbox(
-		array(
-			'id'      => 'ys_show_archive_author',
-			'default' => 1,
-			'label'   => '著者情報を表示する',
 			'section' => 'ys_customizer_section_archive',
 		)
 	);
