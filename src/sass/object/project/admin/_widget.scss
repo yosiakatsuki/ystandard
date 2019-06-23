@@ -1,3 +1,7 @@
+select {
+  max-width: 100%;
+}
+
 .ys-widget-option {
   position: relative;
   margin: .5rem 0 2rem;
@@ -83,7 +87,7 @@
   padding: .5rem 0;
   border: 1px solid $color__border-gray;
   overflow-y: scroll;
-  
+
   label {
     display: block;
     padding: .25rem .5rem;

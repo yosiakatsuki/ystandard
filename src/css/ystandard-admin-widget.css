@@ -1,3 +1,6 @@
+select {
+  max-width: 100%; }
+
 .ys-widget-option {
   position: relative;
   margin: .5rem 0 2rem; }
