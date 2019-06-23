@@ -16,9 +16,9 @@ class YS_Shortcode_Post_Taxonomy extends YS_Shortcode_Base {
 	 * ショートコードパラメーター
 	 */
 	const SHORTCODE_PARAM = array(
-		'class'    => 'post-terms',
-		'taxonomy' => 'category|post_tag', // 表示したいタクソノミー名を「|」区切り.
-		'icon'     => '<i class="far fa-folder"></i>|<i class="fas fa-hashtag"></i>', // 表示したいアイコンを「|」区切り。タクソノミーと順番合わせる.
+		'class_base' => 'post-terms',
+		'taxonomy'   => 'category|post_tag', // 表示したいタクソノミー名を「|」区切り.
+		'icon'       => '<i class="far fa-folder"></i>|<i class="fas fa-hashtag"></i>', // 表示したいアイコンを「|」区切り。タクソノミーと順番合わせる.
 	);
 
 	/**

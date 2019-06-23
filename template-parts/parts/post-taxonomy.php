@@ -17,7 +17,7 @@ if ( ! ys_get_option( 'ys_show_post_category' ) ) {
 ys_do_shortcode(
 	'ys_post_tax',
 	array(
-		'class' => 'post-terms singular-footer__block',
+		'class' => 'singular-footer__block',
 		'title' => '',
 	)
 );

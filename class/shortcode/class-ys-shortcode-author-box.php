@@ -16,7 +16,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 * ショートコードパラメーター
 	 */
 	const SHORTCODE_PARAM = array(
-		'class'                 => 'author__box',
+		'class_base'            => 'author__box',
 		'default_user_name'     => false,
 		'user_name'             => false,
 		'enable_archive_link'   => true,
