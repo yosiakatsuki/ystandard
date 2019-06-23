@@ -90,6 +90,25 @@ select {
 
   label {
     display: block;
-    padding: .25rem .5rem;
+    padding: .2rem .5rem;
+    line-height: 1.5;
   }
+}
+
+.ys-widget-option__check-list-group {
+  margin: .1rem 0 .5rem;
+
+  & > .ys-widget-option__check-list-group-item {
+    padding-left: 0;
+  }
+}
+
+.ys-widget-option__check-list-group-item {
+  padding-left: 1rem;
+}
+
+.ys-widget-option__check-list-group-title {
+  color: $color__text-light;
+  font-weight: bold;
+  padding: 0 .5rem;
 }

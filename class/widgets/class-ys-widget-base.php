@@ -300,6 +300,110 @@ class YS_Widget_Base extends WP_Widget {
 	}
 
 	/**
+	 * タクソノミー選択用 チェックボックス
+	 *
+	 * @param string $form_name         項目名.
+	 * @param array  $selected_taxonomy 選択中ターム.
+	 * @param array  $args              パラメータ.
+	 */
+	protected function the_taxonomies_checkbox_list( $form_name, $selected_taxonomy, $args = array() ) {
+		/**
+		 * パラメーター初期化
+		 */
+		$args = wp_parse_args(
+			$args,
+			array(
+				'object_type'   => array( 'post' ),
+				'empty_message' => '',
+			)
+		);
+		$args = apply_filters( 'ys_widget_taxonomies_select_args', $args );
+		/**
+		 * タクソノミー取得
+		 */
+		$taxonomies = get_taxonomies(
+			array(
+				'object_type' => $args['object_type'],
+				'public'      => true,
+				'show_ui'     => true,
+			),
+			'objects'
+		);
+		echo '<div class="ys-widget-option__check-list">';
+		if ( empty( $taxonomies ) ) {
+			if ( empty( $args['empty_message'] ) ) {
+				echo esc_html( $args['empty_message'] );
+			} else {
+				echo '選択できるカテゴリー・タグがありません';
+			}
+		} else {
+			/**
+			 * タクソノミーごとにリストを作成
+			 */
+			foreach ( $taxonomies as $taxonomy ) {
+				echo '<div class="ys-widget-option__check-list-group">';
+				echo '<div class="ys-widget-option__check-list-group-title">' . $taxonomy->label . '</div>';
+				echo $this->the_taxonomies_checkbox( $form_name, $taxonomy, 0, $selected_taxonomy );
+				echo '</div>';
+			}
+		}
+		echo '</div>';
+	}
+
+	/**
+	 * タクソノミー一覧を階層構造を保ったまま作成する
+	 *
+	 * @param string      $form_name         項目名.
+	 * @param WP_Taxonomy $taxonomy          タクソノミー.
+	 * @param integer     $parent            親タームID.
+	 * @param array       $selected_taxonomy 選択中タクソノミー.
+	 * @param string      $indent            インデント.
+	 *
+	 * @return string
+	 */
+	protected function the_taxonomies_checkbox( $form_name, $taxonomy, $parent, $selected_taxonomy, $indent = '' ) {
+		/**
+		 * ターム取得
+		 */
+		$terms = get_terms(
+			$taxonomy->name,
+			array(
+				'parent'     => $parent,
+				'hide_empty' => false,
+			)
+		);
+		if ( ! $terms ) {
+			return '';
+		}
+		/**
+		 * リスト作成
+		 */
+		if ( 0 !== $parent ) {
+			$indent .= '';
+		}
+		$result = '<div class="ys-widget-option__check-list-group-item">';
+		foreach ( $terms as $term ) {
+			$result .= sprintf(
+				'<label for="%s"><input type="checkbox" id="%s" name="%s" value="%s" %s />%s</label>',
+				$this->get_field_id( $form_name ) . $term->slug,
+				$this->get_field_id( $form_name ) . $term->slug,
+				$this->get_field_name( $form_name ) . '[]',
+				$this->get_select_taxonomy_value( $taxonomy, $term ),
+				checked( ys_in_array( $this->get_select_taxonomy_value( $taxonomy, $term ), $selected_taxonomy ), true, false ),
+				esc_html( $indent . $term->name )
+			);
+			/**
+			 * 階層設定に対応したタクソノミーは再帰処理
+			 */
+			if ( $taxonomy->hierarchical ) {
+				$result .= $this->the_taxonomies_checkbox( $form_name, $taxonomy, $term->term_id, $selected_taxonomy, $indent );
+			}
+		}
+
+		return $result . '</div>';
+	}
+
+	/**
 	 * 詳細設定
 	 *
 	 * @param array $instance 設定値.
@@ -338,7 +442,7 @@ class YS_Widget_Base extends WP_Widget {
 				<div class="ys-widget-option__section">
 					<h4>掲載するカテゴリー・タグ</h4>
 					<p>
-						<?php $this->the_taxonomies_select_html( 'display_tax_select', $instance['display_tax_select'], true ); ?><br>
+						<?php $this->the_taxonomies_checkbox_list( 'display_tax_select', $instance['display_tax_select'], true ); ?><br>
 						<span class="ys-widget-option__sub">※カテゴリー・タグを選択した場合、投稿詳細ページ かつ 該当のカテゴリー・タグをもつ投稿ページしか表示されません。（一覧ページなどでは表示されません）</span>
 					</p>
 				</div>
