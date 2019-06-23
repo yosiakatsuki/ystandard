@@ -118,6 +118,7 @@ function ys_script_loader_tag( $tag, $handle, $src ) {
 		'jquery',
 		'wp-custom-header',
 		'wp-a11y',
+		YS_Scripts::SCRIPT_HANDLE_DUMMY,
 	);
 	$exclude_file = apply_filters(
 		'ys_exclude_add_defer_scripts_file',

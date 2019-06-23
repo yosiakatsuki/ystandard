@@ -1,1 +1,1 @@
-'use strict';alert('lazy');
+"use strict";
