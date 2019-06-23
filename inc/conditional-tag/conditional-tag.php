@@ -212,7 +212,7 @@ function ys_is_one_column() {
 	 * ワンカラムテンプレート
 	 */
 	if ( is_page_template( 'page-template/template-one-column.php' )
-		|| is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+	     || is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
 		$one_column = true;
 	}
 	/**
@@ -417,11 +417,11 @@ function ys_is_enable_meta_description() {
 	/**
 	 * 自動生成オプション
 	 */
-	if ( ! ys_get_option( 'ys_option_create_meta_description' ) ) {
+	if ( ! ys_sanitize_bool( ys_get_option( 'ys_option_create_meta_description' ) ) ) {
 		$result = false;
 	}
 	if ( is_single() || is_page() ) {
-		if ( '1' === ys_get_post_meta( 'ys_hide_meta_dscr' ) ) {
+		if ( ys_sanitize_bool( ys_get_post_meta( 'ys_hide_meta_dscr' ) ) ) {
 			$result = false;
 		}
 	}
