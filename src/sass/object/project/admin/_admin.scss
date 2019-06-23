@@ -1,0 +1,19 @@
+.meta-box__headline {
+  padding-bottom: .25em;
+  margin: 2em 0 1em;
+  border-bottom: 1px solid $color__border-gray;
+  font-size: 1.05em;
+}
+.meta-box__section {
+  textarea {
+    width: 100%;
+  }
+}
+.meta-box__label {
+  display: block;
+  margin-top: .5rem;
+  font-weight: bold;
+}
+.meta-box__dscr {
+  color: $color__text-light;
+}
