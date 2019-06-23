@@ -24,6 +24,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 	 * ショートコードパラメーター
 	 */
 	const SHORTCODE_PARAM = array(
+		'class'          => 'ys-blog-card',
 		'url'            => '',
 		'title'          => '',
 		'dscr'           => '',
@@ -228,6 +229,10 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 	private function get_post_data( $post_id ) {
 		$post = get_post( $post_id );
 		/**
+		 * URL
+		 */
+		$this->card_data['url'] = get_permalink( $post->ID );
+		/**
 		 * 画像取得
 		 */
 		$this->card_data['thumbnail'] = $this->get_post_thumbnail( $post_id );
@@ -309,6 +314,10 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 			return;
 		}
 		$this->card_data['title'] = $title;
+		/**
+		 * URL
+		 */
+		$this->card_data['url'] = $url;
 		/**
 		 * 概要取得
 		 */
