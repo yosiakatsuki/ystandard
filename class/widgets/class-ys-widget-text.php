@@ -132,7 +132,6 @@ class YS_Widget_Text extends YS_Widget_Base {
 		 */
 		$instance = $this->update_base_options( $new_instance, $old_instance );
 
-
 		if ( current_user_can( 'unfiltered_html' ) ) {
 			$instance['text'] = $new_instance['text'];
 		} else {

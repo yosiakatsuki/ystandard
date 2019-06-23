@@ -118,7 +118,7 @@ function ys_widgets_register_widget() {
 	register_widget( 'YS_Widget_Advertisement' );
 	register_widget( 'YS_Widget_Author_Box' );
 	register_widget( 'YS_Widget_Post_Ranking' );
-	register_widget( 'YS_Widget_Recant_Posts' );
+	register_widget( 'YS_Widget_Recent_Posts' );
 	/**
 	 * 以下はアドオン購入で使えるようになる予定です。
 	 * 子テーマカスタマイズで有効化していただいても大丈夫ですが、

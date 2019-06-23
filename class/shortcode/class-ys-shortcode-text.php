@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * Class YS_Shortcode_Text
+ */
 class YS_Shortcode_Text extends YS_Shortcode_Base {
 
 	/**

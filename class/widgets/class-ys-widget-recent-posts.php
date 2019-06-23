@@ -10,7 +10,7 @@
 /**
  * 人気記事ランキングウィジェット
  */
-class YS_Widget_Recant_Posts extends YS_Widget_Get_Posts {
+class YS_Widget_Recent_Posts extends YS_Widget_Get_Posts {
 	/**
 	 * ウィジェットID
 	 *

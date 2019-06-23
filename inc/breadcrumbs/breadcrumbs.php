@@ -272,13 +272,13 @@ function ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type =
  * @param  int    $object_id     object_id.
  * @param  string $object_type   object_type.
  * @param  string $resource_type resource_type.
- *                               
+ *
  * @return array
  */
 function ys_set_breadcrumb_ancestors( $items, $object_id, $object_type, $resource_type = '' ) {
 	$ancestors = ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type );
 	foreach ( $ancestors as $ancestor_id ) {
-		if ( 'page' == $object_type ) {
+		if ( 'page' === $object_type ) {
 			$items = ys_set_breadcrumb_item(
 				$items,
 				get_the_title( $ancestor_id ),

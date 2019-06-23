@@ -7,7 +7,13 @@
  * @license GPL-2.0+
  */
 
-
+/**
+ * SNSシェアボタン表示
+ *
+ * @param string $title タイトル.
+ *
+ * @return string
+ */
 function ys_the_sns_share_button( $title = '' ) {
 	/**
 	 * 記事別の表示設定確認

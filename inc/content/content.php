@@ -16,7 +16,7 @@
  */
 function ys_document_title_separator( $sep ) {
 	$sep_option = ys_get_option( 'ys_title_separate' );
-	if ( '' != $sep_option ) {
+	if ( '' !== $sep_option ) {
 		$sep = $sep_option;
 	}
 
@@ -69,7 +69,7 @@ function ys_add_iframe_responsive_container( $the_content, $type = '' ) {
 	$pattern_list = array(
 		array(
 			'url'    => 'https:\/\/www\.google\.com\/maps\/embed',
-			'aspect' => '4-3'
+			'aspect' => '4-3',
 		),
 
 	);
@@ -148,7 +148,7 @@ add_filter( 'excerpt_length', 'ys_excerpt_length', 999 );
  */
 function ys_excerpt_more( $more ) {
 	$more_str = ' …';
-	if ( 0 == ys_excerpt_length() ) {
+	if ( 0 === ys_excerpt_length() ) {
 		$more_str = '';
 	}
 

@@ -7,47 +7,45 @@
  * @license GPL-2.0+
  */
 
-if ( ! function_exists( 'ys_get_ad_block_html' ) ) {
-	/**
-	 * 広告コードのhtml整形
-	 *
-	 * @param string  $ad    広告.
-	 * @param string  $key   広告作成キー.
-	 * @param boolean $label ラベルの表示有無.
-	 *
-	 * @return string
-	 */
-	function ys_get_ad_block_html( $ad, $key = '', $label = true ) {
-		$html = '';
-		$ad   = apply_filters( 'ys_advertisement_content', $ad, $key );
-		$ad   = ys_fix_ad_previw_error( $ad );
-		if ( '' !== $ad && ! is_feed() ) {
-			/**
-			 * ラベルの設定
-			 */
-			$label_text = '';
-			if ( $label ) {
-				$label_text = 'スポンサーリンク';
-			}
-			$label_text = apply_filters( 'ys_ad_label_text', $label_text, $key );
-			if ( '' !== $label_text ) {
-				$label_text = sprintf( '<div class="ad__label">%s</div>', $label_text );
-			}
-			/**
-			 * HTMLの作成
-			 */
-			$html = sprintf(
-				'<aside class="ad__container">
+/**
+ * 広告コードのhtml整形
+ *
+ * @param string  $ad    広告.
+ * @param string  $key   広告作成キー.
+ * @param boolean $label ラベルの表示有無.
+ *
+ * @return string
+ */
+function ys_get_ad_block_html( $ad, $key = '', $label = true ) {
+	$html = '';
+	$ad   = apply_filters( 'ys_advertisement_content', $ad, $key );
+	$ad   = ys_fix_ad_preview_error( $ad );
+	if ( '' !== $ad && ! is_feed() ) {
+		/**
+		 * ラベルの設定
+		 */
+		$label_text = '';
+		if ( $label ) {
+			$label_text = 'スポンサーリンク';
+		}
+		$label_text = apply_filters( 'ys_ad_label_text', $label_text, $key );
+		if ( '' !== $label_text ) {
+			$label_text = sprintf( '<div class="ad__label">%s</div>', $label_text );
+		}
+		/**
+		 * HTMLの作成
+		 */
+		$html = sprintf(
+			'<aside class="ad__container">
 					%s
 					<div class="ad__content">%s</div>
 				</aside>',
-				$label_text,
-				$ad
-			);
-		}
-
-		return apply_filters( 'ys_get_ad_block_html', $html );
+			$label_text,
+			$ad
+		);
 	}
+
+	return apply_filters( 'ys_get_ad_block_html', $html );
 }
 
 /**
@@ -129,19 +127,18 @@ function ys_the_ad_after_entry_title() {
 add_action( 'ys_after_entry_title', 'ys_the_ad_after_entry_title' );
 
 
-if ( ! function_exists( 'ys_get_ad_entry_header' ) ) {
-	/**
-	 * 記事上広告の取得
-	 */
-	function ys_get_ad_entry_header() {
-		return ys_get_ad(
-			'ys_advertisement_before_content',
-			'ys_advertisement_before_content_sp',
-			'ys_amp_advertisement_before_content',
-			'ys_get_ad_entry_header'
-		);
-	}
+/**
+ * 記事上広告の取得
+ */
+function ys_get_ad_entry_header() {
+	return ys_get_ad(
+		'ys_advertisement_before_content',
+		'ys_advertisement_before_content_sp',
+		'ys_amp_advertisement_before_content',
+		'ys_get_ad_entry_header'
+	);
 }
+
 /**
  * 記事上部広告の出力
  */
@@ -151,19 +148,18 @@ function ys_the_ad_entry_header() {
 	}
 }
 
-if ( ! function_exists( 'ys_get_ad_more_tag' ) ) {
-	/**
-	 * Moreタグ広告の取得
-	 */
-	function ys_get_ad_more_tag() {
-		return ys_get_ad(
-			'ys_advertisement_replace_more',
-			'ys_advertisement_replace_more_sp',
-			'ys_amp_advertisement_replace_more',
-			'ys_get_ad_more_tag'
-		);
-	}
+/**
+ * Moreタグ広告の取得
+ */
+function ys_get_ad_more_tag() {
+	return ys_get_ad(
+		'ys_advertisement_replace_more',
+		'ys_advertisement_replace_more_sp',
+		'ys_amp_advertisement_replace_more',
+		'ys_get_ad_more_tag'
+	);
 }
+
 /**
  * Moreタグ広告の出力
  */
@@ -243,7 +239,7 @@ function ys_get_ad_infeed() {
 	} else {
 		$ad = ys_get_option( 'ys_advertisement_infeed_pc' );
 	}
-	$ad = ys_fix_ad_previw_error( $ad );
+	$ad = ys_fix_ad_preview_error( $ad );
 
 	return apply_filters( 'ys_get_ad_infeed', $ad );
 }
@@ -258,7 +254,6 @@ function ys_the_ad_infeed() {
 /**
  * インフィード広告の表示
  * ys_get_template_ad_infeed
- *
  */
 function ys_get_template_infeed_ad() {
 	if ( ys_is_mobile() ) {
@@ -284,7 +279,7 @@ function ys_get_template_infeed_ad() {
  *
  * @return string
  */
-function ys_fix_ad_previw_error( $ad ) {
+function ys_fix_ad_preview_error( $ad ) {
 	if ( ! is_customize_preview() ) {
 		return apply_filters( 'ys_fix_ad_infeed_error', $ad );
 	}
