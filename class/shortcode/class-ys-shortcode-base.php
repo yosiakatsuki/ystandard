@@ -560,18 +560,24 @@ class YS_Shortcode_Base {
 		if ( is_singular() ) {
 			$post_type = ys_get_post_type();
 			if ( $post_type ) {
-				$post_type_object = get_post_type_object( $post_type );
-				$taxonomies       = $post_type_object->taxonomies;
+				$taxonomies = get_taxonomies(
+					array(
+						'object_type' => array( $post_type ),
+						'public'      => true,
+						'show_ui'     => true,
+					),
+					'objects'
+				);
 				/**
 				 * 各タクソノミーについて検査
 				 */
-				foreach ( $taxonomies as $taxonomy ) {
-					$terms = get_the_terms( get_the_ID(), $taxonomy );
+				foreach ( $taxonomies as $name => $taxonomy ) {
+					$terms = get_the_terms( get_the_ID(), $name );
 					/**
 					 * 各タームについて検査
 					 */
 					foreach ( $terms as $term ) {
-						$tax = self::join_tax_term( $taxonomy, $term->slug );
+						$tax = self::join_tax_term( $name, $term->slug );
 						if ( ys_in_array( $tax, $tax_list ) ) {
 							return true;
 						};
