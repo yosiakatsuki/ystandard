@@ -211,8 +211,11 @@ function ys_is_one_column() {
 	/**
 	 * ワンカラムテンプレート
 	 */
-	if ( is_page_template( 'page-template/template-one-column.php' )
-	     || is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+	$template = array(
+		'page-template/template-one-column.php',
+		'page-template/template-one-column-no-title.php',
+	);
+	if ( is_page_template( $template ) ) {
 		$one_column = true;
 	}
 	/**
