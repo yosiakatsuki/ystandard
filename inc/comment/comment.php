@@ -81,7 +81,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 			)
 		);
 		$reply = get_comment_reply_link( $args );
-		if ( '' != $reply ) :
+		if ( '' !== $reply ) :
 			?>
 			<div class="reply comment__reply">
 				<?php echo $reply; ?>

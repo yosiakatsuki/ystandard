@@ -114,9 +114,7 @@ abstract class YS_Widget_Get_Posts extends YS_Widget_Base {
 			if ( ! empty( $instance['title'] ) ) {
 				echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 			}
-			
 			echo $sc_result;
-
 			echo $args['after_widget'];
 		}
 	}

@@ -51,12 +51,12 @@ $col = $follow_box['class_col'];
 	</div>
 	<div class="follow-box__sns <?php echo $col; ?>">
 		<div class="follow-box__inner flex flex--c-c flex--column">
-			<?php if ( $message_top ): ?>
+			<?php if ( $message_top ) : ?>
 				<div class="has-small-font-size"><?php echo esc_html( $message_top ); ?></div>
 			<?php endif; ?>
 			<div class="follow-box__list">
 				<ul class="li-clear text--center">
-					<?php foreach ( $follow_list as $item ): ?>
+					<?php foreach ( $follow_list as $item ) : ?>
 						<li class="follow-box__item">
 							<a class="follow-box__link <?php echo esc_attr( $item['class'] ); ?> -hover" href="<?php echo esc_url_raw( $item['url'] ); ?>" rel="nofollow noopener noreferrer"><?php echo $item['icon']; ?><span class="follow-box__text"><?php echo esc_html( $item['text'] ); ?></span></a></li>
 					<?php endforeach; ?>

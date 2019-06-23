@@ -35,7 +35,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	private $author_archive_url = '';
 
 	/**
-	 * constructor.
+	 * Constructor.
 	 *
 	 * @param array $args ユーザー指定パラメーター.
 	 */

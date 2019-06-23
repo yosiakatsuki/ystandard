@@ -25,11 +25,11 @@ class YS_Shortcode_Follow_Box extends YS_Shortcode_Base {
 		'col_sp'         => 1,
 		'col_tablet'     => 2,
 		'col_pc'         => 2,
-		'layout'         => 'normal', // normal or 1col
+		'layout'         => 'normal', // normal or 1col.
 	);
 
 	/**
-	 * constructor.
+	 * Constructor.
 	 *
 	 * @param array $args ユーザー指定パラメーター.
 	 */
@@ -178,7 +178,7 @@ class YS_Shortcode_Follow_Box extends YS_Shortcode_Base {
 	 * @return bool
 	 */
 	private function is_one_col() {
-		if ( '1col' == $this->get_param( 'layout' ) ) {
+		if ( '1col' === $this->get_param( 'layout' ) ) {
 			return true;
 		}
 

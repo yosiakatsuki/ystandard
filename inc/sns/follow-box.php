@@ -11,7 +11,6 @@
  * フォローボックス表示データの作成
  */
 function ys_get_subscribe_buttons() {
-	
 	if ( ! ys_is_active_follow_box() ) {
 		return;
 	}
