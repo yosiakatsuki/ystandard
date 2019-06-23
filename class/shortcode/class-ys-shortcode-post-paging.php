@@ -16,8 +16,8 @@ class YS_Shortcode_Post_Paging extends YS_Shortcode_Base {
 	 * ショートコードパラメーター
 	 */
 	const SHORTCODE_PARAM = array(
-		'class' => 'post-paging',
-		'title' => '',
+		'class_base' => 'post-paging',
+		'title'      => '',
 	);
 
 	/**

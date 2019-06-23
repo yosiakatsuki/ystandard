@@ -16,7 +16,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 	 * ショートコード特有のパラメーター
 	 */
 	const SHORTCODE_PARAM = array(
-		'class'            => 'ys-posts',
+		'class_base'       => 'ys-posts',
 		'class_ul'         => '',
 		'class_li'         => '',
 		'class_link'       => '',

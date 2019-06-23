@@ -559,6 +559,7 @@ video {
 .sidebar {
   flex: 1 1 100%;
   width: 100%;
+  margin-top: 2rem;
   margin-right: auto;
   margin-left: auto; }
 
@@ -1963,7 +1964,11 @@ figcaption {
   margin-top: .5rem; }
 
 .singular-footer__block {
-  margin-top: 4.2em; }
+  margin-top: 4rem; }
+  .singular-footer__block h2 {
+    font-size: 1.2em; }
+    .singular-footer__block h2:first-child {
+      margin-top: 0; }
 
 .entry__content {
   margin-top: 1.5rem; }
@@ -2450,6 +2455,8 @@ a.text-sub,
     max-width: calc(100% - 368px - 2rem); } }
 
 @media screen and (min-width: 1025px) {
+  .sidebar {
+    margin-top: 0; }
   .has-sidebar .sidebar {
     flex: 1 1 368px;
     max-width: 368px; }

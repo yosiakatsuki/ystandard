@@ -12,7 +12,7 @@ class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 	 * ショートコードパラメーター
 	 */
 	const SHORTCODE_PARAM = array(
-		'class'                => 'share-btn',
+		'class_base'           => 'share-btn',
 		'twitter'              => true,
 		'facebook'             => true,
 		'hatenabookmark'       => true,

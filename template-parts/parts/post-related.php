@@ -17,6 +17,7 @@ if ( ! is_single() ) {
 $param = apply_filters(
 	'ys_related_posts_shortcode_param',
 	array(
+		'class'            => 'singular-footer__block',
 		'title'            => '関連記事',
 		'list_type'        => 'card',
 		'orderby'          => 'rand',

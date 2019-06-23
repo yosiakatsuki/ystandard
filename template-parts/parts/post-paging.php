@@ -17,7 +17,7 @@ if ( ! is_single() ) {
 ys_do_shortcode(
 	'ys_post_paging',
 	array(
-		'class' => 'post-paging singular-footer__block',
+		'class' => 'singular-footer__block',
 		'title' => '',
 	)
 );

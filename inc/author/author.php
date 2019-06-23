@@ -334,6 +334,7 @@ function ys_the_author_box() {
 	 */
 	$param = array(
 		'title' => 'この記事を書いた人',
+		'class' => 'singular-footer__block',
 	);
 	/**
 	 * ショートコード実行
