@@ -84,7 +84,10 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {
 			if ( ! empty( $value ) ) {
-				$value      = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				$value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+				/**
+				 * 結合
+				 */
 				$attributes .= ' ' . $attr . ' ="' . $value . '"';
 			}
 		}
@@ -97,17 +100,17 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		 * 説明対応
 		 */
 		$description = '';
-		
-		if( 0 === $depth && $item->description ) {
+
+		if ( 0 === $depth && $item->description ) {
 			$description = '<small class="h-nav__dscr text--center">' . $item->description . '</small>';
 		}
-		
+
 		$before      = empty( $args->before ) ? '' : $args->before;
 		$link_before = empty( $args->link_before ) ? '' : $args->link_before;
 		$link_after  = empty( $args->link_after ) ? '' : $args->link_after;
 		$after       = empty( $args->after ) ? '' : $args->after;
 
-		$item_output = $before;
+		$item_output  = $before;
 		$item_output .= '<a' . $attributes . '>';
 		$item_output .= $link_before . $title . $link_after;
 		$item_output .= $description;

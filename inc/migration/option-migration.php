@@ -16,10 +16,10 @@ function ys_migration_options() {
 	 * デザイン - ヘッダー設定
 	 */
 	$option = ys_get_option( 'ys_design_header_type' );
-	if ( '1row' == $option ) {
+	if ( '1row' === $option ) {
 		update_option( 'ys_design_header_type', 'row1' );
 	}
-	if ( '2row' == $option ) {
+	if ( '2row' === $option ) {
 		update_option( 'ys_design_header_type', 'row2' );
 	}
 }

@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * Class YS_Shortcode_Share_Button
+ */
 class YS_Shortcode_Share_Button extends YS_Shortcode_Base {
 	/**
 	 * ショートコードパラメーター

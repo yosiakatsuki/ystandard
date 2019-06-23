@@ -45,19 +45,17 @@ function ys_get_header_logo() {
 	return $logo;
 }
 
-if ( ! function_exists( 'ys_the_blog_description' ) ) {
-	/**
-	 * サイトキャッチフレーズを取得
-	 */
-	function ys_the_blog_description() {
-		if ( ys_get_option( 'ys_wp_hidden_blogdescription' ) ) {
-			return;
-		}
-		$dscr   = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
-		$format = '<p class="site-description header__dscr text-sub">%s</p>';
-		$format = apply_filters( 'ys_the_blog_description_format', $format );
-		echo sprintf( $format, $dscr );
+/**
+ * サイトキャッチフレーズを取得
+ */
+function ys_the_blog_description() {
+	if ( ys_get_option( 'ys_wp_hidden_blogdescription' ) ) {
+		return;
 	}
+	$dscr   = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
+	$format = '<p class="site-description header__dscr text-sub">%s</p>';
+	$format = apply_filters( 'ys_the_blog_description_format', $format );
+	echo sprintf( $format, $dscr );
 }
 
 /**
@@ -79,18 +77,18 @@ function ys_get_header_row_class( $class = array() ) {
 	$classes[] = 'flex--row';
 	$classes[] = 'flex--nowrap';
 	$classes[] = 'flex--lg-wrap';
-	
+
 	/**
 	 * 1行タイプ
 	 */
-	if ( 'row1' == $type ) {
+	if ( 'row1' === $type ) {
 		$classes[] = 'flex--a-center';
 		$classes[] = 'flex--j-between';
 	}
 	/**
 	 * 中央寄せタイプ
 	 */
-	if ( 'center' == $type ) {
+	if ( 'center' === $type ) {
 		$classes[] = 'flex--j-between';
 	}
 	$classes = apply_filters( 'ys_get_header_row_class', $classes, $type );
@@ -125,14 +123,14 @@ function ys_get_header_col_class( $pos, $class = array() ) {
 	/**
 	 * 1行タイプ
 	 */
-	if ( 'row1' == $type ) {
+	if ( 'row1' === $type ) {
 		$classes[] = 'flex__col--auto';
 	}
 	/**
 	 * 中央寄せタイプ
 	 */
-	if ( 'center' == $type ) {
-		if ( 'logo' == $pos ) {
+	if ( 'center' === $type ) {
+		if ( 'logo' === $pos ) {
 			$classes[] = 'flex__col--lg-1';
 		} else {
 			$classes[] = 'flex__col';
@@ -142,8 +140,8 @@ function ys_get_header_col_class( $pos, $class = array() ) {
 	/**
 	 * 2行表示
 	 */
-	if ( 'row2' == $type ) {
-		if ( 'logo' == $pos ) {
+	if ( 'row2' === $type ) {
+		if ( 'logo' === $pos ) {
 			$classes[] = 'flex__col--lg-1';
 		} else {
 			$classes[] = 'flex__col';

@@ -7,23 +7,22 @@
  * @license GPL-2.0+
  */
 
-if ( ! function_exists( 'ys_get_post_meta' ) ) {
-	/**
-	 * 投稿オプション(post-meta)取得
-	 *
-	 * @param  string  $key     設定キー.
-	 * @param  integer $post_id 投稿ID.
-	 *
-	 * @return string
-	 */
-	function ys_get_post_meta( $key, $post_id = 0 ) {
-		if ( 0 === $post_id ) {
-			$post_id = get_the_ID();
-		}
-
-		return apply_filters( 'ys_get_post_meta', get_post_meta( $post_id, $key, true ), $key, $post_id );
+/**
+ * 投稿オプション(post-meta)取得
+ *
+ * @param  string  $key     設定キー.
+ * @param  integer $post_id 投稿ID.
+ *
+ * @return string
+ */
+function ys_get_post_meta( $key, $post_id = 0 ) {
+	if ( 0 === $post_id ) {
+		$post_id = get_the_ID();
 	}
+
+	return apply_filters( 'ys_get_post_meta', get_post_meta( $post_id, $key, true ), $key, $post_id );
 }
+
 /**
  * 投稿オプション追加
  */
@@ -105,13 +104,13 @@ function ys_update_post_meta( $new_status, $old_status, $post ) {
 	/**
 	 * 予約済み→公開は何もしない
 	 */
-	if ( 'future' == $old_status && 'publish' == $new_status ) {
+	if ( 'future' === $old_status && 'publish' === $new_status ) {
 		return;
 	}
 	/**
 	 * クイック編集
 	 */
-	if ( isset( $_POST['action'] ) && 'inline-save' == $_POST['action'] ) {
+	if ( isset( $_POST['action'] ) && 'inline-save' === $_POST['action'] ) {
 		return;
 	}
 	add_action( 'save_post', 'ys_save_post' );

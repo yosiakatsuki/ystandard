@@ -22,7 +22,7 @@ function ys_get_customizer_inline_css_custom_header() {
 		$opacity    = $opacity / 100;
 		$text_color = '#fff';
 		$bg_color   = 'rgba(0,0,0,' . $opacity . ')';
-		if ( 'light' == ys_get_option( 'ys_wp_header_media_full_type' ) ) {
+		if ( 'light' === ys_get_option( 'ys_wp_header_media_full_type' ) ) {
 			$text_color = '#222';
 			$bg_color   = 'rgba(255,255,255,' . $opacity . ')';
 		}

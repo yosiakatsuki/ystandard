@@ -95,7 +95,7 @@ function ys_get_archive_post_class() {
 	/**
 	 * タイプ別
 	 */
-	if ( 'card' == ys_get_option( 'ys_archive_type' ) ) {
+	if ( 'card' === ys_get_option( 'ys_archive_type' ) ) {
 		$class[] = '-card';
 		$class[] = 'flex__col--md-2';
 		if ( ys_is_one_column() ) {

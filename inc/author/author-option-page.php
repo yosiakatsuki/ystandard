@@ -69,7 +69,7 @@ function ys_add_custom_avatar_option( $bool ) {
 				<p class="description">96px×96pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
 			</td>
 		</tr>
-	<?php
+		<?php
 	endif;
 
 	return $bool;
@@ -86,7 +86,7 @@ add_action( 'show_password_fields', 'ys_add_custom_avatar_option' );
  * @return void
  */
 function ys_save_custom_avatar_option( $user_id, $old_user_data ) {
-	if ( isset( $_POST['ys_custom_avatar'] ) && $old_user_data->ys_custom_avatar != $_POST['ys_custom_avatar'] ) {
+	if ( isset( $_POST['ys_custom_avatar'] ) && $old_user_data->ys_custom_avatar !== $_POST['ys_custom_avatar'] ) {
 		$ys_custom_avatar = sanitize_text_field( $_POST['ys_custom_avatar'] );
 		$ys_custom_avatar = wp_filter_kses( $ys_custom_avatar );
 		$ys_custom_avatar = _wp_specialchars( $ys_custom_avatar );

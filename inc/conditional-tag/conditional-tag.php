@@ -212,7 +212,7 @@ function ys_is_one_column() {
 	 * ワンカラムテンプレート
 	 */
 	if ( is_page_template( 'page-template/template-one-column.php' )
-	     || is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+		|| is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
 		$one_column = true;
 	}
 	/**

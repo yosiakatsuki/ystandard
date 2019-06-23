@@ -39,7 +39,6 @@ add_filter( 'post_class', 'ys_post_class' );
  * Single,Pageで振り分けるクラスを作成する
  *
  * @param string $class 作成するクラス.
- *
  */
 function ys_the_singular_class( $class ) {
 	echo ys_get_singular_class( $class );
