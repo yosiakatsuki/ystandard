@@ -53,6 +53,10 @@ require_once $shortcode_dir . 'shortcode-blog-card.php';
  * 投稿カテゴリー・タグ表示
  */
 require_once $shortcode_dir . 'shortcode-post-taxonomy.php';
+/**
+ * フォローボックス
+ */
+require_once $shortcode_dir . 'shortcode-follow-box.php';
 
 /**
  * ショートコードの作成と実行

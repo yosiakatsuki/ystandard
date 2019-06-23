@@ -24,7 +24,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 		'archive_button_text'   => '記事一覧',
 		'show_avatar'           => true,
 		'mode'                  => 'shortcode',
-		'layout'                => 'horizon', // vertical or horizon.
+		'layout'                => 'normal', // normal or 1col.
 		'author_name_tag'       => '',
 	);
 	/**
@@ -35,7 +35,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	private $author_archive_url = '';
 
 	/**
-	 * YS_Shortcode_Share_Button constructor.
+	 * constructor.
 	 *
 	 * @param array $args ユーザー指定パラメーター.
 	 */
@@ -242,8 +242,8 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 *
 	 * @return string
 	 */
-	private function is_layout_horizon() {
-		if ( 'vertical' === $this->get_param( 'layout' ) ) {
+	private function is_one_col() {
+		if ( '1col' === $this->get_param( 'layout' ) ) {
 			return false;
 		}
 
@@ -256,13 +256,13 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 * @return string
 	 */
 	private function get_row_class() {
-		$col = 'flex flex--row';
+		$class = 'flex flex--row';
 
-		if ( $this->is_layout_horizon() ) {
-			$col .= ' flex--md-nowrap';
+		if ( $this->is_one_col() ) {
+			$class .= ' flex--md-nowrap';
 		}
 
-		return $col;
+		return $class;
 	}
 
 	/**
@@ -271,13 +271,13 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 * @return string
 	 */
 	private function get_avatar_col() {
-		$col = 'text--center flex__col--1';
+		$class = 'text--center flex__col--1';
 
-		if ( $this->is_layout_horizon() ) {
-			$col .= ' flex__col--md-auto';
+		if ( $this->is_one_col() ) {
+			$class .= ' flex__col--md-auto';
 		}
 
-		return $col;
+		return $class;
 	}
 
 	/**
@@ -286,13 +286,13 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 * @return string
 	 */
 	private function get_text_col() {
-		$col = 'text--center flex__col';
+		$class = 'text--center flex__col';
 
-		if ( $this->is_layout_horizon() ) {
-			$col .= ' text--md-left';
+		if ( $this->is_one_col() ) {
+			$class .= ' text--md-left';
 		}
 
-		return $col;
+		return $class;
 	}
 
 	/**

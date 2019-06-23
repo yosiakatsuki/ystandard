@@ -737,7 +737,7 @@ function ys_is_active_follow_box() {
 function ys_is_active_advertisement() {
 	$result = true;
 	if ( is_singular() ) {
-		if ( '1' === ys_get_post_meta( 'ys_hide_ad' ) ) {
+		if ( ys_sanitize_bool( ys_get_post_meta( 'ys_hide_ad' ) ) ) {
 			$result = false;
 		}
 	}
@@ -751,10 +751,10 @@ function ys_is_active_advertisement() {
 function ys_is_active_related_post() {
 	$result = true;
 	if ( is_single() ) {
-		if ( ! ys_get_option( 'ys_show_post_related' ) ) {
+		if ( ! ys_sanitize_bool( ys_get_option( 'ys_show_post_related' ) ) ) {
 			$result = false;
 		}
-		if ( '1' === ys_get_post_meta( 'ys_hide_related' ) ) {
+		if ( ys_sanitize_bool( ys_get_post_meta( 'ys_hide_related' ) ) ) {
 			$result = false;
 		}
 	}

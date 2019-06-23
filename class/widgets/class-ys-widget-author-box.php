@@ -147,10 +147,10 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 		<div class="ys-widget-option__section">
 			<h4>レイアウト</h4>
 			<label>
-				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="horizon" <?php checked( $instance['layout'], 'horizon' ); ?>>レスポンシブ
+				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="normal" <?php checked( $instance['layout'], 'normal' ); ?>>レスポンシブ
 			</label>
 			<label>
-				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="vertical" <?php checked( $instance['layout'], 'vertical' ); ?>>縦一列
+				<input type="radio" name="<?php echo $this->get_field_name( 'layout' ); ?>" value="1col" <?php checked( $instance['layout'], '1col' ); ?>>縦一列
 			</label><br>
 			<span class="ys-widget-option__sub">※サイドバーなどに表示する場合は「縦一列」がおすすめです。</span>
 		</div>
@@ -247,10 +247,10 @@ class YS_Widget_Author_Box extends YS_Widget_Base {
 	 */
 	private function sanitize_layout( $layout ) {
 
-		if ( 'vertical' === $layout ) {
+		if ( '1col' === $layout ) {
 			return $layout;
 		}
 
-		return 'horizon';
+		return 'normal';
 	}
 }

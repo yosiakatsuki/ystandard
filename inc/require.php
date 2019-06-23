@@ -90,7 +90,7 @@ require_once get_template_directory() . '/inc/advertisement/advertisement.php';
  * SNS
  */
 require_once get_template_directory() . '/inc/sns/share-button.php';
-require_once get_template_directory() . '/inc/sns/subscribe.php';
+require_once get_template_directory() . '/inc/sns/follow-box.php';
 /**
  * Author
  */
