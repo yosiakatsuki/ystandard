@@ -1,3 +1,16 @@
+@mixin button_base(
+  $display:inline-block,
+  $padding:.5rem 1.5rem,
+  $radius:4px) {
+  
+  display: $display;
+  padding: $padding;
+  border-radius: $radius;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all .3s;
+}
+
 @mixin button(
   $bgc:$color__btn-bg,
   $text_color:$color__btn-text,
@@ -7,16 +20,11 @@
   $bgc_hover: $text_color;
   $text_hover: $bgc;
 
-  display: inline-block;
-  text-decoration: none;
-  transition: all .3s;
-  padding: .5rem 1.5rem;
   background-color: $bgc;
   border: 1px solid $border;
-  border-radius: $radius;
   color: $text_color;
-  font-size: 1rem;
-  
+  @include button_base();
+
   &:hover {
     background-color: $bgc_hover;
     color: $text_hover;

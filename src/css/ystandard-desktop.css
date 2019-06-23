@@ -859,6 +859,33 @@ video {
   font-size: 3em;
   line-height: 1; }
 
+.follow-box {
+  background-color: #fafafa;
+  margin-right: -1rem;
+  margin-left: -1rem; }
+
+.follow-box__image {
+  border: 1px solid transparent; }
+
+.follow-box__inner {
+  padding: 1rem 0; }
+
+.follow-box__item {
+  margin-bottom: .25rem; }
+  .follow-box__item:last-child {
+    margin-bottom: 0; }
+
+.follow-box__list {
+  margin: .5rem 0; }
+
+.follow-box__link {
+  display: block;
+  padding: 0.1rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all .3s; }
+
 .author-small__name {
   margin: 0 0 0 .2rem; }
 
@@ -911,15 +938,15 @@ button,
 input[type="reset"],
 input[type="submit"],
 input[type="button"] {
-  display: inline-block;
-  text-decoration: none;
-  transition: all .3s;
-  padding: .5rem 1.5rem;
   background-color: #222;
   border: 1px solid #222;
-  border-radius: 4px;
   color: #fff;
-  font-size: 1rem; }
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all .3s; }
   button:hover,
   input[type="reset"]:hover,
   input[type="submit"]:hover,
@@ -1185,24 +1212,6 @@ figcaption {
 .alignfull {
   margin-right: -1rem;
   margin-left: -1rem; }
-
-.has-x-small-font-size {
-  font-size: 0.75em; }
-
-.has-small-font-size {
-  font-size: 0.9em; }
-
-.has-medium-font-size {
-  font-size: 1.125em; }
-
-.has-large-font-size {
-  font-size: 1.3em; }
-
-.has-x-large-font-size {
-  font-size: 1.4em; }
-
-.has-xx-large-font-size {
-  font-size: 1.6em; }
 
 .has-drop-cap:first-letter {
   text-transform: uppercase; }
@@ -1551,15 +1560,15 @@ figcaption {
   margin-top: 1.5em; }
 
 .wp-block-file__button {
-  display: inline-block;
-  text-decoration: none;
-  transition: all .3s;
-  padding: .5rem 1.5rem;
   background-color: #222;
   border: 1px solid #222;
-  border-radius: 4px;
   color: #fff;
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
   font-size: 1rem;
+  text-decoration: none;
+  transition: all .3s;
   margin-left: 1em; }
   .wp-block-file__button:hover {
     background-color: #fff;
@@ -1597,15 +1606,15 @@ figcaption {
   margin-top: 1.5em; }
 
 .wp-block-button__link {
-  display: inline-block;
-  text-decoration: none;
-  transition: all .3s;
-  padding: .5rem 1.5rem;
   background-color: #222;
   border: 1px solid #222;
-  border-radius: 4px;
   color: #fff;
-  font-size: 1rem; }
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all .3s; }
   .wp-block-button__link:hover {
     background-color: #fff;
     color: #222;
@@ -2085,15 +2094,15 @@ figcaption {
   margin-bottom: 5rem; }
 
 .btn {
-  display: inline-block;
-  text-decoration: none;
-  transition: all .3s;
-  padding: .5rem 1.5rem;
   background-color: #222;
   border: 1px solid #222;
-  border-radius: 4px;
   color: #fff;
-  font-size: 1rem; }
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all .3s; }
   .btn:hover {
     background-color: #fff;
     color: #222;
@@ -2555,6 +2564,11 @@ a.text-sub,
     margin-top: 1em; }
   .ys-blog-card__image {
     max-width: 250px; } }
+
+@media screen and (min-width: 600px) {
+  .follow-box {
+    margin-right: 0;
+    margin-left: 0; } }
 
 @media screen and (min-width: 600px) {
   .alignleft {

@@ -75,6 +75,7 @@ class YS_Shortcode_Base {
 		return array(
 			'id'                 => '',
 			'class'              => '',
+			'class_base'         => '',
 			'display_start_date' => '',
 			'enable_end_date'    => '',
 			'display_end_date'   => '',
@@ -264,14 +265,28 @@ class YS_Shortcode_Base {
 		}
 		$html_attr = '';
 		/**
-		 * HTML属性 id,classの作成
+		 * HTML属性 idの作成
 		 */
 		if ( '' !== $this->get_param( 'id' ) ) {
 			$html_attr .= sprintf( ' id="%s"', esc_attr( $this->get_param( 'id' ) ) );
 		}
-		if ( '' !== $this->get_param( 'class' ) ) {
-			$html_attr .= sprintf( ' class="%s"', esc_attr( $this->get_param( 'class' ) ) );
+		/**
+		 * HTML属性 classの作成
+		 */
+		$class = '';
+		if ( '' !== $this->get_param( 'class_base' ) ) {
+			$class .= esc_attr( $this->get_param( 'class_base' ) );
 		}
+		if ( '' !== $this->get_param( 'class' ) ) {
+			if ( '' !== $class ) {
+				$class .= ' ';
+			}
+			$class .= esc_attr( $this->get_param( 'class' ) );
+		}
+		if ( '' !== $class ) {
+			$html_attr .= sprintf( ' class="%s"', $class );
+		}
+
 		/**
 		 * 表示ディスプレイタイプ判断
 		 */
