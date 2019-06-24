@@ -5,10 +5,21 @@
   &.ys-ad-widget {
     margin: 0;
   }
+
+  .ys-ad-title {
+    display: block;
+    padding: 0;
+    margin: 0 0 .5rem;
+    border: 0;
+    font-size: .8rem;
+    font-weight: normal;
+    color: $color__text-light;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
 }
 
-.ys-ad-title {
-  margin: 0 0 .5rem;
-  font-size: .8rem;
-  color: $color__text-light;
-}
+
