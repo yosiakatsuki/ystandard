@@ -1,7 +1,7 @@
 .wp-block-cover {
-  @for $i from 10 through 100 {
+  @for $i from 1 through 10 {
     &.has-background-dim-#{$i}:before {
-      opacity: ($i / 100);
+      opacity: ($i * 10 / 100);
     }
   }
 }
