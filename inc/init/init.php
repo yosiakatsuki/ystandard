@@ -242,33 +242,38 @@ function ys_get_editor_color_palette() {
 		array(
 			'name'  => '青',
 			'slug'  => 'ys-blue',
-			'color' => '#216497',
+			'color' => '#82B9E3',
 		),
 
 		array(
 			'name'  => '水色',
 			'slug'  => 'ys-light-blue',
-			'color' => '#37ADD7',
+			'color' => '#77C7E4',
 		),
 		array(
 			'name'  => '赤',
 			'slug'  => 'ys-red',
-			'color' => '#A42323',
+			'color' => '#D53939',
+		),
+		array(
+			'name'  => 'ピンク',
+			'slug'  => 'ys-pink',
+			'color' => '#E28DA9',
 		),
 		array(
 			'name'  => '緑',
 			'slug'  => 'ys-green',
-			'color' => '#3C773C',
+			'color' => '#92C892',
 		),
 		array(
 			'name'  => '黄',
 			'slug'  => 'ys-yellow',
-			'color' => '#ECA713',
+			'color' => '#F5EC84',
 		),
 		array(
 			'name'  => '紫',
 			'slug'  => 'ys-purple',
-			'color' => '#5C2F65',
+			'color' => '#B67AC2',
 		),
 		array(
 			'name'  => '灰色',
