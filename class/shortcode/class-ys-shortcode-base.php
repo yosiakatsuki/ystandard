@@ -573,14 +573,16 @@ class YS_Shortcode_Base {
 				 */
 				foreach ( $taxonomies as $name => $taxonomy ) {
 					$terms = get_the_terms( get_the_ID(), $name );
-					/**
-					 * 各タームについて検査
-					 */
-					foreach ( $terms as $term ) {
-						$tax = self::join_tax_term( $name, $term->slug );
-						if ( ys_in_array( $tax, $tax_list ) ) {
-							return true;
-						};
+					if ( $terms ) {
+						/**
+						 * 各タームについて検査
+						 */
+						foreach ( $terms as $term ) {
+							$tax = self::join_tax_term( $name, $term->slug );
+							if ( ys_in_array( $tax, $tax_list ) ) {
+								return true;
+							};
+						}
 					}
 				}
 			}
