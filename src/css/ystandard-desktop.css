@@ -1390,30 +1390,20 @@ figcaption {
 
 .wp-block-columns {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 1.5rem;
   margin-right: -1rem;
   margin-left: -1rem; }
-  .wp-block-columns.has-1-columns .wp-block-column {
+  .wp-block-columns.has-sm-1-columns .wp-block-column {
     flex: 0 0 100%;
     max-width: 100%; }
-  .wp-block-columns.has-2-columns .wp-block-column {
+  .wp-block-columns.has-sm-2-columns .wp-block-column {
     flex: 0 0 50%;
     max-width: 50%; }
-  .wp-block-columns.has-3-columns .wp-block-column {
-    flex: 0 0 33.33%;
-    max-width: 33.33%; }
-  .wp-block-columns.has-4-columns .wp-block-column {
-    flex: 0 0 25%;
-    max-width: 25%; }
-  .wp-block-columns.has-5-columns .wp-block-column {
-    flex: 0 0 20%;
-    max-width: 20%; }
-  .wp-block-columns.has-6-columns .wp-block-column {
-    flex: 0 0 16.66%;
-    max-width: 16.66%; }
 
 .wp-block-column {
   padding: 1rem;
+  flex: 0 0 100%;
   max-width: 100%; }
 
 .wp-block-media-text {
@@ -2388,6 +2378,37 @@ a.text-sub,
       position: relative;
       padding: 0 1rem;
       color: inherit; } }
+
+@media screen and (min-width: 600px) {
+  .wp-block-columns.has-md-1-columns .wp-block-column {
+    flex: 0 0 100%;
+    max-width: 100%; }
+  .wp-block-columns.has-md-2-columns .wp-block-column {
+    flex: 0 0 50%;
+    max-width: 50%; }
+  .wp-block-columns.has-md-3-columns .wp-block-column {
+    flex: 0 0 33.33%;
+    max-width: 33.33%; } }
+
+@media screen and (min-width: 1025px) {
+  .wp-block-columns.has-1-columns .wp-block-column {
+    flex: 0 0 100%;
+    max-width: 100%; }
+  .wp-block-columns.has-2-columns .wp-block-column {
+    flex: 0 0 50%;
+    max-width: 50%; }
+  .wp-block-columns.has-3-columns .wp-block-column {
+    flex: 0 0 33.33%;
+    max-width: 33.33%; }
+  .wp-block-columns.has-4-columns .wp-block-column {
+    flex: 0 0 25%;
+    max-width: 25%; }
+  .wp-block-columns.has-5-columns .wp-block-column {
+    flex: 0 0 20%;
+    max-width: 20%; }
+  .wp-block-columns.has-6-columns .wp-block-column {
+    flex: 0 0 16.66%;
+    max-width: 16.66%; } }
 
 @media screen and (min-width: 600px) {
   .header__title {
