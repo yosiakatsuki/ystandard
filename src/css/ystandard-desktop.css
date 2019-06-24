@@ -530,6 +530,9 @@ video {
   position: relative;
   max-width: 100%; }
 
+.amp .container {
+  max-width: calc(600px + 2rem); }
+
 .contents {
   position: relative;
   overflow: hidden; }
