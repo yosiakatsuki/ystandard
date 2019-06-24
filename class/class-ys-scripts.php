@@ -94,33 +94,21 @@ class YS_Scripts {
 		/**
 		 * ダミー削除用フック登録
 		 */
-		add_filter( 'script_loader_tag', array( $this, 'delete_ystandard_script' ), 999, 3 );
+		add_filter( 'script_loader_tag', array( $this, 'delete_ystandard_script' ), 999, 2 );
 		/**
 		 * JS enqueue前アクション
 		 */
 		do_action( 'ys_enqueue_scripts' );
 		/**
-		 * Twitter関連スクリプト読み込み
-		 */
-		if ( ys_get_option( 'ys_load_script_twitter' ) ) {
-			$this->set_onload_script( 'twitter-wjs', ys_get_twitter_widgets_js() );
-		}
-		/**
-		 * Facebook関連スクリプト読み込み
-		 */
-		if ( ys_get_option( 'ys_load_script_facebook' ) ) {
-			$this->set_onload_script( 'facebook-jssdk', ys_get_facebook_sdk_js() );
-		}
-		/**
 		 * インラインスクリプトをセット
 		 */
-		$this->add_ystandard_inline_script();
+		add_filter( 'wp_enqueue_scripts', array( $this, 'add_ystandard_inline_script' ), 999 );
 	}
 
 	/**
 	 * インラインスクリプトのセット
 	 */
-	private function add_ystandard_inline_script() {
+	public function add_ystandard_inline_script() {
 		/**
 		 * パラメーターを渡す
 		 */
@@ -146,7 +134,7 @@ class YS_Scripts {
 	/**
 	 * CSSのエンキュー
 	 */
-	public function enqueue_styles() {
+	public function pre_enqueue_styles() {
 		/**
 		 * CSS enqueue前アクション
 		 */
@@ -161,10 +149,21 @@ class YS_Scripts {
 		/**
 		 * ダミー削除用フック登録
 		 */
-		add_filter( 'style_loader_tag', array( $this, 'delete_ystandard_css' ), 10, 2 );
+		add_filter( 'style_loader_tag', array( $this, 'delete_ystandard_css' ), 999, 2 );
 		/**
 		 * 通常読み込み
 		 */
+		$this->enqueue_items();
+		/**
+		 * インラインCSSなどの読み込み
+		 */
+		add_filter( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 999 );
+	}
+
+	/**
+	 * リスト化されたアイテムをwp_enqueue_styleする
+	 */
+	private function enqueue_items() {
 		foreach ( $this->enqueue_styles as $handle => $item ) {
 			wp_enqueue_style(
 				$handle,
@@ -174,6 +173,20 @@ class YS_Scripts {
 				$item['media']
 			);
 		}
+		/**
+		 * 変数のクリア
+		 */
+		$this->enqueue_styles = array();
+	}
+
+	/**
+	 * インラインCSSなどの読み込み指定
+	 */
+	public function enqueue_styles() {
+		/**
+		 * 通常読み込み
+		 */
+		$this->enqueue_items();
 		/**
 		 * インラインCSSの登録
 		 */
@@ -278,7 +291,7 @@ class YS_Scripts {
 	/**
 	 * インラインCSSのセット
 	 *
-	 * @param string  $style  インラインCSS.
+	 * @param string  $style  インラインCSS or パス.
 	 * @param boolean $minify minifyするかどうか.
 	 *
 	 * @return void

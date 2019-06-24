@@ -47,7 +47,7 @@ function ys_enqueue_styles() {
 	/**
 	 * CSSエンキュー処理
 	 */
-	$scripts->enqueue_styles();
+	$scripts->pre_enqueue_styles();
 }
 
 add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles', 9 );
@@ -132,7 +132,20 @@ function ys_set_enqueue_scripts() {
 		'FontAwesomeConfig = { searchPseudoElements: true };',
 		'before'
 	);
+	/**
+	 * Twitter関連スクリプト読み込み
+	 */
+	if ( ys_get_option( 'ys_load_script_twitter' ) ) {
+		ys_enqueue_onload_script( 'twitter-wjs', ys_get_twitter_widgets_js() );
+	}
+	/**
+	 * Facebook関連スクリプト読み込み
+	 */
+	if ( ys_get_option( 'ys_load_script_facebook' ) ) {
+		ys_enqueue_onload_script( 'facebook-jssdk', ys_get_facebook_sdk_js() );
+	}
 }
+
 add_action( 'ys_enqueue_scripts', 'ys_set_enqueue_scripts' );
 
 /**
