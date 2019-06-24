@@ -12,6 +12,9 @@
       position: relative;
       max-width: 100%;
     }
+    .amp & {
+      max-width: calc(600px + 2rem);
+    }
   }
 }
 

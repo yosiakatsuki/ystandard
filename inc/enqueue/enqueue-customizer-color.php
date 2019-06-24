@@ -87,7 +87,9 @@ function ys_get_customizer_inline_css_color() {
 		/**
 		 * PC
 		 */
-		$css .= ys_customizer_add_media_query( $css_temp, 'lg' );
+		if ( ! ys_is_mobile() ) {
+			$css .= ys_customizer_add_media_query( $css_temp, 'lg' );
+		}
 		/**
 		 * サイドバーあり
 		 */
@@ -120,18 +122,20 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * ヘッダー 背景色 PC
 	 */
-	$css .= ys_customizer_add_media_query(
-		ys_customizer_create_inline_css(
-			array(
-				'.h-nav.rwd li:hover ul',
+	if ( ! ys_is_mobile() ) {
+		$css .= ys_customizer_add_media_query(
+			ys_customizer_create_inline_css(
+				array(
+					'.h-nav.rwd li:hover ul',
+				),
+				array(
+					'background-color' => $header_bg,
+					'opacity'          => '.9',
+				)
 			),
-			array(
-				'background-color' => $header_bg,
-				'opacity'          => '.9',
-			)
-		),
-		'lg'
-	);
+			'lg'
+		);
+	}
 	/**
 	 * ヘッダー文字色
 	 */
@@ -147,17 +151,20 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * ヘッダーナビゲーション PC
 	 */
-	$css .= ys_customizer_add_media_query(
-		ys_customizer_create_inline_css(
-			array(
-				'.h-nav.rwd .h-nav__main a',
+	if ( ! ys_is_mobile() ) {
+		$css .= ys_customizer_add_media_query(
+			ys_customizer_create_inline_css(
+				array(
+					'.h-nav.rwd .h-nav__main a',
+				),
+				array(
+					'color' => $header_font,
+				)
 			),
-			array(
-				'color' => $header_font,
-			)
-		),
-		'lg'
-	);
+			'lg'
+		);
+	}
+
 	/**
 	 * ヘッダー概要文字色（テキストの場合のみ）
 	 */
