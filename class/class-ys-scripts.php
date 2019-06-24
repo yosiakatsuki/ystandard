@@ -499,13 +499,19 @@ class YS_Scripts {
 				$value['color']
 			);
 			$css .= sprintf(
-				'.is-style-outline .has-%s-color{border-color:%s;color:%s;}',
+				'.is-style-outline .wp-block-button__link.has-%s-color{border-color:%s;color:%s;}',
 				$value['slug'],
 				$value['color'],
 				$value['color']
 			);
 			$css .= sprintf(
-				'.is-style-outline .wp-block-button__link:hover.has-%s-color{background-color:%s;color:#fff;}',
+				'.is-style-outline .wp-block-button__link:hover.has-%s-color{background-color:%s;border-color:%s;}',
+				$value['slug'],
+				$value['color'],
+				$value['color']
+			);
+			$css .= sprintf(
+				'.is-style-outline .wp-block-button__link:hover.has-%s-background-color{color:%s;}',
 				$value['slug'],
 				$value['color']
 			);
