@@ -6,7 +6,7 @@
   padding: 0;
   list-style: none;
 
-  @for $i from 1 through 6 {
+  @for $i from 1 through 8 {
     &.columns-#{$i} {
       .blocks-gallery-item {
         flex: 0 0 decimal-floor( 1 / $i , 4) * 100#{"%"};

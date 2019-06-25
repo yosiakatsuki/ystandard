@@ -668,6 +668,12 @@ figcaption {
   .wp-block-gallery.columns-6 .blocks-gallery-item {
     flex: 0 0 16.66%;
     max-width: 16.66%; }
+  .wp-block-gallery.columns-7 .blocks-gallery-item {
+    flex: 0 0 14.28%;
+    max-width: 14.28%; }
+  .wp-block-gallery.columns-8 .blocks-gallery-item {
+    flex: 0 0 12.5%;
+    max-width: 12.5%; }
   .wp-block-gallery.is-cropped .blocks-gallery-item {
     display: flex;
     flex-direction: column; }
