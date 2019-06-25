@@ -1,0 +1,32 @@
+.wp-block-table {
+  &.has-fixed-layout {
+    table-layout: fixed;
+  }
+
+  &.is-style-stripes {
+    tr:nth-child(odd) {
+      background-color: $color__bg-gray-light;
+    }
+    &.has-subtle-light-gray-background-color {
+      tr:nth-child(odd) {
+        background-color: #f3f4f5;
+      }
+    }
+    &.has-subtle-pale-green-background-color {
+      tr:nth-child(odd) {
+        background-color: #e9fbe5;
+      }
+    }
+    &.has-subtle-pale-blue-background-color {
+      tr:nth-child(odd) {
+        background-color: #e7f5fe;
+      }
+    }
+    &.has-subtle-pale-pink-background-color {
+      tr:nth-child(odd) {
+        background-color: #fcf0ef;
+      }
+    }
+    
+  }
+}

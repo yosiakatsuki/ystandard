@@ -1,7 +1,3 @@
-.tbl-fixed {
-  table-layout: fixed;
-}
-
 @include media-breakpoint-down(md) {
   .tbl-scroll {
     display: block;
