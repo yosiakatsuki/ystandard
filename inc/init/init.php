@@ -297,5 +297,19 @@ function ys_get_editor_color_palette() {
 		),
 	);
 
+	/**
+	 * ユーザー定義追加
+	 */
+	$list = ys_get_user_color_palette();
+	foreach ( $list as $item ) {
+		if ( isset( $item['slug'] ) ) {
+			$user_color = ys_get_option( $item['slug'], '#ffffff' );
+			if ( '#ffffff' !== $user_color ) {
+				$item['color'] = $user_color;
+				$color[]       = $item;
+			}
+		}
+	}
+
 	return apply_filters( 'ys_editor_color_palette', $color );
 }

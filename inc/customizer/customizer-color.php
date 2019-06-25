@@ -21,31 +21,30 @@ function ys_customizer_color( $wp_customize ) {
 	$wp_customize->add_panel(
 		'ys_customizer_panel_color',
 		array(
-			'title'    => '色設定',
-			'priority' => 40,
+			'title'    => '[ys]色設定',
+			'priority' => 990,
 		)
 	);
-
 	/**
 	 * サイト全体
 	 */
 	ys_customizer_add_site_color( $wp_customize );
-
 	/**
 	 * ヘッダー
 	 */
 	ys_customizer_add_header_color( $wp_customize );
-
 	/**
 	 * ナビゲーション
 	 */
 	ys_customizer_add_global_nav_color( $wp_customize );
-
 	/**
 	 * フッター
 	 */
 	ys_customizer_add_footer_color( $wp_customize );
-
+	/**
+	 * カラーパレット設定
+	 */
+	ys_customizer_add_color_palette( $wp_customize );
 	/**
 	 * テーマカスタマイザーでの色変更機能を無効にする
 	 */
@@ -248,6 +247,43 @@ function ys_customizer_add_footer_color( $wp_customize ) {
 }
 
 /**
+ * カラーパレット
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_add_color_palette( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	/**
+	 * カラーパレット
+	 */
+	$ys_customizer->add_section(
+		array(
+			'section'     => 'ys_color_palette',
+			'title'       => 'カラーパレット（Gutenberg）',
+			'priority'    => 0,
+			'description' => 'ブロックで使用できる文字色・背景色に色設定を追加できます。(テーマデフォルトで最大3つ)',
+			'panel'       => 'ys_customizer_panel_color',
+		)
+	);
+	/**
+	 * ユーザー定義設定の追加
+	 */
+	$list = ys_get_user_color_palette();
+	foreach ( $list as $item ) {
+		if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
+			$ys_customizer->add_color(
+				array(
+					'id'        => $item['slug'],
+					'default'   => $item['color'],
+					'label'     => $item['name'],
+					'transport' => 'postMessage',
+				)
+			);
+		}
+	}
+}
+
+/**
  * テーマカスタマイザーでの色変更機能を無効にする
  *
  * @param  WP_Customize_Manager $wp_customize wp_customize.
@@ -276,4 +312,36 @@ function ys_customizer_add_disable_ys_color( $wp_customize ) {
 			'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。<br>カスタマイザーで指定している部分のCSSコードが出力されなくなります',
 		)
 	);
+}
+
+/**
+ * ユーザー定義カラーパレット情報の取得
+ *
+ * @return array
+ */
+function ys_get_user_color_palette() {
+	/**
+	 * 初期値は必ず #ffffff にすること。
+	 * カラーパレット追加時に #ffffff は追加しないようにしています。
+	 * #ffffff はテーマデフォルトで用意してあります。
+	 */
+	$list = array(
+		array(
+			'name'  => 'ユーザー定義1',
+			'slug'  => 'ys-user-1',
+			'color' => '#ffffff',
+		),
+		array(
+			'name'  => 'ユーザー定義2',
+			'slug'  => 'ys-user-2',
+			'color' => '#ffffff',
+		),
+		array(
+			'name'  => 'ユーザー定義3',
+			'slug'  => 'ys-user-3',
+			'color' => '#ffffff',
+		),
+	);
+
+	return apply_filters( 'ys_get_user_color_palette', $list );
 }

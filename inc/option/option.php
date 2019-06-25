@@ -10,25 +10,27 @@
 /**
  * 設定取得
  *
- * @param string $name option key.
+ * @param string $name    option key.
+ * @param mixed  $default デフォルト値.
  *
  * @return mixed
  */
-function ys_get_option( $name ) {
-	$default = ys_get_option_default( $name );
-	$result  = get_option( $name, $default );
+function ys_get_option( $name, $default = false ) {
+	$option_default = ys_get_option_default( $name, $default );
+	$result         = get_option( $name, $option_default );
 
-	return apply_filters( 'ys_get_option', $result, $name, $default );
+	return apply_filters( 'ys_get_option', $result, $name, $option_default );
 }
 
 /**
  * 設定デフォルト値取得
  *
- * @param string $name 設定名.
+ * @param string $name    設定名.
+ * @param mixed  $default デフォルト値.
  *
  * @return mixed
  */
-function ys_get_option_default( $name ) {
+function ys_get_option_default( $name, $default = false ) {
 	$defaults = array(
 		// 基本設定.
 		'ys_logo_hidden'                            => 0, // ロゴを出力しない.
@@ -199,7 +201,7 @@ function ys_get_option_default( $name ) {
 	/**
 	 * 結果作成
 	 */
-	$result = false;
+	$result = $default;
 	if ( isset( $defaults[ $name ] ) ) {
 		$result = $defaults[ $name ];
 	}
