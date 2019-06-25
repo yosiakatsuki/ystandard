@@ -29,6 +29,7 @@ body {
   line-height: $font__line-height;
   word-wrap: break-word;
   background-color: $color__bg-body;
+  letter-spacing: $font__spacing;
 
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -42,7 +43,8 @@ h1, h2, h3, h4, h5, h6 {
   margin: 3em 0 .25em;
   padding: 0;
   font-weight: normal;
-  letter-spacing: $font__spacing;
+  line-height: $font__line-height_headline;
+  letter-spacing: $font__spacing_headline;
 }
 
 $selector: '';
