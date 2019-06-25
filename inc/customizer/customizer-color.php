@@ -261,20 +261,20 @@ function ys_customizer_add_color_palette( $wp_customize ) {
 			'section'     => 'ys_color_palette',
 			'title'       => 'カラーパレット（Gutenberg）',
 			'priority'    => 0,
-			'description' => 'ブロックで使用できる文字色・背景色に色設定を追加できます。(テーマデフォルトで最大3つ)',
+			'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。',
 			'panel'       => 'ys_customizer_panel_color',
 		)
 	);
 	/**
 	 * ユーザー定義設定の追加
 	 */
-	$list = ys_get_user_color_palette();
+	$list = ys_get_editor_color_palette();
 	foreach ( $list as $item ) {
 		if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
 			$ys_customizer->add_color(
 				array(
-					'id'        => $item['slug'],
-					'default'   => $item['color'],
+					'id'        => 'ys-color-palette-' . $item['slug'],
+					'default'   => $item['default'],
 					'label'     => $item['name'],
 					'transport' => 'postMessage',
 				)
@@ -312,36 +312,4 @@ function ys_customizer_add_disable_ys_color( $wp_customize ) {
 			'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。<br>カスタマイザーで指定している部分のCSSコードが出力されなくなります',
 		)
 	);
-}
-
-/**
- * ユーザー定義カラーパレット情報の取得
- *
- * @return array
- */
-function ys_get_user_color_palette() {
-	/**
-	 * 初期値は必ず #ffffff にすること。
-	 * カラーパレット追加時に #ffffff は追加しないようにしています。
-	 * #ffffff はテーマデフォルトで用意してあります。
-	 */
-	$list = array(
-		array(
-			'name'  => 'ユーザー定義1',
-			'slug'  => 'ys-user-1',
-			'color' => '#ffffff',
-		),
-		array(
-			'name'  => 'ユーザー定義2',
-			'slug'  => 'ys-user-2',
-			'color' => '#ffffff',
-		),
-		array(
-			'name'  => 'ユーザー定義3',
-			'slug'  => 'ys-user-3',
-			'color' => '#ffffff',
-		),
-	);
-
-	return apply_filters( 'ys_get_user_color_palette', $list );
 }
