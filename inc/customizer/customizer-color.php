@@ -271,12 +271,30 @@ function ys_customizer_add_color_palette( $wp_customize ) {
 	$list = ys_get_editor_color_palette();
 	foreach ( $list as $item ) {
 		if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
+			$dscr    = '';
+			$default = '#ffffff';
+			/**
+			 * 説明文
+			 */
+			if ( isset( $item['description'] ) ) {
+				$dscr = $item['description'];
+			}
+			/**
+			 * 初期値
+			 */
+			if ( isset( $item['default'] ) ) {
+				$default = $item['default'];
+			}
+			/**
+			 * 設定追加
+			 */
 			$ys_customizer->add_color(
 				array(
-					'id'        => 'ys-color-palette-' . $item['slug'],
-					'default'   => $item['default'],
-					'label'     => $item['name'],
-					'transport' => 'postMessage',
+					'id'          => 'ys-color-palette-' . $item['slug'],
+					'default'     => $default,
+					'label'       => $item['name'],
+					'description' => $dscr,
+					'transport'   => 'postMessage',
 				)
 			);
 		}
