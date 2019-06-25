@@ -69,6 +69,12 @@ function ys_optimize_jquery() {
 	wp_deregister_script( 'jquery' );
 	wp_deregister_script( 'jquery-core' );
 	/**
+	 * WordPressのjqueryを停止
+	 */
+	if ( ys_is_deregister_jquery() ) {
+		return;
+	}
+	/**
 	 * フッターで読み込むか
 	 */
 	$in_footer = ys_is_load_jquery_in_footer();
