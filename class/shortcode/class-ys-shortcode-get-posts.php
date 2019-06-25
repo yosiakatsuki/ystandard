@@ -734,15 +734,15 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 			);
 		}
 		if ( 'horizon' === $this->get_param( 'list_type' ) ) {
-			$this->set_param( 'list_type', 'list' );
+			$this->set_param( 'list_type', 'card' );
 			$this->set_error_message(
-				'パラメーター「list_type="horizon"」は「list_type="list"」に変更になりました。パラメーター指定を変更してください。'
+				'パラメーター「list_type="horizon"」は「list_type="card"」に変更になりました。パラメーター指定を変更してください。'
 			);
 		}
 		if ( 'vertical' === $this->get_param( 'list_type' ) ) {
-			$this->set_param( 'list_type', 'card' );
+			$this->set_param( 'list_type', 'list' );
 			$this->set_error_message(
-				'パラメーター「list_type="vertical"」は「list_type="card"」に変更になりました。パラメーター指定を変更してください。'
+				'パラメーター「list_type="vertical"」は「list_type="list"」に変更になりました。パラメーター指定を変更してください。'
 			);
 		}
 	}
