@@ -341,7 +341,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
   font-weight: normal;
   line-height: 1.4;
-  letter-spacing: 0.5em; }
+  letter-spacing: 0.05em; }
 
 h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
   margin-top: 0; }
@@ -1067,6 +1067,8 @@ input[type="button"] {
     box-shadow: 0 1px 10px rgba(189, 195, 199, 0.7); }
 
 .ys-blog-card__title {
+  font-size: .9em;
+  line-height: 1.4;
   color: #222; }
 
 .ys-blog-card__dscr {
