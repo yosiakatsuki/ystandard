@@ -1559,6 +1559,24 @@ figcaption {
 .widget_calendar th {
   padding: .5rem; }
 
+.wp-block-table.has-fixed-layout {
+  table-layout: fixed; }
+
+.wp-block-table.is-style-stripes tr:nth-child(odd) {
+  background-color: #fafafa; }
+
+.wp-block-table.is-style-stripes.has-subtle-light-gray-background-color tr:nth-child(odd) {
+  background-color: #f3f4f5; }
+
+.wp-block-table.is-style-stripes.has-subtle-pale-green-background-color tr:nth-child(odd) {
+  background-color: #e9fbe5; }
+
+.wp-block-table.is-style-stripes.has-subtle-pale-blue-background-color tr:nth-child(odd) {
+  background-color: #e7f5fe; }
+
+.wp-block-table.is-style-stripes.has-subtle-pale-pink-background-color tr:nth-child(odd) {
+  background-color: #fcf0ef; }
+
 .header__title {
   font-size: 1.5rem;
   letter-spacing: .05em; }
@@ -1924,9 +1942,6 @@ a.text-sub,
 
 .box-shadow--lg {
   box-shadow: 3px 3px 15px rgba(189, 195, 199, 0.7); }
-
-.tbl-fixed {
-  table-layout: fixed; }
 
 @media screen and (max-width: 599px) {
   .tbl-scroll {
