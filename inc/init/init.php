@@ -240,76 +240,72 @@ function ys_get_editor_font_sizes() {
 function ys_get_editor_color_palette() {
 	$color = array(
 		array(
-			'name'  => '青',
-			'slug'  => 'ys-blue',
-			'color' => '#82B9E3',
-		),
-
-		array(
-			'name'  => '水色',
-			'slug'  => 'ys-light-blue',
-			'color' => '#77C7E4',
+			'name'    => '青',
+			'slug'    => 'ys-blue',
+			'color'   => ys_get_option( 'ys-color-palette-ys-blue' ),
+			'default' => '#82B9E3',
 		),
 		array(
-			'name'  => '赤',
-			'slug'  => 'ys-red',
-			'color' => '#D53939',
+			'name'    => '水色',
+			'slug'    => 'ys-light-blue',
+			'color'   => ys_get_option( 'ys-color-palette-ys-light-blue' ),
+			'default' => '#77C7E4',
 		),
 		array(
-			'name'  => 'ピンク',
-			'slug'  => 'ys-pink',
-			'color' => '#E28DA9',
+			'name'    => '赤',
+			'slug'    => 'ys-red',
+			'color'   => ys_get_option( 'ys-color-palette-ys-red' ),
+			'default' => '#D53939',
 		),
 		array(
-			'name'  => '緑',
-			'slug'  => 'ys-green',
-			'color' => '#92C892',
+			'name'    => 'ピンク',
+			'slug'    => 'ys-pink',
+			'color'   => ys_get_option( 'ys-color-palette-ys-pink' ),
+			'default' => '#E28DA9',
 		),
 		array(
-			'name'  => '黄',
-			'slug'  => 'ys-yellow',
-			'color' => '#F5EC84',
+			'name'    => '緑',
+			'slug'    => 'ys-green',
+			'color'   => ys_get_option( 'ys-color-palette-ys-green' ),
+			'default' => '#92C892',
 		),
 		array(
-			'name'  => '紫',
-			'slug'  => 'ys-purple',
-			'color' => '#B67AC2',
+			'name'    => '黄',
+			'slug'    => 'ys-yellow',
+			'color'   => ys_get_option( 'ys-color-palette-ys-yellow' ),
+			'default' => '#F5EC84',
 		),
 		array(
-			'name'  => '灰色',
-			'slug'  => 'ys-gray',
-			'color' => '#757575',
+			'name'    => '紫',
+			'slug'    => 'ys-purple',
+			'color'   => ys_get_option( 'ys-color-palette-ys-purple' ),
+			'default' => '#B67AC2',
 		),
 		array(
-			'name'  => '薄灰色',
-			'slug'  => 'ys-light-gray',
-			'color' => '#FAFAFA',
+			'name'    => '灰色',
+			'slug'    => 'ys-gray',
+			'color'   => ys_get_option( 'ys-color-palette-ys-gray' ),
+			'default' => '#757575',
 		),
 		array(
-			'name'  => '黒',
-			'slug'  => 'ys-black',
-			'color' => '#000',
+			'name'    => '薄灰色',
+			'slug'    => 'ys-light-gray',
+			'color'   => ys_get_option( 'ys-color-palette-ys-light-gray' ),
+			'default' => '#fafafa',
 		),
 		array(
-			'name'  => '白',
-			'slug'  => 'ys-white',
-			'color' => '#fff',
+			'name'    => '黒',
+			'slug'    => 'ys-black',
+			'color'   => ys_get_option( 'ys-color-palette-ys-black' ),
+			'default' => '#000000',
+		),
+		array(
+			'name'    => '白',
+			'slug'    => 'ys-white',
+			'color'   => ys_get_option( 'ys-color-palette-ys-white' ),
+			'default' => '#ffffff',
 		),
 	);
-
-	/**
-	 * ユーザー定義追加
-	 */
-	$list = ys_get_user_color_palette();
-	foreach ( $list as $item ) {
-		if ( isset( $item['slug'] ) ) {
-			$user_color = ys_get_option( $item['slug'], '#ffffff' );
-			if ( '#ffffff' !== $user_color ) {
-				$item['color'] = $user_color;
-				$color[]       = $item;
-			}
-		}
-	}
 
 	return apply_filters( 'ys_editor_color_palette', $color );
 }
