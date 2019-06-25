@@ -613,11 +613,16 @@ video {
   text-align: center; }
   .ys-ad-block.ys-ad-widget {
     margin: 0; }
-
-.ys-ad-title {
-  margin: 0 0 .5rem;
-  font-size: .8rem;
-  color: #757575; }
+  .ys-ad-block .ys-ad-title {
+    display: block;
+    padding: 0;
+    margin: 0 0 .5rem;
+    border: 0;
+    font-size: .8rem;
+    font-weight: normal;
+    color: #757575; }
+    .ys-ad-block .ys-ad-title:before, .ys-ad-block .ys-ad-title:after {
+      display: none; }
 
 .flex--row {
   flex-wrap: wrap;
@@ -2188,10 +2193,10 @@ a.text-sub,
   min-height: 100vh; }
 
 .ys-box {
-  border: 1px solid #bdc3c7;
-  background-color: #fafafa;
   padding: 1rem;
-  margin: 1rem 0; }
+  margin: 1.5rem 0;
+  background-color: #fafafa;
+  border: 1px solid #EEEEEE; }
   .ys-box > *:first-child {
     margin-top: 0; }
   .ys-box > *:last-child {
