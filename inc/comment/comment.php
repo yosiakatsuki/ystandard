@@ -34,23 +34,25 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 		<div id="div-comment-<?php comment_ID(); ?>" class="comment-body comment__body">
 	<?php endif; ?>
 	<div class="comments__header flex flex--j-between">
-		<div class="comment-author comment__author clearfix">
+		<div class="comment-author comment__author flex flex--a-center">
 			<?php
 			if ( get_option( 'show_avatars' ) ) :
-				?>
-				<figure class="comment__author-image">
-					<?php
-					if ( 0 !== $args['avatar_size'] ) {
-						if ( get_the_author_meta( 'user_email' ) === $comment->comment_author_email ) {
-							echo ys_get_author_avatar( false, $args['avatar_size'] );
-						} else {
-							echo get_avatar( $comment, $args['avatar_size'] );
-						}
+				$comment_avatar = '';
+				if ( 0 !== $args['avatar_size'] ) {
+					if ( get_the_author_meta( 'user_email' ) === $comment->comment_author_email ) {
+						$comment_avatar = ys_get_author_avatar( false, $args['avatar_size'] );
+					} else {
+						$comment_avatar = get_avatar( $comment, $args['avatar_size'] );
 					}
+				}
+				if ( $comment_avatar ) :
 					?>
-				</figure>
+					<figure class="comment__author-image">
+						<?php echo $comment_avatar; ?>
+					</figure>
+				<?php endif; ?>
 			<?php endif; ?>
-			<div class="comment__meta color__font-sub">
+			<div class="comment__meta">
 				<?php
 				/* translators: 1: comment name. */
 				printf( __( '<cite class="comment__name">%s</cite>' ), get_comment_author_link() );
@@ -58,7 +60,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 				<?php if ( '0' === $comment->comment_approved ) : ?>
 					<span class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.' ); ?></span>
 				<?php endif; ?>
-				<div class="comment__meta-data">
+				<div class="comment__meta-data text-sub has-x-small-font-size">
 					<a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
 						<?php
 						/* translators: 1: date, 2: time */
@@ -66,7 +68,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 						?>
 					</a>
 					<?php
-					edit_comment_link( __( '(Edit)' ), '  ', '' );
+					edit_comment_link( __( '(Edit)' ), '<span class="has-small-font-size">', '</span>' );
 					?>
 				</div>
 			</div><!-- .comment__meta -->
@@ -83,7 +85,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 		$reply = get_comment_reply_link( $args );
 		if ( '' !== $reply ) :
 			?>
-			<div class="reply comment__reply">
+			<div class="reply comment__reply text-sub has-small-font-size">
 				<?php echo $reply; ?>
 			</div>
 		<?php endif; ?>
@@ -93,7 +95,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 	</div>
 	<?php if ( 'div' !== $args['style'] ) : ?>
 		</div>
-		<?php
+	<?php
 	endif;
 }
 
