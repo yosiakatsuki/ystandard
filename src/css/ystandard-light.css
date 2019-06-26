@@ -544,6 +544,9 @@ video {
   margin-bottom: 2rem;
   overflow: hidden; }
 
+.breadcrumbs + .site__content {
+  margin-top: 0; }
+
 .full-width .site__content {
   margin-top: 0;
   margin-bottom: 0;
@@ -591,7 +594,6 @@ video {
 
 .breadcrumbs {
   padding: .5rem 0;
-  margin: -2rem 0 0;
   font-size: 0;
   line-height: 1.2;
   white-space: nowrap;

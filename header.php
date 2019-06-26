@@ -48,10 +48,10 @@
 	 * カスタムヘッダー
 	 */
 	get_template_part( 'template-parts/header/custom-header' );
+	/**
+	 * パンくずリスト
+	 */
+	get_template_part( 'template-parts/parts/breadcrumbs' );
 	?>
 	<div id="content" class="site-content site__content">
-<?php
-/**
- * パンくずリスト
- */
-get_template_part( 'template-parts/parts/breadcrumbs' );
+	
