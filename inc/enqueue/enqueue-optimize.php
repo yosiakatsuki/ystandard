@@ -118,12 +118,13 @@ function ys_script_loader_tag( $tag, $handle, $src ) {
 	$tag = str_replace( "type='text/javascript'", '', $tag );
 	$tag = str_replace( 'type="text/javascript"', '', $tag );
 	/**
-	 * ファイル名にjqueryが付くものは除外
+	 * 非同期にしたら問題のあるファイルは除外
 	 */
 	$exclude_file = array(
 		'jquery',
 		'wp-custom-header',
 		'wp-a11y',
+		'recaptcha',
 		YS_Scripts::SCRIPT_HANDLE_DUMMY,
 	);
 	$exclude_file = apply_filters(
