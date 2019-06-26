@@ -110,6 +110,7 @@ function ys_no_self_ping( &$links ) {
 		}
 	}
 }
+add_action( 'pre_ping', 'ys_no_self_ping' );
 
 
 /**
