@@ -604,6 +604,11 @@ video {
     text-decoration: none;
     color: #757575; }
 
+.singular.col-1 .breadcrumbs__list {
+  max-width: 800px;
+  margin-right: auto;
+  margin-left: auto; }
+
 .breadcrumbs__item {
   display: inline;
   font-size: .7rem;

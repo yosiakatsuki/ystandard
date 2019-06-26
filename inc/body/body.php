@@ -35,10 +35,18 @@ function ys_body_class( $classes ) {
 	}
 
 	/**
-	 * サイドバーありの場合
+	 * ワンカラム / サイドバーあり
 	 */
-	if ( ! ys_is_one_column() ) {
+	if ( ys_is_one_column() ) {
+		$classes[] = 'col-1';
+	} else {
 		$classes[] = 'has-sidebar';
+	}
+	/**
+	 * Type: singular
+	 */
+	if ( is_singular() && ! is_front_page() ) {
+		$classes[] = 'singular';
 	}
 
 	/**
