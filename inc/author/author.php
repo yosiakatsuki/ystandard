@@ -266,9 +266,18 @@ function ys_get_author_avatar( $user_id = false, $size = 96, $class = array() ) 
 	if ( ! $user_id ) {
 		$author_id = get_the_author_meta( 'ID' );
 	}
-	$alt           = esc_attr( ys_get_author_display_name() );
-	$user_avatar   = get_avatar( $author_id, $size, '', $alt, array( 'class' => 'author__img' ) );
-	$custom_avatar = get_user_meta( $author_id, 'ys_custom_avatar', true );
+	$alt         = esc_attr( ys_get_author_display_name() );
+	$user_avatar = get_avatar( $author_id, $size, '', $alt, array( 'class' => 'author__img' ) );
+	/**
+	 * カスタムアバター取得
+	 */
+	$custom_avatar = apply_filters(
+		'ys_get_author_custom_avatar_src',
+		get_user_meta( $author_id, 'ys_custom_avatar', true ),
+		$author_id,
+		$size,
+		$class
+	);
 	/**
 	 * Imgタグ作成
 	 */
@@ -306,32 +315,6 @@ function ys_get_author_avatar( $user_id = false, $size = 96, $class = array() ) 
  */
 function ys_the_author_avatar( $user_id = false, $size = 96, $class = array() ) {
 	echo ys_get_author_avatar( $user_id, $size, $class );
-}
-
-/**
- * 詳細ページ上部用 投稿者画像出力
- *
- * @param boolean $user_id user id.
- * @param integer $size    image size.
- * @param array   $class   class.
- */
-function ys_the_author_small_avatar( $user_id = false, $size = 24, $class = array() ) {
-	echo ys_get_author_small_avatar( $user_id, $size, $class );
-}
-
-/**
- * 詳細ページ上部用 投稿者画像取得
- *
- * @param boolean $user_id user id.
- * @param integer $size    image size.
- * @param array   $class   class.
- *
- * @return string
- */
-function ys_get_author_small_avatar( $user_id = false, $size = 24, $class = array() ) {
-	$avatar = ys_get_author_avatar( $user_id, $size, $class );
-
-	return apply_filters( 'ys_get_author_small_avatar', $avatar, $user_id, $size, $class );
 }
 
 /**
