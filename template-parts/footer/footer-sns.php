@@ -19,7 +19,7 @@ if ( empty( $sns_list ) ) {
 			if ( '' !== $value['url'] ) :
 				?>
 				<li class="footer-sns__item <?php echo $value['class']; ?>">
-					<a class="footer-sns__link flex flex--c-c" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow" title="<?php echo $value['title']; ?>">
+					<a class="footer-sns__link flex flex--c-c" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php echo $value['title']; ?>">
 						<?php
 						if ( '' !== $value['icon'] ) {
 							echo $value['icon'];
