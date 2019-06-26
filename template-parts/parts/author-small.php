@@ -16,7 +16,7 @@ if ( ! ys_is_display_author_data() ) {
 ?>
 <div class="author-small flex flex--a-center">
 	<figure class="author-small__figure">
-		<?php ys_the_author_avatar( false, 24 ); ?>
+		<?php ys_the_author_small_avatar( false ); ?>
 	</figure>
 	<p class="author-small__name"><?php ys_the_author_name(); ?></p>
 </div><!-- .entry-list__author -->
