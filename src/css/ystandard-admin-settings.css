@@ -559,6 +559,60 @@ input[type="button"] {
   color: #222;
   -webkit-appearance: none; }
 
+.comments-area ol {
+  padding-left: 0;
+  margin-left: 0;
+  list-style: none; }
+
+.comment__parent {
+  margin-top: 2rem; }
+  .comment__parent:first-child {
+    margin-top: 1rem; }
+
+.comment__body {
+  padding: 1rem;
+  border: 1px solid #EEEEEE; }
+
+.comments__header {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #EEEEEE; }
+
+.comment__author-image {
+  min-width: 42px;
+  margin-right: 1rem; }
+  .comment__author-image img {
+    border-radius: 50%; }
+
+.comment__name {
+  display: block;
+  font-style: normal; }
+  .comment__name a {
+    color: #222; }
+
+.comment__meta a {
+  text-decoration: none; }
+
+.comment__text {
+  margin-top: 1rem;
+  font-size: .9em; }
+
+.comment__reply {
+  word-break: keep-all; }
+
+.children {
+  margin-top: 1rem; }
+
+.comment-respond {
+  margin-top: 2rem; }
+
+.logged-in-as,
+.comment-notes,
+.akismet_comment_form_privacy_notice {
+  font-size: .8em; }
+
+.required {
+  color: #D53939; }
+
 .aligncenter,
 div.aligncenter,
 .alignleft,

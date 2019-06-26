@@ -11,20 +11,16 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<aside id="comments" class="comments-area comments__area entry__footer-section">
+<aside id="comments" class="comments-area comments__area singular-footer__block">
 	<?php if ( have_comments() ) : ?>
-		<h2 class="comments-title entry__footer-title">
-			<?php
-			$comments_number = get_comments_number();
-			echo $comments_number . ' 件のコメント';
-			?>
-		</h2>
+		<h2 class="comments-title">コメント</h2>
 		<ol class="comment-list comment__list">
 			<?php
 			wp_list_comments(
 				array(
+					'type'        => 'comment',
 					'style'       => 'ol',
-					'short_ping'  => true,
+					'short_ping'  => false,
 					'avatar_size' => 42,
 					'callback'    => 'ys_wp_list_comments_callback',
 				)
@@ -44,7 +40,7 @@ if ( post_password_required() ) {
 		array(
 			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title comment-reply__title">',
 			'title_reply_after'  => '</h2>',
-			'comment_field'      => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '<span class="required">*</span></label><textarea id="comment" class="comment__text" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+			'comment_field'      => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '<span class="required">*</span></label><textarea id="comment" class="comment__textarea" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
 			'class_submit'       => 'submit comment__submit ys-btn--full',
 		)
 	);
