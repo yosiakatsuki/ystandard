@@ -15,6 +15,12 @@
         color: $color__text-light;
       }
     }
+    
+    .singular.col-1 .breadcrumbs__list {
+      max-width: $width__content-inner;
+      margin-right: auto;
+      margin-left: auto;
+    }
 
     .breadcrumbs__item {
       display: inline;
