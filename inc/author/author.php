@@ -214,7 +214,7 @@ function ys_the_author_sns() {
 				</li>
 			<?php endforeach; ?>
 		</ul><!-- .author__sns -->
-		<?php
+	<?php
 	endif;
 }
 
@@ -306,6 +306,32 @@ function ys_get_author_avatar( $user_id = false, $size = 96, $class = array() ) 
  */
 function ys_the_author_avatar( $user_id = false, $size = 96, $class = array() ) {
 	echo ys_get_author_avatar( $user_id, $size, $class );
+}
+
+/**
+ * 詳細ページ上部用 投稿者画像出力
+ *
+ * @param boolean $user_id user id.
+ * @param integer $size    image size.
+ * @param array   $class   class.
+ */
+function ys_the_author_small_avatar( $user_id = false, $size = 24, $class = array() ) {
+	echo ys_get_author_small_avatar( $user_id, $size, $class );
+}
+
+/**
+ * 詳細ページ上部用 投稿者画像取得
+ *
+ * @param boolean $user_id user id.
+ * @param integer $size    image size.
+ * @param array   $class   class.
+ *
+ * @return string
+ */
+function ys_get_author_small_avatar( $user_id = false, $size = 24, $class = array() ) {
+	$avatar = ys_get_author_avatar( $user_id, $size, $class );
+
+	return apply_filters( 'ys_get_author_small_avatar', $avatar, $user_id, $size, $class );
 }
 
 /**
