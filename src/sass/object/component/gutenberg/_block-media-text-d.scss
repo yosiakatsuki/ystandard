@@ -2,8 +2,9 @@
   @at-root {
     @include media-breakpoint(md) {
       & {
-        align-items: center;
+        align-items: flex-start;
         flex-direction: row;
+        padding: 2rem 0;
       }
       .has-media-on-the-right {
         flex-direction: row-reverse;
