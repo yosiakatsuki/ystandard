@@ -1,5 +1,15 @@
 .wp-block-button {
   margin-top: 1.5em;
+  
+  &.alignright {
+    text-align: right;
+  }
+  &.aligncenter {
+    text-align: center;
+  }
+  &.alignleft {
+    text-align: left;
+  }
 }
 
 .wp-block-button__link {
