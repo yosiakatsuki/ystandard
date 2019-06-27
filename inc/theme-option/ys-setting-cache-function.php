@@ -183,3 +183,11 @@ function ys_setting_cache_get_ranking_count() {
 function ys_setting_cache_get_related_posts_count() {
 	return ys_setting_cache_get_count( 'related_posts' );
 }
+/**
+ * ブログカードに使用しているキャッシュ件数を取得
+ *
+ * @return int
+ */
+function ys_setting_cache_get_blog_card_count() {
+	return ys_setting_cache_get_count( YS_Shortcode_Blog_Card::CACHE_KEY );
+}

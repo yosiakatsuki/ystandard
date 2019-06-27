@@ -36,7 +36,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		'btn_ex_text'    => 'このサイトを見る',
 		'cache'          => '', // 空白 or disable.
 		'show_ex_img'    => true,
-		'domain'         => '', // 廃止.
+		'domain'         => '',
 	);
 
 	/**
@@ -54,7 +54,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		'btn_text'  => '',
 		'create_at' => '',
 		'blog_card' => false,
-		'domain'    => '', // 廃止.
+		'domain'    => '',
 	);
 
 	/**
@@ -180,7 +180,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 	 * キャッシュデータの取得
 	 */
 	private function get_cache_data() {
-		if ( 'disable' !== $this->get_param( 'cache' ) ) {
+		if ( 'disable' === $this->get_param( 'cache' ) ) {
 			return false;
 		}
 
@@ -334,6 +334,13 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		 * ボタンテキスト
 		 */
 		$this->card_data['btn_text'] = $this->get_param( 'btn_ex_text' );
+		/**
+		 * ドメイン
+		 */
+		$domain = wp_parse_url( $url, PHP_URL_HOST );
+		if ( false !== $domain ) {
+			$this->card_data['domain'] = $domain;
+		}
 		/**
 		 * 準備OK
 		 */
