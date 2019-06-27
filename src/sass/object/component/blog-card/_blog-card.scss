@@ -30,10 +30,11 @@
   max-width: 100px;
   margin-right: 1rem;
 }
-
+.ys-blog-card__btn-wrap {
+  margin-top: 1rem;
+}
 .ys-blog-card__btn {
   display: inline-block;
-  margin-top: 1rem;
   padding: .5em .75em;
   border: 1px solid $color__border-dark;
   background-color: $color__bg-dark;

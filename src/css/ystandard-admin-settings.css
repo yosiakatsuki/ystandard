@@ -498,9 +498,11 @@ input[type="button"] {
   max-width: 100px;
   margin-right: 1rem; }
 
+.ys-blog-card__btn-wrap {
+  margin-top: 1rem; }
+
 .ys-blog-card__btn {
   display: inline-block;
-  margin-top: 1rem;
   padding: .5em .75em;
   border: 1px solid #292b2c;
   background-color: #292b2c;

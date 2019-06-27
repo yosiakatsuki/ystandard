@@ -56,6 +56,11 @@ $result = ys_setting_cache_post();
 						<td><input type="submit" name="delete[related_posts]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
 					</tr>
 					<tr>
+						<th>ブログカード</th>
+						<td><?php echo ys_setting_cache_get_blog_card_count(); ?></td>
+						<td><input type="submit" name="delete[<?php echo YS_Shortcode_Blog_Card::CACHE_KEY; ?>]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
+					</tr>
+					<tr>
 						<?php do_action( 'ys_settings_cache_table_row' ); ?>
 					</tbody>
 				</table>
