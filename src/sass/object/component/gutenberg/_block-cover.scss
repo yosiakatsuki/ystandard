@@ -9,7 +9,6 @@
       align-items: center;
       padding: 2rem 1rem;
       background-size: cover;
-      color: #fff;
     }
 
     &.has-background-dim:before {
@@ -27,6 +26,10 @@
     &.has-parallax {
       background-attachment: fixed;
       background-position: center;
+    }
+    
+    .wp-block-cover__inner-container {
+      z-index: 2;
     }
   }
 }
