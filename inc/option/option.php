@@ -146,7 +146,7 @@ function ys_get_option_default( $name, $default = false ) {
 		'ys_load_script_facebook'                   => 0, // Facebook埋め込み用js読み込み.
 		// [ys]SEO設定.
 		// メタデスクリプション設定.
-		'ys_option_create_meta_description'         => 0, // メタデスクリプションを自動生成する.
+		'ys_option_create_meta_description'         => 1, // メタデスクリプションを自動生成する.
 		'ys_option_meta_description_length'         => 80, // メタデスクリプションに使用する文字数.
 		// アーカイブページのnoindex設定.
 		'ys_archive_noindex_category'               => 0,  // カテゴリー一覧をnoindexにする.
