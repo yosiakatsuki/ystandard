@@ -65,7 +65,7 @@ function ys_customizer_seo_add_meta_description( $wp_customize ) {
 	$ys_customizer->add_checkbox(
 		array(
 			'id'        => 'ys_option_create_meta_description',
-			'default'   => 1,
+			'default'   => ys_get_option_default( 'ys_option_create_meta_description' ),
 			'transport' => 'postMessage',
 			'label'     => 'meta descriptionを自動生成する',
 		)
