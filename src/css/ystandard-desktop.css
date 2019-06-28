@@ -1364,8 +1364,7 @@ figcaption {
 
 .wp-block-cover__inner-container {
   position: relative;
-  width: 800px;
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
   z-index: 2; }
 
@@ -2289,6 +2288,8 @@ a.text-sub,
 .section.-tall {
   padding-top: 3rem;
   padding-bottom: 3rem; }
+  .section.-tall + .section.-tall {
+    padding-top: 0; }
 
 .section.-screen {
   min-height: 100vh; }
