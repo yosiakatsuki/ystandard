@@ -1504,6 +1504,8 @@ figcaption {
 
 .wp-block-media-text__content {
   padding: 1rem 0; }
+  .wp-block-media-text__content > *:first-child {
+    margin-top: 0; }
 
 .is-stacked-on-mobile {
   position: relative;
@@ -2462,14 +2464,16 @@ a.text-sub,
     align-items: flex-start;
     flex-direction: row;
     padding: 2rem 0; }
-  .has-media-on-the-right {
-    flex-direction: row-reverse; }
   .wp-block-media-text__media,
   .wp-block-media-text__content {
     max-width: 50%;
     flex-grow: 1; }
   .wp-block-media-text__content {
-    padding: 0 1rem; }
+    padding: 0 0 0 2rem; }
+  .has-media-on-the-right {
+    flex-direction: row-reverse; }
+    .has-media-on-the-right .wp-block-media-text__content {
+      padding: 0 2rem 0 0; }
   .is-stacked-on-mobile {
     position: relative;
     background-color: unset; }
