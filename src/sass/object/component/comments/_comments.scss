@@ -12,6 +12,10 @@
   &:first-child {
     margin-top: 1rem;
   }
+
+  .children {
+    margin-top: 1rem;
+  }
 }
 
 .comment__body {
@@ -27,7 +31,7 @@
 .comment__author-image {
   min-width: 42px;
   margin-right: 1rem;
-  
+
   img {
     border-radius: 50%;
   }
@@ -57,10 +61,6 @@
   word-break: keep-all;
 }
 
-.children {
-  margin-top: 1rem;
-}
-
 .comment-respond {
   margin-top: 2rem;
 }
@@ -70,6 +70,7 @@
 .akismet_comment_form_privacy_notice {
   font-size: .8em;
 }
+
 .required {
   color: #D53939;
 }

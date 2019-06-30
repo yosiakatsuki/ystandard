@@ -17,10 +17,10 @@
 function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	if ( 'div' === $args['style'] ) {
-		$tag       = 'div';
+		$tag       = 'div ';
 		$add_below = 'comment';
 	} else {
-		$tag       = 'li';
+		$tag       = 'li ';
 		$add_below = 'div-comment';
 	}
 	$comment_class = array( 'comment__item' );
@@ -95,7 +95,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 	</div>
 	<?php if ( 'div' !== $args['style'] ) : ?>
 		</div>
-	<?php
+		<?php
 	endif;
 }
 
