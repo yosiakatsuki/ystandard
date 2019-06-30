@@ -1495,6 +1495,10 @@ figcaption {
   padding: 1rem;
   flex: 0 0 100%;
   max-width: 100%; }
+  .wp-block-column > * {
+    margin: 1rem 0 0; }
+    .wp-block-column > *:first-child {
+      margin-top: 0; }
 
 .wp-block-media-text {
   display: flex;

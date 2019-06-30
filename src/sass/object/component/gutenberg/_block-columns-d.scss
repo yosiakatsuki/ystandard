@@ -1,20 +1,15 @@
 @include media-breakpoint(md) {
   .wp-block-columns {
-    @for $i from 1 through 3 {
-      &.has-md-#{$i}-columns {
+    @for $i from 1 through 6 {
+      &.has-#{$i}-columns {
         .wp-block-column {
           flex: 0 0 decimal-floor( 1 / $i , 4) * 100#{"%"};
           max-width: decimal-floor( 1 / $i , 4) * 100#{"%"};
         }
       }
     }
-  }
-}
-
-@include media-breakpoint(lg) {
-  .wp-block-columns {
-    @for $i from 1 through 6 {
-      &.has-#{$i}-columns {
+    @for $i from 1 through 3 {
+      &.has-md-#{$i}-columns {
         .wp-block-column {
           flex: 0 0 decimal-floor( 1 / $i , 4) * 100#{"%"};
           max-width: decimal-floor( 1 / $i , 4) * 100#{"%"};
