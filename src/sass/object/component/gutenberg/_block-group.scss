@@ -11,3 +11,9 @@
     min-height: 100vh;
   }
 }
+
+.wp-block-group__inner-container {
+  *:first-child {
+    margin-top: 0;
+  }
+}
