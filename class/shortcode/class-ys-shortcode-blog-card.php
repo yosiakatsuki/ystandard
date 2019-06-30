@@ -131,6 +131,10 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		ob_start();
 		get_template_part( 'template-parts/parts/blog-card', $template_type );
 		$content = ob_get_clean();
+		/**
+		 * ショートコード基本クラスのタイトルを消す
+		 */
+		$this->set_param( 'title', '' );
 
 		return parent::get_html( $content );
 	}
@@ -239,11 +243,15 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		/**
 		 * タイトル取得
 		 */
-		$this->card_data['title'] = $post->post_title;
+		$title = $this->get_title( $post->post_title );
+		if ( '' === $title ) {
+			return;
+		}
+		$this->card_data['title'] = $title;
 		/**
 		 * 概要取得
 		 */
-		$this->card_data['dscr'] = ys_get_the_custom_excerpt( ' …', 0, $post_id );
+		$this->card_data['dscr'] = $this->get_description( ys_get_the_custom_excerpt( ' …', 0, $post_id ) );
 		/**
 		 * 属性
 		 */
@@ -306,11 +314,8 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		/**
 		 * タイトル取得
 		 */
-		$title = $this->get_site_title( $body );
+		$title = $this->get_title( $this->get_site_title( $body ) );
 		if ( '' === $title ) {
-			/**
-			 * タイトルがなければ終了
-			 */
 			return;
 		}
 		$this->card_data['title'] = $title;
@@ -321,7 +326,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		/**
 		 * 概要取得
 		 */
-		$this->card_data['dscr'] = $this->get_site_description( $body );
+		$this->card_data['dscr'] = $this->get_description( $this->get_site_description( $body ) );
 		/**
 		 * 画像取得
 		 */
@@ -419,6 +424,42 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 	}
 
 	/**
+	 * タイトルの取得
+	 *
+	 * @param string $title タイトル.
+	 *
+	 * @return string
+	 */
+	private function get_title( $title ) {
+		if ( $this->get_param( 'title' ) ) {
+			return $this->get_param( 'title' );
+		}
+
+		return $title;
+	}
+
+	/**
+	 * 説明の取得
+	 *
+	 * @param string $description 説明.
+	 *
+	 * @return string
+	 */
+	private function get_description( $description ) {
+		if ( $this->get_param( 'description' ) ) {
+			$description = $this->get_param( 'description' );
+		}
+		if ( $this->get_param( 'dscr' ) ) {
+			$description = $this->get_param( 'dscr' );
+		}
+		if ( 'false' === $description ) {
+			return '';
+		}
+
+		return $description;
+	}
+
+	/**
 	 * 画像タグを作成
 	 *
 	 * @param string $url    url.
@@ -438,34 +479,6 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 			$alt,
 			$attr
 		);
-	}
-
-	/**
-	 * ブログカード用キャッシュ取得
-	 *
-	 * @param mixed $item array value.
-	 * @param mixed $key  array key.
-	 *
-	 * @return array
-	 */
-	private function decode_cache( $item, $key ) {
-		/**
-		 * いろいろ変換された部分を戻す
-		 * バックスラッシュが消えるのでうまいこと戻す
-		 */
-		$item = str_replace( '&quot;', '"', $item );
-		$item = str_replace( '\u003C', '<', $item );
-		$item = str_replace( 'u003C', '<', $item );
-		$item = str_replace( '\u003E', '>', $item );
-		$item = str_replace( 'u003E', '>', $item );
-		$item = str_replace( '\u0026', '&', $item );
-		$item = str_replace( 'u0026', '&', $item );
-		$item = str_replace( '\u0027', '\'', $item );
-		$item = str_replace( 'u0027', '\'', $item );
-		$item = str_replace( '\u0022', '"', $item );
-		$item = str_replace( 'u0022', '"', $item );
-
-		return $item;
 	}
 
 	/**
