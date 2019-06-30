@@ -133,7 +133,7 @@ function ys_init() {
 	/**
 	 * Gutenberg色設定
 	 */
-	add_theme_support( 'editor-color-palette', ys_get_editor_color_palette() );
+	add_theme_support( 'editor-color-palette', ys_get_editor_color_palette( false ) );
 }
 
 add_action( 'after_setup_theme', 'ys_init' );
@@ -236,9 +236,11 @@ function ys_get_editor_font_sizes() {
 /**
  * 色設定の定義
  *
+ * @param bool $all ユーザー定義追加.
+ *
  * @return array
  */
-function ys_get_editor_color_palette() {
+function ys_get_editor_color_palette( $all = true ) {
 	$color = array(
 		array(
 			'name'        => '青',
@@ -317,28 +319,24 @@ function ys_get_editor_color_palette() {
 			'default'     => '#ffffff',
 			'description' => '',
 		),
-		array(
-			'name'        => 'ユーザー定義1',
-			'slug'        => 'ys-user-1',
-			'color'       => ys_get_option( 'ys-color-palette-ys-user-1', '#ffffff' ),
-			'default'     => '#ffffff',
-			'description' => 'よく使う色を設定しておくと便利です。',
-		),
-		array(
-			'name'        => 'ユーザー定義2',
-			'slug'        => 'ys-user-2',
-			'color'       => ys_get_option( 'ys-color-palette-ys-user-2', '#ffffff' ),
-			'default'     => '#ffffff',
-			'description' => 'よく使う色を設定しておくと便利です。',
-		),
-		array(
-			'name'        => 'ユーザー定義3',
-			'slug'        => 'ys-user-3',
-			'color'       => ys_get_option( 'ys-color-palette-ys-user-3', '#ffffff' ),
-			'default'     => '#ffffff',
-			'description' => 'よく使う色を設定しておくと便利です。',
-		),
 	);
+
+	/**
+	 * ユーザー定義情報の追加
+	 */
+	for ( $i = 1; $i <= 3; $i ++ ) {
+		$option_name = 'ys-color-palette-ys-user-' . $i;
+		if ( $all || ys_get_option( $option_name ) !== ys_get_option_default( $option_name ) ) {
+			$color[] = array(
+				'name'        => 'ユーザー定義' . $i,
+				'slug'        => 'ys-user-' . $i,
+				'color'       => ys_get_option( $option_name ),
+				'default'     => ys_get_option_default( $option_name ),
+				'description' => 'よく使う色を設定しておくと便利です。',
+			);
+		}
+	}
+
 
 	return apply_filters( 'ys_editor_color_palette', $color );
 }

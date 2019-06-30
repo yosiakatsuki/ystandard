@@ -266,7 +266,7 @@ function ys_customizer_add_color_palette( $wp_customize ) {
 		)
 	);
 	/**
-	 * ユーザー定義設定の追加
+	 * カラーパレット設定の追加
 	 */
 	$list = ys_get_editor_color_palette();
 	foreach ( $list as $item ) {

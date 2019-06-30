@@ -33,6 +33,16 @@ function ys_get_option( $name, $default = false ) {
 function ys_get_option_default( $name, $default = false ) {
 	$defaults = array(
 		// 色設定.
+		'ys_color_site_bg'                          => '#ffffff',
+		'ys_color_header_bg'                        => '#ffffff',
+		'ys_color_header_font'                      => '#222222',
+		'ys_color_header_dscr_font'                 => '#757575',
+		'ys_color_nav_bg_sp'                        => '#000000',
+		'ys_color_nav_font_sp'                      => '#ffffff',
+		'ys_color_nav_btn_sp'                       => '#ffffff',
+		'ys_color_footer_bg'                        => '#222222',
+		'ys_color_footer_font'                      => '#ffffff',
+		// カラーパレット.
 		'ys-color-palette-ys-blue'                  => '#82B9E3',
 		'ys-color-palette-ys-light-blue'            => '#77C7E4',
 		'ys-color-palette-ys-red'                   => '#D53939',
@@ -44,6 +54,9 @@ function ys_get_option_default( $name, $default = false ) {
 		'ys-color-palette-ys-light-gray'            => '#fafafa',
 		'ys-color-palette-ys-black'                 => '#000000',
 		'ys-color-palette-ys-white'                 => '#ffffff',
+		'ys-color-palette-ys-user-1'                => '#ffffff',
+		'ys-color-palette-ys-user-2'                => '#ffffff',
+		'ys-color-palette-ys-user-3'                => '#ffffff',
 		// 基本設定.
 		'ys_logo_hidden'                            => 0, // ロゴを出力しない.
 		'ys_wp_hidden_blogdescription'              => 0, // キャッチフレーズを出力しない.
