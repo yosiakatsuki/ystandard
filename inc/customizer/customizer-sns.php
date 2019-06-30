@@ -256,16 +256,6 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 		)
 	);
 	/**
-	 * Google+
-	 */
-	$ys_customizer->add_checkbox(
-		array(
-			'id'      => 'ys_sns_share_button_googlepuls',
-			'default' => 1,
-			'label'   => 'Google+',
-		)
-	);
-	/**
 	 * Pocket
 	 */
 	$ys_customizer->add_checkbox(

@@ -75,7 +75,7 @@ function ys_customizer_add_site_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_site_bg',
-			'default' => ys_customizer_get_default_color( 'ys_color_site_bg' ),
+			'default' => ys_get_option_default( 'ys_color_site_bg' ),
 			'label'   => 'サイト背景色',
 		)
 	);
@@ -103,7 +103,7 @@ function ys_customizer_add_header_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_header_bg',
-			'default' => ys_customizer_get_default_color( 'ys_color_header_bg' ),
+			'default' => ys_get_option_default( 'ys_color_header_bg' ),
 			'label'   => 'ヘッダー背景色',
 		)
 	);
@@ -111,7 +111,7 @@ function ys_customizer_add_header_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_header_font',
-			'default' => ys_customizer_get_default_color( 'ys_color_header_font' ),
+			'default' => ys_get_option_default( 'ys_color_header_font' ),
 			'label'   => 'サイトタイトルの文字色',
 		)
 	);
@@ -119,7 +119,7 @@ function ys_customizer_add_header_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_header_dscr_font',
-			'default' => ys_customizer_get_default_color( 'ys_color_header_dscr_font' ),
+			'default' => ys_get_option_default( 'ys_color_header_dscr_font' ),
 			'label'   => 'サイト概要の文字色',
 		)
 	);
@@ -149,7 +149,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_nav_bg_sp',
-			'default' => ys_customizer_get_default_color( 'ys_color_nav_bg_sp' ),
+			'default' => ys_get_option_default( 'ys_color_nav_bg_sp' ),
 			'label'   => 'モバイルメニュー背景色',
 		)
 	);
@@ -159,7 +159,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_nav_font_sp',
-			'default' => ys_customizer_get_default_color( 'ys_color_nav_font_sp' ),
+			'default' => ys_get_option_default( 'ys_color_nav_font_sp' ),
 			'label'   => 'モバイルメニュー文字色',
 		)
 	);
@@ -169,7 +169,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_nav_btn_sp',
-			'default' => ys_customizer_get_default_color( 'ys_color_nav_btn_sp' ),
+			'default' => ys_get_option_default( 'ys_color_nav_btn_sp' ),
 			'label'   => 'モバイルメニューボタン(閉じる)色',
 		)
 	);
@@ -199,7 +199,7 @@ function ys_customizer_add_footer_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_footer_bg',
-			'default' => ys_customizer_get_default_color( 'ys_color_footer_bg' ),
+			'default' => ys_get_option_default( 'ys_color_footer_bg' ),
 			'label'   => 'フッター背景色',
 		)
 	);
@@ -209,7 +209,7 @@ function ys_customizer_add_footer_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_footer_font',
-			'default' => ys_customizer_get_default_color( 'ys_color_footer_font' ),
+			'default' => ys_get_option_default( 'ys_color_footer_font' ),
 			'label'   => 'フッター文字色',
 		)
 	);
