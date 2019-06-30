@@ -758,7 +758,9 @@ figcaption {
   align-items: center;
   min-height: 500px;
   padding: 2rem 1rem;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
 
 .wp-block-cover.has-background-dim:before {
   content: "";
@@ -770,10 +772,6 @@ figcaption {
   background-color: inherit;
   opacity: .5;
   z-index: 1; }
-
-.wp-block-cover.has-parallax {
-  background-attachment: fixed;
-  background-position: center; }
 
 .wp-block-cover__inner-container {
   position: relative;
@@ -1278,6 +1276,9 @@ figcaption {
   .wp-block-columns.has-md-3-columns .wp-block-column {
     flex: 0 0 33.33%;
     max-width: 33.33%; } }
+
+.wp-block-cover.has-parallax {
+  background-attachment: fixed; }
 
 @media screen and (min-width: 600px) {
   .wp-block-group {

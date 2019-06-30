@@ -1345,7 +1345,9 @@ figcaption {
   align-items: center;
   min-height: 500px;
   padding: 2rem 1rem;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
 
 .wp-block-cover.has-background-dim:before {
   content: "";
@@ -1357,10 +1359,6 @@ figcaption {
   background-color: inherit;
   opacity: .5;
   z-index: 1; }
-
-.wp-block-cover.has-parallax {
-  background-attachment: fixed;
-  background-position: center; }
 
 .wp-block-cover__inner-container {
   position: relative;
