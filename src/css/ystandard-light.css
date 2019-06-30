@@ -344,7 +344,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.05em; }
 
 h1 + h2, h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
-  margin-top: 0; }
+  margin-top: 1.5rem; }
 
 h1,
 h2 {
@@ -1157,6 +1157,8 @@ input[type="button"] {
   margin-top: 2rem; }
   .comment__parent:first-child {
     margin-top: 1rem; }
+  .comment__parent .children {
+    margin-top: 1rem; }
 
 .comment__body {
   padding: 1rem;
@@ -1187,9 +1189,6 @@ input[type="button"] {
 
 .comment__reply {
   word-break: keep-all; }
-
-.children {
-  margin-top: 1rem; }
 
 .comment-respond {
   margin-top: 2rem; }

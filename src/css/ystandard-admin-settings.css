@@ -570,6 +570,8 @@ input[type="button"] {
   margin-top: 2rem; }
   .comment__parent:first-child {
     margin-top: 1rem; }
+  .comment__parent .children {
+    margin-top: 1rem; }
 
 .comment__body {
   padding: 1rem;
@@ -600,9 +602,6 @@ input[type="button"] {
 
 .comment__reply {
   word-break: keep-all; }
-
-.children {
-  margin-top: 1rem; }
 
 .comment-respond {
   margin-top: 2rem; }
