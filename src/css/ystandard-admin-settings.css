@@ -701,6 +701,15 @@ figcaption {
   margin-right: -1rem;
   margin-left: -1rem; }
 
+.has-text-align-center {
+  text-align: center; }
+
+.has-text-align-left {
+  text-align: center; }
+
+.has-text-align-right {
+  text-align: center; }
+
 .has-drop-cap:first-letter {
   text-transform: uppercase; }
 
@@ -1078,6 +1087,9 @@ figcaption {
     padding-bottom: 3rem; }
   .wp-block-group.-full {
     min-height: 100vh; }
+
+.wp-block-group__inner-container *:first-child {
+  margin-top: 0; }
 
 @media screen and (min-width: 600px) {
   .flex--md {
