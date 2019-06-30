@@ -8,23 +8,6 @@
  */
 
 /**
- * 色のデフォルト値一覧取得
- */
-function ys_customizer_get_defaults() {
-	return array(
-		'ys_color_site_bg'          => '#ffffff',
-		'ys_color_header_bg'        => '#ffffff',
-		'ys_color_header_font'      => '#222222',
-		'ys_color_header_dscr_font' => '#757575',
-		'ys_color_nav_bg_sp'        => '#000000',
-		'ys_color_nav_font_sp'      => '#ffffff',
-		'ys_color_nav_btn_sp'       => '#ffffff',
-		'ys_color_footer_bg'        => '#222222',
-		'ys_color_footer_font'      => '#ffffff',
-	);
-}
-
-/**
  * テーマカスタマイザーでの色指定 CSS取得
  *
  * @return string
@@ -36,15 +19,15 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * 設定取得
 	 */
-	$html_bg         = ys_customizer_get_color_option( 'ys_color_site_bg' );
-	$header_bg       = ys_customizer_get_color_option( 'ys_color_header_bg' );
-	$header_font     = ys_customizer_get_color_option( 'ys_color_header_font' );
-	$header_dscr     = ys_customizer_get_color_option( 'ys_color_header_dscr_font' );
-	$mobile_nav_bg   = ys_customizer_get_color_option( 'ys_color_nav_bg_sp' );
-	$mobile_nav_font = ys_customizer_get_color_option( 'ys_color_nav_font_sp' );
-	$mobile_nav_btn  = ys_customizer_get_color_option( 'ys_color_nav_btn_sp' );
-	$footer_bg       = ys_customizer_get_color_option( 'ys_color_footer_bg' );
-	$footer_font     = ys_customizer_get_color_option( 'ys_color_footer_font' );
+	$html_bg         = ys_get_option( 'ys_color_site_bg' );
+	$header_bg       = ys_get_option( 'ys_color_header_bg' );
+	$header_font     = ys_get_option( 'ys_color_header_font' );
+	$header_dscr     = ys_get_option( 'ys_color_header_dscr_font' );
+	$mobile_nav_bg   = ys_get_option( 'ys_color_nav_bg_sp' );
+	$mobile_nav_font = ys_get_option( 'ys_color_nav_font_sp' );
+	$mobile_nav_btn  = ys_get_option( 'ys_color_nav_btn_sp' );
+	$footer_bg       = ys_get_option( 'ys_color_footer_bg' );
+	$footer_font     = ys_get_option( 'ys_color_footer_font' );
 
 	$css = '';
 	/**
@@ -61,7 +44,7 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * 背景色がデフォルト以外の場合
 	 */
-	if ( ys_customizer_get_default_color( 'ys_color_site_bg' ) !== $html_bg ) {
+	if ( ys_get_option_default( 'ys_color_site_bg' ) !== $html_bg ) {
 		/**
 		 * 追加CSS
 		 */
@@ -318,34 +301,6 @@ function ys_customizer_get_footer_sns_css() {
 	);
 
 	return $css;
-}
-
-
-/**
- * カスタマイザーの色設定取得
- *
- * @param  string $name 設定名.
- *
- * @return string
- */
-function ys_customizer_get_color_option( $name ) {
-	return get_option(
-		$name,
-		ys_customizer_get_default_color( $name )
-	);
-}
-
-/**
- * 色デフォルト値取得
- *
- * @param  string $setting_name 色のデフォルト値取得.
- *
- * @return string
- */
-function ys_customizer_get_default_color( $setting_name ) {
-	$default_colors = ys_customizer_get_defaults();
-
-	return $default_colors[ $setting_name ];
 }
 
 /**
