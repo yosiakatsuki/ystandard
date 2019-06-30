@@ -1,0 +1,7 @@
+.wp-block-cover {
+  @at-root {
+    &.has-parallax {
+      background-attachment: fixed;
+    }
+  }
+}
