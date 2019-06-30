@@ -1,0 +1,13 @@
+.wp-block-group {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  &.-tall {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  &.-full {
+    min-height: 100vh;
+  }
+}

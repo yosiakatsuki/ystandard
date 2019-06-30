@@ -1660,6 +1660,15 @@ figcaption {
 .wp-block-table.is-style-stripes.has-subtle-pale-pink-background-color tr:nth-child(odd) {
   background-color: #fcf0ef; }
 
+.wp-block-group {
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+  .wp-block-group.-tall {
+    padding-top: 3rem;
+    padding-bottom: 3rem; }
+  .wp-block-group.-full {
+    min-height: 100vh; }
+
 .header__title {
   font-size: 1.5rem;
   letter-spacing: .05em; }
@@ -2282,21 +2291,6 @@ a.text-sub,
   line-height: 1;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased; }
-
-.section {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 1rem;
-  padding-bottom: 1rem; }
-
-.section.-tall {
-  padding-top: 3rem;
-  padding-bottom: 3rem; }
-  .section.-tall + .section.-tall {
-    padding-top: 0; }
-
-.section.-screen {
-  min-height: 100vh; }
 
 .ys-box {
   padding: 1rem;

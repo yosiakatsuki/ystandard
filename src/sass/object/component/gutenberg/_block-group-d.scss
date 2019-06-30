@@ -1,0 +1,13 @@
+.wp-block-group {
+  @include media-breakpoint(md) {
+    & {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+
+    &.-tall {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+}

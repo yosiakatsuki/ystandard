@@ -1660,6 +1660,15 @@ figcaption {
 .wp-block-table.is-style-stripes.has-subtle-pale-pink-background-color tr:nth-child(odd) {
   background-color: #fcf0ef; }
 
+.wp-block-group {
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+  .wp-block-group.-tall {
+    padding-top: 3rem;
+    padding-bottom: 3rem; }
+  .wp-block-group.-full {
+    min-height: 100vh; }
+
 .header__title {
   font-size: 1.5rem;
   letter-spacing: .05em; }
@@ -2283,21 +2292,6 @@ a.text-sub,
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased; }
 
-.section {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 1rem;
-  padding-bottom: 1rem; }
-
-.section.-tall {
-  padding-top: 3rem;
-  padding-bottom: 3rem; }
-  .section.-tall + .section.-tall {
-    padding-top: 0; }
-
-.section.-screen {
-  min-height: 100vh; }
-
 .ys-box {
   padding: 1rem;
   margin: 1.5rem 0;
@@ -2467,8 +2461,7 @@ a.text-sub,
 @media screen and (min-width: 600px) {
   .wp-block-media-text {
     align-items: flex-start;
-    flex-direction: row;
-    padding: 2rem 0; }
+    flex-direction: row; }
   .wp-block-media-text__media,
   .wp-block-media-text__content {
     max-width: 50%;
@@ -2524,6 +2517,14 @@ a.text-sub,
   .wp-block-columns.has-md-3-columns .wp-block-column {
     flex: 0 0 33.33%;
     max-width: 33.33%; } }
+
+@media screen and (min-width: 600px) {
+  .wp-block-group {
+    padding-top: 2rem;
+    padding-bottom: 2rem; }
+  .wp-block-group.-tall {
+    padding-top: 6rem;
+    padding-bottom: 6rem; } }
 
 @media screen and (min-width: 600px) {
   .header__title {
@@ -2700,11 +2701,3 @@ a.text-sub,
     transition: all .3s; }
   .img-scale:hover img, .img-scale:hover amp-img {
     transform: scale(1.1, 1.1); } }
-
-@media screen and (min-width: 600px) {
-  .section {
-    padding-top: 2rem;
-    padding-bottom: 2rem; }
-  .section.-tall {
-    padding-top: 6rem;
-    padding-bottom: 6rem; } }
