@@ -1495,6 +1495,10 @@ figcaption {
   padding: 1rem;
   flex: 0 0 100%;
   max-width: 100%; }
+  .wp-block-column > * {
+    margin: 1rem 0 0; }
+    .wp-block-column > *:first-child {
+      margin-top: 0; }
 
 .wp-block-media-text {
   display: flex;
@@ -2493,17 +2497,6 @@ a.text-sub,
       color: inherit; } }
 
 @media screen and (min-width: 600px) {
-  .wp-block-columns.has-md-1-columns .wp-block-column {
-    flex: 0 0 100%;
-    max-width: 100%; }
-  .wp-block-columns.has-md-2-columns .wp-block-column {
-    flex: 0 0 50%;
-    max-width: 50%; }
-  .wp-block-columns.has-md-3-columns .wp-block-column {
-    flex: 0 0 33.33%;
-    max-width: 33.33%; } }
-
-@media screen and (min-width: 1025px) {
   .wp-block-columns.has-1-columns .wp-block-column {
     flex: 0 0 100%;
     max-width: 100%; }
@@ -2521,7 +2514,16 @@ a.text-sub,
     max-width: 20%; }
   .wp-block-columns.has-6-columns .wp-block-column {
     flex: 0 0 16.66%;
-    max-width: 16.66%; } }
+    max-width: 16.66%; }
+  .wp-block-columns.has-md-1-columns .wp-block-column {
+    flex: 0 0 100%;
+    max-width: 100%; }
+  .wp-block-columns.has-md-2-columns .wp-block-column {
+    flex: 0 0 50%;
+    max-width: 50%; }
+  .wp-block-columns.has-md-3-columns .wp-block-column {
+    flex: 0 0 33.33%;
+    max-width: 33.33%; } }
 
 @media screen and (min-width: 600px) {
   .header__title {
