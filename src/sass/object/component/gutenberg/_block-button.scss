@@ -10,6 +10,18 @@
   &.alignleft {
     text-align: left;
   }
+  
+  &.-full {
+    a {
+      display: block;
+      text-align: center;
+    }
+  }
+  &.-lg {
+    a {
+      padding: .75rem 3rem;
+    }
+  }
 }
 
 .wp-block-button__link {
