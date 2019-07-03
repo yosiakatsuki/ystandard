@@ -50,32 +50,53 @@ function ys_get_customizer_inline_css_color() {
 		 */
 		$css_temp = '';
 		if ( ! ys_is_full_width() ) {
-			$css_temp = ys_customizer_create_inline_css(
+			$css      .= ys_customizer_create_inline_css(
+				array(
+					'.content__main',
+				),
+				array(
+					'padding' => '2rem 1rem',
+					'margin'  => '0 -1rem',
+				)
+			);
+			$css_temp .= ys_customizer_create_inline_css(
 				array(
 					'.content__main',
 				),
 				array(
 					'padding' => '2rem',
+					'margin'  => '0',
+				)
+			);
+			$css_temp .= ys_customizer_create_inline_css(
+				array(
+					'.has-sidebar .content__main',
+				),
+				array(
+					'margin-right' => '0',
+				)
+			);
+		} else {
+			$css .= ys_customizer_create_inline_css(
+				array(
+					'.full-width:not(.one-column-no-title) .site__content',
+				),
+				array(
+					'margin-top' => '1rem',
 				)
 			);
 		}
 		/**
 		 * パンくず調整
 		 */
-		$css_temp .= ys_customizer_create_inline_css(
+		$css .= ys_customizer_create_inline_css(
 			array(
 				'.breadcrumbs',
 			),
 			array(
-				'padding' => '1rem 0',
+				'padding' => '1rem 0 0',
 			)
 		);
-		/**
-		 * PC
-		 */
-		if ( ! ys_is_mobile() ) {
-			$css .= ys_customizer_add_media_query( $css_temp, 'lg' );
-		}
 		/**
 		 * サイドバーあり
 		 */
@@ -83,15 +104,30 @@ function ys_get_customizer_inline_css_color() {
 			/**
 			 * PC
 			 */
-			$css .= ys_customizer_create_inline_css(
+			$css      .= ys_customizer_create_inline_css(
 				array(
-					'.sidebar',
+					'.sidebar-wrapper',
 				),
 				array(
 					'background-color' => '#fff',
 					'padding'          => '2rem 1rem',
+					'margin'           => '0 -1rem',
 				)
 			);
+			$css_temp .= ys_customizer_create_inline_css(
+				array(
+					'.sidebar-wrapper',
+				),
+				array(
+					'margin' => '0',
+				)
+			);
+		}
+		/**
+		 * PC
+		 */
+		if ( ! ys_is_mobile() ) {
+			$css .= ys_customizer_add_media_query( $css_temp, 'lg' );
 		}
 	}
 	/**

@@ -17,18 +17,21 @@
   }
 }
 
-.content__main {
+.content__wrap {
   @at-root {
     & {
       width: 100%;
       margin-left: auto;
       margin-right: auto;
-      background-color: $color__bg-content;
     }
     .has-sidebar & {
       flex: 1 1 100%;
     }
   }
+}
+
+.content__main {
+  background-color: $color__bg-content;
 }
 
 .content__title {
