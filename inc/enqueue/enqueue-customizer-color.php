@@ -48,14 +48,17 @@ function ys_get_customizer_inline_css_color() {
 		/**
 		 * 追加CSS
 		 */
-		$css_temp = ys_customizer_create_inline_css(
-			array(
-				'.content__main',
-			),
-			array(
-				'padding' => '2rem',
-			)
-		);
+		$css_temp = '';
+		if ( ! ys_is_full_width() ) {
+			$css_temp = ys_customizer_create_inline_css(
+				array(
+					'.content__main',
+				),
+				array(
+					'padding' => '2rem',
+				)
+			);
+		}
 		/**
 		 * パンくず調整
 		 */

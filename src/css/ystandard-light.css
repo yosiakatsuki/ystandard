@@ -604,8 +604,8 @@ video {
     text-decoration: none;
     color: #757575; }
 
-.singular.col-1 .breadcrumbs__list {
-  max-width: 1120px;
+.singular.col-1:not(.full-width):not(.has-bg-color) .breadcrumbs__list {
+  max-width: 960px;
   margin-right: auto;
   margin-left: auto; }
 
@@ -1859,7 +1859,7 @@ figcaption {
   margin-top: 1.5rem; }
 
 .singular-article {
-  max-width: 1120px;
+  max-width: 960px;
   margin-right: auto;
   margin-left: auto; }
 

@@ -10,7 +10,7 @@
 /**
  * 共通デザイン設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_design( $wp_customize ) {
 	/**
@@ -42,7 +42,7 @@ function ys_customizer_design( $wp_customize ) {
 /**
  * ヘッダー設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_design_add_header( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -86,7 +86,7 @@ function ys_customizer_design_add_header( $wp_customize ) {
 /**
  * モバイルページ設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_design_add_mobile( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -127,7 +127,7 @@ function ys_customizer_design_add_mobile( $wp_customize ) {
 /**
  * ワンカラムテンプレート設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_design_add_one_column_template( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -153,12 +153,27 @@ function ys_customizer_design_add_one_column_template( $wp_customize ) {
 	$ys_customizer->add_image_label_radio(
 		array(
 			'id'          => 'ys_design_one_col_thumbnail_type',
-			'default'     => 'normal',
+			'default'     => ys_get_option_default( 'ys_design_one_col_thumbnail_type' ),
 			'label'       => 'アイキャッチ画像表示タイプ',
 			'description' => 'アイキャッチ画像の表示タイプ',
 			'choices'     => array(
 				'normal' => sprintf( $img, $center ),
 				'full'   => sprintf( $img, $row1 ),
+			),
+		)
+	);
+	/**
+	 * コンテンツタイプ
+	 */
+	$ys_customizer->add_radio(
+		array(
+			'id'          => 'ys_design_one_col_content_type',
+			'default'     => ys_get_option_default( 'ys_design_one_col_content_type' ),
+			'label'       => 'コンテンツタイプ',
+			'description' => 'コンテンツ領域の横幅設定',
+			'choices'     => array(
+				'normal' => 'ノーマル',
+				'wide'   => 'ワイド',
 			),
 		)
 	);

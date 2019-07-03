@@ -213,6 +213,7 @@ function ys_is_one_column() {
 	 */
 	$template = array(
 		'page-template/template-one-column.php',
+		'page-template/template-one-column-wide.php',
 		'page-template/template-one-column-no-title.php',
 	);
 	if ( is_page_template( $template ) ) {
@@ -266,7 +267,11 @@ function ys_is_full_width() {
 		/**
 		 * フル幅にするテンプレート
 		 */
-		if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+		$templates = array(
+			'page-template/template-one-column-no-title.php',
+			'page-template/template-one-column-wide.php',
+		);
+		if ( is_page_template( $templates ) || 'wide' === ys_get_option( 'ys_design_one_col_content_type' ) ) {
 			$full_width = true;
 		}
 	}
@@ -791,7 +796,7 @@ function ys_is_active_post_paging() {
 /**
  * 管理画面の投稿タイプ判断用
  *
- * @param  string $type post type.
+ * @param string $type post type.
  *
  * @return boolean
  */
