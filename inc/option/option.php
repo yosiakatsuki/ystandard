@@ -108,6 +108,7 @@ function ys_get_option_default( $name, $default = false ) {
 		'ys_show_page_for_posts_on_breadcrumbs'     => 1, // パンくずリストの「投稿ページ」表示.
 		// [ys]ワンカラムテンプレート設定.
 		'ys_design_one_col_thumbnail_type'          => 'normal', // アイキャッチ画像表示タイプ.
+		'ys_design_one_col_content_type'            => 'normal', // コンテンツタイプ normal,wide.
 		// Gutenberg設定.
 		'ys_enqueue_gutenberg_css'                  => 0, // ブロックエディター対応のCSSを読み込む.
 		// [ys]フロントページ設定.

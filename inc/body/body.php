@@ -89,6 +89,13 @@ function ys_body_class( $classes ) {
 		$classes[] = 'full-width';
 	}
 
+	/**
+	 * 背景色あり
+	 */
+	if ( ys_get_option_default( 'ys_color_site_bg' ) !== ys_get_option( 'ys_color_site_bg' ) ) {
+		$classes[] = 'has-bg-color';
+	}
+
 	return $classes;
 }
 
