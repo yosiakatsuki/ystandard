@@ -552,14 +552,16 @@ video {
   margin-bottom: 0;
   background-color: #fff; }
 
-.content__main {
+.content__wrap {
   width: 100%;
   margin-left: auto;
-  margin-right: auto;
-  background-color: #fff; }
+  margin-right: auto; }
 
-.has-sidebar .content__main {
+.has-sidebar .content__wrap {
   flex: 1 1 100%; }
+
+.content__main {
+  background-color: #fff; }
 
 .content__title {
   margin: 0 0 1em; }
@@ -2319,9 +2321,11 @@ a.text-sub,
 @media screen and (min-width: 1025px) {
   .has-sidebar .site__content {
     overflow: unset; }
+  .has-sidebar .content__wrap {
+    max-width: calc(100% - 368px); }
   .has-sidebar .content__main {
-    margin-right: 2rem;
-    max-width: calc(100% - 368px - 2rem); } }
+    height: 100%;
+    margin-right: 4rem; } }
 
 @media screen and (min-width: 1025px) {
   .sidebar {

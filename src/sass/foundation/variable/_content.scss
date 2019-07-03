@@ -9,15 +9,14 @@ $gutter: 1rem !default;
 //メインコンテンツ幅
 $width__content-inner: 800px !default;
 $width__container_gutter: $font__size * 2 !default;
-$width__content_gutter: $font__size * 2 !default;
-$width__content: $width__content-inner + $width__container_gutter + $width__content_gutter !default;
+$width__content: $width__content-inner + $width__container_gutter !default;
 $width__content_one_col: 960px; 
 //サイドバー幅
 $width__sidebar-inner: 336px !default;
 $width__sidebar_gutter: $font__size * 2 !default;
 $width__sidebar: $width__sidebar-inner + $width__sidebar_gutter !default;
 //コンテナ幅
-$width__sidebar_margin: $font__size * 2 !default;
+$width__sidebar_margin: $font__size * 4 !default;
 $width__container: $width__content + $width__sidebar + $width__sidebar_margin !default;
 
 //セクションマージン

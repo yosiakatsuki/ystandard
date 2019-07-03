@@ -9,15 +9,13 @@
 
 ys_get_header(); ?>
 <div class="container">
-	<div class="content__wrap">
-		<div class="flex flex--row">
-			<?php if ( have_posts() ) : ?>
-				<?php get_template_part( 'template-parts/archive/content' ); ?>
-			<?php else : ?>
-				<?php get_template_part( 'template-parts/404/content' ); ?>
-			<?php endif; ?>
-			<?php get_sidebar(); ?>
-		</div>
+	<div class="flex flex--row">
+		<?php if ( have_posts() ) : ?>
+			<?php get_template_part( 'template-parts/archive/content' ); ?>
+		<?php else : ?>
+			<?php get_template_part( 'template-parts/404/content' ); ?>
+		<?php endif; ?>
+		<?php get_sidebar(); ?>
 	</div>
 </div><!-- .container -->
 <?php get_footer(); ?>

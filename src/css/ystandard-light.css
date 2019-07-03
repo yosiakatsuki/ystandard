@@ -552,14 +552,16 @@ video {
   margin-bottom: 0;
   background-color: #fff; }
 
-.content__main {
+.content__wrap {
   width: 100%;
   margin-left: auto;
-  margin-right: auto;
-  background-color: #fff; }
+  margin-right: auto; }
 
-.has-sidebar .content__main {
+.has-sidebar .content__wrap {
   flex: 1 1 100%; }
+
+.content__main {
+  background-color: #fff; }
 
 .content__title {
   margin: 0 0 1em; }

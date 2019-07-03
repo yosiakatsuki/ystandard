@@ -7,11 +7,18 @@
     }
   }
   
+  .content__wrap {
+    @at-root {
+      .has-sidebar & {
+        max-width: calc(100% - #{$width__sidebar});
+      }
+    }
+  }
   .content__main {
     @at-root {
       .has-sidebar & {
-        margin-right: 2rem;
-        max-width: calc(100% - 368px - 2rem);
+        height: 100%;
+        margin-right: 4rem;
       }
     }
   }
