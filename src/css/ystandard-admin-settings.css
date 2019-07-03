@@ -18,7 +18,7 @@
     color: #757575; }
 
 .singular.col-1 .breadcrumbs__list {
-  max-width: 800px;
+  max-width: 1120px;
   margin-right: auto;
   margin-left: auto; }
 
@@ -1219,8 +1219,8 @@ figcaption {
 
 @media screen and (min-width: 1025px) {
   .alignwide {
-    margin-right: -2rem;
-    margin-left: -2rem; }
+    margin-right: -4.5rem;
+    margin-left: -4.5rem; }
   .has-sidebar .alignwide {
     margin-right: 0;
     margin-left: 0; }
