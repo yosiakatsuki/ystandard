@@ -69,7 +69,8 @@ function ys_get_footer_sns_list() {
 		$option = ys_create_footer_sns_link(
 			$value['class'],
 			'ys_follow_url_' . $value['option_key'],
-			$value['icon']
+			$value['icon'],
+			$value['title']
 		);
 		if ( '' !== trim( $option['url'] ) ) {
 			$list[] = $option;
