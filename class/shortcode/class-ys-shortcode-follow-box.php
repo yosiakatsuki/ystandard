@@ -50,13 +50,23 @@ class YS_Shortcode_Follow_Box extends YS_Shortcode_Base {
 		}
 		global $follow_box;
 		/**
+		 * リンク作成一覧取得
+		 */
+		$follow_list = $this->get_follow_list();
+		/**
+		 *  中身がなければ表示なし
+		 */
+		if ( empty( $follow_list ) ) {
+			return '';
+		}
+		/**
 		 * 展開用データ作成
 		 */
 		$follow_box = array(
 			'image'          => $this->get_image(),
 			'message_top'    => $this->get_param( 'message_top' ),
 			'message_bottom' => $this->get_param( 'message_bottom' ),
-			'follow_list'    => $this->get_follow_list(),
+			'follow_list'    => $follow_list,
 			'class_row'      => $this->get_row_class(),
 			'class_col'      => $this->get_col_class(),
 		);
