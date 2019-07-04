@@ -1098,7 +1098,8 @@ input[type="button"] {
   border-radius: 4px;
   font-size: .7em;
   color: #fff;
-  line-height: 1; }
+  line-height: 1;
+  white-space: nowrap; }
   .ys-blog-card__btn i,
   .ys-blog-card__btn svg {
     margin-left: .25rem;
@@ -2445,7 +2446,9 @@ a.text-sub,
     display: block;
     margin-top: 1em; }
   .ys-blog-card__image {
-    max-width: 250px; } }
+    max-width: 250px; }
+    .ys-blog-card__image img {
+      width: auto; } }
 
 @media screen and (min-width: 600px) {
   .follow-box {
