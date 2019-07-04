@@ -18,6 +18,9 @@
   }
   .ys-blog-card__image {
     max-width: 250px;
+    img {
+      width: auto;
+    }
   }
 }
 

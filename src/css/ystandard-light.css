@@ -1098,7 +1098,8 @@ input[type="button"] {
   border-radius: 4px;
   font-size: .7em;
   color: #fff;
-  line-height: 1; }
+  line-height: 1;
+  white-space: nowrap; }
   .ys-blog-card__btn i,
   .ys-blog-card__btn svg {
     margin-left: .25rem;
