@@ -10,7 +10,7 @@
 /**
  * フロントページ設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_front_page( $wp_customize ) {
 	$wp_customize->add_panel(
@@ -32,9 +32,7 @@ function ys_customizer_front_page( $wp_customize ) {
  * フロントページ設定の表示条件
  */
 function ys_customizer_active_callback_front_page_panel() {
-	$show_on_front = get_option( 'show_on_front' );
-	$page_on_front = get_option( 'page_on_front' );
-	if ( 'page' === $show_on_front && $page_on_front ) {
+	if ( ys_is_use_front_page() ) {
 		return true;
 	}
 
@@ -44,7 +42,7 @@ function ys_customizer_active_callback_front_page_panel() {
 /**
  * デザイン設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_front_page_design( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -70,7 +68,7 @@ function ys_customizer_front_page_design( $wp_customize ) {
 	$ys_customizer->add_image_label_radio(
 		array(
 			'id'          => 'ys_front_page_layout',
-			'default'     => '2col',
+			'default'     => ys_get_option_default( 'ys_front_page_layout' ),
 			'label'       => 'レイアウト',
 			'description' => 'フロントページの表示レイアウト',
 			'choices'     => array(

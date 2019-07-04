@@ -228,7 +228,7 @@ function ys_is_one_column() {
 	/**
 	 * フロントページ
 	 */
-	if ( is_front_page() && '1col' === ys_get_option( 'ys_front_page_layout' ) ) {
+	if ( ys_is_use_front_page() && is_front_page() && '1col' === ys_get_option( 'ys_front_page_layout' ) ) {
 		$one_column = true;
 	}
 	/**
@@ -870,4 +870,17 @@ function ys_is_enable_cache_setting() {
 	}
 
 	return false;
+}
+
+/**
+ * フロントページを設定しているか
+ *
+ * @return bool
+ */
+function ys_is_use_front_page() {
+	$show_on_front = get_option( 'show_on_front' );
+	$page_on_front = get_option( 'page_on_front' );
+	if ( 'page' === $show_on_front && $page_on_front ) {
+		return true;
+	}
 }
