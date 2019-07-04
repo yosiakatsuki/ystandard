@@ -337,6 +337,5 @@ function ys_get_editor_color_palette( $all = true ) {
 		}
 	}
 
-
 	return apply_filters( 'ys_editor_color_palette', $color );
 }
