@@ -1468,30 +1468,34 @@ figcaption {
     text-align: center; }
   .wp-block-button.-lg a {
     padding: .75rem 3rem; }
-
-.wp-block-button__link {
-  background-color: #222;
-  border: 1px solid #222;
-  color: #fff;
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: all .3s; }
-  .wp-block-button__link:hover {
-    background-color: #fff;
-    color: #222;
+  .wp-block-button a {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all .3s;
+    border-width: 1px;
+    border-style: solid; }
+    .wp-block-button a:not(.has-background) {
+      background-color: #222; }
+      .wp-block-button a:not(.has-background):hover {
+        background-color: #fff; }
+    .wp-block-button a:not(.has-text-color) {
+      color: #fff; }
+      .wp-block-button a:not(.has-text-color):hover {
+        color: #222; }
+  .wp-block-button:not(.is-style-outline) a:not(.has-background) {
     border-color: #222; }
-  .is-style-outline .wp-block-button__link {
-    background-color: #fff;
-    border: 1px solid #222;
-    color: #222; }
-    .is-style-outline .wp-block-button__link:hover {
-      background-color: #222;
-      color: #fff;
-      border-color: #222; }
-  .is-style-squared .wp-block-button__link {
+  .wp-block-button.is-style-outline a {
+    background-color: #fff; }
+    .wp-block-button.is-style-outline a:not(.has-text-color) {
+      color: #222;
+      border: 1px solid #222; }
+      .wp-block-button.is-style-outline a:not(.has-text-color):hover {
+        background-color: #222;
+        color: #fff; }
+  .wp-block-button.is-style-squared a {
     border-radius: 0; }
 
 .wp-block-columns {
@@ -2237,21 +2241,6 @@ a.text-sub,
 
 .sns-border--youtube-play {
   border: 1px solid #cd201f; }
-
-.sns-bg--vine {
-  background-color: #00b389;
-  color: #fff; }
-  .sns-bg--vine.-hover:hover {
-    background-color: #fff;
-    color: #00b389; }
-
-.sns-text--vine {
-  color: #00b389; }
-  .sns-text--vine.-hover:hover {
-    color: #1affc9; }
-
-.sns-border--vine {
-  border: 1px solid #00b389; }
 
 .sns-bg--github {
   background-color: #4183c4;

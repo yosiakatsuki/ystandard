@@ -250,24 +250,10 @@ function ys_get_editor_color_palette( $all = true ) {
 			'description' => '',
 		),
 		array(
-			'name'        => '水色',
-			'slug'        => 'ys-light-blue',
-			'color'       => ys_get_option( 'ys-color-palette-ys-light-blue' ),
-			'default'     => '#77C7E4',
-			'description' => '',
-		),
-		array(
 			'name'        => '赤',
 			'slug'        => 'ys-red',
 			'color'       => ys_get_option( 'ys-color-palette-ys-red' ),
 			'default'     => '#D53939',
-			'description' => '',
-		),
-		array(
-			'name'        => 'ピンク',
-			'slug'        => 'ys-pink',
-			'color'       => ys_get_option( 'ys-color-palette-ys-pink' ),
-			'default'     => '#E28DA9',
 			'description' => '',
 		),
 		array(

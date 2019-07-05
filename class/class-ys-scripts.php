@@ -476,45 +476,52 @@ class YS_Scripts {
 		$css   = '';
 		foreach ( $color as $value ) {
 			$css .= sprintf(
-				'.has-%s-background-color{background-color:%s;}',
-				$value['slug'],
-				$value['color']
-			);
-			$css .= sprintf(
-				'.has-%s-color{color:%s;}',
-				$value['slug'],
-				$value['color']
-			);
-			/**
-			 * ボタン用CSS
-			 */
-			$css .= sprintf(
-				'.wp-block-button__link.has-%s-background-color{border-color:%s;}',
-				$value['slug'],
-				$value['color']
-			);
-			$css .= sprintf(
-				'.wp-block-button__link:hover.has-%s-background-color{color:%s;}',
-				$value['slug'],
-				$value['color']
-			);
-			$css .= sprintf(
-				'.is-style-outline .wp-block-button__link.has-%s-color{border-color:%s;color:%s;}',
+				'.has-%s-background-color{background-color:%s;border-color:%s;}',
 				$value['slug'],
 				$value['color'],
 				$value['color']
 			);
 			$css .= sprintf(
-				'.is-style-outline .wp-block-button__link:hover.has-%s-color{background-color:%s;border-color:%s;}',
+				'.has-%s-color,.has-%s-color:hover{color:%s;}',
 				$value['slug'],
-				$value['color'],
-				$value['color']
-			);
-			$css .= sprintf(
-				'.is-style-outline .wp-block-button__link:hover.has-%s-background-color{color:%s;}',
 				$value['slug'],
 				$value['color']
 			);
+			if ( ! ys_is_amp() ) {
+				/**
+				 * ボタン用CSS
+				 */
+				$css .= sprintf(
+					'.wp-block-button__link.has-%s-background-color{border-color:%s;}',
+					$value['slug'],
+					$value['color']
+				);
+				$css .= sprintf(
+					'.wp-block-button__link:hover.has-%s-background-color{color:%s;}',
+					$value['slug'],
+					$value['color']
+				);
+				$css .= sprintf(
+					'.is-style-outline .wp-block-button__link.has-%s-color{border-color:%s;color:%s;}',
+					$value['slug'],
+					$value['color'],
+					$value['color']
+				);
+				$css .= sprintf(
+					'.is-style-outline .wp-block-button__link:hover.has-%s-color{background-color:%s;border-color:%s;}',
+					$value['slug'],
+					$value['color'],
+					$value['color']
+				);
+				$css .= sprintf(
+					'.is-style-outline .wp-block-button__link:hover.has-%s-background-color{color:%s;}',
+					$value['slug'],
+					$value['color']
+				);
+			}
+		}
+		if ( ys_is_amp() ) {
+			$css .= '.wp-block-button__link:hover{opacity:.8;}';
 		}
 
 		return $css;
