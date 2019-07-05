@@ -529,6 +529,9 @@ function ys_is_hide_post_header() {
  */
 function ys_is_active_post_thumbnail( $post_id = null ) {
 	$result = true;
+	if ( ! is_singular() ) {
+		return false;
+	}
 	if ( ! has_post_thumbnail( $post_id ) ) {
 		$result = false;
 	}
