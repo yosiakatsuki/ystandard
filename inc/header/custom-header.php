@@ -34,7 +34,7 @@ function ys_get_custom_header_type() {
 	/**
 	 * 詳細ページではフルサムネイル表示か確認
 	 */
-	if ( ys_is_full_width_thumbnail() ) {
+	if ( ys_is_full_width_thumbnail() && ! ys_is_active_custom_header() ) {
 		$type = 'full-thumb';
 	}
 
@@ -45,7 +45,7 @@ function ys_get_custom_header_type() {
  * カスタムヘッダーの出力
  */
 function ys_the_custom_header_markup() {
-	if ( ys_is_full_width_thumbnail() ) {
+	if ( ys_is_full_width_thumbnail() && ! ys_is_active_custom_header() ) {
 		/**
 		 * 個別ページの画像表示
 		 */

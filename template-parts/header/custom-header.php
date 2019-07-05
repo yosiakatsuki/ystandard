@@ -7,10 +7,18 @@
  * @license GPL-2.0+
  */
 
-if ( ! ys_is_active_custom_header() && ! ys_is_full_width_thumbnail() ) {
-	return;
-} else {
-	if ( is_singular() && ! ys_is_active_post_thumbnail() ) {
+/**
+ * 条件がややこしくなってごめんなさい。
+ */
+if ( ! ys_is_active_custom_header() ) {
+	/**
+	 * カスタムヘッダーじゃなければ通常アイキャッチ
+	 */
+	if ( ! ys_is_full_width_thumbnail() || ! ys_is_active_post_thumbnail() ) {
+		/**
+		 * フル幅アイキャッチじゃない → ださない
+		 * アイキャッチの設定がない → ださない
+		 */
 		return;
 	}
 }
