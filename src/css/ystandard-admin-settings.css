@@ -665,7 +665,7 @@ figcaption {
   width: 50%; }
 
 .gallery-columns-3 .gallery-item {
-  width: 33.33333%; }
+  width: 33.33%; }
 
 .gallery-columns-4 .gallery-item {
   width: 25%; }
@@ -674,16 +674,16 @@ figcaption {
   width: 20%; }
 
 .gallery-columns-6 .gallery-item {
-  width: 16.66667%; }
+  width: 16.66%; }
 
 .gallery-columns-7 .gallery-item {
-  width: 14.28571%; }
+  width: 14.28%; }
 
 .gallery-columns-8 .gallery-item {
   width: 12.5%; }
 
 .gallery-columns-9 .gallery-item {
-  width: 11.11111%; }
+  width: 11.11%; }
 
 .gallery-caption {
   text-align: center; }
