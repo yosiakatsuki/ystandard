@@ -187,6 +187,14 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		if ( 'disable' === $this->get_param( 'cache' ) ) {
 			return false;
 		}
+		/**
+		 * プレビュー時にキャッシュリフレッシュ
+		 */
+		if ( is_preview() ) {
+			YS_Cache::delete_cache( self::CACHE_KEY, $this->cache_args );
+
+			return false;
+		}
 
 		return YS_Cache::get_cache( self::CACHE_KEY, $this->cache_args );
 	}
