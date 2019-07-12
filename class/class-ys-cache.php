@@ -101,6 +101,20 @@ class YS_Cache {
 	}
 
 	/**
+	 * キャッシュ削除
+	 *
+	 * @param string $key  キー.
+	 * @param array  $args オプション.
+	 *
+	 * @return bool
+	 */
+	public static function delete_cache( $key, $args ) {
+		$cache_key = YS_Cache::get_cache_key( $key, $args );
+
+		return delete_transient( $cache_key );
+	}
+
+	/**
 	 * キャッシュを取得
 	 *
 	 * @param string $key キー.

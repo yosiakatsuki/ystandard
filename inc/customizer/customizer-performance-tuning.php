@@ -10,7 +10,7 @@
 /**
  * 高速化設定の追加
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_performance_tuning( $wp_customize ) {
 	/**
@@ -46,7 +46,7 @@ function ys_customizer_performance_tuning( $wp_customize ) {
 /**
  * ランキング、カテゴリー・タグの記事一覧、関連記事のクエリ結果キャッシュ
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -56,8 +56,8 @@ function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
 	$ys_customizer->add_section(
 		array(
 			'section'     => 'ys_customizer_performance_tuning_add_cache_query',
-			'title'       => '記事一覧作成機能の結果キャッシュ',
-			'description' => 'ランキング、カテゴリー・タグの記事一覧、関連記事のクエリ結果キャッシュ設定',
+			'title'       => 'キャッシュ設定',
+			'description' => '記事一覧作成やyStandard設定のキャッシュ機能設定',
 			'panel'       => 'ys_customizer_panel_performance_tuning',
 		)
 	);
@@ -67,6 +67,7 @@ function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
 	$ys_customizer->add_radio(
 		array(
 			'id'          => 'ys_query_cache_ranking',
+			'default'     => ys_get_option_default( 'ys_query_cache_ranking' ),
 			'transport'   => 'postMessage',
 			'label'       => '人気記事ランキングの結果キャッシュ',
 			'description' => '「[ys]人気ランキングウィジェット」・人気記事ランキング表示ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。<br>※日別のランキングについてはキャッシュを作成しません。',
@@ -84,6 +85,7 @@ function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
 	$ys_customizer->add_radio(
 		array(
 			'id'          => 'ys_query_cache_recent_posts',
+			'default'     => ys_get_option_default( 'ys_query_cache_recent_posts' ),
 			'transport'   => 'postMessage',
 			'label'       => '新着記事一覧の結果キャッシュ',
 			'description' => '「[ys]新着記事一覧ウィジェット」・新着記事一覧ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
@@ -101,10 +103,28 @@ function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
 	$ys_customizer->add_radio(
 		array(
 			'id'          => 'ys_query_cache_related_posts',
-			'default'     => 'none',
+			'default'     => ys_get_option_default( 'ys_query_cache_related_posts' ),
 			'transport'   => 'postMessage',
 			'label'       => '記事下エリア「関連記事」の結果キャッシュ',
 			'description' => '記事下エリア「関連記事」の結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
+			'choices'     => array(
+				'none' => 'キャッシュしない',
+				'1'    => '1日',
+				'7'    => '7日',
+				'30'   => '30日',
+			),
+		)
+	);
+	/**
+	 * テーマ設定のキャッシュ.
+	 */
+	$ys_customizer->add_radio(
+		array(
+			'id'          => 'ys_query_cache_ys_options',
+			'default'     => ys_get_option_default( 'ys_query_cache_ys_options' ),
+			'transport'   => 'postMessage',
+			'label'       => 'yStandard設定のキャッシュ',
+			'description' => 'yStandardのテーマ設定をキャッシュします。設定した期間か、設定を変更したタイミングでキャッシュがリフレッシュされます。',
 			'choices'     => array(
 				'none' => 'キャッシュしない',
 				'1'    => '1日',
@@ -118,7 +138,7 @@ function ys_customizer_performance_tuning_add_cache_query( $wp_customize ) {
 /**
  * WordPress標準機能で読み込むCSS・JavaScriptの無効化
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -158,7 +178,7 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 /**
  * CSS読み込みの最適化
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_performance_tuning_add_optimize_load_css( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -189,7 +209,7 @@ function ys_customizer_performance_tuning_add_optimize_load_css( $wp_customize )
 /**
  * JavaScript読み込みの最適化
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_performance_tuning_add_optimize_load_js( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );

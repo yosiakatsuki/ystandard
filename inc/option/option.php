@@ -16,8 +16,37 @@
  * @return mixed
  */
 function ys_get_option( $name, $default = false ) {
-	$option_default = ys_get_option_default( $name, $default );
-	$result         = get_option( $name, $option_default );
+	$result = null;
+	/**
+	 * 設定値のキャッシュ機能
+	 */
+	if ( 'none' !== get_option( 'ys_query_cache_ys_options' ) ) {
+		global $ystandard_option;
+
+		/**
+		 * グローバルにセットされてない場合はキャッシュから取得 or リスト作成
+		 */
+		if ( ! is_array( $ystandard_option ) ) {
+			$ystandard_option = YS_Cache::get_cache( 'ystandard_options', array() );
+			if ( false === $ystandard_option ) {
+				$ystandard_option = ys_get_options_and_create_cache();
+			}
+		}
+		/**
+		 * 設定チェック
+		 */
+		if ( isset( $ystandard_option[ $name ] ) ) {
+			$result = $ystandard_option[ $name ];
+		}
+	}
+
+	/**
+	 * 設定取得できなかった場合通常取得
+	 */
+	if ( is_null( $result ) ) {
+		$option_default = ys_get_option_default( $name, $default );
+		$result         = get_option( $name, $option_default );
+	}
 
 	return apply_filters( 'ys_get_option', $result, $name, $option_default );
 }
@@ -31,7 +60,25 @@ function ys_get_option( $name, $default = false ) {
  * @return mixed
  */
 function ys_get_option_default( $name, $default = false ) {
-	$defaults = array(
+	$defaults = ys_get_option_defaults();
+	/**
+	 * 結果作成
+	 */
+	$result = $default;
+	if ( isset( $defaults[ $name ] ) ) {
+		$result = $defaults[ $name ];
+	}
+
+	return apply_filters( 'ys_get_option_default', $result, $name, $defaults );
+}
+
+/**
+ * 設定のデフォルト値リストを取得
+ *
+ * @return array
+ */
+function ys_get_option_defaults() {
+	return array(
 		// 色設定.
 		'ys_color_site_bg'                          => '#ffffff',
 		'ys_color_header_bg'                        => '#ffffff',
@@ -175,10 +222,11 @@ function ys_get_option_default( $name, $default = false ) {
 		'ys_option_structured_data_publisher_image' => '', // パブリッシャー画像.
 		'ys_option_structured_data_publisher_name'  => '', // パブリッシャー名.
 		// [ys]サイト高速化設定.
-		// ランキング、カテゴリー・タグの記事一覧、関連記事のクエリ結果キャッシュ.
+		// キャッシュ設定.
 		'ys_query_cache_ranking'                    => 'none', // 「[ys]人気ランキングウィジェット」の結果キャッシュ.
 		'ys_query_cache_recent_posts'               => 'none', // 「[ys]新着記事一覧」の結果キャッシュ.
 		'ys_query_cache_related_posts'              => 'none', // 記事下エリア「関連記事」の結果キャッシュ.
+		'ys_query_cache_ys_options'                 => 'none', // テーマ設定のキャッシュ.
 		// WordPress標準機能で読み込むCSS・JavaScriptの無効化.
 		'ys_option_disable_wp_emoji'                => 1, // 絵文字を出力しない.
 		'ys_option_disable_wp_oembed'               => 1, // oembedを出力しない.
@@ -224,15 +272,6 @@ function ys_get_option_default( $name, $default = false ) {
 		'ys_admin_enable_block_editor_style'        => 0, // Gutenberg用CSSを追加する.
 		'ys_admin_enable_tiny_mce_style'            => 0, // ビジュアルエディタ用CSSを追加する.
 	);
-	/**
-	 * 結果作成
-	 */
-	$result = $default;
-	if ( isset( $defaults[ $name ] ) ) {
-		$result = $defaults[ $name ];
-	}
-
-	return apply_filters( 'ys_get_option_default', $result, $name, $defaults );
 }
 
 
@@ -245,6 +284,36 @@ function ys_get_options() {
 	ys_deprecated( 'ys_get_options', 'v3.0.0' );
 
 	return apply_filters( 'ys_get_options', array() );
+}
+
+/**
+ * 設定リストの作成・取得とキャッシュ作成
+ *
+ * @return array
+ */
+function ys_get_options_and_create_cache() {
+	$options  = array();
+	$defaults = ys_get_option_defaults();
+	/**
+	 * 設定一覧の作成
+	 */
+	foreach ( $defaults as $key => $value ) {
+		$options[] = get_option( $key, $value );
+	}
+	/**
+	 * キャッシュの作成
+	 */
+	if ( 'none' !== get_option( 'ys_query_cache_ys_options' ) ) {
+		$expiration = (int) get_option( 'ys_query_cache_ys_options' );
+		$options    = YS_Cache::set_cache(
+			'ystandard_options',
+			$options,
+			array(),
+			$expiration
+		);
+	}
+
+	return $options;
 }
 
 /**
@@ -266,3 +335,16 @@ function ys_change_option_key( $old_key, $old_default, $new_key, $new_default ) 
 		}
 	}
 }
+
+/**
+ * 設定キャッシュの再作成
+ */
+function ys_option_cache_refresh() {
+	if ( 'none' !== get_option( 'ys_query_cache_ys_options' ) ) {
+		ys_get_options_and_create_cache();
+	} else {
+		YS_Cache::delete_cache( 'ystandard_options', array() );
+	}
+}
+
+add_action( 'customize_save_after', 'ys_option_cache_refresh' );
