@@ -918,7 +918,8 @@ video {
 .author-box__img {
   width: 96px;
   height: auto;
-  border-radius: 50%; }
+  border-radius: 50%;
+  margin: 0 auto; }
 
 .author-box__name {
   font-size: 1.1em; }
