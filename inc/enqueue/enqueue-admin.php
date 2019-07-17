@@ -86,7 +86,7 @@ function ys_add_editor_styles() {
 	 * ビジュアルエディターへのCSSセット
 	 */
 	if ( ys_get_option( 'ys_admin_enable_tiny_mce_style' ) ) {
-		add_editor_style( get_template_directory_uri() . '/css/ys-editor-style.css' );
+		add_editor_style( get_template_directory_uri() . '/css/ystandard-tiny-mce-style.css' );
 		add_editor_style( get_stylesheet_directory_uri() . '/style.css' );
 		add_editor_style( ys_get_theme_file_uri( '/user-custom-editor-style.css' ) );
 	}

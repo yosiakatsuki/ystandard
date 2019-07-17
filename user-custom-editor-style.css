@@ -1,12 +1,7 @@
 /**
  * ブロックエディタ・ビジュアルエディタ用CSS
  */
-
-/* ブロックエディタ用 セレクタ */
-#editor.gutenberg__editor .editor-block-list__block {
-}
-
 /* ビジュアルエディタ用 セレクタ */
-body#tinymce.wp-editor {
-	
+.mce-content-body h1{
+	/*など*/
 }
