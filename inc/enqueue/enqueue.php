@@ -174,10 +174,10 @@ function ys_get_enqueue_css_file_path() {
 function ys_get_enqueue_css_file_name() {
 	$file = 'ystandard-light.css';
 	/**
-	 * PC表示
+	 * AMP以外は通常CSS
 	 */
-	if ( ! ys_is_mobile() ) {
-		$file = 'ystandard-desktop.css';
+	if ( ! ys_is_amp() ) {
+		$file = 'ystandard-main.css';
 	}
 
 	return $file;

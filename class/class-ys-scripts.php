@@ -487,41 +487,18 @@ class YS_Scripts {
 				$value['slug'],
 				$value['color']
 			);
-			if ( ! ys_is_amp() ) {
-				/**
-				 * ボタン用CSS
-				 */
-				$css .= sprintf(
-					'.wp-block-button__link.has-%s-background-color{border-color:%s;}',
-					$value['slug'],
-					$value['color']
-				);
-				$css .= sprintf(
-					'.wp-block-button__link:hover.has-%s-background-color{color:%s;}',
-					$value['slug'],
-					$value['color']
-				);
-				$css .= sprintf(
-					'.is-style-outline .wp-block-button__link.has-%s-color{border-color:%s;color:%s;}',
-					$value['slug'],
-					$value['color'],
-					$value['color']
-				);
-				$css .= sprintf(
-					'.is-style-outline .wp-block-button__link:hover.has-%s-color{background-color:%s;border-color:%s;}',
-					$value['slug'],
-					$value['color'],
-					$value['color']
-				);
-				$css .= sprintf(
-					'.is-style-outline .wp-block-button__link:hover.has-%s-background-color{color:%s;}',
-					$value['slug'],
-					$value['color']
-				);
-			}
-		}
-		if ( ys_is_amp() ) {
-			$css .= '.wp-block-button__link:hover{opacity:.8;}';
+			$css .= sprintf(
+				'.is-style-outline .wp-block-button__link.has-%s-color{border-color:%s;color:%s;}',
+				$value['slug'],
+				$value['color'],
+				$value['color']
+			);
+			$css .= sprintf(
+				'.is-style-outline .wp-block-button__link:hover.has-%s-color{background-color:%s;border-color:%s;}',
+				$value['slug'],
+				$value['color'],
+				$value['color']
+			);
 		}
 
 		return $css;

@@ -63,12 +63,7 @@ function ys_is_login_page() {
  * @return bool
  */
 function ys_is_mobile() {
-	/**
-	 * AMPはモバイル
-	 */
-	if ( ys_is_amp() ) {
-		return true;
-	}
+
 	/**
 	 * [^(?!.*iPad).*iPhone] : iPadとiPhoneが混ざるUAがあるらしい
 	 */
