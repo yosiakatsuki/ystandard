@@ -88,7 +88,9 @@ $text_col   = $ys_author_data['class_text_col'];
 		<?php if ( false !== $archive_button ) : ?>
 			<div class="author-box__block">
 				<p class="author-box__archive">
-					<a class="btn btn--sm has-small-font-size author-box__archive-link" href="<?php echo $archive_url; ?>"><?php echo $archive_button; ?></a>
+					<span class="wp-block-button -sm">
+						<a class="has-small-font-size author-box__archive-link" href="<?php echo $archive_url; ?>"><?php echo $archive_button; ?></a>
+					</span>
 				</p><!-- .author__archive -->
 			</div>
 		<?php endif; ?>

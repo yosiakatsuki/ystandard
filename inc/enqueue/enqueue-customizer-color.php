@@ -144,7 +144,7 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * ヘッダー 背景色 PC
 	 */
-	if ( ! ys_is_mobile() ) {
+	if ( ! ys_is_mobile() && ! ys_is_amp() ) {
 		$css .= ys_customizer_add_media_query(
 			ys_customizer_create_inline_css(
 				array(
@@ -173,7 +173,7 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * ヘッダーナビゲーション PC
 	 */
-	if ( ! ys_is_mobile() ) {
+	if ( ! ys_is_mobile() && ! ys_is_amp() ) {
 		$css .= ys_customizer_add_media_query(
 			ys_customizer_create_inline_css(
 				array(

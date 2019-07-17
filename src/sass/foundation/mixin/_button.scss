@@ -6,7 +6,6 @@
   display: $display;
   padding: $padding;
   border-radius: $radius;
-  font-size: 1rem;
   text-decoration: none;
   transition: all .3s;
 }
@@ -23,11 +22,10 @@
   background-color: $bgc;
   border: 1px solid $border;
   color: $text_color;
+  font-size: 1rem;
   @include button_base();
 
   &:hover {
-    background-color: $bgc_hover;
-    color: $text_hover;
-    border-color: $border;
+    box-shadow: 3px 3px 6px rgba(#000, .2);
   }
 }

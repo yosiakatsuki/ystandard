@@ -18,7 +18,7 @@ $current_url = ys_get_page_url();
 	<div class="ystd-settings__section">
 		<h3><span class="orbitron">yStandard</span> の設定はテーマカスタマイザーから!</h3>
 		<p>yStandardの設定はテーマカスタマイザーから行って下さい。</p>
-		<p><a class="btn btn--lg" href="<?php echo esc_url( add_query_arg( 'return', urlencode( $current_url ), wp_customize_url() ) ); ?>">テーマカスタマイザーを開く</a></p>
+		<p class="wp-block-button -lg"><a href="<?php echo esc_url( add_query_arg( 'return', urlencode( $current_url ), wp_customize_url() ) ); ?>">テーマカスタマイザーを開く</a></p>
 		<div class="ys-smaller">
 			<p>
 				※ version 2.0.0 以降はテーマカスタマイザーから設定を行う方式になりました
@@ -50,8 +50,8 @@ $current_url = ys_get_page_url();
 						<p>
 							など、ちょっとしたことでもyStandadを応援する方法があります
 						</p>
-						<p>
-							<a class="ystd-settings__btn btn btn--block" href="https://wp-ystandard.com/contribute/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>を応援する</a>
+						<p class="wp-block-button -block">
+							<a class="ystd-settings__btn" href="https://wp-ystandard.com/contribute/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>を応援する</a>
 						</p>
 					</div>
 				</div><!-- card -->
