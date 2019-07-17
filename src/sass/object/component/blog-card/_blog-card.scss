@@ -29,10 +29,16 @@
 .ys-blog-card__image {
   max-width: 100px;
   margin-right: 1rem;
+
+  amp-img {
+    min-width: 50px;
+  }
 }
+
 .ys-blog-card__btn-wrap {
   margin-top: 1rem;
 }
+
 .ys-blog-card__btn {
   display: inline-block;
   padding: .5em .75em;
