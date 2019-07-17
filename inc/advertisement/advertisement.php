@@ -30,15 +30,15 @@ function ys_get_ad_block_html( $ad, $key = '', $label = true ) {
 		}
 		$label_text = apply_filters( 'ys_ad_label_text', $label_text, $key );
 		if ( '' !== $label_text ) {
-			$label_text = sprintf( '<div class="ad__label">%s</div>', $label_text );
+			$label_text = sprintf( '<div class="ys-ad-title">%s</div>', $label_text );
 		}
 		/**
 		 * HTMLの作成
 		 */
 		$html = sprintf(
-			'<aside class="ad__container">
+			'<aside class="ys-ad-block">
 					%s
-					<div class="ad__content">%s</div>
+					<div class="ys-ad-content">%s</div>
 				</aside>',
 			$label_text,
 			$ad
@@ -275,7 +275,7 @@ function ys_get_template_infeed_ad() {
 /**
  * インフィード広告のプレビュー画面でのエラー対処
  *
- * @param  string $ad 広告コード.
+ * @param string $ad 広告コード.
  *
  * @return string
  */
