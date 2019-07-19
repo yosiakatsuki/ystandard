@@ -61,72 +61,70 @@ function ys_amp_inline_styles() {
 
 add_action( 'ys_amp_head', 'ys_amp_inline_styles', 2 );
 
-if ( ! function_exists( 'ys_the_uc_custom_head_amp' ) ) {
-	/**
-	 * ユーザーカスタムHEAD出力
-	 */
-	function ys_the_uc_custom_head_amp() {
-		get_template_part( 'user-custom-head-amp' );
-	}
+/**
+ * ユーザーカスタムHEAD出力
+ */
+function ys_the_uc_custom_head_amp() {
+	get_template_part( 'user-custom-head-amp' );
 }
+
 add_action( 'ys_amp_head', 'ys_the_uc_custom_head_amp', 11 );
 
-if ( ! function_exists( 'ys_the_amp_script' ) ) {
+/**
+ * AMP記事で必要になるスクリプト出力
+ */
+function ys_the_amp_script() {
+	global $post;
+
+	$scripts = '';
+	$content = apply_filters( 'the_content', $post->post_content );
+
 	/**
-	 * AMP記事で必要になるスクリプト出力
+	 * 広告表示
 	 */
-	function ys_the_amp_script() {
-		global $post;
-
-		$scripts = '';
-		$content = apply_filters( 'the_content', $post->post_content );
-
-		/**
-		 * 広告表示
-		 */
-		if ( ys_is_load_amp_ad_script() ) {
-			$scripts .= '<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Twitter
-		 */
-		if ( ys_is_load_amp_twitter_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Instagram
-		 */
-		if ( ys_is_load_amp_instagram_script( $content ) ) {
-			$scripts .= '<script custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js" async></script>' . PHP_EOL;
-		}
-		/**
-		 * Youtube
-		 */
-		if ( ys_is_load_amp_youtube_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Vine
-		 */
-		if ( ys_is_load_amp_vine_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/amp-vine-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Facebook
-		 */
-		if ( ys_is_load_amp_facebook_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Iframe
-		 */
-		if ( ys_is_load_amp_iframe_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>' . PHP_EOL;
-		}
-
-		echo apply_filters( 'ys_the_amp_script', $scripts );
+	if ( ys_is_load_amp_ad_script() ) {
+		$scripts .= '<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>' . PHP_EOL;
 	}
+	/**
+	 * Twitter
+	 */
+	if ( ys_is_load_amp_twitter_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>' . PHP_EOL;
+	}
+	/**
+	 * Instagram
+	 */
+	if ( ys_is_load_amp_instagram_script( $content ) ) {
+		$scripts .= '<script custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js" async></script>' . PHP_EOL;
+	}
+	/**
+	 * Youtube
+	 */
+	if ( ys_is_load_amp_youtube_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>' . PHP_EOL;
+	}
+	/**
+	 * Vine
+	 */
+	if ( ys_is_load_amp_vine_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/amp-vine-0.1.js"></script>' . PHP_EOL;
+	}
+	/**
+	 * Facebook
+	 */
+	if ( ys_is_load_amp_facebook_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>' . PHP_EOL;
+	}
+	/**
+	 * Iframe
+	 */
+	if ( ys_is_load_amp_iframe_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>' . PHP_EOL;
+	}
+
+	echo apply_filters( 'ys_the_amp_script', $scripts );
 }
+
 add_action( 'ys_amp_head', 'ys_the_amp_script' );
 
 
