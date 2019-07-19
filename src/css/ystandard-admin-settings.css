@@ -1604,6 +1604,10 @@ a.text-sub,
   .ys-box > *:last-child {
     margin-bottom: 0; }
 
+ul.ys-box,
+ol.ys-box {
+  padding-left: calc(1rem + 1.7em); }
+
 .ystd-settings__section {
   padding: 2em 0;
   border-bottom: 1px solid #bdc3c7; }

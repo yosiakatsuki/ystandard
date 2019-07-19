@@ -2279,3 +2279,7 @@ a.text-sub,
     margin-top: 0; }
   .ys-box > *:last-child {
     margin-bottom: 0; }
+
+ul.ys-box,
+ol.ys-box {
+  padding-left: calc(1rem + 1.7em); }

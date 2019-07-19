@@ -1,2 +1,19 @@
+//変数、mixin、functionなど
 @import "foundation/import";
+/**
+ * component
+ */
+@import "object/component/blog-card/blog-card";
+@import "object/component/blog-card/blog-card-d";
+
+/**
+ * utility
+ */
+@import "object/utility/utility";
+@import "object/utility/utility-d";
+
+/**
+ * admin
+ */
+@import "object/project/admin/block/block";
 
