@@ -2280,6 +2280,10 @@ a.text-sub,
   .ys-box > *:last-child {
     margin-bottom: 0; }
 
+ul.ys-box,
+ol.ys-box {
+  padding-left: calc(1rem + 1.7em); }
+
 @media screen and (min-width: 1025px) {
   .has-sidebar .site__content {
     overflow: unset; }

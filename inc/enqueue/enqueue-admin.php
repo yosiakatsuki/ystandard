@@ -98,27 +98,22 @@ add_action( 'admin_init', 'ys_add_editor_styles' );
 /**
  * Enqueue block editor style
  */
-function ys_enqueue_block_editor_assets() {
+function ys_enqueue_block_css() {
 	if ( ys_get_option( 'ys_admin_enable_block_editor_style' ) ) {
-		wp_enqueue_style(
-			'ys-block-editor-styles',
+		add_theme_support( 'editor-styles' );
+		add_editor_style(
 			get_template_directory_uri() . '/css/ystandard-admin-block.css'
 		);
-		wp_enqueue_style(
-			'site-block-editor-styles',
-			get_stylesheet_directory_uri() . '/style.css',
-			array( 'ys-block-editor-styles' )
+		add_editor_style(
+			get_stylesheet_directory_uri() . '/style.css'
 		);
-		wp_enqueue_style(
-			'user-custom-editor-styles',
-			ys_get_theme_file_uri( '/user-custom-editor-style.css' ),
-			array( 'ys-block-editor-styles' )
+		add_editor_style(
+			ys_get_theme_file_uri( '/user-custom-editor-style.css' )
 		);
-		wp_add_inline_style( 'ys-block-editor-styles', wp_get_custom_css() );
 	}
 }
 
-add_action( 'enqueue_block_editor_assets', 'ys_enqueue_block_editor_assets' );
+add_action( 'after_setup_theme', 'ys_enqueue_block_css' );
 
 /**
  * TinyMCEに追加CSSを適用させる

@@ -1337,3 +1337,6 @@
       margin-top: 0; }
     .mce-content-body .ys-box > *:last-child {
       margin-bottom: 0; }
+  .mce-content-body ul.ys-box,
+  .mce-content-body ol.ys-box {
+    padding-left: calc(1rem + 1.7em); }
