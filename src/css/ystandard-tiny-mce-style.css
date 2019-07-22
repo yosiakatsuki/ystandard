@@ -799,15 +799,16 @@
     .mce-content-body .wp-block-gallery.columns-8 .blocks-gallery-item {
       flex: 0 0 12.5%;
       max-width: 12.5%; }
-    .mce-content-body .wp-block-gallery.is-cropped .blocks-gallery-item {
-      display: flex;
-      flex-direction: column; }
-    .mce-content-body .wp-block-gallery.is-cropped figure {
-      flex-grow: 1; }
-    .mce-content-body .wp-block-gallery.is-cropped img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover; }
+    @supports (object-fit: cover) {
+      .mce-content-body .wp-block-gallery.is-cropped .blocks-gallery-item {
+        display: flex;
+        flex-direction: column; }
+      .mce-content-body .wp-block-gallery.is-cropped figure {
+        flex-grow: 1; }
+      .mce-content-body .wp-block-gallery.is-cropped img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover; } }
     .mce-content-body .wp-block-gallery.alignfull {
       padding-right: 0;
       padding-left: 0; }

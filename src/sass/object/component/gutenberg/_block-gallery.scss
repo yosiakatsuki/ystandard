@@ -16,19 +16,19 @@
   }
 
   &.is-cropped {
-    .blocks-gallery-item {
-      display: flex;
-      flex-direction: column;
-    }
-
-    figure {
-      flex-grow: 1;
-    }
-
-    img {
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
+    @supports ( object-fit: cover ) {
+      .blocks-gallery-item {
+        display: flex;
+        flex-direction: column;
+      }
+      figure {
+        flex-grow: 1;
+      }
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
     }
   }
   &.alignfull {
