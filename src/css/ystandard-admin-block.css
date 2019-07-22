@@ -411,6 +411,18 @@ body,
   font-size: 1.8em; }
 
 /**
+ * エディタ幅
+ */
+.wp-block {
+  max-width: calc(800px + 30px); }
+
+.wp-block[data-align="wide"] {
+  max-width: calc(800px + 6rem + 30px); }
+
+.wp-block[data-align="full"] {
+  max-width: none; }
+
+/**
  * 画像
  */
 img,
