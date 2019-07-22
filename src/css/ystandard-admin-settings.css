@@ -773,6 +773,10 @@ figcaption {
   background-repeat: no-repeat;
   background-position: center; }
 
+.wp-block-cover.has-parallax {
+  background-size: 100% auto;
+  background-position: top center; }
+
 .wp-block-cover.has-background-dim:before {
   content: "";
   position: absolute;

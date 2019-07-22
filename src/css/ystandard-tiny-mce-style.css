@@ -822,6 +822,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; }
+  .mce-content-body .wp-block-cover.has-parallax {
+    background-size: 100% auto;
+    background-position: top center; }
   .mce-content-body .wp-block-cover.has-background-dim:before {
     content: "";
     position: absolute;
