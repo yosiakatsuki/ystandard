@@ -18,12 +18,14 @@ body,
 .editor-post-title__block .editor-post-title__input {
   font-size: 1.8em;
 }
+
 /**
  * エディタ幅
  */
 .wp-block {
   max-width: calc(800px + 30px);
 }
+
 .wp-block[data-align="wide"] {
   max-width: calc(800px + 6rem + 30px);
 }
@@ -32,6 +34,14 @@ body,
 .wp-block[data-align="full"] {
   max-width: none;
 }
+
+/**
+ * 見出し
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
 /**
  * 画像
  */
