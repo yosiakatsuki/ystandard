@@ -1261,10 +1261,10 @@ figcaption {
       padding: 0 2rem 0 0; }
   .is-stacked-on-mobile {
     position: relative;
-    background-color: unset; }
+    background-color: transparent; }
     .is-stacked-on-mobile .wp-block-media-text__media {
       position: relative;
-      background-color: unset; }
+      background-color: transparent; }
       .is-stacked-on-mobile .wp-block-media-text__media:before {
         display: none; }
       .is-stacked-on-mobile .wp-block-media-text__media img {
