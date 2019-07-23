@@ -230,15 +230,17 @@ class YS_Widget_Base extends WP_Widget {
 			$multiple_class = ' multiple';
 		}
 		echo '<select name="' . $this->get_field_name( $form_name ) . '[]" class="ys-widget-option__select' . $multiple_class . '"' . $multiple_attr . '>';
+		echo '<option value="">';
 		if ( empty( $taxonomies ) ) {
-			echo '<option value="">';
 			if ( empty( $args['empty_message'] ) ) {
 				echo esc_html( $args['empty_message'] );
 			} else {
 				echo '選択できるカテゴリー・タグがありません';
 			}
-			echo '</option>';
+		} else {
+			echo '選択して下さい';
 		}
+		echo '</option>';
 
 		/**
 		 * タクソノミーごとにリストを作成
