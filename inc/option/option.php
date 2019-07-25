@@ -86,6 +86,7 @@ function ys_get_option_defaults() {
 		'ys_color_header_dscr_font'                 => '#757575',
 		'ys_color_nav_bg_sp'                        => '#000000',
 		'ys_color_nav_font_sp'                      => '#ffffff',
+		'ys_color_nav_btn_sp_open'                  => '#222222',
 		'ys_color_nav_btn_sp'                       => '#ffffff',
 		'ys_color_footer_bg'                        => '#222222',
 		'ys_color_footer_font'                      => '#ffffff',
