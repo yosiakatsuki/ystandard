@@ -52,8 +52,13 @@ img,
 }
 
 .wp-block-image {
+  &.is-resized {
+    display: block !important;
+    .block-editor-rich-text {
+      display: block !important;
+    }
+  } 
   .components-resizable-box__container {
-    width: auto !important;
     height: auto !important;
     max-width: 100% !important;
   }
