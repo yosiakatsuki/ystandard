@@ -112,7 +112,7 @@ function ys_customizer_add_header_color( $wp_customize ) {
 		array(
 			'id'      => 'ys_color_header_font',
 			'default' => ys_get_option_default( 'ys_color_header_font' ),
-			'label'   => 'サイトタイトルの文字色',
+			'label'   => 'サイトタイトル・メニューテキストの文字色',
 		)
 	);
 	// サイト概要の文字色.
