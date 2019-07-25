@@ -436,8 +436,12 @@ img,
   height: auto;
   max-width: 100%; }
 
+.wp-block-image.is-resized {
+  display: block !important; }
+  .wp-block-image.is-resized .block-editor-rich-text {
+    display: block !important; }
+
 .wp-block-image .components-resizable-box__container {
-  width: auto !important;
   height: auto !important;
   max-width: 100% !important; }
 
