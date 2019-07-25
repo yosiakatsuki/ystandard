@@ -19,15 +19,16 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * 設定取得
 	 */
-	$html_bg         = ys_get_option( 'ys_color_site_bg' );
-	$header_bg       = ys_get_option( 'ys_color_header_bg' );
-	$header_font     = ys_get_option( 'ys_color_header_font' );
-	$header_dscr     = ys_get_option( 'ys_color_header_dscr_font' );
-	$mobile_nav_bg   = ys_get_option( 'ys_color_nav_bg_sp' );
-	$mobile_nav_font = ys_get_option( 'ys_color_nav_font_sp' );
-	$mobile_nav_btn  = ys_get_option( 'ys_color_nav_btn_sp' );
-	$footer_bg       = ys_get_option( 'ys_color_footer_bg' );
-	$footer_font     = ys_get_option( 'ys_color_footer_font' );
+	$html_bg              = ys_get_option( 'ys_color_site_bg' );
+	$header_bg            = ys_get_option( 'ys_color_header_bg' );
+	$header_font          = ys_get_option( 'ys_color_header_font' );
+	$header_dscr          = ys_get_option( 'ys_color_header_dscr_font' );
+	$mobile_nav_bg        = ys_get_option( 'ys_color_nav_bg_sp' );
+	$mobile_nav_font      = ys_get_option( 'ys_color_nav_font_sp' );
+	$mobile_nav_btn_open  = ys_get_option( 'ys_color_nav_btn_sp_open' );
+	$mobile_nav_btn_close = ys_get_option( 'ys_color_nav_btn_sp' );
+	$footer_bg            = ys_get_option( 'ys_color_footer_bg' );
+	$footer_font          = ys_get_option( 'ys_color_footer_font' );
 
 	$css = '';
 	/**
@@ -259,6 +260,17 @@ function ys_get_customizer_inline_css_color() {
 		'max'
 	);
 	/**
+	 * モバイルナビゲーション 開ける ボタン
+	 */
+	$css .= ys_customizer_create_inline_css(
+		array(
+			'.hamburger span',
+		),
+		array(
+			'background-color' => $mobile_nav_btn_open,
+		)
+	);
+	/**
 	 * モバイルナビゲーション 閉じるボタン
 	 */
 	$css .= ys_customizer_add_media_query(
@@ -267,7 +279,7 @@ function ys_get_customizer_inline_css_color() {
 				'#h-nav__toggle:checked~.h-nav__btn .hamburger span',
 			),
 			array(
-				'background-color' => $mobile_nav_btn,
+				'background-color' => $mobile_nav_btn_close,
 			)
 		),
 		'lg',

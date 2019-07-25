@@ -168,9 +168,19 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	 */
 	$ys_customizer->add_color(
 		array(
+			'id'      => 'ys_color_nav_btn_sp_open',
+			'default' => ys_get_option_default( 'ys_color_nav_btn_sp_open' ),
+			'label'   => 'モバイルメニュー ボタン色：開く',
+		)
+	);
+	/**
+	 * ナビゲーションボタン色（SP）
+	 */
+	$ys_customizer->add_color(
+		array(
 			'id'      => 'ys_color_nav_btn_sp',
 			'default' => ys_get_option_default( 'ys_color_nav_btn_sp' ),
-			'label'   => 'モバイルメニューボタン(閉じる)色',
+			'label'   => 'モバイルメニュー ボタン色：閉じる',
 		)
 	);
 }
