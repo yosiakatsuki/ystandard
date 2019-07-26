@@ -220,9 +220,9 @@
     .mce-content-body .ys-ad-block .ys-ad-title {
       display: block;
       padding: 0;
-      margin: 0 0 .5rem;
+      margin: 0;
       border: 0;
-      font-size: .8rem;
+      font-size: .7rem;
       font-weight: normal;
       color: #757575; }
       .mce-content-body .ys-ad-block .ys-ad-title:before, .mce-content-body .ys-ad-block .ys-ad-title:after {
