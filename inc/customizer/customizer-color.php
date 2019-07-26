@@ -138,7 +138,7 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_section(
 		array(
 			'section'  => 'ys_color_nav',
-			'title'    => 'スライドメニュー(モバイル)',
+			'title'    => 'モバイルメニュー',
 			'priority' => 0,
 			'panel'    => 'ys_customizer_panel_color',
 		)
