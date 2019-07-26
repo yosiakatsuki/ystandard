@@ -99,7 +99,7 @@ function ys_the_ad_before_entry_title() {
 	}
 }
 
-add_action( 'ys_before_entry_title', 'ys_the_ad_before_entry_title' );
+add_action( 'ys_singular_before_title', 'ys_the_ad_before_entry_title' );
 /**
  * タイトル下広告取得
  *
@@ -124,7 +124,7 @@ function ys_the_ad_after_entry_title() {
 	}
 }
 
-add_action( 'ys_after_entry_title', 'ys_the_ad_after_entry_title' );
+add_action( 'ys_singular_after_title', 'ys_the_ad_after_entry_title' );
 
 
 /**
