@@ -18,6 +18,7 @@ if ( ys_is_hide_post_header() ) {
 <header class="entry-header singular__header <?php ys_the_singular_class( 'header' ); ?>">
 	<?php
 	do_action( 'ys_singular_header_prepend' );
+	do_action( 'ys_singular_before_title' );
 	/**
 	 * ページタイトル
 	 */
@@ -25,6 +26,7 @@ if ( ys_is_hide_post_header() ) {
 		'<h1 class="entry-title singular__title ' . ys_get_singular_class( 'title' ) . '">',
 		'</h1>'
 	);
+	do_action( 'ys_singular_after_title' );
 	/**
 	 * アイキャッチ画像
 	 * フル幅サムネイル設定以外 & アイキャッチ画像表示
