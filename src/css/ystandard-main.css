@@ -1302,6 +1302,9 @@ figcaption {
 .has-drop-cap:first-letter {
   text-transform: uppercase; }
 
+.wp-block-image .aligncenter {
+  text-align: center; }
+
 .wp-block-gallery {
   display: flex;
   flex-wrap: wrap;
