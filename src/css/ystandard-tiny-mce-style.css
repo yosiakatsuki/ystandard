@@ -768,6 +768,8 @@
     text-align: center; }
   .mce-content-body .has-drop-cap:first-letter {
     text-transform: uppercase; }
+  .mce-content-body .wp-block-image .aligncenter {
+    text-align: center; }
   .mce-content-body .wp-block-gallery {
     display: flex;
     flex-wrap: wrap;
