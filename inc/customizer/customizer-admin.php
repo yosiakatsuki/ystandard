@@ -55,7 +55,7 @@ function ys_customizer_add_admin( $wp_customize ) {
 	$ys_customizer->add_label(
 		array(
 			'id'          => 'ys_admin_enable_block_editor_style_label',
-			'label'       => 'ブロックエディタ用CSSの追加',
+			'label'       => 'ブロックエディター用CSSの追加',
 			'description' => '※Gutenbergで有効な設定です。',
 		)
 	);
@@ -64,7 +64,7 @@ function ys_customizer_add_admin( $wp_customize ) {
 			'id'        => 'ys_admin_enable_block_editor_style',
 			'default'   => 1,
 			'transport' => 'postMessage',
-			'label'     => 'ブロックエディタ用CSSを追加する',
+			'label'     => 'ブロックエディター用CSSを追加する',
 		)
 	);
 	/**
@@ -73,8 +73,8 @@ function ys_customizer_add_admin( $wp_customize ) {
 	$ys_customizer->add_label(
 		array(
 			'id'          => 'ys_admin_enable_tiny_mce_style_label',
-			'label'       => 'ビジュアルエディタ用CSSの追加',
-			'description' => '※クラシックエディターで有効な設定です。<br>※ビジュアルエディタとテキストエディタの切り替えができなくなる等問題がある場合はチェックを外してください。',
+			'label'       => 'ビジュアルエディター用CSSの追加',
+			'description' => '※クラシックエディターで有効な設定です。<br>※ビジュアルエディターとテキストエディターの切り替えができなくなる等問題がある場合はチェックを外してください。',
 		)
 	);
 	$ys_customizer->add_checkbox(
@@ -82,7 +82,7 @@ function ys_customizer_add_admin( $wp_customize ) {
 			'id'        => 'ys_admin_enable_tiny_mce_style',
 			'default'   => 1,
 			'transport' => 'postMessage',
-			'label'     => 'ビジュアルエディタ用CSSを追加する',
+			'label'     => 'ビジュアルエディター用CSSを追加する',
 		)
 	);
 
