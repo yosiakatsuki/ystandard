@@ -46,7 +46,7 @@ $result = ys_setting_cache_post();
 						<td><?php echo ys_setting_cache_get_ranking_count(); ?></td>
 						<td><input type="submit" name="delete[ranking]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
 					</tr>
-					<th>カテゴリー・タグの記事一覧</th>
+					<th>新着記事一覧</th>
 					<td><?php echo ys_setting_cache_get_tax_posts_count(); ?></td>
 					<td><input type="submit" name="delete[tax_posts]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
 					</tr>
