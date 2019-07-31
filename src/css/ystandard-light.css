@@ -619,6 +619,10 @@ video {
 .ys-ad-block {
   margin: 2rem 0;
   text-align: center; }
+  .ys-ad-block:first-child {
+    margin-top: 0; }
+  .ys-ad-block:last-child {
+    margin-bottom: 0; }
   .ys-ad-block.ys-ad-widget {
     margin: 0; }
   .ys-ad-block .ys-ad-title {
