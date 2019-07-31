@@ -20,6 +20,9 @@ class YS_Shortcode_Post_Ranking extends YS_Shortcode_Get_Posts {
 	 * @param array $args ユーザー指定パラメーター.
 	 */
 	public function __construct( $args = array() ) {
+		if ( ! is_array( $args ) ) {
+			$args = array();
+		}
 		/**
 		 * ランキング用のパラメーター指定
 		 */
