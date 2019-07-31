@@ -65,8 +65,22 @@ $current_url = ys_get_page_url();
 							yStandard利用者同士での交流を目的としたSlackチームです<br><br>
 							テーマを利用していて気になった疑問点やカスタマイズTips等シェアしていただいてテーマをより楽しく使って頂けたらと思います<br>
 						</p>
+						<p class="wp-block-button -block">
+							<a class="ystd-settings__btn" href="https://wp-ystandard.com/ystandard-user-community/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>ユーザーコミュニティに参加する</a>
+						</p>
+					</div>
+				</div><!-- card -->
+			</div>
+			<div class="flex__col flex__col--md-2">
+				<div class="card">
+					<h3>拡張プラグイン</h3>
+					<div class="ystd-settings__icon"><i class="fas fa-plug fa-2x"></i></div>
+					<div class="card__text">
 						<p>
-							<a class="ystd-settings__btn btn btn--block" href="https://wp-ystandard.com/ystandard-user-community/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>ユーザーコミュニティに参加する</a>
+							yStandardでブログを書くことがもっと楽しくなる拡張プラグインを準備中です！
+						</p>
+						<p class="wp-block-button -block">
+							<span class="text-gray">準備中…</span>
 						</p>
 					</div>
 				</div><!-- card -->

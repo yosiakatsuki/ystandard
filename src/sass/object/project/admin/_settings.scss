@@ -22,7 +22,13 @@
     padding: 0;
     max-width: 100%;
   }
+  
+  .text-gray {
+    color: $color__text-light;
+  }
 }
+
+
 
 .ystd-settings__icon {
   margin-top: 2rem;
