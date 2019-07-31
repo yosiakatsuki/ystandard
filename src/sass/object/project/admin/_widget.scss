@@ -1,0 +1,114 @@
+select {
+  max-width: 100%;
+}
+
+.ys-widget-option {
+  position: relative;
+  margin: .5rem 0 2rem;
+}
+
+.ys-widget-option__container {
+  height: 0;
+  opacity: 0;
+  overflow-y: hidden;
+  transition: all .3s;
+}
+
+.ys-widget-option__toggle {
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  visibility: hidden;
+}
+
+.ys-widget-option__toggle-label {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-height: 51px;
+  padding: 1rem;
+  border-left: 1px solid $color__border-gray;;
+  color: $color__text-main;
+  line-height: 1.4;
+}
+
+.ys-widget-option__toggle-icon::before {
+  content: '\f0d7';
+}
+
+.ys-widget-option__toggle:checked {
+  & ~ .ys-widget-option__toggle-label {
+    .ys-widget-option__toggle-icon::before {
+      content: '\f0d8';
+    }
+  }
+
+  & ~ .ys-widget-option__container {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.ys-widget-option__section {
+  h4 {
+    padding-bottom: .25em;
+    margin: 2em 0 1em;
+    border-bottom: 1px solid $color__border-gray;
+    font-size: 1.05em;
+  }
+}
+
+.ys-widget-option__title {
+  max-height: 51px;
+  padding: 1rem;
+  margin: 0;
+  background-color: $color__bg-gray-light;
+  border: 1px solid $color__border-gray;
+  font-size: 1.1em;
+}
+
+.ys-widget-option__select {
+  &.multiple {
+    display: block;
+    width: 99%;
+    padding: .25em;
+    border: 1px solid $color__border-gray-light;
+  }
+}
+
+.ys-widget-option__sub {
+  font-size: .8em;
+  color: $color__text-light;
+}
+
+.ys-widget-option__check-list {
+  max-height: 7.5rem;
+  padding: .5rem 0;
+  border: 1px solid $color__border-gray;
+  overflow-y: scroll;
+
+  label {
+    display: block;
+    padding: .2rem .5rem;
+    line-height: 1.5;
+  }
+}
+
+.ys-widget-option__check-list-group {
+  margin: .1rem 0 .5rem;
+
+  & > .ys-widget-option__check-list-group-item {
+    padding-left: 0;
+  }
+}
+
+.ys-widget-option__check-list-group-item {
+  padding-left: 1rem;
+}
+
+.ys-widget-option__check-list-group-title {
+  color: $color__text-light;
+  font-weight: bold;
+  padding: 0 .5rem;
+}

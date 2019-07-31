@@ -1,0 +1,33 @@
+@include media-breakpoint(lg) {
+  .sidebar {
+    @at-root {
+      & {
+        margin-top: 0;
+      }
+
+      .has-sidebar & {
+        flex: 1 1 $width__sidebar;
+        max-width: $width__sidebar;
+      }
+    }
+  }
+
+  .sidebar__fixed {
+    @at-root {
+      .has-sidebar & {
+        position: sticky;
+        top: 1rem;
+      }
+    }
+  }
+
+  .sidebar-wrapper {
+    @at-root {
+      .has-sidebar & {
+        height: 100%;
+      }
+    }
+  }
+
+}
+  

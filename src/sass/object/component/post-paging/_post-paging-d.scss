@@ -1,0 +1,9 @@
+@include media-breakpoint(md) {
+  .post-paging__item {
+    border-top: 1px solid $color__border-gray-light;
+    border-bottom: 1px solid $color__border-gray-light;
+  }
+  .post-paging__detail {
+    padding: 1rem;
+  }
+}

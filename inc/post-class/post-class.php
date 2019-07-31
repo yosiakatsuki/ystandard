@@ -14,26 +14,13 @@
  *
  * @return array
  */
-function ys_ystd_post_class( $classes ) {
+function ys_post_class( $classes ) {
 	/**
 	 * [hentryの削除]
 	 */
-	/**
-	 * 著者情報
-	 */
-	$flag = ! ys_is_display_author_data();
-	if ( apply_filters( 'ys_remove_hentry_author', $flag ) ) {
+	if ( apply_filters( 'ystd_remove_hentry', true ) ) {
 		$classes = array_diff( $classes, array( 'hentry' ) );
 	}
-
-	/**
-	 * 投稿日・更新日
-	 */
-	$flag = ! ys_is_active_publish_date();
-	if ( apply_filters( 'ys_remove_hentry_publish_date', $flag ) ) {
-		$classes = array_diff( $classes, array( 'hentry' ) );
-	}
-
 	/**
 	 * アイキャッチ画像の有無
 	 */
@@ -46,7 +33,36 @@ function ys_ystd_post_class( $classes ) {
 	return $classes;
 }
 
-add_filter( 'post_class', 'ys_ystd_post_class' );
+add_filter( 'post_class', 'ys_post_class' );
 
+/**
+ * Single,Pageで振り分けるクラスを作成する
+ *
+ * @param string $class 作成するクラス.
+ */
+function ys_the_singular_class( $class ) {
+	echo ys_get_singular_class( $class );
+}
 
+/**
+ * Single,Pageで振り分けるクラスを作成する
+ *
+ * @param string $class 作成するクラス.
+ *
+ * @return string
+ */
+function ys_get_singular_class( $class ) {
+	$prefix = '';
+	if ( is_single() ) {
+		$prefix = 'single';
+	} elseif ( is_page() ) {
+		$prefix = 'page';
+	}
+	$prefix = apply_filters( 'ys_get_singular_class_prefix', $prefix );
+	if ( '' !== $prefix ) {
+		$prefix .= '__';
+	}
+
+	return $prefix . $class;
+}
 

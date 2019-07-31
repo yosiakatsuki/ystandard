@@ -8,27 +8,6 @@
  */
 
 /**
- * 色のデフォルト値一覧取得
- */
-function ys_customizer_get_defaults() {
-	return array(
-		'ys_color_site_bg'          => '#ffffff',
-		'ys_color_site_font'        => '#222222',
-		'ys_color_site_font_sub'    => '#939393',
-		'ys_color_header_bg'        => '#ffffff',
-		'ys_color_header_font'      => '#222222',
-		'ys_color_header_dscr_font' => '#939393',
-		'ys_color_nav_bg_pc'        => '#ffffff',
-		'ys_color_nav_font_pc'      => '#939393',
-		'ys_color_nav_bg_sp'        => '#292b2c',
-		'ys_color_nav_btn_sp'       => '#292b2c',
-		'ys_color_nav_font_sp'      => '#ffffff',
-		'ys_color_footer_bg'        => '#292b2c',
-		'ys_color_footer_font'      => '#ffffff',
-	);
-}
-
-/**
  * テーマカスタマイザーでの色指定 CSS取得
  *
  * @return string
@@ -40,13 +19,16 @@ function ys_get_customizer_inline_css_color() {
 	/**
 	 * 設定取得
 	 */
-	$html_bg       = ys_customizer_get_color_option( 'ys_color_site_bg' );
-	$html_font     = ys_customizer_get_color_option( 'ys_color_site_font' );
-	$html_font_sub = ys_customizer_get_color_option( 'ys_color_site_font_sub' );
-	$header_bg     = ys_customizer_get_color_option( 'ys_color_header_bg' );
-	$header_font   = ys_customizer_get_color_option( 'ys_color_header_font' );
-	$footer_bg     = ys_customizer_get_color_option( 'ys_color_footer_bg' );
-	$footer_font   = ys_customizer_get_color_option( 'ys_color_footer_font' );
+	$html_bg              = ys_get_option( 'ys_color_site_bg' );
+	$header_bg            = ys_get_option( 'ys_color_header_bg' );
+	$header_font          = ys_get_option( 'ys_color_header_font' );
+	$header_dscr          = ys_get_option( 'ys_color_header_dscr_font' );
+	$mobile_nav_bg        = ys_get_option( 'ys_color_nav_bg_sp' );
+	$mobile_nav_font      = ys_get_option( 'ys_color_nav_font_sp' );
+	$mobile_nav_btn_open  = ys_get_option( 'ys_color_nav_btn_sp_open' );
+	$mobile_nav_btn_close = ys_get_option( 'ys_color_nav_btn_sp' );
+	$footer_bg            = ys_get_option( 'ys_color_footer_bg' );
+	$footer_font          = ys_get_option( 'ys_color_footer_font' );
 
 	$css = '';
 	/**
@@ -58,222 +40,251 @@ function ys_get_customizer_inline_css_color() {
 		),
 		array(
 			'background-color' => $html_bg,
-			'color'            => $html_font,
-		)
-	);
-
-	/**
-	 * 文字色を使っている部分
-	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.color__font-main',
-		),
-		array(
-			'color' => $html_font,
 		)
 	);
 	/**
-	 * 文字色を使っている部分
+	 * 背景色がデフォルト以外の場合
 	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.color__bg-main',
-		),
-		array(
-			'background-color' => $html_font,
-		)
-	);
+	if ( ys_get_option_default( 'ys_color_site_bg' ) !== $html_bg ) {
+		/**
+		 * 追加CSS
+		 */
+		$css_temp = '';
+		if ( ! ys_is_full_width() ) {
+			$css      .= ys_customizer_create_inline_css(
+				array(
+					'.content__main',
+				),
+				array(
+					'padding' => '2rem 1rem',
+					'margin'  => '0 -1rem',
+				)
+			);
+			$css_temp .= ys_customizer_create_inline_css(
+				array(
+					'.content__main',
+				),
+				array(
+					'padding' => '2rem',
+					'margin'  => '0',
+				)
+			);
+			$css_temp .= ys_customizer_create_inline_css(
+				array(
+					'.has-sidebar .content__main',
+				),
+				array(
+					'margin-right' => '0',
+				)
+			);
+		} else {
+			$css .= ys_customizer_create_inline_css(
+				array(
+					'.full-width:not(.one-column-no-title) .site__content',
+				),
+				array(
+					'margin-top' => '1rem',
+				)
+			);
+		}
+		/**
+		 * パンくず調整
+		 */
+		$css .= ys_customizer_create_inline_css(
+			array(
+				'.breadcrumbs',
+			),
+			array(
+				'padding' => '1rem 0 0',
+			)
+		);
+		/**
+		 * サイドバーあり
+		 */
+		if ( ys_is_active_sidebar_widget() ) {
+			/**
+			 * PC
+			 */
+			$css      .= ys_customizer_create_inline_css(
+				array(
+					'.sidebar-wrapper',
+				),
+				array(
+					'background-color' => '#fff',
+					'padding'          => '2rem 1rem',
+					'margin'           => '0 -1rem',
+				)
+			);
+			$css_temp .= ys_customizer_create_inline_css(
+				array(
+					'.sidebar-wrapper',
+				),
+				array(
+					'margin' => '0',
+				)
+			);
+		}
+		/**
+		 * PC
+		 */
+		if ( ! ys_is_mobile() ) {
+			$css .= ys_customizer_add_media_query( $css_temp, 'lg' );
+		}
+	}
 	/**
-	 * 薄文字部分
+	 * ヘッダー 背景色
 	 */
 	$css .= ys_customizer_create_inline_css(
 		array(
-			'.color__font-sub',
-			'input:placeholder-shown',
-			'.sidebar .widget_recent_entries a:not(:hover)',
-			'.sidebar .widget_categories a:not(:hover)',
-			'.sidebar .widget_archive a:not(:hover)',
-			'.sidebar .widget_nav_menu a:not(:hover)',
-			'.sidebar .widget_pages a:not(:hover)',
-			'.sidebar .widget_meta a:not(:hover)',
-			'.sidebar .widget_calendar a:not(:hover)',
-			'.sidebar .widget_ys_ranking a:not(:hover)',
-			'.sidebar .widget_ys_taxonomy_posts a:not(:hover)',
-		),
-		array(
-			'color' => $html_font_sub,
-		)
-	);
-
-	/**
-	 * プレースホルダ
-	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'input::-webkit-input-placeholder',
-		),
-		array(
-			'color' => $html_font_sub,
-		)
-	);
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'input:-ms-input-placeholder',
-		),
-		array(
-			'color' => $html_font_sub,
-		)
-	);
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'input::-moz-placeholder',
-		),
-		array(
-			'color' => $html_font_sub,
-		)
-	);
-
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.search-field',
-		),
-		array(
-			'border-color' => $html_font_sub,
-		)
-	);
-	/**
-	 * ***********************************
-	 * ヘッダーカラー
-	 * ***********************************
-	 */
-	/**
-	 * 背景色
-	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.color__site-header',
+			'.site-header',
 		),
 		array(
 			'background-color' => $header_bg,
 		)
 	);
 	/**
-	 * 文字色（テキストの場合のみ）
+	 * ヘッダー 背景色 PC
+	 */
+	if ( ! ys_is_mobile() && ! ys_is_amp() ) {
+		$css .= ys_customizer_add_media_query(
+			ys_customizer_create_inline_css(
+				array(
+					'.h-nav.rwd li:hover ul',
+				),
+				array(
+					'background-color' => $header_bg,
+					'opacity'          => '.9',
+				)
+			),
+			'lg'
+		);
+	}
+	/**
+	 * ヘッダー文字色
 	 */
 	$css .= ys_customizer_create_inline_css(
 		array(
-			'.color__site-header',
-			'.color__site-title, .color__site-title:hover',
+			'.header__title',
+			'.header__title a',
 		),
 		array(
 			'color' => $header_font,
 		)
 	);
 	/**
-	 * 概要文字色（テキストの場合のみ）
+	 * ヘッダーナビゲーション PC
+	 */
+	if ( ! ys_is_mobile() && ! ys_is_amp() ) {
+		$css .= ys_customizer_add_media_query(
+			ys_customizer_create_inline_css(
+				array(
+					'.h-nav.rwd .h-nav__main a',
+				),
+				array(
+					'color' => $header_font,
+				)
+			),
+			'lg'
+		);
+	}
+
+	/**
+	 * ヘッダー概要文字色（テキストの場合のみ）
 	 */
 	$css .= ys_customizer_create_inline_css(
 		array(
-			'.color__site-dscr',
+			'.header__dscr',
 		),
 		array(
-			'color' => ys_customizer_get_color_option( 'ys_color_header_dscr_font' ),
+			'color' => $header_dscr,
 		)
 	);
 
 	/**
-	 * ナビゲーションカラー
+	 * モバイルナビゲーション 背景
 	 */
+	$css .= ys_customizer_add_media_query(
+		ys_customizer_create_inline_css(
+			array(
+				'.h-nav__main',
+			),
+			array(
+				'background-color' => $mobile_nav_bg,
+			)
+		),
+		'lg',
+		'max'
+	);
 	/**
-	 * SP Only
+	 * モバイルナビゲーション 文字
 	 */
-	$css .= '@media screen and (max-width: 959px) {';
+	$css .= ys_customizer_add_media_query(
+		ys_customizer_create_inline_css(
+			array(
+				'.h-nav__main a',
+				'.h-nav__search input',
+				'.h-nav__search button',
+			),
+			array(
+				'color' => $mobile_nav_font,
+			)
+		),
+		'lg',
+		'max'
+	);
+	$css .= ys_customizer_add_media_query(
+		ys_customizer_create_inline_css(
+			array(
+				'.h-nav__search input',
+				'.h-nav__search button',
+			),
+			array(
+				'border-color' => $mobile_nav_font,
+			)
+		),
+		'lg',
+		'max'
+	);
+	$css .= ys_customizer_add_media_query(
+		ys_customizer_create_inline_css(
+			array(
+				'.h-nav__main a',
+				'.h-nav__search input',
+				'.h-nav__search button',
+			),
+			array(
+				'color' => $mobile_nav_font,
+			)
+		),
+		'lg',
+		'max'
+	);
 	/**
-	 * 背景
+	 * モバイルナビゲーション 開ける ボタン
 	 */
 	$css .= ys_customizer_create_inline_css(
 		array(
-			'.color__nav-bg--sp',
+			'.hamburger span',
 		),
 		array(
-			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_bg_sp' ),
+			'background-color' => $mobile_nav_btn_open,
 		)
 	);
 	/**
-	 * 文字
+	 * モバイルナビゲーション 閉じるボタン
 	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.color__nav-font--sp',
+	$css .= ys_customizer_add_media_query(
+		ys_customizer_create_inline_css(
+			array(
+				'#h-nav__toggle:checked~.h-nav__btn .hamburger span',
+			),
+			array(
+				'background-color' => $mobile_nav_btn_close,
+			)
 		),
-		array(
-			'color' => ys_customizer_get_color_option( 'ys_color_nav_font_sp' ),
-		)
+		'lg',
+		'max'
 	);
-	/**
-	 * ボタン
-	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.global-nav__btn span',
-		),
-		array(
-			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_btn_sp' ),
-		)
-	);
-	/**
-	 * ボタン（OPEN）
-	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'#header__nav-toggle:checked~.global-nav__btn span',
-		),
-		array(
-			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_font_sp' ),
-		)
-	);
-	$css .= '}';
-
-	/**
-	 * PC Only
-	 */
-	$css .= '@media screen and (min-width: 960px) {';
-	/**
-	 * 背景
-	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.color__nav-bg--pc',
-			'.global-nav__sub-menu li',
-		),
-		array(
-			'background-color' => ys_customizer_get_color_option( 'ys_color_nav_bg_pc' ),
-		)
-	);
-	/**
-	 * 文字
-	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.color__nav-font--pc',
-		),
-		array(
-			'color' => ys_customizer_get_color_option( 'ys_color_nav_font_pc' ),
-		)
-	);
-	/**
-	 * 文字下線
-	 */
-	$css .= ys_customizer_create_inline_css(
-		array(
-			'.global-nav__item:not(.menu-item-has-children):hover',
-		),
-		array(
-			'border-bottom' => '1px solid ' . ys_customizer_get_color_option( 'ys_color_nav_font_pc' ),
-		)
-	);
-	$css .= '}';
 	/**
 	 * フッターカラー
 	 */
@@ -343,30 +354,43 @@ function ys_customizer_get_footer_sns_css() {
 	return $css;
 }
 
-
 /**
- * カスタマイザーの色設定取得
+ * カスタマイザー設定のCSSにメディアクエリを追加
  *
- * @param  string $name 設定名.
+ * @param string $css        Styles.
+ * @param string $breakpoint Breakpoint.
+ * @param string $type       Breakpoint type(min or max).
  *
  * @return string
  */
-function ys_customizer_get_color_option( $name ) {
-	return get_option(
-		$name,
-		ys_customizer_get_default_color( $name )
+function ys_customizer_add_media_query( $css, $breakpoint, $type = 'min' ) {
+	/**
+	 * ブレークポイント
+	 */
+	$breakpoints = array(
+		'md' => 600,
+		'lg' => 1025,
 	);
-}
+	/**
+	 * 切り替え位置取得
+	 */
+	if ( isset( $breakpoints[ $breakpoint ] ) ) {
+		$breakpoint = $breakpoints[ $breakpoint ];
+		if ( 'max' === $type ) {
+			$breakpoint = $breakpoint - 0.1;
+		}
+	}
+	/**
+	 * 以上・以下判断
+	 */
+	if ( 'min' !== $type && 'max' !== $type ) {
+		return $css;
+	}
 
-/**
- * 色デフォルト値取得
- *
- * @param  string $setting_name 色のデフォルト値取得.
- *
- * @return string
- */
-function ys_customizer_get_default_color( $setting_name ) {
-	$default_colors = ys_customizer_get_defaults();
-
-	return $default_colors[ $setting_name ];
+	return sprintf(
+		'@media screen and (%s-width: %spx) {%s}',
+		$type,
+		$breakpoint,
+		$css
+	);
 }

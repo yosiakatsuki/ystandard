@@ -8,22 +8,6 @@
  */
 
 /**
- * クラス読み込み
- */
-require_once get_template_directory() . '/inc/class/class-ys-post-list.php';
-require_once get_template_directory() . '/inc/class/class-ys-enqueue.php';
-require_once get_template_directory() . '/inc/class/class-ys-cache.php';
-require_once get_template_directory() . '/inc/class/class-ys-walker-global-nav-menu.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-utility.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-base.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-post-list.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-ad-text-widget.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-ranking-widget.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-taxonomy-posts-widget.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-custom-html.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-text.php';
-require_once get_template_directory() . '/inc/class/widgets/class-ys-widget-profile-box.php';
-/**
  * 変数
  */
 require_once get_template_directory() . '/inc/variables/variables.php';
@@ -58,13 +42,7 @@ require_once get_template_directory() . '/inc/init/init.php';
 /**
  * Enqueue
  */
-require_once get_template_directory() . '/inc/enqueue/enqueue-function.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-admin.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-optimize.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-customizer.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-customizer-color.php';
-require_once get_template_directory() . '/inc/enqueue/enqueue-customizer-custom-header.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue-loader.php';
 /**
  * Post-meta
  */
@@ -82,12 +60,9 @@ require_once get_template_directory() . '/inc/template/template.php';
  */
 require_once get_template_directory() . '/inc/archive/archive.php';
 /**
- * <head>
- */
-require_once get_template_directory() . '/inc/head/head.php';
-/**
  * ヘッダー
  */
+require_once get_template_directory() . '/inc/header/head.php';
 require_once get_template_directory() . '/inc/header/header.php';
 require_once get_template_directory() . '/inc/header/custom-header.php';
 /**
@@ -115,7 +90,7 @@ require_once get_template_directory() . '/inc/advertisement/advertisement.php';
  * SNS
  */
 require_once get_template_directory() . '/inc/sns/share-button.php';
-require_once get_template_directory() . '/inc/sns/subscribe.php';
+require_once get_template_directory() . '/inc/sns/follow-box.php';
 /**
  * Author
  */
@@ -138,11 +113,7 @@ require_once get_template_directory() . '/inc/taxonomy/tag.php';
 /**
  * AMP
  */
-require_once get_template_directory() . '/inc/amp/amp-convert.php';
-require_once get_template_directory() . '/inc/amp/amp-filter.php';
-require_once get_template_directory() . '/inc/amp/amp-head.php';
-require_once get_template_directory() . '/inc/amp/amp-footer.php';
-require_once get_template_directory() . '/inc/amp/amp-google-analytics.php';
+require_once get_template_directory() . '/inc/amp/amp-loader.php';
 /**
  * ショートコード
  */
@@ -164,10 +135,6 @@ require_once get_template_directory() . '/inc/pagination/pagination.php';
  */
 require_once get_template_directory() . '/inc/comment/comment.php';
 /**
- * ページング
- */
-require_once get_template_directory() . '/inc/paging/paging.php';
-/**
  * RSS
  */
 require_once get_template_directory() . '/inc/rss/rss.php';
@@ -187,6 +154,10 @@ require_once get_template_directory() . '/inc/blog-card/blog-card.php';
  * 互換関連
  */
 require_once get_template_directory() . '/inc/compatibility/compatibility.php';
+/**
+ * 後々削除
+ */
+require_once get_template_directory() . '/inc/deprecated/deprecated.php';
 if ( is_admin() ) {
 	/**
 	 * テーマ設定画面
@@ -196,8 +167,8 @@ if ( is_admin() ) {
 	 * アップデートチェック
 	 */
 	require_once get_template_directory() . '/inc/update-checker/update-checker.php';
+	/**
+	 * 新しい設定への変更
+	 */
+	require_once get_template_directory() . '/inc/migration/option-migration.php';
 }
-/**
- * V2でいずれ廃止予定
- */
-require_once get_template_directory() . '/inc/migration-v1-v2/v1/theme-settings.php';

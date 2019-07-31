@@ -1,8 +1,7 @@
 /**
  * ブロックエディタ・ビジュアルエディタ用CSS
  */
-
 /* ビジュアルエディタ用 セレクタ */
-body#tinymce.wp-editor {
-	
+.mce-content-body h1{
+	/*など*/
 }

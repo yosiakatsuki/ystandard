@@ -324,6 +324,51 @@ function ys_customizer_sns_add_sns_share_button( $wp_customize ) {
 			'label'   => '記事下部にシェアボタンを表示する',
 		)
 	);
+	/**
+	 * シェアボタン表示列数
+	 */
+	$ys_customizer->add_label(
+		array(
+			'id'    => 'ys_sns_share_col_label',
+			'label' => 'シェアボタンの表示列数',
+		)
+	);
+	/**
+	 * PCでの列数
+	 */
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_sns_share_col_pc',
+			'default'     => 6,
+			'label'       => 'PCでの列数(1~6)',
+			'input_attrs' => array(
+				'min' => 1,
+				'max' => 6,
+			),
+		)
+	);
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_sns_share_col_tablet',
+			'default'     => 3,
+			'label'       => 'タブレットでの列数(1~6)',
+			'input_attrs' => array(
+				'min' => 1,
+				'max' => 6,
+			),
+		)
+	);
+	$ys_customizer->add_number(
+		array(
+			'id'          => 'ys_sns_share_col_sp',
+			'default'     => 3,
+			'label'       => 'スマートフォンでの列数(1~6)',
+			'input_attrs' => array(
+				'min' => 1,
+				'max' => 6,
+			),
+		)
+	);
 }
 
 /**
@@ -352,15 +397,6 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 			'label' => '投稿ユーザー（via）の設定',
 		)
 	);
-	$ys_customizer->add_checkbox(
-		array(
-			'id'          => 'ys_sns_share_tweet_via',
-			'default'     => 0,
-			'transport'   => 'postMessage',
-			'label'       => 'Twitterシェアにviaを付加する',
-			'description' => '※「viaに設定するTwitterアカウント名」の設定も必要です',
-		)
-	);
 	/**
 	 * Viaに設定するTwitterアカウント名
 	 */
@@ -370,7 +406,7 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 			'default'     => '',
 			'transport'   => 'postMessage',
 			'label'       => 'viaに設定するTwitterアカウント名',
-			'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」',
+			'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」<br>未入力の場合viaは設定されません。',
 			'input_attrs' => array(
 				'placeholder' => 'username',
 			),
@@ -385,15 +421,6 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 			'label' => 'おすすめアカウントの設定',
 		)
 	);
-	$ys_customizer->add_checkbox(
-		array(
-			'id'          => 'ys_sns_share_tweet_related',
-			'default'     => 0,
-			'transport'   => 'postMessage',
-			'label'       => 'ツイート後におすすめアカウントを表示する',
-			'description' => '※合わせて「ツイート後に表示するおすすめアカウント」の設定が必要です',
-		)
-	);
 	/**
 	 * ツイート後に表示するおすすめアカウント
 	 */
@@ -403,7 +430,7 @@ function ys_customizer_sns_add_twitter_share( $wp_customize ) {
 			'default'     => '',
 			'transport'   => 'postMessage',
 			'label'       => 'ツイート後に表示するおすすめアカウント',
-			'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」<br>複数のアカウントをおすすめ表示する場合はカンマで区切って下さい',
+			'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」<br>複数のアカウントをおすすめ表示する場合はカンマで区切って下さい。<br>未入力の場合おすすめアカウントは設定されません。',
 			'input_attrs' => array(
 				'placeholder' => 'username',
 			),

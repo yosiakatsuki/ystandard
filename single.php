@@ -3,24 +3,20 @@
  * 投稿詳細ページテンプレート
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-get_header(); ?>
-<div class="container">
-	<div class="content-area content__wrap">
-		<main id="main" class="site-main content__main">
-			<?php do_action( 'ys_site_main_prepend' ); ?>
+ys_get_header(); ?>
+	<div class="container">
+		<div class="flex flex--row">
 			<?php
 			while ( have_posts() ) :
 				the_post();
-				get_template_part( 'template-parts/content/single', ys_get_single_template() );
+				get_template_part( 'template-parts/single/content' );
 			endwhile;
 			?>
-			<?php do_action( 'ys_site_main_append' ); ?>
-		</main><!-- .site-main -->
-		<?php get_sidebar(); ?>
-	</div><!-- .content-area -->
-</div><!-- .container -->
+			<?php get_sidebar(); ?>
+		</div>
+	</div><!-- .container -->
 <?php get_footer(); ?>

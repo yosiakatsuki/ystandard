@@ -1,0 +1,37 @@
+.breadcrumbs {
+  @at-root {
+
+    & {
+      padding: .5rem 0;
+      font-size: 0;
+      line-height: 1.2;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      list-style: none;
+
+      a {
+        text-decoration: none;
+        color: $color__text-light;
+      }
+    }
+    
+    .singular.col-1:not(.full-width):not(.has-bg-color) .breadcrumbs__list {
+      max-width: $width__content_one_col;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .breadcrumbs__item {
+      display: inline;
+      font-size: .7rem;
+      color: $color__text-light;
+
+      &:not(:last-child):after {
+        content: "/";
+        margin: 0 .25rem;
+      }
+    }
+  }
+  // @
+}

@@ -1,0 +1,23 @@
+//変数、mixin、functionなど
+@import "foundation/import";
+
+
+.mce-content-body {
+  color: $color__text-main;
+  font-family: $font__body;
+  line-height: $font__line-height;
+  word-wrap: break-word;
+  background-color: $color__bg-body;
+  letter-spacing: $font__spacing;
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  
+  @import "foundation/base/base";
+  //Component
+  @import "object/component/component";
+  //Utility
+  @import "object/utility/utility";
+}
+

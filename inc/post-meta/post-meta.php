@@ -7,23 +7,22 @@
  * @license GPL-2.0+
  */
 
-if ( ! function_exists( 'ys_get_post_meta' ) ) {
-	/**
-	 * 投稿オプション(post-meta)取得
-	 *
-	 * @param  string  $key     設定キー.
-	 * @param  integer $post_id 投稿ID.
-	 *
-	 * @return string
-	 */
-	function ys_get_post_meta( $key, $post_id = 0 ) {
-		if ( 0 === $post_id ) {
-			$post_id = get_the_ID();
-		}
-
-		return apply_filters( 'ys_get_post_meta', get_post_meta( $post_id, $key, true ), $key, $post_id );
+/**
+ * 投稿オプション(post-meta)取得
+ *
+ * @param  string  $key     設定キー.
+ * @param  integer $post_id 投稿ID.
+ *
+ * @return string
+ */
+function ys_get_post_meta( $key, $post_id = 0 ) {
+	if ( 0 === $post_id ) {
+		$post_id = get_the_ID();
 	}
+
+	return apply_filters( 'ys_get_post_meta', get_post_meta( $post_id, $key, true ), $key, $post_id );
 }
+
 /**
  * 投稿オプション追加
  */
@@ -51,7 +50,7 @@ function ys_add_post_option() {
 			<input type="checkbox" id="ys_hide_meta_dscr" name="ys_hide_meta_dscr" value="1" <?php checked( ys_get_post_meta( 'ys_hide_meta_dscr', $post->ID ), '1', true ); ?> />meta descriptionタグを<strong>無効化</strong>する
 		</label>
 		<div id="ys-ogp-description-section" class="meta-box__section">
-			<label for="ys_ogp_description">OGP/Twitter Cards用description</label><br>
+			<label class="meta-box__label" for="ys_ogp_description">OGP/Twitter Cards用description</label>
 			<textarea id="ys_ogp_description" class="meta-box__full-w" name="ys_ogp_description" rows="4" cols="40"><?php echo ys_get_post_meta( 'ys_ogp_description', $post->ID ); ?></textarea>
 			<div class="meta-box__dscr">※OGP/Twitter Cardsのdescriptionとして出力する文章を設定できます。空白の場合、投稿本文から自動でdescriptionを作成します。</div><!-- .meta-box__dscr -->
 		</div><!-- #ys-ogp-description-section -->

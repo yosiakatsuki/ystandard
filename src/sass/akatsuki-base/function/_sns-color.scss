@@ -1,6 +1,0 @@
-//
-// SNS色取得
-// 
-@function get_sns_color($sns) {
- @return map-get( $sns-color, $sns );
-}

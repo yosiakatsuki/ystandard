@@ -1,0 +1,25 @@
+@include media-breakpoint(lg) {
+  .site__content {
+    @at-root {
+      .has-sidebar & {
+        overflow: unset;
+      }
+    }
+  }
+  
+  .content__wrap {
+    @at-root {
+      .has-sidebar & {
+        max-width: calc(100% - #{$width__sidebar});
+      }
+    }
+  }
+  .content__main {
+    @at-root {
+      .has-sidebar & {
+        height: 100%;
+        margin-right: 4rem;
+      }
+    }
+  }
+}

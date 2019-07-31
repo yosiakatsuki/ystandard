@@ -1,4 +1,3 @@
-//あとでちゃんと焼き直す
 jQuery(document).ready(function($){
 	var custom_uploader;
 	var title = '画像を選択',

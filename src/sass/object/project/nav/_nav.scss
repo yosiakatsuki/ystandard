@@ -1,0 +1,150 @@
+
+.h-nav {
+  @at-root {
+    & {
+      ul,
+      li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      li {
+        //2層
+        ul {
+          a {
+            padding-left: 2.5rem;
+          }
+        }
+      }
+
+      a {
+        display: block;
+        padding: 1rem 1rem;
+        text-decoration: none;
+      }
+
+      label {
+        appearance: none;
+        cursor: pointer;
+      }
+    }
+    
+    
+
+    .hamburger {
+      display: inline-block;
+      position: relative;
+      width: 30px;
+      height: 22px;
+
+      span {
+        display: inline-block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        background-color: $color__text-main;
+        border-radius: 4px;
+        transition: all .4s;
+
+        &.top {
+          top: 0;
+        }
+        &.middle {
+          top: 10px;
+        }
+        &.bottom {
+          bottom: 0;
+        }
+      }
+    }
+
+    .h-nav__btn {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      transform: translateY(-50%);
+      z-index: 20;
+    }
+
+    .h-nav__main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column-reverse;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      padding: 2rem;
+      margin: 0;
+      background-color: rgba(#000, .9);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 10;
+      transition: all .3s ease;
+      & > ul {
+        position: relative;
+        max-height: 100%;
+        max-width: 500px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar {
+          width: 1px;
+        }
+        &::-webkit-scrollbar-track {
+          background-color: rgba(#fff, .2);
+        }
+        &::-webkit-scrollbar-thumb {
+          background-color: rgba(#fff, .9);
+        }
+      }
+      a {
+        color: #fff;
+      }
+    }
+
+    //ハンバーガーボタンを押された時
+    #h-nav__toggle:checked {
+      & ~ .h-nav__btn {
+        .hamburger {
+          span {
+            background-color: #fff;
+          }
+          span.top {
+            transform: translateY(10px) rotate(-45deg);
+          }
+          span.middle {
+            opacity: 0;
+          }
+          span.bottom {
+            transform: translateY(-10px) rotate(45deg);
+          }
+        }
+        //hamburger
+      }
+      & ~ .h-nav__main {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+    
+    &.rwd {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .h-nav__search {
+      margin-top: 1rem;
+      input,
+      button {
+        background-color: transparent;
+      }
+    }
+    .h-nav__dscr {
+      display: none;
+    }
+  }
+  //@
+}

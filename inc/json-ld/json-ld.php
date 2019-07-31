@@ -3,42 +3,41 @@
  * Json-LD出力
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-if ( ! function_exists( 'ys_the_json_ld' ) ) {
-	/**
-	 * Json-LD出力
-	 */
-	function ys_the_json_ld() {
+/**
+ * Json-LD出力
+ */
+function ys_the_json_ld() {
 
-		if ( is_home() || is_archive() ) {
-			global $posts;
-			$json = array();
-			foreach ( $posts as $post ) {
-				$json[] = ys_get_json_ld_article( $post );
-			}
-		} elseif ( is_singular() && ! is_front_page() ) {
-			/**
-			 * 個別ページ
-			 */
-			$json = ys_get_json_ld_article();
-		} else {
-			/**
-			 * TOP・一覧ページなど
-			 */
-			$json = array(
-				ys_get_json_ld_organization(),
-				ys_get_json_ld_website(),
-			);
+	if ( is_home() || is_archive() ) {
+		global $posts;
+		$json = array();
+		foreach ( $posts as $post ) {
+			$json[] = ys_get_json_ld_article( $post );
 		}
-		$json = json_encode( $json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
-		if ( '' !== $json ) {
-			echo '<script type="application/ld+json">' . $json . '</script>' . PHP_EOL;
-		}
+	} elseif ( is_singular() && ! is_front_page() ) {
+		/**
+		 * 個別ページ
+		 */
+		$json = ys_get_json_ld_article();
+	} else {
+		/**
+		 * TOP・一覧ページなど
+		 */
+		$json = array(
+			ys_get_json_ld_organization(),
+			ys_get_json_ld_website(),
+		);
+	}
+	$json = json_encode( $json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
+	if ( '' !== $json ) {
+		echo '<script type="application/ld+json">' . $json . '</script>' . PHP_EOL;
 	}
 }
+
 add_action( 'wp_footer', 'ys_the_json_ld' );
 
 /**
@@ -58,8 +57,10 @@ function ys_get_json_ld_organization() {
 			'height' => $logo[2],
 		);
 	}
+
 	return $json;
 }
+
 /**
  * Json-LD Website 作成
  */
@@ -77,12 +78,16 @@ function ys_get_json_ld_website() {
 			'query-input' => 'required name=query',
 		);
 	}
+
 	return $json;
 }
+
 /**
  * Json-LD Article 作成
  *
  * @param object $post_data post.
+ *
+ * @return array
  */
 function ys_get_json_ld_article( $post_data = null ) {
 	global $post;
@@ -152,8 +157,10 @@ function ys_get_json_ld_article( $post_data = null ) {
 			'height' => $publisher_img[2],
 		);
 	}
+
 	return $json;
 }
+
 /**
  * パブリッシャー名を取得
  */
@@ -162,12 +169,16 @@ function ys_get_publisher_name() {
 	if ( '' === $name ) {
 		$name = get_bloginfo( 'name' );
 	}
+
 	return $name;
 }
+
 /**
  * パブリッシャー用画像のサイズ判断、相対サイズの計算
  *
  * @param array $image image data.
+ *
+ * @return array
  */
 function ys_calc_publisher_image_size( $image ) {
 	if ( 60 < $image[2] ) {
@@ -182,5 +193,6 @@ function ys_calc_publisher_image_size( $image ) {
 		$image[1] = (int) $width;
 		$image[2] = (int) $height;
 	}
+
 	return $image;
 }

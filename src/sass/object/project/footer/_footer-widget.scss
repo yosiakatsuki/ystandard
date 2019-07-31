@@ -1,0 +1,14 @@
+
+//
+// フッターウィジェット用レイアウト調整
+//
+.footer-widget {
+  th {
+    color: $color__text-main;
+  }
+  .widget_calendar {
+    a {
+      text-decoration: underline;
+    }
+  }
+}

@@ -15,16 +15,16 @@ require_once get_template_directory() . '/library/theme-update-checker/theme-upd
  * アップデートのチェック
  */
 function ys_update_check() {
-	$ver = 'v2';
-	if ( ys_sanitize_checkbox( ys_get_option( 'ys_admin_upgrade_v3' ) ) ) {
-		$ver = 'v3';
-	}
+	$check_url = apply_filters(
+		'ys_update_check_url',
+		'https://wp-ystandard.com/download/ystandard/v3/ystandard-info.json'
+	);
+	/**
+	 * アップデート確認
+	 */
 	$theme_update_checker = new ThemeUpdateChecker(
 		'ystandard',
-		sprintf(
-			'https://wp-ystandard.com/download/ystandard/%s/ystandard-info.json',
-			$ver
-		)
+		$check_url
 	);
 }
 
