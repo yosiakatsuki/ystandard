@@ -20,12 +20,14 @@ class YS_Shortcode_Recent_Posts extends YS_Shortcode_Get_Posts {
 	 * @param array $args ユーザー指定パラメーター.
 	 */
 	public function __construct( $args = array() ) {
+		if ( ! is_array( $args ) ) {
+			$args = array();
+		}
 		/**
 		 * ランキング用のパラメーター削除
 		 */
-		unset(
-			$args['ranking_type']
-		);
+		unset( $args['ranking_type'] );
+
 		$args = array_merge(
 			array(
 				'cache_key'        => self::CACHE_KEY,
