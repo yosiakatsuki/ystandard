@@ -165,13 +165,20 @@ function ys_get_ad_more_tag() {
 
 /**
  * Moreタグ広告の出力
+ *
+ * @param bool $echo 出力.
+ *
+ * @return string
  */
-function ys_the_ad_more_tag() {
-	ys_do_shortcode(
+function ys_the_ad_more_tag( $echo = false ) {
+	$ad = ys_do_shortcode(
 		'ys_ad_block',
 		array(),
-		ys_get_ad_more_tag()
+		ys_get_ad_more_tag(),
+		$echo
 	);
+
+	return $ad;
 }
 
 /**
