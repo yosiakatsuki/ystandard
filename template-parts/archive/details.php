@@ -48,8 +48,8 @@
 			</div>
 			<?php
 			the_title(
-				'<h3 class="clear-h archive__detail-title -list"><a class="archive__link" href="' . get_the_permalink() . '">',
-				'</a></h3>'
+				'<h2 class="clear-h archive__detail-title -list"><a class="archive__link" href="' . get_the_permalink() . '">',
+				'</a></h2>'
 			);
 			?>
 			<div class="archive__meta text-sub">
