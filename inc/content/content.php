@@ -35,7 +35,7 @@ add_filter( 'document_title_separator', 'ys_document_title_separator' );
 function ys_more_tag_replace( $the_content ) {
 	$replace = '';
 	if ( ys_is_active_advertisement() ) {
-		$replace = ys_get_ad_more_tag();
+		$replace = ys_the_ad_more_tag();
 	}
 	$replace = apply_filters( 'ys_more_tag_replace', $replace );
 	if ( '' !== $replace ) {
