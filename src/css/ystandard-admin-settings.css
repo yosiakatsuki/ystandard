@@ -1636,6 +1636,8 @@ ol.ys-box {
     margin: 0;
     padding: 0;
     max-width: 100%; }
+  .ystd-settings__section .text-gray {
+    color: #757575; }
 
 .ystd-settings__icon {
   margin-top: 2rem;
