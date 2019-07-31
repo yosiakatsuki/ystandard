@@ -157,13 +157,13 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 */
 	private function get_avatar( $user_id ) {
 		$avatar = '';
-		if ( $this->get_param( 'show_avatar' ) ) {
+		if ( $this->get_param( 'show_avatar', 'bool' ) ) {
 			$avatar = ys_get_author_avatar( $user_id, 96, array( 'author-box__img' ) );
 		}
 		/**
 		 * 一覧ページへのリンクを付ける
 		 */
-		if ( ys_sanitize_bool( $this->get_param( 'enable_archive_link' ) ) && $avatar ) {
+		if ( $this->get_param( 'enable_archive_link', 'bool' ) && $avatar ) {
 			$avatar = sprintf(
 				'<a href="%s" rel="author">%s</a>',
 				$this->author_archive_url,
@@ -183,7 +183,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 */
 	private function get_name( $user_id ) {
 		$link = $this->author_archive_url;
-		if ( ! ys_sanitize_bool( $this->get_param( 'enable_archive_link' ) ) ) {
+		if ( ! $this->get_param( 'enable_archive_link', 'bool' ) ) {
 			$link = false;
 		}
 		$name = ys_get_author_name( $user_id, $link );

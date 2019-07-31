@@ -238,43 +238,6 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 	}
 
 	/**
-	 * 表示カラムチェック
-	 */
-	private function check_col() {
-		/**
-		 * グローバル
-		 */
-		$col = $this->get_param( 'col', 'int' );
-		if ( 1 > $col ) {
-			$col = 1;
-		}
-		if ( 6 < $col ) {
-			$col = 6;
-		}
-		/**
-		 * スマホ
-		 */
-		$col_sp = $this->get_param( 'col_sp', 'int' );
-		if ( 1 > $col_sp || 6 < $col_sp ) {
-			$this->set_param( 'col_sp', $col );
-		}
-		/**
-		 * タブレット
-		 */
-		$col_tablet = $this->get_param( 'col_tablet', 'int' );
-		if ( 1 > $col_tablet || 6 < $col_tablet ) {
-			$this->set_param( 'col_tablet', $col );
-		}
-		/**
-		 * PC
-		 */
-		$col_pc = $this->get_param( 'col_pc', 'int' );
-		if ( 1 > $col_pc || 6 < $col_pc ) {
-			$this->set_param( 'col_pc', $col );
-		}
-	}
-
-	/**
 	 * 列の見た目を決めるパラメーターチェック
 	 */
 	private function check_col_design() {
