@@ -15,6 +15,7 @@ gulp.task('zip', function () {
             '!package.json',
             '!webpack.config.js',
             '!ystandard-info.json',
+            '!ystandard-info-beta.json',
             '!phpcs.ruleset.dist',
             '!phpunit.xml.dist',
             '!tests',
