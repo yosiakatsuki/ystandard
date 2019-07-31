@@ -463,6 +463,7 @@ function ys_get_options() {
 	$result['ys_admin_enable_block_editor_style'] = get_option( 'ys_admin_enable_block_editor_style', 1 );
 	// ビジュアルエディタ用CSSを追加する.
 	$result['ys_admin_enable_tiny_mce_style'] = get_option( 'ys_admin_enable_tiny_mce_style', 0 );
+	$result['ys_admin_upgrade_v3']            = get_option( 'ys_admin_upgrade_v3', 0 );
 
 	return apply_filters( 'ys_get_options', $result );
 }
