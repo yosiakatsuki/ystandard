@@ -51,15 +51,14 @@ function ys_get_ad_block_html( $ad, $key = '', $label = true ) {
 /**
  * 広告設定の取得
  *
- * @param string  $key_pc  PC広告の設定キー.
- * @param string  $key_sp  SP広告の設定キー.
- * @param string  $key_amp AMP広告の設定キー.
- * @param string  $filter  フィルターフック.
- * @param boolean $label   ラベルの表示有無.
+ * @param string $key_pc  PC広告の設定キー.
+ * @param string $key_sp  SP広告の設定キー.
+ * @param string $key_amp AMP広告の設定キー.
+ * @param string $filter  フィルターフック.
  *
  * @return string
  */
-function ys_get_ad( $key_pc, $key_sp = '', $key_amp = '', $filter = '', $label = true ) {
+function ys_get_ad( $key_pc, $key_sp = '', $key_amp = '', $filter = '' ) {
 	$key = $key_pc;
 	if ( ys_is_mobile() && '' !== $key_sp ) {
 		$key = $key_sp;
@@ -67,9 +66,9 @@ function ys_get_ad( $key_pc, $key_sp = '', $key_amp = '', $filter = '', $label =
 	if ( ys_is_amp() && '' !== $key_amp ) {
 		$key = $key_amp;
 	}
-	$ad = ys_get_ad_block_html( ys_get_option( $key ), $key, $label );
+	$ad = ys_get_option( $key );
 	if ( $filter ) {
-		$ad = apply_filters( $filter, $ad, $key, $label );
+		$ad = apply_filters( $filter, $ad, $key );
 	}
 
 	return $ad;
@@ -85,8 +84,7 @@ function ys_get_ad_before_entry_title() {
 		'ys_advertisement_before_title',
 		'ys_advertisement_before_title_sp',
 		'ys_amp_advertisement_before_title',
-		'ys_get_ad_before_entry_title',
-		false
+		'ys_get_ad_before_entry_title'
 	);
 }
 
@@ -94,9 +92,11 @@ function ys_get_ad_before_entry_title() {
  * タイトル上広告の出力
  */
 function ys_the_ad_before_entry_title() {
-	if ( ys_is_active_advertisement() ) {
-		echo ys_get_ad_before_entry_title();
-	}
+	ys_do_shortcode(
+		'ys_ad_block',
+		array( 'title' => '' ),
+		ys_get_ad_before_entry_title()
+	);
 }
 
 add_action( 'ys_singular_before_title', 'ys_the_ad_before_entry_title' );
@@ -110,8 +110,7 @@ function ys_get_ad_after_entry_title() {
 		'ys_advertisement_after_title',
 		'ys_advertisement_after_title_sp',
 		'ys_amp_advertisement_after_title',
-		'ys_get_ad_after_entry_title',
-		false
+		'ys_get_ad_after_entry_title'
 	);
 }
 
@@ -119,9 +118,11 @@ function ys_get_ad_after_entry_title() {
  * タイトル下広告の出力
  */
 function ys_the_ad_after_entry_title() {
-	if ( ys_is_active_advertisement() ) {
-		echo ys_get_ad_after_entry_title();
-	}
+	ys_do_shortcode(
+		'ys_ad_block',
+		array( 'title' => '' ),
+		ys_get_ad_after_entry_title()
+	);
 }
 
 add_action( 'ys_singular_after_title', 'ys_the_ad_after_entry_title' );
@@ -143,9 +144,11 @@ function ys_get_ad_entry_header() {
  * 記事上部広告の出力
  */
 function ys_the_ad_entry_header() {
-	if ( ys_is_active_advertisement() ) {
-		echo ys_get_ad_entry_header();
-	}
+	ys_do_shortcode(
+		'ys_ad_block',
+		array(),
+		ys_get_ad_entry_header()
+	);
 }
 
 /**
@@ -164,9 +167,11 @@ function ys_get_ad_more_tag() {
  * Moreタグ広告の出力
  */
 function ys_the_ad_more_tag() {
-	if ( ys_is_active_advertisement() ) {
-		echo ys_get_ad_more_tag();
-	}
+	ys_do_shortcode(
+		'ys_ad_block',
+		array(),
+		ys_get_ad_more_tag()
+	);
 }
 
 /**
@@ -217,17 +222,11 @@ function ys_get_ad_entry_footer() {
  * 記事下広告の出力
  */
 function ys_the_ad_entry_footer() {
-	if ( ys_is_active_advertisement() ) {
-		$ad_footer = ys_do_shortcode(
-			'ys_ad_block',
-			array(),
-			ys_get_ad_entry_footer(),
-			false
-		);
-		if ( $ad_footer ) {
-			echo $ad_footer;
-		}
-	}
+	ys_do_shortcode(
+		'ys_ad_block',
+		array(),
+		ys_get_ad_entry_footer()
+	);
 }
 
 /**

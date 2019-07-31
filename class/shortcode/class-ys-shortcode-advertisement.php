@@ -35,7 +35,15 @@ class YS_Shortcode_Advertisement extends YS_Shortcode_Base {
 		/**
 		 * 初期値セット＆広告ショートコード用パラメーター追加
 		 */
-		parent::__construct( $args, self::SHORTCODE_PARAM );
+		parent::__construct(
+			$args,
+			array_merge(
+				self::SHORTCODE_PARAM,
+				array(
+					'title' => apply_filters( 'ys_ad_label_text', self::TITLE ),
+				)
+			)
+		);
 		parent::add_class( 'ys-ad-block' );
 	}
 
@@ -64,6 +72,12 @@ class YS_Shortcode_Advertisement extends YS_Shortcode_Base {
 		 * 表示しない設定
 		 */
 		if ( ! ys_is_active_advertisement() ) {
+			return '';
+		}
+		/**
+		 * 広告無しの場合
+		 */
+		if ( empty( $content ) ) {
 			return '';
 		}
 

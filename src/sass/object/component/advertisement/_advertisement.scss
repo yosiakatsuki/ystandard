@@ -1,6 +1,13 @@
 .ys-ad-block {
   margin: 2rem 0;
   text-align: center;
+  
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   &.ys-ad-widget {
     margin: 0;
