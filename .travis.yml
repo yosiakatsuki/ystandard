@@ -12,7 +12,7 @@ branches:
   - master
   - develop
   - "/v\\d+\\.\\d+\\.\\d+?.*/"
-  - "/master\\-v\\d+?.*/"
+  - "/release\\-v\\d+?.*/"
   - "/develop\\-v\\d+?.*/"
 cache:
   directories:
