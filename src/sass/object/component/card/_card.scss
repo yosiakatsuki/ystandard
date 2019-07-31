@@ -1,0 +1,34 @@
+.card {
+  @at-root {
+
+    & {
+      background-color: #fff;
+      color: $color__text-main;
+      text-decoration: none;
+      @include box-shadow;
+      transition: all .3s;
+
+      &:hover {
+        color: $color__text-main;
+      }
+
+      &.-hover:hover {
+        @include box-shadow(0, 3px, 40px);
+      }
+    }
+
+    .card__content {
+      height: 100%;
+    }
+
+    .card__img {
+      border-bottom: 1px solid $color__border-gray-light;
+    }
+
+    .card__text {
+      position: relative;
+      padding: 1.5rem;
+    }
+  }
+  //at-root
+}

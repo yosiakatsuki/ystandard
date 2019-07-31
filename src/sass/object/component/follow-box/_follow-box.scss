@@ -1,0 +1,29 @@
+.follow-box {
+  background-color: $color__bg-gray-light;
+  margin-right: -1rem;
+  margin-left: -1rem;
+}
+
+.follow-box__image {
+  border: 1px solid transparent;
+}
+.follow-box__inner {
+  padding: 1rem 0;
+}
+.follow-box__item {
+  margin-bottom: .25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.follow-box__list {
+  margin: .5rem 0;
+}
+
+.follow-box__link {
+  @include button_base(block, .1rem 1.5rem);
+}
+
+

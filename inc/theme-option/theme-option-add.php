@@ -26,17 +26,19 @@ function ys_add_admin_menu() {
 		'',
 		3
 	);
-	/**
-	 * キャッシュメニューの追加
-	 */
-	add_submenu_page(
-		'ys_settings_start',
-		'キャッシュ管理',
-		'キャッシュ管理',
-		'manage_options',
-		'ys_settings_cache',
-		'ys_load_ys_settings_cache'
-	);
+	if ( ys_is_enable_cache_setting() ) {
+		/**
+		 * キャッシュメニューの追加
+		 */
+		add_submenu_page(
+			'ys_settings_start',
+			'キャッシュ管理',
+			'キャッシュ管理',
+			'manage_options',
+			'ys_settings_cache',
+			'ys_load_ys_settings_cache'
+		);
+	}
 }
 
 add_action( 'admin_menu', 'ys_add_admin_menu' );

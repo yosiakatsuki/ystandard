@@ -27,10 +27,15 @@ function ys_has_header_image() {
  * @return string
  */
 function ys_get_custom_header_type() {
-	$type  = 'image';
-	$video = get_header_video_settings();
-	if ( $video['videoUrl'] ) {
+	$type = 'image';
+	if ( is_header_video_active() && has_header_video() ) {
 		$type = 'video';
+	}
+	/**
+	 * 詳細ページではフルサムネイル表示か確認
+	 */
+	if ( ys_is_full_width_thumbnail() && ! ys_is_active_custom_header() ) {
+		$type = 'full-thumb';
 	}
 
 	return apply_filters( 'ys_get_custom_header_type', $type );
@@ -40,12 +45,26 @@ function ys_get_custom_header_type() {
  * カスタムヘッダーの出力
  */
 function ys_the_custom_header_markup() {
-	$media_shortcode = ys_get_option( 'ys_wp_header_media_shortcode' );
-	if ( $media_shortcode ) {
-		echo do_shortcode( $media_shortcode );
+	if ( ys_is_full_width_thumbnail() && ! ys_is_active_custom_header() ) {
+		/**
+		 * 個別ページの画像表示
+		 */
+		printf(
+			'<div class="header__full-thumbnail">%s</div>',
+			ys_amp_get_amp_image_tag( get_the_post_thumbnail() )
+		);
 	} else {
-		the_custom_header_markup();
+		/**
+		 * ショートコード入力があればそちらを優先
+		 */
+		$media_shortcode = ys_get_option( 'ys_wp_header_media_shortcode' );
+		if ( $media_shortcode ) {
+			echo do_shortcode( $media_shortcode );
+		} else {
+			the_custom_header_markup();
+		}
 	}
+
 }
 
 /**

@@ -1,0 +1,58 @@
+//
+// ブログカード
+//
+.ys-blog-card__link {
+  display: block;
+  position: relative;
+  padding: 0 1rem;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  text-decoration: none;
+  @include box-shadow(0, 1px, 5px);
+
+  &:hover {
+    text-decoration: none;
+    @include box-shadow(0, 1px, 10px);
+  }
+}
+
+.ys-blog-card__title {
+  font-size: .9em;
+  line-height: $font__line-height_headline;
+  color: $color__text-main;
+}
+
+.ys-blog-card__dscr {
+  display: none;
+}
+
+.ys-blog-card__image {
+  max-width: 100px;
+  margin-right: 1rem;
+
+  amp-img {
+    min-width: 50px;
+  }
+}
+
+.ys-blog-card__btn-wrap {
+  margin-top: 1rem;
+}
+
+.ys-blog-card__btn {
+  display: inline-block;
+  padding: .5em .75em;
+  border: 1px solid $color__border-dark;
+  background-color: $color__bg-dark;
+  border-radius: 4px;
+  font-size: .7em;
+  color: #fff;
+  line-height: 1;
+  white-space: nowrap;
+
+  i,
+  svg {
+    margin-left: .25rem;
+    vertical-align: -.1em;
+  }
+}

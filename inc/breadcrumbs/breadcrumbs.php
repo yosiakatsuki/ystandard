@@ -272,6 +272,8 @@ function ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type =
  * @param  int    $object_id     object_id.
  * @param  string $object_type   object_type.
  * @param  string $resource_type resource_type.
+ *
+ * @return array
  */
 function ys_set_breadcrumb_ancestors( $items, $object_id, $object_type, $resource_type = '' ) {
 	$ancestors = ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type );
@@ -303,6 +305,8 @@ function ys_set_breadcrumb_ancestors( $items, $object_id, $object_type, $resourc
  * @param array   $items items.
  * @param int     $year  year.
  * @param boolean $link  set url.
+ *
+ * @return array
  */
 function ys_set_breadcrumb_year( $items, $year, $link = true ) {
 	$label = $year;
@@ -324,6 +328,8 @@ function ys_set_breadcrumb_year( $items, $year, $link = true ) {
  * @param int     $year  year.
  * @param int     $month month.
  * @param boolean $link  set url.
+ *
+ * @return array
  */
 function ys_set_breadcrumb_month( $items, $year, $month, $link = true ) {
 	$label = $month;
@@ -359,6 +365,8 @@ function ys_set_breadcrumb_month( $items, $year, $month, $link = true ) {
  *
  * @param array $items items.
  * @param int   $day   day.
+ *
+ * @return array
  */
 function ys_set_breadcrumb_day( $items, $day ) {
 	$label = $day;

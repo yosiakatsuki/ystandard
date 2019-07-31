@@ -35,19 +35,18 @@ function ys_body_class( $classes ) {
 	}
 
 	/**
-	 * 1カラム,AMPの場合
+	 * ワンカラム / サイドバーあり
 	 */
-	if ( ys_is_one_column() || ys_is_amp() ) {
-		$classes[] = 'one-col';
-		if ( is_singular() || is_404() ) {
-			if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
-				$classes[] = 'one-col--no-title';
-			} else {
-				$classes[] = 'one-col--singular';
-			}
-		} else {
-			$classes[] = 'one-col--archive';
-		}
+	if ( ys_is_one_column() ) {
+		$classes[] = 'col-1';
+	} else {
+		$classes[] = 'has-sidebar';
+	}
+	/**
+	 * Type: singular
+	 */
+	if ( is_singular() && ! is_front_page() ) {
+		$classes[] = 'singular';
 	}
 
 	/**
@@ -74,6 +73,27 @@ function ys_body_class( $classes ) {
 		if ( ys_get_option( 'ys_wp_header_media_full' ) ) {
 			$classes[] = 'custom-header--full';
 		}
+	}
+
+	/**
+	 * タイトルなしテンプレート
+	 */
+	if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+		$classes[] = 'one-column-no-title';
+	}
+
+	/**
+	 * フル幅テンプレート
+	 */
+	if ( ys_is_full_width() ) {
+		$classes[] = 'full-width';
+	}
+
+	/**
+	 * 背景色あり
+	 */
+	if ( ys_get_option_default( 'ys_color_site_bg' ) !== ys_get_option( 'ys_color_site_bg' ) ) {
+		$classes[] = 'has-bg-color';
 	}
 
 	return $classes;

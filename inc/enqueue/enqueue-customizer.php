@@ -55,7 +55,7 @@ function ys_get_customizer_inline_css() {
 function ys_enqueue_customizer_styles( $hook_suffix ) {
 	wp_enqueue_style(
 		'ys_customizer_style',
-		get_template_directory_uri() . '/css/customizer/customizer.min.css',
+		get_template_directory_uri() . '/css/ystandard-customizer.css',
 		array(),
 		ys_get_theme_version( true )
 	);

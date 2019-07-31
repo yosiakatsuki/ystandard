@@ -1,0 +1,13 @@
+@include media-breakpoint(md) {
+  .ys-posts__link {
+    img {
+      transition: all .4s;
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.1, 1.1);
+      }
+    }
+  }
+}

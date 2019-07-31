@@ -1,0 +1,11 @@
+.footer-nav {
+  .menu-item {
+    margin-right: 1rem;
+    margin-bottom: .5rem;
+    font-size: .9rem;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

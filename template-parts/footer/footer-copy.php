@@ -8,6 +8,6 @@
  */
 
 ?>
-<div class="site-info site__info footer__section">
+<div class="site-info footer-copy text--center">
 	<?php ys_the_footer_site_info(); ?>
 </div>

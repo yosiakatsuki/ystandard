@@ -3,9 +3,26 @@
  * ヘッダー関連
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
+
+/**
+ * テーマ用get_header
+ *
+ * @param string $name The name of the specialised header.
+ */
+function ys_get_header( $name = null ) {
+	$name = apply_filters( 'ys_get_header_name', $name );
+	/**
+	 * AMPの時とテンプレート分ける
+	 */
+	if ( ys_is_amp() ) {
+		get_template_part( '/template-parts/amp/amp-header', $name );
+	} else {
+		get_header( $name );
+	}
+}
 
 /**
  * ヘッダーロゴ取得
@@ -24,36 +41,123 @@ function ys_get_header_logo() {
 	$format = '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">%s</a>';
 	$format = apply_filters( 'ys_get_header_logo_format', $format );
 	$logo   = sprintf( $format, $logo );
+
 	return $logo;
 }
 
-if ( ! function_exists( 'ys_the_blog_description' ) ) {
-	/**
-	 * サイトキャッチフレーズを取得
-	 */
-	function ys_the_blog_description() {
-		if ( ys_get_option( 'ys_wp_hidden_blogdescription' ) ) {
-			return;
-		}
-		$dscr   = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
-		$format = '<p class="site-description header__dscr color__site-dscr">%s</p>';
-		$format = apply_filters( 'ys_the_blog_description_format', $format );
-		echo sprintf( $format, $dscr );
+/**
+ * サイトキャッチフレーズを取得
+ */
+function ys_the_blog_description() {
+	if ( ys_get_option( 'ys_wp_hidden_blogdescription' ) ) {
+		return;
 	}
+	$dscr   = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
+	$format = '<p class="site-description header__dscr text-sub">%s</p>';
+	$format = apply_filters( 'ys_the_blog_description_format', $format );
+	echo sprintf( $format, $dscr );
 }
 
 /**
- * ヘッダータイプ class取得
+ * ヘッダー row class取得
+ *
+ * @param array $class 追加クラス.
+ *
+ * @return array
  */
-function ys_get_header_type_class() {
-	$type  = ys_get_option( 'ys_design_header_type' );
-	$class = apply_filters( 'ys_get_header_type_class', 'header--' . $type, $type );
-	return $class;
+function ys_get_header_row_class( $class = array() ) {
+	$classes = array();
+	if ( is_array( $class ) && ! empty( $class ) ) {
+		$classes = array_merge( $classes, $class );
+	}
+	$type      = ys_get_option( 'ys_design_header_type' );
+	$classes[] = 'header__row';
+	$classes[] = '-' . $type;
+	$classes[] = 'flex';
+	$classes[] = 'flex--row';
+	$classes[] = 'flex--nowrap';
+	$classes[] = 'flex--lg-wrap';
+
+	/**
+	 * 1行タイプ
+	 */
+	if ( 'row1' === $type ) {
+		$classes[] = 'flex--a-center';
+		$classes[] = 'flex--j-between';
+	}
+	/**
+	 * 中央寄せタイプ
+	 */
+	if ( 'center' === $type ) {
+		$classes[] = 'flex--j-between';
+	}
+	$classes = apply_filters( 'ys_get_header_row_class', $classes, $type );
+
+	return $classes;
 }
 
 /**
- * ヘッダータイプ class出力
+ * ヘッダー row class出力
+ *
+ * @param array $class 追加クラス.
  */
-function ys_the_header_type_class() {
-	echo ys_get_header_type_class();
+function ys_the_header_row_class( $class = array() ) {
+	echo implode( ' ', ys_get_header_row_class( $class ) );
+}
+
+/**
+ * ヘッダー col class取得
+ *
+ * @param string $pos   logo or nav.
+ * @param array  $class 追加クラス.
+ *
+ * @return array
+ */
+function ys_get_header_col_class( $pos, $class = array() ) {
+	$classes = array();
+	if ( is_array( $class ) && ! empty( $class ) ) {
+		$classes = array_merge( $classes, $class );
+	}
+	$type      = ys_get_option( 'ys_design_header_type' );
+	$classes[] = '-' . $type;
+	/**
+	 * 1行タイプ
+	 */
+	if ( 'row1' === $type ) {
+		$classes[] = 'flex__col--auto';
+	}
+	/**
+	 * 中央寄せタイプ
+	 */
+	if ( 'center' === $type ) {
+		if ( 'logo' === $pos ) {
+			$classes[] = 'flex__col--lg-1';
+		} else {
+			$classes[] = 'flex__col';
+		}
+		$classes[] = 'text--center';
+	}
+	/**
+	 * 2行表示
+	 */
+	if ( 'row2' === $type ) {
+		if ( 'logo' === $pos ) {
+			$classes[] = 'flex__col--lg-1';
+		} else {
+			$classes[] = 'flex__col';
+		}
+	}
+	$classes = apply_filters( 'ys_get_header_col_class', $classes, $type, $pos );
+
+	return $classes;
+}
+
+/**
+ * ヘッダー col class出力
+ *
+ * @param string $pos   logo or nav.
+ * @param array  $class 追加クラス.
+ */
+function ys_the_header_col_class( $pos, $class = array() ) {
+	echo implode( ' ', ys_get_header_col_class( $pos, $class ) );
 }

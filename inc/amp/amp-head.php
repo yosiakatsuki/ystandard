@@ -21,17 +21,16 @@ add_action( 'ys_amp_head', 'ys_the_canonical_tag' );
 add_action( 'ys_amp_head', 'ys_the_rel_link' );
 add_action( 'ys_amp_head', 'ys_the_noindex' );
 
-if ( ! function_exists( 'ys_the_amp_document_title' ) ) {
-	/**
-	 * AMPでのタイトル
-	 */
-	function ys_the_amp_document_title() {
-		printf(
-			'<title>%s</title>',
-			apply_filters( 'ys_the_amp_document_title', wp_get_document_title() )
-		);
-	}
+/**
+ * AMPでのタイトル
+ */
+function ys_the_amp_document_title() {
+	printf(
+		'<title>%s</title>',
+		apply_filters( 'ys_the_amp_document_title', wp_get_document_title() )
+	);
 }
+
 add_action( 'ys_amp_head', 'ys_the_amp_document_title' );
 
 /**
@@ -52,96 +51,80 @@ add_action( 'ys_amp_head', 'ys_the_amp_client_id_api' );
  * @return void
  */
 function ys_amp_inline_styles() {
-	/**
-	 * インラインCSSのセット
-	 */
-	ys_set_inline_style( get_template_directory() . '/css/ys-firstview.min.css', false );
-	ys_set_inline_style( get_template_directory() . '/css/ys-style.min.css', false );
-	ys_set_inline_style( ys_get_customizer_inline_css() );
-	$enqueue_gutenberg_css = apply_filters(
-		'ys_amp_enqueue_gutenberg_css',
-		ys_is_active_gutenberg_css()
-	);
-	if ( $enqueue_gutenberg_css ) {
-		ys_set_inline_style( get_template_directory() . '/css/ys-wp-blocks.min.css', false );
-	}
-	ys_set_inline_style( wp_get_custom_css() );
-	ys_set_inline_style( locate_template( 'style-firstview.css' ) );
-	ys_set_inline_style( locate_template( 'style.css' ) );
-	/**
-	 * インラインCSSの出力
-	 */
-	ys_the_inline_style();
+	$scripts = ys_scripts();
+	ys_set_enqueue_css();
+	$style = $scripts->get_inline_style( true );
+
+	$style = sprintf( '<style amp-custom>%s</style>', $style );
+	echo $style . PHP_EOL;
 }
 
 add_action( 'ys_amp_head', 'ys_amp_inline_styles', 2 );
 
-if ( ! function_exists( 'ys_the_uc_custom_head_amp' ) ) {
-	/**
-	 * ユーザーカスタムHEAD出力
-	 */
-	function ys_the_uc_custom_head_amp() {
-		get_template_part( 'user-custom-head-amp' );
-	}
+/**
+ * ユーザーカスタムHEAD出力
+ */
+function ys_the_uc_custom_head_amp() {
+	get_template_part( 'user-custom-head-amp' );
 }
+
 add_action( 'ys_amp_head', 'ys_the_uc_custom_head_amp', 11 );
 
-if ( ! function_exists( 'ys_the_amp_script' ) ) {
+/**
+ * AMP記事で必要になるスクリプト出力
+ */
+function ys_the_amp_script() {
+	global $post;
+
+	$scripts = '';
+	$content = apply_filters( 'the_content', $post->post_content );
+
 	/**
-	 * AMP記事で必要になるスクリプト出力
+	 * 広告表示
 	 */
-	function ys_the_amp_script() {
-		global $post;
-
-		$scripts = '';
-		$content = apply_filters( 'the_content', $post->post_content );
-
-		/**
-		 * 広告表示
-		 */
-		if ( ys_is_load_amp_ad_script() ) {
-			$scripts .= '<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Twitter
-		 */
-		if ( ys_is_load_amp_twitter_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Instagram
-		 */
-		if ( ys_is_load_amp_instagram_script( $content ) ) {
-			$scripts .= '<script custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js" async></script>' . PHP_EOL;
-		}
-		/**
-		 * Youtube
-		 */
-		if ( ys_is_load_amp_youtube_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Vine
-		 */
-		if ( ys_is_load_amp_vine_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/amp-vine-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Facebook
-		 */
-		if ( ys_is_load_amp_facebook_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>' . PHP_EOL;
-		}
-		/**
-		 * Iframe
-		 */
-		if ( ys_is_load_amp_iframe_script( $content ) ) {
-			$scripts .= '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>' . PHP_EOL;
-		}
-
-		echo apply_filters( 'ys_the_amp_script', $scripts );
+	if ( ys_is_load_amp_ad_script() ) {
+		$scripts .= '<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>' . PHP_EOL;
 	}
+	/**
+	 * Twitter
+	 */
+	if ( ys_is_load_amp_twitter_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>' . PHP_EOL;
+	}
+	/**
+	 * Instagram
+	 */
+	if ( ys_is_load_amp_instagram_script( $content ) ) {
+		$scripts .= '<script custom-element="amp-instagram" src="https://cdn.ampproject.org/v0/amp-instagram-0.1.js" async></script>' . PHP_EOL;
+	}
+	/**
+	 * Youtube
+	 */
+	if ( ys_is_load_amp_youtube_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>' . PHP_EOL;
+	}
+	/**
+	 * Vine
+	 */
+	if ( ys_is_load_amp_vine_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/amp-vine-0.1.js"></script>' . PHP_EOL;
+	}
+	/**
+	 * Facebook
+	 */
+	if ( ys_is_load_amp_facebook_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>' . PHP_EOL;
+	}
+	/**
+	 * Iframe
+	 */
+	if ( ys_is_load_amp_iframe_script( $content ) ) {
+		$scripts .= '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>' . PHP_EOL;
+	}
+
+	echo apply_filters( 'ys_the_amp_script', $scripts );
 }
+
 add_action( 'ys_amp_head', 'ys_the_amp_script' );
 
 
@@ -167,6 +150,7 @@ function ys_is_load_amp_ad_script() {
  * Twitter用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ *
  * @return bool
  */
 function ys_is_load_amp_twitter_script( &$content ) {
@@ -186,6 +170,7 @@ function ys_is_load_amp_twitter_script( &$content ) {
  * Instagram用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ *
  * @return bool
  */
 function ys_is_load_amp_instagram_script( &$content ) {
@@ -205,6 +190,7 @@ function ys_is_load_amp_instagram_script( &$content ) {
  * Youtube用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ *
  * @return bool
  */
 function ys_is_load_amp_youtube_script( &$content ) {
@@ -226,6 +212,7 @@ function ys_is_load_amp_youtube_script( &$content ) {
  * Vine用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ *
  * @return bool
  */
 function ys_is_load_amp_vine_script( &$content ) {
@@ -247,6 +234,7 @@ function ys_is_load_amp_vine_script( &$content ) {
  * Facebook用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ *
  * @return bool
  */
 function ys_is_load_amp_facebook_script( &$content ) {
@@ -274,6 +262,7 @@ function ys_is_load_amp_facebook_script( &$content ) {
  * Iframe用スクリプトを読み込むか
  *
  * @param string $content 投稿内容.
+ *
  * @return bool
  */
 function ys_is_load_amp_iframe_script( &$content ) {

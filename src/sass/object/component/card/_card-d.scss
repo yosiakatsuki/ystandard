@@ -1,0 +1,16 @@
+//
+// カード(PC)
+//
+.card {
+  @at-root {
+    @include media-breakpoint(md) {
+      & {
+        transition: all .4s;
+
+        &:hover {
+          transform: translateY(-0.3rem);
+        }
+      }
+    }
+  }//at-root
+}

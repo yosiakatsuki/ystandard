@@ -1,0 +1,15 @@
+//
+// WordPress基本機能
+//
+@import "align";
+@import "caption";
+@import "gallery";
+.sticky {
+  box-sizing: inherit;
+}
+.bypostauthor {
+  display: block;
+}
+.emoji {
+  width: 1em;
+}

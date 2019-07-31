@@ -21,7 +21,7 @@ function ys_enqueue_admin_scripts( $hook_suffix ) {
 	wp_enqueue_media();
 	wp_enqueue_script(
 		'ys-admin-scripts',
-		get_template_directory_uri() . '/js/admin.bundle.js',
+		get_template_directory_uri() . '/js/admin.js',
 		array( 'jquery', 'jquery-core' ),
 		ys_get_theme_version( true ),
 		true
@@ -41,9 +41,15 @@ add_action( 'admin_enqueue_scripts', 'ys_enqueue_admin_scripts' );
 function ys_admin_enqueue_scripts( $hook ) {
 	wp_enqueue_style(
 		'ys_admin_style',
-		get_template_directory_uri() . '/css/admin/admin.min.css',
+		get_template_directory_uri() . '/css/ystandard-admin.css',
 		array(),
 		ys_get_theme_version( true )
+	);
+	wp_enqueue_style(
+		'font-awesome',
+		ys_get_font_awesome_css_url(),
+		array(),
+		''
 	);
 	/**
 	 * テーマ独自の設定ページ
@@ -51,17 +57,11 @@ function ys_admin_enqueue_scripts( $hook ) {
 	if ( false !== strpos( $hook, 'page_ys_settings' ) ) {
 		wp_enqueue_style(
 			'ys_settings_style',
-			get_template_directory_uri() . '/css/admin/ystandard-settings.min.css'
+			get_template_directory_uri() . '/css/ystandard-admin-settings.css'
 		);
 		wp_enqueue_style(
 			'ys_settings_font',
 			'https://fonts.googleapis.com/css?family=Orbitron'
-		);
-		wp_enqueue_style(
-			'font-awesome',
-			ys_get_font_awesome_url(),
-			array(),
-			''
 		);
 	}
 	/**
@@ -70,7 +70,7 @@ function ys_admin_enqueue_scripts( $hook ) {
 	if ( 'widgets.php' === $hook ) {
 		wp_enqueue_style(
 			'ys-admin-widget',
-			get_template_directory_uri() . '/css/admin/widget.min.css'
+			get_template_directory_uri() . '/css/ystandard-admin-widget.css'
 		);
 	}
 }
@@ -86,7 +86,7 @@ function ys_add_editor_styles() {
 	 * ビジュアルエディターへのCSSセット
 	 */
 	if ( ys_get_option( 'ys_admin_enable_tiny_mce_style' ) ) {
-		add_editor_style( get_template_directory_uri() . '/css/ys-editor-style.css' );
+		add_editor_style( get_template_directory_uri() . '/css/ystandard-tiny-mce-style.css' );
 		add_editor_style( get_stylesheet_directory_uri() . '/style.css' );
 		add_editor_style( ys_get_theme_file_uri( '/user-custom-editor-style.css' ) );
 	}
@@ -98,10 +98,22 @@ add_action( 'admin_init', 'ys_add_editor_styles' );
 /**
  * Enqueue block editor style
  */
-function ys_enqueue_block_editor_assets() {
-
+function ys_enqueue_block_css() {
+	if ( ys_get_option( 'ys_admin_enable_block_editor_style' ) ) {
+		add_theme_support( 'editor-styles' );
+		add_editor_style(
+			get_template_directory_uri() . '/css/ystandard-admin-block.css'
+		);
+		add_editor_style(
+			get_stylesheet_directory_uri() . '/style.css'
+		);
+		add_editor_style(
+			ys_get_theme_file_uri( '/user-custom-editor-style.css' )
+		);
+	}
 }
-add_action( 'enqueue_block_editor_assets', 'ys_enqueue_block_editor_assets' );
+
+add_action( 'after_setup_theme', 'ys_enqueue_block_css' );
 
 /**
  * TinyMCEに追加CSSを適用させる

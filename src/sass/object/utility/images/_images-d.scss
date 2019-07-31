@@ -1,0 +1,14 @@
+@include media-breakpoint(md) {
+  .img-hover {
+    img, amp-img {
+      transition: all .3s;
+    }
+  }
+  .img-scale {
+    &:hover {
+      img, amp-img {
+        transform: scale(1.1,1.1);
+      }
+    }
+  }
+}

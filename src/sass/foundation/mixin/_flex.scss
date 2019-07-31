@@ -1,0 +1,54 @@
+//
+// flex作成
+//
+@mixin make-flex($breakpoint : "") {
+
+  $prefix: "-";
+  $flex_suffix: "";
+  @if $breakpoint != "" {
+    $prefix: #{"--"}#{$breakpoint};
+    $flex_suffix: #{"--"}#{$breakpoint};
+  }
+  .flex#{$flex_suffix} {
+    display: flex;
+  }
+  .flex#{$prefix}-wrap {
+    flex-wrap: wrap;
+  }
+  .flex#{$prefix}-nowrap {
+    flex-wrap: nowrap;
+  }
+  .flex#{$prefix}-flow-row {
+    flex-flow: row;
+  }
+  .flex#{$prefix}-reverse {
+    flex-flow: row-reverse;
+  }
+  .flex#{$prefix}-column {
+    flex-direction: column;
+  }
+  .flex#{$prefix}-column-reverse {
+    flex-direction: column-reverse;
+  }
+}
+//
+//  col作成
+//
+@mixin make-col($breakpoint : "") {
+  $columns : 6;
+  $prefix: "";
+  @if $breakpoint != "" {
+    $prefix: #{$breakpoint}#{"-"};
+  }
+  .flex__col--#{$prefix}auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+  }
+  @for $i from 1 through $columns {
+    .flex__col--#{$prefix}#{$i} {
+      flex: 0 0 decimal-floor( 1 / $i , 4) * 100#{"%"};
+      max-width: decimal-floor( 1 / $i , 4) * 100#{"%"};
+    }
+  }
+}

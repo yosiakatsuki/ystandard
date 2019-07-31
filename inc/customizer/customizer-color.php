@@ -21,31 +21,30 @@ function ys_customizer_color( $wp_customize ) {
 	$wp_customize->add_panel(
 		'ys_customizer_panel_color',
 		array(
-			'title'    => '色',
-			'priority' => 40,
+			'title'    => '[ys]色設定',
+			'priority' => 990,
 		)
 	);
-
 	/**
 	 * サイト全体
 	 */
 	ys_customizer_add_site_color( $wp_customize );
-
 	/**
 	 * ヘッダー
 	 */
 	ys_customizer_add_header_color( $wp_customize );
-
 	/**
 	 * ナビゲーション
 	 */
 	ys_customizer_add_global_nav_color( $wp_customize );
-
 	/**
 	 * フッター
 	 */
 	ys_customizer_add_footer_color( $wp_customize );
-
+	/**
+	 * カラーパレット設定
+	 */
+	ys_customizer_add_color_palette( $wp_customize );
 	/**
 	 * テーマカスタマイザーでの色変更機能を無効にする
 	 */
@@ -65,7 +64,7 @@ function ys_customizer_add_site_color( $wp_customize ) {
 	$ys_customizer->add_section(
 		array(
 			'section'  => 'ys_color_site',
-			'title'    => 'サイト全体',
+			'title'    => 'サイト背景色',
 			'priority' => 0,
 			'panel'    => 'ys_customizer_panel_color',
 		)
@@ -76,28 +75,8 @@ function ys_customizer_add_site_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_site_bg',
-			'default' => ys_customizer_get_default_color( 'ys_color_site_bg' ),
+			'default' => ys_get_option_default( 'ys_color_site_bg' ),
 			'label'   => 'サイト背景色',
-		)
-	);
-	/**
-	 * サイト文字色(メイン)
-	 */
-	$ys_customizer->add_color(
-		array(
-			'id'      => 'ys_color_site_font',
-			'default' => ys_customizer_get_default_color( 'ys_color_site_font' ),
-			'label'   => 'サイト文字色（メイン）',
-		)
-	);
-	/**
-	 * サイト文字色（グレー）
-	 */
-	$ys_customizer->add_color(
-		array(
-			'id'      => 'ys_color_site_font_sub',
-			'default' => ys_customizer_get_default_color( 'ys_color_site_font_sub' ),
-			'label'   => 'サイト文字色（グレー）',
 		)
 	);
 }
@@ -124,7 +103,7 @@ function ys_customizer_add_header_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_header_bg',
-			'default' => ys_customizer_get_default_color( 'ys_color_header_bg' ),
+			'default' => ys_get_option_default( 'ys_color_header_bg' ),
 			'label'   => 'ヘッダー背景色',
 		)
 	);
@@ -132,15 +111,15 @@ function ys_customizer_add_header_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_header_font',
-			'default' => ys_customizer_get_default_color( 'ys_color_header_font' ),
-			'label'   => 'サイトタイトルの文字色',
+			'default' => ys_get_option_default( 'ys_color_header_font' ),
+			'label'   => 'サイトタイトル・メニューテキストの文字色',
 		)
 	);
 	// サイト概要の文字色.
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_header_dscr_font',
-			'default' => ys_customizer_get_default_color( 'ys_color_header_dscr_font' ),
+			'default' => ys_get_option_default( 'ys_color_header_dscr_font' ),
 			'label'   => 'サイト概要の文字色',
 		)
 	);
@@ -159,29 +138,9 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_section(
 		array(
 			'section'  => 'ys_color_nav',
-			'title'    => 'ヘッダーメニュー(PC)/スライドメニュー(モバイル)',
+			'title'    => 'モバイルメニュー',
 			'priority' => 0,
 			'panel'    => 'ys_customizer_panel_color',
-		)
-	);
-	/**
-	 * ナビゲーション背景色（PC）
-	 */
-	$ys_customizer->add_color(
-		array(
-			'id'      => 'ys_color_nav_bg_pc',
-			'default' => ys_customizer_get_default_color( 'ys_color_nav_bg_pc' ),
-			'label'   => '【PC】ヘッダーメニュー背景色',
-		)
-	);
-	/**
-	 * ナビゲーション文字色（PC）
-	 */
-	$ys_customizer->add_color(
-		array(
-			'id'      => 'ys_color_nav_font_pc',
-			'default' => ys_customizer_get_default_color( 'ys_color_nav_font_pc' ),
-			'label'   => '【PC】ヘッダーメニュー文字色',
 		)
 	);
 	/**
@@ -190,18 +149,8 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_nav_bg_sp',
-			'default' => ys_customizer_get_default_color( 'ys_color_nav_bg_sp' ),
-			'label'   => '【モバイル】スライドメニュー背景色',
-		)
-	);
-	/**
-	 * ナビゲーションボタン色（SP）
-	 */
-	$ys_customizer->add_color(
-		array(
-			'id'      => 'ys_color_nav_btn_sp',
-			'default' => ys_customizer_get_default_color( 'ys_color_nav_btn_sp' ),
-			'label'   => '【モバイル】スライドメニューボタン色',
+			'default' => ys_get_option_default( 'ys_color_nav_bg_sp' ),
+			'label'   => 'モバイルメニュー背景色',
 		)
 	);
 	/**
@@ -210,8 +159,28 @@ function ys_customizer_add_global_nav_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_nav_font_sp',
-			'default' => ys_customizer_get_default_color( 'ys_color_nav_font_sp' ),
-			'label'   => '【モバイル】スライドメニュー文字色',
+			'default' => ys_get_option_default( 'ys_color_nav_font_sp' ),
+			'label'   => 'モバイルメニュー文字色',
+		)
+	);
+	/**
+	 * ナビゲーションボタン色（SP）
+	 */
+	$ys_customizer->add_color(
+		array(
+			'id'      => 'ys_color_nav_btn_sp_open',
+			'default' => ys_get_option_default( 'ys_color_nav_btn_sp_open' ),
+			'label'   => 'モバイルメニュー ボタン色：開く',
+		)
+	);
+	/**
+	 * ナビゲーションボタン色（SP）
+	 */
+	$ys_customizer->add_color(
+		array(
+			'id'      => 'ys_color_nav_btn_sp',
+			'default' => ys_get_option_default( 'ys_color_nav_btn_sp' ),
+			'label'   => 'モバイルメニュー ボタン色：閉じる',
 		)
 	);
 }
@@ -240,11 +209,20 @@ function ys_customizer_add_footer_color( $wp_customize ) {
 	$ys_customizer->add_color(
 		array(
 			'id'      => 'ys_color_footer_bg',
-			'default' => ys_customizer_get_default_color( 'ys_color_footer_bg' ),
+			'default' => ys_get_option_default( 'ys_color_footer_bg' ),
 			'label'   => 'フッター背景色',
 		)
 	);
-
+	/**
+	 * フッター文字色
+	 */
+	$ys_customizer->add_color(
+		array(
+			'id'      => 'ys_color_footer_font',
+			'default' => ys_get_option_default( 'ys_color_footer_font' ),
+			'label'   => 'フッター文字色',
+		)
+	);
 	/**
 	 * フッターSNSアイコン背景色タイプ
 	 */
@@ -276,16 +254,61 @@ function ys_customizer_add_footer_color( $wp_customize ) {
 			),
 		)
 	);
+}
+
+/**
+ * カラーパレット
+ *
+ * @param  WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_add_color_palette( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
 	/**
-	 * フッター文字色
+	 * カラーパレット
 	 */
-	$ys_customizer->add_color(
+	$ys_customizer->add_section(
 		array(
-			'id'      => 'ys_color_footer_font',
-			'default' => ys_customizer_get_default_color( 'ys_color_footer_font' ),
-			'label'   => 'フッター文字色',
+			'section'     => 'ys_color_palette',
+			'title'       => 'カラーパレット（Gutenberg）',
+			'priority'    => 0,
+			'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。',
+			'panel'       => 'ys_customizer_panel_color',
 		)
 	);
+	/**
+	 * カラーパレット設定の追加
+	 */
+	$list = ys_get_editor_color_palette();
+	foreach ( $list as $item ) {
+		if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
+			$dscr    = '';
+			$default = '#ffffff';
+			/**
+			 * 説明文
+			 */
+			if ( isset( $item['description'] ) ) {
+				$dscr = $item['description'];
+			}
+			/**
+			 * 初期値
+			 */
+			if ( isset( $item['default'] ) ) {
+				$default = $item['default'];
+			}
+			/**
+			 * 設定追加
+			 */
+			$ys_customizer->add_color(
+				array(
+					'id'          => 'ys-color-palette-' . $item['slug'],
+					'default'     => $default,
+					'label'       => $item['name'],
+					'description' => $dscr,
+					'transport'   => 'postMessage',
+				)
+			);
+		}
+	}
 }
 
 /**

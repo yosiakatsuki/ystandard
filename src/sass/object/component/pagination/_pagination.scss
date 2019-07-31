@@ -1,0 +1,47 @@
+//
+// pagination
+//
+.pagination {
+  margin-top: 2rem;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.pagination__item {
+  width: 44px;
+  height: 44px;
+  background-color: $color__bg-gray-dark;
+  color: $color__text-main;
+  transition: all .3s;
+
+  &:hover {
+    color: $color__text-main;
+    opacity: .6;
+  }
+}
+
+//
+// 一覧＆詳細 共通
+//
+
+.pagination__item,
+.post-page-numbers {
+  margin: 0 .25rem .25rem 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &.-current,
+  &.current .page-links__item {
+    background-color: $color__bg-dark;
+    color: #fff;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+

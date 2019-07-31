@@ -1,0 +1,11 @@
+.footer-sns__item {
+  margin-right: .25rem;
+  &:last-child {
+    margin-right: 0;
+  }
+}
+.footer-sns__link {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}

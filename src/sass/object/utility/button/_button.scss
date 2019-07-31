@@ -1,0 +1,19 @@
+//
+// ボタン（廃止）
+//
+
+.btn {
+  @include button();
+}
+.btn--sm {
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+}
+
+.btn--lg {
+  padding: .75rem 3rem;
+}
+
+.btn--block {
+  display: block;
+}

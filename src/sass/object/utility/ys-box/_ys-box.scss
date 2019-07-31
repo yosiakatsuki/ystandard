@@ -1,0 +1,23 @@
+.ys-box {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  background-color: $color__bg-gray-light;
+  border: 1px solid $color__border-gray-light;
+
+  & > * {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+ul,
+ol {
+  &.ys-box {
+    padding-left: calc(1rem + 1.7em);
+  }
+}

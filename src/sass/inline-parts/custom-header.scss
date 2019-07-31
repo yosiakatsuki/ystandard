@@ -1,0 +1,33 @@
+//
+// カスタムヘッダー
+// カスタマイザーの設定が必要な部分
+// inc/enqueue/enqueue-customizer-custom-header.php でインラインCSSとして読み込み
+//
+@import "../foundation/import";
+
+/**
+ * ヘッダー重ねるタイプ
+ */
+.custom-header--full {
+  .site-header,
+  .h-nav.rwd li:hover ul {
+    background-color: #{"${bg_color}"};
+  }
+
+  .hamburger span {
+    background-color: #{"${text_color}"};
+  }
+
+  .h-nav.rwd li:hover:not(.has-child) {
+    border-bottom-color: #{"${text_color}"};
+  }
+
+  .site-header,
+  .header__title a,
+  .header__title a:hover,
+  .header__dscr,
+  .h-nav.rwd .h-nav__main a,
+  .h-nav.rwd .h-nav__main a:hover {
+    color: #{"${text_color}"};
+  }
+}

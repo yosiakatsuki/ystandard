@@ -1,0 +1,16 @@
+.entry__content {
+  margin-top: 1.5rem;
+}
+.singular-article {
+  @at-root {
+    & {
+      max-width: $width__content_one_col;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .full-width &,
+    .has-sidebar & {
+      max-width: unset;
+    }
+  }
+}

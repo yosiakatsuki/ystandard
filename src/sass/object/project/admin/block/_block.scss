@@ -1,0 +1,75 @@
+/**
+ * 基本
+ */
+body,
+.editor-post-title__block .editor-post-title__input {
+  color: $color__text-main;
+  font-family: $font__body;
+  line-height: $font__line-height;
+  word-wrap: break-word;
+  background-color: $color__bg-body;
+  letter-spacing: $font__spacing;
+
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.editor-post-title__block .editor-post-title__input {
+  font-size: 1.8em;
+}
+
+/**
+ * エディタ幅
+ */
+.wp-block {
+  max-width: calc(800px + 30px);
+}
+
+.wp-block[data-align="wide"] {
+  max-width: calc(800px + 6rem + 30px);
+}
+
+//「全幅」ブロックの幅
+.wp-block[data-align="full"] {
+  max-width: none;
+}
+
+/**
+ * 見出し
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+/**
+ * 画像
+ */
+img,
+.wp-block-image {
+  height: auto;
+  max-width: 100%;
+}
+
+.wp-block-image {
+  &.is-resized {
+    display: block !important;
+    .block-editor-rich-text {
+      display: block !important;
+    }
+  } 
+  .components-resizable-box__container {
+    height: auto !important;
+    max-width: 100% !important;
+  }
+}
+
+/**
+ * ユーティリティ
+ */
+ol,
+ul {
+  &.ys-box {
+    margin-left: 0;
+  }
+}
