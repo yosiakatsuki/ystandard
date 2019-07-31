@@ -30,7 +30,7 @@ function ys_customizer_performance_tuning( $wp_customize ) {
 	 */
 	ys_customizer_performance_tuning_add_cache_query( $wp_customize );
 	/**
-	 * WordPress標準機能で読み込むCSS・JavaScriptの無効化
+	 * 絵文字・oembed関連のCSS・JavaScriptの無効化
 	 */
 	ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize );
 	/**
@@ -148,8 +148,8 @@ function ys_customizer_performance_tuning_add_disable_wp_scripts( $wp_customize 
 	$ys_customizer->add_section(
 		array(
 			'section'     => 'ys_customizer_section_disable_wp_scripts',
-			'title'       => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化',
-			'description' => 'WordPress標準機能で読み込むCSS・JavaScriptの無効化設定',
+			'title'       => '絵文字・oembed関連のCSS・JavaScriptの無効化',
+			'description' => 'WordPress標準機能で読み込まれる絵文字・oembed関連のCSS・JavaScriptの無効化設定',
 			'panel'       => 'ys_customizer_panel_performance_tuning',
 		)
 	);
