@@ -94,7 +94,10 @@ function ys_get_ad_before_entry_title() {
 function ys_the_ad_before_entry_title() {
 	ys_do_shortcode(
 		'ys_ad_block',
-		array( 'title' => '' ),
+		array(
+			'title' => '',
+			'class' => '-no-mt',
+		),
 		ys_get_ad_before_entry_title()
 	);
 }
@@ -146,7 +149,7 @@ function ys_get_ad_entry_header() {
 function ys_the_ad_entry_header() {
 	ys_do_shortcode(
 		'ys_ad_block',
-		array(),
+		array( 'class' => '-no-mb' ),
 		ys_get_ad_entry_header()
 	);
 }
