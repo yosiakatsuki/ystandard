@@ -2,10 +2,10 @@
   margin: 2rem 0;
   text-align: center;
   
-  &:first-child {
+  &.-no-mt {
     margin-top: 0;
   }
-  &:last-child {
+  &.-no-mb {
     margin-bottom: 0;
   }
 
@@ -28,5 +28,4 @@
     }
   }
 }
-
 

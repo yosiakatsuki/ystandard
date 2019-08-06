@@ -619,9 +619,9 @@ video {
 .ys-ad-block {
   margin: 2rem 0;
   text-align: center; }
-  .ys-ad-block:first-child {
+  .ys-ad-block.-no-mt {
     margin-top: 0; }
-  .ys-ad-block:last-child {
+  .ys-ad-block.-no-mb {
     margin-bottom: 0; }
   .ys-ad-block.ys-ad-widget {
     margin: 0; }

@@ -215,9 +215,9 @@
   .mce-content-body .ys-ad-block {
     margin: 2rem 0;
     text-align: center; }
-    .mce-content-body .ys-ad-block:first-child {
+    .mce-content-body .ys-ad-block.-no-mt {
       margin-top: 0; }
-    .mce-content-body .ys-ad-block:last-child {
+    .mce-content-body .ys-ad-block.-no-mb {
       margin-bottom: 0; }
     .mce-content-body .ys-ad-block.ys-ad-widget {
       margin: 0; }
