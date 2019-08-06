@@ -22,3 +22,4 @@ node_modules/
 *.map
 .travis/github_deploy_key
 ystandard.zip
+.node-version
