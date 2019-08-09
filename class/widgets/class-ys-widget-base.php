@@ -448,19 +448,19 @@ class YS_Widget_Base extends WP_Widget {
 						<span class="ys-widget-option__sub">※カテゴリー・タグを選択した場合、投稿詳細ページ かつ 該当のカテゴリー・タグをもつ投稿ページしか表示されません。（一覧ページなどでは表示されません）</span>
 					</p>
 				</div>
-				<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
-					<div class="ys-widget-option__section">
-						<h4>PC・モバイル・AMPの表示選択</h4>
-						<p>
-							<label for="<?php echo $this->get_field_id( 'display_pc' ); ?>">
-								<input type="checkbox" id="<?php echo $this->get_field_id( 'display_pc' ); ?>" name="<?php echo $this->get_field_name( 'display_pc' ); ?>" value="1" <?php checked( $instance['display_pc'], 1 ); ?> />PCページで表示する</label><br>
-							<label for="<?php echo $this->get_field_id( 'display_mobile' ); ?>">
-								<input type="checkbox" id="<?php echo $this->get_field_id( 'display_mobile' ); ?>" name="<?php echo $this->get_field_name( 'display_mobile' ); ?>" value="1" <?php checked( $instance['display_mobile'], 1 ); ?> />モバイルページで表示する</label><br>
-							<label for="<?php echo $this->get_field_id( 'display_amp' ); ?>">
-								<input type="checkbox" id="<?php echo $this->get_field_id( 'display_amp' ); ?>" name="<?php echo $this->get_field_name( 'display_amp' ); ?>" value="1" <?php checked( $instance['display_amp'], 1 ); ?> />AMPページで表示する</label>
-						</p>
-					</div>
-				<?php endif; ?>
+				<div class="ys-widget-option__section">
+					<h4>PC・モバイル・AMPの表示選択</h4>
+					<p>
+						<label for="<?php echo $this->get_field_id( 'display_pc' ); ?>">
+							<input type="checkbox" id="<?php echo $this->get_field_id( 'display_pc' ); ?>" name="<?php echo $this->get_field_name( 'display_pc' ); ?>" value="1" <?php checked( $instance['display_pc'], 1 ); ?> />PCページで表示する</label><br>
+						<label for="<?php echo $this->get_field_id( 'display_mobile' ); ?>">
+							<input type="checkbox" id="<?php echo $this->get_field_id( 'display_mobile' ); ?>" name="<?php echo $this->get_field_name( 'display_mobile' ); ?>" value="1" <?php checked( $instance['display_mobile'], 1 ); ?> />モバイルページで表示する</label><br>
+						<label for="<?php echo $this->get_field_id( 'display_amp' ); ?>">
+						<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
+							<input type="checkbox" id="<?php echo $this->get_field_id( 'display_amp' ); ?>" name="<?php echo $this->get_field_name( 'display_amp' ); ?>" value="1" <?php checked( $instance['display_amp'], 1 ); ?> />AMPページで表示する</label>
+						<?php endif; ?>
+					</p>
+				</div>
 			</div><!-- /.ys-widget-option__toggle -->
 		</div>
 		<?php
