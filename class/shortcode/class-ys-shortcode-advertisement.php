@@ -80,6 +80,14 @@ class YS_Shortcode_Advertisement extends YS_Shortcode_Base {
 		if ( empty( $content ) ) {
 			return '';
 		}
+		// []の変換
+		$content = strtr(
+			$content,
+			array(
+				'&#x5b;' => '[',
+				'&#x5d;' => ']',
+			)
+		);
 		/**
 		 * HTML作成
 		 */

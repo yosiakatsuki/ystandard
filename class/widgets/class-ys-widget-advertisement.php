@@ -68,12 +68,20 @@ class YS_Widget_Advertisement extends YS_Widget_Base {
 	/**
 	 * ウィジェットのフロントエンド表示
 	 *
-	 * @see WP_Widget::widget()
-	 *
 	 * @param array $args     ウィジェットの引数.
 	 * @param array $instance データベースの保存値.
+	 *
+	 * @see WP_Widget::widget()
 	 */
 	public function widget( $args, $instance ) {
+		// []の変換
+		$instance['text'] = strtr(
+			$instance['text'],
+			array(
+				'[' => '&#x5b;',
+				']' => '&#x5d;',
+			)
+		);
 		/**
 		 * ショートコード実行
 		 */
@@ -94,9 +102,9 @@ class YS_Widget_Advertisement extends YS_Widget_Base {
 	/**
 	 * バックエンドのウィジェットフォーム
 	 *
-	 * @see WP_Widget::form()
-	 *
 	 * @param array $instance データベースからの前回保存された値.
+	 *
+	 * @see WP_Widget::form()
 	 */
 	public function form( $instance ) {
 		$instance = wp_parse_args(
@@ -123,12 +131,11 @@ class YS_Widget_Advertisement extends YS_Widget_Base {
 	/**
 	 * ウィジェットフォームの値を保存用にサニタイズ
 	 *
-	 * @see WP_Widget::update()
-	 *
 	 * @param array $new_instance 保存用に送信された値.
 	 * @param array $old_instance データベースからの以前保存された値.
 	 *
 	 * @return array 保存される更新された安全な値
+	 * @see WP_Widget::update()
 	 */
 	public function update( $new_instance, $old_instance ) {
 		/**
