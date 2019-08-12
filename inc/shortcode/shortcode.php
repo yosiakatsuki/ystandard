@@ -133,7 +133,7 @@ function ys_get_shortcode( $name, $param = array(), $content = null ) {
 		 * コンテンツあり
 		 */
 		return sprintf(
-			'[%s%s]%s[/%s]',
+			'[%s%s]' . PHP_EOL . '%s' . PHP_EOL . '[/%s]',
 			$name,
 			$param_text,
 			$content,

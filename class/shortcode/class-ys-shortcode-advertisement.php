@@ -80,7 +80,6 @@ class YS_Shortcode_Advertisement extends YS_Shortcode_Base {
 		if ( empty( $content ) ) {
 			return '';
 		}
-
 		/**
 		 * HTML作成
 		 */
