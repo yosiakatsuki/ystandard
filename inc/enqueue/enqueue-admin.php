@@ -21,7 +21,14 @@ function ys_enqueue_admin_scripts( $hook_suffix ) {
 	wp_enqueue_media();
 	wp_enqueue_script(
 		'ys-admin-scripts',
-		get_template_directory_uri() . '/js/admin.js',
+		get_template_directory_uri() . '/js/admin/admin.js',
+		array( 'jquery', 'jquery-core' ),
+		ys_get_theme_version( true ),
+		true
+	);
+	wp_enqueue_script(
+		'ys-custom-uploader',
+		get_template_directory_uri() . '/js/admin/custom-uploader.js',
 		array( 'jquery', 'jquery-core' ),
 		ys_get_theme_version( true ),
 		true
