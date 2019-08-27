@@ -149,7 +149,7 @@ class YS_Shortcode_Follow_Box extends YS_Shortcode_Base {
 			}
 		}
 
-		return $image;
+		return apply_filters( 'ys_follow_box_image', $image );
 	}
 
 	/**
