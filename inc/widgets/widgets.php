@@ -47,7 +47,7 @@ function ys_widget_init() {
 		array(
 			'name'          => '記事上エリア',
 			'id'            => 'before-content',
-			'description'   => '記事直上に表示されるウィジェット<a href="' . $customizer_url . '">※カスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事上ウィジェットを有効にして下さい</a>',
+			'description'   => '記事直上に表示されるウィジェット。<a href="' . $customizer_url . '">※カスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事上ウィジェットの表示・非表示を切り替えできます。</a>',
 			'before_widget' => '<div id="%1$s" class="content-widget before-content-widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -61,7 +61,7 @@ function ys_widget_init() {
 		array(
 			'name'          => '記事下エリア',
 			'id'            => 'after-content',
-			'description'   => '記事直下に表示されるウィジェット<a href="' . $customizer_url . '">※カスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事下ウィジェットを有効にして下さい</a>',
+			'description'   => '記事直下に表示されるウィジェット。<a href="' . $customizer_url . '">※カスタマイザーの「デザイン設定」→「投稿ページ設定」・「固定ページ設定」で記事下ウィジェットの表示・非表示を切り替えできます。</a>',
 			'before_widget' => '<div id="%1$s" class="content-widget after-content-widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
