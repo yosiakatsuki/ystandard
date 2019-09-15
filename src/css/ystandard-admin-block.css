@@ -61,6 +61,57 @@
     .ys-blog-card__image img {
       width: auto; } }
 
+.wp-block-button {
+  margin-top: 1.5em; }
+  .wp-block-button.alignright {
+    text-align: right; }
+  .wp-block-button.aligncenter {
+    text-align: center; }
+  .wp-block-button.alignleft {
+    text-align: left; }
+  .wp-block-button.-full a {
+    display: block;
+    text-align: center; }
+  .wp-block-button.-sm a {
+    padding-top: .25rem;
+    padding-bottom: .25rem; }
+  .wp-block-button.-lg a {
+    padding: .75rem 3rem; }
+  .wp-block-button a {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all .3s; }
+    .wp-block-button a:hover {
+      box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); }
+    .wp-block-button a:not(.has-background) {
+      background-color: #222; }
+    .wp-block-button a:not(.has-text-color) {
+      color: #fff; }
+  .wp-block-button.is-style-outline a {
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid; }
+    .wp-block-button.is-style-outline a:not(.has-text-color) {
+      color: #222;
+      border: 1px solid #222; }
+      .wp-block-button.is-style-outline a:not(.has-text-color):hover {
+        background-color: #222; }
+    .wp-block-button.is-style-outline a:hover {
+      color: #fff; }
+  .wp-block-button.is-style-squared a {
+    border-radius: 0; }
+  .wp-block-button .wp-block-button__link {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all .3s;
+    border-width: 1px; }
+  .wp-block-button.is-style-squared .wp-block-button__link {
+    border-radius: 0; }
+
 /**
  * utility
  */
