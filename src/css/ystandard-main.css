@@ -2610,7 +2610,8 @@ ol.ys-box {
 
 @media screen and (min-width: 1025px) {
   .h-nav__dscr {
-    display: block; } }
+    display: block;
+    line-height: 1; } }
 
 @media screen and (min-width: 600px) {
   .archive__title {
