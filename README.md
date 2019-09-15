@@ -47,6 +47,7 @@ Source : <https://gist.github.com/terkel/4373420>
 - v3.0.5
   - 調整
     - ボタンブロックのスタイル調整
+    - グローバルメニュー サブテキストの調整
 - v3.0.4
   - 不具合修正
     - `has-text-align-xxx`の不具合修正
