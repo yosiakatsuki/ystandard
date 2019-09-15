@@ -1480,18 +1480,17 @@ figcaption {
     padding: 0.5rem 1.5rem;
     border-radius: 4px;
     text-decoration: none;
-    transition: all .3s;
-    border-width: 1px;
-    border-style: solid; }
+    transition: all .3s; }
     .wp-block-button a:hover {
       box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); }
     .wp-block-button a:not(.has-background) {
-      background-color: #222;
-      border-color: #222; }
+      background-color: #222; }
     .wp-block-button a:not(.has-text-color) {
       color: #fff; }
   .wp-block-button.is-style-outline a {
-    background-color: #fff; }
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid; }
     .wp-block-button.is-style-outline a:not(.has-text-color) {
       color: #222;
       border: 1px solid #222; }
@@ -2611,7 +2610,8 @@ ol.ys-box {
 
 @media screen and (min-width: 1025px) {
   .h-nav__dscr {
-    display: block; } }
+    display: block;
+    line-height: 1; } }
 
 @media screen and (min-width: 600px) {
   .archive__title {
