@@ -1,10 +1,13 @@
 //変数、mixin、functionなど
 @import "foundation/import";
+
+$editor: true;
 /**
  * component
  */
 @import "object/component/blog-card/blog-card";
 @import "object/component/blog-card/blog-card-d";
+@import "object/component/gutenberg/block-button";
 
 /**
  * utility
