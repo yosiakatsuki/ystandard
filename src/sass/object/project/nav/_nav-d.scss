@@ -131,6 +131,7 @@
     .h-nav__dscr {
       @include media-breakpoint(lg) {
         display: block;
+        line-height: 1;
       }
     }
   }

@@ -35,8 +35,6 @@
 
   a {
     @include button_base();
-    border-width: 1px;
-    border-style: solid;
 
     &:hover {
       box-shadow: 3px 3px 6px rgba(#000, .2);
@@ -44,7 +42,6 @@
 
     &:not(.has-background) {
       background-color: $color__btn-bg;
-      border-color: $color__btn-border;
     }
 
     &:not(.has-text-color) {
@@ -54,8 +51,10 @@
 
   &.is-style-outline {
     a {
-      background-color: $color__btn-text;
-
+      background-color: transparent;
+      border-width: 1px;
+      border-style: solid;
+      
       &:not(.has-text-color) {
         color: $color__btn-bg;
         border: 1px solid $color__btn-border;
@@ -73,5 +72,15 @@
 
   &.is-style-squared a {
     border-radius: 0;
+  }
+  
+  @if($editor == true) {
+    .wp-block-button__link {
+      @include button_base();
+      border-width: 1px;
+    }
+    &.is-style-squared .wp-block-button__link {
+      border-radius: 0;
+    }
   }
 }

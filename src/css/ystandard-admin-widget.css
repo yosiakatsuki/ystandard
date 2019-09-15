@@ -1,6 +1,10 @@
 select {
   max-width: 100%; }
 
+.widgets-holder-wrap .description a {
+  display: block;
+  font-size: .7rem; }
+
 .ys-widget-option {
   position: relative;
   margin: .5rem 0 2rem; }
