@@ -48,7 +48,7 @@ function ys_get_option( $name, $default = false ) {
 		$result         = get_option( $name, $option_default );
 	}
 
-	return apply_filters( 'ys_get_option', $result, $name, $option_default );
+	return apply_filters( 'ys_get_option_' . $name, $result, $name, $option_default );
 }
 
 /**
@@ -69,7 +69,7 @@ function ys_get_option_default( $name, $default = false ) {
 		$result = $defaults[ $name ];
 	}
 
-	return apply_filters( 'ys_get_option_default', $result, $name, $defaults );
+	return apply_filters( 'ys_get_option_default_' . $name, $result, $name, $defaults );
 }
 
 /**
@@ -273,18 +273,6 @@ function ys_get_option_defaults() {
 		'ys_admin_enable_block_editor_style'        => 0, // Gutenberg用CSSを追加する.
 		'ys_admin_enable_tiny_mce_style'            => 0, // ビジュアルエディタ用CSSを追加する.
 	);
-}
-
-
-/**
- * テーマ内で使用する設定の取得
- *
- * @return array
- */
-function ys_get_options() {
-	ys_deprecated( 'ys_get_options', 'v3.0.0' );
-
-	return apply_filters( 'ys_get_options', array() );
 }
 
 /**
