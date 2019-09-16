@@ -10,7 +10,7 @@
 /**
  * 投稿者の記事一覧リンク取得
  *
- * @param  boolean $user_id ユーザーID.
+ * @param boolean $user_id ユーザーID.
  *
  * @return string
  */
@@ -23,7 +23,7 @@ function ys_get_author_link( $user_id = false ) {
 /**
  * 投稿者記事一覧リンク表示
  *
- * @param  boolean $user_id ユーザーID.
+ * @param boolean $user_id ユーザーID.
  *
  * @return void
  */
@@ -34,7 +34,7 @@ function ys_the_author_link( $user_id = false ) {
 /**
  * 投稿者名取得
  *
- * @param  boolean $user_id ユーザーID.
+ * @param boolean $user_id ユーザーID.
  *
  * @return string
  */
@@ -58,8 +58,8 @@ function ys_the_author_display_name( $user_id = false ) {
 /**
  * 投稿者名（html）取得
  *
- * @param  boolean     $user_id ユーザーID.
- * @param  string|bool $link    投稿者一覧ページURL.
+ * @param boolean     $user_id ユーザーID.
+ * @param string|bool $link    投稿者一覧ページURL.
  *
  * @return string
  */
@@ -94,8 +94,8 @@ function ys_get_author_name( $user_id = false, $link = '' ) {
 /**
  * 投稿者名（html）出力
  *
- * @param  boolean $user_id ユーザーID.
- * @param  boolean $vcard   vcardでマークアップするか.
+ * @param boolean $user_id ユーザーID.
+ * @param boolean $vcard   vcardでマークアップするか.
  *
  * @return void
  */
@@ -106,65 +106,31 @@ function ys_the_author_name( $user_id = false, $vcard = true ) {
 /**
  * 投稿者 SNS一覧取得
  *
- * @param  boolean $user_id ユーザーID.
+ * @param boolean $user_id ユーザーID.
  *
  * @return array
  */
 function ys_get_author_sns_list( $user_id = false ) {
 	$user_id = ys_check_user_id( $user_id );
+	$list    = array();
 	/**
-	 * 取得対象の meta key
-	 * キーがmeta key,valueがfontawesomeのクラス
+	 * URLを1番に作成
 	 */
-	$sns_key = array(
-		'url'          => array(
+	$list['url'] = ys_get_author_sns_item(
+		'url',
+		array(
 			'icon'  => 'fas fa-globe-asia',
 			'color' => 'globe',
 			'title' => 'Web',
 		),
-		'ys_twitter'   => array(
-			'icon'  => 'fab fa-twitter',
-			'color' => 'twitter',
-			'title' => 'Twitter',
-		),
-		'ys_facebook'  => array(
-			'icon'  => 'fab fa-facebook-f',
-			'color' => 'facebook',
-			'title' => 'Facebook',
-		),
-		'ys_instagram' => array(
-			'icon'  => 'fab fa-instagram',
-			'color' => 'instagram',
-			'title' => 'Instagram',
-		),
-		'ys_tumblr'    => array(
-			'icon'  => 'fab fa-tumblr',
-			'color' => 'tumblr',
-			'title' => 'Tumblr',
-		),
-		'ys_youtube'   => array(
-			'icon'  => 'fab fa-youtube',
-			'color' => 'youtube-play',
-			'title' => 'YouTube',
-		),
-		'ys_github'    => array(
-			'icon'  => 'fab fa-github',
-			'color' => 'github',
-			'title' => 'GitHub',
-		),
-		'ys_pinterest' => array(
-			'icon'  => 'fab fa-pinterest',
-			'color' => 'pinterest',
-			'title' => 'Pinterest',
-		),
-		'ys_linkedin'  => array(
-			'icon'  => 'fab fa-linkedin',
-			'color' => 'linkedin',
-			'title' => 'LinkedIn',
-		),
+		$user_id
 	);
-	$list    = array();
-	foreach ( $sns_key as $key => $val ) {
+	/**
+	 * SNSのアイコン作成
+	 */
+	$sns = ys_get_sns_icons();
+	foreach ( $sns as $key => $val ) {
+		$key = 'ys_' . $key;
 		$arg = ys_get_author_sns_item( $key, $val, $user_id );
 		if ( false !== $arg ) {
 			$list[ $key ] = $arg;
@@ -214,15 +180,15 @@ function ys_the_author_sns() {
 				</li>
 			<?php endforeach; ?>
 		</ul><!-- .author__sns -->
-		<?php
+	<?php
 	endif;
 }
 
 /**
  * 投稿者 プロフィール説明文取得
  *
- * @param  boolean $user_id ユーザーID.
- * @param  boolean $wpautop wpautopを効かせるか.
+ * @param boolean $user_id ユーザーID.
+ * @param boolean $wpautop wpautopを効かせるか.
  *
  * @return string
  */

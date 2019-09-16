@@ -22,6 +22,92 @@ function ys_get_page_url() {
 }
 
 /**
+ * サイト内設定で使用するSNSのリスト
+ *
+ * @return array
+ */
+function ys_get_sns_icons() {
+	return apply_filters(
+		'ys_get_sns_icons',
+		array(
+			'twitter'   => array(
+				'class'      => 'twitter',
+				'option_key' => 'twitter',
+				'icon'       => 'fab fa-twitter',
+				'color'      => 'twitter',
+				'title'      => 'twitter',
+				'label'      => 'Twitter',
+			),
+			'facebook'  => array(
+				'class'      => 'facebook',
+				'option_key' => 'facebook',
+				'icon'       => 'fab fa-facebook-f',
+				'color'      => 'facebook',
+				'title'      => 'facebook',
+				'label'      => 'Facebook',
+			),
+			'instagram' => array(
+				'class'      => 'instagram',
+				'option_key' => 'instagram',
+				'icon'       => 'fab fa-instagram',
+				'color'      => 'instagram',
+				'title'      => 'instagram',
+				'label'      => 'Instagram',
+			),
+			'tumblr'    => array(
+				'class'      => 'tumblr',
+				'option_key' => 'tumblr',
+				'icon'       => 'fab fa-tumblr',
+				'color'      => 'tumblr',
+				'title'      => 'tumblr',
+				'label'      => 'Tumblr',
+			),
+			'youtube'   => array(
+				'class'      => 'youtube',
+				'option_key' => 'youtube',
+				'icon'       => 'fab fa-youtube',
+				'color'      => 'youtube-play',
+				'title'      => 'youtube',
+				'label'      => 'YouTube',
+			),
+			'github'    => array(
+				'class'      => 'github',
+				'option_key' => 'github',
+				'icon'       => 'fab fa-github',
+				'color'      => 'github',
+				'title'      => 'github',
+				'label'      => 'GitHub',
+			),
+			'pinterest' => array(
+				'class'      => 'pinterest',
+				'option_key' => 'pinterest',
+				'icon'       => 'fab fa-pinterest-p',
+				'color'      => 'pinterest',
+				'title'      => 'pinterest',
+				'label'      => 'Pinterest',
+			),
+			'linkedin'  => array(
+				'class'      => 'linkedin',
+				'option_key' => 'linkedin',
+				'icon'       => 'fab fa-linkedin-in',
+				'color'      => 'linkedin',
+				'title'      => 'linkedin',
+				'label'      => 'LinkedIn',
+			),
+			'amazon'    => array(
+				'class'      => 'amazon',
+				'option_key' => 'amazon',
+				'icon'       => 'fab fa-amazon',
+				'color'      => 'amazon',
+				'title'      => 'amazon',
+				'label'      => 'Amazon',
+			),
+		)
+	);
+}
+
+
+/**
  * Font Awesome CSS
  *
  * @return string

@@ -1323,6 +1323,18 @@
       color: #2eb0ee; }
   .mce-content-body .sns-border--linkedin {
     border: 1px solid #0e76a8; }
+  .mce-content-body .sns-bg--amazon {
+    background-color: #ffa724;
+    color: #fff; }
+    .mce-content-body .sns-bg--amazon.-hover:hover {
+      background-color: #fff;
+      color: #ffa724; }
+  .mce-content-body .sns-text--amazon {
+    color: #ffa724; }
+    .mce-content-body .sns-text--amazon.-hover:hover {
+      color: #ffd08a; }
+  .mce-content-body .sns-border--amazon {
+    border: 1px solid #ffa724; }
   .mce-content-body .icon-hatenabookmark::before {
     content: "B!";
     display: inline-block;
