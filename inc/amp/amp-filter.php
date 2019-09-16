@@ -60,3 +60,8 @@ function ys_amp_convert_all( $content ) {
 
 	return $content;
 }
+
+/**
+ * 投稿者画像のAMP変換セット
+ */
+add_filter( 'get_avatar', 'ys_amp_get_amp_image_tag', 999 );
