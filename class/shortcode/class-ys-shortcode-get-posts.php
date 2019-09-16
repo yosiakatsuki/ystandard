@@ -274,6 +274,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 			'order'               => $this->get_param( 'order' ),
 			'orderby'             => $this->get_param( 'orderby' ),
 			'ignore_sticky_posts' => true,
+			'no_found_rows'       => true,
 		);
 	}
 
