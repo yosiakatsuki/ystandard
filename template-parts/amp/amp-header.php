@@ -81,7 +81,7 @@
 	<?php if ( ys_is_enable_google_analytics() ) : ?>
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 	<?php endif; ?>
-	<link rel="stylesheet" href="<?php echo ys_get_font_awesome_css_url(); ?>">
+	<link rel="stylesheet" href="<?php echo ys_get_font_awesome_cdn_css_url(); ?>">
 	<?php
 	/**
 	 * AMP用wp_head的な処理

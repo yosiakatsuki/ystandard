@@ -124,7 +124,7 @@ function ys_set_enqueue_scripts() {
 		'font-awesome',
 		ys_get_font_awesome_svg_url(),
 		array(),
-		ys_get_font_awesome_svg_version(),
+		'v5.10.2',
 		true
 	);
 	wp_add_inline_script(
