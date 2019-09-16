@@ -117,7 +117,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 		 * User_nameが設定されていればユーザー名からauthor_idを取得
 		 */
 		$user_name = $this->get_param( 'user_name' );
-		if ( false !== $user_name ) {
+		if ( ! empty( $user_name ) ) {
 			$user = get_user_by( 'slug', $user_name );
 			if ( $user ) {
 				$user_id = $user->ID;
@@ -127,7 +127,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 		 * デフォルトユーザーが指定されていれば表示する
 		 */
 		$default_user_name = $this->get_param( 'default_user_name' );
-		if ( '' === $user_id && false !== $default_user_name ) {
+		if ( empty( $user_id ) && ! empty( $default_user_name ) ) {
 			$user = get_user_by( 'slug', $default_user_name );
 			if ( $user ) {
 				$user_id = $user->ID;
@@ -158,7 +158,13 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	private function get_avatar( $user_id ) {
 		$avatar = '';
 		if ( $this->get_param( 'show_avatar', 'bool' ) ) {
-			$avatar = ys_get_author_avatar( $user_id, 96, array( 'author-box__img' ) );
+			$avatar = get_avatar(
+				$user_id,
+				96,
+				'',
+				'',
+				array( 'class' => 'author-box__img' )
+			);
 		}
 		/**
 		 * 一覧ページへのリンクを付ける

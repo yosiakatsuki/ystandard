@@ -51,6 +51,8 @@ Source : <https://gist.github.com/terkel/4373420>
   - 調整
     - FontAwesome関連処理の調整
     - PHP処理でコストの掛かりそうな処理をリファクタリング
+    - 投稿者画像の取得方法変更
+      - ys_the_author_avatar,ys_get_author_avatar を非推奨に変更
 - v3.0.5
   - 調整
     - ボタンブロックのスタイル調整
