@@ -91,7 +91,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 	</div>
 	<?php if ( 'div' !== $args['style'] ) : ?>
 		</div>
-	<?php
+		<?php
 	endif;
 }
 
