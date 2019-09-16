@@ -45,10 +45,8 @@ function ys_optimize_jquery() {
 	/**
 	 * 必要があればwp_scriptsを初期化
 	 */
-	if ( is_null( $wp_scripts ) ) {
-		wp_scripts();
-	}
-	if ( ! is_null( $wp_scripts ) ) {
+	wp_scripts();
+	if ( null !== $wp_scripts ) {
 		$jquery = $wp_scripts->registered['jquery-core'];
 		$ver    = $jquery->ver;
 		$src    = $jquery->src;

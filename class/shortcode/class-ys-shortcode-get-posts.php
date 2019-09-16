@@ -109,7 +109,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 		/**
 		 * テキストの指定があればくっつける
 		 */
-		if ( is_null( $content ) ) {
+		if ( null === $content ) {
 			$content = $html;
 		} else {
 			$content = $content . $html;
