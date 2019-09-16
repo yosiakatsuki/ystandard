@@ -10,9 +10,9 @@
 /**
  * コメント一覧のコールバック
  *
- * @param  object $comment comment object.
- * @param  array  $args    args.
- * @param  int    $depth   depth.
+ * @param object $comment comment object.
+ * @param array  $args    args.
+ * @param int    $depth   depth.
  */
 function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
@@ -39,11 +39,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 			if ( get_option( 'show_avatars' ) ) :
 				$comment_avatar = '';
 				if ( 0 !== $args['avatar_size'] ) {
-					if ( get_the_author_meta( 'user_email' ) === $comment->comment_author_email ) {
-						$comment_avatar = ys_get_author_avatar( false, $args['avatar_size'] );
-					} else {
-						$comment_avatar = get_avatar( $comment, $args['avatar_size'] );
-					}
+					$comment_avatar = get_avatar( $comment, $args['avatar_size'], '', '', array( 'class' => 'author__img' ) );
 				}
 				if ( $comment_avatar ) :
 					?>
@@ -95,7 +91,7 @@ function ys_wp_list_comments_callback( $comment, $args, $depth ) {
 	</div>
 	<?php if ( 'div' !== $args['style'] ) : ?>
 		</div>
-		<?php
+	<?php
 	endif;
 }
 
