@@ -2266,6 +2266,21 @@ a.text-sub,
 .sns-border--linkedin {
   border: 1px solid #0e76a8; }
 
+.sns-bg--amazon {
+  background-color: #ffa724;
+  color: #fff; }
+  .sns-bg--amazon.-hover:hover {
+    background-color: #fff;
+    color: #ffa724; }
+
+.sns-text--amazon {
+  color: #ffa724; }
+  .sns-text--amazon.-hover:hover {
+    color: #ffd08a; }
+
+.sns-border--amazon {
+  border: 1px solid #ffa724; }
+
 .icon-hatenabookmark::before {
   content: "B!";
   display: inline-block;

@@ -10,19 +10,16 @@
 /**
  * SNS関連の情報入力域追加
  *
- * @param  array $wb wb.
+ * @param array $wb wb.
  *
  * @return array
  */
 function ys_add_contact_methods( $wb ) {
-	$wb['ys_twitter']   = 'Twitter';
-	$wb['ys_facebook']  = 'Facebook';
-	$wb['ys_instagram'] = 'Instargram';
-	$wb['ys_tumblr']    = 'Tumblr';
-	$wb['ys_youtube']   = 'Youtube';
-	$wb['ys_github']    = 'GitHub';
-	$wb['ys_pinterest'] = 'Pinterest';
-	$wb['ys_linkedin']  = 'LinkedIn';
+
+	$sns = ys_get_sns_icons();
+	foreach ( $sns as $key => $value ) {
+		$wb[ 'ys_' . $key ] = $value['label'];
+	}
 
 	return $wb;
 }
@@ -32,7 +29,7 @@ add_filter( 'user_contactmethods', 'ys_add_contact_methods' );
 /**
  * カスタムユーザー画像追加
  *
- * @param  bool $bool bool.
+ * @param bool $bool bool.
  *
  * @return bool
  */
@@ -69,7 +66,7 @@ function ys_add_custom_avatar_option( $bool ) {
 				<p class="description">96px×96pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
 			</td>
 		</tr>
-		<?php
+	<?php
 	endif;
 
 	return $bool;

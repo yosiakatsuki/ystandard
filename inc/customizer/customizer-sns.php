@@ -518,85 +518,18 @@ function ys_customizer_sns_add_footer_sns_follow( $wp_customize ) {
 		)
 	);
 	/**
-	 * Twitter
+	 * 各SNSのURL入力欄追加
 	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_twitter',
-			'default' => '',
-			'label'   => 'Twitter',
-		)
-	);
-	/**
-	 * Facebook
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_facebook',
-			'default' => '',
-			'label'   => 'Facebook',
-		)
-	);
-	/**
-	 * Instagram
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_instagram',
-			'default' => '',
-			'label'   => 'Instagram',
-		)
-	);
-	/**
-	 * Tumblr
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_tumblr',
-			'default' => '',
-			'label'   => 'Tumblr',
-		)
-	);
-	/**
-	 * Youtube
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_youtube',
-			'default' => '',
-			'label'   => 'Youtube',
-		)
-	);
-	/**
-	 * GitHub
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_github',
-			'default' => '',
-			'label'   => 'GitHub',
-		)
-	);
-	/**
-	 * Pinterest
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_pinterest',
-			'default' => '',
-			'label'   => 'Pinterest',
-		)
-	);
-	/**
-	 * LinkedIn
-	 */
-	$ys_customizer->add_url(
-		array(
-			'id'      => 'ys_follow_url_linkedin',
-			'default' => '',
-			'label'   => 'LinkedIn',
-		)
-	);
+	$sns = ys_get_sns_icons();
+	foreach ( $sns as $key => $value ) {
+		$ys_customizer->add_url(
+			array(
+				'id'      => 'ys_follow_url_' . $key,
+				'default' => '',
+				'label'   => $value['label'],
+			)
+		);
+	}
 }
 
 /**
