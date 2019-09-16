@@ -12,10 +12,11 @@
  *
  * @param string $name    option key.
  * @param mixed  $default デフォルト値.
+ * @param mixed  $type    取得する型.
  *
  * @return mixed
  */
-function ys_get_option( $name, $default = false ) {
+function ys_get_option( $name, $default = false, $type = false ) {
 	$result = null;
 	/**
 	 * 設定値のキャッシュ機能
@@ -46,6 +47,17 @@ function ys_get_option( $name, $default = false ) {
 	if ( null === $result ) {
 		$option_default = ys_get_option_default( $name, $default );
 		$result         = get_option( $name, $option_default );
+	}
+	/**
+	 * 指定のタイプで取得
+	 */
+	if ( false !== $type ) {
+		switch ( $type ) {
+			case 'bool':
+			case 'boolean':
+				$result = ys_sanitize_bool( $result );
+				break;
+		}
 	}
 
 	return apply_filters( 'ys_get_option_' . $name, $result, $name, $option_default );

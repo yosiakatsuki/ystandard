@@ -35,7 +35,7 @@ function ys_enqueue_scripts() {
 	$scripts->enqueue_script();
 }
 
-add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts', 9 );
+add_action( 'wp_enqueue_scripts', 'ys_enqueue_scripts' );
 
 /**
  * CSSの読み込み
