@@ -22,7 +22,7 @@ if ( empty( $sns_list ) ) {
 					<a class="footer-sns__link flex flex--c-c" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php echo $value['title']; ?>">
 						<?php
 						if ( '' !== $value['icon'] ) {
-							echo $value['icon'];
+							echo '<i class="' . $value['icon'] . '" aria-hidden="true"></i>';
 						}
 						?>
 					</a>
