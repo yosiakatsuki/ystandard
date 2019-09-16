@@ -1,3 +1,5 @@
 - v3.1.0
   - ys_get_option -> ys_get_option_{$name}
   - ys_get_option_default -> ys_get_option_default_{$name}
+  - delete: ys_exclude_add_defer_scripts_file
+  - add: ys_defer_scripts

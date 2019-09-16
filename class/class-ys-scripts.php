@@ -75,6 +75,12 @@ class YS_Scripts {
 	 * Construct
 	 */
 	public function __construct() {
+		add_filter(
+			'script_loader_tag',
+			array( $this, 'script_add_defer' ),
+			PHP_INT_MAX,
+			3
+		);
 	}
 
 	/**
@@ -82,43 +88,26 @@ class YS_Scripts {
 	 */
 	public function enqueue_script() {
 		/**
-		 * ダミーjsの指定
+		 * JavaScriptの指定
 		 */
 		wp_enqueue_script(
-			self::SCRIPT_HANDLE_DUMMY,
-			get_template_directory_uri() . '/js/ystandard-s.js',
+			self::SCRIPT_HANDLE_MAIN,
+			get_template_directory_uri() . '/js/ystandard.js',
 			array(),
-			'',
+			ys_get_theme_version(),
 			true
 		);
-		/**
-		 * ダミー削除用フック登録
-		 */
-		add_filter( 'script_loader_tag', array( $this, 'delete_ystandard_script' ), 999, 2 );
-		/**
-		 * JS enqueue前アクション
-		 */
-		do_action( 'ys_enqueue_scripts' );
+
 		/**
 		 * インラインスクリプトをセット
 		 */
-		add_filter( 'wp_enqueue_scripts', array( $this, 'add_ystandard_inline_script' ), 999 );
-	}
-
-	/**
-	 * インラインスクリプトのセット
-	 */
-	public function add_ystandard_inline_script() {
-		/**
-		 * パラメーターを渡す
-		 */
 		wp_localize_script(
-			self::SCRIPT_HANDLE_DUMMY,
+			self::SCRIPT_HANDLE_MAIN,
 			'ys_onload_script',
 			$this->onload_script
 		);
 		wp_localize_script(
-			self::SCRIPT_HANDLE_DUMMY,
+			self::SCRIPT_HANDLE_MAIN,
 			'ys_Lazyload_script',
 			$this->lazyload_script
 		);
@@ -126,9 +115,60 @@ class YS_Scripts {
 		 * インラインJSのセット
 		 */
 		wp_add_inline_script(
-			self::SCRIPT_HANDLE_DUMMY,
+			self::SCRIPT_HANDLE_MAIN,
 			str_replace( array( "\r\n", "\r", "\n", "\t" ), '', $this->get_inline_js() )
 		);
+		/**
+		 * JS Enqueue
+		 */
+		do_action( 'ys_enqueue_scripts' );
+	}
+
+	/**
+	 * スクリプトにdefer属性をセット
+	 *
+	 * @param string $tag    tag.
+	 * @param string $handle handle.
+	 * @param string $src    src.
+	 *
+	 * @return string
+	 */
+	public function script_add_defer( $tag, $handle, $src ) {
+		if ( is_admin() ) {
+			return $tag;
+		}
+		$defer_scripts = $this->get_defer_scripts();
+		if ( ! is_array( $defer_scripts ) || empty( $defer_scripts ) ) {
+			return $tag;
+		}
+		foreach ( $defer_scripts as $script => $value ) {
+			if ( isset( $defer_scripts[ $handle ] ) ) {
+				if ( $defer_scripts[ $handle ] ) {
+					return $this->add_defer( $tag );
+				} else {
+					return $tag;
+				}
+			}
+		}
+		if ( ys_get_option( 'ys_option_optimize_load_js', false, 'bool' ) ) {
+			return $this->add_defer( $tag );
+		}
+
+		return $tag;
+	}
+
+	/**
+	 * Scriptにdeferを追加
+	 *
+	 * @param string $tag タグ.
+	 *
+	 * @return string
+	 */
+	private function add_defer( $tag ) {
+		$tag = str_replace( 'src=\'', 'defer src=\'', $tag );
+		$tag = str_replace( 'src="', 'defer src="', $tag );
+
+		return $tag;
 	}
 
 	/**
@@ -281,9 +321,6 @@ class YS_Scripts {
 	 * @return string
 	 */
 	public function delete_ystandard_script( $html, $handle ) {
-		if ( self::SCRIPT_HANDLE_DUMMY === $handle ) {
-			$html = preg_replace( '/<script.+src=["\'].+?["\']><\/script>/is', '', $html );
-		}
 
 		return $html;
 	}
@@ -502,6 +539,27 @@ class YS_Scripts {
 		}
 
 		return $css;
+	}
+
+	/**
+	 * スクリプトにdeferをつけないリスト
+	 *
+	 * @return array
+	 */
+	public function get_defer_scripts() {
+		return apply_filters(
+			'ys_defer_scripts',
+			array(
+				'jquery'                 => false,
+				'jquery-core'            => false,
+				'jquery-migrate'         => false,
+				'wp-custom-header'       => false,
+				'wp-a11y'                => false,
+				'recaptcha'              => false,
+				self::SCRIPT_HANDLE_MAIN => true,
+				'font-awesome'           => true,
+			)
+		);
 	}
 
 	/**
