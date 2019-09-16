@@ -43,7 +43,7 @@ function ys_get_option( $name, $default = false ) {
 	/**
 	 * 設定取得できなかった場合通常取得
 	 */
-	if ( is_null( $result ) ) {
+	if ( null === $result ) {
 		$option_default = ys_get_option_default( $name, $default );
 		$result         = get_option( $name, $option_default );
 	}

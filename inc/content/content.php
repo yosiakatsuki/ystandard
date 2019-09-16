@@ -10,7 +10,7 @@
 /**
  * ブログ名区切り文字設定
  *
- * @param  string $sep 区切り文字.
+ * @param string $sep 区切り文字.
  *
  * @return string
  */
@@ -130,7 +130,7 @@ function ys_excerpt_length( $length = null ) {
 	/**
 	 * 直接呼び出しでもフックでも設定値を返す
 	 */
-	if ( ! is_null( $length ) ) {
+	if ( null !== $length ) {
 		return $option_length;
 	}
 
@@ -160,9 +160,9 @@ add_filter( 'excerpt_more', 'ys_excerpt_more' );
 /**
  * 投稿抜粋文を作成
  *
- * @param  string  $sep     抜粋最後の文字.
- * @param  integer $length  抜粋長さ.
- * @param  integer $post_id 投稿ID.
+ * @param string  $sep     抜粋最後の文字.
+ * @param integer $length  抜粋長さ.
+ * @param integer $post_id 投稿ID.
  *
  * @return string
  */
@@ -202,9 +202,9 @@ function ys_get_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
 /**
  * 投稿抜粋文を出力
  *
- * @param  string  $sep     抜粋最後の文字.
- * @param  integer $length  抜粋長さ.
- * @param  integer $post_id 投稿ID.
+ * @param string  $sep     抜粋最後の文字.
+ * @param integer $length  抜粋長さ.
+ * @param integer $post_id 投稿ID.
  */
 function ys_the_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
 	echo ys_get_the_custom_excerpt( $length, $sep, $post_id );

@@ -10,11 +10,11 @@
 /**
  * アイキャッチ画像のAMP対応
  *
- * @param  string $html              The post thumbnail HTML.
- * @param  int    $post_id           The post ID.
- * @param  string $post_thumbnail_id The post thumbnail ID.
- * @param  string $size              The post thumbnail size. Image size or array of width and height values (in that order). Default 'post-thumbnail'.
- * @param  string $attr              Query string of attributes.
+ * @param string $html              The post thumbnail HTML.
+ * @param int    $post_id           The post ID.
+ * @param string $post_thumbnail_id The post thumbnail ID.
+ * @param string $size              The post thumbnail size. Image size or array of width and height values (in that order). Default 'post-thumbnail'.
+ * @param string $attr              Query string of attributes.
  *
  * @return string
  */
@@ -146,7 +146,7 @@ function ys_get_the_first_image_object( $post_id = 0 ) {
 		return false;
 	}
 	$attachment_id = get_attachment_id_from_src( $url );
-	if ( is_null( $attachment_id ) ) {
+	if ( null === $attachment_id ) {
 		return false;
 	}
 	/**

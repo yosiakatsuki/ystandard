@@ -456,7 +456,7 @@ class YS_Widget_Base extends WP_Widget {
 						<label for="<?php echo $this->get_field_id( 'display_mobile' ); ?>">
 							<input type="checkbox" id="<?php echo $this->get_field_id( 'display_mobile' ); ?>" name="<?php echo $this->get_field_name( 'display_mobile' ); ?>" value="1" <?php checked( $instance['display_mobile'], 1 ); ?> />モバイルページで表示する</label><br>
 						<label for="<?php echo $this->get_field_id( 'display_amp' ); ?>">
-						<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
+							<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
 							<input type="checkbox" id="<?php echo $this->get_field_id( 'display_amp' ); ?>" name="<?php echo $this->get_field_name( 'display_amp' ); ?>" value="1" <?php checked( $instance['display_amp'], 1 ); ?> />AMPページで表示する</label>
 						<?php endif; ?>
 					</p>
@@ -680,7 +680,7 @@ class YS_Widget_Base extends WP_Widget {
 		 */
 		foreach ( $display_tax_select as $item ) {
 			$tax = $this->get_selected_taxonomy( $item );
-			if ( ! is_null( $tax ) ) {
+			if ( null !== $tax ) {
 				$result .= YS_Shortcode_Base::join_tax_term( $tax['taxonomy_name'], $tax['term_slug'] ) . YS_Shortcode_Base::TAX_LIST_DELIMITER;
 			}
 		}

@@ -3,7 +3,7 @@
  * ショートコードサンプル
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -13,11 +13,14 @@
 function ys_shortcode_sample() {
 	return "it's ys_shortcode_sample";
 }
+
 add_shortcode( 'ys_sample', 'ys_shortcode_sample' );
 /**
  * サンプル変数指定
  *
  * @param array $args args.
+ *
+ * @return string
  */
 function ys_shortcode_sample_2( $args ) {
 	/**
@@ -29,21 +32,27 @@ function ys_shortcode_sample_2( $args ) {
 		),
 		$args
 	);
+
 	return $arg;
 }
+
 add_shortcode( 'ys_sample2', 'ys_shortcode_sample_2' );
 /**
  * サンプル囲み
  *
- * @param array  $args args.
+ * @param array  $args    args.
  * @param string $content content.
+ *
+ * @return string
  */
 function ys_shortcode_sample_3( $args, $content = null ) {
-	if ( ! is_null( $content ) ) {
+	if ( null !== $content ) {
 		$content = '<span>' . $content . '</span>';
 	} else {
 		$content = '';
 	}
+
 	return $content;
 }
+
 add_shortcode( 'ys_sample3', 'ys_shortcode_sample_3' );

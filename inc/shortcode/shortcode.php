@@ -119,7 +119,7 @@ function ys_get_shortcode( $name, $param = array(), $content = null ) {
 	/**
 	 * ショートコード作成
 	 */
-	if ( is_null( $content ) ) {
+	if ( null === $content ) {
 		/**
 		 * コンテンツなし
 		 */

@@ -91,7 +91,7 @@ function ys_get_json_ld_website() {
  */
 function ys_get_json_ld_article( $post_data = null ) {
 	global $post;
-	if ( is_null( $post_data ) ) {
+	if ( null === $post_data ) {
 		$post_data = $post;
 	}
 	$json                     = array();

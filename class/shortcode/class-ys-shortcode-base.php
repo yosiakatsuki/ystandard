@@ -257,7 +257,7 @@ class YS_Shortcode_Base {
 	 * @return string
 	 */
 	public function get_html( $content ) {
-		if ( is_null( $content ) ) {
+		if ( null === $content ) {
 			return '';
 		}
 		if ( empty( $content ) ) {
@@ -374,7 +374,7 @@ class YS_Shortcode_Base {
 		 */
 		$taxonomy = implode( self::TAX_DELIMITER, $selected );
 		$term     = get_term( $term_id, $taxonomy );
-		if ( ! is_wp_error( $term ) && ! is_null( $term ) ) {
+		if ( ! is_wp_error( $term ) && null !== $term ) {
 			$term_label = $term->name;
 			$term_slug  = $term->slug;
 		}
