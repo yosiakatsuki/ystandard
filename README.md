@@ -44,6 +44,13 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 
 ### v3.x.x
+- v3.1.0
+  - 機能追加
+    - 投稿者SNSリンク、フッターSNSリンクにAmazonアイコンを追加
+      - template-parts/footer/footer-sns.php を修正
+  - 調整
+    - FontAwesome関連処理の調整
+    - PHP処理でコストの掛かりそうな処理をリファクタリング
 - v3.0.5
   - 調整
     - ボタンブロックのスタイル調整
