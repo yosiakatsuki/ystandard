@@ -22,29 +22,42 @@ function ys_get_page_url() {
 }
 
 /**
- * Font Awesome CDN - CSS
+ * Font Awesome CSS
  *
  * @return string
  */
 function ys_get_font_awesome_css_url() {
-	$url_format = 'https://use.fontawesome.com/releases/%s/css/all.css';
-	$version    = ys_get_font_awesome_css_version();
+	return ys_get_theme_file_uri( '/library/fontawesome/css/all.css' );
+}
+
+/**
+ * Font Awesome CDN - CSS
+ *
+ * @return string
+ */
+function ys_get_font_awesome_cdn_css_url() {
+	$version = apply_filters(
+		'ys_get_font_awesome_css_version',
+		'v5.10.2'
+	);
 
 	return apply_filters(
-		'ys_get_font_awesome_css_url',
-		sprintf( $url_format, $version ),
-		$url_format,
+		'ys_get_font_awesome_cdn_css_url',
+		'https://use.fontawesome.com/releases/' . $version . '/css/all.css',
 		$version
 	);
 }
 
 /**
- * Font Awesome CDN CSSバージョン
+ * Font Awesome - SVG
  *
  * @return string
  */
-function ys_get_font_awesome_css_version() {
-	return apply_filters( 'ys_get_font_awesome_css_version', 'v5.7.2' );
+function ys_get_font_awesome_svg_url() {
+
+	$file_url = ys_get_theme_file_uri( '/library/fontawesome/js/all.js' );
+
+	return $file_url;
 }
 
 /**
@@ -52,25 +65,14 @@ function ys_get_font_awesome_css_version() {
  *
  * @return string
  */
-function ys_get_font_awesome_svg_url() {
-	$url_format = 'https://use.fontawesome.com/releases/%s/js/all.js';
-	$version    = ys_get_font_awesome_svg_version();
+function ys_get_font_awesome_cdn_svg_url() {
+	$version = apply_filters( 'ys_get_font_awesome_cdn_svg_version', 'v5.10.2' );
 
 	return apply_filters(
-		'ys_get_font_awesome_svg_url',
-		sprintf( $url_format, $version ),
-		$url_format,
+		'ys_get_font_awesome_cdn_svg_url',
+		'https://use.fontawesome.com/releases/' . $version . '/js/all.js',
 		$version
 	);
-}
-
-/**
- * Font Awesome CDN SVG(JS)バージョン
- *
- * @return string
- */
-function ys_get_font_awesome_svg_version() {
-	return apply_filters( 'ys_get_font_awesome_svg_version', 'v5.7.2' );
 }
 
 /**
@@ -110,6 +112,7 @@ function ys_no_self_ping( &$links ) {
 		}
 	}
 }
+
 add_action( 'pre_ping', 'ys_no_self_ping' );
 
 
@@ -187,8 +190,8 @@ function ys_get_feedly_subscribe_url( $type = '' ) {
 /**
  * [get_posts] で使うクエリパラメータを作る : 基本部分
  *
- * @param  integer $posts_per_page 記事数.
- * @param  array   $args           パラメータ.
+ * @param integer $posts_per_page 記事数.
+ * @param array   $args           パラメータ.
  *
  * @return array
  */
@@ -207,8 +210,8 @@ function ys_get_posts_args( $posts_per_page = 4, $args = array() ) {
 /**
  * [get_posts] で使うクエリパラメータを作る : ランダムに取得
  *
- * @param  integer $posts_per_page 記事数.
- * @param  array   $args           パラメータ.
+ * @param integer $posts_per_page 記事数.
+ * @param array   $args           パラメータ.
  *
  * @return array
  */
@@ -225,7 +228,7 @@ function ys_get_posts_args_rand( $posts_per_page = 4, $args = array() ) {
 /**
  * ファイル内容の取得
  *
- * @param  string $file ファイルパス.
+ * @param string $file ファイルパス.
  *
  * @return string
  */
