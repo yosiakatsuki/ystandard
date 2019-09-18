@@ -463,6 +463,14 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		if ( 'false' === $description ) {
 			return '';
 		}
+		/**
+		 * 長さ調節
+		 */
+		$length = ys_excerpt_length();
+		$sep    = '…';
+		if ( mb_strlen( $description ) > $length ) {
+			$description = mb_substr( $description, 0, $length - mb_strlen( $sep ) ) . $sep;
+		}
 
 		return $description;
 	}
