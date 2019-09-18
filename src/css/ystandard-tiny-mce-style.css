@@ -504,6 +504,8 @@
       box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); }
   .mce-content-body .icon-l {
     margin-right: .25rem; }
+  .mce-content-body .fa-amazon {
+    vertical-align: -.18em; }
   .mce-content-body .post-paging__item {
     border-top: 1px solid #EEEEEE;
     color: #222;
