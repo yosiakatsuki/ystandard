@@ -50,9 +50,10 @@ Source : <https://gist.github.com/terkel/4373420>
       - template-parts/footer/footer-sns.php を修正
   - 調整
     - FontAwesome関連処理の調整
-    - PHP処理でコストの掛かりそうな処理をリファクタリング
+    - ブログカード形式の外部サイト概要分の表示文字数調整
     - 投稿者画像の取得方法変更
       - ys_the_author_avatar,ys_get_author_avatar を非推奨に変更
+    - PHP処理でコストの掛かりそうな処理をリファクタリング
 - v3.0.5
   - 調整
     - ボタンブロックのスタイル調整
