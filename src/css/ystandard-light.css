@@ -974,6 +974,9 @@ input[type="button"] {
 .icon-l {
   margin-right: .25rem; }
 
+.fa-amazon {
+  vertical-align: -.18em; }
+
 .post-paging__item {
   border-top: 1px solid #EEEEEE;
   color: #222;
