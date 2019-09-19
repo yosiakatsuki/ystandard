@@ -66,7 +66,8 @@
   .flex--row.-slide {
     flex-wrap: nowrap;
     margin: 0;
-    overflow: scroll hidden;
+    overflow-x: scroll;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch; }
     .flex--row.-slide::-webkit-scrollbar {
       height: 8px; }

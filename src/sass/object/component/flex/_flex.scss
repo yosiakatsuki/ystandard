@@ -26,7 +26,8 @@
       &.-slide {
         flex-wrap: nowrap;
         margin: 0;
-        overflow: scroll hidden;
+        overflow-x: scroll;
+        overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
 
         &::-webkit-scrollbar {
