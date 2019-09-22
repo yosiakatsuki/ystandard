@@ -54,6 +54,9 @@ Source : <https://gist.github.com/terkel/4373420>
     - 投稿者画像の取得方法変更
       - ys_the_author_avatar,ys_get_author_avatar を非推奨に変更
     - PHP処理でコストの掛かりそうな処理をリファクタリング
+- v3.0.7
+  - 不具合修正
+    - パンくずリストの構造化データ エラー対処
 - v3.0.6
   - 不具合修正
     - 投稿リストショートコードのスライド表示がsafariでスライド表示にならない点の修正
