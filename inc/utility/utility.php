@@ -368,6 +368,9 @@ function ys_get_theme_file_uri( $file ) {
  * @param string $comment コメント.
  */
 function ys_deprecated( $func, $since, $comment = '' ) {
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		return;
+	}
 	$message = sprintf(
 		'<span style="color:red"><code>%s</code>は%sで非推奨になった関数です。</span>',
 		$func,
