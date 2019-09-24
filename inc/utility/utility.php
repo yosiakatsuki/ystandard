@@ -124,7 +124,7 @@ function ys_get_font_awesome_css_url() {
 function ys_get_font_awesome_cdn_css_url() {
 	$version = apply_filters(
 		'ys_get_font_awesome_css_version',
-		'v5.10.2'
+		'v5.11.2'
 	);
 
 	return apply_filters(
@@ -152,7 +152,7 @@ function ys_get_font_awesome_svg_url() {
  * @return string
  */
 function ys_get_font_awesome_cdn_svg_url() {
-	$version = apply_filters( 'ys_get_font_awesome_cdn_svg_version', 'v5.10.2' );
+	$version = apply_filters( 'ys_get_font_awesome_cdn_svg_version', 'v5.11.2' );
 
 	return apply_filters(
 		'ys_get_font_awesome_cdn_svg_url',
@@ -368,6 +368,9 @@ function ys_get_theme_file_uri( $file ) {
  * @param string $comment コメント.
  */
 function ys_deprecated( $func, $since, $comment = '' ) {
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		return;
+	}
 	$message = sprintf(
 		'<span style="color:red"><code>%s</code>は%sで非推奨になった関数です。</span>',
 		$func,
