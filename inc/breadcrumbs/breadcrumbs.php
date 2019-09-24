@@ -26,10 +26,16 @@ function ys_get_breadcrumbs() {
 	 */
 	$label = __( 'Home', 'ystandard' );
 	if ( is_front_page() ) {
+		$link = '';
 		if ( $page_on_front ) {
 			$label = get_the_title( $page_on_front );
+			$link  = home_url( '/' );
 		}
-		$items = ys_set_breadcrumb_item( $items, $label );
+		$items = ys_set_breadcrumb_item(
+			$items,
+			$label,
+			$link
+		);
 
 		return apply_filters( 'ys_get_breadcrumbs', $items );
 	}
@@ -57,7 +63,8 @@ function ys_get_breadcrumbs() {
 		$title = sprintf( __( 'Search results of "%1$s"', 'ystandard' ), get_search_query() );
 		$items = ys_set_breadcrumb_item(
 			$items,
-			$title
+			$title,
+			esc_url_raw( home_url( '?s=' . urlencode( get_query_var( 's' ) ) ) )
 		);
 	} elseif ( is_tax() ) {
 		/**
@@ -89,7 +96,7 @@ function ys_get_breadcrumbs() {
 		 * Page
 		 */
 		$items = ys_set_breadcrumb_ancestors( $items, get_the_ID(), 'page' );
-		$items = ys_set_breadcrumb_item( $items, get_the_title() );
+		$items = ys_set_breadcrumb_item( $items, get_the_title(), get_the_permalink() );
 	} elseif ( is_post_type_archive() ) {
 		/**
 		 * Post_type_archive
@@ -98,7 +105,7 @@ function ys_get_breadcrumbs() {
 		if ( $post_type && 'post' !== $post_type ) {
 			$post_type_object = get_post_type_object( $post_type );
 			$label            = $post_type_object->label;
-			$items            = ys_set_breadcrumb_item( $items, $label );
+			$items            = ys_set_breadcrumb_item( $items, $label, get_post_type_archive_link( $post_type_object->name ) );
 		}
 	} elseif ( is_single() ) {
 		/**
@@ -131,7 +138,6 @@ function ys_get_breadcrumbs() {
 			}
 			$items = ys_set_breadcrumb_item( $items, $category->name, $link );
 		}
-		// items = ys_set_breadcrumb_item( $items, get_the_title() ).
 	} elseif ( is_category() ) {
 		/**
 		 * Category
@@ -139,18 +145,22 @@ function ys_get_breadcrumbs() {
 		$category_name = single_cat_title( '', false );
 		$category_id   = get_cat_ID( $category_name );
 		$items         = ys_set_breadcrumb_ancestors( $items, $category_id, 'category' );
-		$items         = ys_set_breadcrumb_item( $items, $category_name );
+		$items         = ys_set_breadcrumb_item( $items, $category_name, get_category_link( $category_id ) );
 	} elseif ( is_tag() ) {
 		/**
 		 * Tag
 		 */
-		$items = ys_set_breadcrumb_item( $items, single_tag_title( '', false ) );
+		$items = ys_set_breadcrumb_item( $items, single_tag_title( '', false ), get_tag_link( get_queried_object() ) );
 	} elseif ( is_author() ) {
 		/**
 		 * Author
 		 */
 		$author_id = get_query_var( 'author' );
-		$items     = ys_set_breadcrumb_item( $items, ys_get_author_display_name( $author_id ) );
+		$items     = ys_set_breadcrumb_item(
+			$items,
+			ys_get_author_display_name( $author_id ),
+			get_author_posts_url( $author_id )
+		);
 	} elseif ( is_day() ) {
 		/**
 		 * Day
@@ -167,7 +177,7 @@ function ys_get_breadcrumbs() {
 		}
 		$items = ys_set_breadcrumb_year( $items, $year );
 		$items = ys_set_breadcrumb_month( $items, $year, $month );
-		$items = ys_set_breadcrumb_day( $items, $day );
+		$items = ys_set_breadcrumb_day( $items, $day, $month, $year );
 	} elseif ( is_month() ) {
 		/**
 		 * Month
@@ -181,7 +191,7 @@ function ys_get_breadcrumbs() {
 			$month = substr( $ymd, - 2 );
 		}
 		$items = ys_set_breadcrumb_year( $items, $year );
-		$items = ys_set_breadcrumb_month( $items, $year, $month, false );
+		$items = ys_set_breadcrumb_month( $items, $year, $month );
 	} elseif ( is_year() ) {
 		/**
 		 * Year
@@ -191,13 +201,13 @@ function ys_get_breadcrumbs() {
 			$ymd  = get_query_var( 'm' );
 			$year = $ymd;
 		}
-		$items = ys_set_breadcrumb_year( $items, $year, false );
+		$items = ys_set_breadcrumb_year( $items, $year );
 	} elseif ( is_home() ) {
 		/**
 		 * Home
 		 */
 		if ( 'page' === $show_on_front && $page_for_posts ) {
-			$items = ys_set_breadcrumb_item( $items, get_the_title( $page_for_posts ) );
+			$items = ys_set_breadcrumb_item( $items, get_the_title( $page_for_posts ), get_permalink( $page_for_posts ) );
 		}
 	}
 
@@ -228,9 +238,9 @@ function ys_set_breadcrumb_item( $items, $title, $link = '' ) {
 /**
  * フロントページ指定がある時の一覧ページタイトル
  *
- * @param  array  $items          items.
- * @param  string $show_on_front  show_on_front.
- * @param  int    $page_for_posts page_for_posts.
+ * @param array  $items          items.
+ * @param string $show_on_front  show_on_front.
+ * @param int    $page_for_posts page_for_posts.
  *
  * @return mixed
  */
@@ -252,9 +262,9 @@ function ys_get_page_for_posts_name( $items, $show_on_front, $page_for_posts ) {
 /**
  * 親の取得と並び替え
  *
- * @param  int    $object_id     object_id.
- * @param  string $object_type   object_type.
- * @param  string $resource_type resource_type.
+ * @param int    $object_id     object_id.
+ * @param string $object_type   object_type.
+ * @param string $resource_type resource_type.
  *
  * @return array
  */
@@ -268,10 +278,10 @@ function ys_get_breadcrumb_ancestors( $object_id, $object_type, $resource_type =
 /**
  * Set ancestors and krsort
  *
- * @param  array  $items         items.
- * @param  int    $object_id     object_id.
- * @param  string $object_type   object_type.
- * @param  string $resource_type resource_type.
+ * @param array  $items         items.
+ * @param int    $object_id     object_id.
+ * @param string $object_type   object_type.
+ * @param string $resource_type resource_type.
  *
  * @return array
  */
@@ -365,14 +375,16 @@ function ys_set_breadcrumb_month( $items, $year, $month, $link = true ) {
  *
  * @param array $items items.
  * @param int   $day   day.
+ * @param int   $month month.
+ * @param int   $year  year.
  *
  * @return array
  */
-function ys_set_breadcrumb_day( $items, $day ) {
+function ys_set_breadcrumb_day( $items, $day, $month, $year ) {
 	$label = $day;
 	if ( 'ja' === get_locale() ) {
 		$label .= '日';
 	}
 
-	return ys_set_breadcrumb_item( $items, $label );
+	return ys_set_breadcrumb_item( $items, $label, get_day_link( $year, $month, $day ) );
 }
