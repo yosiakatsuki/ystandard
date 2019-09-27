@@ -44,6 +44,9 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 
 ### v3.x.x
+- v3.1.1
+  - 調整
+    - カバーブロックのスタイル調整・編集画面側CSSの調整
 - v3.1.0
   - 機能追加
     - 投稿者SNSリンク、フッターSNSリンクにAmazonアイコンを追加

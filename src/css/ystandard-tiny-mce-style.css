@@ -829,11 +829,17 @@
     padding: 2rem 1rem;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center; }
+    background-position: center;
+    background-color: #000; }
   .mce-content-body .wp-block-cover.has-parallax {
     background-size: 100% auto;
     background-position: top center; }
-  .mce-content-body .wp-block-cover.has-background-dim:before {
+  .wp-block-cover__inner-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 2; }
+  .mce-content-body .has-background-dim:before {
     content: "";
     position: absolute;
     top: 0;
@@ -843,30 +849,25 @@
     background-color: inherit;
     opacity: .5;
     z-index: 1; }
-  .wp-block-cover__inner-container {
-    position: relative;
-    width: 100%;
-    margin: 0 auto;
-    z-index: 2; }
-  .mce-content-body .wp-block-cover.has-background-dim-10::before {
+  .mce-content-body .has-background-dim-10::before {
     opacity: 0.1; }
-  .mce-content-body .wp-block-cover.has-background-dim-20::before {
+  .mce-content-body .has-background-dim-20::before {
     opacity: 0.2; }
-  .mce-content-body .wp-block-cover.has-background-dim-30::before {
+  .mce-content-body .has-background-dim-30::before {
     opacity: 0.3; }
-  .mce-content-body .wp-block-cover.has-background-dim-40::before {
+  .mce-content-body .has-background-dim-40::before {
     opacity: 0.4; }
-  .mce-content-body .wp-block-cover.has-background-dim-50::before {
+  .mce-content-body .has-background-dim-50::before {
     opacity: 0.5; }
-  .mce-content-body .wp-block-cover.has-background-dim-60::before {
+  .mce-content-body .has-background-dim-60::before {
     opacity: 0.6; }
-  .mce-content-body .wp-block-cover.has-background-dim-70::before {
+  .mce-content-body .has-background-dim-70::before {
     opacity: 0.7; }
-  .mce-content-body .wp-block-cover.has-background-dim-80::before {
+  .mce-content-body .has-background-dim-80::before {
     opacity: 0.8; }
-  .mce-content-body .wp-block-cover.has-background-dim-90::before {
+  .mce-content-body .has-background-dim-90::before {
     opacity: 0.9; }
-  .mce-content-body .wp-block-cover.has-background-dim-100::before {
+  .mce-content-body .has-background-dim-100::before {
     opacity: 1; }
   .mce-content-body .wp-block-file {
     margin-top: 1.5em; }
