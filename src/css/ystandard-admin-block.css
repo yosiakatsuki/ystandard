@@ -112,6 +112,47 @@
   .wp-block-button.is-style-squared .wp-block-button__link {
     border-radius: 0; }
 
+.has-background-dim:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: inherit;
+  opacity: .5;
+  z-index: 1; }
+
+.has-background-dim-10::before {
+  opacity: 0.1; }
+
+.has-background-dim-20::before {
+  opacity: 0.2; }
+
+.has-background-dim-30::before {
+  opacity: 0.3; }
+
+.has-background-dim-40::before {
+  opacity: 0.4; }
+
+.has-background-dim-50::before {
+  opacity: 0.5; }
+
+.has-background-dim-60::before {
+  opacity: 0.6; }
+
+.has-background-dim-70::before {
+  opacity: 0.7; }
+
+.has-background-dim-80::before {
+  opacity: 0.8; }
+
+.has-background-dim-90::before {
+  opacity: 0.9; }
+
+.has-background-dim-100::before {
+  opacity: 1; }
+
 /**
  * utility
  */
