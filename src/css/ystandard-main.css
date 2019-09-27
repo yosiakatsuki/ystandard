@@ -1366,13 +1366,20 @@ figcaption {
   padding: 2rem 1rem;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center; }
+  background-position: center;
+  background-color: #000; }
 
 .wp-block-cover.has-parallax {
   background-size: 100% auto;
   background-position: top center; }
 
-.wp-block-cover.has-background-dim:before {
+.wp-block-cover__inner-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 2; }
+
+.has-background-dim:before {
   content: "";
   position: absolute;
   top: 0;
@@ -1383,40 +1390,34 @@ figcaption {
   opacity: .5;
   z-index: 1; }
 
-.wp-block-cover__inner-container {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  z-index: 2; }
-
-.wp-block-cover.has-background-dim-10::before {
+.has-background-dim-10::before {
   opacity: 0.1; }
 
-.wp-block-cover.has-background-dim-20::before {
+.has-background-dim-20::before {
   opacity: 0.2; }
 
-.wp-block-cover.has-background-dim-30::before {
+.has-background-dim-30::before {
   opacity: 0.3; }
 
-.wp-block-cover.has-background-dim-40::before {
+.has-background-dim-40::before {
   opacity: 0.4; }
 
-.wp-block-cover.has-background-dim-50::before {
+.has-background-dim-50::before {
   opacity: 0.5; }
 
-.wp-block-cover.has-background-dim-60::before {
+.has-background-dim-60::before {
   opacity: 0.6; }
 
-.wp-block-cover.has-background-dim-70::before {
+.has-background-dim-70::before {
   opacity: 0.7; }
 
-.wp-block-cover.has-background-dim-80::before {
+.has-background-dim-80::before {
   opacity: 0.8; }
 
-.wp-block-cover.has-background-dim-90::before {
+.has-background-dim-90::before {
   opacity: 0.9; }
 
-.wp-block-cover.has-background-dim-100::before {
+.has-background-dim-100::before {
   opacity: 1; }
 
 .wp-block-file {
