@@ -141,6 +141,7 @@ function ys_amp_get_amp_image_attr( $attr, $layout = 'responsive' ) {
 	if ( 1 === preg_match( '/src="(.+?)"/i', $attr, $m ) ) {
 		$src = $m[1];
 	}
+	$attr = str_replace( '!important', '', $attr );
 	/**
 	 * レイアウトの指定を作成
 	 */
