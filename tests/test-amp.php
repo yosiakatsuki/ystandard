@@ -13,6 +13,7 @@ class AmpTest extends WP_UnitTestCase {
 	 * 投稿データをセットする
 	 *
 	 * @param array $arg
+	 *
 	 * @return int $post_id
 	 */
 	public function setup_postdata( $args = null ) {
@@ -22,7 +23,7 @@ class AmpTest extends WP_UnitTestCase {
 		 * 記事作成
 		 */
 		$post_id = $this->factory->post->create( $args );
-		$post = get_post( $post_id );
+		$post    = get_post( $post_id );
 		$this->go_to( add_query_arg( 'amp', '1', get_the_permalink( $post_id ) ) );
 		setup_postdata( $post );
 		/**
@@ -33,19 +34,24 @@ class AmpTest extends WP_UnitTestCase {
 		 * キャッシュのクリア
 		 */
 		$ys_amp = null;
+
 		return $post_id;
 	}
+
 	/**
 	 * the_contentフィルターを通す
 	 *
 	 * @param string $content
+	 *
 	 * @return string $content
 	 */
 	function apply_the_content( $content ) {
 		$content = apply_filters( 'the_content', $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
+
 		return $content;
 	}
+
 	/**
 	 * テスト用コンテンツ
 	 *
@@ -68,7 +74,8 @@ https://www.youtube.com/watch?v=c4Pi9GLni2U
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/c4Pi9GLni2U" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 EOD;
-	} 
+	}
+
 	/**
 	 * 予想結果
 	 *
@@ -84,8 +91,10 @@ EOD;
 <amp-youtube layout="responsive" data-videoid="c4Pi9GLni2U" width="480" height="270"></amp-youtube>
 <amp-youtube layout="responsive" data-videoid="c4Pi9GLni2U" width="480" height="270"></amp-youtube>
 EOD;
+
 		return $result . PHP_EOL;
 	}
+
 	/**
 	 * ys_is_ampテスト
 	 */
@@ -94,6 +103,7 @@ EOD;
 		$this->assertTrue( is_single() );
 		$this->assertTrue( ys_is_amp() );
 	}
+
 	/**
 	 * ys_is_ampテスト(AMP以外)
 	 */
@@ -103,6 +113,7 @@ EOD;
 		$this->go_to( get_the_permalink( $post_id ) );
 		$this->assertFalse( ys_is_amp() );
 	}
+
 	/**
 	 * ys_is_ampテスト(固定ページ)
 	 */
@@ -111,6 +122,7 @@ EOD;
 		$this->assertTrue( is_page() );
 		$this->assertFalse( ys_is_amp() );
 	}
+
 	/**
 	 * amp-img変換テスト
 	 */
@@ -126,6 +138,7 @@ EOD;
 			$content
 		);
 	}
+
 	/**
 	 * amp-img変換テスト
 	 */
@@ -141,6 +154,53 @@ EOD;
 			$content
 		);
 	}
+
+	/**
+	 * amp-img変換テスト
+	 */
+	function test_amp_img_3() {
+		$post_id = $this->setup_postdata();
+		/**
+		 * style指定
+		 */
+		$content = '<img src="https://amp-test.test/image.png" alt="amp img test" style="margin:0;" >';
+		$content = ys_amp_convert_image( $content );
+		$this->assertSame(
+			'<amp-img layout="responsive" src="https://amp-test.test/image.png" alt="amp img test" style="margin:0;" ></amp-img>',
+			$content
+		);
+	}
+	/**
+	 * amp-img変換テスト
+	 */
+	function test_amp_img_4() {
+		$post_id = $this->setup_postdata();
+		/**
+		 * style指定
+		 */
+		$content = '<img src="https://amp-test.test/image.png" alt="amp img test" style="margin:0 !important;" >';
+		$content = ys_amp_convert_image( $content );
+		$this->assertSame(
+			'<amp-img layout="responsive" src="https://amp-test.test/image.png" alt="amp img test" style="margin:0 ;" ></amp-img>',
+			$content
+		);
+	}
+	/**
+	 * amp-img変換テスト
+	 */
+	function test_amp_img_5() {
+		$post_id = $this->setup_postdata();
+		/**
+		 * style指定
+		 */
+		$content = '<img src="https://amp-test.test/image.png" alt="amp img test" style="margin:0 !important;padding:0 !important;" >';
+		$content = ys_amp_convert_image( $content );
+		$this->assertSame(
+			'<amp-img layout="responsive" src="https://amp-test.test/image.png" alt="amp img test" style="margin:0 ;padding:0 ;" ></amp-img>',
+			$content
+		);
+	}
+
 	/**
 	 * iframe変換テスト
 	 */
@@ -152,11 +212,12 @@ EOD;
 		$content = ys_amp_convert_iframe( $content );
 		$content = ys_amp_delete_script( $content );
 		$this->assertSame(
-						'<p><amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1620.415846697843!2d139.76777057596865!3d35.68114599502427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1520116570877" width="600" height="450" frameborder="0" allowfullscreen></amp-iframe></p>
+			'<p><amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1620.415846697843!2d139.76777057596865!3d35.68114599502427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1520116570877" width="600" height="450" frameborder="0" allowfullscreen></amp-iframe></p>
 <p><amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1620.415846697843!2d139.76777057596865!3d35.68114599502427!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1520116570877" width="600" height="450" frameborder="0" allowfullscreen></amp-iframe></p>' . PHP_EOL,
-						$content
-					);
+			$content
+		);
 	}
+
 	/**
 	 * Twitter変換テスト oembed
 	 */
@@ -168,11 +229,12 @@ https://twitter.com/yosiakatsuki/status/969776900804694016';
 		$content = ys_amp_convert_twitter( $content );
 		$content = ys_amp_delete_script( $content );
 		$this->assertSame(
-						'<amp-twitter width=486 height=657 layout="responsive" data-tweetid="969776900804694016"></amp-twitter>
+			'<amp-twitter width=486 height=657 layout="responsive" data-tweetid="969776900804694016"></amp-twitter>
 <amp-twitter width=486 height=657 layout="responsive" data-tweetid="969776900804694016"></amp-twitter>' . PHP_EOL,
-						$content
-					);
+			$content
+		);
 	}
+
 	/**
 	 * Twitter変換テスト 直接埋め込み
 	 */
@@ -186,11 +248,12 @@ https://twitter.com/yosiakatsuki/status/969776900804694016';
 		$content = ys_amp_convert_twitter( $content );
 		$content = ys_amp_delete_script( $content );
 		$this->assertSame(
-						'<amp-twitter width=486 height=657 layout="responsive" data-tweetid="969776900804694016"></amp-twitter>
+			'<amp-twitter width=486 height=657 layout="responsive" data-tweetid="969776900804694016"></amp-twitter>
 <amp-twitter width=486 height=657 layout="responsive" data-tweetid="969776900804694016"></amp-twitter>' . PHP_EOL,
-						$content
-					);
+			$content
+		);
 	}
+
 	/**
 	 * Instagram変換テスト 直接埋め込み
 	 */
@@ -200,10 +263,11 @@ https://twitter.com/yosiakatsuki/status/969776900804694016';
 		$content = ys_amp_convert_instagram( $content );
 		$content = ys_amp_delete_script( $content );
 		$this->assertSame(
-						'<amp-instagram layout="responsive" data-shortcode="BkWdoU_hj0b" width="400" height="400" ></amp-instagram>' . PHP_EOL,
-						$content
-					);
+			'<amp-instagram layout="responsive" data-shortcode="BkWdoU_hj0b" width="400" height="400" ></amp-instagram>' . PHP_EOL,
+			$content
+		);
 	}
+
 	/**
 	 * youtube変換テスト oembed
 	 */
@@ -213,10 +277,11 @@ https://twitter.com/yosiakatsuki/status/969776900804694016';
 		$content = ys_amp_convert_youtube( $content );
 		$content = ys_amp_delete_script( $content );
 		$this->assertSame(
-						'<amp-youtube layout="responsive" data-videoid="c4Pi9GLni2U" width="480" height="270"></amp-youtube>' . PHP_EOL,
-						$content
-					);
+			'<amp-youtube layout="responsive" data-videoid="c4Pi9GLni2U" width="480" height="270"></amp-youtube>' . PHP_EOL,
+			$content
+		);
 	}
+
 	/**
 	 * youtube変換テスト 直接埋め込み
 	 */
@@ -226,10 +291,11 @@ https://twitter.com/yosiakatsuki/status/969776900804694016';
 		$content = ys_amp_convert_youtube( $content );
 		$content = ys_amp_delete_script( $content );
 		$this->assertSame(
-						'<amp-youtube layout="responsive" data-videoid="c4Pi9GLni2U" width="480" height="270"></amp-youtube>' . PHP_EOL,
-						$content
-					);
+			'<amp-youtube layout="responsive" data-videoid="c4Pi9GLni2U" width="480" height="270"></amp-youtube>' . PHP_EOL,
+			$content
+		);
 	}
+
 	/**
 	 * AMPおまとめテスト
 	 */
