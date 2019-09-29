@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .meta-box__headline {
   padding-bottom: .25em;
   margin: 2em 0 1em;
@@ -14,3 +15,12 @@
 
 .meta-box__dscr {
   color: #757575; }
+
+/**
+     * カスタムヘッダー ヘッダー重ねるタイプ
+     */
+.admin-bar.custom-header--full .site-header {
+  top: 46px; }
+  @media screen and (min-width: 1025px) {
+    .admin-bar.custom-header--full .site-header {
+      top: 32px; } }
