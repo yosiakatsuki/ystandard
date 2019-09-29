@@ -1,0 +1,14 @@
+/**
+ * ヘッダー重ねるタイプ
+ */
+.custom-header--full {
+  &.admin-bar {
+    .site-header {
+      top: 46px;
+
+      @include media-breakpoint(lg) {
+        top: 32px;
+      }
+    }
+  }
+}
