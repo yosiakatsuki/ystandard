@@ -1529,8 +1529,6 @@ figcaption {
       margin-top: 0; }
 
 .wp-block-media-text {
-  display: flex;
-  flex-direction: column;
   padding: 1rem; }
 
 .wp-block-media-text__content {
@@ -1987,9 +1985,6 @@ figcaption {
   top: 0;
   left: 0;
   z-index: 11; }
-
-.custom-header--full.admin-bar .site-header {
-  top: 46px; }
 
 /**
  * 固定ページ・詳細ページ ヘッダーサムネイル

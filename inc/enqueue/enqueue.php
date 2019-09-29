@@ -109,6 +109,18 @@ function ys_set_enqueue_css() {
 		array(),
 		ys_get_theme_version( true )
 	);
+	/**
+	 * アドミンバー処理
+	 */
+	if ( is_admin_bar_showing() ) {
+		ys_enqueue_css(
+			'adminbar-css',
+			get_stylesheet_directory_uri() . '/css/ystandard-adminbar.css',
+			false,
+			array(),
+			ys_get_theme_version( true )
+		);
+	}
 }
 
 add_action( 'ys_enqueue_styles', 'ys_set_enqueue_css' );

@@ -1,11 +1,10 @@
 .wp-block-media-text {
-  display: flex;
-  flex-direction: column;
   padding: 1rem;
 }
 
 .wp-block-media-text__content {
   padding: 1rem 0;
+
   & > *:first-child {
     margin-top: 0;
   }

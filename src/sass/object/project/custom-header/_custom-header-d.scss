@@ -1,14 +1,5 @@
 @include media-breakpoint(lg) {
   /**
-   * ヘッダー重ねるタイプ
-   */
-  .custom-header--full {
-    &.admin-bar .site-header {
-      top: 32px;
-    }
-  }
-
-  /**
    * 固定ページ・詳細ページ ヘッダーサムネイル
    */
   .ys-custom-header--full-thumb {
