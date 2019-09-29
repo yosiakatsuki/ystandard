@@ -4,14 +4,21 @@
       & {
         display: grid;
         grid-template-rows: auto;
-        align-items: center;
         grid-template-areas: "media-text-media media-text-content";
         grid-template-columns: 50% auto;
         padding: 1rem 0;
-        
+
         & + &.-list {
           padding-top: 0;
           margin-top: -1rem;
+        }
+
+        &.-center {
+          align-items: center;
+        }
+
+        &.-bottom {
+          align-items: end;
         }
       }
       .wp-block-media-text__media {
@@ -59,7 +66,23 @@
   }
 }
 
+@if ($editor == true) {
+  @include media-breakpoint(md) {
+    .wp-block-media-text {
+      align-items: start;
 
+      .editor-block-list__layout > .editor-block-list__block {
+        .block-editor-block-list__block-edit {
+          margin-bottom: 0;
+        }
+
+        &:first-of-type .block-editor-block-list__block-edit {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
 
 
 

@@ -2472,13 +2472,16 @@ ol.ys-box {
   .wp-block-media-text {
     display: grid;
     grid-template-rows: auto;
-    align-items: center;
     grid-template-areas: "media-text-media media-text-content";
     grid-template-columns: 50% auto;
     padding: 1rem 0; }
     .wp-block-media-text + .wp-block-media-text.-list {
       padding-top: 0;
       margin-top: -1rem; }
+    .wp-block-media-text.-center {
+      align-items: center; }
+    .wp-block-media-text.-bottom {
+      align-items: end; }
   .wp-block-media-text__media {
     grid-area: media-text-media; }
   .wp-block-media-text__content {
