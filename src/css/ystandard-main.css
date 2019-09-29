@@ -1988,9 +1988,6 @@ figcaption {
   left: 0;
   z-index: 11; }
 
-.custom-header--full.admin-bar .site-header {
-  top: 46px; }
-
 /**
  * 固定ページ・詳細ページ ヘッダーサムネイル
  */
@@ -2656,11 +2653,6 @@ ol.ys-box {
     margin-bottom: 4rem; } }
 
 @media screen and (min-width: 1025px) {
-  /**
-   * ヘッダー重ねるタイプ
-   */
-  .custom-header--full.admin-bar .site-header {
-    top: 32px; }
   /**
    * 固定ページ・詳細ページ ヘッダーサムネイル
    */

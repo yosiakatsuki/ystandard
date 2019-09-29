@@ -1988,9 +1988,6 @@ figcaption {
   left: 0;
   z-index: 11; }
 
-.custom-header--full.admin-bar .site-header {
-  top: 46px; }
-
 /**
  * 固定ページ・詳細ページ ヘッダーサムネイル
  */
