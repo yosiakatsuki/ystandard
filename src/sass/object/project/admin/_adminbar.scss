@@ -1,0 +1,18 @@
+.admin-bar {
+  @at-root {
+    /**
+     * カスタムヘッダー ヘッダー重ねるタイプ
+     */
+    &.custom-header--full {
+      .site-header {
+        top: 46px;
+
+        @include media-breakpoint(lg) {
+          top: 32px;
+        }
+      }
+    }
+
+  }
+  //@root
+}
