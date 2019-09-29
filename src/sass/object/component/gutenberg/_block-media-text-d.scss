@@ -2,20 +2,28 @@
   @at-root {
     @include media-breakpoint(md) {
       & {
-        align-items: flex-start;
-        flex-direction: row;
+        display: grid;
+        grid-template-rows: auto;
+        align-items: center;
+        grid-template-areas: "media-text-media media-text-content";
+        grid-template-columns: 50% auto;
+        padding: 1rem 0;
+        
+        & + &.-list {
+          padding-top: 0;
+          margin-top: -1rem;
+        }
       }
-      .wp-block-media-text__media,
-      .wp-block-media-text__content {
-        max-width: 50%;
-        flex-grow: 1;
+      .wp-block-media-text__media {
+        grid-area: media-text-media;
       }
       .wp-block-media-text__content {
+        grid-area: media-text-content;
         padding: 0 0 0 2rem;
       }
 
       .has-media-on-the-right {
-        flex-direction: row-reverse;
+        grid-template-areas: "media-text-content media-text-media";
 
         .wp-block-media-text__content {
           padding: 0 2rem 0 0;
