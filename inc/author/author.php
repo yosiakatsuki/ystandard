@@ -180,7 +180,7 @@ function ys_the_author_sns() {
 				</li>
 			<?php endforeach; ?>
 		</ul><!-- .author__sns -->
-		<?php
+	<?php
 	endif;
 }
 
@@ -269,6 +269,10 @@ function ys_get_avatar( $avatar, $id_or_email, $size, $default, $alt, $args ) {
 	if ( empty( $alt ) ) {
 		$alt = get_the_author_meta( 'display_name', $id_or_email );
 	}
+	$class = array( 'avatar', 'avatar-' . (int) $args['size'], 'photo' );
+	if ( isset( $args['class'] ) ) {
+		$class[] = $args['class'];
+	}
 	/**
 	 * オリジナル画像の取得と変換
 	 */
@@ -279,7 +283,7 @@ function ys_get_avatar( $avatar, $id_or_email, $size, $default, $alt, $args ) {
 			esc_attr( $alt ),
 			esc_url( $url ),
 			esc_url( $url ) . ' 2x',
-			esc_attr( $args['class'] ),
+			esc_attr( implode( ' ', $class ) ),
 			(int) $size,
 			(int) $size,
 			$args['extra_attr']
