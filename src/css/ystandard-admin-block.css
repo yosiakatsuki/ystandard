@@ -150,6 +150,11 @@
       color: #fff; }
   .wp-block-button.is-style-squared a {
     border-radius: 0; }
+  .wp-block-button.-full {
+    padding-top: 1.5em; }
+    .wp-block-button.-full .wp-block-button__link {
+      display: block;
+      text-align: center; }
   .wp-block-button .wp-block-button__link {
     display: inline-block;
     padding: 0.5rem 1.5rem;
