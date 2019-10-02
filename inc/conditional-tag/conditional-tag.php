@@ -842,15 +842,7 @@ function ys_is_active_slide_menu_search_form() {
  * @return bool
  */
 function ys_is_active_gutenberg_css() {
-	$result = false;
-	/**
-	 * Gutenbergが有効になっている場合設定によってCSSを読み込む
-	 */
-	if ( defined( 'GUTENBERG_VERSION' ) || version_compare( get_bloginfo( 'version' ), '5.0-RC1', '>=' ) ) {
-		$result = ys_get_option( 'ys_enqueue_gutenberg_css' );
-	}
-
-	return apply_filters( 'ys_is_active_gutenberg_css', $result );
+	return false;
 }
 
 /**

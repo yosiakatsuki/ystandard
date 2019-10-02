@@ -75,6 +75,27 @@
   }
   
   @if($editor == true) {
+    & {
+      &.-full {
+        padding-top: 1.5em;
+        .wp-block-button__link {
+          display: block;
+          text-align: center;
+        }
+      }
+      &.-sm {
+        .wp-block-button__link {
+          padding-top: .25rem;
+          padding-bottom: .25rem;
+        }
+      }
+
+      &.-lg {
+        .wp-block-button__link {
+          padding: .75rem 3rem;
+        }
+      }
+    }
     .wp-block-button__link {
       @include button_base();
       border-width: 1px;
