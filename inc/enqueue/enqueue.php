@@ -67,6 +67,18 @@ add_action( 'wp_enqueue_scripts', 'ys_dequeue_wp_block_css' );
  */
 function ys_set_enqueue_css() {
 	$scripts = ys_scripts();
+	if ( 'css' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+		/**
+		 * Font Awesome
+		 */
+		wp_enqueue_style(
+			'font-awesome',
+			ys_get_font_awesome_css_url(),
+			array(),
+			'v5.11.2'
+		);
+	}
+
 	/**
 	 * CSSの読み込み
 	 */
@@ -124,21 +136,38 @@ add_action( 'ys_enqueue_styles', 'ys_set_enqueue_css' );
  * JavaScript読み込み指定
  */
 function ys_set_enqueue_scripts() {
-	/**
-	 * Font Awesome
-	 */
-	wp_enqueue_script(
-		'font-awesome',
-		ys_get_font_awesome_svg_url(),
-		array(),
-		'v5.10.2',
-		true
-	);
+	if ( 'js' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
+		/**
+		 * Font Awesome
+		 */
+		wp_enqueue_script(
+			'font-awesome',
+			ys_get_font_awesome_svg_url(),
+			array(),
+			'v5.11.2',
+			true
+		);
+	}
+	if ( 'kit' === ys_get_option( 'ys_enqueue_icon_font_type' ) && ! empty( ys_get_option( 'ys_enqueue_icon_font_kit_url' ) ) ) {
+		/**
+		 * Font Awesome
+		 */
+		wp_enqueue_script(
+			'font-awesome',
+			ys_get_option( 'ys_enqueue_icon_font_kit_url' ),
+			array(),
+			null,
+			false
+		);
+		add_filter( 'script_loader_tag', 'ys_set_font_awesome_kit_attributes', 10, 2 );
+
+	}
 	wp_add_inline_script(
 		'font-awesome',
 		'FontAwesomeConfig = { searchPseudoElements: true };',
 		'before'
 	);
+
 	/**
 	 * Twitter関連スクリプト読み込み
 	 */
@@ -188,4 +217,27 @@ function ys_get_enqueue_css_file_name() {
 	}
 
 	return $file;
+}
+
+/**
+ * Font Awesome Kitのタグに属性つける
+ *
+ * @param string $tag    script tag.
+ * @param string $handle handle.
+ *
+ * @return string
+ */
+function ys_set_font_awesome_kit_attributes( $tag, $handle ) {
+	if ( 'font-awesome' !== $handle ) {
+		return $tag;
+	}
+	$extra_tag_attributes = 'crossorigin="anonymous"';
+	$modified_script_tag  = preg_replace(
+		'/<script\s*(.*?src=.*?)>/',
+		'<script \1' . " $extra_tag_attributes >",
+		$tag,
+		1
+	);
+
+	return $modified_script_tag;
 }
