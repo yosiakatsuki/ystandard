@@ -123,6 +123,29 @@ function ys_enqueue_block_css() {
 add_action( 'after_setup_theme', 'ys_enqueue_block_css' );
 
 /**
+ * ブロックエディタのスタイル追加
+ */
+function ys_enqueue_block_editor_assets() {
+	if ( ys_get_option( 'ys_admin_enable_block_editor_style' ) ) {
+		$scripts = ys_scripts();
+		wp_enqueue_style(
+			YS_Scripts::CSS_HANDLE_DUMMY,
+			get_template_directory_uri() . '/css/ystandard.css'
+		);
+		wp_add_inline_style(
+			YS_Scripts::CSS_HANDLE_DUMMY,
+			$scripts->get_editor_font_size_css( '.editor-styles-wrapper' )
+		);
+		wp_add_inline_style(
+			YS_Scripts::CSS_HANDLE_DUMMY,
+			$scripts->get_editor_color_palette( '.editor-styles-wrapper' )
+		);
+	}
+}
+
+add_action( 'enqueue_block_editor_assets', 'ys_enqueue_block_editor_assets' );
+
+/**
  * TinyMCEに追加CSSを適用させる
  *
  * @param array $settings TinyMCE設定.

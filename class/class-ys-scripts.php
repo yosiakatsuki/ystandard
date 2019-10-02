@@ -484,20 +484,23 @@ class YS_Scripts {
 	/**
 	 * Gutenbergフォントサイズ指定CSS
 	 *
-	 * @param int $default デフォルトフォントサイズ.
+	 * @param string $prefix  プレフィックス.
+	 * @param int    $default デフォルトフォントサイズ.
 	 *
 	 * @return string
 	 */
-	public function get_editor_font_size_css( $default = 16 ) {
+	public function get_editor_font_size_css( $prefix = '', $default = 16 ) {
 		$default = apply_filters( 'ys_default_editor_font_size', $default );
 		$size    = ys_get_editor_font_sizes();
 		$css     = '';
+		$prefix  = empty( $prefix ) ? '' : $prefix . ' ';
 		foreach ( $size as $value ) {
-			$css .= sprintf(
-				'.has-%s-font-size{font-size:%sem;}',
-				$value['slug'],
-				( $value['size'] / $default )
-			);
+			$fz   = ( $value['size'] / $default );
+			$slug = $value['slug'];
+			/**
+			 * CSS作成
+			 */
+			$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $fz . 'em;}';
 		}
 
 		return $css;
@@ -506,36 +509,47 @@ class YS_Scripts {
 	/**
 	 * Gutenberg色設定
 	 *
+	 * @param string $prefix プレフィックス.
+	 *
 	 * @return string
 	 */
-	public function get_editor_color_palette() {
-		$color = ys_get_editor_color_palette();
-		$css   = '';
+	public function get_editor_color_palette( $prefix = '' ) {
+		$color  = ys_get_editor_color_palette();
+		$css    = '';
+		$prefix = empty( $prefix ) ? '' : $prefix . ' ';
 		foreach ( $color as $value ) {
-			$css .= sprintf(
-				'.has-%s-background-color{background-color:%s;border-color:%s;}',
-				$value['slug'],
-				$value['color'],
-				$value['color']
-			);
-			$css .= sprintf(
-				'.has-%s-color,.has-%s-color:hover{color:%s;}',
-				$value['slug'],
-				$value['slug'],
-				$value['color']
-			);
-			$css .= sprintf(
-				'.is-style-outline .wp-block-button__link.has-%s-color{border-color:%s;color:%s;}',
-				$value['slug'],
-				$value['color'],
-				$value['color']
-			);
-			$css .= sprintf(
-				'.is-style-outline .wp-block-button__link:hover.has-%s-color{background-color:%s;border-color:%s;}',
-				$value['slug'],
-				$value['color'],
-				$value['color']
-			);
+			/**
+			 * Background-color
+			 */
+			$css .= $prefix . '
+			.has-' . $value['slug'] . '-background-color{
+				background-color:' . $value['color'] . ';
+				border-color:' . $value['color'] . ';
+			}';
+			/**
+			 * Text Color
+			 */
+			$css .= $prefix . '
+			.has-' . $value['slug'] . '-color,
+			.has-' . $value['slug'] . '-color:hover{
+				color:' . $value['color'] . ';
+			}';
+			/**
+			 * ブロック（アウトライン）
+			 */
+			$css .= $prefix . '
+			.is-style-outline .wp-block-button__link.has-' . $value['slug'] . '-color{
+				border-color:' . $value['color'] . ';
+				color:' . $value['color'] . ';
+			}';
+			/**
+			 * ブロック（アウトライン）hover
+			 */
+			$css .= $prefix . '
+			.is-style-outline .wp-block-button__link:hover.has-' . $value['slug'] . '-color{
+				background-color:' . $value['color'] . ';
+				border-color:' . $value['color'] . ';
+			}';
 		}
 
 		return $css;
