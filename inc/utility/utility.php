@@ -106,7 +106,6 @@ function ys_get_sns_icons() {
 	);
 }
 
-
 /**
  * Font Awesome CSS
  *

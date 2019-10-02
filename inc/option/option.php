@@ -137,6 +137,8 @@ function ys_get_option_defaults() {
 		'ys_design_header_type'                     => 'row1', // ヘッダータイプ.
 		'ys_show_sidebar_mobile'                    => 0, // モバイル表示でサイドバーを出力しない.
 		'ys_show_search_form_on_slide_menu'         => 0, // スライドメニューに検索フォームを出力する.
+		'ys_enqueue_icon_font_type'                 => 'js', // アイコンフォント（Font Awesome）読み込み方式.
+		'ys_enqueue_icon_font_kit_url'              => '', // Font Awesome Kit URL.
 		// [ys]投稿ページ設定.
 		'ys_post_layout'                            => '2col', // 表示レウアウト.
 		'ys_show_post_thumbnail'                    => 1, // 個別ページでアイキャッチ画像を表示する.
@@ -169,8 +171,6 @@ function ys_get_option_defaults() {
 		// [ys]ワンカラムテンプレート設定.
 		'ys_design_one_col_thumbnail_type'          => 'normal', // アイキャッチ画像表示タイプ.
 		'ys_design_one_col_content_type'            => 'normal', // コンテンツタイプ normal,wide.
-		// Gutenberg設定.
-		'ys_enqueue_gutenberg_css'                  => 0, // ブロックエディター対応のCSSを読み込む.
 		// [ys]フロントページ設定.
 		'ys_front_page_layout'                      => '1col', // 表示レイアウト.
 		'ys_front_page_type'                        => 'normal', // フロントページ作成タイプ.
@@ -284,6 +284,9 @@ function ys_get_option_defaults() {
 		// [ys]サイト運営支援.
 		'ys_admin_enable_block_editor_style'        => 0, // Gutenberg用CSSを追加する.
 		'ys_admin_enable_tiny_mce_style'            => 0, // ビジュアルエディタ用CSSを追加する.
+		// 削除予定
+		// Gutenberg設定.
+		'ys_enqueue_gutenberg_css'                  => 0, // ブロックエディター対応のCSSを読み込む.
 	);
 }
 
