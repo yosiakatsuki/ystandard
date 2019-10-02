@@ -56,13 +56,8 @@ add_action( 'wp_enqueue_scripts', 'ys_enqueue_styles', 9 );
  * Gutenberg用WP標準CSSの削除
  */
 function ys_dequeue_wp_block_css() {
-	/**
-	 * 本体側のブロックのスタイルを削除
-	 */
-	if ( ! ys_is_active_gutenberg_css() ) {
-		wp_dequeue_style( 'wp-block-library' );
-		wp_dequeue_style( 'wp-block-library-theme' );
-	}
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
 }
 
 add_action( 'wp_enqueue_scripts', 'ys_dequeue_wp_block_css' );
