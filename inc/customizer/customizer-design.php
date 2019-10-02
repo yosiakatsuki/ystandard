@@ -37,6 +37,10 @@ function ys_customizer_design( $wp_customize ) {
 	 * ワンカラムテンプレート設定
 	 */
 	ys_customizer_design_add_one_column_template( $wp_customize );
+	/**
+	 * アイコンフォント設定
+	 */
+	ys_customizer_design_add_icon_font( $wp_customize );
 }
 
 /**
@@ -177,4 +181,54 @@ function ys_customizer_design_add_one_column_template( $wp_customize ) {
 			),
 		)
 	);
+	/**
+	 * アイコンフォント設定
+	 *
+	 * @param WP_Customize_Manager $wp_customize wp_customize.
+	 */
+	function ys_customizer_design_add_icon_font( $wp_customize ) {
+		$ys_customizer = new YS_Customizer( $wp_customize );
+		/**
+		 * セクション追加
+		 */
+		$ys_customizer->add_section(
+			array(
+				'section'     => 'ys_customizer_section_icon_fonts',
+				'title'       => 'アイコンフォント設定',
+				'priority'    => 10,
+				'description' => 'アイコンフォントに関する設定',
+				'panel'       => 'ys_customizer_panel_design',
+			)
+		);
+		/**
+		 * アイコンフォント読み込み方式
+		 */
+		$ys_customizer->add_radio(
+			array(
+				'id'          => 'ys_enqueue_icon_font_type',
+				'default'     => ys_get_option_default( 'ys_enqueue_icon_font_type' ),
+				'transport'   => 'postMessage',
+				'label'       => 'アイコンフォント（Font Awesome）読み込み方式',
+				'description' => 'Font Awesome読み込み方式を設定できます。',
+				'choices'     => array(
+					'js'   => 'JavaScript(推奨)',
+					'css'  => 'CSS',
+					'kit'  => 'Font Awesome Kits(「Font Awesome Kits URL」の入力必須)',
+					'none' => '読み込まない(※表示が崩れる場合があります。プラグイン等でFont Awesomeを読み込む場合の設定)',
+				),
+			)
+		);
+		/**
+		 * Font Awesome Kits設定
+		 */
+		$ys_customizer->add_url(
+			array(
+				'id'          => 'ys_enqueue_icon_font_kit_url',
+				'default'     => ys_get_option_default( 'ys_enqueue_icon_font_kit_url' ),
+				'transport'   => 'postMessage',
+				'label'       => 'Font Awesome Kits URL',
+				'description' => 'Font Awesome Kitsを使う場合のURL設定',
+			)
+		);
+	}
 }

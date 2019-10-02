@@ -44,6 +44,10 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 
 ### v3.x.x
+- v3.2.0
+  - 機能追加
+    - Font Awesomeのjs/css切り替え機能追加
+    - Font Awesome Kitsの設定追加
 - v3.1.4
   - 不具合修正
     - ボタンブロックの編集画面スタイルの調整

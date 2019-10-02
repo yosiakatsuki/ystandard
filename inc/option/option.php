@@ -137,6 +137,8 @@ function ys_get_option_defaults() {
 		'ys_design_header_type'                     => 'row1', // ヘッダータイプ.
 		'ys_show_sidebar_mobile'                    => 0, // モバイル表示でサイドバーを出力しない.
 		'ys_show_search_form_on_slide_menu'         => 0, // スライドメニューに検索フォームを出力する.
+		'ys_enqueue_icon_font_type'                 => 'js', // アイコンフォント（Font Awesome）読み込み方式.
+		'ys_enqueue_icon_font_kit_url'              => '', // Font Awesome Kit URL.
 		// [ys]投稿ページ設定.
 		'ys_post_layout'                            => '2col', // 表示レウアウト.
 		'ys_show_post_thumbnail'                    => 1, // 個別ページでアイキャッチ画像を表示する.
