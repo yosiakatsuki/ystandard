@@ -46,6 +46,7 @@ Source : <https://gist.github.com/terkel/4373420>
 ### v3.x.x
 - v3.2.1
   - 動画ヘッダー設定の不具合対処
+  - ヘッダーメニュー下線にテキストカラーが反映されない不具合修正
 - v3.2.0
   - 機能追加
     - Font Awesomeのjs/css切り替え機能追加

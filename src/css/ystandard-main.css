@@ -2603,7 +2603,7 @@ ol.ys-box {
         left: unset;
         right: 0;
         text-align: right; }
-      .h-nav.rwd li:hover:not(.has-child) {
+      .h-nav.rwd li:hover:not(.menu-item-has-children) {
         border-bottom: 1px solid #292b2c; }
       .h-nav.rwd li:hover ul {
         min-width: 100%;
