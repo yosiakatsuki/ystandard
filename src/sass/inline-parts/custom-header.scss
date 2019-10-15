@@ -18,7 +18,7 @@
     background-color: #{"${text_color}"};
   }
 
-  .h-nav.rwd li:hover:not(.has-child) {
+  .h-nav.rwd li:hover:not(.menu-item-has-children) {
     border-bottom-color: #{"${text_color}"};
   }
 

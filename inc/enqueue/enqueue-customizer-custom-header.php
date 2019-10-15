@@ -34,7 +34,7 @@ function ys_get_customizer_inline_css_custom_header() {
 .custom-header--full .hamburger span {
   background-color: ${text_color}; }
 
-.custom-header--full .h-nav.rwd li:hover:not(.has-child) {
+.custom-header--full .h-nav.rwd li:hover:not(.menu-item-has-children) {
   border-bottom-color: ${text_color}; }
 
 .custom-header--full .site-header,

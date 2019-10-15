@@ -186,6 +186,17 @@ function ys_get_customizer_inline_css_color() {
 			),
 			'lg'
 		);
+		$css .= ys_customizer_add_media_query(
+			ys_customizer_create_inline_css(
+				array(
+					'.h-nav.rwd li:hover:not(.menu-item-has-children)',
+				),
+				array(
+					'border-color' => $header_font,
+				)
+			),
+			'lg'
+		);
 	}
 
 	/**

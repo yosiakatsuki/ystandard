@@ -67,7 +67,7 @@
 
           //2層ul
           &:hover {
-            &:not(.has-child) {
+            &:not(.menu-item-has-children) {
               border-bottom: 1px solid $color__border-dark;
             }
 
