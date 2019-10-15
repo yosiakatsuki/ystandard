@@ -30,7 +30,7 @@ function ys_optimize_jquery() {
 	/**
 	 * 管理画面 or ログインページは操作しない
 	 */
-	if ( is_admin() || ys_is_login_page() ) {
+	if ( is_admin() || ys_is_login_page() || is_customize_preview() ) {
 		return;
 	}
 	/**
