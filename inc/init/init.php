@@ -31,8 +31,9 @@ function ys_init() {
 	 */
 	register_nav_menus(
 		array(
-			'global' => 'グローバルナビゲーション',
-			'footer' => 'フッターメニュー',
+			'global'        => 'グローバルナビゲーション',
+			'footer'        => 'フッターメニュー',
+			'mobile-footer' => 'モバイルフッター',
 		)
 	);
 	/**
@@ -75,7 +76,7 @@ function ys_init() {
 			'flex-height'        => true,
 			'header-text'        => true,
 			'video'              => true,
-			'default-text-color' => '000000',
+			'default-text-color' => '222222',
 		)
 	);
 	/**
