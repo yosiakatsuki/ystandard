@@ -90,7 +90,7 @@ function ys_set_enqueue_css() {
 		ys_get_theme_version( true )
 	);
 	/**
-	 * カスタマイザー関連
+	 * カスタマイザー/設定関連
 	 */
 	ys_enqueue_inline_css( ys_get_customizer_inline_css() );
 	/**

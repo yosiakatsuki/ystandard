@@ -16,3 +16,4 @@ require_once $enqueue_dir . '/enqueue-optimize.php';
 require_once $enqueue_dir . '/enqueue-customizer.php';
 require_once $enqueue_dir . '/enqueue-customizer-color.php';
 require_once $enqueue_dir . '/enqueue-customizer-custom-header.php';
+require_once $enqueue_dir . '/enqueue-theme-option-css.php';
