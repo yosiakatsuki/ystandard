@@ -36,10 +36,10 @@ function ys_get_ad_block_html( $ad, $key = '', $label = true ) {
 		 * HTMLの作成
 		 */
 		$html = sprintf(
-			'<aside class="ys-ad-block">
+			'<div class="ys-ad-block">
 					%s
 					<div class="ys-ad-content">%s</div>
-				</aside>',
+				</div>',
 			$label_text,
 			$ad
 		);
@@ -149,7 +149,10 @@ function ys_get_ad_entry_header() {
 function ys_the_ad_entry_header() {
 	ys_do_shortcode(
 		'ys_ad_block',
-		array( 'class' => '-no-mb' ),
+		array(
+			'title' => ys_get_option( 'ys_advertisement_ads_label' ),
+			'class' => '-no-mb',
+		),
 		ys_get_ad_entry_header()
 	);
 }
@@ -176,7 +179,7 @@ function ys_get_ad_more_tag() {
 function ys_the_ad_more_tag( $echo = false ) {
 	$ad = ys_do_shortcode(
 		'ys_ad_block',
-		array(),
+		array( 'title' => ys_get_option( 'ys_advertisement_ads_label' ) ),
 		ys_get_ad_more_tag(),
 		$echo
 	);
@@ -234,7 +237,7 @@ function ys_get_ad_entry_footer() {
 function ys_the_ad_entry_footer() {
 	ys_do_shortcode(
 		'ys_ad_block',
-		array(),
+		array( 'title' => ys_get_option( 'ys_advertisement_ads_label' ) ),
 		ys_get_ad_entry_footer()
 	);
 }
@@ -290,7 +293,7 @@ function ys_get_template_infeed_ad() {
  */
 function ys_fix_ad_preview_error( $ad ) {
 	if ( ! is_customize_preview() ) {
-		return apply_filters( 'ys_fix_ad_infeed_error', $ad );
+		return $ad;
 	}
 	/**
 	 * Google Adsense コード貼り付けでのエラー対処
@@ -310,5 +313,5 @@ function ys_fix_ad_preview_error( $ad ) {
 		);
 	}
 
-	return apply_filters( 'ys_fix_ad_infeed_error', $ad );
+	return $ad;
 }
