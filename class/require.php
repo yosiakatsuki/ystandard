@@ -13,7 +13,7 @@
 $class_dir = get_template_directory() . '/class/';
 require_once $class_dir . 'class-ys-scripts.php';
 require_once $class_dir . 'class-ys-cache.php';
-require_once $class_dir . 'class-ys-walker-global-nav-menu.php';
+
 /**
  * ウィジェットクラス
  */
@@ -51,5 +51,12 @@ require_once $class_dir . 'class-ys-shortcode-follow-box.php';
  * テーマカスタマイザー
  */
 $class_dir = get_template_directory() . '/class/customizer/';
-require_once $class_dir . '/class-ys-customize-image-label-radio-control.php';
-require_once $class_dir . '/class-ys-customizer.php';
+require_once $class_dir . 'class-ys-customize-image-label-radio-control.php';
+require_once $class_dir . 'class-ys-customizer.php';
+
+/**
+ * ワーカー
+ */
+$class_dir = get_template_directory() . '/class/walker/';
+require_once $class_dir . 'class-ys-walker-global-nav-menu.php';
+require_once $class_dir . 'class-ys-walker-mobile-footer-menu.php';

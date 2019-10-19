@@ -96,6 +96,13 @@ function ys_body_class( $classes ) {
 		$classes[] = 'has-bg-color';
 	}
 
+	/**
+	 * モバイルフッターあり
+	 */
+	if ( has_nav_menu( 'mobile-footer' ) ) {
+		$classes[] = 'has-mobile-footer';
+	}
+
 	return $classes;
 }
 

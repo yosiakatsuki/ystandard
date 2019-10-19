@@ -25,7 +25,7 @@ function ys_customizer_create_inline_css( $selectors, $properties ) {
 }
 
 /**
- * テーマカスタマイザーでの色指定 CSS取得
+ * テーマカスタマイザー/設定関連で変更する CSS取得
  *
  * @return string
  */
@@ -40,6 +40,11 @@ function ys_get_customizer_inline_css() {
 	 * カスタムヘッダー
 	 */
 	$css .= ys_get_customizer_inline_css_custom_header();
+
+	/**
+	 * モバイルフッター
+	 */
+	$css .= ys_get_inline_css_mobile_css();
 
 	return apply_filters( 'ys_get_customizer_inline_css', $css );
 }
