@@ -47,7 +47,7 @@ gulp.task('sass:parts', () => {
 gulp.task('js', () => {
     return gulp.src('./src/js/*.js')
         .pipe(babel({
-            presets: ['@babel/preset-env','minify']
+            presets: ['@babel/preset-env', 'minify']
         }))
         .pipe(gulp.dest('./js'))
 });
@@ -93,8 +93,11 @@ gulp.task('zip', function () {
  * watch
  */
 gulp.task('watch', () => {
-    gulp.watch('./src/sass/**/*.scss', gulp.task('sass'));
-    gulp.watch('./src/sass/**/*.scss', gulp.task('sass:parts'));
+    gulp.watch(
+        ['./src/sass/**/*.scss', '!./src/sass/inline-parts/**/*.scss'],
+        gulp.task('sass')
+    );
+    gulp.watch('./src/sass/inline-parts/**/*.scss', gulp.task('sass:parts'));
     gulp.watch('./src/js/**/*.js', gulp.task('js'));
 });
 
