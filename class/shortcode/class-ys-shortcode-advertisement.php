@@ -17,8 +17,9 @@ class YS_Shortcode_Advertisement extends YS_Shortcode_Base {
 	 */
 	const SHORTCODE_PARAM = array(
 		'title'       => self::TITLE,
+		'title_tag'   => 'div',
 		'title_class' => 'ys-ad-title',
-		'wrap_html'   => '<aside%s>%s</aside>',
+		'wrap_html'   => '<div%s>%s</div>',
 		'text'        => '',
 	);
 	/**

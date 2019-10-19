@@ -251,6 +251,7 @@ function ys_get_option_defaults() {
 		'ys_load_cdn_jquery_url'                    => '', // CDNにホストされているjQueryを読み込む（URLを設定）.
 		'ys_not_load_jquery'                        => 0, // jQueryを読み込まない.
 		// [ys]広告設定.
+		'ys_advertisement_ads_label'                => 'スポンサーリンク', // 広告ラベル.
 		'ys_advertisement_before_title'             => '', // 広告　タイトル上.
 		'ys_advertisement_after_title'              => '', // 広告　タイトル下.
 		'ys_advertisement_before_content'           => '', // 記事本文上（旧 タイトル下）.
