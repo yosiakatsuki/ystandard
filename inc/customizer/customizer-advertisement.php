@@ -10,7 +10,7 @@
 /**
  * 広告設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_advertisement( $wp_customize ) {
 	/**
@@ -23,6 +23,10 @@ function ys_customizer_advertisement( $wp_customize ) {
 			'priority' => 1130,
 		)
 	);
+	/**
+	 * 広告共通設定
+	 */
+	ys_customizer_advertisement_common( $wp_customize );
 	/**
 	 * PC用広告
 	 */
@@ -38,9 +42,39 @@ function ys_customizer_advertisement( $wp_customize ) {
 }
 
 /**
+ * 広告共通設定
+ *
+ * @param WP_Customize_Manager $wp_customize wp_customize.
+ */
+function ys_customizer_advertisement_common( $wp_customize ) {
+	$ys_customizer = new YS_Customizer( $wp_customize );
+	/**
+	 * セクション追加
+	 */
+	$ys_customizer->add_section(
+		array(
+			'section' => 'ys_customizer_section_ads_common',
+			'title'   => '広告共通設定',
+			'panel'   => 'ys_customizer_panel_advertisement',
+		)
+	);
+	/**
+	 * 広告ラベル
+	 */
+	$ys_customizer->add_text(
+		array(
+			'id'          => 'ys_advertisement_ads_label',
+			'default'     => ys_get_option_default( 'ys_advertisement_ads_label' ),
+			'label'       => '広告ラベル',
+			'description' => '広告上に表示するラベルテキストを設定します',
+		)
+	);
+}
+
+/**
  * PC用広告
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_advertisement_add_ads_pc( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -120,7 +154,7 @@ function ys_customizer_advertisement_add_ads_pc( $wp_customize ) {
 /**
  * モバイル用広告
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_advertisement_add_ads_sp( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -190,7 +224,7 @@ function ys_customizer_advertisement_add_ads_sp( $wp_customize ) {
 /**
  * インフィード広告
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_advertisement_add_infeed( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
