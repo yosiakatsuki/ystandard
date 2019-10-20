@@ -1,5 +1,5 @@
 sudo: false
-dist: xenial
+dist: trusty
 language: php
 notifications:
   email:
@@ -23,9 +23,12 @@ before_install:
 - mv .travis/github_deploy_key ~/.ssh/id_rsa
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- nvm install --lts
-- nvm use --lts
+- nvm install 'lts/*'
+- nvm use 'lts/*'
 - node --version
+node_js:
+  - 'stable'
+  - 'lts/*'
 matrix:
   include:
   - php: 7.3
