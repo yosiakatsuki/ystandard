@@ -44,6 +44,12 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 
 ### v3.x.x
+- v3.4.0
+  - 機能追加
+    - AMPプラグイン連携機能の追加
+      - 影響のあるテンプレートファイル
+        - header.php
+        - footer.php
 - v3.3.0
   - 機能追加
     - モバイル固定フッターメニュー追加

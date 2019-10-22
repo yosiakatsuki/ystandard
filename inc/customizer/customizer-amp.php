@@ -10,7 +10,7 @@
 /**
  * AMP設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp( $wp_customize ) {
 	/**
@@ -52,7 +52,7 @@ function ys_customizer_active_callback_amp_options() {
 /**
  * AMP有効化設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_enable_option( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -85,13 +85,21 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 			'description' => '※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。',
 		)
 	);
+	$ys_customizer->add_checkbox(
+		array(
+			'id'          => 'ys_amp_enable_amp_plugin_integration',
+			'default'     => ys_get_option_default( 'ys_amp_enable_amp_plugin_integration' ),
+			'label'       => '【β機能】AMPプラグイン連携機能を有効化する',
+			'description' => '※「AMP」プラグインの連携機能を有効化します。<br>※この機能は現在β版で提供となります。<br>※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。',
+		)
+	);
 }
 
 
 /**
  * AMP機能設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_amp_options( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -178,7 +186,7 @@ function ys_customizer_amp_add_amp_options( $wp_customize ) {
 /**
  * AMP広告設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_amp_ads( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -255,7 +263,7 @@ function ys_customizer_amp_add_amp_ads( $wp_customize ) {
 /**
  * AMPテンプレート設定
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_amp_add_template( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
