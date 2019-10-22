@@ -68,7 +68,7 @@ function ys_amp_remove_query( $url ) {
  * @return string
  */
 function ys_amp_convert_image( $content, $layout = 'responsive' ) {
-	if ( ! ys_is_amp() ) {
+	if ( ! ys_is_ystd_amp() ) {
 		return $content;
 	}
 	$amp_content = $content;
@@ -107,7 +107,7 @@ function ys_amp_convert_image( $content, $layout = 'responsive' ) {
  * @return string
  */
 function ys_amp_get_amp_image_tag( $img, $layout = 'responsive' ) {
-	if ( ! ys_is_amp() ) {
+	if ( ! ys_is_ystd_amp() ) {
 		return $img;
 	}
 	$format = '<amp-img %s></amp-img>';

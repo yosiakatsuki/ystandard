@@ -35,7 +35,7 @@
 	<?php get_template_part( 'template-parts/footer/footer-mobile-nav' ); ?>
 </div><!-- .site -->
 <?php
-if ( ys_is_amp() ) {
+if ( ys_is_ystd_amp() ) {
 	/**
 	 * AMP
 	 */

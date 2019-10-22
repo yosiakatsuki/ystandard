@@ -15,7 +15,7 @@
  * @return string
  */
 function ys_amp_convert_content( $content ) {
-	if ( ! ys_is_amp() ) {
+	if ( ! ys_is_ystd_amp() ) {
 		return $content;
 	}
 	/**
