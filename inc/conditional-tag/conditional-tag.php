@@ -138,7 +138,6 @@ function ys_is_amp() {
 		$ys_amp = ys_is_ystd_amp();
 	}
 
-
 	return apply_filters( 'ys_is_amp', $ys_amp );
 }
 
