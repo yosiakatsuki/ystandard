@@ -45,7 +45,7 @@ function ys_customizer_amp( $wp_customize ) {
  * AMP設定変更パネルを表示するかどうか
  */
 function ys_customizer_active_callback_amp_options() {
-	return ys_get_option( 'ys_amp_enable' );
+	return ( ys_get_option( 'ys_amp_enable', false, 'bool' ) || ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) );
 }
 
 
@@ -81,7 +81,7 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 		array(
 			'id'          => 'ys_amp_enable',
 			'default'     => 0,
-			'label'       => 'AMP機能を有効化する',
+			'label'       => 'AMP機能を有効化',
 			'description' => '※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。',
 		)
 	);
@@ -89,8 +89,8 @@ function ys_customizer_amp_add_enable_option( $wp_customize ) {
 		array(
 			'id'          => 'ys_amp_enable_amp_plugin_integration',
 			'default'     => ys_get_option_default( 'ys_amp_enable_amp_plugin_integration' ),
-			'label'       => '【β機能】AMPプラグイン連携機能を有効化する',
-			'description' => '※「AMP」プラグインの連携機能を有効化します。<br>※この機能は現在β版で提供となります。<br>※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。',
+			'label'       => '【β機能】AMPプラグイン連携機能を有効化',
+			'description' => '※「AMP」プラグインの連携機能を有効化します。<br>※この機能は現在β版で提供となります。<br>※この設定を有効化する場合、「AMP機能を有効化」のチェックは外して下さい。',
 		)
 	);
 }
@@ -123,7 +123,7 @@ function ys_customizer_amp_add_amp_options( $wp_customize ) {
 			'id'          => 'ys_ga_tracking_id_amp',
 			'default'     => '',
 			'transport'   => 'postMessage',
-			'label'       => 'Google Analytics トラッキングID(AMP)',
+			'label'       => 'Google Analytics トラッキングID(AMP)<br>※「【β機能】AMPプラグイン連携機能を有効化」をONにしている場合、AMPプラグインの設定画面でGoogle Analyticsの設定をして下さい。',
 			'input_attrs' => array(
 				'placeholder' => 'UA-00000000-0',
 			),
