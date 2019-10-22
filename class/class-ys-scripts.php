@@ -87,6 +87,10 @@ class YS_Scripts {
 	 * スクリプトのエンキュー
 	 */
 	public function enqueue_script() {
+
+		if ( ys_is_amp() ) {
+			return;
+		}
 		/**
 		 * JavaScriptの指定
 		 */
