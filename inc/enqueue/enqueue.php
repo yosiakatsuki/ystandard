@@ -128,6 +128,18 @@ function ys_set_enqueue_css() {
 			ys_get_theme_version( true )
 		);
 	}
+	/**
+	 * AMP用Font Awesome
+	 */
+	if ( ys_is_amp() ) {
+		ys_enqueue_css(
+			'ys-amp-fontawesome',
+			ys_get_font_awesome_cdn_css_url(),
+			false,
+			array(),
+			'v5.11.2'
+		);
+	}
 }
 
 add_action( 'ys_enqueue_styles', 'ys_set_enqueue_css' );
@@ -136,6 +148,9 @@ add_action( 'ys_enqueue_styles', 'ys_set_enqueue_css' );
  * JavaScript読み込み指定
  */
 function ys_set_enqueue_scripts() {
+	if ( ys_is_amp() ) {
+		return;
+	}
 	if ( 'js' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
 		/**
 		 * Font Awesome
