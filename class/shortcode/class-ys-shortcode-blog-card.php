@@ -118,6 +118,12 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 			return $this->create_a_tag( $url );
 		}
 		/**
+		 * AMPの場合＆自サイトの場合は画像再作成
+		 */
+		if ( ys_is_amp() && 0 < $this->card_data['post_id'] ) {
+			$this->card_data['thumbnail'] = $this->get_post_thumbnail( $this->card_data['post_id'] );
+		}
+		/**
 		 * 展開用データ作成
 		 */
 		$ys_blog_card_data = $this->card_data;
