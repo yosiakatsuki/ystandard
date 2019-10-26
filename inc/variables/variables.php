@@ -3,7 +3,7 @@
  * 変数
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -11,7 +11,9 @@
  * AMP判断用変数
  */
 global $ys_amp;
-$ys_amp = null;
+global $ys_ystd_amp;
+$ys_amp      = null;
+$ys_ystd_amp = null;
 
 /**
  * 投稿者id上書き用
