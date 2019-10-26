@@ -560,6 +560,30 @@ class YS_Scripts {
 	}
 
 	/**
+	 * ロードするJSのリスト
+	 */
+	public static function get_enqueue_script_files() {
+		$scripts = array(
+			array(
+				'handle'    => 'font-awesome',
+				'src'       => ys_get_font_awesome_svg_url(),
+				'deps'      => array(),
+				'ver'       => 'v5.11.2',
+				'in_footer' => true,
+			),
+			array(
+				'handle'    => self::SCRIPT_HANDLE_MAIN,
+				'src'       => get_template_directory_uri() . '/js/ystandard.js',
+				'deps'      => array(),
+				'ver'       => ys_get_theme_version(),
+				'in_footer' => true,
+			),
+		);
+
+		return apply_filters( 'ys_get_enqueue_script_files', $scripts );
+	}
+
+	/**
 	 * スクリプトにdeferをつけないリスト
 	 *
 	 * @return array
