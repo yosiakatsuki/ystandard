@@ -50,6 +50,8 @@ Source : <https://gist.github.com/terkel/4373420>
       - 影響のあるテンプレートファイル
         - header.php
         - footer.php
+  - 調整
+    - 画像ブロックの余白調整
 - v3.3.0
   - 機能追加
     - モバイル固定フッターメニュー追加
