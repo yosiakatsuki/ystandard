@@ -148,9 +148,6 @@ add_action( 'ys_enqueue_styles', 'ys_set_enqueue_css' );
  * JavaScript読み込み指定
  */
 function ys_set_enqueue_scripts() {
-	if ( ys_is_amp() ) {
-		return;
-	}
 	if ( 'js' === ys_get_option( 'ys_enqueue_icon_font_type' ) ) {
 		/**
 		 * Font Awesome

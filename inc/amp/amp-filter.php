@@ -65,3 +65,18 @@ function ys_amp_convert_all( $content ) {
  * 投稿者画像のAMP変換セット
  */
 add_filter( 'get_avatar', 'ys_amp_get_amp_image_tag', 999 );
+
+/**
+ * AMP連携:スクリプト削除
+ */
+function ys_amp_dequeue_script() {
+	if ( ! ys_is_amp() ) {
+		return;
+	}
+	$scripts = YS_Scripts::get_enqueue_script_files();
+	foreach ( $scripts as $item ) {
+		wp_dequeue_script( $item['handle'] );
+	}
+}
+
+add_action( 'wp_enqueue_script', 'ys_amp_dequeue_script', PHP_INT_MAX );
