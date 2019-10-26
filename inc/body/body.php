@@ -78,7 +78,7 @@ function ys_body_class( $classes ) {
 	/**
 	 * タイトルなしテンプレート
 	 */
-	if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+	if ( ys_is_no_title_template() ) {
 		$classes[] = 'one-column-no-title';
 	}
 

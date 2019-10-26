@@ -1,4 +1,10 @@
 .wp-block-image {
+  margin-top: 1.5rem;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
   .aligncenter {
     text-align: center;
   }
