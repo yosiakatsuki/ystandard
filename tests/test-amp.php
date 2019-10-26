@@ -19,6 +19,7 @@ class AmpTest extends WP_UnitTestCase {
 	public function setup_postdata( $args = null ) {
 		global $post;
 		global $ys_amp;
+		global $ys_ystd_amp;
 		/**
 		 * 記事作成
 		 */
@@ -33,7 +34,8 @@ class AmpTest extends WP_UnitTestCase {
 		/**
 		 * キャッシュのクリア
 		 */
-		$ys_amp = null;
+		$ys_amp      = null;
+		$ys_ystd_amp = null;
 
 		return $post_id;
 	}
@@ -100,7 +102,60 @@ EOD;
 	 */
 	function test_is_amp() {
 		$post_id = $this->setup_postdata();
-		$this->assertTrue( is_single() );
+		$this->assertTrue( ys_is_amp() );
+	}
+
+	/**
+	 * テーマ機能版 ys_is_ystd_ampテスト
+	 */
+	function test_is_ystd_amp_1() {
+		$post_id = $this->setup_postdata();
+		$this->assertTrue( ys_is_ystd_amp() );
+	}
+
+	/**
+	 * テーマ機能版 ys_is_ystd_ampテスト
+	 * プラグイン連携がONの場合、テーマ機能のAMP判断はfalseになる
+	 */
+	function test_is_ystd_amp_2() {
+		$post_id = $this->setup_postdata();
+		update_option( 'ys_amp_enable', false );
+		update_option( 'ys_amp_enable_amp_plugin_integration', true );
+		$this->assertFalse( ys_is_ystd_amp() );
+	}
+
+	/**
+	 * プラグイン連携版 ys_is_ampテスト
+	 * 連携設定がON & AMPページじゃない場合
+	 */
+	function test_is_amp_plugin_integration_1() {
+		$post_id = $this->setup_postdata();
+		update_option( 'ys_amp_enable', false );
+		update_option( 'ys_amp_enable_amp_plugin_integration', true );
+		$this->assertFalse( ys_is_amp() );
+	}
+
+	/**
+	 * プラグイン連携版 ys_is_ampテスト
+	 * 連携設定がON & AMPページの場合
+	 */
+	function test_is_amp_plugin_integration_2() {
+		$post_id = $this->setup_postdata();
+		update_option( 'ys_amp_enable', false );
+		update_option( 'ys_amp_enable_amp_plugin_integration', true );
+		add_filter( 'ys_is_amp_endpoint', '__return_true' );
+		$this->assertTrue( ys_is_amp() );
+	}
+	/**
+	 * プラグイン連携版 ys_is_ampテスト
+	 * 連携設定がON & AMPページの場合(URLにampがなくてもプラグインでAMPと判断された場合)
+	 */
+	function test_is_amp_plugin_integration_3() {
+		$post_id = $this->setup_postdata();
+		update_option( 'ys_amp_enable', false );
+		update_option( 'ys_amp_enable_amp_plugin_integration', true );
+		add_filter( 'ys_is_amp_endpoint', '__return_true' );
+		$this->go_to( get_the_permalink( $post_id ) );
 		$this->assertTrue( ys_is_amp() );
 	}
 
@@ -170,6 +225,7 @@ EOD;
 			$content
 		);
 	}
+
 	/**
 	 * amp-img変換テスト
 	 */
@@ -185,6 +241,7 @@ EOD;
 			$content
 		);
 	}
+
 	/**
 	 * amp-img変換テスト
 	 */

@@ -271,6 +271,7 @@ function ys_get_option_defaults() {
 		'ys_advertisement_infeed_sp_limit'          => 3, // インフィード広告 表示する広告の最大数 SP.
 		// [ys]AMP設定.
 		'ys_amp_enable'                             => 0, // AMPページを有効化するか.
+		'ys_amp_enable_amp_plugin_integration'      => 0, // AMPプラグイン連携を有効化するか.
 		'ys_ga_tracking_id_amp'                     => '', // AMPのGoogle Analyticsトラッキングコード.
 		'ys_show_amp_before_content_widget'         => 0, // 記事上ウィジェットを出力する.
 		'ys_amp_before_content_widget_priority'     => 10, // 記事上ウィジェットの優先順位.

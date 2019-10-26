@@ -29,7 +29,7 @@ function ys_the_amp_google_anarytics() {
 	if ( ! ys_is_enable_google_analytics() ) {
 		return;
 	}
-	if ( ! ys_is_amp() ) {
+	if ( ! ys_is_ystd_amp() ) {
 		return;
 	}
 	get_template_part( 'template-parts/amp/amp-google-analytics' );

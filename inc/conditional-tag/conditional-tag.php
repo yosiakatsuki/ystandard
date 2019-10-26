@@ -125,17 +125,47 @@ function ys_is_amp() {
 	if ( null !== $ys_amp ) {
 		return $ys_amp;
 	}
+	if ( ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) ) {
+		/**
+		 * AMPプラグインでAMPページが作成されているか判断
+		 */
+		$is_amp_endpoint = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+		$ys_amp          = apply_filters( 'ys_is_amp_endpoint', $is_amp_endpoint );
+	} else {
+		/**
+		 * テーマ機能のAMP
+		 */
+		$ys_amp = ys_is_ystd_amp();
+	}
+
+	return apply_filters( 'ys_is_amp', $ys_amp );
+}
+
+/**
+ * テーマ機能のAMP判断
+ */
+function ys_is_ystd_amp() {
+	/**
+	 * AMPプラグイン有効化している場合はfalse
+	 */
+	if ( ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) ) {
+		return false;
+	}
+	global $ys_ystd_amp;
+	if ( null !== $ys_ystd_amp ) {
+		return $ys_ystd_amp;
+	}
 	$param_amp = '';
 	if ( isset( $_GET['amp'] ) ) {
 		$param_amp = $_GET['amp'];
 	}
 	if ( '1' === $param_amp && ys_is_amp_enable() ) {
-		$ys_amp = true;
+		$ys_ystd_amp = true;
 	} else {
-		$ys_amp = false;
+		$ys_ystd_amp = false;
 	}
 
-	return apply_filters( 'ys_is_amp', $ys_amp );
+	return apply_filters( 'ys_is_ystd_amp', $ys_ystd_amp );
 }
 
 /**
@@ -210,6 +240,7 @@ function ys_is_one_column() {
 		'page-template/template-one-column.php',
 		'page-template/template-one-column-wide.php',
 		'page-template/template-one-column-no-title.php',
+		'page-template/template-one-column-no-title-slim.php',
 	);
 	if ( is_page_template( $template ) ) {
 		$one_column = true;
@@ -272,6 +303,17 @@ function ys_is_full_width() {
 	}
 
 	return apply_filters( 'ys_is_full_width', $full_width );
+}
+
+/**
+ * フル幅判定
+ */
+function ys_is_no_title_template() {
+	$template = array(
+		'page-template/template-one-column-no-title.php',
+		'page-template/template-one-column-no-title-slim.php',
+	);
+	return is_page_template( $template );
 }
 
 /**
@@ -508,7 +550,7 @@ function ys_is_active_custom_header() {
  */
 function ys_is_hide_post_header() {
 	$result = false;
-	if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+	if ( ys_is_no_title_template() ) {
 		$result = true;
 	}
 
