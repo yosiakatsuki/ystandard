@@ -240,6 +240,7 @@ function ys_is_one_column() {
 		'page-template/template-one-column.php',
 		'page-template/template-one-column-wide.php',
 		'page-template/template-one-column-no-title.php',
+		'page-template/template-one-column-no-title-slim.php',
 	);
 	if ( is_page_template( $template ) ) {
 		$one_column = true;
@@ -302,6 +303,17 @@ function ys_is_full_width() {
 	}
 
 	return apply_filters( 'ys_is_full_width', $full_width );
+}
+
+/**
+ * フル幅判定
+ */
+function ys_is_no_title_template() {
+	$template = array(
+		'page-template/template-one-column-no-title.php',
+		'page-template/template-one-column-no-title-slim.php',
+	);
+	return is_page_template( $template );
 }
 
 /**
@@ -538,7 +550,7 @@ function ys_is_active_custom_header() {
  */
 function ys_is_hide_post_header() {
 	$result = false;
-	if ( is_page_template( 'page-template/template-one-column-no-title.php' ) ) {
+	if ( ys_is_no_title_template() ) {
 		$result = true;
 	}
 
