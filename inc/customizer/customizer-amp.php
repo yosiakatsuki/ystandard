@@ -123,7 +123,8 @@ function ys_customizer_amp_add_amp_options( $wp_customize ) {
 			'id'          => 'ys_ga_tracking_id_amp',
 			'default'     => '',
 			'transport'   => 'postMessage',
-			'label'       => 'Google Analytics トラッキングID(AMP)<br>※「【β機能】AMPプラグイン連携機能を有効化」をONにしている場合、AMPプラグインの設定画面でGoogle Analyticsの設定をして下さい。',
+			'label'       => 'Google Analytics トラッキングID(AMP)',
+			'description' => '※「【β機能】AMPプラグイン連携機能を有効化」をONにしている場合、AMPプラグインの設定画面でGoogle Analyticsの設定をして下さい。',
 			'input_attrs' => array(
 				'placeholder' => 'UA-00000000-0',
 			),
