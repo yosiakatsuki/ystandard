@@ -17,7 +17,7 @@ function ys_get_header( $name = null ) {
 	/**
 	 * AMPの時とテンプレート分ける
 	 */
-	if ( ys_is_amp() ) {
+	if ( ys_is_ystd_amp() ) {
 		get_template_part( '/template-parts/amp/amp-header', $name );
 	} else {
 		get_header( $name );

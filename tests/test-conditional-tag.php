@@ -38,6 +38,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 		$this->go_to( get_pagenum_link( 2 ) );
 		$this->assertFalse( ys_is_top_page() );
 	}
+
 	/**
 	 * ys_is_top_page
 	 */
@@ -51,5 +52,27 @@ class ConditionalTagTest extends WP_UnitTestCase {
 		update_option( 'page_on_front', $post_id );
 		$this->go_to( home_url( '/' ) );
 		$this->assertTrue( ys_is_top_page() );
+	}
+
+	/**
+	 * ys_is_no_title_template
+	 */
+	function test_ys_is_no_title_template_select() {
+		$post_id = $this->factory->post->create( array( 'post_type' => 'page' ) );
+		update_post_meta( $post_id, '_wp_page_template', 'page-template/template-one-column-no-title.php' );
+		$this->go_to( "/?page_id=$post_id" );
+		$this->assertTrue( ys_is_no_title_template() );
+
+		update_post_meta( $post_id, '_wp_page_template', 'page-template/template-one-column-no-title-slim.php' );
+		$this->assertTrue( ys_is_no_title_template() );
+	}
+
+	/**
+	 * ys_is_no_title_template
+	 */
+	function test_ys_is_no_title_template_no_select() {
+		$post_id = $this->factory->post->create( array( 'post_type' => 'page' ) );
+		$this->go_to( "/?page_id=$post_id" );
+		$this->assertFalse( ys_is_no_title_template() );
 	}
 }
