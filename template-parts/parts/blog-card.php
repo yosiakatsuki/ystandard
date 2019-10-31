@@ -66,7 +66,7 @@ if ( $domain ) {
 			<?php endif; ?>
 			<div class="ys-blog-card__btn-wrap <?php echo $btn_wrap_class; ?>">
 				<?php if ( $domain ) : ?>
-					<span class="text-sub has-x-small-font-size"><?php echo $domain; ?></span>
+					<span class="ys-blog-card__domain text-sub has-x-small-font-size"><?php echo $domain; ?></span>
 				<?php endif; ?>
 				<span class="ys-blog-card__btn"><?php echo $btn_text; ?><i class="fas fa-angle-right"></i></span>
 			</div>
