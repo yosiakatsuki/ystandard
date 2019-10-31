@@ -108,15 +108,9 @@ add_action( 'admin_init', 'ys_add_editor_styles' );
 function ys_enqueue_block_css() {
 	if ( ys_get_option( 'ys_admin_enable_block_editor_style' ) ) {
 		add_theme_support( 'editor-styles' );
-		add_editor_style(
-			get_template_directory_uri() . '/css/ystandard-admin-block.css'
-		);
-		add_editor_style(
-			get_stylesheet_directory_uri() . '/style.css'
-		);
-		add_editor_style(
-			ys_get_theme_file_uri( '/user-custom-editor-style.css' )
-		);
+		add_editor_style( 'css/ystandard-admin-block.css' );
+		add_editor_style( 'style.css' );
+		add_editor_style( 'user-custom-editor-style.css' );
 	}
 }
 
