@@ -10,10 +10,16 @@
   &.-full {
     min-height: 100vh;
   }
+
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
 }
 
 .wp-block-group__inner-container {
-  *:first-child {
+  & > *:first-child {
     margin-top: 0;
   }
 }
