@@ -1,7 +1,10 @@
 .wp-block-file {
-  margin-top: 1.5em;
+  a:not(.wp-block-file__button) {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
 }
 .wp-block-file__button {
   @include button();
-  margin-left: 1em;
+  margin-left: 2em;
 }
