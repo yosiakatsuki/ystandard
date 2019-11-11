@@ -1,17 +1,42 @@
 .wp-block-pullquote {
+  padding: 1.5rem 2.5rem;
+  border-top: 2px solid $color__border-gray;
+  border-bottom: 2px solid $color__border-gray;
+  font-size: 2em;
+  text-align: center;
+
+  &.is-style-solid-color {
+    border: 0;
+  }
+  
   blockquote {
-    font-size: 2em;
     border: 0;
     background-color: rgba(#fff, 0);
-    padding: 1.5rem 2.5rem;
 
     &:before {
-      font-size: 14rem;
-      opacity: .05;
+      display: none;
+    }
+  }
+  cite {
+    font-size: 1rem;
+    color: inherit;
+    &:before {
+      display: none;
     }
   }
 
   p {
     margin-top: .5em;
+  }
+}
+
+@if $editor == true {
+  .wp-block-pullquote {
+    &.is-style-solid-color {
+      blockquote {
+        text-align: center;
+        max-width: unset;
+      }
+    }
   }
 }
