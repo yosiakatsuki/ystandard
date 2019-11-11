@@ -7,6 +7,7 @@ $editor: true;
  */
 @import "object/component/blog-card/blog-card";
 @import "object/component/blog-card/blog-card-d";
+@import "object/component/block-editor/block-text";
 @import "object/component/block-editor/block-media-text-d";
 @import "object/component/block-editor/block-button";
 @import "object/component/block-editor/block-background-dim";
@@ -17,6 +18,7 @@ $editor: true;
 @import "object/component/block-editor/block-cover";
 @import "object/component/block-editor/block-cover-d";
 @import "object/component/block-editor/block-pullquote";
+@import "object/component/block-editor/block-table";
 
 /**
  * utility
