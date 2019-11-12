@@ -2,12 +2,15 @@
   position: relative;
   background-color: #fff;
 }
+
 .wp-block-search__input {
   padding-right: 3.5rem;
 }
+
 .wp-block-search__label {
   display: none;
 }
+
 .wp-block-search__button {
   position: absolute;
   top: 0;
@@ -22,4 +25,22 @@
   border-radius: 0;
   color: $color__btn-text;
   -webkit-appearance: none;
+}
+
+
+@if $editor == true {
+  .wp-block-search {
+    .wp-block-search__input {
+      padding: .5rem 3.5rem .5rem .5rem;
+      background-color: #fff;
+      border: 1px solid #bdc3c7;
+      border-radius: 2px;
+      font-size: 1rem;
+    }
+
+    .wp-block-search__button .wp-block-search__button-rich-text {
+      padding: 0;
+    }
+  }
+
 }
