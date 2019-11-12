@@ -3,6 +3,7 @@
  */
 * {
   box-sizing: border-box;
+
   &::before,
   &::after {
     box-sizing: border-box;
@@ -20,6 +21,7 @@ html {
     zoom: 1;
   }
 }
+
 //mqpacker対策
 @include media-breakpoint(lg) {
   html {
@@ -164,7 +166,9 @@ blockquote {
   a {
     color: inherit;
   }
-
+  p {
+    margin-top: .5em;
+  }
   cite {
     display: block;
     margin-top: 1rem;
@@ -177,7 +181,11 @@ blockquote {
     }
   }
 
-  *:last-child {
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
     margin-bottom: 0;
   }
 }
