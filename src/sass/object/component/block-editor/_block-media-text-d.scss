@@ -6,35 +6,51 @@
         grid-template-rows: auto;
         grid-template-areas: "media-text-media media-text-content";
         grid-template-columns: 50% auto;
-        padding: 1rem 0;
-
-        & + &.-list {
-          padding-top: 0;
-          margin-top: -1rem;
-        }
-
-        &.-center {
-          align-items: center;
-        }
-
-        &.-bottom {
-          align-items: end;
-        }
+        align-items: center;
+      }
+      &.is-vertically-aligned-top {
+        align-items: start;
+      }
+      &.is-vertically-aligned-center {
+        align-items: center;
+      }
+      &.is-vertically-aligned-bottom {
+        align-items: end;
+      }
+      &.has-background {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
       }
       .wp-block-media-text__media {
         grid-area: media-text-media;
       }
+      &.is-image-fill {
+        .wp-block-media-text__media {
+          position: relative;
+          background-size: cover;
+          height: 100%;
+          widows: 100%;
+         
+          img {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+          }
+          
+        }
+      }
       .wp-block-media-text__content {
         grid-area: media-text-content;
-        padding: 0 0 0 2rem;
+        padding: 2rem;
       }
 
       .has-media-on-the-right {
         grid-template-areas: "media-text-content media-text-media";
-
-        .wp-block-media-text__content {
-          padding: 0 2rem 0 0;
-        }
       }
 
       .is-stacked-on-mobile {
@@ -58,7 +74,6 @@
 
         .wp-block-media-text__content {
           position: relative;
-          padding: 0 1rem;
           color: inherit;
         }
       }
@@ -69,7 +84,6 @@
 @if ($editor == true) {
   @include media-breakpoint(md) {
     .wp-block-media-text {
-      align-items: start;
 
       .editor-block-list__layout > .editor-block-list__block {
         .block-editor-block-list__block-edit {
