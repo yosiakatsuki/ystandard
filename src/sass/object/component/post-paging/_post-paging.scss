@@ -2,25 +2,36 @@
   border-top: 1px solid $color__border-gray-light;
   color: $color__text-main;
   text-decoration: none;
+
   &:last-child {
     border-bottom: 1px solid $color__border-gray-light;
   }
 }
+
 .post-paging__detail {
-  padding: .5rem;
+  display: flex;
+  padding: 1rem 0;
+
   &.-prev {
-    text-align: left;
+
   }
+
   &.-next {
-    text-align: right;
+    flex-direction: row-reverse;
   }
 }
+
 .post-paging__image {
+  margin: 0 .5rem;
   img,
   amp-img {
     max-width: 75px;
   }
 }
+.post-paging__title {
+  margin: 0 .5rem;
+}
+
 .post-paging__home {
   padding: 1rem;
   height: 100%;

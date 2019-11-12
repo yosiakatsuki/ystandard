@@ -1,3 +1,16 @@
+@include media-breakpoint(md) {
+  .alignleft {
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  .alignright {
+    float: right;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
 @include media-breakpoint(lg) {
   .alignwide {
     @at-root {
@@ -5,13 +18,14 @@
         margin-right: -4.5rem;
         margin-left: -4.5rem;
       }
+
       .has-sidebar & {
         margin-right: 0;
         margin-left: 0;
       }
     }
   }
-  
+
   .alignfull {
     @at-root {
       & {
@@ -20,6 +34,7 @@
         padding-right: calc(-50% + 50vw);
         padding-left: calc(-50% + 50vw);
       }
+
       .has-sidebar & {
         margin-right: 0;
         margin-left: 0;

@@ -1,0 +1,12 @@
+.tag-cloud-link {
+  display: inline-block;
+  margin-right: .5rem;
+  text-decoration: none;
+  
+  &:last-child {
+    margin-right: 0;
+  }
+}
+.tag-link-count {
+  font-size: .8em;
+}

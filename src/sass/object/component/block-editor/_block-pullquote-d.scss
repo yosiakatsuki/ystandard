@@ -1,0 +1,10 @@
+@include media-breakpoint(md) {
+  .wp-block-pullquote {
+    font-size: 2em;
+    padding: 4rem 2.5rem;
+
+    cite {
+      font-size: .9rem;
+    }
+  }
+}

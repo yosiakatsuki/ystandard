@@ -1,0 +1,39 @@
+.wp-block-pullquote {
+  padding: 2rem 1rem;
+  border-top: 2px solid $color__border-gray;
+  border-bottom: 2px solid $color__border-gray;
+  font-size: 1.5em;
+  text-align: center;
+
+  &.is-style-solid-color {
+    border: 0;
+  }
+  
+  blockquote {
+    padding:0;
+    border: 0;
+    background-color: rgba(#fff, 0);
+
+    &:before {
+      display: none;
+    }
+  }
+  cite {
+    font-size: .9rem;
+    color: inherit;
+    &:before {
+      display: none;
+    }
+  }
+}
+
+@if $editor == true {
+  .wp-block-pullquote {
+    &.is-style-solid-color {
+      blockquote {
+        text-align: center;
+        max-width: unset;
+      }
+    }
+  }
+}
