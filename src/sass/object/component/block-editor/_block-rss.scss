@@ -1,0 +1,20 @@
+.wp-block-rss {
+  list-style: none;
+  margin-right: 0;
+  margin-left: 0;
+  padding-right: 0;
+  padding-left: 0;
+
+  li {
+    padding: .5rem 0;
+  }
+}
+.wp-block-rss__item-publish-date,
+.wp-block-rss__item-author,
+.wp-block-rss__item-excerpt {
+  font-size: .8rem;
+}
+.wp-block-rss__item-publish-date,
+.wp-block-rss__item-author {
+  color: $color__text-light;
+}
