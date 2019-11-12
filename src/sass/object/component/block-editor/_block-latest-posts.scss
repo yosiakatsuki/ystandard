@@ -4,13 +4,55 @@
   margin-left: 0;
   padding-right: 0;
   padding-left: 0;
-  
+
   li {
-    padding: .5rem 0;  
+    padding: .5rem 0;
+  }
+
+  &.has-dates {
+    li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .wp-block-latest-posts__post-date {
+      order: 1;
+    }
+
+    a {
+      order: 2;
+      flex-grow: 1;
+    }
+
+    .wp-block-latest-posts__post-excerpt {
+      order: 3;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
   }
 }
-.wp-block-latest-posts__post-date {
-  display: block;
+
+.wp-block-latest-posts__post-date,
+.wp-block-latest-posts__post-excerpt {
   font-size: .8rem;
+}
+
+.wp-block-latest-posts__post-date {
+  margin-right: .5rem;
   color: $color__text-light;
 }
+.wp-block-latest-posts__post-excerpt {
+  margin: .5rem 0 1rem;
+  a {
+    display: block;
+  }
+}
+
+@if $editor == true {
+  .wp-block-latest-posts__post-excerpt {
+    max-height: 2.5rem;
+    overflow: hidden;
+  }
+}
+
