@@ -1,6 +1,11 @@
 .has-drop-cap {
   &:first-letter {
+    font-size: 3em;
     text-transform: uppercase;
+    vertical-align: -0.05em;
+    @if $editor == true {
+      float: none;
+    }
   }
 }
 p.has-background {

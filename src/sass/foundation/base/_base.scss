@@ -3,6 +3,7 @@
  */
 * {
   box-sizing: border-box;
+
   &::before,
   &::after {
     box-sizing: border-box;
@@ -20,6 +21,7 @@ html {
     zoom: 1;
   }
 }
+
 //mqpacker対策
 @include media-breakpoint(lg) {
   html {
@@ -164,7 +166,9 @@ blockquote {
   a {
     color: inherit;
   }
-
+  p {
+    margin-top: .5em;
+  }
   cite {
     display: block;
     margin-top: 1rem;
@@ -177,7 +181,11 @@ blockquote {
     }
   }
 
-  *:last-child {
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  & > *:last-child {
     margin-bottom: 0;
   }
 }
@@ -234,6 +242,8 @@ th {
 
 th {
   background-color: $color__bg-gray-light;
+  font-weight: normal;
+  text-align: left;
 }
 
 /**
@@ -249,4 +259,9 @@ iframe,
 video {
   max-width: 100%;
   border: 0;
+}
+
+audio {
+  width: 100%;
+  min-width: 300px;
 }

@@ -1,0 +1,20 @@
+.wp-block-file {
+  a:not(.wp-block-file__button) {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+}
+.wp-block-file__button {
+  @include button();
+  margin-left: 2em;
+}
+
+@if $editor == true {
+  .wp-block-file {
+    .rich-text:not(.wp-block-file__button) {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  }
+}
+
