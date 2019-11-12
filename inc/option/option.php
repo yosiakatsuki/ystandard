@@ -284,7 +284,7 @@ function ys_get_option_defaults() {
 		'ys_amp_advertisement_under_content'        => '', // 広告　記事下.
 		'ys_amp_thumbnail_type'                     => 'full', // アイキャッチ画像表示タイプ.
 		// [ys]サイト運営支援.
-		'ys_admin_enable_block_editor_style'        => 0, // Gutenberg用CSSを追加する.
+		'ys_admin_enable_block_editor_style'        => 1, // Gutenberg用CSSを追加する.
 		'ys_admin_enable_tiny_mce_style'            => 0, // ビジュアルエディタ用CSSを追加する.
 		// 削除予定
 		// Gutenberg設定.

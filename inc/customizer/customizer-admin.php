@@ -10,7 +10,7 @@
 /**
  * サイト運営支援
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_admin( $wp_customize ) {
 	/**
@@ -34,7 +34,7 @@ function ys_customizer_admin( $wp_customize ) {
 /**
  * サイト運営支援
  *
- * @param  WP_Customize_Manager $wp_customize wp_customize.
+ * @param WP_Customize_Manager $wp_customize wp_customize.
  */
 function ys_customizer_add_admin( $wp_customize ) {
 	$ys_customizer = new YS_Customizer( $wp_customize );
@@ -62,7 +62,7 @@ function ys_customizer_add_admin( $wp_customize ) {
 	$ys_customizer->add_checkbox(
 		array(
 			'id'        => 'ys_admin_enable_block_editor_style',
-			'default'   => 1,
+			'default'   => ys_get_option_default( 'ys_admin_enable_block_editor_style', 1 ),
 			'transport' => 'postMessage',
 			'label'     => 'ブロックエディター用CSSを追加する',
 		)

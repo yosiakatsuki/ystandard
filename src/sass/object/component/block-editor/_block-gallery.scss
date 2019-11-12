@@ -1,12 +1,15 @@
-.wp-block-gallery {
+.wp-block-gallery,
+.blocks-gallery-grid {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -1px;
-  margin-left: -1px;
+  margin: 0;
   padding: 0;
   list-style: none;
+}
 
-  @for $i from 1 through 8 {
+.wp-block-gallery {
+
+  @for $i from 1 through 4 {
     &.columns-#{$i} {
       .blocks-gallery-item {
         flex: 0 0 decimal-floor( 1 / $i , 4) * 100#{"%"};
@@ -22,7 +25,17 @@
         flex-direction: column;
       }
       figure {
+        position: relative;
         flex-grow: 1;
+      }
+      figcaption {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(#000,0.4);
+        color: #fff;
+        z-index: 2;
       }
       img {
         height: 100%;
@@ -35,6 +48,10 @@
     padding-right: 0;
     padding-left: 0;
   }
+}
+
+.blocks-gallery-grid {
+  padding: 0;
 }
 
 .blocks-gallery-item {
