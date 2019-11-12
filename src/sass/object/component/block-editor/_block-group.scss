@@ -1,19 +1,21 @@
 .wp-block-group {
   padding-top: 1rem;
   padding-bottom: 1rem;
-
-  &.-tall {
+  
+  &.has-background {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
 
-  &.-full {
-    min-height: 100vh;
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
   }
 }
 
 .wp-block-group__inner-container {
-  *:first-child {
+  & > *:first-child {
     margin-top: 0;
   }
 }

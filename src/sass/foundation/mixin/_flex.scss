@@ -18,17 +18,8 @@
   .flex#{$prefix}-nowrap {
     flex-wrap: nowrap;
   }
-  .flex#{$prefix}-flow-row {
-    flex-flow: row;
-  }
-  .flex#{$prefix}-reverse {
-    flex-flow: row-reverse;
-  }
   .flex#{$prefix}-column {
     flex-direction: column;
-  }
-  .flex#{$prefix}-column-reverse {
-    flex-direction: column-reverse;
   }
 }
 //
