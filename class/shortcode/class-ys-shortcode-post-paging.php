@@ -63,10 +63,7 @@ class YS_Shortcode_Post_Paging extends YS_Shortcode_Base {
 	 */
 	private function get_link( $data, $next_prev ) {
 		$link      = home_url( '/' );
-		$row_class = 'flex--flow-row';
-		if ( 'next' === $next_prev ) {
-			$row_class = 'flex--reverse';
-		}
+		$row_class = '';
 		if ( $data ) {
 			/**
 			 * データありの場合
@@ -74,15 +71,14 @@ class YS_Shortcode_Post_Paging extends YS_Shortcode_Base {
 			$image = '';
 			if ( $data['image'] ) {
 				$image = sprintf(
-					'<figure class="post-paging__image flex__col--auto">%s</figure>',
+					'<figure class="post-paging__image">%s</figure>',
 					$data['image']
 				);
 			}
 
 			$content = sprintf(
-				'<div class="post-paging__detail %s"><div class="flex flex--row %s">%s<span class="post-paging__title flex__col">%s</span></div></div>',
+				'<div class="post-paging__detail %s">%s<span class="post-paging__title">%s</span></div>',
 				'-' . $next_prev,
-				$row_class,
 				$image,
 				$data['title']
 			);
