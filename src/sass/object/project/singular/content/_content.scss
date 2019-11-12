@@ -1,7 +1,7 @@
 .entry__content {
   margin-top: 1.5rem;
 
-  & > * {
+  & > *:not(h1):not(h2):not(h3):not(h4):not(h5) {
     margin-top: 1.5rem;
   }
   
