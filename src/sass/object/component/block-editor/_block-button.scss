@@ -69,7 +69,8 @@
     }
   }
 
-  &.is-style-squared a {
+  &.is-style-squared a,
+  a.no-border-radius {
     border-radius: 0;
   }
   
