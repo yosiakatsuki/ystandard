@@ -151,7 +151,8 @@ function ys_tiny_mce_inline_style( $settings ) {
 	 * ビジュアルエディターへのCSSセット
 	 */
 	if ( ys_get_option( 'ys_admin_enable_tiny_mce_style' ) ) {
-		$settings['content_style'] = wp_get_custom_css();
+		$scripts                   = ys_scripts();
+		$settings['content_style'] = $scripts->minify( wp_get_custom_css() );
 	}
 
 	return $settings;
