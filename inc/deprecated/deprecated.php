@@ -13,7 +13,7 @@
  * @deprecated ys_is_active_after_content_widgetを使う.
  */
 function ys_is_active_entry_footer_widget() {
-	ys_deprecated( 'ys_is_active_entry_footer_widget', 'v3.0.0' );
+	YS_Utility::deprecated_comment( 'ys_is_active_entry_footer_widget', 'v3.0.0' );
 
 	return ys_is_active_after_content_widget();
 }
@@ -22,9 +22,10 @@ function ys_is_active_entry_footer_widget() {
  * テーマ内で使用する設定の取得
  *
  * @return array
+ * @deprecated v3.0.0
  */
 function ys_get_options() {
-	ys_deprecated( 'ys_get_options', 'v3.0.0' );
+	YS_Utility::deprecated_comment( 'ys_get_options', 'v3.0.0' );
 
 	return apply_filters( 'ys_get_options', array() );
 }
@@ -38,9 +39,10 @@ function ys_get_options() {
  * @param array   $class   class.
  *
  * @return string
+ * @deprecated v3.1.0
  */
 function ys_get_author_avatar( $user_id = false, $size = 96, $class = array() ) {
-	ys_deprecated( 'ys_get_author_avatar', 'v3.1.0' );
+	YS_Utility::deprecated_comment( 'ys_get_author_avatar', 'v3.1.0' );
 
 	if ( ! get_option( 'show_avatars', true ) ) {
 		return '';
@@ -96,8 +98,120 @@ function ys_get_author_avatar( $user_id = false, $size = 96, $class = array() ) 
  * @param boolean $user_id user id.
  * @param integer $size    image size.
  * @param array   $class   class.
+ *
+ * @deprecated v3.1.0
  */
 function ys_the_author_avatar( $user_id = false, $size = 96, $class = array() ) {
-	ys_deprecated( 'ys_the_author_avatar', 'v3.1.0' );
+	YS_Utility::deprecated_comment( 'ys_the_author_avatar', 'v3.1.0' );
 	echo ys_get_author_avatar( $user_id, $size, $class );
+}
+
+/**
+ * Twitter用JavaScript URL取得
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_get_twitter_widgets_js() {
+	YS_Utility::deprecated_comment( 'ys_get_twitter_widgets_js', 'v3.6.0' );
+
+	return YS_Utility::get_twitter_widgets_js();
+}
+
+/**
+ * Facebook用JavaScript URL取得
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_get_facebook_sdk_js() {
+	YS_Utility::deprecated_comment( 'ys_get_facebook_sdk_js', 'v3.6.0' );
+
+	return YS_Utility::get_facebook_sdk_js();
+}
+
+/**
+ * 読み込むCSSファイルのURLを取得する
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_get_enqueue_css_file_uri() {
+	YS_Utility::deprecated_comment( 'ys_get_enqueue_css_file_uri', 'v3.6.0' );
+
+	return YS_Scripts::get_enqueue_css_file_uri();
+}
+
+/**
+ * 読み込むCSSファイルのパスを取得する
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_get_enqueue_css_file_path() {
+	YS_Utility::deprecated_comment( 'ys_get_enqueue_css_file_path', 'v3.6.0' );
+
+	return YS_Scripts::get_enqueue_css_file_path();
+}
+
+/**
+ * 読み込むCSSファイルの名前を取得する
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_get_enqueue_css_file_name() {
+	YS_Utility::deprecated_comment( 'ys_get_enqueue_css_file_name', 'v3.6.0' );
+
+	return YS_Scripts::get_enqueue_css_file_name();
+}
+
+/**
+ * いろいろ削除
+ *
+ * @deprecated v3.6.0
+ */
+function ys_remove_action() {
+	YS_Utility::deprecated_comment( 'ys_remove_action', 'v3.6.0' );
+}
+
+
+/**
+ * 絵文字無効化
+ *
+ * @deprecated v3.6.0
+ */
+function ys_remove_emoji() {
+	YS_Utility::deprecated_comment( 'ys_remove_emoji', 'v3.6.0' );
+}
+
+/**
+ * Embed無効化
+ *
+ * @deprecated v3.6.0
+ */
+function ys_remove_oembed() {
+	YS_Utility::deprecated_comment( 'ys_remove_oembed', 'v3.6.0' );
+}
+
+/**
+ * タクソノミー説明の処理カスタマイズ
+ *
+ * @deprecated v3.6.0
+ */
+function ys_tax_dscr_allowed_option() {
+	YS_Utility::deprecated_comment( 'ys_tax_dscr_allowed_option', 'v3.6.0' );
+}
+
+/**
+ * ファイル内容の取得
+ *
+ * @param string $file ファイルパス.
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_file_get_contents( $file ) {
+
+	return YS_Utility::file_get_contents( $file );
 }
