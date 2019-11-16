@@ -42,12 +42,12 @@ class YS_Utility {
 			return;
 		}
 		$message = sprintf(
-			'<span style="color:red"><code>%s</code>は%sで非推奨になった関数です。</span>',
+			'<span style="color:red"><code>%s</code>は%sで非推奨になった関数です。</span><br>' . PHP_EOL,
 			$func,
 			$since
 		);
 		if ( $comment ) {
-			$message .= '<br><span style="color:#999">' . $comment . '</span>';
+			$message .= '<br><span style="color:#999">' . $comment . '</span><br>' . PHP_EOL;
 		}
 		echo $message;
 	}

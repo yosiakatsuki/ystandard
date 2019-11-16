@@ -59,52 +59,42 @@ class YS_Scripts {
 	 * 初期化処理
 	 */
 	public function init() {
-		add_action(
-			'wp_enqueue_scripts',
-			array( $this, 'enqueue_styles' )
-		);
-		add_action(
-			'wp_enqueue_scripts',
-			array( $this, 'enqueue_scripts' )
-		);
-		add_action(
-			'wp_enqueue_scripts',
-			array( $this, 'dequeue_wp_block_css' )
-		);
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'dequeue_wp_block_css' ) );
 		/**
 		 * JavaScriptにdeferをセットするフック
 		 */
-		add_filter(
-			'script_loader_tag',
-			array( $this, 'script_add_defer' ),
-			PHP_INT_MAX,
-			3
-		);
+		add_filter( 'script_loader_tag', array( $this, 'script_add_defer' ), PHP_INT_MAX, 3 );
+		/**
+		 * CSSインライン読み込み
+		 */
 		if ( ! is_admin() && ys_get_option( 'ys_option_optimize_load_css', false, 'bool' ) ) {
-			/**
-			 * CSSインライン読み込み
-			 */
-			add_filter(
-				'style_loader_tag',
-				array( $this, 'optimize_css' ),
-				PHP_INT_MAX,
-				4
-			);
+			add_filter( 'style_loader_tag', array( $this, 'load_inline_css' ), PHP_INT_MAX, 4 );
 		}
-
+		/**
+		 * Font Awesome Kitに属性追加
+		 */
 		if ( 'kit' === ys_get_option( 'ys_enqueue_icon_font_type' ) && ! empty( ys_get_option( 'ys_enqueue_icon_font_kit_url' ) ) ) {
-			add_filter(
-				'script_loader_tag',
-				array( $this, 'set_font_awesome_kit_attributes' ),
-				10,
-				2
-			);
+			add_filter( 'script_loader_tag', array( $this, 'set_font_awesome_kit_attributes' ), 10, 2 );
 		}
 		/**
 		 * 追加CSSの出力削除
 		 */
 		if ( ! is_customize_preview() ) {
 			remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
+		}
+		/**
+		 * [jQuery]削除
+		 */
+		if ( ys_is_disable_jquery() ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'disable_jquery' ) );
+		}
+		/**
+		 * [jQuery]のフッター読み込み
+		 */
+		if ( ! is_admin() && ! ys_is_login_page() && ! is_customize_preview() && ys_is_deregister_jquery() ) {
+			add_action( 'init', array( $this, 'jquery_in_footer' ) );
 		}
 	}
 
@@ -260,7 +250,7 @@ class YS_Scripts {
 	 *
 	 * @return string
 	 */
-	public function optimize_css( $html, $handle, $href, $media ) {
+	public function load_inline_css( $html, $handle, $href, $media ) {
 		$style  = '';
 		$styles = self::get_enqueue_css_files();
 		$key    = array_search(
@@ -864,6 +854,70 @@ class YS_Scripts {
 		);
 
 		return $modified_script_tag;
+	}
+
+	/**
+	 * [jQuery]の削除
+	 */
+	public function disable_jquery() {
+		wp_deregister_script( 'jquery' );
+		wp_deregister_script( 'jquery-core' );
+		wp_dequeue_script( 'jquery' );
+		wp_dequeue_script( 'jquery-core' );
+	}
+
+	/**
+	 * [jQuery]をフッターに移動
+	 */
+	public function jquery_in_footer() {
+		global $wp_scripts;
+		$ver = ys_get_theme_version();
+		$src = '';
+		/**
+		 * 必要があればwp_scriptsを初期化
+		 */
+		wp_scripts();
+		if ( null !== $wp_scripts ) {
+			$jquery = $wp_scripts->registered['jquery-core'];
+			$ver    = $jquery->ver;
+			$src    = $jquery->src;
+		}
+		/**
+		 * CDN経由の場合
+		 */
+		if ( ys_is_load_cdn_jquery() ) {
+			$src = ys_get_option( 'ys_load_cdn_jquery_url' );
+			$ver = null;
+		}
+		if ( '' === $src ) {
+			return;
+		}
+		/**
+		 * [jQuery削除]
+		 */
+		wp_deregister_script( 'jquery' );
+		wp_deregister_script( 'jquery-core' );
+		/**
+		 * フッターで読み込むか
+		 */
+		$in_footer = ys_is_load_jquery_in_footer();
+		/**
+		 * [jQueryをフッターに移動]
+		 */
+		wp_register_script(
+			'jquery-core',
+			$src,
+			array(),
+			$ver,
+			$in_footer
+		);
+		wp_register_script(
+			'jquery',
+			false,
+			array( 'jquery-core' ),
+			$ver,
+			$in_footer
+		);
 	}
 
 	/**
