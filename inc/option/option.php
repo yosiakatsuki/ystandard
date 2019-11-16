@@ -17,7 +17,8 @@
  * @return mixed
  */
 function ys_get_option( $name, $default = false, $type = false ) {
-	$result = null;
+	$result         = null;
+	$option_default = null;
 	/**
 	 * 設定値のキャッシュ機能
 	 */
