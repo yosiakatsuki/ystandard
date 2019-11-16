@@ -42,7 +42,7 @@ require_once get_template_directory() . '/inc/init/init.php';
 /**
  * Enqueue
  */
-require_once get_template_directory() . '/inc/enqueue/enqueue-loader.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue.php';
 /**
  * Post-meta
  */

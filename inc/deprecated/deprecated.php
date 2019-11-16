@@ -212,6 +212,45 @@ function ys_tax_dscr_allowed_option() {
  * @deprecated v3.6.0
  */
 function ys_file_get_contents( $file ) {
+	YS_Utility::deprecated_comment( 'ys_file_get_contents', 'v3.6.0' );
 
 	return YS_Utility::file_get_contents( $file );
+}
+
+
+/**
+ * CSSのセット
+ *
+ * @param string $handle Handle.
+ * @param string $src    CSSのURL.
+ * @param bool   $inline インライン読み込みするか.
+ * @param array  $deps   deps.
+ * @param bool   $ver    クエリストリング.
+ * @param string $media  media.
+ * @param bool   $minify Minifyするか.
+ *
+ * @return void
+ * @deprecated v3.6.0
+ */
+function ys_enqueue_css( $handle, $src, $inline = true, $deps = array(), $ver = false, $media = 'all', $minify = true ) {
+	YS_Utility::deprecated_comment( 'ys_enqueue_css', 'v3.6.0' );
+
+	$scripts = ys_scripts();
+	$scripts->set_enqueue_style( $handle, $src, $inline, $deps, $ver, $media, $minify );
+}
+
+/**
+ * インラインCSSのセット
+ *
+ * @param string $style  CSS.
+ * @param bool   $minify Minifyするか.
+ *
+ * @return void
+ * @deprecated v3.6.0
+ */
+function ys_enqueue_inline_css( $style, $minify = true ) {
+	YS_Utility::deprecated_comment( 'ys_enqueue_inline_css', 'v3.6.0' );
+
+	$scripts = ys_scripts();
+	$scripts->set_inline_style( $style, $minify );
 }
