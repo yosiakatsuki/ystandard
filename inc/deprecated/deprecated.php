@@ -254,3 +254,152 @@ function ys_enqueue_inline_css( $style, $minify = true ) {
 	$scripts = ys_scripts();
 	$scripts->set_inline_style( $style, $minify );
 }
+
+
+/**
+ * カスタマイザー設定のCSSにメディアクエリを追加
+ *
+ * @param string $css        Styles.
+ * @param string $breakpoint Breakpoint.
+ * @param string $type       Breakpoint type(min or max).
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_customizer_add_media_query( $css, $breakpoint, $type = 'min' ) {
+	YS_Utility::deprecated_comment( 'ys_customizer_add_media_query', 'v3.6.0' );
+
+	/**
+	 * ブレークポイント
+	 */
+	$breakpoints = array(
+		'md' => 600,
+		'lg' => 1025,
+	);
+	/**
+	 * 切り替え位置取得
+	 */
+	if ( isset( $breakpoints[ $breakpoint ] ) ) {
+		$breakpoint = $breakpoints[ $breakpoint ];
+		if ( 'max' === $type ) {
+			$breakpoint = $breakpoint - 0.1;
+		}
+	}
+	/**
+	 * 以上・以下判断
+	 */
+	if ( 'min' !== $type && 'max' !== $type ) {
+		return $css;
+	}
+
+	return sprintf(
+		'@media screen and (%s-width: %spx) {%s}',
+		$type,
+		$breakpoint,
+		$css
+	);
+}
+
+/**
+ * テーマカスタマイザーでの色指定 CSS取得
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_get_customizer_inline_css_color() {
+	YS_Utility::deprecated_comment( 'ys_get_customizer_inline_css_color', 'v3.6.0' );
+
+	if ( ys_get_option( 'ys_desabled_color_customizeser' ) ) {
+		return '';
+	}
+	$inline_css = new YS_Inline_Css();
+	/**
+	 * 設定取得
+	 */
+	$css = '';
+	/**
+	 * CSS
+	 */
+	$css .= $inline_css->get_site_css();
+	$css .= $inline_css->get_header_css();
+	$css .= $inline_css->get_nav_css();
+	$css .= $inline_css->get_footer_css();
+
+	return apply_filters( 'ys_get_customizer_inline_css_color', $css );
+}
+
+
+/**
+ * テーマカスタマイザーでのCSS設定 カスタムヘッダー
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_get_customizer_inline_css_custom_header() {
+	YS_Utility::deprecated_comment( 'ys_get_customizer_inline_css_custom_header', 'v3.6.0' );
+	$inline_css = new YS_Inline_Css();
+
+	return $inline_css->get_custom_header_css();
+}
+
+
+/**
+ * モバイルフッター設定によって追加するCSS
+ *
+ * @deprecated v3.6.0
+ */
+function ys_get_inline_css_mobile_css() {
+	YS_Utility::deprecated_comment( 'ys_get_inline_css_mobile_css', 'v3.6.0' );
+
+	$inline_css = new YS_Inline_Css();
+
+	return $inline_css->get_mobile_footer_css();
+}
+
+
+/**
+ * セレクタとプロパティをくっつけてCSS作る
+ *
+ * @param  array $selectors セレクタ.
+ * @param  array $properties プロパティ.
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_customizer_create_inline_css( $selectors, $properties ) {
+	YS_Utility::deprecated_comment( 'ys_customizer_create_inline_css', 'v3.6.0' );
+	$property = '';
+	foreach ( $properties as $key => $value ) {
+		$property .= $key . ':' . $value . ';';
+	}
+
+	return implode( ',', $selectors ) . '{' . $property . '}';
+}
+
+/**
+ * テーマカスタマイザー/設定関連で変更する CSS取得
+ *
+ * @return string
+ * @deprecated v3.6.0
+ */
+function ys_get_customizer_inline_css() {
+	YS_Utility::deprecated_comment( 'ys_get_customizer_inline_css', 'v3.6.0' );
+
+	$css = '';
+	/**
+	 * カスタマイザー色指定
+	 */
+	$css .= ys_get_customizer_inline_css_color();
+
+	/**
+	 * カスタムヘッダー
+	 */
+	$css .= ys_get_customizer_inline_css_custom_header();
+
+	/**
+	 * モバイルフッター
+	 */
+	$css .= ys_get_inline_css_mobile_css();
+
+	return apply_filters( 'ys_get_customizer_inline_css', $css );
+}

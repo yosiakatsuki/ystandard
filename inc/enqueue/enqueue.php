@@ -8,11 +8,8 @@
  */
 
 require_once dirname( __FILE__ ) . '/class-ys-scripts.php';
-require_once dirname( __FILE__ ) . '/enqueue-admin.php';
-require_once dirname( __FILE__ ) . '/enqueue-customizer.php';
-require_once dirname( __FILE__ ) . '/enqueue-customizer-color.php';
-require_once dirname( __FILE__ ) . '/enqueue-customizer-custom-header.php';
-require_once dirname( __FILE__ ) . '/enqueue-theme-option-css.php';
+require_once dirname( __FILE__ ) . '/class-ys-scripts-admin.php';
+require_once dirname( __FILE__ ) . '/class-ys-inline-css.php';
 /**
  * スクリプト関連のクラス準備
  *
@@ -32,6 +29,11 @@ function ys_scripts() {
  */
 $ys_scripts = ys_scripts();
 $ys_scripts->init();
+
+/**
+ * Admin
+ */
+$ys_admin_scripts = new YS_Scripts_Admin();
 
 /**
  * Onload-scriptのセット

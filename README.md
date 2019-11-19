@@ -47,6 +47,8 @@ Source : <https://gist.github.com/terkel/4373420>
 - v3.6.0
   - 調整
     - CSS読み込み処理の調整
+      - フック廃止
+        - ys_get_customizer_inline_css_custom_header
 - v3.5.1
   - 不具合修正
     - ボタンブロックの角丸0指定が効いていない不具合の修正
