@@ -144,6 +144,10 @@ class YS_Scripts {
 	 * EnqueueするCSSのリスト
 	 */
 	public static function get_enqueue_css_files() {
+		$inline_css = new YS_Inline_Css();
+		/**
+		 * CSSのリスト
+		 */
 		$styles = array(
 			array(
 				'handle'  => 'font-awesome',
@@ -167,7 +171,7 @@ class YS_Scripts {
 			),
 			array(
 				'handle'  => 'ys-customizer',
-				'src'     => ys_get_customizer_inline_css(),
+				'src'     => $inline_css->get_inline_css(),
 				'deps'    => array(),
 				'ver'     => ys_get_theme_version( true ),
 				'media'   => 'all',
