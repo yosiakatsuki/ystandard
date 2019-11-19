@@ -255,17 +255,8 @@ class YS_Scripts {
 	 * @return string
 	 */
 	public function load_inline_css( $html, $handle, $href, $media ) {
-		$style  = '';
-		$styles = self::get_enqueue_css_files();
-		$key    = array_search(
-			$handle,
-			array_column( $styles, 'handle' ),
-			true
-		);
-		if ( false === $key ) {
-			return $html;
-		}
-		if ( false === $styles[ $key ]['inline'] ) {
+		$style = '';
+		if ( ! $this->is_enable_inline_css( $handle ) ) {
 			return $html;
 		}
 		/**
@@ -300,6 +291,39 @@ class YS_Scripts {
 		$html = sprintf( $tag, $this->minify( str_replace( '@charset "UTF-8";', '', $style ) ) );
 
 		return $html . PHP_EOL;
+	}
+
+	/**
+	 * インラインCSS読み込みOKか判断する
+	 *
+	 * @param string $handle Handle.
+	 *
+	 * @return bool
+	 */
+	private function is_enable_inline_css( $handle ) {
+
+		$enable_inline_css = apply_filters(
+			'ys_enable_inline_css',
+			array()
+		);
+		if ( isset( $enable_inline_css[ $handle ] ) ) {
+			return true;
+		}
+		$styles = self::get_enqueue_css_files();
+		$key    = array_search(
+			$handle,
+			array_column( $styles, 'handle' ),
+			true
+		);
+
+		if ( false === $key ) {
+			return false;
+		}
+		if ( false === $styles[ $key ]['inline'] ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
