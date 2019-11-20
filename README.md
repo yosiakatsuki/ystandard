@@ -50,6 +50,8 @@ Source : <https://gist.github.com/terkel/4373420>
       - フック廃止
         - ys_get_customizer_inline_css_custom_header
     - サイト背景色を設定した場合のレイアウト調整
+  - 不具合修正
+    - メディアと文章ブロックIE不具合対応
 - v3.5.1
   - 不具合修正
     - ボタンブロックの角丸0指定が効いていない不具合の修正
