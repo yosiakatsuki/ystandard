@@ -13,7 +13,10 @@ const babel = require('gulp-babel');
  * PostCssで使うプラグイン
  */
 const postcssPlugins = [
-    autoprefixer({overrideBrowserslist: ['last 2 version, not ie < 11']}),
+    autoprefixer({
+        overrideBrowserslist: ['last 2 version, not ie < 11'],
+        grid: 'autoplace'
+    }),
     mqpacker(),
     cssnano()
 ];
