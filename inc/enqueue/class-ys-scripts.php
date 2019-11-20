@@ -262,7 +262,7 @@ class YS_Scripts {
 		/**
 		 * URLとメディア指定を取得
 		 */
-		$pattern = '/<link.+href=[\'"](.+?)[\'"].+media=[\'"](.+?)[\'"].*\/>/i';
+		$pattern = '/<link.+href=[\'"](.+?)[\'"\?\#].+media=[\'"](.+?)[\'"].*\/>/i';
 		$matches = null;
 		if ( 1 !== preg_match( $pattern, $html, $matches ) ) {
 			return $html;
@@ -270,8 +270,7 @@ class YS_Scripts {
 		/**
 		 * サイトURLのチェック
 		 */
-		$url = explode( '?', $matches[1] );
-		$url = $url[0];
+		$url = $matches[1];
 		if ( ! $this->is_site_url( $url ) ) {
 			return $html;
 		}
@@ -282,15 +281,25 @@ class YS_Scripts {
 		if ( false === $style ) {
 			return $html;
 		}
-
+		/**
+		 * インラインCSSのminify
+		 */
+		$style = $this->minify( str_replace( '@charset "UTF-8";', '', $style ) );
+		/**
+		 * 中身がなければ何も出さない
+		 */
+		if ( empty( $style ) ) {
+			return '';
+		}
+		/**
+		 * インラインCSS出力
+		 */
 		$tag = '<style>%s</style>';
 		if ( isset( $matches[2] ) && 'all' !== $matches[2] ) {
 			$tag = '<style>@media ' . $matches[2] . ' {%s}</style>';
 		}
 
-		$html = sprintf( $tag, $this->minify( str_replace( '@charset "UTF-8";', '', $style ) ) );
-
-		return $html . PHP_EOL;
+		return sprintf( $tag, $style ) . PHP_EOL;
 	}
 
 	/**
@@ -301,7 +310,28 @@ class YS_Scripts {
 	 * @return bool
 	 */
 	private function is_enable_inline_css( $handle ) {
-
+		if ( is_admin() ) {
+			return false;
+		}
+		/**
+		 * NGリストチェック
+		 */
+		$disable_inline_css = apply_filters(
+			'ys_disable_inline_css',
+			array()
+		);
+		if ( isset( $disable_inline_css[ $handle ] ) ) {
+			return false;
+		}
+		/**
+		 * [ystandard]が含まれていればインライン化する
+		 */
+		if ( false !== strpos( $handle, 'ystandard' ) ) {
+			return true;
+		}
+		/**
+		 * OKリストチェック
+		 */
 		$enable_inline_css = apply_filters(
 			'ys_enable_inline_css',
 			array()
@@ -309,6 +339,9 @@ class YS_Scripts {
 		if ( isset( $enable_inline_css[ $handle ] ) ) {
 			return true;
 		}
+		/**
+		 * エンキューするファイルのチェック
+		 */
 		$styles = self::get_enqueue_css_files();
 		$key    = array_search(
 			$handle,
