@@ -11,28 +11,27 @@
 
   &.has-dates:not(.is-grid) {
     li {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
     }
 
     .wp-block-latest-posts__post-date {
-      flex: 0 0 70px;
-      max-width: 70px;
       order: 1;
       margin-top: .25rem;
+      white-space: nowrap;
     }
 
     a {
-      flex: 0 0 calc( 100% - 70px - .5rem);
-      max-width: calc( 100% - 70px - .5rem);
       order: 2;
     }
 
     .wp-block-latest-posts__post-excerpt {
       order: 3;
-      flex: 0 0 100%;
-      max-width: 100%;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 2;
+      grid-row-end: 3;
     }
   }
   &.is-grid {
