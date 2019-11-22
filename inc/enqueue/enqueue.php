@@ -7,9 +7,13 @@
  * @license GPL-2.0+
  */
 
+/**
+ * クラス読み込み
+ */
 require_once dirname( __FILE__ ) . '/class-ys-scripts.php';
 require_once dirname( __FILE__ ) . '/class-ys-scripts-admin.php';
 require_once dirname( __FILE__ ) . '/class-ys-inline-css.php';
+
 /**
  * スクリプト関連のクラス準備
  *
