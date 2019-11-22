@@ -42,7 +42,7 @@ require_once get_template_directory() . '/inc/init/init.php';
 /**
  * Enqueue
  */
-require_once get_template_directory() . '/inc/enqueue/enqueue-loader.php';
+require_once get_template_directory() . '/inc/enqueue/enqueue.php';
 /**
  * Post-meta
  */
@@ -107,7 +107,6 @@ require_once get_template_directory() . '/inc/copyright/copyright.php';
 /**
  * Taxonomy関連
  */
-require_once get_template_directory() . '/inc/taxonomy/taxonomy.php';
 require_once get_template_directory() . '/inc/taxonomy/category.php';
 require_once get_template_directory() . '/inc/taxonomy/tag.php';
 /**
