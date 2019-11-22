@@ -52,8 +52,7 @@ add_action( 'ys_amp_head', 'ys_the_amp_client_id_api' );
  */
 function ys_amp_inline_styles() {
 	$scripts = ys_scripts();
-	ys_set_enqueue_css();
-	$style = $scripts->get_inline_style( true );
+	$style   = $scripts->get_amp_style();
 
 	$style = sprintf( '<style amp-custom>%s</style>', $style );
 	echo $style . PHP_EOL;
