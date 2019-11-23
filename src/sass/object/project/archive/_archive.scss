@@ -25,11 +25,13 @@
 }
 
 .archive__meta {
-  font-size: .8rem;
+  font-size: .75rem;
+  line-height: 1.5;
 }
 
 .archive__detail-title {
-  margin: 1em 0;
+  margin: .5em 0;
+  font-size: 1.1rem;
 
   a {
     color: $color__text-main;
