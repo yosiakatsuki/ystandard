@@ -13,7 +13,11 @@
     }
   }
   .archive__detail-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
+
+    &.-list {
+      margin: 1.5em 0;
+    }
   }
   .archive__image {
     &.-list {
