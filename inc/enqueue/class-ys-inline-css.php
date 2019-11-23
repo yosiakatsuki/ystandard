@@ -121,6 +121,13 @@ class YS_Inline_Css {
 				.content__main{
 					background-color:transparent;
 				}';
+
+				if ( 'list' === ys_get_option( 'ys_archive_type' ) ) {
+					$styles[] = '
+					.archive__item.-list {
+						background-color:#fff;
+					}';
+				}
 			}
 
 			/**
