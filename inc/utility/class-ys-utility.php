@@ -38,7 +38,6 @@ class YS_Utility {
 	 * @param string $comment コメント.
 	 */
 	public static function deprecated_comment( $func, $since, $comment = '' ) {
-		return;
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return;
 		}

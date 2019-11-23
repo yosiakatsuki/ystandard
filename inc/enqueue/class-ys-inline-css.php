@@ -127,6 +127,13 @@ class YS_Inline_Css {
 					.archive__item.-list {
 						background-color:#fff;
 					}';
+					$styles[] = $this->add_media_query(
+						'.archive__item.-list {
+							margin-right:1rem;
+							margin-left:1rem;
+						}',
+						'lg'
+					);
 				}
 			}
 
