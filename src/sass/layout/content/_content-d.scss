@@ -6,11 +6,22 @@
       }
     }
   }
+  .content__container {
+    @at-root {
+      .has-sidebar & {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
   
   .content__wrap {
     @at-root {
       .has-sidebar & {
-        max-width: calc(100% - #{$width__sidebar});
+        flex: 0 0 calc(100% - #{$width__sidebar} - 4rem);
+        max-width: calc(100% - #{$width__sidebar} - 4rem);
+        margin-right: 0;
+        margin-left: 0;
       }
     }
   }
@@ -18,7 +29,6 @@
     @at-root {
       .has-sidebar & {
         height: 100%;
-        margin-right: 4rem;
       }
     }
   }

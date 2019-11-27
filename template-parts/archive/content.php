@@ -8,7 +8,7 @@
  */
 
 ?>
-<div class="flex__col content__wrap">
+<div class="content__wrap">
 	<main id="main" class="site-main content__main archive__main">
 		<?php do_action( 'ys_site_main_prepend' ); ?>
 		<?php
