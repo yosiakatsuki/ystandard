@@ -8,7 +8,7 @@
  */
 
 ?>
-<div class="flex__col content__wrap">
+<div class="content__wrap">
 	<main id="main" class="site-main content__main no-results not-found">
 		<?php do_action( 'ys_content_main_prepend' ); ?>
 		<div class="no-results__header not-found__header">

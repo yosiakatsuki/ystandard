@@ -81,54 +81,72 @@ class YS_Inline_Css {
 		if ( ys_get_option_default( 'ys_color_site_bg' ) !== $html_bg ) {
 			if ( is_singular() ) {
 				if ( ! ys_is_full_width() ) {
+					$styles[] = '
+					.has-bg-color:not(.one-column-no-title) .site__content {
+						margin-top:2rem;
+					}
+					.has-bg-color:not(.one-column-no-title) .breadcrumbs + .site__content {
+						margin-top:0;
+					}';
 					/**
-					 * サイドバーあり
+					 * フル幅以外
 					 */
 					$styles[] = '
-					.content__main {
+					.has-bg-color .content__main {
 						padding:2rem 1rem;
 						margin:0 -1rem;
 					}
-					.one-column-no-title .content__main {
+					.has-bg-color.one-column-no-title .content__main {
 						padding-top: 2rem;
 					}';
 					if ( ! ys_is_amp() ) {
 						$styles[] = $this->add_media_query(
-							'.content__main {
+							'.has-bg-color.has-sidebar .content__wrap {
+								-webkit-box-flex: 0;
+							    -ms-flex: 0 0 calc(100% - 368px - 2rem);
+							    flex: 0 0 calc(100% - 368px - 2rem);
+							    max-width: calc(100% - 368px - 2rem);
+							}
+							.has-bg-color .content__main {
 								padding:2rem;
 								margin:0;
-							}
-							.has-sidebar .content__main {
-								margin-right:0;
 							}',
 							'lg'
 						);
 					}
 				} else {
 					/**
-					 * サイドバーなし
+					 * フル幅
 					 */
 					$styles[] = '
-					.full-width:not(.one-column-no-title) .site__content {
-						margin-top:1rem;
+					.has-bg-color.full-width:not(.one-column-no-title) .site__content {
+						padding-top:1rem;
+						margin-bottom:2rem;
 					}';
 				}
 			} else {
+				$styles[] = '
+				.has-bg-color .site__content {
+					margin-top:2rem;
+				}
+				.has-bg-color .breadcrumbs + .site__content {
+					margin-top:1rem;
+				}';
 				/**
 				 * アーカイブなど
 				 */
 				$styles[] = '
-				.content__main{
+				.has-bg-color .content__main{
 					background-color:transparent;
 				}';
 
 				if ( 'list' === ys_get_option( 'ys_archive_type' ) ) {
 					$styles[] = '
-					.archive__item.-list {
+					.has-bg-color .archive__item.-list {
 						background-color:#fff;
 					}';
 					$styles[] = $this->add_media_query(
-						'.archive__item.-list {
+						'.has-bg-color .archive__item.-list {
 							margin-right:1rem;
 							margin-left:1rem;
 						}',
@@ -136,28 +154,23 @@ class YS_Inline_Css {
 					);
 				}
 			}
-
-			/**
-			 * パンくずの調整
-			 */
-			$styles[] = '.breadcrumbs {padding:1rem 0 0;}';
 			/**
 			 * サイドバー
 			 */
 			if ( ys_is_active_sidebar_widget() ) {
 				$styles[] = '
-				.sidebar-wrapper {
+				.has-bg-color .sidebar-wrapper {
 					margin:0 -1rem;
 				}
-				.sidebar__widget > div,
-				.sidebar__fixed > div {
+				.has-bg-color .sidebar__widget > div,
+				.has-bg-color .sidebar__fixed > div {
 					padding:2rem 1rem;
 					margin-bottom: 2rem;
 					background-color:#fff;
 				}';
 				if ( ! ys_is_amp() ) {
 					$styles[] = $this->add_media_query(
-						'.sidebar-wrapper {margin:0;}',
+						'.has-bg-color .sidebar-wrapper {margin:0;}',
 						'lg'
 					);
 				}
