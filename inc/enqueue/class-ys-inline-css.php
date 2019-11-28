@@ -144,11 +144,11 @@ class YS_Inline_Css {
 					$styles[] = '
 					.has-bg-color .archive__item.-list {
 						background-color:#fff;
+						margin-bottom:1rem;
 					}';
 					$styles[] = $this->add_media_query(
 						'.has-bg-color .archive__item.-list {
-							margin-right:1rem;
-							margin-left:1rem;
+							margin-bottom:2rem;
 						}',
 						'lg'
 					);
