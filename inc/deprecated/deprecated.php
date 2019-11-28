@@ -403,3 +403,13 @@ function ys_get_customizer_inline_css() {
 
 	return apply_filters( 'ys_get_customizer_inline_css', $css );
 }
+
+
+/**
+ * カスタマイザー用画像アセットURL取得
+ */
+function ys_get_template_customizer_assets_img_dir_uri() {
+	YS_Utility::deprecated_comment( 'ys_get_template_customizer_assets_img_dir_uri', 'v3.7.0' );
+
+	return get_template_directory_uri() . '/assets/images/customizer';
+}
