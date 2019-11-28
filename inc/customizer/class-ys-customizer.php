@@ -456,6 +456,8 @@ class YS_Customizer {
 	 *
 	 * @param string $input   input.
 	 * @param object $setting setting.
+	 *
+	 * @return string
 	 */
 	public static function sanitize_select( $input, $setting ) {
 		$input   = sanitize_key( $input );
@@ -492,10 +494,10 @@ class YS_Customizer {
 		if ( 1 !== preg_match( '/^\d+$/', $number ) ) {
 			return $setting->default;
 		}
-		$atts = $setting->manager->get_control( $setting->id )->input_attrs;
-		$min  = ( isset( $atts['min'] ) ? $atts['min'] : $number );
-		$max  = ( isset( $atts['max'] ) ? $atts['max'] : $number );
-		$step = ( isset( $atts['step'] ) ? $atts['step'] : 1 );
+		$attr = $setting->manager->get_control( $setting->id )->input_attrs;
+		$min  = ( isset( $attr['min'] ) ? $attr['min'] : $number );
+		$max  = ( isset( $attr['max'] ) ? $attr['max'] : $number );
+		$step = ( isset( $attr['step'] ) ? $attr['step'] : 1 );
 
 		return ( $min <= $number && $number <= $max && is_int( $number / $step ) ? $number : $setting->default );
 	}
@@ -504,6 +506,8 @@ class YS_Customizer {
 	 * Plain text
 	 *
 	 * @param string $value value.
+	 *
+	 * @return string
 	 */
 	public static function sanitize_plain_text( $value ) {
 		$value = wp_strip_all_tags( $value, true );

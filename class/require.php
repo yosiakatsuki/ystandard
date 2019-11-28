@@ -47,13 +47,6 @@ require_once $class_dir . 'class-ys-shortcode-post-taxonomy.php';
 require_once $class_dir . 'class-ys-shortcode-follow-box.php';
 
 /**
- * テーマカスタマイザー
- */
-$class_dir = get_template_directory() . '/class/customizer/';
-require_once $class_dir . 'class-ys-customize-image-label-radio-control.php';
-require_once $class_dir . 'class-ys-customizer.php';
-
-/**
  * ワーカー
  */
 $class_dir = get_template_directory() . '/class/walker/';
