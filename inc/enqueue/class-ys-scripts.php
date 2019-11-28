@@ -85,17 +85,23 @@ class YS_Scripts {
 			remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
 		}
 		/**
-		 * [jQuery]削除
+		 * jQuery操作は管理画面外のみ
 		 */
-		if ( ys_is_disable_jquery() ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'disable_jquery' ) );
+		if ( ! is_admin() && ! ys_is_login_page() && ! is_customize_preview() ) {
+			/**
+			 * [jQuery]削除
+			 */
+			if ( ys_is_disable_jquery() ) {
+				add_action( 'wp_enqueue_scripts', array( $this, 'disable_jquery' ) );
+			}
+			/**
+			 * [jQuery]のフッター読み込み
+			 */
+			if ( ys_is_deregister_jquery() ) {
+				add_action( 'init', array( $this, 'jquery_in_footer' ) );
+			}
 		}
-		/**
-		 * [jQuery]のフッター読み込み
-		 */
-		if ( ! is_admin() && ! ys_is_login_page() && ! is_customize_preview() && ys_is_deregister_jquery() ) {
-			add_action( 'init', array( $this, 'jquery_in_footer' ) );
-		}
+
 	}
 
 	/**
