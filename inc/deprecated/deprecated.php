@@ -360,8 +360,8 @@ function ys_get_inline_css_mobile_css() {
 /**
  * セレクタとプロパティをくっつけてCSS作る
  *
- * @param  array $selectors セレクタ.
- * @param  array $properties プロパティ.
+ * @param array $selectors  セレクタ.
+ * @param array $properties プロパティ.
  *
  * @return string
  * @deprecated v3.6.0
@@ -402,4 +402,30 @@ function ys_get_customizer_inline_css() {
 	$css .= ys_get_inline_css_mobile_css();
 
 	return apply_filters( 'ys_get_customizer_inline_css', $css );
+}
+
+
+/**
+ * カスタマイザー用画像アセットURL取得
+ *
+ * @deprecated v3.7.0
+ */
+function ys_get_template_customizer_assets_img_dir_uri() {
+	YS_Utility::deprecated_comment( 'ys_get_template_customizer_assets_img_dir_uri', 'v3.7.0' );
+
+	return get_template_directory_uri() . '/assets/images/customizer';
+}
+
+/**
+ * チェックボックスのサニタイズ
+ *
+ * @param mixed $value 値.
+ *
+ * @return bool
+ * @deprecated v3.7.0
+ */
+function ys_sanitize_bool( $value ) {
+	YS_Utility::deprecated_comment( 'ys_get_template_customizer_assets_img_dir_uri', 'v3.7.0' );
+
+	return ys_to_bool( $value );
 }

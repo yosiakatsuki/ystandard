@@ -6,8 +6,10 @@
       }
 
       .has-sidebar & {
-        flex: 1 1 $width__sidebar;
+        flex: 0 0 $width__sidebar;
         max-width: $width__sidebar;
+        margin-right: 0;
+        margin-left: 0;
       }
     }
   }

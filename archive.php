@@ -9,7 +9,7 @@
 
 ys_get_header(); ?>
 <div class="container">
-	<div class="flex flex--row">
+	<div class="content__container">
 		<?php if ( have_posts() ) : ?>
 			<?php get_template_part( 'template-parts/archive/content' ); ?>
 		<?php else : ?>

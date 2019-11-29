@@ -1,3 +1,19 @@
+/**
+ * ヘッダー重ねるタイプ
+ */
+.custom-header--full {
+  .site-header {
+    @include media-breakpoint(md) {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 11;
+    }
+  }
+}
+
+
 @include media-breakpoint(lg) {
   /**
    * 固定ページ・詳細ページ ヘッダーサムネイル

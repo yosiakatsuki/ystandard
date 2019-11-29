@@ -300,7 +300,6 @@ function ys_get_posts_args_rand( $posts_per_page = 4, $args = array() ) {
 }
 
 
-
 /**
  * ファイルシステムの初期化
  *
@@ -343,4 +342,15 @@ function ys_get_theme_file_uri( $file ) {
  */
 function ys_in_array( $needle, $haystack ) {
 	return in_array( $needle, $haystack, true );
+}
+
+/**
+ * Boolに変換
+ *
+ * @param mixed $value 変換する値.
+ *
+ * @return bool
+ */
+function ys_to_bool( $value ) {
+	return YS_Utility::to_bool( $value );
 }
