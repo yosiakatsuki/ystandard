@@ -102,7 +102,7 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		$description = '';
 
 		if ( 0 === $depth && $item->description ) {
-			$description = '<small class="h-nav__dscr text--center">' . $item->description . '</small>';
+			$description = '<small class="h-nav__dscr">' . $item->description . '</small>';
 		}
 
 		$before      = empty( $args->before ) ? '' : $args->before;

@@ -6,10 +6,7 @@
   background-color: rgba(255, 255, 255, 0.95);
   border-top: 1px solid #EEEEEE;
   text-align: center;
-  z-index: 9; }
-  @media screen and (min-width: 1025px) {
-    .footer-mobile-nav {
-      display: none; } }
+  z-index: 8; }
   .footer-mobile-nav ul {
     padding: .75rem 0 .5rem; }
   .footer-mobile-nav a {
@@ -26,6 +23,9 @@
 
 .has-mobile-footer .site__footer {
   padding-bottom: 5rem; }
-  @media screen and (min-width: 1025px) {
+
+@media screen and (min-width: 1025px) {
+    .footer-mobile-nav {
+      display: none; }
     .has-mobile-footer .site__footer {
       padding-bottom: 1rem; } }

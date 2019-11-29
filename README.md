@@ -45,6 +45,10 @@ Source : <https://gist.github.com/terkel/4373420>
 
 ### v3.x.x
 - v3.7.0
+  - 機能追加
+    - 固定ヘッダー機能追加
+      - 影響のあるテンプレート
+        - template-parts/header/global-nav.php
   - 調整
     - テンプレートHTML構造変更（classの変更）
       - 影響のあるテンプレート

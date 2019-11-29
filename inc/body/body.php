@@ -103,6 +103,13 @@ function ys_body_class( $classes ) {
 		$classes[] = 'has-mobile-footer';
 	}
 
+	/**
+	 * ヘッダー固定
+	 */
+	if ( ys_get_option_by_bool( 'ys_header_fixed' ) ) {
+		$classes[] = 'has-fixed-header';
+	}
+
 	return $classes;
 }
 
