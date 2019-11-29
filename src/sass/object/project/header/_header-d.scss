@@ -18,17 +18,16 @@
         padding: .5rem 0;
 
         &.-row1 {
-          display: flex;
           justify-content: space-between;
           align-items: center;
         }
-
-        &.-center {
-          text-align: center;
-        }
         &.-center,
         &.-row2 {
+          display: block;
           padding-bottom: 0;
+        }
+        &.-center {
+          text-align: center;
         }
       }
       .header__branding {

@@ -284,8 +284,20 @@ class YS_Inline_Css {
 			$height_tablet = ys_get_option( 'ys_header_fixed_height_tablet', 0 );
 			$height_mobile = ys_get_option( 'ys_header_fixed_height_mobile', 0 );
 			$pt_pc         = $height_pc;
-			$pt_tablet     = 0 < (int) $height_tablet ? $height_tablet : $height_pc;
-			$pt_mobile     = 0 < (int) $height_mobile ? $height_mobile : $height_pc;
+			$pt_tablet     = $height_tablet;
+			$pt_mobile     = $height_mobile;
+			if ( 0 === (int) $pt_tablet ) {
+				$pt_tablet = $height_pc;
+				if ( 0 < (int) $height_mobile ) {
+					$pt_tablet = $height_mobile;
+				}
+			}
+			if ( 0 === (int) $pt_mobile ) {
+				$pt_mobile = $height_pc;
+				if ( 0 < (int) $height_tablet ) {
+					$pt_mobile = $height_tablet;
+				}
+			}
 			/**
 			 * CSS
 			 */
