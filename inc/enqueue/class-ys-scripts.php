@@ -85,7 +85,7 @@ class YS_Scripts {
 			remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
 		}
 		/**
-		 * jQuery操作は管理画面外のみ
+		 * 管理画面外のみjQuery操作
 		 */
 		if ( ! is_admin() && ! ys_is_login_page() && ! is_customize_preview() ) {
 			/**
@@ -187,7 +187,7 @@ class YS_Scripts {
 			),
 			array(
 				'handle'  => 'ys-editor-font-size',
-				'src'     => self::get_editor_font_size_css(),
+				'src'     => YS_Inline_Css::get_editor_font_size_css(),
 				'deps'    => array(),
 				'ver'     => ys_get_theme_version( true ),
 				'media'   => 'all',
@@ -197,7 +197,7 @@ class YS_Scripts {
 			),
 			array(
 				'handle'  => 'ys-editor-color-palette',
-				'src'     => self::get_editor_color_palette(),
+				'src'     => YS_Inline_Css::get_editor_color_palette(),
 				'deps'    => array(),
 				'ver'     => ys_get_theme_version( true ),
 				'media'   => 'all',
@@ -803,80 +803,6 @@ class YS_Scripts {
 		$style = str_replace( array( "\r\n", "\r", "\n", "\t", '  ', '    ' ), '', $style );
 
 		return apply_filters( 'ys_enqueue_minify', $style );
-	}
-
-	/**
-	 * Gutenbergフォントサイズ指定CSS
-	 *
-	 * @param string $prefix  プレフィックス.
-	 * @param int    $default デフォルトフォントサイズ.
-	 *
-	 * @return string
-	 */
-	public static function get_editor_font_size_css( $prefix = '', $default = 16 ) {
-		$default = apply_filters( 'ys_default_editor_font_size', $default );
-		$size    = ys_get_editor_font_sizes();
-		$css     = '';
-		$prefix  = empty( $prefix ) ? '' : $prefix . ' ';
-		foreach ( $size as $value ) {
-			$fz   = ( $value['size'] / $default );
-			$slug = $value['slug'];
-			/**
-			 * CSS作成
-			 */
-			$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $fz . 'em;}';
-		}
-
-		return $css;
-	}
-
-	/**
-	 * Gutenberg色設定
-	 *
-	 * @param string $prefix プレフィックス.
-	 *
-	 * @return string
-	 */
-	public static function get_editor_color_palette( $prefix = '' ) {
-		$color  = ys_get_editor_color_palette();
-		$css    = '';
-		$prefix = empty( $prefix ) ? '' : $prefix . ' ';
-		foreach ( $color as $value ) {
-			/**
-			 * Background-color
-			 */
-			$css .= $prefix . '
-			.has-' . $value['slug'] . '-background-color{
-				background-color:' . $value['color'] . ';
-				border-color:' . $value['color'] . ';
-			}';
-			/**
-			 * Text Color
-			 */
-			$css .= $prefix . '
-			.has-' . $value['slug'] . '-color,
-			.has-' . $value['slug'] . '-color:hover{
-				color:' . $value['color'] . ';
-			}';
-			/**
-			 * ブロック（アウトライン）
-			 */
-			$css .= $prefix . '
-			.is-style-outline .wp-block-button__link.has-' . $value['slug'] . '-color{
-				border-color:' . $value['color'] . ';
-				color:' . $value['color'] . ';
-			}';
-			/**
-			 * ブロック（アウトライン）hover
-			 */
-			$css .= $prefix . '
-			.is-style-outline .wp-block-button__link:hover.has-' . $value['slug'] . '-color{
-				background-color:' . $value['color'] . ';
-				border-color:' . $value['color'] . ';
-			}';
-		}
-
-		return $css;
 	}
 
 	/**

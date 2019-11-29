@@ -247,7 +247,7 @@ abstract class YS_Widget_Get_Posts extends YS_Widget_Base {
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php checked( ys_sanitize_bool( $instance['show_excerpt'] ), true ); ?> />抜粋を表示する
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php checked( ys_to_bool( $instance['show_excerpt'] ), true ); ?> />抜粋を表示する
 				</label>
 			</p>
 		</div>
@@ -277,7 +277,7 @@ abstract class YS_Widget_Get_Posts extends YS_Widget_Base {
 			<h4>画像設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_img' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_img' ); ?>" name="<?php echo $this->get_field_name( 'show_img' ); ?>" value="1" <?php checked( ys_sanitize_bool( $instance['show_img'] ), true ); ?> />アイキャッチ画像を表示する
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_img' ); ?>" name="<?php echo $this->get_field_name( 'show_img' ); ?>" value="1" <?php checked( ys_to_bool( $instance['show_img'] ), true ); ?> />アイキャッチ画像を表示する
 				</label><br/>
 			</p>
 			<p>

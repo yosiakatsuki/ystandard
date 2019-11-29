@@ -8,7 +8,7 @@
       @include media-breakpoint(lg) {
         padding-top: 0;
         padding-bottom: 0;
-        
+
         .h-nav__btn {
           display: none;
         }
@@ -25,18 +25,20 @@
             align-items: center;
             justify-content: space-between;
             max-width: unset;
-            overflow-y: visible;
-          }
-
-          a {
-            color: inherit;
-            font-size: .9rem;
+            overflow: visible;
           }
         }
         li {
           position: relative;
-          border-bottom: 1px solid transparent;
-          transition: all .3s;
+
+          a {
+            padding: 1rem 0;
+            border-bottom: 1px solid transparent;
+            color: inherit;
+            font-size: .9rem;
+            transition: all .3s;
+          }
+
           //2層
           ul {
             position: absolute;
@@ -49,7 +51,7 @@
             transition: all .3s;
 
             a {
-              padding-left: 1rem;
+              padding: 1rem;
             }
 
             li {
@@ -68,7 +70,9 @@
           //2層ul
           &:hover {
             &:not(.menu-item-has-children) {
-              border-bottom: 1px solid $color__border-dark;
+              a {
+                border-bottom: 1px solid $color__border-dark;
+              }
             }
 
             ul {
@@ -86,18 +90,37 @@
       }
     }
 
+    &.-row1 {
+      .h-nav__menu {
+        & > li {
+          margin: 0 1rem;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .h-nav__dscr {
+        @include media-breakpoint(lg) {
+          text-align: center;
+        }
+      }
+    }
+
     &.-center {
       @include media-breakpoint(lg) {
         .h-nav__main > ul {
           justify-content: center;
-        }
-        a {
-          padding: 1rem 2rem;
-        }
-        li {
-          ul {
+          
+          li {
             a {
-              padding-left: 2rem;
+              padding: 1rem 1.5rem;
+            }
+            ul {
+              right: -30%;
+              left: -30%;
+              white-space: normal;
             }
           }
         }
@@ -110,14 +133,20 @@
           justify-content: flex-start;
         }
         a {
-          padding: 1rem 0;
+          padding: .5rem 0;
         }
         li {
-          margin-right: 1.5rem;
+          margin-right: 2rem;
+
+          &:last-child {
+            margin-right: 0;
+          }
 
           ul {
+            left: -.5rem;
+
             a {
-              padding: 1rem 0;
+              padding: 1rem .5rem;
             }
 
             li {
@@ -132,6 +161,13 @@
       @include media-breakpoint(lg) {
         display: block;
         line-height: 1;
+        font-size: .7em;
+      }
+    }
+
+    .h-nav__search {
+      @include media-breakpoint(lg) {
+        display: none;
       }
     }
   }

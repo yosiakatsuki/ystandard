@@ -1,1 +1,1 @@
-'use strict';(function(){wp.customize.bind('ready',function(){this})})(jQuery);
+"use strict";(function(){wp.customize.bind("ready",function(){this})})(jQuery);

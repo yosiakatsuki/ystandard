@@ -308,7 +308,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 	 */
 	private function get_archive_button() {
 
-		if ( ! ys_sanitize_bool( $this->get_param( 'enable_archive_button' ) ) ) {
+		if ( ! ys_to_bool( $this->get_param( 'enable_archive_button' ) ) ) {
 			return false;
 		}
 		if ( is_author() ) {

@@ -696,7 +696,7 @@ class YS_Widget_Base extends WP_Widget {
 	 * @return bool
 	 */
 	protected function sanitize_checkbox( $value ) {
-		return ys_sanitize_bool( $value );
+		return ys_to_bool( $value );
 	}
 
 

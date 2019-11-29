@@ -24,10 +24,6 @@ require_once get_template_directory() . '/inc/utility/utility.php';
  */
 require_once get_template_directory() . '/inc/image/image.php';
 /**
- * Sanitize
- */
-require_once get_template_directory() . '/inc/sanitize/sanitize.php';
-/**
  * 投稿タイプ
  */
 require_once get_template_directory() . '/inc/post-type/post-type.php';

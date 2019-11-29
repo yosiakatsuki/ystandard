@@ -6,6 +6,7 @@
         font-size: 1.5rem;
       }
       .header__branding {
+        padding-right: 0;
         &.-row1 {
           padding-right: 1rem;
         }
@@ -14,16 +15,29 @@
 
     @include media-breakpoint(lg) {
       .header__row {
+        padding: .5rem 0;
+
+        &.-row1 {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
         &.-center {
-          &:before {
-            display: none;
-          }
+          text-align: center;
+        }
+        &.-center,
+        &.-row2 {
+          padding-bottom: 0;
         }
       }
       .header__branding {
         &.-row2,
         &.-center {
-          padding-bottom: 0;
+          padding-bottom: .5rem;
+        }
+        &.-center {
+          padding-top: .5rem;
         }
       }
     }

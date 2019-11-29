@@ -37,8 +37,9 @@ class YS_Customize_Register {
 		$this->extend_wp_option();
 		$this->title_tagline();
 		$this->header_media();
-		$this->color();
-		$this->general();
+		/**
+		 * [ys]設定シリーズ
+		 */
 		$this->design();
 		$this->design_header();
 		$this->design_mobile();
@@ -48,6 +49,8 @@ class YS_Customize_Register {
 		$this->design_page();
 		$this->design_archive();
 		$this->design_front_page();
+		$this->color();
+		$this->general();
 		$this->sns();
 		$this->seo();
 		$this->performance();
@@ -291,7 +294,7 @@ class YS_Customize_Register {
 			'ys_customizer_panel_color',
 			array(
 				'title'    => '[ys]色設定',
-				'priority' => 990,
+				'priority' => 1010,
 			)
 		);
 		/**
@@ -312,42 +315,6 @@ class YS_Customize_Register {
 				'id'      => 'ys_color_site_bg',
 				'default' => ys_get_option_default( 'ys_color_site_bg' ),
 				'label'   => 'サイト背景色',
-			)
-		);
-		/**
-		 * ヘッダー色
-		 */
-		$ys_customizer = new YS_Customizer( $this->_wp_customize );
-		$ys_customizer->add_section(
-			array(
-				'section'  => 'ys_color_header',
-				'title'    => 'ヘッダー',
-				'priority' => 0,
-				'panel'    => 'ys_customizer_panel_color',
-			)
-		);
-		// ヘッダー背景色.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_header_bg',
-				'default' => ys_get_option_default( 'ys_color_header_bg' ),
-				'label'   => 'ヘッダー背景色',
-			)
-		);
-		// サイトタイトル文字色.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_header_font',
-				'default' => ys_get_option_default( 'ys_color_header_font' ),
-				'label'   => 'サイトタイトル・メニューテキストの文字色',
-			)
-		);
-		// サイト概要の文字色.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_header_dscr_font',
-				'default' => ys_get_option_default( 'ys_color_header_dscr_font' ),
-				'label'   => 'サイト概要の文字色',
 			)
 		);
 		/**
@@ -529,7 +496,7 @@ class YS_Customize_Register {
 			'ys_customizer_section_site_common',
 			array(
 				'title'    => '[ys]サイト共通設定',
-				'priority' => 1000,
+				'priority' => 1015,
 			)
 		);
 		$ys_customizer = new YS_Customizer( $this->_wp_customize );
@@ -585,7 +552,7 @@ class YS_Customize_Register {
 			'ys_customizer_panel_design',
 			array(
 				'title'           => '[ys]デザイン設定',
-				'priority'        => 1010,
+				'priority'        => 1000,
 				'description'     => 'サイト共通部分のデザイン設定',
 				'active_callback' => array(),
 			)
@@ -629,6 +596,85 @@ class YS_Customize_Register {
 					'center' => sprintf( $img, $center ),
 					'row2'   => sprintf( $img, $row2 ),
 				),
+			)
+		);
+		// ヘッダー背景色.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_header_bg',
+				'default' => ys_get_option_default( 'ys_color_header_bg' ),
+				'label'   => 'ヘッダー背景色',
+			)
+		);
+		// サイトタイトル文字色.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_header_font',
+				'default' => ys_get_option_default( 'ys_color_header_font' ),
+				'label'   => 'サイトタイトル・メニューテキストの文字色',
+			)
+		);
+		// サイト概要の文字色.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_header_dscr_font',
+				'default' => ys_get_option_default( 'ys_color_header_dscr_font' ),
+				'label'   => 'サイト概要の文字色',
+			)
+		);
+		/**
+		 * ヘッダー固定表示
+		 */
+		$ys_customizer->add_label(
+			array(
+				'id'          => 'ys_header_fixed_label',
+				'label'       => '固定ヘッダー設定',
+				'description' => '画面上部にヘッダーを固定表示するための設定',
+
+			)
+		);
+		$ys_customizer->add_checkbox(
+			array(
+				'id'    => 'ys_header_fixed',
+				'label' => 'ヘッダーを画面上部に固定する',
+			)
+		);
+		/**
+		 * ヘッダー固定表示
+		 */
+		$ys_customizer->add_label(
+			array(
+				'id'          => 'ys_header_fixed_height_label',
+				'label'       => 'ヘッダー高さ設定',
+				'description' => '※ヘッダーの固定表示をする場合、ヘッダー高さの指定が必要になります。<br><br>プレビュー画面左上に表示された「ヘッダー高さ」の数字を参考に以下の設定に入力してください。',
+
+			)
+		);
+		/**
+		 * ヘッダー高さ(PC)
+		 */
+		$ys_customizer->add_number(
+			array(
+				'id'    => 'ys_header_fixed_height_pc',
+				'label' => 'ヘッダー高さ(PC)',
+			)
+		);
+		/**
+		 * ヘッダー高さ(タブレット)
+		 */
+		$ys_customizer->add_number(
+			array(
+				'id'    => 'ys_header_fixed_height_tablet',
+				'label' => 'ヘッダー高さ(タブレット)',
+			)
+		);
+		/**
+		 * ヘッダー高さ(モバイル)
+		 */
+		$ys_customizer->add_number(
+			array(
+				'id'    => 'ys_header_fixed_height_mobile',
+				'label' => 'ヘッダー高さ(モバイル)',
 			)
 		);
 	}
@@ -2396,7 +2442,9 @@ class YS_Customize_Register {
 				'title'           => 'AMP機能設定',
 				'priority'        => 1,
 				'panel'           => 'ys_customizer_panel_amp',
-				'active_callback' => 'ys_customizer_active_callback_amp_options',
+				'active_callback' => function () {
+					return ( ys_get_option( 'ys_amp_enable', false, 'bool' ) || ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) );
+				},
 			)
 		);
 		/**
@@ -2471,7 +2519,9 @@ class YS_Customize_Register {
 				'title'           => 'AMP広告設定',
 				'priority'        => 1,
 				'panel'           => 'ys_customizer_panel_amp',
-				'active_callback' => 'ys_customizer_active_callback_amp_options',
+				'active_callback' => function () {
+					return ( ys_get_option( 'ys_amp_enable', false, 'bool' ) || ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) );
+				},
 			)
 		);
 		/**
@@ -2536,7 +2586,9 @@ class YS_Customize_Register {
 				'priority'        => 1,
 				'description'     => 'AMPテンプレートの設定',
 				'panel'           => 'ys_customizer_panel_amp',
-				'active_callback' => 'ys_customizer_active_callback_amp_options',
+				'active_callback' => function () {
+					return ( ys_get_option( 'ys_amp_enable', false, 'bool' ) || ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) );
+				},
 			)
 		);
 		/**
