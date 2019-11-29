@@ -73,24 +73,7 @@ function ys_get_header_row_class( $class = array() ) {
 	$type      = ys_get_option( 'ys_design_header_type' );
 	$classes[] = 'header__row';
 	$classes[] = '-' . $type;
-	$classes[] = 'flex';
-	$classes[] = 'flex--row';
-	$classes[] = 'flex--nowrap';
-	$classes[] = 'flex--lg-wrap';
 
-	/**
-	 * 1行タイプ
-	 */
-	if ( 'row1' === $type ) {
-		$classes[] = 'flex--a-center';
-		$classes[] = 'flex--j-between';
-	}
-	/**
-	 * 中央寄せタイプ
-	 */
-	if ( 'center' === $type ) {
-		$classes[] = 'flex--j-between';
-	}
 	$classes = apply_filters( 'ys_get_header_row_class', $classes, $type );
 
 	return $classes;
@@ -120,34 +103,7 @@ function ys_get_header_col_class( $pos, $class = array() ) {
 	}
 	$type      = ys_get_option( 'ys_design_header_type' );
 	$classes[] = '-' . $type;
-	/**
-	 * 1行タイプ
-	 */
-	if ( 'row1' === $type ) {
-		$classes[] = 'flex__col--auto';
-	}
-	/**
-	 * 中央寄せタイプ
-	 */
-	if ( 'center' === $type ) {
-		if ( 'logo' === $pos ) {
-			$classes[] = 'flex__col--lg-1';
-		} else {
-			$classes[] = 'flex__col';
-		}
-		$classes[] = 'text--center';
-	}
-	/**
-	 * 2行表示
-	 */
-	if ( 'row2' === $type ) {
-		if ( 'logo' === $pos ) {
-			$classes[] = 'flex__col--lg-1';
-		} else {
-			$classes[] = 'flex__col';
-		}
-	}
-	$classes = apply_filters( 'ys_get_header_col_class', $classes, $type, $pos );
+	$classes   = apply_filters( 'ys_get_header_col_class', $classes, $type, $pos );
 
 	return $classes;
 }

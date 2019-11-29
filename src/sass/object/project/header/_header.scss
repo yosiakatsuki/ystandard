@@ -12,13 +12,9 @@
     }
 
     .header__row {
-      &.-center {
-        &:before {
-          content: "";
-          flex-grow: 1;
-          padding: 0 1rem;
-        }
-      }
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
     }
 
     .header__dscr {
@@ -27,9 +23,7 @@
     }
 
     .header__branding {
-      &.-row1 {
-        padding-right: 4rem;
-      }
+      padding-right: calc(.5rem + 30px);
     }
   }
 }

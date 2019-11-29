@@ -47,21 +47,6 @@
 }
 
 /**
- * ヘッダー重ねるタイプ
- */
-.custom-header--full {
-  .site-header {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 11;
-  }
-}
-
-
-
-/**
  * 固定ページ・詳細ページ ヘッダーサムネイル
  */
 .ys-custom-header--full-thumb {

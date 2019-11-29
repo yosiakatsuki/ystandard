@@ -56,12 +56,24 @@ function ys_get_option( $name, $default = false, $type = false ) {
 		switch ( $type ) {
 			case 'bool':
 			case 'boolean':
-				$result = ys_sanitize_bool( $result );
+				$result = ys_to_bool( $result );
 				break;
 		}
 	}
 
 	return apply_filters( 'ys_get_option_' . $name, $result, $name, $option_default );
+}
+
+/**
+ * 設定取得(bool)
+ *
+ * @param string $name    option key.
+ * @param mixed  $default デフォルト値.
+ *
+ * @return mixed
+ */
+function ys_get_option_by_bool( $name, $default = false ) {
+	return ys_get_option( $name, $default, 'bool' );
 }
 
 /**
@@ -92,11 +104,21 @@ function ys_get_option_default( $name, $default = false ) {
  */
 function ys_get_option_defaults() {
 	return array(
-		// 色設定.
-		'ys_color_site_bg'                          => '#ffffff',
+		/**
+		 * デザイン -> ヘッダー
+		 */
+		'ys_design_header_type'                     => 'row1', // ヘッダータイプ.
 		'ys_color_header_bg'                        => '#ffffff',
 		'ys_color_header_font'                      => '#222222',
 		'ys_color_header_dscr_font'                 => '#757575',
+		'ys_header_fixed'                           => 0, // 固定ヘッダー.
+		'ys_header_fixed_height_pc'                 => 0, // ヘッダー高さ(PC).
+		'ys_header_fixed_height_tablet'             => 0, // ヘッダー高さ(PC).
+		'ys_header_fixed_height_mobile'             => 0, // ヘッダー高さ(PC).
+		/**
+		 * 色設定
+		 */
+		'ys_color_site_bg'                          => '#ffffff',
 		'ys_color_nav_bg_sp'                        => '#000000',
 		'ys_color_nav_font_sp'                      => '#ffffff',
 		'ys_color_nav_btn_sp_open'                  => '#222222',
@@ -118,13 +140,19 @@ function ys_get_option_defaults() {
 		'ys-color-palette-ys-user-1'                => '#ffffff',
 		'ys-color-palette-ys-user-2'                => '#ffffff',
 		'ys-color-palette-ys-user-3'                => '#ffffff',
-		// 基本設定.
+		/**
+		 * 基本設定
+		 */
 		'ys_logo_hidden'                            => 0, // ロゴを出力しない.
 		'ys_wp_hidden_blogdescription'              => 0, // キャッチフレーズを出力しない.
 		'ys_wp_site_description'                    => '', // TOPページのmeta description.
-		// 色 設定.
+		/**
+		 * 色 設定
+		 */
 		'ys_desabled_color_customizeser'            => 0, // テーマカスタマイザーの色設定を無効にする.
-		// ヘッダーメディア.
+		/**
+		 * ヘッダーメディア.
+		 */
 		'ys_wp_header_media_shortcode'              => '', // ヘッダーメディア用ショートコード.
 		'ys_wp_header_media_full'                   => 0, // 画像・動画の全面表示.
 		'ys_wp_header_media_full_type'              => 'dark', // 画像・動画の全面表示 表示タイプ.
@@ -135,7 +163,6 @@ function ys_get_option_defaults() {
 		'ys_copyright_year'                         => date_i18n( 'Y' ), // 発行年.
 		'ys_option_excerpt_length'                  => 110, // 抜粋文字数.
 		// [ys]デザイン設定.
-		'ys_design_header_type'                     => 'row1', // ヘッダータイプ.
 		'ys_show_sidebar_mobile'                    => 0, // モバイル表示でサイドバーを出力しない.
 		'ys_show_search_form_on_slide_menu'         => 0, // スライドメニューに検索フォームを出力する.
 		'ys_enqueue_icon_font_type'                 => 'js', // アイコンフォント（Font Awesome）読み込み方式.
