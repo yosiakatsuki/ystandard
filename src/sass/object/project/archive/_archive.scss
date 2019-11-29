@@ -11,6 +11,12 @@
   font-size: .9rem;
 }
 
+.archive__container {
+  &.-card {
+    margin-right: -1rem;
+    margin-left: -1rem;
+  }
+}
 
 .archive__item {
   a {
