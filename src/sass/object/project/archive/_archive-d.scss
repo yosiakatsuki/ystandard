@@ -5,6 +5,10 @@
   .archive__title {
     font-size: 1.4rem;
   }
+  .archive__container {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   .archive__item {
     &.-list {
