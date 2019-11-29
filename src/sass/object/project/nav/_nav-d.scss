@@ -100,12 +100,6 @@
           }
         }
       }
-
-      .h-nav__dscr {
-        @include media-breakpoint(lg) {
-          text-align: center;
-        }
-      }
     }
 
     &.-center {
@@ -162,6 +156,7 @@
         display: block;
         line-height: 1;
         font-size: .7em;
+        text-align: center;
       }
     }
 
