@@ -34,6 +34,7 @@ class YS_Scripts_Admin {
 		/**
 		 * テーマカスタマイザー関連
 		 */
+		add_action( 'customize_preview_init', array( $this, 'customize_preview_init' ) );
 		add_action( 'customize_controls_print_styles', array( $this, 'customize_controls_print_styles' ) );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_enqueue_scripts' ) );
 	}
@@ -143,11 +144,11 @@ class YS_Scripts_Admin {
 		);
 		wp_add_inline_style(
 			YS_Scripts::CSS_HANDLE_DUMMY,
-			$scripts->get_editor_font_size_css( '.editor-styles-wrapper' )
+			YS_Inline_Css::get_editor_font_size_css( '.editor-styles-wrapper' )
 		);
 		wp_add_inline_style(
 			YS_Scripts::CSS_HANDLE_DUMMY,
-			$scripts->get_editor_color_palette( '.editor-styles-wrapper' )
+			YS_Inline_Css::get_editor_color_palette( '.editor-styles-wrapper' )
 		);
 	}
 
@@ -181,6 +182,7 @@ class YS_Scripts_Admin {
 			ys_get_theme_version( true )
 		);
 	}
+
 	/**
 	 * テーマカスタマイザー用JS
 	 *
@@ -192,6 +194,21 @@ class YS_Scripts_Admin {
 			get_template_directory_uri() . '/js/admin/customizer-control.js',
 			array( 'customize-controls', 'jquery' ),
 			ys_get_theme_version( true ),
+			true
+		);
+	}
+
+	/**
+	 * テーマカスタマイザープレビュー用JS
+	 *
+	 * @return void
+	 */
+	public function customize_preview_init() {
+		wp_enqueue_script(
+			'ys_customize_preview_js',
+			get_template_directory_uri() . '/js/admin/customizer-preview.js',
+			array( 'customize-controls', 'jquery' ),
+			date_i18n( 'YmdHis' ),
 			true
 		);
 	}

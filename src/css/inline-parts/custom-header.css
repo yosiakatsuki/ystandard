@@ -4,13 +4,13 @@
  */
 .custom-header--full .site-header,
 .custom-header--full .h-nav.rwd li:hover ul {
-  background-color: ${bg_color}; }
+  background-color: attr(bg_color); }
 
 .custom-header--full .hamburger span {
-  background-color: ${text_color}; }
+  background-color: attr(text_color); }
 
 .custom-header--full .h-nav.rwd li:hover:not(.menu-item-has-children) {
-  border-bottom-color: ${text_color}; }
+  border-bottom-color: attr(text_color); }
 
 .custom-header--full .site-header,
 .custom-header--full .header__title a,
@@ -18,4 +18,4 @@
 .custom-header--full .header__dscr,
 .custom-header--full .h-nav.rwd .h-nav__main a,
 .custom-header--full .h-nav.rwd .h-nav__main a:hover {
-  color: ${text_color}; }
+  color: attr(text_color); }

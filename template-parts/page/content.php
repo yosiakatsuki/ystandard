@@ -8,7 +8,7 @@
  */
 
 ?>
-<div class="flex__col content__wrap">
+<div class="content__wrap">
 	<main id="main" class="site-main content__main">
 		<?php do_action( 'ys_content_main_prepend' ); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'singular-article' ) ); ?>>

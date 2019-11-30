@@ -20,6 +20,20 @@ const postcssPlugins = [
     mqpacker(),
     cssnano()
 ];
+const postcssPluginsParts = [
+    autoprefixer({
+        overrideBrowserslist: ['last 2 version, not ie < 11'],
+        grid: 'autoplace'
+    }),
+    mqpacker()
+];
+/**
+ * babel option
+ */
+const babelOption = {
+    presets: ['@babel/preset-env', 'minify'],
+    comments: false
+};
 
 /**
  * sass
@@ -40,19 +54,22 @@ gulp.task('sass', () => {
 gulp.task('sass:parts', () => {
     return gulp.src('./src/sass/inline-parts/*.scss')
         .pipe(sass())
-        .pipe(postcss(postcssPlugins))
-        .pipe(gulp.dest('./src/css'))
+        .pipe(postcss(postcssPluginsParts))
+        .pipe(gulp.dest('./src/css/inline-parts'))
 });
 
 /**
  * JS
  */
 gulp.task('js', () => {
-    return gulp.src('./src/js/*.js')
-        .pipe(babel({
-            presets: ['@babel/preset-env', 'minify']
-        }))
-        .pipe(gulp.dest('./js'))
+    return gulp.src('src/js/*.js')
+        .pipe(babel(babelOption))
+        .pipe(gulp.dest('js/'))
+});
+gulp.task('js:admin', () => {
+    return gulp.src('src/js/admin/*.js')
+        .pipe(babel(babelOption))
+        .pipe(gulp.dest('js/admin/'))
 });
 
 /**
@@ -101,7 +118,8 @@ gulp.task('watch', () => {
         gulp.task('sass')
     );
     gulp.watch('./src/sass/inline-parts/**/*.scss', gulp.task('sass:parts'));
-    gulp.watch('./src/js/**/*.js', gulp.task('js'));
+    gulp.watch('./src/js/*.js', gulp.task('js'));
+    gulp.watch('./src/js/admin/*.js', gulp.task('js:admin'));
 });
 
 /**
