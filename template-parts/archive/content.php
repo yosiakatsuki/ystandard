@@ -8,7 +8,7 @@
  */
 
 ?>
-<div class="flex__col content__wrap">
+<div class="content__wrap">
 	<main id="main" class="site-main content__main archive__main">
 		<?php do_action( 'ys_site_main_prepend' ); ?>
 		<?php
@@ -17,7 +17,7 @@
 		 */
 		get_template_part( 'template-parts/archive/header' );
 		?>
-		<div class="flex flex--row">
+		<div class="archive__container -<?php echo esc_attr( ys_get_option( 'ys_archive_type' ) ); ?>">
 			<?php
 			while ( have_posts() ) :
 				the_post();

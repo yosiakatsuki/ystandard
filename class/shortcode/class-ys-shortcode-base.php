@@ -205,7 +205,7 @@ class YS_Shortcode_Base {
 				 * 真・偽で取得
 				 */
 				if ( 'bool' === $type || 'boolean' === $type ) {
-					return ys_sanitize_bool( $result );
+					return ys_to_bool( $result );
 				}
 				/**
 				 * 時間で取得

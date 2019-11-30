@@ -9,7 +9,7 @@
 
 ys_get_header(); ?>
 <div class="container">
-	<div class="flex flex--row">
+	<div class="content__container">
 		<?php
 		get_template_part( 'template-parts/404/content' );
 

@@ -44,6 +44,28 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 
 ### v3.x.x
+- v3.7.0
+  - 機能追加
+    - 固定ヘッダー機能追加
+      - 影響のあるテンプレート
+        - template-parts/header/global-nav.php
+  - 調整
+    - テンプレートHTML構造変更（classの変更）
+      - 影響のあるテンプレート
+        - 404.php
+        - archive.php
+        - page.php
+        - sidebar.php
+        - single.php
+        - page-template/template-one-column.php
+        - page-template/template-one-column-no-title.php
+        - page-template/template-one-column-no-title-slim.php
+        - page-template/template-one-column-wide.php
+        - template-parts/404/content.php
+        - template-parts/archive/content.php
+        - template-parts/page/content.php
+        - template-parts/single/content.php
+    - カスタマイザーメニューの整理（\[ys\]デザイン設定 → ヘッダー設定）
 - v3.6.0
   - 調整
     - CSS読み込み処理の調整
