@@ -65,6 +65,7 @@ Source : <https://gist.github.com/terkel/4373420>
         - template-parts/archive/content.php
         - template-parts/page/content.php
         - template-parts/single/content.php
+    - カスタマイザーメニューの整理（\[ys\]デザイン設定 → ヘッダー設定）
 - v3.6.0
   - 調整
     - CSS読み込み処理の調整
