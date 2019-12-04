@@ -9,7 +9,7 @@
 .share-btn__link {
   position: relative;
   display: block;
-  padding: .5rem 1rem;
+  padding: .25rem;
   text-decoration: none;
   text-align: center;
   overflow: hidden;
@@ -23,4 +23,8 @@
   z-index: 1;
   font-size: 3em;
   line-height: 1;
+}
+.share-btn__text {
+  white-space: nowrap;
+  font-size: .8rem;
 }
