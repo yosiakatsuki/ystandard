@@ -1,8 +1,21 @@
+@include media-breakpoint(md) {
+  .site__content {
+    @at-root {
+      .breadcrumbs + & {
+        margin-top: .5rem;
+      }
+    }
+  }
+}
+
 @include media-breakpoint(lg) {
   .site__content {
     @at-root {
       .has-sidebar & {
         overflow: unset;
+      }
+      .breadcrumbs + & {
+        margin-top: 1rem;
       }
     }
   }
