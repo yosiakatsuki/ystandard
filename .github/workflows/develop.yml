@@ -1,14 +1,14 @@
-name: Release v3
+name: Develop v3
 on:
   push:
     branches:
-      - develop
+      - develop-v3
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@develop
+      - uses: actions/checkout@develop-v3
       - name: Use Node.js 12.14
         uses: actions/setup-node@v1
         with:
