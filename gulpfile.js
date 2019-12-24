@@ -120,11 +120,11 @@ function copyProductionFiles() {
 /**
  * create zip file
  */
-gulp.task( 'zip', function () {
+function zip() {
     return src( 'ystandard/**', { base: '.' } )
         .pipe( gulpZip( 'ystandard.zip' ) )
         .pipe( dest( 'build' ) );
-} );
+}
 
 function copyJson() {
     return src( [ 'ystandard-info.json', 'ystandard-info-beta.json' ] )
