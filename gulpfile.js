@@ -1,128 +1,153 @@
-const gulp = require('gulp');
-const zip = require('gulp-zip');
-const sass = require('gulp-sass');
-const postcss = require('gulp-postcss');
-const autoprefixer = require('autoprefixer');
-const mqpacker = require('css-mqpacker');
-const cssnano = require('cssnano');
-const packageImporter = require('node-sass-package-importer');
-const babel = require('gulp-babel');
+const { series, parallel, watch, src, dest } = require( 'gulp' );
+const gulpZip = require( 'gulp-zip' );
+const gulpSass = require( 'gulp-sass' );
+const postcss = require( 'gulp-postcss' );
+const autoprefixer = require( 'autoprefixer' );
+const mqpacker = require( 'css-mqpacker' );
+const cssnano = require( 'cssnano' );
+const packageImporter = require( 'node-sass-package-importer' );
+const babel = require( 'gulp-babel' );
 
 
 /**
  * PostCssで使うプラグイン
  */
 const postcssPlugins = [
-    autoprefixer({
-        overrideBrowserslist: ['last 2 version, not ie < 11'],
+    autoprefixer( {
+        overrideBrowserslist: [ 'last 2 version, not ie < 11' ],
         grid: 'autoplace'
-    }),
+    } ),
     mqpacker(),
     cssnano()
 ];
 const postcssPluginsParts = [
-    autoprefixer({
-        overrideBrowserslist: ['last 2 version, not ie < 11'],
+    autoprefixer( {
+        overrideBrowserslist: [ 'last 2 version, not ie < 11' ],
         grid: 'autoplace'
-    }),
+    } ),
     mqpacker()
 ];
 /**
  * babel option
  */
 const babelOption = {
-    presets: ['@babel/preset-env', 'minify'],
+    presets: [ '@babel/preset-env', 'minify' ],
     comments: false
 };
 
 /**
  * sass
  */
-gulp.task('sass', () => {
-    return gulp.src('./src/sass/*.scss')
-        .pipe(sass({
-            importer: packageImporter({
-                extensions: ['.scss', '.css']
-            })
-        }))
-        .pipe(postcss(postcssPlugins))
-        .pipe(gulp.dest('./css'))
-});
+function sass() {
+    return src( './src/sass/*.scss' )
+        .pipe( gulpSass( {
+            importer: packageImporter( {
+                extensions: [ '.scss', '.css' ]
+            } )
+        } ) )
+        .pipe( postcss( postcssPlugins ) )
+        .pipe( dest( './css' ) )
+}
+
 /**
  * sass - parts
  */
-gulp.task('sass:parts', () => {
-    return gulp.src('./src/sass/inline-parts/*.scss')
-        .pipe(sass())
-        .pipe(postcss(postcssPluginsParts))
-        .pipe(gulp.dest('./src/css/inline-parts'))
-});
+function sassParts() {
+    return src( './src/sass/inline-parts/*.scss' )
+        .pipe( gulpSass() )
+        .pipe( postcss( postcssPluginsParts ) )
+        .pipe( dest( './src/css/inline-parts' ) )
+}
 
 /**
  * JS
  */
-gulp.task('js', () => {
-    return gulp.src('src/js/*.js')
-        .pipe(babel(babelOption))
-        .pipe(gulp.dest('js/'))
-});
-gulp.task('js:admin', () => {
-    return gulp.src('src/js/admin/*.js')
-        .pipe(babel(babelOption))
-        .pipe(gulp.dest('js/admin/'))
-});
+function js() {
+    return src( 'src/js/*.js' )
+        .pipe( babel( babelOption ) )
+        .pipe( dest( 'js/' ) )
+}
+
+function jsAdmin() {
+    return src( 'src/js/admin/*.js' )
+        .pipe( babel( babelOption ) )
+        .pipe( dest( 'js/admin/' ) )
+}
 
 /**
- * create zip file
+ * 必要ファイルのコピー
  */
-gulp.task('zip', function () {
-    return gulp.src(
+function copyProductionFiles() {
+    return src(
         [
             '**',
+            '!.editorconfig',
+            '!.eslintrc.json',
+            '!.gitignore',
+            '!.travis.yml',
             '!node_modules',
             '!node_modules/**',
             '!gulpfile.js',
             '!package.json',
             '!package-lock.json',
-            '!webpack.config.js',
-            '!ystandard-info.json',
-            '!ystandard-info-beta.json',
             '!phpcs.ruleset.dist',
             '!phpcs.ruleset.xml',
             '!phpunit.xml.dist',
+            '!webpack.config.js',
+            '!ystandard-info.json',
+            '!ystandard-info-beta.json',
             '!tests',
             '!tests/**',
             '!bin',
             '!bin/**',
             '!src',
             '!src/**',
-            '!docs',
-            '!docs/**',
-            '!temp',
-            '!temp/**',
+            '!block/**/*.js',
+            '!block/**/*.scss',
+            '!.github',
+            '!.github/**',
+            '!build',
+            '!build/**',
             '!*.zip',
+            '!ystandard',
+            '!ystandard/**',
         ],
-        {base: './'}
+        { base: '.' }
     )
-        .pipe(zip('ystandard.zip'))
-        .pipe(gulp.dest('./'));
-});
-
+        .pipe( dest( './ystandard' ) );
+}
 
 /**
- * watch
+ * create zip file
  */
-gulp.task('watch', () => {
-    gulp.watch(
-        ['./src/sass/**/*.scss', '!./src/sass/inline-parts/**/*.scss'],
-        gulp.task('sass')
-    );
-    gulp.watch('./src/sass/inline-parts/**/*.scss', gulp.task('sass:parts'));
-    gulp.watch('./src/js/*.js', gulp.task('js'));
-    gulp.watch('./src/js/admin/*.js', gulp.task('js:admin'));
-});
+function zip() {
+    return src( 'ystandard/**', { base: '.' } )
+        .pipe( gulpZip( 'ystandard.zip' ) )
+        .pipe( dest( 'build' ) );
+}
+
+function copyJson() {
+    return src( [ 'ystandard-info.json', 'ystandard-info-beta.json' ] )
+        .pipe( dest( 'build' ) );
+}
+
+/**
+ * サーバーにデプロイするファイルを作成
+ */
+exports.createDeployFiles = series( copyProductionFiles, parallel( zip, copyJson ) );
+/**
+ * タスクの登録
+ */
+exports.zip = series( copyProductionFiles, zip );
+exports.js = parallel( js, jsAdmin );
+exports.sass = parallel( sass, sassParts );
 
 /**
  * default
  */
-gulp.task('default', gulp.task('watch'));
+exports.default = function () {
+    watch( [ './src/sass/**/*.scss', '!./src/sass/inline-parts/**/*.scss' ], sass );
+    watch( './src/sass/inline-parts/**/*.scss', sassParts );
+    watch( './src/js/*.js', js );
+    watch( './src/js/admin/*.js', jsAdmin );
+};
