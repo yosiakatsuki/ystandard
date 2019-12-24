@@ -2,13 +2,13 @@ name: Release v3
 on:
   push:
     branches:
-      - release-v3
+      - develop
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@release-v3
+      - uses: actions/checkout@develop
       - name: Use Node.js 12.14
         uses: actions/setup-node@v1
         with:
@@ -24,5 +24,5 @@ jobs:
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: build
-          REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}
-          ARGS: --verbose --exclude=ystandard-info-beta.json
+          REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}
+          ARGS: --verbose --exclude=ystandard-info.json
