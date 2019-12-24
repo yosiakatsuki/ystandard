@@ -10,10 +10,8 @@ notifications:
 branches:
   only:
   - master
-  - develop
   - "/v\\d+\\.\\d+\\.\\d+?.*/"
   - "/release\\-v\\d+?.*/"
-  - "/develop\\-v\\d+?.*/"
 cache:
   directories:
   - "$HOME/.composer/cache"
