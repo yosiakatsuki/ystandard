@@ -23,3 +23,5 @@ node_modules/
 .travis/github_deploy_key
 ystandard.zip
 .node-version
+ystandard/
+build/
