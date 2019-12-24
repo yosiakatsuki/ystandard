@@ -45,6 +45,7 @@ Source : <https://gist.github.com/terkel/4373420>
 v3.x.x
 
 ### v3.7.3
+- [修正] TinyMCE関連のスクリプトでエラーが発生する点の対処
 - [調整] ボタンブロックのスタイル調整
 
 ### v3.7.2
