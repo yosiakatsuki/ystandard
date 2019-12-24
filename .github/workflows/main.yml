@@ -1,17 +1,28 @@
-name: CI
-
-on: [push]
-
+name: Release v3
+on:
+  push:
+    branches:
+      - release-v3
 jobs:
-  build:
-
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+      - uses: actions/checkout@release-v3
+      - name: Use Node.js 12.14
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.14'
+      - name: Build Files
+        run: |
+          npm install
+          npm run build:deploy-files
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          LOCAL_DIR: build
+          REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION }}
+          ARGS: --verbose
