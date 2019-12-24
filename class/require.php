@@ -35,7 +35,6 @@ $class_dir = get_template_directory() . '/class/shortcode/';
 require_once $class_dir . 'class-ys-shortcode-base.php';
 require_once $class_dir . 'class-ys-shortcode-text.php';
 require_once $class_dir . 'class-ys-shortcode-share-button.php';
-require_once $class_dir . 'class-ys-shortcode-advertisement.php';
 require_once $class_dir . 'class-ys-shortcode-author-box.php';
 require_once $class_dir . 'class-ys-shortcode-author-list.php';
 require_once $class_dir . 'class-ys-shortcode-get-posts.php';
