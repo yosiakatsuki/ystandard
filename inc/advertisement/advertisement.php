@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * ショートコード読み込みƒ
+ */
 require dirname( __FILE__ ) . '/class-ys-shortcode-advertisement.php';
 
 /**
