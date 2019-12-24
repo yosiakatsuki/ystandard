@@ -19,6 +19,7 @@ jobs:
         run: |
           npm install
           npm run build:deploy-files
+          npm run rename:beta-json
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
         env:
@@ -27,4 +28,4 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: build
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP }}
-          ARGS: --verbose --exclude=ystandard-info.json
+          ARGS: --verbose --exclude=ystandard-info-beta.json
