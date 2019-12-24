@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-        ref: 'release-v3'
+        with:
+          ref: 'release-v3'
       - name: Use Node.js 12.14
         uses: actions/setup-node@v1
         with:
