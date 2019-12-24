@@ -1,0 +1,16 @@
+@include media-breakpoint(md) {
+  .ad__double {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .ad__left + .ad__right {
+    margin-top: 0;
+  }
+  .ad__left {
+    margin-right: .5rem;
+  }
+  .ad__right {
+    margin-left: .5rem;
+  }
+}

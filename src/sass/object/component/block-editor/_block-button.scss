@@ -12,48 +12,12 @@
     text-align: left;
   }
 
-  &.-full {
-    a {
-      display: block;
-      text-align: center;
-    }
-  }
-  
-  &.-sm {
-    a {
-      padding-top: .25rem;
-      padding-bottom: .25rem;
-    }
-  }
-
-  &.-lg {
-    a {
-      padding: .75rem 3rem;
-    }
-  }
-
-  a {
-    @include button_base();
-
-    &:hover {
-      box-shadow: 3px 3px 6px rgba(#000, .2);
-    }
-
-    &:not(.has-background) {
-      background-color: $color__btn-bg;
-    }
-
-    &:not(.has-text-color) {
-      color: $color__btn-text;
-    }
-  }
-
   &.is-style-outline {
-    a {
+    .wp-block-button__link {
       background-color: transparent;
       border-width: 1px;
       border-style: solid;
-      
+
       &:not(.has-text-color) {
         color: $color__btn-bg;
         border: 1px solid $color__btn-border;
@@ -62,40 +26,19 @@
           background-color: $color__btn-bg;
         }
       }
-      
+
       &:hover {
         color: #fff;
       }
     }
   }
 
-  &.is-style-squared a,
-  a.no-border-radius {
+  &.is-style-squared .wp-block-button__link,
+  .wp-block-button__link.no-border-radius {
     border-radius: 0;
   }
-  
-  @if($editor == true) {
-    & {
-      &.-full {
-        padding-top: 1.5em;
-        .wp-block-button__link {
-          display: block;
-          text-align: center;
-        }
-      }
-      &.-sm {
-        .wp-block-button__link {
-          padding-top: .25rem;
-          padding-bottom: .25rem;
-        }
-      }
 
-      &.-lg {
-        .wp-block-button__link {
-          padding: .75rem 3rem;
-        }
-      }
-    }
+  @if ($editor == true) {
     .wp-block-button__link {
       @include button_base();
       border-width: 1px;
@@ -103,5 +46,22 @@
     &.is-style-squared .wp-block-button__link {
       border-radius: 0;
     }
+  }
+}
+
+.wp-block-button__link {
+  @include button_base();
+  
+  &:hover {
+    color: inherit;
+    box-shadow: 3px 3px 6px rgba(#000, .2);
+  }
+
+  &:not(.has-background) {
+    background-color: $color__btn-bg;
+  }
+
+  &:not(.has-text-color) {
+    color: $color__btn-text;
   }
 }
