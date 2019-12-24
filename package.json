@@ -30,6 +30,7 @@
 	"zip": "gulp zip",
 	"build:js": "gulp js",
 	"build:sass": "gulp sass",
+	"build:deploy-files": "gulp createDeployFiles",
 	"watch": "gulp watch"
   }
 }
