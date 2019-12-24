@@ -8,7 +8,8 @@ jobs:
     name: FTP-Deploy-Action
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@develop-v3
+      - uses: actions/checkout@v1
+        ref: 'develop-v3'
       - name: Use Node.js 12.14
         uses: actions/setup-node@v1
         with:
