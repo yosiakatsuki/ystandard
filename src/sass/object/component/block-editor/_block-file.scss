@@ -4,9 +4,14 @@
     font-weight: bold;
   }
 }
+
 .wp-block-file__button {
   @include button();
   margin-left: 2em;
+
+  &:hover {
+    color: #fff;
+  }
 }
 
 @if $editor == true {

@@ -81,7 +81,12 @@ class YS_Shortcode_Advertisement extends YS_Shortcode_Base {
 		if ( empty( $content ) ) {
 			return '';
 		}
-		// []の変換
+
+		/*
+		 * ショートコード展開
+		 */
+		$content = do_shortcode( $content );
+		// 特殊文字の変換.
 		$content = strtr(
 			$content,
 			array(

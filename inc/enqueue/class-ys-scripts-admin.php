@@ -161,7 +161,7 @@ class YS_Scripts_Admin {
 	 */
 	public function tiny_mce_before_init( $settings ) {
 		$scripts                   = ys_scripts();
-		$settings['content_style'] = $scripts->minify( wp_get_custom_css() );
+		$settings['content_style'] = str_replace( '"', '\'', $scripts->minify( wp_get_custom_css() ) );
 
 		return $settings;
 
