@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+require dirname( __FILE__ ) . '/class-ys-shortcode-advertisement.php';
+
 /**
  * 広告コードのhtml整形
  *
@@ -212,9 +214,9 @@ function ys_get_ad_entry_footer() {
 	}
 	if ( '' !== $ad_left && '' !== $ad_right ) {
 		$ad = sprintf(
-			'<div class="ad__double flex flex--row flex--a-center -no-gutter -all">
-					<div class="ad__left flex__col--md-2">%s</div>
-					<div class="ad__right flex__col--md-2">%s</div>
+			'<div class="ad__double">
+					<div class="ad__left">%s</div>
+					<div class="ad__right">%s</div>
 				</div>',
 			$ad_left,
 			$ad_right
@@ -244,6 +246,8 @@ function ys_the_ad_entry_footer() {
 
 /**
  * インフィード広告
+ *
+ * @return string
  */
 function ys_get_ad_infeed() {
 	if ( ys_is_mobile() ) {
@@ -308,7 +312,7 @@ function ys_fix_ad_preview_error( $ad ) {
 			'google-ads',
 			'//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js',
 			array(),
-			false,
+			null,
 			true
 		);
 	}
