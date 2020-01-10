@@ -129,7 +129,7 @@ function ys_get_font_awesome_css_url() {
 function ys_get_font_awesome_cdn_css_url() {
 	$version = apply_filters(
 		'ys_get_font_awesome_css_version',
-		'v5.11.2'
+		'v5.12.0'
 	);
 
 	return apply_filters(
@@ -157,7 +157,7 @@ function ys_get_font_awesome_svg_url() {
  * @return string
  */
 function ys_get_font_awesome_cdn_svg_url() {
-	$version = apply_filters( 'ys_get_font_awesome_cdn_svg_version', 'v5.11.2' );
+	$version = apply_filters( 'ys_get_font_awesome_cdn_svg_version', 'v5.12.0' );
 
 	return apply_filters(
 		'ys_get_font_awesome_cdn_svg_url',
