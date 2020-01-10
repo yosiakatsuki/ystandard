@@ -20,7 +20,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 		'default_user_name'     => false,
 		'user_name'             => false,
 		'enable_archive_link'   => true,
-		'enable_archive_button' => true,
+		'enable_archive_button' => false,
 		'archive_button_text'   => '記事一覧',
 		'show_avatar'           => true,
 		'mode'                  => 'shortcode',
