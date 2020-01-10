@@ -7,6 +7,7 @@ const mqpacker = require( 'css-mqpacker' );
 const cssnano = require( 'cssnano' );
 const packageImporter = require( 'node-sass-package-importer' );
 const babel = require( 'gulp-babel' );
+const del = require( 'del' );
 
 
 /**
@@ -131,14 +132,24 @@ function copyJson() {
         .pipe( dest( 'build' ) );
 }
 
+function cleanFiles( cb ) {
+    return del(
+        [
+            './ystandard',
+            './build'
+        ],
+        cb );
+}
+
 /**
  * サーバーにデプロイするファイルを作成
  */
-exports.createDeployFiles = series( copyProductionFiles, parallel( zip, copyJson ) );
+exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyJson ) );
 /**
  * タスクの登録
  */
 exports.zip = series( copyProductionFiles, zip );
+exports.clean = series( cleanFiles );
 exports.js = parallel( js, jsAdmin );
 exports.sass = parallel( sass, sassParts );
 
@@ -146,6 +157,8 @@ exports.sass = parallel( sass, sassParts );
  * default
  */
 exports.default = function () {
+    cleanFiles();
+    sass();
     watch( [ './src/sass/**/*.scss', '!./src/sass/inline-parts/**/*.scss' ], sass );
     watch( './src/sass/inline-parts/**/*.scss', sassParts );
     watch( './src/js/*.js', js );
