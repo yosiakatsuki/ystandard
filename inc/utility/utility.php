@@ -129,7 +129,7 @@ function ys_get_font_awesome_css_url() {
 function ys_get_font_awesome_cdn_css_url() {
 	$version = apply_filters(
 		'ys_get_font_awesome_css_version',
-		'v5.12.0'
+		YS_Utility::get_font_awesome_version()
 	);
 
 	return apply_filters(
@@ -137,6 +137,21 @@ function ys_get_font_awesome_cdn_css_url() {
 		'https://use.fontawesome.com/releases/' . $version . '/css/all.css',
 		$version
 	);
+}
+
+/**
+ * Font Awesome - SVG 軽量版
+ *
+ * @return string
+ */
+function ys_get_font_awesome_svg_light_url() {
+
+	$file_url = apply_filters(
+		'ys_get_font_awesome_svg_light_url',
+		ys_get_theme_file_uri( '/js/font-awesome-ystd.js' )
+	);
+
+	return $file_url;
 }
 
 /**
@@ -157,7 +172,10 @@ function ys_get_font_awesome_svg_url() {
  * @return string
  */
 function ys_get_font_awesome_cdn_svg_url() {
-	$version = apply_filters( 'ys_get_font_awesome_cdn_svg_version', 'v5.12.0' );
+	$version = apply_filters(
+		'ys_get_font_awesome_cdn_svg_version',
+		YS_Utility::get_font_awesome_version()
+	);
 
 	return apply_filters(
 		'ys_get_font_awesome_cdn_svg_url',

@@ -36,7 +36,7 @@ class YS_Scripts_Config {
 				'handle'  => 'font-awesome',
 				'src'     => ys_get_font_awesome_css_url(),
 				'deps'    => array(),
-				'ver'     => 'v5.11.2',
+				'ver'     => YS_Utility::get_font_awesome_version(),
 				'media'   => 'all',
 				'enqueue' => ( 'css' === ys_get_option( 'ys_enqueue_icon_font_type' ) && ! ys_is_amp() ),
 				'type'    => 'enqueue', // enqueue or inline.
@@ -116,7 +116,7 @@ class YS_Scripts_Config {
 				'handle'  => 'ys-amp-fontawesome',
 				'src'     => ys_get_font_awesome_cdn_css_url(),
 				'deps'    => array(),
-				'ver'     => 'v5.11.2',
+				'ver'     => YS_Utility::get_font_awesome_version(),
 				'media'   => 'all',
 				'enqueue' => ys_is_amp(),
 				'type'    => 'enqueue', // enqueue or inline.
@@ -142,9 +142,17 @@ class YS_Scripts_Config {
 			),
 			array(
 				'handle'    => 'font-awesome',
+				'src'       => ys_get_font_awesome_svg_light_url(),
+				'deps'      => array(),
+				'ver'       => ys_get_theme_version( true ),
+				'in_footer' => true,
+				'enqueue'   => ( 'light' === ys_get_option( 'ys_enqueue_icon_font_type' ) ),
+			),
+			array(
+				'handle'    => 'font-awesome',
 				'src'       => ys_get_font_awesome_svg_url(),
 				'deps'      => array(),
-				'ver'       => 'v5.11.2',
+				'ver'       => YS_Utility::get_font_awesome_version(),
 				'in_footer' => true,
 				'enqueue'   => ( 'js' === ys_get_option( 'ys_enqueue_icon_font_type' ) ),
 			),
