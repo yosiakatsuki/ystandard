@@ -83,4 +83,13 @@ class YS_Utility {
 			return false;
 		}
 	}
+
+	/**
+	 * Font Awesomeのバージョン取得
+	 *
+	 * @return string
+	 */
+	public static function get_font_awesome_version() {
+		return 'v5.12.0';
+	}
 }
