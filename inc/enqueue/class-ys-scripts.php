@@ -300,13 +300,11 @@ class YS_Scripts {
 		);
 		wp_localize_script(
 			YS_Scripts_Config::SCRIPT_HANDLE_MAIN,
-			'ys_onload_script',
-			$this->onload_script
-		);
-		wp_localize_script(
-			YS_Scripts_Config::SCRIPT_HANDLE_MAIN,
-			'ys_Lazyload_script',
-			$this->lazyload_script
+			'ystdConfig',
+			array(
+				'onload'   => $this->onload_script,
+				'lazyload' => $this->lazyload_script,
+			)
 		);
 		/**
 		 * インラインJSのセット
@@ -824,9 +822,11 @@ class YS_Scripts {
 		};
 		window.addEventListener('DOMContentLoaded', function () {
 			setTimeout(function () {
-				for (var i = 0; i < ys_onload_script.length; i++) {
-					var item = ys_onload_script[i];
-					ysLoadScript(item.id, ysGetSrc(item.url, item.ver));
+				if(ystdConfig.onload) {
+					for (var i = 0; i < ystdConfig.onload.length; i++) {
+						var item = ystdConfig.onload[i];
+						ysLoadScript(item.id, ysGetSrc(item.url, item.ver));
+					}
 				}
 			}, 100);
 		});
@@ -835,10 +835,10 @@ class YS_Scripts {
 				return false;
 			}
 			window.ysSetTimeoutId = setTimeout(function () {
-				if (0 < ys_Lazyload_script.length) {
-					var item = ys_Lazyload_script[0];
+				if (ystdConfig.lazyload && 0 < ystdConfig.lazyload.length) {
+					var item = ystdConfig.lazyload[0];
 					ysLoadScript(item.id, ysGetSrc(item.url, item.ver));
-					ys_Lazyload_script.shift();
+					ystdConfig.lazyload.shift();
 					ysSetTimeoutId = null;
 				}
 			}, 200);
