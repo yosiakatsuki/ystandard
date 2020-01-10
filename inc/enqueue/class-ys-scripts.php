@@ -12,18 +12,6 @@
  */
 class YS_Scripts {
 	/**
-	 * インラインCSS読み込み時のダミーCSS
-	 */
-	const CSS_HANDLE_DUMMY = 'ystandard';
-	/**
-	 * メインCSS
-	 */
-	const CSS_HANDLE_MAIN = 'ystandard-style';
-	/**
-	 * メインJS
-	 */
-	const SCRIPT_HANDLE_MAIN = 'ystandard-script';
-	/**
 	 * 読み込むCSS
 	 *
 	 * @var array
@@ -119,7 +107,7 @@ class YS_Scripts {
 		/**
 		 * CSSのエンキュー処理
 		 */
-		$css = self::get_enqueue_css_files();
+		$css = YS_Scripts_Config::get_enqueue_css_files();
 		foreach ( $css as $item ) {
 			if ( $item['enqueue'] ) {
 				if ( 'enqueue' === $item['type'] ) {
@@ -144,110 +132,6 @@ class YS_Scripts {
 				}
 			}
 		}
-	}
-
-	/**
-	 * EnqueueするCSSのリスト
-	 */
-	public static function get_enqueue_css_files() {
-		$inline_css = new YS_Inline_Css();
-		/**
-		 * CSSのリスト
-		 */
-		$styles = array(
-			array(
-				'handle'  => 'font-awesome',
-				'src'     => ys_get_font_awesome_css_url(),
-				'deps'    => array(),
-				'ver'     => 'v5.11.2',
-				'media'   => 'all',
-				'enqueue' => ( 'css' === ys_get_option( 'ys_enqueue_icon_font_type' ) && ! ys_is_amp() ),
-				'type'    => 'enqueue', // enqueue or inline.
-				'inline'  => false, // true, false, handle.
-			),
-			array(
-				'handle'  => self::CSS_HANDLE_MAIN,
-				'src'     => self::get_enqueue_css_file_uri(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'enqueue', // enqueue or inline.
-				'inline'  => true, // true, false, handle.
-			),
-			array(
-				'handle'  => 'ys-customizer',
-				'src'     => $inline_css->get_inline_css(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'inline', // enqueue or inline.
-				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
-			),
-			array(
-				'handle'  => 'ys-editor-font-size',
-				'src'     => YS_Inline_Css::get_editor_font_size_css(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'inline', // enqueue or inline.
-				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
-			),
-			array(
-				'handle'  => 'ys-editor-color-palette',
-				'src'     => YS_Inline_Css::get_editor_color_palette(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'inline', // enqueue or inline.
-				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
-			),
-			array(
-				'handle'  => 'ys-custom-css',
-				'src'     => wp_get_custom_css(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => ( ! is_customize_preview() ),
-				'type'    => 'inline', // enqueue or inline.
-				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
-			),
-			array(
-				'handle'  => 'style-css',
-				'src'     => get_stylesheet_uri(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'enqueue', // enqueue or inline.
-				'inline'  => true, // true, false, handle.
-			),
-			array(
-				'handle'  => 'adminbar-css',
-				'src'     => get_template_directory_uri() . '/css/ystandard-adminbar.css',
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => is_admin_bar_showing(),
-				'type'    => 'enqueue', // enqueue or inline.
-				'inline'  => false, // true, false, handle.
-			),
-			array(
-				'handle'  => 'ys-amp-fontawesome',
-				'src'     => ys_get_font_awesome_cdn_css_url(),
-				'deps'    => array(),
-				'ver'     => 'v5.11.2',
-				'media'   => 'all',
-				'enqueue' => ys_is_amp(),
-				'type'    => 'enqueue', // enqueue or inline.
-				'inline'  => false, // true, false, handle.
-			),
-		);
-
-		return apply_filters( 'ys_get_enqueue_css_files', $styles );
 	}
 
 	/**
@@ -348,7 +232,7 @@ class YS_Scripts {
 		/**
 		 * エンキューするファイルのチェック
 		 */
-		$styles = self::get_enqueue_css_files();
+		$styles = YS_Scripts_Config::get_enqueue_css_files();
 		$key    = array_search(
 			$handle,
 			array_column( $styles, 'handle' ),
@@ -376,7 +260,7 @@ class YS_Scripts {
 		/**
 		 * JavaScriptのenqueue
 		 */
-		$files = self::get_enqueue_script_files();
+		$files = YS_Scripts_Config::get_enqueue_script_files();
 		foreach ( $files as $file ) {
 			if ( $file['enqueue'] ) {
 				wp_enqueue_script(
@@ -415,56 +299,20 @@ class YS_Scripts {
 			'before'
 		);
 		wp_localize_script(
-			self::SCRIPT_HANDLE_MAIN,
-			'ys_onload_script',
-			$this->onload_script
-		);
-		wp_localize_script(
-			self::SCRIPT_HANDLE_MAIN,
-			'ys_Lazyload_script',
-			$this->lazyload_script
+			YS_Scripts_Config::SCRIPT_HANDLE_MAIN,
+			'ystdConfig',
+			array(
+				'onload'   => $this->onload_script,
+				'lazyload' => $this->lazyload_script,
+			)
 		);
 		/**
 		 * インラインJSのセット
 		 */
 		wp_add_inline_script(
-			self::SCRIPT_HANDLE_MAIN,
+			YS_Scripts_Config::SCRIPT_HANDLE_MAIN,
 			str_replace( array( "\r\n", "\r", "\n", "\t" ), '', $this->get_inline_js() )
 		);
-	}
-
-	/**
-	 * ロードするJSのリスト
-	 */
-	public static function get_enqueue_script_files() {
-		$scripts = array(
-			array(
-				'handle'    => self::SCRIPT_HANDLE_MAIN,
-				'src'       => get_template_directory_uri() . '/js/ystandard.js',
-				'deps'      => array(),
-				'ver'       => ys_get_theme_version(),
-				'in_footer' => true,
-				'enqueue'   => true,
-			),
-			array(
-				'handle'    => 'font-awesome',
-				'src'       => ys_get_font_awesome_svg_url(),
-				'deps'      => array(),
-				'ver'       => 'v5.11.2',
-				'in_footer' => true,
-				'enqueue'   => ( 'js' === ys_get_option( 'ys_enqueue_icon_font_type' ) ),
-			),
-			array(
-				'handle'    => 'font-awesome',
-				'src'       => ys_get_option( 'ys_enqueue_icon_font_kit_url' ),
-				'deps'      => array(),
-				'ver'       => ys_get_theme_version( true ),
-				'in_footer' => true,
-				'enqueue'   => ( 'kit' === ys_get_option( 'ys_enqueue_icon_font_type' ) && ! empty( ys_get_option( 'ys_enqueue_icon_font_kit_url' ) ) ),
-			),
-		);
-
-		return apply_filters( 'ys_get_enqueue_script_files', $scripts );
 	}
 
 	/**
@@ -706,7 +554,7 @@ class YS_Scripts {
 						'media'   => 'all',
 						'enqueue' => true,
 						'type'    => 'inline', // enqueue or inline.
-						'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
+						'inline'  => YS_Scripts_Config::CSS_HANDLE_MAIN, // true, false, handle.
 					);
 				}
 
@@ -724,7 +572,7 @@ class YS_Scripts {
 	 */
 	public function get_amp_style() {
 		$style  = '';
-		$styles = self::get_enqueue_css_files();
+		$styles = YS_Scripts_Config::get_enqueue_css_files();
 		foreach ( $styles as $item ) {
 			if ( $item['enqueue'] ) {
 				$temp = '';
@@ -814,14 +662,14 @@ class YS_Scripts {
 		return apply_filters(
 			'ys_defer_scripts',
 			array(
-				'jquery'                 => false,
-				'jquery-core'            => false,
-				'jquery-migrate'         => false,
-				'wp-custom-header'       => false,
-				'wp-a11y'                => false,
-				'recaptcha'              => false,
-				self::SCRIPT_HANDLE_MAIN => true,
-				'font-awesome'           => true,
+				'jquery'                              => false,
+				'jquery-core'                         => false,
+				'jquery-migrate'                      => false,
+				'wp-custom-header'                    => false,
+				'wp-a11y'                             => false,
+				'recaptcha'                           => false,
+				YS_Scripts_Config::SCRIPT_HANDLE_MAIN => true,
+				'font-awesome'                        => true,
 			)
 		);
 	}
@@ -974,9 +822,11 @@ class YS_Scripts {
 		};
 		window.addEventListener('DOMContentLoaded', function () {
 			setTimeout(function () {
-				for (var i = 0; i < ys_onload_script.length; i++) {
-					var item = ys_onload_script[i];
-					ysLoadScript(item.id, ysGetSrc(item.url, item.ver));
+				if(ystdConfig.onload) {
+					for (var i = 0; i < ystdConfig.onload.length; i++) {
+						var item = ystdConfig.onload[i];
+						ysLoadScript(item.id, ysGetSrc(item.url, item.ver));
+					}
 				}
 			}, 100);
 		});
@@ -985,10 +835,10 @@ class YS_Scripts {
 				return false;
 			}
 			window.ysSetTimeoutId = setTimeout(function () {
-				if (0 < ys_Lazyload_script.length) {
-					var item = ys_Lazyload_script[0];
+				if (ystdConfig.lazyload && 0 < ystdConfig.lazyload.length) {
+					var item = ystdConfig.lazyload[0];
 					ysLoadScript(item.id, ysGetSrc(item.url, item.ver));
-					ys_Lazyload_script.shift();
+					ystdConfig.lazyload.shift();
 					ysSetTimeoutId = null;
 				}
 			}, 200);

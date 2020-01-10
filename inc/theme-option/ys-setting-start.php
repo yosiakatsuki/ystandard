@@ -18,7 +18,9 @@ $current_url = ys_get_page_url();
 	<div class="ystd-settings__section">
 		<h3><span class="orbitron">yStandard</span> の設定はテーマカスタマイザーから!</h3>
 		<p>yStandardの設定はテーマカスタマイザーから行って下さい。</p>
-		<p class="wp-block-button -lg"><a href="<?php echo esc_url( add_query_arg( 'return', urlencode( $current_url ), wp_customize_url() ) ); ?>">テーマカスタマイザーを開く</a></p>
+		<p class="wp-block-button">
+			<a class="wp-block-button__link" href="<?php echo esc_url( add_query_arg( 'return', urlencode( $current_url ), wp_customize_url() ) ); ?>">テーマカスタマイザーを開く</a>
+		</p>
 		<div class="ys-smaller">
 			<p>
 				※ version 2.0.0 以降はテーマカスタマイザーから設定を行う方式になりました
@@ -42,7 +44,7 @@ $current_url = ys_get_page_url();
 				<div class="card">
 					<h3><span class="orbitron">yStandard</span>を応援する</h3>
 					<div class="ystd-settings__icon"><i class="far fa-thumbs-up fa-2x"></i></div>
-					<div class="card__text">
+					<div class="card__text ystd-settings__text">
 						<ul>
 							<li>「知り合いにyStandardを紹介する」</li>
 							<li>「ブログでyStandardを紹介する」</li>
@@ -50,8 +52,8 @@ $current_url = ys_get_page_url();
 						<p>
 							など、ちょっとしたことでもyStandadを応援する方法があります
 						</p>
-						<p class="wp-block-button -block">
-							<a class="ystd-settings__btn" href="https://wp-ystandard.com/contribute/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>を応援する</a>
+						<p class="wp-block-button">
+							<a class="ystd-settings__btn wp-block-button__link" href="https://wp-ystandard.com/contribute/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>を応援する</a>
 						</p>
 					</div>
 				</div><!-- card -->
@@ -60,13 +62,13 @@ $current_url = ys_get_page_url();
 				<div class="card">
 					<h3><span class="orbitron">yStandard</span>ユーザーコミュニティ</h3>
 					<div class="ystd-settings__icon"><i class="fab fa-slack fa-2x"></i></div>
-					<div class="card__text">
+					<div class="card__text ystd-settings__text">
 						<p>
 							yStandard利用者同士での交流を目的としたSlackチームです<br><br>
 							テーマを利用していて気になった疑問点やカスタマイズTips等シェアしていただいてテーマをより楽しく使って頂けたらと思います<br>
 						</p>
-						<p class="wp-block-button -block">
-							<a class="ystd-settings__btn" href="https://wp-ystandard.com/ystandard-user-community/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>ユーザーコミュニティに参加する</a>
+						<p class="wp-block-button">
+							<a class="ystd-settings__btn wp-block-button__link" href="https://wp-ystandard.com/ystandard-user-community/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>ユーザーコミュニティに参加する</a>
 						</p>
 					</div>
 				</div><!-- card -->
@@ -75,12 +77,13 @@ $current_url = ys_get_page_url();
 				<div class="card">
 					<h3>拡張プラグイン</h3>
 					<div class="ystd-settings__icon"><i class="fas fa-plug fa-2x"></i></div>
-					<div class="card__text">
+					<div class="card__text ystd-settings__text">
 						<p>
-							yStandardでブログを書くことがもっと楽しくなる拡張プラグインを準備中です！
+							yStandardでブログを書くことがもっと楽しくなる拡張プラグイン！<br>
+							ブロック拡張プラグインやデザインスキンの配布・販売を予定しています！
 						</p>
-						<p class="wp-block-button -block">
-							<span class="text-gray">準備中…</span>
+						<p class="wp-block-button">
+							<a class="ystd-settings__btn wp-block-button__link" href="https://wp-ystandard.com/plugins/" target="_blank" rel="noopener noreferrer nofollow">拡張プラグインを見る</a>
 						</p>
 					</div>
 				</div><!-- card -->
