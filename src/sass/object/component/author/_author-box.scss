@@ -4,24 +4,30 @@
 .author-box__block {
   margin-top: .5em;
 }
+
 .author-box__img {
   width: 96px;
   height: auto;
   border-radius: 50%;
   margin: 0 auto;
 }
+
 .author-box__name {
   font-size: 1.1em;
 }
+
 .author-box__sns {
   display: inline-block;
 }
+
 .author-box__sns-item {
   margin-right: .5em;
+
   &:last-child {
     margin-right: 0;
   }
 }
+
 .author-box__dscr {
   p {
     margin-top: .25em;

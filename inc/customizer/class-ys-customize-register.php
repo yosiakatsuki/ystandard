@@ -786,10 +786,11 @@ class YS_Customize_Register {
 				'label'       => 'アイコンフォント（Font Awesome）読み込み方式',
 				'description' => 'Font Awesome読み込み方式を設定できます。',
 				'choices'     => array(
-					'js'   => 'JavaScript(推奨)',
-					'css'  => 'CSS',
-					'kit'  => 'Font Awesome Kits(「Font Awesome Kits URL」の入力必須)',
-					'none' => '読み込まない(※表示が崩れる場合があります。プラグイン等でFont Awesomeを読み込む場合の設定)',
+					'light' => '軽量版（テーマに必要な最低限のアイコンのみ読み込みます）',
+					'js'    => 'JavaScript',
+					'css'   => 'CSS',
+					'kit'   => 'Font Awesome Kits(「Font Awesome Kits URL」の入力必須)',
+					'none'  => '読み込まない(※表示が崩れる場合があります。プラグイン等でFont Awesomeを読み込む場合の設定)',
 				),
 			)
 		);
