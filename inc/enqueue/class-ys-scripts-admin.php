@@ -139,15 +139,15 @@ class YS_Scripts_Admin {
 	public function enqueue_block_editor_assets() {
 		$scripts = ys_scripts();
 		wp_enqueue_style(
-			YS_Scripts::CSS_HANDLE_DUMMY,
+			YS_Scripts_Config::CSS_HANDLE_DUMMY,
 			get_template_directory_uri() . '/css/ystandard.css'
 		);
 		wp_add_inline_style(
-			YS_Scripts::CSS_HANDLE_DUMMY,
+			YS_Scripts_Config::CSS_HANDLE_DUMMY,
 			YS_Inline_Css::get_editor_font_size_css( '.editor-styles-wrapper' )
 		);
 		wp_add_inline_style(
-			YS_Scripts::CSS_HANDLE_DUMMY,
+			YS_Scripts_Config::CSS_HANDLE_DUMMY,
 			YS_Inline_Css::get_editor_color_palette( '.editor-styles-wrapper' )
 		);
 	}
