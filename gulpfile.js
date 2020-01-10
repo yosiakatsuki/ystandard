@@ -8,6 +8,10 @@ const cssnano = require( 'cssnano' );
 const packageImporter = require( 'node-sass-package-importer' );
 const babel = require( 'gulp-babel' );
 const del = require( 'del' );
+const webpackStream = require( 'webpack-stream' );
+const webpack = require( 'webpack' );
+
+const webpackConfig = require( './webpack.config' );
 
 
 /**
@@ -73,6 +77,11 @@ function jsAdmin() {
     return src( 'src/js/admin/*.js' )
         .pipe( babel( babelOption ) )
         .pipe( dest( 'js/admin/' ) )
+}
+
+function buildWebpack() {
+    return webpackStream( webpackConfig, webpack )
+        .pipe( dest( 'js/' ) )
 }
 
 /**
@@ -152,6 +161,8 @@ exports.zip = series( copyProductionFiles, zip );
 exports.clean = series( cleanFiles );
 exports.js = parallel( js, jsAdmin );
 exports.sass = parallel( sass, sassParts );
+exports.webpack = series( buildWebpack );
+exports.build = series( cleanFiles, parallel( sass, sassParts, js, jsAdmin, buildWebpack ) );
 
 /**
  * default
@@ -163,4 +174,5 @@ exports.default = function () {
     watch( './src/sass/inline-parts/**/*.scss', sassParts );
     watch( './src/js/*.js', js );
     watch( './src/js/admin/*.js', jsAdmin );
+    watch( './src/js/**/*.js', buildWebpack );
 };
