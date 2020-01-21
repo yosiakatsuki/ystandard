@@ -120,10 +120,6 @@ class YS_Init {
 		 */
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		/**
-		 * [yStandard]ブログカード機能
-		 */
-		ys_blog_card_embed_register_handler();
-		/**
 		 * Gutenbergサポート
 		 */
 		add_theme_support( 'wp-block-styles' );

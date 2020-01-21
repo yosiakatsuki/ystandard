@@ -44,6 +44,9 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 v3.x.x
 
+### v3.9.0
+- [追加] yStandard Blocksを使っている場合、ブログカード表示をyStandard Blocksのカードブロックに合わせる
+
 ### v3.8.1
 - [修正] YouTubeの埋め込みがAMPページで崩れる点の修正
 
