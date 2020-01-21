@@ -102,7 +102,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 			return '';
 		}
 		/**
-		 * yStandard Blocks利用中の場合、プラグイン側で処理をする
+		 * [yStandard Blocks]利用中の場合、プラグイン側で処理をする
 		 */
 		if ( class_exists( '\ystandard_blocks\Card' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
 			$ystdb_card = new \ystandard_blocks\Card();

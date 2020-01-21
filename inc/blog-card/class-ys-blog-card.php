@@ -62,7 +62,6 @@ class YS_Blog_Card {
 	 *
 	 * @return string ブログカード用ショートコード
 	 */
-
 	public function blog_card_handler( $matches, $attr, $url, $rawattr ) {
 		$blog_card = '[ys_blog_card url="' . $url . '"]';
 		/**
