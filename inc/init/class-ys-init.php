@@ -120,7 +120,7 @@ class YS_Init {
 		 */
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		/**
-		 * Gutenbergサポート
+		 * ブロックエディターサポート
 		 */
 		add_theme_support( 'wp-block-styles' );
 		/**
@@ -132,11 +132,11 @@ class YS_Init {
 		 */
 		add_theme_support( 'responsive-embeds' );
 		/**
-		 * Gutenbergの文字サイズ選択設定
+		 * ブロックエディターの文字サイズ選択設定
 		 */
 		add_theme_support( 'editor-font-sizes', ys_get_editor_font_sizes() );
 		/**
-		 * Gutenberg色設定
+		 * ブロックエディター色設定
 		 */
 		add_theme_support( 'editor-color-palette', ys_get_editor_color_palette( false ) );
 	}

@@ -19,7 +19,7 @@ $ys_init = new YS_Init();
 
 
 /**
- * Gutenberg文字サイズ設定
+ * ブロックエディター文字サイズ設定
  *
  * @return array
  */
@@ -116,6 +116,13 @@ function ys_get_editor_color_palette( $all = true ) {
 			'description' => '',
 		),
 		array(
+			'name'        => 'オレンジ',
+			'slug'        => 'ys-orange',
+			'color'       => ys_get_option( 'ys-color-palette-ys-orange' ),
+			'default'     => '#EB962D',
+			'description' => '',
+		),
+		array(
 			'name'        => '紫',
 			'slug'        => 'ys-purple',
 			'color'       => ys_get_option( 'ys-color-palette-ys-purple' ),
@@ -133,7 +140,7 @@ function ys_get_editor_color_palette( $all = true ) {
 			'name'        => '薄灰色',
 			'slug'        => 'ys-light-gray',
 			'color'       => ys_get_option( 'ys-color-palette-ys-light-gray' ),
-			'default'     => '#fafafa',
+			'default'     => '#f7f7f8',
 			'description' => '',
 		),
 		array(
