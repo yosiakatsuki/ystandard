@@ -40,6 +40,7 @@
 		"build:sass": "gulp sass",
 		"build:deploy-files": "gulp createDeployFiles",
 		"rename:beta-json": "rename -f build/ystandard-info-beta.json ystandard-info.json",
-		"watch": "gulp"
+		"watch": "gulp",
+		"build": "gulp build"
 	}
 }
