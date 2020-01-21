@@ -144,7 +144,7 @@ require_once get_template_directory() . '/inc/ogp/ogp.php';
 /**
  * ブログカード
  */
-require_once get_template_directory() . '/inc/blog-card/blog-card.php';
+require_once get_template_directory() . '/inc/blog-card/class-ys-blog-card.php';
 /**
  * 互換関連
  */
