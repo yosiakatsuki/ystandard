@@ -140,7 +140,7 @@ function ys_get_editor_color_palette( $all = true ) {
 			'name'        => '薄灰色',
 			'slug'        => 'ys-light-gray',
 			'color'       => ys_get_option( 'ys-color-palette-ys-light-gray' ),
-			'default'     => '#f7f7f8',
+			'default'     => '#F7F7F8',
 			'description' => '',
 		),
 		array(
