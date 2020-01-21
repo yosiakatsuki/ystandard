@@ -3,6 +3,5 @@
   position: fixed;
   top: 0;
   left: 0;
-  -webkit-box-shadow: 0 1px 1px rgba(189, 195, 199, 0.2);
-          box-shadow: 0 1px 1px rgba(189, 195, 199, 0.2);
+  box-shadow: 0 1px 1px rgba(189, 195, 199, 0.2);
   z-index: 9; }

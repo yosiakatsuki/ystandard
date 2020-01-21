@@ -44,6 +44,9 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 v3.x.x
 
+### v3.8.1
+- [修正] YouTubeの埋め込みがAMPページで崩れる点の修正
+
 ### v3.8.0
 - [追加] Font Awesome(アイコンフォント)の軽量版読み込みオプション追加
 - [修正] JavaScript読み込みのバージョン指定が子テーマのバージョンになっていた点の修正
