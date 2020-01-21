@@ -880,7 +880,7 @@ function ys_is_active_slide_menu_search_form() {
 }
 
 /**
- * GutenbergのCSSを読み込むか
+ * ブロックエディターのCSSを読み込むか
  *
  * @return bool
  */
