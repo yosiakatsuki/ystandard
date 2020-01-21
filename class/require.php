@@ -41,7 +41,6 @@ require_once $class_dir . 'class-ys-shortcode-get-posts.php';
 require_once $class_dir . 'class-ys-shortcode-post-ranking.php';
 require_once $class_dir . 'class-ys-shortcode-recent-posts.php';
 require_once $class_dir . 'class-ys-shortcode-post-paging.php';
-require_once $class_dir . 'class-ys-shortcode-blog-card.php';
 require_once $class_dir . 'class-ys-shortcode-post-taxonomy.php';
 require_once $class_dir . 'class-ys-shortcode-follow-box.php';
 

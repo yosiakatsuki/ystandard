@@ -423,7 +423,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_section(
 			array(
 				'section'     => 'ys_color_palette',
-				'title'       => 'カラーパレット（Gutenberg）',
+				'title'       => 'カラーパレット（ブロックエディター）',
 				'priority'    => 0,
 				'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。',
 				'panel'       => 'ys_customizer_panel_color',
@@ -2638,7 +2638,7 @@ class YS_Customize_Register {
 			)
 		);
 		/**
-		 * Gutenberg用CSSの追加
+		 * ブロックエディター用CSSの追加
 		 */
 		$ys_customizer->add_label(
 			array(
