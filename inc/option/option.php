@@ -132,6 +132,7 @@ function ys_get_option_defaults() {
 		'ys-color-palette-ys-pink'                  => '#E28DA9',
 		'ys-color-palette-ys-green'                 => '#92C892',
 		'ys-color-palette-ys-yellow'                => '#F5EC84',
+		'ys-color-palette-ys-orange'                => '#EB962D',
 		'ys-color-palette-ys-purple'                => '#B67AC2',
 		'ys-color-palette-ys-gray'                  => '#757575',
 		'ys-color-palette-ys-light-gray'            => '#fafafa',
@@ -315,7 +316,7 @@ function ys_get_option_defaults() {
 		'ys_admin_enable_block_editor_style'        => 1, // Gutenberg用CSSを追加する.
 		'ys_admin_enable_tiny_mce_style'            => 0, // ビジュアルエディタ用CSSを追加する.
 		// 削除予定
-		// Gutenberg設定.
+		// ブロックエディター設定.
 		'ys_enqueue_gutenberg_css'                  => 0, // ブロックエディター対応のCSSを読み込む.
 	);
 }

@@ -58,7 +58,7 @@ class YS_Inline_Css {
 	}
 
 	/**
-	 * Gutenbergフォントサイズ指定CSS
+	 * ブロックエディターフォントサイズ指定CSS
 	 *
 	 * @param string $prefix  プレフィックス.
 	 * @param int    $default デフォルトフォントサイズ.
@@ -83,7 +83,7 @@ class YS_Inline_Css {
 	}
 
 	/**
-	 * Gutenberg色設定
+	 * ブロックエディター色設定
 	 *
 	 * @param string $prefix プレフィックス.
 	 *
