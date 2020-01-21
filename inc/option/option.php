@@ -135,7 +135,7 @@ function ys_get_option_defaults() {
 		'ys-color-palette-ys-orange'                => '#EB962D',
 		'ys-color-palette-ys-purple'                => '#B67AC2',
 		'ys-color-palette-ys-gray'                  => '#757575',
-		'ys-color-palette-ys-light-gray'            => '#F7F7F8',
+		'ys-color-palette-ys-light-gray'            => '#F1F1F3',
 		'ys-color-palette-ys-black'                 => '#000000',
 		'ys-color-palette-ys-white'                 => '#ffffff',
 		'ys-color-palette-ys-user-1'                => '#ffffff',
