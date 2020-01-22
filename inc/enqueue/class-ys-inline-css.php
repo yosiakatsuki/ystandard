@@ -58,7 +58,7 @@ class YS_Inline_Css {
 	}
 
 	/**
-	 * Gutenbergフォントサイズ指定CSS
+	 * ブロックエディターフォントサイズ指定CSS
 	 *
 	 * @param string $prefix  プレフィックス.
 	 * @param int    $default デフォルトフォントサイズ.
@@ -83,7 +83,7 @@ class YS_Inline_Css {
 	}
 
 	/**
-	 * Gutenberg色設定
+	 * ブロックエディター色設定
 	 *
 	 * @param string $prefix プレフィックス.
 	 *
@@ -97,17 +97,18 @@ class YS_Inline_Css {
 			/**
 			 * Background-color
 			 */
-			$css .= $prefix . '
-			.has-' . $value['slug'] . '-background-color{
+			$css .= $prefix . '.has-' . $value['slug'] . '-background-color,
+			.has-background.has-' . $value['slug'] . '-background-color{
 				background-color:' . $value['color'] . ';
 				border-color:' . $value['color'] . ';
 			}';
 			/**
 			 * Text Color
 			 */
-			$css .= $prefix . '
-			.has-' . $value['slug'] . '-color,
-			.has-' . $value['slug'] . '-color:hover{
+			$css .= $prefix . '.has-' . $value['slug'] . '-color,
+			.has-text-color.has-' . $value['slug'] . '-color,
+			.has-' . $value['slug'] . '-color:hover,
+			.has-text-color.has-' . $value['slug'] . '-color:hover{
 				color:' . $value['color'] . ';
 			}';
 			/**

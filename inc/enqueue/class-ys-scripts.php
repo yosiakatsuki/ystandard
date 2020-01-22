@@ -361,7 +361,7 @@ class YS_Scripts {
 	}
 
 	/**
-	 * Gutenberg用WP標準CSSの削除
+	 * ブロックエディター用WP標準CSSの削除
 	 */
 	public function dequeue_wp_block_css() {
 		wp_dequeue_style( 'wp-block-library' );
