@@ -102,6 +102,21 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 			return '';
 		}
 		/**
+		 * [yStandard Blocks]利用中の場合、プラグイン側で処理をする
+		 */
+		if ( class_exists( '\ystandard_blocks\Card' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
+			$ystdb_card = new \ystandard_blocks\Card();
+
+			return $ystdb_card->render(
+				array(
+					'url'         => $url,
+					'dscr'        => $this->get_param( 'dscr' ),
+					'image'       => $this->get_param( 'thumbnail' ),
+					'link_target' => $this->get_param( 'target' ),
+				)
+			);
+		}
+		/**
 		 * URLチェック
 		 */
 		if ( ! wp_http_validate_url( $url ) ) {
