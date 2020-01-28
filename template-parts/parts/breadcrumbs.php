@@ -11,6 +11,9 @@ if ( is_front_page() || ys_is_no_title_template() ) {
 	return;
 }
 $items = ys_get_breadcrumbs();
+if ( empty( $items ) ) {
+	return;
+}
 ?>
 <div id="breadcrumbs" class="breadcrumbs">
 	<div class="container">
