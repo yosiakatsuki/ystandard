@@ -42,6 +42,23 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
+h1,
+h2 {
+  font-size: get_font_size('xx-large');
+}
+
+h3 {
+  font-size: get_font_size('x-large');
+}
+
+h4 {
+  font-size: 1.4em;
+}
+
+h5, h6 {
+  font-size: 1.3em;
+}
+
 /**
  * 画像
  */
