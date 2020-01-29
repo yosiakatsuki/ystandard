@@ -64,7 +64,7 @@ class YS_Inline_Css {
 	/**
 	 * フォントCSSを取得
 	 *
-	 * @param string|array $selector セレクタ
+	 * @param string|array $selector セレクタ.
 	 *
 	 * @return string
 	 */
