@@ -147,7 +147,7 @@ class YS_Scripts_Admin {
 			YS_Inline_Css::get_font_css(
 				array(
 					'body .editor-styles-wrapper',
-					'.editor-styles-wrapper .editor-post-title .editor-post-title__block .editor-post-title__input'
+					'.editor-styles-wrapper .editor-post-title .editor-post-title__block .editor-post-title__input',
 				)
 			)
 		);

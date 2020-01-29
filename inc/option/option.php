@@ -7,7 +7,9 @@
  * @license GPL-2.0+
  */
 
-
+/**
+ * クラスファイル
+ */
 require_once dirname( __FILE__ ) . '/class-ys-option.php';
 
 /**
