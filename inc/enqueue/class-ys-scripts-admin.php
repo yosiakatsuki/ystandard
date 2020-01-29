@@ -144,8 +144,23 @@ class YS_Scripts_Admin {
 		);
 		wp_add_inline_style(
 			YS_Scripts_Config::CSS_HANDLE_DUMMY,
+			YS_Inline_Css::get_font_css(
+				array(
+					'body .editor-styles-wrapper',
+					'.editor-styles-wrapper .editor-post-title .editor-post-title__block .editor-post-title__input',
+				)
+			)
+		);
+		/**
+		 * フォントサイズ
+		 */
+		wp_add_inline_style(
+			YS_Scripts_Config::CSS_HANDLE_DUMMY,
 			YS_Inline_Css::get_editor_font_size_css( '.editor-styles-wrapper' )
 		);
+		/**
+		 * カラーパレット
+		 */
 		wp_add_inline_style(
 			YS_Scripts_Config::CSS_HANDLE_DUMMY,
 			YS_Inline_Css::get_editor_color_palette( '.editor-styles-wrapper' )
