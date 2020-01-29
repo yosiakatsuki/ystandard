@@ -28,6 +28,10 @@ class YS_Inline_Css {
 		$ys_scripts = ys_scripts();
 		$styles     = array();
 		/**
+		 * フォント
+		 */
+		$styles[] = $this->get_font_css();
+		/**
 		 * サイト背景色
 		 */
 		$styles[] = $this->get_site_css();
@@ -55,6 +59,37 @@ class YS_Inline_Css {
 		$styles[] = $this->get_mobile_footer_css();
 
 		return $ys_scripts->minify( implode( '', $styles ) );
+	}
+
+	/**
+	 * フォントCSSを取得
+	 *
+	 * @param string $selector
+	 *
+	 * @return string
+	 */
+	public static function get_font_css( $selector = 'body' ) {
+		$font_family = 'sans-serif';
+		$font        = array(
+			'meihirago' => '-apple-system, BlinkMacSystemFont, Avenir, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif',
+			'yugo'      => 'Avenir, "Segoe UI", "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", sans-serif',
+			'serif'     => 'serif',
+		);
+
+		$option = YS_Option::get_option( 'ys_design_font_type' );
+		if ( isset( $font[ $option ] ) ) {
+			$font_family = $font[ $option ];
+		}
+
+		if ( is_array( $selector ) ) {
+			$selector = implode( ',', $selector );
+		}
+
+		return sprintf(
+			'%s{font-family:%s;}',
+			$selector,
+			apply_filters( 'ys_inline_font_family', $font_family, $option )
+		);
 	}
 
 	/**

@@ -149,6 +149,10 @@ class YS_Option {
 
 		return array(
 			/**
+			 * デザイン -> フォント
+			 */
+			'ys_design_font_type'                       => 'yugo', // フォントタイプ
+			/**
 			 * デザイン -> ヘッダー
 			 */
 			'ys_design_header_type'                     => 'row1', // ヘッダータイプ.
