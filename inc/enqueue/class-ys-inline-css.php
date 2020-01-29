@@ -64,14 +64,14 @@ class YS_Inline_Css {
 	/**
 	 * フォントCSSを取得
 	 *
-	 * @param string $selector
+	 * @param string|array $selector セレクタ
 	 *
 	 * @return string
 	 */
 	public static function get_font_css( $selector = 'body' ) {
 		$font_family = 'sans-serif';
 		$font        = array(
-			'meihirago' => '-apple-system, BlinkMacSystemFont, Avenir, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif',
+			'meihirago' => '"Helvetica neue", "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif',
 			'yugo'      => 'Avenir, "Segoe UI", "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", sans-serif',
 			'serif'     => 'serif',
 		);

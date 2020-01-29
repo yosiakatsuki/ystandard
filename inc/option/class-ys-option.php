@@ -151,7 +151,7 @@ class YS_Option {
 			/**
 			 * デザイン -> フォント
 			 */
-			'ys_design_font_type'                       => 'yugo', // フォントタイプ
+			'ys_design_font_type'                       => 'yugo', // フォントタイプ.
 			/**
 			 * デザイン -> ヘッダー
 			 */
