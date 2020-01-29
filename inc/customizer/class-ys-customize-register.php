@@ -41,6 +41,7 @@ class YS_Customize_Register {
 		 * [ys]設定シリーズ
 		 */
 		$this->design();
+		$this->design_font();
 		$this->design_header();
 		$this->design_mobile();
 		$this->design_one_column_template();
@@ -555,6 +556,41 @@ class YS_Customize_Register {
 				'priority'        => 1000,
 				'description'     => 'サイト共通部分のデザイン設定',
 				'active_callback' => array(),
+			)
+		);
+	}
+
+	/**
+	 * デザイン -> フォント
+	 */
+	private function design_font() {
+		$ys_customizer = new YS_Customizer( $this->_wp_customize );
+		/**
+		 * セクション追加
+		 */
+		$ys_customizer->add_section(
+			array(
+				'section'     => 'ys_customizer_section_font_design',
+				'title'       => 'フォント設定',
+				'priority'    => 1,
+				'description' => 'フォントの設定',
+				'panel'       => 'ys_customizer_panel_design',
+			)
+		);
+		/**
+		 * フォント種類
+		 */
+		$ys_customizer->add_radio(
+			array(
+				'id'          => 'ys_design_font_type',
+				'default'     => ys_get_option_default( 'ys_design_font_type' ),
+				'label'       => '表示フォントタイプ',
+				'description' => '文字のフォントを変更できます',
+				'choices'     => array(
+					'meihirago' => 'メイリオ・ヒラギノ',
+					'yugo'      => '游ゴシック',
+					'serif'     => '明朝体',
+				),
 			)
 		);
 	}
