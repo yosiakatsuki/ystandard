@@ -57,7 +57,7 @@ class YS_Breadcrumbs {
 	/**
 	 * Breadcrumb constructor.
 	 */
-	function __construct() {
+	public function __construct() {
 		$this->show_on_front  = get_option( 'show_on_front' );
 		$this->page_on_front  = get_option( 'page_on_front' );
 		$this->page_for_posts = get_option( 'page_for_posts' );
@@ -171,13 +171,11 @@ class YS_Breadcrumbs {
 	 * 検索ページ
 	 */
 	private function set_search() {
-		/**
-		 * translators: %1$s 検索文字列.
-		 */
+		/* translators: %1$s 検索文字列. */
 		$title = sprintf( __( 'Search results of "%1$s"' ), get_search_query() );
 		$this->set_item(
 			$title,
-			esc_url_raw( home_url( '?s=' . urlencode( get_query_var( 's' ) ) ) )
+			esc_url_raw( home_url( '?s=' . rawurlencode( get_query_var( 's' ) ) ) )
 		);
 	}
 
@@ -535,7 +533,7 @@ class YS_Breadcrumbs {
 			get_day_link( $year, $month, $day )
 		);
 	}
-	
+
 	/**
 	 * Get Post Type
 	 */
