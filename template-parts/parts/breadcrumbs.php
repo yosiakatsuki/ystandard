@@ -10,8 +10,8 @@
 if ( is_front_page() || ys_is_no_title_template() ) {
 	return;
 }
-$ys_breadcrumb = new YS_Breadcrumb();
-$items = $ys_breadcrumb->get_breadcrumbs();
+$ys_breadcrumb = new YS_Breadcrumbs();
+$items         = $ys_breadcrumb->get_breadcrumbs();
 if ( empty( $items ) ) {
 	return;
 }

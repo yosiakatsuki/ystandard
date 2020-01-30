@@ -8,9 +8,9 @@
  */
 
 /**
- * Class YS_Breadcrumb
+ * Class YS_Breadcrumbs
  */
-class YS_Breadcrumb {
+class YS_Breadcrumbs {
 
 	/**
 	 * Position.
@@ -24,7 +24,7 @@ class YS_Breadcrumb {
 	 *
 	 * @var array
 	 */
-	private $items = [];
+	private $items = array();
 
 	/**
 	 * Show on front
@@ -61,7 +61,7 @@ class YS_Breadcrumb {
 		$this->show_on_front  = get_option( 'show_on_front' );
 		$this->page_on_front  = get_option( 'page_on_front' );
 		$this->page_for_posts = get_option( 'page_for_posts' );
-		$this->items          = [];
+		$this->items          = array();
 		$this->home_label     = apply_filters( 'ys_breadcrumbs_home_label', 'Home' );
 	}
 
@@ -69,7 +69,7 @@ class YS_Breadcrumb {
 	 * アクションフックのセット
 	 */
 	public function set_action() {
-		add_action( 'wp_footer', [ $this, 'breadcrumbs' ], 11 );
+		add_action( 'wp_footer', array( $this, 'breadcrumbs' ), 11 );
 	}
 
 	/**
@@ -80,11 +80,11 @@ class YS_Breadcrumb {
 		if ( ! is_array( $items ) || empty( $items ) ) {
 			return;
 		}
-		$breadcrumbs = [
+		$breadcrumbs = array(
 			'@context'        => 'https://schema.org',
 			'@type'           => 'BreadcrumbList',
 			'itemListElement' => $items,
-		];
+		);
 
 		ys_echo_json_ld( $breadcrumbs );
 	}
@@ -171,6 +171,9 @@ class YS_Breadcrumb {
 	 * 検索ページ
 	 */
 	private function set_search() {
+		/**
+		 * translators: %1$s 検索文字列.
+		 */
 		$title = sprintf( __( 'Search results of "%1$s"' ), get_search_query() );
 		$this->set_item(
 			$title,
@@ -400,12 +403,12 @@ class YS_Breadcrumb {
 	 */
 	private function set_item( $title, $link ) {
 
-		$item = [
+		$item = array(
 			'@type'    => 'ListItem',
 			'position' => $this->position,
 			'name'     => $title,
 			'item'     => $link,
-		];
+		);
 		if ( empty( $link ) ) {
 			unset( $item['item'] );
 		}
@@ -431,9 +434,9 @@ class YS_Breadcrumb {
 	/**
 	 * 階層アイテムをセット
 	 *
-	 * @param        $object_id
-	 * @param        $object_type
-	 * @param string $resource_type
+	 * @param int    $object_id     オブジェクトID.
+	 * @param string $object_type   オブジェクトタイプ.
+	 * @param string $resource_type 固定ページ・カテゴリーなど.
 	 */
 	private function set_ancestors( $object_id, $object_type, $resource_type = '' ) {
 		$ancestors = get_ancestors( $object_id, $object_type, $resource_type );
@@ -532,8 +535,7 @@ class YS_Breadcrumb {
 			get_day_link( $year, $month, $day )
 		);
 	}
-
-
+	
 	/**
 	 * Get Post Type
 	 */
@@ -546,5 +548,5 @@ class YS_Breadcrumb {
 /**
  * アクションのセット
  */
-$ys_breadcrumb = new YS_Breadcrumb();
+$ys_breadcrumb = new YS_Breadcrumbs();
 $ys_breadcrumb->set_action();
