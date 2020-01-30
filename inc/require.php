@@ -95,7 +95,7 @@ require_once get_template_directory() . '/inc/author/author-option-page.php';
 /**
  * パンくずリスト
  */
-require_once get_template_directory() . '/inc/breadcrumbs/breadcrumbs.php';
+require_once get_template_directory() . '/inc/breadcrumbs/class-ys-breadcrumbs.php';
 /**
  * Copyright
  */

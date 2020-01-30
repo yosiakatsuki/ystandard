@@ -43,6 +43,7 @@ class YS_Customize_Register {
 		$this->design();
 		$this->design_font();
 		$this->design_header();
+		$this->design_breadcrumb();
 		$this->design_mobile();
 		$this->design_one_column_template();
 		$this->design_icon_font();
@@ -716,6 +717,64 @@ class YS_Customize_Register {
 	}
 
 	/**
+	 * デザイン -> パンくずリスト
+	 */
+	private function design_breadcrumb() {
+		$ys_customizer = new YS_Customizer( $this->_wp_customize );
+		/**
+		 * セクション追加
+		 */
+		$ys_customizer->add_section(
+			array(
+				'section'     => 'ys_customizer_section_breadcrumb_design',
+				'title'       => 'パンくずリスト設定',
+				'priority'    => 1,
+				'description' => 'パンくずリストの表示設定',
+				'panel'       => 'ys_customizer_panel_design',
+			)
+		);
+
+		/**
+		 * パンくずリスト表示位置
+		 */
+		$ys_customizer->add_radio(
+			array(
+				'id'          => 'ys_breadcrumbs_position',
+				'default'     => ys_get_option_default( 'ys_breadcrumbs_position' ),
+				'label'       => 'パンくずリストの表示位置',
+				'description' => '',
+				'choices'     => array(
+					'header' => 'ヘッダー',
+					'footer' => 'フッター',
+					'none'   => '表示しない',
+				),
+			)
+		);
+		/**
+		 * パンくずリストに「投稿ページ」を表示する
+		 */
+		if ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
+
+			$ys_customizer->add_label(
+				array(
+					'id'          => 'ys_show_page_for_posts_on_breadcrumbs_label',
+					'label'       => 'パンくずリストの「投稿ページ」表示',
+					'description' => 'パンくずリストに「設定」→「表示設定」→「ホームページの表示」で「投稿ページ」で指定したページを表示する。',
+					'section'     => 'ys_customizer_section_archive',
+				)
+			);
+			$ys_customizer->add_checkbox(
+				array(
+					'id'      => 'ys_show_page_for_posts_on_breadcrumbs',
+					'default' => ys_get_option_default( 'ys_show_page_for_posts_on_breadcrumbs' ),
+					'label'   => 'パンくずリストに「投稿ページ」を表示する',
+					'section' => 'ys_customizer_section_archive',
+				)
+			);
+		}
+	}
+
+	/**
 	 * デザイン -> モバイルページ
 	 */
 	private function design_mobile() {
@@ -1261,27 +1320,6 @@ class YS_Customize_Register {
 				'section' => 'ys_customizer_section_archive',
 			)
 		);
-		if ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
-			/**
-			 * パンくずリストに「投稿ページ」を表示する
-			 */
-			$ys_customizer->add_label(
-				array(
-					'id'          => 'ys_show_page_for_posts_on_breadcrumbs_label',
-					'label'       => 'パンくずリストの「投稿ページ」表示',
-					'description' => 'パンくずリストに「設定」→「表示設定」→「ホームページの表示」で「投稿ページ」で指定したページを表示する。',
-					'section'     => 'ys_customizer_section_archive',
-				)
-			);
-			$ys_customizer->add_checkbox(
-				array(
-					'id'      => 'ys_show_page_for_posts_on_breadcrumbs',
-					'default' => ys_get_option_default( 'ys_show_page_for_posts_on_breadcrumbs' ),
-					'label'   => 'パンくずリストに「投稿ページ」を表示する',
-					'section' => 'ys_customizer_section_archive',
-				)
-			);
-		}
 	}
 
 	/**
