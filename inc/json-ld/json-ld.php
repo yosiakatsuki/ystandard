@@ -42,7 +42,7 @@ add_action( 'wp_footer', 'ys_the_json_ld' );
  *
  * @param array $data JSON-LDを出力するデータ.
  */
-function ys_echo_json_ld( $data = [] ) {
+function ys_echo_json_ld( $data = array() ) {
 	if ( ! is_array( $data ) || empty( $data ) ) {
 		return;
 	}
