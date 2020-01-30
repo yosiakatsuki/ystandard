@@ -32,13 +32,22 @@ function ys_the_json_ld() {
 			ys_get_json_ld_website(),
 		);
 	}
-	$json = json_encode( $json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT );
-	if ( '' !== $json ) {
-		echo '<script type="application/ld+json">' . $json . '</script>' . PHP_EOL;
-	}
+	ys_echo_json_ld( $json );
 }
 
 add_action( 'wp_footer', 'ys_the_json_ld' );
+
+/**
+ * JSON-LD出力
+ *
+ * @param array $data JSON-LDを出力するデータ.
+ */
+function ys_echo_json_ld( $data = [] ) {
+	if ( ! is_array( $data ) || empty( $data ) ) {
+		return;
+	}
+	echo '<script type="application/ld+json">' . json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . PHP_EOL;
+}
 
 /**
  * Json-LD Organization作成
