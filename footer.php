@@ -9,6 +9,14 @@
 
 ?>
 	</div><!-- .site-content -->
+	<?php
+	/**
+	 * パンくずリスト
+	 */
+	if ( 'footer' === ys_get_option( 'ys_breadcrumbs_position' ) ) {
+		get_template_part( 'template-parts/parts/breadcrumbs' );
+	}
+	?>
 	<?php do_action( 'ys_before_site_footer' ); ?>
 	<footer id="footer" class="site-footer site__footer">
 		<div class="container">
