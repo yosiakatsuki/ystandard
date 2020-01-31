@@ -164,6 +164,11 @@ class YS_Option {
 			'ys_header_fixed_height_tablet'             => 0, // ヘッダー高さ(PC).
 			'ys_header_fixed_height_mobile'             => 0, // ヘッダー高さ(PC).
 			/**
+			 * デザイン -> パンくずリスト
+			 */
+			'ys_breadcrumbs_position'                   => 'header', // パンくずリストの表示位置設定.
+			'ys_show_page_for_posts_on_breadcrumbs'     => 1, // パンくずリストの「投稿ページ」表示.
+			/**
 			 * 色設定
 			 */
 			'ys_color_site_bg'                          => '#ffffff',
@@ -244,7 +249,6 @@ class YS_Option {
 			'ys_archive_type'                           => 'list', // 一覧表示タイプ.
 			'ys_show_archive_publish_date'              => 1, // 投稿日を表示する.
 			'ys_show_archive_author'                    => 1, // 著者情報を表示する.
-			'ys_show_page_for_posts_on_breadcrumbs'     => 1, // パンくずリストの「投稿ページ」表示.
 			// [ys]ワンカラムテンプレート設定.
 			'ys_design_one_col_thumbnail_type'          => 'normal', // アイキャッチ画像表示タイプ.
 			'ys_design_one_col_content_type'            => 'normal', // コンテンツタイプ normal,wide.

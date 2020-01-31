@@ -51,7 +51,9 @@
 	/**
 	 * パンくずリスト
 	 */
-	get_template_part( 'template-parts/parts/breadcrumbs' );
+	if ( 'header' === ys_get_option( 'ys_breadcrumbs_position' ) ) {
+		get_template_part( 'template-parts/parts/breadcrumbs' );
+	}
 	?>
 	<div id="content" class="site-content site__content">
 	
