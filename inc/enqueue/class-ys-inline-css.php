@@ -292,6 +292,14 @@ class YS_Inline_Css {
 					);
 				}
 			}
+		} else {
+			if ( 'header' !== ys_get_option( 'ys_breadcrumbs_position' ) ) {
+				$styles[] = '.site-header + .site__content {margin-top:1.5rem;}';
+				$styles[] = $this->add_media_query(
+					'.site-header + .site__content {margin-top:2.5rem;}',
+					'md'
+				);
+			}
 		}
 
 		return implode( '', $styles );
