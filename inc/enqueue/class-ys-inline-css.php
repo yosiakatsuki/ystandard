@@ -234,6 +234,13 @@ class YS_Inline_Css {
 						margin-bottom:2rem;
 					}';
 				}
+				/**
+				 * パンくず
+				 */
+				$styles[] = '
+				.has-bg-color .site__content + .breadcrumbs {
+					margin-top:-1rem;
+				}';
 			} else {
 				$styles[] = '
 				.has-bg-color .site__content {
