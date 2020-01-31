@@ -19,7 +19,6 @@ const webpackConfig = require( './webpack.config' );
  */
 const postcssPlugins = [
     autoprefixer( {
-        overrideBrowserslist: [ 'last 2 version, not ie < 11' ],
         grid: 'autoplace'
     } ),
     mqpacker(),
