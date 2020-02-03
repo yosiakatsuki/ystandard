@@ -1,12 +1,10 @@
 .wp-block-group {
   @include media-breakpoint(md) {
-    & {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
-    }
     &.has-background {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
+      &.alignfull {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
     }
   }
 }
