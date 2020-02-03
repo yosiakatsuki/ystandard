@@ -1,10 +1,18 @@
 .wp-block-group {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   
   &.has-background {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+    &:not(.alignfull) {
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    
+    &.alignfull {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
   }
 
   &::after {
