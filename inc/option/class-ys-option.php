@@ -70,6 +70,8 @@ class YS_Option {
 				case 'boolean':
 					$result = ys_to_bool( $result );
 					break;
+				case 'int':
+					$result = intval( $result );
 			}
 		}
 
@@ -86,6 +88,18 @@ class YS_Option {
 	 */
 	public static function get_option_by_bool( $name, $default = false ) {
 		return self::get_option( $name, $default, 'bool' );
+	}
+
+	/**
+	 * 設定取得(int)
+	 *
+	 * @param string $name    option key.
+	 * @param mixed  $default デフォルト値.
+	 *
+	 * @return mixed
+	 */
+	public static function get_option_by_int( $name, $default = 0 ) {
+		return self::get_option( $name, $default, 'int' );
 	}
 
 
@@ -149,6 +163,14 @@ class YS_Option {
 
 		return array(
 			/**
+			 * 基本設定
+			 */
+			'ys_logo_hidden'                            => 0, // ロゴを出力しない.
+			'ys_logo_width_pc'                          => 0, // ロゴの幅指定.
+			'ys_logo_width_sp'                          => 0, // ロゴの幅指定.
+			'ys_wp_hidden_blogdescription'              => 0, // キャッチフレーズを出力しない.
+			'ys_wp_site_description'                    => '', // TOPページのmeta description.
+			/**
 			 * デザイン -> フォント
 			 */
 			'ys_design_font_type'                       => 'yugo', // フォントタイプ.
@@ -194,12 +216,6 @@ class YS_Option {
 			'ys-color-palette-ys-user-1'                => '#ffffff',
 			'ys-color-palette-ys-user-2'                => '#ffffff',
 			'ys-color-palette-ys-user-3'                => '#ffffff',
-			/**
-			 * 基本設定
-			 */
-			'ys_logo_hidden'                            => 0, // ロゴを出力しない.
-			'ys_wp_hidden_blogdescription'              => 0, // キャッチフレーズを出力しない.
-			'ys_wp_site_description'                    => '', // TOPページのmeta description.
 			/**
 			 * 色 設定
 			 */

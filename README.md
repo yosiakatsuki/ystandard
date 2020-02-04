@@ -24,6 +24,10 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 ## Third-party resources
 
+### normalize.css
+License: MIT  
+Source : <https://github.com/necolas/normalize.css>
+
 ### Font Awesome
 
 Font License: SIL OFL 1.1  
@@ -43,6 +47,11 @@ Source : <https://gist.github.com/terkel/4373420>
 
 ## 変更履歴
 v3.x.x
+
+### v3.12.0
+- [追加] ヘッダーロゴの横幅指定機能
+- [調整] ロゴ画像の推奨サイズ変更
+- [調整] ギャラリーブロックのCSS調整
 
 ### v3.11.2
 - [調整] グループブロックの余白調整

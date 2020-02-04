@@ -67,13 +67,15 @@ class YS_Customize_Register {
 	 */
 	private function extend_wp_option() {
 		/**
-		 * WP標準の背景色と色を削除
+		 * WP標準の設定を削除
 		 */
 		$this->_wp_customize->remove_setting( 'background_color' );
 		$this->_wp_customize->remove_section( 'colors' );
+		$this->_wp_customize->remove_control( 'display_header_text' );
 		/**
 		 * ブログ名などをカスタマイザーショートカット対応させる
 		 */
+		$this->_wp_customize->get_setting( 'custom_logo' )->transport     = 'refresh';
 		$this->_wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 		$this->_wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
@@ -117,6 +119,40 @@ class YS_Customize_Register {
 				'description' => 'サイトヘッダーにロゴ画像を表示しない場合はチェックをつけてください<br>（ロゴの指定がないと構造化データでエラーになるので、仮のロゴ画像でも良いので設定することを推奨します）',
 				'section'     => 'title_tagline',
 				'priority'    => 9,
+			)
+		);
+		/**
+		 * 幅指定
+		 */
+		$ys_customizer->add_number(
+			array(
+				'id'          => 'ys_logo_width_pc',
+				'default'     => ys_get_option_default( 'ys_logo_width_pc' ),
+				'label'       => 'ロゴの表示幅(PC・タブレット)',
+				'description' => 'PC・タブレット表示のロゴ表示幅を指定できます。指定しない場合は0にしてください。',
+				'section'     => 'title_tagline',
+				'priority'    => 9,
+				'input_attrs' => array(
+					'min'  => 0,
+					'max'  => 1000,
+					'size' => 20,
+				),
+			)
+		);
+
+		$ys_customizer->add_number(
+			array(
+				'id'          => 'ys_logo_width_sp',
+				'default'     => ys_get_option_default( 'ys_logo_width_sp' ),
+				'label'       => 'ロゴの表示幅(スマホ)',
+				'description' => 'スマートフォン表示のロゴ表示幅を指定できます。指定しない場合は0にしてください。',
+				'section'     => 'title_tagline',
+				'priority'    => 9,
+				'input_attrs' => array(
+					'min'  => 0,
+					'max'  => 1000,
+					'size' => 20,
+				),
 			)
 		);
 		/**

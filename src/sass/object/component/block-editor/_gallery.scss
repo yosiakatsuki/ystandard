@@ -2,13 +2,15 @@
 .blocks-gallery-grid {
   display: flex;
   flex-wrap: wrap;
-  margin: 0;
+  width: 100%;
   padding: 0;
   list-style: none;
 }
 
 .wp-block-gallery {
-
+  margin-right: -1px;
+  margin-left: -1px;
+  
   @for $i from 1 through 4 {
     &.columns-#{$i} {
       .blocks-gallery-item {
@@ -33,7 +35,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background: rgba(#000,0.4);
+        background: rgba(#000, 0.4);
         color: #fff;
         z-index: 2;
       }
@@ -44,6 +46,7 @@
       }
     }
   }
+
   &.alignfull {
     padding-right: 0;
     padding-left: 0;
@@ -51,9 +54,13 @@
 }
 
 .blocks-gallery-grid {
-  padding: 0;
+  margin: 0;
 }
 
 .blocks-gallery-item {
   border: 1px solid transparent;
+}
+
+.blocks-gallery-item__caption {
+  font-size: .8em;
 }
