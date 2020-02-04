@@ -75,6 +75,7 @@ class YS_Customize_Register {
 		/**
 		 * ブログ名などをカスタマイザーショートカット対応させる
 		 */
+		$this->_wp_customize->get_setting( 'custom_logo' )->transport     = 'refresh';
 		$this->_wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
 		$this->_wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
 
