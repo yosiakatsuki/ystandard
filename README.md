@@ -24,6 +24,10 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 ## Third-party resources
 
+### normalize.css
+License: MIT  
+Source : <https://github.com/necolas/normalize.css>
+
 ### Font Awesome
 
 Font License: SIL OFL 1.1  
