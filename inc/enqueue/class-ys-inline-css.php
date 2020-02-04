@@ -36,6 +36,10 @@ class YS_Inline_Css {
 		 */
 		$styles[] = $this->get_site_css();
 		/**
+		 * ヘッダーロゴ
+		 */
+		$styles[] = $this->get_header_logo_css();
+		/**
 		 * ヘッダー
 		 */
 		$styles[] = $this->get_header_css();
@@ -300,6 +304,34 @@ class YS_Inline_Css {
 					'md'
 				);
 			}
+		}
+
+		return implode( '', $styles );
+	}
+
+	/**
+	 * ヘッダーロゴCSS
+	 *
+	 * @return string
+	 */
+	public function get_header_logo_css() {
+
+		$styles = array();
+
+		if ( 0 < ys_get_option_by_int( 'ys_logo_width_sp' ) ) {
+			$styles[] = sprintf(
+				'.header__title img{width:%spx;}',
+				ys_get_option_by_int( 'ys_logo_width_sp' )
+			);
+		}
+		if ( 0 < ys_get_option_by_int( 'ys_logo_width_pc' ) ) {
+			$styles[] = $this->add_media_query(
+				sprintf(
+					'.header__title img{width:%spx;}',
+					ys_get_option_by_int( 'ys_logo_width_pc' )
+				),
+				'md'
+			);
 		}
 
 		return implode( '', $styles );

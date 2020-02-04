@@ -81,8 +81,8 @@ class YS_Init {
 			apply_filters(
 				'ys_custom_logo_param',
 				array(
-					'height'      => 100,
-					'width'       => 100,
+					'height'      => 50,
+					'width'       => 250,
 					'flex-height' => true,
 					'flex-width'  => true,
 				)

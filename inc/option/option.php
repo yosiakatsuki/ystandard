@@ -36,6 +36,17 @@ function ys_get_option( $name, $default = false, $type = false ) {
 function ys_get_option_by_bool( $name, $default = false ) {
 	return YS_Option::get_option_by_bool( $name, $default );
 }
+/**
+ * 設定取得(int)
+ *
+ * @param string $name    option key.
+ * @param mixed  $default デフォルト値.
+ *
+ * @return mixed
+ */
+function ys_get_option_by_int( $name, $default = false ) {
+	return YS_Option::get_option_by_int( $name, $default );
+}
 
 /**
  * 設定デフォルト値取得
