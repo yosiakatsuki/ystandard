@@ -1,170 +1,170 @@
 
 .h-nav {
-  @at-root {
-    //
-    // レスポンシブ
-    //
-    &.rwd {
-      @include media-breakpoint(lg) {
-        padding-top: 0;
-        padding-bottom: 0;
+	@at-root {
+		//
+		// レスポンシブ
+		//
+		&.rwd {
+			@include media-breakpoint(lg) {
+				padding-top: 0;
+				padding-bottom: 0;
 
-        .h-nav__btn {
-          display: none;
-        }
-        .h-nav__main {
-          display: block;
-          position: relative;
-          padding: 0;
-          background-color: transparent;
-          opacity: 1;
-          visibility: visible;
+				.h-nav__btn {
+					display: none;
+				}
+				.h-nav__main {
+					display: block;
+					position: relative;
+					padding: 0;
+					background-color: transparent;
+					visibility: visible;
+					opacity: 1;
 
-          & > ul {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: none;
-            overflow: visible;
-          }
-        }
-        li {
-          position: relative;
+					& > ul {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						max-width: none;
+						overflow: visible;
+					}
+				}
+				li {
+					position: relative;
 
-          a {
-            padding: 1rem 0;
-            border-bottom: 1px solid transparent;
-            color: inherit;
-            font-size: .9rem;
-            transition: all .3s;
-          }
+					a {
+						padding: 1rem 0;
+						border-bottom: 1px solid transparent;
+						color: inherit;
+						font-size: 0.9rem;
+						transition: all 0.3s;
+					}
 
-          //2層
-          ul {
-            position: absolute;
-            height: 0;
-            top: 100%;
-            left: 0;
-            visibility: hidden;
-            white-space: nowrap;
-            opacity: 0;
-            transition: all .3s;
+					//2層
+					ul {
+						position: absolute;
+						top: 100%;
+						left: 0;
+						height: 0;
+						white-space: nowrap;
+						visibility: hidden;
+						transition: all 0.3s;
+						opacity: 0;
 
-            a {
-              padding: 1rem;
-            }
+						a {
+							padding: 1rem;
+						}
 
-            li {
-              border-bottom: 1px solid $color__border-gray-light;
-            }
-          }
+						li {
+							border-bottom: 1px solid $color__border-gray-light;
+						}
+					}
 
-          &:last-child {
-            ul {
-              left: unset;
-              right: 0;
-              text-align: right;
-            }
-          }
+					&:last-child {
+						ul {
+							right: 0;
+							left: unset;
+							text-align: right;
+						}
+					}
 
-          //2層ul
-          &:hover {
-            &:not(.menu-item-has-children) {
-              a {
-                border-bottom: 1px solid $color__border-dark;
-              }
-            }
+					//2層ul
+					&:hover {
+						&:not(.menu-item-has-children) {
+							a {
+								border-bottom: 1px solid $color__border-dark;
+							}
+						}
 
-            ul {
-              min-width: 100%;
-              height: auto;
-              background-color: rgba(#fff, .9);
-              opacity: 1;
-              visibility: visible;
-            }
-          }
+						ul {
+							min-width: 100%;
+							height: auto;
+							background-color: rgba(#ffffff, 0.9);
+							visibility: visible;
+							opacity: 1;
+						}
+					}
 
-          // &:hover
-        }
-        //li
-      }
-    }
+					// &:hover
+				}
+				//li
+			}
+		}
 
-    &.-row1 {
-      .h-nav__menu {
-        & > li {
-          margin: 0 1rem;
+		&.-row1 {
+			.h-nav__menu {
+				& > li {
+					margin: 0 1rem;
 
-          &:last-child {
-            margin-right: 0;
-          }
-        }
-      }
-    }
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+			}
+		}
 
-    &.-center {
-      @include media-breakpoint(lg) {
-        .h-nav__main > ul {
-          justify-content: center;
-          
-          li {
-            a {
-              padding: 1rem 1.5rem;
-            }
-            ul {
-              right: -30%;
-              left: -30%;
-              white-space: normal;
-            }
-          }
-        }
-      }
-    }
+		&.-center {
+			@include media-breakpoint(lg) {
+				.h-nav__main > ul {
+					justify-content: center;
 
-    &.-row2 {
-      @include media-breakpoint(lg) {
-        .h-nav__main > ul {
-          justify-content: flex-start;
-        }
-        a {
-          padding: .5rem 0;
-        }
-        li {
-          margin-right: 2rem;
+					li {
+						a {
+							padding: 1rem 1.5rem;
+						}
+						ul {
+							right: -30%;
+							left: -30%;
+							white-space: normal;
+						}
+					}
+				}
+			}
+		}
 
-          &:last-child {
-            margin-right: 0;
-          }
+		&.-row2 {
+			@include media-breakpoint(lg) {
+				.h-nav__main > ul {
+					justify-content: flex-start;
+				}
+				a {
+					padding: 0.5rem 0;
+				}
+				li {
+					margin-right: 2rem;
 
-          ul {
-            left: -.5rem;
+					&:last-child {
+						margin-right: 0;
+					}
 
-            a {
-              padding: 1rem .5rem;
-            }
+					ul {
+						left: -0.5rem;
 
-            li {
-              margin-right: 0;
-            }
-          }
-        }
-      }
-    }
+						a {
+							padding: 1rem 0.5rem;
+						}
 
-    .h-nav__dscr {
-      @include media-breakpoint(lg) {
-        display: block;
-        line-height: 1;
-        font-size: .7em;
-        text-align: center;
-      }
-    }
+						li {
+							margin-right: 0;
+						}
+					}
+				}
+			}
+		}
 
-    .h-nav__search {
-      @include media-breakpoint(lg) {
-        display: none;
-      }
-    }
-  }
-  //@root
+		.h-nav__dscr {
+			@include media-breakpoint(lg) {
+				display: block;
+				font-size: 0.7em;
+				line-height: 1;
+				text-align: center;
+			}
+		}
+
+		.h-nav__search {
+			@include media-breakpoint(lg) {
+				display: none;
+			}
+		}
+	}
+	//@root
 }

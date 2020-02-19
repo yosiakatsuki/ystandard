@@ -1,7 +1,7 @@
 
 @include media-breakpoint(md) {
-  @include make-text(md);
+	@include make-text(md);
 }
 @include media-breakpoint(lg) {
-  @include make-text(lg);
+	@include make-text(lg);
 }
