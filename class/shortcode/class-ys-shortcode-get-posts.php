@@ -506,7 +506,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 			/**
 			 * アイキャッチが見つからない場合
 			 */
-			$html  = '<div class="ys-posts--no-img flex flex--c-c"><i class="far fa-image fa-3x"></i></div>';
+			$html  = '<div class="ys-posts--no-img flex flex--c-c"><i class="far fa-image fa-2x"></i></div>';
 			$image = '';
 		}
 		/**
