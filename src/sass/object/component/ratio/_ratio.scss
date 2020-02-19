@@ -1,66 +1,67 @@
 .ratio {
-  @at-root {
-    & {
-      display: block;
-      position: relative;
-      width: 100%;
-      &:before {
-        content: "";
-        display: block;
-      }
-    }
+	@at-root {
+		& {
+			display: block;
+			position: relative;
+			width: 100%;
+			&:before {
+				content: "";
+				display: block;
+			}
+		}
 
-    &.-r-4-3:before {
-      padding-top: (decimal-floor(( 3 / 4 ), 2) * 100)#{"%"};
-    }
+		&.-r-4-3:before {
+			padding-top: (decimal-floor(( 3 / 4 ), 2) * 100)#{"%"};
+		}
 
-    &.-r-16-9:before {
-      padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
-    }
+		&.-r-16-9:before {
+			padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
+		}
 
-    &.-r-3-1:before {
-      padding-top: (decimal-floor(( 1 / 3 ), 2) * 100)#{"%"};
-    }
+		&.-r-3-1:before {
+			padding-top: (decimal-floor(( 1 / 3 ), 2) * 100)#{"%"};
+		}
 
-    &.-r-2-1:before {
-      padding-top: (decimal-floor(( 1 / 2 ), 2) * 100)#{"%"};
-    }
+		&.-r-2-1:before {
+			padding-top: (decimal-floor(( 1 / 2 ), 2) * 100)#{"%"};
+		}
 
-    &.-r-1-1:before {
-      padding-top: (decimal-floor(( 1 / 1 ), 2) * 100)#{"%"};
-    }
+		&.-r-1-1:before {
+			padding-top: (decimal-floor(( 1 / 1 ), 2) * 100)#{"%"};
+		}
 
-    .ratio__item {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      overflow: hidden;
-    }
+		.ratio__item {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			overflow: hidden;
+		}
 
-    .ratio__image {
-      position: relative;
-      top: 50%;
-      transform: translateY(-50%);
-      img,
-      amp-img {
-        width: 100%;
-        height: auto;
-      }
-    }
-    @supports ( object-fit: cover ) {
-      .ratio__image {
-        top: 0;
-        transform: none;
-        height: 100%;
-        img,
-        amp-img {
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-    }
-  }
-  //at-root
+		.ratio__image {
+			position: relative;
+			top: 50%;
+			transform: translateY(-50%);
+			img,
+			amp-img {
+				width: 100%;
+				height: auto;
+			}
+		}
+		@supports ( object-fit: cover ) {
+			.ratio__image {
+				top: 0;
+				height: 100%;
+				transform: none;
+				img,
+				amp-img {
+					height: 100%;
+
+					object-fit: cover;
+				}
+			}
+		}
+	}
+	//at-root
 }

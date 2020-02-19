@@ -1,20 +1,19 @@
 .aligncenter,
 .alignleft,
 .alignright {
-  display: block;
+	display: block;
 }
 
 .aligncenter {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
 }
 
 .alignwide,
 .alignfull {
-  margin-right: -1rem;
-  margin-left: -1rem;
-  padding-right: 1rem;
-  padding-left: 1rem;
+	margin-right: -1rem;
+	margin-left: -1rem;
+	padding-right: 1rem;
+	padding-left: 1rem;
 }
-

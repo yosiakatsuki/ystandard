@@ -1,24 +1,24 @@
 .wp-caption {
-  max-width: 100%;
-  text-align: center;
-  font-size: .9em;
-  padding: .25rem .5rem .5rem;
+	max-width: 100%;
+	padding: 0.25rem 0.5rem 0.5rem;
+	font-size: 0.9em;
+	text-align: center;
 
-  img {
-    margin: 0;
-    padding: 0;
-  }
+	img {
+		margin: 0;
+		padding: 0;
+	}
 }
 figcaption,
 .wp-caption-text {
-  color: $color__text-light;
-  font-size: .9em;
-  font-style: italic;
-  text-align: center;
+	color: $color__text-light;
+	font-size: 0.9em;
+	font-style: italic;
+	text-align: center;
 }
 .wp-caption-text {
-  padding: .25rem .5rem .5rem;
+	padding: 0.25rem 0.5rem 0.5rem;
 }
 figcaption {
-  padding: .25rem .5rem 0;
+	padding: 0.25rem 0.5rem 0;
 }

@@ -1,67 +1,67 @@
 .wp-block-button {
+	&.alignright {
+		text-align: right;
+	}
 
-  &.alignright {
-    text-align: right;
-  }
+	&.aligncenter {
+		text-align: center;
+	}
 
-  &.aligncenter {
-    text-align: center;
-  }
+	&.alignleft {
+		text-align: left;
+	}
 
-  &.alignleft {
-    text-align: left;
-  }
+	&.is-style-outline {
+		.wp-block-button__link {
+			background-color: transparent;
+			border-width: 1px;
+			border-style: solid;
 
-  &.is-style-outline {
-    .wp-block-button__link {
-      background-color: transparent;
-      border-width: 1px;
-      border-style: solid;
+			&:not(.has-text-color) {
+				border: 1px solid $color__btn-border;
+				color: $color__btn-bg;
 
-      &:not(.has-text-color) {
-        color: $color__btn-bg;
-        border: 1px solid $color__btn-border;
+				&:hover {
+					background-color: $color__btn-bg;
+				}
+			}
 
-        &:hover {
-          background-color: $color__btn-bg;
-        }
-      }
+			&:hover {
+				color: #ffffff;
+			}
+		}
+	}
 
-      &:hover {
-        color: #fff;
-      }
-    }
-  }
+	&.is-style-squared .wp-block-button__link,
+	.wp-block-button__link.no-border-radius {
+		border-radius: 0;
+	}
 
-  &.is-style-squared .wp-block-button__link,
-  .wp-block-button__link.no-border-radius {
-    border-radius: 0;
-  }
+	@if ($editor == true) {
+		.wp-block-button__link {
+			@include button_base();
 
-  @if ($editor == true) {
-    .wp-block-button__link {
-      @include button_base();
-      border-width: 1px;
-    }
-    &.is-style-squared .wp-block-button__link {
-      border-radius: 0;
-    }
-  }
+			border-width: 1px;
+		}
+		&.is-style-squared .wp-block-button__link {
+			border-radius: 0;
+		}
+	}
 }
 
 .wp-block-button__link {
-  @include button_base();
-  
-  &:hover {
-    color: inherit;
-    box-shadow: 3px 3px 6px rgba(#000, .2);
-  }
+	@include button_base();
 
-  &:not(.has-background) {
-    background-color: $color__btn-bg;
-  }
+	&:hover {
+		color: inherit;
+		box-shadow: 3px 3px 6px rgba(#000000, 0.2);
+	}
 
-  &:not(.has-text-color) {
-    color: $color__btn-text;
-  }
+	&:not(.has-background) {
+		background-color: $color__btn-bg;
+	}
+
+	&:not(.has-text-color) {
+		color: $color__btn-text;
+	}
 }

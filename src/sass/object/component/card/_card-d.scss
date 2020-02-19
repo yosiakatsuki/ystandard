@@ -2,15 +2,15 @@
 // カード(PC)
 //
 .card {
-  @at-root {
-    @include media-breakpoint(md) {
-      & {
-        transition: all .4s;
+	@at-root {
+		@include media-breakpoint(md) {
+			& {
+				transition: all 0.4s;
 
-        &:hover {
-          transform: translateY(-0.3rem);
-        }
-      }
-    }
-  }//at-root
+				&:hover {
+					transform: translateY(-0.3rem);
+				}
+			}
+		}
+	}//at-root
 }

@@ -1,54 +1,54 @@
 .wp-has-aspect-ratio {
-  .wp-block-embed__wrapper {
-    position: relative;
+	.wp-block-embed__wrapper {
+		position: relative;
 
-    //16-9をデフォルトにする
-    &::before {
-      content: "";
-      display: block;
-      padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
-    }
+		//16-9をデフォルトにする
+		&::before {
+			content: "";
+			display: block;
+			padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
+		}
 
-    & > * {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-  }
+		& > * {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+	}
 }
 
 .wp-has-aspect-ratio .wp-block-embed__wrapper::before {
-  @at-root {
-    .wp-embed-aspect-21-9 & {
-      padding-top: (decimal-floor(( 9 / 21 ), 2) * 100)#{"%"};
-    }
+	@at-root {
+		.wp-embed-aspect-21-9 & {
+			padding-top: (decimal-floor(( 9 / 21 ), 2) * 100)#{"%"};
+		}
 
-    .wp-embed-aspect-18-9 & {
-      padding-top: (decimal-floor(( 9 / 18 ), 2) * 100)#{"%"};
-    }
+		.wp-embed-aspect-18-9 & {
+			padding-top: (decimal-floor(( 9 / 18 ), 2) * 100)#{"%"};
+		}
 
-    .wp-embed-aspect-16-9 & {
-      padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
-    }
+		.wp-embed-aspect-16-9 & {
+			padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
+		}
 
-    .wp-embed-aspect-4-3 & {
-      padding-top: (decimal-floor(( 3 / 4 ), 2) * 100)#{"%"};
-    }
+		.wp-embed-aspect-4-3 & {
+			padding-top: (decimal-floor(( 3 / 4 ), 2) * 100)#{"%"};
+		}
 
-    .wp-embed-aspect-1-1 & {
-      padding-top: (decimal-floor(( 1 / 1 ), 2) * 100)#{"%"};
-    }
+		.wp-embed-aspect-1-1 & {
+			padding-top: (decimal-floor(( 1 / 1 ), 2) * 100)#{"%"};
+		}
 
-    .wp-embed-aspect-9-16 & {
-      padding-top: (decimal-floor(( 16 / 9 ), 2) * 100)#{"%"};
-    }
+		.wp-embed-aspect-9-16 & {
+			padding-top: (decimal-floor(( 16 / 9 ), 2) * 100)#{"%"};
+		}
 
-    .wp-embed-aspect-1-2 & {
-      padding-top: (decimal-floor(( 2 / 1 ), 2) * 100)#{"%"};
-    }
-  }
+		.wp-embed-aspect-1-2 & {
+			padding-top: (decimal-floor(( 2 / 1 ), 2) * 100)#{"%"};
+		}
+	}
 }

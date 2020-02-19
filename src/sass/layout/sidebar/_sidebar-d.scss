@@ -1,35 +1,33 @@
 @include media-breakpoint(lg) {
-  .sidebar {
-    @at-root {
-      & {
-        margin-top: 0;
-      }
+	.sidebar {
+		@at-root {
+			& {
+				margin-top: 0;
+			}
 
-      .has-sidebar & {
-        flex: 0 0 $width__sidebar;
-        max-width: $width__sidebar;
-        margin-right: 0;
-        margin-left: 0;
-      }
-    }
-  }
+			.has-sidebar & {
+				flex: 0 0 $width__sidebar;
+				max-width: $width__sidebar;
+				margin-right: 0;
+				margin-left: 0;
+			}
+		}
+	}
 
-  .sidebar__fixed {
-    @at-root {
-      .has-sidebar & {
-        position: sticky;
-        top: 1rem;
-      }
-    }
-  }
+	.sidebar__fixed {
+		@at-root {
+			.has-sidebar & {
+				position: sticky;
+				top: 1rem;
+			}
+		}
+	}
 
-  .sidebar-wrapper {
-    @at-root {
-      .has-sidebar & {
-        height: 100%;
-      }
-    }
-  }
-
+	.sidebar-wrapper {
+		@at-root {
+			.has-sidebar & {
+				height: 100%;
+			}
+		}
+	}
 }
-  
