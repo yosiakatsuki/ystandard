@@ -47,7 +47,7 @@
 	border-collapse: collapse;
 	thead,
 	th {
-		font-weight: 600;
+		font-weight: $font__weight_bold;
 		text-align: left;
 	}
 	th,
