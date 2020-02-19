@@ -1,20 +1,6 @@
 /**
  * base
  */
-/**
- * Android用
- */
-@font-face {
-  font-family: "Roboto";
-  font-weight: 600;
-  src: local("Roboto-Bold");
-}
-
-@font-face {
-  font-family: "Noto Sans CJK JP";
-  font-weight: 600;
-  src: local("NotoSansCJKjp-Bold");
-}
 
 * {
   box-sizing: border-box;
@@ -156,7 +142,7 @@ ol {
 
 dt {
   margin-top: 0.5rem;
-  font-weight: 600;
+  font-weight: $font__weight_bold;
 }
 
 dd {
@@ -296,5 +282,5 @@ audio {
 
 strong,
 b {
-  font-weight: 600;
+  font-weight: $font__weight_bold;
 }
