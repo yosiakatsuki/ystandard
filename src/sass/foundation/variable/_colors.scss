@@ -1,49 +1,49 @@
 // 色
 
 //文字色
-$color__text-main: #222 !default;
+$color__text-main: #222222 !default;
 $color__text-light: #757575 !default;
 
 //背景色
-$color__bg-body: #fff !default;
-$color__bg-content: #fff !default;
+$color__bg-body: #ffffff !default;
+$color__bg-content: #ffffff !default;
 $color__bg-dark: #292b2c !default;
 $color__bg-gray-dark: #e9ecef !default;
-$color__bg-gray-light: #F1F1F3 !default;
+$color__bg-gray-light: #f1f1f3 !default;
 
 //罫線
 $color__border-dark: #292b2c !default;
 $color__border-gray: #bdc3c7 !default;
-$color__border-gray-light: #EEEEEE !default;
+$color__border-gray-light: #eeeeee !default;
 
 //リンク
-$color__link: #2980B9 !default;
+$color__link: #2980b9 !default;
 $color__link-hover: lighten($color__link, 10%) !default;
 
 //ボタン
-$color__btn-text: #fff !default;
+$color__btn-text: #ffffff !default;
 $color__btn-bg: $color__text-main !default;
 $color__btn-border: $color__text-main !default;
-$color__btn-text-hover: #fff !default;
+$color__btn-text-hover: #ffffff !default;
 $color__btn-bg-hover: #292b2c !default;
 $color__btn-border-hover: #292b2c !default;
 
 
 // SNSカラー
 $color__sns: (
-        'twitter' : #2b97f0,
-        'facebook' : #3b5a9b,
-        'google-plus' : #db2814,
-        'hatenabookmark' : #007ad2,
-        'rss' : #fb8501,
-        'feedly' : #8cba43,
-        'pocket' : #ea4654,
-        'instagram' : #3f729b,
-        'line' : #2cbf13,
-        'tumblr' : #35465c,
-        'youtube-play' : #cd201f,
-        'github' : #4183c4,
-        'pinterest' : #cb2027,
-        'linkedin' : #0e76a8,
-        'amazon': #ffa724
+        "twitter" : #2b97f0,
+        "facebook" : #3b5a9b,
+        "google-plus" : #db2814,
+        "hatenabookmark" : #007ad2,
+        "rss" : #fb8501,
+        "feedly" : #8cba43,
+        "pocket" : #ea4654,
+        "instagram" : #3f729b,
+        "line" : #2cbf13,
+        "tumblr" : #35465c,
+        "youtube-play" : #cd201f,
+        "github" : #4183c4,
+        "pinterest" : #cb2027,
+        "linkedin" : #0e76a8,
+        "amazon": #ffa724
 ) !default;

@@ -1,14 +1,15 @@
 .author-small {
-  @at-root {
-    .author-small__name {
-      margin: 0 0 0 .2rem;
-    }
+	@at-root {
+		.author-small__name {
+			margin: 0 0 0 0.2rem;
+		}
 
-    .author-small__figure {
-      img, amp-img {
-        border-radius: 50%;
-      }
-    }
-  }
-  //@
+		.author-small__figure {
+			img,
+			amp-img {
+				border-radius: 50%;
+			}
+		}
+	}
+	//@
 }

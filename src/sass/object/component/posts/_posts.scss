@@ -3,6 +3,11 @@
   text-decoration: none;
 }
 
+.ys-posts--no-img {
+  background-color: $color__bg-gray-light;
+  color: $color__text-light;
+}
+
 .ys-posts__title,
 .ys-posts__excerpt {
   display: block;
@@ -13,30 +18,30 @@
 }
 
 .ys-posts__title {
-  font-size: .9em;
+  font-size: 0.9em;
   line-height: 1.5;
 }
 
 //リストタイプ
 .ys-posts__list {
   &.-list {
-    border-top: 1px solid $color__border-gray-light;
+	border-top: 1px solid $color__border-gray-light;
   }
 }
 
 .ys-posts__item {
   &.-list {
-    border-bottom: 1px solid $color__border-gray-light;
+	border-bottom: 1px solid $color__border-gray-light;
   }
 }
 
 .ys-posts__design--list {
   .ys-posts__img {
-    width: 100px;
+	width: 100px;
   }
 
   .ys-posts__content {
-    margin: 0 1rem;
+	margin: 0 1rem;
   }
 }
 
@@ -45,10 +50,10 @@
   height: 100%;
 
   .ys-posts__img {
-    border-bottom: 1px solid $color__border-gray-light;
+	border-bottom: 1px solid $color__border-gray-light;
   }
 
   .ys-posts__content {
-    margin: 1rem;
+	margin: 1rem;
   }
 }
