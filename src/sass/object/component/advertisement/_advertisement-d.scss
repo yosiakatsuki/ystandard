@@ -1,21 +1,21 @@
 @include media-breakpoint(md) {
-  .ad__double {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-  .ad__left + .ad__right {
-    margin-top: 0;
-  }
-  .ad__left,
-  .ad__right {
-    flex: 0 0 calc(50% - .5rem);
-    width: calc(50% - .5rem);
-  }
-  .ad__left {
-    margin-right: .5rem;
-  }
-  .ad__right {
-    margin-left: .5rem;
-  }
+	.ad__double {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+	}
+	.ad__left + .ad__right {
+		margin-top: 0;
+	}
+	.ad__left,
+	.ad__right {
+		flex: 0 0 calc(50% - 0.5rem);
+		width: calc(50% - 0.5rem);
+	}
+	.ad__left {
+		margin-right: 0.5rem;
+	}
+	.ad__right {
+		margin-left: 0.5rem;
+	}
 }

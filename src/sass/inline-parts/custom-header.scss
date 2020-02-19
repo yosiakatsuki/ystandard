@@ -9,25 +9,25 @@
  * ヘッダー重ねるタイプ
  */
 .custom-header--full {
-  .site-header,
-  .h-nav.rwd li:hover ul {
-    background-color: #{"attr(bg_color)"};
-  }
+	.site-header,
+	.h-nav.rwd li:hover ul {
+		background-color: #{"attr(bg_color)"};
+	}
 
-  .hamburger span {
-    background-color: #{"attr(text_color)"};
-  }
+	.hamburger span {
+		background-color: #{"attr(text_color)"};
+	}
 
-  .h-nav.rwd li:hover:not(.menu-item-has-children) {
-    border-bottom-color: #{"attr(text_color)"};
-  }
+	.h-nav.rwd li:hover:not(.menu-item-has-children) {
+		border-bottom-color: #{"attr(text_color)"};
+	}
 
-  .site-header,
-  .header__title a,
-  .header__title a:hover,
-  .header__dscr,
-  .h-nav.rwd .h-nav__main a,
-  .h-nav.rwd .h-nav__main a:hover {
-    color: #{"attr(text_color)"};
-  }
+	.site-header,
+	.header__title a,
+	.header__title a:hover,
+	.header__dscr,
+	.h-nav.rwd .h-nav__main a,
+	.h-nav.rwd .h-nav__main a:hover {
+		color: #{"attr(text_color)"};
+	}
 }

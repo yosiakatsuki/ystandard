@@ -1,16 +1,15 @@
-@mixin make-text($breakpoint : "") {
-
-  $prefix: "";
-  @if $breakpoint != "" {
-    $prefix: #{$breakpoint}#{"-"};
-  }
-  .text--#{$prefix}center {
-    text-align: center;
-  }
-  .text--#{$prefix}left {
-    text-align: left;
-  }
-  .text--#{$prefix}right {
-    text-align: right;
-  }
+@mixin make-text($breakpoint: "") {
+	$prefix: "";
+	@if $breakpoint != "" {
+		$prefix: #{$breakpoint}#{"-"};
+	}
+	.text--#{$prefix}center {
+		text-align: center;
+	}
+	.text--#{$prefix}left {
+		text-align: left;
+	}
+	.text--#{$prefix}right {
+		text-align: right;
+	}
 }

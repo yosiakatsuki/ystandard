@@ -1,30 +1,29 @@
 .header {
-  @at-root {
-    .header__title {
-      font-size: 1.4rem;
-      letter-spacing: .05em;
-      line-height: 1.4;
+	@at-root {
+		.header__title {
+			font-size: 1.4rem;
+			line-height: 1.4;
+			letter-spacing: 0.05em;
 
-      a {
-        color: $color__text-main;
-        text-decoration: none;
-      }
-    }
+			a {
+				color: $color__text-main;
+				text-decoration: none;
+			}
+		}
 
-    .header__row {
-      display: flex;
-      align-items: center;
-      padding: 1rem 0;
-    }
+		.header__row {
+			display: flex;
+			align-items: center;
+			padding: 1rem 0;
+		}
 
-    .header__dscr {
-      margin: 0;
-      font-size: .7rem;
-    }
+		.header__dscr {
+			margin: 0;
+			font-size: 0.7rem;
+		}
 
-    .header__branding {
-      padding-right: calc(.5rem + 30px);
-    }
-  }
+		.header__branding {
+			padding-right: calc(0.5rem + 30px);
+		}
+	}
 }
-
