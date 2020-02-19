@@ -1,7 +1,7 @@
 .wp-block-file {
 	a:not(.wp-block-file__button) {
 		font-size: 1.2em;
-		font-weight: 600;
+		font-weight: $font__weight_bold;
 	}
 }
 
@@ -19,7 +19,7 @@
 	.wp-block-file {
 		.rich-text:not(.wp-block-file__button) {
 			font-size: 1.2em;
-			font-weight: 600;
+			font-weight: $font__weight_bold;
 		}
 	}
 }
