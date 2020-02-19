@@ -2,90 +2,98 @@
  * base
  */
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 
-  &::before,
-  &::after {
-    box-sizing: border-box;
-  }
+	&::before,
+	&::after {
+		box-sizing: border-box;
+	}
 }
 
 html {
-  font-size: $font__size;
-  -ms-text-size-adjust: 100%;
+	font-size: $font__size;
+
+	-ms-text-size-adjust: 100%;
 }
 
 //mqpacker対策
 @include media-breakpoint(md) {
-  html {
-    zoom: 1;
-  }
+	html {
+		zoom: 1;
+	}
 }
 
 //mqpacker対策
 @include media-breakpoint(lg) {
-  html {
-    zoom: 1;
-  }
+	html {
+		zoom: 1;
+	}
 }
 
 body {
-  color: $color__text-main;
-  font-family: $font__body;
-  line-height: $font__line-height;
-  word-wrap: break-word;
-  background-color: $color__bg-body;
-  letter-spacing: $font__spacing;
+	background-color: $color__bg-body;
+	color: $color__text-main;
+	font-family: $font__body;
+	line-height: $font__line-height;
+	letter-spacing: $font__spacing;
+	word-wrap: break-word;
 
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 }
 
 /**
  * headline
  */
-h1, h2, h3, h4, h5, h6 {
-  margin: 3em 0 .25em;
-  padding: 0;
-  font-weight: normal;
-  line-height: $font__line-height_headline;
-  letter-spacing: $font__spacing_headline;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 3em 0 0.25em;
+	padding: 0;
+	font-weight: normal;
+	line-height: $font__line-height_headline;
+	letter-spacing: $font__spacing_headline;
 }
 
-$selector: '';
+$selector: "";
 @for $i from 1 through 5 {
-  $selector: #{$selector}h#{$i}#{'+'}h#{($i+1)}#{','};
+	$selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
 }
 
 #{$selector} {
-  margin-top: 1.5rem;
+	margin-top: 1.5rem;
 }
 
 h1,
 h2 {
-  font-size: get_font_size('x-large');
+	font-size: get_font_size("x-large");
 }
 
 h3 {
-  font-size: get_font_size('large');
+	font-size: get_font_size("large");
 }
 
 h4 {
-  font-size: 1.2em;
+	font-size: 1.2em;
 }
 
-h5, h6 {
-  font-size: 1.1em;
+h5,
+h6 {
+	font-size: 1.1em;
 }
 
 /**
  * image
  */
-img, amp-img {
-  height: auto;
-  max-width: 100%;
-  vertical-align: middle;
+img,
+amp-img {
+	max-width: 100%;
+	height: auto;
+	vertical-align: middle;
 }
 
 /**
@@ -99,176 +107,179 @@ figure,
 blockquote,
 pre,
 table {
-  margin: 1.5em 0 0;
+	margin: 1.5em 0 0;
 
-  &:first-child {
-    margin-top: 0;
-  }
+	&:first-child {
+		margin-top: 0;
+	}
 }
 
 /**
  * link
  */
 a {
-  color: $color__link;
-  transition: all .3s;
+	color: $color__link;
+	transition: all 0.3s;
 
-  &:hover {
-    color: $color__link-hover;
-  }
+	&:hover {
+		color: $color__link-hover;
+	}
 }
 
 /**
  * list
  */
-ul, ol {
-  padding-left: 1.7em;
+ul,
+ol {
+	padding-left: 1.7em;
 
-  ul, ol {
-    margin: 0;
-  }
+	ul,
+	ol {
+		margin: 0;
+	}
 }
 
 dt {
-  margin-top: .5rem;
-  font-weight: 600;
+	margin-top: 0.5rem;
+	font-weight: 600;
 }
 
 dd {
-  margin-left: 1rem;
+	margin-left: 1rem;
 }
 
 /**
  * blockquote
  */
 cite {
-  font-style: italic;
+	font-style: italic;
 }
 
 blockquote {
-  position: relative;
-  padding: 1.5rem 1rem 1.5rem 2.5rem;
-  background-color: rgba($color__bg-gray-light, .5);
-  border-left: 1px solid $color__border-gray;
-  font-size: .95em;
+	position: relative;
+	padding: 1.5rem 1rem 1.5rem 2.5rem;
+	background-color: rgba($color__bg-gray-light, 0.5);
+	border-left: 1px solid $color__border-gray;
+	font-size: 0.95em;
 
-  &:before {
-    position: absolute;
-    content: "“";
-    top: .5rem;
-    left: .5rem;
-    font-family: sans-serif;
-    font-size: 4rem;
-    line-height: 1;
-    opacity: .08;
-  }
+	&:before {
+		content: "“";
+		position: absolute;
+		top: 0.5rem;
+		left: 0.5rem;
+		font-family: sans-serif;
+		font-size: 4rem;
+		line-height: 1;
+		opacity: 0.08;
+	}
 
-  a {
-    color: inherit;
-  }
+	a {
+		color: inherit;
+	}
 
-  p {
-    margin-top: .5em;
-  }
+	p {
+		margin-top: 0.5em;
+	}
 
-  cite {
-    display: block;
-    margin-top: 1rem;
-    color: $color__text-light;
-    font-size: .9em;
+	cite {
+		display: block;
+		margin-top: 1rem;
+		color: $color__text-light;
+		font-size: 0.9em;
 
-    &:before {
-      content: "-";
-      margin-right: .5rem;
-    }
-  }
+		&:before {
+			content: "-";
+			margin-right: 0.5rem;
+		}
+	}
 
-  & > *:first-child {
-    margin-top: 0;
-  }
+	& > *:first-child {
+		margin-top: 0;
+	}
 
-  & > *:last-child {
-    margin-bottom: 0;
-  }
+	& > *:last-child {
+		margin-bottom: 0;
+	}
 }
 
 /**
  * code
  */
 code {
-  padding: 0 .2em;
-  font-size: .9em;
-  font-family: $font__code;
-  color: $color__text-light;
+	padding: 0 0.2em;
+	color: $color__text-light;
+	font-family: $font__code;
+	font-size: 0.9em;
 }
 
 /**
  * pre
  */
 pre {
-  background-color: $color__bg-gray-light;
-  padding: 1rem;
-  overflow: auto;
-  line-height: 1.4;
+	padding: 1rem;
+	background-color: $color__bg-gray-light;
+	line-height: 1.4;
+	overflow: auto;
 
-  code {
-    color: inherit;
-    padding: 0;
-    line-height: inherit;
-    word-wrap: normal;
-    white-space: pre;
-  }
+	code {
+		padding: 0;
+		color: inherit;
+		line-height: inherit;
+		white-space: pre;
+		word-wrap: normal;
+	}
 }
 
 /**
  * table
  */
 table {
-  width: 100%;
-  border-top: 1px solid $color__border-gray;
-  border-collapse: collapse;
-  border-spacing: 0;
-  word-break: break-word;
+	width: 100%;
+	border-top: 1px solid $color__border-gray;
+	word-break: break-word;
+	border-spacing: 0;
+	border-collapse: collapse;
 }
 
 tr {
-  border-left: 1px solid $color__border-gray;
+	border-left: 1px solid $color__border-gray;
 }
 
 td,
 th {
-  padding: .5rem 1rem;
-  border-right: 1px solid $color__border-gray;
-  border-bottom: 1px solid $color__border-gray;
+	padding: 0.5rem 1rem;
+	border-right: 1px solid $color__border-gray;
+	border-bottom: 1px solid $color__border-gray;
 }
 
 th {
-  background-color: $color__bg-gray-light;
-  font-weight: normal;
-  text-align: left;
+	background-color: $color__bg-gray-light;
+	font-weight: normal;
+	text-align: left;
 }
 
 /**
  * hr
  */
 hr {
-  margin: 1.5em auto;
-  border: .05rem solid $color__border-gray-light;
-  clear: both;
+	margin: 1.5em auto;
+	border: 0.05rem solid $color__border-gray-light;
+	clear: both;
 }
 
 iframe,
 video {
-  max-width: 100%;
-  border: 0;
+	max-width: 100%;
+	border: 0;
 }
 
 audio {
-  width: 100%;
-  min-width: 300px;
+	width: 100%;
+	min-width: 300px;
 }
 
 
-strong, b {
-  font-weight: 600;
+strong,
+b {
+	font-weight: 600;
 }

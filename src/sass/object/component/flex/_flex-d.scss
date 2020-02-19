@@ -1,20 +1,20 @@
 .flex {
-  @at-root {
-    @include media-breakpoint(md) {
-      @include make-flex(md);
-    }
-    @include media-breakpoint(lg) {
-      @include make-flex(lg);
-    }
-  }// @
+	@at-root {
+		@include media-breakpoint(md) {
+			@include make-flex(md);
+		}
+		@include media-breakpoint(lg) {
+			@include make-flex(lg);
+		}
+	}// @
 }
 .flex__col {
-  @at-root {
-    @include media-breakpoint(md) {
-      @include make-col(md);
-    }
-    @include media-breakpoint(lg) {
-      @include make-col(lg);
-    }
-  }//@
+	@at-root {
+		@include media-breakpoint(md) {
+			@include make-col(md);
+		}
+		@include media-breakpoint(lg) {
+			@include make-col(lg);
+		}
+	}//@
 }

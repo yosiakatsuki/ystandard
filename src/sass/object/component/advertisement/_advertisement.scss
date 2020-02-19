@@ -1,35 +1,35 @@
 .ys-ad-block {
-  margin: 2rem 0;
-  text-align: center;
+	margin: 2rem 0;
+	text-align: center;
 
-  &.-no-mt {
-    margin-top: 0;
-  }
+	&.-no-mt {
+		margin-top: 0;
+	}
 
-  &.-no-mb {
-    margin-bottom: 0;
-  }
+	&.-no-mb {
+		margin-bottom: 0;
+	}
 
-  &.ys-ad-widget {
-    margin: 0;
-  }
+	&.ys-ad-widget {
+		margin: 0;
+	}
 
-  .ys-ad-title {
-    display: block;
-    padding: 0;
-    margin: 0;
-    border: 0;
-    font-size: .7rem;
-    font-weight: normal;
-    color: $color__text-light;
+	.ys-ad-title {
+		display: block;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		color: $color__text-light;
+		font-size: 0.7rem;
+		font-weight: normal;
 
-    &:before,
-    &:after {
-      display: none;
-    }
-  }
+		&:before,
+		&:after {
+			display: none;
+		}
+	}
 }
 
 .ad__left + .ad__right {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
