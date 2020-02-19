@@ -1,41 +1,41 @@
 .item-list {
-  @at-root {
+	@at-root {
+		& {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
 
-    & {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+		.item-list__item {
+			margin: 0;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+			border-bottom: 1px solid $color__border-gray-light;
+			&:first-child {
+				border-top: 1px solid $color__border-gray-light;
+			}
+		}
+		.item-list__img {
+			width: 100%;
+			text-align: center;
 
-    .item-list__item {
-      margin: 0;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid $color__border-gray-light;
-      &:first-child {
-        border-top: 1px solid $color__border-gray-light;
-      }
-    }
-    .item-list__img {
-      width: 100%;
-      text-align: center;
+			img,
+			amp-img {
+				margin: 0;
+				padding: 0;
+			}
 
-      img, amp-img {
-        margin: 0;
-        padding: 0;
-      }
-      
-      &.thumb {
-        width: 75px;
-      }
-    }
-    .item-list__title {
-      font-size: 1rem;
-    }
-    .item-list__dscr,
-    .item-list__meta {
-      font-size: .8rem;
-      color: $color__text-light;
-    }
-  }// at-root
+			&.thumb {
+				width: 75px;
+			}
+		}
+		.item-list__title {
+			font-size: 1rem;
+		}
+		.item-list__dscr,
+		.item-list__meta {
+			color: $color__text-light;
+			font-size: 0.8rem;
+		}
+	}// at-root
 }

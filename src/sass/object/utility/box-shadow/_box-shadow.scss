@@ -1,6 +1,6 @@
 .box-shadow {
-  @include box-shadow;
+	@include box-shadow;
 }
 .box-shadow--lg {
-  @include box-shadow(3px);
+	@include box-shadow(3px);
 }

@@ -1,21 +1,21 @@
 .sidebar {
-  width: 100%;
-  margin-top: 2rem;
-  margin-right: auto;
-  margin-left: auto;
+	width: 100%;
+	margin-top: 2rem;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .sidebar__item {
-  margin-top: 1rem;
-  padding: 1rem;
+	margin-top: 1rem;
+	padding: 1rem;
 
-  &:first-child {
-    margin-top: 0;
-  }
+	&:first-child {
+		margin-top: 0;
+	}
 
-  & > * {
-    &:first-child {
-      margin-top: 0;
-    }
-  }
+	& > * {
+		&:first-child {
+			margin-top: 0;
+		}
+	}
 }

@@ -1,21 +1,21 @@
 
 .container {
-  @at-root {
-    & {
-      position: relative;
-      max-width: $width__container;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 1rem;
-    }
-    .container--full {
-      position: relative;
-      max-width: 100%;
-    }
-  }
+	@at-root {
+		& {
+			position: relative;
+			max-width: $width__container;
+			margin-right: auto;
+			margin-left: auto;
+			padding: 0 1rem;
+		}
+		.container--full {
+			position: relative;
+			max-width: 100%;
+		}
+	}
 }
 
 .contents {
-  position: relative;
-  overflow: hidden;
+	position: relative;
+	overflow: hidden;
 }

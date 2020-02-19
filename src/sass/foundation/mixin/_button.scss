@@ -1,31 +1,30 @@
 @mixin button_base(
-  $display:inline-block,
-  $padding:.5rem 1.5rem,
-  $radius:4px) {
-  
-  display: $display;
-  padding: $padding;
-  border-radius: $radius;
-  text-decoration: none;
-  transition: all .3s;
+  $display: inline-block,
+  $padding: 0.5rem 1.5rem,
+  $radius: 4px) {
+	display: $display;
+	padding: $padding;
+	border-radius: $radius;
+	text-decoration: none;
+	transition: all 0.3s;
 }
 
 @mixin button(
-  $bgc:$color__btn-bg,
-  $text_color:$color__btn-text,
-  $border:$color__btn-border,
-  $radius:4px) {
+  $bgc: $color__btn-bg,
+  $text_color: $color__btn-text,
+  $border: $color__btn-border,
+  $radius: 4px) {
+	$bgc_hover: $text_color;
+	$text_hover: $bgc;
 
-  $bgc_hover: $text_color;
-  $text_hover: $bgc;
+	@include button_base();
 
-  background-color: $bgc;
-  border: 1px solid $border;
-  color: $text_color;
-  font-size: 1rem;
-  @include button_base();
+	background-color: $bgc;
+	border: 1px solid $border;
+	color: $text_color;
+	font-size: 1rem;
 
-  &:hover {
-    box-shadow: 3px 3px 6px rgba(#000, .2);
-  }
+	&:hover {
+		box-shadow: 3px 3px 6px rgba(#000000, 0.2);
+	}
 }
