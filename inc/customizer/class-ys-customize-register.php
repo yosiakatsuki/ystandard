@@ -34,24 +34,29 @@ class YS_Customize_Register {
 	public function customize_register( $wp_customize ) {
 		$this->_wp_customize = $wp_customize;
 
+		/**
+		 * WordPressデフォルト設定の上書き・追加
+		 */
 		$this->extend_wp_option();
 		$this->title_tagline();
 		$this->header_media();
 		/**
-		 * [ys]設定シリーズ
+		 * [ys]デザイン
 		 */
 		$this->design();
 		$this->design_font();
+		$this->design_site_color();
 		$this->design_header();
 		$this->design_breadcrumb();
 		$this->design_mobile();
-		$this->design_one_column_template();
-		$this->design_icon_font();
 		$this->design_post();
 		$this->design_page();
 		$this->design_archive();
+		$this->design_one_column_template();
+		$this->design_footer();
+		$this->design_color_palette();
+		$this->design_icon_font();
 		$this->design_front_page();
-		$this->color();
 		$this->general();
 		$this->sns();
 		$this->seo();
@@ -59,6 +64,8 @@ class YS_Customize_Register {
 		$this->advertisement();
 		$this->amp();
 		$this->admin();
+		$this->admin_editor();
+		$this->admin_disable_color();
 		$this->ystandard_extension();
 	}
 
@@ -322,211 +329,6 @@ class YS_Customize_Register {
 	}
 
 	/**
-	 * 色設定
-	 */
-	private function color() {
-		/**
-		 * パネルの追加
-		 */
-		$this->_wp_customize->add_panel(
-			'ys_customizer_panel_color',
-			array(
-				'title'    => '[ys]色設定',
-				'priority' => 1010,
-			)
-		);
-		/**
-		 * サイト全体の色
-		 */
-		$ys_customizer = new YS_Customizer( $this->_wp_customize );
-		$ys_customizer->add_section(
-			array(
-				'section'  => 'ys_color_site',
-				'title'    => 'サイト背景色',
-				'priority' => 0,
-				'panel'    => 'ys_customizer_panel_color',
-			)
-		);
-		// サイト背景色.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_site_bg',
-				'default' => ys_get_option_default( 'ys_color_site_bg' ),
-				'label'   => 'サイト背景色',
-			)
-		);
-		/**
-		 * ナビゲーション色
-		 */
-		$ys_customizer = new YS_Customizer( $this->_wp_customize );
-		$ys_customizer->add_section(
-			array(
-				'section'  => 'ys_color_nav',
-				'title'    => 'モバイルメニュー',
-				'priority' => 0,
-				'panel'    => 'ys_customizer_panel_color',
-			)
-		);
-		// ナビゲーション背景色（SP）.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_nav_bg_sp',
-				'default' => ys_get_option_default( 'ys_color_nav_bg_sp' ),
-				'label'   => 'モバイルメニュー背景色',
-			)
-		);
-		// ナビゲーション文字色（SP）.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_nav_font_sp',
-				'default' => ys_get_option_default( 'ys_color_nav_font_sp' ),
-				'label'   => 'モバイルメニュー文字色',
-			)
-		);
-		// ナビゲーションボタン色（SP）.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_nav_btn_sp_open',
-				'default' => ys_get_option_default( 'ys_color_nav_btn_sp_open' ),
-				'label'   => 'モバイルメニュー ボタン色：開く',
-			)
-		);
-		// ナビゲーションボタン色（SP）.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_nav_btn_sp',
-				'default' => ys_get_option_default( 'ys_color_nav_btn_sp' ),
-				'label'   => 'モバイルメニュー ボタン色：閉じる',
-			)
-		);
-		/**
-		 * フッター色
-		 */
-		$ys_customizer = new YS_Customizer( $this->_wp_customize );
-		$ys_customizer->add_section(
-			array(
-				'section'  => 'ys_color_footer',
-				'title'    => 'フッター',
-				'priority' => 0,
-				'panel'    => 'ys_customizer_panel_color',
-			)
-		);
-		// フッター背景色.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_footer_bg',
-				'default' => ys_get_option_default( 'ys_color_footer_bg' ),
-				'label'   => 'フッター背景色',
-			)
-		);
-		// フッター文字色.
-		$ys_customizer->add_color(
-			array(
-				'id'      => 'ys_color_footer_font',
-				'default' => ys_get_option_default( 'ys_color_footer_font' ),
-				'label'   => 'フッター文字色',
-			)
-		);
-		// フッターSNSアイコン背景色タイプ.
-		$ys_customizer->add_radio(
-			array(
-				'id'      => 'ys_color_footer_sns_bg_type',
-				'default' => ys_get_option_default( 'ys_color_footer_sns_bg_type' ),
-				'label'   => 'フッターSNSアイコン背景色',
-				'choices' => array(
-					'light' => 'ライト',
-					'dark'  => 'ダーク',
-				),
-			)
-		);
-
-		// フッターSNSアイコン背景色不透明度.
-		$ys_customizer->add_number(
-			array(
-				'id'          => 'ys_color_footer_sns_bg_opacity',
-				'default'     => ys_get_option_default( 'ys_color_footer_sns_bg_opacity' ),
-				'label'       => 'フッターSNSアイコン背景色の不透明度',
-				'description' => '0~100の間で入力して下さい',
-				'input_attrs' => array(
-					'min'  => 0,
-					'max'  => 100,
-					'size' => 20,
-				),
-			)
-		);
-		/**
-		 * カラーパレット
-		 */
-		$ys_customizer = new YS_Customizer( $this->_wp_customize );
-		$ys_customizer->add_section(
-			array(
-				'section'     => 'ys_color_palette',
-				'title'       => 'カラーパレット（ブロックエディター）',
-				'priority'    => 0,
-				'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。',
-				'panel'       => 'ys_customizer_panel_color',
-			)
-		);
-		/**
-		 * カラーパレット設定の追加
-		 */
-		$list = ys_get_editor_color_palette();
-		foreach ( $list as $item ) {
-			if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
-				$dscr    = '';
-				$default = '#ffffff';
-				/**
-				 * 説明文
-				 */
-				if ( isset( $item['description'] ) ) {
-					$dscr = $item['description'];
-				}
-				/**
-				 * 初期値
-				 */
-				if ( isset( $item['default'] ) ) {
-					$default = $item['default'];
-				}
-				/**
-				 * 設定追加
-				 */
-				$ys_customizer->add_color(
-					array(
-						'id'          => 'ys-color-palette-' . $item['slug'],
-						'default'     => $default,
-						'label'       => $item['name'],
-						'description' => $dscr,
-						'transport'   => 'postMessage',
-					)
-				);
-			}
-		}
-		/**
-		 * テーマカスタマイザーでの色変更機能を無効にする
-		 */
-		$ys_customizer = new YS_Customizer( $this->_wp_customize );
-		$ys_customizer->add_section(
-			array(
-				'section'  => 'ys_customizer_section_disable_ys_color',
-				'title'    => '色変更機能を無効にする(上級者向け)',
-				'priority' => 0,
-				'panel'    => 'ys_customizer_panel_color',
-			)
-		);
-		/**
-		 * テーマカスタマイザーでの色変更機能を無効にする
-		 */
-		$ys_customizer->add_checkbox(
-			array(
-				'id'          => 'ys_desabled_color_customizeser',
-				'default'     => ys_get_option_default( 'ys_desabled_color_customizeser' ),
-				'label'       => 'テーマカスタマイザーでの色変更機能を無効にする',
-				'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。<br>カスタマイザーで指定している部分のCSSコードが出力されなくなります',
-			)
-		);
-	}
-
-	/**
 	 * 基本設定
 	 */
 	private function general() {
@@ -609,7 +411,6 @@ class YS_Customize_Register {
 			array(
 				'section'     => 'ys_customizer_section_font_design',
 				'title'       => 'フォント設定',
-				'priority'    => 1,
 				'description' => 'フォントの設定',
 				'panel'       => 'ys_customizer_panel_design',
 			)
@@ -633,6 +434,31 @@ class YS_Customize_Register {
 	}
 
 	/**
+	 * デザイン -> サイト背景色
+	 */
+	private function design_site_color() {
+		/**
+		 * サイト全体の色
+		 */
+		$ys_customizer = new YS_Customizer( $this->_wp_customize );
+		$ys_customizer->add_section(
+			array(
+				'section' => 'ys_color_site',
+				'title'   => 'サイト背景色',
+				'panel'   => 'ys_customizer_panel_design',
+			)
+		);
+		// サイト背景色.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_site_bg',
+				'default' => ys_get_option_default( 'ys_color_site_bg' ),
+				'label'   => 'サイト背景色',
+			)
+		);
+	}
+
+	/**
 	 * デザイン -> ヘッダー
 	 */
 	private function design_header() {
@@ -644,7 +470,6 @@ class YS_Customize_Register {
 			array(
 				'section'     => 'ys_customizer_section_header_design',
 				'title'       => 'ヘッダー設定',
-				'priority'    => 1,
 				'description' => 'ヘッダー部分のデザイン設定',
 				'panel'       => 'ys_customizer_panel_design',
 			)
@@ -764,7 +589,6 @@ class YS_Customize_Register {
 			array(
 				'section'     => 'ys_customizer_section_breadcrumb_design',
 				'title'       => 'パンくずリスト設定',
-				'priority'    => 1,
 				'description' => 'パンくずリストの表示設定',
 				'panel'       => 'ys_customizer_panel_design',
 			)
@@ -819,17 +643,49 @@ class YS_Customize_Register {
 			array(
 				'section'     => 'ys_customizer_section_mobile_design',
 				'title'       => 'モバイルページ設定',
-				'priority'    => 1,
 				'description' => 'モバイルページのデザイン設定',
 				'panel'       => 'ys_customizer_panel_design',
 			)
 		);
-		// サイドバー出力.
-		$ys_customizer->add_checkbox(
+		// ナビゲーション色.
+		$ys_customizer->add_section_label( 'モバイルメニュー' );
+		// ナビゲーション背景色（SP）.
+		$ys_customizer->add_color(
 			array(
-				'id'      => 'ys_show_sidebar_mobile',
-				'default' => ys_get_option_default( 'ys_show_sidebar_mobile' ),
-				'label'   => 'モバイル表示でサイドバーを非表示にする',
+				'id'      => 'ys_color_nav_bg_sp',
+				'default' => ys_get_option_default( 'ys_color_nav_bg_sp' ),
+				'label'   => 'モバイルメニュー背景色',
+			)
+		);
+		// ナビゲーション文字色（SP）.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_nav_font_sp',
+				'default' => ys_get_option_default( 'ys_color_nav_font_sp' ),
+				'label'   => 'モバイルメニュー文字色',
+			)
+		);
+		// ナビゲーションボタン色（SP）.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_nav_btn_sp_open',
+				'default' => ys_get_option_default( 'ys_color_nav_btn_sp_open' ),
+				'label'   => 'モバイルメニュー ボタン色：開く',
+			)
+		);
+		// ナビゲーションボタン色（SP）.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_nav_btn_sp',
+				'default' => ys_get_option_default( 'ys_color_nav_btn_sp' ),
+				'label'   => 'モバイルメニュー ボタン色：閉じる',
+			)
+		);
+		// 検索フォーム.
+		$ys_customizer->add_label(
+			array(
+				'id'    => 'ys_show_search_form_on_slide_menu_label',
+				'label' => 'モバイルメニューに検索フォームを表示',
 			)
 		);
 		// スライドメニューに検索フォームを出力する.
@@ -840,6 +696,18 @@ class YS_Customize_Register {
 				'label'   => 'モバイルメニューに検索フォームを表示する',
 			)
 		);
+
+		// サイドバー.
+		$ys_customizer->add_section_label( 'サイドバー表示設定' );
+		// サイドバー出力.
+		$ys_customizer->add_checkbox(
+			array(
+				'id'      => 'ys_show_sidebar_mobile',
+				'default' => ys_get_option_default( 'ys_show_sidebar_mobile' ),
+				'label'   => 'モバイル表示でサイドバーを非表示にする',
+			)
+		);
+
 	}
 
 	/**
@@ -851,7 +719,6 @@ class YS_Customize_Register {
 			array(
 				'section'     => 'ys_customizer_section_one_column_template',
 				'title'       => 'ワンカラムテンプレート設定',
-				'priority'    => 10,
 				'description' => 'ワンカラムテンプレートの設定',
 				'panel'       => 'ys_customizer_panel_design',
 			)
@@ -893,6 +760,116 @@ class YS_Customize_Register {
 	}
 
 	/**
+	 * デザイン -> フッター
+	 */
+	private function design_footer() {
+		$ys_customizer = new YS_Customizer( $this->_wp_customize );
+		$ys_customizer->add_section(
+			array(
+				'section'     => 'ys_design_footer',
+				'title'       => 'フッター設定',
+				'description' => 'フッターの設定',
+				'panel'       => 'ys_customizer_panel_design',
+			)
+		);
+		// フッター背景色.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_footer_bg',
+				'default' => ys_get_option_default( 'ys_color_footer_bg' ),
+				'label'   => 'フッター背景色',
+			)
+		);
+		// フッター文字色.
+		$ys_customizer->add_color(
+			array(
+				'id'      => 'ys_color_footer_font',
+				'default' => ys_get_option_default( 'ys_color_footer_font' ),
+				'label'   => 'フッター文字色',
+			)
+		);
+		// フッターSNSアイコン背景色タイプ.
+		$ys_customizer->add_radio(
+			array(
+				'id'      => 'ys_color_footer_sns_bg_type',
+				'default' => ys_get_option_default( 'ys_color_footer_sns_bg_type' ),
+				'label'   => 'フッターSNSアイコン背景色',
+				'choices' => array(
+					'light' => 'ライト',
+					'dark'  => 'ダーク',
+				),
+			)
+		);
+
+		// フッターSNSアイコン背景色不透明度.
+		$ys_customizer->add_number(
+			array(
+				'id'          => 'ys_color_footer_sns_bg_opacity',
+				'default'     => ys_get_option_default( 'ys_color_footer_sns_bg_opacity' ),
+				'label'       => 'フッターSNSアイコン背景色の不透明度',
+				'description' => '0~100の間で入力して下さい',
+				'input_attrs' => array(
+					'min'  => 0,
+					'max'  => 100,
+					'size' => 20,
+				),
+			)
+		);
+	}
+
+	/**
+	 * デザイン -> ブロックエディター
+	 */
+	private function design_color_palette() {
+		/**
+		 * カラーパレット
+		 */
+		$ys_customizer = new YS_Customizer( $this->_wp_customize );
+		$ys_customizer->add_section(
+			array(
+				'section'     => 'ys_color_palette',
+				'title'       => 'カラーパレット（ブロックエディター）',
+				'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。',
+				'panel'       => 'ys_customizer_panel_design',
+			)
+		);
+		/**
+		 * カラーパレット設定の追加
+		 */
+		$list = ys_get_editor_color_palette();
+		foreach ( $list as $item ) {
+			if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
+				$dscr    = '';
+				$default = '#ffffff';
+				/**
+				 * 説明文
+				 */
+				if ( isset( $item['description'] ) ) {
+					$dscr = $item['description'];
+				}
+				/**
+				 * 初期値
+				 */
+				if ( isset( $item['default'] ) ) {
+					$default = $item['default'];
+				}
+				/**
+				 * 設定追加
+				 */
+				$ys_customizer->add_color(
+					array(
+						'id'          => 'ys-color-palette-' . $item['slug'],
+						'default'     => $default,
+						'label'       => $item['name'],
+						'description' => $dscr,
+						'transport'   => 'postMessage',
+					)
+				);
+			}
+		}
+	}
+
+	/**
 	 * デザイン -> アイコンフォント設定
 	 */
 	private function design_icon_font() {
@@ -901,7 +878,6 @@ class YS_Customize_Register {
 			array(
 				'section'     => 'ys_customizer_section_icon_fonts',
 				'title'       => 'アイコンフォント設定',
-				'priority'    => 10,
 				'description' => 'アイコンフォントに関する設定',
 				'panel'       => 'ys_customizer_panel_design',
 			)
@@ -946,10 +922,9 @@ class YS_Customize_Register {
 		$ys_customizer = new YS_Customizer( $this->_wp_customize );
 		$ys_customizer->add_section(
 			array(
-				'section'  => 'ys_customizer_section_post',
-				'title'    => '投稿ページ設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_design',
+				'section' => 'ys_customizer_section_post',
+				'title'   => '投稿ページ設定',
+				'panel'   => 'ys_customizer_panel_design',
 			)
 		);
 		/**
@@ -1134,10 +1109,9 @@ class YS_Customize_Register {
 		$ys_customizer = new YS_Customizer( $this->_wp_customize );
 		$ys_customizer->add_section(
 			array(
-				'section'  => 'ys_customizer_section_page',
-				'title'    => '固定ページ設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_design',
+				'section' => 'ys_customizer_section_page',
+				'title'   => '固定ページ設定',
+				'panel'   => 'ys_customizer_panel_design',
 			)
 		);
 		/**
@@ -1292,10 +1266,9 @@ class YS_Customize_Register {
 		$ys_customizer = new YS_Customizer( $this->_wp_customize );
 		$ys_customizer->add_section(
 			array(
-				'section'  => 'ys_customizer_section_archive',
-				'title'    => 'アーカイブページ設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_design',
+				'section' => 'ys_customizer_section_archive',
+				'title'   => 'アーカイブページ設定',
+				'panel'   => 'ys_customizer_panel_design',
 			)
 		);
 		/**
@@ -1360,28 +1333,18 @@ class YS_Customize_Register {
 
 	/**
 	 * デザイン -> フロントページ
-	 * TODO: デザインパネルの中に移動する
 	 */
 	private function design_front_page() {
-		$this->_wp_customize->add_panel(
-			'ys_customizer_panel_font_page',
-			array(
-				'title'           => '[ys]フロントページ設定',
-				'priority'        => 1050,
-				'description'     => 'フロントページ設定',
-				'active_callback' => function () {
-					return ys_is_use_front_page();
-				},
-			)
-		);
 		$ys_customizer = new YS_Customizer( $this->_wp_customize );
 		$ys_customizer->add_section(
 			array(
-				'section'     => 'ys_customizer_front_page_design',
-				'title'       => 'デザイン設定',
-				'priority'    => 1,
-				'description' => 'フロントページのデザイン設定',
-				'panel'       => 'ys_customizer_panel_font_page',
+				'section'         => 'ys_customizer_front_page_design',
+				'title'           => 'フロントページ設定',
+				'description'     => 'フロントページのデザイン設定',
+				'panel'           => 'ys_customizer_panel_design',
+				'active_callback' => function () {
+					return ys_is_use_front_page();
+				},
 			)
 		);
 		/**
@@ -2727,6 +2690,9 @@ class YS_Customize_Register {
 	 * サイト運営支援
 	 */
 	private function admin() {
+		/**
+		 * サイト運営支援
+		 */
 		$this->_wp_customize->add_panel(
 			'ys_customizer_panel_admin',
 			array(
@@ -2735,9 +2701,14 @@ class YS_Customize_Register {
 				'description' => 'サイト管理画面内の機能設定',
 			)
 		);
-		/**
-		 * サイト運営支援
-		 */
+
+	}
+
+	/**
+	 * サイト運営支援 -> エディター設定
+	 */
+	private function admin_editor() {
+
 		$ys_customizer = new YS_Customizer( $this->_wp_customize );
 		$ys_customizer->add_section(
 			array(
@@ -2779,6 +2750,34 @@ class YS_Customize_Register {
 				'id'        => 'ys_admin_enable_tiny_mce_style',
 				'transport' => 'postMessage',
 				'label'     => 'ビジュアルエディター用CSSを追加する',
+			)
+		);
+	}
+
+	/**
+	 * サイト運営支援 -> 色変更機能を無効
+	 */
+	private function admin_disable_color() {
+		/**
+		 * テーマカスタマイザーでの色変更機能を無効にする
+		 */
+		$ys_customizer = new YS_Customizer( $this->_wp_customize );
+		$ys_customizer->add_section(
+			array(
+				'section' => 'ys_customizer_section_disable_ys_color',
+				'title'   => '色変更機能を無効にする(上級者向け)',
+				'panel'   => 'ys_customizer_panel_admin',
+			)
+		);
+		/**
+		 * テーマカスタマイザーでの色変更機能を無効にする
+		 */
+		$ys_customizer->add_checkbox(
+			array(
+				'id'          => 'ys_desabled_color_customizeser',
+				'default'     => ys_get_option_default( 'ys_desabled_color_customizeser' ),
+				'label'       => 'テーマカスタマイザーでの色変更機能を無効にする',
+				'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。<br>カスタマイザーで指定している部分のCSSコードが出力されなくなります',
 			)
 		);
 	}

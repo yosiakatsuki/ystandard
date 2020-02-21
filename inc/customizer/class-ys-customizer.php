@@ -417,6 +417,41 @@ class YS_Customizer {
 	}
 
 	/**
+	 * Add setting and control : section label.
+	 *
+	 * @param string $label 文字.
+	 * @param array  $args  オプション.
+	 */
+	public function add_section_label( $label, $args = array() ) {
+		if ( ! isset( $args['id'] ) ) {
+			$args['id'] = 'ys_' . substr( md5( $label ), 0, 10 );
+		}
+		$args['label'] = $label;
+		$args          = $this->parse_args( $args );
+		$this->wp_customize->add_setting(
+			$args['id'],
+			array(
+				'type'      => 'option',
+				'transport' => 'postMessage',
+			)
+		);
+		$this->wp_customize->add_control(
+			new YS_Customize_Section_Label_Control(
+				$this->wp_customize,
+				$args['id'],
+				array(
+					'label'       => $args['label'],
+					'description' => $args['description'],
+					'section'     => $args['section'],
+					'priority'    => $args['priority'],
+					'type'        => 'hidden',
+					'settings'    => $args['id'],
+				)
+			)
+		);
+	}
+
+	/**
 	 * デフォルト値のセット
 	 *
 	 * @param array $args オプション.
