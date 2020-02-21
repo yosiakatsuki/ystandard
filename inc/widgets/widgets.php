@@ -8,6 +8,21 @@
  */
 
 /**
+ * クラス読み込み
+ */
+require_once dirname( __FILE__ ) . '/class-ys-widget-utility.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-base.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-get-posts.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-advertisement.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-post-ranking.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-recent-posts.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-custom-html.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-text.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-author-box.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-share-button.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-post-taxonomy.php';
+
+/**
  * ウィジット有効化
  *
  * @return void

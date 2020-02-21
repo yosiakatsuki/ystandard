@@ -20,6 +20,14 @@ require_once get_template_directory() . '/inc/option/option.php';
  */
 require_once get_template_directory() . '/inc/utility/utility.php';
 /**
+ * Cache
+ */
+require_once get_template_directory() . '/inc/cache/cache.php';
+/**
+ * Menu
+ */
+require_once get_template_directory() . '/inc/menu/menu.php';
+/**
  * 画像関連の処理
  */
 require_once get_template_directory() . '/inc/image/image.php';
