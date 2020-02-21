@@ -74,7 +74,7 @@ class YS_Taxonomy {
 				)
 			)
 			?>
-			<p><?php echo $taxonomy->label; ?>の説明を選択した固定ページの内容に置き換えます。</p>
+			<p><?php echo $taxonomy->label; ?>の説明を選択した[ys]パーツの内容に置き換えます。</p>
 		</div>
 		<?php
 	}
@@ -115,7 +115,7 @@ class YS_Taxonomy {
 					)
 				)
 				?>
-				<p><?php echo $taxonomy->label; ?>の説明を選択した固定ページの内容に置き換えます。</p>
+				<p><?php echo $taxonomy->label; ?>の説明を選択した[ys]パーツの内容に置き換えます。</p>
 			</td>
 		</tr>
 		<?php
