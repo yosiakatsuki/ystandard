@@ -8,11 +8,6 @@
  */
 
 /**
- * ショートコード読み込みƒ
- */
-require dirname( __FILE__ ) . '/class-ys-shortcode-advertisement.php';
-
-/**
  * 広告コードのhtml整形
  *
  * @param string  $ad    広告.
