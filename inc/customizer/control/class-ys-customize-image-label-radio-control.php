@@ -40,14 +40,14 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 
 			$name = '_customize-radio-' . $this->id;
 			?>
-			<div class="customizeer__image-label-radio">
+			<div class="customizer__image-label-radio">
 				<?php if ( ! empty( $this->label ) ) : ?>
 					<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 				<?php endif; ?>
 				<?php if ( ! empty( $this->description ) ) : ?>
 					<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description"><?php echo $this->description; ?></span>
 				<?php endif; ?>
-				<div class="customizeer__image-label-radio-list">
+				<div class="customizer__image-label-radio-list">
 					<?php foreach ( $this->choices as $value => $label ) : ?>
 						<span class="customize-inside-control-row">
 							<input
