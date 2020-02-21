@@ -103,8 +103,7 @@ require_once get_template_directory() . '/inc/copyright/copyright.php';
 /**
  * Taxonomy関連
  */
-require_once get_template_directory() . '/inc/taxonomy/category.php';
-require_once get_template_directory() . '/inc/taxonomy/tag.php';
+require_once get_template_directory() . '/inc/taxonomy/taxonomy.php';
 /**
  * AMP
  */
