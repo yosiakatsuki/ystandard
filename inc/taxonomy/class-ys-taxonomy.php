@@ -69,6 +69,7 @@ class YS_Taxonomy {
 					'show_option_none'  => __( '&mdash; Select &mdash;' ),
 					'option_none_value' => '0',
 					'selected'          => '0',
+					'post_type'         => 'ys-parts',
 					'post_status'       => 'publish,private',
 				)
 			)
@@ -109,6 +110,7 @@ class YS_Taxonomy {
 						'show_option_none'  => __( '&mdash; Select &mdash;' ),
 						'option_none_value' => '0',
 						'selected'          => get_term_meta( $term->term_id, 'dscr-override', true ),
+						'post_type'         => 'ys-parts',
 						'post_status'       => 'publish,private',
 					)
 				)
