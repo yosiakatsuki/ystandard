@@ -3,7 +3,7 @@
  * もろもろ読み込み
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -40,13 +40,13 @@ require_once get_template_directory() . '/inc/conditional-tag/conditional-tag.ph
  */
 require_once get_template_directory() . '/inc/init/init.php';
 /**
+ * Post
+ */
+require_once get_template_directory() . '/inc/post/post.php';
+/**
  * Enqueue
  */
 require_once get_template_directory() . '/inc/enqueue/enqueue.php';
-/**
- * Post-meta
- */
-require_once get_template_directory() . '/inc/post-meta/post-meta.php';
 /**
  * テーマカスタマイザー
  */
@@ -78,10 +78,6 @@ require_once get_template_directory() . '/inc/content/content.php';
  * Body ... body_class
  */
 require_once get_template_directory() . '/inc/body/body.php';
-/**
- * Post Class ... post_class
- */
-require_once get_template_directory() . '/inc/post-class/post-class.php';
 /**
  * 広告
  */
@@ -120,10 +116,6 @@ require_once get_template_directory() . '/inc/shortcode/shortcode.php';
  * ウィジェット
  */
 require_once get_template_directory() . '/inc/widgets/widgets.php';
-/**
- * 簡易VPカウント
- */
-require_once get_template_directory() . '/inc/post-view/post-view.php';
 /**
  * ページネーション
  */
