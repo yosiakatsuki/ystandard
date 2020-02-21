@@ -47,8 +47,9 @@ class YS_Post_Type_Parts {
 				'menu_position'         => 20,
 				'description'           => 'サイト内で使用するコンテンツのパーツを登録できます。',
 				'has_archive'           => false,
+				'hierarchical'          => true,
 				'show_in_rest'          => true,
-				'capability_type'       => 'post',
+				'capability_type'       => 'page',
 				'rest_base'             => 'ys-parts',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports'              => array(
