@@ -32,10 +32,6 @@ require_once get_template_directory() . '/inc/menu/menu.php';
  */
 require_once get_template_directory() . '/inc/image/image.php';
 /**
- * 投稿タイプ
- */
-require_once get_template_directory() . '/inc/post-type/post-type.php';
-/**
  * 条件分岐
  */
 require_once get_template_directory() . '/inc/conditional-tag/conditional-tag.php';
