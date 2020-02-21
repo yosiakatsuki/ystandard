@@ -7,7 +7,6 @@
  * @license GPL-2.0+
  */
 
-
 /**
  * Class YS_Taxonomy
  */
@@ -123,7 +122,7 @@ class YS_Taxonomy {
 	/**
 	 * 入力された値の保存・削除
 	 *
-	 * * @param int $term_id Term ID.
+	 * @param int $term_id Term ID.
 	 */
 	function update_term_meta( $term_id ) {
 		/**
@@ -163,6 +162,13 @@ class YS_Taxonomy {
 		return $title;
 	}
 
+	/**
+	 * 説明文の上書き
+	 *
+	 * @param string $description 説明文.
+	 *
+	 * @return string
+	 */
 	public function override_description( $description ) {
 		if ( is_tax() || is_tag() || is_category() ) {
 			$term = get_queried_object();
@@ -181,7 +187,6 @@ class YS_Taxonomy {
 							$content
 						);
 					}
-
 				}
 			}
 		}
