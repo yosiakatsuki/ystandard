@@ -18,7 +18,7 @@ class YS_Shortcode_Parts extends YS_Shortcode_Base {
 	const SHORTCODE_PARAM = array(
 		'title_tag'         => '',
 		'wrap_html'         => '',
-		'parts_id'          => '',
+		'parts_id'          => '0',
 		'use_entry_content' => '',
 	);
 
