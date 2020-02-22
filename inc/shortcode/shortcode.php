@@ -22,6 +22,7 @@ require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-paging.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-taxonomy.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-follow-box.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-advertisement.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-parts.php';
 
 /**
  * 広告表示用ショートコード
@@ -220,6 +221,26 @@ function ys_shortcode_text( $args, $content = null ) {
 }
 
 add_shortcode( 'ys_text', 'ys_shortcode_text' );
+
+/**
+ * [ys]パーツショートコード
+ *
+ * @param array $args    パラメーター.
+ * @param null  $content 内容.
+ *
+ * @return string
+ */
+function ys_shortcode_parts( $args, $content = null ) {
+	$sc = new YS_Shortcode_Parts( $args );
+
+	return apply_filters(
+		'ys_sc_parts_shortcode',
+		$sc->get_html( $content ),
+		$sc->get_args()
+	);
+}
+
+add_shortcode( 'ys_parts', 'ys_shortcode_parts' );
 
 /**
  * ショートコードの作成と実行

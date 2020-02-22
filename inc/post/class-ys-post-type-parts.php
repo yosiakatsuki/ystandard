@@ -90,9 +90,9 @@ class YS_Post_Type_Parts {
 		?>
 		<div id="ys-ogp-description-section" class="meta-box__section">
 			<?php if ( 'publish' === $post->post_status ) : ?>
-				<input type="text" id="ys_parts_shortcode" class="meta-box__full-w" value='[ys_parts <?php echo 'id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
+				<input type="text" id="ys_parts_shortcode" class="meta-box__full-w" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
 				<div class="meta-box__dscr">投稿・固定ページやウィジェットに表示するためのショートコード</div>
-			<?php else: ?>
+			<?php else : ?>
 				<div class="meta-box__dscr">公開後にショートコードが表示されます。</div>
 			<?php endif; ?>
 		</div>
@@ -119,9 +119,8 @@ class YS_Post_Type_Parts {
 	 * @param int    $post_ID     投稿ID.
 	 */
 	public function add_custom_column( $column_name, $post_ID ) {
-		if ( $column_name === 'ys-parts' ) {
-			echo '<input type="text" id="ys_parts_shortcode" class="meta-box__full-w" value=\'[ys_parts id="' . esc_attr( absint( $post_ID ) ) . '"]\' readonly onfocus="this.select();"/>';
-//			echo '[ys_parts id="' . absint( $post_ID ) . '"]';
+		if ( 'ys-parts' === $column_name ) {
+			echo '<input type="text" id="ys_parts_shortcode" class="meta-box__full-w" value=\'[ys_parts parts_id="' . esc_attr( absint( $post_ID ) ) . '"]\' readonly onfocus="this.select();"/>';
 		}
 	}
 }
