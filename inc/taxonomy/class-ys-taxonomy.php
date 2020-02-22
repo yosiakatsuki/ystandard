@@ -70,7 +70,7 @@ class YS_Taxonomy {
 					'option_none_value' => '0',
 					'selected'          => '0',
 					'post_type'         => 'ys-parts',
-					'post_status'       => 'publish,private',
+					'post_status'       => 'publish',
 				)
 			)
 			?>
@@ -111,7 +111,7 @@ class YS_Taxonomy {
 						'option_none_value' => '0',
 						'selected'          => get_term_meta( $term->term_id, 'dscr-override', true ),
 						'post_type'         => 'ys-parts',
-						'post_status'       => 'publish,private',
+						'post_status'       => 'publish',
 					)
 				)
 				?>
@@ -179,17 +179,7 @@ class YS_Taxonomy {
 				/**
 				 * 書き換え設定があれば説明書き換え
 				 */
-				if ( is_numeric( $page_id ) && 0 !== (int) $page_id ) {
-					$post = get_post( $page_id );
-					if ( $post ) {
-						$content     = apply_filters( 'the_content', $post->post_content );
-						$content     = str_replace( ']]>', ']]&gt;', $content );
-						$description = sprintf(
-							'<div class="entry-content entry__content">%s</div>',
-							$content
-						);
-					}
-				}
+				$description = do_shortcode( '[ys_parts use_entry_content="1" parts_id="' . $page_id . '"]' );
 			}
 		}
 
