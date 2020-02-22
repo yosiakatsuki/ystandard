@@ -21,6 +21,7 @@ require_once dirname( __FILE__ ) . '/class-ys-widget-text.php';
 require_once dirname( __FILE__ ) . '/class-ys-widget-author-box.php';
 require_once dirname( __FILE__ ) . '/class-ys-widget-share-button.php';
 require_once dirname( __FILE__ ) . '/class-ys-widget-post-taxonomy.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-parts.php';
 
 /**
  * ウィジット有効化
@@ -134,6 +135,7 @@ function ys_widgets_register_widget() {
 	register_widget( 'YS_Widget_Author_Box' );
 	register_widget( 'YS_Widget_Post_Ranking' );
 	register_widget( 'YS_Widget_Recent_Posts' );
+	register_widget( 'YS_Widget_Parts' );
 	/**
 	 * 以下はアドオン購入で使えるようになる予定です。
 	 * 子テーマカスタマイズで有効化していただいても大丈夫ですが、
