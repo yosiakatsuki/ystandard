@@ -387,7 +387,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_copyright_year',
-				'default'     => ys_get_option_default( 'ys_copyright_year' ),
+				'default'     => date_i18n( 'Y' ),
 				'label'       => '発行年(Copyright)',
 				'section'     => 'ys_customizer_section_site_common',
 				'input_attrs' => array(
