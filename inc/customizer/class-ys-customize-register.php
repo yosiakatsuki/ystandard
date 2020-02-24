@@ -41,6 +41,10 @@ class YS_Customize_Register {
 		$this->title_tagline();
 		$this->header_media();
 		/**
+		 * お知らせバー
+		 */
+		$this->info_bar();
+		/**
 		 * [ys]デザイン
 		 */
 		$this->design();
@@ -57,15 +61,39 @@ class YS_Customize_Register {
 		$this->design_color_palette();
 		$this->design_icon_font();
 		$this->design_front_page();
+		/**
+		 * サイト共通設定
+		 */
 		$this->general();
+		/**
+		 * SNS設定
+		 */
 		$this->sns();
+		/**
+		 * SEO設定
+		 */
 		$this->seo();
+		/**
+		 * 高速化設定
+		 */
 		$this->performance();
+		/**
+		 * 広告設定
+		 */
 		$this->advertisement();
+		/**
+		 * AMP設定
+		 */
 		$this->amp();
+		/**
+		 * 運営支援
+		 */
 		$this->admin();
 		$this->admin_editor();
 		$this->admin_disable_color();
+		/**
+		 * 拡張機能
+		 */
 		$this->ystandard_extension();
 	}
 
@@ -382,6 +410,67 @@ class YS_Customize_Register {
 	}
 
 	/**
+	 * お知らせバー
+	 */
+	private function info_bar() {
+		$ys_customizer = new YS_Customizer( $this->_wp_customize );
+		/**
+		 * セクション追加
+		 */
+		$ys_customizer->add_section(
+			array(
+				'section'     => 'ys_customizer_section_info_bar',
+				'title'       => '[ys]お知らせバー設定',
+				'description' => 'ヘッダー下に表示されるお知らせバーの設定',
+				'priority'    => 1000,
+			)
+		);
+		// お知らせバーテキスト.
+		$ys_customizer->add_text(
+			array(
+				'id'      => 'ys_info_bar_text',
+				'label'   => 'お知らせテキスト',
+				'section' => 'ys_customizer_section_info_bar',
+			)
+		);
+		// お知らせURL.
+		$ys_customizer->add_url(
+			array(
+				'id'    => 'ys_info_bar_url',
+				'label' => 'お知らせテキストリンク',
+			)
+		);
+		// お知らせリンクを新しいタブで開く.
+		$ys_customizer->add_checkbox(
+			array(
+				'id'    => 'ys_info_bar_external',
+				'label' => 'お知らせリンクを新しいタブで開く',
+			)
+		);
+		// テキストカラー.
+		$ys_customizer->add_color(
+			array(
+				'id'    => 'ys_info_bar_text_color',
+				'label' => 'お知らせバー文字色',
+			)
+		);
+		// 背景色カラー.
+		$ys_customizer->add_color(
+			array(
+				'id'    => 'ys_info_bar_bg_color',
+				'label' => 'お知らせバー背景色',
+			)
+		);
+		// お知らせテキストを太字にする.
+		$ys_customizer->add_checkbox(
+			array(
+				'id'    => 'ys_info_bar_text_bold',
+				'label' => 'お知らせテキストを太字にする',
+			)
+		);
+	}
+
+	/**
 	 * デザイン設定
 	 */
 	private function design() {
@@ -397,6 +486,7 @@ class YS_Customize_Register {
 				'active_callback' => array(),
 			)
 		);
+
 	}
 
 	/**

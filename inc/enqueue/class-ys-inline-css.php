@@ -62,7 +62,9 @@ class YS_Inline_Css {
 		 */
 		$styles[] = $this->get_mobile_footer_css();
 
-		return $ys_scripts->minify( implode( '', $styles ) );
+		$inline_css = implode( '', $styles );
+
+		return $ys_scripts->minify( apply_filters( 'ys_get_inline_css', $inline_css ) );
 	}
 
 	/**
@@ -656,15 +658,15 @@ class YS_Inline_Css {
 		    text-decoration: none; }
 		  .footer-mobile-nav svg, .footer-mobile-nav i {
 		    font-size: 1.5em; }
-		
+
 		.footer-mobile-nav__dscr {
 		  display: block;
 		  font-size: .7em;
 		  line-height: 1.2; }
-		
+
 		.has-mobile-footer .site__footer {
 		  padding-bottom: 5rem; }
-		
+
 		@media screen and (min-width: 1025px) {
 		    .footer-mobile-nav {
 		      display: none; }
@@ -682,7 +684,7 @@ class YS_Inline_Css {
 	 *
 	 * @return string
 	 */
-	private function add_media_query( $css, $breakpoint, $type = 'min' ) {
+	public function add_media_query( $css, $breakpoint, $type = 'min' ) {
 
 		/**
 		 * 切り替え位置取得
