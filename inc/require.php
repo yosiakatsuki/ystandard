@@ -65,6 +65,7 @@ require_once get_template_directory() . '/inc/archive/archive.php';
 require_once get_template_directory() . '/inc/header/head.php';
 require_once get_template_directory() . '/inc/header/header.php';
 require_once get_template_directory() . '/inc/header/custom-header.php';
+require_once get_template_directory() . '/inc/header/class-ys-info-bar.php';
 /**
  * フッター
  */

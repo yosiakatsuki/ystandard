@@ -31,29 +31,8 @@ class YS_Option {
 	public static function get_option( $name, $default = false, $type = false ) {
 		$result         = null;
 		$option_default = null;
-		/**
-		 * 設定値のキャッシュ機能
-		 */
-		if ( 'none' !== get_option( 'ys_query_cache_ys_options' ) ) {
-			global $ystandard_option;
 
-			/**
-			 * グローバルにセットされてない場合はキャッシュから取得 or リスト作成
-			 */
-			if ( ! is_array( $ystandard_option ) ) {
-				$ystandard_option = YS_Cache::get_cache( 'ystandard_options', array() );
-				if ( false === $ystandard_option ) {
-					$ystandard_option = self::create_cache();
-				}
-			}
-			/**
-			 * 設定チェック
-			 */
-			if ( isset( $ystandard_option[ $name ] ) ) {
-				$result = $ystandard_option[ $name ];
-			}
-		}
-
+		$result = self::get_cache_options( $name );
 		/**
 		 * 設定取得できなかった場合通常取得
 		 */
@@ -76,6 +55,45 @@ class YS_Option {
 		}
 
 		return apply_filters( "ys_get_option_${name}", $result, $name, $option_default );
+	}
+
+	/**
+	 * オプション値をキャッシュから取得
+	 *
+	 * @param string $name 設定キー.
+	 *
+	 * @return string|null
+	 */
+	public static function get_cache_options( $name ) {
+		if ( is_customize_preview() || is_preview() ) {
+			return null;
+		}
+		if ( 'none' === get_option( 'ys_query_cache_ys_options' ) ) {
+			return null;
+		}
+		$result = null;
+		/**
+		 * 設定値のキャッシュ機能
+		 */
+		global $ystandard_option;
+
+		/**
+		 * グローバルにセットされてない場合はキャッシュから取得 or リスト作成
+		 */
+		if ( ! is_array( $ystandard_option ) ) {
+			$ystandard_option = YS_Cache::get_cache( 'ystandard_options', array() );
+			if ( false === $ystandard_option ) {
+				$ystandard_option = self::create_cache();
+			}
+		}
+		/**
+		 * 設定チェック
+		 */
+		if ( isset( $ystandard_option[ $name ] ) ) {
+			$result = $ystandard_option[ $name ];
+		}
+
+		return $result;
 	}
 
 	/**
@@ -136,7 +154,7 @@ class YS_Option {
 		 * 設定一覧の作成
 		 */
 		foreach ( $defaults as $key => $value ) {
-			$options[] = get_option( $key, $value );
+			$options[] = self::get_option( $key, $value );
 		}
 		/**
 		 * キャッシュの作成
@@ -170,6 +188,15 @@ class YS_Option {
 			'ys_logo_width_sp'                          => 0, // ロゴの幅指定.
 			'ys_wp_hidden_blogdescription'              => 0, // キャッチフレーズを出力しない.
 			'ys_wp_site_description'                    => '', // TOPページのmeta description.
+			/**
+			 * お知らせバー
+			 */
+			'ys_info_bar_text'                          => '', // お知らせバーテキスト.
+			'ys_info_bar_url'                           => '', // お知らせバーリンクURL.
+			'ys_info_bar_external'                      => false, // お知らせバーリンクを.
+			'ys_info_bar_text_color'                    => '#222222', // お知らせバー文字色.
+			'ys_info_bar_bg_color'                      => '#f1f1f3', // お知らせバー背景色.
+			'ys_info_bar_text_bold'                     => true, // お知らせバーを太字にする.
 			/**
 			 * デザイン -> フォント
 			 */
