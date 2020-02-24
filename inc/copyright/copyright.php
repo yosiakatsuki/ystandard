@@ -55,7 +55,7 @@ function ys_get_copyright() {
  * @return string
  */
 function ys_get_copyright_default() {
-	$year = ys_get_option( 'ys_copyright_year' );
+	$year = ys_get_option( 'ys_copyright_year', date_i18n( 'Y' ) );
 	if ( '' === $year ) {
 		$year = date_i18n( 'Y' );
 	}
