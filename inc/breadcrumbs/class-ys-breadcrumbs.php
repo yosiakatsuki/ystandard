@@ -563,11 +563,18 @@ class YS_Breadcrumbs {
 		$ys_inline_css = new YS_Inline_Css();
 		$styles        = array();
 
-		if ( YS_Color::get_site_bg() === YS_Color::get_site_bg() ) {
+		if ( ! ys_has_site_background() ) {
 			if ( 'header' !== YS_Breadcrumbs::get_breadcrumbs_position() ) {
 				$styles[] = '.site-header + .site__content {margin-top:1.5rem;}';
 				$styles[] = $ys_inline_css->add_media_query(
 					'.site-header + .site__content {margin-top:2.5rem;}',
+					'md'
+				);
+			}
+			if ( 'none' === YS_Breadcrumbs::get_breadcrumbs_position() ) {
+				$styles[] = '.site__footer {margin-top:2rem;}';
+				$styles[] = $ys_inline_css->add_media_query(
+					'.site__footer {margin-top:3rem;}',
 					'md'
 				);
 			}
