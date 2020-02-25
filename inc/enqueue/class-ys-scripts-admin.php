@@ -34,7 +34,7 @@ class YS_Scripts_Admin {
 		/**
 		 * テーマカスタマイザー関連
 		 */
-		add_action( 'customize_preview_init', array( $this, 'customize_preview_init' ) );
+		add_action( 'customize_preview_init', array( $this, 'customize_preview_init' ), 999 );
 		add_action( 'customize_controls_print_styles', array( $this, 'customize_controls_print_styles' ) );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_enqueue_scripts' ) );
 	}
@@ -222,7 +222,7 @@ class YS_Scripts_Admin {
 		wp_enqueue_script(
 			'ys_customize_preview_js',
 			get_template_directory_uri() . '/js/admin/customizer-preview.js',
-			array( 'customize-controls', 'jquery' ),
+			array( 'jquery', 'customize-preview' ),
 			date_i18n( 'YmdHis' ),
 			true
 		);
