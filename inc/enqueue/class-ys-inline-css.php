@@ -198,7 +198,7 @@ class YS_Inline_Css {
 		/**
 		 * 背景色がデフォルト以外の場合
 		 */
-		if ( YS_Color::get_site_bg_default() !== $html_bg ) {
+		if ( ys_has_site_background() ) {
 			if ( is_singular() ) {
 				if ( ! ys_is_full_width() ) {
 					$styles[] = '

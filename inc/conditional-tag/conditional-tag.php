@@ -935,3 +935,17 @@ function ys_is_has_header_media_full() {
 
 	return false;
 }
+
+/**
+ * サイト 背景色・背景画像有り判断
+ */
+function ys_has_site_background() {
+	if ( YS_Color::get_site_bg_default() !== YS_Color::get_site_bg() ) {
+		return true;
+	}
+	if ( get_background_image() ) {
+		return true;
+	}
+
+	return false;
+}
