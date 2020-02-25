@@ -30,7 +30,7 @@ class OptionsTest extends WP_UnitTestCase {
 	 */
 	function test_ys_get_option_by_bool_true() {
 		update_option( 'ys_show_post_thumbnail', '1' );
-		$this->assertTrue( ys_get_option_by_bool( 'ys_show_post_thumbnail' ), );
+		$this->assertTrue( ys_get_option_by_bool( 'ys_show_post_thumbnail' ) );
 	}
 
 	/**
@@ -38,6 +38,6 @@ class OptionsTest extends WP_UnitTestCase {
 	 */
 	function test_ys_get_option_by_bool_false() {
 		update_option( 'ys_show_post_thumbnail', '' );
-		$this->assertFalse( ys_get_option_by_bool( 'ys_show_post_thumbnail' ), );
+		$this->assertFalse( ys_get_option_by_bool( 'ys_show_post_thumbnail' ) );
 	}
 }
