@@ -865,6 +865,8 @@ function ys_get_option_defaults() {
 		'ys_color_nav_btn_sp_open'                  => '#222222',
 		'ys_color_nav_btn_sp'                       => '#ffffff',
 		'ys_color_footer_font'                      => '#ffffff',
+		'ys_color_footer_sns_bg_opacity'            => 30,
+		'ys_color_footer_sns_bg_type'               => 'light',
 		'ys-color-palette-ys-blue'                  => '#82B9E3',
 		'ys-color-palette-ys-light-blue'            => '#77C7E4',
 		'ys-color-palette-ys-red'                   => '#D53939',

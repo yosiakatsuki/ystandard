@@ -549,13 +549,13 @@ class YS_Inline_Css {
 		/**
 		 * フッターSNSリンク
 		 */
-		$opacity       = get_option( 'ys_color_footer_sns_bg_opacity', 30 );
+		$opacity       = ys_get_option( 'ys_color_footer_sns_bg_opacity', 30 );
 		$opacity       = ( $opacity / 100 );
 		$hover_opacity = ( $opacity + 0.2 );
 		if ( 1 < ( $opacity + 0.2 ) ) {
 			$hover_opacity = 1;
 		}
-		if ( 'light' === get_option( 'ys_color_footer_sns_bg_type', 'light' ) ) {
+		if ( 'light' === ys_get_option( 'ys_color_footer_sns_bg_type', 'light' ) ) {
 			$color       = 'rgba(255,255,255,' . $opacity . ')';
 			$hover_color = 'rgba(255,255,255,' . $hover_opacity . ')';
 		} else {
