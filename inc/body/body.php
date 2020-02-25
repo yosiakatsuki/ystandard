@@ -110,6 +110,13 @@ function ys_body_class( $classes ) {
 		$classes[] = 'has-fixed-header';
 	}
 
+	/**
+	 * カスタマイズプレビュー
+	 */
+	if ( is_customize_preview() ) {
+		$classes[] = 'is-customize-preview';
+	}
+
 	return $classes;
 }
 
