@@ -18,20 +18,20 @@ function ys_get_subscribe_buttons() {
 	/**
 	 * Twitter
 	 */
-	if ( ys_get_option( 'ys_subscribe_url_twitter' ) ) {
-		$args['twitter'] = ys_get_option( 'ys_subscribe_url_twitter' );
+	if ( ys_get_option( 'ys_subscribe_url_twitter', '' ) ) {
+		$args['twitter'] = ys_get_option( 'ys_subscribe_url_twitter', '' );
 	}
 	/**
 	 * Facebook
 	 */
-	if ( ys_get_option( 'ys_subscribe_url_facebook' ) ) {
-		$args['facebook'] = ys_get_option( 'ys_subscribe_url_facebook' );
+	if ( ys_get_option( 'ys_subscribe_url_facebook', '' ) ) {
+		$args['facebook'] = ys_get_option( 'ys_subscribe_url_facebook', '' );
 	}
 	/**
 	 * Feedly
 	 */
-	if ( ys_get_option( 'ys_subscribe_url_feedly' ) ) {
-		$args['feedly'] = ys_get_option( 'ys_subscribe_url_feedly' );
+	if ( ys_get_option( 'ys_subscribe_url_feedly', '' ) ) {
+		$args['feedly'] = ys_get_option( 'ys_subscribe_url_feedly', '' );
 	}
 	/**
 	 * クラス

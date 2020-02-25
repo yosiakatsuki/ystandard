@@ -20,14 +20,14 @@ class YS_Scripts_Admin {
 		/**
 		 * ブロックエディタ関連
 		 */
-		if ( ys_get_option( 'ys_admin_enable_block_editor_style', true, 'bool' ) ) {
+		if ( ys_get_option_by_bool( 'ys_admin_enable_block_editor_style', true ) ) {
 			add_action( 'after_setup_theme', array( $this, 'enqueue_block_css' ) );
 			add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 		}
 		/**
 		 * ビジュアルエディタ関連
 		 */
-		if ( ys_get_option( 'ys_admin_enable_tiny_mce_style', true, 'bool' ) ) {
+		if ( ys_get_option_by_bool( 'ys_admin_enable_tiny_mce_style', false ) ) {
 			add_action( 'admin_init', array( $this, 'enqueue_visual_editor_styles' ) );
 			add_action( 'tiny_mce_before_init', array( $this, 'tiny_mce_before_init' ) );
 		}

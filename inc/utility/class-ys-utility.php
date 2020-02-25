@@ -41,6 +41,12 @@ class YS_Utility {
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return;
 		}
+		if ( defined( WP_DEBUG ) ) {
+			return;
+		}
+		if ( false === WP_DEBUG ) {
+			return;
+		}
 		$message = sprintf(
 			'<span style="color:red"><code>%s</code>は%sで非推奨になった関数です。</span><br>' . PHP_EOL,
 			$func,

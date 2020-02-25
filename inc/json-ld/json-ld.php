@@ -174,7 +174,7 @@ function ys_get_json_ld_article( $post_data = null ) {
  * パブリッシャー名を取得
  */
 function ys_get_publisher_name() {
-	$name = ys_get_option( 'ys_option_structured_data_publisher_name' );
+	$name = ys_get_option( 'ys_option_structured_data_publisher_name', '' );
 	if ( '' === $name ) {
 		$name = get_bloginfo( 'name' );
 	}

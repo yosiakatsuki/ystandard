@@ -53,15 +53,15 @@ function ys_body_class( $classes ) {
 	 * アーカイブレイアウト
 	 */
 	if ( is_archive() || is_home() || is_search() ) {
-		$classes[] = 'entry-list--' . ys_get_option( 'ys_archive_type' );
+		$classes[] = 'entry-list--' . ys_get_option( 'ys_archive_type', 'list' );
 	}
 
 	/**
 	 * フロントページタイプ
 	 */
-	if ( is_front_page() && 'normal' !== ys_get_option( 'ys_front_page_type' ) ) {
+	if ( is_front_page() && 'normal' !== ys_get_option( 'ys_front_page_type', 'normal' ) ) {
 		$classes[] = 'front-page--custom';
-		$classes[] = 'front-page--' . ys_get_option( 'ys_front_page_type' );
+		$classes[] = 'front-page--' . ys_get_option( 'ys_front_page_type', 'normal' );
 	}
 
 	/**
@@ -70,7 +70,7 @@ function ys_body_class( $classes ) {
 	if ( ys_is_active_custom_header() ) {
 		$classes[] = 'has-custom-header';
 		$classes[] = 'custom-header--' . ys_get_custom_header_type();
-		if ( ys_get_option( 'ys_wp_header_media_full' ) ) {
+		if ( ys_get_option_by_bool( 'ys_wp_header_media_full', false ) ) {
 			$classes[] = 'custom-header--full';
 		}
 	}
@@ -92,7 +92,7 @@ function ys_body_class( $classes ) {
 	/**
 	 * 背景色あり
 	 */
-	if ( ys_get_option_default( 'ys_color_site_bg' ) !== ys_get_option( 'ys_color_site_bg' ) ) {
+	if ( YS_Color::get_site_bg_default() !== YS_Color::get_site_bg() ) {
 		$classes[] = 'has-bg-color';
 	}
 
@@ -106,7 +106,7 @@ function ys_body_class( $classes ) {
 	/**
 	 * ヘッダー固定
 	 */
-	if ( ys_get_option_by_bool( 'ys_header_fixed' ) ) {
+	if ( ys_get_option_by_bool( 'ys_header_fixed', false ) ) {
 		$classes[] = 'has-fixed-header';
 	}
 

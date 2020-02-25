@@ -17,7 +17,7 @@
 		 */
 		get_template_part( 'template-parts/archive/header' );
 		?>
-		<div class="archive__container -<?php echo esc_attr( ys_get_option( 'ys_archive_type' ) ); ?>">
+		<div class="archive__container -<?php echo esc_attr( ys_get_option( 'ys_archive_type', 'list' ) ); ?>">
 			<?php
 			while ( have_posts() ) :
 				the_post();

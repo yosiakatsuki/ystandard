@@ -20,6 +20,10 @@ require_once get_template_directory() . '/inc/option/option.php';
  */
 require_once get_template_directory() . '/inc/utility/utility.php';
 /**
+ * 色関連の管理
+ */
+require_once get_template_directory() . '/inc/color/class-ys-color.php';
+/**
  * Cache
  */
 require_once get_template_directory() . '/inc/cache/cache.php';

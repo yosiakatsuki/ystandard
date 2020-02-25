@@ -3,7 +3,7 @@
  * OGP
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -12,7 +12,7 @@ if ( ! function_exists( 'ys_get_the_ogp' ) ) {
 	 * OGP metaタグ作成
 	 */
 	function ys_get_the_ogp() {
-		if ( ! ys_get_option( 'ys_ogp_enable' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_ogp_enable', true ) ) {
 			return '';
 		}
 		$ogp   = '';
@@ -44,6 +44,7 @@ if ( ! function_exists( 'ys_get_the_ogp' ) ) {
 		if ( ! empty( $param['ogp_admins'] ) ) {
 			$ogp .= '<meta property="fb:admins" content="' . $param['ogp_admins'] . '" />' . PHP_EOL;
 		}
+
 		return apply_filters( 'ys_get_the_ogp', $ogp );
 	}
 }
@@ -54,7 +55,7 @@ if ( ! function_exists( 'ys_get_the_twitter_card' ) ) {
 	 */
 	function ys_get_the_twitter_card() {
 
-		if ( ! ys_get_option( 'ys_twittercard_enable' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_twittercard_enable', true ) ) {
 			return '';
 		}
 		$twitter_card = '';
@@ -74,6 +75,7 @@ if ( ! function_exists( 'ys_get_the_twitter_card' ) ) {
 		if ( ! empty( $param['image'] ) ) {
 			$twitter_card .= '<meta name="twitter:image" content="' . $param['image'] . '" />' . PHP_EOL;
 		}
+
 		return apply_filters( 'ys_get_the_twitter_card', $twitter_card );
 	}
 }
@@ -89,15 +91,14 @@ if ( ! function_exists( 'ys_get_ogp_and_twitter_card_param' ) ) {
 		$param = array(
 			'title'             => get_bloginfo( 'name' ),
 			'description'       => $dscr,
-			'image'             => ys_get_option( 'ys_ogp_default_image' ),
+			'image'             => ys_get_option( 'ys_ogp_default_image', '' ),
 			'url'               => home_url( '/' ),
 			'ogp_site_name'     => get_bloginfo( 'name' ),
 			'ogp_locale'        => 'ja_JP',
 			'ogp_type'          => 'website',
-			'ogp_app_id'        => ys_get_option( 'ys_ogp_fb_app_id' ),
-			'ogp_admins'        => ys_get_option( 'ys_ogp_fb_admins' ),
-			'twitter_account'   => ys_get_option( 'ys_twittercard_user' ),
-			'twitter_card_type' => ys_get_option( 'ys_twittercard_type' ),
+			'ogp_app_id'        => ys_get_option( 'ys_ogp_fb_app_id', '' ),
+			'twitter_account'   => ys_get_option( 'ys_twittercard_user', '' ),
+			'twitter_card_type' => ys_get_option( 'ys_twittercard_type', 'summary_large_image' ),
 		);
 		/**
 		 * 投稿・固定ページ系
@@ -124,6 +125,7 @@ if ( ! function_exists( 'ys_get_ogp_and_twitter_card_param' ) ) {
 			$param['url']         = ys_get_the_archive_url();
 			$param['description'] = apply_filters( 'ys_ogp_description_archive', $dscr );
 		}
+
 		/**
 		 * フィルタ
 		 */

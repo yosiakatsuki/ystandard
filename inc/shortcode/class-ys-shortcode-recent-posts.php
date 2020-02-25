@@ -31,7 +31,7 @@ class YS_Shortcode_Recent_Posts extends YS_Shortcode_Get_Posts {
 		$args = array_merge(
 			array(
 				'cache_key'        => self::CACHE_KEY,
-				'cache_expiration' => ys_get_option( 'ys_query_cache_recent_posts' ),
+				'cache_expiration' => ys_get_option( 'ys_query_cache_recent_posts', 'none' ),
 			),
 			$args
 		);

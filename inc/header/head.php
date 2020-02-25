@@ -43,13 +43,13 @@ function ys_the_head_attr() {
  */
 function ys_get_meta_description() {
 	global $post;
-	$length = ys_get_option( 'ys_option_meta_description_length' );
+	$length = ys_get_option_by_int( 'ys_option_meta_description_length', 80 );
 	$dscr   = '';
 	/**
 	 * TOPページの場合
 	 */
 	if ( ys_is_top_page() ) {
-		$dscr = trim( ys_get_option( 'ys_wp_site_description' ) );
+		$dscr = trim( ys_get_option( 'ys_wp_site_description', '' ) );
 	} elseif ( is_category() && ! is_paged() ) {
 		/**
 		 * カテゴリー
@@ -364,23 +364,23 @@ function ys_the_noindex() {
 		 * 検索結果をnoindex
 		 */
 		$noindex = true;
-	} elseif ( is_category() && ys_get_option( 'ys_archive_noindex_category' ) ) {
+	} elseif ( is_category() && ys_get_option_by_bool( 'ys_archive_noindex_category', false ) ) {
 		/**
 		 * カテゴリーページのnoindex設定がされていればnoindex
 		 */
 		$noindex = true;
-	} elseif ( is_tag() && ys_get_option( 'ys_archive_noindex_tag' ) ) {
+	} elseif ( is_tag() && ys_get_option_by_bool( 'ys_archive_noindex_tag', true ) ) {
 		/**
 		 * カテゴリーページのnoindex設定がされていればnoindex
 		 */
 		$noindex = true;
-	} elseif ( is_author() && ys_get_option( 'ys_archive_noindex_author' ) ) {
+	} elseif ( is_author() && ys_get_option_by_bool( 'ys_archive_noindex_author', true ) ) {
 		/**
 		 * カテゴリーページのnoindex設定がされていればnoindex
 		 */
 		$noindex = true;
 
-	} elseif ( is_date() && ys_get_option( 'ys_archive_noindex_date' ) ) {
+	} elseif ( is_date() && ys_get_option_by_bool( 'ys_archive_noindex_date', true ) ) {
 		/**
 		 * カテゴリーページのnoindex設定がされていればnoindex
 		 */
@@ -435,7 +435,7 @@ function ys_the_google_anarytics() {
 	/**
 	 * トラッキング タイプ
 	 */
-	$ga_type = ys_get_option( 'ys_ga_tracking_type' );
+	$ga_type = ys_get_option( 'ys_ga_tracking_type', 'gtag' );
 	get_template_part( 'template-parts/parts/ga', $ga_type );
 }
 
@@ -447,7 +447,7 @@ add_action( 'wp_head', 'ys_the_google_anarytics', 99 );
 function ys_get_google_anarytics_tracking_id() {
 	return apply_filters(
 		'ys_get_google_anarytics_tracking_id',
-		trim( ys_get_option( 'ys_ga_tracking_id' ) )
+		trim( ys_get_option( 'ys_ga_tracking_id', '' ) )
 	);
 }
 

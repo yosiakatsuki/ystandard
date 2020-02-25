@@ -28,7 +28,7 @@ class YS_Info_Bar {
 			return;
 		}
 
-		if ( empty( ys_get_option( 'ys_info_bar_text' ) ) ) {
+		if ( empty( ys_get_option( 'ys_info_bar_text', '' ) ) ) {
 			return;
 		}
 		ob_start();
@@ -50,9 +50,9 @@ class YS_Info_Bar {
 		/**
 		 * 設定取得
 		 */
-		$text_color = ys_get_option( 'ys_info_bar_text_color' );
-		$bg_color   = ys_get_option( 'ys_info_bar_bg_color' );
-		$text_bold  = ys_get_option_by_bool( 'ys_info_bar_text_bold' );
+		$text_color = ys_get_option( 'ys_info_bar_text_color', '#222222' );
+		$bg_color   = ys_get_option( 'ys_info_bar_bg_color', '#f1f1f3' );
+		$text_bold  = ys_get_option_by_bool( 'ys_info_bar_text_bold', true );
 		/**
 		 * 基本系
 		 */

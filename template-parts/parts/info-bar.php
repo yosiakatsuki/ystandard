@@ -10,9 +10,9 @@
 /**
  * 設定取得
  */
-$text   = ys_get_option( 'ys_info_bar_text' );
-$url    = ys_get_option( 'ys_info_bar_url' );
-$target = ys_get_option_by_bool( 'ys_info_bar_external' ) ? '_blank' : '_self';
+$text   = ys_get_option( 'ys_info_bar_text', '' );
+$url    = ys_get_option( 'ys_info_bar_url', '' );
+$target = ys_get_option_by_bool( 'ys_info_bar_external', false ) ? '_blank' : '_self';
 
 if ( empty( $text ) ) {
 	return;
