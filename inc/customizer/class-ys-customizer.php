@@ -463,9 +463,10 @@ class YS_Customizer {
 		 * デフォルト指定チェック
 		 */
 		if ( ! isset( $args['default'] ) ) {
-			if ( isset( $args['id'] ) ) {
-				$args['default'] = ys_get_option_default( $args['id'] );
-			}
+			$args['default'] = '';
+		}
+		if ( isset( $args['id'] ) ) {
+			$args['default'] = YS_Option::get_default( $args['id'], $args['default'] );
 		}
 
 		return wp_parse_args( $args, $this->defaults );

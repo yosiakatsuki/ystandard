@@ -162,7 +162,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_logo_width_pc',
-				'default'     => ys_get_option_default( 'ys_logo_width_pc' ),
+				'default'     => 0,
 				'label'       => 'ロゴの表示幅(PC・タブレット)',
 				'description' => 'PC・タブレット表示のロゴ表示幅を指定できます。指定しない場合は0にしてください。',
 				'section'     => 'title_tagline',
@@ -178,7 +178,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_logo_width_sp',
-				'default'     => ys_get_option_default( 'ys_logo_width_sp' ),
+				'default'     => 0,
 				'label'       => 'ロゴの表示幅(スマホ)',
 				'description' => 'スマートフォン表示のロゴ表示幅を指定できます。指定しない場合は0にしてください。',
 				'section'     => 'title_tagline',
@@ -196,7 +196,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_wp_hidden_blogdescription',
-				'default'     => ys_get_option_default( 'ys_wp_hidden_blogdescription' ),
+				'default'     => 0,
 				'label'       => 'キャッチフレーズを非表示にする',
 				'description' => 'サイトタイトル・ロゴの下にキャッチフレーズを表示したくない場合はチェックを付けて下さい',
 				'section'     => 'title_tagline',
@@ -206,6 +206,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_plain_textarea(
 			array(
 				'id'          => 'ys_wp_site_description',
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'TOPページのmeta description',
 				'description' => '※HTMLタグ・改行は削除されます',
@@ -271,6 +272,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_wp_header_media_shortcode',
+				'default'     => '',
 				'label'       => '[ys]ヘッダーメディア用ショートコード',
 				'description' => 'ヘッダー画像をプラグイン等のショートコードで出力する場合、ショートコードを入力してください。',
 				'section'     => 'header_image',
@@ -291,7 +293,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_wp_header_media_full',
-				'default'     => ys_get_option_default( 'ys_wp_header_media_full' ),
+				'default'     => 0,
 				'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）',
 				'description' => 'PC表示でヘッダーメディア（画像・動画）の上にサイトヘッダーを重ねる。',
 				'section'     => 'header_image',
@@ -304,7 +306,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_wp_header_media_full_type',
-				'default'     => ys_get_option_default( 'ys_wp_header_media_full_type' ),
+				'default'     => 'dark',
 				'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）：サイトヘッダー表示タイプ',
 				'description' => 'PC表示でヘッダーメディア（画像・動画）の上にサイトヘッダーを重ねる場合のサイトヘッダー表示タイプ',
 				'section'     => 'header_image',
@@ -321,7 +323,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_wp_header_media_full_opacity',
-				'default'     => ys_get_option_default( 'ys_wp_header_media_full_opacity' ),
+				'default'     => 50,
 				'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）：サイトヘッダー不透明度',
 				'description' => 'サイトヘッダーの不透明度を設定します。0~100の間で入力して下さい。（数値が小さいほど透明になります。）',
 				'section'     => 'header_image',
@@ -347,7 +349,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_wp_header_media_all_page',
-				'default'     => ys_get_option_default( 'ys_wp_header_media_all_page' ),
+				'default'     => 0,
 				'label'       => '[ys]ヘッダーメディアを全ページ表示する',
 				'description' => 'TOPページ以外の全ページでヘッダーメディアを表示する。',
 				'section'     => 'header_image',
@@ -374,7 +376,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_title_separate',
-				'default'     => ys_get_option_default( 'ys_title_separate' ),
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'titleタグの区切り文字',
 				'description' => '※区切り文字の前後に半角空白が自動で挿入されます',
@@ -402,7 +404,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'      => 'ys_option_excerpt_length',
-				'default' => ys_get_option_default( 'ys_option_excerpt_length' ),
+				'default' => 110,
 				'label'   => '投稿抜粋の文字数',
 				'section' => 'ys_customizer_section_site_common',
 			)
@@ -429,6 +431,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'      => 'ys_info_bar_text',
+				'default' => '',
 				'label'   => 'お知らせテキスト',
 				'section' => 'ys_customizer_section_info_bar',
 			)
@@ -436,36 +439,41 @@ class YS_Customize_Register {
 		// お知らせURL.
 		$ys_customizer->add_url(
 			array(
-				'id'    => 'ys_info_bar_url',
-				'label' => 'お知らせテキストリンク',
+				'id'      => 'ys_info_bar_url',
+				'default' => '',
+				'label'   => 'お知らせテキストリンク',
 			)
 		);
 		// お知らせリンクを新しいタブで開く.
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_info_bar_external',
-				'label' => 'お知らせリンクを新しいタブで開く',
+				'id'      => 'ys_info_bar_external',
+				'default' => 0,
+				'label'   => 'お知らせリンクを新しいタブで開く',
 			)
 		);
 		// テキストカラー.
 		$ys_customizer->add_color(
 			array(
-				'id'    => 'ys_info_bar_text_color',
-				'label' => 'お知らせバー文字色',
+				'id'      => 'ys_info_bar_text_color',
+				'default' => '#222222',
+				'label'   => 'お知らせバー文字色',
 			)
 		);
 		// 背景色カラー.
 		$ys_customizer->add_color(
 			array(
-				'id'    => 'ys_info_bar_bg_color',
-				'label' => 'お知らせバー背景色',
+				'id'      => 'ys_info_bar_bg_color',
+				'default' => '#f1f1f3',
+				'label'   => 'お知らせバー背景色',
 			)
 		);
 		// お知らせテキストを太字にする.
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_info_bar_text_bold',
-				'label' => 'お知らせテキストを太字にする',
+				'id'      => 'ys_info_bar_text_bold',
+				'default' => 1,
+				'label'   => 'お知らせテキストを太字にする',
 			)
 		);
 	}
@@ -511,7 +519,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_design_font_type',
-				'default'     => ys_get_option_default( 'ys_design_font_type' ),
+				'default'     => 'yugo',
 				'label'       => '表示フォントタイプ',
 				'description' => '文字のフォントを変更できます',
 				'choices'     => array(
@@ -542,7 +550,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_site_bg',
-				'default' => ys_get_option_default( 'ys_color_site_bg' ),
+				'default' => YS_Color::get_site_bg_default(),
 				'label'   => 'サイト背景色',
 			)
 		);
@@ -575,7 +583,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_image_label_radio(
 			array(
 				'id'          => 'ys_design_header_type',
-				'default'     => ys_get_option_default( 'ys_design_header_type' ),
+				'default'     => 'row1',
 				'label'       => 'ヘッダータイプ',
 				'description' => 'ヘッダーの表示タイプ',
 				'section'     => 'ys_customizer_section_header_design',
@@ -590,7 +598,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_header_bg',
-				'default' => ys_get_option_default( 'ys_color_header_bg' ),
+				'default' => '#ffffff',
 				'label'   => 'ヘッダー背景色',
 			)
 		);
@@ -598,7 +606,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_header_font',
-				'default' => ys_get_option_default( 'ys_color_header_font' ),
+				'default' => '#222222',
 				'label'   => 'サイトタイトル・メニューテキストの文字色',
 			)
 		);
@@ -606,7 +614,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_header_dscr_font',
-				'default' => ys_get_option_default( 'ys_color_header_dscr_font' ),
+				'default' => '#757575',
 				'label'   => 'サイト概要の文字色',
 			)
 		);
@@ -623,8 +631,9 @@ class YS_Customize_Register {
 		);
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_header_fixed',
-				'label' => 'ヘッダーを画面上部に固定する',
+				'id'      => 'ys_header_fixed',
+				'default' => 0,
+				'label'   => 'ヘッダーを画面上部に固定する',
 			)
 		);
 		/**
@@ -643,8 +652,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_number(
 			array(
-				'id'    => 'ys_header_fixed_height_pc',
-				'label' => 'ヘッダー高さ(PC)',
+				'id'      => 'ys_header_fixed_height_pc',
+				'default' => 0,
+				'label'   => 'ヘッダー高さ(PC)',
 			)
 		);
 		/**
@@ -652,8 +662,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_number(
 			array(
-				'id'    => 'ys_header_fixed_height_tablet',
-				'label' => 'ヘッダー高さ(タブレット)',
+				'id'      => 'ys_header_fixed_height_tablet',
+				'default' => 0,
+				'label'   => 'ヘッダー高さ(タブレット)',
 			)
 		);
 		/**
@@ -661,8 +672,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_number(
 			array(
-				'id'    => 'ys_header_fixed_height_mobile',
-				'label' => 'ヘッダー高さ(モバイル)',
+				'id'      => 'ys_header_fixed_height_mobile',
+				'default' => 0,
+				'label'   => 'ヘッダー高さ(モバイル)',
 			)
 		);
 	}
@@ -690,7 +702,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_breadcrumbs_position',
-				'default'     => ys_get_option_default( 'ys_breadcrumbs_position' ),
+				'default'     => 'header',
 				'label'       => 'パンくずリストの表示位置',
 				'description' => '',
 				'choices'     => array(
@@ -716,7 +728,7 @@ class YS_Customize_Register {
 			$ys_customizer->add_checkbox(
 				array(
 					'id'      => 'ys_show_page_for_posts_on_breadcrumbs',
-					'default' => ys_get_option_default( 'ys_show_page_for_posts_on_breadcrumbs' ),
+					'default' => 1,
 					'label'   => 'パンくずリストに「投稿ページ」を表示する',
 					'section' => 'ys_customizer_section_archive',
 				)
@@ -743,7 +755,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_nav_bg_sp',
-				'default' => ys_get_option_default( 'ys_color_nav_bg_sp' ),
+				'default' => '#000000',
 				'label'   => 'モバイルメニュー背景色',
 			)
 		);
@@ -751,7 +763,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_nav_font_sp',
-				'default' => ys_get_option_default( 'ys_color_nav_font_sp' ),
+				'default' => '#ffffff',
 				'label'   => 'モバイルメニュー文字色',
 			)
 		);
@@ -759,7 +771,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_nav_btn_sp_open',
-				'default' => ys_get_option_default( 'ys_color_nav_btn_sp_open' ),
+				'default' => '#222222',
 				'label'   => 'モバイルメニュー ボタン色：開く',
 			)
 		);
@@ -767,7 +779,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_nav_btn_sp',
-				'default' => ys_get_option_default( 'ys_color_nav_btn_sp' ),
+				'default' => '#ffffff',
 				'label'   => 'モバイルメニュー ボタン色：閉じる',
 			)
 		);
@@ -782,7 +794,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_search_form_on_slide_menu',
-				'default' => ys_get_option_default( 'ys_show_search_form_on_slide_menu' ),
+				'default' => 0,
 				'label'   => 'モバイルメニューに検索フォームを表示する',
 			)
 		);
@@ -793,7 +805,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_sidebar_mobile',
-				'default' => ys_get_option_default( 'ys_show_sidebar_mobile' ),
+				'default' => 0,
 				'label'   => 'モバイル表示でサイドバーを非表示にする',
 			)
 		);
@@ -823,7 +835,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_image_label_radio(
 			array(
 				'id'          => 'ys_design_one_col_thumbnail_type',
-				'default'     => ys_get_option_default( 'ys_design_one_col_thumbnail_type' ),
+				'default'     => 'normal',
 				'label'       => 'アイキャッチ画像表示タイプ',
 				'description' => 'アイキャッチ画像の表示タイプ',
 				'choices'     => array(
@@ -838,7 +850,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_design_one_col_content_type',
-				'default'     => ys_get_option_default( 'ys_design_one_col_content_type' ),
+				'default'     => 'normal',
 				'label'       => 'コンテンツタイプ',
 				'description' => 'コンテンツ領域の横幅設定',
 				'choices'     => array(
@@ -866,7 +878,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_footer_bg',
-				'default' => ys_get_option_default( 'ys_color_footer_bg' ),
+				'default' => '#222222',
 				'label'   => 'フッター背景色',
 			)
 		);
@@ -874,7 +886,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_color(
 			array(
 				'id'      => 'ys_color_footer_font',
-				'default' => ys_get_option_default( 'ys_color_footer_font' ),
+				'default' => '#ffffff',
 				'label'   => 'フッター文字色',
 			)
 		);
@@ -926,7 +938,7 @@ class YS_Customize_Register {
 		/**
 		 * カラーパレット設定の追加
 		 */
-		$list = ys_get_editor_color_palette();
+		$list = YS_Color::get_color_palette();
 		foreach ( $list as $item ) {
 			if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
 				$dscr    = '';
@@ -978,7 +990,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_enqueue_icon_font_type',
-				'default'     => ys_get_option_default( 'ys_enqueue_icon_font_type' ),
+				'default'     => 'js',
 				'transport'   => 'postMessage',
 				'label'       => 'アイコンフォント（Font Awesome）読み込み方式',
 				'description' => 'Font Awesome読み込み方式を設定できます。',
@@ -997,7 +1009,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_url(
 			array(
 				'id'          => 'ys_enqueue_icon_font_kit_url',
-				'default'     => ys_get_option_default( 'ys_enqueue_icon_font_kit_url' ),
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'Font Awesome Kits URL',
 				'description' => 'Font Awesome Kitsを使う場合のURL設定',
@@ -1027,7 +1039,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_image_label_radio(
 			array(
 				'id'          => 'ys_post_layout',
-				'default'     => ys_get_option_default( 'ys_post_layout' ),
+				'default'     => '2col',
 				'label'       => 'レイアウト',
 				'description' => '投稿ページの表示レイアウト<br>※デフォルトテンプレートの表示レイアウト',
 				'section'     => 'ys_customizer_section_post',
@@ -1050,7 +1062,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_show_post_thumbnail',
-				'default'     => ys_get_option_default( 'ys_show_post_thumbnail' ),
+				'default'     => 1,
 				'label'       => 'アイキャッチ画像を表示する',
 				'description' => '※投稿内の先頭にアイキャッチ画像を配置している場合、こちらの設定を無効にすることにより画像が2枚連続で表示されないようにします。（他ブログサービスからの引っ越してきた場合に役立つかもしれません）',
 				'section'     => 'ys_customizer_section_post',
@@ -1062,7 +1074,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_post_publish_date',
-				'default' => ys_get_option_default( 'ys_show_post_publish_date' ),
+				'default' => 1,
 				'label'   => '投稿日・更新日を表示する',
 				'section' => 'ys_customizer_section_post',
 			)
@@ -1084,7 +1096,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_post_category',
-				'default' => ys_get_option_default( 'ys_show_post_category' ),
+				'default' => 1,
 				'label'   => 'カテゴリー・タグ情報を表示する',
 				'section' => 'ys_customizer_section_post',
 			)
@@ -1095,7 +1107,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_post_follow_box',
-				'default' => ys_get_option_default( 'ys_show_post_follow_box' ),
+				'default' => 1,
 				'label'   => 'ブログフォローボックスを表示する',
 				'section' => 'ys_customizer_section_post',
 			)
@@ -1106,7 +1118,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_post_author',
-				'default' => ys_get_option_default( 'ys_show_post_author' ),
+				'default' => 1,
 				'label'   => '著者情報を表示する',
 				'section' => 'ys_customizer_section_post',
 			)
@@ -1117,7 +1129,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_post_related',
-				'default' => ys_get_option_default( 'ys_show_post_related' ),
+				'default' => 1,
 				'label'   => '記事下に関連記事を表示する',
 				'section' => 'ys_customizer_section_post',
 			)
@@ -1128,7 +1140,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_post_paging',
-				'default' => ys_get_option_default( 'ys_show_post_paging' ),
+				'default' => 1,
 				'label'   => '次の記事・前の記事のリンクを表示する',
 				'section' => 'ys_customizer_section_post',
 			)
@@ -1150,7 +1162,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_post_before_content_widget',
-				'default' => ys_get_option_default( 'ys_show_post_before_content_widget' ),
+				'default' => 0,
 				'label'   => '記事上ウィジェットを出力する',
 				'section' => 'ys_customizer_section_post',
 			)
@@ -1161,7 +1173,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_post_before_content_widget_priority',
-				'default'     => ys_get_option_default( 'ys_post_before_content_widget_priority' ),
+				'default'     => 10,
 				'label'       => '記事上ウィジェットの優先順位',
 				'description' => '記事上ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
 				'section'     => 'ys_customizer_section_post',
@@ -1173,7 +1185,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_post_after_content_widget',
-				'default' => ys_get_option_default( 'ys_show_post_after_content_widget' ),
+				'default' => 0,
 				'label'   => '記事下ウィジェットを出力する',
 				'section' => 'ys_customizer_section_post',
 			)
@@ -1184,7 +1196,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_post_after_content_widget_priority',
-				'default'     => ys_get_option_default( 'ys_post_after_content_widget_priority' ),
+				'default'     => 10,
 				'label'       => '記事下ウィジェットの優先順位',
 				'description' => '記事下ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
 				'section'     => 'ys_customizer_section_post',
@@ -1214,7 +1226,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_image_label_radio(
 			array(
 				'id'          => 'ys_page_layout',
-				'default'     => ys_get_option_default( 'ys_page_layout' ),
+				'default'     => '2col',
 				'label'       => 'レイアウト',
 				'description' => '固定ページの表示レイアウト<br>※デフォルトテンプレートの表示レイアウト',
 				'section'     => 'ys_customizer_section_page',
@@ -1240,7 +1252,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_show_page_thumbnail',
-				'default'     => ys_get_option_default( 'ys_show_page_thumbnail' ),
+				'default'     => 1,
 				'label'       => 'アイキャッチ画像を表示する',
 				'description' => '※投稿内の先頭にアイキャッチ画像を配置している場合、こちらの設定を無効にすることにより画像が2枚連続で表示されないようにします。（他ブログサービスからの引っ越してきた場合に役立つかもしれません）',
 				'section'     => 'ys_customizer_section_page',
@@ -1252,7 +1264,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_page_publish_date',
-				'default' => ys_get_option_default( 'ys_show_page_publish_date' ),
+				'default' => 1,
 				'label'   => '投稿日・更新日を表示する',
 				'section' => 'ys_customizer_section_page',
 			)
@@ -1274,7 +1286,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_page_follow_box',
-				'default' => ys_get_option_default( 'ys_show_page_follow_box' ),
+				'default' => 1,
 				'label'   => 'ブログフォローボックスを表示する',
 				'section' => 'ys_customizer_section_page',
 			)
@@ -1285,7 +1297,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_page_author',
-				'default' => ys_get_option_default( 'ys_show_page_author' ),
+				'default' => 1,
 				'label'   => '著者情報を表示する',
 				'section' => 'ys_customizer_section_page',
 			)
@@ -1307,7 +1319,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_page_before_content_widget',
-				'default' => ys_get_option_default( 'ys_show_page_before_content_widget' ),
+				'default' => 0,
 				'label'   => '記事上ウィジェットを出力する',
 				'section' => 'ys_customizer_section_page',
 			)
@@ -1318,7 +1330,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_page_before_content_widget_priority',
-				'default'     => ys_get_option_default( 'ys_page_before_content_widget_priority' ),
+				'default'     => 10,
 				'label'       => '記事上ウィジェットの優先順位',
 				'description' => '記事上ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
 				'section'     => 'ys_customizer_section_page',
@@ -1330,7 +1342,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_page_after_content_widget',
-				'default' => ys_get_option_default( 'ys_show_page_after_content_widget' ),
+				'default' => 0,
 				'label'   => '記事下ウィジェットを出力する',
 				'section' => 'ys_customizer_section_page',
 			)
@@ -1341,7 +1353,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_page_after_content_widget_priority',
-				'default'     => ys_get_option_default( 'ys_page_after_content_widget_priority' ),
+				'default'     => 10,
 				'label'       => '記事下ウィジェットの優先順位',
 				'description' => '記事下ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
 				'section'     => 'ys_customizer_section_page',
@@ -1371,7 +1383,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_image_label_radio(
 			array(
 				'id'          => 'ys_archive_layout',
-				'default'     => ys_get_option_default( 'ys_archive_layout' ),
+				'default'     => '2col',
 				'label'       => 'レイアウト',
 				'description' => 'アーカイブページの表示レイアウト',
 				'section'     => 'ys_customizer_section_archive',
@@ -1391,7 +1403,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_image_label_radio(
 			array(
 				'id'          => 'ys_archive_type',
-				'default'     => ys_get_option_default( 'ys_archive_type' ),
+				'default'     => 'list',
 				'label'       => '一覧タイプ',
 				'description' => '記事一覧の表示タイプ',
 				'section'     => 'ys_customizer_section_archive',
@@ -1414,7 +1426,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'      => 'ys_show_archive_publish_date',
-				'default' => ys_get_option_default( 'ys_show_archive_publish_date' ),
+				'default' => 1,
 				'label'   => '投稿日・更新日を表示する',
 				'section' => 'ys_customizer_section_archive',
 			)
@@ -1447,7 +1459,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_image_label_radio(
 			array(
 				'id'          => 'ys_front_page_layout',
-				'default'     => ys_get_option_default( 'ys_front_page_layout' ),
+				'default'     => '1col',
 				'label'       => 'レイアウト',
 				'description' => 'フロントページの表示レイアウト',
 				'choices'     => array(
@@ -1493,6 +1505,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_ogp_enable',
+				'default'   => 1,
 				'transport' => 'postMessage',
 				'label'     => 'OGPのmetaタグを出力する',
 			)
@@ -1503,22 +1516,10 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_ogp_fb_app_id',
+				'default'     => '',
 				'transport'   => 'postMessage',
+				'description' => '',
 				'label'       => 'Facebook app_id',
-				'input_attrs' => array(
-					'placeholder' => '000000000000000',
-					'maxlength'   => 15,
-				),
-			)
-		);
-		/**
-		 * Facebook app_id
-		 */
-		$ys_customizer->add_text(
-			array(
-				'id'          => 'ys_ogp_fb_admins',
-				'transport'   => 'postMessage',
-				'label'       => 'Facebook admins',
 				'input_attrs' => array(
 					'placeholder' => '000000000000000',
 					'maxlength'   => 15,
@@ -1559,6 +1560,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_twittercard_enable',
+				'default'   => 1,
 				'transport' => 'postMessage',
 				'label'     => 'Twitterカードのmetaタグを出力する',
 			)
@@ -1569,6 +1571,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_twittercard_user',
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'Twitterカードのユーザー名',
 				'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」',
@@ -1583,6 +1586,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'        => 'ys_twittercard_type',
+				'default'   => 'summary_large_image',
 				'transport' => 'postMessage',
 				'label'     => 'カードタイプ',
 				'choices'   => array(
@@ -1617,8 +1621,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_button_twitter',
-				'label' => 'Twitter',
+				'id'      => 'ys_sns_share_button_twitter',
+				'default' => 1,
+				'label'   => 'Twitter',
 			)
 		);
 		/**
@@ -1626,8 +1631,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_button_facebook',
-				'label' => 'Facebook',
+				'id'      => 'ys_sns_share_button_facebook',
+				'default' => 1,
+				'label'   => 'Facebook',
 			)
 		);
 		/**
@@ -1635,8 +1641,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_button_hatenabookmark',
-				'label' => 'はてなブックマーク',
+				'id'      => 'ys_sns_share_button_hatenabookmark',
+				'default' => 1,
+				'label'   => 'はてなブックマーク',
 			)
 		);
 		/**
@@ -1644,8 +1651,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_button_pocket',
-				'label' => 'Pocket',
+				'id'      => 'ys_sns_share_button_pocket',
+				'default' => 1,
+				'label'   => 'Pocket',
 			)
 		);
 		/**
@@ -1653,8 +1661,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_button_line',
-				'label' => 'LINE',
+				'id'      => 'ys_sns_share_button_line',
+				'default' => 1,
+				'label'   => 'LINE',
 			)
 		);
 		/**
@@ -1662,8 +1671,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_button_feedly',
-				'label' => 'Feedly',
+				'id'      => 'ys_sns_share_button_feedly',
+				'default' => 1,
+				'label'   => 'Feedly',
 			)
 		);
 		/**
@@ -1671,8 +1681,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_button_rss',
-				'label' => 'RSS',
+				'id'      => 'ys_sns_share_button_rss',
+				'default' => 1,
+				'label'   => 'RSS',
 			)
 		);
 		/**
@@ -1689,8 +1700,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_on_entry_header',
-				'label' => '記事上部にシェアボタンを表示する',
+				'id'      => 'ys_sns_share_on_entry_header',
+				'default' => 1,
+				'label'   => '記事上部にシェアボタンを表示する',
 			)
 		);
 		/**
@@ -1698,8 +1710,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_sns_share_on_below_entry',
-				'label' => '記事下部にシェアボタンを表示する',
+				'id'      => 'ys_sns_share_on_below_entry',
+				'default' => 1,
+				'label'   => '記事下部にシェアボタンを表示する',
 			)
 		);
 		/**
@@ -1717,6 +1730,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_sns_share_col_pc',
+				'default'     => 6,
 				'label'       => 'PCでの列数(1~6)',
 				'input_attrs' => array(
 					'min' => 1,
@@ -1727,6 +1741,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_sns_share_col_tablet',
+				'default'     => 3,
 				'label'       => 'タブレットでの列数(1~6)',
 				'input_attrs' => array(
 					'min' => 1,
@@ -1737,6 +1752,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_sns_share_col_sp',
+				'default'     => 3,
 				'label'       => 'スマートフォンでの列数(1~6)',
 				'input_attrs' => array(
 					'min' => 1,
@@ -1770,6 +1786,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_sns_share_tweet_via_account',
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'viaに設定するTwitterアカウント名',
 				'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」<br>未入力の場合viaは設定されません。',
@@ -1793,6 +1810,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_sns_share_tweet_related_account',
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'ツイート後に表示するおすすめアカウント',
 				'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」<br>複数のアカウントをおすすめ表示する場合はカンマで区切って下さい。<br>未入力の場合おすすめアカウントは設定されません。',
@@ -1828,8 +1846,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_url(
 			array(
-				'id'    => 'ys_subscribe_url_twitter',
-				'label' => 'Twitter',
+				'id'      => 'ys_subscribe_url_twitter',
+				'default' => '',
+				'label'   => 'Twitter',
 			)
 		);
 		/**
@@ -1837,8 +1856,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_url(
 			array(
-				'id'    => 'ys_subscribe_url_facebook',
-				'label' => 'Facebookページ',
+				'id'      => 'ys_subscribe_url_facebook',
+				'default' => '',
+				'label'   => 'Facebookページ',
 			)
 		);
 		/**
@@ -1847,6 +1867,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_url(
 			array(
 				'id'          => 'ys_subscribe_url_feedly',
+				'default'     => '',
 				'label'       => 'Feedly',
 				'description' => '<a href="https://feedly.com/factory.html" target="_blank">https://feedly.com/factory.html</a>で購読用URLを生成・取得してください。（出来上がったHTMLタグのhref部分）',
 			)
@@ -1870,8 +1891,9 @@ class YS_Customize_Register {
 		foreach ( $sns as $key => $value ) {
 			$ys_customizer->add_url(
 				array(
-					'id'    => 'ys_follow_url_' . $key,
-					'label' => $value['label'],
+					'id'      => 'ys_follow_url_' . $key,
+					'default' => '',
+					'label'   => $value['label'],
 				)
 			);
 		}
@@ -1893,6 +1915,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_load_script_twitter',
+				'default'     => 0,
 				'transport'   => 'postMessage',
 				'label'       => 'Twitter用JavaScriptを読み込む',
 				'description' => '※Twitterのフォローボタンなどをサイト内で使用する場合、こちらにチェックを入れてください。<br>※Twitter用のJavaScriptを&lt;/body&gt;直前で読み込みます',
@@ -1904,6 +1927,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_load_script_facebook',
+				'default'     => 0,
 				'transport'   => 'postMessage',
 				'label'       => 'Facebook用JavaScriptを読み込む',
 				'description' => '※FacebookのいいねボタンやPagePluginなどをサイト内で使用する場合、こちらにチェックを入れてください。<br>※Facebook用のJavaScriptを&lt;/body&gt;直前で読み込みます',
@@ -1940,6 +1964,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_option_create_meta_description',
+				'default'   => 1,
 				'transport' => 'postMessage',
 				'label'     => 'meta descriptionを自動生成する',
 			)
@@ -1950,6 +1975,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'        => 'ys_option_meta_description_length',
+				'default'   => 80,
 				'transport' => 'postMessage',
 				'label'     => 'meta descriptionに使用する文字数',
 			)
@@ -1972,6 +1998,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_archive_noindex_category',
+				'default'   => 0,
 				'transport' => 'postMessage',
 				'label'     => 'カテゴリー一覧をnoindexにする',
 			)
@@ -1982,6 +2009,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_archive_noindex_tag',
+				'default'   => 1,
 				'transport' => 'postMessage',
 				'label'     => 'タグ一覧をnoindexにする',
 			)
@@ -1992,6 +2020,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_archive_noindex_author',
+				'default'   => 1,
 				'transport' => 'postMessage',
 				'label'     => '投稿者一覧をnoindexにする',
 			)
@@ -2002,6 +2031,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_archive_noindex_date',
+				'default'   => 1,
 				'transport' => 'postMessage',
 				'label'     => '日別一覧をnoindexにする',
 			)
@@ -2024,6 +2054,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_ga_tracking_id',
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'Google Analytics トラッキングID',
 				'input_attrs' => array(
@@ -2037,6 +2068,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_ga_tracking_type',
+				'default'     => 'gtag',
 				'transport'   => 'postMessage',
 				'label'       => 'トラッキングコードタイプ',
 				'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。※デフォルトはグローバル サイトタグ(gtag.js)です。',
@@ -2052,6 +2084,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_ga_exclude_logged_in_user',
+				'default'     => 0,
 				'transport'   => 'postMessage',
 				'label'       => '管理画面ログイン中はアクセス数カウントを無効にする（「購読者」ユーザーを除く）',
 				'description' => 'チェックを付けた場合、ログインユーザーのアクセスではGoogle Analyticsのトラッキングコードを出力しません',
@@ -2086,6 +2119,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_option_structured_data_publisher_name',
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'Publisher Name',
 				'description' => '構造化データのPublisherに使用する名前です。空白の場合はサイトタイトルを使用します',
@@ -2123,6 +2157,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_query_cache_ranking',
+				'default'     => 'none',
 				'transport'   => 'postMessage',
 				'label'       => '人気記事ランキングの結果キャッシュ',
 				'description' => '「[ys]人気ランキングウィジェット」・人気記事ランキング表示ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。<br>※日別のランキングについてはキャッシュを作成しません。',
@@ -2140,6 +2175,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_query_cache_recent_posts',
+				'default'     => 'none',
 				'transport'   => 'postMessage',
 				'label'       => '新着記事一覧の結果キャッシュ',
 				'description' => '「[ys]新着記事一覧ウィジェット」・新着記事一覧ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
@@ -2157,26 +2193,10 @@ class YS_Customize_Register {
 		$ys_customizer->add_radio(
 			array(
 				'id'          => 'ys_query_cache_related_posts',
+				'default'     => 'none',
 				'transport'   => 'postMessage',
 				'label'       => '記事下エリア「関連記事」の結果キャッシュ',
 				'description' => '記事下エリア「関連記事」の結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
-				'choices'     => array(
-					'none' => 'キャッシュしない',
-					'1'    => '1日',
-					'7'    => '7日',
-					'30'   => '30日',
-				),
-			)
-		);
-		/**
-		 * テーマ設定のキャッシュ.
-		 */
-		$ys_customizer->add_radio(
-			array(
-				'id'          => 'ys_query_cache_ys_options',
-				'transport'   => 'postMessage',
-				'label'       => 'yStandard設定のキャッシュ',
-				'description' => 'yStandardのテーマ設定をキャッシュします。設定した期間か、設定を変更したタイミングでキャッシュがリフレッシュされます。',
 				'choices'     => array(
 					'none' => 'キャッシュしない',
 					'1'    => '1日',
@@ -2202,8 +2222,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_option_disable_wp_emoji',
-				'label' => '絵文字関連のスタイルシート・スクリプトを無効化する',
+				'id'      => 'ys_option_disable_wp_emoji',
+				'default' => 1,
+				'label'   => '絵文字関連のスタイルシート・スクリプトを無効化する',
 			)
 		);
 		/**
@@ -2211,8 +2232,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_option_disable_wp_oembed',
-				'label' => 'oembed関連のスタイルシート・スクリプトを無効化する',
+				'id'      => 'ys_option_disable_wp_oembed',
+				'default' => 1,
+				'label'   => 'oembed関連のスタイルシート・スクリプトを無効化する',
 			)
 		);
 		/**
@@ -2233,6 +2255,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_option_optimize_load_css',
+				'default'     => 0,
 				'label'       => 'CSSをインラインで読み込む',
 				'description' => 'この設定をONにすると、yStandard関連のCSSが全てインラインで読み込まれます。',
 			)
@@ -2261,6 +2284,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_option_optimize_load_js',
+				'default'     => 0,
 				'label'       => 'JavaScriptの読み込みを非同期化する',
 				'description' => 'この設定をONにすると、jQuery以外のJavaScriptの読み込みを非同期化します。',
 			)
@@ -2277,6 +2301,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_load_jquery_in_footer',
+				'default'     => 0,
 				'label'       => 'jQueryの読み込みを最適化する',
 				'description' => 'jQueryをフッターで読み込み、サイトの高速化を図ります。<br>※この設定を有効にすると利用しているプラグインの動作が不安定になる恐れがあります。<br>プラグインの機能が正常に動作しなくなる場合は設定を無効化してください。',
 			)
@@ -2287,6 +2312,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_url(
 			array(
 				'id'          => 'ys_load_cdn_jquery_url',
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'CDN経由でjQueryを読み込む',
 				'description' => '※WordPress標準のjQueryを読み込む場合は空白にしてください（デフォルト）<br>※ホストされているjQueryのURLを入力してください。',
@@ -2304,6 +2330,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_not_load_jquery',
+				'default'     => 0,
 				'transport'   => 'postMessage',
 				'label'       => 'jQueryを無効化する',
 				'description' => '※この設定を有効にするとサイト表示高速化が期待できますが、jQueryを使用している処理が動かなくなります。<br>※プラグインの動作に影響が出る恐れがありますのでご注意ください。<br>※yStandard内のJavaScriptではjQueryを使用する機能は使っていません',
@@ -2339,6 +2366,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_advertisement_ads_label',
+				'default'     => 'スポンサーリンク',
 				'label'       => '広告ラベル',
 				'description' => '広告上に表示するラベルテキストを設定します',
 			)
@@ -2359,8 +2387,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_before_title',
-				'label' => '記事タイトル上',
+				'id'      => 'ys_advertisement_before_title',
+				'default' => '',
+				'label'   => '記事タイトル上',
 			)
 		);
 		/**
@@ -2368,8 +2397,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_after_title',
-				'label' => '記事タイトル下',
+				'id'      => 'ys_advertisement_after_title',
+				'default' => '',
+				'label'   => '記事タイトル下',
 			)
 		);
 		/**
@@ -2378,8 +2408,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_before_content',
-				'label' => '記事本文上',
+				'id'      => 'ys_advertisement_before_content',
+				'default' => '',
+				'label'   => '記事本文上',
 			)
 		);
 		/**
@@ -2387,8 +2418,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_replace_more',
-				'label' => 'moreタグ部分',
+				'id'      => 'ys_advertisement_replace_more',
+				'default' => '',
+				'label'   => 'moreタグ部分',
 			)
 		);
 		/**
@@ -2396,8 +2428,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_under_content_left',
-				'label' => '記事本文下（左）',
+				'id'      => 'ys_advertisement_under_content_left',
+				'default' => '',
+				'label'   => '記事本文下（左）',
 			)
 		);
 		/**
@@ -2405,8 +2438,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_under_content_right',
-				'label' => '記事本文下（右）',
+				'id'      => 'ys_advertisement_under_content_right',
+				'default' => '',
+				'label'   => '記事本文下（右）',
 			)
 		);
 		/**
@@ -2425,8 +2459,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_before_title_sp',
-				'label' => '記事タイトル上',
+				'id'      => 'ys_advertisement_before_title_sp',
+				'default' => '',
+				'label'   => '記事タイトル上',
 			)
 		);
 		/**
@@ -2434,8 +2469,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_after_title_sp',
-				'label' => '記事タイトル下',
+				'id'      => 'ys_advertisement_after_title_sp',
+				'default' => '',
+				'label'   => '記事タイトル下',
 			)
 		);
 		/**
@@ -2444,8 +2480,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_before_content_sp',
-				'label' => '記事本文上',
+				'id'      => 'ys_advertisement_before_content_sp',
+				'default' => '',
+				'label'   => '記事本文上',
 			)
 		);
 		/**
@@ -2453,8 +2490,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_replace_more_sp',
-				'label' => 'moreタグ部分',
+				'id'      => 'ys_advertisement_replace_more_sp',
+				'default' => '',
+				'label'   => 'moreタグ部分',
 			)
 		);
 		/**
@@ -2482,8 +2520,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_infeed_pc',
-				'label' => 'PC用広告',
+				'id'      => 'ys_advertisement_infeed_pc',
+				'default' => '',
+				'label'   => 'PC用広告',
 			)
 		);
 		/**
@@ -2492,6 +2531,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_advertisement_infeed_pc_step',
+				'default'     => 3,
 				'label'       => '広告を表示する間隔(PC)',
 				'input_attrs' => array(
 					'min' => 1,
@@ -2505,6 +2545,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_advertisement_infeed_pc_limit',
+				'default'     => 3,
 				'label'       => '表示する広告の最大数(PC)',
 				'input_attrs' => array(
 					'min' => 1,
@@ -2517,8 +2558,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_textarea(
 			array(
-				'id'    => 'ys_advertisement_infeed_sp',
-				'label' => 'モバイル用広告',
+				'id'      => 'ys_advertisement_infeed_sp',
+				'default' => '',
+				'label'   => 'モバイル用広告',
 			)
 		);
 		/**
@@ -2527,6 +2569,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_advertisement_infeed_sp_step',
+				'default'     => 3,
 				'label'       => '広告を表示する間隔(モバイル)',
 				'input_attrs' => array(
 					'min' => 1,
@@ -2540,6 +2583,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_advertisement_infeed_sp_limit',
+				'default'     => 3,
 				'label'       => '表示する広告の最大数(モバイル)',
 				'input_attrs' => array(
 					'min' => 1,
@@ -2584,16 +2628,18 @@ class YS_Customize_Register {
 		);
 		$ys_customizer->add_checkbox(
 			array(
-				'id'          => 'ys_amp_enable',
-				'label'       => 'AMP機能を有効化',
-				'description' => '※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。',
+				'id'          => 'ys_amp_enable_amp_plugin_integration',
+				'default'     => 0,
+				'label'       => 'AMPプラグイン連携機能を有効化',
+				'description' => '※「AMP」プラグインの連携機能を有効化します。<br>※この設定を有効化する場合、「AMP機能を有効化」のチェックは外して下さい。',
 			)
 		);
 		$ys_customizer->add_checkbox(
 			array(
-				'id'          => 'ys_amp_enable_amp_plugin_integration',
-				'label'       => '【β機能】AMPプラグイン連携機能を有効化',
-				'description' => '※「AMP」プラグインの連携機能を有効化します。<br>※この機能は現在β版で提供となります。<br>※この設定を有効化する場合、「AMP機能を有効化」のチェックは外して下さい。',
+				'id'          => 'ys_amp_enable',
+				'default'     => 0,
+				'label'       => '※非推奨※ AMP機能を有効化',
+				'description' => '※設定を有効化したら一度ページを再読込して下さい。「AMP設定」に詳細設定項目が表示されます。<br>この設定は後々削除されます。AMPプラグインを使ったAMP生成に変更をお願いします。',
 			)
 		);
 		/**
@@ -2607,7 +2653,7 @@ class YS_Customize_Register {
 				'priority'        => 1,
 				'panel'           => 'ys_customizer_panel_amp',
 				'active_callback' => function () {
-					return ( ys_get_option( 'ys_amp_enable', false, 'bool' ) || ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) );
+					return ( ys_get_option_by_bool( 'ys_amp_enable', false ) || ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) );
 				},
 			)
 		);
@@ -2617,6 +2663,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_text(
 			array(
 				'id'          => 'ys_ga_tracking_id_amp',
+				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'Google Analytics トラッキングID(AMP)',
 				'description' => '※「【β機能】AMPプラグイン連携機能を有効化」をONにしている場合、AMPプラグインの設定画面でGoogle Analyticsの設定をして下さい。',
@@ -2640,8 +2687,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_show_amp_before_content_widget',
-				'label' => '記事上ウィジェットを出力する',
+				'id'      => 'ys_show_amp_before_content_widget',
+				'default' => 0,
+				'label'   => '記事上ウィジェットを出力する',
 			)
 		);
 		/**
@@ -2650,6 +2698,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_amp_before_content_widget_priority',
+				'default'     => 10,
 				'label'       => '記事上ウィジェットの優先順位',
 				'description' => '記事上ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
 			)
@@ -2659,8 +2708,9 @@ class YS_Customize_Register {
 		 */
 		$ys_customizer->add_checkbox(
 			array(
-				'id'    => 'ys_show_amp_after_content_widget',
-				'label' => '記事下ウィジェットを出力する',
+				'id'      => 'ys_show_amp_after_content_widget',
+				'default' => 0,
+				'label'   => '記事下ウィジェットを出力する',
 			)
 		);
 		/**
@@ -2669,6 +2719,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_amp_after_content_widget_priority',
+				'default'     => 10,
 				'label'       => '記事下ウィジェットの優先順位',
 				'description' => '記事下ウィジェットの優先順位。1~99を目安に設定して下さい。（初期値10）数字が小さいほどコンテンツに近い位置にウィジェットが表示されます。（他プラグインで出力している内容との表示順調整用）',
 			)
@@ -2684,7 +2735,7 @@ class YS_Customize_Register {
 				'priority'        => 1,
 				'panel'           => 'ys_customizer_panel_amp',
 				'active_callback' => function () {
-					return ( ys_get_option( 'ys_amp_enable', false, 'bool' ) || ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) );
+					return ( ys_get_option_by_bool( 'ys_amp_enable', false ) || ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) );
 				},
 			)
 		);
@@ -2694,6 +2745,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_textarea(
 			array(
 				'id'        => 'ys_amp_advertisement_before_title',
+				'default'   => '',
 				'transport' => 'postMessage',
 				'label'     => '記事タイトル上',
 			)
@@ -2704,6 +2756,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_textarea(
 			array(
 				'id'        => 'ys_amp_advertisement_after_title',
+				'default'   => '',
 				'transport' => 'postMessage',
 				'label'     => '記事タイトル下',
 			)
@@ -2715,6 +2768,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_textarea(
 			array(
 				'id'        => 'ys_amp_advertisement_before_content',
+				'default'   => '',
 				'transport' => 'postMessage',
 				'label'     => '記事本文上',
 			)
@@ -2725,6 +2779,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_textarea(
 			array(
 				'id'        => 'ys_amp_advertisement_replace_more',
+				'default'   => '',
 				'transport' => 'postMessage',
 				'label'     => 'moreタグ部分',
 			)
@@ -2735,6 +2790,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_textarea(
 			array(
 				'id'        => 'ys_amp_advertisement_under_content',
+				'default'   => '',
 				'transport' => 'postMessage',
 				'label'     => '記事本文下',
 			)
@@ -2751,7 +2807,7 @@ class YS_Customize_Register {
 				'description'     => 'AMPテンプレートの設定',
 				'panel'           => 'ys_customizer_panel_amp',
 				'active_callback' => function () {
-					return ( ys_get_option( 'ys_amp_enable', false, 'bool' ) || ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) );
+					return ( ys_get_option_by_bool( 'ys_amp_enable', false ) || ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) );
 				},
 			)
 		);
@@ -2765,6 +2821,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_image_label_radio(
 			array(
 				'id'          => 'ys_amp_thumbnail_type',
+				'default'     => 'full',
 				'transport'   => 'postMessage',
 				'label'       => 'アイキャッチ画像表示タイプ',
 				'description' => 'アイキャッチ画像の表示タイプ',
@@ -2821,6 +2878,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_admin_enable_block_editor_style',
+				'default'   => 1,
 				'transport' => 'postMessage',
 				'label'     => 'ブロックエディター用CSSを追加する',
 			)
@@ -2838,6 +2896,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'        => 'ys_admin_enable_tiny_mce_style',
+				'default'   => 0,
 				'transport' => 'postMessage',
 				'label'     => 'ビジュアルエディター用CSSを追加する',
 			)
@@ -2865,7 +2924,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_checkbox(
 			array(
 				'id'          => 'ys_desabled_color_customizeser',
-				'default'     => ys_get_option_default( 'ys_desabled_color_customizeser' ),
+				'default'     => 0,
 				'label'       => 'テーマカスタマイザーでの色変更機能を無効にする',
 				'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。<br>カスタマイザーで指定している部分のCSSコードが出力されなくなります',
 			)

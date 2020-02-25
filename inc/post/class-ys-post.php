@@ -108,7 +108,7 @@ class YS_Post {
 				<label for="ys_hide_paging">
 					<input type="checkbox" id="ys_hide_paging" name="ys_hide_paging" value="1" <?php checked( ys_get_post_meta( 'ys_hide_paging', $post->ID ), '1', true ); ?> />前の記事・次の記事を<strong>非表示</strong>にする
 				</label>
-				<?php if ( ys_get_option( 'ys_amp_enable' ) ) : ?>
+				<?php if ( ys_get_option_by_bool( 'ys_amp_enable', false ) ) : ?>
 					<br/>
 					<label for="ys_post_meta_amp_desable">
 						<input type="checkbox" id="ys_post_meta_amp_desable" name="ys_post_meta_amp_desable" value="1" <?php checked( ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ), '1', true ); ?> />AMPページ生成を<strong>無効化</strong>する

@@ -66,10 +66,21 @@ class YS_Breadcrumbs {
 	}
 
 	/**
-	 * アクションフックのセット
+	 * パンくずリスト表示位置取得
+	 *
+	 * @return string
+	 */
+	public static function get_breadcrumbs_position() {
+		return ys_get_option( 'ys_breadcrumbs_position', 'header' );
+	}
+
+	/**
+	 * アクション・フィルターフックのセット
 	 */
 	public function set_action() {
 		add_action( 'wp_footer', array( $this, 'breadcrumbs' ), 11 );
+		add_filter( 'ys_get_inline_css', array( $this, 'inline_css' ) );
+
 	}
 
 	/**
@@ -420,7 +431,7 @@ class YS_Breadcrumbs {
 	private function set_front_item() {
 		$post_type = $this->get_post_type();
 		if ( ( is_single() && 'post' === $post_type ) || is_date() || is_author() || is_category() || is_tax() ) {
-			if ( 'page' === $this->show_on_front && $this->page_for_posts && ys_get_option( 'ys_show_page_for_posts_on_breadcrumbs' ) ) {
+			if ( 'page' === $this->show_on_front && $this->page_for_posts && ys_get_option_by_bool( 'ys_show_page_for_posts_on_breadcrumbs', true ) ) {
 				$this->set_item(
 					get_the_title( $this->page_for_posts ),
 					get_permalink( $this->page_for_posts )
@@ -539,6 +550,30 @@ class YS_Breadcrumbs {
 	 */
 	private function get_post_type() {
 		return ys_get_post_type();
+	}
+
+	/**
+	 * インラインCSSのセット
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public function inline_css( $css ) {
+		$ys_inline_css = new YS_Inline_Css();
+		$styles        = array();
+
+		if ( YS_Color::get_site_bg() === YS_Color::get_site_bg() ) {
+			if ( 'header' !== YS_Breadcrumbs::get_breadcrumbs_position() ) {
+				$styles[] = '.site-header + .site__content {margin-top:1.5rem;}';
+				$styles[] = $ys_inline_css->add_media_query(
+					'.site-header + .site__content {margin-top:2.5rem;}',
+					'md'
+				);
+			}
+		}
+
+		return $css . implode( ' ', $styles );
 	}
 
 }
