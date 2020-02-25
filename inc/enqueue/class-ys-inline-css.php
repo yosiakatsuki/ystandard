@@ -61,6 +61,10 @@ class YS_Inline_Css {
 		 * モバイルフッター
 		 */
 		$styles[] = $this->get_mobile_footer_css();
+		/**
+		 * カスタマイズプレビュー
+		 */
+		$styles[] = $this->get_customize_preview();
 
 		$inline_css = implode( '', $styles );
 
@@ -665,6 +669,32 @@ class YS_Inline_Css {
 		    .has-mobile-footer .site__footer {
 		      padding-bottom: 1rem; } }
 		';
+	}
+
+	/**
+	 * カスタマイズプレビュー用
+	 *
+	 * @return string
+	 */
+	public function get_customize_preview() {
+		$css = array();
+
+		if ( ys_get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
+			$css[] = $this->add_media_query(
+				'.is-customize-preview .sidebar {display:none;}',
+				'md',
+				'max'
+			);
+		}
+		if ( ! ys_get_option_by_bool( 'ys_show_search_form_on_slide_menu', false ) ) {
+			$css[] = $this->add_media_query(
+				'.is-customize-preview .h-nav__search {display:none;}',
+				'lg',
+				'max'
+			);
+		}
+
+		return implode( '', $css );
 	}
 
 	/**

@@ -875,6 +875,9 @@ function ys_is_active_slide_menu_search_form() {
 	if ( ys_is_amp() ) {
 		$result = false;
 	}
+	if ( is_customize_preview() ) {
+		$result = true;
+	}
 
 	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
 }
