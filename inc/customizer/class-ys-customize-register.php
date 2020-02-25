@@ -890,11 +890,18 @@ class YS_Customize_Register {
 				'label'   => 'フッター文字色',
 			)
 		);
+		// フッターSNS設定ラベル.
+		$ys_customizer->add_section_label(
+			'フッターSNS設定',
+			array(
+				'description' => '※SNSのURLは「[ys]SNS設定」→「フッターSNSフォローリンク設定」から設定してください。',
+			)
+		);
 		// フッターSNSアイコン背景色タイプ.
 		$ys_customizer->add_radio(
 			array(
 				'id'      => 'ys_color_footer_sns_bg_type',
-				'default' => ys_get_option_default( 'ys_color_footer_sns_bg_type' ),
+				'default' => 'light',
 				'label'   => 'フッターSNSアイコン背景色',
 				'choices' => array(
 					'light' => 'ライト',
@@ -907,7 +914,7 @@ class YS_Customize_Register {
 		$ys_customizer->add_number(
 			array(
 				'id'          => 'ys_color_footer_sns_bg_opacity',
-				'default'     => ys_get_option_default( 'ys_color_footer_sns_bg_opacity' ),
+				'default'     => 30,
 				'label'       => 'フッターSNSアイコン背景色の不透明度',
 				'description' => '0~100の間で入力して下さい',
 				'input_attrs' => array(
@@ -2666,7 +2673,7 @@ class YS_Customize_Register {
 				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'Google Analytics トラッキングID(AMP)',
-				'description' => '※「【β機能】AMPプラグイン連携機能を有効化」をONにしている場合、AMPプラグインの設定画面でGoogle Analyticsの設定をして下さい。',
+				'description' => '※「AMPプラグイン連携機能を有効化」をONにしている場合、AMPプラグインの設定画面でGoogle Analyticsの設定をして下さい。',
 				'input_attrs' => array(
 					'placeholder' => 'UA-00000000-0',
 				),
