@@ -110,9 +110,14 @@ class YS_Customize_Register {
 		/**
 		 * ブログ名などをカスタマイザーショートカット対応させる
 		 */
-		$this->_wp_customize->get_setting( 'custom_logo' )->transport     = 'refresh';
-		$this->_wp_customize->get_setting( 'blogname' )->transport        = 'postMessage';
-		$this->_wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
+		$this->_wp_customize->get_setting( 'custom_logo' )->transport           = 'refresh';
+		$this->_wp_customize->get_setting( 'background_image' )->transport      = 'refresh';
+		$this->_wp_customize->get_setting( 'background_preset' )->transport     = 'refresh';
+		$this->_wp_customize->get_setting( 'background_size' )->transport       = 'refresh';
+		$this->_wp_customize->get_setting( 'background_repeat' )->transport     = 'refresh';
+		$this->_wp_customize->get_setting( 'background_attachment' )->transport = 'refresh';
+		$this->_wp_customize->get_setting( 'blogname' )->transport              = 'postMessage';
+		$this->_wp_customize->get_setting( 'blogdescription' )->transport       = 'postMessage';
 
 		if ( isset( $this->_wp_customize->selective_refresh ) ) {
 			$this->_wp_customize->selective_refresh->add_partial(
