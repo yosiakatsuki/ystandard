@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+/**
+ * Class YS_Color
+ */
 class YS_Color {
 
 	/**
