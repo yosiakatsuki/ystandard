@@ -67,7 +67,7 @@ class YS_Blog_Card {
 		/**
 		 * ビジュアルエディタ用処理
 		 */
-		if ( is_admin() && ys_get_option( 'ys_admin_enable_tiny_mce_style' ) ) {
+		if ( is_admin() && ys_get_option_by_bool( 'ys_admin_enable_tiny_mce_style', false ) ) {
 			/**
 			 * ビジュアルエディタの中でショートコードを展開する
 			 */

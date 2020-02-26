@@ -138,7 +138,7 @@ class YS_Init {
 		/**
 		 * ブロックエディター色設定
 		 */
-		add_theme_support( 'editor-color-palette', ys_get_editor_color_palette( false ) );
+		add_theme_support( 'editor-color-palette', YS_Color::get_color_palette( false ) );
 	}
 
 	/**

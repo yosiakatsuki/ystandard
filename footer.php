@@ -13,7 +13,7 @@
 	/**
 	 * パンくずリスト
 	 */
-	if ( 'footer' === ys_get_option( 'ys_breadcrumbs_position' ) ) {
+	if ( 'footer' === YS_Breadcrumbs::get_breadcrumbs_position() ) {
 		get_template_part( 'template-parts/parts/breadcrumbs' );
 	}
 	?>

@@ -12,6 +12,7 @@
 		color: $color__text-light;
 	}
 }
+
 //
 //  サイトアイコン
 //
@@ -20,23 +21,27 @@
 		display: none;
 	}
 }
+
 #customize-control-ys_apple_touch_icon {
 	.favicon-preview {
 		display: none;
 	}
 }
+
 //
 //  画像選択コントロール
 //
-.customizeer__image-label-radio {
+.customizer__image-label-radio {
 	.customize-inside-control-row {
 		margin: 0;
 	}
+
 	input[type="radio"] {
 		display: none;
 
 		& + label {
 			display: block;
+
 			img {
 				max-width: 100%;
 				height: auto;
@@ -44,6 +49,7 @@
 				transition: border 0.3s;
 			}
 		}
+
 		&:checked + label {
 			img {
 				border-color: $color__link;
@@ -51,11 +57,24 @@
 		}
 	}
 }
-.customizeer__image-label-radio-list {
+
+.customizer__image-label-radio-list {
 	display: flex;
 	margin-right: -5px;
 	margin-left: -5px;
+
 	.customize-inside-control-row {
 		padding: 0 5px;
+	}
+}
+
+.customize-control__section_label {
+	margin-top: 1.5em;
+	margin-bottom: 1em;
+
+	.customize-control-title {
+		padding: 0.25em 0.5em;
+		background-color: #07689f;
+		color: #ffffff;
 	}
 }

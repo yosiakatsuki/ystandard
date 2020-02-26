@@ -330,11 +330,15 @@ class YS_Shortcode_Base {
 		/**
 		 * HTML作成
 		 */
-		$result = sprintf(
-			$this->args['wrap_html'],
-			$html_attr,
-			$content
-		);
+		if ( ! empty( $this->args['wrap_html'] ) ) {
+			$result = sprintf(
+				$this->args['wrap_html'],
+				$html_attr,
+				$content
+			);
+		} else {
+			$result = $content;
+		}
 
 		return $result . $this->get_error_message();
 	}

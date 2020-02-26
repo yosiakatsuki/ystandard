@@ -125,7 +125,7 @@ function ys_is_amp() {
 	if ( null !== $ys_amp ) {
 		return $ys_amp;
 	}
-	if ( ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) ) {
+	if ( ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) {
 		/**
 		 * AMPプラグインでAMPページが作成されているか判断
 		 */
@@ -148,7 +148,7 @@ function ys_is_ystd_amp() {
 	/**
 	 * AMPプラグイン有効化している場合はfalse
 	 */
-	if ( ys_get_option( 'ys_amp_enable_amp_plugin_integration', false, 'bool' ) ) {
+	if ( ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) {
 		return false;
 	}
 	global $ys_ystd_amp;
@@ -179,7 +179,7 @@ function ys_is_amp_enable() {
 	/**
 	 * AMP有効化設定チェック
 	 */
-	if ( ys_get_option_by_bool( 'ys_amp_enable' ) ) {
+	if ( ys_get_option_by_bool( 'ys_amp_enable', false ) ) {
 		/**
 		 * AMP設定有効
 		 */
@@ -215,8 +215,8 @@ function ys_is_active_amp_client_id_api() {
 	if ( ! ys_is_enable_google_analytics() ) {
 		return false;
 	}
-	$ga     = ys_get_option( 'ys_ga_tracking_id' );
-	$ga_amp = ys_get_option( 'ys_ga_tracking_id_amp' );
+	$ga     = ys_get_option( 'ys_ga_tracking_id', '' );
+	$ga_amp = ys_get_option( 'ys_ga_tracking_id_amp', '' );
 	if ( '' !== $ga_amp ) {
 		if ( $ga !== $ga_amp ) {
 			return false;
@@ -254,27 +254,27 @@ function ys_is_one_column() {
 	/**
 	 * フロントページ
 	 */
-	if ( ys_is_use_front_page() && is_front_page() && '1col' === ys_get_option( 'ys_front_page_layout' ) ) {
+	if ( ys_is_use_front_page() && is_front_page() && '1col' === ys_get_option( 'ys_front_page_layout', '1col' ) ) {
 		$one_column = true;
 	}
 	/**
 	 * 一覧系
 	 */
 	if ( is_home() || is_archive() || is_search() || is_404() ) {
-		if ( '1col' === ys_get_option( 'ys_archive_layout' ) ) {
+		if ( '1col' === ys_get_option( 'ys_archive_layout', '2col' ) ) {
 			$one_column = true;
 		}
 	}
 	/**
 	 * 固定ページ
 	 */
-	if ( ( is_page() && ! is_front_page() ) && '1col' === ys_get_option( 'ys_page_layout' ) ) {
+	if ( ( is_page() && ! is_front_page() ) && '1col' === ys_get_option( 'ys_page_layout', '2col' ) ) {
 		$one_column = true;
 	}
 	/**
 	 * 投稿
 	 */
-	if ( ( is_singular() && ! is_page() ) && '1col' === ys_get_option( 'ys_post_layout' ) ) {
+	if ( ( is_singular() && ! is_page() ) && '1col' === ys_get_option( 'ys_post_layout', '2col' ) ) {
 		$one_column = true;
 	}
 
@@ -297,7 +297,7 @@ function ys_is_full_width() {
 			'page-template/template-one-column-no-title.php',
 			'page-template/template-one-column-wide.php',
 		);
-		if ( is_page_template( $templates ) || 'wide' === ys_get_option( 'ys_design_one_col_content_type' ) ) {
+		if ( is_page_template( $templates ) || 'wide' === ys_get_option( 'ys_design_one_col_content_type', 'normal' ) ) {
 			$full_width = true;
 		}
 	}
@@ -329,11 +329,11 @@ function ys_is_full_width_thumbnail() {
 	 */
 	if ( is_singular() ) {
 		if ( ys_is_amp() ) {
-			if ( 'full' === ys_get_option( 'ys_amp_thumbnail_type' ) ) {
+			if ( 'full' === ys_get_option( 'ys_amp_thumbnail_type', 'full' ) ) {
 				$result = true;
 			}
 		} else {
-			if ( 'full' === ys_get_option( 'ys_design_one_col_thumbnail_type' ) ) {
+			if ( 'full' === ys_get_option( 'ys_design_one_col_thumbnail_type', 'normal' ) ) {
 				$result = true;
 			}
 		}
@@ -342,10 +342,10 @@ function ys_is_full_width_thumbnail() {
 	/**
 	 * レイアウトオプション確認
 	 */
-	if ( is_single() && '1col' !== ys_get_option( 'ys_post_layout' ) ) {
+	if ( is_single() && '1col' !== ys_get_option( 'ys_post_layout', '2col' ) ) {
 		$result = false;
 	}
-	if ( is_page() && '1col' !== ys_get_option( 'ys_page_layout' ) ) {
+	if ( is_page() && '1col' !== ys_get_option( 'ys_page_layout', '2col' ) ) {
 		$result = false;
 	}
 
@@ -365,13 +365,13 @@ function ys_is_full_width_thumbnail() {
  */
 function ys_is_deregister_jquery() {
 	$result = false;
-	if ( '' !== ys_get_option( 'ys_load_cdn_jquery_url' ) ) {
+	if ( '' !== ys_get_option( 'ys_load_cdn_jquery_url', '' ) ) {
 		$result = true;
 	}
-	if ( ys_get_option( 'ys_not_load_jquery' ) ) {
+	if ( ys_get_option_by_bool( 'ys_not_load_jquery', false ) ) {
 		$result = true;
 	}
-	if ( ys_get_option( 'ys_load_jquery_in_footer' ) ) {
+	if ( ys_get_option_by_bool( 'ys_load_jquery_in_footer', false ) ) {
 		$result = true;
 	}
 
@@ -383,7 +383,7 @@ function ys_is_deregister_jquery() {
  */
 function ys_is_disable_jquery() {
 	$result = false;
-	if ( ys_get_option( 'ys_not_load_jquery' ) ) {
+	if ( ys_get_option_by_bool( 'ys_not_load_jquery', false ) ) {
 		$result = true;
 	}
 
@@ -395,7 +395,7 @@ function ys_is_disable_jquery() {
  */
 function ys_is_load_jquery_in_footer() {
 	$result = false;
-	if ( ys_get_option( 'ys_load_jquery_in_footer' ) ) {
+	if ( ys_get_option_by_bool( 'ys_load_jquery_in_footer', false ) ) {
 		$result = true;
 	}
 
@@ -407,10 +407,10 @@ function ys_is_load_jquery_in_footer() {
  */
 function ys_is_load_cdn_jquery() {
 	$result = true;
-	if ( '' === ys_get_option( 'ys_load_cdn_jquery_url' ) ) {
+	if ( '' === ys_get_option( 'ys_load_cdn_jquery_url', '' ) ) {
 		$result = false;
 	}
-	if ( ys_get_option( 'ys_not_load_jquery' ) ) {
+	if ( ys_get_option_by_bool( 'ys_not_load_jquery', false ) ) {
 		$result = false;
 	}
 
@@ -425,7 +425,7 @@ function ys_is_enable_google_analytics() {
 	/**
 	 * ログイン中にGA出力しない場合
 	 */
-	if ( ys_get_option( 'ys_ga_exclude_logged_in_user' ) ) {
+	if ( ys_get_option_by_bool( 'ys_ga_exclude_logged_in_user', false ) ) {
 		if ( is_user_logged_in() ) {
 			/**
 			 * 編集権限を持っている場合のみ出力しない
@@ -463,7 +463,7 @@ function ys_is_enable_meta_description() {
 	/**
 	 * 自動生成オプション
 	 */
-	if ( ! ys_get_option_by_bool( 'ys_option_create_meta_description' ) ) {
+	if ( ! ys_get_option_by_bool( 'ys_option_create_meta_description', true ) ) {
 		$result = false;
 	}
 	if ( is_single() || is_page() ) {
@@ -483,7 +483,7 @@ function ys_is_active_sidebar_widget() {
 	if ( ys_is_amp() ) {
 		$show_sidebar = false;
 	}
-	if ( ys_is_mobile() && ys_get_option_by_bool( 'ys_show_sidebar_mobile' ) ) {
+	if ( ys_is_mobile() && ys_get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
 		$show_sidebar = false;
 	}
 	if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
@@ -501,7 +501,7 @@ function ys_is_active_sidebar_widget() {
  */
 function ys_is_active_emoji() {
 	$show_emoji = true;
-	if ( ys_get_option( 'ys_option_disable_wp_emoji' ) ) {
+	if ( ys_get_option_by_bool( 'ys_option_disable_wp_emoji', true ) ) {
 		$show_emoji = false;
 	}
 
@@ -513,7 +513,7 @@ function ys_is_active_emoji() {
  */
 function ys_is_active_oembed() {
 	$show_emoji = true;
-	if ( ys_get_option( 'ys_option_disable_wp_oembed' ) ) {
+	if ( ys_get_option_by_bool( 'ys_option_disable_wp_oembed', true ) ) {
 		$show_emoji = false;
 	}
 
@@ -535,10 +535,10 @@ function ys_is_active_custom_header() {
 			if ( ys_has_header_image() ) {
 				$result = true;
 			}
-			if ( ys_get_option( 'ys_wp_header_media_shortcode' ) ) {
+			if ( ys_get_option( 'ys_wp_header_media_shortcode', '' ) ) {
 				$result = true;
 			}
-		} elseif ( ys_get_option( 'ys_wp_header_media_all_page' ) ) {
+		} elseif ( ys_get_option_by_bool( 'ys_wp_header_media_all_page', false ) ) {
 			$result = true;
 		}
 	}
@@ -577,7 +577,7 @@ function ys_is_active_post_thumbnail( $post_id = null ) {
 	 * 投稿ページ
 	 */
 	if ( is_single() ) {
-		if ( ! ys_get_option( 'ys_show_post_thumbnail' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_show_post_thumbnail', true ) ) {
 			$result = false;
 		}
 	}
@@ -585,7 +585,7 @@ function ys_is_active_post_thumbnail( $post_id = null ) {
 	 * 固定ページ
 	 */
 	if ( is_page() ) {
-		if ( ! ys_get_option( 'ys_show_page_thumbnail' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_show_page_thumbnail', true ) ) {
 			$result = false;
 		}
 	}
@@ -602,17 +602,17 @@ function ys_is_active_post_thumbnail( $post_id = null ) {
 function ys_is_active_publish_date() {
 	$result = true;
 	if ( is_page() ) {
-		if ( ! ys_get_option( 'ys_show_page_publish_date' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_show_page_publish_date', true ) ) {
 			$result = false;
 		}
 	}
 	if ( is_single() ) {
-		if ( ! ys_get_option( 'ys_show_post_publish_date' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_show_post_publish_date', true ) ) {
 			$result = false;
 		}
 	}
 	if ( is_archive() || is_search() || is_home() ) {
-		if ( ! ys_get_option( 'ys_show_archive_publish_date' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_show_archive_publish_date', true ) ) {
 			$result = false;
 		}
 	}
@@ -635,7 +635,7 @@ function ys_is_active_sns_share_on_header() {
 			$result = false;
 		}
 	}
-	if ( ! ys_get_option( 'ys_sns_share_on_entry_header' ) ) {
+	if ( ! ys_get_option_by_bool( 'ys_sns_share_on_entry_header', true ) ) {
 		$result = false;
 	}
 
@@ -652,7 +652,7 @@ function ys_is_active_sns_share_on_footer() {
 			$result = false;
 		}
 	}
-	if ( ! ys_get_option( 'ys_sns_share_on_below_entry' ) ) {
+	if ( ! ys_get_option_by_bool( 'ys_sns_share_on_below_entry', true ) ) {
 		$result = false;
 	}
 
@@ -667,14 +667,14 @@ function ys_is_active_before_content_widget() {
 	$result = false;
 	if ( is_active_sidebar( 'before-content' ) ) {
 		if ( ys_is_amp() ) {
-			if ( ys_get_option( 'ys_show_amp_before_content_widget' ) ) {
+			if ( ys_get_option_by_bool( 'ys_show_amp_before_content_widget', false ) ) {
 				$result = true;
 			}
 		} else {
-			if ( is_single() && ys_get_option( 'ys_show_post_before_content_widget' ) ) {
+			if ( is_single() && ys_get_option_by_bool( 'ys_show_post_before_content_widget', false ) ) {
 				$result = true;
 			}
-			if ( is_page() && ys_get_option( 'ys_show_page_before_content_widget' ) ) {
+			if ( is_page() && ys_get_option_by_bool( 'ys_show_page_before_content_widget', false ) ) {
 				$result = true;
 			}
 		}
@@ -690,14 +690,14 @@ function ys_is_active_after_content_widget() {
 	$result = false;
 	if ( is_active_sidebar( 'after-content' ) ) {
 		if ( ys_is_amp() ) {
-			if ( ys_get_option( 'ys_show_amp_after_content_widget' ) ) {
+			if ( ys_get_option_by_bool( 'ys_show_amp_after_content_widget', false ) ) {
 				$result = true;
 			}
 		} else {
-			if ( is_single() && ys_get_option( 'ys_show_post_after_content_widget' ) ) {
+			if ( is_single() && ys_get_option_by_bool( 'ys_show_post_after_content_widget', false ) ) {
 				$result = true;
 			}
-			if ( is_page() && ys_get_option( 'ys_show_page_after_content_widget' ) ) {
+			if ( is_page() && ys_get_option_by_bool( 'ys_show_page_after_content_widget', false ) ) {
 				$result = true;
 			}
 		}
@@ -721,20 +721,20 @@ function ys_is_display_author_data() {
 		/**
 		 * 投稿ページ
 		 */
-		if ( is_single() && ! ys_get_option( 'ys_show_post_author' ) ) {
+		if ( is_single() && ! ys_get_option_by_bool( 'ys_show_post_author', true ) ) {
 			$result = false;
 		}
 		/**
 		 * 固定ページ
 		 */
-		if ( is_page() && ! ys_get_option( 'ys_show_page_author' ) ) {
+		if ( is_page() && ! ys_get_option_by_bool( 'ys_show_page_author', true ) ) {
 			$result = false;
 		}
 	} else {
 		/**
 		 * 記事一覧系
 		 */
-		if ( ! ys_get_option( 'ys_show_archive_author' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_show_archive_author', true ) ) {
 			$result = false;
 		}
 	}
@@ -767,10 +767,10 @@ function ys_is_active_follow_box() {
 			$result = false;
 		}
 	}
-	if ( is_single() && ! ys_get_option( 'ys_show_post_follow_box' ) ) {
+	if ( is_single() && ! ys_get_option_by_bool( 'ys_show_post_follow_box', true ) ) {
 		$result = false;
 	}
-	if ( is_page() && ! ys_get_option( 'ys_show_page_follow_box' ) ) {
+	if ( is_page() && ! ys_get_option_by_bool( 'ys_show_page_follow_box', true ) ) {
 		$result = false;
 	}
 	if ( ys_is_amp() ) {
@@ -800,7 +800,7 @@ function ys_is_active_advertisement() {
 function ys_is_active_related_post() {
 	$result = true;
 	if ( is_single() ) {
-		if ( ! ys_get_option_by_bool( 'ys_show_post_related' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_show_post_related', true ) ) {
 			$result = false;
 		}
 		if ( ys_to_bool( ys_get_post_meta( 'ys_hide_related' ) ) ) {
@@ -820,7 +820,7 @@ function ys_is_active_related_post() {
 function ys_is_active_post_paging() {
 	$result = true;
 	if ( is_single() ) {
-		if ( ! ys_get_option( 'ys_show_post_paging' ) ) {
+		if ( ! ys_get_option_by_bool( 'ys_show_post_paging', true ) ) {
 			$result = false;
 		}
 		if ( '1' === ys_get_post_meta( 'ys_hide_paging' ) ) {
@@ -854,7 +854,7 @@ function ys_is_post_type_on_admin( $type ) {
  */
 function ys_is_optimize_load_css() {
 	$result = false;
-	if ( ys_get_option_by_bool( 'ys_option_optimize_load_css' ) ) {
+	if ( ys_get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
 		$result = true;
 	}
 	if ( ys_is_amp() ) {
@@ -869,11 +869,14 @@ function ys_is_optimize_load_css() {
  */
 function ys_is_active_slide_menu_search_form() {
 	$result = false;
-	if ( ys_is_mobile() && ys_get_option( 'ys_show_search_form_on_slide_menu' ) ) {
+	if ( ys_is_mobile() && ys_get_option_by_bool( 'ys_show_search_form_on_slide_menu', false ) ) {
 		$result = true;
 	}
 	if ( ys_is_amp() ) {
 		$result = false;
+	}
+	if ( is_customize_preview() ) {
+		$result = true;
 	}
 
 	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
@@ -892,13 +895,13 @@ function ys_is_active_gutenberg_css() {
  * キャッシュ設定が有効か判定
  */
 function ys_is_enable_cache_setting() {
-	if ( 'none' !== ys_get_option( 'ys_query_cache_recent_posts' ) ) {
+	if ( 'none' !== ys_get_option( 'ys_query_cache_recent_posts', 'none' ) ) {
 		return true;
 	}
-	if ( 'none' !== ys_get_option( 'ys_query_cache_related_posts' ) ) {
+	if ( 'none' !== ys_get_option( 'ys_query_cache_related_posts', 'none' ) ) {
 		return true;
 	}
-	if ( 'none' !== ys_get_option( 'ys_query_cache_ranking' ) ) {
+	if ( 'none' !== ys_get_option( 'ys_query_cache_ranking', 'none' ) ) {
 		return true;
 	}
 
@@ -924,10 +927,24 @@ function ys_is_use_front_page() {
  * @return bool
  */
 function ys_is_has_header_media_full() {
-	if ( ys_get_option_by_bool( 'ys_wp_header_media_full' ) ) {
-		if ( ys_is_top_page() || ys_get_option_by_bool( 'ys_wp_header_media_all_page' ) ) {
+	if ( ys_get_option_by_bool( 'ys_wp_header_media_full', false ) ) {
+		if ( ys_is_top_page() || ys_get_option_by_bool( 'ys_wp_header_media_all_page', false ) ) {
 			return true;
 		}
+	}
+
+	return false;
+}
+
+/**
+ * サイト 背景色・背景画像有り判断
+ */
+function ys_has_site_background() {
+	if ( YS_Color::get_site_bg_default() !== YS_Color::get_site_bg() ) {
+		return true;
+	}
+	if ( get_background_image() ) {
+		return true;
 	}
 
 	return false;

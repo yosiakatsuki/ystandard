@@ -44,7 +44,7 @@ function ys_get_footer_sns_list() {
 function ys_create_footer_sns_link( $class, $option_key, $icon = '', $title = '' ) {
 	return array(
 		'class' => $class,
-		'url'   => ys_get_option( $option_key ),
+		'url'   => ys_get_option( $option_key, '' ),
 		'icon'  => $icon,
 		'title' => $title,
 	);

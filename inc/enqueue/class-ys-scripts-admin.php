@@ -20,21 +20,21 @@ class YS_Scripts_Admin {
 		/**
 		 * ブロックエディタ関連
 		 */
-		if ( ys_get_option( 'ys_admin_enable_block_editor_style', true, 'bool' ) ) {
+		if ( ys_get_option_by_bool( 'ys_admin_enable_block_editor_style', true ) ) {
 			add_action( 'after_setup_theme', array( $this, 'enqueue_block_css' ) );
 			add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
 		}
 		/**
 		 * ビジュアルエディタ関連
 		 */
-		if ( ys_get_option( 'ys_admin_enable_tiny_mce_style', true, 'bool' ) ) {
+		if ( ys_get_option_by_bool( 'ys_admin_enable_tiny_mce_style', false ) ) {
 			add_action( 'admin_init', array( $this, 'enqueue_visual_editor_styles' ) );
 			add_action( 'tiny_mce_before_init', array( $this, 'tiny_mce_before_init' ) );
 		}
 		/**
 		 * テーマカスタマイザー関連
 		 */
-		add_action( 'customize_preview_init', array( $this, 'customize_preview_init' ) );
+		add_action( 'customize_preview_init', array( $this, 'customize_preview_init' ), 999 );
 		add_action( 'customize_controls_print_styles', array( $this, 'customize_controls_print_styles' ) );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'customize_controls_enqueue_scripts' ) );
 	}
@@ -222,7 +222,7 @@ class YS_Scripts_Admin {
 		wp_enqueue_script(
 			'ys_customize_preview_js',
 			get_template_directory_uri() . '/js/admin/customizer-preview.js',
-			array( 'customize-controls', 'jquery' ),
+			array( 'jquery', 'customize-preview' ),
 			date_i18n( 'YmdHis' ),
 			true
 		);
