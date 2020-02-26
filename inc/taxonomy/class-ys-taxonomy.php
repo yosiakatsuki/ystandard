@@ -18,7 +18,9 @@ class YS_Taxonomy {
 	public function __construct() {
 		$this->add_term_meta_options();
 		add_filter( 'ys_get_the_archive_title', array( $this, 'override_title' ) );
+		add_filter( 'document_title_parts', array( $this, 'document_title_parts' ) );
 		add_filter( 'get_the_archive_description', array( $this, 'override_description' ) );
+		add_filter( 'ys_get_ogp_and_twitter_card_param', array( $this, 'change_ogp' ) );
 	}
 
 	/**
@@ -76,6 +78,17 @@ class YS_Taxonomy {
 			?>
 			<p><?php echo $taxonomy->label; ?>の説明を選択した[ys]パーツの内容に置き換えます。</p>
 		</div>
+		<div class="form-field term-image-wrap" style="margin-bottom: 2em;">
+			<label for="term-image" style="margin-bottom: 0.5em;">[ys]<?php echo $taxonomy->label; ?>一覧ページのOGP画像</label>
+			<div id="ys_admin_show_custom_avatar_preview" class="ys-custom-image-upload-preview">
+				画像が選択されてません。
+			</div>
+			<input type="text" id="term-image" name="term-image" class="ys-custom-image-upload-url" value="" hidden/>
+			<button class="button action ys-custom-image-upload" type="button" data-uploaderpreview-width="500">画像をアップロード
+			</button>
+			<button class="button action ys-custom-image-clear" type="button" style="display: none;">画像を削除
+			</button>
+		</div>
 		<?php
 	}
 
@@ -118,6 +131,30 @@ class YS_Taxonomy {
 				<p><?php echo $taxonomy->label; ?>の説明を選択した[ys]パーツの内容に置き換えます。</p>
 			</td>
 		</tr>
+		<tr>
+			<th scope="row">
+				<label for="term-image">[ys]<?php echo $taxonomy->label; ?>一覧ページのOGP画像</label>
+			</th>
+			<td>
+				<div class="form-field term-image-wrap">
+					<div id="ys_admin_show_custom_avatar_preview" class="ys-custom-image-upload-preview">
+						<?php
+						$image = get_term_meta( $term->term_id, 'term-image', true );
+						if ( '' !== $image ) {
+							echo "<img style=\"width:800px;height:auto;max-width: 100%;\" src=\"${image}\" />";
+						} else {
+							echo '画像が選択されてません。';
+						}
+						?>
+					</div>
+					<input type="text" id="term-image" name="term-image" class="ys-custom-image-upload-url" value="" hidden/>
+					<button class="button action ys-custom-image-upload" type="button" data-uploaderpreview-width="500" <?php echo ! empty( $image ) ? 'style="display: none;"' : ''; ?>>画像をアップロード
+					</button>
+					<button class="button action ys-custom-image-clear" type="button" <?php echo empty( $image ) ? 'style="display: none;"' : ''; ?>>画像を削除
+					</button>
+				</div>
+			</td>
+		</tr>
 		<?php
 	}
 
@@ -143,6 +180,46 @@ class YS_Taxonomy {
 		} else {
 			delete_term_meta( $term_id, 'dscr-override' );
 		}
+		/**
+		 * OGP画像
+		 */
+		if ( isset( $_POST['term-image'] ) && ! empty( $_POST['term-image'] ) ) {
+			update_term_meta( $term_id, 'term-image', esc_url_raw( $_POST['term-image'] ) );
+		} else {
+			delete_term_meta( $term_id, 'term-image' );
+		}
+	}
+
+	/**
+	 * タクソノミー・タグ・カテゴリー一覧かどうか
+	 *
+	 * @return bool
+	 */
+	private function is_tax_cat_tag() {
+		return ( is_tax() || is_tag() || is_category() );
+	}
+
+	/**
+	 * カテゴリー・タグの情報を取得
+	 *
+	 * @return array
+	 */
+	private function get_term_content() {
+		$term     = get_queried_object();
+		$parts_id = get_term_meta( $term->term_id, 'dscr-override', true );
+		$dscr     = '';
+		if ( ! is_numeric( $parts_id ) ) {
+			$parts_id = 0;
+		} else {
+			$dscr = ys_get_the_custom_excerpt( '', 0, $parts_id );
+		}
+
+		return array(
+			'parts_id' => (int) $parts_id,
+			'title'    => get_term_meta( $term->term_id, 'title-override', true ),
+			'dscr'     => $dscr,
+			'image'    => get_term_meta( $term->term_id, 'term-image', true ),
+		);
 	}
 
 	/**
@@ -153,10 +230,10 @@ class YS_Taxonomy {
 	 * @return string
 	 */
 	public function override_title( $title ) {
-		if ( is_tax() || is_tag() || is_category() ) {
-			$term = get_queried_object();
-			if ( $term ) {
-				$override = get_term_meta( $term->term_id, 'title-override', true );
+		if ( $this->is_tax_cat_tag() ) {
+			$content = $this->get_term_content();
+			if ( $content['title'] ) {
+				$override = $content['title'];
 				$title    = ! empty( $override ) ? $override : $title;
 			}
 		}
@@ -172,18 +249,60 @@ class YS_Taxonomy {
 	 * @return string
 	 */
 	public function override_description( $description ) {
-		if ( is_tax() || is_tag() || is_category() ) {
-			$term = get_queried_object();
-			if ( $term ) {
-				$page_id = get_term_meta( $term->term_id, 'dscr-override', true );
+		if ( $this->is_tax_cat_tag() ) {
+			$content = $this->get_term_content();
+			if ( 0 < $content['parts_id'] ) {
 				/**
 				 * 書き換え設定があれば説明書き換え
 				 */
-				$description = do_shortcode( '[ys_parts use_entry_content="1" parts_id="' . $page_id . '"]' );
+				$description = do_shortcode( '[ys_parts use_entry_content="1" parts_id="' . $content['parts_id'] . '"]' );
 			}
 		}
 
 		return $description;
+	}
+
+	/**
+	 * OGP書き換え
+	 *
+	 * @param array $param OGPパラメーター.
+	 *
+	 * @return array
+	 */
+	public function change_ogp( $param ) {
+		if ( $this->is_tax_cat_tag() ) {
+			$content = $this->get_term_content();
+			if ( $content['image'] ) {
+				$param['image'] = $content['image'];
+			}
+			if ( $content['title'] ) {
+				$param['title'] = $content['title'];
+			}
+			if ( $content['dscr'] ) {
+				$param['description'] = $content['dscr'];
+			}
+		}
+
+		return $param;
+	}
+
+	/**
+	 * タイトル書き換え
+	 *
+	 * @param array $title タイトル.
+	 *
+	 * @return array
+	 */
+	public function document_title_parts( $title ) {
+		if ( $this->is_tax_cat_tag() ) {
+			$term       = get_queried_object();
+			$term_title = get_term_meta( $term->term_id, 'title-override', true );
+			if ( $term_title ) {
+				$title['title'] = $term_title;
+			}
+		}
+
+		return $title;
 	}
 
 }

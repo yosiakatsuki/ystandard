@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
 							$(urltarget).val(selectimgurl);
 							// プレビュー画像の出力
 							$(previewtarget).text('');
-							$(previewtarget).append('<img style="max-width:'+preview_width+'px;height:auto;" src="'+selectimgurl+'" />');
+							$(previewtarget).append('<img style="width:'+preview_width+'px;height:auto;max-width:100%;" src="'+selectimgurl+'" />');
 							$('.ys-custom-image-upload').css('display','none');
 							$('.ys-custom-image-clear').css('display','block');
 					});
