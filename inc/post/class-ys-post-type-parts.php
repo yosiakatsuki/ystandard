@@ -90,7 +90,13 @@ class YS_Post_Type_Parts {
 		?>
 		<div id="ys-ogp-description-section" class="meta-box__section">
 			<?php if ( 'publish' === $post->post_status ) : ?>
-				<input type="text" id="ys_parts_shortcode" class="meta-box__full-w" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
+				<div class="copy-form" style="margin: 1em 0 2em;">
+					<input type="text" id="ys_parts_shortcode" class="meta-box__full-w" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
+					<button class="copy-form__button button action">
+						<i class="fas fa-clipboard"></i>
+					</button>
+					<div class="copy-form__info">コピーしました！</div>
+				</div>
 				<div class="meta-box__dscr">投稿・固定ページやウィジェットに表示するためのショートコード</div>
 			<?php else : ?>
 				<div class="meta-box__dscr">公開後にショートコードが表示されます。</div>
@@ -120,7 +126,15 @@ class YS_Post_Type_Parts {
 	 */
 	public function add_custom_column( $column_name, $post_ID ) {
 		if ( 'ys-parts' === $column_name ) {
-			echo '<input type="text" id="ys_parts_shortcode" class="meta-box__full-w" value=\'[ys_parts parts_id="' . esc_attr( absint( $post_ID ) ) . '"]\' readonly onfocus="this.select();"/>';
+			?>
+			<div class="copy-form">
+				<input type="text" id="ys_parts_shortcode" class="copy-form__target" value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly onfocus="this.select();"/>
+				<button class="copy-form__button button action">
+					<i class="fas fa-clipboard"></i>
+				</button>
+				<div class="copy-form__info">コピーしました！</div>
+			</div>
+			<?php
 		}
 	}
 }
