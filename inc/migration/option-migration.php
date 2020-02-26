@@ -15,7 +15,7 @@ function ys_migration_options() {
 	/**
 	 * デザイン - ヘッダー設定
 	 */
-	$option = ys_get_option( 'ys_design_header_type' );
+	$option = ys_get_header_type();
 	if ( '1row' === $option ) {
 		update_option( 'ys_design_header_type', 'row1' );
 	}

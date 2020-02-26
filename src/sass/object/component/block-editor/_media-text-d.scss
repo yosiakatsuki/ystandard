@@ -1,91 +1,19 @@
 .wp-block-media-text {
 	@at-root {
 		@include media-breakpoint(md) {
-			& {
-				display: grid;
-
-				grid-template-rows: auto;
-				grid-template-areas: "media-text-media media-text-content";
-				grid-template-columns: 50% auto;
-
-				& > * {
-					align-self: center;
-				}
-			}
-			&.is-vertically-aligned-top {
-				& > * {
-					align-self: start;
-				}
-			}
-			&.is-vertically-aligned-center {
-				& > * {
-					align-self: center;
-				}
-			}
-			&.is-vertically-aligned-bottom {
-				& > * {
-					align-self: end;
-				}
-			}
 			&.has-background {
-				padding-top: 2rem;
-				padding-bottom: 2rem;
-			}
-			.wp-block-media-text__media {
-				grid-area: media-text-media;
-			}
-			&.is-image-fill {
-				.wp-block-media-text__media {
-					position: relative;
-					width: 100%;
-					height: 100%;
-					background-size: cover;
-
-					img {
-						position: absolute;
-						width: 1px;
-						height: 1px;
-						margin: -1px;
-						padding: 0;
-						border: 0;
-						overflow: hidden;
-						clip: rect(0,0,0,0);
-					}
+				.wp-block-media-text__content {
+					padding-top: 2rem;
+					padding-bottom: 2rem;
 				}
 			}
 			.wp-block-media-text__content {
-				padding: 2rem;
-
-				grid-area: media-text-content;
+				padding-left: 2rem;
 			}
-
-			.has-media-on-the-right {
-				grid-template-areas: "media-text-content media-text-media";
-			}
-
-			.is-stacked-on-mobile {
-				position: relative;
-				background-color: transparent;
-
-				.wp-block-media-text__media {
-					position: relative;
-					background-color: transparent;
-
-					&:before {
-						display: none;
-					}
-
-					img {
-						width: auto;
-						height: auto;
-
-						object-fit: unset;
-					}
-				}
-
+			&.has-media-on-the-right {
 				.wp-block-media-text__content {
-					position: relative;
-					color: inherit;
+					padding-right: 2rem;
+					padding-left: 0;
 				}
 			}
 		}
@@ -103,6 +31,10 @@
 				&:first-of-type .block-editor-block-list__block-edit {
 					margin-top: 0;
 				}
+			}
+			&.has-background {
+				padding-top: 0;
+				padding-bottom: 0;
 			}
 		}
 	}

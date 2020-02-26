@@ -31,7 +31,7 @@ class YS_Shortcode_Post_Ranking extends YS_Shortcode_Get_Posts {
 				'ranking_type'     => 'all',
 				'filter'           => 'category',
 				'cache_key'        => self::CACHE_KEY,
-				'cache_expiration' => ys_get_option( 'ys_query_cache_ranking' ),
+				'cache_expiration' => ys_get_option( 'ys_query_cache_ranking', 'none' ),
 			),
 			$args
 		);

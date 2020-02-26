@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-if ( ! ys_get_option( 'ys_show_post_category' ) ) {
+if ( ! ys_get_option_by_bool( 'ys_show_post_category', true ) ) {
 	return;
 }
 

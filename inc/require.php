@@ -3,7 +3,7 @@
  * もろもろ読み込み
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
@@ -20,13 +20,21 @@ require_once get_template_directory() . '/inc/option/option.php';
  */
 require_once get_template_directory() . '/inc/utility/utility.php';
 /**
+ * 色関連の管理
+ */
+require_once get_template_directory() . '/inc/color/class-ys-color.php';
+/**
+ * Cache
+ */
+require_once get_template_directory() . '/inc/cache/cache.php';
+/**
+ * Menu
+ */
+require_once get_template_directory() . '/inc/menu/menu.php';
+/**
  * 画像関連の処理
  */
 require_once get_template_directory() . '/inc/image/image.php';
-/**
- * 投稿タイプ
- */
-require_once get_template_directory() . '/inc/post-type/post-type.php';
 /**
  * 条件分岐
  */
@@ -36,13 +44,13 @@ require_once get_template_directory() . '/inc/conditional-tag/conditional-tag.ph
  */
 require_once get_template_directory() . '/inc/init/init.php';
 /**
+ * Post
+ */
+require_once get_template_directory() . '/inc/post/post.php';
+/**
  * Enqueue
  */
 require_once get_template_directory() . '/inc/enqueue/enqueue.php';
-/**
- * Post-meta
- */
-require_once get_template_directory() . '/inc/post-meta/post-meta.php';
 /**
  * テーマカスタマイザー
  */
@@ -61,6 +69,7 @@ require_once get_template_directory() . '/inc/archive/archive.php';
 require_once get_template_directory() . '/inc/header/head.php';
 require_once get_template_directory() . '/inc/header/header.php';
 require_once get_template_directory() . '/inc/header/custom-header.php';
+require_once get_template_directory() . '/inc/header/class-ys-info-bar.php';
 /**
  * フッター
  */
@@ -74,10 +83,6 @@ require_once get_template_directory() . '/inc/content/content.php';
  * Body ... body_class
  */
 require_once get_template_directory() . '/inc/body/body.php';
-/**
- * Post Class ... post_class
- */
-require_once get_template_directory() . '/inc/post-class/post-class.php';
 /**
  * 広告
  */
@@ -103,8 +108,7 @@ require_once get_template_directory() . '/inc/copyright/copyright.php';
 /**
  * Taxonomy関連
  */
-require_once get_template_directory() . '/inc/taxonomy/category.php';
-require_once get_template_directory() . '/inc/taxonomy/tag.php';
+require_once get_template_directory() . '/inc/taxonomy/taxonomy.php';
 /**
  * AMP
  */
@@ -117,10 +121,6 @@ require_once get_template_directory() . '/inc/shortcode/shortcode.php';
  * ウィジェット
  */
 require_once get_template_directory() . '/inc/widgets/widgets.php';
-/**
- * 簡易VPカウント
- */
-require_once get_template_directory() . '/inc/post-view/post-view.php';
 /**
  * ページネーション
  */

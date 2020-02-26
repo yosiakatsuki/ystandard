@@ -95,7 +95,7 @@ function ys_get_archive_post_class() {
 	/**
 	 * タイプ別
 	 */
-	if ( 'card' === ys_get_option( 'ys_archive_type' ) ) {
+	if ( 'card' === ys_get_option( 'ys_archive_type', 'list' ) ) {
 		$class[] = '-card';
 		$class[] = 'flex__col--md-2';
 		if ( ys_is_one_column() ) {
@@ -123,5 +123,5 @@ function ys_the_archive_post_class() {
  * アーカイブテンプレートタイプ取得
  */
 function ys_get_archive_template_type() {
-	return apply_filters( 'ys_get_archive_template_type', ys_get_option( 'ys_archive_type' ) );
+	return apply_filters( 'ys_get_archive_template_type', ys_get_option( 'ys_archive_type', 'list' ) );
 }

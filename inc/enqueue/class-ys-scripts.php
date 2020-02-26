@@ -57,13 +57,13 @@ class YS_Scripts {
 		/**
 		 * CSSインライン読み込み
 		 */
-		if ( ! is_admin() && ys_get_option( 'ys_option_optimize_load_css', false, 'bool' ) ) {
+		if ( ! is_admin() && ys_get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
 			add_filter( 'style_loader_tag', array( $this, 'load_inline_css' ), PHP_INT_MAX, 4 );
 		}
 		/**
 		 * Font Awesome Kitに属性追加
 		 */
-		if ( 'kit' === ys_get_option( 'ys_enqueue_icon_font_type' ) && ! empty( ys_get_option( 'ys_enqueue_icon_font_kit_url' ) ) ) {
+		if ( 'kit' === ys_get_option( 'ys_enqueue_icon_font_type', 'js' ) && ! empty( ys_get_option( 'ys_enqueue_icon_font_kit_url', '' ) ) ) {
 			add_filter( 'script_loader_tag', array( $this, 'set_font_awesome_kit_attributes' ), 10, 2 );
 		}
 		/**
@@ -275,7 +275,7 @@ class YS_Scripts {
 		/**
 		 * Twitter関連スクリプト読み込み
 		 */
-		if ( ys_get_option( 'ys_load_script_twitter' ) ) {
+		if ( ys_get_option_by_bool( 'ys_load_script_twitter', false ) ) {
 			$this->set_onload_script(
 				'twitter-wjs',
 				YS_Utility::get_twitter_widgets_js()
@@ -284,7 +284,7 @@ class YS_Scripts {
 		/**
 		 * Facebook関連スクリプト読み込み
 		 */
-		if ( ys_get_option( 'ys_load_script_facebook' ) ) {
+		if ( ys_get_option_by_bool( 'ys_load_script_facebook', false ) ) {
 			ys_enqueue_onload_script(
 				'facebook-jssdk',
 				YS_Utility::get_facebook_sdk_js()
@@ -339,7 +339,7 @@ class YS_Scripts {
 				return $tag;
 			}
 		}
-		if ( ys_get_option( 'ys_option_optimize_load_js', false, 'bool' ) ) {
+		if ( ys_get_option_by_bool( 'ys_option_optimize_load_js', false ) ) {
 			return $this->add_defer( $tag );
 		}
 
@@ -727,7 +727,7 @@ class YS_Scripts {
 		 * CDN経由の場合
 		 */
 		if ( ys_is_load_cdn_jquery() ) {
-			$src = ys_get_option( 'ys_load_cdn_jquery_url' );
+			$src = ys_get_option( 'ys_load_cdn_jquery_url', '' );
 			$ver = null;
 		}
 		if ( '' === $src ) {

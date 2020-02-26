@@ -11,6 +11,7 @@
  * テーマカスタマイザー
  */
 require_once dirname( __FILE__ ) . '/control/class-ys-customize-image-label-radio-control.php';
+require_once dirname( __FILE__ ) . '/control/class-ys-customize-section-label-control.php';
 require_once dirname( __FILE__ ) . '/class-ys-customizer.php';
 require_once dirname( __FILE__ ) . '/class-ys-customize-register.php';
 

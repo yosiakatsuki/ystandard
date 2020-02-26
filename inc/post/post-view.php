@@ -213,7 +213,7 @@ function ys_get_post_views_query_base( $posts_per_page, $meta, $option ) {
 		 */
 		$query = new WP_Query( $args );
 	} else {
-		$expiration = ys_get_option( 'ys_query_cache_ranking' );
+		$expiration = ys_get_option( 'ys_query_cache_ranking', 'none' );
 		$query      = YS_Cache::get_query( 'ranking', $args, $expiration );
 	}
 

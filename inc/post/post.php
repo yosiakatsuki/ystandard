@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Class 関連
+ * 投稿関連
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -8,32 +8,11 @@
  */
 
 /**
- * Post Classを操作する
- *
- * @param  array $classes Classes.
- *
- * @return array
+ * クラス読み込み
  */
-function ys_post_class( $classes ) {
-	/**
-	 * [hentryの削除]
-	 */
-	if ( apply_filters( 'ystd_remove_hentry', true ) ) {
-		$classes = array_diff( $classes, array( 'hentry' ) );
-	}
-	/**
-	 * アイキャッチ画像の有無
-	 */
-	if ( is_singular() ) {
-		if ( ys_is_active_post_thumbnail() ) {
-			$classes[] = 'has-thumbnail';
-		}
-	}
-
-	return $classes;
-}
-
-add_filter( 'post_class', 'ys_post_class' );
+require_once dirname( __FILE__ ) . '/class-ys-post.php';
+require_once dirname( __FILE__ ) . '/class-ys-post-type-parts.php';
+require_once dirname( __FILE__ ) . '/post-view.php';
 
 /**
  * Single,Pageで振り分けるクラスを作成する
@@ -66,3 +45,19 @@ function ys_get_singular_class( $class ) {
 	return $prefix . $class;
 }
 
+
+/**
+ * 投稿オプション(post-meta)取得
+ *
+ * @param  string  $key     設定キー.
+ * @param  integer $post_id 投稿ID.
+ *
+ * @return string
+ */
+function ys_get_post_meta( $key, $post_id = 0 ) {
+	if ( 0 === $post_id ) {
+		$post_id = get_the_ID();
+	}
+
+	return apply_filters( 'ys_get_post_meta', get_post_meta( $post_id, $key, true ), $key, $post_id );
+}

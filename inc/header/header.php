@@ -28,7 +28,7 @@ function ys_get_header( $name = null ) {
  * ヘッダーロゴ取得
  */
 function ys_get_header_logo() {
-	if ( has_custom_logo() && ! ys_get_option( 'ys_logo_hidden' ) ) {
+	if ( has_custom_logo() && ! ys_get_option_by_bool( 'ys_logo_hidden', false ) ) {
 		/**
 		 * ロゴあり・表示する
 		 */
@@ -49,13 +49,22 @@ function ys_get_header_logo() {
  * サイトキャッチフレーズを取得
  */
 function ys_the_blog_description() {
-	if ( ys_get_option( 'ys_wp_hidden_blogdescription' ) ) {
+	if ( ys_get_option_by_bool( 'ys_wp_hidden_blogdescription', false ) ) {
 		return;
 	}
 	$dscr   = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
 	$format = '<p class="site-description header__dscr text-sub">%s</p>';
 	$format = apply_filters( 'ys_the_blog_description_format', $format );
 	echo sprintf( $format, $dscr );
+}
+
+/**
+ * ヘッダータイプ取得
+ *
+ * @return string
+ */
+function ys_get_header_type() {
+	return ys_get_option( 'ys_design_header_type', 'row1' );
 }
 
 /**
@@ -70,7 +79,7 @@ function ys_get_header_row_class( $class = array() ) {
 	if ( is_array( $class ) && ! empty( $class ) ) {
 		$classes = array_merge( $classes, $class );
 	}
-	$type      = ys_get_option( 'ys_design_header_type' );
+	$type      = ys_get_header_type();
 	$classes[] = 'header__row';
 	$classes[] = '-' . $type;
 
@@ -101,7 +110,7 @@ function ys_get_header_col_class( $pos, $class = array() ) {
 	if ( is_array( $class ) && ! empty( $class ) ) {
 		$classes = array_merge( $classes, $class );
 	}
-	$type      = ys_get_option( 'ys_design_header_type' );
+	$type      = ys_get_header_type();
 	$classes[] = '-' . $type;
 	$classes   = apply_filters( 'ys_get_header_col_class', $classes, $type, $pos );
 

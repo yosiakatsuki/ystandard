@@ -8,6 +8,22 @@
  */
 
 /**
+ * クラス読み込み
+ */
+require_once dirname( __FILE__ ) . '/class-ys-widget-utility.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-base.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-get-posts.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-advertisement.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-post-ranking.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-recent-posts.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-custom-html.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-text.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-author-box.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-share-button.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-post-taxonomy.php';
+require_once dirname( __FILE__ ) . '/class-ys-widget-parts.php';
+
+/**
  * ウィジット有効化
  *
  * @return void
@@ -119,6 +135,7 @@ function ys_widgets_register_widget() {
 	register_widget( 'YS_Widget_Author_Box' );
 	register_widget( 'YS_Widget_Post_Ranking' );
 	register_widget( 'YS_Widget_Recent_Posts' );
+	register_widget( 'YS_Widget_Parts' );
 	/**
 	 * 以下はアドオン購入で使えるようになる予定です。
 	 * 子テーマカスタマイズで有効化していただいても大丈夫ですが、
@@ -203,13 +220,13 @@ add_action( 'wp', 'ys_set_content_widget' );
 function ys_get_before_content_widget_priority() {
 	$priority = 10;
 	if ( is_single() ) {
-		$priority = ys_get_option( 'ys_post_before_content_widget_priority' );
+		$priority = ys_get_option_by_int( 'ys_post_before_content_widget_priority', 10 );
 	}
 	if ( is_page() ) {
-		$priority = ys_get_option( 'ys_page_before_content_widget_priority' );
+		$priority = ys_get_option_by_int( 'ys_page_before_content_widget_priority', 10 );
 	}
 	if ( ys_is_amp() ) {
-		$priority = ys_get_option( 'ys_amp_before_content_widget_priority' );
+		$priority = ys_get_option_by_int( 'ys_amp_before_content_widget_priority', 10 );
 	}
 
 	return apply_filters( 'ys_get_before_content_widget_priority', $priority );
@@ -223,13 +240,13 @@ function ys_get_before_content_widget_priority() {
 function ys_get_after_content_widget_priority() {
 	$priority = 10;
 	if ( is_single() ) {
-		$priority = ys_get_option( 'ys_post_after_content_widget_priority' );
+		$priority = ys_get_option_by_int( 'ys_post_after_content_widget_priority', 10 );
 	}
 	if ( is_page() ) {
-		$priority = ys_get_option( 'ys_page_after_content_widget_priority' );
+		$priority = ys_get_option_by_int( 'ys_page_after_content_widget_priority', 10 );
 	}
 	if ( ys_is_amp() ) {
-		$priority = ys_get_option( 'ys_amp_after_content_widget_priority' );
+		$priority = ys_get_option_by_int( 'ys_amp_after_content_widget_priority', 10 );
 	}
 
 	return apply_filters( 'ys_get_after_content_widget_priority', $priority );
