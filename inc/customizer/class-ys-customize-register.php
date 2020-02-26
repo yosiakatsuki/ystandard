@@ -58,13 +58,10 @@ class YS_Customize_Register {
 		$this->design_archive();
 		$this->design_one_column_template();
 		$this->design_footer();
+		$this->design_copyright();
 		$this->design_color_palette();
 		$this->design_icon_font();
 		$this->design_front_page();
-		/**
-		 * サイト共通設定
-		 */
-		$this->general();
 		/**
 		 * SNS設定
 		 */
@@ -193,6 +190,20 @@ class YS_Customize_Register {
 					'max'  => 1000,
 					'size' => 20,
 				),
+			)
+		);
+		/**
+		 * Titleタグの区切り文字
+		 */
+		$ys_customizer->add_text(
+			array(
+				'id'          => 'ys_title_separate',
+				'default'     => '',
+				'transport'   => 'postMessage',
+				'label'       => 'titleタグの区切り文字',
+				'description' => '※区切り文字の前後に半角空白が自動で挿入されます',
+				'section'     => 'title_tagline',
+				'priority'    => 20,
 			)
 		);
 		/**
@@ -359,59 +370,6 @@ class YS_Customize_Register {
 				'description' => 'TOPページ以外の全ページでヘッダーメディアを表示する。',
 				'section'     => 'header_image',
 				'priority'    => 24,
-			)
-		);
-	}
-
-	/**
-	 * 基本設定
-	 */
-	private function general() {
-		$this->_wp_customize->add_section(
-			'ys_customizer_section_site_common',
-			array(
-				'title'    => '[ys]サイト共通設定',
-				'priority' => 1015,
-			)
-		);
-		$ys_customizer = new YS_Customizer( $this->_wp_customize );
-		/**
-		 * Titleタグの区切り文字
-		 */
-		$ys_customizer->add_text(
-			array(
-				'id'          => 'ys_title_separate',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => 'titleタグの区切り文字',
-				'description' => '※区切り文字の前後に半角空白が自動で挿入されます',
-				'section'     => 'ys_customizer_section_site_common',
-			)
-		);
-		/**
-		 * 発行年数
-		 */
-		$ys_customizer->add_number(
-			array(
-				'id'          => 'ys_copyright_year',
-				'default'     => date_i18n( 'Y' ),
-				'label'       => '発行年(Copyright)',
-				'section'     => 'ys_customizer_section_site_common',
-				'input_attrs' => array(
-					'min' => 1900,
-					'max' => 2100,
-				),
-			)
-		);
-		/**
-		 * 抜粋文字数
-		 */
-		$ys_customizer->add_number(
-			array(
-				'id'      => 'ys_option_excerpt_length',
-				'default' => 110,
-				'label'   => '投稿抜粋の文字数',
-				'section' => 'ys_customizer_section_site_common',
 			)
 		);
 	}
@@ -932,6 +890,36 @@ class YS_Customize_Register {
 	}
 
 	/**
+	 * デザイン -> Copyright
+	 */
+	private function design_copyright() {
+		$ys_customizer = new YS_Customizer( $this->_wp_customize );
+		$ys_customizer->add_section(
+			array(
+				'section'     => 'ys_design_copyright',
+				'title'       => 'Copyright設定',
+				'description' => 'Copyrightの設定',
+				'panel'       => 'ys_customizer_panel_design',
+			)
+		);
+		/**
+		 * 発行年数
+		 */
+		$ys_customizer->add_number(
+			array(
+				'id'          => 'ys_copyright_year',
+				'default'     => date_i18n( 'Y' ),
+				'label'       => '発行年(Copyright)',
+				'section'     => 'ys_design_copyright',
+				'input_attrs' => array(
+					'min' => 1900,
+					'max' => 2100,
+				),
+			)
+		);
+	}
+
+	/**
 	 * デザイン -> ブロックエディター
 	 */
 	private function design_color_palette() {
@@ -1440,6 +1428,17 @@ class YS_Customize_Register {
 				'id'      => 'ys_show_archive_publish_date',
 				'default' => 1,
 				'label'   => '投稿日・更新日を表示する',
+				'section' => 'ys_customizer_section_archive',
+			)
+		);
+		/**
+		 * 抜粋文字数
+		 */
+		$ys_customizer->add_number(
+			array(
+				'id'      => 'ys_option_excerpt_length',
+				'default' => 110,
+				'label'   => '投稿抜粋の文字数',
 				'section' => 'ys_customizer_section_archive',
 			)
 		);
