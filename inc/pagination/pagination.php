@@ -27,7 +27,7 @@ if ( ! function_exists( 'ys_get_pagination' ) ) {
 		/**
 		 * 全部で１ページなら出力しない
 		 */
-		if ( 1 === $total ) {
+		if ( 1 === intval( $total ) ) {
 			return $pagination;
 		}
 		/**
