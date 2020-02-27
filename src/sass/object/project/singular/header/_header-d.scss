@@ -1,0 +1,5 @@
+.singular__title {
+  @include media-breakpoint(md) {
+	font-size: 1.4em;
+  }
+}
