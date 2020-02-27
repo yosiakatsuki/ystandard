@@ -57,7 +57,12 @@ class YS_Widget_Parts extends YS_Widget_Base {
 		/**
 		 * 初期値セット
 		 */
-		$this->set_default_instance( YS_Shortcode_Parts::SHORTCODE_PARAM );
+		$this->set_default_instance(
+			array_merge(
+				YS_Shortcode_Parts::SHORTCODE_PARAM,
+				array( 'title' => '' )
+			)
+		);
 	}
 
 	/**
@@ -77,13 +82,21 @@ class YS_Widget_Parts extends YS_Widget_Base {
 			array_merge(
 				$this->default_instance,
 				$instance,
-				array( 'use_entry_content' => '1' )
+				array(
+					'use_entry_content' => '1',
+					'title'             => '',
+				)
 			),
 			null,
 			false
 		);
 		if ( $sc_result ) {
 			echo $args['before_widget'];
+
+			if ( ! empty( $instance['title'] ) ) {
+				echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+			}
+
 			echo $sc_result;
 			echo $args['after_widget'];
 		}
@@ -102,6 +115,10 @@ class YS_Widget_Parts extends YS_Widget_Base {
 			$this->default_instance
 		);
 		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>">
+		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'parts_id' ); ?>">表示するパーツ：</label>
 			<span style="display: block;margin-top: .25em;">

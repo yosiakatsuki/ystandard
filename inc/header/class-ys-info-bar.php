@@ -62,6 +62,12 @@ class YS_Info_Bar {
 			text-align:center;
 			line-height:1.3;
 		}';
+		$styles[] = $ys_inline_css->add_media_query(
+			'.info-bar {
+				margin-bottom: 2rem;
+			}',
+			'md'
+		);
 		$styles[] = '
 		.info-bar.has-link:hover {
 			opacity:0.8;

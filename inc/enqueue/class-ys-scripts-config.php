@@ -94,16 +94,6 @@ class YS_Scripts_Config {
 				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
 			),
 			array(
-				'handle'  => 'style-css',
-				'src'     => get_stylesheet_uri(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'enqueue', // enqueue or inline.
-				'inline'  => true, // true, false, handle.
-			),
-			array(
 				'handle'  => 'adminbar-css',
 				'src'     => get_template_directory_uri() . '/css/ystandard-adminbar.css',
 				'deps'    => array(),
@@ -123,6 +113,19 @@ class YS_Scripts_Config {
 				'type'    => 'enqueue', // enqueue or inline.
 				'inline'  => false, // true, false, handle.
 			),
+		);
+
+		$styles = apply_filters( 'ys_pre_enqueue_style_css', $styles );
+
+		$styles[] = array(
+			'handle'  => 'style-css',
+			'src'     => get_stylesheet_uri(),
+			'deps'    => array(),
+			'ver'     => ys_get_theme_version( true ),
+			'media'   => 'all',
+			'enqueue' => true,
+			'type'    => 'enqueue', // enqueue or inline.
+			'inline'  => true, // true, false, handle.
 		);
 
 		return apply_filters( 'ys_get_enqueue_css_files', $styles );
