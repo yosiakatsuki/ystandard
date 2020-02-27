@@ -84,7 +84,7 @@ class YS_Widget_Parts extends YS_Widget_Base {
 				$instance,
 				array(
 					'use_entry_content' => '1',
-					'title'             => ''
+					'title'             => '',
 				)
 			),
 			null,
