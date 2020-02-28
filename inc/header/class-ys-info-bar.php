@@ -16,7 +16,16 @@ class YS_Info_Bar {
 	 * YS_Info_Bar constructor.
 	 */
 	public function __construct() {
-		add_action( 'ys_after_site_header', array( $this, 'info_bar' ) );
+		add_action( 'get_header', array( $this, 'set_hooks' ) );
+	}
+
+	/**
+	 * アクション・フィルターフックの瀬戸
+	 */
+	public function set_hooks() {
+		if ( ! ys_is_has_header_media_full() ) {
+			add_action( 'ys_after_site_header', array( $this, 'info_bar' ), 1 );
+		}
 		add_filter( 'ys_get_inline_css', array( $this, 'info_bar_css' ) );
 	}
 
@@ -61,10 +70,11 @@ class YS_Info_Bar {
 			padding:0.5em 0;
 			text-align:center;
 			line-height:1.3;
+			font-size:0.8em;
 		}';
 		$styles[] = $ys_inline_css->add_media_query(
 			'.info-bar {
-				margin-bottom: 2rem;
+				font-size:1rem;
 			}',
 			'md'
 		);
@@ -77,17 +87,6 @@ class YS_Info_Bar {
 			display:block;
 			text-decoration: none;
 		}';
-
-		$styles[] = '
-		.info-bar__text {
-			font-size:0.8em;
-		}';
-		$styles[] = $ys_inline_css->add_media_query(
-			'.info-bar__text {
-				font-size:1em;
-			}',
-			'md'
-		);
 		/**
 		 * 色
 		 */
@@ -107,6 +106,19 @@ class YS_Info_Bar {
 			.info-bar__text {
 				font-weight:700;
 			}';
+		}
+
+		/**
+		 * ヘッダーメディアとの兼ね合い
+		 */
+		if ( ! ys_is_active_custom_header() ) {
+			$styles[] = $ys_inline_css->add_media_query(
+				'.info-bar {
+				margin-bottom: 2rem;
+				font-size:1rem;
+			}',
+				'md'
+			);
 		}
 
 		return $css . implode( ' ', $styles );
