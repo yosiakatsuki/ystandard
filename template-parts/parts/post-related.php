@@ -27,7 +27,7 @@ $param = apply_filters(
 		'count'            => 6,
 		'filter'           => 'category',
 		'cache_key'        => 'related_posts',
-		'cache_expiration' => ys_get_option( 'ys_query_cache_related_posts' ),
+		'cache_expiration' => ys_get_option( 'ys_query_cache_related_posts', 'none' ),
 	)
 );
 ys_do_shortcode(

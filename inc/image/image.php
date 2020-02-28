@@ -241,7 +241,7 @@ function ys_get_custom_logo_image_object( $blog_id = 0 ) {
  * OGPデフォルト画像のimageオブジェクト取得
  */
 function ys_get_ogp_default_image_object() {
-	$image = ys_get_option( 'ys_ogp_default_image' );
+	$image = ys_get_option( 'ys_ogp_default_image', '' );
 	if ( $image ) {
 		$image = wp_get_attachment_image_src( get_attachment_id_from_src( $image ), 'full' );
 		if ( $image ) {
@@ -259,7 +259,7 @@ function ys_get_publisher_image() {
 	/**
 	 * パブリッシャー画像の取得
 	 */
-	$image = ys_get_option( 'ys_option_structured_data_publisher_image' );
+	$image = ys_get_option( 'ys_option_structured_data_publisher_image', '' );
 	if ( $image ) {
 		$image = wp_get_attachment_image_src( get_attachment_id_from_src( $image ), 'full' );
 		if ( $image ) {

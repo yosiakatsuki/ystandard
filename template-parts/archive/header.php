@@ -16,7 +16,15 @@ if ( is_home() ) {
 ?>
 <header class="page-header archive__header">
 	<?php
-	the_archive_title( '<h1 class="page-title clear-h archive__title">', '</h1>' );
-	the_archive_description( '<div class="taxonomy-description archive__dscr">', '</div>' );
+	the_archive_title(
+		'<h1 class="page-title clear-h archive__title">',
+		'</h1>'
+	);
 	?>
 </header><!-- .page-header -->
+<?php
+the_archive_description(
+	'<div class="taxonomy-description archive__dscr">',
+	'</div>'
+);
+?>

@@ -23,6 +23,7 @@ class YS_Scripts_Config {
 	 * メインJS
 	 */
 	const SCRIPT_HANDLE_MAIN = 'ystandard-script';
+
 	/**
 	 * EnqueueするCSSのリスト
 	 */
@@ -38,7 +39,7 @@ class YS_Scripts_Config {
 				'deps'    => array(),
 				'ver'     => YS_Utility::get_font_awesome_version(),
 				'media'   => 'all',
-				'enqueue' => ( 'css' === ys_get_option( 'ys_enqueue_icon_font_type' ) && ! ys_is_amp() ),
+				'enqueue' => ( 'css' === ys_get_option( 'ys_enqueue_icon_font_type', 'js' ) && ! ys_is_amp() ),
 				'type'    => 'enqueue', // enqueue or inline.
 				'inline'  => false, // true, false, handle.
 			),
@@ -93,16 +94,6 @@ class YS_Scripts_Config {
 				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
 			),
 			array(
-				'handle'  => 'style-css',
-				'src'     => get_stylesheet_uri(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'enqueue', // enqueue or inline.
-				'inline'  => true, // true, false, handle.
-			),
-			array(
 				'handle'  => 'adminbar-css',
 				'src'     => get_template_directory_uri() . '/css/ystandard-adminbar.css',
 				'deps'    => array(),
@@ -122,6 +113,19 @@ class YS_Scripts_Config {
 				'type'    => 'enqueue', // enqueue or inline.
 				'inline'  => false, // true, false, handle.
 			),
+		);
+
+		$styles = apply_filters( 'ys_pre_enqueue_style_css', $styles );
+
+		$styles[] = array(
+			'handle'  => 'style-css',
+			'src'     => get_stylesheet_uri(),
+			'deps'    => array(),
+			'ver'     => ys_get_theme_version( true ),
+			'media'   => 'all',
+			'enqueue' => true,
+			'type'    => 'enqueue', // enqueue or inline.
+			'inline'  => true, // true, false, handle.
 		);
 
 		return apply_filters( 'ys_get_enqueue_css_files', $styles );
@@ -146,7 +150,7 @@ class YS_Scripts_Config {
 				'deps'      => array(),
 				'ver'       => ys_get_theme_version( true ),
 				'in_footer' => true,
-				'enqueue'   => ( 'light' === ys_get_option( 'ys_enqueue_icon_font_type' ) ),
+				'enqueue'   => ( 'light' === ys_get_option( 'ys_enqueue_icon_font_type', 'js' ) ),
 			),
 			array(
 				'handle'    => 'font-awesome',
@@ -154,15 +158,15 @@ class YS_Scripts_Config {
 				'deps'      => array(),
 				'ver'       => YS_Utility::get_font_awesome_version(),
 				'in_footer' => true,
-				'enqueue'   => ( 'js' === ys_get_option( 'ys_enqueue_icon_font_type' ) ),
+				'enqueue'   => ( 'js' === ys_get_option( 'ys_enqueue_icon_font_type', 'js' ) ),
 			),
 			array(
 				'handle'    => 'font-awesome',
-				'src'       => ys_get_option( 'ys_enqueue_icon_font_kit_url' ),
+				'src'       => ys_get_option( 'ys_enqueue_icon_font_kit_url', '' ),
 				'deps'      => array(),
 				'ver'       => ys_get_theme_version( true ),
 				'in_footer' => true,
-				'enqueue'   => ( 'kit' === ys_get_option( 'ys_enqueue_icon_font_type' ) && ! empty( ys_get_option( 'ys_enqueue_icon_font_kit_url' ) ) ),
+				'enqueue'   => ( 'kit' === ys_get_option( 'ys_enqueue_icon_font_type', 'js' ) && ! empty( ys_get_option( 'ys_enqueue_icon_font_kit_url', '' ) ) ),
 			),
 		);
 

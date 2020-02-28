@@ -4,16 +4,49 @@
 	border-bottom: 1px solid $color__border-gray;
 	font-size: 1.05em;
 }
+
 .meta-box__section {
 	textarea {
 		width: 100%;
 	}
 }
+
 .meta-box__label {
 	display: block;
 	margin-top: 0.5rem;
 	font-weight: $font__weight_bold;
 }
+
 .meta-box__dscr {
 	color: $color__text-light;
+}
+
+.meta-box__full-w {
+	width: 100%;
+}
+
+.meta-box__copy-content {
+	display: flex;
+}
+
+.meta-box__copy-target {
+	flex-grow: 1;
+}
+
+.copy-form {
+	display: flex;
+	position: relative;
+}
+
+.copy-form__target {
+	flex-grow: 1;
+}
+.copy-form__info {
+	display: none;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	padding: 0.25em 0 0;
+	color: #333333;
+	font-size: 0.7rem;
 }

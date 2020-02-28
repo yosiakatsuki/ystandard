@@ -36,6 +36,7 @@ function ys_get_option( $name, $default = false, $type = false ) {
 function ys_get_option_by_bool( $name, $default = false ) {
 	return YS_Option::get_option_by_bool( $name, $default );
 }
+
 /**
  * 設定取得(int)
  *
@@ -44,29 +45,8 @@ function ys_get_option_by_bool( $name, $default = false ) {
  *
  * @return mixed
  */
-function ys_get_option_by_int( $name, $default = false ) {
+function ys_get_option_by_int( $name, $default = 0 ) {
 	return YS_Option::get_option_by_int( $name, $default );
-}
-
-/**
- * 設定デフォルト値取得
- *
- * @param string $name    設定名.
- * @param mixed  $default デフォルト値.
- *
- * @return mixed
- */
-function ys_get_option_default( $name, $default = false ) {
-	return YS_Option::get_default_option( $name, $default );
-}
-
-/**
- * 設定のデフォルト値リストを取得
- *
- * @return array
- */
-function ys_get_option_defaults() {
-	return YS_Option::get_defaults();
 }
 
 /**
