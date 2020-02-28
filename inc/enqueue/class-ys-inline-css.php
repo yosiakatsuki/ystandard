@@ -447,7 +447,7 @@ class YS_Inline_Css {
 					}}";
 					$styles[] = $this->add_media_query(
 						"body.admin-bar.has-fixed-header {
-						  padding-top:calc(32px + ${pt_pc});
+						  padding-top:calc(${pt_pc}px);
 						}",
 						'lg'
 					);
@@ -586,13 +586,9 @@ class YS_Inline_Css {
 		if ( ys_get_option_by_bool( 'ys_wp_header_media_full', false ) ) {
 			$opacity    = ys_get_option_by_int( 'ys_wp_header_media_full_opacity', 50 );
 			$opacity    = $opacity / 100;
-			$text_color = '#fff';
-			$bg_color   = 'rgba(0,0,0,' . $opacity . ')';
-			if ( 'light' === ys_get_option( 'ys_wp_header_media_full_type', 'dark' ) ) {
-				$text_color = '#222';
-				$bg_color   = 'rgba(255,255,255,' . $opacity . ')';
-			}
-			$css[] = $this->add_media_query(
+			$text_color = YS_Color::get_custom_header_stack_text_color();
+			$bg_color   = YS_Color::get_custom_header_stack_bg_color( $opacity );
+			$css[]      = $this->add_media_query(
 				".custom-header--full .site-header,
 				.custom-header--full .h-nav.rwd li:hover ul {
 				  background-color: ${bg_color}; }
