@@ -57,7 +57,7 @@ function ys_the_custom_header_markup() {
 		/**
 		 * ショートコード入力があればそちらを優先
 		 */
-		$media_shortcode = ys_get_option( 'ys_wp_header_media_shortcode' );
+		$media_shortcode = ys_get_option( 'ys_wp_header_media_shortcode', '' );
 		if ( $media_shortcode ) {
 			echo do_shortcode( $media_shortcode );
 		} else {

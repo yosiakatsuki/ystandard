@@ -15,7 +15,7 @@
  * @return string
  */
 function ys_document_title_separator( $sep ) {
-	$sep_option = ys_get_option( 'ys_title_separate' );
+	$sep_option = ys_get_option( 'ys_title_separate', '' );
 	if ( '' !== $sep_option ) {
 		$sep = $sep_option;
 	}
@@ -126,7 +126,7 @@ add_filter( 'widget_text', 'ys_iframe_responsive_widget' );
  * @return string
  */
 function ys_excerpt_length( $length = null ) {
-	$option_length = ys_get_option( 'ys_option_excerpt_length' );
+	$option_length = ys_get_option_by_int( 'ys_option_excerpt_length', 110 );
 	/**
 	 * 直接呼び出しでもフックでも設定値を返す
 	 */

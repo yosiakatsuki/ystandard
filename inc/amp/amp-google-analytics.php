@@ -11,7 +11,7 @@
  * Google Analytics idの取得
  */
 function ys_get_amp_google_anarytics_tracking_id() {
-	$ga_id = trim( ys_get_option( 'ys_ga_tracking_id_amp' ) );
+	$ga_id = trim( ys_get_option( 'ys_ga_tracking_id_amp', '' ) );
 	if ( '' === $ga_id ) {
 		$ga_id = ys_get_google_anarytics_tracking_id();
 	}

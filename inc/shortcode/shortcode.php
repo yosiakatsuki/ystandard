@@ -7,56 +7,240 @@
  * @license GPL-2.0+
  */
 
-$shortcode_dir = get_template_directory() . '/inc/shortcode/';
+/**
+ * クラス読み込み
+ */
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-base.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-text.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-share-button.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-author-box.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-author-list.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-get-posts.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-ranking.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-recent-posts.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-paging.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-taxonomy.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-follow-box.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-advertisement.php';
+require_once dirname( __FILE__ ) . '/class-ys-shortcode-parts.php';
 
 /**
- * 汎用テキスト
+ * 広告表示用ショートコード
+ *
+ * @param array  $args    パラメーター.
+ * @param string $content コンテンツ.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-text.php';
+function ys_shortcode_ad_block( $args, $content = null ) {
+	$sc = new YS_Shortcode_Advertisement( $args );
+
+	return apply_filters(
+		'ys_ad_block',
+		$sc->get_html( $content ),
+		$sc->get_args()
+	);
+}
+
+add_shortcode( 'ys_ad_block', 'ys_shortcode_ad_block' );
+
 /**
- * 投稿者表示ショートコード
+ * 投稿者表示
+ *
+ * @param array $args パラメータ.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-author.php';
+function ys_shortcode_author_box( $args ) {
+	$sc = new YS_Shortcode_Author_Box( $args );
+
+	return $sc->get_html();
+}
+
+add_shortcode( 'ys_author', 'ys_shortcode_author_box' );
+
 /**
- * 投稿者一覧表示ショートコード
+ * 投稿者一覧表示
+ *
+ * @param array $args パラメータ.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-author-list.php';
+function ys_shortcode_author_list( $args ) {
+	$sc = new YS_Shortcode_Author_List( $args );
+
+	return $sc->get_html();
+}
+
+add_shortcode( 'ys_author_list', 'ys_shortcode_author_list' );
+
 /**
- * 広告表示ショートコード
+ * ブログカードショートコード
+ *
+ * @param array $args パラメーター.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-ad.php';
+function ys_shortcode_blog_card( $args ) {
+	$sc = new YS_Shortcode_Blog_Card( $args );
+
+	return $sc->get_html();
+}
+
+add_shortcode( 'ys_blog_card', 'ys_shortcode_blog_card' );
+
+
 /**
- * ランキングショートコード
+ * フォローボックス表示
+ *
+ * @param array $args パラメータ.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-post-ranking.php';
+function ys_shortcode_follow_box( $args ) {
+	$sc = new YS_Shortcode_Follow_Box( $args );
+
+	return $sc->get_html();
+}
+
+add_shortcode( 'ys_follow_box', 'ys_shortcode_follow_box' );
+
 /**
- * 新着記事一覧ショートコード
+ * 投稿一覧
+ *
+ * @param array $args    パラメータ.
+ * @param null  $content 内容.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-recent-posts.php';
-/**
- * シェアボタン
- */
-require_once $shortcode_dir . 'shortcode-share-button.php';
-/**
- * 投稿一覧取得
- */
-require_once $shortcode_dir . 'shortcode-get-posts.php';
+function ys_shortcode_get_posts( $args, $content = null ) {
+	$sc = new YS_Shortcode_Get_Posts( $args );
+
+	return $sc->get_html( $content );
+}
+
+add_shortcode( 'ys_get_posts', 'ys_shortcode_get_posts' );
+
+
 /**
  * 前後の記事
+ *
+ * @param array $args パラメータ.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-post-paging.php';
+function ys_shortcode_post_paging( $args ) {
+	$sc = new YS_Shortcode_Post_Paging( $args );
+
+	return $sc->get_html();
+}
+
+add_shortcode( 'ys_post_paging', 'ys_shortcode_post_paging' );
+
+
 /**
- * ブログカード
+ * 記事ランキング
+ *
+ * @param array $args    パラメータ.
+ * @param null  $content 内容.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-blog-card.php';
+function ys_shortcode_post_ranking( $args, $content = null ) {
+	$sc = new YS_Shortcode_Post_Ranking( $args );
+
+	return $sc->get_html( $content );
+}
+
+add_shortcode( 'ys_post_ranking', 'ys_shortcode_post_ranking' );
+
 /**
  * 投稿カテゴリー・タグ表示
+ *
+ * @param array $args パラメータ.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-post-taxonomy.php';
+function ys_shortcode_ys_post_tax( $args ) {
+	$sc = new YS_Shortcode_Post_Taxonomy( $args );
+
+	return $sc->get_html();
+}
+
+add_shortcode( 'ys_post_tax', 'ys_shortcode_ys_post_tax' );
+
 /**
- * フォローボックス
+ * 新着記事一覧
+ *
+ * @param array $args    パラメーター.
+ * @param null  $content 内容.
+ *
+ * @return string
  */
-require_once $shortcode_dir . 'shortcode-follow-box.php';
+function ys_shortcode_recent_posts( $args, $content = null ) {
+	$sc = new YS_Shortcode_Recent_Posts( $args );
+
+	return $sc->get_html( $content );
+}
+
+add_shortcode( 'ys_recent_posts', 'ys_shortcode_recent_posts' );
+add_shortcode( 'ys_tax_posts', 'ys_shortcode_recent_posts' ); // 旧ショートコードの互換.
+
+
+/**
+ * シェアボタンショートコード
+ *
+ * @param array $args パラメーター.
+ *
+ * @return string
+ */
+function ys_shortcode_share_button( $args ) {
+	$sc = new YS_Shortcode_Share_Button( $args );
+
+	return $sc->get_html();
+}
+
+add_shortcode( 'ys_share_button', 'ys_shortcode_share_button' );
+
+/**
+ * 汎用テキストショートコード
+ *
+ * @param array $args    パラメーター.
+ * @param null  $content 内容.
+ *
+ * @return string
+ */
+function ys_shortcode_text( $args, $content = null ) {
+	$sc = new YS_Shortcode_Text( $args );
+
+	return apply_filters(
+		'ys_sc_text_shortcode',
+		$sc->get_html( $content ),
+		$sc->get_args()
+	);
+}
+
+add_shortcode( 'ys_text', 'ys_shortcode_text' );
+
+/**
+ * [ys]パーツショートコード
+ *
+ * @param array $args    パラメーター.
+ * @param null  $content 内容.
+ *
+ * @return string
+ */
+function ys_shortcode_parts( $args, $content = null ) {
+	$sc = new YS_Shortcode_Parts( $args );
+
+	return apply_filters(
+		'ys_sc_parts_shortcode',
+		$sc->get_html( $content ),
+		$sc->get_args()
+	);
+}
+
+add_shortcode( 'ys_parts', 'ys_shortcode_parts' );
 
 /**
  * ショートコードの作成と実行

@@ -2,17 +2,20 @@
 	@at-root {
 		& {
 			padding: 0.5rem 0;
-			font-size: 0;
-			line-height: 1.2;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
+			line-height: 1;
 			list-style: none;
 
 			a {
 				color: $color__text-light;
 				text-decoration: none;
 			}
+		}
+
+		.breadcrumbs__list {
+			color: $color__text-light;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
 		}
 
 		.singular.col-1:not(.full-width):not(.has-bg-color) .breadcrumbs__list {
@@ -25,6 +28,7 @@
 			display: inline;
 			color: $color__text-light;
 			font-size: 0.7rem;
+			line-height: 1;
 
 			&:not(:last-child):after {
 				content: "/";

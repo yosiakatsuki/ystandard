@@ -456,7 +456,7 @@ class YS_Widget_Base extends WP_Widget {
 						<label for="<?php echo $this->get_field_id( 'display_mobile' ); ?>">
 							<input type="checkbox" id="<?php echo $this->get_field_id( 'display_mobile' ); ?>" name="<?php echo $this->get_field_name( 'display_mobile' ); ?>" value="1" <?php checked( $instance['display_mobile'], 1 ); ?> />モバイルページで表示する</label><br>
 						<label for="<?php echo $this->get_field_id( 'display_amp' ); ?>">
-							<?php if ( ys_get_option( 'ys_amp_enable' ) || ys_get_option( 'ys_amp_enable_amp_plugin_integration' ) ) : ?>
+							<?php if ( ys_get_option_by_bool( 'ys_amp_enable', false ) || ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) : ?>
 							<input type="checkbox" id="<?php echo $this->get_field_id( 'display_amp' ); ?>" name="<?php echo $this->get_field_name( 'display_amp' ); ?>" value="1" <?php checked( $instance['display_amp'], 1 ); ?> />AMPページで表示する</label>
 						<?php endif; ?>
 					</p>

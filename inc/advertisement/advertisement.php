@@ -8,11 +8,6 @@
  */
 
 /**
- * ショートコード読み込みƒ
- */
-require dirname( __FILE__ ) . '/class-ys-shortcode-advertisement.php';
-
-/**
  * 広告コードのhtml整形
  *
  * @param string  $ad    広告.
@@ -71,7 +66,7 @@ function ys_get_ad( $key_pc, $key_sp = '', $key_amp = '', $filter = '' ) {
 	if ( ys_is_amp() && '' !== $key_amp ) {
 		$key = $key_amp;
 	}
-	$ad = ys_get_option( $key );
+	$ad = ys_get_option( $key, '' );
 	if ( $filter ) {
 		$ad = apply_filters( $filter, $ad, $key );
 	}
@@ -155,7 +150,7 @@ function ys_the_ad_entry_header() {
 	ys_do_shortcode(
 		'ys_ad_block',
 		array(
-			'title' => ys_get_option( 'ys_advertisement_ads_label' ),
+			'title' => ys_get_option( 'ys_advertisement_ads_label', 'スポンサーリンク' ),
 			'class' => '-no-mb',
 		),
 		ys_get_ad_entry_header()
@@ -184,7 +179,7 @@ function ys_get_ad_more_tag() {
 function ys_the_ad_more_tag( $echo = false ) {
 	$ad = ys_do_shortcode(
 		'ys_ad_block',
-		array( 'title' => ys_get_option( 'ys_advertisement_ads_label' ) ),
+		array( 'title' => ys_get_option( 'ys_advertisement_ads_label', 'スポンサーリンク' ) ),
 		ys_get_ad_more_tag(),
 		$echo
 	);
@@ -210,10 +205,10 @@ function ys_get_ad_entry_footer() {
 	}
 
 	$ad       = '';
-	$ad_left  = ys_get_option( $key_left );
+	$ad_left  = ys_get_option( $key_left, '' );
 	$ad_right = '';
 	if ( '' !== $key_right ) {
-		$ad_right = ys_get_option( $key_right );
+		$ad_right = ys_get_option( $key_right, '' );
 	}
 	if ( '' !== $ad_left && '' !== $ad_right ) {
 		$ad = sprintf(
@@ -242,7 +237,7 @@ function ys_get_ad_entry_footer() {
 function ys_the_ad_entry_footer() {
 	ys_do_shortcode(
 		'ys_ad_block',
-		array( 'title' => ys_get_option( 'ys_advertisement_ads_label' ) ),
+		array( 'title' => ys_get_option( 'ys_advertisement_ads_label', 'スポンサーリンク' ) ),
 		ys_get_ad_entry_footer()
 	);
 }
@@ -254,9 +249,9 @@ function ys_the_ad_entry_footer() {
  */
 function ys_get_ad_infeed() {
 	if ( ys_is_mobile() ) {
-		$ad = ys_get_option( 'ys_advertisement_infeed_sp' );
+		$ad = ys_get_option( 'ys_advertisement_infeed_sp', '' );
 	} else {
-		$ad = ys_get_option( 'ys_advertisement_infeed_pc' );
+		$ad = ys_get_option( 'ys_advertisement_infeed_pc', '' );
 	}
 	$ad = ys_fix_ad_preview_error( $ad );
 
@@ -276,11 +271,11 @@ function ys_the_ad_infeed() {
  */
 function ys_get_template_infeed_ad() {
 	if ( ys_is_mobile() ) {
-		$step  = ys_get_option( 'ys_advertisement_infeed_sp_step' );
-		$limit = ys_get_option( 'ys_advertisement_infeed_sp_limit' );
+		$step  = ys_get_option_by_int( 'ys_advertisement_infeed_sp_step', 3 );
+		$limit = ys_get_option_by_int( 'ys_advertisement_infeed_sp_limit', 3 );
 	} else {
-		$step  = ys_get_option( 'ys_advertisement_infeed_pc_step' );
-		$limit = ys_get_option( 'ys_advertisement_infeed_pc_limit' );
+		$step  = ys_get_option_by_int( 'ys_advertisement_infeed_pc_step', 3 );
+		$limit = ys_get_option_by_int( 'ys_advertisement_infeed_pc_limit', 3 );
 	}
 	global $wp_query;
 	$num = $wp_query->current_post + 1;

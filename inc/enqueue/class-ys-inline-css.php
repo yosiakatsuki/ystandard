@@ -61,8 +61,14 @@ class YS_Inline_Css {
 		 * モバイルフッター
 		 */
 		$styles[] = $this->get_mobile_footer_css();
+		/**
+		 * カスタマイズプレビュー
+		 */
+		$styles[] = $this->get_customize_preview();
 
-		return $ys_scripts->minify( implode( '', $styles ) );
+		$inline_css = implode( '', $styles );
+
+		return $ys_scripts->minify( apply_filters( 'ys_get_inline_css', $inline_css ) );
 	}
 
 	/**
@@ -80,7 +86,7 @@ class YS_Inline_Css {
 			'serif'     => 'serif',
 		);
 
-		$option = YS_Option::get_option( 'ys_design_font_type' );
+		$option = YS_Option::get_option( 'ys_design_font_type', 'yugo' );
 		if ( isset( $font[ $option ] ) ) {
 			$font_family = $font[ $option ];
 		}
@@ -129,7 +135,7 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public static function get_editor_color_palette( $prefix = '' ) {
-		$color  = ys_get_editor_color_palette();
+		$color  = YS_Color::get_color_palette();
 		$css    = '';
 		$prefix = empty( $prefix ) ? '' : $prefix . ' ';
 		foreach ( $color as $value ) {
@@ -177,10 +183,10 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public function get_site_css() {
-		if ( ys_get_option( 'ys_desabled_color_customizeser', false, 'bool' ) ) {
+		if ( ys_get_option_by_bool( 'ys_desabled_color_customizeser', false ) ) {
 			return '';
 		}
-		$html_bg = ys_get_option( 'ys_color_site_bg' );
+		$html_bg = YS_Color::get_site_bg();
 		$styles  = array();
 		/**
 		 * サイト背景色
@@ -192,7 +198,7 @@ class YS_Inline_Css {
 		/**
 		 * 背景色がデフォルト以外の場合
 		 */
-		if ( ys_get_option_default( 'ys_color_site_bg' ) !== $html_bg ) {
+		if ( ys_has_site_background() ) {
 			if ( is_singular() ) {
 				if ( ! ys_is_full_width() ) {
 					$styles[] = '
@@ -261,7 +267,7 @@ class YS_Inline_Css {
 					background-color:transparent;
 				}';
 
-				if ( 'list' === ys_get_option( 'ys_archive_type' ) ) {
+				if ( 'list' === ys_get_option( 'ys_archive_type', 'list' ) ) {
 					$styles[] = '
 					.has-bg-color .archive__item.-list {
 						background-color:#fff;
@@ -296,14 +302,6 @@ class YS_Inline_Css {
 					);
 				}
 			}
-		} else {
-			if ( 'header' !== ys_get_option( 'ys_breadcrumbs_position' ) ) {
-				$styles[] = '.site-header + .site__content {margin-top:1.5rem;}';
-				$styles[] = $this->add_media_query(
-					'.site-header + .site__content {margin-top:2.5rem;}',
-					'md'
-				);
-			}
 		}
 
 		return implode( '', $styles );
@@ -318,17 +316,17 @@ class YS_Inline_Css {
 
 		$styles = array();
 
-		if ( 0 < ys_get_option_by_int( 'ys_logo_width_sp' ) ) {
+		if ( 0 < ys_get_option_by_int( 'ys_logo_width_sp', 0 ) ) {
 			$styles[] = sprintf(
 				'.header__title img{width:%spx;}',
-				ys_get_option_by_int( 'ys_logo_width_sp' )
+				ys_get_option_by_int( 'ys_logo_width_sp', 0 )
 			);
 		}
-		if ( 0 < ys_get_option_by_int( 'ys_logo_width_pc' ) ) {
+		if ( 0 < ys_get_option_by_int( 'ys_logo_width_pc', 0 ) ) {
 			$styles[] = $this->add_media_query(
 				sprintf(
 					'.header__title img{width:%spx;}',
-					ys_get_option_by_int( 'ys_logo_width_pc' )
+					ys_get_option_by_int( 'ys_logo_width_pc', 0 )
 				),
 				'md'
 			);
@@ -344,9 +342,9 @@ class YS_Inline_Css {
 	 */
 	public function get_header_css() {
 		$styles      = array();
-		$header_bg   = ys_get_option( 'ys_color_header_bg' );
-		$header_font = ys_get_option( 'ys_color_header_font' );
-		$header_dscr = ys_get_option( 'ys_color_header_dscr_font' );
+		$header_bg   = ys_get_option( 'ys_color_header_bg', '#ffffff' );
+		$header_font = ys_get_option( 'ys_color_header_font', '#222222' );
+		$header_dscr = ys_get_option( 'ys_color_header_dscr_font', '#757575' );
 
 		$styles[] = ".site-header {background-color:${header_bg};}";
 		if ( ! ys_is_amp() ) {
@@ -362,8 +360,8 @@ class YS_Inline_Css {
 		/**
 		 * 固定ヘッダー.
 		 */
-		if ( ys_get_option_by_bool( 'ys_header_fixed' ) ) {
-			$height_pc     = ys_get_option( 'ys_header_fixed_height_pc' );
+		if ( ys_get_option_by_bool( 'ys_header_fixed', false ) ) {
+			$height_pc     = ys_get_option( 'ys_header_fixed_height_pc', 0 );
 			$height_tablet = ys_get_option( 'ys_header_fixed_height_tablet', 0 );
 			$height_mobile = ys_get_option( 'ys_header_fixed_height_mobile', 0 );
 			$pt_pc         = $height_pc;
@@ -485,11 +483,11 @@ class YS_Inline_Css {
 	 */
 	public function get_nav_css() {
 		$styles               = array();
-		$header_font          = ys_get_option( 'ys_color_header_font' );
-		$mobile_nav_bg        = ys_get_option( 'ys_color_nav_bg_sp' );
-		$mobile_nav_font      = ys_get_option( 'ys_color_nav_font_sp' );
-		$mobile_nav_btn_open  = ys_get_option( 'ys_color_nav_btn_sp_open' );
-		$mobile_nav_btn_close = ys_get_option( 'ys_color_nav_btn_sp' );
+		$header_font          = ys_get_option( 'ys_color_header_font', '#222222' );
+		$mobile_nav_bg        = ys_get_option( 'ys_color_nav_bg_sp', '#000000' );
+		$mobile_nav_font      = ys_get_option( 'ys_color_nav_font_sp', '#ffffff' );
+		$mobile_nav_btn_open  = ys_get_option( 'ys_color_nav_btn_sp_open', '#222222' );
+		$mobile_nav_btn_close = ys_get_option( 'ys_color_nav_btn_sp', '#ffffff' );
 
 		if ( ! ys_is_amp() ) {
 			$styles[] = $this->add_media_query(
@@ -543,8 +541,8 @@ class YS_Inline_Css {
 	 */
 	public function get_footer_css() {
 		$styles      = array();
-		$footer_bg   = ys_get_option( 'ys_color_footer_bg' );
-		$footer_font = ys_get_option( 'ys_color_footer_font' );
+		$footer_bg   = ys_get_option( 'ys_color_footer_bg', '#222222' );
+		$footer_font = ys_get_option( 'ys_color_footer_font', '#ffffff' );
 		/**
 		 * フッター
 		 */
@@ -555,13 +553,13 @@ class YS_Inline_Css {
 		/**
 		 * フッターSNSリンク
 		 */
-		$opacity       = get_option( 'ys_color_footer_sns_bg_opacity', 30 );
+		$opacity       = ys_get_option( 'ys_color_footer_sns_bg_opacity', 30 );
 		$opacity       = ( $opacity / 100 );
 		$hover_opacity = ( $opacity + 0.2 );
 		if ( 1 < ( $opacity + 0.2 ) ) {
 			$hover_opacity = 1;
 		}
-		if ( 'light' === get_option( 'ys_color_footer_sns_bg_type', 'light' ) ) {
+		if ( 'light' === ys_get_option( 'ys_color_footer_sns_bg_type', 'light' ) ) {
 			$color       = 'rgba(255,255,255,' . $opacity . ')';
 			$hover_color = 'rgba(255,255,255,' . $hover_opacity . ')';
 		} else {
@@ -585,12 +583,12 @@ class YS_Inline_Css {
 		/**
 		 * ヘッダー重ねるタイプ
 		 */
-		if ( ys_get_option( 'ys_wp_header_media_full' ) ) {
-			$opacity    = ys_get_option( 'ys_wp_header_media_full_opacity' );
+		if ( ys_get_option_by_bool( 'ys_wp_header_media_full', false ) ) {
+			$opacity    = ys_get_option_by_int( 'ys_wp_header_media_full_opacity', 50 );
 			$opacity    = $opacity / 100;
 			$text_color = '#fff';
 			$bg_color   = 'rgba(0,0,0,' . $opacity . ')';
-			if ( 'light' === ys_get_option( 'ys_wp_header_media_full_type' ) ) {
+			if ( 'light' === ys_get_option( 'ys_wp_header_media_full_type', 'dark' ) ) {
 				$text_color = '#222';
 				$bg_color   = 'rgba(255,255,255,' . $opacity . ')';
 			}
@@ -656,21 +654,47 @@ class YS_Inline_Css {
 		    text-decoration: none; }
 		  .footer-mobile-nav svg, .footer-mobile-nav i {
 		    font-size: 1.5em; }
-		
+
 		.footer-mobile-nav__dscr {
 		  display: block;
 		  font-size: .7em;
 		  line-height: 1.2; }
-		
+
 		.has-mobile-footer .site__footer {
 		  padding-bottom: 5rem; }
-		
+
 		@media screen and (min-width: 1025px) {
 		    .footer-mobile-nav {
 		      display: none; }
 		    .has-mobile-footer .site__footer {
 		      padding-bottom: 1rem; } }
 		';
+	}
+
+	/**
+	 * カスタマイズプレビュー用
+	 *
+	 * @return string
+	 */
+	public function get_customize_preview() {
+		$css = array();
+
+		if ( ys_get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
+			$css[] = $this->add_media_query(
+				'.is-customize-preview .sidebar {display:none;}',
+				'md',
+				'max'
+			);
+		}
+		if ( ! ys_get_option_by_bool( 'ys_show_search_form_on_slide_menu', false ) ) {
+			$css[] = $this->add_media_query(
+				'.is-customize-preview .h-nav__search {display:none;}',
+				'lg',
+				'max'
+			);
+		}
+
+		return implode( '', $css );
 	}
 
 	/**
@@ -682,7 +706,7 @@ class YS_Inline_Css {
 	 *
 	 * @return string
 	 */
-	private function add_media_query( $css, $breakpoint, $type = 'min' ) {
+	public function add_media_query( $css, $breakpoint, $type = 'min' ) {
 
 		/**
 		 * 切り替え位置取得
