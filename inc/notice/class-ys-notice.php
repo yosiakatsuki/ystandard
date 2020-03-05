@@ -7,10 +7,21 @@
  * @license GPL-2.0+
  */
 
+/**
+ * Class YS_Notice
+ */
 class YS_Notice {
+
+	/**
+	 * YS_Notice constructor.
+	 */
 	public function __construct() {
+		add_action( 'admin_notices', array( $this, 'amp_notice' ) );
 	}
 
+	/**
+	 * 独自AMP非推奨メッセージ
+	 */
 	public function amp_notice() {
 		if ( ! ys_get_option_by_bool( 'ys_amp_enable', false ) ) {
 			return;
