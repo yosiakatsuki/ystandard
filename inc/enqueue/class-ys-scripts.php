@@ -364,7 +364,7 @@ class YS_Scripts {
 	 * ブロックエディター用WP標準CSSの削除
 	 */
 	public function dequeue_wp_block_css() {
-		wp_dequeue_style( 'wp-block-library' );
+		// 5.4対応 ... wp_dequeue_style( 'wp-block-library' ).
 		wp_dequeue_style( 'wp-block-library-theme' );
 	}
 
