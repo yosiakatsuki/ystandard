@@ -1,7 +1,7 @@
 .entry__content {
 	margin-top: 1.5em;
 
-	& > *:not(h1):not(h2):not(h3):not(h4):not(h5) {
+	& > * {
 		margin-top: 1.5em;
 	}
 
@@ -13,20 +13,5 @@
 		content: "";
 		display: block;
 		clear: both;
-	}
-}
-
-.singular-article {
-	@at-root {
-		& {
-			max-width: $width__content_one_col;
-			margin-right: auto;
-			margin-left: auto;
-		}
-
-		.full-width &,
-		.has-sidebar & {
-			max-width: unset;
-		}
 	}
 }

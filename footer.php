@@ -3,58 +3,36 @@
  * フッターテンプレート
  *
  * @package ystandard
- * @author yosiakatsuki
+ * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
 ?>
-	</div><!-- .site-content -->
-	<?php
-	/**
-	 * パンくずリスト
-	 */
-	if ( 'footer' === YS_Breadcrumbs::get_breadcrumbs_position() ) {
-		get_template_part( 'template-parts/parts/breadcrumbs' );
-	}
-	?>
+	</div>
 	<?php do_action( 'ys_before_site_footer' ); ?>
-	<footer id="footer" class="site-footer site__footer">
+	<footer id="footer" class="footer site-footer">
+		<?php do_action( 'ys_site_footer_prepend' ); ?>
 		<div class="container">
 			<?php
-				/**
-				 * SNSフォロー
-				 */
-				get_template_part( 'template-parts/footer/footer-sns' );
-				/**
-				 * ウィジェット
-				 */
-				get_template_part( 'template-parts/footer/footer-widget' );
-				/**
-				 * フッターナビゲーション
-				 */
-				get_template_part( 'template-parts/footer/footer-nav' );
-				/**
-				 * Copyright
-				 */
-				get_template_part( 'template-parts/footer/footer-copy' );
+			/**
+			 * ウィジェット
+			 */
+			ys_get_template_part( 'template-parts/footer/footer-widget' );
+			/**
+			 * フッターナビゲーション
+			 */
+			ys_get_template_part( 'template-parts/footer/footer-nav' );
+			/**
+			 * Copyright
+			 */
+			ys_get_template_part( 'template-parts/footer/footer-copy' );
 			?>
-		</div><!-- .container -->
-	</footer><!-- .site-footer -->
-	<?php get_template_part( 'template-parts/footer/footer-mobile-nav' ); ?>
-</div><!-- .site -->
-<?php
-if ( ys_is_ystd_amp() ) {
-	/**
-	 * AMP
-	 */
-	ys_amp_footer();
-} else {
-	/**
-	 * AMP以外
-	 */
+		</div>
+		<?php do_action( 'ys_site_footer_append' ); ?>
+	</footer>
+	<?php
 	wp_footer();
-}
-?>
-<?php do_action( 'ys_body_append' ); ?>
+	do_action( 'ys_body_append' );
+	?>
 </body>
 </html>

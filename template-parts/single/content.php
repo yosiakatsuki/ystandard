@@ -12,14 +12,14 @@
 	<main id="main" class="site-main content__main">
 		<?php do_action( 'ys_content_main_prepend' ); ?>
 		<article id="post-<?php the_ID(); ?>" <?php post_class( array( 'singular-article' ) ); ?>>
-			<?php get_template_part( 'template-parts/single/header' ); ?>
+			<?php ys_get_template_part( 'template-parts/single/header' ); ?>
 			<div class="entry-content entry__content">
 				<?php
 				the_content();
-				get_template_part( 'template-parts/single/pagination' );
+				ys_get_template_part( 'template-parts/single/pagination' );
 				?>
 			</div><!-- .entry-content -->
-			<?php get_template_part( 'template-parts/single/footer' ); ?>
+			<?php ys_get_template_part( 'template-parts/single/footer' ); ?>
 		</article>
 		<?php do_action( 'ys_content_main_append' ); ?>
 	</main><!-- .site-main -->

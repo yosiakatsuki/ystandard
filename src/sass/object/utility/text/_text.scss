@@ -9,10 +9,3 @@ a.text-sub,
 		color: $color__text-light;
 	}
 }
-.clear-a {
-	a {
-		color: inherit;
-		text-decoration: none;
-	}
-}
-@include make-text();

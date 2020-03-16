@@ -38,80 +38,6 @@ function ys_the_head_attr() {
 	echo implode( ' ', $attr );
 }
 
-/**
- * メタデスクリプション取得
- */
-function ys_get_meta_description() {
-	global $post;
-	$length = ys_get_option_by_int( 'ys_option_meta_description_length', 80 );
-	$dscr   = '';
-	/**
-	 * TOPページの場合
-	 */
-	if ( ys_is_top_page() ) {
-		$dscr = trim( ys_get_option( 'ys_wp_site_description', '' ) );
-	} elseif ( is_category() && ! is_paged() ) {
-		/**
-		 * カテゴリー
-		 */
-		$dscr = category_description();
-	} elseif ( is_tag() && ! is_paged() ) {
-		/**
-		 * タグ
-		 */
-		$dscr = tag_description();
-	} elseif ( is_tax() ) {
-		/**
-		 * その他タクソノミー
-		 */
-		$taxonomy = get_query_var( 'taxonomy' );
-		$term     = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
-		$dscr     = term_description( $term->term_id, $taxonomy );
-	} elseif ( is_singular() ) {
-		/**
-		 * 投稿ページ
-		 */
-		if ( ! get_query_var( 'paged' ) ) {
-			$dscr = $post->post_excerpt;
-			if ( ! $dscr ) {
-				$dscr = ys_get_the_custom_excerpt( '', $length, $post->ID );
-			}
-		}
-	}
-	if ( '' !== $dscr ) {
-		$dscr = mb_substr( $dscr, 0, $length );
-	}
-
-	return apply_filters( 'ys_get_meta_description', wp_strip_all_tags( $dscr, true ) );
-}
-
-/**
- * TOPページのmeta description出力
- */
-function ys_the_meta_description() {
-	$html = '';
-	$dscr = ys_get_meta_description();
-	/**
-	 * Metaタグの作成
-	 */
-	if ( '' !== $dscr && ys_is_enable_meta_description() ) {
-		$html = '<meta name="description" content="' . $dscr . '" />' . PHP_EOL;
-	}
-	echo $html;
-}
-
-add_action( 'wp_head', 'ys_the_meta_description' );
-
-/**
- * ピンバックURLの出力
- */
-function ys_the_pingback_url() {
-	if ( is_singular() && pings_open( get_queried_object() ) ) {
-		echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . PHP_EOL;
-	}
-}
-
-add_action( 'wp_head', 'ys_the_pingback_url' );
 
 /**
  * Preload
@@ -353,53 +279,7 @@ if ( ! function_exists( 'ys_get_the_link_page' ) ) {
  * Noindex
  */
 function ys_the_noindex() {
-	$noindex = false;
-	if ( is_404() ) {
-		/**
-		 * 404ページをnoindex
-		 */
-		$noindex = true;
-	} elseif ( is_search() ) {
-		/**
-		 * 検索結果をnoindex
-		 */
-		$noindex = true;
-	} elseif ( is_category() && ys_get_option_by_bool( 'ys_archive_noindex_category', false ) ) {
-		/**
-		 * カテゴリーページのnoindex設定がされていればnoindex
-		 */
-		$noindex = true;
-	} elseif ( is_tag() && ys_get_option_by_bool( 'ys_archive_noindex_tag', true ) ) {
-		/**
-		 * カテゴリーページのnoindex設定がされていればnoindex
-		 */
-		$noindex = true;
-	} elseif ( is_author() && ys_get_option_by_bool( 'ys_archive_noindex_author', true ) ) {
-		/**
-		 * カテゴリーページのnoindex設定がされていればnoindex
-		 */
-		$noindex = true;
 
-	} elseif ( is_date() && ys_get_option_by_bool( 'ys_archive_noindex_date', true ) ) {
-		/**
-		 * カテゴリーページのnoindex設定がされていればnoindex
-		 */
-		$noindex = true;
-	} elseif ( is_single() || is_page() ) {
-		if ( '1' === ys_get_post_meta( 'ys_noindex' ) ) {
-			/**
-			 * 投稿・固定ページでnoindex設定されていればnoindex
-			 */
-			$noindex = true;
-		}
-	}
-	$noindex = apply_filters( 'ys_the_noindex', $noindex );
-	/**
-	 * Noindex出力
-	 */
-	if ( $noindex ) {
-		echo '<meta name="robots" content="noindex,follow">' . PHP_EOL;
-	}
 }
 
 add_action( 'wp_head', 'ys_the_noindex' );
@@ -421,25 +301,6 @@ function ys_the_twitter_card() {
 }
 
 add_action( 'wp_head', 'ys_the_twitter_card' );
-
-/**
- * Google Analyticsタグ出力
- */
-function ys_the_google_anarytics() {
-	/**
-	 * 管理画面ログイン中はGAタグを出力しない
-	 */
-	if ( ! ys_is_enable_google_analytics() ) {
-		return;
-	}
-	/**
-	 * トラッキング タイプ
-	 */
-	$ga_type = ys_get_option( 'ys_ga_tracking_type', 'gtag' );
-	get_template_part( 'template-parts/parts/ga', $ga_type );
-}
-
-add_action( 'wp_head', 'ys_the_google_anarytics', 99 );
 
 /**
  * Google Analytics idの取得
@@ -469,7 +330,7 @@ add_action( 'wp_head', 'ys_the_amphtml' );
  * ユーザーカスタムHEAD出力
  */
 function ys_the_uc_custom_head() {
-	get_template_part( 'user-custom-head' );
+	ys_get_template_part( 'user-custom-head' );
 }
 
 add_action( 'wp_head', 'ys_the_uc_custom_head', 11 );

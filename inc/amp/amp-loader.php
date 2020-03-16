@@ -1,16 +1,37 @@
 <?php
 /**
- * AMP関連ファイルのロード
+ * AMP関連
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-$dir = get_template_directory() . '/inc/amp';
-
-require_once $dir . '/amp-convert.php';
-require_once $dir . '/amp-filter.php';
-require_once $dir . '/amp-head.php';
-require_once $dir . '/amp-footer.php';
-require_once $dir . '/amp-google-analytics.php';
+/**
+ * AMP用ナビゲーション
+ */
+function ys_the_amp_slider() {
+	?>
+	<amp-sidebar id="sidebar" layout="nodisplay" side="right" class="amp-slider color__nav-bg--sp">
+		<button class="global-nav__btn global-nav__amp-btn--close" on="tap:sidebar.close">
+			<span class="top"></span>
+			<span class="middle"></span>
+			<span class="bottom"></span>
+		</button>
+		<nav id="global-nav--amp" class="global-nav--amp color__nav-bg--sp">
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'global',
+					'menu_class'     => 'h-nav__menu row flex--a-center li-clear',
+					'menu_id'        => 'h-nav__menu',
+					'container'      => false,
+					'depth'          => 2,
+					'walker'         => new YS_Walker_Global_Nav_Menu,
+				)
+			);
+			?>
+		</nav><!-- .main-navigation -->
+	</amp-sidebar>
+	<?php
+}

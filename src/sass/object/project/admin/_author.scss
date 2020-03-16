@@ -1,0 +1,24 @@
+.ys-custom-uploader {
+  &.is-selected {
+	.ys-custom-uploader__select {
+	  display: none;
+	}
+  }
+
+  &:not(.is-selected) {
+	.ys-custom-uploader__clear {
+	  display: none;
+	}
+	.ys-custom-uploader__preview {
+	  padding: 1em 0;
+	}
+  }
+
+  .ys-custom-uploader__preview {
+	img {
+	  width: 96px;
+	  height: auto;
+	}
+  }
+
+}

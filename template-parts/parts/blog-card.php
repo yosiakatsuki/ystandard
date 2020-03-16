@@ -56,7 +56,7 @@ if ( $domain ) {
 	<div class="ys-blog-card__row flex flex--row flex--nowrap -no-gutter">
 		<?php if ( $thumbnail ) : ?>
 			<figure class="ys-blog-card__image flex__col--auto">
-				<?php echo ys_amp_get_amp_image_tag( $thumbnail ); ?>
+				<?php echo $thumbnail; ?>
 			</figure>
 		<?php endif; ?>
 		<div class="ys-blog-card__text flex__col">

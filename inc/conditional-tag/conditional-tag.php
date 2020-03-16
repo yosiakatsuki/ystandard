@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+require_once dirname( __FILE__ ) . '/class-conditional-tag.php';
+
 /**
  * TOPページ判断（HOMEの1ページ目 or front-page）
  *
@@ -49,7 +51,7 @@ function ys_check_user_agent( $ua ) {
  * @return bool
  */
 function ys_is_login_page() {
-	if ( in_array( $GLOBALS['pagenow'], array( 'wp-login.php', 'wp-register.php' ), true ) ) {
+	if ( in_array( $GLOBALS['pagenow'], [ 'wp-login.php', 'wp-register.php' ], true ) ) {
 		return true;
 	} else {
 		return false;
@@ -67,7 +69,7 @@ function ys_is_mobile() {
 	/**
 	 * [^(?!.*iPad).*iPhone] : iPadとiPhoneが混ざるUAがあるらしい
 	 */
-	$ua = array(
+	$ua = [
 		'^(?!.*iPad).*iPhone',
 		'iPod',
 		'Android.*Mobile',
@@ -79,7 +81,7 @@ function ys_is_mobile() {
 		'webOS',
 		'incognito',
 		'webmate',
-	);
+	];
 
 	$ua = apply_filters( 'ys_is_mobile_ua_list', $ua );
 
@@ -92,10 +94,10 @@ function ys_is_mobile() {
  * @return bool
  */
 function ys_is_ie() {
-	$ua = array(
+	$ua = [
 		'Trident',
 		'MSIE',
-	);
+	];
 	$ua = apply_filters( 'ys_is_ie_ua_list', $ua );
 
 	return ys_check_user_agent( $ua );
@@ -107,9 +109,9 @@ function ys_is_ie() {
  * @return bool
  */
 function ys_is_edge() {
-	$ua = array(
+	$ua = [
 		'Edge',
-	);
+	];
 	$ua = apply_filters( 'ys_is_edge_ua_list', $ua );
 
 	return ys_check_user_agent( $ua );
@@ -121,109 +123,7 @@ function ys_is_edge() {
  * @return bool
  */
 function ys_is_amp() {
-	global $ys_amp;
-	if ( null !== $ys_amp ) {
-		return $ys_amp;
-	}
-	if ( ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) {
-		/**
-		 * AMPプラグインでAMPページが作成されているか判断
-		 */
-		$is_amp_endpoint = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
-		$ys_amp          = apply_filters( 'ys_is_amp_endpoint', $is_amp_endpoint );
-	} else {
-		/**
-		 * テーマ機能のAMP
-		 */
-		$ys_amp = ys_is_ystd_amp();
-	}
-
-	return apply_filters( 'ys_is_amp', $ys_amp );
-}
-
-/**
- * テーマ機能のAMP判断
- */
-function ys_is_ystd_amp() {
-	/**
-	 * AMPプラグイン有効化している場合はfalse
-	 */
-	if ( ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) {
-		return false;
-	}
-	global $ys_ystd_amp;
-	if ( null !== $ys_ystd_amp ) {
-		return $ys_ystd_amp;
-	}
-	$param_amp = '';
-	if ( isset( $_GET['amp'] ) ) {
-		$param_amp = $_GET['amp'];
-	}
-	if ( '1' === $param_amp && ys_is_amp_enable() ) {
-		$ys_ystd_amp = true;
-	} else {
-		$ys_ystd_amp = false;
-	}
-
-	return apply_filters( 'ys_is_ystd_amp', $ys_ystd_amp );
-}
-
-/**
- * AMPページにできるか判断
- *
- * @return bool
- */
-function ys_is_amp_enable() {
-	global $post;
-	$result = true;
-	/**
-	 * AMP有効化設定チェック
-	 */
-	if ( ys_get_option_by_bool( 'ys_amp_enable', false ) ) {
-		/**
-		 * AMP設定有効
-		 */
-		if ( is_single() ) {
-			/**
-			 * 投稿ごとのAMPページ生成判断
-			 */
-			if ( ys_to_bool( ys_get_post_meta( 'ys_post_meta_amp_desable', $post->ID ) ) ) {
-				$result = false;
-			}
-		} else {
-			/**
-			 * 投稿詳細以外はNG
-			 */
-			$result = false;
-		}
-	} else {
-		/**
-		 * AMP設定無効
-		 */
-		$result = false;
-	}
-
-	return apply_filters( 'ys_is_amp_enable', $result );
-}
-
-/**
- * Google AMP Client ID API を使用するか
- *
- * @return bool
- */
-function ys_is_active_amp_client_id_api() {
-	if ( ! ys_is_enable_google_analytics() ) {
-		return false;
-	}
-	$ga     = ys_get_option( 'ys_ga_tracking_id', '' );
-	$ga_amp = ys_get_option( 'ys_ga_tracking_id_amp', '' );
-	if ( '' !== $ga_amp ) {
-		if ( $ga !== $ga_amp ) {
-			return false;
-		}
-	}
-
-	return true;
+	return \ystandard\AMP::is_amp();
 }
 
 /**
@@ -236,12 +136,12 @@ function ys_is_one_column() {
 	/**
 	 * ワンカラムテンプレート
 	 */
-	$template = array(
+	$template = [
 		'page-template/template-one-column.php',
 		'page-template/template-one-column-wide.php',
-		'page-template/template-one-column-no-title.php',
-		'page-template/template-one-column-no-title-slim.php',
-	);
+		'page-template/template-blank.php',
+		'page-template/template-blank-wide.php',
+	];
 	if ( is_page_template( $template ) ) {
 		$one_column = true;
 	}
@@ -293,10 +193,10 @@ function ys_is_full_width() {
 		/**
 		 * フル幅にするテンプレート
 		 */
-		$templates = array(
+		$templates = [
 			'page-template/template-one-column-no-title.php',
 			'page-template/template-one-column-wide.php',
-		);
+		];
 		if ( is_page_template( $templates ) || 'wide' === ys_get_option( 'ys_design_one_col_content_type', 'normal' ) ) {
 			$full_width = true;
 		}
@@ -309,10 +209,10 @@ function ys_is_full_width() {
  * フル幅判定
  */
 function ys_is_no_title_template() {
-	$template = array(
+	$template = [
 		'page-template/template-one-column-no-title.php',
 		'page-template/template-one-column-no-title-slim.php',
-	);
+	];
 
 	return is_page_template( $template );
 }
@@ -418,64 +318,6 @@ function ys_is_load_cdn_jquery() {
 }
 
 /**
- * Google Analyticsのタグを出力するか
- */
-function ys_is_enable_google_analytics() {
-	$result = true;
-	/**
-	 * ログイン中にGA出力しない場合
-	 */
-	if ( ys_get_option_by_bool( 'ys_ga_exclude_logged_in_user', false ) ) {
-		if ( is_user_logged_in() ) {
-			/**
-			 * 編集権限を持っている場合のみ出力しない
-			 */
-			if ( current_user_can( 'edit_posts' ) ) {
-				$result = false;
-			}
-		}
-	}
-	$ga_id     = ys_get_google_anarytics_tracking_id();
-	$ga_id_amp = ys_get_amp_google_anarytics_tracking_id();
-	if ( '' === $ga_id_amp && '' !== $ga_id ) {
-		$ga_id_amp = $ga_id;
-	}
-	if ( ys_is_amp() ) {
-		if ( '' === $ga_id_amp ) {
-			$result = false;
-		}
-	} else {
-		if ( '' === $ga_id ) {
-			$result = false;
-		}
-	}
-
-	return apply_filters( 'ys_is_enable_google_analytics', $result );
-}
-
-/**
- * メタデスクリプションを出力するか
- *
- * @return boolean
- */
-function ys_is_enable_meta_description() {
-	$result = true;
-	/**
-	 * 自動生成オプション
-	 */
-	if ( ! ys_get_option_by_bool( 'ys_option_create_meta_description', true ) ) {
-		$result = false;
-	}
-	if ( is_single() || is_page() ) {
-		if ( ys_to_bool( ys_get_post_meta( 'ys_hide_meta_dscr' ) ) ) {
-			$result = false;
-		}
-	}
-
-	return apply_filters( 'ys_is_enable_meta_description', $result );
-}
-
-/**
  * サイドバーを表示するか
  */
 function ys_is_active_sidebar_widget() {
@@ -559,38 +401,14 @@ function ys_is_hide_post_header() {
 }
 
 /**
- * アイキャッチ画像を表示するか(singlar)
+ * アイキャッチ画像を表示するか
  *
  * @param int $post_id 投稿ID.
  *
  * @return bool
  */
 function ys_is_active_post_thumbnail( $post_id = null ) {
-	$result = true;
-	if ( ! is_singular() ) {
-		return false;
-	}
-	if ( ! has_post_thumbnail( $post_id ) ) {
-		$result = false;
-	}
-	/**
-	 * 投稿ページ
-	 */
-	if ( is_single() ) {
-		if ( ! ys_get_option_by_bool( 'ys_show_post_thumbnail', true ) ) {
-			$result = false;
-		}
-	}
-	/**
-	 * 固定ページ
-	 */
-	if ( is_page() ) {
-		if ( ! ys_get_option_by_bool( 'ys_show_page_thumbnail', true ) ) {
-			$result = false;
-		}
-	}
-
-	return apply_filters( 'ys_is_active_post_thumbnail', $result );
+	return ystandard\Conditional_Tag::is_active_post_thumbnail( $post_id );
 }
 
 
@@ -706,41 +524,6 @@ function ys_is_active_after_content_widget() {
 	return apply_filters( 'ys_is_active_after_content_widget', $result );
 }
 
-/**
- * 著者情報表示するか
- */
-function ys_is_display_author_data() {
-	$result = true;
-	if ( is_singular() ) {
-		/**
-		 * 投稿個別設定
-		 */
-		if ( '1' === ys_get_post_meta( 'ys_hide_author' ) ) {
-			$result = false;
-		}
-		/**
-		 * 投稿ページ
-		 */
-		if ( is_single() && ! ys_get_option_by_bool( 'ys_show_post_author', true ) ) {
-			$result = false;
-		}
-		/**
-		 * 固定ページ
-		 */
-		if ( is_page() && ! ys_get_option_by_bool( 'ys_show_page_author', true ) ) {
-			$result = false;
-		}
-	} else {
-		/**
-		 * 記事一覧系
-		 */
-		if ( ! ys_get_option_by_bool( 'ys_show_archive_author', true ) ) {
-			$result = false;
-		}
-	}
-
-	return apply_filters( 'ys_is_display_author_data', $result );
-}
 
 /**
  * フッターウィジェットが有効か
@@ -778,20 +561,6 @@ function ys_is_active_follow_box() {
 	}
 
 	return apply_filters( 'ys_is_active_follow_box', $result );
-}
-
-/**
- * 広告を表示するか
- */
-function ys_is_active_advertisement() {
-	$result = true;
-	if ( is_singular() ) {
-		if ( ys_to_bool( ys_get_post_meta( 'ys_hide_ad' ) ) ) {
-			$result = false;
-		}
-	}
-
-	return apply_filters( 'ys_is_active_advertisement', $result );
 }
 
 /**
@@ -834,18 +603,6 @@ function ys_is_active_post_paging() {
 	return apply_filters( 'ys_is_active_post_paging', $result );
 }
 
-/**
- * 管理画面の投稿タイプ判断用
- *
- * @param string $type post type.
- *
- * @return boolean
- */
-function ys_is_post_type_on_admin( $type ) {
-	global $post_type;
-
-	return ( $type === $post_type );
-}
 
 /**
  * CSS読み込みを最適化するか
@@ -940,7 +697,7 @@ function ys_is_has_header_media_full() {
  * サイト 背景色・背景画像有り判断
  */
 function ys_has_site_background() {
-	if ( YS_Color::get_site_bg_default() !== YS_Color::get_site_bg() ) {
+	if ( \ystandard\Color::get_site_bg_default() !== \ystandard\Color::get_site_bg() ) {
 		return true;
 	}
 	if ( get_background_image() ) {

@@ -150,7 +150,7 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		 * ボタン部分のHTML作成
 		 */
 		ob_start();
-		get_template_part( 'template-parts/parts/blog-card', $template_type );
+		ys_get_template_part( 'template-parts/parts/blog-card', $template_type );
 		$content = ob_get_clean();
 		/**
 		 * ショートコード基本クラスのタイトルを消す
@@ -280,7 +280,9 @@ class YS_Shortcode_Blog_Card extends YS_Shortcode_Base {
 		/**
 		 * 概要取得
 		 */
-		$this->card_data['dscr'] = $this->get_description( ys_get_the_custom_excerpt( ' …', 0, $post_id ) );
+		$this->card_data['dscr'] = $this->get_description(
+			\ystandard\Content::get_custom_excerpt( ' …', 0, $post_id )
+		);
 		/**
 		 * 属性
 		 */

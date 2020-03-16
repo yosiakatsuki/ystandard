@@ -19,40 +19,24 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <?php do_action( 'ys_body_prepend' ); ?>
-<div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ystandard' ); ?></a>
 	<header id="masthead" class="header site-header">
 		<?php do_action( 'ys_site_header_prepend' ); ?>
-		<div class="site-header__container container">
-			<div class="<?php ys_the_header_row_class(); ?>">
+		<div class="container">
+			<div class="site-header__content">
 				<?php
 				/**
 				 * サイトタイトル・ロゴの出力
 				 */
-				get_template_part( 'template-parts/header/header-logo' );
-				?>
-
-				<?php
+				ys_get_template_part( 'template-parts/header/header-logo' );
 				/**
 				 * グローバルナビゲーション
 				 */
-				get_template_part( 'template-parts/header/global-nav' );
+				ys_get_template_part( 'template-parts/header/global-nav' );
 				?>
-			</div><!-- .header_row -->
-		</div><!-- .header__container -->
+			</div>
+		</div>
 		<?php do_action( 'ys_site_header_append' ); ?>
-	</header><!-- .header .site-header -->
+	</header>
 	<?php do_action( 'ys_after_site_header' ); ?>
-	<?php
-	/**
-	 * カスタムヘッダー
-	 */
-	get_template_part( 'template-parts/header/custom-header' );
-	/**
-	 * パンくずリスト
-	 */
-	if ( 'header' === YS_Breadcrumbs::get_breadcrumbs_position() ) {
-		get_template_part( 'template-parts/parts/breadcrumbs' );
-	}
-	?>
-	<div id="content" class="site-content site__content">
+	<div id="content" class="site-content">
