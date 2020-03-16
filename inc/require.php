@@ -8,9 +8,10 @@
  */
 
 /**
- * 変数
+ * テンプレート
  */
-require_once get_template_directory() . '/inc/variables/variables.php';
+require_once dirname( __FILE__ ) . '/template/template.php';
+
 /**
  * 設定
  */
@@ -20,9 +21,9 @@ require_once get_template_directory() . '/inc/option/option.php';
  */
 require_once get_template_directory() . '/inc/utility/utility.php';
 /**
- * 色関連の管理
+ * デザイン関連
  */
-require_once get_template_directory() . '/inc/color/class-ys-color.php';
+require_once dirname( __FILE__ ) . '/design/design.php';
 /**
  * Cache
  */
@@ -56,16 +57,9 @@ require_once get_template_directory() . '/inc/enqueue/enqueue.php';
  */
 require_once get_template_directory() . '/inc/customizer/customizer.php';
 /**
- * テンプレート
- */
-require_once get_template_directory() . '/inc/template/template.php';
-/**
- * アーカイブ
- */
-require_once get_template_directory() . '/inc/archive/archive.php';
-/**
  * ヘッダー
  */
+require_once dirname(__FILE__) . '/header/class-head.php';
 require_once get_template_directory() . '/inc/header/head.php';
 require_once get_template_directory() . '/inc/header/header.php';
 require_once get_template_directory() . '/inc/header/custom-header.php';
@@ -78,25 +72,26 @@ require_once get_template_directory() . '/inc/footer/footer-sns.php';
 /**
  * コンテンツ関連
  */
-require_once get_template_directory() . '/inc/content/content.php';
+require_once dirname( __FILE__ ) . '/content/class-content.php';
 /**
- * Body ... body_class
+ * Body
  */
-require_once get_template_directory() . '/inc/body/body.php';
+require_once dirname( __FILE__ ) . '/body/class-body.php';
 /**
  * 広告
  */
-require_once get_template_directory() . '/inc/advertisement/advertisement.php';
+require_once dirname( __FILE__ ) . '/advertisement/class-advertisement.php';
 /**
  * SNS
  */
+require_once dirname( __FILE__ ) . '/sns/class-sns.php';
 require_once get_template_directory() . '/inc/sns/share-button.php';
 require_once get_template_directory() . '/inc/sns/follow-box.php';
 /**
  * Author
  */
-require_once get_template_directory() . '/inc/author/author.php';
-require_once get_template_directory() . '/inc/author/author-option-page.php';
+require_once dirname( __FILE__ ) . '/author/class-author.php';
+require_once dirname( __FILE__ ) . '/author/class-ys-widget-author-box.php';
 /**
  * パンくずリスト
  */
@@ -112,7 +107,7 @@ require_once get_template_directory() . '/inc/taxonomy/taxonomy.php';
 /**
  * AMP
  */
-require_once get_template_directory() . '/inc/amp/amp-loader.php';
+require_once dirname( __FILE__ ) . '/amp/class-amp.php';
 /**
  * ショートコード
  */
@@ -130,10 +125,6 @@ require_once get_template_directory() . '/inc/pagination/pagination.php';
  */
 require_once get_template_directory() . '/inc/comment/comment.php';
 /**
- * RSS
- */
-require_once get_template_directory() . '/inc/rss/rss.php';
-/**
  * Json-LD
  */
 require_once get_template_directory() . '/inc/json-ld/json-ld.php';
@@ -149,25 +140,10 @@ require_once get_template_directory() . '/inc/blog-card/class-ys-blog-card.php';
  * 互換関連
  */
 require_once get_template_directory() . '/inc/compatibility/compatibility.php';
-/**
- * 後々削除
- */
-require_once get_template_directory() . '/inc/deprecated/deprecated.php';
 if ( is_admin() ) {
+	require_once dirname( __FILE__ ) . '/admin/admin.php';
 	/**
 	 * テーマ設定画面
 	 */
 	require_once get_template_directory() . '/inc/theme-option/theme-option-add.php';
-	/**
-	 * アップデートチェック
-	 */
-	require_once get_template_directory() . '/inc/update-checker/update-checker.php';
-	/**
-	 * 新しい設定への変更
-	 */
-	require_once get_template_directory() . '/inc/migration/option-migration.php';
-	/**
-	 * 通知
-	 */
-	require_once get_template_directory() . '/inc/notice/class-ys-notice.php';
 }

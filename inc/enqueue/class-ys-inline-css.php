@@ -86,7 +86,7 @@ class YS_Inline_Css {
 			'serif'     => 'serif',
 		);
 
-		$option = YS_Option::get_option( 'ys_design_font_type', 'yugo' );
+		$option = \ystandard\Option::get_option( 'ys_design_font_type', 'yugo' );
 		if ( isset( $font[ $option ] ) ) {
 			$font_family = $font[ $option ];
 		}
@@ -112,7 +112,7 @@ class YS_Inline_Css {
 	 */
 	public static function get_editor_font_size_css( $prefix = '', $default = 16 ) {
 		$default = apply_filters( 'ys_default_editor_font_size', $default );
-		$size    = ys_get_editor_font_sizes();
+		$size    = \ystandard\Font::get_editor_font_sizes();
 		$css     = '';
 		$prefix  = empty( $prefix ) ? '' : $prefix . ' ';
 		foreach ( $size as $value ) {
@@ -135,7 +135,7 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public static function get_editor_color_palette( $prefix = '' ) {
-		$color  = YS_Color::get_color_palette();
+		$color  = \ystandard\Color::get_color_palette();
 		$css    = '';
 		$prefix = empty( $prefix ) ? '' : $prefix . ' ';
 		foreach ( $color as $value ) {
@@ -170,7 +170,7 @@ class YS_Inline_Css {
 		if ( ys_get_option_by_bool( 'ys_desabled_color_customizeser', false ) ) {
 			return '';
 		}
-		$html_bg = YS_Color::get_site_bg();
+		$html_bg = \ystandard\Color::get_site_bg();
 		$styles  = array();
 		/**
 		 * サイト背景色
@@ -570,8 +570,8 @@ class YS_Inline_Css {
 		if ( ys_get_option_by_bool( 'ys_wp_header_media_full', false ) ) {
 			$opacity    = ys_get_option_by_int( 'ys_wp_header_media_full_opacity', 50 );
 			$opacity    = $opacity / 100;
-			$text_color = YS_Color::get_custom_header_stack_text_color();
-			$bg_color   = YS_Color::get_custom_header_stack_bg_color( $opacity );
+			$text_color = Color::get_custom_header_stack_text_color();
+			$bg_color   = Color::get_custom_header_stack_bg_color( $opacity );
 			$css[]      = $this->add_media_query(
 				".custom-header--full .site-header,
 				.custom-header--full .h-nav.rwd li:hover ul {

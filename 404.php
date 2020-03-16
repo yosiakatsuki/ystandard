@@ -7,11 +7,11 @@
  * @license GPL-2.0+
  */
 
-ys_get_header(); ?>
+get_header(); ?>
 <div class="container">
-	<div class="content__container">
+	<div class="content__wrapper">
 		<?php
-		get_template_part( 'template-parts/404/content' );
+		ys_get_template_part( 'template-parts/404/content' );
 
 		get_sidebar();
 		?>

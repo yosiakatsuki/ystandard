@@ -8,6 +8,6 @@
  */
 
 ?>
-<aside class="<?php ys_the_archive_post_class(); ?>">
+<aside class="<?php ys_the_archive_item_class(); ?>">
 	<?php ys_the_ad_infeed(); ?>
 </aside>

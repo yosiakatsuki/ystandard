@@ -51,7 +51,7 @@ function ys_the_custom_header_markup() {
 		 */
 		printf(
 			'<div class="header__full-thumbnail">%s</div>',
-			ys_amp_get_amp_image_tag( get_the_post_thumbnail() )
+			get_the_post_thumbnail()
 		);
 	} else {
 		/**

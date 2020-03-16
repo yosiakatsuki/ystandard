@@ -47,83 +47,7 @@ function ys_get_page_url() {
  * @return array
  */
 function ys_get_sns_icons() {
-	return apply_filters(
-		'ys_get_sns_icons',
-		array(
-			'twitter'   => array(
-				'class'      => 'twitter',
-				'option_key' => 'twitter',
-				'icon'       => 'fab fa-twitter',
-				'color'      => 'twitter',
-				'title'      => 'twitter',
-				'label'      => 'Twitter',
-			),
-			'facebook'  => array(
-				'class'      => 'facebook',
-				'option_key' => 'facebook',
-				'icon'       => 'fab fa-facebook-f',
-				'color'      => 'facebook',
-				'title'      => 'facebook',
-				'label'      => 'Facebook',
-			),
-			'instagram' => array(
-				'class'      => 'instagram',
-				'option_key' => 'instagram',
-				'icon'       => 'fab fa-instagram',
-				'color'      => 'instagram',
-				'title'      => 'instagram',
-				'label'      => 'Instagram',
-			),
-			'tumblr'    => array(
-				'class'      => 'tumblr',
-				'option_key' => 'tumblr',
-				'icon'       => 'fab fa-tumblr',
-				'color'      => 'tumblr',
-				'title'      => 'tumblr',
-				'label'      => 'Tumblr',
-			),
-			'youtube'   => array(
-				'class'      => 'youtube',
-				'option_key' => 'youtube',
-				'icon'       => 'fab fa-youtube',
-				'color'      => 'youtube-play',
-				'title'      => 'youtube',
-				'label'      => 'YouTube',
-			),
-			'github'    => array(
-				'class'      => 'github',
-				'option_key' => 'github',
-				'icon'       => 'fab fa-github',
-				'color'      => 'github',
-				'title'      => 'github',
-				'label'      => 'GitHub',
-			),
-			'pinterest' => array(
-				'class'      => 'pinterest',
-				'option_key' => 'pinterest',
-				'icon'       => 'fab fa-pinterest-p',
-				'color'      => 'pinterest',
-				'title'      => 'pinterest',
-				'label'      => 'Pinterest',
-			),
-			'linkedin'  => array(
-				'class'      => 'linkedin',
-				'option_key' => 'linkedin',
-				'icon'       => 'fab fa-linkedin-in',
-				'color'      => 'linkedin',
-				'title'      => 'linkedin',
-				'label'      => 'LinkedIn',
-			),
-			'amazon'    => array(
-				'class'      => 'amazon',
-				'option_key' => 'amazon',
-				'icon'       => 'fab fa-amazon',
-				'color'      => 'amazon',
-				'title'      => 'amazon',
-				'label'      => 'Amazon',
-			),
-		)
-	);
+	return \ystandard\SNS::get_sns_icons();
 }
 
 /**
@@ -220,24 +144,6 @@ function ys_get_array_implode( $arg, $separator = ', ' ) {
 	return implode( $separator, $arg );
 }
 
-/**
- * セルフピンバック対策
- *
- * @param array $links links.
- *
- * @return void
- */
-function ys_no_self_ping( &$links ) {
-	$home = home_url();
-	foreach ( $links as $l => $link ) {
-		if ( 0 === strpos( $link, $home ) ) {
-			unset( $links[ $l ] );
-		}
-	}
-}
-
-add_action( 'pre_ping', 'ys_no_self_ping' );
-
 
 /**
  * テーマバージョン取得
@@ -269,16 +175,8 @@ function ys_get_theme_version( $template = false ) {
  * @return string
  */
 function ys_get_plain_text( $data ) {
-	/**
-	 * ショートコード削除
-	 */
-	$data = strip_shortcodes( $data );
-	/**
-	 * HTMLタグ削除
-	 */
-	$data = wp_strip_all_tags( $data, true );
 
-	return $data;
+	return ystandard\Template_Function::get_plain_text( $data );
 }
 
 
@@ -301,13 +199,13 @@ function ys_get_feedly_subscribe_url( $type = '' ) {
  *
  * @return array
  */
-function ys_get_posts_args( $posts_per_page = 4, $args = array() ) {
-	$defaults = array(
+function ys_get_posts_args( $posts_per_page = 4, $args = [] ) {
+	$defaults = [
 		'post_type'           => 'post',
 		'posts_per_page'      => $posts_per_page,
 		'no_found_rows'       => true,
 		'ignore_sticky_posts' => true,
-	);
+	];
 	$args     = wp_parse_args( $args, $defaults );
 
 	return $args;
@@ -321,8 +219,8 @@ function ys_get_posts_args( $posts_per_page = 4, $args = array() ) {
  *
  * @return array
  */
-function ys_get_posts_args_rand( $posts_per_page = 4, $args = array() ) {
-	$rand_args = array( 'orderby' => 'rand' );
+function ys_get_posts_args_rand( $posts_per_page = 4, $args = [] ) {
+	$rand_args = [ 'orderby' => 'rand' ];
 	$rand_args = wp_parse_args( $rand_args, $args );
 
 	/**
@@ -384,5 +282,5 @@ function ys_in_array( $needle, $haystack ) {
  * @return bool
  */
 function ys_to_bool( $value ) {
-	return YS_Utility::to_bool( $value );
+	return \ystandard\Template_Function::to_bool( $value );
 }

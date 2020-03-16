@@ -8,7 +8,7 @@
  */
 
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_post_class() ); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_item_class() ); ?>>
 	<div class="flex flex--row -no-gutter -all">
 		<div class="flex__col--1 flex__col--md-auto">
 			<div class="item-list__img archive__image -list img-hover img-scale">

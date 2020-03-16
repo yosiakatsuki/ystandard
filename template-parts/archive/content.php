@@ -15,20 +15,18 @@
 		/**
 		 * アーカイブヘッダーの読み込み
 		 */
-		get_template_part( 'template-parts/archive/header' );
+		ys_get_template_part( 'template-parts/archive/header' );
 		?>
 		<div class="archive__container -<?php echo esc_attr( ys_get_option( 'ys_archive_type', 'list' ) ); ?>">
 			<?php
 			while ( have_posts() ) :
 				the_post();
-				get_template_part(
+				do_action( 'ys_archive_before_content' );
+				ys_get_template_part(
 					'template-parts/archive/details',
 					ys_get_archive_template_type()
 				);
-				/**
-				 * インフィード広告
-				 */
-				ys_get_template_infeed_ad();
+				do_action( 'ys_archive_after_content' );
 			endwhile;
 			?>
 		</div><!-- .archive__list -->
@@ -36,7 +34,7 @@
 		/**
 		 * ページネーション
 		 */
-		get_template_part( 'template-parts/parts/pagination' );
+		ys_get_template_part( 'template-parts/parts/pagination' );
 		?>
 		<?php do_action( 'ys_site_main_append' ); ?>
 	</main><!-- .site-main -->

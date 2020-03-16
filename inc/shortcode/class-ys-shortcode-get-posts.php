@@ -500,7 +500,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 			$image = apply_filters( 'ys_posts_image', $image, get_the_ID() );
 			$html  = sprintf(
 				'<figure class="ratio__image">%s</figure>',
-				ys_amp_get_amp_image_tag( $image )
+				$image
 			);
 		} else {
 			/**
@@ -549,7 +549,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 		if ( $this->get_param( 'show_excerpt', 'bool' ) ) {
 			$excerpt = sprintf(
 				apply_filters( 'ys_posts_excerpt_wrap', '<span class="ys-posts__excerpt text-sub has-x-small-font-size">%s</span>' ),
-				ys_get_the_custom_excerpt( ' …', $this->get_param( 'excerpt_length', 'int' ) )
+				\ystandard\Content::get_custom_excerpt( ' …', $this->get_param( 'excerpt_length', 'int' ) )
 			);
 		}
 

@@ -94,7 +94,7 @@ function ys_get_json_ld_website() {
 /**
  * Json-LD Article 作成
  *
- * @param object $post_data post.
+ * @param \WP_Post $post_data post.
  *
  * @return array
  */
@@ -106,7 +106,7 @@ function ys_get_json_ld_article( $post_data = null ) {
 	$json                     = array();
 	$url                      = get_the_permalink( $post_data->ID );
 	$name                     = get_the_title( $post_data->ID );
-	$excerpt                  = esc_html( ys_get_the_custom_excerpt( '', 0, $post_data->ID ) );
+	$excerpt                  = esc_html( \ystandard\Content::get_custom_excerpt( '', 0, $post_data->ID ) );
 	$content                  = esc_html( ys_get_plain_text( $post_data->post_content ) );
 	$json['@context']         = 'http://schema.org';
 	$json['@type']            = 'Article';
@@ -120,7 +120,7 @@ function ys_get_json_ld_article( $post_data = null ) {
 	$json['articleBody']      = $content;
 	$json['author']           = array(
 		'@type' => 'Person',
-		'name'  => ys_get_author_display_name(),
+		'name'  => get_the_author_meta( 'display_name', $post_data->post_author ),
 	);
 	$json['datePublished']    = get_the_date( DATE_ATOM, $post_data->ID );
 	$json['dateModified']     = get_post_modified_time( DATE_ATOM, false, $post_data->ID );

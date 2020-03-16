@@ -9,15 +9,15 @@
  * @license GPL-2.0+
  */
 
-ys_get_header(); ?>
+get_header(); ?>
 	<div class="container">
 		<?php
 		while ( have_posts() ) :
 			the_post();
 			if ( is_page() ) {
-				get_template_part( 'template-parts/page/content' );
+				ys_get_template_part( 'template-parts/page/content' );
 			} else {
-				get_template_part( 'template-parts/single/content' );
+				ys_get_template_part( 'template-parts/single/content' );
 			}
 		endwhile;
 		?>

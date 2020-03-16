@@ -7,4 +7,4 @@
  * @license GPL-2.0+
  */
 
-get_template_part( 'archive' );
+ys_get_template_part( 'archive' );

@@ -8,6 +8,37 @@
  */
 
 /**
+ * Require
+ */
+require_once dirname( __FILE__ ) . '/class-template-function.php';
+
+
+/**
+ * アーカイブ明細クラス作成
+ *
+ * @return array
+ */
+function ys_get_archive_item_class() {
+
+	return ystandard\Content::get_archive_item_class();
+}
+
+/**
+ * アーカイブ明細クラス出力
+ */
+function ys_the_archive_item_class() {
+	$classes = ys_get_archive_item_class();
+	echo implode( ' ', $classes );
+}
+
+/**
+ * アーカイブテンプレートタイプ取得
+ */
+function ys_get_archive_template_type() {
+	return ys_get_option( 'ys_archive_type', 'list' );
+}
+
+/**
  * Front-pageでロードするテンプレート
  */
 function ys_get_front_page_template() {
@@ -23,25 +54,36 @@ function ys_get_front_page_template() {
 		$template = 'home';
 	}
 
-	return apply_filters( 'ys_get_front_page_template', $template );
+	return $template;
 }
 
 /**
- * 投稿・固定ページのヘッダーに表示するメタ情報
+ * 投稿オプション(post-meta)取得
+ *
+ * @param string  $key     設定キー.
+ * @param integer $post_id 投稿ID.
+ *
+ * @return string
  */
-function ys_get_singular_header_parts() {
-	do_action( 'ys_singular_header_parts' );
-	if ( apply_filters( 'ys_show_singular_header_parts', true ) ) {
-		get_template_part( 'template-parts/singular/header-parts' );
-	}
+function ys_get_post_meta( $key, $post_id = 0 ) {
+	return \ystandard\Post::get_post_meta( $key, $post_id );
+}
+
+
+/**
+ * インフィード広告の表示
+ */
+function ys_the_ad_infeed() {
+	echo \ystandard\Advertisement::get_infeed();
 }
 
 /**
- * 投稿・固定ページのフッターに表示するパーツ
+ * テンプレート読み込み拡張
+ *
+ * @param string $slug The slug name for the generic template.
+ * @param string $name The name of the specialised template.
+ * @param array  $args テンプレートに渡す変数.
  */
-function ys_get_singular_footer_parts() {
-	do_action( 'ys_singular_footer_parts' );
-	if ( apply_filters( 'ys_show_singular_footer_parts', true ) ) {
-		get_template_part( 'template-parts/singular/footer-parts' );
-	}
+function ys_get_template_part( $slug, $name = null, $args = [] ) {
+	\ystandard\Template_Function::get_template_part( $slug, $name, $args );
 }

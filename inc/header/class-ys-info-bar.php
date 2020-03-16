@@ -41,7 +41,7 @@ class YS_Info_Bar {
 			return;
 		}
 		ob_start();
-		get_template_part( 'template-parts/parts/info-bar' );
+		ys_get_template_part( 'template-parts/parts/info-bar' );
 
 		echo wp_targeted_link_rel( ob_get_clean() );
 	}

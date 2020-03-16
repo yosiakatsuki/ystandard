@@ -13,66 +13,13 @@
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-base.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-text.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-share-button.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-author-box.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-author-list.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-get-posts.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-ranking.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-recent-posts.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-paging.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-taxonomy.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-follow-box.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-advertisement.php';
 require_once dirname( __FILE__ ) . '/class-ys-shortcode-parts.php';
 
-/**
- * 広告表示用ショートコード
- *
- * @param array  $args    パラメーター.
- * @param string $content コンテンツ.
- *
- * @return string
- */
-function ys_shortcode_ad_block( $args, $content = null ) {
-	$sc = new YS_Shortcode_Advertisement( $args );
-
-	return apply_filters(
-		'ys_ad_block',
-		$sc->get_html( $content ),
-		$sc->get_args()
-	);
-}
-
-add_shortcode( 'ys_ad_block', 'ys_shortcode_ad_block' );
-
-/**
- * 投稿者表示
- *
- * @param array $args パラメータ.
- *
- * @return string
- */
-function ys_shortcode_author_box( $args ) {
-	$sc = new YS_Shortcode_Author_Box( $args );
-
-	return $sc->get_html();
-}
-
-add_shortcode( 'ys_author', 'ys_shortcode_author_box' );
-
-/**
- * 投稿者一覧表示
- *
- * @param array $args パラメータ.
- *
- * @return string
- */
-function ys_shortcode_author_list( $args ) {
-	$sc = new YS_Shortcode_Author_List( $args );
-
-	return $sc->get_html();
-}
-
-add_shortcode( 'ys_author_list', 'ys_shortcode_author_list' );
 
 /**
  * ブログカードショートコード

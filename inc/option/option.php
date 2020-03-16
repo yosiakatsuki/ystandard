@@ -10,7 +10,7 @@
 /**
  * クラスファイル
  */
-require_once dirname( __FILE__ ) . '/class-ys-option.php';
+require_once dirname( __FILE__ ) . '/class-option.php';
 
 /**
  * 設定取得
@@ -22,7 +22,7 @@ require_once dirname( __FILE__ ) . '/class-ys-option.php';
  * @return mixed
  */
 function ys_get_option( $name, $default = false, $type = false ) {
-	return YS_Option::get_option( $name, $default, $type );
+	return \ystandard\Option::get_option( $name, $default, $type );
 }
 
 /**
@@ -34,7 +34,7 @@ function ys_get_option( $name, $default = false, $type = false ) {
  * @return mixed
  */
 function ys_get_option_by_bool( $name, $default = false ) {
-	return YS_Option::get_option_by_bool( $name, $default );
+	return \ystandard\Option::get_option_by_bool( $name, $default );
 }
 
 /**
@@ -46,14 +46,5 @@ function ys_get_option_by_bool( $name, $default = false ) {
  * @return mixed
  */
 function ys_get_option_by_int( $name, $default = 0 ) {
-	return YS_Option::get_option_by_int( $name, $default );
-}
-
-/**
- * 設定リストの作成・取得とキャッシュ作成
- *
- * @return array
- */
-function ys_get_options_and_create_cache() {
-	return YS_Option::create_cache();
+	return \ystandard\Option::get_option_by_int( $name, $default );
 }

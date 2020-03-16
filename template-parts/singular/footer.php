@@ -8,12 +8,20 @@
  */
 
 ?>
-<footer class="entry-footer singular__footer <?php ys_the_singular_class( 'footer' ); ?>">
+<footer class="entry-footer singular__footer">
 	<?php
 	/**
-	 * フッターパーツ呼び出し
-	 * template-parts/singular/footer-parts 参照
+	 * 記事フッター
+	 *
+	 * 1. 記事下ウィジェット(10)
+	 * 2. 広告 (20)
+	 * 3. SNSシェアボタン (30) parts/sns-share-button
+	 * 4. カテゴリー・タグ (40) parts/post-taxonomy
+	 * 5. 著者(50) parts/author
+	 * 6. 関連記事(60) parts/post-related
+	 * 7. コメント(70) parts/post-comment
+	 * 8. 前の記事・次の記事(80) parts/post-paging
 	 */
-	ys_get_singular_footer_parts();
+	do_action( 'ys_singular_footer' );
 	?>
 </footer><!-- .entry__footer -->
