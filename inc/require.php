@@ -166,4 +166,8 @@ if ( is_admin() ) {
 	 * 新しい設定への変更
 	 */
 	require_once get_template_directory() . '/inc/migration/option-migration.php';
+	/**
+	 * 通知
+	 */
+	require_once get_template_directory() . '/inc/notice/class-ys-notice.php';
 }

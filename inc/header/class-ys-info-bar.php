@@ -111,17 +111,30 @@ class YS_Info_Bar {
 		/**
 		 * ヘッダーメディアとの兼ね合い
 		 */
-		if ( ! ys_is_active_custom_header() ) {
-			$styles[] = $ys_inline_css->add_media_query(
-				'.info-bar {
-				margin-bottom: 2rem;
-				font-size:1rem;
-			}',
-				'md'
-			);
-		}
+		$styles[] = $this->add_margin();
 
 		return $css . implode( ' ', $styles );
+	}
+
+	/**
+	 * お知らせバー下の余白調整
+	 *
+	 * @return string
+	 */
+	private function add_margin() {
+		$ys_inline_css = new YS_Inline_Css();
+		if ( ! ys_is_active_custom_header() && ! ( ys_is_one_column() && 'full' === ys_get_option( 'ys_design_one_col_thumbnail_type', 'normal' ) ) ) {
+			{
+				return $ys_inline_css->add_media_query(
+					'.info-bar {
+						margin-bottom: 2rem;
+					}',
+					'md'
+				);
+			}
+		}
+
+		return '';
 	}
 }
 

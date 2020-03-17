@@ -13,6 +13,16 @@
 class YS_Taxonomy {
 
 	/**
+	 * Nonce Action.
+	 */
+	const NONCE_ACTION = 'ys_add_term_meta';
+
+	/**
+	 * Nonce Name.
+	 */
+	const NONCE_NAME = 'ys_add_term_nonce';
+
+	/**
 	 * YS_Taxonomy constructor.
 	 */
 	public function __construct() {
@@ -55,6 +65,11 @@ class YS_Taxonomy {
 	 */
 	public function add_form_fields( $taxonomy ) {
 		$taxonomy = get_taxonomy( $taxonomy );
+		wp_nonce_field(
+			self::NONCE_ACTION,
+			self::NONCE_NAME
+		);
+
 		?>
 		<div class="form-field term-title-override-wrap">
 			<label for="title-override">[ys]一覧ページのタイトルを置き換える</label>
@@ -64,19 +79,24 @@ class YS_Taxonomy {
 		<div class="form-field term-dscr-override-wrap">
 			<label for="dscr-override">[ys]一覧ページの説明を置き換える</label>
 			<?php
-			wp_dropdown_pages(
+			$html = wp_dropdown_pages(
 				array(
 					'name'              => 'dscr-override',
-					'echo'              => true,
+					'echo'              => false,
 					'show_option_none'  => __( '&mdash; Select &mdash;' ),
 					'option_none_value' => '0',
 					'selected'          => '0',
 					'post_type'         => 'ys-parts',
 					'post_status'       => 'publish',
 				)
-			)
+			);
+			if ( $html ) {
+				echo $html;
+			} else {
+				echo '<p style="padding: 1em 0;">※[ys]パーツがまだ1件も作成されていません。</p>';
+			}
 			?>
-			<p><?php echo $taxonomy->label; ?>の説明を選択した[ys]パーツの内容に置き換えます。</p>
+			<p><?php echo $taxonomy->label; ?>の説明を選択した<a href="<?php echo esc_url_raw( admin_url( 'edit.php?post_type=ys-parts' ) ); ?>">[ys]パーツ</a>の内容に置き換えます。</p>
 		</div>
 		<div class="form-field term-image-wrap" style="margin-bottom: 2em;">
 			<label for="term-image" style="margin-bottom: 0.5em;">[ys]<?php echo $taxonomy->label; ?>一覧ページのOGP画像</label>
@@ -100,6 +120,10 @@ class YS_Taxonomy {
 	 */
 	public function edit_form_fields( $term, $taxonomy ) {
 		$taxonomy = get_taxonomy( $taxonomy );
+		wp_nonce_field(
+			self::NONCE_ACTION,
+			self::NONCE_NAME
+		);
 		?>
 		<tr class="form-field term-title-override-wrap">
 			<th scope="row">
@@ -116,19 +140,24 @@ class YS_Taxonomy {
 			</th>
 			<td>
 				<?php
-				wp_dropdown_pages(
+				$html = wp_dropdown_pages(
 					array(
 						'name'              => 'dscr-override',
-						'echo'              => true,
+						'echo'              => false,
 						'show_option_none'  => __( '&mdash; Select &mdash;' ),
 						'option_none_value' => '0',
 						'selected'          => get_term_meta( $term->term_id, 'dscr-override', true ),
 						'post_type'         => 'ys-parts',
 						'post_status'       => 'publish',
 					)
-				)
+				);
+				if ( $html ) {
+					echo $html;
+				} else {
+					echo '<p style="padding: 0 0 1em;">※[ys]パーツがまだ1件も作成されていません。</p>';
+				}
 				?>
-				<p><?php echo $taxonomy->label; ?>の説明を選択した[ys]パーツの内容に置き換えます。</p>
+				<p><?php echo $taxonomy->label; ?>の説明を選択した<a href="<?php echo esc_url_raw( admin_url( 'edit.php?post_type=ys-parts' ) ); ?>">[ys]パーツ</a>の内容に置き換えます。</p>
 			</td>
 		</tr>
 		<tr>
@@ -147,7 +176,7 @@ class YS_Taxonomy {
 						}
 						?>
 					</div>
-					<input type="text" id="term-image" name="term-image" class="ys-custom-image-upload-url" value="" hidden/>
+					<input type="text" id="term-image" name="term-image" class="ys-custom-image-upload-url" value="<?php echo esc_url_raw( $image ); ?>" hidden/>
 					<button class="button action ys-custom-image-upload" type="button" data-uploaderpreview-width="500" <?php echo ! empty( $image ) ? 'style="display: none;"' : ''; ?>>画像をアップロード
 					</button>
 					<button class="button action ys-custom-image-clear" type="button" <?php echo empty( $image ) ? 'style="display: none;"' : ''; ?>>画像を削除
@@ -164,6 +193,15 @@ class YS_Taxonomy {
 	 * @param int $term_id Term ID.
 	 */
 	function update_term_meta( $term_id ) {
+		// nonceがセットされているかどうか確認.
+		if ( ! isset( $_POST[ self::NONCE_NAME ] ) ) {
+			return;
+		}
+
+		// nonceが正しいかどうか検証.
+		if ( ! wp_verify_nonce( $_POST[ self::NONCE_NAME ], self::NONCE_ACTION ) ) {
+			return;
+		}
 		/**
 		 * タイトルの上書き
 		 */

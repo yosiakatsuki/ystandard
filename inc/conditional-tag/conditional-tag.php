@@ -330,7 +330,7 @@ function ys_is_full_width_thumbnail() {
 	if ( is_singular() ) {
 		if ( ys_is_amp() ) {
 			if ( 'full' === ys_get_option( 'ys_amp_thumbnail_type', 'full' ) ) {
-				$result = true;
+				return true;
 			}
 		} else {
 			if ( 'full' === ys_get_option( 'ys_design_one_col_thumbnail_type', 'normal' ) ) {

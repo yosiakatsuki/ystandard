@@ -145,32 +145,16 @@ class YS_Inline_Css {
 			$css .= $prefix . '.has-' . $value['slug'] . '-background-color,
 			.has-background.has-' . $value['slug'] . '-background-color{
 				background-color:' . $value['color'] . ';
-				border-color:' . $value['color'] . ';
 			}';
 			/**
 			 * Text Color
 			 */
 			$css .= $prefix . '.has-' . $value['slug'] . '-color,
 			.has-text-color.has-' . $value['slug'] . '-color,
+			.has-inline-color.has-' . $value['slug'] . '-color,
 			.has-' . $value['slug'] . '-color:hover,
 			.has-text-color.has-' . $value['slug'] . '-color:hover{
 				color:' . $value['color'] . ';
-			}';
-			/**
-			 * ブロック（アウトライン）
-			 */
-			$css .= $prefix . '
-			.is-style-outline .wp-block-button__link.has-' . $value['slug'] . '-color{
-				border-color:' . $value['color'] . ';
-				color:' . $value['color'] . ';
-			}';
-			/**
-			 * ブロック（アウトライン）hover
-			 */
-			$css .= $prefix . '
-			.is-style-outline .wp-block-button__link:hover.has-' . $value['slug'] . '-color{
-				background-color:' . $value['color'] . ';
-				border-color:' . $value['color'] . ';
 			}';
 		}
 
