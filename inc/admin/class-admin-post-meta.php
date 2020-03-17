@@ -185,10 +185,7 @@ class Admin_Post_Meta {
 		/**
 		 * Nonceチェック.
 		 */
-		if ( ! isset( $_POST[ self::NONCE_NAME ] ) ) {
-			return false;
-		}
-		if ( ! wp_verify_nonce( $_POST[ self::NONCE_NAME ], self::NONCE_ACTION ) ) {
+		if ( ! Admin::verify_nonce( self::NONCE_NAME, self::NONCE_ACTION ) ) {
 			return false;
 		}
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {

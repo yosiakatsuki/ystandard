@@ -291,8 +291,10 @@ class Author {
 		<tr>
 			<th><label for="ys_custom_avatar">オリジナルプロフィール画像</label></th>
 			<td>
-				<?php Admin::custom_uploader_control( 'ys_custom_avatar', $custom_avatar ); ?>
-				<p class="description">96px×96pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
+				<div class="ys-custom-avatar__select">
+					<?php Admin::custom_uploader_control( 'ys_custom_avatar', $custom_avatar ); ?>
+					<p class="description">96px×96pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
+				</div>
 			</td>
 		</tr>
 		<?php
@@ -310,10 +312,7 @@ class Author {
 		/**
 		 * Nonceチェック.
 		 */
-		if ( ! isset( $_POST[ self::NONCE_NAME ] ) ) {
-			return;
-		}
-		if ( ! wp_verify_nonce( $_POST[ self::NONCE_NAME ], self::NONCE_ACTION ) ) {
+		if ( ! Admin::verify_nonce( self::NONCE_NAME, self::NONCE_ACTION ) ) {
 			return;
 		}
 		if ( isset( $_POST['ys_custom_avatar'] ) && ! empty( $_POST['ys_custom_avatar'] ) ) {
