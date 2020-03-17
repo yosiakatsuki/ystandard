@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-require_once dirname( __FILE__ ) . '/class-conditional-tag.php';
+require_once __DIR__ . '/class-conditional-tag.php';
 
 /**
  * TOPページ判断（HOMEの1ページ目 or front-page）

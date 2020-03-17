@@ -10,7 +10,7 @@
 /**
  * クラスファイル
  */
-require_once dirname( __FILE__ ) . '/class-option.php';
+require_once __DIR__ . '/class-option.php';
 
 /**
  * 設定取得

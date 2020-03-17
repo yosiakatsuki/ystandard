@@ -246,7 +246,7 @@ class Author {
 		];
 
 		ob_start();
-		ys_get_template_part(
+		Template::get_template_part(
 			'template-parts/parts/author',
 			null,
 			[ 'ys_author_data' => $data ]

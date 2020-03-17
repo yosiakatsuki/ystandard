@@ -10,5 +10,5 @@
 /**
  * ワーカー読み込み
  */
-require_once dirname( __FILE__ ) . '/class-ys-walker-global-nav-menu.php';
-require_once dirname( __FILE__ ) . '/class-ys-walker-mobile-footer-menu.php';
+require_once __DIR__ . '/class-ys-walker-global-nav-menu.php';
+require_once __DIR__ . '/class-ys-walker-mobile-footer-menu.php';

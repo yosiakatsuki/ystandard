@@ -7,10 +7,12 @@
  * @license GPL-2.0+
  */
 
+namespace ystandard;
+
 /**
  * キャッシュ処理クラス
  */
-class YS_Cache {
+class Cache {
 	/**
 	 * コンストラクタ
 	 */
@@ -30,7 +32,7 @@ class YS_Cache {
 		/**
 		 * キー文字列の作成
 		 */
-		$cache_key = YS_Cache::get_cache_key_prefix( $key, $args ) . md5( serialize( $args ) );
+		$cache_key = self::get_cache_key_prefix( $key, $args ) . md5( serialize( $args ) );
 		$cache_key = apply_filters( 'ys_cache_get_cache_key', $cache_key, $key, $args );
 
 		/**
@@ -65,11 +67,11 @@ class YS_Cache {
 		 * キャッシュ設定が有効な場合のみキャッシュの取得を試みる
 		 */
 		if ( is_numeric( $expiration ) ) {
-			$cache_key = YS_Cache::get_cache_key( $key, $args );
+			$cache_key = self::get_cache_key( $key, $args );
 			/**
 			 * キャッシュの取得・判定、キャッシュがあれば返す
 			 */
-			$cache = YS_Cache::get_transient( $cache_key );
+			$cache = self::get_transient( $cache_key );
 			if ( false !== $cache ) {
 				return $cache;
 			}
@@ -77,11 +79,11 @@ class YS_Cache {
 		/**
 		 * クエリの作成
 		 */
-		$query = new WP_Query( $args );
+		$query = new \WP_Query( $args );
 		/**
 		 * キャッシュがなければ作成する
 		 */
-		YS_Cache::set_cache( $key, $query, $args, $expiration );
+		self::set_cache( $key, $query, $args, $expiration );
 
 		return $query;
 	}
@@ -95,7 +97,7 @@ class YS_Cache {
 	 * @return mixed
 	 */
 	public static function get_cache( $key, $args ) {
-		$cache_key = YS_Cache::get_cache_key( $key, $args );
+		$cache_key = self::get_cache_key( $key, $args );
 
 		return get_transient( $cache_key );
 	}
@@ -109,7 +111,7 @@ class YS_Cache {
 	 * @return bool
 	 */
 	public static function delete_cache( $key, $args ) {
-		$cache_key = YS_Cache::get_cache_key( $key, $args );
+		$cache_key = self::get_cache_key( $key, $args );
 
 		return delete_transient( $cache_key );
 	}
@@ -142,8 +144,8 @@ class YS_Cache {
 		/**
 		 * キャッシュキー、有効期限を作成
 		 */
-		$expiration = YS_Cache::get_expiration( (int) $expiration );
-		$cache_key  = YS_Cache::get_cache_key( $key, $args );
+		$expiration = self::get_expiration( (int) $expiration );
+		$cache_key  = self::get_cache_key( $key, $args );
 
 		return set_transient( $cache_key, $obj, $expiration );
 	}

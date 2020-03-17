@@ -10,5 +10,5 @@
 /**
  * Require
  */
-require_once dirname( __FILE__ ) . '/class-admin.php';
-require_once dirname( __FILE__ ) . '/class-admin-post-meta.php';
+require_once __DIR__ . '/class-admin.php';
+require_once __DIR__ . '/class-admin-post-meta.php';

@@ -87,6 +87,34 @@ class Admin {
 		</div>
 		<?php
 	}
+
+	/**
+	 * 非推奨メッセージを表示する
+	 *
+	 * @param string $func    関数.
+	 * @param string $since   いつから.
+	 * @param string $comment コメント.
+	 */
+	public static function deprecated_comment( $func, $since, $comment = '' ) {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return;
+		}
+		if ( ! defined( WP_DEBUG ) ) {
+			return;
+		}
+		if ( false === WP_DEBUG ) {
+			return;
+		}
+		$message = sprintf(
+			'<span style="color:red"><code>%s</code>は%sで非推奨になった関数です。</span><br>' . PHP_EOL,
+			$func,
+			$since
+		);
+		if ( $comment ) {
+			$message .= '<br><span style="color:#999">' . $comment . '</span><br>' . PHP_EOL;
+		}
+		echo $message;
+	}
 }
 
 new Admin();

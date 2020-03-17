@@ -10,4 +10,4 @@
 /**
  * Require
  */
-require_once dirname( __FILE__ ) . '/class-init.php';
+require_once __DIR__ . '/class-init.php';
