@@ -118,7 +118,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 		 */
 		$user_name = $this->get_param( 'user_name' );
 		if ( ! empty( $user_name ) ) {
-			$user = get_user_by( 'slug', $user_name );
+			$user = get_user_by( 'login', $user_name );
 			if ( $user ) {
 				$user_id = $user->ID;
 			}
@@ -128,7 +128,7 @@ class YS_Shortcode_Author_Box extends YS_Shortcode_Base {
 		 */
 		$default_user_name = $this->get_param( 'default_user_name' );
 		if ( empty( $user_id ) && ! empty( $default_user_name ) ) {
-			$user = get_user_by( 'slug', $default_user_name );
+			$user = get_user_by( 'login', $default_user_name );
 			if ( $user ) {
 				$user_id = $user->ID;
 			}
