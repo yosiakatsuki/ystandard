@@ -7,5 +7,5 @@
  * @license GPL-2.0+
  */
 
-require_once dirname( __FILE__ ) . '/class-color.php';
-require_once dirname( __FILE__ ) . '/class-font.php';
+require_once __DIR__ . '/class-color.php';
+require_once __DIR__ . '/class-font.php';

@@ -85,7 +85,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 			$widget_title = $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
 
-		$shortcode = \ystandard\Template_Function::do_shortcode(
+		$shortcode = \ystandard\Template::do_shortcode(
 			'ys_author',
 			$instance,
 			null,

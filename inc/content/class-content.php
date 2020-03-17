@@ -144,7 +144,7 @@ class Content {
 			 * Moreタグ以降を削除
 			 */
 			$content = preg_replace( '/<!--more-->.+/is', '', $content );
-			$content = Template_Function::get_plain_text( $content );
+			$content = Utility::get_plain_text( $content );
 		}
 		/**
 		 * 長さ調節

@@ -276,7 +276,7 @@ class Advertisement {
 		 * 非表示設定
 		 */
 		if ( is_singular() ) {
-			if ( Template_Function::to_bool( ys_get_post_meta( 'ys_hide_ad' ) ) ) {
+			if ( Utility::to_bool( ys_get_post_meta( 'ys_hide_ad' ) ) ) {
 				return false;
 			}
 		}
@@ -316,7 +316,7 @@ class Advertisement {
 	 * ウィジェット登録
 	 */
 	public function register_widget() {
-		require_once dirname( __FILE__ ) . '/class-ys-widget-advertisement.php';
+		require_once __DIR__ . '/class-ys-widget-advertisement.php';
 		register_widget( 'YS_Widget_Advertisement' );
 	}
 

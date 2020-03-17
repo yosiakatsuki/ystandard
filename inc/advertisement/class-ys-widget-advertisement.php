@@ -96,7 +96,7 @@ class YS_Widget_Advertisement extends WP_Widget {
 		/**
 		 * ショートコード実行
 		 */
-		$shortcode = \ystandard\Template_Function::do_shortcode(
+		$shortcode = \ystandard\Template::do_shortcode(
 			'ys_ad_block',
 			$instance,
 			$content,

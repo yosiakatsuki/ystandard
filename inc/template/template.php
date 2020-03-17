@@ -10,7 +10,7 @@
 /**
  * Require
  */
-require_once dirname( __FILE__ ) . '/class-template-function.php';
+require_once __DIR__ . '/class-template.php';
 
 
 /**
@@ -85,5 +85,5 @@ function ys_the_ad_infeed() {
  * @param array  $args テンプレートに渡す変数.
  */
 function ys_get_template_part( $slug, $name = null, $args = [] ) {
-	\ystandard\Template_Function::get_template_part( $slug, $name, $args );
+	\ystandard\Template::get_template_part( $slug, $name, $args );
 }

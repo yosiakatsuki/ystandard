@@ -10,7 +10,7 @@
 /**
  * クラス読み込み
  */
-require_once dirname( __FILE__ ) . '/class-ys-taxonomy.php';
+require_once __DIR__ . '/class-ys-taxonomy.php';
 
 /**
  * 投稿についたカテゴリー1件を表示する

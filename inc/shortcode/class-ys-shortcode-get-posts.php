@@ -169,7 +169,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 			/**
 			 * クエリの作成（キャッシュ有効）
 			 */
-			return YS_Cache::get_query(
+			return Cache::get_query(
 				$this->get_param( 'cache_key' ),
 				$query_args,
 				$this->get_param( 'cache_expiration' )

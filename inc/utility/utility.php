@@ -10,7 +10,7 @@
 /**
  * クラス読み込み
  */
-require_once dirname( __FILE__ ) . '/class-ys-utility.php';
+require_once __DIR__ . '/class-utility.php';
 
 /**
  * 投稿タイプ取得
@@ -67,7 +67,7 @@ function ys_get_font_awesome_css_url() {
 function ys_get_font_awesome_cdn_css_url() {
 	$version = apply_filters(
 		'ys_get_font_awesome_css_version',
-		YS_Utility::get_font_awesome_version()
+		\ystandard\Utility::get_font_awesome_version()
 	);
 
 	return apply_filters(
@@ -112,7 +112,7 @@ function ys_get_font_awesome_svg_url() {
 function ys_get_font_awesome_cdn_svg_url() {
 	$version = apply_filters(
 		'ys_get_font_awesome_cdn_svg_version',
-		YS_Utility::get_font_awesome_version()
+		\ystandard\Utility::get_font_awesome_version()
 	);
 
 	return apply_filters(
@@ -165,18 +165,6 @@ function ys_get_theme_version( $template = false ) {
 	}
 
 	return $theme->get( 'Version' );
-}
-
-/**
- * HTML・改行・ショートコードなしのテキストを取得
- *
- * @param string $data content.
- *
- * @return string
- */
-function ys_get_plain_text( $data ) {
-
-	return ystandard\Template_Function::get_plain_text( $data );
 }
 
 
@@ -282,5 +270,5 @@ function ys_in_array( $needle, $haystack ) {
  * @return bool
  */
 function ys_to_bool( $value ) {
-	return \ystandard\Template_Function::to_bool( $value );
+	return \ystandard\Utility::to_bool( $value );
 }

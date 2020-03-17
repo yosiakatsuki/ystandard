@@ -166,7 +166,7 @@ class YS_Scripts {
 		}
 		$path = $this->get_inline_css_path( $url );
 		if ( file_exists( $path ) ) {
-			$style = YS_Utility::file_get_contents( $path );
+			$style = \ystandard\Utility::file_get_contents( $path );
 		}
 		if ( false === $style ) {
 			return $html;
@@ -278,7 +278,7 @@ class YS_Scripts {
 		if ( ys_get_option_by_bool( 'ys_load_script_twitter', false ) ) {
 			$this->set_onload_script(
 				'twitter-wjs',
-				YS_Utility::get_twitter_widgets_js()
+				\ystandard\Utility::get_twitter_widgets_js()
 			);
 		}
 		/**
@@ -287,7 +287,7 @@ class YS_Scripts {
 		if ( ys_get_option_by_bool( 'ys_load_script_facebook', false ) ) {
 			ys_enqueue_onload_script(
 				'facebook-jssdk',
-				YS_Utility::get_facebook_sdk_js()
+				\ystandard\Utility::get_facebook_sdk_js()
 			);
 		}
 		/**
@@ -527,7 +527,7 @@ class YS_Scripts {
 					 */
 					if ( $this->is_site_path( $inline_style ) ) {
 						if ( file_exists( $inline_style ) ) {
-							$inline_style = YS_Utility::file_get_contents( $inline_style );
+							$inline_style = \ystandard\Utility::file_get_contents( $inline_style );
 						} else {
 							$inline_style = '';
 						}
@@ -583,7 +583,7 @@ class YS_Scripts {
 					if ( $this->is_site_url( $item['src'] ) ) {
 						$path = $this->get_inline_css_path( $item['src'] );
 						if ( file_exists( $path ) ) {
-							$temp = YS_Utility::file_get_contents( $path );
+							$temp = \ystandard\Utility::file_get_contents( $path );
 						}
 					}
 				} else {
@@ -785,12 +785,12 @@ class YS_Scripts {
 	 * @return string
 	 */
 	public static function get_enqueue_css_file_name() {
-		$file = 'ystandard-light.css';
+		$file = 'ystandard.css';
 		/**
 		 * AMP以外は通常CSS
 		 */
 		if ( ! ys_is_amp() ) {
-			$file = 'ystandard-main.css';
+			$file = 'ystandard.css';
 		}
 
 		return $file;

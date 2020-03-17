@@ -14,7 +14,7 @@ namespace ystandard;
  *
  * @package ystandard
  */
-class Template_Function {
+class Template {
 
 	/**
 	 * Template_Function constructor.
@@ -107,38 +107,6 @@ class Template_Function {
 		}
 	}
 
-
-	/**
-	 * HTML・改行・ショートコードなしのテキストを取得
-	 *
-	 * @param string $content content.
-	 *
-	 * @return string
-	 */
-	public static function get_plain_text( $content ) {
-		// ショートコード削除.
-		$content = strip_shortcodes( $content );
-		// HTMLタグ削除.
-		$content = wp_strip_all_tags( $content, true );
-
-		return $content;
-	}
-
-	/**
-	 * Boolに変換
-	 *
-	 * @param mixed $value 変換する値.
-	 *
-	 * @return bool
-	 */
-	public static function to_bool( $value ) {
-		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	/**
 	 * テンプレート読み込み拡張
 	 *
@@ -171,6 +139,9 @@ class Template_Function {
 		if ( false !== strpos( $slug, ABSPATH ) && file_exists( $slug ) ) {
 			$located = $slug;
 		}
+		/**
+		 * テンプレート読み込み
+		 */
 		if ( ! empty( $located ) ) {
 			global $posts, $post, $wp_did_header, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
 
@@ -191,4 +162,4 @@ class Template_Function {
 	}
 }
 
-new Template_Function();
+new Template();

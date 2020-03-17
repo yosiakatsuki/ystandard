@@ -10,7 +10,7 @@
 /**
  * テンプレート
  */
-require_once dirname( __FILE__ ) . '/template/template.php';
+require_once __DIR__ . '/template/template.php';
 
 /**
  * 設定
@@ -23,11 +23,11 @@ require_once get_template_directory() . '/inc/utility/utility.php';
 /**
  * デザイン関連
  */
-require_once dirname( __FILE__ ) . '/design/design.php';
+require_once __DIR__ . '/design/design.php';
 /**
  * Cache
  */
-require_once get_template_directory() . '/inc/cache/cache.php';
+require_once __DIR__ . '/cache/class-cache.php';
 /**
  * Menu
  */
@@ -59,7 +59,7 @@ require_once get_template_directory() . '/inc/customizer/customizer.php';
 /**
  * ヘッダー
  */
-require_once dirname(__FILE__) . '/header/class-head.php';
+require_once __DIR__ . '/header/class-head.php';
 require_once get_template_directory() . '/inc/header/head.php';
 require_once get_template_directory() . '/inc/header/header.php';
 require_once get_template_directory() . '/inc/header/custom-header.php';
@@ -72,26 +72,26 @@ require_once get_template_directory() . '/inc/footer/footer-sns.php';
 /**
  * コンテンツ関連
  */
-require_once dirname( __FILE__ ) . '/content/class-content.php';
+require_once __DIR__ . '/content/class-content.php';
 /**
  * Body
  */
-require_once dirname( __FILE__ ) . '/body/class-body.php';
+require_once __DIR__ . '/body/class-body.php';
 /**
  * 広告
  */
-require_once dirname( __FILE__ ) . '/advertisement/class-advertisement.php';
+require_once __DIR__ . '/advertisement/class-advertisement.php';
 /**
  * SNS
  */
-require_once dirname( __FILE__ ) . '/sns/class-sns.php';
+require_once __DIR__ . '/sns/class-sns.php';
 require_once get_template_directory() . '/inc/sns/share-button.php';
 require_once get_template_directory() . '/inc/sns/follow-box.php';
 /**
  * Author
  */
-require_once dirname( __FILE__ ) . '/author/class-author.php';
-require_once dirname( __FILE__ ) . '/author/class-ys-widget-author-box.php';
+require_once __DIR__ . '/author/class-author.php';
+require_once __DIR__ . '/author/class-ys-widget-author-box.php';
 /**
  * パンくずリスト
  */
@@ -107,7 +107,7 @@ require_once get_template_directory() . '/inc/taxonomy/taxonomy.php';
 /**
  * AMP
  */
-require_once dirname( __FILE__ ) . '/amp/class-amp.php';
+require_once __DIR__ . '/amp/class-amp.php';
 /**
  * ショートコード
  */
@@ -135,13 +135,13 @@ require_once get_template_directory() . '/inc/ogp/ogp.php';
 /**
  * ブログカード
  */
-require_once get_template_directory() . '/inc/blog-card/class-ys-blog-card.php';
+require_once __DIR__ . '/blog-card/class-blog-card.php';
 /**
  * 互換関連
  */
 require_once get_template_directory() . '/inc/compatibility/compatibility.php';
 if ( is_admin() ) {
-	require_once dirname( __FILE__ ) . '/admin/admin.php';
+	require_once __DIR__ . '/admin/admin.php';
 	/**
 	 * テーマ設定画面
 	 */

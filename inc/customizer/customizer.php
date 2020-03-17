@@ -10,7 +10,7 @@
 /**
  * テーマカスタマイザー
  */
-require_once dirname( __FILE__ ) . '/control/class-image-label-radio-control.php';
-require_once dirname( __FILE__ ) . '/control/class-section-label-control.php';
-require_once dirname( __FILE__ ) . '/class-customize-control.php';
-require_once dirname( __FILE__ ) . '/class-customizer.php';
+require_once __DIR__ . '/control/class-image-label-radio-control.php';
+require_once __DIR__ . '/control/class-section-label-control.php';
+require_once __DIR__ . '/class-customize-control.php';
+require_once __DIR__ . '/class-customizer.php';

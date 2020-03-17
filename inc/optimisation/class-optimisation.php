@@ -47,5 +47,7 @@ class Optimisation {
 		remove_action( 'wp_head', 'rest_output_link_wp_head' );
 		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
 		remove_action( 'wp_head', 'wp_oembed_add_host_js' );
+		remove_action( 'embed_head', 'print_embed_styles' );
+		remove_action( 'embed_footer', 'print_embed_sharing_dialog' );
 	}
 }

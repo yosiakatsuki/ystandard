@@ -10,47 +10,17 @@
 /**
  * クラス読み込み
  */
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-base.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-text.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-share-button.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-get-posts.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-ranking.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-recent-posts.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-paging.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-post-taxonomy.php';
-require_once dirname( __FILE__ ) . '/class-ys-shortcode-parts.php';
+require_once __DIR__ . '/class-ys-shortcode-base.php';
+require_once __DIR__ . '/class-ys-shortcode-text.php';
+require_once __DIR__ . '/class-ys-shortcode-share-button.php';
+require_once __DIR__ . '/class-ys-shortcode-get-posts.php';
+require_once __DIR__ . '/class-ys-shortcode-post-ranking.php';
+require_once __DIR__ . '/class-ys-shortcode-recent-posts.php';
+require_once __DIR__ . '/class-ys-shortcode-post-paging.php';
+require_once __DIR__ . '/class-ys-shortcode-post-taxonomy.php';
+require_once __DIR__ . '/class-ys-shortcode-parts.php';
 
 
-/**
- * ブログカードショートコード
- *
- * @param array $args パラメーター.
- *
- * @return string
- */
-function ys_shortcode_blog_card( $args ) {
-	$sc = new YS_Shortcode_Blog_Card( $args );
-
-	return $sc->get_html();
-}
-
-add_shortcode( 'ys_blog_card', 'ys_shortcode_blog_card' );
-
-
-/**
- * フォローボックス表示
- *
- * @param array $args パラメータ.
- *
- * @return string
- */
-function ys_shortcode_follow_box( $args ) {
-	$sc = new YS_Shortcode_Follow_Box( $args );
-
-	return $sc->get_html();
-}
-
-add_shortcode( 'ys_follow_box', 'ys_shortcode_follow_box' );
 
 /**
  * 投稿一覧

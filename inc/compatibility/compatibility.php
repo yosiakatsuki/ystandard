@@ -15,3 +15,16 @@ if ( ! function_exists( 'wp_body_open' ) ) {
 		do_action( 'wp_body_open' );
 	}
 }
+
+if ( ! function_exists( 'wp_targeted_link_rel' ) ) {
+	/**
+	 * WP 5.1で追加関数
+	 *
+	 * @param string $content Content.
+	 *
+	 * @return mixed
+	 */
+	function wp_targeted_link_rel( $content ) {
+		return $content;
+	}
+}
