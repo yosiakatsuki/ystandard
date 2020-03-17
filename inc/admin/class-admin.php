@@ -64,6 +64,23 @@ class Admin {
 	}
 
 	/**
+	 * Nonceチェック
+	 *
+	 * @param string $name   Name.
+	 * @param string $action Action.
+	 *
+	 * @return bool|int
+	 */
+	public static function verify_nonce( $name, $action ) {
+		// nonceがセットされているかどうか確認.
+		if ( ! isset( $_POST[ $name ] ) ) {
+			return false;
+		}
+
+		return wp_verify_nonce( $_POST[ $name ], $action );
+	}
+
+	/**
 	 * カスタムアップローダー出力
 	 *
 	 * @param string $name フォーム名.
@@ -82,8 +99,8 @@ class Admin {
 				class="ys-custom-uploader__hidden"
 				value="<?php echo esc_url_raw( $url ); ?>"
 			/>
-			<button class="button ys-custom-uploader__select" type="button">プロフィール画像をアップロード</button>
-			<button class="button ys-custom-uploader__clear" type="button">プロフィール画像を削除</button>
+			<button class="button ys-custom-uploader__select" type="button">画像をアップロード</button>
+			<button class="button ys-custom-uploader__clear" type="button">画像を削除</button>
 		</div>
 		<?php
 	}
