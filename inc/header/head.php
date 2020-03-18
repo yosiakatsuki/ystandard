@@ -469,7 +469,7 @@ add_action( 'wp_head', 'ys_the_amphtml' );
  * ユーザーカスタムHEAD出力
  */
 function ys_the_uc_custom_head() {
-	if( ys_is_amp() ) {
+	if ( ys_is_amp() ) {
 		get_template_part( 'user-custom-head-amp' );
 	} else {
 		get_template_part( 'user-custom-head' );
