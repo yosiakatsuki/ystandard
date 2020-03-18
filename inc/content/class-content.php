@@ -25,7 +25,6 @@ class Content {
 		add_filter( 'the_content', [ $this, 'responsive_iframe' ] );
 		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
 		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
-
 		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
 		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
 	}

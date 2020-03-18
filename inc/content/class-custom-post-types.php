@@ -1,32 +1,36 @@
 <?php
 /**
- * 投稿タイプ - パーツ
+ * カスタム投稿タイプ
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
+namespace ystandard;
+
 /**
- * Class YS_Post_Type_Parts
+ * Class Custom_Post_Types
+ *
+ * @package ystandard
  */
-class YS_Post_Type_Parts {
+class Custom_Post_Types {
 
 	/**
-	 * YS_Post_Type_Parts constructor.
+	 * Custom_Post_Types constructor.
 	 */
 	public function __construct() {
-		add_action( 'init', array( $this, 'register_post_type' ) );
-		add_action( 'add_meta_boxes_ys-parts', array( $this, 'add_meta_box' ) );
-		add_filter( 'manage_ys-parts_posts_columns', array( $this, 'add_columns_head' ) );
-		add_action( 'manage_ys-parts_posts_custom_column', array( $this, 'add_custom_column' ), 10, 2 );
+		add_action( 'init', [ $this, 'register_ys_parts' ] );
+		add_action( 'add_meta_boxes_ys-parts', [ $this, 'add_meta_box' ] );
+		add_filter( 'manage_ys-parts_posts_columns', [ $this, 'add_columns_head' ] );
+		add_action( 'manage_ys-parts_posts_custom_column', [ $this, 'add_custom_column' ], 10, 2 );
 	}
 
 	/**
 	 * 投稿タイプの登録
 	 */
-	public function register_post_type() {
-		$labels = array(
+	public function register_ys_parts() {
+		$labels = [
 			'name'               => '[ys]パーツ',
 			'add_new_item'       => 'パーツを追加',
 			'edit_item'          => '編集',
@@ -35,10 +39,10 @@ class YS_Post_Type_Parts {
 			'search_items'       => '検索',
 			'not_found'          => '見つかりませんでした',
 			'not_found_in_trash' => 'ゴミ箱にはありません',
-		);
+		];
 		register_post_type(
 			'ys-parts',
-			array(
+			[
 				'labels'                => $labels,
 				'public'                => false,
 				'exclude_from_search'   => true,
@@ -55,12 +59,12 @@ class YS_Post_Type_Parts {
 				'capability_type'       => 'page',
 				'rest_base'             => 'ys-parts',
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'supports'              => array(
+				'supports'              => [
 					'title',
 					'editor',
 					'revisions',
-				),
-			)
+				],
+			]
 		);
 	}
 
@@ -74,8 +78,8 @@ class YS_Post_Type_Parts {
 		add_meta_box(
 			'ys_add_parts_shortcode_info',
 			'ショートコード',
-			array( $this, 'add_parts_shortcode_info' ),
-			array( 'ys-parts' ),
+			[ $this, 'add_parts_shortcode_info' ],
+			[ 'ys-parts' ],
 			'side',
 			'high'
 		);
@@ -84,23 +88,23 @@ class YS_Post_Type_Parts {
 	/**
 	 * ショートコード表示メタボックスを追加
 	 *
-	 * @param WP_Post $post 投稿オブジェクト.
+	 * @param \WP_Post $post 投稿オブジェクト.
 	 */
 	public function add_parts_shortcode_info( $post ) {
+		if ( 'publish' !== $post->post_status ) {
+			return;
+		}
 		?>
 		<div id="ys-ogp-description-section" class="meta-box__section">
-			<?php if ( 'publish' === $post->post_status ) : ?>
-				<div class="copy-form" style="margin: 1em 0 2em;">
-					<input type="text" id="ys_parts_shortcode" class="meta-box__full-w" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
-					<button class="copy-form__button button action">
-						<i class="fas fa-clipboard"></i>
-					</button>
-					<div class="copy-form__info">コピーしました！</div>
-				</div>
-				<div class="meta-box__dscr">投稿・固定ページやウィジェットに表示するためのショートコード</div>
-			<?php else : ?>
-				<div class="meta-box__dscr">公開後にショートコードが表示されます。</div>
-			<?php endif; ?>
+			<div class="copy-form" style="margin: 1em 0 2em;">
+				<label>ショートコード
+					<input type="text" id="ys_parts_shortcode" class="meta-box__input" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/></label>
+				<button class="copy-form__button button action">
+					<i class="fas fa-clipboard"></i>
+				</button>
+				<div class="copy-form__info">コピーしました！</div>
+			</div>
+			<div class="meta-box__dscr">投稿・固定ページやウィジェットに表示するためのショートコード</div>
 		</div>
 		<?php
 	}
@@ -137,6 +141,7 @@ class YS_Post_Type_Parts {
 			<?php
 		}
 	}
+
 }
 
-new YS_Post_Type_Parts();
+new Custom_Post_Types();

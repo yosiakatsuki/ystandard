@@ -8,6 +8,11 @@
  */
 
 /**
+ * 互換関連
+ */
+require_once __DIR__ . '/compatibility/compatibility.php';
+
+/**
  * テンプレート
  */
 require_once __DIR__ . '/template/template.php';
@@ -44,10 +49,6 @@ require_once get_template_directory() . '/inc/conditional-tag/conditional-tag.ph
  * 初期化
  */
 require_once get_template_directory() . '/inc/init/init.php';
-/**
- * Post
- */
-require_once get_template_directory() . '/inc/post/post.php';
 /**
  * Enqueue
  */
@@ -123,7 +124,7 @@ require_once get_template_directory() . '/inc/pagination/pagination.php';
 /**
  * コメント欄
  */
-require_once get_template_directory() . '/inc/comment/comment.php';
+require_once __DIR__ . '/comment/class-comment.php';
 /**
  * Json-LD
  */
@@ -137,11 +138,11 @@ require_once get_template_directory() . '/inc/ogp/ogp.php';
  */
 require_once __DIR__ . '/blog-card/class-blog-card.php';
 /**
- * 互換関連
+ * 管理画面
  */
-require_once get_template_directory() . '/inc/compatibility/compatibility.php';
 if ( is_admin() ) {
-	require_once __DIR__ . '/admin/admin.php';
+	require_once __DIR__ . '/admin/class-admin.php';
+	require_once __DIR__ . '/admin/class-admin-post-meta.php';
 	/**
 	 * テーマ設定画面
 	 */
