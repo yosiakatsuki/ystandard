@@ -14,6 +14,19 @@ namespace ystandard;
  */
 class Utility {
 
+
+	/**
+	 * JSON-LD出力
+	 *
+	 * @param array $data Data.
+	 */
+	public static function json_ld( $data = [] ) {
+		if ( ! is_array( $data ) || empty( $data ) ) {
+			return;
+		}
+		echo '<script type="application/ld+json">' . json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . PHP_EOL;
+	}
+
 	/**
 	 * Twitter用JavaScript URL取得
 	 *
