@@ -15,18 +15,7 @@ require_once __DIR__ . '/class-conditional-tag.php';
  * @return bool
  */
 function ys_is_top_page() {
-	$result = false;
-	if ( 'page' === get_option( 'show_on_front' ) ) {
-		if ( is_front_page() ) {
-			$result = true;
-		}
-	} else {
-		if ( is_home() && ! is_paged() ) {
-			$result = true;
-		}
-	}
-
-	return apply_filters( 'ys_is_top_page', $result );
+	return \ystandard\Template::is_top_page();
 }
 
 /**
@@ -132,89 +121,24 @@ function ys_is_amp() {
  * @return bool
  */
 function ys_is_one_column() {
-	$one_column = false;
-	/**
-	 * ワンカラムテンプレート
-	 */
-	$template = [
-		'page-template/template-one-column.php',
-		'page-template/template-one-column-wide.php',
-		'page-template/template-blank.php',
-		'page-template/template-blank-wide.php',
-	];
-	if ( is_page_template( $template ) ) {
-		$one_column = true;
-	}
-	/**
-	 * サイドバー
-	 */
-	if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
-		$one_column = true;
-	}
-	/**
-	 * フロントページ
-	 */
-	if ( ys_is_use_front_page() && is_front_page() && '1col' === ys_get_option( 'ys_front_page_layout', '1col' ) ) {
-		$one_column = true;
-	}
-	/**
-	 * 一覧系
-	 */
-	if ( is_home() || is_archive() || is_search() || is_404() ) {
-		if ( '1col' === ys_get_option( 'ys_archive_layout', '2col' ) ) {
-			$one_column = true;
-		}
-	}
-	/**
-	 * 固定ページ
-	 */
-	if ( ( is_page() && ! is_front_page() ) && '1col' === ys_get_option( 'ys_page_layout', '2col' ) ) {
-		$one_column = true;
-	}
-	/**
-	 * 投稿
-	 */
-	if ( ( is_singular() && ! is_page() ) && '1col' === ys_get_option( 'ys_post_layout', '2col' ) ) {
-		$one_column = true;
-	}
-
-	return apply_filters( 'ys_is_one_column', $one_column );
+	return \ystandard\Template::is_one_column();
 }
 
 /**
  * フル幅判定
+ *
+ * @return bool
  */
 function ys_is_full_width() {
-	$full_width = false;
-	/**
-	 * 1カラムの場合のみ判定できる
-	 */
-	if ( ys_is_one_column() ) {
-		/**
-		 * フル幅にするテンプレート
-		 */
-		$templates = [
-			'page-template/template-one-column-no-title.php',
-			'page-template/template-one-column-wide.php',
-		];
-		if ( is_page_template( $templates ) || 'wide' === ys_get_option( 'ys_design_one_col_content_type', 'normal' ) ) {
-			$full_width = true;
-		}
-	}
-
-	return apply_filters( 'ys_is_full_width', $full_width );
+	return \ystandard\Template::is_full_width();
 }
 
 /**
- * フル幅判定
+ * タイトル無しテンプレート判定
  */
 function ys_is_no_title_template() {
-	$template = [
-		'page-template/template-one-column-no-title.php',
-		'page-template/template-one-column-no-title-slim.php',
-	];
 
-	return is_page_template( $template );
+	return \ystandard\Template::is_no_title_template();
 }
 
 /**

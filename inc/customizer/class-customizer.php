@@ -89,7 +89,6 @@ class Customizer {
 		$this->design_copyright();
 		$this->design_color_palette();
 		$this->design_icon_font();
-		$this->design_front_page();
 		/**
 		 * SNS設定
 		 */
@@ -1461,43 +1460,6 @@ class Customizer {
 				'default' => 110,
 				'label'   => '投稿抜粋の文字数',
 				'section' => 'ys_customizer_section_archive',
-			]
-		);
-	}
-
-	/**
-	 * デザイン -> フロントページ
-	 */
-	private function design_front_page() {
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'         => 'ys_customizer_front_page_design',
-				'title'           => 'フロントページ設定',
-				'description'     => 'フロントページのデザイン設定',
-				'panel'           => 'ys_customizer_panel_design',
-				'active_callback' => function () {
-					return ys_is_use_front_page();
-				},
-			]
-		);
-		/**
-		 * 表示カラム数
-		 */
-		$assets_url = $this->get_assets_dir_uri();
-		$col1       = $assets_url . '/design/column-type/col-1.png';
-		$col2       = $assets_url . '/design/column-type/col-2.png';
-		$img        = '<img src="%s" alt="" width="100" height="100" />';
-		$ys_customizer->add_image_label_radio(
-			[
-				'id'          => 'ys_front_page_layout',
-				'default'     => '1col',
-				'label'       => 'レイアウト',
-				'description' => 'フロントページの表示レイアウト',
-				'choices'     => [
-					'2col' => sprintf( $img, $col2 ),
-					'1col' => sprintf( $img, $col1 ),
-				],
 			]
 		);
 	}

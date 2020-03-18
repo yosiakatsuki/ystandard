@@ -26,86 +26,108 @@ class Template {
 	}
 
 	/**
-	 * RSSフィードにアイキャッチ画像を表示
+	 * TOPページか
 	 *
-	 * @param string $content content.
-	 *
-	 * @return string
+	 * @return bool
 	 */
-	public function add_rss_thumbnail( $content ) {
-		global $post;
-		if ( Conditional_Tag::is_active_post_thumbnail( $post->ID ) ) {
-			$content = get_the_post_thumbnail( $post->ID ) . $content;
+	public static function is_top_page() {
+		if ( 'page' === get_option( 'show_on_front' ) ) {
+			if ( is_front_page() ) {
+				return true;
+			}
+		} else {
+			if ( is_home() && ! is_paged() ) {
+				return true;
+			}
 		}
 
-		return $content;
+		return false;
 	}
 
 	/**
-	 * セルフピンバック対策
+	 * フル幅テンプレートか
 	 *
-	 * @param array $links links.
-	 *
-	 * @return void
+	 * @return bool
 	 */
-	public function no_self_ping( &$links ) {
-		foreach ( $links as $l => $link ) {
-			if ( 0 === strpos( $link, home_url() ) ) {
-				unset( $links[ $l ] );
+	public static function is_full_width() {
+		if ( self::is_one_column() ) {
+			/**
+			 * フル幅にするテンプレート
+			 */
+			$templates = [
+				'page-template/template-one-column-wide.php',
+				'page-template/template-blank-wide.php',
+			];
+			if ( is_page_template( $templates ) || 'wide' === ys_get_option( 'ys_design_one_col_content_type', 'normal' ) ) {
+				return true;
 			}
 		}
+
+		return false;
 	}
 
 	/**
-	 * ショートコードの作成と実行
+	 * 1カラム表示か
 	 *
-	 * @param string $name    ショートコード名.
-	 * @param array  $args    パラメーター.
-	 * @param mixed  $content コンテンツ.
-	 * @param bool   $echo    出力.
-	 *
-	 * @return string
+	 * @return bool
 	 */
-	public static function do_shortcode( $name, $args = [], $content = null, $echo = true ) {
-		$atts = [];
+	public static function is_one_column() {
 		/**
-		 * パラメーター展開
+		 * ワンカラムテンプレート
 		 */
-		if ( ! empty( $args ) ) {
-			foreach ( $args as $key => $value ) {
-				if ( is_array( $value ) ) {
-					$value = implode( ',', $value );
-				}
-				$atts[] = sprintf(
-					'%s="%s"',
-					$key,
-					$value
-				);
+		$template = [
+			'page-template/template-one-column.php',
+			'page-template/template-one-column-wide.php',
+			'page-template/template-blank.php',
+			'page-template/template-blank-wide.php',
+		];
+		if ( is_page_template( $template ) ) {
+			return true;
+		}
+		/**
+		 * サイドバーが無ければ1カラム
+		 */
+		if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
+			return true;
+		}
+		/**
+		 * 一覧系
+		 */
+		if ( is_home() || is_archive() || is_search() || is_404() ) {
+			if ( '1col' === ys_get_option( 'ys_archive_layout', '2col' ) ) {
+				return true;
 			}
 		}
-		$atts = empty( $atts ) ? '' : ' ' . implode( ' ', $atts );
 		/**
-		 * ショートコード作成
+		 * 固定ページ
 		 */
-		if ( null === $content ) {
-			// コンテンツなし.
-			$shortcode = sprintf( '[%s%s]', $name, $atts );
-		} else {
-			// コンテンツあり.
-			$shortcode = sprintf( '[%s%s]%s[/%s]', $name, $atts, $content, $name );
+		if ( ( is_page() && ! is_front_page() ) && '1col' === ys_get_option( 'ys_page_layout', '2col' ) ) {
+			return true;
 		}
-		$result = do_shortcode( $shortcode );
 		/**
-		 * 表示 or 取得
+		 * 投稿
 		 */
-		if ( $echo ) {
-			echo $result;
+		if ( ( is_singular() && ! is_page() ) && '1col' === ys_get_option( 'ys_post_layout', '2col' ) ) {
+			return true;
+		}
 
-			return '';
-		} else {
-			return $result;
-		}
+		return false;
 	}
+
+	/**
+	 * タイトルなしテンプレートか
+	 *
+	 * @return bool
+	 */
+	public static function is_no_title_template() {
+		$template = [
+			'page-template/template-blank.php',
+			'page-template/template-blank-wide.php',
+		];
+
+		return is_page_template( $template );
+	}
+
 
 	/**
 	 * テンプレート読み込み拡張
@@ -158,6 +180,38 @@ class Template {
 				$s = esc_attr( $s );
 			}
 			require $located;
+		}
+	}
+
+
+	/**
+	 * RSSフィードにアイキャッチ画像を表示
+	 *
+	 * @param string $content content.
+	 *
+	 * @return string
+	 */
+	public function add_rss_thumbnail( $content ) {
+		global $post;
+		if ( Conditional_Tag::is_active_post_thumbnail( $post->ID ) ) {
+			$content = get_the_post_thumbnail( $post->ID ) . $content;
+		}
+
+		return $content;
+	}
+
+	/**
+	 * セルフピンバック対策
+	 *
+	 * @param array $links links.
+	 *
+	 * @return void
+	 */
+	public function no_self_ping( &$links ) {
+		foreach ( $links as $l => $link ) {
+			if ( 0 === strpos( $link, home_url() ) ) {
+				unset( $links[ $l ] );
+			}
 		}
 	}
 }

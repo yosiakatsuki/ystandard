@@ -13,12 +13,7 @@
  * @return bool
  */
 function ys_has_header_image() {
-	$result = false;
-	if ( get_custom_header_markup() ) {
-		$result = true;
-	}
-
-	return apply_filters( 'ys_has_header_image', $result );
+	return \ystandard\Custom_Header::has_custom_image();
 }
 
 /**
@@ -75,12 +70,12 @@ function ys_the_custom_header_markup() {
  * @return array;
  */
 function ys_header_video_settings( $settings ) {
-	$settings['l10n']     = array(
+	$settings['l10n']     = [
 		'pause'      => '<i class="fas fa-pause"></i>',
 		'play'       => '<i class="fas fa-play"></i>',
 		'pauseSpeak' => __( 'Video is paused.' ),
 		'playSpeak'  => __( 'Video is playing.' ),
-	);
+	];
 	$settings['minWidth'] = 200;
 
 	return $settings;

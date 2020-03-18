@@ -33,6 +33,15 @@ class Color {
 	}
 
 	/**
+	 * カスタム背景色を使っているか
+	 *
+	 * @return bool
+	 */
+	public static function is_custom_bg_color() {
+		return Color::get_site_bg_default() !== Color::get_site_bg();
+	}
+
+	/**
 	 * カスタムヘッダーのヘッダーを重ねるタイプ文字色取得
 	 *
 	 * @return string
