@@ -332,7 +332,7 @@ function ys_is_hide_post_header() {
  * @return bool
  */
 function ys_is_active_post_thumbnail( $post_id = null ) {
-	return ystandard\Conditional_Tag::is_active_post_thumbnail( $post_id );
+	return \ystandard\Content::is_active_post_thumbnail( $post_id );
 }
 
 

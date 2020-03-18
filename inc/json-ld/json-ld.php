@@ -14,7 +14,7 @@ function ys_the_json_ld() {
 
 	if ( is_home() || is_archive() ) {
 		global $posts;
-		$json = array();
+		$json = [];
 		foreach ( $posts as $post ) {
 			$json[] = ys_get_json_ld_article( $post );
 		}
@@ -27,10 +27,10 @@ function ys_the_json_ld() {
 		/**
 		 * TOP・一覧ページなど
 		 */
-		$json = array(
+		$json = [
 			ys_get_json_ld_organization(),
 			ys_get_json_ld_website(),
-		);
+		];
 	}
 	ys_echo_json_ld( $json );
 }
@@ -42,29 +42,26 @@ add_action( 'wp_footer', 'ys_the_json_ld' );
  *
  * @param array $data JSON-LDを出力するデータ.
  */
-function ys_echo_json_ld( $data = array() ) {
-	if ( ! is_array( $data ) || empty( $data ) ) {
-		return;
-	}
-	echo '<script type="application/ld+json">' . json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . PHP_EOL;
+function ys_echo_json_ld( $data = [] ) {
+	\ystandard\Utility::json_ld( $data );
 }
 
 /**
  * Json-LD Organization作成
  */
 function ys_get_json_ld_organization() {
-	$json             = array();
+	$json             = [];
 	$json['@context'] = 'http://schema.org';
 	$json['@type']    = 'Organization';
 	$json['url']      = home_url( '/' );
 	if ( has_custom_logo() ) {
 		$logo         = ys_get_custom_logo_image_object();
-		$json['logo'] = array(
+		$json['logo'] = [
 			'@type'  => 'ImageObject',
 			'url'    => $logo[0],
 			'width'  => $logo[1],
 			'height' => $logo[2],
-		);
+		];
 	}
 
 	return $json;
@@ -74,18 +71,18 @@ function ys_get_json_ld_organization() {
  * Json-LD Website 作成
  */
 function ys_get_json_ld_website() {
-	$json                  = array();
+	$json                  = [];
 	$json['@context']      = 'http://schema.org';
 	$json['@type']         = 'Website';
 	$json['url']           = home_url( '/' );
 	$json['name']          = get_bloginfo( 'name' );
 	$json['alternateName'] = get_bloginfo( 'name' );
 	if ( ys_is_top_page() ) {
-		$json['potentialAction'] = array(
+		$json['potentialAction'] = [
 			'@type'       => 'SearchAction',
 			'target'      => home_url( '/?s={query}' ),
 			'query-input' => 'required name=query',
-		);
+		];
 	}
 
 	return $json;
@@ -103,25 +100,25 @@ function ys_get_json_ld_article( $post_data = null ) {
 	if ( null === $post_data ) {
 		$post_data = $post;
 	}
-	$json                     = array();
+	$json                     = [];
 	$url                      = get_the_permalink( $post_data->ID );
 	$name                     = get_the_title( $post_data->ID );
 	$excerpt                  = esc_html( \ystandard\Content::get_custom_excerpt( '', 0, $post_data->ID ) );
 	$content                  = esc_html( \ystandard\Utility::get_plain_text( $post_data->post_content ) );
 	$json['@context']         = 'http://schema.org';
 	$json['@type']            = 'Article';
-	$json['mainEntityOfPage'] = array(
+	$json['mainEntityOfPage'] = [
 		'@type' => 'WebPage',
 		'@id'   => $url,
-	);
+	];
 	$json['name']             = $name;
 	$json['headline']         = mb_substr( $name, 0, 110 );
 	$json['description']      = $excerpt;
 	$json['articleBody']      = $content;
-	$json['author']           = array(
+	$json['author']           = [
 		'@type' => 'Person',
 		'name'  => get_the_author_meta( 'display_name', $post_data->post_author ),
-	);
+	];
 	$json['datePublished']    = get_the_date( DATE_ATOM, $post_data->ID );
 	$json['dateModified']     = get_post_modified_time( DATE_ATOM, false, $post_data->ID );
 	/**
@@ -129,17 +126,17 @@ function ys_get_json_ld_article( $post_data = null ) {
 	 */
 	$image = ys_get_the_image_object( 'full', $post_data->ID );
 	if ( $image ) {
-		$json['image'] = array(
+		$json['image'] = [
 			'@type'  => 'ImageObject',
 			'url'    => $image[0],
 			'width'  => $image[1],
 			'height' => $image[2],
-		);
+		];
 	}
 	$category = get_the_category();
 	if ( $category ) {
 		if ( 1 < count( $category ) ) {
-			$article_section = array();
+			$article_section = [];
 			foreach ( $category as $item ) {
 				$article_section[] = $item->name;
 			}
@@ -152,19 +149,19 @@ function ys_get_json_ld_article( $post_data = null ) {
 	/**
 	 * パブリッシャー
 	 */
-	$json['publisher'] = array(
+	$json['publisher'] = [
 		'@type' => 'Organization',
 		'name'  => ys_get_publisher_name(),
-	);
+	];
 	$publisher_img     = ys_get_publisher_image();
 	if ( $publisher_img ) {
 		$publisher_img             = ys_calc_publisher_image_size( $publisher_img );
-		$json['publisher']['logo'] = array(
+		$json['publisher']['logo'] = [
 			'@type'  => 'ImageObject',
 			'url'    => $publisher_img[0],
 			'width'  => $publisher_img[1],
 			'height' => $publisher_img[2],
-		);
+		];
 	}
 
 	return $json;

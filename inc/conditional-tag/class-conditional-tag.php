@@ -17,41 +17,6 @@ namespace ystandard;
 class Conditional_Tag {
 
 	/**
-	 * アイキャッチ画像を表示するか
-	 *
-	 * @param int $post_id 投稿ID.
-	 *
-	 * @return bool
-	 */
-	public static function is_active_post_thumbnail( $post_id = null ) {
-		$result = true;
-		if ( ! is_singular() ) {
-			return false;
-		}
-		if ( ! has_post_thumbnail( $post_id ) ) {
-			$result = false;
-		}
-		/**
-		 * 投稿ページ
-		 */
-		if ( is_single() ) {
-			if ( ! ys_get_option_by_bool( 'ys_show_post_thumbnail', true ) ) {
-				$result = false;
-			}
-		}
-		/**
-		 * 固定ページ
-		 */
-		if ( is_page() ) {
-			if ( ! ys_get_option_by_bool( 'ys_show_page_thumbnail', true ) ) {
-				$result = false;
-			}
-		}
-
-		return apply_filters( 'ys_is_active_post_thumbnail', $result );
-	}
-
-	/**
 	 * Google Analyticsのタグを出力するか
 	 *
 	 * @return bool

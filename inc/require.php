@@ -95,7 +95,7 @@ require_once __DIR__ . '/author/class-ys-widget-author-box.php';
 /**
  * パンくずリスト
  */
-require_once get_template_directory() . '/inc/breadcrumbs/class-ys-breadcrumbs.php';
+require_once __DIR__ . '/breadcrumbs/class-breadcrumbs.php';
 /**
  * Copyright
  */

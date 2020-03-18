@@ -7,10 +7,14 @@
  * @license GPL-2.0+
  */
 
+namespace ystandard;
+
 /**
- * Class YS_Breadcrumbs
+ * Class Breadcrumbs
+ *
+ * @package ystandard
  */
-class YS_Breadcrumbs {
+class Breadcrumbs {
 
 	/**
 	 * Position.
@@ -24,7 +28,7 @@ class YS_Breadcrumbs {
 	 *
 	 * @var array
 	 */
-	private $items = array();
+	private $items = [];
 
 	/**
 	 * Show on front
@@ -61,7 +65,7 @@ class YS_Breadcrumbs {
 		$this->show_on_front  = get_option( 'show_on_front' );
 		$this->page_on_front  = get_option( 'page_on_front' );
 		$this->page_for_posts = get_option( 'page_for_posts' );
-		$this->items          = array();
+		$this->items          = [];
 		$this->home_label     = apply_filters( 'ys_breadcrumbs_home_label', 'Home' );
 	}
 
@@ -78,26 +82,24 @@ class YS_Breadcrumbs {
 	 * アクション・フィルターフックのセット
 	 */
 	public function set_action() {
-		add_action( 'wp_footer', array( $this, 'breadcrumbs' ), 11 );
-		add_filter( 'ys_get_inline_css', array( $this, 'inline_css' ) );
-
+		add_action( 'wp_footer', [ $this, 'structured_data' ], 11 );
 	}
 
 	/**
-	 * パンくずリスト出力
+	 * パンくずリスト構造化データ出力
 	 */
-	public function breadcrumbs() {
+	public function structured_data() {
 		$items = $this->get_breadcrumbs();
 		if ( ! is_array( $items ) || empty( $items ) ) {
 			return;
 		}
-		$breadcrumbs = array(
+		$breadcrumbs = [
 			'@context'        => 'https://schema.org',
 			'@type'           => 'BreadcrumbList',
 			'itemListElement' => $items,
-		);
+		];
 
-		ys_echo_json_ld( $breadcrumbs );
+		Utility::json_ld( $breadcrumbs );
 	}
 
 	/**
@@ -412,12 +414,12 @@ class YS_Breadcrumbs {
 	 */
 	private function set_item( $title, $link ) {
 
-		$item = array(
+		$item = [
 			'@type'    => 'ListItem',
 			'position' => $this->position,
 			'name'     => $title,
 			'item'     => $link,
-		);
+		];
 		if ( empty( $link ) ) {
 			unset( $item['item'] );
 		}
@@ -502,7 +504,7 @@ class YS_Breadcrumbs {
 		if ( 'ja' === get_locale() ) {
 			$label .= '月';
 		} else {
-			$monthes = array(
+			$monthes = [
 				1  => 'January',
 				2  => 'February',
 				3  => 'March',
@@ -515,7 +517,7 @@ class YS_Breadcrumbs {
 				10 => 'October',
 				11 => 'November',
 				12 => 'December',
-			);
+			];
 			$label   = $monthes[ $month ];
 		}
 		if ( $link ) {
@@ -549,38 +551,7 @@ class YS_Breadcrumbs {
 	 * Get Post Type
 	 */
 	private function get_post_type() {
-		return ys_get_post_type();
-	}
-
-	/**
-	 * インラインCSSのセット
-	 *
-	 * @param string $css CSS.
-	 *
-	 * @return string
-	 */
-	public function inline_css( $css ) {
-		$ys_inline_css = new YS_Inline_Css();
-		$styles        = array();
-
-		if ( ! ys_has_site_background() ) {
-			if ( 'header' !== YS_Breadcrumbs::get_breadcrumbs_position() ) {
-				$styles[] = '.site-header + .site__content {margin-top:1.5rem;}';
-				$styles[] = $ys_inline_css->add_media_query(
-					'.site-header + .site__content {margin-top:2.5rem;}',
-					'md'
-				);
-			}
-			if ( 'none' === YS_Breadcrumbs::get_breadcrumbs_position() ) {
-				$styles[] = '.site__footer {margin-top:2rem;}';
-				$styles[] = $ys_inline_css->add_media_query(
-					'.site__footer {margin-top:3rem;}',
-					'md'
-				);
-			}
-		}
-
-		return $css . implode( ' ', $styles );
+		return Content::get_post_type();
 	}
 
 }
@@ -588,5 +559,5 @@ class YS_Breadcrumbs {
 /**
  * アクションのセット
  */
-$ys_breadcrumb = new YS_Breadcrumbs();
+$ys_breadcrumb = new Breadcrumbs();
 $ys_breadcrumb->set_action();

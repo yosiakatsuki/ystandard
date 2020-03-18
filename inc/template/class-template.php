@@ -193,7 +193,7 @@ class Template {
 	 */
 	public function add_rss_thumbnail( $content ) {
 		global $post;
-		if ( Conditional_Tag::is_active_post_thumbnail( $post->ID ) ) {
+		if ( Content::is_active_post_thumbnail( $post->ID ) ) {
 			$content = get_the_post_thumbnail( $post->ID ) . $content;
 		}
 
