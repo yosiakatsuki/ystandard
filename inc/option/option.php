@@ -22,7 +22,7 @@ require_once __DIR__ . '/class-option.php';
  * @return mixed
  */
 function ys_get_option( $name, $default = false, $type = false ) {
-	return \ystandard\Option::get_option( $name, $default, $type );
+	return ystandard\Option::get_option( $name, $default, $type );
 }
 
 /**
@@ -34,7 +34,7 @@ function ys_get_option( $name, $default = false, $type = false ) {
  * @return mixed
  */
 function ys_get_option_by_bool( $name, $default = false ) {
-	return \ystandard\Option::get_option_by_bool( $name, $default );
+	return ystandard\Option::get_option_by_bool( $name, $default );
 }
 
 /**
@@ -46,5 +46,5 @@ function ys_get_option_by_bool( $name, $default = false ) {
  * @return mixed
  */
 function ys_get_option_by_int( $name, $default = 0 ) {
-	return \ystandard\Option::get_option_by_int( $name, $default );
+	return ystandard\Option::get_option_by_int( $name, $default );
 }

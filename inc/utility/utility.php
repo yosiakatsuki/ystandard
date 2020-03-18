@@ -16,7 +16,7 @@ require_once __DIR__ . '/class-utility.php';
  * 投稿タイプ取得
  */
 function ys_get_post_type() {
-	return \ystandard\Content::get_post_type();
+	return ystandard\Content::get_post_type();
 }
 
 /**
@@ -39,7 +39,7 @@ function ys_get_page_url() {
  * @return array
  */
 function ys_get_sns_icons() {
-	return \ystandard\SNS::get_sns_icons();
+	return ystandard\SNS::get_sns_icons();
 }
 
 /**
@@ -59,7 +59,7 @@ function ys_get_font_awesome_css_url() {
 function ys_get_font_awesome_cdn_css_url() {
 	$version = apply_filters(
 		'ys_get_font_awesome_css_version',
-		\ystandard\Utility::get_font_awesome_version()
+		ystandard\Utility::get_font_awesome_version()
 	);
 
 	return apply_filters(
@@ -104,7 +104,7 @@ function ys_get_font_awesome_svg_url() {
 function ys_get_font_awesome_cdn_svg_url() {
 	$version = apply_filters(
 		'ys_get_font_awesome_cdn_svg_version',
-		\ystandard\Utility::get_font_awesome_version()
+		ystandard\Utility::get_font_awesome_version()
 	);
 
 	return apply_filters(
@@ -262,5 +262,5 @@ function ys_in_array( $needle, $haystack ) {
  * @return bool
  */
 function ys_to_bool( $value ) {
-	return \ystandard\Utility::to_bool( $value );
+	return ystandard\Utility::to_bool( $value );
 }

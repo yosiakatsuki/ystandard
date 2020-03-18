@@ -43,7 +43,7 @@ add_action( 'wp_footer', 'ys_the_json_ld' );
  * @param array $data JSON-LDを出力するデータ.
  */
 function ys_echo_json_ld( $data = [] ) {
-	\ystandard\Utility::json_ld( $data );
+	ystandard\Utility::json_ld( $data );
 }
 
 /**
@@ -103,8 +103,8 @@ function ys_get_json_ld_article( $post_data = null ) {
 	$json                     = [];
 	$url                      = get_the_permalink( $post_data->ID );
 	$name                     = get_the_title( $post_data->ID );
-	$excerpt                  = esc_html( \ystandard\Content::get_custom_excerpt( '', 0, $post_data->ID ) );
-	$content                  = esc_html( \ystandard\Utility::get_plain_text( $post_data->post_content ) );
+	$excerpt                  = esc_html( ystandard\Content::get_custom_excerpt( '', 0, $post_data->ID ) );
+	$content                  = esc_html( ystandard\Utility::get_plain_text( $post_data->post_content ) );
 	$json['@context']         = 'http://schema.org';
 	$json['@type']            = 'Article';
 	$json['mainEntityOfPage'] = [

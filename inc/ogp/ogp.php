@@ -87,7 +87,7 @@ if ( ! function_exists( 'ys_get_ogp_and_twitter_card_param' ) ) {
 	 * @return array
 	 */
 	function ys_get_ogp_and_twitter_card_param() {
-		$dscr  = \ystandard\Head::get_meta_description();
+		$dscr  = ystandard\Head::get_meta_description();
 		$param = array(
 			'title'             => get_bloginfo( 'name' ),
 			'description'       => $dscr,

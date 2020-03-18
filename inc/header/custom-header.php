@@ -13,7 +13,7 @@
  * @return bool
  */
 function ys_has_header_image() {
-	return \ystandard\Custom_Header::has_custom_image();
+	return ystandard\Custom_Header::has_custom_image();
 }
 
 /**

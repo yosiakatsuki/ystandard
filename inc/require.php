@@ -15,7 +15,8 @@ require_once __DIR__ . '/compatibility/compatibility.php';
 /**
  * テンプレート
  */
-require_once __DIR__ . '/template/template.php';
+require_once __DIR__ . '/template/template-function.php';
+require_once __DIR__ . '/template/class-template.php';
 
 /**
  * 設定
@@ -28,7 +29,9 @@ require_once get_template_directory() . '/inc/utility/utility.php';
 /**
  * デザイン関連
  */
-require_once __DIR__ . '/design/design.php';
+require_once __DIR__ . '/design/class-design.php';
+require_once __DIR__ . '/design/class-color.php';
+require_once __DIR__ . '/design/class-font.php';
 /**
  * Cache
  */
@@ -61,6 +64,9 @@ require_once get_template_directory() . '/inc/customizer/customizer.php';
  * ヘッダー
  */
 require_once __DIR__ . '/header/class-head.php';
+require_once __DIR__ . '/header/class-header.php';
+require_once __DIR__ . '/header/class-custom-header.php';
+
 require_once get_template_directory() . '/inc/header/head.php';
 require_once get_template_directory() . '/inc/header/header.php';
 require_once get_template_directory() . '/inc/header/custom-header.php';
@@ -70,6 +76,7 @@ require_once get_template_directory() . '/inc/header/class-ys-info-bar.php';
  */
 require_once get_template_directory() . '/inc/footer/footer.php';
 require_once get_template_directory() . '/inc/footer/footer-sns.php';
+require_once __DIR__ . '/footer/class-copyright.php';
 /**
  * コンテンツ関連
  */
@@ -97,10 +104,6 @@ require_once __DIR__ . '/author/class-ys-widget-author-box.php';
  * パンくずリスト
  */
 require_once __DIR__ . '/breadcrumbs/class-breadcrumbs.php';
-/**
- * Copyright
- */
-require_once get_template_directory() . '/inc/copyright/copyright.php';
 /**
  * Taxonomy関連
  */
