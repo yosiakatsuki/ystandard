@@ -69,7 +69,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 		 */
 		$this->default_instance = array_merge(
 			$this->default_instance,
-			\ystandard\Author::SHORTCODE_ATTR
+			ystandard\Author::SHORTCODE_ATTR
 		);
 	}
 
@@ -85,7 +85,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 			$widget_title = $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
 
-		$shortcode = \ystandard\Utility::do_shortcode(
+		$shortcode = ystandard\Utility::do_shortcode(
 			'ys_author',
 			$instance,
 			null,

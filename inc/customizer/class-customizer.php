@@ -17,10 +17,11 @@ class Customizer {
 	/**
 	 * パネルリスト
 	 */
-	const PRIORITY_LIST = [
-		'ys_info_bar'      => 1000,
-		'ys_advertisement' => 1130,
-		'ys_amp'           => 1300,
+	const PANEL_PRIORITY = [
+		'ys_customizer_panel_design' => 1000,
+		'ys_info_bar'                => 1000,
+		'ys_advertisement'           => 1130,
+		'ys_amp'                     => 1300,
 	];
 
 	/**
@@ -46,8 +47,8 @@ class Customizer {
 	 */
 	public static function get_priority( $key ) {
 
-		if ( isset( self::PRIORITY_LIST[ $key ] ) ) {
-			return self::PRIORITY_LIST[ $key ];
+		if ( isset( self::PANEL_PRIORITY[ $key ] ) ) {
+			return self::PANEL_PRIORITY[ $key ];
 		}
 
 		return 1000;
@@ -75,7 +76,6 @@ class Customizer {
 		/**
 		 * [ys]デザイン
 		 */
-		$this->design();
 		$this->design_font();
 		$this->design_site_color();
 		$this->design_header();
@@ -86,7 +86,6 @@ class Customizer {
 		$this->design_archive();
 		$this->design_one_column_template();
 		$this->design_footer();
-		$this->design_copyright();
 		$this->design_color_palette();
 		$this->design_icon_font();
 		/**
@@ -462,25 +461,6 @@ class Customizer {
 	}
 
 	/**
-	 * デザイン設定
-	 */
-	private function design() {
-		/**
-		 * パネルの追加
-		 */
-		$this->_wp_customize->add_panel(
-			'ys_customizer_panel_design',
-			[
-				'title'           => '[ys]デザイン設定',
-				'priority'        => 1000,
-				'description'     => 'サイト共通部分のデザイン設定',
-				'active_callback' => [],
-			]
-		);
-
-	}
-
-	/**
 	 * デザイン -> フォント
 	 */
 	private function design_font() {
@@ -533,7 +513,7 @@ class Customizer {
 		$ys_customizer->add_color(
 			[
 				'id'      => 'ys_color_site_bg',
-				'default' => \ystandard\Color::get_site_bg_default(),
+				'default' => Color::get_site_bg_default(),
 				'label'   => 'サイト背景色',
 			]
 		);
@@ -910,36 +890,6 @@ class Customizer {
 	}
 
 	/**
-	 * デザイン -> Copyright
-	 */
-	private function design_copyright() {
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_design_copyright',
-				'title'       => 'Copyright設定',
-				'description' => 'Copyrightの設定',
-				'panel'       => 'ys_customizer_panel_design',
-			]
-		);
-		/**
-		 * 発行年数
-		 */
-		$ys_customizer->add_number(
-			[
-				'id'          => 'ys_copyright_year',
-				'default'     => date_i18n( 'Y' ),
-				'label'       => '発行年(Copyright)',
-				'section'     => 'ys_design_copyright',
-				'input_attrs' => [
-					'min' => 1900,
-					'max' => 2100,
-				],
-			]
-		);
-	}
-
-	/**
 	 * デザイン -> ブロックエディター
 	 */
 	private function design_color_palette() {
@@ -958,7 +908,7 @@ class Customizer {
 		/**
 		 * カラーパレット設定の追加
 		 */
-		$list = \ystandard\Color::get_color_palette();
+		$list = Color::get_color_palette();
 		foreach ( $list as $item ) {
 			if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
 				$dscr    = '';

@@ -169,7 +169,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 			/**
 			 * クエリの作成（キャッシュ有効）
 			 */
-			return Cache::get_query(
+			return ystandard\Cache::get_query(
 				$this->get_param( 'cache_key' ),
 				$query_args,
 				$this->get_param( 'cache_expiration' )
@@ -549,7 +549,7 @@ class YS_Shortcode_Get_Posts extends YS_Shortcode_Base {
 		if ( $this->get_param( 'show_excerpt', 'bool' ) ) {
 			$excerpt = sprintf(
 				apply_filters( 'ys_posts_excerpt_wrap', '<span class="ys-posts__excerpt text-sub has-x-small-font-size">%s</span>' ),
-				\ystandard\Content::get_custom_excerpt( ' …', $this->get_param( 'excerpt_length', 'int' ) )
+				ystandard\Content::get_custom_excerpt( ' …', $this->get_param( 'excerpt_length', 'int' ) )
 			);
 		}
 

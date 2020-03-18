@@ -69,7 +69,7 @@ class YS_Widget_Advertisement extends WP_Widget {
 		 */
 		$this->default_instance = array_merge(
 			$this->default_instance,
-			\ystandard\Advertisement::SHORTCODE_ATTR
+			ystandard\Advertisement::SHORTCODE_ATTR
 		);
 	}
 
@@ -96,7 +96,7 @@ class YS_Widget_Advertisement extends WP_Widget {
 		/**
 		 * ショートコード実行
 		 */
-		$shortcode = \ystandard\Utility::do_shortcode(
+		$shortcode = ystandard\Utility::do_shortcode(
 			'ys_ad_block',
 			$instance,
 			$content,

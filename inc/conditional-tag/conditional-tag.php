@@ -15,7 +15,7 @@ require_once __DIR__ . '/class-conditional-tag.php';
  * @return bool
  */
 function ys_is_top_page() {
-	return \ystandard\Template::is_top_page();
+	return ystandard\Template::is_top_page();
 }
 
 /**
@@ -112,7 +112,7 @@ function ys_is_edge() {
  * @return bool
  */
 function ys_is_amp() {
-	return \ystandard\AMP::is_amp();
+	return ystandard\AMP::is_amp();
 }
 
 /**
@@ -121,7 +121,7 @@ function ys_is_amp() {
  * @return bool
  */
 function ys_is_one_column() {
-	return \ystandard\Template::is_one_column();
+	return ystandard\Template::is_one_column();
 }
 
 /**
@@ -130,7 +130,7 @@ function ys_is_one_column() {
  * @return bool
  */
 function ys_is_full_width() {
-	return \ystandard\Template::is_full_width();
+	return ystandard\Template::is_full_width();
 }
 
 /**
@@ -138,7 +138,7 @@ function ys_is_full_width() {
  */
 function ys_is_no_title_template() {
 
-	return \ystandard\Template::is_no_title_template();
+	return ystandard\Template::is_no_title_template();
 }
 
 /**
@@ -332,7 +332,7 @@ function ys_is_hide_post_header() {
  * @return bool
  */
 function ys_is_active_post_thumbnail( $post_id = null ) {
-	return \ystandard\Content::is_active_post_thumbnail( $post_id );
+	return ystandard\Content::is_active_post_thumbnail( $post_id );
 }
 
 
@@ -621,7 +621,7 @@ function ys_is_has_header_media_full() {
  * サイト 背景色・背景画像有り判断
  */
 function ys_has_site_background() {
-	if ( \ystandard\Color::get_site_bg_default() !== \ystandard\Color::get_site_bg() ) {
+	if ( ystandard\Color::get_site_bg_default() !== ystandard\Color::get_site_bg() ) {
 		return true;
 	}
 	if ( get_background_image() ) {

@@ -1,17 +1,11 @@
 <?php
 /**
- * テンプレートのロード等関連の関数
+ * テンプレートで使用する関数
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
-
-/**
- * Require
- */
-require_once __DIR__ . '/class-template.php';
-
 
 /**
  * アーカイブ明細クラス作成
@@ -66,7 +60,7 @@ function ys_get_front_page_template() {
  * @return string
  */
 function ys_get_post_meta( $key, $post_id = 0 ) {
-	return \ystandard\Post::get_post_meta( $key, $post_id );
+	return ystandard\Content::get_post_meta( $key, $post_id );
 }
 
 
@@ -74,7 +68,7 @@ function ys_get_post_meta( $key, $post_id = 0 ) {
  * インフィード広告の表示
  */
 function ys_the_ad_infeed() {
-	echo \ystandard\Advertisement::get_infeed();
+	echo ystandard\Advertisement::get_infeed();
 }
 
 /**
@@ -85,5 +79,55 @@ function ys_the_ad_infeed() {
  * @param array  $args テンプレートに渡す変数.
  */
 function ys_get_template_part( $slug, $name = null, $args = [] ) {
-	\ystandard\Template::get_template_part( $slug, $name, $args );
+	ystandard\Template::get_template_part( $slug, $name, $args );
+}
+
+
+/**
+ * フッターコピーライト表示取得
+ *
+ * @return string
+ */
+function ys_get_footer_site_info() {
+	$copy      = ystandard\Copyright::get_copyright();
+	$poweredby = ystandard\Copyright::get_poweredby();
+
+	return $copy . $poweredby;
+}
+
+/**
+ * フッターコピーライト表示
+ *
+ * @return void
+ */
+function ys_the_footer_site_info() {
+	echo ys_get_footer_site_info();
+}
+
+/**
+ * Copyright
+ *
+ * @return string
+ */
+function ys_get_copyright() {
+	return ystandard\Copyright::get_copyright();
+}
+
+/**
+ * Copyrightのデフォルト文字列を作成
+ *
+ * @return string
+ */
+function ys_get_copyright_default() {
+	return ystandard\Copyright::get_default();
+}
+
+
+/**
+ * Powered By
+ *
+ * @return string
+ */
+function ys_get_poweredby() {
+	return ystandard\Copyright::get_poweredby();
 }

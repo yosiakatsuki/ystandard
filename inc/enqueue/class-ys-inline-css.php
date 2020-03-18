@@ -86,7 +86,7 @@ class YS_Inline_Css {
 			'serif'     => 'serif',
 		);
 
-		$option = \ystandard\Option::get_option( 'ys_design_font_type', 'yugo' );
+		$option = ystandard\Option::get_option( 'ys_design_font_type', 'yugo' );
 		if ( isset( $font[ $option ] ) ) {
 			$font_family = $font[ $option ];
 		}
@@ -112,7 +112,7 @@ class YS_Inline_Css {
 	 */
 	public static function get_editor_font_size_css( $prefix = '', $default = 16 ) {
 		$default = apply_filters( 'ys_default_editor_font_size', $default );
-		$size    = \ystandard\Font::get_editor_font_sizes();
+		$size    = ystandard\Font::get_editor_font_sizes();
 		$css     = '';
 		$prefix  = empty( $prefix ) ? '' : $prefix . ' ';
 		foreach ( $size as $value ) {
@@ -135,7 +135,7 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public static function get_editor_color_palette( $prefix = '' ) {
-		$color  = \ystandard\Color::get_color_palette();
+		$color  = ystandard\Color::get_color_palette();
 		$css    = '';
 		$prefix = empty( $prefix ) ? '' : $prefix . ' ';
 		foreach ( $color as $value ) {
@@ -170,7 +170,7 @@ class YS_Inline_Css {
 		if ( ys_get_option_by_bool( 'ys_desabled_color_customizeser', false ) ) {
 			return '';
 		}
-		$html_bg = \ystandard\Color::get_site_bg();
+		$html_bg = ystandard\Color::get_site_bg();
 		$styles  = array();
 		/**
 		 * サイト背景色
