@@ -48,6 +48,9 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 v3.x.x
 
+### v3.14.1
+- [修正] user-custom-head,user-custom-head-amp の読み込み不具合対応
+
 ### v3.14.0
 - [追加] WordPerss 5.4向けの対応
 - [修正] 独自AMPページ作成機能を非推奨に変更
