@@ -42,77 +42,6 @@ function ys_get_sns_icons() {
 	return ystandard\SNS::get_sns_icons();
 }
 
-/**
- * Font Awesome CSS
- *
- * @return string
- */
-function ys_get_font_awesome_css_url() {
-	return ys_get_theme_file_uri( '/library/fontawesome/css/all.css' );
-}
-
-/**
- * Font Awesome CDN - CSS
- *
- * @return string
- */
-function ys_get_font_awesome_cdn_css_url() {
-	$version = apply_filters(
-		'ys_get_font_awesome_css_version',
-		ystandard\Utility::get_font_awesome_version()
-	);
-
-	return apply_filters(
-		'ys_get_font_awesome_cdn_css_url',
-		'https://use.fontawesome.com/releases/' . $version . '/css/all.css',
-		$version
-	);
-}
-
-/**
- * Font Awesome - SVG 軽量版
- *
- * @return string
- */
-function ys_get_font_awesome_svg_light_url() {
-
-	$file_url = apply_filters(
-		'ys_get_font_awesome_svg_light_url',
-		ys_get_theme_file_uri( '/js/font-awesome-ystd.js' )
-	);
-
-	return $file_url;
-}
-
-/**
- * Font Awesome - SVG
- *
- * @return string
- */
-function ys_get_font_awesome_svg_url() {
-
-	$file_url = ys_get_theme_file_uri( '/library/fontawesome/js/all.js' );
-
-	return $file_url;
-}
-
-/**
- * Font Awesome CDN - SVG
- *
- * @return string
- */
-function ys_get_font_awesome_cdn_svg_url() {
-	$version = apply_filters(
-		'ys_get_font_awesome_cdn_svg_version',
-		ystandard\Utility::get_font_awesome_version()
-	);
-
-	return apply_filters(
-		'ys_get_font_awesome_cdn_svg_url',
-		'https://use.fontawesome.com/releases/' . $version . '/js/all.js',
-		$version
-	);
-}
 
 /**
  * 配列を区切り文字で文字列にして表示
@@ -136,28 +65,6 @@ function ys_get_array_implode( $arg, $separator = ', ' ) {
 	return implode( $separator, $arg );
 }
 
-
-/**
- * テーマバージョン取得
- *
- * @param boolean $template 親テーマ情報かどうか.
- *
- * @return string
- */
-function ys_get_theme_version( $template = false ) {
-	/**
-	 * 子テーマ情報
-	 */
-	$theme = wp_get_theme();
-	if ( $template && get_template() !== get_stylesheet() ) {
-		/**
-		 * 親テーマ情報
-		 */
-		$theme = wp_get_theme( get_template() );
-	}
-
-	return $theme->get( 'Version' );
-}
 
 
 /**
@@ -222,24 +129,6 @@ function ys_init_filesystem() {
 	}
 
 	return WP_Filesystem();
-}
-
-/**
- * テーマ内のファイルURLを取得する
- *
- * @param string $file ファイルパス.
- *
- * @return string
- */
-function ys_get_theme_file_uri( $file ) {
-	/**
-	 * 4.7以下の場合 親テーマのファイルを返す
-	 */
-	if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
-		return get_template_directory_uri() . $file;
-	}
-
-	return get_theme_file_uri( $file );
 }
 
 /**

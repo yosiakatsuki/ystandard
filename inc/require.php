@@ -55,7 +55,7 @@ require_once get_template_directory() . '/inc/init/init.php';
 /**
  * Enqueue
  */
-require_once get_template_directory() . '/inc/enqueue/enqueue.php';
+require_once __DIR__ . '/enqueue/enqueue.php';
 /**
  * テーマカスタマイザー
  */

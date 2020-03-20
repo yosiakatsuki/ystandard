@@ -26,23 +26,36 @@ class Utility {
 		}
 		echo '<script type="application/ld+json">' . json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . PHP_EOL;
 	}
-
 	/**
-	 * Twitter用JavaScript URL取得
+	 * テーマバージョン取得
+	 *
+	 * @param boolean $parent 親テーマ情報かどうか.
 	 *
 	 * @return string
 	 */
-	public static function get_twitter_widgets_js() {
-		return '//platform.twitter.com/widgets.js';
+	public static function get_theme_version( $parent = false ) {
+		/**
+		 * 子テーマ情報
+		 */
+		$theme = wp_get_theme();
+		if ( $parent && get_template() !== get_stylesheet() ) {
+			/**
+			 * 親テーマ情報
+			 */
+			$theme = wp_get_theme( get_template() );
+		}
+
+		return $theme->get( 'Version' );
 	}
 
 	/**
-	 * Twitter用JavaScript URL取得
+	 * テーマ本体のバージョン取得
 	 *
 	 * @return string
 	 */
-	public static function get_facebook_sdk_js() {
-		return '//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v5.0';
+	public static function get_ystandard_version() {
+
+		return self::get_theme_version( true );
 	}
 
 	/**
@@ -63,15 +76,6 @@ class Utility {
 		}
 
 		return $content;
-	}
-
-	/**
-	 * Font Awesomeのバージョン取得
-	 *
-	 * @return string
-	 */
-	public static function get_font_awesome_version() {
-		return 'v5.12.0';
 	}
 
 	/**

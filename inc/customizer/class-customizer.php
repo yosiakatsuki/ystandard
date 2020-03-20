@@ -76,7 +76,6 @@ class Customizer {
 		/**
 		 * [ys]デザイン
 		 */
-		$this->design_font();
 		$this->design_site_color();
 		$this->design_header();
 		$this->design_breadcrumb();
@@ -456,40 +455,6 @@ class Customizer {
 				'id'      => 'ys_info_bar_text_bold',
 				'default' => 1,
 				'label'   => 'お知らせテキストを太字にする',
-			]
-		);
-	}
-
-	/**
-	 * デザイン -> フォント
-	 */
-	private function design_font() {
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		/**
-		 * セクション追加
-		 */
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_font_design',
-				'title'       => 'フォント設定',
-				'description' => 'フォントの設定',
-				'panel'       => 'ys_customizer_panel_design',
-			]
-		);
-		/**
-		 * フォント種類
-		 */
-		$ys_customizer->add_radio(
-			[
-				'id'          => 'ys_design_font_type',
-				'default'     => 'yugo',
-				'label'       => '表示フォントタイプ',
-				'description' => '文字のフォントを変更できます',
-				'choices'     => [
-					'meihirago' => 'メイリオ・ヒラギノ',
-					'yugo'      => '游ゴシック',
-					'serif'     => '明朝体',
-				],
 			]
 		);
 	}
