@@ -1,45 +1,48 @@
 /**
  * base
  */
+:root {
+  --font-family: $font__body;
+}
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 
-	&::before,
-	&::after {
-		box-sizing: border-box;
-	}
+  &::before,
+  &::after {
+	box-sizing: border-box;
+  }
 }
 
 html {
-	-ms-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 //mqpacker対策
 @include media-breakpoint(md) {
-	html {
-		zoom: 1;
-	}
+  html {
+	zoom: 1;
+  }
 }
 
 //mqpacker対策
 @include media-breakpoint(lg) {
-	html {
-		zoom: 1;
-	}
+  html {
+	zoom: 1;
+  }
 }
 
 body {
-	background-color: $color__bg-body;
-	color: $color__text-main;
-	font-family: $font__body;
-	line-height: $font__line-height;
-	letter-spacing: $font__spacing;
-	word-wrap: break-word;
+  background-color: $color__bg-body;
+  color: $color__text-main;
+  font-family: var(--font-family);
+  line-height: $font__line-height;
+  letter-spacing: $font__spacing;
+  word-wrap: break-word;
 
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 /**
@@ -51,37 +54,37 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 3em 0 0.25em;
-	padding: 0;
-	line-height: $font__line-height_headline;
-	letter-spacing: $font__spacing_headline;
+  margin: 3em 0 0.25em;
+  padding: 0;
+  line-height: $font__line-height_headline;
+  letter-spacing: $font__spacing_headline;
 }
 
 $selector: "";
 @for $i from 1 through 5 {
-	$selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
+  $selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
 }
 
 #{$selector} {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 h1,
 h2 {
-	font-size: get_font_size("x-large");
+  font-size: get_font_size("x-large");
 }
 
 h3 {
-	font-size: get_font_size("large");
+  font-size: get_font_size("large");
 }
 
 h4 {
-	font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 h5,
 h6 {
-	font-size: 1.1em;
+  font-size: 1.1em;
 }
 
 /**
@@ -89,21 +92,21 @@ h6 {
  */
 img,
 amp-img {
-	max-width: 100%;
-	height: auto;
-	vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 
 /**
  * link
  */
 a {
-	color: $color__link;
-	transition: all 0.3s;
+  color: $color__link;
+  transition: all 0.3s;
 
-	&:hover {
-		color: $color__link-hover;
-	}
+  &:hover {
+	color: $color__link-hover;
+  }
 }
 
 /**
@@ -111,155 +114,155 @@ a {
  */
 ul,
 ol {
-	padding-left: 1.7em;
+  padding-left: 1.7em;
 
-	ul,
-	ol {
-		margin: 0;
-	}
+  ul,
+  ol {
+	margin: 0;
+  }
 }
 
 dt {
-	margin-top: 0.5rem;
-	font-weight: $font__weight_bold;
+  margin-top: 0.5rem;
+  font-weight: $font__weight_bold;
 }
 
 dd {
-	margin-left: 1rem;
+  margin-left: 1rem;
 }
 
 /**
  * blockquote
  */
 cite {
-	font-style: italic;
+  font-style: italic;
 }
 
 blockquote {
-	position: relative;
-	padding: 1.5rem 1rem 1.5rem 2.5rem;
-	background-color: rgba($color__bg-gray-light, 0.5);
-	border-left: 1px solid $color__border-gray;
-	font-size: 0.95em;
+  position: relative;
+  padding: 1.5rem 1rem 1.5rem 2.5rem;
+  background-color: rgba($color__bg-gray-light, 0.5);
+  border-left: 1px solid $color__border-gray;
+  font-size: 0.95em;
+
+  &:before {
+	content: "“";
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	font-family: sans-serif;
+	font-size: 4rem;
+	line-height: 1;
+	opacity: 0.08;
+  }
+
+  a {
+	color: inherit;
+  }
+
+  p {
+	margin-top: 0.5em;
+  }
+
+  cite {
+	display: block;
+	margin-top: 1rem;
+	color: $color__text-light;
+	font-size: 0.9em;
 
 	&:before {
-		content: "“";
-		position: absolute;
-		top: 0.5rem;
-		left: 0.5rem;
-		font-family: sans-serif;
-		font-size: 4rem;
-		line-height: 1;
-		opacity: 0.08;
+	  content: "-";
+	  margin-right: 0.5rem;
 	}
+  }
 
-	a {
-		color: inherit;
-	}
+  & > *:first-child {
+	margin-top: 0;
+  }
 
-	p {
-		margin-top: 0.5em;
-	}
-
-	cite {
-		display: block;
-		margin-top: 1rem;
-		color: $color__text-light;
-		font-size: 0.9em;
-
-		&:before {
-			content: "-";
-			margin-right: 0.5rem;
-		}
-	}
-
-	& > *:first-child {
-		margin-top: 0;
-	}
-
-	& > *:last-child {
-		margin-bottom: 0;
-	}
+  & > *:last-child {
+	margin-bottom: 0;
+  }
 }
 
 /**
  * code
  */
 code {
-	padding: 0 0.2em;
-	color: $color__text-light;
-	font-family: $font__code;
-	font-size: 0.9em;
+  padding: 0 0.2em;
+  color: $color__text-light;
+  font-family: $font__code;
+  font-size: 0.9em;
 }
 
 /**
  * pre
  */
 pre {
-	padding: 1rem;
-	background-color: $color__bg-gray-light;
-	line-height: 1.4;
-	overflow: auto;
+  padding: 1rem;
+  background-color: $color__bg-gray-light;
+  line-height: 1.4;
+  overflow: auto;
 
-	code {
-		padding: 0;
-		color: inherit;
-		line-height: inherit;
-		white-space: pre;
-		word-wrap: normal;
-	}
+  code {
+	padding: 0;
+	color: inherit;
+	line-height: inherit;
+	white-space: pre;
+	word-wrap: normal;
+  }
 }
 
 /**
  * table
  */
 table {
-	width: 100%;
-	border-top: 1px solid $color__border-gray;
-	word-break: break-word;
-	border-spacing: 0;
-	border-collapse: collapse;
+  width: 100%;
+  border-top: 1px solid $color__border-gray;
+  word-break: break-word;
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 tr {
-	border-left: 1px solid $color__border-gray;
+  border-left: 1px solid $color__border-gray;
 }
 
 td,
 th {
-	padding: 0.5rem 1rem;
-	border-right: 1px solid $color__border-gray;
-	border-bottom: 1px solid $color__border-gray;
+  padding: 0.5rem 1rem;
+  border-right: 1px solid $color__border-gray;
+  border-bottom: 1px solid $color__border-gray;
 }
 
 th {
-	background-color: $color__bg-gray-light;
-	font-weight: normal;
-	text-align: left;
+  background-color: $color__bg-gray-light;
+  font-weight: normal;
+  text-align: left;
 }
 
 /**
  * hr
  */
 hr {
-	margin: 1.5em auto;
-	border: 0.05rem solid $color__border-gray-light;
-	clear: both;
+  margin: 1.5em auto;
+  border: 0.05rem solid $color__border-gray-light;
+  clear: both;
 }
 
 iframe,
 video {
-	max-width: 100%;
-	border: 0;
+  max-width: 100%;
+  border: 0;
 }
 
 audio {
-	width: 100%;
-	min-width: 300px;
+  width: 100%;
+  min-width: 300px;
 }
 
 
 strong,
 b {
-	font-weight: $font__weight_bold;
+  font-weight: $font__weight_bold;
 }

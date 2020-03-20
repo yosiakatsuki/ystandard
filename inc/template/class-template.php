@@ -183,6 +183,24 @@ class Template {
 		}
 	}
 
+	/**
+	 * テーマ内のファイルURLを取得する
+	 *
+	 * @param string $file テーマディレクトリからのファイルパス.
+	 *
+	 * @return string
+	 */
+	public static function get_theme_file_uri( $file ) {
+		/**
+		 * 4.7以下の場合 親テーマのファイルを返す
+		 */
+		if ( version_compare( get_bloginfo( 'version' ), '4.7-alpha', '<' ) ) {
+			return get_template_directory_uri() . $file;
+		}
+
+		return get_theme_file_uri( $file );
+	}
+
 
 	/**
 	 * RSSフィードにアイキャッチ画像を表示
