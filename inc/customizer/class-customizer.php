@@ -85,7 +85,6 @@ class Customizer {
 		$this->design_archive();
 		$this->design_one_column_template();
 		$this->design_footer();
-		$this->design_color_palette();
 		$this->design_icon_font();
 		/**
 		 * SNS設定
@@ -854,57 +853,6 @@ class Customizer {
 		);
 	}
 
-	/**
-	 * デザイン -> ブロックエディター
-	 */
-	private function design_color_palette() {
-		/**
-		 * カラーパレット
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_color_palette',
-				'title'       => 'カラーパレット（ブロックエディター）',
-				'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。',
-				'panel'       => 'ys_customizer_panel_design',
-			]
-		);
-		/**
-		 * カラーパレット設定の追加
-		 */
-		$list = Color::get_color_palette();
-		foreach ( $list as $item ) {
-			if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
-				$dscr    = '';
-				$default = '#ffffff';
-				/**
-				 * 説明文
-				 */
-				if ( isset( $item['description'] ) ) {
-					$dscr = $item['description'];
-				}
-				/**
-				 * 初期値
-				 */
-				if ( isset( $item['default'] ) ) {
-					$default = $item['default'];
-				}
-				/**
-				 * 設定追加
-				 */
-				$ys_customizer->add_color(
-					[
-						'id'          => 'ys-color-palette-' . $item['slug'],
-						'default'     => $default,
-						'label'       => $item['name'],
-						'description' => $dscr,
-						'transport'   => 'postMessage',
-					]
-				);
-			}
-		}
-	}
 
 	/**
 	 * デザイン -> アイコンフォント設定

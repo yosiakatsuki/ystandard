@@ -16,21 +16,17 @@ class YS_Inline_Css {
 	 *
 	 * @var array
 	 */
-	private $breakpoints = array(
+	private $breakpoints = [
 		'md' => 600,
 		'lg' => 1025,
-	);
+	];
 
 	/**
 	 * インラインCSSの取得
 	 */
 	public function get_inline_css() {
 		$ys_scripts = ys_scripts();
-		$styles     = array();
-		/**
-		 * フォント
-		 */
-		$styles[] = $this->get_font_css();
+		$styles     = [];
 		/**
 		 * サイト背景色
 		 */
@@ -71,64 +67,6 @@ class YS_Inline_Css {
 
 
 
-	/**
-	 * ブロックエディターフォントサイズ指定CSS
-	 *
-	 * @param string $prefix  プレフィックス.
-	 * @param int    $default デフォルトフォントサイズ.
-	 *
-	 * @return string
-	 */
-	public static function get_editor_font_size_css( $prefix = '', $default = 16 ) {
-		$default = apply_filters( 'ys_default_editor_font_size', $default );
-		$size    = ystandard\Font::get_editor_font_sizes();
-		$css     = '';
-		$prefix  = empty( $prefix ) ? '' : $prefix . ' ';
-		foreach ( $size as $value ) {
-			$fz   = ( $value['size'] / $default );
-			$slug = $value['slug'];
-			/**
-			 * CSS作成
-			 */
-			$css .= $prefix . '.has-' . $slug . '-font-size{font-size:' . $fz . 'em;}';
-		}
-
-		return $css;
-	}
-
-	/**
-	 * ブロックエディター色設定
-	 *
-	 * @param string $prefix プレフィックス.
-	 *
-	 * @return string
-	 */
-	public static function get_editor_color_palette( $prefix = '' ) {
-		$color  = ystandard\Color::get_color_palette();
-		$css    = '';
-		$prefix = empty( $prefix ) ? '' : $prefix . ' ';
-		foreach ( $color as $value ) {
-			/**
-			 * Background-color
-			 */
-			$css .= $prefix . '.has-' . $value['slug'] . '-background-color,
-			.has-background.has-' . $value['slug'] . '-background-color{
-				background-color:' . $value['color'] . ';
-			}';
-			/**
-			 * Text Color
-			 */
-			$css .= $prefix . '.has-' . $value['slug'] . '-color,
-			.has-text-color.has-' . $value['slug'] . '-color,
-			.has-inline-color.has-' . $value['slug'] . '-color,
-			.has-' . $value['slug'] . '-color:hover,
-			.has-text-color.has-' . $value['slug'] . '-color:hover{
-				color:' . $value['color'] . ';
-			}';
-		}
-
-		return $css;
-	}
 
 	/**
 	 * サイト全体CSS
@@ -140,7 +78,7 @@ class YS_Inline_Css {
 			return '';
 		}
 		$html_bg = ystandard\Color::get_site_bg();
-		$styles  = array();
+		$styles  = [];
 		/**
 		 * サイト背景色
 		 */
@@ -267,7 +205,7 @@ class YS_Inline_Css {
 	 */
 	public function get_header_logo_css() {
 
-		$styles = array();
+		$styles = [];
 
 		if ( 0 < ys_get_option_by_int( 'ys_logo_width_sp', 0 ) ) {
 			$styles[] = sprintf(
@@ -294,7 +232,7 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public function get_header_css() {
-		$styles      = array();
+		$styles      = [];
 		$header_bg   = ys_get_option( 'ys_color_header_bg', '#ffffff' );
 		$header_font = ys_get_option( 'ys_color_header_font', '#222222' );
 		$header_dscr = ys_get_option( 'ys_color_header_dscr_font', '#757575' );
@@ -435,7 +373,7 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public function get_nav_css() {
-		$styles               = array();
+		$styles               = [];
 		$header_font          = ys_get_option( 'ys_color_header_font', '#222222' );
 		$mobile_nav_bg        = ys_get_option( 'ys_color_nav_bg_sp', '#000000' );
 		$mobile_nav_font      = ys_get_option( 'ys_color_nav_font_sp', '#ffffff' );
@@ -493,7 +431,7 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public function get_footer_css() {
-		$styles      = array();
+		$styles      = [];
 		$footer_bg   = ys_get_option( 'ys_color_footer_bg', '#222222' );
 		$footer_font = ys_get_option( 'ys_color_footer_font', '#ffffff' );
 		/**
@@ -532,7 +470,7 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public function get_custom_header_css() {
-		$css = array();
+		$css = [];
 		/**
 		 * ヘッダー重ねるタイプ
 		 */
@@ -626,7 +564,7 @@ class YS_Inline_Css {
 	 * @return string
 	 */
 	public function get_customize_preview() {
-		$css = array();
+		$css = [];
 
 		if ( ys_get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
 			$css[] = $this->add_media_query(
@@ -657,24 +595,22 @@ class YS_Inline_Css {
 	 */
 	public function add_media_query( $css, $breakpoint, $type = 'min' ) {
 
+		if ( ! in_array( $type, [ 'min', 'max', 'between' ], true ) ) {
+			return $css;
+		}
+
 		/**
 		 * 切り替え位置取得
 		 */
 		if ( isset( $this->breakpoints[ $breakpoint ] ) ) {
 			$breakpoint = $this->breakpoints[ $breakpoint ];
 			if ( 'max' === $type ) {
-				$breakpoint = $breakpoint - 0.1;
+				$breakpoint = $breakpoint - 1;
 			}
-		}
-		/**
-		 * 以上・以下判断
-		 */
-		if ( 'min' !== $type && 'max' !== $type ) {
-			return $css;
 		}
 
 		return sprintf(
-			'@media screen and (%s-width: %spx) {%s}',
+			'@media (%s-width: %spx) {%s}',
 			$type,
 			$breakpoint,
 			$css

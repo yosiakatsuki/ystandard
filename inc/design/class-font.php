@@ -22,6 +22,7 @@ class Font {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'ys_css_vars', [ $this, 'add_css_vars' ] );
+		add_filter( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'add_font_sizes_css' ] );
 	}
 
 	/**
@@ -94,6 +95,18 @@ class Font {
 			$css_vars,
 			Css_Vars::get_css_var( 'font-family', $font_family )
 		);
+	}
+
+	/**
+	 * フォントサイズ選択肢用CSS追加
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public function add_font_sizes_css( $css ) {
+
+		return $css . self::get_editor_font_size_css();
 	}
 
 	/**
@@ -174,6 +187,25 @@ class Font {
 
 		return apply_filters( 'ys_editor_font_sizes', $size );
 	}
+
+	/**
+	 * ブロックエディターフォントサイズ指定CSS
+	 *
+	 * @param string $prefix プレフィックス.
+	 *
+	 * @return string
+	 */
+	public static function get_editor_font_size_css( $prefix = '' ) {
+		$size   = self::get_editor_font_sizes();
+		$css    = '';
+		$prefix = empty( $prefix ) ? '' : $prefix . ' ';
+		foreach ( $size as $value ) {
+			$css .= "${prefix}.has-{$value['slug']}-font-size{font-size:{$value['size']}px;}";
+		}
+
+		return $css;
+	}
+
 }
 
 new Font();

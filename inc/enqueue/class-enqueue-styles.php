@@ -16,7 +16,15 @@ namespace ystandard;
  */
 class Enqueue_Styles {
 
+	/**
+	 * Main CSS
+	 */
 	const CSS_HANDLE = 'ystandard';
+
+	/**
+	 * インラインCSSのフック名
+	 */
+	const INLINE_CSS_HOOK = 'ys_get_inline_css';
 
 	/**
 	 * Enqueue_Styles constructor.
@@ -80,7 +88,7 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	private function get_inline_css() {
-		$inline   = self::minify( apply_filters( 'ys_get_inline_css', '' ) );
+		$inline   = self::minify( apply_filters( self::INLINE_CSS_HOOK, '' ) );
 		$css_vars = self::get_css_vars_selector();
 
 		return $inline . $css_vars;
