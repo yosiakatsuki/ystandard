@@ -34,46 +34,6 @@ class YS_Scripts_Config {
 		 */
 		$styles = array(
 			array(
-				'handle'  => 'ys-customizer',
-				'src'     => $inline_css->get_inline_css(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'inline', // enqueue or inline.
-				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
-			),
-			array(
-				'handle'  => 'ys-editor-font-size',
-				'src'     => YS_Inline_Css::get_editor_font_size_css(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'inline', // enqueue or inline.
-				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
-			),
-			array(
-				'handle'  => 'ys-editor-color-palette',
-				'src'     => YS_Inline_Css::get_editor_color_palette(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => true,
-				'type'    => 'inline', // enqueue or inline.
-				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
-			),
-			array(
-				'handle'  => 'ys-custom-css',
-				'src'     => wp_get_custom_css(),
-				'deps'    => array(),
-				'ver'     => ys_get_theme_version( true ),
-				'media'   => 'all',
-				'enqueue' => ( ! is_customize_preview() ),
-				'type'    => 'inline', // enqueue or inline.
-				'inline'  => self::CSS_HANDLE_MAIN, // true, false, handle.
-			),
-			array(
 				'handle'  => 'adminbar-css',
 				'src'     => get_template_directory_uri() . '/css/ystandard-adminbar.css',
 				'deps'    => array(),
