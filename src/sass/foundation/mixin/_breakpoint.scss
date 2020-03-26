@@ -1,13 +1,13 @@
 @mixin media-breakpoint($name,$breakpoints: $breakpoints) {
-	$breakpoint: map-get($breakpoints, $name);
-	@if $breakpoint {
-		@media screen and (min-width: $breakpoint) {
-			@content;
-		}
-	} @else {
-		@warn "`#{$name}` is not found. "
-		+ "Please make sure it is defined in `$breakpoints-setting` map.";
+  $breakpoint: map-get($breakpoints, $name);
+  @if $breakpoint {
+	@media (min-width: $breakpoint) {
+	  @content;
 	}
+  } @else {
+	@warn "`#{$name}` is not found. "
+		+ "Please make sure it is defined in `$breakpoints-setting` map.";
+  }
 }
 
 // media break point
@@ -17,13 +17,26 @@
 //  md,lg,xl
 
 @mixin media-breakpoint-down($name,$breakpoints: $breakpoints) {
-	$breakpoint: map-get($breakpoints, $name);
-	@if $breakpoint {
-		@media screen and (max-width: ($breakpoint - 1px) ) {
-			@content;
-		}
-	} @else {
-		@warn "`#{$name}` is not found. "
-		+ "Please make sure it is defined in `$breakpoints-setting` map.";
+  $breakpoint: map-get($breakpoints, $name);
+  @if $breakpoint {
+	@media (max-width: ($breakpoint - 1px)) {
+	  @content;
 	}
+  } @else {
+	@warn "`#{$name}` is not found. "
+		+ "Please make sure it is defined in `$breakpoints-setting` map.";
+  }
+}
+
+@mixin media-breakpoint-between($up,$down,$breakpoints: $breakpoints) {
+  $breakpoint_min: map-get($breakpoints, $up);
+  $breakpoint_max: map-get($breakpoints, $down);
+  @if $breakpoint_min and $breakpoint_max {
+	@media (min-width: $breakpoint_min) AND (max-width: ($breakpoint_max - 1px)) {
+	  @content;
+	}
+  } @else {
+	@warn "`#{$up} or #{$down}` is not found. "
+		+ "Please make sure it is defined in `$breakpoints-setting` map.";
+  }
 }

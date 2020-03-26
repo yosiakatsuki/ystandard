@@ -82,43 +82,6 @@ function ys_widget_init() {
 			'after_title'   => '</h2>',
 		)
 	);
-
-	/**
-	 * フッター
-	 */
-	register_sidebar(
-		array(
-			'name'          => 'フッター左',
-			'id'            => 'footer-left',
-			'description'   => 'フッターエリア左側',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-	register_sidebar(
-		array(
-			'name'          => 'フッター中央',
-			'id'            => 'footer-center',
-			'description'   => 'フッターエリア中央',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-	register_sidebar(
-		array(
-			'name'          => 'フッター右',
-			'id'            => 'footer-right',
-			'description'   => 'フッターエリア右側',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
 }
 
 add_action( 'widgets_init', 'ys_widget_init' );
@@ -134,14 +97,6 @@ function ys_widgets_register_widget() {
 	register_widget( 'YS_Widget_Post_Ranking' );
 	register_widget( 'YS_Widget_Recent_Posts' );
 	register_widget( 'YS_Widget_Parts' );
-	/**
-	 * 以下はアドオン購入で使えるようになる予定です。
-	 * 子テーマカスタマイズで有効化していただいても大丈夫ですが、
-	 * アドオン販売するまではカスタマイズ記事などにはしてほしくないです。
-	 * ご協力お願いします。
-	 * ・YS_Widget_Share_Button
-	 * ・YS_Widget_Post_Taxonomy
-	 */
 }
 
 add_action( 'widgets_init', 'ys_widgets_register_widget' );

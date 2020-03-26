@@ -12,19 +12,18 @@
 	<?php do_action( 'ys_before_site_footer' ); ?>
 	<footer id="footer" class="footer site-footer">
 		<?php do_action( 'ys_site_footer_prepend' ); ?>
-		<div class="container">
+		<?php
+		// フッターサブ.
+		ys_get_template_part( 'template-parts/footer/footer-sub' );
+		?>
+		<?php do_action( 'ys_before_footer_main' ); ?>
+		<div class="footer-main">
 			<?php
-			/**
-			 * ウィジェット
-			 */
+			// ウィジェット.
 			ys_get_template_part( 'template-parts/footer/footer-widget' );
-			/**
-			 * フッターナビゲーション
-			 */
+			// フッターナビゲーション.
 			ys_get_template_part( 'template-parts/footer/footer-nav' );
-			/**
-			 * Copyright
-			 */
+			// Copyright.
 			ys_get_template_part( 'template-parts/footer/footer-copy' );
 			?>
 		</div>

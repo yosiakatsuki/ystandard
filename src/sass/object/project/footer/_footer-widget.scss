@@ -1,14 +1,29 @@
-
-//
-// フッターウィジェット用レイアウト調整
-//
 .footer-widget {
-	th {
-		color: $color__text-main;
+  th {
+	color: var(--font-color);
+  }
+
+  .widget_calendar {
+	a {
+	  text-decoration: underline;
 	}
-	.widget_calendar {
-		a {
-			text-decoration: underline;
-		}
+  }
+}
+
+.footer-widget__container {
+  @include child_margin();
+
+  @include media-breakpoint(md) {
+	display: flex;
+	margin-right: -1em;
+	margin-left: -1em;
+
+	> * {
+	  width: 100%;
+	  margin-top: 0;
+	  padding-right: 1em;
+	  padding-left: 1em;
 	}
+  }
+
 }

@@ -107,21 +107,21 @@ class Copyright {
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
 	 */
 	public function customize_register( $wp_customize ) {
-		$ys_customizer = new Customize_Control( $wp_customize );
+		$customizer = new Customize_Control( $wp_customize );
 
-		$ys_customizer->add_section(
+		$customizer->add_section(
 			[
 				'section'     => 'ys_design_copyright',
-				'title'       => 'Copyright設定',
+				'title'       => 'Copyright',
 				'description' => 'Copyrightの設定',
-				'priority'    => 1000,
+				'priority'    => 110,
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
 		/**
 		 * 発行年数
 		 */
-		$ys_customizer->add_number(
+		$customizer->add_number(
 			[
 				'id'          => 'ys_copyright_year',
 				'default'     => date_i18n( 'Y' ),

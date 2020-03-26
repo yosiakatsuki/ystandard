@@ -1,13 +1,24 @@
 .site-footer {
-	padding-bottom: 1rem;
-	background-color: $color__bg-dark;
-	border-top: 1px solid transparent;
-	color: #ffffff;
-	a {
-		color: #ffffff;
-		text-decoration: none;
-	}
+  a {
+	text-decoration: none;
+  }
 }
-.footer-section {
-	margin-top: 1rem;
+
+.footer-main {
+  padding-top: 2em;
+  padding-bottom: 1em;
+  background-color: var(--footer-bg-color);
+  color: var(--footer-text-color);
+
+  > * {
+	margin-top: 1.5em;
+
+	&:first-child {
+	  margin-top: 0;
+	}
+  }
+
+  a {
+	color: var(--footer-text-color);
+  }
 }

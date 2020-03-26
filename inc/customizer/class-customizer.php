@@ -20,6 +20,8 @@ class Customizer {
 	const PANEL_PRIORITY = [
 		'ys_info_bar'           => 1000,
 		'ys_design'             => 1010,
+		'ys_sns'                => 1100,
+		'ys_seo'                => 1110,
 		'ys_performance_tuning' => 1120,
 		'ys_advertisement'      => 1130,
 		'ys_amp'                => 1300,
@@ -161,7 +163,6 @@ class Customizer {
 		$this->design_page();
 		$this->design_archive();
 		$this->design_one_column_template();
-		$this->design_footer();
 		$this->design_icon_font();
 		/**
 		 * SNS設定
@@ -584,71 +585,6 @@ class Customizer {
 				'choices'     => [
 					'normal' => 'ノーマル',
 					'wide'   => 'ワイド',
-				],
-			]
-		);
-	}
-
-	/**
-	 * デザイン -> フッター
-	 */
-	private function design_footer() {
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_design_footer',
-				'title'       => 'フッター設定',
-				'description' => 'フッターの設定',
-				'panel'       => 'ys_customizer_panel_design',
-			]
-		);
-		// フッター背景色.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_footer_bg',
-				'default' => '#222222',
-				'label'   => 'フッター背景色',
-			]
-		);
-		// フッター文字色.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_footer_font',
-				'default' => '#ffffff',
-				'label'   => 'フッター文字色',
-			]
-		);
-		// フッターSNS設定ラベル.
-		$ys_customizer->add_section_label(
-			'フッターSNS設定',
-			[
-				'description' => '※SNSのURLは「[ys]SNS設定」→「フッターSNSフォローリンク設定」から設定してください。',
-			]
-		);
-		// フッターSNSアイコン背景色タイプ.
-		$ys_customizer->add_radio(
-			[
-				'id'      => 'ys_color_footer_sns_bg_type',
-				'default' => 'light',
-				'label'   => 'フッターSNSアイコン背景色',
-				'choices' => [
-					'light' => 'ライト',
-					'dark'  => 'ダーク',
-				],
-			]
-		);
-
-		// フッターSNSアイコン背景色不透明度.
-		$ys_customizer->add_number(
-			[
-				'id'          => 'ys_color_footer_sns_bg_opacity',
-				'default'     => 30,
-				'label'       => 'フッターSNSアイコン背景色の不透明度',
-				'description' => '0~100の間で入力して下さい',
-				'input_attrs' => [
-					'min'  => 0,
-					'max'  => 100,
-					'size' => 20,
 				],
 			]
 		);
@@ -1132,127 +1068,12 @@ class Customizer {
 	 * SNS
 	 */
 	private function sns() {
-		$this->_wp_customize->add_panel(
-			'ys_customizer_panel_sns',
-			[
-				'title'    => '[ys]SNS設定',
-				'priority' => 1100,
-			]
-		);
+
 		/**
 		 * OGP設定
 		 */
 		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section' => 'ys_customizer_section_ogp',
-				'title'   => 'OGP設定',
-				'panel'   => 'ys_customizer_panel_sns',
-			]
-		);
 
-		/**
-		 * OGP metaタグを出力する
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'    => 'ys_ogp_enable_label',
-				'label' => 'OGP metaタグ',
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_ogp_enable',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => 'OGPのmetaタグを出力する',
-			]
-		);
-		/**
-		 * Facebook app_id
-		 */
-		$ys_customizer->add_text(
-			[
-				'id'          => 'ys_ogp_fb_app_id',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'description' => '',
-				'label'       => 'Facebook app_id',
-				'input_attrs' => [
-					'placeholder' => '000000000000000',
-					'maxlength'   => 15,
-				],
-			]
-		);
-		/**
-		 * OGPデフォルト画像
-		 */
-		$ys_customizer->add_image(
-			[
-				'id'          => 'ys_ogp_default_image',
-				'transport'   => 'postMessage',
-				'label'       => 'OGPデフォルト画像',
-				'description' => 'トップページ・アーカイブページ・投稿にアイキャッチ画像が無かった場合のデフォルト画像を指定して下さい。<br>おすすめサイズ：横1200px - 縦630px ',
-			]
-		);
-		/**
-		 * Twitter Cards
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section' => 'ys_customizer_section_twitter_cards',
-				'title'   => 'Twitterカード設定',
-				'panel'   => 'ys_customizer_panel_sns',
-			]
-		);
-		/**
-		 * Twitterカードのmetaタグを出力する
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'    => 'ys_twittercard_enable_label',
-				'label' => 'Twitterカードmetaタグ',
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_twittercard_enable',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => 'Twitterカードのmetaタグを出力する',
-			]
-		);
-		/**
-		 * ユーザー名
-		 */
-		$ys_customizer->add_text(
-			[
-				'id'          => 'ys_twittercard_user',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => 'Twitterカードのユーザー名',
-				'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」',
-				'input_attrs' => [
-					'placeholder' => 'username',
-				],
-			]
-		);
-		/**
-		 * カードタイプ
-		 */
-		$ys_customizer->add_radio(
-			[
-				'id'        => 'ys_twittercard_type',
-				'default'   => 'summary_large_image',
-				'transport' => 'postMessage',
-				'label'     => 'カードタイプ',
-				'choices'   => [
-					'summary_large_image' => 'Summary Card with Large Image',
-					'summary'             => 'Summary Card',
-				],
-			]
-		);
 		/**
 		 * SNS Share Button
 		 */
@@ -1530,31 +1351,7 @@ class Customizer {
 				'description' => '<a href="https://feedly.com/factory.html" target="_blank">https://feedly.com/factory.html</a>で購読用URLを生成・取得してください。（出来上がったHTMLタグのhref部分）',
 			]
 		);
-		/**
-		 * フッターSNSフォローボタン設定
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_footer_sns_follow',
-				'title'       => 'フッターSNSフォローリンク設定',
-				'description' => 'フッターに表示するSNSフォローボタンの設定<br>リンクする各SNSのプロフィールページ等のURLを入力して下さい',
-				'panel'       => 'ys_customizer_panel_sns',
-			]
-		);
-		/**
-		 * 各SNSのURL入力欄追加
-		 */
-		$sns = ys_get_sns_icons();
-		foreach ( $sns as $key => $value ) {
-			$ys_customizer->add_url(
-				[
-					'id'      => 'ys_follow_url_' . $key,
-					'default' => '',
-					'label'   => $value['label'],
-				]
-			);
-		}
+
 		/**
 		 * SNS用JavaScriptの読み込み
 		 */

@@ -149,6 +149,7 @@ class Header {
 				'section'     => 'ys_customizer_section_header_design',
 				'title'       => 'サイトヘッダー',
 				'description' => 'サイトヘッダー部分のデザイン設定',
+				'priority'    => 50,
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
@@ -165,7 +166,7 @@ class Header {
 			[
 				'id'          => 'ys_design_header_type',
 				'default'     => 'row1',
-				'label'       => 'ヘッダータイプ',
+				'label'       => '表示タイプ',
 				'description' => 'ヘッダーの表示タイプ',
 				'section'     => 'ys_customizer_section_header_design',
 				'choices'     => [
@@ -181,7 +182,7 @@ class Header {
 			[
 				'id'      => 'ys_color_header_bg',
 				'default' => '#ffffff',
-				'label'   => 'ヘッダー背景色',
+				'label'   => '背景色',
 			]
 		);
 		// サイトタイトル文字色.
@@ -189,7 +190,7 @@ class Header {
 			[
 				'id'      => 'ys_color_header_font',
 				'default' => '#222222',
-				'label'   => 'サイトタイトル・メニューテキストの文字色',
+				'label'   => '文字色',
 			]
 		);
 		// サイト概要の文字色.
@@ -197,7 +198,7 @@ class Header {
 			[
 				'id'      => 'ys_color_header_dscr_font',
 				'default' => '#757575',
-				'label'   => 'サイト概要の文字色',
+				'label'   => '概要文の文字色',
 			]
 		);
 		/**
@@ -205,14 +206,6 @@ class Header {
 		 */
 		$customizer->add_section_label( 'ヘッダー固定表示' );
 
-		$customizer->add_label(
-			[
-				'id'          => 'ys_header_fixed_label',
-				'label'       => '固定ヘッダー',
-				'description' => '画面上部にヘッダーを固定表示するための設定',
-
-			]
-		);
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_header_fixed',
@@ -227,7 +220,7 @@ class Header {
 			[
 				'id'          => 'ys_header_fixed_height_label',
 				'label'       => 'ヘッダー高さ',
-				'description' => '※ヘッダーの固定表示をする場合、ヘッダー高さの指定が必要になります。<br><br>プレビュー画面左上に表示された「ヘッダー高さ」の数字を参考に以下の設定に入力してください。',
+				'description' => 'ヘッダーの固定表示をする場合、ヘッダー高さの指定が必要になります。<br><br>プレビュー画面左上に表示された「ヘッダー高さ」の数字を参考に以下の設定に入力してください。',
 
 			]
 		);
@@ -238,7 +231,7 @@ class Header {
 			[
 				'id'      => 'ys_header_fixed_height_pc',
 				'default' => 0,
-				'label'   => 'ヘッダー高さ(PC)',
+				'label'   => '高さ(PC)',
 			]
 		);
 		/**
@@ -248,7 +241,7 @@ class Header {
 			[
 				'id'      => 'ys_header_fixed_height_tablet',
 				'default' => 0,
-				'label'   => 'ヘッダー高さ(タブレット)',
+				'label'   => '高さ(タブレット)',
 			]
 		);
 		/**
@@ -258,7 +251,7 @@ class Header {
 			[
 				'id'      => 'ys_header_fixed_height_mobile',
 				'default' => 0,
-				'label'   => 'ヘッダー高さ(モバイル)',
+				'label'   => '高さ(モバイル)',
 			]
 		);
 	}

@@ -70,6 +70,9 @@ class Enqueue_Styles {
 			$this->get_inline_css()
 		);
 		do_action( 'ys_enqueue_css' );
+		// 位置調整.
+		wp_dequeue_style( 'wp-block-library' );
+		wp_enqueue_style( 'wp-block-library' );
 
 		/**
 		 * Style css

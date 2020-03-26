@@ -84,8 +84,8 @@ class Color_Palette {
 			${prefix}.has-{$value['slug']}-color,
 			${prefix}.has-{$value['slug']}-color:hover,
 			${prefix}.has-text-color.has-{$value['slug']}-color,
-			${prefix}.has-text-color.has-{$value['slug']}-color:hover{
-			${prefix}.has-inline-color.has-{$value['slug']}-color,
+			${prefix}.has-text-color.has-{$value['slug']}-color:hover,
+			${prefix}.has-inline-color.has-{$value['slug']}-color {
 				color:{$value['color']};
 			}";
 		}
@@ -206,6 +206,7 @@ class Color_Palette {
 				'section'     => 'ys_color_palette',
 				'title'       => 'カラーパレット（ブロックエディター）',
 				'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。',
+				'priority'    => 1000,
 				'panel'       => Design::PANEL_NAME,
 			]
 		);

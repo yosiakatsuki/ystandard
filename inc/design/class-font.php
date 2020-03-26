@@ -40,9 +40,9 @@ class Font {
 		$customizer->add_section(
 			[
 				'section'     => 'ys_section_font',
-				'title'       => 'フォント設定',
+				'title'       => 'フォント',
 				'description' => 'フォントの設定',
-				'priority'    => '10',
+				'priority'    => 10,
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
@@ -90,7 +90,7 @@ class Font {
 
 		$option = Option::get_option( 'ys_design_font_type', 'meihiragino' );
 		if ( isset( $font[ $option ] ) ) {
-			$font_family = $font[ $option ];
+			$font_family = $font[ $option ]['family'];
 		}
 
 		return array_merge(
