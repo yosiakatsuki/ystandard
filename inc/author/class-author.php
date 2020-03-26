@@ -240,7 +240,7 @@ class Author {
 		$data = [
 			'avatar'      => $this->get_avatar( $author_id ),
 			'name'        => get_the_author_meta( 'display_name', $author_id ),
-			'position'    => '', //未実装.
+			'position'    => '', // 未実装.
 			'sns'         => $this->get_sns( $author_id ),
 			'description' => $this->get_description( $author_id ),
 		];

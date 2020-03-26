@@ -11,30 +11,12 @@
  * インラインCSS作成クラス
  */
 class YS_Inline_Css {
-	/**
-	 * ブレークポイント
-	 *
-	 * @var array
-	 */
-	private $breakpoints = [
-		'md' => 600,
-		'lg' => 1025,
-	];
 
 	/**
 	 * インラインCSSの取得
 	 */
 	public function get_inline_css() {
-		$ys_scripts = ys_scripts();
-		$styles     = [];
-		/**
-		 * サイト背景色
-		 */
-		$styles[] = $this->get_site_css();
-		/**
-		 * ヘッダーロゴ
-		 */
-		$styles[] = $this->get_header_logo_css();
+		$styles = [];
 		/**
 		 * ヘッダー
 		 */
@@ -57,174 +39,10 @@ class YS_Inline_Css {
 		 * モバイルフッター
 		 */
 		$styles[] = $this->get_mobile_footer_css();
-		/**
-		 * カスタマイズプレビュー
-		 */
-		$styles[] = $this->get_customize_preview();
 
 		$inline_css = implode( '', $styles );
 	}
 
-
-
-
-	/**
-	 * サイト全体CSS
-	 *
-	 * @return string
-	 */
-	public function get_site_css() {
-		if ( ys_get_option_by_bool( 'ys_desabled_color_customizeser', false ) ) {
-			return '';
-		}
-		$html_bg = ystandard\Color::get_site_bg();
-		$styles  = [];
-		/**
-		 * サイト背景色
-		 */
-		$styles[] = "
-		body {
-			background-color:${html_bg};
-		}";
-		/**
-		 * 背景色がデフォルト以外の場合
-		 */
-		if ( ys_has_site_background() ) {
-			if ( is_singular() ) {
-				if ( ! ys_is_full_width() ) {
-					$styles[] = '
-					.has-bg-color:not(.one-column-no-title) .site__content {
-						margin-top:2rem;
-					}
-					.has-bg-color:not(.one-column-no-title) .breadcrumbs + .site__content {
-						margin-top:0;
-					}';
-					/**
-					 * フル幅以外
-					 */
-					$styles[] = '
-					.has-bg-color .content__main {
-						padding:2rem 1rem;
-						margin:0 -1rem;
-					}
-					.has-bg-color.one-column-no-title .content__main {
-						padding-top: 2rem;
-					}';
-					if ( ! ys_is_amp() ) {
-						$styles[] = $this->add_media_query(
-							'.has-bg-color.has-sidebar .content__wrap {
-								-webkit-box-flex: 0;
-							    -ms-flex: 0 0 calc(100% - 368px - 2rem);
-							    flex: 0 0 calc(100% - 368px - 2rem);
-							    max-width: calc(100% - 368px - 2rem);
-							}
-							.has-bg-color .content__main {
-								padding:2rem;
-								margin:0;
-							}',
-							'lg'
-						);
-					}
-				} else {
-					/**
-					 * フル幅
-					 */
-					$styles[] = '
-					.has-bg-color.full-width:not(.one-column-no-title) .site__content {
-						padding-top:1rem;
-						margin-bottom:2rem;
-					}';
-				}
-				/**
-				 * パンくず
-				 */
-				$styles[] = '
-				.has-bg-color .site__content + .breadcrumbs {
-					margin-top:-1rem;
-				}';
-			} else {
-				$styles[] = '
-				.has-bg-color .site__content {
-					margin-top:2rem;
-				}
-				.has-bg-color .breadcrumbs + .site__content {
-					margin-top:1rem;
-				}';
-				/**
-				 * アーカイブなど
-				 */
-				$styles[] = '
-				.has-bg-color .content__main{
-					background-color:transparent;
-				}';
-
-				if ( 'list' === ys_get_option( 'ys_archive_type', 'list' ) ) {
-					$styles[] = '
-					.has-bg-color .archive__item.-list {
-						background-color:#fff;
-						margin-bottom:1rem;
-					}';
-					$styles[] = $this->add_media_query(
-						'.has-bg-color .archive__item.-list {
-							margin-bottom:2rem;
-						}',
-						'lg'
-					);
-				}
-			}
-			/**
-			 * サイドバー
-			 */
-			if ( ys_is_active_sidebar_widget() ) {
-				$styles[] = '
-				.has-bg-color .sidebar-wrapper {
-					margin:0 -1rem;
-				}
-				.has-bg-color .sidebar__widget > div,
-				.has-bg-color .sidebar__fixed > div {
-					padding:2rem 1rem;
-					margin-bottom: 2rem;
-					background-color:#fff;
-				}';
-				if ( ! ys_is_amp() ) {
-					$styles[] = $this->add_media_query(
-						'.has-bg-color .sidebar-wrapper {margin:0;}',
-						'lg'
-					);
-				}
-			}
-		}
-
-		return implode( '', $styles );
-	}
-
-	/**
-	 * ヘッダーロゴCSS
-	 *
-	 * @return string
-	 */
-	public function get_header_logo_css() {
-
-		$styles = [];
-
-		if ( 0 < ys_get_option_by_int( 'ys_logo_width_sp', 0 ) ) {
-			$styles[] = sprintf(
-				'.header__title img{width:%spx;}',
-				ys_get_option_by_int( 'ys_logo_width_sp', 0 )
-			);
-		}
-		if ( 0 < ys_get_option_by_int( 'ys_logo_width_pc', 0 ) ) {
-			$styles[] = $this->add_media_query(
-				sprintf(
-					'.header__title img{width:%spx;}',
-					ys_get_option_by_int( 'ys_logo_width_pc', 0 )
-				),
-				'md'
-			);
-		}
-
-		return implode( '', $styles );
-	}
 
 	/**
 	 * ヘッダーCSS
@@ -558,62 +376,4 @@ class YS_Inline_Css {
 		';
 	}
 
-	/**
-	 * カスタマイズプレビュー用
-	 *
-	 * @return string
-	 */
-	public function get_customize_preview() {
-		$css = [];
-
-		if ( ys_get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
-			$css[] = $this->add_media_query(
-				'.is-customize-preview .sidebar {display:none;}',
-				'md',
-				'max'
-			);
-		}
-		if ( ! ys_get_option_by_bool( 'ys_show_search_form_on_slide_menu', false ) ) {
-			$css[] = $this->add_media_query(
-				'.is-customize-preview .h-nav__search {display:none;}',
-				'lg',
-				'max'
-			);
-		}
-
-		return implode( '', $css );
-	}
-
-	/**
-	 * メディアクエリを追加
-	 *
-	 * @param string $css        Styles.
-	 * @param string $breakpoint Breakpoint.
-	 * @param string $type       Type.
-	 *
-	 * @return string
-	 */
-	public function add_media_query( $css, $breakpoint, $type = 'min' ) {
-
-		if ( ! in_array( $type, [ 'min', 'max', 'between' ], true ) ) {
-			return $css;
-		}
-
-		/**
-		 * 切り替え位置取得
-		 */
-		if ( isset( $this->breakpoints[ $breakpoint ] ) ) {
-			$breakpoint = $this->breakpoints[ $breakpoint ];
-			if ( 'max' === $type ) {
-				$breakpoint = $breakpoint - 1;
-			}
-		}
-
-		return sprintf(
-			'@media (%s-width: %spx) {%s}',
-			$type,
-			$breakpoint,
-			$css
-		);
-	}
 }

@@ -15,33 +15,6 @@ namespace ystandard;
 class Color {
 
 	/**
-	 * サイト背景色デフォルト値取得
-	 *
-	 * @return string
-	 */
-	public static function get_site_bg_default() {
-		return Option::get_default( 'ys_color_site_bg', '#ffffff' );
-	}
-
-	/**
-	 * サイト背景色取得
-	 *
-	 * @return string
-	 */
-	public static function get_site_bg() {
-		return ys_get_option( 'ys_color_site_bg', self::get_site_bg_default() );
-	}
-
-	/**
-	 * カスタム背景色を使っているか
-	 *
-	 * @return bool
-	 */
-	public static function is_custom_bg_color() {
-		return Color::get_site_bg_default() !== Color::get_site_bg();
-	}
-
-	/**
 	 * カスタムヘッダーのヘッダーを重ねるタイプ文字色取得
 	 *
 	 * @return string

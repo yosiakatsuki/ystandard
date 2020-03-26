@@ -18,10 +18,11 @@ class Customizer {
 	 * パネルリスト
 	 */
 	const PANEL_PRIORITY = [
-		'ys_customizer_panel_design' => 1000,
-		'ys_info_bar'                => 1000,
-		'ys_advertisement'           => 1130,
-		'ys_amp'                     => 1300,
+		'ys_info_bar'           => 1000,
+		'ys_design'             => 1010,
+		'ys_performance_tuning' => 1120,
+		'ys_advertisement'      => 1130,
+		'ys_amp'                => 1300,
 	];
 
 	/**
@@ -36,6 +37,10 @@ class Customizer {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		add_action( 'customize_preview_init', [ $this, 'preview_init' ], 999 );
+		add_action( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'preview_inline_css' ], 999 );
+		add_action( 'customize_controls_print_styles', [ $this, 'print_styles' ] );
+		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
 
 	/**
@@ -52,6 +57,80 @@ class Customizer {
 		}
 
 		return 1000;
+	}
+
+	/**
+	 * テーマカスタマイザープレビュー用JS
+	 *
+	 * @return void
+	 */
+	public function preview_init() {
+		wp_enqueue_script(
+			'ys-customize-preview-js',
+			get_template_directory_uri() . '/js/admin/customizer-preview.js',
+			[ 'jquery', 'customize-preview' ],
+			date_i18n( 'YmdHis' ),
+			true
+		);
+	}
+
+	/**
+	 * プレビュー用CSS
+	 *
+	 * @param string $css CSS.
+	 */
+	public function preview_inline_css( $css ) {
+		if ( ! is_customize_preview() ) {
+			return $css;
+		}
+		if ( ys_get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
+			$css .= Enqueue_Styles::add_media_query(
+				'.is-customize-preview .sidebar {display:none;}',
+				'',
+				'md'
+			);
+		}
+		if ( ! ys_get_option_by_bool( 'ys_show_search_form_on_slide_menu', false ) ) {
+			$css .= Enqueue_Styles::add_media_query(
+				'.is-customize-preview .h-nav__search {display:none;}',
+				'',
+				'lg'
+			);
+		}
+
+		return $css;
+	}
+
+	/**
+	 * テーマカスタマイザー用JS
+	 *
+	 * @return void
+	 */
+	public function enqueue_scripts() {
+		wp_enqueue_script(
+			'ys-customize-controls-js',
+			get_template_directory_uri() . '/js/admin/customizer-control.js',
+			[ 'customize-controls', 'jquery' ],
+			Utility::get_ystandard_version(),
+			true
+		);
+	}
+
+
+	/**
+	 * 管理画面-テーマカスタマイザーページでのスタイルシートの読み込み
+	 *
+	 * @param string $hook_suffix suffix.
+	 *
+	 * @return void
+	 */
+	public function print_styles( $hook_suffix ) {
+		wp_enqueue_style(
+			'ys_customizer_style',
+			get_template_directory_uri() . '/css/ystandard-customizer.css',
+			[],
+			Utility::get_ystandard_version()
+		);
 	}
 
 
@@ -76,8 +155,6 @@ class Customizer {
 		/**
 		 * [ys]デザイン
 		 */
-		$this->design_site_color();
-		$this->design_header();
 		$this->design_breadcrumb();
 		$this->design_mobile();
 		$this->design_post();
@@ -94,16 +171,7 @@ class Customizer {
 		 * SEO設定
 		 */
 		$this->seo();
-		/**
-		 * 高速化設定
-		 */
-		$this->performance();
-		/**
-		 * 運営支援
-		 */
-		$this->admin();
-		$this->admin_editor();
-		$this->admin_disable_color();
+
 		/**
 		 * 拡張機能
 		 */
@@ -164,50 +232,7 @@ class Customizer {
 		 * ロゴ設定追加
 		 */
 		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_logo_hidden',
-				'default'     => 0,
-				'label'       => 'ロゴを非表示にする',
-				'description' => 'サイトヘッダーにロゴ画像を表示しない場合はチェックをつけてください<br>（ロゴの指定がないと構造化データでエラーになるので、仮のロゴ画像でも良いので設定することを推奨します）',
-				'section'     => 'title_tagline',
-				'priority'    => 9,
-			]
-		);
-		/**
-		 * 幅指定
-		 */
-		$ys_customizer->add_number(
-			[
-				'id'          => 'ys_logo_width_pc',
-				'default'     => 0,
-				'label'       => 'ロゴの表示幅(PC・タブレット)',
-				'description' => 'PC・タブレット表示のロゴ表示幅を指定できます。指定しない場合は0にしてください。',
-				'section'     => 'title_tagline',
-				'priority'    => 9,
-				'input_attrs' => [
-					'min'  => 0,
-					'max'  => 1000,
-					'size' => 20,
-				],
-			]
-		);
 
-		$ys_customizer->add_number(
-			[
-				'id'          => 'ys_logo_width_sp',
-				'default'     => 0,
-				'label'       => 'ロゴの表示幅(スマホ)',
-				'description' => 'スマートフォン表示のロゴ表示幅を指定できます。指定しない場合は0にしてください。',
-				'section'     => 'title_tagline',
-				'priority'    => 9,
-				'input_attrs' => [
-					'min'  => 0,
-					'max'  => 1000,
-					'size' => 20,
-				],
-			]
-		);
 		/**
 		 * Titleタグの区切り文字
 		 */
@@ -311,83 +336,6 @@ class Customizer {
 				'priority'    => 0,
 			]
 		);
-		/**
-		 * ヘッダーメディアに動画を使う場合、メニューを動画の上に重ねるか
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'       => 'ys_wp_header_media_full_label',
-				'label'    => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）',
-				'section'  => 'header_image',
-				'priority' => 20,
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_wp_header_media_full',
-				'default'     => 0,
-				'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）',
-				'description' => 'PC表示でヘッダーメディア（画像・動画）の上にサイトヘッダーを重ねる。',
-				'section'     => 'header_image',
-				'priority'    => 21,
-			]
-		);
-		/**
-		 * メニュー表示タイプ
-		 */
-		$ys_customizer->add_radio(
-			[
-				'id'          => 'ys_wp_header_media_full_type',
-				'default'     => 'dark',
-				'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）：サイトヘッダー表示タイプ',
-				'description' => 'PC表示でヘッダーメディア（画像・動画）の上にサイトヘッダーを重ねる場合のサイトヘッダー表示タイプ',
-				'section'     => 'header_image',
-				'priority'    => 22,
-				'choices'     => [
-					'dark'  => 'ダーク',
-					'light' => 'ライト',
-				],
-			]
-		);
-		/**
-		 * メニュー不透明度
-		 */
-		$ys_customizer->add_number(
-			[
-				'id'          => 'ys_wp_header_media_full_opacity',
-				'default'     => 50,
-				'label'       => '[ys]ヘッダーメディアにサイトヘッダーを重ねる（PC）：サイトヘッダー不透明度',
-				'description' => 'サイトヘッダーの不透明度を設定します。0~100の間で入力して下さい。（数値が小さいほど透明になります。）',
-				'section'     => 'header_image',
-				'priority'    => 23,
-				'input_attrs' => [
-					'min'  => 0,
-					'max'  => 100,
-					'size' => 20,
-				],
-			]
-		);
-		/**
-		 * カスタムヘッダーの全ページ表示
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'       => 'ys_wp_header_media_all_page_label',
-				'label'    => '[ys]ヘッダーメディアを全ページ表示する',
-				'section'  => 'header_image',
-				'priority' => 24,
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_wp_header_media_all_page',
-				'default'     => 0,
-				'label'       => '[ys]ヘッダーメディアを全ページ表示する',
-				'description' => 'TOPページ以外の全ページでヘッダーメディアを表示する。',
-				'section'     => 'header_image',
-				'priority'    => 24,
-			]
-		);
 	}
 
 	/**
@@ -458,153 +406,6 @@ class Customizer {
 		);
 	}
 
-	/**
-	 * デザイン -> サイト背景色
-	 */
-	private function design_site_color() {
-		/**
-		 * サイト全体の色
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section' => 'ys_color_site',
-				'title'   => 'サイト背景色',
-				'panel'   => 'ys_customizer_panel_design',
-			]
-		);
-		// サイト背景色.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_site_bg',
-				'default' => Color::get_site_bg_default(),
-				'label'   => 'サイト背景色',
-			]
-		);
-	}
-
-	/**
-	 * デザイン -> ヘッダー
-	 */
-	private function design_header() {
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		/**
-		 * セクション追加
-		 */
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_header_design',
-				'title'       => 'ヘッダー設定',
-				'description' => 'ヘッダー部分のデザイン設定',
-				'panel'       => 'ys_customizer_panel_design',
-			]
-		);
-		/**
-		 * ヘッダータイプ
-		 */
-		$assets_url = $this->get_assets_dir_uri();
-		$row1       = $assets_url . '/design/header/1row.png';
-		$center     = $assets_url . '/design/header/center.png';
-		$row2       = $assets_url . '/design/header/2row.png';
-		$img        = '<img src="%s" alt="" width="100" height="100" />';
-		$ys_customizer->add_image_label_radio(
-			[
-				'id'          => 'ys_design_header_type',
-				'default'     => 'row1',
-				'label'       => 'ヘッダータイプ',
-				'description' => 'ヘッダーの表示タイプ',
-				'section'     => 'ys_customizer_section_header_design',
-				'choices'     => [
-					'row1'   => sprintf( $img, $row1 ),
-					'center' => sprintf( $img, $center ),
-					'row2'   => sprintf( $img, $row2 ),
-				],
-			]
-		);
-		// ヘッダー背景色.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_header_bg',
-				'default' => '#ffffff',
-				'label'   => 'ヘッダー背景色',
-			]
-		);
-		// サイトタイトル文字色.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_header_font',
-				'default' => '#222222',
-				'label'   => 'サイトタイトル・メニューテキストの文字色',
-			]
-		);
-		// サイト概要の文字色.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_header_dscr_font',
-				'default' => '#757575',
-				'label'   => 'サイト概要の文字色',
-			]
-		);
-		/**
-		 * ヘッダー固定表示
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'          => 'ys_header_fixed_label',
-				'label'       => '固定ヘッダー設定',
-				'description' => '画面上部にヘッダーを固定表示するための設定',
-
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'      => 'ys_header_fixed',
-				'default' => 0,
-				'label'   => 'ヘッダーを画面上部に固定する',
-			]
-		);
-		/**
-		 * ヘッダー固定表示
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'          => 'ys_header_fixed_height_label',
-				'label'       => 'ヘッダー高さ設定',
-				'description' => '※ヘッダーの固定表示をする場合、ヘッダー高さの指定が必要になります。<br><br>プレビュー画面左上に表示された「ヘッダー高さ」の数字を参考に以下の設定に入力してください。',
-
-			]
-		);
-		/**
-		 * ヘッダー高さ(PC)
-		 */
-		$ys_customizer->add_number(
-			[
-				'id'      => 'ys_header_fixed_height_pc',
-				'default' => 0,
-				'label'   => 'ヘッダー高さ(PC)',
-			]
-		);
-		/**
-		 * ヘッダー高さ(タブレット)
-		 */
-		$ys_customizer->add_number(
-			[
-				'id'      => 'ys_header_fixed_height_tablet',
-				'default' => 0,
-				'label'   => 'ヘッダー高さ(タブレット)',
-			]
-		);
-		/**
-		 * ヘッダー高さ(モバイル)
-		 */
-		$ys_customizer->add_number(
-			[
-				'id'      => 'ys_header_fixed_height_mobile',
-				'default' => 0,
-				'label'   => 'ヘッダー高さ(モバイル)',
-			]
-		);
-	}
 
 	/**
 	 * デザイン -> パンくずリスト
@@ -1984,315 +1785,6 @@ class Customizer {
 		);
 	}
 
-	/**
-	 * 高速化設定
-	 */
-	private function performance() {
-		$this->_wp_customize->add_panel(
-			'ys_customizer_panel_performance_tuning',
-			[
-				'title'       => '[ys]サイト高速化設定',
-				'priority'    => 1120,
-				'description' => 'サイト高速化を行うための設定',
-			]
-		);
-		/**
-		 * キャッシュ
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_performance_tuning_add_cache_query',
-				'title'       => 'キャッシュ設定',
-				'description' => '記事一覧作成やyStandard設定のキャッシュ機能設定',
-				'panel'       => 'ys_customizer_panel_performance_tuning',
-			]
-		);
-		/**
-		 * [ys]人気ランキングの結果キャッシュ
-		 */
-		$ys_customizer->add_radio(
-			[
-				'id'          => 'ys_query_cache_ranking',
-				'default'     => 'none',
-				'transport'   => 'postMessage',
-				'label'       => '人気記事ランキングの結果キャッシュ',
-				'description' => '「[ys]人気ランキングウィジェット」・人気記事ランキング表示ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。<br>※日別のランキングについてはキャッシュを作成しません。',
-				'choices'     => [
-					'none' => 'キャッシュしない',
-					'1'    => '1日',
-					'7'    => '7日',
-					'30'   => '30日',
-				],
-			]
-		);
-		/**
-		 * [ys]新着記事一覧の結果キャッシュ
-		 */
-		$ys_customizer->add_radio(
-			[
-				'id'          => 'ys_query_cache_recent_posts',
-				'default'     => 'none',
-				'transport'   => 'postMessage',
-				'label'       => '新着記事一覧の結果キャッシュ',
-				'description' => '「[ys]新着記事一覧ウィジェット」・新着記事一覧ショートコードの結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
-				'choices'     => [
-					'none' => 'キャッシュしない',
-					'1'    => '1日',
-					'7'    => '7日',
-					'30'   => '30日',
-				],
-			]
-		);
-		/**
-		 * 関連記事の結果キャッシュ
-		 */
-		$ys_customizer->add_radio(
-			[
-				'id'          => 'ys_query_cache_related_posts',
-				'default'     => 'none',
-				'transport'   => 'postMessage',
-				'label'       => '記事下エリア「関連記事」の結果キャッシュ',
-				'description' => '記事下エリア「関連記事」の結果をキャッシュしてサーバー処理の高速化を図ります。<br>キャッシュする日数を選択して下さい。',
-				'choices'     => [
-					'none' => 'キャッシュしない',
-					'1'    => '1日',
-					'7'    => '7日',
-					'30'   => '30日',
-				],
-			]
-		);
-		/**
-		 * WordPress標準機能で読み込むCSS・JavaScriptの無効化
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_disable_wp_scripts',
-				'title'       => '絵文字・oembed関連のCSS・JavaScriptの無効化',
-				'description' => 'WordPress標準機能で読み込まれる絵文字・oembed関連のCSS・JavaScriptの無効化設定',
-				'panel'       => 'ys_customizer_panel_performance_tuning',
-			]
-		);
-		/**
-		 * 絵文字を出力しない
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'      => 'ys_option_disable_wp_emoji',
-				'default' => 1,
-				'label'   => '絵文字関連のスタイルシート・スクリプトを無効化する',
-			]
-		);
-		/**
-		 * 絵文字を出力しない
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'      => 'ys_option_disable_wp_oembed',
-				'default' => 1,
-				'label'   => 'oembed関連のスタイルシート・スクリプトを無効化する',
-			]
-		);
-		/**
-		 * CSS読み込みのインライン化
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_optimize_load_css',
-				'title'       => 'CSSインライン読み込み設定（上級者向け）',
-				'description' => 'CSSの読み込み方式を変更します。',
-				'panel'       => 'ys_customizer_panel_performance_tuning',
-			]
-		);
-		/**
-		 * CSSの読み込みを最適化する
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_option_optimize_load_css',
-				'default'     => 0,
-				'label'       => 'CSSをインラインで読み込む',
-				'description' => 'この設定をONにすると、yStandard関連のCSSが全てインラインで読み込まれます。',
-			]
-		);
-		/**
-		 * JavaScript読み込みの最適化
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_optimize_load_js',
-				'title'       => 'JavaScript・jQueryの読み込み方式設定（上級者向け）',
-				'description' => 'JavaScriptの読み込み方式を設定します。',
-				'panel'       => 'ys_customizer_panel_performance_tuning',
-			]
-		);
-		/**
-		 * JavaScriptの読み込みを非同期化する
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'    => 'ys_optimize_load_js_label',
-				'label' => 'JavaScriptの読み込みを非同期化する',
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_option_optimize_load_js',
-				'default'     => 0,
-				'label'       => 'JavaScriptの読み込みを非同期化する',
-				'description' => 'この設定をONにすると、jQuery以外のJavaScriptの読み込みを非同期化します。',
-			]
-		);
-		/**
-		 * [jQueryをフッターで読み込む]
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'    => 'ys_load_jquery_in_footer_label',
-				'label' => 'jQueryの読み込みを最適化する',
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_load_jquery_in_footer',
-				'default'     => 0,
-				'label'       => 'jQueryの読み込みを最適化する',
-				'description' => 'jQueryをフッターで読み込み、サイトの高速化を図ります。<br>※この設定を有効にすると利用しているプラグインの動作が不安定になる恐れがあります。<br>プラグインの機能が正常に動作しなくなる場合は設定を無効化してください。',
-			]
-		);
-		/**
-		 * CDNにホストされているjQueryを読み込む
-		 */
-		$ys_customizer->add_url(
-			[
-				'id'          => 'ys_load_cdn_jquery_url',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => 'CDN経由でjQueryを読み込む',
-				'description' => '※WordPress標準のjQueryを読み込む場合は空白にしてください（デフォルト）<br>※ホストされているjQueryのURLを入力してください。',
-			]
-		);
-		/**
-		 * [jQueryを無効化する]
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'    => 'ys_not_load_jquery_label',
-				'label' => 'jQueryを無効化する',
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_not_load_jquery',
-				'default'     => 0,
-				'transport'   => 'postMessage',
-				'label'       => 'jQueryを無効化する',
-				'description' => '※この設定を有効にするとサイト表示高速化が期待できますが、jQueryを使用している処理が動かなくなります。<br>※プラグインの動作に影響が出る恐れがありますのでご注意ください。<br>※yStandard内のJavaScriptではjQueryを使用する機能は使っていません',
-			]
-		);
-	}
-
-
-	/**
-	 * サイト運営支援
-	 */
-	private function admin() {
-		/**
-		 * サイト運営支援
-		 */
-		$this->_wp_customize->add_panel(
-			'ys_customizer_panel_admin',
-			[
-				'title'       => '[ys]サイト運営支援',
-				'priority'    => 1500,
-				'description' => 'サイト管理画面内の機能設定',
-			]
-		);
-
-	}
-
-	/**
-	 * サイト運営支援 -> エディター設定
-	 */
-	private function admin_editor() {
-
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'  => 'ys_customizer_section_admin_editor',
-				'title'    => 'エディター設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_admin',
-			]
-		);
-		/**
-		 * ブロックエディター用CSSの追加
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'          => 'ys_admin_enable_block_editor_style_label',
-				'label'       => 'ブロックエディター用CSSの追加',
-				'description' => '※ブロックエディターで有効な設定です。',
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_admin_enable_block_editor_style',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => 'ブロックエディター用CSSを追加する',
-			]
-		);
-		/**
-		 * ビジュアルエディタ用CSSの追加
-		 */
-		$ys_customizer->add_label(
-			[
-				'id'          => 'ys_admin_enable_tiny_mce_style_label',
-				'label'       => 'ビジュアルエディター用CSSの追加',
-				'description' => '※クラシックエディターで有効な設定です。<br>※ビジュアルエディターとテキストエディターの切り替えができなくなる等問題がある場合はチェックを外してください。',
-			]
-		);
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_admin_enable_tiny_mce_style',
-				'default'   => 0,
-				'transport' => 'postMessage',
-				'label'     => 'ビジュアルエディター用CSSを追加する',
-			]
-		);
-	}
-
-	/**
-	 * サイト運営支援 -> 色変更機能を無効
-	 */
-	private function admin_disable_color() {
-		/**
-		 * テーマカスタマイザーでの色変更機能を無効にする
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section' => 'ys_customizer_section_disable_ys_color',
-				'title'   => '色変更機能を無効にする(上級者向け)',
-				'panel'   => 'ys_customizer_panel_admin',
-			]
-		);
-		/**
-		 * テーマカスタマイザーでの色変更機能を無効にする
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_desabled_color_customizeser',
-				'default'     => 0,
-				'label'       => 'テーマカスタマイザーでの色変更機能を無効にする',
-				'description' => '※ご自身でCSSを調整する場合はこちらのチェックをいれてください。<br>カスタマイザーで指定している部分のCSSコードが出力されなくなります',
-			]
-		);
-	}
 
 	/**
 	 * 拡張機能用パネル追加
@@ -2315,7 +1807,7 @@ class Customizer {
 	 *
 	 * @return string
 	 */
-	private function get_assets_dir_uri() {
+	public static function get_assets_dir_uri() {
 		return get_template_directory_uri() . '/assets/images/customizer';
 	}
 }

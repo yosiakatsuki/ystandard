@@ -8,11 +8,6 @@
  */
 
 /**
- * クラス読み込み
- */
-require_once __DIR__ . '/class-utility.php';
-
-/**
  * 投稿タイプ取得
  */
 function ys_get_post_type() {

@@ -1,6 +1,6 @@
 <?php
 /**
- * カスタムヘッダー
+ * カスタムヘッダー・ヘッダーメディア
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -17,13 +17,40 @@ namespace ystandard;
 class Custom_Header {
 
 	/**
+	 * Custom_Header constructor.
+	 */
+	public function __construct() {
+		add_filter( 'header_video_settings', [ $this, 'header_video_settings' ] );
+	}
+
+	/**
+	 * ビデオの停止ボタンを削除
+	 *
+	 * @param array $settings ビデオ設定.
+	 *
+	 * @return array;
+	 */
+	public function header_video_settings( $settings ) {
+		$settings['l10n']     = [
+			'pause'      => '<i class="fas fa-pause"></i>',
+			'play'       => '<i class="fas fa-play"></i>',
+			'pauseSpeak' => __( 'Video is paused.' ),
+			'playSpeak'  => __( 'Video is playing.' ),
+		];
+		$settings['minWidth'] = 200;
+
+		return $settings;
+	}
+
+
+	/**
 	 * カスタムヘッダーが有効か
 	 *
 	 * @return bool
 	 */
 	public static function is_active_custom_header() {
 
-		if ( Template::is_top_page() || ys_get_option_by_bool( 'ys_wp_header_media_all_page', false ) ) {
+		if ( Template::is_top_page() ) {
 			if ( self::has_custom_image() ) {
 				return true;
 			}
@@ -48,3 +75,5 @@ class Custom_Header {
 		return false;
 	}
 }
+
+new Custom_Header();

@@ -16,7 +16,7 @@ namespace ystandard;
  */
 class Design {
 
-	CONST PANEL_NAME = 'ys_customizer_panel_design';
+	CONST PANEL_NAME = 'ys_design';
 
 	/**
 	 * Design constructor.
@@ -36,7 +36,7 @@ class Design {
 		$customizer->add_panel(
 			[
 				'panel'       => 'ys_customizer_panel_design',
-				'title'       => '[ys]デザイン設定',
+				'title'       => '[ys]デザイン',
 				'description' => 'サイト共通部分のデザイン設定',
 			]
 		);

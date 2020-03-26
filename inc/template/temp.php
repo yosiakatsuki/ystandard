@@ -1,13 +1,59 @@
 <?php
-/**
- * 条件判断用関数群
- *
- * @package ystandard
- * @author  yosiakatsuki
- * @license GPL-2.0+
- */
 
-require_once __DIR__ . '/class-conditional-tag.php';
+/**
+ * カスタムヘッダータイプ
+ *
+ * @return string
+ */
+function ys_get_custom_header_type() {
+	$type = 'image';
+	if ( is_header_video_active() && has_header_video() ) {
+		$type = 'video';
+	}
+	/**
+	 * 詳細ページではフルサムネイル表示か確認
+	 */
+	if ( ys_is_full_width_thumbnail() && ! \ystandard\Custom_Header::is_active_custom_header() ) {
+		$type = 'full-thumb';
+	}
+
+	return apply_filters( 'ys_get_custom_header_type', $type );
+}
+
+/**
+ * カスタムヘッダーの出力
+ */
+function ys_the_custom_header_markup() {
+	if ( ys_is_full_width_thumbnail() && ! \ystandard\Custom_Header::is_active_custom_header() ) {
+		/**
+		 * 個別ページの画像表示
+		 */
+		printf(
+			'<div class="header__full-thumbnail">%s</div>',
+			get_the_post_thumbnail()
+		);
+	} else {
+		/**
+		 * ショートコード入力があればそちらを優先
+		 */
+		$media_shortcode = ys_get_option( 'ys_wp_header_media_shortcode', '' );
+		if ( $media_shortcode ) {
+			echo do_shortcode( $media_shortcode );
+		} else {
+			the_custom_header_markup();
+		}
+	}
+
+}
+/**
+ * Google Analytics idの取得
+ */
+function ys_get_google_anarytics_tracking_id() {
+	return apply_filters(
+		'ys_get_google_anarytics_tracking_id',
+		trim( ys_get_option( 'ys_ga_tracking_id', '' ) )
+	);
+}
 
 /**
  * TOPページ判断（HOMEの1ページ目 or front-page）
@@ -15,7 +61,7 @@ require_once __DIR__ . '/class-conditional-tag.php';
  * @return bool
  */
 function ys_is_top_page() {
-	return ystandard\Template::is_top_page();
+	return \ystandard\Template::is_top_page();
 }
 
 /**
@@ -33,20 +79,6 @@ function ys_check_user_agent( $ua ) {
 
 	return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
 }
-
-/**
- * ログインページの判定
- *
- * @return bool
- */
-function ys_is_login_page() {
-	if ( in_array( $GLOBALS['pagenow'], [ 'wp-login.php', 'wp-register.php' ], true ) ) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
 
 /**
  * モバイル判定
@@ -176,7 +208,7 @@ function ys_is_full_width_thumbnail() {
 	/**
 	 * カスタムヘッダー確認
 	 */
-	if ( ys_is_top_page() && ys_is_active_custom_header() ) {
+	if ( \ystandard\Template::is_top_page() && \ystandard\Custom_Header::is_active_custom_header() ) {
 		$result = false;
 	}
 
@@ -260,56 +292,6 @@ function ys_is_active_sidebar_widget() {
 	}
 
 	return apply_filters( 'ys_is_active_sidebar_widget', $show_sidebar );
-}
-
-/**
- * 絵文字用 css / js を出力するか
- */
-function ys_is_active_emoji() {
-	$show_emoji = true;
-	if ( ys_get_option_by_bool( 'ys_option_disable_wp_emoji', true ) ) {
-		$show_emoji = false;
-	}
-
-	return apply_filters( 'ys_is_active_emoji', $show_emoji );
-}
-
-/**
- * Oembed css / js を出力するか
- */
-function ys_is_active_oembed() {
-	$show_emoji = true;
-	if ( ys_get_option_by_bool( 'ys_option_disable_wp_oembed', true ) ) {
-		$show_emoji = false;
-	}
-
-	return apply_filters( 'ys_is_active_oembed', $show_emoji );
-}
-
-/**
- * カスタムヘッダーを表示するか
- *
- * @return bool
- */
-function ys_is_active_custom_header() {
-	$result = false;
-	/**
-	 * カスタムヘッダーの確認
-	 */
-	if ( ! ys_is_amp() ) {
-		if ( ys_is_top_page() ) {
-			if ( ys_has_header_image() ) {
-				$result = true;
-			}
-			if ( ys_get_option( 'ys_wp_header_media_shortcode', '' ) ) {
-				$result = true;
-			}
-		} elseif ( ys_get_option_by_bool( 'ys_wp_header_media_all_page', false ) ) {
-			$result = true;
-		}
-	}
-
-	return apply_filters( 'ys_is_active_custom_header', $result );
 }
 
 /**
@@ -529,23 +511,6 @@ function ys_is_active_post_paging() {
 
 
 /**
- * CSS読み込みを最適化するか
- *
- * @return bool
- */
-function ys_is_optimize_load_css() {
-	$result = false;
-	if ( ys_get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
-		$result = true;
-	}
-	if ( ys_is_amp() ) {
-		$result = true;
-	}
-
-	return $result;
-}
-
-/**
  * スライドメニュー内に検索フォームを表示するか
  */
 function ys_is_active_slide_menu_search_form() {
@@ -563,14 +528,6 @@ function ys_is_active_slide_menu_search_form() {
 	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
 }
 
-/**
- * ブロックエディターのCSSを読み込むか
- *
- * @return bool
- */
-function ys_is_active_gutenberg_css() {
-	return false;
-}
 
 /**
  * キャッシュ設定が有効か判定
@@ -583,48 +540,6 @@ function ys_is_enable_cache_setting() {
 		return true;
 	}
 	if ( 'none' !== ys_get_option( 'ys_query_cache_ranking', 'none' ) ) {
-		return true;
-	}
-
-	return false;
-}
-
-/**
- * フロントページを設定しているか
- *
- * @return bool
- */
-function ys_is_use_front_page() {
-	$show_on_front = get_option( 'show_on_front' );
-	$page_on_front = get_option( 'page_on_front' );
-	if ( 'page' === $show_on_front && $page_on_front ) {
-		return true;
-	}
-}
-
-/**
- * フル表示（ヘッダー重ねるタイプ）のヘッダー画像を表示しているか
- *
- * @return bool
- */
-function ys_is_has_header_media_full() {
-	if ( ys_get_option_by_bool( 'ys_wp_header_media_full', false ) ) {
-		if ( ys_is_top_page() || ys_get_option_by_bool( 'ys_wp_header_media_all_page', false ) ) {
-			return true;
-		}
-	}
-
-	return false;
-}
-
-/**
- * サイト 背景色・背景画像有り判断
- */
-function ys_has_site_background() {
-	if ( ystandard\Color::get_site_bg_default() !== ystandard\Color::get_site_bg() ) {
-		return true;
-	}
-	if ( get_background_image() ) {
 		return true;
 	}
 

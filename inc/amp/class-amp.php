@@ -51,7 +51,7 @@ class AMP {
 		$customizer->add_panel(
 			[
 				'panel' => 'ys_amp',
-				'title' => '[ys]AMP設定',
+				'title' => '[ys]AMP',
 			]
 		);
 		$customizer->add_section(
@@ -71,5 +71,6 @@ class AMP {
 	}
 
 }
+
 
 new AMP();

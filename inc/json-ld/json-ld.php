@@ -77,7 +77,7 @@ function ys_get_json_ld_website() {
 	$json['url']           = home_url( '/' );
 	$json['name']          = get_bloginfo( 'name' );
 	$json['alternateName'] = get_bloginfo( 'name' );
-	if ( ys_is_top_page() ) {
+	if ( \ystandard\Template::is_top_page() ) {
 		$json['potentialAction'] = [
 			'@type'       => 'SearchAction',
 			'target'      => home_url( '/?s={query}' ),

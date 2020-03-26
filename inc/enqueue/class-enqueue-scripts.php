@@ -34,9 +34,9 @@ class Enqueue_Scripts {
 	 */
 	public function __construct() {
 		if ( ! AMP::is_amp() ) {
-			add_action( 'wp_enqueue_script', [ $this, 'enqueue_scripts' ] );
-			add_action( 'wp_enqueue_script', [ $this, 'enqueue_sns_scripts' ] );
-			add_action( 'wp_enqueue_script', [ $this, 'add_data' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_sns_scripts' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'add_data' ] );
 		}
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
 	}

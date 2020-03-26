@@ -7,6 +7,10 @@
  * @license GPL-2.0+
  */
 
+if ( class_exists( 'YS_Shortcode_Recent_Posts' ) ) {
+	return;
+}
+
 /**
  * Class YS_Shortcode_Recent_Posts
  */

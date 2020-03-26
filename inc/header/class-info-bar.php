@@ -7,32 +7,32 @@
  * @license GPL-2.0+
  */
 
+namespace ystandard;
+
 /**
- * Class YS_Info_Bar
+ * Class Info_Bar
  */
-class YS_Info_Bar {
+class Info_Bar {
 
 	/**
 	 * YS_Info_Bar constructor.
 	 */
 	public function __construct() {
-		add_action( 'get_header', array( $this, 'set_hooks' ) );
+		add_action( 'get_header', [ $this, 'set_hooks' ] );
 	}
 
 	/**
 	 * アクション・フィルターフックの瀬戸
 	 */
 	public function set_hooks() {
-		if ( ! ys_is_has_header_media_full() ) {
-			add_action( 'ys_after_site_header', array( $this, 'info_bar' ), 1 );
-		}
-		add_filter( 'ys_get_inline_css', array( $this, 'info_bar_css' ) );
+		add_action( 'ys_after_site_header', [ $this, 'show_info_bar' ], 1 );
+		add_filter( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'info_bar_css' ] );
 	}
 
 	/**
 	 * お知らせバー表示
 	 */
-	public function info_bar() {
+	public function show_info_bar() {
 		if ( ! apply_filters( 'ys_show_info_bar', true ) ) {
 			return;
 		}
@@ -40,8 +40,28 @@ class YS_Info_Bar {
 		if ( empty( ys_get_option( 'ys_info_bar_text', '' ) ) ) {
 			return;
 		}
+		$info_bar_class = [
+			'info-bar',
+		];
+		if ( ys_get_option( 'ys_info_bar_url', '' ) ) {
+			$info_bar_class[] = 'has-link';
+		}
+		/**
+		 * 設定取得
+		 */
+		$data = [
+			'text'   => ys_get_option( 'ys_info_bar_text', '' ),
+			'url'    => ys_get_option( 'ys_info_bar_url', '' ),
+			'target' => ys_get_option_by_bool( 'ys_info_bar_external', false ) ? '_blank' : '_self',
+			'class'  => implode( ' ', $info_bar_class ),
+		];
+
 		ob_start();
-		ys_get_template_part( 'template-parts/parts/info-bar' );
+		ys_get_template_part(
+			'template-parts/parts/info-bar',
+			null,
+			[ 'info_bar_data' => $data ]
+		);
 
 		echo wp_targeted_link_rel( ob_get_clean() );
 	}
@@ -54,8 +74,6 @@ class YS_Info_Bar {
 	 * @return string
 	 */
 	public function info_bar_css( $css ) {
-		$ys_inline_css = new YS_Inline_Css();
-		$styles        = array();
 		/**
 		 * 設定取得
 		 */
@@ -72,7 +90,7 @@ class YS_Info_Bar {
 			line-height:1.3;
 			font-size:0.8em;
 		}';
-		$styles[] = $ys_inline_css->add_media_query(
+		$styles[] = Enqueue_Styles::add_media_query(
 			'.info-bar {
 				font-size:1rem;
 			}',
@@ -103,27 +121,12 @@ class YS_Info_Bar {
 		 */
 		if ( $text_bold ) {
 			$styles[] = '
-			.info-bar__text {
-				font-weight:700;
-			}';
-		}
-
-		/**
-		 * ヘッダーメディアとの兼ね合い
-		 */
-		if ( ! ys_is_active_custom_header() ) {
-			$styles[] = $ys_inline_css->add_media_query(
-				'.info-bar {
-				margin-bottom: 2rem;
-				font-size:1rem;
-			}',
-				'md'
-			);
+			.info-bar__text{font-weight:700;}';
 		}
 
 		return $css . implode( ' ', $styles );
 	}
 }
 
-new YS_Info_Bar();
 
+new Info_Bar();

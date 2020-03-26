@@ -34,7 +34,7 @@ class Option {
 			switch ( $type ) {
 				case 'bool':
 				case 'boolean':
-					$result = ys_to_bool( $result );
+					$result = Utility::to_bool( $result );
 					break;
 				case 'int':
 					$result = intval( $result );
