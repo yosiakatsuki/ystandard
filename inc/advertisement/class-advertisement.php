@@ -55,14 +55,14 @@ class Advertisement {
 	 */
 	public function before_title() {
 		$key = 'ys_advertisement_before_title';
-		if ( ys_is_amp() ) {
+		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_before_title';
 		} else {
 			if ( ys_is_mobile() ) {
 				$key = 'ys_advertisement_before_title_sp';
 			}
 		}
-		$ad = empty( $key ) ? '' : ys_get_option( $key, '' );
+		$ad = empty( $key ) ? '' : Option::get_option( $key, '' );
 
 		echo self::format_advertisement( $ad, '', 'is-before-title' );
 	}
@@ -72,14 +72,14 @@ class Advertisement {
 	 */
 	public function after_title() {
 		$key = 'ys_advertisement_after_title';
-		if ( ys_is_amp() ) {
+		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_after_title';
 		} else {
 			if ( ys_is_mobile() ) {
 				$key = 'ys_advertisement_after_title_sp';
 			}
 		}
-		$ad = empty( $key ) ? '' : ys_get_option( $key, '' );
+		$ad = empty( $key ) ? '' : Option::get_option( $key, '' );
 
 		echo self::format_advertisement( $ad, '', 'is-after-title' );
 	}
@@ -90,14 +90,14 @@ class Advertisement {
 	public function header_ad() {
 
 		$key = 'ys_advertisement_before_content';
-		if ( ys_is_amp() ) {
+		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_before_content';
 		} else {
 			if ( ys_is_mobile() ) {
 				$key = 'ys_advertisement_before_content_sp';
 			}
 		}
-		$ad = empty( $key ) ? '' : ys_get_option( $key, '' );
+		$ad = empty( $key ) ? '' : Option::get_option( $key, '' );
 
 		echo self::format_advertisement( $ad, self::get_ads_label() );
 	}
@@ -112,14 +112,14 @@ class Advertisement {
 	public function more_ad( $content ) {
 
 		$key = 'ys_advertisement_replace_more';
-		if ( ys_is_amp() ) {
+		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_replace_more';
 		} else {
 			if ( ys_is_mobile() ) {
 				$key = 'ys_advertisement_replace_more_sp';
 			}
 		}
-		$ad = empty( $key ) ? '' : ys_get_option( $key, '' );
+		$ad = empty( $key ) ? '' : Option::get_option( $key, '' );
 
 		if ( $ad ) {
 			$content = self::format_advertisement( $ad, self::get_ads_label() ) . $content;
@@ -136,7 +136,7 @@ class Advertisement {
 		$key_left  = 'ys_advertisement_under_content_left';
 		$key_right = 'ys_advertisement_under_content_right';
 
-		if ( ys_is_amp() ) {
+		if ( AMP::is_amp() ) {
 			$key_left  = 'ys_amp_advertisement_under_content';
 			$key_right = '';
 		} else {
@@ -145,8 +145,8 @@ class Advertisement {
 				$key_right = '';
 			}
 		}
-		$ad_left  = ys_get_option( $key_left, '' );
-		$ad_right = empty( $key_right ) ? '' : ys_get_option( $key_right, '' );
+		$ad_left  = Option::get_option( $key_left, '' );
+		$ad_right = empty( $key_right ) ? '' : Option::get_option( $key_right, '' );
 		if ( '' !== $ad_left && '' !== $ad_right ) {
 			$ad = sprintf(
 				'<div class="ad__double">
@@ -168,11 +168,11 @@ class Advertisement {
 	 */
 	public function archive_infeed() {
 		if ( ys_is_mobile() ) {
-			$step  = ys_get_option_by_int( 'ys_advertisement_infeed_sp_step', 3 );
-			$limit = ys_get_option_by_int( 'ys_advertisement_infeed_sp_limit', 3 );
+			$step  = Option::get_option_by_int( 'ys_advertisement_infeed_sp_step', 3 );
+			$limit = Option::get_option_by_int( 'ys_advertisement_infeed_sp_limit', 3 );
 		} else {
-			$step  = ys_get_option_by_int( 'ys_advertisement_infeed_pc_step', 3 );
-			$limit = ys_get_option_by_int( 'ys_advertisement_infeed_pc_limit', 3 );
+			$step  = Option::get_option_by_int( 'ys_advertisement_infeed_pc_step', 3 );
+			$limit = Option::get_option_by_int( 'ys_advertisement_infeed_pc_limit', 3 );
 		}
 		global $wp_query;
 		$num = $wp_query->current_post + 1;
@@ -190,9 +190,9 @@ class Advertisement {
 	 */
 	public static function get_infeed() {
 		if ( ys_is_mobile() ) {
-			$ad = ys_get_option( 'ys_advertisement_infeed_sp', '' );
+			$ad = Option::get_option( 'ys_advertisement_infeed_sp', '' );
 		} else {
-			$ad = ys_get_option( 'ys_advertisement_infeed_pc', '' );
+			$ad = Option::get_option( 'ys_advertisement_infeed_pc', '' );
 		}
 
 		return $ad;
@@ -258,7 +258,7 @@ class Advertisement {
 	 * @return string
 	 */
 	public static function get_ads_label() {
-		return ys_get_option( 'ys_advertisement_ads_label', 'スポンサーリンク' );
+		return Option::get_option( 'ys_advertisement_ads_label', 'スポンサーリンク' );
 	}
 
 	/**
@@ -281,7 +281,7 @@ class Advertisement {
 		 * 非表示設定
 		 */
 		if ( is_singular() ) {
-			if ( Utility::to_bool( ys_get_post_meta( 'ys_hide_ad' ) ) ) {
+			if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_ad' ) ) ) {
 				return false;
 			}
 		}
@@ -574,7 +574,7 @@ class Advertisement {
 				'section'         => 'ys_customizer_section_amp_ads',
 				'title'           => 'AMP広告設定',
 				'active_callback' => function () {
-					return ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false );
+					return Option::get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false );
 				},
 			]
 		);

@@ -7,36 +7,11 @@
  * @license GPL-2.0+
  */
 
-
-/**
- * <html>タグにつける属性
- */
-function ys_the_html_attr() {
-	$attr = [];
-	if ( ys_is_amp() ) {
-		$attr[] = 'amp';
-	}
-	$attr[] = get_language_attributes();
-	$attr   = apply_filters( 'ys_the_html_attr', $attr );
-
-	echo implode( ' ', $attr );
-}
-
 /**
  * <head>タグにつける属性取得
  */
 function ys_the_head_attr() {
-	$attr = [];
-	if ( ! ys_is_amp() ) {
-		if ( is_singular() ) {
-			$attr[] = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"';
-		} else {
-			$attr[] = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#"';
-		}
-	}
-	$attr = apply_filters( 'ys_get_head_attr', $attr );
-
-	echo implode( ' ', $attr );
+	echo \ystandard\Head::get_head_attr();
 }
 
 /**
@@ -68,6 +43,32 @@ function ys_the_blog_description() {
 		apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) )
 	);
 }
+
+/**
+ * カスタムヘッダーが有効か
+ *
+ * @return bool
+ */
+function ys_is_active_custom_header() {
+	return \ystandard\Custom_Header::is_active_custom_header();
+}
+
+/**
+ * カスタムヘッダータイプ
+ *
+ * @return string
+ */
+function ys_get_custom_header_type() {
+	return \ystandard\Custom_Header::get_custom_header_type();
+}
+
+/**
+ * カスタムヘッダーの出力
+ */
+function ys_the_custom_header_markup() {
+	\ystandard\Custom_Header::custom_header_markup();
+}
+
 
 
 /**
