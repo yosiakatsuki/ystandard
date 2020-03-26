@@ -22,7 +22,7 @@ class Conditional_Tag {
 	 * @return bool
 	 */
 	public static function is_enable_google_analytics() {
-		if ( ys_is_amp() ) {
+		if ( AMP::is_amp() ) {
 			return false;
 		}
 		/**
@@ -34,7 +34,7 @@ class Conditional_Tag {
 		/**
 		 * ログイン中にGA出力しない場合
 		 */
-		if ( ys_get_option_by_bool( 'ys_ga_exclude_logged_in_user', false ) ) {
+		if ( Option::get_option_by_bool( 'ys_ga_exclude_logged_in_user', false ) ) {
 			if ( is_user_logged_in() ) {
 				/**
 				 * 編集権限を持っている場合のみ出力しない

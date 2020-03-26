@@ -94,20 +94,20 @@ class Template {
 		 * 一覧系
 		 */
 		if ( is_home() || is_archive() || is_search() || is_404() ) {
-			if ( '1col' === ys_get_option( 'ys_archive_layout', '2col' ) ) {
+			if ( '1col' === Option::get_option( 'ys_archive_layout', '2col' ) ) {
 				return true;
 			}
 		}
 		/**
 		 * 固定ページ
 		 */
-		if ( ( is_page() && ! is_front_page() ) && '1col' === ys_get_option( 'ys_page_layout', '2col' ) ) {
+		if ( ( is_page() && ! is_front_page() ) && '1col' === Option::get_option( 'ys_page_layout', '2col' ) ) {
 			return true;
 		}
 		/**
 		 * 投稿
 		 */
-		if ( ( is_singular() && ! is_page() ) && '1col' === ys_get_option( 'ys_post_layout', '2col' ) ) {
+		if ( ( is_singular() && ! is_page() ) && '1col' === Option::get_option( 'ys_post_layout', '2col' ) ) {
 			return true;
 		}
 

@@ -1,50 +1,5 @@
 <?php
 
-/**
- * カスタムヘッダータイプ
- *
- * @return string
- */
-function ys_get_custom_header_type() {
-	$type = 'image';
-	if ( is_header_video_active() && has_header_video() ) {
-		$type = 'video';
-	}
-	/**
-	 * 詳細ページではフルサムネイル表示か確認
-	 */
-	if ( ys_is_full_width_thumbnail() && ! \ystandard\Custom_Header::is_active_custom_header() ) {
-		$type = 'full-thumb';
-	}
-
-	return apply_filters( 'ys_get_custom_header_type', $type );
-}
-
-/**
- * カスタムヘッダーの出力
- */
-function ys_the_custom_header_markup() {
-	if ( ys_is_full_width_thumbnail() && ! \ystandard\Custom_Header::is_active_custom_header() ) {
-		/**
-		 * 個別ページの画像表示
-		 */
-		printf(
-			'<div class="header__full-thumbnail">%s</div>',
-			get_the_post_thumbnail()
-		);
-	} else {
-		/**
-		 * ショートコード入力があればそちらを優先
-		 */
-		$media_shortcode = ys_get_option( 'ys_wp_header_media_shortcode', '' );
-		if ( $media_shortcode ) {
-			echo do_shortcode( $media_shortcode );
-		} else {
-			the_custom_header_markup();
-		}
-	}
-
-}
 
 /**
  * Google Analytics idの取得
@@ -145,7 +100,7 @@ function ys_is_edge() {
  * @return bool
  */
 function ys_is_amp() {
-	return ystandard\AMP::is_amp();
+	return \ystandard\AMP::is_amp();
 }
 
 /**
@@ -154,7 +109,7 @@ function ys_is_amp() {
  * @return bool
  */
 function ys_is_one_column() {
-	return ystandard\Template::is_one_column();
+	return \ystandard\Template::is_one_column();
 }
 
 /**
@@ -214,64 +169,6 @@ function ys_is_full_width_thumbnail() {
 	}
 
 	return apply_filters( 'ys_is_full_width_thumbnail', $result );
-}
-
-
-/**
- * WordPressのjQueryを停止するかどうか
- */
-function ys_is_deregister_jquery() {
-	$result = false;
-	if ( '' !== ys_get_option( 'ys_load_cdn_jquery_url', '' ) ) {
-		$result = true;
-	}
-	if ( ys_get_option_by_bool( 'ys_not_load_jquery', false ) ) {
-		$result = true;
-	}
-	if ( ys_get_option_by_bool( 'ys_load_jquery_in_footer', false ) ) {
-		$result = true;
-	}
-
-	return apply_filters( 'ys_is_deregister_jquery', $result );
-}
-
-/**
- * WordPressのjQueryを無効化するかどうか
- */
-function ys_is_disable_jquery() {
-	$result = false;
-	if ( ys_get_option_by_bool( 'ys_not_load_jquery', false ) ) {
-		$result = true;
-	}
-
-	return apply_filters( 'ys_is_disable_jquery', $result );
-}
-
-/**
- * WordPressのjQueryをフッターで読み込むか
- */
-function ys_is_load_jquery_in_footer() {
-	$result = false;
-	if ( ys_get_option_by_bool( 'ys_load_jquery_in_footer', false ) ) {
-		$result = true;
-	}
-
-	return apply_filters( 'ys_is_load_jquery_in_footer', $result );
-}
-
-/**
- * CDNのjQueryを読み込むかどうか
- */
-function ys_is_load_cdn_jquery() {
-	$result = true;
-	if ( '' === ys_get_option( 'ys_load_cdn_jquery_url', '' ) ) {
-		$result = false;
-	}
-	if ( ys_get_option_by_bool( 'ys_not_load_jquery', false ) ) {
-		$result = false;
-	}
-
-	return apply_filters( 'ys_is_load_cdn_jquery', $result );
 }
 
 /**

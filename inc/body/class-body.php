@@ -65,7 +65,7 @@ class Body {
 		 * アーカイブレイアウト
 		 */
 		if ( is_archive() || is_home() || is_search() ) {
-			$classes[] = 'is-archive--' . ys_get_option( 'ys_archive_type', 'list' );
+			$classes[] = 'is-archive--' . Option::get_option( 'ys_archive_type', 'list' );
 		}
 
 		/**
@@ -73,10 +73,7 @@ class Body {
 		 */
 		if ( Custom_Header::is_active_custom_header() ) {
 			$classes[] = 'has-custom-header';
-			$classes[] = 'custom-header--' . ys_get_custom_header_type();
-			if ( ys_get_option_by_bool( 'ys_wp_header_media_full', false ) ) {
-				$classes[] = 'custom-header--full';
-			}
+			$classes[] = 'custom-header--' . Custom_Header::get_custom_header_type();
 		}
 
 		/**

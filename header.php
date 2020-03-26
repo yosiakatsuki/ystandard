@@ -8,7 +8,7 @@
  */
 
 ?><!DOCTYPE html>
-<html <?php ys_the_html_attr(); ?>>
+<html <?php language_attributes(); ?>>
 <head <?php ys_the_head_attr(); ?>>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
