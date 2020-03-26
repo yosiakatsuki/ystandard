@@ -34,7 +34,7 @@ function ys_get_page_url() {
  * @return array
  */
 function ys_get_sns_icons() {
-	return ystandard\SNS::get_sns_icons();
+	return \ystandard\SNS::get_sns_icons();
 }
 
 

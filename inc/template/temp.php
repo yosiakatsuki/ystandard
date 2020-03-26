@@ -45,6 +45,7 @@ function ys_the_custom_header_markup() {
 	}
 
 }
+
 /**
  * Google Analytics idの取得
  */
@@ -430,21 +431,6 @@ function ys_is_active_after_content_widget() {
 	return apply_filters( 'ys_is_active_after_content_widget', $result );
 }
 
-
-/**
- * フッターウィジェットが有効か
- */
-function ys_is_active_footer_widgets() {
-	$result = true;
-	if ( ys_is_amp() ) {
-		$result = false;
-	}
-	if ( ! is_active_sidebar( 'footer-left' ) && ! is_active_sidebar( 'footer-center' ) && ! is_active_sidebar( 'footer-right' ) ) {
-		$result = false;
-	}
-
-	return apply_filters( 'ys_is_active_footer_widgets', $result );
-}
 
 /**
  * フォローBOXを表示するか

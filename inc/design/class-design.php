@@ -35,7 +35,7 @@ class Design {
 
 		$customizer->add_panel(
 			[
-				'panel'       => 'ys_customizer_panel_design',
+				'panel'       => self::PANEL_NAME,
 				'title'       => '[ys]デザイン',
 				'description' => 'サイト共通部分のデザイン設定',
 			]

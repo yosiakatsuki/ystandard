@@ -32,6 +32,7 @@ class OGP {
 	 * OGP constructor.
 	 */
 	public function __construct() {
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'wp_head', [ $this, 'ogp_meta' ] );
 	}
 
@@ -202,6 +203,113 @@ class OGP {
 		return apply_filters( 'ys_ogp_image', $image );
 	}
 
+
+	/**
+	 * カスタマイザー追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section(
+			[
+				'section' => 'ys_ogp',
+				'title'   => 'OGP',
+				'panel'   => SNS::PANEL_NAME,
+			]
+		);
+
+		// metaタグを出力する.
+		$customizer->add_label(
+			[
+				'id'    => 'ys_ogp_enable_label',
+				'label' => 'OGP metaタグ',
+			]
+		);
+		$customizer->add_checkbox(
+			[
+				'id'        => 'ys_ogp_enable',
+				'default'   => 1,
+				'transport' => 'postMessage',
+				'label'     => 'OGPのmetaタグを出力する',
+			]
+		);
+		// Facebook app_id.
+		$customizer->add_text(
+			[
+				'id'          => 'ys_ogp_fb_app_id',
+				'default'     => '',
+				'transport'   => 'postMessage',
+				'description' => '',
+				'label'       => 'Facebook app_id',
+				'input_attrs' => [
+					'placeholder' => '000000000000000',
+					'maxlength'   => 15,
+				],
+			]
+		);
+		// OGPデフォルト画像.
+		$customizer->add_image(
+			[
+				'id'          => 'ys_ogp_default_image',
+				'transport'   => 'postMessage',
+				'label'       => 'OGPデフォルト画像',
+				'description' => 'トップページ・アーカイブページ・投稿にアイキャッチ画像が無かった場合のデフォルト画像を指定して下さい。<br>おすすめサイズ：横1200px - 縦630px',
+			]
+		);
+		/**
+		 * Twitter Cards
+		 */
+		$customizer->add_section(
+			[
+				'section' => 'ys_twitter_cards',
+				'title'   => 'Twitterカード設定',
+				'panel'   => SNS::PANEL_NAME,
+			]
+		);
+		// Twitterカードのmetaタグを出力する.
+		$customizer->add_label(
+			[
+				'id'    => 'ys_twittercard_enable_label',
+				'label' => 'Twitterカードmetaタグ',
+			]
+		);
+		$customizer->add_checkbox(
+			[
+				'id'        => 'ys_twittercard_enable',
+				'default'   => 1,
+				'transport' => 'postMessage',
+				'label'     => 'Twitterカードのmetaタグを出力する',
+			]
+		);
+		// ユーザー名.
+		$customizer->add_text(
+			[
+				'id'          => 'ys_twittercard_user',
+				'default'     => '',
+				'transport'   => 'postMessage',
+				'label'       => 'Twitterカードのユーザー名',
+				'description' => '「@」なしのTwitterユーザー名を入力して下さい。<br>例：Twitterユーザー名…「@yosiakatsuki」<br>→入力…「yosiakatsuki」',
+				'input_attrs' => [
+					'placeholder' => 'username',
+				],
+			]
+		);
+		// カードタイプ.
+		$customizer->add_radio(
+			[
+				'id'        => 'ys_twittercard_type',
+				'default'   => 'summary_large_image',
+				'transport' => 'postMessage',
+				'label'     => 'カードタイプ',
+				'choices'   => [
+					'summary_large_image' => 'Summary Card with Large Image',
+					'summary'             => 'Summary Card',
+				],
+			]
+		);
+
+	}
 }
 
 new OGP();

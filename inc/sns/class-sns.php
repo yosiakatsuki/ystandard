@@ -17,6 +17,19 @@ namespace ystandard;
 class SNS {
 
 	/**
+	 * Panel name.
+	 */
+	const PANEL_NAME = 'ys_sns';
+
+	/**
+	 * Copyright constructor.
+	 */
+	public function __construct() {
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
+	}
+
+
+	/**
 	 * サイト内設定で使用するSNSのリスト
 	 *
 	 * @return array
@@ -101,4 +114,22 @@ class SNS {
 		);
 	}
 
+	/**
+	 * カスタマイザー追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+
+		$customizer->add_panel(
+			[
+				'panel' => self::PANEL_NAME,
+				'title' => '[ys]SNS',
+			]
+		);
+	}
+
 }
+
+new SNS();

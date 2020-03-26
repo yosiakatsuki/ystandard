@@ -28,8 +28,10 @@ class Css_Vars {
 	 */
 	public static function get_css_var( $name, $value ) {
 		return [
-			'name'  => $name,
-			'value' => $value,
+			[
+				'name'  => $name,
+				'value' => $value,
+			],
 		];
 	}
 }

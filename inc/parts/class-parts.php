@@ -1,6 +1,6 @@
 <?php
 /**
- * カスタム投稿タイプ
+ * フッター
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -10,26 +10,114 @@
 namespace ystandard;
 
 /**
- * Class Custom_Post_Types
+ * Class Parts
  *
  * @package ystandard
  */
-class Custom_Post_Types {
+class Parts {
 
 	/**
-	 * Custom_Post_Types constructor.
+	 * 投稿タイプ
 	 */
-	public function __construct() {
-		add_action( 'init', [ $this, 'register_ys_parts' ] );
-		add_action( 'add_meta_boxes_ys-parts', [ $this, 'add_meta_box' ] );
-		add_filter( 'manage_ys-parts_posts_columns', [ $this, 'add_columns_head' ] );
-		add_action( 'manage_ys-parts_posts_custom_column', [ $this, 'add_custom_column' ], 10, 2 );
+	const POST_TYPE = 'ys-parts';
+
+	/**
+	 * ショートコード
+	 */
+	const SHORTCODE = 'ys_parts';
+
+	/**
+	 * ショートコードパラメーター
+	 */
+	const SHORTCODE_ATTR = [
+		'parts_id'          => 0,
+		'use_entry_content' => '',
+	];
+
+
+	/**
+	 * Register
+	 */
+	public function register() {
+		$post_type = self::POST_TYPE;
+		add_action( 'init', [ $this, 'register_post_type' ] );
+		add_action( "add_meta_boxes_${post_type}", [ $this, 'add_meta_box' ] );
+		add_filter( "manage_${post_type}_posts_columns", [ $this, 'add_columns_head' ] );
+		add_action( "manage_${post_type}_posts_custom_column", [ $this, 'add_custom_column' ], 10, 2 );
+		// ショートコード.
+		if ( ! shortcode_exists( self::SHORTCODE ) ) {
+			add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
+		}
+	}
+
+	/**
+	 * ショートコード実行
+	 *
+	 * @param array $atts Attributes.
+	 *
+	 * @return string
+	 */
+	public function do_shortcode( $atts ) {
+
+		$atts = shortcode_atts( self::SHORTCODE_ATTR, $atts );
+		/**
+		 * ラッパー
+		 */
+		$wrap = '%s';
+		if ( Utility::to_bool( $atts['use_entry_content'] ) ) {
+			$wrap = '<div class="entry-content entry__content">%s</div>';
+		}
+		/**
+		 * コンテンツ作成
+		 */
+		$parts_id = $atts['parts_id'];
+		if ( is_numeric( $parts_id ) ) {
+			$parts_id = (int) $parts_id;
+		} else {
+			return '';
+		}
+		$post = get_post( $parts_id );
+		if ( ! $post ) {
+			return '';
+		}
+		$content = apply_filters( 'the_content', $post->post_content );
+		$content = str_replace( ']]>', ']]&gt;', $content );
+
+		return sprintf( $wrap, $content );
+	}
+
+	/**
+	 * [ys]パーツ一覧を取得
+	 *
+	 * @param bool $show_option_none 選択なしを表示するか.
+	 *
+	 * @return array
+	 */
+	public static function get_parts_list( $show_option_none = false ) {
+
+		$list = [];
+		if ( $show_option_none ) {
+			$list[0] = __( '&mdash; Select &mdash;' );
+		}
+
+		$parts = get_posts(
+			[
+				'post_type'      => self::POST_TYPE,
+				'posts_per_page' => 0,
+			]
+		);
+
+		foreach ( $parts as $data ) {
+			$list[ $data->ID ] = $data->post_title;
+		}
+
+		return $list;
 	}
 
 	/**
 	 * 投稿タイプの登録
 	 */
-	public function register_ys_parts() {
+	public function register_post_type() {
 		$labels = [
 			'name'               => '[ys]パーツ',
 			'add_new_item'       => 'パーツを追加',
@@ -41,7 +129,7 @@ class Custom_Post_Types {
 			'not_found_in_trash' => 'ゴミ箱にはありません',
 		];
 		register_post_type(
-			'ys-parts',
+			self::POST_TYPE,
 			[
 				'labels'                => $labels,
 				'public'                => false,
@@ -57,7 +145,7 @@ class Custom_Post_Types {
 				'hierarchical'          => true,
 				'show_in_rest'          => true,
 				'capability_type'       => 'page',
-				'rest_base'             => 'ys-parts',
+				'rest_base'             => self::POST_TYPE,
 				'rest_controller_class' => 'WP_REST_Posts_Controller',
 				'supports'              => [
 					'title',
@@ -144,4 +232,5 @@ class Custom_Post_Types {
 
 }
 
-new Custom_Post_Types();
+$class_parts = new Parts();
+$class_parts->register();

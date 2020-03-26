@@ -196,6 +196,36 @@ class Customize_Control {
 	 *
 	 * @param array $args オプション.
 	 */
+	public function add_select( $args ) {
+		$args = $this->parse_args( $args );
+		$this->wp_customize->add_setting(
+			$args['id'],
+			[
+				'default'           => $args['default'],
+				'type'              => $args['setting_type'],
+				'transport'         => $args['transport'],
+				'sanitize_callback' => [ $this, 'sanitize_select' ],
+			]
+		);
+		$this->wp_customize->add_control(
+			$args['id'],
+			[
+				'label'       => $args['label'],
+				'description' => $args['description'],
+				'section'     => $args['section'],
+				'priority'    => $args['priority'],
+				'type'        => 'select',
+				'settings'    => $args['id'],
+				'choices'     => $args['choices'],
+			]
+		);
+	}
+
+	/**
+	 * Add setting and control : radio
+	 *
+	 * @param array $args オプション.
+	 */
 	public function add_image_label_radio( $args ) {
 		$args = $this->parse_args( $args );
 		$this->wp_customize->add_setting(

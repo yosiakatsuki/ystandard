@@ -18,7 +18,6 @@ require_once __DIR__ . '/class-ys-shortcode-post-ranking.php';
 require_once __DIR__ . '/class-ys-shortcode-recent-posts.php';
 require_once __DIR__ . '/class-ys-shortcode-post-paging.php';
 require_once __DIR__ . '/class-ys-shortcode-post-taxonomy.php';
-require_once __DIR__ . '/class-ys-shortcode-parts.php';
 
 
 
@@ -139,25 +138,6 @@ function ys_shortcode_text( $args, $content = null ) {
 
 add_shortcode( 'ys_text', 'ys_shortcode_text' );
 
-/**
- * [ys]パーツショートコード
- *
- * @param array $args    パラメーター.
- * @param null  $content 内容.
- *
- * @return string
- */
-function ys_shortcode_parts( $args, $content = null ) {
-	$sc = new YS_Shortcode_Parts( $args );
-
-	return apply_filters(
-		'ys_sc_parts_shortcode',
-		$sc->get_html( $content ),
-		$sc->get_args()
-	);
-}
-
-add_shortcode( 'ys_parts', 'ys_shortcode_parts' );
 
 /**
  * ショートコードの作成と実行

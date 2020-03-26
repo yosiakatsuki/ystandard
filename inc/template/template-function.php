@@ -147,6 +147,20 @@ function ys_get_template_part( $slug, $name = null, $args = [] ) {
 
 
 /**
+ * フッターウィジェットが有効か
+ */
+function ys_is_active_footer_widgets() {
+	return \ystandard\Footer::is_active_widget();
+}
+
+/**
+ * サブフッターコンテンツ取得
+ */
+function ys_get_footer_sub_contents() {
+	return \ystandard\Footer::get_footer_sub_contents();
+}
+
+/**
  * フッターコピーライト表示取得
  *
  * @return string
@@ -162,7 +176,7 @@ function ys_get_footer_site_info() {
  * @return void
  */
 function ys_the_footer_site_info() {
-	echo ystandard\Copyright::get_site_info();
+	echo \ystandard\Copyright::get_site_info();
 }
 
 /**

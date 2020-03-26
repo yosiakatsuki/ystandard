@@ -2,8 +2,13 @@
  * base
  */
 :root {
-  --font-family: $font__body;
-  --site-bg-color: $color__bg-body;
+  --font-family: #{$font__body};
+  --font-color: #{$color__text-main};
+  --site-bg-color: #{$color__bg-body};
+  --footer-bg-color: #{$color__bg-gray-dark};
+  --footer-text-color: #{$color__text-white};
+  --footer-sub-bg-color: #{$color__bg-gray-light};
+  --footer-sub-text-color: #{$color__text-main};
 }
 
 * {
@@ -116,6 +121,7 @@ a {
 ul,
 ol {
   padding-left: 1.7em;
+  margin-bottom: 0;
 
   ul,
   ol {

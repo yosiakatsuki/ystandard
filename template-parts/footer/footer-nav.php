@@ -7,18 +7,22 @@
  * @license GPL-2.0+
  */
 
-if ( has_nav_menu( 'footer' ) ) : ?>
-	<nav class="footer-nav footer-section">
+if ( ! has_nav_menu( 'footer' ) ) {
+	return;
+}
+?>
+<nav class="footer-nav">
+	<div class="container">
 		<?php
 		wp_nav_menu(
-			array(
+			[
 				'theme_location' => 'footer',
-				'menu_class'     => 'footer__nav-list li-clear flex flex--wrap',
+				'menu_class'     => 'footer-nav__menu',
 				'container'      => false,
 				'fallback_cb'    => '',
 				'depth'          => 1,
-			)
+			]
 		);
 		?>
-	</nav><!-- .footer-nav -->
-<?php endif; ?>
+	</div>
+</nav>

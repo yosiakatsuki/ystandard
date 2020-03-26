@@ -48,9 +48,10 @@ class Site_Color {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section' => 'ys_color_site',
-				'title'   => 'サイト背景色',
-				'panel'   => Design::PANEL_NAME,
+				'section'  => 'ys_color_site',
+				'title'    => 'サイトカラー',
+				'priority' => 20,
+				'panel'    => Design::PANEL_NAME,
 			]
 		);
 		// サイト背景色.
