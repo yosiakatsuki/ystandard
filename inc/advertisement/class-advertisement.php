@@ -321,7 +321,7 @@ class Advertisement {
 	 * ウィジェット登録
 	 */
 	public function register_widget() {
-		require_once __DIR__ . '/class-ys-widget-advertisement.php';
+		\YS_Loader::require_file( __DIR__ . '/class-ys-widget-advertisement.php' );
 		register_widget( 'YS_Widget_Advertisement' );
 	}
 

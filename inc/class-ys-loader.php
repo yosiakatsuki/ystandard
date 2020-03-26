@@ -58,12 +58,11 @@ class YS_Loader {
 	 *
 	 * @param string $path File path.
 	 */
-	private function require_file( $path ) {
-		if ( in_array( $path, $this->loaded_files, true ) ) {
+	public static function require_file( $path ) {
+		if ( in_array( $path, get_included_files(), true ) ) {
 			return;
 		}
 		require_once $path;
-		$this->loaded_files[] = $path;
 	}
 
 	/**

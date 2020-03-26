@@ -48,6 +48,18 @@ class Parts {
 		if ( ! shortcode_exists( self::SHORTCODE ) ) {
 			add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
 		}
+		/**
+		 * ウィジェット
+		 */
+		add_action( 'widgets_init', [ $this, 'register_widget' ] );
+	}
+
+	/**
+	 * ウィジェット登録
+	 */
+	public function register_widget() {
+		\YS_Loader::require_file( __DIR__ . '/class-ys-widget-parts.php' );
+		register_widget( 'YS_Widget_Parts' );
 	}
 
 	/**
@@ -71,7 +83,7 @@ class Parts {
 		 * コンテンツ作成
 		 */
 		$parts_id = $atts['parts_id'];
-		if ( is_numeric( $parts_id ) ) {
+		if ( is_numeric( $parts_id ) && 0 < $parts_id ) {
 			$parts_id = (int) $parts_id;
 		} else {
 			return '';
