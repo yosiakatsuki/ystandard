@@ -92,6 +92,16 @@ class Copyright {
 	}
 
 	/**
+	 * フッターコピーライト表示取得
+	 *
+	 * @return string
+	 */
+	public static function get_site_info() {
+
+		return self::get_copyright() . self::get_poweredby();
+	}
+
+	/**
 	 * カスタマイザー追加
 	 *
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.

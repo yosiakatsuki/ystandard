@@ -41,14 +41,12 @@ class Admin {
 	public function update_check() {
 		require_once get_template_directory() . '/library/theme-update-checker/theme-update-checker.php';
 
-		/**
-		 * アップデート確認
-		 */
+		// アップデート確認.
 		$theme_update_checker = new \ThemeUpdateChecker(
 			'ystandard',
 			apply_filters(
 				'ys_update_check_url',
-				'https://wp-ystandard.com/download/ystandard/v4/ystandard-info.json'
+				"https://wp-ystandard.com/download/ystandard/v4/ystandard-info.json"
 			)
 		);
 	}

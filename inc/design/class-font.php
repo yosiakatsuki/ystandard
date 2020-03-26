@@ -20,9 +20,11 @@ class Font {
 	 * Font constructor.
 	 */
 	public function __construct() {
-		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
 		add_filter( 'ys_css_vars', [ $this, 'add_css_vars' ] );
 		add_filter( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'add_font_sizes_css' ] );
+		add_filter( Enqueue_Admin::BLOCK_EDITOR_ASSETS_HOOK, [ $this, 'add_font_sizes_css_block' ] );
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
 	}
 
 	/**
@@ -78,7 +80,7 @@ class Font {
 	/**
 	 * フォントCSS
 	 *
-	 * @param string $css CSS
+	 * @param array $css_vars CSS.
 	 *
 	 * @return array
 	 */
@@ -107,6 +109,17 @@ class Font {
 	public function add_font_sizes_css( $css ) {
 
 		return $css . self::get_editor_font_size_css();
+	}
+
+	/**
+	 * 編集画面用フォントサイズ選択CSS追加
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public function add_font_sizes_css_block( $css ) {
+		return $css . self::get_editor_font_size_css( '.editor-styles-wrapper' );
 	}
 
 	/**
@@ -206,6 +219,15 @@ class Font {
 		return $css;
 	}
 
+	/**
+	 * Add Theme Support
+	 */
+	public function add_theme_support() {
+		/**
+		 * ブロックエディターの文字サイズ選択設定
+		 */
+		add_theme_support( 'editor-font-sizes', self::get_editor_font_sizes() );
+	}
 }
 
 new Font();

@@ -9,6 +9,11 @@
 
 namespace ystandard;
 
+/**
+ * Class Advertisement
+ *
+ * @package ystandard
+ */
 class Advertisement {
 	/**
 	 * ショートコードパラメーター
@@ -331,7 +336,7 @@ class Advertisement {
 		$customizer->add_panel(
 			[
 				'panel' => 'ys_advertisement',
-				'title' => '[ys]広告設定',
+				'title' => '[ys]広告',
 			]
 		);
 		$customizer->add_section(
@@ -631,5 +636,5 @@ class Advertisement {
 	}
 }
 
-$ad = new Advertisement();
-$ad->register();
+$class_ad = new Advertisement();
+$class_ad->register();

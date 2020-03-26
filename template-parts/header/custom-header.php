@@ -10,7 +10,7 @@
 /**
  * 条件がややこしくなってごめんなさい。
  */
-if ( ! ys_is_active_custom_header() ) {
+if ( ! \ystandard\Custom_Header::is_active_custom_header() ) {
 	/**
 	 * カスタムヘッダーじゃなければ通常アイキャッチ
 	 */

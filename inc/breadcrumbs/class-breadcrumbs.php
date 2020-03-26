@@ -556,8 +556,4 @@ class Breadcrumbs {
 
 }
 
-/**
- * アクションのセット
- */
-$ys_breadcrumb = new Breadcrumbs();
-$ys_breadcrumb->set_action();
+new Breadcrumbs();

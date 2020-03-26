@@ -9,6 +9,11 @@
 
 namespace ystandard;
 
+/**
+ * Class Enqueue_Icons
+ *
+ * @package ystandard
+ */
 class Enqueue_Icons {
 
 	/**
@@ -23,9 +28,9 @@ class Enqueue_Icons {
 
 	public function __construct() {
 		if ( AMP::is_amp() ) {
-			add_action( 'wp_enqueue_script', [ $this, 'enqueue_font_awesome_amp' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome_amp' ] );
 		} else {
-			add_action( 'wp_enqueue_script', [ $this, 'enqueue_font_awesome' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome' ] );
 		}
 	}
 

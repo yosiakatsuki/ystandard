@@ -7,6 +7,69 @@
  * @license GPL-2.0+
  */
 
+
+/**
+ * <html>タグにつける属性
+ */
+function ys_the_html_attr() {
+	$attr = [];
+	if ( ys_is_amp() ) {
+		$attr[] = 'amp';
+	}
+	$attr[] = get_language_attributes();
+	$attr   = apply_filters( 'ys_the_html_attr', $attr );
+
+	echo implode( ' ', $attr );
+}
+
+/**
+ * <head>タグにつける属性取得
+ */
+function ys_the_head_attr() {
+	$attr = [];
+	if ( ! ys_is_amp() ) {
+		if ( is_singular() ) {
+			$attr[] = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"';
+		} else {
+			$attr[] = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#"';
+		}
+	}
+	$attr = apply_filters( 'ys_get_head_attr', $attr );
+
+	echo implode( ' ', $attr );
+}
+
+/**
+ * ヘッダーロゴ取得
+ */
+function ys_get_header_logo() {
+	if ( has_custom_logo() && ! ys_get_option_by_bool( 'ys_logo_hidden', false ) ) {
+		$logo = get_custom_logo();
+	} else {
+		$logo = sprintf(
+			'<a href="%s" class="custom-logo-link" rel="home">%s</a>',
+			esc_url( home_url( '/' ) ),
+			get_bloginfo( 'name' )
+		);
+	}
+
+	return apply_filters( 'ys_get_header_logo', $logo );
+}
+
+/**
+ * サイトキャッチフレーズを取得
+ */
+function ys_the_blog_description() {
+	if ( ys_get_option_by_bool( 'ys_wp_hidden_blogdescription', false ) ) {
+		return;
+	}
+	echo sprintf(
+		'<p class="site-description header__dscr text-sub">%s</p>',
+		apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) )
+	);
+}
+
+
 /**
  * アーカイブ明細クラス作成
  *
@@ -89,10 +152,8 @@ function ys_get_template_part( $slug, $name = null, $args = [] ) {
  * @return string
  */
 function ys_get_footer_site_info() {
-	$copy      = ystandard\Copyright::get_copyright();
-	$poweredby = ystandard\Copyright::get_poweredby();
 
-	return $copy . $poweredby;
+	return ystandard\Copyright::get_site_info();
 }
 
 /**
@@ -101,7 +162,7 @@ function ys_get_footer_site_info() {
  * @return void
  */
 function ys_the_footer_site_info() {
-	echo ys_get_footer_site_info();
+	echo ystandard\Copyright::get_site_info();
 }
 
 /**
@@ -130,4 +191,42 @@ function ys_get_copyright_default() {
  */
 function ys_get_poweredby() {
 	return ystandard\Copyright::get_poweredby();
+}
+
+
+/**
+ * 設定取得
+ *
+ * @param string $name    option key.
+ * @param mixed  $default デフォルト値.
+ * @param mixed  $type    取得する型.
+ *
+ * @return mixed
+ */
+function ys_get_option( $name, $default = false, $type = false ) {
+	return ystandard\Option::get_option( $name, $default, $type );
+}
+
+/**
+ * 設定取得(bool)
+ *
+ * @param string $name    option key.
+ * @param mixed  $default デフォルト値.
+ *
+ * @return mixed
+ */
+function ys_get_option_by_bool( $name, $default = false ) {
+	return ystandard\Option::get_option_by_bool( $name, $default );
+}
+
+/**
+ * 設定取得(int)
+ *
+ * @param string $name    option key.
+ * @param mixed  $default デフォルト値.
+ *
+ * @return mixed
+ */
+function ys_get_option_by_int( $name, $default = 0 ) {
+	return ystandard\Option::get_option_by_int( $name, $default );
 }

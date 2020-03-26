@@ -19,7 +19,9 @@ class Color_Palette {
 	 * Color_Palette constructor.
 	 */
 	public function __construct() {
+		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
 		add_filter( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'add_color_palette_css' ] );
+		add_filter( Enqueue_Admin::BLOCK_EDITOR_ASSETS_HOOK, [ $this, 'add_color_palette_css_block' ] );
 
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 	}
@@ -33,6 +35,27 @@ class Color_Palette {
 	 */
 	public function add_color_palette_css( $css ) {
 		return $css . self::get_editor_color_palette_css();
+	}
+
+	/**
+	 * 編集画面用カラーパレットCSS追加
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public function add_color_palette_css_block( $css ) {
+		return $css . self::get_editor_color_palette_css( '.editor-styles-wrapper' );
+	}
+
+	/**
+	 * Add Theme Support
+	 */
+	public function add_theme_support() {
+		/**
+		 * ブロックエディター色設定
+		 */
+		add_theme_support( 'editor-color-palette', self::get_color_palette( false ) );
 	}
 
 	/**

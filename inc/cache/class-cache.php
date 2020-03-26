@@ -13,12 +13,6 @@ namespace ystandard;
  * キャッシュ処理クラス
  */
 class Cache {
-	/**
-	 * コンストラクタ
-	 */
-	public function __construct() {
-
-	}
 
 	/**
 	 * キャッシュ作成に使用するキーを作成

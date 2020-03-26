@@ -242,7 +242,7 @@ class Content {
 	/**
 	 * アーカイブURL
 	 */
-	function get_archive_url() {
+	public static function get_archive_url() {
 		$url            = '';
 		$queried_object = get_queried_object();
 		if ( is_category() ) {
@@ -293,8 +293,27 @@ class Content {
 	 * @return string
 	 */
 	public static function get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
+		$length  = 0 === $length ? Option::get_option_by_int( 'ys_option_excerpt_length', 110 ) : $length;
+		$content = self::get_custom_excerpt_raw( $post_id );
+		/**
+		 * 長さ調節
+		 */
+		if ( mb_strlen( $content ) > $length ) {
+			$content = mb_substr( $content, 0, $length - mb_strlen( $sep ) ) . $sep;
+		}
+
+		return apply_filters( 'ys_get_the_custom_excerpt', $content, $post_id );
+	}
+
+	/**
+	 * 切り取らない投稿抜粋文を作成
+	 *
+	 * @param integer $post_id 投稿ID.
+	 *
+	 * @return string
+	 */
+	public static function get_custom_excerpt_raw( $post_id = 0 ) {
 		$post_id = 0 === $post_id ? get_the_ID() : $post_id;
-		$length  = 0 === $length ? ys_get_option_by_int( 'ys_option_excerpt_length', 110 ) : $length;
 		$post    = get_post( $post_id );
 		if ( post_password_required( $post ) ) {
 			return __( 'There is no excerpt because this is a protected post.' );
@@ -311,14 +330,8 @@ class Content {
 			$content = preg_replace( '/<!--more-->.+/is', '', $content );
 			$content = Utility::get_plain_text( $content );
 		}
-		/**
-		 * 長さ調節
-		 */
-		if ( mb_strlen( $content ) > $length ) {
-			$content = mb_substr( $content, 0, $length - mb_strlen( $sep ) ) . $sep;
-		}
 
-		return apply_filters( 'ys_get_the_custom_excerpt', $content, $post_id );
+		return $content;
 	}
 
 	/**

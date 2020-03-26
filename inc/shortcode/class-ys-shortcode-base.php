@@ -7,6 +7,10 @@
  * @license GPL-2.0+
  */
 
+if ( class_exists( 'YS_Shortcode_Base' ) ) {
+	return;
+}
+
 /**
  * キャッシュ処理クラス
  */
@@ -30,21 +34,21 @@ class YS_Shortcode_Base {
 	 *
 	 * @var array
 	 */
-	protected $attr_base = array();
+	protected $attr_base = [];
 
 	/**
 	 * ショートコードパラメーター
 	 *
 	 * @var array
 	 */
-	protected $args = array();
+	protected $args = [];
 
 	/**
 	 * エラー
 	 *
 	 * @var  array
 	 */
-	protected $err = array();
+	protected $err = [];
 
 	/**
 	 * コンストラクタ
@@ -52,7 +56,7 @@ class YS_Shortcode_Base {
 	 * @param array $args ユーザー指定パラメーター.
 	 * @param array $attr 追加パラメーター.
 	 */
-	public function __construct( $args = array(), $attr = array() ) {
+	public function __construct( $args = [], $attr = [] ) {
 		/**
 		 * 基本パラメーターの作成
 		 */
@@ -72,7 +76,7 @@ class YS_Shortcode_Base {
 	 * @return array
 	 */
 	static public function get_base_attr() {
-		return array(
+		return [
 			'id'                 => '',
 			'class'              => '',
 			'class_base'         => '',
@@ -91,7 +95,7 @@ class YS_Shortcode_Base {
 			'title_tag'          => 'h2',
 			'title_class'        => '',
 			'wrap_html'          => '<div%s>%s</div>',
-		);
+		];
 	}
 
 
@@ -118,7 +122,7 @@ class YS_Shortcode_Base {
 	 *
 	 * @param array $attr 追加パラメーター.
 	 */
-	public function set_base_attr( $attr = array() ) {
+	public function set_base_attr( $attr = [] ) {
 		/**
 		 * マージ
 		 */
@@ -383,12 +387,12 @@ class YS_Shortcode_Base {
 			$term_slug  = $term->slug;
 		}
 
-		return array(
+		return [
 			'taxonomy_name' => $taxonomy,
 			'term_id'       => $term_id,
 			'term_label'    => $term_label,
 			'term_slug'     => $term_slug,
-		);
+		];
 	}
 
 	/**
@@ -565,11 +569,11 @@ class YS_Shortcode_Base {
 			$post_type = ys_get_post_type();
 			if ( $post_type ) {
 				$taxonomies = get_taxonomies(
-					array(
-						'object_type' => array( $post_type ),
+					[
+						'object_type' => [ $post_type ],
 						'public'      => true,
 						'show_ui'     => true,
-					),
+					],
 					'objects'
 				);
 				/**

@@ -27,11 +27,21 @@ class Enqueue_Styles {
 	const INLINE_CSS_HOOK = 'ys_get_inline_css';
 
 	/**
+	 * ブレークポイント
+	 *
+	 * @var array
+	 */
+	const BREAKPOINTS = [
+		'md' => 600,
+		'lg' => 1025,
+	];
+
+	/**
 	 * Enqueue_Styles constructor.
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_script', [ $this, 'enqueue_css' ] );
-		add_action( 'wp_enqueue_script', [ $this, 'enqueue_style_css' ], 100 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_css' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_style_css' ], 100 );
 		// CSSインライン読み込み.
 		if ( ! is_admin() && ys_get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
 			add_filter( 'style_loader_tag', [ $this, 'style_loader_inline' ], PHP_INT_MAX, 4 );
@@ -168,6 +178,44 @@ class Enqueue_Styles {
 		$style = str_replace( [ "\r\n", "\r", "\n", "\t", '  ', '    ' ], '', $style );
 
 		return $style;
+	}
+
+	/**
+	 * メディアクエリを追加
+	 *
+	 * @param string $css Styles.
+	 * @param string $min Breakpoint.
+	 * @param string $max Breakpoint.
+	 *
+	 * @return string
+	 */
+	public static function add_media_query( $css, $min = '', $max = '' ) {
+
+		if ( ! isset( self::BREAKPOINTS[ $min ] ) && ! isset( self::BREAKPOINTS[ $max ] ) ) {
+			return $css;
+		}
+		if ( isset( self::BREAKPOINTS[ $min ] ) ) {
+			$breakpoint = self::BREAKPOINTS[ $min ];
+			$min        = "(min-width: ${breakpoint}px)";
+		}
+		if ( isset( self::BREAKPOINTS[ $max ] ) ) {
+			$breakpoint = self::BREAKPOINTS[ $max ] - 1;
+			$max        = "(max-width: ${breakpoint}px)";
+		}
+		$breakpoint = $min . $max;
+		if ( '' !== $min && '' !== $max ) {
+			$breakpoint = $min . ' AND ' . $max;
+		}
+
+		if ( empty( $breakpoint ) ) {
+			return $css;
+		}
+
+		return sprintf(
+			'@media %s {%s}',
+			$breakpoint,
+			$css
+		);
 	}
 
 	/**

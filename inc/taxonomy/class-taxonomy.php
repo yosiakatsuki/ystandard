@@ -34,7 +34,8 @@ class Taxonomy {
 		add_filter( 'ys_get_the_archive_title', [ $this, 'override_title' ] );
 		add_filter( 'document_title_parts', [ $this, 'document_title_parts' ] );
 		add_filter( 'get_the_archive_description', [ $this, 'override_description' ] );
-		add_filter( 'ys_get_ogp_and_twitter_card_param', [ $this, 'change_ogp' ] );
+		add_filter( 'ys_ogp_description_archive', [ $this, 'ogp_description' ] );
+		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
 	}
 
 	/**
@@ -182,7 +183,7 @@ class Taxonomy {
 		if ( ! is_numeric( $parts_id ) ) {
 			$parts_id = 0;
 		} else {
-			$dscr = ys_get_the_custom_excerpt( '', 0, $parts_id );
+			$dscr = Content::get_custom_excerpt( '', 0, $parts_id );
 		}
 
 		return [
@@ -234,27 +235,39 @@ class Taxonomy {
 	}
 
 	/**
-	 * OGP書き換え
+	 * OGP概要文書き換え
 	 *
-	 * @param array $param OGPパラメーター.
+	 * @param string $dscr Archive description.
 	 *
-	 * @return array
+	 * @return string
 	 */
-	public function change_ogp( $param ) {
+	public function ogp_description( $dscr ) {
 		if ( $this->is_tax_cat_tag() ) {
 			$content = $this->get_term_content();
-			if ( $content['image'] ) {
-				$param['image'] = $content['image'];
-			}
-			if ( $content['title'] ) {
-				$param['title'] = $content['title'];
-			}
 			if ( $content['dscr'] ) {
-				$param['description'] = $content['dscr'];
+				$dscr = $content['dscr'];
 			}
 		}
 
-		return $param;
+		return $dscr;
+	}
+
+	/**
+	 * OGP画像書き換え
+	 *
+	 * @param string $image Archive image.
+	 *
+	 * @return string
+	 */
+	public function ogp_image( $image ) {
+		if ( $this->is_tax_cat_tag() ) {
+			$content = $this->get_term_content();
+			if ( $content['image'] ) {
+				$image = $content['image'];
+			}
+		}
+
+		return $image;
 	}
 
 	/**

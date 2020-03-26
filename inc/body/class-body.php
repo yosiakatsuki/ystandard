@@ -36,7 +36,7 @@ class Body {
 		 * 背景画像があればクラス追加
 		 */
 		if ( get_background_image() ) {
-			$classes[] = 'custom-background-image';
+			$classes[] = 'has-custom-background-image';
 		}
 
 		/**
@@ -96,8 +96,14 @@ class Body {
 		/**
 		 * 背景色あり
 		 */
-		if ( Color::is_custom_bg_color() ) {
+		if ( Site_Color::is_custom_bg_color() ) {
 			$classes[] = 'has-bg-color';
+		}
+		/**
+		 * なんか背景あり
+		 */
+		if ( Site_Color::is_custom_bg_color() || get_background_image() ) {
+			$classes[] = 'has-background';
 		}
 
 		/**

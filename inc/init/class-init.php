@@ -18,7 +18,7 @@ class Init {
 	 */
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'content_width' ], 1 );
-		add_action( 'after_setup_theme', [ $this, 'after_setup_theme' ] );
+		add_action( 'after_setup_theme', [ $this, 'init' ] );
 		add_action( 'after_setup_theme', [ $this, 'remove_meta' ] );
 		add_action( 'after_setup_theme', [ $this, 'tax_dscr_filter' ] );
 	}
@@ -37,7 +37,7 @@ class Init {
 	/**
 	 * 初期化
 	 */
-	public function after_setup_theme() {
+	public function init() {
 		/**
 		 * 投稿とコメントのフィード出力
 		 */
@@ -127,14 +127,7 @@ class Init {
 		 * レスポンシブ
 		 */
 		add_theme_support( 'responsive-embeds' );
-		/**
-		 * ブロックエディターの文字サイズ選択設定
-		 */
-		add_theme_support( 'editor-font-sizes', Font::get_editor_font_sizes() );
-		/**
-		 * ブロックエディター色設定
-		 */
-		add_theme_support( 'editor-color-palette', Color::get_color_palette( false ) );
+
 	}
 
 	/**
