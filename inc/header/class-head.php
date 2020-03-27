@@ -21,7 +21,6 @@ class Head {
 	 */
 	public function __construct() {
 		add_action( 'wp_head', [ $this, 'meta_noindex' ] );
-		add_action( 'wp_head', [ $this, 'meta_description' ] );
 		add_action( 'wp_head', [ $this, 'pingback_url' ] );
 		add_action( 'wp_head', [ $this, 'add_preload' ], 2 );
 		add_action( 'wp_head', [ $this, 'add_apple_touch_icon' ] );
@@ -244,81 +243,11 @@ class Head {
 	}
 
 	/**
-	 * メタディスクリプション作成
-	 *
-	 * @return string
-	 */
-	public static function get_meta_description() {
-		$length = Option::get_option_by_int( 'ys_option_meta_description_length', 80 );
-		$dscr   = '';
-
-		if ( Template::is_top_page() ) {
-			/**
-			 * TOPページの場合
-			 */
-			$dscr = trim( Option::get_option( 'ys_wp_site_description', '' ) );
-		} elseif ( is_category() && ! is_paged() ) {
-			/**
-			 * カテゴリー
-			 */
-			$dscr = category_description();
-		} elseif ( is_tag() && ! is_paged() ) {
-			/**
-			 * タグ
-			 */
-			$dscr = tag_description();
-		} elseif ( is_tax() ) {
-			/**
-			 * その他タクソノミー
-			 */
-			$taxonomy = get_query_var( 'taxonomy' );
-			$term     = get_term_by( 'slug', get_query_var( 'term' ), $taxonomy );
-			$dscr     = term_description( $term->term_id, $taxonomy );
-		} elseif ( is_singular() ) {
-			/**
-			 * 投稿ページ
-			 */
-			if ( ! get_query_var( 'paged' ) ) {
-				$dscr = Content::get_custom_excerpt( '', $length );
-			}
-		}
-		if ( '' !== $dscr ) {
-			$dscr = mb_substr( $dscr, 0, $length );
-		}
-
-		return apply_filters(
-			'ys_get_meta_description',
-			wp_strip_all_tags( $dscr, true )
-		);
-	}
-
-	/**
 	 * ピンバックURLの出力
 	 */
 	public function pingback_url() {
 		if ( is_singular() && pings_open( get_queried_object() ) ) {
 			echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . PHP_EOL;
-		}
-	}
-
-	/**
-	 * メタディスクリプションタグ出力
-	 */
-	public function meta_description() {
-		if ( ! Option::get_option_by_bool( 'ys_option_create_meta_description', true ) ) {
-			return;
-		}
-		if ( is_single() || is_page() ) {
-			if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_meta_dscr' ) ) ) {
-				return;
-			}
-		}
-		/**
-		 * Metaタグの作成
-		 */
-		$dscr = self::get_meta_description();
-		if ( '' !== $dscr ) {
-			echo '<meta name="description" content="' . $dscr . '" />' . PHP_EOL;
 		}
 	}
 

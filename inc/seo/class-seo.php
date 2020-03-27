@@ -41,34 +41,7 @@ class SEO {
 				'panel' => self::PANEL_NAME,
 			]
 		);
-		/**
-		 * SEO : meta descriptionを自動生成する
-		 */
-		$customizer->add_section(
-			[
-				'section'  => 'ys_meta_description',
-				'title'    => 'meta description設定',
-				'priority' => 1,
-			]
-		);
-		// 自動生成する.
-		$customizer->add_checkbox(
-			[
-				'id'        => 'ys_option_create_meta_description',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => 'meta descriptionを自動生成する',
-			]
-		);
-		// 抜粋文字数.
-		$customizer->add_number(
-			[
-				'id'        => 'ys_option_meta_description_length',
-				'default'   => 80,
-				'transport' => 'postMessage',
-				'label'     => 'meta descriptionに使用する文字数',
-			]
-		);
+
 		/**
 		 * アーカイブページのnoindex設定
 		 */
