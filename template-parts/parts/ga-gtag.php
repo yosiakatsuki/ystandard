@@ -7,15 +7,14 @@
  * @license GPL-2.0+
  */
 
-$ga_tracking_id = ys_get_google_anarytics_tracking_id();
-if ( empty( $ga_tracking_id ) ) {
+if ( ! isset( $ys_tracking_id ) || empty( $ys_tracking_id ) ) {
 	return;
 }
 ?>
-<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $ga_tracking_id; ?>"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $ys_tracking_id; ?>"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '<?php echo $ga_tracking_id; ?>', { 'useAmpClientId': true } );
+gtag('config', '<?php echo $ys_tracking_id; ?>', { 'useAmpClientId': true } );
 </script>

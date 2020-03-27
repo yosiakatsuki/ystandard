@@ -10,7 +10,7 @@
 /**
  * ブログカードの表示は基本的にショートコードで処理しています。
  */
-if ( empty( $ys_card_data ) ) {
+if ( ! isset( $ys_card_data ) || empty( $ys_card_data ) ) {
 	return;
 }
 

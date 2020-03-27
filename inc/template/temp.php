@@ -2,16 +2,6 @@
 
 
 /**
- * Google Analytics idの取得
- */
-function ys_get_google_anarytics_tracking_id() {
-	return apply_filters(
-		'ys_get_google_anarytics_tracking_id',
-		trim( ys_get_option( 'ys_ga_tracking_id', '' ) )
-	);
-}
-
-/**
  * TOPページ判断（HOMEの1ページ目 or front-page）
  *
  * @return bool
@@ -361,7 +351,7 @@ function ys_is_active_related_post() {
 		if ( ! ys_get_option_by_bool( 'ys_show_post_related', true ) ) {
 			$result = false;
 		}
-		if ( ys_to_bool( ys_get_post_meta( 'ys_hide_related' ) ) ) {
+		if ( Utility::to_bool( ys_get_post_meta( 'ys_hide_related' ) ) ) {
 			$result = false;
 		}
 	}

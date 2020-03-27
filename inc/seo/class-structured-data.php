@@ -238,7 +238,7 @@ class Structured_Data {
 			[
 				'section'  => 'ys_structured_data',
 				'title'    => '構造化データ',
-				'priority' => 1,
+				'priority' => 100,
 				'panel'    => SEO::PANEL_NAME,
 			]
 		);

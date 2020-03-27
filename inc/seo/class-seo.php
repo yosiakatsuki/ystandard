@@ -26,7 +26,6 @@ class SEO {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-
 	}
 
 	/**
@@ -75,7 +74,7 @@ class SEO {
 		 */
 		$customizer->add_section(
 			[
-				'section'  => 'ys_customizer_section_noindex',
+				'section'  => 'ys_noindex',
 				'title'    => 'アーカイブページのnoindex設定',
 				'priority' => 1,
 				'panel'    => 'ys_customizer_panel_seo',
