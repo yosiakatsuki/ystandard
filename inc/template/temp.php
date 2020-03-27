@@ -32,10 +32,7 @@ function ys_check_user_agent( $ua ) {
  * @return bool
  */
 function ys_is_mobile() {
-
-	/**
-	 * [^(?!.*iPad).*iPhone] : iPadとiPhoneが混ざるUAがあるらしい
-	 */
+	
 	$ua = [
 		'^(?!.*iPad).*iPhone',
 		'iPod',
@@ -273,76 +270,6 @@ function ys_is_active_sns_share_on_footer() {
 
 
 /**
- * 記事上ウィジェットを表示するか
- */
-function ys_is_active_before_content_widget() {
-	$result = false;
-	if ( is_active_sidebar( 'before-content' ) ) {
-		if ( ys_is_amp() ) {
-			if ( ys_get_option_by_bool( 'ys_show_amp_before_content_widget', false ) ) {
-				$result = true;
-			}
-		} else {
-			if ( is_single() && ys_get_option_by_bool( 'ys_show_post_before_content_widget', false ) ) {
-				$result = true;
-			}
-			if ( is_page() && ys_get_option_by_bool( 'ys_show_page_before_content_widget', false ) ) {
-				$result = true;
-			}
-		}
-	}
-
-	return apply_filters( 'ys_is_active_before_content_widget', $result );
-}
-
-/**
- * 記事下ウィジェットを表示するか
- */
-function ys_is_active_after_content_widget() {
-	$result = false;
-	if ( is_active_sidebar( 'after-content' ) ) {
-		if ( ys_is_amp() ) {
-			if ( ys_get_option_by_bool( 'ys_show_amp_after_content_widget', false ) ) {
-				$result = true;
-			}
-		} else {
-			if ( is_single() && ys_get_option_by_bool( 'ys_show_post_after_content_widget', false ) ) {
-				$result = true;
-			}
-			if ( is_page() && ys_get_option_by_bool( 'ys_show_page_after_content_widget', false ) ) {
-				$result = true;
-			}
-		}
-	}
-
-	return apply_filters( 'ys_is_active_after_content_widget', $result );
-}
-
-
-/**
- * フォローBOXを表示するか
- */
-function ys_is_active_follow_box() {
-	$result = true;
-	if ( is_singular() ) {
-		if ( '1' === ys_get_post_meta( 'ys_hide_follow' ) ) {
-			$result = false;
-		}
-	}
-	if ( is_single() && ! ys_get_option_by_bool( 'ys_show_post_follow_box', true ) ) {
-		$result = false;
-	}
-	if ( is_page() && ! ys_get_option_by_bool( 'ys_show_page_follow_box', true ) ) {
-		$result = false;
-	}
-	if ( ys_is_amp() ) {
-		$result = false;
-	}
-
-	return apply_filters( 'ys_is_active_follow_box', $result );
-}
-
-/**
  * 関連記事を表示するか
  */
 function ys_is_active_related_post() {
@@ -410,9 +337,6 @@ function ys_is_enable_cache_setting() {
 		return true;
 	}
 	if ( 'none' !== ys_get_option( 'ys_query_cache_related_posts', 'none' ) ) {
-		return true;
-	}
-	if ( 'none' !== ys_get_option( 'ys_query_cache_ranking', 'none' ) ) {
 		return true;
 	}
 

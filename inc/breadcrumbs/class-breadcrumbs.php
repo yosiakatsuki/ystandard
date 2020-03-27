@@ -75,13 +75,13 @@ class Breadcrumbs {
 	 * @return string
 	 */
 	public static function get_breadcrumbs_position() {
-		return ys_get_option( 'ys_breadcrumbs_position', 'header' );
+		return Option::get_option( 'ys_breadcrumbs_position', 'header' );
 	}
 
 	/**
 	 * アクション・フィルターフックのセット
 	 */
-	public function set_action() {
+	public function register() {
 		add_action( 'wp_footer', [ $this, 'structured_data' ], 11 );
 	}
 
@@ -556,4 +556,5 @@ class Breadcrumbs {
 
 }
 
-new Breadcrumbs();
+$class_breadcrumbs = new Breadcrumbs();
+$class_breadcrumbs->register();

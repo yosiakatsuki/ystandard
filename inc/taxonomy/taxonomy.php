@@ -95,43 +95,6 @@ function ys_the_category_list( $separator = '', $link = true, $post_id = 0 ) {
 
 
 /**
- * カテゴリーID一覧取得
- *
- * @param boolean $children 子カテゴリーを含むか.
- *
- * @return array
- */
-function ys_get_the_category_id_list( $children = false ) {
-	$cat_list = array();
-	if ( is_category() ) {
-		$cat        = get_queried_object();
-		$cat_list[] = $cat->term_id;
-	} elseif ( is_single() ) {
-		$cat = get_the_category();
-		if ( ! $cat ) {
-			return array();
-		}
-		foreach ( $cat as $cat_obj ) {
-			$cat_list[] = $cat_obj->cat_ID;
-		}
-	}
-	/**
-	 * 子孫の取得
-	 */
-	if ( $children ) {
-		foreach ( $cat_list as $cat_id ) {
-			$cat_children = get_term_children( (int) $cat_id, 'category' );
-			foreach ( $cat_children as $cat_children_id ) {
-				$cat_list[] = $cat_children_id;
-			}
-		}
-	}
-
-	return $cat_list;
-}
-
-
-/**
  * 投稿タグ一覧取得
  *
  * @param int     $count   count.
