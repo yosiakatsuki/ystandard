@@ -11,34 +11,6 @@
  * グローバルナビゲーション用ワーカー
  */
 class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
-	/**
-	 * Starts the list before the elements are added.
-	 *
-	 * @param string   $output Used to append additional content (passed by reference).
-	 * @param int      $depth  Depth of menu item. Used for padding.
-	 * @param stdClass $args   An object of wp_nav_menu() arguments.
-	 */
-	function start_lvl( &$output, $depth = 0, $args = array() ) {
-		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
-			$t = '';
-			$n = '';
-		} else {
-			$t = "\t";
-			$n = "\n";
-		}
-		$indent = str_repeat( $t, $depth );
-
-		$classes = array(
-			'sub-menu',
-			'global-nav__sub-menu',
-			'li-clear',
-		);
-
-		$class_names = join( ' ', apply_filters( 'nav_menu_submenu_css_class', $classes, $args, $depth ) );
-		$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
-
-		$output .= "{$n}{$indent}<ul$class_names>{$n}";
-	}
 
 	/**
 	 * Starts the element output.
@@ -49,7 +21,7 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 	 * @param stdClass $args   An object of wp_nav_menu() arguments.
 	 * @param int      $id     Current item ID.
 	 */
-	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+	function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) {
 		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
 			$t = '';
 			$n = '';
@@ -59,9 +31,8 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		}
 		$indent = ( $depth ) ? str_repeat( $t, $depth ) : '';
 
-		$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes   = empty( $item->classes ) ? [] : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
-		$classes[] = 'global-nav__item';
 
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
@@ -73,7 +44,7 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 
 		$output .= $indent . '<li' . $id . $class_names . '>';
 
-		$atts           = array();
+		$atts           = [];
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
 		$atts['target'] = ! empty( $item->target ) ? $item->target : '';
 		$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
@@ -102,15 +73,16 @@ class YS_Walker_Global_Nav_Menu extends Walker_Nav_Menu {
 		$description = '';
 
 		if ( 0 === $depth && $item->description ) {
-			$description = '<small class="h-nav__dscr">' . $item->description . '</small>';
+			$description = '<small class="global-nav__dscr">' . $item->description . '</small>';
 		}
 
 		$before      = empty( $args->before ) ? '' : $args->before;
 		$link_before = empty( $args->link_before ) ? '' : $args->link_before;
 		$link_after  = empty( $args->link_after ) ? '' : $args->link_after;
 		$after       = empty( $args->after ) ? '' : $args->after;
-
-		$item_output  = $before;
+		$item_output = '';
+		// 結合.
+		$item_output .= $before;
 		$item_output .= '<a' . $attributes . '>';
 		$item_output .= $link_before . $title . $link_after;
 		$item_output .= $description;
