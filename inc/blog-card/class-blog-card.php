@@ -124,7 +124,7 @@ class Blog_Card {
 		 * ビジュアルエディタの中でショートコードを展開する
 		 */
 		add_shortcode( 'ys_blog_card', [ $this, 'do_shortcode' ] );
-		$blog_card = ys_do_shortcode(
+		$blog_card = Utility::do_shortcode(
 			'ys_blog_card',
 			[
 				'url'   => $url,

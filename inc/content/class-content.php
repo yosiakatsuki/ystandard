@@ -23,6 +23,7 @@ class Content {
 		add_filter( 'post_class', [ $this, 'post_class' ] );
 		add_filter( 'the_content', [ $this, 'replace_more' ] );
 		add_filter( 'the_content', [ $this, 'responsive_iframe' ] );
+		add_filter( 'get_the_excerpt', '\ystandard\Content::get_custom_excerpt' );
 		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
 		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
 		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
@@ -256,7 +257,7 @@ class Content {
 			$url = home_url( '/?s=' . urlencode( get_search_query( false ) ) );
 			$url = get_post_type_archive_link( esc_url_raw( $url ) );
 		} elseif ( is_post_type_archive() ) {
-			$post_type = ys_get_post_type();
+			$post_type = self::get_post_type();
 			$url       = get_post_type_archive_link( $post_type );
 		} elseif ( is_tax() ) {
 			$tax = get_taxonomy( $queried_object->taxonomy );

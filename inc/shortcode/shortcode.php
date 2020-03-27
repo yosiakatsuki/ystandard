@@ -10,32 +10,10 @@
 /**
  * クラス読み込み
  */
-require_once __DIR__ . '/class-ys-shortcode-base.php';
-require_once __DIR__ . '/class-ys-shortcode-text.php';
-require_once __DIR__ . '/class-ys-shortcode-share-button.php';
-require_once __DIR__ . '/class-ys-shortcode-get-posts.php';
-require_once __DIR__ . '/class-ys-shortcode-post-ranking.php';
-require_once __DIR__ . '/class-ys-shortcode-recent-posts.php';
 require_once __DIR__ . '/class-ys-shortcode-post-paging.php';
 require_once __DIR__ . '/class-ys-shortcode-post-taxonomy.php';
 
 
-
-/**
- * 投稿一覧
- *
- * @param array $args    パラメータ.
- * @param null  $content 内容.
- *
- * @return string
- */
-function ys_shortcode_get_posts( $args, $content = null ) {
-	$sc = new YS_Shortcode_Get_Posts( $args );
-
-	return $sc->get_html( $content );
-}
-
-add_shortcode( 'ys_get_posts', 'ys_shortcode_get_posts' );
 
 
 /**
@@ -55,22 +33,6 @@ add_shortcode( 'ys_post_paging', 'ys_shortcode_post_paging' );
 
 
 /**
- * 記事ランキング
- *
- * @param array $args    パラメータ.
- * @param null  $content 内容.
- *
- * @return string
- */
-function ys_shortcode_post_ranking( $args, $content = null ) {
-	$sc = new YS_Shortcode_Post_Ranking( $args );
-
-	return $sc->get_html( $content );
-}
-
-add_shortcode( 'ys_post_ranking', 'ys_shortcode_post_ranking' );
-
-/**
  * 投稿カテゴリー・タグ表示
  *
  * @param array $args パラメータ.
@@ -85,58 +47,6 @@ function ys_shortcode_ys_post_tax( $args ) {
 
 add_shortcode( 'ys_post_tax', 'ys_shortcode_ys_post_tax' );
 
-/**
- * 新着記事一覧
- *
- * @param array $args    パラメーター.
- * @param null  $content 内容.
- *
- * @return string
- */
-function ys_shortcode_recent_posts( $args, $content = null ) {
-	$sc = new YS_Shortcode_Recent_Posts( $args );
-
-	return $sc->get_html( $content );
-}
-
-add_shortcode( 'ys_recent_posts', 'ys_shortcode_recent_posts' );
-add_shortcode( 'ys_tax_posts', 'ys_shortcode_recent_posts' ); // 旧ショートコードの互換.
-
-
-/**
- * シェアボタンショートコード
- *
- * @param array $args パラメーター.
- *
- * @return string
- */
-function ys_shortcode_share_button( $args ) {
-	$sc = new YS_Shortcode_Share_Button( $args );
-
-	return $sc->get_html();
-}
-
-add_shortcode( 'ys_share_button', 'ys_shortcode_share_button' );
-
-/**
- * 汎用テキストショートコード
- *
- * @param array $args    パラメーター.
- * @param null  $content 内容.
- *
- * @return string
- */
-function ys_shortcode_text( $args, $content = null ) {
-	$sc = new YS_Shortcode_Text( $args );
-
-	return apply_filters(
-		'ys_sc_text_shortcode',
-		$sc->get_html( $content ),
-		$sc->get_args()
-	);
-}
-
-add_shortcode( 'ys_text', 'ys_shortcode_text' );
 
 
 /**

@@ -109,7 +109,7 @@ class Utility {
 	 */
 	public static function file_get_contents( $file ) {
 		$content = false;
-		if ( ys_init_filesystem() ) {
+		if ( self::init_filesystem() ) {
 			/**
 			 * @global \WP_Filesystem_Direct $wp_filesystem ;
 			 */
@@ -118,6 +118,20 @@ class Utility {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * ファイルシステムの初期化
+	 *
+	 * @return bool|null
+	 */
+	public static function init_filesystem() {
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+		}
+
+		return WP_Filesystem();
 	}
 
 	/**
