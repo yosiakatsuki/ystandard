@@ -145,6 +145,6 @@ function ys_in_array( $needle, $haystack ) {
  *
  * @return bool
  */
-function ys_to_bool( $value ) {
+function Utility::to_bool( $value ) {
 	return ystandard\Utility::to_bool( $value );
 }

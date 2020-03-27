@@ -80,7 +80,7 @@ class YS_Widget_Post_Ranking extends YS_Widget_Get_Posts {
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'filter_check' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'filter_check' ); ?>" name="<?php echo $this->get_field_name( 'filter_check' ); ?>" value="1" <?php checked( ys_to_bool( $instance['filter_check'] ), true ); ?> />同一カテゴリー内のランキングを作成する
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'filter_check' ); ?>" name="<?php echo $this->get_field_name( 'filter_check' ); ?>" value="1" <?php checked( Utility::to_bool( $instance['filter_check'] ), true ); ?> />同一カテゴリー内のランキングを作成する
 				</label><br/>
 			</p>
 		</div>

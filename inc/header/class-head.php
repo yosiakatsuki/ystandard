@@ -20,7 +20,6 @@ class Head {
 	 * Head constructor.
 	 */
 	public function __construct() {
-		add_action( 'wp_head', [ $this, 'google_analytics' ], 99 );
 		add_action( 'wp_head', [ $this, 'meta_noindex' ] );
 		add_action( 'wp_head', [ $this, 'meta_description' ] );
 		add_action( 'wp_head', [ $this, 'pingback_url' ] );
@@ -321,25 +320,6 @@ class Head {
 		if ( '' !== $dscr ) {
 			echo '<meta name="description" content="' . $dscr . '" />' . PHP_EOL;
 		}
-	}
-
-	/**
-	 * Google Analyticsタグ出力
-	 */
-	public function google_analytics() {
-		/**
-		 * 管理画面ログイン中はGAタグを出力しない
-		 */
-		if ( ! Conditional_Tag::is_enable_google_analytics() ) {
-			return;
-		}
-		/**
-		 * トラッキング タイプ
-		 */
-		ys_get_template_part(
-			'template-parts/parts/ga',
-			ys_get_option( 'ys_ga_tracking_type', 'gtag' )
-		);
 	}
 
 	/**

@@ -168,10 +168,6 @@ class Customizer {
 		 * SNS設定
 		 */
 		$this->sns();
-		/**
-		 * SEO設定
-		 */
-		$this->seo();
 
 		/**
 		 * 拡張機能
@@ -1388,73 +1384,6 @@ class Customizer {
 				'description' => '※FacebookのいいねボタンやPagePluginなどをサイト内で使用する場合、こちらにチェックを入れてください。<br>※Facebook用のJavaScriptを&lt;/body&gt;直前で読み込みます',
 			]
 		);
-	}
-
-	/**
-	 * SEO
-	 */
-	private function seo() {
-
-		/**
-		 * アーカイブページのnoindex設定
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-
-		/**
-		 * Google Analytics設定
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'  => 'ys_customizer_section_google_analytics',
-				'title'    => 'Google Analytics設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_seo',
-			]
-		);
-		/**
-		 * Google Analytics トラッキングID
-		 */
-		$ys_customizer->add_text(
-			[
-				'id'          => 'ys_ga_tracking_id',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => 'Google Analytics トラッキングID',
-				'input_attrs' => [
-					'placeholder' => 'UA-00000000-0',
-				],
-			]
-		);
-		/**
-		 * トラッキングコードタイプ
-		 */
-		$ys_customizer->add_radio(
-			[
-				'id'          => 'ys_ga_tracking_type',
-				'default'     => 'gtag',
-				'transport'   => 'postMessage',
-				'label'       => 'トラッキングコードタイプ',
-				'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。※デフォルトはグローバル サイトタグ(gtag.js)です。',
-				'choices'     => [
-					'gtag'      => 'グローバル サイトタグ(gtag.js)',
-					'analytics' => 'ユニバーサルアナリティクス(analytics.js)',
-				],
-			]
-		);
-		/**
-		 * ログイン中はアクセス数をカウントしない
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_ga_exclude_logged_in_user',
-				'default'     => 0,
-				'transport'   => 'postMessage',
-				'label'       => '管理画面ログイン中はアクセス数カウントを無効にする（「購読者」ユーザーを除く）',
-				'description' => 'チェックを付けた場合、ログインユーザーのアクセスではGoogle Analyticsのトラッキングコードを出力しません',
-			]
-		);
-
 	}
 
 

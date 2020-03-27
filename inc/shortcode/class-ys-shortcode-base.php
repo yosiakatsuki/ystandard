@@ -209,7 +209,7 @@ class YS_Shortcode_Base {
 				 * 真・偽で取得
 				 */
 				if ( 'bool' === $type || 'boolean' === $type ) {
-					return ys_to_bool( $result );
+					return Utility::to_bool( $result );
 				}
 				/**
 				 * 時間で取得
