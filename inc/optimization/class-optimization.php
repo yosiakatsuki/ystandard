@@ -115,6 +115,7 @@ class Optimization {
 		if ( ! ys_get_option_by_bool( 'ys_option_disable_wp_emoji', true ) ) {
 			return;
 		}
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 		add_action( 'wp_footer', 'print_emoji_detection_script' );
 	}
 
