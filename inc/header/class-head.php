@@ -20,7 +20,7 @@ class Head {
 	 * Head constructor.
 	 */
 	public function __construct() {
-		add_action( 'wp_head', [ $this, 'meta_noindex' ] );
+
 		add_action( 'wp_head', [ $this, 'pingback_url' ] );
 		add_action( 'wp_head', [ $this, 'add_preload' ], 2 );
 		add_action( 'wp_head', [ $this, 'add_apple_touch_icon' ] );
@@ -248,59 +248,6 @@ class Head {
 	public function pingback_url() {
 		if ( is_singular() && pings_open( get_queried_object() ) ) {
 			echo '<link rel="pingback" href="' . get_bloginfo( 'pingback_url' ) . '" />' . PHP_EOL;
-		}
-	}
-
-	/**
-	 * Noindex処理
-	 */
-	public function meta_noindex() {
-		$noindex = false;
-		if ( is_404() ) {
-			/**
-			 * 404ページをnoindex
-			 */
-			$noindex = true;
-		} elseif ( is_search() ) {
-			/**
-			 * 検索結果をnoindex
-			 */
-			$noindex = true;
-		} elseif ( is_category() && Option::get_option_by_bool( 'ys_archive_noindex_category', false ) ) {
-			/**
-			 * カテゴリーページのnoindex設定がされていればnoindex
-			 */
-			$noindex = true;
-		} elseif ( is_tag() && Option::get_option_by_bool( 'ys_archive_noindex_tag', true ) ) {
-			/**
-			 * カテゴリーページのnoindex設定がされていればnoindex
-			 */
-			$noindex = true;
-		} elseif ( is_author() && Option::get_option_by_bool( 'ys_archive_noindex_author', true ) ) {
-			/**
-			 * カテゴリーページのnoindex設定がされていればnoindex
-			 */
-			$noindex = true;
-
-		} elseif ( is_date() && Option::get_option_by_bool( 'ys_archive_noindex_date', true ) ) {
-			/**
-			 * カテゴリーページのnoindex設定がされていればnoindex
-			 */
-			$noindex = true;
-		} elseif ( is_single() || is_page() ) {
-			if ( '1' === Content::get_post_meta( 'ys_noindex' ) ) {
-				/**
-				 * 投稿・固定ページでnoindex設定されていればnoindex
-				 */
-				$noindex = true;
-			}
-		}
-		$noindex = apply_filters( 'ys_the_noindex', $noindex );
-		/**
-		 * Noindex出力
-		 */
-		if ( $noindex ) {
-			echo '<meta name="robots" content="noindex,follow">' . PHP_EOL;
 		}
 	}
 }

@@ -41,62 +41,6 @@ class SEO {
 				'panel' => self::PANEL_NAME,
 			]
 		);
-
-		/**
-		 * アーカイブページのnoindex設定
-		 */
-		$customizer->add_section(
-			[
-				'section'  => 'ys_noindex',
-				'title'    => 'アーカイブページのnoindex設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_seo',
-			]
-		);
-		/**
-		 * カテゴリー一覧をnoindexにする
-		 */
-		$customizer->add_checkbox(
-			[
-				'id'        => 'ys_archive_noindex_category',
-				'default'   => 0,
-				'transport' => 'postMessage',
-				'label'     => 'カテゴリー一覧をnoindexにする',
-			]
-		);
-		/**
-		 * タグ一覧をnoindexにする
-		 */
-		$customizer->add_checkbox(
-			[
-				'id'        => 'ys_archive_noindex_tag',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => 'タグ一覧をnoindexにする',
-			]
-		);
-		/**
-		 * 投稿者一覧をnoindexにする
-		 */
-		$customizer->add_checkbox(
-			[
-				'id'        => 'ys_archive_noindex_author',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => '投稿者一覧をnoindexにする',
-			]
-		);
-		/**
-		 * 日別一覧をnoindexにする
-		 */
-		$customizer->add_checkbox(
-			[
-				'id'        => 'ys_archive_noindex_date',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => '日別一覧をnoindexにする',
-			]
-		);
 	}
 }
 
