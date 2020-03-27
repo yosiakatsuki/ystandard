@@ -69,7 +69,14 @@ function ys_the_custom_header_markup() {
 	\ystandard\Custom_Header::custom_header_markup();
 }
 
+/**
+ * ページネーション
+ */
+function ys_get_pagination() {
+	$pagination = new \ystandard\Pagination();
 
+	return $pagination->get_pagination();
+}
 
 /**
  * アーカイブ明細クラス作成
@@ -78,7 +85,7 @@ function ys_the_custom_header_markup() {
  */
 function ys_get_archive_item_class() {
 
-	return ystandard\Content::get_archive_item_class();
+	return \ystandard\Content::get_archive_item_class();
 }
 
 /**
