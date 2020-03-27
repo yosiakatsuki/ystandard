@@ -1394,103 +1394,12 @@ class Customizer {
 	 * SEO
 	 */
 	private function seo() {
-		$this->_wp_customize->add_panel(
-			'ys_customizer_panel_seo',
-			[
-				'title'    => '[ys]SEO設定',
-				'priority' => 1110,
-			]
-		);
-		/**
-		 * メタデスクリプションの作成
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'  => 'ys_customizer_section_meta_description',
-				'title'    => 'meta description設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_seo',
-			]
-		);
-		/**
-		 * SEO : meta descriptionを自動生成する
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_option_create_meta_description',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => 'meta descriptionを自動生成する',
-			]
-		);
-		/**
-		 * 抜粋文字数
-		 */
-		$ys_customizer->add_number(
-			[
-				'id'        => 'ys_option_meta_description_length',
-				'default'   => 80,
-				'transport' => 'postMessage',
-				'label'     => 'meta descriptionに使用する文字数',
-			]
-		);
+
 		/**
 		 * アーカイブページのnoindex設定
 		 */
 		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'  => 'ys_customizer_section_noindex',
-				'title'    => 'アーカイブページのnoindex設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_seo',
-			]
-		);
-		/**
-		 * カテゴリー一覧をnoindexにする
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_archive_noindex_category',
-				'default'   => 0,
-				'transport' => 'postMessage',
-				'label'     => 'カテゴリー一覧をnoindexにする',
-			]
-		);
-		/**
-		 * タグ一覧をnoindexにする
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_archive_noindex_tag',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => 'タグ一覧をnoindexにする',
-			]
-		);
-		/**
-		 * 投稿者一覧をnoindexにする
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_archive_noindex_author',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => '投稿者一覧をnoindexにする',
-			]
-		);
-		/**
-		 * 日別一覧をnoindexにする
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'        => 'ys_archive_noindex_date',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => '日別一覧をnoindexにする',
-			]
-		);
+
 		/**
 		 * Google Analytics設定
 		 */
@@ -1545,41 +1454,7 @@ class Customizer {
 				'description' => 'チェックを付けた場合、ログインユーザーのアクセスではGoogle Analyticsのトラッキングコードを出力しません',
 			]
 		);
-		/**
-		 * 構造化データ 設定
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'  => 'ys_customizer_section_structured_data',
-				'title'    => '構造化データ 設定',
-				'priority' => 1,
-				'panel'    => 'ys_customizer_panel_seo',
-			]
-		);
-		/**
-		 * Publisher画像
-		 */
-		$ys_customizer->add_image(
-			[
-				'id'          => 'ys_option_structured_data_publisher_image',
-				'transport'   => 'postMessage',
-				'label'       => 'Publisher Logo',
-				'description' => '構造化データのPublisherに使用する画像です。サイトロゴのような画像を設定すると良いかと思います。 推奨サイズ:横600px以下,縦60px以下',
-			]
-		);
-		/**
-		 * Publisher名
-		 */
-		$ys_customizer->add_text(
-			[
-				'id'          => 'ys_option_structured_data_publisher_name',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => 'Publisher Name',
-				'description' => '構造化データのPublisherに使用する名前です。空白の場合はサイトタイトルを使用します',
-			]
-		);
+
 	}
 
 
