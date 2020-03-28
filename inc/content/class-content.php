@@ -17,6 +17,30 @@ namespace ystandard;
 class Content {
 
 	/**
+	 * ヘッダーコンテンツの優先順位
+	 */
+	const HEADER_PRIORITY = [
+		'meta'      => 10,
+		'sns-share' => 20,
+		'ad'        => 30,
+		'widget'    => 40,
+	];
+
+	/**
+	 * フッターコンテンツの優先順位
+	 */
+	const FOOTER_PRIORITY = [
+		'widget'    => 10,
+		'ad'        => 20,
+		'sns-share' => 30,
+		'taxonomy'  => 40,
+		'author'    => 50,
+		'related'   => 60,
+		'comment'   => 70,
+		'paging'    => 80,
+	];
+
+	/**
 	 * アクション・フィルターの登録
 	 */
 	public function register() {
@@ -30,15 +54,56 @@ class Content {
 		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
 	}
 
+
+	/**
+	 * コンテンツヘッダーの優先順位取得
+	 *
+	 * @param string $key Key.
+	 *
+	 * @return int
+	 */
+	public static function get_header_priority( $key ) {
+
+		$list = apply_filters(
+			'ys_get_content_header_priority',
+			self::HEADER_PRIORITY
+		);
+
+		if ( isset( $list[ $key ] ) ) {
+			return $list[ $key ];
+		}
+
+		return 10;
+	}
+
+	/**
+	 * コンテンツフッターの優先順位取得
+	 *
+	 * @param string $key Key.
+	 *
+	 * @return int
+	 */
+	public static function get_footer_priority( $key ) {
+
+		$list = apply_filters(
+			'ys_get_content_footer_priority',
+			self::FOOTER_PRIORITY
+		);
+
+		if ( isset( $list[ $key ] ) ) {
+			return $list[ $key ];
+		}
+
+		return 10;
+	}
+
 	/**
 	 * Post Type
 	 *
 	 * @return false|string
+	 * @global \WP_Query
 	 */
 	public static function get_post_type() {
-		/**
-		 * @global \WP_Query
-		 */
 		global $wp_query;
 		$post_type = get_post_type();
 		if ( ! $post_type ) {

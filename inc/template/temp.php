@@ -32,7 +32,7 @@ function ys_check_user_agent( $ua ) {
  * @return bool
  */
 function ys_is_mobile() {
-	
+
 	$ua = [
 		'^(?!.*iPad).*iPhone',
 		'iPod',
@@ -287,26 +287,6 @@ function ys_is_active_related_post() {
 	}
 
 	return apply_filters( 'ys_is_active_related_post', $result );
-}
-
-/**
- * 前の記事・次の記事を表示するか
- */
-function ys_is_active_post_paging() {
-	$result = true;
-	if ( is_single() ) {
-		if ( ! ys_get_option_by_bool( 'ys_show_post_paging', true ) ) {
-			$result = false;
-		}
-		if ( '1' === ys_get_post_meta( 'ys_hide_paging' ) ) {
-			$result = false;
-		}
-	}
-	if ( ys_is_amp() ) {
-		$result = false;
-	}
-
-	return apply_filters( 'ys_is_active_post_paging', $result );
 }
 
 

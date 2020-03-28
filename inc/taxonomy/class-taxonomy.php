@@ -36,7 +36,51 @@ class Taxonomy {
 		add_filter( 'get_the_archive_description', [ $this, 'override_description' ] );
 		add_filter( 'ys_ogp_description_archive', [ $this, 'ogp_description' ] );
 		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
+		add_action( 'after_setup_theme', [ $this, 'set_widget' ] );
 	}
+
+	/**
+	 * フィルターのセット
+	 */
+	public function set_widget() {
+		add_action(
+			'ys_singular_footer',
+			[ $this, 'post_taxonomy' ],
+			Content::get_footer_priority( 'taxonomy' )
+		);
+	}
+
+	/**
+	 * 投稿ページカテゴリー・タグ表示
+	 */
+	public function post_taxonomy() {
+		if ( ! $this->is_active_post_taxonomy() ) {
+			return;
+		}
+
+		$data['title'] = apply_filters( 'ys_post_taxonomy_title', 'Category / Tag' );
+
+		Template::get_template_part(
+			'template-parts/parts/post-taxonomy',
+			'',
+			[ 'ys_post_taxonomy' => $data ]
+		);
+	}
+
+	/**
+	 * 投稿ページカテゴリー・タグ表示 判定
+	 *
+	 * @return bool;
+	 */
+	private function is_active_post_taxonomy() {
+		$result = Option::get_option_by_bool( 'ys_show_post_category', true );
+		if ( is_single() ) {
+			$result = false;
+		}
+
+		return apply_filters( 'ys_is_active_post_taxonomy', $result );
+	}
+
 
 	/**
 	 * タームの拡張設定追加
