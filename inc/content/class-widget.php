@@ -17,102 +17,109 @@ namespace ystandard;
 class Widget {
 
 	/**
-	 * Widget constructor.
+	 * フックやショートコードの登録
 	 */
-	public function __construct() {
+	public function register() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
-		add_action( 'wp', [ $this, 'set_content_widget' ] );
+		add_action( 'after_setup_theme', [ $this, 'set_widget' ] );
 	}
 
 	/**
-	 * コンテンツ上下ウィジェットのセット
+	 * フィルターのセット
 	 */
-	public function set_content_widget() {
-		if ( is_single() ) {
-			if ( is_active_sidebar( 'before-content' ) ) {
-				add_filter(
-					'the_content',
-					[ $this, 'before_post' ],
-					Option::get_option_by_int( 'ys_post_before_content_widget_priority', 10 )
-				);
-			}
-			if ( is_active_sidebar( 'after-content' ) ) {
-				add_filter(
-					'the_content',
-					[ $this, 'after_post' ],
-					Option::get_option_by_int( 'ys_post_after_content_widget_priority', 10 )
-				);
-			}
+	public function set_widget() {
+		add_action(
+			'ys_singular_header',
+			[ $this, 'singular_header_widget' ],
+			Content::get_header_priority( 'widget' )
+		);
+		add_action(
+			'ys_singular_footer',
+			[ $this, 'singular_footer_widget' ],
+			Content::get_footer_priority( 'widget' )
+		);
+	}
+
+	/**
+	 * 記事上ウィジェット
+	 */
+	public function singular_header_widget() {
+
+		if ( is_single() && is_active_sidebar( 'before-content' ) ) {
+			$this->before_post();
 		}
-		if ( is_page() ) {
-			if ( is_active_sidebar( 'before-content-page' ) ) {
-				add_filter(
-					'the_content',
-					[ $this, 'before_page' ],
-					Option::get_option_by_int( 'ys_page_before_content_widget_priority', 10 )
-				);
-			}
-			if ( is_active_sidebar( 'after-content-page' ) ) {
-				add_filter(
-					'the_content',
-					[ $this, 'after_page' ],
-					Option::get_option_by_int( 'ys_page_after_content_widget_priority', 10 )
-				);
-			}
+		if ( is_page() && is_active_sidebar( 'before-content-page' ) ) {
+			$this->before_page();
+		}
+	}
+
+	public function singular_footer_widget() {
+		if ( is_single() && is_active_sidebar( 'after-content' ) ) {
+			$this->after_post();
+		}
+		if ( is_page() && is_active_sidebar( 'after-content-page' ) ) {
+			$this->after_page();
 		}
 	}
 
 	/**
 	 * 投稿 コンテンツ前ウィジェット
-	 *
-	 * @param string $content コンテンツ.
-	 *
-	 * @return string
 	 */
-	public function before_post( $content ) {
+	public function before_post() {
+
+		if ( ! apply_filters( 'ys_post_before_widget', true ) ) {
+			return;
+		}
+
 		ob_start();
 		dynamic_sidebar( 'before-content' );
 
-		return ob_get_clean() . $content;
+		echo ob_get_clean();
 	}
+
 	/**
 	 * 投稿 コンテンツ後ウィジェット
-	 *
-	 * @param string $content コンテンツ.
-	 *
-	 * @return string
 	 */
-	public function after_post( $content ) {
+	public function after_post() {
+
+		if ( ! apply_filters( 'ys_post_after_widget', true ) ) {
+			return;
+		}
+
 		ob_start();
 		dynamic_sidebar( 'after-content' );
 
-		return $content . ob_get_clean();
+		echo ob_get_clean();
 	}
+
 	/**
 	 * 固定ページ コンテンツ前ウィジェット
-	 *
-	 * @param string $content コンテンツ.
-	 *
-	 * @return string
 	 */
-	public function before_page( $content ) {
+	public function before_page() {
+
+		if ( ! apply_filters( 'ys_page_before_widget', true ) ) {
+			return;
+		}
+
 		ob_start();
 		dynamic_sidebar( 'before-content-page' );
 
-		return ob_get_clean() . $content;
+		echo ob_get_clean();
 	}
+
 	/**
 	 * 固定ページ コンテンツ後ウィジェット
-	 *
-	 * @param string $content コンテンツ.
-	 *
-	 * @return string
 	 */
-	public function after_page( $content ) {
+	public function after_page() {
+
+		if ( ! apply_filters( 'ys_page_after_widget', true ) ) {
+			return;
+		}
+
 		ob_start();
 		dynamic_sidebar( 'after-content-page' );
 
-		return $content . ob_get_clean();
+		echo ob_get_clean();
 	}
 
 	/**
@@ -203,4 +210,5 @@ class Widget {
 	}
 }
 
-new Widget();
+$class_widget = new Widget();
+$class_widget->register();
