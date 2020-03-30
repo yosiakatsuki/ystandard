@@ -32,6 +32,7 @@
 		"postcss-cli": "^6.1.2",
 		"rename-cli": "^6.0.0",
 		"rimraf": "^2.6.3",
+		"simple-icons": "^2.7.0",
 		"watch": "^1.0.2",
 		"webpack": "^4.41.5",
 		"webpack-stream": "^5.2.1"
@@ -43,8 +44,9 @@
 		"build:js": "gulp js",
 		"build:sass": "gulp sass",
 		"build:deploy-files": "gulp createDeployFiles",
+		"build:icons": "node ./src/js/icons/brand.js",
 		"rename:beta-json": "rename -f build/ystandard-info-beta.json ystandard-info.json",
-		"build": "gulp build"
+		"build": "npm run build:icons && gulp build"
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"

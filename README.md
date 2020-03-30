@@ -28,6 +28,10 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 License: MIT  
 Source : <https://github.com/necolas/normalize.css>
 
+### Simple Icons
+License: CC0 - 1.0  
+Source : <https://github.com/simple-icons/simple-icons>
+
 ### Font Awesome
 
 Font License: SIL OFL 1.1  

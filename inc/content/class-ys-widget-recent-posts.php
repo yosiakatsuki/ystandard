@@ -393,6 +393,34 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 
 		return $instance;
 	}
+	/**
+	 * テーマ内で使える画像サイズ取得
+	 */
+	private function get_image_sizes() {
+		global $_wp_additional_image_sizes;
+		$sizes = array();
+		foreach ( get_intermediate_image_sizes() as $size ) {
+			if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ), true ) ) {
+				$sizes[ $size ]['width']  = get_option( "{$size}_size_w" );
+				$sizes[ $size ]['height'] = get_option( "{$size}_size_h" );
+			} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
+				$sizes[ $size ] = array(
+					'width'  => $_wp_additional_image_sizes[ $size ]['width'],
+					'height' => $_wp_additional_image_sizes[ $size ]['height'],
+				);
+
+			}
+		}
+		/**
+		 * フルサイズ追加
+		 */
+		$sizes['full'] = array(
+			'width'  => '-',
+			'height' => '-',
+		);
+
+		return $sizes;
+	}
 
 	/**
 	 * チェックボックスのサニタイズ

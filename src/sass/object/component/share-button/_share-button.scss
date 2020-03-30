@@ -1,0 +1,63 @@
+.sns-share {
+  @include child_margin(0.5em);
+
+  &:not(.is-official) {
+	text-align: center;
+
+	.sns-share__container {
+	  justify-content: center;
+	}
+  }
+
+  &.is-circle {
+	.sns-share__link {
+	  border-radius: 50%;
+	}
+  }
+}
+
+.sns-share__container {
+  display: flex;
+  padding: 0;
+  margin-right: 0;
+  margin-left: 0;
+  list-style: none;
+
+  // 微調整.
+  .icon--pocket {
+	margin-top: 15%;
+  }
+}
+
+.sns-share__button {
+  margin: 0 .5em;
+
+  .sns-share__link {
+	$button-size: 40px;
+	width: $button-size;
+	height: $button-size;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 25%;
+
+	&:not(:hover) {
+	  background-color: rgba($color__text-light, 0.5);
+	}
+  }
+
+  svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	fill: var(--font-white);
+  }
+}
+
+.sns-share__before {
+  font-weight: bold;
+}
+
+.sns-share__after {
+  font-size: .8em;
+}

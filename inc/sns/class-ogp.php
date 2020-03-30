@@ -213,9 +213,10 @@ class OGP {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section' => 'ys_ogp',
-				'title'   => 'OGP',
-				'panel'   => SNS::PANEL_NAME,
+				'section'  => 'ys_ogp',
+				'title'    => 'OGP',
+				'priority' => 1,
+				'panel'    => SNS::PANEL_NAME,
 			]
 		);
 
@@ -262,9 +263,10 @@ class OGP {
 		 */
 		$customizer->add_section(
 			[
-				'section' => 'ys_twitter_cards',
-				'title'   => 'Twitterカード設定',
-				'panel'   => SNS::PANEL_NAME,
+				'section'  => 'ys_twitter_cards',
+				'title'    => 'Twitterカード',
+				'priority' => 2,
+				'panel'    => SNS::PANEL_NAME,
 			]
 		);
 		// Twitterカードのmetaタグを出力する.
