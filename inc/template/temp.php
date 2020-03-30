@@ -322,3 +322,70 @@ function ys_is_enable_cache_setting() {
 
 	return false;
 }
+
+
+
+/**
+ * アーカイブ明細クラス出力
+ */
+function ys_the_archive_item_class() {
+	$classes = ys_get_archive_item_class();
+	echo implode( ' ', $classes );
+}
+
+/**
+ * アーカイブテンプレートタイプ取得
+ */
+function ys_get_archive_template_type() {
+	return ys_get_option( 'ys_archive_type', 'list' );
+}
+
+/**
+ * Front-pageでロードするテンプレート
+ */
+function ys_get_front_page_template() {
+	$type = get_option( 'show_on_front' );
+	if ( 'page' === $type ) {
+		$template      = 'page';
+		$page_template = get_page_template_slug();
+
+		if ( $page_template ) {
+			$template = str_replace( '.php', '', $page_template );
+		}
+	} else {
+		$template = 'home';
+	}
+
+	return $template;
+}
+
+
+/**
+ * ヘッダーロゴ取得
+ */
+function ys_get_header_logo() {
+	if ( has_custom_logo() && ! ys_get_option_by_bool( 'ys_logo_hidden', false ) ) {
+		$logo = get_custom_logo();
+	} else {
+		$logo = sprintf(
+			'<a href="%s" class="custom-logo-link" rel="home">%s</a>',
+			esc_url( home_url( '/' ) ),
+			get_bloginfo( 'name' )
+		);
+	}
+
+	return apply_filters( 'ys_get_header_logo', $logo );
+}
+
+/**
+ * サイトキャッチフレーズを取得
+ */
+function ys_the_blog_description() {
+	if ( ys_get_option_by_bool( 'ys_wp_hidden_blogdescription', false ) ) {
+		return;
+	}
+	echo sprintf(
+		'<p class="site-description header__dscr text-sub">%s</p>',
+		apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) )
+	);
+}

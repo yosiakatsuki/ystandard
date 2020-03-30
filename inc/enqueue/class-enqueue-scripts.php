@@ -20,14 +20,6 @@ class Enqueue_Scripts {
 	 * Handle
 	 */
 	const JS_HANDLE = 'ystandard';
-	/**
-	 * Twitter
-	 */
-	const HANDLE_TWITTER = 'twitter-wjs';
-	/**
-	 * Facebook
-	 */
-	const HANDLE_FACEBOOK = 'facebook-jssdk';
 
 	/**
 	 * Enqueue_Scripts constructor.
@@ -35,7 +27,6 @@ class Enqueue_Scripts {
 	public function __construct() {
 		if ( ! AMP::is_amp() ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_sns_scripts' ] );
 			add_action( 'wp_enqueue_scripts', [ $this, 'add_data' ] );
 		}
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
@@ -83,43 +74,10 @@ class Enqueue_Scripts {
 	}
 
 	/**
-	 * SNS関連のスクリプト
-	 */
-	public function enqueue_sns_scripts() {
-		/**
-		 * Twitter関連スクリプト読み込み
-		 */
-		if ( ys_get_option_by_bool( 'ys_load_script_twitter', false ) ) {
-			wp_enqueue_script(
-				self::HANDLE_TWITTER,
-				'//platform.twitter.com/widgets.js',
-				[],
-				Utility::get_ystandard_version(),
-				true
-			);
-		}
-		/**
-		 * Facebook関連スクリプト読み込み
-		 */
-		if ( ys_get_option_by_bool( 'ys_load_script_facebook', false ) ) {
-			wp_enqueue_script(
-				self::HANDLE_FACEBOOK,
-				'//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v5.0',
-				[],
-				Utility::get_ystandard_version(),
-				true
-			);
-		}
-		do_action( 'ys_enqueue_sns_script' );
-	}
-
-	/**
 	 * Add Data
 	 */
 	public function add_data() {
 		self::add_defer( self::JS_HANDLE );
-		self::add_defer( self::HANDLE_TWITTER );
-		self::add_defer( self::HANDLE_FACEBOOK );
 
 		do_action( 'ys_script_add_data' );
 	}

@@ -29,8 +29,7 @@ class Advertisement {
 		add_action( 'ys_archive_after_content', [ $this, 'archive_infeed' ] );
 		add_action( 'ys_singular_before_title', [ $this, 'before_title' ] );
 		add_action( 'ys_singular_after_title', [ $this, 'after_title' ] );
-		add_action( 'ys_singular_header', [ $this, 'header_ad' ], 30 );
-		add_action( 'ys_singular_footer', [ $this, 'footer_ad' ], 20 );
+		add_action( 'after_setup_theme', [ $this, 'set_singular_content' ] );
 		add_filter( 'ys_more_content', [ $this, 'more_ad' ] );
 
 		/**
@@ -48,6 +47,22 @@ class Advertisement {
 		 * ウィジェット
 		 */
 		add_action( 'widgets_init', [ $this, 'register_widget' ] );
+	}
+
+	/**
+	 * ヘッダー・フッター コンテンツのセット
+	 */
+	public function set_singular_content() {
+		add_action(
+			'ys_singular_header',
+			[ $this, 'header_ad' ],
+			Content::get_header_priority( 'ad' )
+		);
+		add_action(
+			'ys_singular_footer',
+			[ $this, 'footer_ad' ],
+			Content::get_footer_priority( 'ad' )
+		);
 	}
 
 	/**

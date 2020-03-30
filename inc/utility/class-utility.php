@@ -14,6 +14,35 @@ namespace ystandard;
  */
 class Utility {
 
+	/**
+	 * ページのタイトル部分のみを取得
+	 *
+	 * @return string
+	 */
+	public static function get_page_title() {
+		$sep       = apply_filters( 'document_title_separator', '-' );
+		$title     = wp_get_document_title();
+		$new_title = explode( $sep, $title );
+		if ( isset( $new_title[0] ) ) {
+			return trim( $new_title[0] );
+		}
+
+		return $title;
+	}
+
+	/**
+	 * ページURL取得
+	 *
+	 * @return string
+	 */
+	public static function get_page_url() {
+		$protocol = 'https://';
+		if ( ! is_ssl() ) {
+			$protocol = 'http://';
+		}
+
+		return $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	}
 
 	/**
 	 * アイキャッチ画像の画像オブジェクト
