@@ -86,6 +86,9 @@ class Share_Button {
 	 * ヘッダー・フッター コンテンツのセット
 	 */
 	public function set_singular_content() {
+		if ( ! $this->is_active_share_buttons() ) {
+			return;
+		}
 		add_action(
 			'ys_singular_header',
 			[ $this, 'header_share_button' ],
@@ -96,6 +99,19 @@ class Share_Button {
 			[ $this, 'footer_share_button' ],
 			Content::get_footer_priority( 'sns-share' )
 		);
+	}
+
+	/**
+	 * シェアボタン表示判断
+	 *
+	 * @return bool
+	 */
+	private function is_active_share_buttons() {
+		if ( is_singular() ) {
+			return ! Utility::to_bool( Content::get_post_meta( 'ys_hide_share' ) );
+		}
+
+		return true;
 	}
 
 	/**
@@ -148,6 +164,9 @@ class Share_Button {
 		if ( 'none' === $this->shortcode_atts['type'] ) {
 			return '';
 		}
+		if ( ! array_key_exists( $this->shortcode_atts['type'], self::TYPE ) ) {
+			return '';
+		}
 
 		$this->data = [];
 
@@ -158,6 +177,11 @@ class Share_Button {
 		$this->set_pocket();
 		$this->set_line();
 		$this->set_text();
+		$this->enqueue_script();
+
+		if ( ! isset( $this->data['sns'] ) || empty( $this->data['sns'] ) ) {
+			return '';
+		}
 
 		ob_start();
 		Template::get_template_part(
@@ -170,6 +194,72 @@ class Share_Button {
 	}
 
 	/**
+	 * 公式ボタン用スクリプト読み込み
+	 */
+	private function enqueue_script() {
+		if ( 'official' !== $this->shortcode_atts['type'] ) {
+			return;
+		}
+		if ( $this->is_active_button( 'twitter' ) ) {
+			wp_enqueue_script(
+				'share-button-twitter',
+				'https://platform.twitter.com/widgets.js',
+				[],
+				null,
+				true
+			);
+			Enqueue_Scripts::add_async( 'share-button-twitter' );
+		}
+		if ( $this->is_active_button( 'facebook' ) ) {
+			$app_id  = Option::get_option( 'ys_ogp_fb_app_id', '' );
+			$app_id  = empty( $app_id ) ? '' : '&appId=' . $app_id;
+			$sdk_ver = SNS::FACEBOOK_API_VERSION;
+			wp_enqueue_script(
+				'share-button-facebook',
+				"https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=${sdk_ver}${app_id}&autoLogAppEvents=1",
+				[],
+				null,
+				true
+			);
+			Enqueue_Scripts::add_async( 'share-button-facebook' );
+			Enqueue_Scripts::add_defer( 'share-button-facebook' );
+			Enqueue_Scripts::add_crossorigin( 'share-button-facebook', 'anonymous' );
+		}
+		if ( $this->is_active_button( 'hatenabookmark' ) ) {
+			wp_enqueue_script(
+				'share-button-hatenabookmark',
+				'https://b.st-hatena.com/js/bookmark_button.js',
+				[],
+				null,
+				true
+			);
+			Enqueue_Scripts::add_async( 'share-button-hatenabookmark' );
+		}
+		if ( $this->is_active_button( 'pocket' ) ) {
+			wp_enqueue_script(
+				'share-button-pocket',
+				'https://widgets.getpocket.com/v1/j/btn.js?v=1',
+				[],
+				null,
+				true
+			);
+			Enqueue_Scripts::add_async( 'share-button-pocket' );
+		}
+		if ( $this->is_active_button( 'line' ) ) {
+			wp_enqueue_script(
+				'share-button-line',
+				'https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js',
+				[],
+				null,
+				true
+			);
+			Enqueue_Scripts::add_async( 'share-button-line' );
+			Enqueue_Scripts::add_defer( 'share-button-line' );
+		}
+
+	}
+
+	/**
 	 * ページ情報セット
 	 */
 	private function set_page() {
@@ -178,14 +268,21 @@ class Share_Button {
 		// 変数にセット.
 		$this->share_url   = urlencode( $url );
 		$this->share_title = urlencode( $title );
+		/**
+		 * URLやTitleのセット
+		 */
+		$this->data['official']['url-encode']   = $this->share_url;
+		$this->data['official']['title-encode'] = $this->share_title;
+		$this->data['official']['url']          = $url;
+		$this->data['official']['title']        = $title;
 	}
 
 	/**
 	 * 前後のテキストセット
 	 */
 	private function set_text() {
-		$this->data['before'] = $this->shortcode_atts['before'];
-		$this->data['after']  = $this->shortcode_atts['after'];
+		$this->data['text']['before'] = $this->shortcode_atts['before'];
+		$this->data['text']['after']  = $this->shortcode_atts['after'];
 	}
 
 	/**
@@ -292,6 +389,9 @@ class Share_Button {
 			}
 			$via     = $this->shortcode_atts['twitter_via_user'];
 			$related = $this->shortcode_atts['twitter_related_user'];
+			// オフィシャル用.
+			$this->data['official']['twitter-via']     = $via;
+			$this->data['official']['twitter-related'] = $related;
 		}
 		// via.
 		$via = empty( $via ) ? '' : "&via=${via}";
@@ -385,7 +485,7 @@ class Share_Button {
 		);
 		$customizer->add_section_label( 'ボタン表示タイプ' );
 		// 記事上表示タイプ.
-		$customizer->add_radio(
+		$customizer->add_select(
 			[
 				'id'        => 'ys_share_button_type_header',
 				'default'   => 'none',
@@ -395,7 +495,7 @@ class Share_Button {
 			]
 		);
 		// 記事下表示タイプ.
-		$customizer->add_radio(
+		$customizer->add_select(
 			[
 				'id'        => 'ys_share_button_type_footer',
 				'default'   => 'circle',

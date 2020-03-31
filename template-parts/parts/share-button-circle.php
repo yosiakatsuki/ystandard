@@ -11,10 +11,9 @@ if ( empty( $share_button ) ) {
 	return;
 }
 ?>
-
 <div class="sns-share is-circle">
-	<?php if ( $share_button['before'] ) : ?>
-		<p class="sns-share__before"><?php echo esc_html( $share_button['before'] ); ?></p>
+	<?php if ( isset( $share_button['text']['before'] ) && $share_button['text']['before'] ) : ?>
+		<p class="sns-share__before"><?php echo esc_html( $share_button['text']['before'] ); ?></p>
 	<?php endif; ?>
 	<ul class="sns-share__container">
 		<?php foreach ( $share_button['sns'] as $sns => $url ) : ?>
@@ -25,7 +24,7 @@ if ( empty( $share_button ) ) {
 			</li>
 		<?php endforeach; ?>
 	</ul>
-	<?php if ( $share_button['after'] ) : ?>
-		<p class="sns-share__after"><?php echo esc_html( $share_button['after'] ); ?></p>
+	<?php if ( isset( $share_button['text']['after'] ) && $share_button['text']['after'] ) : ?>
+		<p class="sns-share__after"><?php echo esc_html( $share_button['text']['after'] ); ?></p>
 	<?php endif; ?>
 </div>

@@ -235,41 +235,6 @@ function ys_is_active_publish_date() {
 }
 
 /**
- * 記事先頭シェアボタンを表示するか
- */
-function ys_is_active_sns_share_on_header() {
-	$result = true;
-	if ( is_singular() ) {
-		if ( '1' === ys_get_post_meta( 'ys_hide_share' ) ) {
-			$result = false;
-		}
-	}
-	if ( ! ys_get_option_by_bool( 'ys_sns_share_on_entry_header', true ) ) {
-		$result = false;
-	}
-
-	return apply_filters( 'ys_is_active_sns_share_on_header', $result );
-}
-
-/**
- * 記事下シェアボタンを表示するか
- */
-function ys_is_active_sns_share_on_footer() {
-	$result = true;
-	if ( is_singular() ) {
-		if ( '1' === ys_get_post_meta( 'ys_hide_share' ) ) {
-			$result = false;
-		}
-	}
-	if ( ! ys_get_option_by_bool( 'ys_sns_share_on_below_entry', true ) ) {
-		$result = false;
-	}
-
-	return apply_filters( 'ys_is_active_sns_share_on_footer', $result );
-}
-
-
-/**
  * 関連記事を表示するか
  */
 function ys_is_active_related_post() {

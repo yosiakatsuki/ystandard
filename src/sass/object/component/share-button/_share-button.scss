@@ -14,6 +14,29 @@
 	  border-radius: 50%;
 	}
   }
+
+  &.is-official {
+
+	.sns-share__container {
+	  flex-wrap: wrap;
+	}
+	.sns-share__button {
+	  margin: 0 .5em .25em 0;
+	}
+	.sns-share__after {
+	  margin-top: 0;
+	}
+  }
+
+  // 微調整.
+  .icon--pocket {
+	margin-top: 15%;
+  }
+
+  .fb_iframe_widget,
+  .fb_iframe_widget span {
+	display: block;
+  }
 }
 
 .sns-share__container {
@@ -23,10 +46,7 @@
   margin-left: 0;
   list-style: none;
 
-  // 微調整.
-  .icon--pocket {
-	margin-top: 15%;
-  }
+
 }
 
 .sns-share__button {
