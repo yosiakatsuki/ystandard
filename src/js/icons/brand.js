@@ -1,6 +1,6 @@
 const simpleIcons = require( 'simple-icons' );
 const fs = require( 'fs' );
-const jsonPath = './js/brand-icons.json';
+const jsonPath = './library/simple-icons/brand-icons.json';
 const iconList = [
 	'Twitter',
 	'Facebook',
