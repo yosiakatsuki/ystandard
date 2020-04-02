@@ -23,11 +23,22 @@ class Icon {
 		'name'  => '',
 		'title' => '',
 	];
+	/**
+	 * ショートコードパラメーター
+	 */
+	const SHORTCODE_ATTR_ICON = [
+		'name'  => '',
+		'class' => '',
+	];
 
 	/**
 	 * キャッシュキー : sns
 	 */
 	const CACHE_KEY_SNS = 'ys_icons_sns';
+	/**
+	 * キャッシュキー : アイコン
+	 */
+	const CACHE_KEY_ICON_PREFIX = 'ys_icons_';
 
 	/**
 	 * フックやショートコードの登録
@@ -36,6 +47,57 @@ class Icon {
 		if ( ! shortcode_exists( 'ys_sns_icon' ) ) {
 			add_shortcode( 'ys_sns_icon', [ $this, 'do_shortcode_sns' ] );
 		}
+		if ( ! shortcode_exists( 'ys_icon' ) ) {
+			add_shortcode( 'ys_icon', [ $this, 'do_shortcode_icon' ] );
+		}
+	}
+
+	/**
+	 * ショートコード実行
+	 *
+	 * @param array $atts    Attributes.
+	 * @param null  $content Content.
+	 *
+	 * @return string
+	 */
+	public function do_shortcode_icon( $atts, $content = null ) {
+		$atts = shortcode_atts( self::SHORTCODE_ATTR_ICON, $atts );
+		if ( empty( $atts['name'] ) ) {
+			return '';
+		}
+
+		return self::get_icon( $atts['name'], $atts['class'] );
+	}
+
+	/**
+	 * SNSアイコン取得
+	 *
+	 * @param string $name  name.
+	 * @param string $class class.
+	 *
+	 * @return string
+	 */
+	public static function get_icon( $name, $class = '' ) {
+		$cache_key = self::CACHE_KEY_ICON_PREFIX . $name;
+		$icon      = wp_cache_get( $cache_key );
+		if ( false === $icon ) {
+			$path = get_template_directory() . '/library/feather/' . $name . '.svg';
+			if ( ! file_exists( $path ) ) {
+				return '';
+			}
+			$icon = Utility::file_get_contents( $path );
+			if ( ! empty( $icon ) ) {
+				wp_cache_add( $cache_key, $icon );
+			}
+		}
+
+		$html_class = [
+			'ys-icon',
+			$class,
+		];
+		$html_class = trim( implode( ' ', $html_class ) );
+
+		return "<span class=\"${$html_class}\">${icon}</span>";
 	}
 
 	/**
@@ -52,11 +114,11 @@ class Icon {
 			return '';
 		}
 
-		return $this->get_sns_icon( $atts['name'], $atts['title'] );
+		return self::get_sns_icon( $atts['name'], $atts['title'] );
 	}
 
 	/**
-	 * アイコン取得
+	 * SNSアイコン取得
 	 *
 	 * @param string $name  name.
 	 * @param string $title title.
@@ -83,7 +145,7 @@ class Icon {
 	public static function get_all_sns_icons() {
 		$icons = wp_cache_get( self::CACHE_KEY_SNS );
 		if ( false === $icons ) {
-			$path  = get_template_directory() . '/js/brand-icons.json';
+			$path  = get_template_directory() . '/library/simple-icons/brand-icons.json';
 			$json  = Utility::file_get_contents( $path );
 			$data  = json_decode( $json, true );
 			$icons = [];

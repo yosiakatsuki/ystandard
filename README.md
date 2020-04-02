@@ -32,6 +32,10 @@ Source : <https://github.com/necolas/normalize.css>
 License: CC0 - 1.0  
 Source : <https://github.com/simple-icons/simple-icons>
 
+### Simple Icons
+License: MIT  
+Source : <https://github.com/feathericons/feather>
+
 ### Font Awesome
 
 Font License: SIL OFL 1.1  
