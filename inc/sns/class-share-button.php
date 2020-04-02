@@ -487,21 +487,19 @@ class Share_Button {
 		// 記事上表示タイプ.
 		$customizer->add_select(
 			[
-				'id'        => 'ys_share_button_type_header',
-				'default'   => 'none',
-				'transport' => 'postMessage',
-				'label'     => '記事上のシェアボタン表示タイプ',
-				'choices'   => self::TYPE,
+				'id'      => 'ys_share_button_type_header',
+				'default' => 'none',
+				'label'   => '記事上のシェアボタン表示タイプ',
+				'choices' => self::TYPE,
 			]
 		);
 		// 記事下表示タイプ.
 		$customizer->add_select(
 			[
-				'id'        => 'ys_share_button_type_footer',
-				'default'   => 'circle',
-				'transport' => 'postMessage',
-				'label'     => '記事下のシェアボタン表示タイプ',
-				'choices'   => self::TYPE,
+				'id'      => 'ys_share_button_type_footer',
+				'default' => 'circle',
+				'label'   => '記事下のシェアボタン表示タイプ',
+				'choices' => self::TYPE,
 			]
 		);
 		$customizer->add_section_label(
