@@ -1,29 +1,60 @@
-.header {
-	@at-root {
-		.header__title {
-			font-size: 1.4rem;
-			line-height: 1.4;
-			letter-spacing: 0.05em;
+.site-header {
+  position: relative;
+  background-color: var(--header-bg-color);
 
-			a {
-				color: $color__text-main;
-				text-decoration: none;
-			}
-		}
+  button {
+	background-color: transparent;
+	appearance: none;
+	border: 0;
 
-		.header__row {
-			display: flex;
-			align-items: center;
-			padding: 1rem 0;
-		}
-
-		.header__dscr {
-			margin: 0;
-			font-size: 0.7rem;
-		}
-
-		.header__branding {
-			padding-right: calc(0.5rem + 30px);
-		}
+	&:hover {
+	  box-shadow: none;
 	}
+
+	@include media-breakpoint(lg) {
+	  color: var(--header-text-color);
+	}
+
+
+  }
 }
+
+.header-type--row1 {
+  @include media-breakpoint(lg) {
+	.site-header__content {
+	  display: flex;
+	}
+  }
+}
+
+.site-branding {
+  padding: .5em 2em .5em 0;
+
+  @include media-breakpoint(lg) {
+	padding: .5em 0;
+  }
+
+  .site-title {
+	margin: 0;
+	padding: 0;
+	color: var(--header-text-color);
+	font-size: 1.5em;
+	line-height: 1.3;
+	font-weight: $font__weight_normal;
+	letter-spacing: .05em;
+
+	a {
+	  color: var(--header-text-color);
+	  text-decoration: none;
+	}
+  }
+
+  .site-description {
+	margin: .5em 0 0;
+	font-size: .8em;
+	line-height: 1.3;
+	color: var(--header-dscr-color);
+  }
+}
+
+

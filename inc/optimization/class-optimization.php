@@ -79,8 +79,8 @@ class Optimization {
 		if ( ! Option::get_option_by_bool( 'ys_option_optimize_load_js', false ) ) {
 			return;
 		}
-		Enqueue_Scripts::add_defer( 'jquery' );
-		Enqueue_Scripts::add_defer( 'jquery-core' );
+		Enqueue_Utility::add_defer( 'jquery' );
+		Enqueue_Utility::add_defer( 'jquery-core' );
 	}
 
 	/**

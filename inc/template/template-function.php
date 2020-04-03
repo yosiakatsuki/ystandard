@@ -7,6 +7,10 @@
  * @license GPL-2.0+
  */
 
+/** *****************************************************************
+ * HEAD関連
+ * *****************************************************************/
+
 /**
  * <head>タグにつける属性取得
  */
@@ -14,6 +18,55 @@ function ys_the_head_attr() {
 	echo \ystandard\Head::get_head_attr();
 }
 
+/** *****************************************************************
+ * ロゴ・グローバルナビゲーション
+ * *****************************************************************/
+
+/**
+ * ヘッダーロゴ取得
+ *
+ * @return string;
+ */
+function ys_get_header_logo() {
+	return \ystandard\Header::get_header_logo();
+}
+
+/**
+ * サイトキャッチフレーズを取得
+ */
+function ys_the_blog_description() {
+	echo \ystandard\Header::get_blog_description();
+}
+
+
+/**
+ * グローバルナビゲーションクラス出力
+ *
+ * @param string $class class.
+ */
+function ys_global_nav_class( $class ) {
+	echo \ystandard\Header::get_global_nav_class( $class );
+}
+
+/**
+ * スライドメニュー内に検索フォームを表示するか
+ *
+ * @return bool
+ */
+function ys_is_active_header_search_form() {
+	return \ystandard\Header::is_active_header_search_form();
+}
+
+/**
+ * メニュー開閉ボタンの出力
+ */
+function ys_global_nav_toggle_button() {
+	echo \ystandard\Header::get_toggle_button();
+}
+
+/** *****************************************************************
+ * カスタムヘッダー
+ * *****************************************************************/
 
 /**
  * カスタムヘッダーが有効か
@@ -40,6 +93,7 @@ function ys_the_custom_header_markup() {
 	\ystandard\Custom_Header::custom_header_markup();
 }
 
+
 /**
  * ページネーション
  */
@@ -48,6 +102,7 @@ function ys_get_pagination() {
 
 	return $pagination->get_pagination();
 }
+
 
 /**
  * アーカイブ明細クラス作成
@@ -154,6 +209,18 @@ function ys_get_poweredby() {
 
 /**
  * アイコン取得
+ *
+ * @param string $name  name.
+ * @param string $class class.
+ *
+ * @return string
+ */
+function ys_get_icon( $name, $class = '' ) {
+	return \ystandard\Icon::get_icon( $name, $class );
+}
+
+/**
+ * SNSアイコン取得
  *
  * @param string $name  name.
  * @param string $title title.

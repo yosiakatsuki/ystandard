@@ -35,7 +35,7 @@ class Site_Color {
 
 		return array_merge(
 			$css_vars,
-			Css_Vars::get_css_var( 'site-bg-color', self::get_site_bg() )
+			Enqueue_Utility::get_css_var( 'site-bg-color', self::get_site_bg() )
 		);
 	}
 

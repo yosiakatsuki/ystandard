@@ -22,11 +22,6 @@ class Enqueue_Styles {
 	const CSS_HANDLE = 'ystandard';
 
 	/**
-	 * インラインCSSのフック名
-	 */
-	const INLINE_CSS_HOOK = 'ys_get_inline_css';
-
-	/**
 	 * ブレークポイント
 	 *
 	 * @var array
@@ -101,7 +96,7 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	private function get_inline_css() {
-		$inline   = self::minify( apply_filters( self::INLINE_CSS_HOOK, '' ) );
+		$inline   = self::minify( apply_filters( Enqueue_Utility::FILTER_INLINE_CSS, '' ) );
 		$css_vars = self::get_css_vars_selector();
 
 		return $inline . $css_vars;
@@ -117,7 +112,7 @@ class Enqueue_Styles {
 		 * CSSカスタムプロパティに指定する値
 		 * name,value
 		 */
-		$vars = apply_filters( Css_Vars::FILTER_NAME, [] );
+		$vars = apply_filters( Enqueue_Utility::FILTER_CSS_VARS, [] );
 		if ( empty( $vars ) ) {
 			return '';
 		}

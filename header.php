@@ -20,7 +20,7 @@
 <?php wp_body_open(); ?>
 <?php do_action( 'ys_body_prepend' ); ?>
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ystandard' ); ?></a>
-	<header id="masthead" class="header site-header">
+	<header id="masthead" class="site-header">
 		<?php do_action( 'ys_site_header_prepend' ); ?>
 		<div class="container">
 			<div class="site-header__content">

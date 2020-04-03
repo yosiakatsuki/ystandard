@@ -8,6 +8,13 @@
   --site-bg-color: #{$color__bg-body};
   --site-bg-color-gray: #{$color__bg-gray-dark};
   --site-bg-color-light-gray: #{$color__bg-gray-light};
+  --header-bg-color: #ffffff;
+  --header-text-color: #{$color__text-main};
+  --header-dscr-color: #{$color__text-light};
+  --mobile-nav-bg-color: #000000;
+  --mobile-nav-text-color: #{$color__text-white};
+  --mobile-nav-open-color: #{$color__text-main};
+  --mobile-nav-close-color: #{$color__text-white};
   --footer-bg-color: #{$color__bg-gray-dark};
   --footer-text-color: #{$color__text-white};
   --footer-sub-bg-color: #{$color__bg-gray-light};

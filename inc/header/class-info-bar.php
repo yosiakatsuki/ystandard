@@ -26,7 +26,7 @@ class Info_Bar {
 	 */
 	public function set_hooks() {
 		add_action( 'ys_after_site_header', [ $this, 'show_info_bar' ], 1 );
-		add_filter( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'info_bar_css' ] );
+		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'info_bar_css' ] );
 	}
 
 	/**

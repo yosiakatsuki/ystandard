@@ -49,7 +49,7 @@ class Template {
 	 *
 	 * @return bool
 	 */
-	public static function is_full_width() {
+	public static function is_wide() {
 		if ( self::is_one_column() ) {
 			/**
 			 * フル幅にするテンプレート

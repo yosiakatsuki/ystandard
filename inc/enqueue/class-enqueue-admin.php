@@ -42,8 +42,8 @@ class Enqueue_Admin {
 	 */
 	public function enqueue_admin_bar_style() {
 		wp_enqueue_style(
-			'admin-bar-style',
-			get_template_directory_uri() . '/css/ystandard-admin-bar.css',
+			'ys-admin-bar',
+			get_template_directory_uri() . '/css/admin-bar.css',
 			[ 'admin-bar' ],
 			Utility::get_ystandard_version()
 		);
@@ -90,8 +90,8 @@ class Enqueue_Admin {
 			'https://fonts.googleapis.com/css?family=Orbitron'
 		);
 		wp_enqueue_style(
-			'ys-admin-style',
-			get_template_directory_uri() . '/css/ystandard-admin.css',
+			'ys-admin',
+			get_template_directory_uri() . '/css/admin.css',
 			[],
 			Utility::get_ystandard_version()
 		);
@@ -108,7 +108,7 @@ class Enqueue_Admin {
 	 */
 	public function enqueue_block_css() {
 		add_theme_support( 'editor-styles' );
-		add_editor_style( 'css/ystandard-block-editor.css' );
+		add_editor_style( 'css/block-editor.css' );
 		add_editor_style( 'style.css' );
 	}
 
@@ -118,7 +118,7 @@ class Enqueue_Admin {
 	public function enqueue_block_editor_assets() {
 		wp_enqueue_style(
 			'ys-block-editor-assets',
-			get_template_directory_uri() . '/css/ystandard-block-editor-assets.css'
+			get_template_directory_uri() . '/css/block-editor-assets.css'
 		);
 		wp_add_inline_style(
 			'ys-block-editor-assets',
@@ -134,7 +134,7 @@ class Enqueue_Admin {
 		/**
 		 * ビジュアルエディターへのCSSセット
 		 */
-		add_editor_style( 'css/ystandard-tiny-mce-style.css' );
+		add_editor_style( 'css/tiny-mce-style.css' );
 		add_editor_style( 'style.css' );
 	}
 

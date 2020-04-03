@@ -97,7 +97,7 @@ class Icon {
 		];
 		$html_class = trim( implode( ' ', $html_class ) );
 
-		return "<span class=\"${$html_class}\">${icon}</span>";
+		return "<span class=\"${html_class}\">${icon}</span>";
 	}
 
 	/**
