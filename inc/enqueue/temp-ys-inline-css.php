@@ -175,11 +175,6 @@ class YS_Inline_Css {
 				);
 			}
 
-			if ( is_customize_preview() ) {
-				$styles[] = '
-				.header-height-info {position: absolute;top:0;left:0;padding:.25em 1em;background-color:rgba(0,0,0,.7);font-size:.7rem;color:#fff;z-index:99;
-				}';
-			}
 		}
 
 		return implode( '', $styles );

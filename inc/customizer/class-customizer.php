@@ -85,18 +85,24 @@ class Customizer {
 		if ( ! is_customize_preview() ) {
 			return $css;
 		}
-		if ( ys_get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
+		// ヘッダー固定設定用.
+		$css .= '
+		.header-height-info {
+			position: absolute;
+			top:0;
+			left:0;
+			padding:.25em 1em;
+			background-color:rgba(0,0,0,.7);
+			font-size:.7rem;
+			color:#fff;
+			z-index:99;
+		}';
+		// サイドバー表示用.
+		if ( Option::get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
 			$css .= Enqueue_Styles::add_media_query(
 				'.is-customize-preview .sidebar {display:none;}',
 				'',
 				'md'
-			);
-		}
-		if ( ! ys_get_option_by_bool( 'ys_show_search_form_on_slide_menu', false ) ) {
-			$css .= Enqueue_Styles::add_media_query(
-				'.is-customize-preview .h-nav__search {display:none;}',
-				'',
-				'lg'
 			);
 		}
 
@@ -461,7 +467,6 @@ class Customizer {
 	 * デザイン -> モバイルページ
 	 */
 	private function design_mobile() {
-
 
 
 	}

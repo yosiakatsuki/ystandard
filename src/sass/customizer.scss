@@ -1,6 +1,4 @@
-//
 // 管理画面 - カスタマイザー用CSS
-//
 @import "foundation/import";
 
 //
@@ -13,9 +11,7 @@
 	}
 }
 
-//
 //  サイトアイコン
-//
 #customize-control-site_icon {
 	.app-icon-preview {
 		display: none;
@@ -28,9 +24,7 @@
 	}
 }
 
-//
 //  画像選択コントロール
-//
 .customizer__image-label-radio {
 	.customize-inside-control-row {
 		margin: 0;
@@ -78,3 +72,4 @@
 		color: #ffffff;
 	}
 }
+
