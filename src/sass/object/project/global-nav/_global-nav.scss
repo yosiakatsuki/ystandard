@@ -55,9 +55,11 @@
 .global-nav__container {
   margin-right: auto;
   margin-left: auto;
+  
   @include media-breakpoint(lg) {
 	margin-right: 0;
 	margin-left: 0;
+	height: 100%;
   }
 }
 
@@ -111,6 +113,7 @@
 
   @include media-breakpoint(lg) {
 	display: flex;
+	height: 100%;
   }
 
   a {
@@ -162,10 +165,41 @@
 	  line-height: 1.3;
 
 	  > a {
+		position: relative;
 		padding: 1em 0;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		&::after {
+		  content: "";
+		  position: absolute;
+		  left: 0;
+		  bottom: 0;
+		  background-color: var(--header-text-color);
+		  height: 1px;
+		  width: 0;
+		  transition: width .3s;
+		}
+
+
+		&:hover {
+		  &::after {
+			width: 100%;
+		  }
+		}
 	  }
 	  &:first-child {
 		margin-left: 0;
+	  }
+
+	  &.current-menu-item {
+		> a {
+		  &::after {
+			width: 100%;
+		  }
+		}
 	  }
 	}
   }

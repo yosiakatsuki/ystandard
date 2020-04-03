@@ -84,3 +84,12 @@
 	}
   }
 }
+
+.header-type--row2 {
+  @include media-breakpoint(lg) {
+	.global-nav__search {
+	  left: 0;
+	  right: unset;
+	}
+  }
+}
