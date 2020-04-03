@@ -55,6 +55,10 @@
 .global-nav__container {
   margin-right: auto;
   margin-left: auto;
+  @include media-breakpoint(lg) {
+	margin-right: 0;
+	margin-left: 0;
+  }
 }
 
 .global-nav__search {
@@ -205,10 +209,4 @@
 }
 
 
-.header-type--row1 {
-  .global-nav {
-	@include media-breakpoint(lg) {
-	  margin-left: auto;
-	}
-  }
-}
+
