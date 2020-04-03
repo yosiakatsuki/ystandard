@@ -208,7 +208,7 @@ class Share_Button {
 				null,
 				true
 			);
-			Enqueue_Scripts::add_async( 'share-button-twitter' );
+			Enqueue_Utility::add_async( 'share-button-twitter' );
 		}
 		if ( $this->is_active_button( 'facebook' ) ) {
 			$app_id  = Option::get_option( 'ys_ogp_fb_app_id', '' );
@@ -221,9 +221,9 @@ class Share_Button {
 				null,
 				true
 			);
-			Enqueue_Scripts::add_async( 'share-button-facebook' );
-			Enqueue_Scripts::add_defer( 'share-button-facebook' );
-			Enqueue_Scripts::add_crossorigin( 'share-button-facebook', 'anonymous' );
+			Enqueue_Utility::add_async( 'share-button-facebook' );
+			Enqueue_Utility::add_defer( 'share-button-facebook' );
+			Enqueue_Utility::add_crossorigin( 'share-button-facebook', 'anonymous' );
 		}
 		if ( $this->is_active_button( 'hatenabookmark' ) ) {
 			wp_enqueue_script(
@@ -233,7 +233,7 @@ class Share_Button {
 				null,
 				true
 			);
-			Enqueue_Scripts::add_async( 'share-button-hatenabookmark' );
+			Enqueue_Utility::add_async( 'share-button-hatenabookmark' );
 		}
 		if ( $this->is_active_button( 'pocket' ) ) {
 			wp_enqueue_script(
@@ -243,7 +243,7 @@ class Share_Button {
 				null,
 				true
 			);
-			Enqueue_Scripts::add_async( 'share-button-pocket' );
+			Enqueue_Utility::add_async( 'share-button-pocket' );
 		}
 		if ( $this->is_active_button( 'line' ) ) {
 			wp_enqueue_script(
@@ -253,8 +253,8 @@ class Share_Button {
 				null,
 				true
 			);
-			Enqueue_Scripts::add_async( 'share-button-line' );
-			Enqueue_Scripts::add_defer( 'share-button-line' );
+			Enqueue_Utility::add_async( 'share-button-line' );
+			Enqueue_Utility::add_defer( 'share-button-line' );
 		}
 
 	}

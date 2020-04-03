@@ -21,8 +21,134 @@ class Header {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'register_header_design' ] );
+		add_action( 'customize_register', [ $this, 'register_mobile_design' ] );
 		add_action( 'customize_register', [ $this, 'register_logo_option' ] );
-		add_filter( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'add_inline_css' ] );
+		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_inline_css' ] );
+		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script_amp' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script' ] );
+	}
+
+	/**
+	 * Enqueue Scripts.
+	 */
+	public function enqueue_script() {
+		if ( AMP::is_amp() ) {
+			return;
+		}
+		wp_enqueue_script(
+			'mobile-nav',
+			self::get_mobile_nav_script(),
+			[],
+			Utility::get_ystandard_version(),
+			true
+		);
+		Enqueue_Utility::add_defer( 'mobile-nav' );
+	}
+
+	/**
+	 * AMPページでScriptエンキュー
+	 */
+	public function enqueue_script_amp() {
+		if ( ! AMP::is_amp() ) {
+			return;
+		}
+		wp_enqueue_script(
+			'amp-script',
+			'https://cdn.ampproject.org/v0/amp-script-0.1.js',
+			[],
+			null
+		);
+		Enqueue_Utility::add_async( 'amp-script' );
+		Enqueue_Utility::add_custom_element( 'amp-script', 'amp-script' );
+	}
+
+	/**
+	 * メニュー開閉ボタン取得
+	 */
+	public static function get_toggle_button() {
+		$script = self::get_mobile_nav_script();
+		$button = '<button id="global-nav__toggle" class="global-nav__toggle">' . Icon::get_icon( 'menu' ) . '</button>';
+
+		if ( AMP::is_amp() ) {
+			return "<amp-script layout=\"container\" src=\"${script}\">${button}</amp-script>";
+		}
+
+		return $button;
+	}
+
+	/**
+	 * モバイルナビゲーション用スクリプト取得
+	 *
+	 * @return string
+	 */
+	public static function get_mobile_nav_script() {
+		return get_template_directory_uri() . '/js/mobile-nav.js';
+	}
+
+	/**
+	 * グローバルナビゲーションクラス
+	 *
+	 * @param string $class class.
+	 *
+	 * @return string
+	 */
+	public static function get_global_nav_class( $class ) {
+		$class   = [ $class ];
+		$bg      = Option::get_option( 'ys_color_header_bg', '#ffffff' );
+		$default = Option::get_default( 'ys_color_header_bg', '#ffffff' );
+		if ( $bg !== $default ) {
+			$class[] = 'has-background';
+		}
+
+		return trim( implode( ' ', $class ) );
+	}
+
+	/**
+	 * ヘッダーロゴ取得
+	 *
+	 * @return string
+	 */
+	public static function get_header_logo() {
+		if ( has_custom_logo() && ! Option::get_option_by_bool( 'ys_logo_hidden', false ) ) {
+			$logo = get_custom_logo();
+		} else {
+			$logo = sprintf(
+				'<a href="%s" class="custom-logo-link" rel="home">%s</a>',
+				esc_url( home_url( '/' ) ),
+				get_bloginfo( 'name' )
+			);
+		}
+
+		return apply_filters( 'ys_get_header_logo', $logo );
+	}
+
+	/**
+	 * サイトキャッチフレーズ取得
+	 */
+	public static function get_blog_description() {
+		if ( Option::get_option_by_bool( 'ys_wp_hidden_blogdescription', false ) ) {
+			return '';
+		}
+
+		return sprintf(
+			'<p class="site-description">%s</p>',
+			apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) )
+		);
+	}
+
+	/**
+	 * ヘッダー検索フォームを表示するか
+	 *
+	 * @return bool
+	 */
+	public static function is_active_header_search_form() {
+
+		if ( AMP::is_amp() ) {
+			return false;
+		}
+
+		return Option::get_option_by_bool( 'ys_show_header_search_form', true );
 	}
 
 	/**
@@ -32,6 +158,64 @@ class Header {
 	 */
 	public static function is_header_fixed() {
 		return Option::get_option_by_bool( 'ys_header_fixed', false );
+	}
+
+	/**
+	 * ヘッダータイプ
+	 *
+	 * @return string
+	 */
+	public static function get_header_type() {
+		return Option::get_option( 'ys_design_header_type', 'row1' );
+	}
+
+	/**
+	 * フッターメイン
+	 *
+	 * @param array $css_vars CSS.
+	 *
+	 * @return array
+	 */
+	public function add_css_var( $css_vars ) {
+		$header_bg        = Enqueue_Utility::get_css_var(
+			'header-bg-color',
+			Option::get_option( 'ys_color_header_bg', '#ffffff' )
+		);
+		$header_color     = Enqueue_Utility::get_css_var(
+			'header-text-color',
+			Option::get_option( 'ys_color_header_font', '#222222' )
+		);
+		$header_dscr      = Enqueue_Utility::get_css_var(
+			'header-dscr-color',
+			Option::get_option( 'ys_color_header_dscr_font', '#656565' )
+		);
+		$mobile_nav_bg    = Enqueue_Utility::get_css_var(
+			'mobile-nav-bg-color',
+			Option::get_option( 'ys_color_nav_bg_sp', '#000000' )
+		);
+		$mobile_nav_color = Enqueue_Utility::get_css_var(
+			'mobile-nav-text-color',
+			Option::get_option( 'ys_color_nav_font_sp', '#ffffff' )
+		);
+		$mobile_nav_open  = Enqueue_Utility::get_css_var(
+			'mobile-nav-open-color',
+			Option::get_option( 'ys_color_nav_btn_sp_open', '#222222' )
+		);
+		$mobile_nav_close = Enqueue_Utility::get_css_var(
+			'mobile-nav-close-color',
+			Option::get_option( 'ys_color_nav_btn_sp', '#ffffff' )
+		);
+
+		return array_merge(
+			$css_vars,
+			$header_bg,
+			$header_color,
+			$header_dscr,
+			$mobile_nav_bg,
+			$mobile_nav_color,
+			$mobile_nav_open,
+			$mobile_nav_close
+		);
 	}
 
 	/**
@@ -135,7 +319,7 @@ class Header {
 	}
 
 	/**
-	 * カスタマイザー追加
+	 * サイトヘッダー設定
 	 *
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
 	 */
@@ -197,10 +381,28 @@ class Header {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_header_dscr_font',
-				'default' => '#757575',
+				'default' => '#656565',
 				'label'   => '概要文の文字色',
 			]
 		);
+		// 検索フォーム.
+		$customizer->add_section_label( '検索フォーム' );
+		$customizer->add_label(
+			[
+				'id'          => 'ys_show_header_search_form_label',
+				'label'       => '検索フォーム表示',
+				'description' => 'ヘッダーに検索フォームを表示します。<br>モバイルではスライドメニュー内にフォームが表示され、PCでは検索フォーム表示ボタンがヘッダーに追加されます。',
+			]
+		);
+		// スライドメニューに検索フォームを出力する.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_header_search_form',
+				'default' => 1,
+				'label'   => 'モバイルメニューに検索フォームを表示する',
+			]
+		);
+
 		/**
 		 * ヘッダー固定表示
 		 */
@@ -252,6 +454,72 @@ class Header {
 				'id'      => 'ys_header_fixed_height_mobile',
 				'default' => 0,
 				'label'   => '高さ(モバイル)',
+			]
+		);
+	}
+
+	/**
+	 * モバイル用デザイン設定追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function register_mobile_design( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		/**
+		 * セクション追加
+		 */
+		$customizer->add_section(
+			[
+				'section'     => 'ys_mobile_design',
+				'title'       => 'モバイル（メニュー・サイドバー）',
+				'description' => 'モバイルページのメニュー設定・サイドバー表示設定',
+				'priority'    => 51,
+				'panel'       => Design::PANEL_NAME,
+			]
+		);
+		// ナビゲーション色.
+		$customizer->add_section_label( 'モバイルメニュー' );
+		// ナビゲーション背景色（SP）.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_nav_bg_sp',
+				'default' => '#000000',
+				'label'   => 'モバイルメニュー背景色',
+			]
+		);
+		// ナビゲーション文字色（SP）.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_nav_font_sp',
+				'default' => '#ffffff',
+				'label'   => 'モバイルメニュー文字色',
+			]
+		);
+		// ナビゲーションボタン色（SP）.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_nav_btn_sp_open',
+				'default' => '#222222',
+				'label'   => 'モバイルメニュー ボタン色：開く',
+			]
+		);
+		// ナビゲーションボタン色（SP）.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_nav_btn_sp',
+				'default' => '#ffffff',
+				'label'   => 'モバイルメニュー ボタン色：閉じる',
+			]
+		);
+
+		// サイドバー.
+		$customizer->add_section_label( 'サイドバー表示' );
+		// サイドバー出力.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_sidebar_mobile',
+				'default' => 0,
+				'label'   => 'モバイル表示でサイドバーを非表示にする',
 			]
 		);
 	}

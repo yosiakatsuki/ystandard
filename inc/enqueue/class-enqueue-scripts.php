@@ -22,6 +22,16 @@ class Enqueue_Scripts {
 	const JS_HANDLE = 'ystandard';
 
 	/**
+	 * Scriptタグにつけられる属性
+	 */
+	const SCRIPT_ATTRIBUTES = [
+		'async',
+		'defer',
+		'crossorigin',
+		'custom-element',
+	];
+
+	/**
 	 * Enqueue_Scripts constructor.
 	 */
 	public function __construct() {
@@ -30,33 +40,6 @@ class Enqueue_Scripts {
 			add_action( 'wp_enqueue_scripts', [ $this, 'add_data' ] );
 		}
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
-	}
-
-	/**
-	 * Add defer.
-	 *
-	 * @param string $handle handle.
-	 */
-	public static function add_defer( $handle ) {
-		wp_script_add_data( $handle, 'defer', true );
-	}
-
-	/**
-	 * Add async.
-	 *
-	 * @param string $handle handle.
-	 */
-	public static function add_async( $handle ) {
-		wp_script_add_data( $handle, 'async', true );
-	}
-
-	/**
-	 * Add crossorigin.
-	 *
-	 * @param string $handle handle.
-	 */
-	public static function add_crossorigin( $handle, $value ) {
-		wp_script_add_data( $handle, 'crossorigin', $value );
 	}
 
 	/**
@@ -77,7 +60,7 @@ class Enqueue_Scripts {
 	 * Add Data
 	 */
 	public function add_data() {
-		self::add_defer( self::JS_HANDLE );
+		Enqueue_Utility::add_defer( self::JS_HANDLE );
 
 		do_action( 'ys_script_add_data' );
 	}
@@ -93,7 +76,7 @@ class Enqueue_Scripts {
 	public function script_loader_tag( $tag, $handle ) {
 		$attributes = apply_filters(
 			'ys_script_attributes',
-			[ 'async', 'defer', 'crossorigin' ]
+			self::SCRIPT_ATTRIBUTES
 		);
 		foreach ( $attributes as $attr ) {
 			$data = wp_scripts()->get_data( $handle, $attr );

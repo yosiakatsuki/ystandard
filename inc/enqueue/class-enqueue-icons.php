@@ -128,7 +128,7 @@ class Enqueue_Icons {
 			);
 			wp_script_add_data( self::FONTAWESOME_HANDLE, 'defer', true );
 			if ( $this->is_enable_font_awesome_kit() ) {
-				Enqueue_Scripts::add_crossorigin(
+				Enqueue_Utility::add_crossorigin(
 					self::FONTAWESOME_HANDLE,
 					'anonymous'
 				);

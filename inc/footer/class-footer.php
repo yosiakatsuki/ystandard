@@ -22,9 +22,9 @@ class Footer {
 	public function __construct() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_filter( 'ys_css_vars', [ $this, 'add_css_var_footer_main' ] );
-		add_filter( 'ys_css_vars', [ $this, 'add_css_var_footer_sub' ] );
-		add_filter( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'add_inline_css_sub' ] );
+		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_main' ] );
+		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_sub' ] );
+		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_inline_css_sub' ] );
 	}
 
 	/**
@@ -86,11 +86,11 @@ class Footer {
 	 */
 	public function add_css_var_footer_main( $css_vars ) {
 
-		$bg    = Css_Vars::get_css_var(
+		$bg    = Enqueue_Utility::get_css_var(
 			'footer-bg-color',
 			Option::get_option( 'ys_color_footer_bg', '#f1f1f3' )
 		);
-		$color = Css_Vars::get_css_var(
+		$color = Enqueue_Utility::get_css_var(
 			'footer-text-color',
 			Option::get_option( 'ys_color_footer_font', '#222222' )
 		);
@@ -111,11 +111,11 @@ class Footer {
 	 */
 	public function add_css_var_footer_sub( $css_vars ) {
 
-		$bg    = Css_Vars::get_css_var(
+		$bg    = Enqueue_Utility::get_css_var(
 			'footer-sub-bg-color',
 			Option::get_option( 'ys_color_footer_sub_bg', '#f1f1f3' )
 		);
-		$color = Css_Vars::get_css_var(
+		$color = Enqueue_Utility::get_css_var(
 			'footer-sub-text-color',
 			Option::get_option( 'ys_color_footer_sub_font', '#222222' )
 		);

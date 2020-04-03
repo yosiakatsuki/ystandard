@@ -147,7 +147,7 @@ class SNS {
 				Utility::get_ystandard_version(),
 				true
 			);
-			Enqueue_Scripts::add_defer( self::HANDLE_TWITTER );
+			Enqueue_Utility::add_defer( self::HANDLE_TWITTER );
 		}
 		/**
 		 * Facebook関連スクリプト読み込み
@@ -160,7 +160,7 @@ class SNS {
 				Utility::get_ystandard_version(),
 				true
 			);
-			Enqueue_Scripts::add_defer( self::HANDLE_FACEBOOK );
+			Enqueue_Utility::add_defer( self::HANDLE_FACEBOOK );
 		}
 		do_action( 'ys_enqueue_sns_script' );
 	}

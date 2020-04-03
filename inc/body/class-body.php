@@ -84,10 +84,10 @@ class Body {
 		}
 
 		/**
-		 * フル幅テンプレート
+		 * ワイド幅テンプレート
 		 */
-		if ( Template::is_full_width() ) {
-			$classes[] = 'full-width';
+		if ( Template::is_wide() ) {
+			$classes[] = 'is-wide';
 		}
 
 		/**
@@ -116,6 +116,11 @@ class Body {
 		if ( Header::is_header_fixed() ) {
 			$classes[] = 'has-fixed-header';
 		}
+		/**
+		 * ヘッダータイプ
+		 */
+		$classes[] = 'header-type--' . Header::get_header_type();
+
 
 		/**
 		 * カスタマイズプレビュー

@@ -40,7 +40,7 @@ class Customizer {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'customize_preview_init', [ $this, 'preview_init' ], 999 );
-		add_action( Enqueue_Styles::INLINE_CSS_HOOK, [ $this, 'preview_inline_css' ], 999 );
+		add_action( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'preview_inline_css' ], 999 );
 		add_action( 'customize_controls_print_styles', [ $this, 'print_styles' ] );
 		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}
@@ -128,8 +128,8 @@ class Customizer {
 	 */
 	public function print_styles( $hook_suffix ) {
 		wp_enqueue_style(
-			'ys_customizer_style',
-			get_template_directory_uri() . '/css/ystandard-customizer.css',
+			'ys-customizer',
+			get_template_directory_uri() . '/css/customizer.css',
 			[],
 			Utility::get_ystandard_version()
 		);
@@ -461,75 +461,8 @@ class Customizer {
 	 * デザイン -> モバイルページ
 	 */
 	private function design_mobile() {
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_mobile_design',
-				'title'       => 'モバイルページ設定',
-				'description' => 'モバイルページのデザイン設定',
-				'panel'       => 'ys_customizer_panel_design',
-			]
-		);
-		// ナビゲーション色.
-		$ys_customizer->add_section_label( 'モバイルメニュー' );
-		// ナビゲーション背景色（SP）.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_nav_bg_sp',
-				'default' => '#000000',
-				'label'   => 'モバイルメニュー背景色',
-			]
-		);
-		// ナビゲーション文字色（SP）.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_nav_font_sp',
-				'default' => '#ffffff',
-				'label'   => 'モバイルメニュー文字色',
-			]
-		);
-		// ナビゲーションボタン色（SP）.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_nav_btn_sp_open',
-				'default' => '#222222',
-				'label'   => 'モバイルメニュー ボタン色：開く',
-			]
-		);
-		// ナビゲーションボタン色（SP）.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_color_nav_btn_sp',
-				'default' => '#ffffff',
-				'label'   => 'モバイルメニュー ボタン色：閉じる',
-			]
-		);
-		// 検索フォーム.
-		$ys_customizer->add_label(
-			[
-				'id'    => 'ys_show_search_form_on_slide_menu_label',
-				'label' => 'モバイルメニューに検索フォームを表示',
-			]
-		);
-		// スライドメニューに検索フォームを出力する.
-		$ys_customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_search_form_on_slide_menu',
-				'default' => 0,
-				'label'   => 'モバイルメニューに検索フォームを表示する',
-			]
-		);
 
-		// サイドバー.
-		$ys_customizer->add_section_label( 'サイドバー表示設定' );
-		// サイドバー出力.
-		$ys_customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_sidebar_mobile',
-				'default' => 0,
-				'label'   => 'モバイル表示でサイドバーを非表示にする',
-			]
-		);
+
 
 	}
 

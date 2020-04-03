@@ -2,15 +2,6 @@
 
 
 /**
- * TOPページ判断（HOMEの1ページ目 or front-page）
- *
- * @return bool
- */
-function ys_is_top_page() {
-	return \ystandard\Template::is_top_page();
-}
-
-/**
  * ユーザーエージェントのチェック
  *
  * @param array $ua 対象ユーザーエージェントのリスト.
@@ -105,7 +96,7 @@ function ys_is_one_column() {
  * @return bool
  */
 function ys_is_full_width() {
-	return ystandard\Template::is_full_width();
+	return ystandard\Template::is_wide();
 }
 
 /**
@@ -256,25 +247,6 @@ function ys_is_active_related_post() {
 
 
 /**
- * スライドメニュー内に検索フォームを表示するか
- */
-function ys_is_active_slide_menu_search_form() {
-	$result = false;
-	if ( ys_is_mobile() && ys_get_option_by_bool( 'ys_show_search_form_on_slide_menu', false ) ) {
-		$result = true;
-	}
-	if ( ys_is_amp() ) {
-		$result = false;
-	}
-	if ( is_customize_preview() ) {
-		$result = true;
-	}
-
-	return apply_filters( 'ys_is_active_slide_menu_search_form', $result );
-}
-
-
-/**
  * キャッシュ設定が有効か判定
  */
 function ys_is_enable_cache_setting() {
@@ -287,7 +259,6 @@ function ys_is_enable_cache_setting() {
 
 	return false;
 }
-
 
 
 /**
@@ -324,33 +295,3 @@ function ys_get_front_page_template() {
 	return $template;
 }
 
-
-/**
- * ヘッダーロゴ取得
- */
-function ys_get_header_logo() {
-	if ( has_custom_logo() && ! ys_get_option_by_bool( 'ys_logo_hidden', false ) ) {
-		$logo = get_custom_logo();
-	} else {
-		$logo = sprintf(
-			'<a href="%s" class="custom-logo-link" rel="home">%s</a>',
-			esc_url( home_url( '/' ) ),
-			get_bloginfo( 'name' )
-		);
-	}
-
-	return apply_filters( 'ys_get_header_logo', $logo );
-}
-
-/**
- * サイトキャッチフレーズを取得
- */
-function ys_the_blog_description() {
-	if ( ys_get_option_by_bool( 'ys_wp_hidden_blogdescription', false ) ) {
-		return;
-	}
-	echo sprintf(
-		'<p class="site-description header__dscr text-sub">%s</p>',
-		apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) )
-	);
-}
