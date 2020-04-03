@@ -55,7 +55,7 @@
 .global-nav__container {
   margin-right: auto;
   margin-left: auto;
-  
+
   @include media-breakpoint(lg) {
 	margin-right: 0;
 	margin-left: 0;
@@ -92,8 +92,15 @@
   }
 
   .search-field {
-	background-color: rgba($color__text-white, 0.8);
+	background-color: rgba($color__text-white, 0.2);
 	border: 0;
+
+	&::placeholder {
+	  color: var(--mobile-nav-text-color);
+	  @include media-breakpoint(lg) {
+		color: var(--header-text-color);
+	  }
+	}
   }
 }
 
