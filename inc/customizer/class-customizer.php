@@ -167,14 +167,9 @@ class Customizer {
 		$wp_customize->remove_control( 'display_header_text' );
 
 		/**
-		 * お知らせバー
-		 */
-		$this->info_bar();
-		/**
 		 * [ys]デザイン
 		 */
 		$this->design_breadcrumb();
-		$this->design_mobile();
 		$this->design_post();
 		$this->design_page();
 		$this->design_archive();
@@ -185,74 +180,6 @@ class Customizer {
 		 * 拡張機能
 		 */
 		$this->ystandard_extension();
-	}
-
-	/**
-	 * お知らせバー
-	 */
-	private function info_bar() {
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-
-		/**
-		 * セクション追加
-		 */
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_info_bar',
-				'title'       => '[ys]お知らせバー設定',
-				'description' => 'ヘッダー下に表示されるお知らせバーの設定',
-				'priority'    => 1000,
-			]
-		);
-
-		// お知らせバーテキスト.
-		$ys_customizer->add_text(
-			[
-				'id'      => 'ys_info_bar_text',
-				'default' => '',
-				'label'   => 'お知らせテキスト',
-			]
-		);
-		// お知らせURL.
-		$ys_customizer->add_url(
-			[
-				'id'      => 'ys_info_bar_url',
-				'default' => '',
-				'label'   => 'お知らせテキストリンク',
-			]
-		);
-		// お知らせリンクを新しいタブで開く.
-		$ys_customizer->add_checkbox(
-			[
-				'id'      => 'ys_info_bar_external',
-				'default' => 0,
-				'label'   => 'お知らせリンクを新しいタブで開く',
-			]
-		);
-		// テキストカラー.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_info_bar_text_color',
-				'default' => '#222222',
-				'label'   => 'お知らせバー文字色',
-			]
-		);
-		// 背景色カラー.
-		$ys_customizer->add_color(
-			[
-				'id'      => 'ys_info_bar_bg_color',
-				'default' => '#f1f1f3',
-				'label'   => 'お知らせバー背景色',
-			]
-		);
-		// お知らせテキストを太字にする.
-		$ys_customizer->add_checkbox(
-			[
-				'id'      => 'ys_info_bar_text_bold',
-				'default' => 1,
-				'label'   => 'お知らせテキストを太字にする',
-			]
-		);
 	}
 
 
@@ -311,14 +238,6 @@ class Customizer {
 				]
 			);
 		}
-	}
-
-	/**
-	 * デザイン -> モバイルページ
-	 */
-	private function design_mobile() {
-
-
 	}
 
 	/**
