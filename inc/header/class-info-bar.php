@@ -15,16 +15,10 @@ namespace ystandard;
 class Info_Bar {
 
 	/**
-	 * YS_Info_Bar constructor.
+	 * フックやショートコードの登録
 	 */
-	public function __construct() {
-		add_action( 'get_header', [ $this, 'set_hooks' ] );
-	}
-
-	/**
-	 * アクション・フィルターフックの瀬戸
-	 */
-	public function set_hooks() {
+	public function register() {
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'ys_after_site_header', [ $this, 'show_info_bar' ], 1 );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'info_bar_css' ] );
 	}
@@ -126,7 +120,77 @@ class Info_Bar {
 
 		return $css . implode( ' ', $styles );
 	}
+
+	/**
+	 * 設定追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		/**
+		 * セクション追加
+		 */
+		$customizer->add_section(
+			[
+				'section'     => 'ys_info_bar',
+				'title'       => '[ys]お知らせバー',
+				'description' => 'ヘッダー下に表示されるお知らせバーの設定',
+				'priority'    => Customizer::get_priority( 'ys_info_bar' ),
+			]
+		);
+
+		// お知らせバーテキスト.
+		$customizer->add_text(
+			[
+				'id'      => 'ys_info_bar_text',
+				'default' => '',
+				'label'   => 'お知らせテキスト',
+			]
+		);
+		// お知らせURL.
+		$customizer->add_url(
+			[
+				'id'      => 'ys_info_bar_url',
+				'default' => '',
+				'label'   => 'お知らせテキストリンク',
+			]
+		);
+		// お知らせリンクを新しいタブで開く.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_info_bar_external',
+				'default' => 0,
+				'label'   => 'お知らせリンクを新しいタブで開く',
+			]
+		);
+		// テキストカラー.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_info_bar_text_color',
+				'default' => '#222222',
+				'label'   => 'お知らせバー文字色',
+			]
+		);
+		// 背景色カラー.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_info_bar_bg_color',
+				'default' => '#f1f1f3',
+				'label'   => 'お知らせバー背景色',
+			]
+		);
+		// お知らせテキストを太字にする.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_info_bar_text_bold',
+				'default' => 1,
+				'label'   => 'お知らせテキストを太字にする',
+			]
+		);
+	}
 }
 
 
-new Info_Bar();
+$class_info_bar = new Info_Bar();
+$class_info_bar->register();
