@@ -100,14 +100,6 @@ function ys_is_full_width() {
 }
 
 /**
- * タイトル無しテンプレート判定
- */
-function ys_is_no_title_template() {
-
-	return ystandard\Template::is_no_title_template();
-}
-
-/**
  * アイキャッチ表示タイプがフル幅か
  *
  * @return bool

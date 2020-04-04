@@ -1,3 +1,36 @@
-.breadcrumbs {
+.breadcrumbs__list {
+  display: flex;
+  margin: 0;
+  padding: .75em 0;
+  list-style: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: var(--font-gray);
+  font-size: .75em;
+  line-height: 1;
+
+  a {
+	color: var(--font-gray);
+	text-decoration: none;
+  }
+}
+
+.breadcrumbs__item {
+  margin-left: .5em;
+
+  &::before {
+	content: "/";
+	margin-right: .25em;
+  }
+
+  &:first-child {
+	margin-left: 0;
+
+	&::before {
+	  display: none;
+	}
+  }
+
 
 }
