@@ -102,7 +102,7 @@ class Meta_Description {
 	public function customize_register( $wp_customize ) {
 		$customizer = new Customize_Control( $wp_customize );
 		/**
-		 * SEO : meta descriptionを自動生成する
+		 * SEO : meta description
 		 */
 		$customizer->add_section(
 			[
@@ -112,6 +112,7 @@ class Meta_Description {
 				'panel'    => SEO::PANEL_NAME,
 			]
 		);
+		$customizer->add_section_label( 'meta description自動生成' );
 		// 自動生成する.
 		$customizer->add_checkbox(
 			[
@@ -130,6 +131,21 @@ class Meta_Description {
 				'label'     => 'meta descriptionに使用する文字数',
 			]
 		);
+		/**
+		 * TOPページ
+		 */
+		$customizer->add_section_label( 'TOPページのmeta description' );
+		$customizer->add_plain_textarea(
+			[
+				'id'          => 'ys_wp_site_description',
+				'default'     => '',
+				'transport'   => 'postMessage',
+				'label'       => 'TOPページのmeta description',
+				'description' => '※HTMLタグ・改行は削除されます',
+			]
+		);
+
+
 	}
 
 }
