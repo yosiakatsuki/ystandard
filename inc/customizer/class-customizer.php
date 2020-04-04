@@ -152,10 +152,20 @@ class Customizer {
 	public function customize_register( $wp_customize ) {
 		$this->_wp_customize = $wp_customize;
 
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->set_refresh( 'background_image' );
+		$customizer->set_refresh( 'background_preset' );
+		$customizer->set_refresh( 'background_size' );
+		$customizer->set_refresh( 'background_repeat' );
+		$customizer->set_refresh( 'background_attachment' );
+		$customizer->set_refresh( 'background_image' );
 		/**
-		 * WordPressデフォルト設定の上書き・追加
+		 * WP標準の設定を削除
 		 */
-		$this->extend_wp_option();
+		$wp_customize->remove_setting( 'background_color' );
+		$wp_customize->remove_section( 'colors' );
+		$wp_customize->remove_control( 'display_header_text' );
+
 		/**
 		 * お知らせバー
 		 */
@@ -175,24 +185,6 @@ class Customizer {
 		 * 拡張機能
 		 */
 		$this->ystandard_extension();
-	}
-
-	/**
-	 * WordPress標準のカスタマイザー項目の変更・追加
-	 */
-	private function extend_wp_option() {
-		/**
-		 * WP標準の設定を削除
-		 */
-		$this->_wp_customize->remove_setting( 'background_color' );
-		$this->_wp_customize->remove_section( 'colors' );
-		$this->_wp_customize->remove_control( 'display_header_text' );
-
-		$this->_wp_customize->get_setting( 'background_image' )->transport      = 'refresh';
-		$this->_wp_customize->get_setting( 'background_preset' )->transport     = 'refresh';
-		$this->_wp_customize->get_setting( 'background_size' )->transport       = 'refresh';
-		$this->_wp_customize->get_setting( 'background_repeat' )->transport     = 'refresh';
-		$this->_wp_customize->get_setting( 'background_attachment' )->transport = 'refresh';
 	}
 
 	/**
