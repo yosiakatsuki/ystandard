@@ -80,6 +80,8 @@ class Customizer {
 	 * プレビュー用CSS
 	 *
 	 * @param string $css CSS.
+	 *
+	 * @return string
 	 */
 	public function preview_inline_css( $css ) {
 		if ( ! is_customize_preview() ) {
@@ -155,7 +157,6 @@ class Customizer {
 		 */
 		$this->extend_wp_option();
 		$this->title_tagline();
-		$this->header_media();
 		/**
 		 * お知らせバー
 		 */
@@ -305,35 +306,6 @@ class Customizer {
 					'width'       => 512,
 				]
 			)
-		);
-	}
-
-	/**
-	 * ヘッダーメディア設定追加
-	 */
-	private function header_media() {
-		/**
-		 * 既存設定をrefreshに
-		 */
-		$this->_wp_customize->get_setting( 'header_video' )->transport          = 'refresh';
-		$this->_wp_customize->get_setting( 'external_header_video' )->transport = 'refresh';
-		$this->_wp_customize->get_setting( 'header_image_data' )->transport     = 'refresh';
-		/**
-		 * YS_Customizer
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		/**
-		 * ヘッダーメディアショートコード
-		 */
-		$ys_customizer->add_text(
-			[
-				'id'          => 'ys_wp_header_media_shortcode',
-				'default'     => '',
-				'label'       => '[ys]ヘッダーメディア用ショートコード',
-				'description' => 'ヘッダー画像をプラグイン等のショートコードで出力する場合、ショートコードを入力してください。',
-				'section'     => 'header_image',
-				'priority'    => 0,
-			]
 		);
 	}
 

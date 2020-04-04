@@ -7,10 +7,10 @@
  * @license GPL-2.0+
  */
 
-if ( ! ys_is_active_custom_header() ) {
+if ( ! ys_is_active_header_media() ) {
 	return;
 }
 ?>
-<div class="custom-header is-<?php echo esc_attr( ys_get_custom_header_type() ); ?>">
-	<?php ys_the_custom_header_markup(); ?>
+<div class="header-media is-<?php echo esc_attr( ys_get_header_media_type() ); ?>">
+	<?php ys_the_header_media_markup(); ?>
 </div>

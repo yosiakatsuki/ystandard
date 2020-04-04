@@ -522,6 +522,15 @@ class Customize_Control {
 	}
 
 	/**
+	 * 設定をRefreshにする
+	 *
+	 * @param string $name Name.
+	 */
+	public function set_refresh( $name ) {
+		$this->wp_customize->get_setting( $name )->transport = 'refresh';
+	}
+
+	/**
 	 * Select,radio
 	 *
 	 * @param string $input   input.
