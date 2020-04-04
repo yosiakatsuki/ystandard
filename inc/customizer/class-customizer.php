@@ -260,17 +260,6 @@ class Customizer {
 				'priority'    => 20,
 			]
 		);
-		$ys_customizer->add_plain_textarea(
-			[
-				'id'          => 'ys_wp_site_description',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => 'TOPページのmeta description',
-				'description' => '※HTMLタグ・改行は削除されます',
-				'section'     => 'title_tagline',
-				'priority'    => 21,
-			]
-		);
 
 		/**
 		 * Apple touch icon設定追加
