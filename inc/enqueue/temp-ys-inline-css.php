@@ -42,44 +42,6 @@ class YS_Inline_Css {
 	 */
 	public function get_custom_header_css() {
 		$css = [];
-		/**
-		 * ヘッダー重ねるタイプ
-		 */
-		if ( ys_get_option_by_bool( 'ys_wp_header_media_full', false ) ) {
-			$opacity    = ys_get_option_by_int( 'ys_wp_header_media_full_opacity', 50 );
-			$opacity    = $opacity / 100;
-			$text_color = Color::get_custom_header_stack_text_color();
-			$bg_color   = Color::get_custom_header_stack_bg_color( $opacity );
-			$css[]      = $this->add_media_query(
-				".custom-header--full .site-header,
-				.custom-header--full .h-nav.rwd li:hover ul {
-				  background-color: ${bg_color}; }
-				.custom-header--full .hamburger span {
-				  background-color: ${text_color}; }
-				.custom-header--full .h-nav.rwd li:hover:not(.menu-item-has-children) {
-				  border-bottom-color: ${text_color}; }
-				.custom-header--full .site-header,
-				.custom-header--full .header__title a,
-				.custom-header--full .header__title a:hover,
-				.custom-header--full .header__dscr,
-				.custom-header--full .h-nav.rwd .h-nav__main a,
-				.custom-header--full .h-nav.rwd .h-nav__main a:hover {
-				  color: ${text_color}; }
-				",
-				'md'
-			);
-		}
-
-		/**
-		 * カスタマイザープレビュー用
-		 */
-		if ( is_customize_preview() ) {
-			$css[] = '
-			.customize-partial-edit-shortcut-custom_header {
-			  top: 0;
-			  left: 0;
-			}';
-		}
 
 		return implode( '', $css );
 	}

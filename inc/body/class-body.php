@@ -71,9 +71,9 @@ class Body {
 		/**
 		 * カスタムヘッダー
 		 */
-		if ( Custom_Header::is_active_custom_header() ) {
+		if ( Header_Media::is_active_header_media() ) {
 			$classes[] = 'has-custom-header';
-			$classes[] = 'custom-header--' . Custom_Header::get_custom_header_type();
+			$classes[] = 'custom-header--' . Header_Media::get_header_media_type();
 		}
 
 		/**

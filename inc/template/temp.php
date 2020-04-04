@@ -142,7 +142,7 @@ function ys_is_full_width_thumbnail() {
 	/**
 	 * カスタムヘッダー確認
 	 */
-	if ( \ystandard\Template::is_top_page() && \ystandard\Custom_Header::is_active_custom_header() ) {
+	if ( \ystandard\Template::is_top_page() && \ystandard\Header_Media::is_active_header_media() ) {
 		$result = false;
 	}
 

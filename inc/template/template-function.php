@@ -73,8 +73,8 @@ function ys_global_nav_toggle_button() {
  *
  * @return bool
  */
-function ys_is_active_custom_header() {
-	return \ystandard\Custom_Header::is_active_custom_header();
+function ys_is_active_header_media() {
+	return \ystandard\Header_Media::is_active_header_media();
 }
 
 /**
@@ -82,15 +82,15 @@ function ys_is_active_custom_header() {
  *
  * @return string
  */
-function ys_get_custom_header_type() {
-	return \ystandard\Custom_Header::get_custom_header_type();
+function ys_get_header_media_type() {
+	return \ystandard\Header_Media::get_header_media_type();
 }
 
 /**
  * カスタムヘッダーの出力
  */
-function ys_the_custom_header_markup() {
-	\ystandard\Custom_Header::custom_header_markup();
+function ys_the_header_media_markup() {
+	\ystandard\Header_Media::header_media_markup();
 }
 
 
