@@ -169,7 +169,6 @@ class Customizer {
 		/**
 		 * [ys]デザイン
 		 */
-		$this->design_breadcrumb();
 		$this->design_post();
 		$this->design_page();
 		$this->design_archive();
@@ -180,64 +179,6 @@ class Customizer {
 		 * 拡張機能
 		 */
 		$this->ystandard_extension();
-	}
-
-
-	/**
-	 * デザイン -> パンくずリスト
-	 */
-	private function design_breadcrumb() {
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-		/**
-		 * セクション追加
-		 */
-		$ys_customizer->add_section(
-			[
-				'section'     => 'ys_customizer_section_breadcrumb_design',
-				'title'       => 'パンくずリスト設定',
-				'description' => 'パンくずリストの表示設定',
-				'panel'       => 'ys_customizer_panel_design',
-			]
-		);
-
-		/**
-		 * パンくずリスト表示位置
-		 */
-		$ys_customizer->add_radio(
-			[
-				'id'          => 'ys_breadcrumbs_position',
-				'default'     => 'header',
-				'label'       => 'パンくずリストの表示位置',
-				'description' => '',
-				'choices'     => [
-					'header' => 'ヘッダー',
-					'footer' => 'フッター',
-					'none'   => '表示しない',
-				],
-			]
-		);
-		/**
-		 * パンくずリストに「投稿ページ」を表示する
-		 */
-		if ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
-
-			$ys_customizer->add_label(
-				[
-					'id'          => 'ys_show_page_for_posts_on_breadcrumbs_label',
-					'label'       => 'パンくずリストの「投稿ページ」表示',
-					'description' => 'パンくずリストに「設定」→「表示設定」→「ホームページの表示」で「投稿ページ」で指定したページを表示する。',
-					'section'     => 'ys_customizer_section_archive',
-				]
-			);
-			$ys_customizer->add_checkbox(
-				[
-					'id'      => 'ys_show_page_for_posts_on_breadcrumbs',
-					'default' => 1,
-					'label'   => 'パンくずリストに「投稿ページ」を表示する',
-					'section' => 'ys_customizer_section_archive',
-				]
-			);
-		}
 	}
 
 	/**

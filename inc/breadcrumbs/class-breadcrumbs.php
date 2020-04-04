@@ -59,30 +59,44 @@ class Breadcrumbs {
 	private $home_label = 'Home';
 
 	/**
-	 * Breadcrumb constructor.
-	 */
-	public function __construct() {
-		$this->show_on_front  = get_option( 'show_on_front' );
-		$this->page_on_front  = get_option( 'page_on_front' );
-		$this->page_for_posts = get_option( 'page_for_posts' );
-		$this->items          = [];
-		$this->home_label     = apply_filters( 'ys_breadcrumbs_home_label', 'Home' );
-	}
-
-	/**
-	 * パンくずリスト表示位置取得
-	 *
-	 * @return string
-	 */
-	public static function get_breadcrumbs_position() {
-		return Option::get_option( 'ys_breadcrumbs_position', 'header' );
-	}
-
-	/**
 	 * アクション・フィルターフックのセット
 	 */
 	public function register() {
 		add_action( 'wp_footer', [ $this, 'structured_data' ], 11 );
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		add_action( 'get_header', [ $this, 'add_breadcrumbs' ] );
+
+	}
+
+	/**
+	 * パンくず表示用フィルターのセット
+	 */
+	public function add_breadcrumbs() {
+		$filter   = [
+			'header' => 'ys_after_site_header',
+			'footer' => 'ys_before_site_footer',
+		];
+		$position = Option::get_option( 'ys_breadcrumbs_position', 'header' );
+		if ( ! isset( $filter[ $position ] ) ) {
+			return;
+		}
+		add_action( $filter[ $position ], [ $this, 'show_breadcrumbs' ] );
+	}
+
+	/**
+	 * パンくずリスト表示
+	 */
+	public function show_breadcrumbs() {
+		if ( is_front_page() || Template::is_no_title_template() ) {
+			return;
+		}
+		ob_start();
+		Template::get_template_part(
+			'template-parts/parts/breadcrumbs',
+			[],
+			[ 'breadcrumbs' => $this->get_breadcrumbs() ]
+		);
+		echo ob_get_clean();
 	}
 
 	/**
@@ -108,6 +122,11 @@ class Breadcrumbs {
 	 * @return array
 	 */
 	public function get_breadcrumbs() {
+		$this->show_on_front  = get_option( 'show_on_front' );
+		$this->page_on_front  = get_option( 'page_on_front' );
+		$this->page_for_posts = get_option( 'page_for_posts' );
+		$this->items          = [];
+		$this->home_label     = apply_filters( 'ys_breadcrumbs_home_label', 'Home' );
 		/**
 		 * フロントページの場合
 		 */
@@ -552,6 +571,59 @@ class Breadcrumbs {
 	 */
 	private function get_post_type() {
 		return Content::get_post_type();
+	}
+
+	/**
+	 * カスタマイザー追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section(
+			[
+				'section'  => 'ys_breadcrumbs',
+				'title'    => 'パンくずリスト',
+				'priority' => 60,
+				'panel'    => Design::PANEL_NAME,
+			]
+		);
+		/**
+		 * パンくずリスト表示位置
+		 */
+		$customizer->add_radio(
+			[
+				'id'          => 'ys_breadcrumbs_position',
+				'default'     => 'header',
+				'label'       => 'パンくずリストの表示位置',
+				'description' => '',
+				'choices'     => [
+					'header' => 'ヘッダー',
+					'footer' => 'フッター',
+					'none'   => '表示しない',
+				],
+			]
+		);
+		/**
+		 * パンくずリストに「投稿ページ」を表示する
+		 */
+		if ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
+
+			$customizer->add_label(
+				[
+					'id'          => 'ys_show_page_for_posts_on_breadcrumbs_label',
+					'label'       => 'パンくずリストの「投稿ページ」表示',
+					'description' => 'パンくずリストに「設定」→「表示設定」→「ホームページの表示」で「投稿ページ」で指定したページを表示する。',
+				]
+			);
+			$customizer->add_checkbox(
+				[
+					'id'      => 'ys_show_page_for_posts_on_breadcrumbs',
+					'default' => 1,
+					'label'   => 'パンくずリストに「投稿ページ」を表示する',
+				]
+			);
+		}
 	}
 
 }
