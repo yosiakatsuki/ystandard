@@ -529,6 +529,14 @@ class Customize_Control {
 	public function set_refresh( $name ) {
 		$this->wp_customize->get_setting( $name )->transport = 'refresh';
 	}
+	/**
+	 * 設定をpostMessageにする
+	 *
+	 * @param string $name Name.
+	 */
+	public function set_post_message( $name ) {
+		$this->wp_customize->get_setting( $name )->transport = 'postMessage';
+	}
 
 	/**
 	 * Select,radio

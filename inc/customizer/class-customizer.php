@@ -156,7 +156,6 @@ class Customizer {
 		 * WordPressデフォルト設定の上書き・追加
 		 */
 		$this->extend_wp_option();
-		$this->title_tagline();
 		/**
 		 * お知らせバー
 		 */
@@ -188,114 +187,12 @@ class Customizer {
 		$this->_wp_customize->remove_setting( 'background_color' );
 		$this->_wp_customize->remove_section( 'colors' );
 		$this->_wp_customize->remove_control( 'display_header_text' );
-		/**
-		 * ブログ名などをカスタマイザーショートカット対応させる
-		 */
-		$this->_wp_customize->get_setting( 'custom_logo' )->transport           = 'refresh';
+
 		$this->_wp_customize->get_setting( 'background_image' )->transport      = 'refresh';
 		$this->_wp_customize->get_setting( 'background_preset' )->transport     = 'refresh';
 		$this->_wp_customize->get_setting( 'background_size' )->transport       = 'refresh';
 		$this->_wp_customize->get_setting( 'background_repeat' )->transport     = 'refresh';
 		$this->_wp_customize->get_setting( 'background_attachment' )->transport = 'refresh';
-		$this->_wp_customize->get_setting( 'blogname' )->transport              = 'postMessage';
-		$this->_wp_customize->get_setting( 'blogdescription' )->transport       = 'postMessage';
-
-		if ( isset( $this->_wp_customize->selective_refresh ) ) {
-			$this->_wp_customize->selective_refresh->add_partial(
-				'blogname',
-				[
-					'selector'            => '.site-title a',
-					'container_inclusive' => false,
-					'render_callback'     => function () {
-						bloginfo( 'name' );
-					},
-				]
-			);
-			$this->_wp_customize->selective_refresh->add_partial(
-				'blogdescription',
-				[
-					'selector'            => '.site-description',
-					'container_inclusive' => false,
-					'render_callback'     => function () {
-						bloginfo( 'description' );
-					},
-				]
-			);
-		}
-	}
-
-	/**
-	 * 基本設定への設定追加
-	 */
-	private function title_tagline() {
-		/**
-		 * ロゴ設定追加
-		 */
-		$ys_customizer = new Customize_Control( $this->_wp_customize );
-
-		/**
-		 * Titleタグの区切り文字
-		 */
-		$ys_customizer->add_text(
-			[
-				'id'          => 'ys_title_separate',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => 'titleタグの区切り文字',
-				'description' => '※区切り文字の前後に半角空白が自動で挿入されます',
-				'section'     => 'title_tagline',
-				'priority'    => 20,
-			]
-		);
-		/**
-		 * 概要表示・デスクリプション
-		 */
-		$ys_customizer->add_checkbox(
-			[
-				'id'          => 'ys_wp_hidden_blogdescription',
-				'default'     => 0,
-				'label'       => 'キャッチフレーズを非表示にする',
-				'description' => 'サイトタイトル・ロゴの下にキャッチフレーズを表示したくない場合はチェックを付けて下さい',
-				'section'     => 'title_tagline',
-				'priority'    => 20,
-			]
-		);
-
-		/**
-		 * Apple touch icon設定追加
-		 */
-		// サイトアイコンの説明を変更.
-		$this->_wp_customize->get_control( 'site_icon' )->description = sprintf(
-			'ファビコン用の画像を設定して下さい。縦横%spx以上である必要があります。',
-			'<strong>512</strong>'
-		);
-
-		$this->_wp_customize->add_setting(
-			'ys_apple_touch_icon',
-			[
-				'type'       => 'option',
-				'capability' => 'manage_options',
-				'transport'  => 'postMessage',
-			]
-		);
-
-		$this->_wp_customize->add_control(
-			new \WP_Customize_Site_Icon_Control(
-				$this->_wp_customize,
-				'ys_apple_touch_icon',
-				[
-					'label'       => 'apple touch icon',
-					'description' => sprintf(
-						'apple touch icon用の画像を設定して下さい。縦横%spx以上である必要があります。',
-						'<strong>512</strong>'
-					),
-					'section'     => 'title_tagline',
-					'priority'    => 61,
-					'height'      => 512,
-					'width'       => 512,
-				]
-			)
-		);
 	}
 
 	/**
