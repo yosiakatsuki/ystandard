@@ -230,4 +230,5 @@ class Font_Awesome {
 
 }
 
-new Font_Awesome();
+$class_font_awesome = new Font_Awesome();
+$class_font_awesome->register();
