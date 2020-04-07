@@ -14,7 +14,7 @@ namespace ystandard;
  *
  * @package ystandard
  */
-class Admin_Post_Meta {
+class Post_Meta {
 
 	/**
 	 * Nonce Action.
@@ -251,11 +251,11 @@ class Admin_Post_Meta {
 	 */
 	private function checked( $key, $post_id ) {
 		checked(
-			Post::get_post_meta( $key, $post_id ),
+			Content::get_post_meta( $key, $post_id ),
 			'1',
 			true
 		);
 	}
 }
 
-new Admin_Post_Meta();
+new Post_Meta();

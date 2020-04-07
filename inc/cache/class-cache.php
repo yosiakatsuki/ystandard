@@ -15,6 +15,11 @@ namespace ystandard;
 class Cache {
 
 	/**
+	 * キャッシュプレフィックス
+	 */
+	const PREFIX = 'yscache_';
+
+	/**
 	 * キャッシュ作成に使用するキーを作成
 	 *
 	 * @param string $key  キー文字列.
@@ -44,7 +49,7 @@ class Cache {
 	 * @return string
 	 */
 	public static function get_cache_key_prefix( $key, $args ) {
-		return apply_filters( 'ys_get_cache_key_prefix', 'yscache_' . $key, $key, $args );
+		return apply_filters( 'ys_get_cache_key_prefix', self::PREFIX . $key, $key, $args );
 	}
 
 	/**

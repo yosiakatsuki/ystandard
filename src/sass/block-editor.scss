@@ -25,7 +25,7 @@ $editor: true;
 //@import "object/component/block-editor/rss";
 //@import "object/component/block-editor/rss-d";
 //@import "object/component/block-editor/search";
-@import "object/component/block-editor/blocks-5.4";
+@import "object/component/block-editor/blocks";
 
 /**
  * utility
@@ -36,4 +36,4 @@ $editor: true;
 /**
  * admin
  */
-@import "object/project/admin/block/block";
+@import "object/project/admin/block-editor";

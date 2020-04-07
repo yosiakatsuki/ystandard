@@ -23,7 +23,7 @@ class Font {
 		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
 		add_filter( 'ys_css_vars', [ $this, 'add_css_vars' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_font_sizes_css' ] );
-		add_filter( Enqueue_Admin::BLOCK_EDITOR_ASSETS_HOOK, [ $this, 'add_font_sizes_css_block' ] );
+		add_filter( Admin::BLOCK_EDITOR_ASSETS_HOOK, [ $this, 'add_font_sizes_css_block' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 	}
 
