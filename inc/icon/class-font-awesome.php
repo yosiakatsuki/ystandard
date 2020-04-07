@@ -14,7 +14,7 @@ namespace ystandard;
  *
  * @package ystandard
  */
-class Enqueue_Icons {
+class Font_Awesome {
 
 	/**
 	 * FontAwesome Handle
@@ -26,12 +26,17 @@ class Enqueue_Icons {
 	 */
 	const FONTAWESOME_VER = '5.12.0';
 
-	public function __construct() {
+	/**
+	 * フックやショートコードの登録
+	 */
+	public function register() {
 		if ( AMP::is_amp() ) {
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome_amp' ] );
 		} else {
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome' ] );
 		}
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
+
 	}
 
 	/**
@@ -105,7 +110,7 @@ class Enqueue_Icons {
 	 * FontAwesomeの読み込み
 	 */
 	public function enqueue_font_awesome() {
-		$type = ys_get_option( 'ys_enqueue_icon_font_type', 'js' );
+		$type = Option::get_option( 'ys_enqueue_icon_font_type', 'js' );
 		if ( 'css' === $type ) {
 			wp_enqueue_style(
 				self::FONTAWESOME_HANDLE,
@@ -126,7 +131,7 @@ class Enqueue_Icons {
 				'FontAwesomeConfig = { searchPseudoElements: true };',
 				'before'
 			);
-			wp_script_add_data( self::FONTAWESOME_HANDLE, 'defer', true );
+			Enqueue_Utility::add_defer( self::FONTAWESOME_HANDLE );
 			if ( $this->is_enable_font_awesome_kit() ) {
 				Enqueue_Utility::add_crossorigin(
 					self::FONTAWESOME_HANDLE,
@@ -142,12 +147,12 @@ class Enqueue_Icons {
 	 * @return string
 	 */
 	private function get_font_awesome_load_js_url() {
-		$type = ys_get_option( 'ys_enqueue_icon_font_type', 'js' );
+		$type = Option::get_option( 'ys_enqueue_icon_font_type', 'js' );
 		if ( 'light' === $type ) {
 			return self::get_font_awesome_js_light_url();
 		}
 		if ( $this->is_enable_font_awesome_kit() ) {
-			return ys_get_option( 'ys_enqueue_icon_font_kit_url', '' );
+			return Option::get_option( 'ys_enqueue_icon_font_kit_url', '' );
 		}
 
 		return self::get_font_awesome_js_url();
@@ -159,7 +164,7 @@ class Enqueue_Icons {
 	 * @return bool
 	 */
 	private function is_enable_font_awesome_kit() {
-		return ( 'kit' === ys_get_option( 'ys_enqueue_icon_font_type', 'js' ) && ! empty( ys_get_option( 'ys_enqueue_icon_font_kit_url', '' ) ) );
+		return ( 'kit' === Option::get_option( 'ys_enqueue_icon_font_type', 'js' ) && ! empty( Option::get_option( 'ys_enqueue_icon_font_kit_url', '' ) ) );
 	}
 
 	/**
@@ -174,6 +179,55 @@ class Enqueue_Icons {
 		);
 	}
 
+	/**
+	 * カスタマイザー追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section(
+			[
+				'section'     => 'ys_icon_fonts',
+				'title'       => 'アイコンフォント設定',
+				'description' => 'アイコンフォントに関する設定',
+				'priority'    => 5100,
+				'panel'       => Design::PANEL_NAME,
+			]
+		);
+		/**
+		 * アイコンフォント読み込み方式
+		 */
+		$customizer->add_radio(
+			[
+				'id'          => 'ys_enqueue_icon_font_type',
+				'default'     => 'none',
+				'transport'   => 'postMessage',
+				'label'       => 'アイコンフォント（Font Awesome）読み込み方式',
+				'description' => 'Font Awesome読み込み方式を設定できます。',
+				'choices'     => [
+					'none'  => '読み込まない',
+					'light' => '軽量版',
+					'js'    => 'JavaScript',
+					'css'   => 'CSS',
+					'kit'   => 'Font Awesome Kits(「Font Awesome Kits URL」の入力必須)',
+				],
+			]
+		);
+		/**
+		 * Font Awesome Kits設定
+		 */
+		$customizer->add_url(
+			[
+				'id'          => 'ys_enqueue_icon_font_kit_url',
+				'default'     => '',
+				'transport'   => 'postMessage',
+				'label'       => 'Font Awesome Kits URL',
+				'description' => 'Font Awesome Kitsを使う場合のURL設定',
+			]
+		);
+	}
+
 }
 
-new Enqueue_Icons();
+new Font_Awesome();

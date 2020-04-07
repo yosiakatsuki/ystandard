@@ -97,9 +97,9 @@ class Enqueue_Admin {
 		);
 		wp_enqueue_style(
 			'font-awesome',
-			Enqueue_Icons::get_font_awesome_css_url(),
+			Font_Awesome::get_font_awesome_css_url(),
 			[],
-			Enqueue_Icons::FONTAWESOME_VER
+			Font_Awesome::FONTAWESOME_VER
 		);
 	}
 

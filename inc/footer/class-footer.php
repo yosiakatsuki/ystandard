@@ -178,7 +178,7 @@ class Footer {
 				'section'     => 'ys_design_footer',
 				'title'       => 'フッター',
 				'description' => 'フッターのデザイン設定',
-				'priority'    => 100,
+				'priority'    => 1000,
 				'panel'       => Design::PANEL_NAME,
 			]
 		);

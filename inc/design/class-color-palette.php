@@ -206,7 +206,7 @@ class Color_Palette {
 				'section'     => 'ys_color_palette',
 				'title'       => 'カラーパレット（ブロックエディター）',
 				'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。',
-				'priority'    => 1000,
+				'priority'    => 2000,
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
