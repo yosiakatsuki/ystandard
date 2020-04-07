@@ -17,9 +17,14 @@ namespace ystandard;
 class Enqueue_Styles {
 
 	/**
-	 * Main CSS
+	 * Main CSS.
 	 */
-	const CSS_HANDLE = 'ystandard';
+	const HANDLE_MAIN = 'ystandard';
+
+	/**
+	 * Blocks CSS.
+	 */
+	const HANDLE_BLOCKS = 'ys-blocks';
 
 	/**
 	 * ブレークポイント
@@ -41,7 +46,6 @@ class Enqueue_Styles {
 		if ( ! is_admin() && ys_get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
 			add_filter( 'style_loader_tag', [ $this, 'style_loader_inline' ], PHP_INT_MAX, 4 );
 		}
-		add_action( 'wp_enqueue_scripts', [ $this, 'dequeue_css' ] );
 		add_filter( 'wp_get_custom_css', [ $this, '_wp_get_custom_css' ] );
 	}
 
@@ -49,25 +53,35 @@ class Enqueue_Styles {
 	 * CSS enqueue
 	 */
 	public function enqueue_css() {
-
 		/**
 		 * メインCSS
 		 */
 		wp_enqueue_style(
-			self::CSS_HANDLE,
+			self::HANDLE_MAIN,
 			get_template_directory_uri() . '/css/ystandard.css',
 			[],
-			Utility::get_theme_version( true )
+			Utility::get_ystandard_version()
 		);
 
 		wp_add_inline_style(
-			self::CSS_HANDLE,
+			self::HANDLE_MAIN,
 			$this->get_inline_css()
 		);
 		do_action( 'ys_enqueue_css' );
+
 		// 位置調整.
 		wp_dequeue_style( 'wp-block-library' );
 		wp_enqueue_style( 'wp-block-library' );
+		wp_enqueue_style(
+			self::HANDLE_BLOCKS,
+			get_template_directory_uri() . '/css/blocks.css',
+			[],
+			Utility::get_ystandard_version()
+		);
+		wp_add_inline_style(
+			self::HANDLE_BLOCKS,
+			$this->get_blocks_inline_css()
+		);
 
 		/**
 		 * Style css
@@ -86,7 +100,7 @@ class Enqueue_Styles {
 	 * Add Data
 	 */
 	private function style_add_data() {
-		wp_style_add_data( self::CSS_HANDLE, 'inline', true );
+		wp_style_add_data( self::HANDLE_MAIN, 'inline', true );
 		do_action( 'ys_style_add_data' );
 	}
 
@@ -100,6 +114,16 @@ class Enqueue_Styles {
 		$css_vars = self::get_css_vars_selector();
 
 		return $inline . $css_vars;
+	}
+
+	/**
+	 * インラインCSSを取得
+	 *
+	 * @return string
+	 */
+	private function get_blocks_inline_css() {
+
+		return self::minify( apply_filters( Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS, '' ) );
 	}
 
 	/**

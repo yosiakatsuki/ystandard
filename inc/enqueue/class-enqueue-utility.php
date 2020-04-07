@@ -27,6 +27,11 @@ class Enqueue_Utility {
 	const FILTER_INLINE_CSS = 'ys_get_inline_css';
 
 	/**
+	 * インラインCSSのフック名
+	 */
+	const FILTER_BLOCKS_INLINE_CSS = 'ys_get_blocks_inline_css';
+
+	/**
 	 * CSSカスタムプロパティ追加用配列の取得
 	 *
 	 * @param string $name  変数名.
