@@ -144,7 +144,6 @@ class Customizer {
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
 	 */
 	public function customize_register( $wp_customize ) {
-		$this->_wp_customize = $wp_customize;
 
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->set_refresh( 'background_image' );
@@ -170,8 +169,6 @@ class Customizer {
 				'description' => 'yStandard専用プラグイン等による拡張機能の設定',
 			]
 		);
-
-		apply_filters( 'ys_customizer_add_extension', $wp_customize );
 	}
 
 	/**
