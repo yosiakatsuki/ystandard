@@ -21,7 +21,7 @@ class Color_Palette {
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_color_palette_css' ] );
-		add_filter( Enqueue_Admin::BLOCK_EDITOR_ASSETS_HOOK, [ $this, 'add_color_palette_css_block' ] );
+		add_filter( Admin::BLOCK_EDITOR_ASSETS_HOOK, [ $this, 'add_color_palette_css_block' ] );
 
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 	}

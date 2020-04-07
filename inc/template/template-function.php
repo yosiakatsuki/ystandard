@@ -240,6 +240,17 @@ function ys_get_sns_icon( $name, $title = '' ) {
 }
 
 /**
+ * テーマバージョン取得
+ *
+ * @param boolean $parent 親テーマ情報かどうか.
+ *
+ * @return string
+ */
+function ys_get_theme_version( $parent = false ) {
+	return \ystandard\Utility::get_theme_version( $parent );
+}
+
+/**
  * 設定取得
  *
  * @param string $name    option key.

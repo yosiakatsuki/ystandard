@@ -239,21 +239,6 @@ function ys_is_active_related_post() {
 
 
 /**
- * キャッシュ設定が有効か判定
- */
-function ys_is_enable_cache_setting() {
-	if ( 'none' !== ys_get_option( 'ys_query_cache_recent_posts', 'none' ) ) {
-		return true;
-	}
-	if ( 'none' !== ys_get_option( 'ys_query_cache_related_posts', 'none' ) ) {
-		return true;
-	}
-
-	return false;
-}
-
-
-/**
  * アーカイブ明細クラス出力
  */
 function ys_the_archive_item_class() {
