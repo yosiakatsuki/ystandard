@@ -47,11 +47,15 @@ class Content {
 		add_filter( 'post_class', [ $this, 'post_class' ] );
 		add_filter( 'the_content', [ $this, 'replace_more' ] );
 		add_filter( 'the_content', [ $this, 'responsive_iframe' ] );
-		add_filter( 'get_the_excerpt', '\ystandard\Content::get_custom_excerpt' );
+		add_filter( 'get_the_excerpt', [ '\ystandard\Content', 'get_custom_excerpt' ] );
 		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
 		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
 		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
 		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
+		add_action( 'customize_register', [ $this, 'customize_register_post' ] );
+		add_action( 'customize_register', [ $this, 'customize_register_page' ] );
+		add_action( 'customize_register', [ $this, 'customize_register_archive' ] );
+
 	}
 
 
@@ -426,6 +430,291 @@ class Content {
 		}
 
 		return $sep;
+	}
+
+	/**
+	 * 投稿設定
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register_post( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section(
+			[
+				'section'  => 'ys_design_post',
+				'title'    => '投稿ページ',
+				'priority' => 100,
+				'panel'    => Design::PANEL_NAME,
+			]
+		);
+		$customizer->add_section_label( 'レイアウト' );
+		// 表示カラム数
+		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
+		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
+		$img  = '<img src="%s" alt="" width="100" height="100" />';
+		$customizer->add_image_label_radio(
+			[
+				'id'          => 'ys_post_layout',
+				'default'     => '2col',
+				'label'       => 'ページレイアウト',
+				'description' => '投稿ページの表示レイアウト',
+				'choices'     => [
+					'2col' => sprintf( $img, $col2 ),
+					'1col' => sprintf( $img, $col1 ),
+				],
+			]
+		);
+		// アイキャッチ.
+		$default = Customizer::get_assets_dir_uri( '/design/eye-catch/default.png' );
+		$full    = Customizer::get_assets_dir_uri( '/design/eye-catch/full.png' );
+		$img     = '<img src="%s" alt="" width="100" height="100" />';
+		$customizer->add_image_label_radio(
+			[
+				'id'      => 'ys_post_eye_catch',
+				'default' => 'default',
+				'label'   => 'アイキャッチ画像の表示タイプ',
+				'choices' => [
+					'default' => sprintf( $img, $default ),
+					'full'    => sprintf( $img, $full ),
+				],
+			]
+		);
+		$customizer->add_section_label( '記事上部' );
+		// 投稿日時を表示する.
+		$customizer->add_select(
+			[
+				'id'      => 'ys_show_post_publish_date',
+				'default' => 'both',
+				'label'   => '投稿日・更新日の表示タイプ',
+				'choices' => [
+					'both'    => '投稿日・更新日',
+					'publish' => '投稿日のみ',
+					'update'  => '更新日のみ',
+					'none'    => '表示しない',
+				],
+			]
+		);
+		$customizer->add_label(
+			[
+				'id'    => 'ys_show_post_header_category_label',
+				'label' => 'カテゴリー情報の表示設定',
+			]
+		);
+		// カテゴリー表示.
+		$customizer->add_checkbox(
+			[
+				'id'          => 'ys_show_post_header_category',
+				'default'     => 1,
+				'label'       => 'カテゴリー情報を表示する',
+				'description' => '※ページ上部では1件のみ表示されます',
+			]
+		);
+		$customizer->add_section_label( '記事下部' );
+		$customizer->add_label(
+			[
+				'id'          => 'ys_after_contents_section_label',
+				'label'       => '記事下コンテンツの表示・非表示設定',
+				'description' => '※シェアボタンの表示は「[ys]SNS」→「SNSシェアボタン」から設定できます',
+			]
+		);
+		// 著者情報を表示する.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_post_author',
+				'default' => 1,
+				'label'   => '著者情報',
+			]
+		);
+		// カテゴリー・タグ.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_post_category',
+				'default' => 1,
+				'label'   => 'カテゴリー・タグ',
+			]
+		);
+		// 関連記事.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_post_related',
+				'default' => 1,
+				'label'   => '関連記事',
+			]
+		);
+		// 次の記事・前の記事.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_post_paging',
+				'default' => 1,
+				'label'   => '次の記事・前の記事',
+			]
+		);
+	}
+
+	/**
+	 * 固定ページ設定
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register_page( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section(
+			[
+				'section'  => 'ys_design_page',
+				'title'    => '固定ページ',
+				'priority' => 110,
+				'panel'    => Design::PANEL_NAME,
+			]
+		);
+		$customizer->add_section_label( 'レイアウト' );
+		// 表示カラム数
+		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
+		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
+		$img  = '<img src="%s" alt="" width="100" height="100" />';
+		$customizer->add_image_label_radio(
+			[
+				'id'          => 'ys_page_layout',
+				'default'     => '2col',
+				'label'       => 'ページレイアウト',
+				'description' => '固定ページの表示レイアウト',
+				'choices'     => [
+					'2col' => sprintf( $img, $col2 ),
+					'1col' => sprintf( $img, $col1 ),
+				],
+			]
+		);
+		// アイキャッチ.
+		$default = Customizer::get_assets_dir_uri( '/design/eye-catch/default.png' );
+		$full    = Customizer::get_assets_dir_uri( '/design/eye-catch/full.png' );
+		$img     = '<img src="%s" alt="" width="100" height="100" />';
+		$customizer->add_image_label_radio(
+			[
+				'id'      => 'ys_page_eye_catch',
+				'default' => 'default',
+				'label'   => 'アイキャッチ画像の表示タイプ',
+				'choices' => [
+					'default' => sprintf( $img, $default ),
+					'full'    => sprintf( $img, $full ),
+				],
+			]
+		);
+		$customizer->add_section_label( '記事上部' );
+		// 投稿日時を表示する.
+		$customizer->add_select(
+			[
+				'id'      => 'ys_show_page_publish_date',
+				'default' => 'both',
+				'label'   => '投稿日・更新日の表示タイプ',
+				'choices' => [
+					'both'    => '投稿日・更新日',
+					'publish' => '投稿日のみ',
+					'update'  => '更新日のみ',
+					'none'    => '表示しない',
+				],
+			]
+		);
+		$customizer->add_section_label( '記事下部' );
+		$customizer->add_label(
+			[
+				'id'          => 'ys_after_contents_section_label',
+				'label'       => '記事下コンテンツの表示・非表示設定',
+				'description' => '※シェアボタンの表示は「[ys]SNS」→「SNSシェアボタン」から設定できます',
+			]
+		);
+		// 著者情報を表示する.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_page_author',
+				'default' => 1,
+				'label'   => '著者情報',
+			]
+		);
+	}
+
+	/**
+	 * アーカイブページ設定
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register_archive( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section(
+			[
+				'section'  => 'ys_design_archive',
+				'title'    => 'アーカイブページ設定',
+				'panel'    => Design::PANEL_NAME,
+				'priority' => 120,
+			]
+		);
+		$customizer->add_section_label( 'レイアウト' );
+		/**
+		 * 表示カラム数
+		 */
+		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
+		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
+		$img  = '<img src="%s" alt="" width="100" height="100" />';
+		$customizer->add_image_label_radio(
+			[
+				'id'          => 'ys_archive_layout',
+				'default'     => '2col',
+				'label'       => 'ページレイアウト',
+				'description' => 'アーカイブページの表示レイアウト',
+				'choices'     => [
+					'2col' => sprintf( $img, $col2 ),
+					'1col' => sprintf( $img, $col1 ),
+				],
+			]
+		);
+		/**
+		 * 一覧タイプ
+		 */
+		$list = Customizer::get_assets_dir_uri( '/design/archive/list.png' );
+		$card = Customizer::get_assets_dir_uri( '/design/archive/card.png' );
+		$img  = '<img src="%s" alt="" width="100" height="100" />';
+		$customizer->add_image_label_radio(
+			[
+				'id'          => 'ys_archive_type',
+				'default'     => 'card',
+				'label'       => '一覧レイアウト',
+				'description' => '記事一覧の表示タイプ',
+				'choices'     => [
+					'card' => sprintf( $img, $card ),
+					'list' => sprintf( $img, $list ),
+				],
+			]
+		);
+		$customizer->add_section_label( '表示・非表示設定' );
+		// 投稿日.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_archive_publish_date',
+				'default' => 1,
+				'label'   => '投稿日を表示する',
+			]
+		);
+		// カテゴリー.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_archive_category',
+				'default' => 1,
+				'label'   => 'カテゴリーを表示する',
+			]
+		);
+		// 概要.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_archive_description',
+				'default' => 1,
+				'label'   => '概要を表示する',
+			]
+		);
+		$customizer->add_number(
+			[
+				'id'      => 'ys_option_excerpt_length',
+				'default' => 80,
+				'label'   => '概要文の文字数',
+			]
+		);
 	}
 
 
