@@ -17,8 +17,8 @@ if ( empty( $share_button ) ) {
 	<?php endif; ?>
 	<ul class="sns-share__container">
 		<?php foreach ( $share_button['sns'] as $sns => $url ) : ?>
-			<li class="sns-share__button is-<?php echo esc_attr( $sns ); ?>">
-				<a class="sns-share__link sns-bg--<?php echo esc_attr( $sns ); ?>" href="<?php echo esc_url_raw( $url ); ?>" target="_blank">
+			<li class="sns-share__button sns-bg--<?php echo esc_attr( $sns ); ?> is-<?php echo esc_attr( $sns ); ?>">
+				<a class="sns-share__link" href="<?php echo esc_url_raw( $url ); ?>" target="_blank">
 					<?php echo ys_get_sns_icon( $sns ); ?>
 				</a>
 			</li>
