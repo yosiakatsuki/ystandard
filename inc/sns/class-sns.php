@@ -56,7 +56,7 @@ class SNS {
 				'twitter'   => [
 					'class'      => 'twitter',
 					'option_key' => 'twitter',
-					'icon'       => 'fab fa-twitter',
+					'icon'       => 'twitter',
 					'color'      => 'twitter',
 					'title'      => 'twitter',
 					'label'      => 'Twitter',
@@ -64,7 +64,7 @@ class SNS {
 				'facebook'  => [
 					'class'      => 'facebook',
 					'option_key' => 'facebook',
-					'icon'       => 'fab fa-facebook-f',
+					'icon'       => 'facebook',
 					'color'      => 'facebook',
 					'title'      => 'facebook',
 					'label'      => 'Facebook',
@@ -72,7 +72,7 @@ class SNS {
 				'instagram' => [
 					'class'      => 'instagram',
 					'option_key' => 'instagram',
-					'icon'       => 'fab fa-instagram',
+					'icon'       => 'instagram',
 					'color'      => 'instagram',
 					'title'      => 'instagram',
 					'label'      => 'Instagram',
@@ -80,7 +80,7 @@ class SNS {
 				'tumblr'    => [
 					'class'      => 'tumblr',
 					'option_key' => 'tumblr',
-					'icon'       => 'fab fa-tumblr',
+					'icon'       => 'tumblr',
 					'color'      => 'tumblr',
 					'title'      => 'tumblr',
 					'label'      => 'Tumblr',
@@ -88,7 +88,7 @@ class SNS {
 				'youtube'   => [
 					'class'      => 'youtube',
 					'option_key' => 'youtube',
-					'icon'       => 'fab fa-youtube',
+					'icon'       => 'youtube',
 					'color'      => 'youtube-play',
 					'title'      => 'youtube',
 					'label'      => 'YouTube',
@@ -96,7 +96,7 @@ class SNS {
 				'github'    => [
 					'class'      => 'github',
 					'option_key' => 'github',
-					'icon'       => 'fab fa-github',
+					'icon'       => 'github',
 					'color'      => 'github',
 					'title'      => 'github',
 					'label'      => 'GitHub',
@@ -104,7 +104,7 @@ class SNS {
 				'pinterest' => [
 					'class'      => 'pinterest',
 					'option_key' => 'pinterest',
-					'icon'       => 'fab fa-pinterest-p',
+					'icon'       => 'pinterest',
 					'color'      => 'pinterest',
 					'title'      => 'pinterest',
 					'label'      => 'Pinterest',
@@ -112,7 +112,7 @@ class SNS {
 				'linkedin'  => [
 					'class'      => 'linkedin',
 					'option_key' => 'linkedin',
-					'icon'       => 'fab fa-linkedin-in',
+					'icon'       => 'linkedin',
 					'color'      => 'linkedin',
 					'title'      => 'linkedin',
 					'label'      => 'LinkedIn',
@@ -120,7 +120,7 @@ class SNS {
 				'amazon'    => [
 					'class'      => 'amazon',
 					'option_key' => 'amazon',
-					'icon'       => 'fab fa-amazon',
+					'icon'       => 'amazon',
 					'color'      => 'amazon',
 					'title'      => 'amazon',
 					'label'      => 'Amazon',
