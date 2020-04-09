@@ -18,6 +18,7 @@ const iconList = [
 	'Dribbble',
 	'GitHub',
 	'Tumblr',
+	'Amazon',
 ];
 const data = {};
 

@@ -206,7 +206,7 @@ class Font_Awesome {
 				'label'       => 'アイコンフォント（Font Awesome）読み込み方式',
 				'description' => 'Font Awesome読み込み方式を設定できます。',
 				'choices'     => [
-					'none'  => '読み込まない',
+					'none'  => '読み込まない(デフォルト)',
 					'light' => '軽量版',
 					'js'    => 'JavaScript',
 					'css'   => 'CSS',

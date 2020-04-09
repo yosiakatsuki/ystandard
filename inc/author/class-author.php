@@ -38,10 +38,19 @@ class Author {
 	 */
 	public function register() {
 		add_filter( 'user_contactmethods', [ $this, 'user_contactmethods' ] );
-		add_action( 'show_password_fields', [ $this, 'add_custom_avatar' ], 10, 2 );
+		add_action( 'show_password_fields', [ $this, 'add_custom_option' ], 10, 2 );
 		add_action( 'profile_update', [ $this, 'profile_update' ], 10, 2 );
 		add_shortcode( 'ys_author', [ $this, 'do_shortcode' ] );
 		add_filter( 'get_avatar', [ $this, '_get_avatar' ], 10, 6 );
+		add_action(
+			'ys_singular_footer',
+			[ $this, 'post_author' ],
+			Content::get_footer_priority( 'author' )
+		);
+	}
+
+	public function post_author() {
+		echo $this->do_shortcode( [] );
 	}
 
 	/**
@@ -101,19 +110,19 @@ class Author {
 			/**
 			 * 投稿個別設定
 			 */
-			if ( '1' === ys_get_post_meta( 'ys_hide_author' ) ) {
+			if ( '1' === Content::get_post_meta( 'ys_hide_author' ) ) {
 				return false;
 			}
 			/**
 			 * 投稿ページ
 			 */
-			if ( is_single() && ! ys_get_option_by_bool( 'ys_show_post_author', true ) ) {
+			if ( is_single() && ! Option::get_option_by_bool( 'ys_show_post_author', true ) ) {
 				return false;
 			}
 			/**
 			 * 固定ページ
 			 */
-			if ( is_page() && ! ys_get_option_by_bool( 'ys_show_page_author', true ) ) {
+			if ( is_page() && ! Option::get_option_by_bool( 'ys_show_page_author', true ) ) {
 				return false;
 			}
 		}
@@ -183,7 +192,7 @@ class Author {
 		if ( ! empty( $url ) ) {
 			$list['url'] = [
 				'type'  => 'url',
-				'icon'  => 'fas fa-globe-asia',
+				'icon'  => Icon::get_icon( 'globe', 'sns-icon' ),
 				'color' => 'globe',
 				'title' => 'Web',
 				'url'   => esc_url_raw( $url ),
@@ -196,7 +205,7 @@ class Author {
 			if ( ! empty( $url ) ) {
 				$list[ $key ] = [
 					'type'  => $key,
-					'icon'  => esc_attr( $val['icon'] ),
+					'icon'  => Icon::get_sns_icon( $val['icon'] ),
 					'color' => esc_attr( $val['color'] ),
 					'title' => esc_attr( $val['title'] ),
 					'url'   => esc_url_raw( $url ),
@@ -224,6 +233,13 @@ class Author {
 		return wpautop( str_replace( [ "\r\n", "\r", "\n" ], "\n\n", $dscr ) );
 	}
 
+	/**
+	 * ショートコード実行
+	 *
+	 * @param array $atts パラメーター.
+	 *
+	 * @return false|string
+	 */
 	public function do_shortcode( $atts ) {
 		$atts = shortcode_atts( self::SHORTCODE_ATTR, $atts );
 
@@ -240,7 +256,7 @@ class Author {
 		$data = [
 			'avatar'      => $this->get_avatar( $author_id ),
 			'name'        => get_the_author_meta( 'display_name', $author_id ),
-			'position'    => '', // 未実装.
+			'position'    => get_the_author_meta( 'ys_author_position', $author_id ),
 			'sns'         => $this->get_sns( $author_id ),
 			'description' => $this->get_description( $author_id ),
 		];
@@ -249,7 +265,7 @@ class Author {
 		Template::get_template_part(
 			'template-parts/parts/author',
 			null,
-			[ 'ys_author_data' => $data ]
+			[ 'author_data' => $data ]
 		);
 
 		return ob_get_clean();
@@ -280,12 +296,13 @@ class Author {
 	 *
 	 * @return bool
 	 */
-	public function add_custom_avatar( $show, $profileuser ) {
+	public function add_custom_option( $show, $profileuser ) {
 
 		if ( ! preg_match( '/^(profile\.php|user-edit\.php)/', basename( $_SERVER['REQUEST_URI'] ) ) ) {
 			return $show;
 		}
 		$custom_avatar = get_user_meta( $profileuser->ID, 'ys_custom_avatar', true );
+		$position      = get_user_meta( $profileuser->ID, 'ys_author_position', true );
 		wp_nonce_field( self::NONCE_ACTION, self::NONCE_NAME );
 		?>
 		<tr>
@@ -295,6 +312,18 @@ class Author {
 					<?php Admin::custom_uploader_control( 'ys_custom_avatar', $custom_avatar ); ?>
 					<p class="description">96px×96pxの正方形で表示されます。正方形の画像を用意すると綺麗に表示されます。</p>
 				</div>
+			</td>
+		</tr>
+		<tr>
+			<th><label for="ys_author_position">肩書</label></th>
+			<td>
+				<input
+					type="text"
+					id="ys_author_position"
+					name="ys_author_position"
+					class="regular-text"
+					value="<?php echo esc_attr( $position ); ?>"
+				/>
 			</td>
 		</tr>
 		<?php
@@ -323,6 +352,15 @@ class Author {
 			);
 		} else {
 			delete_user_meta( $user_id, 'ys_custom_avatar' );
+		}
+		if ( isset( $_POST['ys_author_position'] ) && ! empty( $_POST['ys_author_position'] ) ) {
+			update_user_meta(
+				$user_id,
+				'ys_author_position',
+				esc_attr( $_POST['ys_author_position'] )
+			);
+		} else {
+			delete_user_meta( $user_id, 'ys_author_position' );
 		}
 	}
 

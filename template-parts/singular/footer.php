@@ -8,7 +8,7 @@
  */
 
 ?>
-<footer class="entry-footer singular__footer">
+<footer class="singular__footer entry-footer">
 	<?php
 	/**
 	 * 記事フッター

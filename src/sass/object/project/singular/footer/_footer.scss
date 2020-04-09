@@ -1,11 +1,3 @@
-.singular-footer__block {
-	margin-top: 4rem;
-
-	h2 {
-		font-size: 1.2em;
-
-		&:first-child {
-			margin-top: 0;
-		}
-	}
+.singular__footer {
+  @include child_margin(4em);
 }

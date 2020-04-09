@@ -36,13 +36,6 @@ class Taxonomy {
 		add_filter( 'get_the_archive_description', [ $this, 'override_description' ] );
 		add_filter( 'ys_ogp_description_archive', [ $this, 'ogp_description' ] );
 		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
-		add_action( 'after_setup_theme', [ $this, 'set_widget' ] );
-	}
-
-	/**
-	 * フィルターのセット
-	 */
-	public function set_widget() {
 		add_action(
 			'ys_singular_footer',
 			[ $this, 'post_taxonomy' ],
@@ -74,7 +67,7 @@ class Taxonomy {
 	 */
 	private function is_active_post_taxonomy() {
 		$result = Option::get_option_by_bool( 'ys_show_post_category', true );
-		if ( is_single() ) {
+		if ( ! is_single() ) {
 			$result = false;
 		}
 
