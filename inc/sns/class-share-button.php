@@ -22,6 +22,7 @@ class Share_Button {
 	const TYPE = [
 		'circle'   => '円',
 		'square'   => '四角',
+		'icon'     => 'アイコンのみ',
 		'official' => '公式',
 		'none'     => '表示しない',
 	];

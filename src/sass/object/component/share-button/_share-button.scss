@@ -10,8 +10,19 @@
   }
 
   &.is-circle {
-	.sns-share__link {
+	.sns-share__button {
 	  border-radius: 50%;
+	}
+  }
+
+  &.is-icon {
+	.sns-share__link {
+	  padding: 20%;
+	  color: currentColor;
+
+	  svg {
+		fill: currentColor;
+	  }
 	}
   }
 
@@ -20,9 +31,11 @@
 	.sns-share__container {
 	  flex-wrap: wrap;
 	}
+
 	.sns-share__button {
 	  margin: 0 .5em .25em 0;
 	}
+
 	.sns-share__after {
 	  margin-top: 0;
 	}
@@ -42,15 +55,18 @@
 .sns-share__container {
   display: flex;
   padding: 0;
-  margin-right: 0;
-  margin-left: 0;
+  margin-right: -.5em;
+  margin-left: -.5em;
   list-style: none;
-
-
 }
 
 .sns-share__button {
   margin: 0 .5em;
+  transition: transform .3s;
+
+  &:hover {
+	transform: scale(1.1);
+  }
 
   .sns-share__link {
 	$button-size: 40px;
@@ -60,10 +76,6 @@
 	justify-content: center;
 	align-items: center;
 	padding: 25%;
-
-	&:not(:hover) {
-	  background-color: rgba($color__text-light, 0.5);
-	}
   }
 
   svg {
