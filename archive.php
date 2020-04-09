@@ -9,7 +9,7 @@
 
 get_header(); ?>
 <div class="container">
-	<div class="content__wrapper">
+	<div class="content__wrap">
 		<?php if ( have_posts() ) : ?>
 			<?php ys_get_template_part( 'template-parts/archive/content' ); ?>
 		<?php else : ?>

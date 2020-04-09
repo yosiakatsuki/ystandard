@@ -96,7 +96,7 @@
 }
 
 .site-header-thumbnail {
-
+  overflow: hidden;
   @include media-breakpoint(md) {
 	height: 50vh;
 	max-height: 400px;
@@ -109,6 +109,7 @@
 	  height: 100%;
 	  object-fit: cover;
 	  object-position: 50% 50%;
+	  filter: blur(2px);
 	}
   }
 }
