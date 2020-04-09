@@ -75,7 +75,7 @@ class Post_Meta {
 			</div>
 			<div class="meta-box__list">
 				<label class="meta-box__label" for="ys_ogp_description">OGP/Twitter Cards用description</label>
-				<textarea id="ys_ogp_description" class="meta-box__textarea" name="ys_ogp_description" rows="4" cols="40"><?php echo esc_textarea( Post::get_post_meta( 'ys_ogp_description', $post_id ) ); ?></textarea>
+				<textarea id="ys_ogp_description" class="meta-box__textarea" name="ys_ogp_description" rows="4" cols="40"><?php echo esc_textarea( Content::get_post_meta( 'ys_ogp_description', $post_id ) ); ?></textarea>
 				<div class="meta-box__dscr">※OGP/Twitter Cardsのdescriptionとして出力する文章を設定できます。空白の場合、投稿本文から自動でdescriptionを作成します。</div>
 			</div>
 			<?php do_action( 'ys_meta_box_after_seo' ); ?>

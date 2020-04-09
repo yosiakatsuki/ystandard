@@ -7,19 +7,14 @@
  * @license GPL-2.0+
  */
 
-if ( empty( $ys_post_taxonomy ) ) {
-	return;
-}
 ?>
 <div class="post-taxonomy">
-	<?php if ( $ys_post_taxonomy['title'] ) : ?>
-		<p class="post-taxonomy__title"><?php echo $ys_post_taxonomy['title']; ?></p>
-	<?php endif; ?>
 	<?php
 	$categories = get_the_category();
 	if ( $categories ) :
 		?>
-		<div class="post-taxonomy__category">
+		<div class="post-taxonomy__container is-category">
+			<p class="post-taxonomy__title">カテゴリー</p>
 			<ul class="post-taxonomy__items">
 				<?php foreach ( $categories as $category ) : ?>
 					<li class="post-taxonomy__item">
@@ -33,7 +28,8 @@ if ( empty( $ys_post_taxonomy ) ) {
 	$tags = get_the_tags();
 	if ( $tags ) :
 		?>
-		<div class="post-taxonomy__tag">
+		<div class="post-taxonomy__container is-tag">
+			<p class="post-taxonomy__title">タグ</p>
 			<ul class="post-taxonomy__items">
 				<?php foreach ( $tags as $tag ) : ?>
 					<li class="post-taxonomy__item">
