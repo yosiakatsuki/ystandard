@@ -12,9 +12,12 @@
 
 .singular-header__meta {
   display: flex;
-  justify-content: space-between;
   font-size: 0.9em;
   color: var(--content-meta-color);
+
+  > * {
+	margin-right: 1em;
+  }
 
   svg {
 	display: block;
@@ -28,7 +31,8 @@
 }
 
 .singular-date,
-.singular-date__item {
+.singular-date__item,
+.singular-header__category {
   display: flex;
   align-items: center;
 }

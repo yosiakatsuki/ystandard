@@ -9,7 +9,7 @@
 
 get_header(); ?>
 <div class="container">
-	<div class="content__wrapper">
+	<div class="content__wrap">
 		<?php
 		ys_get_template_part( 'template-parts/404/content' );
 
