@@ -14,11 +14,22 @@
   }
 }
 
+
 .content__main {
   background-color: var(--content-bg-color);
-  @include media-breakpoint(lg) {
-	$width: #{(800 / 1200 * 100)}#{"%"};
-	flex: 0 0 $width;
-	width: $width;
+  max-width: 800px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @at-root {
+	.has-sidebar & {
+	  @include media-breakpoint(lg) {
+		$width: #{(800 / 1200 * 100)}#{"%"};
+		flex: 0 0 $width;
+		width: $width;
+		margin-right: 0;
+		margin-left: 0;
+	  }
+	}
   }
 }
