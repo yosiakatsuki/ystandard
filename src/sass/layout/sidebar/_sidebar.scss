@@ -1,21 +1,17 @@
 .sidebar {
-	width: 100%;
-	margin-top: 2rem;
-	margin-right: auto;
+  width: 100%;
+
+  @include media-breakpoint(lg) {
+	$width: #{(336 / 1200 * 100)}#{"%"};
+	flex: 0 0 $width;
+	width: $width;
 	margin-left: auto;
+  }
+
+  @include child_margin(2rem);
 }
 
-.sidebar__item {
-	margin-top: 1rem;
-	padding: 1rem;
-
-	&:first-child {
-		margin-top: 0;
-	}
-
-	& > * {
-		&:first-child {
-			margin-top: 0;
-		}
-	}
+.sidebar__widget,
+.sidebar__fixed {
+  @include child_margin(2rem);
 }

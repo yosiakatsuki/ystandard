@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * ユーザーエージェントのチェック
  *
@@ -9,38 +8,7 @@
  * @return boolean
  */
 function ys_check_user_agent( $ua ) {
-	if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
-		return false;
-	}
-	$pattern = '/' . implode( '|', $ua ) . '/i';
-
-	return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
-}
-
-/**
- * モバイル判定
- *
- * @return bool
- */
-function ys_is_mobile() {
-
-	$ua = [
-		'^(?!.*iPad).*iPhone',
-		'iPod',
-		'Android.*Mobile',
-		'Mobile.*Firefox',
-		'Windows.*Phone',
-		'blackberry',
-		'dream',
-		'CUPCAKE',
-		'webOS',
-		'incognito',
-		'webmate',
-	];
-
-	$ua = apply_filters( 'ys_is_mobile_ua_list', $ua );
-
-	return ys_check_user_agent( $ua );
+	return \ystandard\Utility::check_user_agent( $ua );
 }
 
 /**
@@ -99,80 +67,7 @@ function ys_is_full_width() {
 	return ystandard\Template::is_wide();
 }
 
-/**
- * アイキャッチ表示タイプがフル幅か
- *
- * @return bool
- */
-function ys_is_full_width_thumbnail() {
-	$result = false;
-	/**
-	 * 投稿ページサムネイルタイプ確認
-	 */
-	if ( is_singular() ) {
-		if ( ys_is_amp() ) {
-			if ( 'full' === ys_get_option( 'ys_amp_thumbnail_type', 'full' ) ) {
-				$result = true;
-			}
-		} else {
-			if ( 'full' === ys_get_option( 'ys_design_one_col_thumbnail_type', 'normal' ) ) {
-				$result = true;
-			}
-		}
-	}
 
-	/**
-	 * レイアウトオプション確認
-	 */
-	if ( is_single() && '1col' !== ys_get_option( 'ys_post_layout', '2col' ) ) {
-		$result = false;
-	}
-	if ( is_page() && '1col' !== ys_get_option( 'ys_page_layout', '2col' ) ) {
-		$result = false;
-	}
-
-	/**
-	 * カスタムヘッダー確認
-	 */
-	if ( \ystandard\Template::is_top_page() && \ystandard\Header_Media::is_active_header_media() ) {
-		$result = false;
-	}
-
-	return apply_filters( 'ys_is_full_width_thumbnail', $result );
-}
-
-/**
- * サイドバーを表示するか
- */
-function ys_is_active_sidebar_widget() {
-	$show_sidebar = true;
-	if ( ys_is_amp() ) {
-		$show_sidebar = false;
-	}
-	if ( ys_is_mobile() && ys_get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
-		$show_sidebar = false;
-	}
-	if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
-		$show_sidebar = false;
-	}
-	if ( ys_is_one_column() ) {
-		$show_sidebar = false;
-	}
-
-	return apply_filters( 'ys_is_active_sidebar_widget', $show_sidebar );
-}
-
-/**
- * 投稿ヘッダー情報を隠すか
- */
-function ys_is_hide_post_header() {
-	$result = false;
-	if ( ys_is_no_title_template() ) {
-		$result = true;
-	}
-
-	return apply_filters( 'ys_is_hide_post_header', $result );
-}
 
 /**
  * アイキャッチ画像を表示するか
@@ -182,7 +77,7 @@ function ys_is_hide_post_header() {
  * @return bool
  */
 function ys_is_active_post_thumbnail( $post_id = null ) {
-	return ystandard\Content::is_active_post_thumbnail( $post_id );
+	return \ystandard\Content::is_active_post_thumbnail( $post_id );
 }
 
 
@@ -236,7 +131,6 @@ function ys_is_active_related_post() {
 
 	return apply_filters( 'ys_is_active_related_post', $result );
 }
-
 
 /**
  * アーカイブ明細クラス出力

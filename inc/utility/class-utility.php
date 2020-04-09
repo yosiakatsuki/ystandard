@@ -260,4 +260,20 @@ class Utility {
 		return false;
 	}
 
+	/**
+	 * ユーザーエージェントのチェック
+	 *
+	 * @param array $ua 対象ユーザーエージェントのリスト.
+	 *
+	 * @return boolean
+	 */
+	public static function check_user_agent( $ua ) {
+		if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
+			return false;
+		}
+		$pattern = '/' . implode( '|', $ua ) . '/i';
+
+		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
+	}
+
 }

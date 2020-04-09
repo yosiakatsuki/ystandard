@@ -6,20 +6,28 @@
   --font-color: #{$color__text-main};
   --font-white: #{$color__text-white};
   --font-gray: #{$color__text-light};
+  --border-color-gray: #{$color__border-gray};
+  --border-color-gray-light: #{$color__border-gray-light};
   --site-bg-color: #{$color__bg-body};
   --site-bg-color-gray: #{$color__bg-gray-dark};
   --site-bg-color-light-gray: #{$color__bg-gray-light};
   --header-bg-color: #ffffff;
-  --header-text-color: #{$color__text-main};
-  --header-dscr-color: #{$color__text-light};
+  --header-text-color: var(--font-color);
+  --header-dscr-color: var(--font-gray);
   --mobile-nav-bg-color: #000000;
-  --mobile-nav-text-color: #{$color__text-white};
-  --mobile-nav-open-color: #{$color__text-main};
-  --mobile-nav-close-color: #{$color__text-white};
+  --mobile-nav-text-color: var(--font-white);
+  --mobile-nav-open-color: var(--font-color);
+  --mobile-nav-close-color: var(--font-white);
+  --content-bg-color: #{$color__bg-content};
+  --content-meta-color: var(--font-gray);;
+  --advertisement-title-color: var(--font-gray);
   --footer-bg-color: #{$color__bg-gray-dark};
-  --footer-text-color: #{$color__text-white};
+  --footer-text-color: var(--font-white);
   --footer-sub-bg-color: #{$color__bg-gray-light};
-  --footer-sub-text-color: #{$color__text-main};
+  --footer-sub-text-color: var(--font-color);
+  --link-color: #{$color__link};
+  --link-color-hover: #{$color__link-hover};
+
   @each $key, $color in $color__sns {
 	--sns-color-#{$key}: #{$color};
   }
@@ -53,8 +61,8 @@ html {
 }
 
 body {
-  background-color: $color__bg-body;
-  color: $color__text-main;
+  background-color: var(--site-bg-color);
+  color: var(--font-color);
   font-family: var(--font-family);
   line-height: $font__line-height;
   letter-spacing: $font__spacing;
@@ -111,21 +119,33 @@ h6 {
  * image
  */
 img,
-amp-img {
+amp-img,
+svg {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  margin: .5em 0 0;
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--font-gray);
 }
 
 /**
  * link
  */
 a {
-  color: $color__link;
+  color: var(--link-color);
   transition: all 0.3s;
 
   &:hover {
-	color: $color__link-hover;
+	color: var(--link-color-hover);
   }
 }
 
@@ -163,7 +183,7 @@ blockquote {
   position: relative;
   padding: 1.5rem 1rem 1.5rem 2.5rem;
   background-color: rgba($color__bg-gray-light, 0.5);
-  border-left: 1px solid $color__border-gray;
+  border-left: 1px solid var(--border-color-gray);
   font-size: 0.95em;
 
   &:before {
@@ -188,7 +208,7 @@ blockquote {
   cite {
 	display: block;
 	margin-top: 1rem;
-	color: $color__text-light;
+	color: var(--font-gray);
 	font-size: 0.9em;
 
 	&:before {
@@ -211,7 +231,7 @@ blockquote {
  */
 code {
   padding: 0 0.2em;
-  color: $color__text-light;
+  color: var(--font-gray);
   font-family: $font__code;
   font-size: 0.9em;
 }
@@ -221,7 +241,7 @@ code {
  */
 pre {
   padding: 1rem;
-  background-color: $color__bg-gray-light;
+  background-color: var(--site-bg-color-light-gray);
   line-height: 1.4;
   overflow: auto;
 
@@ -239,25 +259,25 @@ pre {
  */
 table {
   width: 100%;
-  border-top: 1px solid $color__border-gray;
+  border-top: 1px solid var(--border-color-gray);
   word-break: break-word;
   border-spacing: 0;
   border-collapse: collapse;
 }
 
 tr {
-  border-left: 1px solid $color__border-gray;
+  border-left: 1px solid var(--border-color-gray);
 }
 
 td,
 th {
   padding: 0.5rem 1rem;
-  border-right: 1px solid $color__border-gray;
-  border-bottom: 1px solid $color__border-gray;
+  border-right: 1px solid var(--border-color-gray);
+  border-bottom: 1px solid var(--border-color-gray);
 }
 
 th {
-  background-color: $color__bg-gray-light;
+  background-color: var(--site-bg-color-light-gray);
   font-weight: normal;
   text-align: left;
 }
@@ -267,7 +287,7 @@ th {
  */
 hr {
   margin: 1.5em auto;
-  border: 0.05rem solid $color__border-gray-light;
+  border: 0.05rem solid var(--border-color-gray-light);
   clear: both;
 }
 

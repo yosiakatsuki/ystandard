@@ -1,8 +1,35 @@
-.singular__title {
-	margin: 0 0 0.5rem;
-	font-size: 1.2em;
+.singular-header {
+  @include child_margin(1em);
 }
 
-.singular-header-meta {
-	margin-top: 0.5rem;
+.singular-header__title {
+  font-size: 1.2em;
+
+  @include media-breakpoint(md) {
+	font-size: 1.4em;
+  }
+}
+
+.singular-header__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: var(--content-meta-color);
+
+  .ys-icon,
+  svg {
+	display: block;
+  }
+
+  .ys-icon {
+	width: 1em;
+	margin-right: 0.25em;
+  }
+
+}
+
+.singular-date,
+.singular-date__item {
+  display: flex;
+  align-items: center;
 }

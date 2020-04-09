@@ -1,0 +1,24 @@
+.site-content {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @include media-breakpoint(lg) {
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+  }
+}
+
+.content__wrap {
+  @include media-breakpoint(lg) {
+	display: flex;
+  }
+}
+
+.content__main {
+  background-color: var(--content-bg-color);
+  @include media-breakpoint(lg) {
+	$width: #{(800 / 1200 * 100)}#{"%"};
+	flex: 0 0 $width;
+	width: $width;
+  }
+}

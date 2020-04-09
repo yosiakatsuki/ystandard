@@ -73,7 +73,7 @@ class Advertisement {
 		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_before_title';
 		} else {
-			if ( ys_is_mobile() ) {
+			if ( Template::is_mobile() ) {
 				$key = 'ys_advertisement_before_title_sp';
 			}
 		}
@@ -90,7 +90,7 @@ class Advertisement {
 		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_after_title';
 		} else {
-			if ( ys_is_mobile() ) {
+			if ( Template::is_mobile() ) {
 				$key = 'ys_advertisement_after_title_sp';
 			}
 		}
@@ -108,7 +108,7 @@ class Advertisement {
 		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_before_content';
 		} else {
-			if ( ys_is_mobile() ) {
+			if ( Template::is_mobile() ) {
 				$key = 'ys_advertisement_before_content_sp';
 			}
 		}
@@ -130,7 +130,7 @@ class Advertisement {
 		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_replace_more';
 		} else {
-			if ( ys_is_mobile() ) {
+			if ( Template::is_mobile() ) {
 				$key = 'ys_advertisement_replace_more_sp';
 			}
 		}
@@ -155,7 +155,7 @@ class Advertisement {
 			$key_left  = 'ys_amp_advertisement_under_content';
 			$key_right = '';
 		} else {
-			if ( ys_is_mobile() ) {
+			if ( Template::is_mobile() ) {
 				$key_left  = 'ys_advertisement_under_content_sp';
 				$key_right = '';
 			}
@@ -164,9 +164,9 @@ class Advertisement {
 		$ad_right = empty( $key_right ) ? '' : Option::get_option( $key_right, '' );
 		if ( '' !== $ad_left && '' !== $ad_right ) {
 			$ad = sprintf(
-				'<div class="ad__double">
-					<div class="ad__left">%s</div>
-					<div class="ad__right">%s</div>
+				'<div class="ys-ad__double">
+					<div class="ys-ad__left">%s</div>
+					<div class="ys-ad__right">%s</div>
 				</div>',
 				$ad_left,
 				$ad_right
@@ -182,7 +182,7 @@ class Advertisement {
 	 * インフィード広告
 	 */
 	public function archive_infeed() {
-		if ( ys_is_mobile() ) {
+		if ( Template::is_mobile() ) {
 			$step  = Option::get_option_by_int( 'ys_advertisement_infeed_sp_step', 3 );
 			$limit = Option::get_option_by_int( 'ys_advertisement_infeed_sp_limit', 3 );
 		} else {
@@ -204,7 +204,7 @@ class Advertisement {
 	 * @return string
 	 */
 	public static function get_infeed() {
-		if ( ys_is_mobile() ) {
+		if ( Template::is_mobile() ) {
 			$ad = Option::get_option( 'ys_advertisement_infeed_sp', '' );
 		} else {
 			$ad = Option::get_option( 'ys_advertisement_infeed_pc', '' );
