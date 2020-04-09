@@ -33,8 +33,8 @@ class Recent_Posts {
 		'list_type'       => 'list', // list , card.
 		'col'             => 1,
 		'col_sp'          => 1,
-		'col_tablet'      => 4,
-		'col_pc'          => 4,
+		'col_tablet'      => 3,
+		'col_pc'          => 3,
 		'taxonomy'        => '',
 		'term_slug'       => '',
 		'post_type'       => 'post',
@@ -145,8 +145,8 @@ class Recent_Posts {
 			'template-parts/parts/recent-posts',
 			'',
 			[
-				'ys_recent_posts' => $this->get_template_param(),
-				'ys_posts_query'  => $query,
+				'recent_posts' => $this->get_template_param(),
+				'posts_query'  => $query,
 			]
 		);
 		$html = ob_get_clean();

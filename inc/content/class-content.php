@@ -56,6 +56,7 @@ class Content {
 		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
 		add_action( 'customize_register', [ $this, 'customize_register_post' ] );
 		add_action( 'customize_register', [ $this, 'customize_register_page' ] );
+		add_action( 'customize_register', [ $this, 'customize_register_archive' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
 
 		add_filter(
@@ -73,7 +74,11 @@ class Content {
 			[ $this, 'singular_meta' ],
 			self::get_header_priority( 'meta' )
 		);
-		add_action( 'customize_register', [ $this, 'customize_register_archive' ] );
+		add_filter(
+			'ys_singular_footer',
+			[ $this, 'related_posts' ],
+			self::get_footer_priority( 'related' )
+		);
 
 
 	}
@@ -191,6 +196,22 @@ class Content {
 	}
 
 	/**
+	 * 関連記事の表示が有効か
+	 *
+	 * @return bool
+	 */
+	public static function is_active_related_posts() {
+		if ( ! is_single() ) {
+			return false;
+		}
+		if ( ! Option::get_option_by_bool( 'ys_show_post_related', true ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * 投稿日・更新日データ取得
 	 *
 	 * @return array|bool
@@ -235,6 +256,29 @@ class Content {
 	}
 
 	/**
+	 * 関連記事表示
+	 */
+	public function related_posts() {
+		if ( ! self::is_active_related_posts() ) {
+			return;
+		}
+		$related = new Recent_Posts();
+		$content = $related->do_shortcode(
+			[
+				'filter'    => 'category',
+				'list_type' => 'card',
+			]
+		);
+		if ( $content ) {
+			echo sprintf(
+				'<div class="post-related">%s%s</div>',
+				'<p class="post-related__title">関連記事</p>',
+				$content
+			);
+		}
+	}
+
+	/**
 	 * アイキャッチ画像の表示
 	 */
 	public function post_thumbnail_default() {
@@ -248,6 +292,7 @@ class Content {
 		Template::get_template_part( 'template-parts/parts/post-thumbnail' );
 		echo ob_get_clean();
 	}
+
 	/**
 	 * アイキャッチ画像の表示 - ヘッダー
 	 */
@@ -262,7 +307,6 @@ class Content {
 		Template::get_template_part( 'template-parts/parts/header-post-thumbnail' );
 		echo ob_get_clean();
 	}
-
 
 
 	/**
