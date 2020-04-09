@@ -17,18 +17,6 @@ namespace ystandard;
 class Content {
 
 	/**
-	 * ヘッダーコンテンツの優先順位
-	 */
-	const HEADER_PRIORITY = [
-		'post-thumbnail' => 10,
-		'title'          => 20,
-		'meta'           => 30,
-		'sns-share'      => 40,
-		'ad'             => 50,
-		'widget'         => 60,
-	];
-
-	/**
 	 * フッターコンテンツの優先順位
 	 */
 	const FOOTER_PRIORITY = [
@@ -40,6 +28,18 @@ class Content {
 		'related'   => 60,
 		'comment'   => 70,
 		'paging'    => 80,
+	];
+
+	/**
+	 * ヘッダーコンテンツの優先順位
+	 */
+	const HEADER_PRIORITY = [
+		'post-thumbnail' => 10,
+		'title'          => 20,
+		'meta'           => 30,
+		'sns-share'      => 40,
+		'ad'             => 50,
+		'widget'         => 60,
 	];
 
 	/**

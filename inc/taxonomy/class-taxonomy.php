@@ -51,13 +51,7 @@ class Taxonomy {
 			return;
 		}
 
-		$data['title'] = apply_filters( 'ys_post_taxonomy_title', 'Category / Tag' );
-
-		Template::get_template_part(
-			'template-parts/parts/post-taxonomy',
-			'',
-			[ 'ys_post_taxonomy' => $data ]
-		);
+		Template::get_template_part( 'template-parts/parts/post-taxonomy' );
 	}
 
 	/**
