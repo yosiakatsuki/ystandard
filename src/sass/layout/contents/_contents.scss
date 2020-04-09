@@ -17,9 +17,13 @@
 
 .content__main {
   background-color: var(--content-bg-color);
-  max-width: 800px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 2em;
+
+  @include media-breakpoint(lg) {
+	max-width: 800px;
+  }
 
   @at-root {
 	.has-sidebar & {
