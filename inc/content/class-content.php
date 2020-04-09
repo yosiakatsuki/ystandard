@@ -20,10 +20,12 @@ class Content {
 	 * ヘッダーコンテンツの優先順位
 	 */
 	const HEADER_PRIORITY = [
-		'meta'      => 10,
-		'sns-share' => 20,
-		'ad'        => 30,
-		'widget'    => 40,
+		'post-thumbnail' => 10,
+		'title'          => 20,
+		'meta'           => 30,
+		'sns-share'      => 40,
+		'ad'             => 50,
+		'widget'         => 60,
 	];
 
 	/**
@@ -55,6 +57,23 @@ class Content {
 		add_action( 'customize_register', [ $this, 'customize_register_post' ] );
 		add_action( 'customize_register', [ $this, 'customize_register_page' ] );
 		add_action( 'customize_register', [ $this, 'customize_register_archive' ] );
+
+		add_filter(
+			'ys_singular_header',
+			[ $this, 'post_thumbnail_default' ],
+			self::get_header_priority( 'post-thumbnail' )
+		);
+		add_filter(
+			'ys_singular_header',
+			[ $this, 'singular_title' ],
+			self::get_header_priority( 'title' )
+		);
+		add_filter(
+			'ys_singular_header',
+			[ $this, 'singular_meta' ],
+			self::get_header_priority( 'meta' )
+		);
+
 
 	}
 
@@ -138,7 +157,7 @@ class Content {
 		 * 投稿ページ
 		 */
 		if ( is_single() ) {
-			if ( ! ys_get_option_by_bool( 'ys_show_post_thumbnail', true ) ) {
+			if ( ! Option::get_option_by_bool( 'ys_show_post_thumbnail', true ) ) {
 				$result = false;
 			}
 		}
@@ -146,12 +165,133 @@ class Content {
 		 * 固定ページ
 		 */
 		if ( is_page() ) {
-			if ( ! ys_get_option_by_bool( 'ys_show_page_thumbnail', true ) ) {
+			if ( ! Option::get_option_by_bool( 'ys_show_page_thumbnail', true ) ) {
 				$result = false;
 			}
 		}
 
 		return apply_filters( 'ys_is_active_post_thumbnail', $result );
+	}
+
+	/**
+	 * フル幅サムネイル設定か
+	 *
+	 * @return bool
+	 */
+	public static function is_full_post_thumbnail() {
+		if ( is_single() && 'full' === Option::get_option( 'ys_post_post_thumbnail_type', 'default' ) ) {
+			return true;
+		}
+		if ( is_page() && 'full' === Option::get_option( 'ys_page_post_thumbnail_type', 'default' ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * 投稿日・更新日データ取得
+	 *
+	 * @return array|bool
+	 */
+	public static function get_post_date_data() {
+		$text_format     = get_option( 'date_format' );
+		$datetime_format = 'Y-m-d';
+		$result          = [];
+		/**
+		 * 設定取得
+		 */
+		$option = is_page() ? 'page' : 'post';
+		$option = Option::get_option( "ys_show_${option}_publish_date", 'both' );
+		if ( 'none' === $option ) {
+			return false;
+		}
+		// 更新日取得.
+		if ( 'publish' !== $option ) {
+			if ( get_the_time( 'Ymd' ) >= get_the_modified_time( 'Ymd' ) ) {
+				$icon     = 'update' === $option ? 'calendar' : 'rotate-cw';
+				$result[] = [
+					'text'     => the_modified_time( $text_format ),
+					'datetime' => the_modified_time( $datetime_format ),
+					'time'     => true,
+					'icon'     => Icon::get_icon( $icon ),
+				];
+			}
+		}
+		// 投稿日取得.
+		if ( 'update' !== $option || empty( $result ) ) {
+			$time     = empty( $result ) ? true : false;
+			$result[] = [
+				'text'     => get_the_time( $text_format ),
+				'datetime' => get_the_time( $datetime_format ),
+				'time'     => $time,
+				'icon'     => Icon::get_icon( 'calendar' ),
+			];
+		}
+
+		return array_reverse( $result );
+
+	}
+
+	/**
+	 * アイキャッチ画像の表示
+	 */
+	public function post_thumbnail_default() {
+		if ( self::is_full_post_thumbnail() ) {
+			return;
+		}
+		if ( ! self::is_active_post_thumbnail() ) {
+			return;
+		}
+		ob_start();
+		ys_get_template_part( 'template-parts/parts/post-thumbnail' );
+		echo ob_get_clean();
+
+	}
+
+	/**
+	 * 投稿タイトル
+	 */
+	public function singular_title() {
+		do_action( 'ys_singular_before_title' );
+		the_title(
+			'<h1 class="singular-header__title entry-title">',
+			'</h1>'
+		);
+		do_action( 'ys_singular_after_title' );
+	}
+
+	/**
+	 * 投稿メタ情報
+	 */
+	public function singular_meta() {
+		$date      = '';
+		$cat       = '';
+		$post_date = self::get_post_date_data();
+		if ( ! empty( $post_date ) ) {
+			ob_start();
+			ys_get_template_part(
+				'template-parts/parts/post-date',
+				'',
+				[ 'post_date' => $post_date ]
+			);
+			$date = ob_get_clean();
+		}
+
+		$categories = get_the_category();
+		if ( $categories ) {
+			$cat = sprintf(
+				'<div class="singular-header__category">%s%s</div>',
+				Icon::get_icon( 'folder' ),
+				$categories[0]->name
+			);
+		}
+
+		printf(
+			'<div class="singular-header__meta">%s%s</div>',
+			$date,
+			$cat
+		);
 	}
 
 
@@ -470,7 +610,7 @@ class Content {
 		$img     = '<img src="%s" alt="" width="100" height="100" />';
 		$customizer->add_image_label_radio(
 			[
-				'id'      => 'ys_post_eye_catch',
+				'id'      => 'ys_post_post_thumbnail_type',
 				'default' => 'default',
 				'label'   => 'アイキャッチ画像の表示タイプ',
 				'choices' => [
@@ -589,7 +729,7 @@ class Content {
 		$img     = '<img src="%s" alt="" width="100" height="100" />';
 		$customizer->add_image_label_radio(
 			[
-				'id'      => 'ys_page_eye_catch',
+				'id'      => 'ys_page_post_thumbnail_type',
 				'default' => 'default',
 				'label'   => 'アイキャッチ画像の表示タイプ',
 				'choices' => [

@@ -661,7 +661,7 @@ class Header {
 		// サイドバー出力.
 		$customizer->add_checkbox(
 			[
-				'id'      => 'ys_show_sidebar_mobile',
+				'id'      => 'ys_hide_sidebar_mobile',
 				'default' => 0,
 				'label'   => 'モバイル表示でサイドバーを非表示にする',
 			]

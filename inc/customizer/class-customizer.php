@@ -94,7 +94,7 @@ class Customizer {
 			z-index:99;
 		}';
 		// サイドバー表示用.
-		if ( Option::get_option_by_bool( 'ys_show_sidebar_mobile', false ) ) {
+		if ( Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
 			$css .= Enqueue_Styles::add_media_query(
 				'.is-customize-preview .sidebar {display:none;}',
 				'',

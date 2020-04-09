@@ -7,50 +7,22 @@
  * @license GPL-2.0+
  */
 
-/**
- * 投稿ヘッダー情報無しの場合はスキップ
- */
-if ( ys_is_hide_post_header() ) {
+if ( ! ys_is_active_post_header() ) {
 	return;
 }
 ?>
 
-<header class="entry-header singular__header">
+<header class="singular-header entry-header">
 	<?php
 	/**
-	 * アイキャッチ画像
-	 * フル幅サムネイル設定以外 & アイキャッチ画像表示
-	 */
-	if ( ! ys_is_full_width_thumbnail() && ys_is_active_post_thumbnail() ) :
-		?>
-		<figure class="post-thumbnail singular__thumbnail">
-			<?php
-			the_post_thumbnail(
-				'post-thumbnail',
-				[
-					'id'    => 'post-thumbnail-img',
-					'class' => 'singular__thumbnail-img ',
-					'alt'   => get_the_title(),
-				]
-			);
-			?>
-		</figure><!-- .post-thumbnail -->
-	<?php
-	endif;
-	do_action( 'ys_singular_before_title' );
-	/**
-	 * ページタイトル
-	 */
-	the_title(
-		'<h1 class="entry-title singular__title">',
-		'</h1>'
-	);
-	do_action( 'ys_singular_after_title' );
-	/**
-	 * 投稿日やシェアボタン等のメタ情報表示
-	 * 1. 日付とカテゴリー(10)
-	 * 2. シェアボタン(20)
-	 * 3. 広告(30)
+	 * 記事ヘッダー
+	 *
+	 * 1. アイキャッチ画像(10) parts/post-thumbnail
+	 * 2. タイトル (20)
+	 * 3. 投稿日・更新日・カテゴリー (30)
+	 * 4. SNSシェアボタン (40) parts/sns-share-button
+	 * 5. 広告 (60)
+	 * 6. 記事上ウィジェット (50)
 	 */
 	do_action( 'ys_singular_header' );
 	?>

@@ -94,6 +94,18 @@ function ys_the_header_media_markup() {
 }
 
 
+/** *****************************************************************
+ * コンテンツ
+ * *****************************************************************/
+
+
+/**
+ * 投稿ヘッダー情報を隠すか
+ */
+function ys_is_active_post_header() {
+	return \ystandard\Template::is_active_post_header();
+}
+
 /**
  * タイトル無しテンプレート判定
  */
@@ -102,6 +114,11 @@ function ys_is_no_title_template() {
 	return \ystandard\Template::is_no_title_template();
 }
 
+
+/** *****************************************************************
+ * ページネーション
+ * *****************************************************************/
+
 /**
  * ページネーション
  */
@@ -109,6 +126,18 @@ function ys_get_pagination() {
 	$pagination = new \ystandard\Pagination();
 
 	return $pagination->get_pagination();
+}
+
+
+/** *****************************************************************
+ * サイドバー
+ * *****************************************************************/
+
+/**
+ * サイドバーを表示するか
+ */
+function ys_is_active_sidebar() {
+	return \ystandard\Widget::is_active_sidebar();
 }
 
 

@@ -24,6 +24,20 @@ class Widget {
 		add_action( 'after_setup_theme', [ $this, 'set_widget' ] );
 	}
 
+	public static function is_active_sidebar() {
+		if ( Template::is_mobile() && Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
+			return false;
+		}
+		if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
+			return false;
+		}
+		if ( Template::is_one_column() ) {
+			return false;
+		}
+
+		return true;
+	}
+
 	/**
 	 * フィルターのセット
 	 */

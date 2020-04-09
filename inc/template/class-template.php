@@ -115,6 +115,20 @@ class Template {
 	}
 
 	/**
+	 * 投稿ヘッダーを表示するか
+	 *
+	 * @return bool
+	 */
+	public static function is_active_post_header() {
+		$result = true;
+		if ( self::is_no_title_template() ) {
+			$result = false;
+		}
+
+		return apply_filters( 'ys_is_active_post_header', $result );
+	}
+
+	/**
 	 * タイトルなしテンプレートか
 	 *
 	 * @return bool
@@ -128,6 +142,31 @@ class Template {
 		return is_page_template( $template );
 	}
 
+	/**
+	 * モバイル判定
+	 *
+	 * @return bool
+	 */
+	public static function is_mobile() {
+
+		$ua = [
+			'^(?!.*iPad).*iPhone',
+			'iPod',
+			'Android.*Mobile',
+			'Mobile.*Firefox',
+			'Windows.*Phone',
+			'blackberry',
+			'dream',
+			'CUPCAKE',
+			'webOS',
+			'incognito',
+			'webmate',
+		];
+
+		$ua = apply_filters( 'ys_is_mobile_ua_list', $ua );
+
+		return Utility::check_user_agent( $ua );
+	}
 
 	/**
 	 * テンプレート読み込み拡張
@@ -140,7 +179,8 @@ class Template {
 		/**
 		 * テンプレート上書き
 		 */
-		$slug = apply_filters( 'ys_get_template_part_slug', $slug, $name );
+		$slug = apply_filters( 'ys_get_template_part_slug', $slug, $name, $args );
+		$name = apply_filters( 'ys_get_template_part_name', $name, $slug, $args );
 		$args = apply_filters( 'ys_get_template_part_args', $args, $slug, $name );
 		do_action( "get_template_part_{$slug}", $slug, $name );
 
