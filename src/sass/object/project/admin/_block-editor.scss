@@ -15,6 +15,10 @@ body,
   text-rendering: optimizeLegibility;
 }
 
+body {
+  font-size: 16px;
+}
+
 .editor-post-title__block .editor-post-title__input {
   font-size: 1.8em;
 }
@@ -38,15 +42,6 @@ body,
 /**
  * 見出し
  */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: normal;
-}
-
 h1,
 h2 {
   font-size: get_font_size("xx-large");
@@ -90,15 +85,5 @@ img,
   .components-resizable-box__container {
 	max-width: 100% !important;
 	height: auto !important;
-  }
-}
-
-/**
- * ユーティリティ
- */
-ol,
-ul {
-  &.ys-box {
-	margin-left: 0;
   }
 }
