@@ -56,7 +56,7 @@ class Content {
 		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
 		add_action( 'customize_register', [ $this, 'customize_register_post' ] );
 		add_action( 'customize_register', [ $this, 'customize_register_page' ] );
-		add_action( 'customize_register', [ $this, 'customize_register_archive' ] );
+		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
 
 		add_filter(
 			'ys_singular_header',
@@ -73,6 +73,7 @@ class Content {
 			[ $this, 'singular_meta' ],
 			self::get_header_priority( 'meta' )
 		);
+		add_action( 'customize_register', [ $this, 'customize_register_archive' ] );
 
 
 	}
@@ -244,10 +245,25 @@ class Content {
 			return;
 		}
 		ob_start();
-		ys_get_template_part( 'template-parts/parts/post-thumbnail' );
+		Template::get_template_part( 'template-parts/parts/post-thumbnail' );
 		echo ob_get_clean();
-
 	}
+	/**
+	 * アイキャッチ画像の表示 - ヘッダー
+	 */
+	public function header_post_thumbnail() {
+		if ( ! self::is_full_post_thumbnail() ) {
+			return;
+		}
+		if ( ! self::is_active_post_thumbnail() ) {
+			return;
+		}
+		ob_start();
+		Template::get_template_part( 'template-parts/parts/header-post-thumbnail' );
+		echo ob_get_clean();
+	}
+
+
 
 	/**
 	 * 投稿タイトル
@@ -270,7 +286,7 @@ class Content {
 		$post_date = self::get_post_date_data();
 		if ( ! empty( $post_date ) ) {
 			ob_start();
-			ys_get_template_part(
+			Template::get_template_part(
 				'template-parts/parts/post-date',
 				'',
 				[ 'post_date' => $post_date ]
