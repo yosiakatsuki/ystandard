@@ -286,8 +286,10 @@ class Content {
 		$related = new Recent_Posts();
 		$content = $related->do_shortcode(
 			[
-				'filter'    => 'category',
+				'count'     => 6,
+				'filter'    => 'category,same-post',
 				'list_type' => 'card',
+				'orderby'   => 'rand',
 			]
 		);
 		if ( $content ) {

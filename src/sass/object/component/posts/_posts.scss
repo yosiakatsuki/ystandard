@@ -76,6 +76,7 @@
 
 .ys-posts__content {
   position: relative;
+  height: 100%;
   @include child_margin(.5em);
 }
 

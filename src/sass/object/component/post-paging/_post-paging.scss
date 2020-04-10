@@ -1,16 +1,24 @@
 .paging__container {
-  display: flex;
+
+  @include media-breakpoint(md) {
+	display: flex;
+  }
 }
 
 .paging__item {
   position: relative;
   display: flex;
   align-items: center;
-  flex: 0 0 50%;
-  width: 50%;
+  margin-top: 1em;
   font-size: 0.9em;
   color: var(--post-paging-color);
   transition: opacity .3s;
+
+  @include media-breakpoint(md) {
+	flex: 0 0 calc(50% - 0.5em);
+	width: calc(50% - 0.5em);
+	margin-top: 0;
+  }
 
   &:hover {
 	opacity: 0.8;
