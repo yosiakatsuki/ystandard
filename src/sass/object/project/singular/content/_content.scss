@@ -13,4 +13,12 @@
   h1, h2, h3, h4, h5, h6 {
 	margin: 3em 0 .25em;
   }
+  $selector: "";
+  @for $i from 1 through 5 {
+	$selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
+  }
+
+  #{$selector} {
+	margin-top: 1em;
+  }
 }
