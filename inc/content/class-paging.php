@@ -38,6 +38,7 @@ class Paging {
 	 * ページング表示
 	 */
 	public function post_paging() {
+
 		if ( ! $this->is_active_paging() ) {
 			return;
 		}
@@ -57,7 +58,7 @@ class Paging {
 		Template::get_template_part(
 			'template-parts/parts/post-paging',
 			'',
-			[ 'ys_paging' => $data ]
+			[ 'paging' => $data ]
 		);
 	}
 
@@ -77,7 +78,7 @@ class Paging {
 			return false;
 		}
 
-		return false;
+		return true;
 	}
 
 }

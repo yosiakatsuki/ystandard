@@ -7,33 +7,43 @@
  * @license GPL-2.0+
  */
 
-if ( empty( $ys_paging ) ) {
+if ( empty( $paging ) ) {
 	return;
 }
 ?>
 <div class="paging">
 	<div class="paging__container">
-		<?php if ( $ys_paging['prev'] ) : ?>
+		<?php if ( $paging['prev'] ) : ?>
 			<div class="paging__item is-prev">
-				<?php if ( has_post_thumbnail( $ys_paging['prev'] ) ) : ?>
+				<div class="paging__arrow">
+					<?php echo ys_get_icon( 'chevron-left' ); ?>
+				</div>
+				<?php if ( has_post_thumbnail( $paging['prev'] ) ) : ?>
 					<figure class="paging__image">
-						<?php echo get_the_post_thumbnail( $ys_paging['prev'] ); ?>
+						<?php echo get_the_post_thumbnail( $paging['prev'] ); ?>
 					</figure>
 				<?php endif; ?>
 				<p class="paging__title">
-					<?php echo get_the_title( $ys_paging['prev'] ); ?>
+					<a href="<?php the_permalink( $paging['prev'] ); ?>">
+						<?php echo get_the_title( $paging['prev'] ); ?>
+					</a>
 				</p>
 			</div>
 		<?php endif; ?>
-		<?php if ( $ys_paging['next'] ) : ?>
+		<?php if ( $paging['next'] ) : ?>
 			<div class="paging__item is-next">
-				<?php if ( has_post_thumbnail( $ys_paging['next'] ) ) : ?>
+				<div class="paging__arrow">
+					<?php echo ys_get_icon( 'chevron-right' ); ?>
+				</div>
+				<?php if ( has_post_thumbnail( $paging['next'] ) ) : ?>
 					<figure class="paging__image">
-						<?php echo get_the_post_thumbnail( $ys_paging['next'] ); ?>
+						<?php echo get_the_post_thumbnail( $paging['next'] ); ?>
 					</figure>
 				<?php endif; ?>
 				<p class="paging__title">
-					<?php echo get_the_title( $ys_paging['next'] ); ?>
+					<a href="<?php the_permalink( $paging['next'] ); ?>">
+						<?php echo get_the_title( $paging['next'] ); ?>
+					</a>
 				</p>
 			</div>
 		<?php endif; ?>
