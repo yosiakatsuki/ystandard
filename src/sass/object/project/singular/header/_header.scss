@@ -36,3 +36,11 @@
   display: flex;
   align-items: center;
 }
+
+.singular-date__item {
+  margin-left: .5em;
+
+  &:first-child {
+	margin-left: 0;
+  }
+}
