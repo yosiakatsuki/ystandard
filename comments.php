@@ -11,38 +11,34 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-<aside id="comments" class="comments-area comments__area singular-footer__block">
+<aside id="comments" class="comments__area comments-area">
 	<?php if ( have_comments() ) : ?>
-		<h2 class="comments-title">コメント</h2>
-		<ol class="comment-list comment__list">
+		<p class="comments-title">コメント</p>
+		<ol class="comments__list comment-list">
 			<?php
 			wp_list_comments(
-				array(
+				[
 					'type'        => 'comment',
 					'style'       => 'ol',
 					'short_ping'  => false,
 					'avatar_size' => 42,
-					'callback'    => 'ys_wp_list_comments_callback',
-				)
+					'walker'      => new YS_Walker_Comment(),
+				]
 			);
 			?>
-		</ol><!-- .comment-list -->
+		</ol>
 		<?php the_comments_navigation(); ?>
-	<?php endif; // Check for have_comments(). ?>
-	<?php
-	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
-		?>
-		<p class="no-comments comments--no-comments">コメントは閉じられています。</p>
 	<?php endif; ?>
-	<?php
-	comment_form(
-		array(
-			'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title comment-reply__title">',
-			'title_reply_after'  => '</h2>',
-			'comment_field'      => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '<span class="required">*</span></label><textarea id="comment" class="comment__textarea" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
-			'class_submit'       => 'submit comment__submit ys-btn--full',
-		)
-	);
-	?>
-</aside><!-- .comments-area -->
+	<?php if ( comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+		<?php
+		comment_form(
+			[
+				'title_reply_before' => '<p id="reply-title" class="comments__reply-title comment-reply-title">',
+				'title_reply_after'  => '</p>',
+				'comment_field'      => '<p class="comments__form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '<span class="required">*</span></label><textarea id="comment" class="comments__textarea" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+				'class_submit'       => 'submit comments__submit',
+			]
+		);
+		?>
+	<?php endif; ?>
+</aside>
