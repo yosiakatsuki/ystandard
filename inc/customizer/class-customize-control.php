@@ -452,11 +452,11 @@ class Customize_Control {
 	 * @param array  $args  オプション.
 	 */
 	public function add_section_label( $label, $args = [] ) {
+		$args = $this->parse_args( $args );
 		if ( ! isset( $args['id'] ) ) {
-			$args['id'] = 'ys_' . substr( md5( $label ), 0, 10 );
+			$args['id'] = 'ys_' . substr( md5( $label . $args['section'] ), 0, 40 );
 		}
 		$args['label'] = $label;
-		$args          = $this->parse_args( $args );
 		$this->wp_customize->add_setting(
 			$args['id'],
 			[
@@ -529,6 +529,7 @@ class Customize_Control {
 	public function set_refresh( $name ) {
 		$this->wp_customize->get_setting( $name )->transport = 'refresh';
 	}
+
 	/**
 	 * 設定をpostMessageにする
 	 *

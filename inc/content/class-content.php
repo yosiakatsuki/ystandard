@@ -230,11 +230,11 @@ class Content {
 		}
 		// 更新日取得.
 		if ( 'publish' !== $option ) {
-			if ( get_the_time( 'Ymd' ) >= get_the_modified_time( 'Ymd' ) ) {
+			if ( get_the_time( 'Ymd' ) < get_the_modified_time( 'Ymd' ) ) {
 				$icon     = 'update' === $option ? 'calendar' : 'rotate-cw';
 				$result[] = [
-					'text'     => the_modified_time( $text_format ),
-					'datetime' => the_modified_time( $datetime_format ),
+					'text'     => get_the_modified_time( $text_format ),
+					'datetime' => get_the_modified_time( $datetime_format ),
 					'time'     => true,
 					'icon'     => Icon::get_icon( $icon ),
 				];
@@ -252,7 +252,28 @@ class Content {
 		}
 
 		return array_reverse( $result );
+	}
 
+	/**
+	 * 投稿ヘッダーのカテゴリー情報を取得
+	 */
+	public static function get_post_header_category() {
+
+		if ( ! Option::get_option_by_bool( 'ys_show_post_header_category', true ) ) {
+			return '';
+		}
+
+		$category_name = '';
+		$categories    = apply_filters( 'ys_get_post_header_category', get_the_category() );
+		if ( $categories ) {
+			$category_name = $categories[0]->name;
+		}
+
+		return sprintf(
+			'<div class="singular-header__category">%s%s</div>',
+			Icon::get_icon( 'folder' ),
+			$category_name
+		);
 	}
 
 	/**
@@ -325,8 +346,9 @@ class Content {
 	 * 投稿メタ情報
 	 */
 	public function singular_meta() {
-		$date      = '';
-		$cat       = '';
+		$date = '';
+		$cat  = '';
+		// 投稿日・更新日.
 		$post_date = self::get_post_date_data();
 		if ( ! empty( $post_date ) ) {
 			ob_start();
@@ -337,15 +359,8 @@ class Content {
 			);
 			$date = ob_get_clean();
 		}
-
-		$categories = get_the_category();
-		if ( $categories ) {
-			$cat = sprintf(
-				'<div class="singular-header__category">%s%s</div>',
-				Icon::get_icon( 'folder' ),
-				$categories[0]->name
-			);
-		}
+		// カテゴリー.
+		$cat = self::get_post_header_category();
 
 		printf(
 			'<div class="singular-header__meta">%s%s</div>',
@@ -717,20 +732,20 @@ class Content {
 				'description' => '※シェアボタンの表示は「[ys]SNS」→「SNSシェアボタン」から設定できます',
 			]
 		);
-		// 著者情報を表示する.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_post_author',
-				'default' => 1,
-				'label'   => '著者情報',
-			]
-		);
 		// カテゴリー・タグ.
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_show_post_category',
 				'default' => 1,
 				'label'   => 'カテゴリー・タグ',
+			]
+		);
+		// 著者情報を表示する.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_post_author',
+				'default' => 1,
+				'label'   => '著者情報',
 			]
 		);
 		// 関連記事.
