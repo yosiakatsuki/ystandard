@@ -13,23 +13,27 @@ if ( post_password_required() ) {
 ?>
 <aside id="comments" class="comments__area comments-area">
 	<?php if ( have_comments() ) : ?>
-		<p class="comments-title">コメント</p>
-		<ol class="comments__list comment-list">
-			<?php
-			wp_list_comments(
-				[
-					'type'        => 'comment',
-					'style'       => 'ol',
-					'short_ping'  => false,
-					'avatar_size' => 42,
-					'walker'      => new YS_Walker_Comment(),
-				]
-			);
-			?>
-		</ol>
-		<?php the_comments_navigation(); ?>
+		<?php
+		$comments = wp_list_comments(
+			[
+				'type'        => 'comment',
+				'style'       => 'ol',
+				'short_ping'  => false,
+				'avatar_size' => 42,
+				'walker'      => new YS_Walker_Comment(),
+				'echo'        => false,
+			]
+		);
+		?>
+		<?php if ( $comments ) : ?>
+			<p class="comments-title">コメント</p>
+			<ol class="comments__list comment-list">
+				<?php echo $comments; ?>
+			</ol>
+			<?php the_comments_navigation(); ?>
+		<?php endif; ?>
 	<?php endif; ?>
-	<?php if ( comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+	<?php if ( comments_open() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 		<?php
 		comment_form(
 			[
