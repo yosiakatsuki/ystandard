@@ -1,6 +1,6 @@
 <?php
 /**
- * 記事一覧テンプレート(カードタイプ)
+ * 記事一覧テンプレート(リスト)
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -9,8 +9,8 @@
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_item_class() ); ?>>
-	<div class="archive__content card__content">
-		<div class="archive__thumbnail is-card">
+	<div class="archive__content">
+		<div class="archive__thumbnail is-list">
 			<div class="ratio <?php ys_the_archive_image_ratio(); ?>">
 				<?php if ( has_post_thumbnail() ) : ?>
 					<div class="ratio__item">
@@ -35,13 +35,15 @@
 				<?php endif; ?>
 			</div>
 		</div>
-		<?php
-		ys_the_archive_meta();
-		the_title(
-			'<h2 class="archive__title"><a class="archive__link" href="' . get_the_permalink() . '">',
-			'</a></h2>'
-		);
-		ys_the_archive_description();
-		?>
+		<div class="archive__text">
+			<?php
+			the_title(
+				'<h2 class="archive__title"><a class="archive__link" href="' . get_the_permalink() . '">',
+				'</a></h2>'
+			);
+			ys_the_archive_meta();
+			ys_the_archive_description();
+			?>
+		</div>
 	</div>
 </article>

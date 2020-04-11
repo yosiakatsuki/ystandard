@@ -139,7 +139,7 @@ function ys_the_archive_item_class() {
  * アーカイブテンプレートタイプ取得
  */
 function ys_get_archive_type() {
-	return \ystandard\Option::get_option( 'ys_archive_type', 'list' );
+	return \ystandard\Option::get_option( 'ys_archive_type', 'card' );
 }
 
 /**

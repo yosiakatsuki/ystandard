@@ -65,7 +65,7 @@ class Body {
 		 * アーカイブレイアウト
 		 */
 		if ( is_archive() || is_home() || is_search() ) {
-			$classes[] = 'is-archive--' . Option::get_option( 'ys_archive_type', 'list' );
+			$classes[] = 'is-archive--' . Option::get_option( 'ys_archive_type', 'card' );
 		}
 
 		/**
