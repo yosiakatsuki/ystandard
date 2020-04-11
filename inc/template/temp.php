@@ -133,21 +133,6 @@ function ys_is_active_related_post() {
 }
 
 /**
- * アーカイブ明細クラス出力
- */
-function ys_the_archive_item_class() {
-	$classes = ys_get_archive_item_class();
-	echo implode( ' ', $classes );
-}
-
-/**
- * アーカイブテンプレートタイプ取得
- */
-function ys_get_archive_template_type() {
-	return ys_get_option( 'ys_archive_type', 'list' );
-}
-
-/**
  * Front-pageでロードするテンプレート
  */
 function ys_get_front_page_template() {

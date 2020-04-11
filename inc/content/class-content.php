@@ -263,16 +263,16 @@ class Content {
 			return '';
 		}
 
-		$category_name = '';
-		$categories    = apply_filters( 'ys_get_post_header_category', get_the_category() );
-		if ( $categories ) {
-			$category_name = $categories[0]->name;
+		$taxonomy = apply_filters( 'ys_get_post_header_taxonomy', 'category' );
+		$term     = get_the_terms( false, $taxonomy );
+		if ( is_wp_error( $term ) || empty( $term ) ) {
+			return '';
 		}
 
 		return sprintf(
 			'<div class="singular-header__category">%s%s</div>',
 			Icon::get_icon( 'folder' ),
-			$category_name
+			$term[0]->name
 		);
 	}
 
@@ -564,7 +564,7 @@ class Content {
 		 * 共通でセットするクラス
 		 */
 		$class[] = 'archive__item';
-		$class[] = 'is-' . ys_get_option( 'ys_archive_type', 'list' );
+		$class[] = 'is-' . Option::get_option( 'ys_archive_type', 'list' );
 
 		return $class;
 	}
@@ -580,7 +580,7 @@ class Content {
 	 * @return string
 	 */
 	public static function get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
-		$length  = 0 === $length ? Option::get_option_by_int( 'ys_option_excerpt_length', 110 ) : $length;
+		$length  = 0 === $length ? Option::get_option_by_int( 'ys_option_excerpt_length', 80 ) : $length;
 		$content = self::get_custom_excerpt_raw( $post_id );
 		/**
 		 * 長さ調節
@@ -630,7 +630,7 @@ class Content {
 	 */
 	public function excerpt_length( $length = null ) {
 
-		return ys_get_option_by_int( 'ys_option_excerpt_length', 110 );
+		return ys_get_option_by_int( 'ys_option_excerpt_length', 80 );
 	}
 
 	/**

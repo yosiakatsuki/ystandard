@@ -2,9 +2,6 @@
   width: 100%;
 
   @include media-breakpoint(lg) {
-	$width: #{(336 / 1200 * 100)}#{"%"};
-	flex: 0 0 $width;
-	width: $width;
 	margin-left: auto;
   }
 
