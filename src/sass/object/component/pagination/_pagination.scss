@@ -1,46 +1,55 @@
-//
-// pagination
-//
 .pagination {
-	margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5em;
+  color: var(--pagination-text-color);
 
-	a {
-		text-decoration: none;
-	}
+  a {
+	color: currentColor;
+	text-decoration: none;
+  }
 }
+
 
 .pagination__item {
-	width: 44px;
-	height: 44px;
-	background-color: $color__bg-gray-dark;
-	color: $color__text-main;
-	transition: all 0.3s;
+  position: relative;
+  display: block;
+  padding: .5rem;
+  margin-right: .5em;
+  margin-left: .5em;
 
-	&:hover {
-		color: $color__text-main;
-		opacity: 0.6;
+  &:first-child {
+	margin-left: 0;
+  }
+
+  &:last-child {
+	margin-right: 0;
+  }
+
+  &::after {
+	content: "";
+	width: 0;
+	transition: width .3s;
+  }
+
+  &.is-current,
+  &:not(.is-dot):hover {
+	&::after {
+	  content: "";
+	  position: absolute;
+	  height: 1px;
+	  width: 100%;
+	  bottom: 0;
+	  left: 0;
+	  background-color: currentColor;
 	}
-}
+  }
 
-//
-// 一覧＆詳細 共通
-//
-
-.pagination__item,
-.post-page-numbers {
-	margin: 0 0.25rem 0.25rem 0;
-
-	&:last-child {
-		margin-right: 0;
+  &.is-hide-mobile, {
+	display: none;
+	@include media-breakpoint(md) {
+	  display: block;
 	}
-
-	&.-current,
-	&.current .page-links__item {
-		background-color: $color__bg-dark;
-		color: #ffffff;
-
-		&:hover {
-			opacity: 1;
-		}
-	}
+  }
 }
