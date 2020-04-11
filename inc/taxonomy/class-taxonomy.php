@@ -41,6 +41,42 @@ class Taxonomy {
 			[ $this, 'post_taxonomy' ],
 			Content::get_footer_priority( 'taxonomy' )
 		);
+		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
+	}
+
+	/**
+	 * カテゴリー・タグの一覧ページ画像表示
+	 */
+	public function header_post_thumbnail() {
+		if ( ! $this->is_tax_cat_tag() ) {
+			return;
+		}
+		$content = $this->get_term_content();
+		if ( empty( $content['image'] ) ) {
+			return;
+		}
+		$image = attachment_url_to_postid( $content['image'] );
+		if ( ! $image ) {
+			return;
+		}
+		$thumbnail = wp_get_attachment_image(
+			$image,
+			'post-thumbnail',
+			false,
+			[
+				'id'    => 'site-header-thumbnail__image',
+				'class' => 'site-header-thumbnail__image',
+				'alt'   => get_the_title(),
+			]
+		);
+
+		ob_start();
+		Template::get_template_part(
+			'template-parts/parts/header-thumbnail',
+			'',
+			[ 'header_thumbnail' => $thumbnail ]
+		);
+		echo ob_get_clean();
 	}
 
 	/**
@@ -141,7 +177,7 @@ class Taxonomy {
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="term-image">[ys]<?php echo $taxonomy->label; ?>一覧ページのOGP画像</label>
+				<label for="term-image">[ys]<?php echo $taxonomy->label; ?>一覧ページ画像</label>
 			</th>
 			<td>
 				<div class="form-field term-image-wrap">

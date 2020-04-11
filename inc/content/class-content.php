@@ -326,8 +326,21 @@ class Content {
 		if ( ! self::is_active_post_thumbnail() ) {
 			return;
 		}
+		$thumbnail = get_the_post_thumbnail(
+			get_the_ID(),
+			'post-thumbnail',
+			[
+				'id'    => 'site-header-thumbnail__image',
+				'class' => 'site-header-thumbnail__image',
+				'alt'   => get_the_title(),
+			]
+		);
 		ob_start();
-		Template::get_template_part( 'template-parts/parts/header-post-thumbnail' );
+		Template::get_template_part(
+			'template-parts/parts/header-thumbnail',
+			'',
+			[ 'header_thumbnail' => $thumbnail ]
+		);
 		echo ob_get_clean();
 	}
 
