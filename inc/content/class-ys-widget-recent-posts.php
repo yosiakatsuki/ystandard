@@ -71,6 +71,8 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 		$this->default_instance = array_merge(
 			\ystandard\Recent_Posts::SHORTCODE_ATTR,
 			[
+				'col_tablet'      => 1,
+				'col_pc'          => 1,
 				'taxonomy_select' => [],
 				'title'           => self::TITLE,
 			]
@@ -160,16 +162,15 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 		<div class="widget-form__section">
 			<h4>表示列数設定</h4>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'col_sp' ); ?>"><i class="fas fa-mobile-alt fa-fw"></i></label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_sp' ); ?>" name="<?php echo $this->get_field_name( 'col_sp' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_sp'] ); ?>" size="1"/><br>
-				<label for="<?php echo $this->get_field_id( 'col_tablet' ); ?>"><i class="fas fa-tablet-alt fa-fw"></i></label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_tablet' ); ?>" name="<?php echo $this->get_field_name( 'col_tablet' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_tablet'] ); ?>" size="1"/><br>
-				<label for="<?php echo $this->get_field_id( 'col_pc' ); ?>"><i class="fas fa-desktop fa-fw"></i></label>
-				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_pc' ); ?>" name="<?php echo $this->get_field_name( 'col_pc' ); ?>" type="number" step="1" min="1" max="6" value="<?php echo $this->sanitize_col( $instance['col_pc'] ); ?>" size="1"/><br>
-				<span class="ys-widget-form__sub">※表示タイプが「横スライド」の場合、列設定は無視されます。</span>
+				<label for="<?php echo $this->get_field_id( 'col_sp' ); ?>"><?php echo ys_get_icon( 'smartphone' ); ?></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_sp' ); ?>" name="<?php echo $this->get_field_name( 'col_sp' ); ?>" type="number" step="1" min="1" max="4" value="<?php echo $this->sanitize_col( $instance['col_sp'] ); ?>" size="1"/><br>
+				<label for="<?php echo $this->get_field_id( 'col_tablet' ); ?>"><?php echo ys_get_icon( 'tablet' ); ?></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_tablet' ); ?>" name="<?php echo $this->get_field_name( 'col_tablet' ); ?>" type="number" step="1" min="1" max="4" value="<?php echo $this->sanitize_col( $instance['col_tablet'] ); ?>" size="1"/><br>
+				<label for="<?php echo $this->get_field_id( 'col_pc' ); ?>"><?php echo ys_get_icon( 'monitor' ); ?></label>
+				<input class="tiny-text" id="<?php echo $this->get_field_id( 'col_pc' ); ?>" name="<?php echo $this->get_field_name( 'col_pc' ); ?>" type="number" step="1" min="1" max="4" value="<?php echo $this->sanitize_col( $instance['col_pc'] ); ?>" size="1"/><br>
 			</p>
 		</div>
-		<div class="ys-widget-form__section">
+		<div class="widget-form__section">
 			<h4>画像設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_img' ); ?>">
@@ -177,7 +178,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 				</label><br/>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">表示する画像のサイズ:</label><br/>
+				<label for="<?php echo $this->get_field_id( 'thumbnail_size' ); ?>">サイズ:</label>
 				<select name="<?php echo $this->get_field_name( 'thumbnail_size' ); ?>">
 					<?php foreach ( $this->get_image_sizes() as $key => $value ) : ?>
 						<option
@@ -190,7 +191,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 				<span class="ys-widget-option__sub">※表示タイプが「カード」の場合、「表示する画像サイズ」は「thumbnail」以外を選択して下さい。</span>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id( 'thumbnail_ratio' ); ?>">表示する画像の縦横比:</label><br/>
+				<label for="<?php echo $this->get_field_id( 'thumbnail_ratio' ); ?>">縦横比:</label>
 				<select name="<?php echo $this->get_field_name( 'thumbnail_ratio' ); ?>">
 					<?php foreach ( \ystandard\Recent_Posts::RATIO_TYPE as $key => $value ) : ?>
 						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['thumbnail_ratio'] ); ?>><?php echo $value; ?></option>
@@ -218,15 +219,20 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 		 */
 		$taxonomies = get_taxonomies(
 			[
-				'object_type' => 'post',
+				'object_type' => [ 'post' ],
 				'public'      => true,
 				'show_ui'     => true,
 			],
 			'objects'
 		);
+		if ( ! is_array( $selected_taxonomy ) ) {
+			$selected_taxonomy = [ $selected_taxonomy ];
+		}
 		?>
-		<select name="<?php $this->get_field_name( 'taxonomy_select' ); ?>[]" class="ys-widget__select multiple" size="6" multiple>
-			<option value=""><?php echo empty( $taxonomies ) ? '選択できるカテゴリー・タグがありません' : '選択して下さい'; ?></option>
+		<select name="<?php echo $this->get_field_name( 'taxonomy_select' ); ?>[]" class="ys-widget__select multiple" size="6" multiple>
+			<?php if ( empty( $taxonomies ) ) : ?>
+				<option value="">選択できるカテゴリー・タグがありません</option>
+			<?php endif; ?>
 			<?php
 			/**
 			 * タクソノミーごとにリストを作成
@@ -242,7 +248,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 			endif;
 			?>
 		</select><br>
-		<span class="ys-widget-form__sub">※CtrlまたはCmdやShiftを押しながらクリックすることで複数選択することも可能です。<br>※選択解除する場合はCtrlまたはCmdを押しながらクリックして下さい。</span>
+		<span class="ys-widget-option__sub">※ctrlまたはcmdやShiftを押しながらクリックすることで複数選択することが可能です。<br>※選択解除する場合はctrlまたはcmdを押しながらクリックして下さい。</span>
 		<?php
 	}
 
@@ -393,31 +399,32 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 
 		return $instance;
 	}
+
 	/**
 	 * テーマ内で使える画像サイズ取得
 	 */
 	private function get_image_sizes() {
 		global $_wp_additional_image_sizes;
-		$sizes = array();
+		$sizes = [];
 		foreach ( get_intermediate_image_sizes() as $size ) {
-			if ( in_array( $size, array( 'thumbnail', 'medium', 'medium_large', 'large' ), true ) ) {
+			if ( in_array( $size, [ 'thumbnail', 'medium', 'medium_large', 'large' ], true ) ) {
 				$sizes[ $size ]['width']  = get_option( "{$size}_size_w" );
 				$sizes[ $size ]['height'] = get_option( "{$size}_size_h" );
 			} elseif ( isset( $_wp_additional_image_sizes[ $size ] ) ) {
-				$sizes[ $size ] = array(
+				$sizes[ $size ] = [
 					'width'  => $_wp_additional_image_sizes[ $size ]['width'],
 					'height' => $_wp_additional_image_sizes[ $size ]['height'],
-				);
+				];
 
 			}
 		}
 		/**
 		 * フルサイズ追加
 		 */
-		$sizes['full'] = array(
+		$sizes['full'] = [
 			'width'  => '-',
 			'height' => '-',
-		);
+		];
 
 		return $sizes;
 	}
@@ -465,8 +472,8 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 		if ( 1 > $col ) {
 			return 1;
 		}
-		if ( 6 < $col ) {
-			return 6;
+		if ( 4 < $col ) {
+			return 4;
 		}
 
 		return $col;

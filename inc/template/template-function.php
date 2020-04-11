@@ -114,6 +114,19 @@ function ys_is_no_title_template() {
 	return \ystandard\Template::is_no_title_template();
 }
 
+/**
+ * 投稿抜粋文を作成
+ *
+ * @param string  $sep     抜粋最後の文字.
+ * @param integer $length  抜粋長さ.
+ * @param integer $post_id 投稿ID.
+ *
+ * @return string
+ */
+function ys_get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
+	return \ystandard\Content::get_custom_excerpt( $sep, $length, $post_id );
+}
+
 /** *****************************************************************
  * アーカイブ
  * *****************************************************************/
