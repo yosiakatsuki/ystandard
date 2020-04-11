@@ -80,7 +80,7 @@ class Body {
 		 * タイトルなしテンプレート
 		 */
 		if ( Template::is_no_title_template() ) {
-			$classes[] = 'one-column-no-title';
+			$classes[] = 'no-title';
 		}
 
 		/**
