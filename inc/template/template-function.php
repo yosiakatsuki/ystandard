@@ -98,6 +98,12 @@ function ys_the_header_media_markup() {
  * コンテンツ
  * *****************************************************************/
 
+/**
+ * Front-pageでロードするテンプレート
+ */
+function ys_get_front_page_template() {
+	return \ystandard\Template::get_front_page_template();
+}
 
 /**
  * 投稿ヘッダー情報を隠すか

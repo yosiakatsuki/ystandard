@@ -26,6 +26,29 @@ class Template {
 	}
 
 	/**
+	 * フロントページのテンプレート情報を取得
+	 *
+	 * @return string
+	 */
+	public static function get_front_page_template() {
+		$type = get_option( 'show_on_front' );
+		if ( 'page' === $type ) {
+			$template      = 'page';
+			$page_template = get_page_template_slug();
+
+			if ( $page_template ) {
+				if ( file_exists( get_stylesheet_directory() . $page_template ) || file_exists( $page_template ) ) {
+					$template = str_replace( '.php', '', $page_template );
+				}
+			}
+		} else {
+			$template = 'home';
+		}
+
+		return $template;
+	}
+
+	/**
 	 * TOPページか
 	 *
 	 * @return bool
