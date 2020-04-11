@@ -29,11 +29,19 @@
 	  grid-auto-rows: auto;
 	  justify-content: space-between;
 	}
+
 	> * {
 	  max-width: 100%;
 	}
   }
+
   .content__main {
 	margin-left: 0;
+  }
+}
+
+body:not(.has-sidebar) {
+  .site-content {
+	overflow: hidden;
   }
 }
