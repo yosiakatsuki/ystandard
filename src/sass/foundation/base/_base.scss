@@ -23,12 +23,17 @@
   --post-paging-color: var(--font-color);
   --pagination-text-color: var(--font-color);
   --advertisement-title-color: var(--font-gray);
+  --tagcloud-bg-color: var(--site-bg-color-light-gray);
+  --tagcloud-text-color: var(--font-color);
   --footer-bg-color: #{$color__bg-gray-dark};
   --footer-text-color: var(--font-white);
   --footer-sub-bg-color: #{$color__bg-gray-light};
   --footer-sub-text-color: var(--font-color);
   --link-color: #{$color__link};
   --link-color-hover: #{$color__link-hover};
+  --form-text-color: #{rgba($color__text-main, 0.8)};;
+  --form-bg-white: #{rgba($color__text-white, 0.9)};
+  --form-border-gray: #{rgba($color__border-gray, 0.9)};
 
   @each $key, $color in $color__sns {
 	--sns-color-#{$key}: #{$color};
@@ -67,7 +72,7 @@ body {
   color: var(--font-color);
   font-family: var(--font-family);
   line-height: $font__line-height;
-  letter-spacing: $font__spacing;
+  letter-spacing: $font__letter-spacing;
   word-wrap: break-word;
 
   -moz-osx-font-smoothing: grayscale;
