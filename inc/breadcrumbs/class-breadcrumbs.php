@@ -204,7 +204,7 @@ class Breadcrumbs {
 	 */
 	private function set_search() {
 		/* translators: %1$s 検索文字列. */
-		$title = sprintf( __( 'Search results of "%1$s"' ), get_search_query() );
+		$title = sprintf( __( '「%1$s」の検索結果' ), get_search_query() );
 		$this->set_item(
 			$title,
 			esc_url_raw( home_url( '?s=' . rawurlencode( get_query_var( 's' ) ) ) )
