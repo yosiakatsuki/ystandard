@@ -1,8 +1,8 @@
 <?php
 /**
- * Template Name:1カラム
+ * Template Name:投稿ヘッダーなし 1カラム(ワイド)
  * Template Post Type:post,page
- * Description:ワンカラムテンプレート
+ * Description:アイキャッチ画像・タイトル・パンくずなどがないテンプレート
  *
  * @package ystandard
  * @author  yosiakatsuki

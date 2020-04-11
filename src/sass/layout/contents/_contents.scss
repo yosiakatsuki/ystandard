@@ -48,3 +48,14 @@ body:not(.has-sidebar) {
 	overflow: hidden;
   }
 }
+
+.no-title {
+  .site-content {
+	margin-top: 0;
+  }
+}
+.is-wide {
+  .content__main {
+	max-width: 100%;
+  }
+}
