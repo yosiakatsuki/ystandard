@@ -1,0 +1,15 @@
+.widget_calendar {
+  caption {
+	font-weight: $font__weight_bold;
+  }
+  table {
+	table-layout: fixed;
+	width: 100%;
+	white-space: nowrap;
+	text-align: center;
+	font-size: 0.9em;
+  }
+  nav {
+	font-size: 0.9em;
+  }
+}

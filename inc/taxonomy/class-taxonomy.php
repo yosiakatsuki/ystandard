@@ -36,12 +36,28 @@ class Taxonomy {
 		add_filter( 'get_the_archive_description', [ $this, 'override_description' ] );
 		add_filter( 'ys_ogp_description_archive', [ $this, 'ogp_description' ] );
 		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
+		add_filter( 'widget_tag_cloud_args', [ $this, '_widget_tag_cloud_args' ] );
 		add_action(
 			'ys_singular_footer',
 			[ $this, 'post_taxonomy' ],
 			Content::get_footer_priority( 'taxonomy' )
 		);
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
+	}
+
+	/**
+	 * タグクラウドのパラメータ操作
+	 *
+	 * @param array $args Args used for the tag cloud widget.
+	 *
+	 * @return array
+	 */
+	public function _widget_tag_cloud_args( $args ) {
+		$args['smallest'] = 1;
+		$args['largest']  = 1;
+		$args['unit']     = 'em';
+
+		return $args;
 	}
 
 	/**

@@ -2,27 +2,29 @@ input,
 textarea,
 select,
 button {
-	padding: 0.5rem;
-	background-color: #ffffff;
-	border: 1px solid $color__border-gray;
-	border-radius: 2px;
-	font-size: 1rem;
+  padding: 0.5rem;
+  background-color: var(--form-bg-white);
+  border: 1px solid var(--form-border-gray);
+  border-radius: 2px;
+  font-size: 1em;
+  color: var(--form-text-color);
 }
+
 input[type="text"],
 input[type="search"],
 input[type="url"],
 input[type="email"],
 textarea,
 select {
-	display: block;
-	width: 100%;
+  display: block;
+  width: 100%;
 
-	-webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 button,
 input[type="reset"],
 input[type="submit"],
 input[type="button"] {
-	@include button();
+  @include button();
 }
