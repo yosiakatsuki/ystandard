@@ -564,7 +564,7 @@ class Content {
 		 * 共通でセットするクラス
 		 */
 		$class[] = 'archive__item';
-		$class[] = 'is-' . Option::get_option( 'ys_archive_type', 'list' );
+		$class[] = 'is-' . Option::get_option( 'ys_archive_type', 'card' );
 
 		return $class;
 	}
