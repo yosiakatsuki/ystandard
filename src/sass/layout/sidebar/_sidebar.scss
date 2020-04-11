@@ -1,14 +1,26 @@
 .sidebar {
   width: 100%;
+  margin-bottom: 2em;
+  @include child_margin(2rem);
 
   @include media-breakpoint(lg) {
 	margin-left: auto;
   }
 
-  @include child_margin(2rem);
 }
 
 .sidebar__widget,
 .sidebar__fixed {
   @include child_margin(2rem);
+
+  @include media-breakpoint-between(md, lg) {
+	display: grid;
+	grid-template-columns: repeat(2, calc(50% - 1em));
+	grid-auto-rows: auto;
+	justify-content: space-between;
+
+	> *:first-child {
+	  margin-top: 2em;
+	}
+  }
 }
