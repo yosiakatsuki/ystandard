@@ -85,6 +85,8 @@ class Color_Palette {
 			${prefix}.has-{$value['slug']}-color:hover,
 			${prefix}.has-text-color.has-{$value['slug']}-color,
 			${prefix}.has-text-color.has-{$value['slug']}-color:hover,
+			${prefix}.has-text-color.has-{$value['slug']}-color:visited,
+			${prefix}.has-text-color.has-{$value['slug']}-color:focus,
 			${prefix}.has-inline-color.has-{$value['slug']}-color {
 				color:{$value['color']};
 			}";
