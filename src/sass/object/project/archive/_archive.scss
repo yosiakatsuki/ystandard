@@ -8,8 +8,18 @@
   margin: 0;
 }
 
+.archive__dscr {
+  margin-top: 1em;
+  font-size: 0.9em;
+  @include child_margin(1em);
+}
+
 .archive__container {
   margin-top: 1em;
+
+  &.is-list {
+	border-top: 1px solid var(--border-color-gray-light);
+  }
 
   &.is-card {
 	@include media-breakpoint(md) {

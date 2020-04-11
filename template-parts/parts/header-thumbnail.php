@@ -6,17 +6,12 @@
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
+
+if ( empty( $header_thumbnail ) ) {
+	return;
+}
 ?>
 
 <figure class="site-header-thumbnail">
-	<?php
-	the_post_thumbnail(
-		'post-thumbnail',
-		[
-			'id'    => 'site-header-thumbnail__image',
-			'class' => 'site-header-thumbnail__image',
-			'alt'   => get_the_title(),
-		]
-	);
-	?>
+	<?php echo $header_thumbnail; ?>
 </figure>
