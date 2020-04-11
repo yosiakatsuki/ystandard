@@ -871,7 +871,7 @@ class Content {
 		$customizer->add_section(
 			[
 				'section'  => 'ys_design_archive',
-				'title'    => 'アーカイブページ設定',
+				'title'    => 'アーカイブページ',
 				'panel'    => Design::PANEL_NAME,
 				'priority' => 120,
 			]
