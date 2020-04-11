@@ -25,11 +25,12 @@
 	@include media-breakpoint(md) {
 	  display: grid;
 	  grid-template-columns: repeat(2, calc(50% - 1em));
-	  grid-auto-rows: auto;
-	  justify-content: space-between;
+	  grid-template-rows: auto;
+	  gap: 1em 2em;
 	}
 	@include media-breakpoint(lg) {
 	  grid-template-columns: repeat(3, calc(33.33% - 1em));
+	  grid-template-rows: auto;
 	}
   }
 }
@@ -45,7 +46,7 @@
   }
 
   &.is-list {
-	.archive__content {
+	.archive__detail {
 	  display: flex;
 	}
 	.archive__category {
@@ -57,7 +58,6 @@
 
 	@include media-breakpoint(md) {
 	  border-bottom: 0;
-	  margin-bottom: 1em;
 	}
 
 	.archive__meta {
@@ -85,7 +85,7 @@
   }
 }
 
-.archive__content {
+.archive__detail {
   position: relative;
   padding-top: 1em;
   padding-bottom: 1em;
@@ -151,6 +151,7 @@
 	&.is-card {
 	  @include media-breakpoint(lg) {
 		grid-template-columns: repeat(2, calc(50% - 1em));
+		grid-template-rows: auto;
 	  }
 	}
   }

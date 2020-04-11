@@ -9,7 +9,7 @@
 
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_item_class() ); ?>>
-	<div class="archive__content">
+	<div class="archive__detail">
 		<div class="archive__thumbnail is-list">
 			<div class="ratio <?php ys_the_archive_image_ratio(); ?>">
 				<?php if ( has_post_thumbnail() ) : ?>

@@ -52,21 +52,24 @@ class Pagination {
 		// 前へ.
 		if ( 1 < $current ) {
 			$this->set_pagination_item(
-				apply_filters( 'ys_get_pagination_prev_text', '<i class="fas fa-angle-left"></i>' ),
+				apply_filters( 'ys_get_pagination_prev_text', Icon::get_icon( 'chevron-left' ) ),
 				get_pagenum_link( $current - 1 )
 			);
 		}
-		// 先頭へ
-		if ( $range + 2 < $current ) {
+		// 先頭へ.
+		if ( $range + 2 <= $current ) {
 			$this->set_pagination_item(
 				'1',
-				get_pagenum_link( 1 )
+				get_pagenum_link( 1 ),
+				'pagination__item is-first is-hide-mobile'
 			);
-			$this->set_pagination_item(
-				'…',
-				'',
-				'pagination__item is-dot'
-			);
+			if ( $range + 3 <= $current ) {
+				$this->set_pagination_item(
+					'…',
+					'',
+					'pagination__item is-dot is-hide-mobile'
+				);
+			}
 		}
 		// 各ページ.
 		for ( $i = 1; $i <= $total; $i ++ ) {
@@ -86,21 +89,24 @@ class Pagination {
 			}
 		}
 		// 最終ページ.
-		if ( $current + $range + 1 < $total ) {
-			$this->set_pagination_item(
-				'…',
-				'',
-				'pagination__item is-dot'
-			);
+		if ( $current + $range + 1 <= $total ) {
+			if ( $current + $range + 2 <= $total ) {
+				$this->set_pagination_item(
+					'…',
+					'',
+					'pagination__item is-dot is-hide-mobile'
+				);
+			}
 			$this->set_pagination_item(
 				$total,
-				get_pagenum_link( $total )
+				get_pagenum_link( $total ),
+				'pagination__item is-last is-hide-mobile'
 			);
 		}
 		// 次ページ.
 		if ( $current < $total ) {
 			$this->set_pagination_item(
-				apply_filters( 'ys_get_pagination_next_text', '<i class="fas fa-angle-right"></i>' ),
+				apply_filters( 'ys_get_pagination_next_text', Icon::get_icon( 'chevron-right' ) ),
 				get_pagenum_link( $current + 1 )
 			);
 		}
