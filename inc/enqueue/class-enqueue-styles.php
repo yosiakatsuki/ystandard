@@ -41,6 +41,7 @@ class Enqueue_Styles {
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_css' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'dequeue_css' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_style_css' ], 100 );
 		// CSSインライン読み込み.
 		if ( ! is_admin() && ys_get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
