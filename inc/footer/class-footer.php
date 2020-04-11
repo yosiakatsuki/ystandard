@@ -21,10 +21,12 @@ class Footer {
 	 */
 	public function __construct() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
+		add_action( 'wp_footer', [ $this, 'footer_mobile_nav' ], 1 );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_main' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_sub' ] );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_inline_css_sub' ] );
+		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_sub_footer_css' ] );
+		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_footer_mobile_nav_css' ] );
 	}
 
 	/**
@@ -61,6 +63,66 @@ class Footer {
 		);
 	}
 
+	public function add_footer_mobile_nav_css( $css ) {
+
+		if ( ! has_nav_menu( 'mobile-footer' ) ) {
+			return $css;
+		}
+
+		$css .= '
+		.footer-mobile-nav {
+		  position: fixed;
+		  bottom: 0;
+		  left: 0;
+		  z-index: 8;
+		  width: 100%;
+		  background-color: rgba(255, 255, 255, 0.95);
+		  border-top: 1px solid var(--border-color-gray-light);
+		  text-align: center; }
+		  .footer-mobile-nav ul {
+		    display: flex;
+		    justify-content: space-between;
+		    padding: 0.75em 0 0.5em;
+		    list-style: none;
+		    margin: 0; }
+		  .footer-mobile-nav li:nth-child(n+5) {
+		    display: none; }
+		  .footer-mobile-nav a {
+		    display: block;
+		    color: currentColor;
+		    text-decoration: none; }
+		  .footer-mobile-nav svg,
+		  .footer-mobile-nav i {
+		    font-size: 1.5em; }
+
+		.footer-mobile-nav__dscr {
+		  display: block;
+		  font-size: 0.7em;
+		  line-height: 1.2; }
+
+		.has-mobile-footer .site-footer {
+		  padding-bottom: 4em; }
+
+		@media (min-width: 1025px) {
+		    .footer-mobile-nav {
+		      display: none; }
+		    .has-mobile-footer .site-footer {
+		      padding-bottom: 0; } }
+
+		@media (min-width: 600px) {
+		      .footer-mobile-nav li:nth-child(n+5) {
+		        display: block; } }';
+
+		return $css;
+	}
+
+	/**
+	 * モバイルフッターナビゲーションの表示
+	 */
+	public function footer_mobile_nav() {
+		Template::get_template_part( 'template-parts/footer/footer-mobile-nav' );
+	}
+
 	/**
 	 * サブフッターのインラインCSS
 	 *
@@ -68,7 +130,7 @@ class Footer {
 	 *
 	 * @return string
 	 */
-	public function add_inline_css_sub( $css ) {
+	public function add_sub_footer_css( $css ) {
 
 		if ( 'vertical' === Option::get_option( 'ys_footer_sub_type', 'horizon' ) ) {
 			$css .= '.footer-sub__widget {flex-direction: column;}';
