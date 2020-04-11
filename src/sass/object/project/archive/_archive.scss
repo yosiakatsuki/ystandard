@@ -1,55 +1,121 @@
-//
-// 一覧ページ
-//
-.archive__title {
-	margin: 0 0 1rem;
-	font-size: 1.3rem;
+.archive__main {
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.archive__dscr {
-	margin: 0 0 1rem;
-	font-size: 0.9rem;
+.archive__title {
+  margin: 0;
 }
 
 .archive__container {
-	&.-card {
-		margin-right: -1rem;
-		margin-left: -1rem;
+  margin-top: 1em;
+
+  &.is-card {
+	@include media-breakpoint(md) {
+	  display: grid;
+	  grid-template-columns: repeat(2, calc(50% - 1em));
+	  grid-auto-rows: auto;
+	  justify-content: space-between;
 	}
+	@include media-breakpoint(lg) {
+	  grid-template-columns: repeat(3, calc(33.33% - 1em));
+	}
+  }
 }
 
 .archive__item {
+  background-color: var(--content-bg-color);
+
+  &:hover {
+	.archive__image {
+	  transform: scale(1.1);
+	}
+  }
+
+  &.is-card {
+	border-bottom: 1px solid var(--border-color-gray-light);
+
+	@include media-breakpoint(md) {
+	  border-bottom: 0;
+	  margin-bottom: 1em;
+	}
+
+	.archive__meta {
+	  justify-content: space-between;
+	}
+  }
+
+  .archive__title {
+	font-size: 1em;
+	color: var(--font-color);
+
 	a {
-		text-decoration: none;
+	  color: currentColor;
+	  text-decoration: none;
+
+	  &::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	  }
 	}
+  }
 }
 
-.archive__detail {
-	&.-list {
-		margin-top: 0.5rem;
-	}
+.archive__content {
+  position: relative;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  @include child_margin(0.5em);
 }
 
-.archive__meta {
-	font-size: 0.75rem;
-	line-height: 1.5;
-}
-
-.archive__detail-title {
-	margin: 0.5em 0;
-	font-size: 1.1rem;
-
-	a {
-		color: $color__text-main;
-	}
-}
-
-.archive__date {
-	white-space: nowrap;
+.archive__image {
+  transition: transform .3s;
 }
 
 .archive__no-img {
-	background-color: $color__bg-gray-light;
-	color: $color__text-light;
-	font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--site-bg-color-light-gray);
+  height: 100%;
+  width: 100%;
+}
+
+.archive__meta {
+  display: flex;
+  color: var(--content-meta-color);
+  font-size: 0.8em;
+
+  > div {
+	display: flex;
+	align-items: center;
+  }
+
+
+  .ys-icon {
+	width: 0.8em;
+	margin-right: .25em;
+  }
+}
+
+
+.archive__excerpt {
+  font-size: 0.8em;
+  line-height: 1.3;
+  color: var(--font-gray);
+}
+
+.has-sidebar {
+
+  .archive__container {
+	&.is-card {
+	  @include media-breakpoint(lg) {
+		grid-template-columns: repeat(2, calc(50% - 1em));
+	  }
+	}
+  }
 }

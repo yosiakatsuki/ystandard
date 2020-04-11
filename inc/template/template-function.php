@@ -114,6 +114,54 @@ function ys_is_no_title_template() {
 	return \ystandard\Template::is_no_title_template();
 }
 
+/** *****************************************************************
+ * アーカイブ
+ * *****************************************************************/
+
+/**
+ * アーカイブ明細 CSSクラス作成
+ *
+ * @return array
+ */
+function ys_get_archive_item_class() {
+
+	return \ystandard\Content::get_archive_item_class();
+}
+
+/**
+ * アーカイブ明細クラス出力
+ */
+function ys_the_archive_item_class() {
+	echo implode( ' ', ys_get_archive_item_class() );
+}
+
+/**
+ * アーカイブテンプレートタイプ取得
+ */
+function ys_get_archive_type() {
+	return \ystandard\Option::get_option( 'ys_archive_type', 'list' );
+}
+
+/**
+ * アーカイブ 日付・カテゴリー情報
+ */
+function ys_the_archive_meta() {
+	\ystandard\Archive::the_archive_meta();
+}
+
+/**
+ * アーカイブ 概要
+ */
+function ys_the_archive_description() {
+	\ystandard\Archive::the_archive_description();
+}
+
+/**
+ * アーカイブ 画像縦横比
+ */
+function ys_the_archive_image_ratio() {
+	echo esc_attr( \ystandard\Archive::get_archive_image_ratio() );
+}
 
 /** *****************************************************************
  * ページネーション
@@ -140,16 +188,6 @@ function ys_is_active_sidebar() {
 	return \ystandard\Widget::is_active_sidebar();
 }
 
-
-/**
- * アーカイブ明細クラス作成
- *
- * @return array
- */
-function ys_get_archive_item_class() {
-
-	return \ystandard\Content::get_archive_item_class();
-}
 
 /**
  * 投稿オプション(post-meta)取得

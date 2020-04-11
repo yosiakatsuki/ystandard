@@ -20,7 +20,7 @@
 .comment {
   &.parent {
 	margin-top: 2em;
-	border: 1px solid var(--comment-border-color);
+	border: 1px solid var(--border-color-gray-light);
 
 	&:first-child {
 	  margin-top: 0;
@@ -32,13 +32,13 @@
   }
 
   .children {
-	border-top: 1px solid var(--comment-border-color);
+	border-top: 1px solid var(--border-color-gray-light);
   }
 }
 
 .comment-meta {
   padding: 1.5em 1.5em 1em;
-  border-bottom: 1px solid var(--comment-border-color);
+  border-bottom: 1px solid var(--border-color-gray-light);
   line-height: 1.3;
 }
 
