@@ -64,7 +64,7 @@ class YS_Walker_Mobile_Footer_Menu extends Walker_Nav_Menu {
 
 		$title = apply_filters( 'the_title', $item->title, $item->ID );
 
-		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
+		$title = do_shortcode( apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth ) );
 
 		/**
 		 * 説明対応
@@ -72,7 +72,7 @@ class YS_Walker_Mobile_Footer_Menu extends Walker_Nav_Menu {
 		$description = '';
 
 		if ( 0 === $depth && $item->description ) {
-			$description = '<span class="footer-mobile-nav__dscr">' . $item->description . '</span>';
+			$description = '<span class="footer-mobile-nav__dscr">' . do_shortcode( $item->description ) . '</span>';
 		}
 
 		$before      = empty( $args->before ) ? '' : $args->before;

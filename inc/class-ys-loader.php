@@ -18,7 +18,6 @@ class YS_Loader {
 	const LOAD_FUNCTION_FILES = [
 		__DIR__ . '/compatibility/compatibility.php',
 		__DIR__ . '/template/template-function.php',
-		__DIR__ . '/template/temp.php',
 	];
 
 	/**

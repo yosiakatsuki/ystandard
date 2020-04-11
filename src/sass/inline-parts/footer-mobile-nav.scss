@@ -1,47 +1,60 @@
 @import "../foundation/import";
 
 .footer-mobile-nav {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	z-index: 8;
-	width: 100%;
-	background-color: rgba(#ffffff, 0.95);
-	border-top: 1px solid $color__border-gray-light;
-	text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 8;
+  width: 100%;
+  background-color: rgba(#ffffff, 0.95);
+  border-top: 1px solid var(--border-color-gray-light);
+  text-align: center;
 
-	@include media-breakpoint(lg) {
-		display: none;
-	}
+  @include media-breakpoint(lg) {
+	display: none;
+  }
 
-	ul {
-		padding: 0.75rem 0 0.5rem;
-	}
+  ul {
+	display: flex;
+	justify-content: space-between;
+	padding: 0.75em 0 0.5em;
+	list-style: none;
+	margin: 0;
+  }
 
-	a {
+  li {
+	&:nth-child(n+5) {
+	  display: none;
+	  @include media-breakpoint(md) {
 		display: block;
-		color: inherit;
-		text-decoration: none;
+	  }
 	}
+  }
 
-	svg,
-	i {
-		font-size: 1.5em;
-	}
+  a {
+	display: block;
+	color: currentColor;
+	text-decoration: none;
+  }
+
+  svg,
+  i {
+	font-size: 1.5em;
+  }
 }
 
 .footer-mobile-nav__dscr {
-	display: block;
-	font-size: 0.7em;
-	line-height: 1.2;
+  display: block;
+  font-size: 0.7em;
+  line-height: 1.2;
 }
 
 .has-mobile-footer {
-	.site__footer {
-		padding-bottom: 5rem;
+  .site-footer {
+	padding-bottom: 4em;
 
-		@include media-breakpoint(lg) {
-			padding-bottom: 1rem;
-		}
+	@include media-breakpoint(lg) {
+	  padding-bottom: 0;
 	}
+  }
 }
