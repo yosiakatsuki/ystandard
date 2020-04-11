@@ -31,6 +31,46 @@ class Pagination {
 	private $pagination = [];
 
 	/**
+	 * フックやショートコードの登録
+	 */
+	public function register() {
+		add_filter( 'wp_link_pages_link', [ $this, 'post_pages_link' ], 10, 2 );
+	}
+
+	/**
+	 * 投稿ページングに前後のリンクを追加
+	 *
+	 * @param string $link The page number HTML output.
+	 * @param int    $i    Page number for paginated posts' page links.
+	 *
+	 * @return string
+	 */
+	public function post_pages_link( $link, $i ) {
+		global $page, $numpages;
+		$parsed_args['link_before'] = '<span class="page-links__item pagination__item">';
+		$parsed_args['link_after']  = '</span>';
+		/**
+		 * 前へ
+		 */
+		if ( 1 === $i && 1 < $page ) {
+			$parsed_args['previouspagelink'] = Icon::get_icon( 'chevron-left' );
+			// リンク作成.
+			$link = _wp_link_page( $page - 1 ) . $parsed_args['link_before'] . $parsed_args['previouspagelink'] . $parsed_args['link_after'] . '</a>' . $link;
+		}
+
+		/**
+		 * 次へ
+		 */
+		if ( $i === $numpages && $page < $numpages ) {
+			$parsed_args['previouspagelink'] = Icon::get_icon( 'chevron-right' );
+			// リンク作成.
+			$link = $link . _wp_link_page( $page + 1 ) . $parsed_args['link_before'] . $parsed_args['previouspagelink'] . $parsed_args['link_after'] . '</a>';
+		}
+
+		return $link;
+	}
+
+	/**
 	 * ページネーション用データ取得
 	 *
 	 * @param int $range 現在ページの前後に何ページリンクを出力するか.
@@ -39,6 +79,8 @@ class Pagination {
 	 */
 	public function get_pagination( $range = 1 ) {
 		/**
+		 * WP_Query
+		 *
 		 * @global \WP_Query
 		 */
 		global $wp_query;
@@ -130,3 +172,6 @@ class Pagination {
 	}
 
 }
+
+$class_pagination = new Pagination();
+$class_pagination->register();
