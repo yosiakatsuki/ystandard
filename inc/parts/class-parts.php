@@ -200,7 +200,7 @@ class Parts {
 				<label>ショートコード
 					<input type="text" id="ys_parts_shortcode" class="meta-box__input" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/></label>
 				<button class="copy-form__button button action">
-					<i class="fas fa-clipboard"></i>
+					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>
 				<div class="copy-form__info">コピーしました！</div>
 			</div>
@@ -234,7 +234,7 @@ class Parts {
 			<div class="copy-form">
 				<input type="text" id="ys_parts_shortcode" class="copy-form__target" value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly onfocus="this.select();"/>
 				<button class="copy-form__button button action">
-					<i class="fas fa-clipboard"></i>
+					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>
 				<div class="copy-form__info">コピーしました！</div>
 			</div>

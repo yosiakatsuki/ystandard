@@ -52,6 +52,26 @@
   font-size: 0.7rem;
 }
 
+.copy-form__button {
+  position: relative;
+
+  &::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+  }
+
+  .ys-icon {
+	svg {
+	  width: 1rem;
+	}
+  }
+}
+
 .ys-custom-uploader {
   &.is-selected {
 	.ys-custom-uploader__select {
