@@ -22,12 +22,13 @@
 .has-sidebar {
   .content__wrap {
 	@include media-breakpoint(lg) {
-	  $main: #{(800 / 1200 * 100)}#{"%"};
-	  $side: #{(336 / 1200 * 100)}#{"%"};
+	  $main: (800 / 1200 * 100);
+	  $side: (336 / 1200 * 100);
+	  $gap : 100 - $main - $side;
 	  display: grid;
-	  grid-template-columns: $main $side;
-	  grid-auto-rows: auto;
-	  justify-content: space-between;
+	  grid-template-columns: #{$main}#{"%"} #{$side}#{"%"};
+	  grid-template-rows: auto;
+	  gap: #{$gap}#{"%"};
 	}
 
 	> * {

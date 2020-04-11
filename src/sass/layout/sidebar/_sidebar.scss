@@ -2,11 +2,6 @@
   width: 100%;
   margin-bottom: 2em;
   @include child_margin(2rem);
-
-  @include media-breakpoint(lg) {
-	margin-left: auto;
-  }
-
 }
 
 .sidebar__widget,

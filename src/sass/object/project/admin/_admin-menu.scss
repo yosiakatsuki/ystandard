@@ -26,7 +26,7 @@
 .ystandard-info {
   display: grid;
   grid-template-columns: 150px 1fr;
-  grid-template-rows: none;
+  grid-template-rows: auto;
   font-size: 1.2em;
 
   dt {
