@@ -34,6 +34,8 @@
   --form-text-color: #{rgba($color__text-main, 0.8)};;
   --form-bg-white: #{rgba($color__text-white, 0.9)};
   --form-border-gray: #{rgba($color__border-gray, 0.9)};
+  --button-text-color: var(#{$color__btn-text});
+  --button-bg-color: var(#{$color__btn-bg});
 
   @each $key, $color in $color__sns {
 	--sns-color-#{$key}: #{$color};
