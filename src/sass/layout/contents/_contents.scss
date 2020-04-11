@@ -13,6 +13,7 @@
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 2em;
+  width: 100%;
 
   @include media-breakpoint(lg) {
 	max-width: 800px;
