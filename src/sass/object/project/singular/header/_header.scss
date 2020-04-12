@@ -12,6 +12,7 @@
 
 .singular-header__meta {
   display: flex;
+  flex-wrap: wrap;
   font-size: 0.9em;
   color: var(--content-meta-color);
 
