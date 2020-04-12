@@ -10,6 +10,9 @@
 if ( post_password_required() ) {
 	return;
 }
+if ( ! have_comments() && ! comments_open() ) {
+	return;
+}
 ?>
 <aside id="comments" class="comments__area comments-area">
 	<?php if ( have_comments() ) : ?>
