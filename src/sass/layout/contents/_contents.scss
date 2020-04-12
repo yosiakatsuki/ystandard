@@ -25,7 +25,7 @@
 	@include media-breakpoint(lg) {
 	  $main: (800 / 1200 * 100);
 	  $side: (336 / 1200 * 100);
-	  $gap : 100 - $main - $side;
+	  $gap: 100 - $main - $side;
 	  display: grid;
 	  grid-template-columns: #{$main}#{"%"} #{$side}#{"%"};
 	  grid-template-rows: auto;
@@ -54,8 +54,30 @@ body:not(.has-sidebar) {
 	margin-top: 0;
   }
 }
+
 .is-wide {
   .content__main {
 	max-width: 100%;
+  }
+}
+
+.has-background {
+  .content__main {
+	padding: 2em;
+
+	@include media-breakpoint-down(md) {
+	  padding: 1em;
+	  margin-right: -1em;
+	  margin-left: -1em;
+	  width: auto;
+	  max-width: unset;
+	}
+  }
+
+  .site-content {
+	margin-top: 0;
+	@include media-breakpoint(md) {
+	  margin-top: 2em;
+	}
   }
 }

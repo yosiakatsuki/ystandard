@@ -76,7 +76,7 @@ class Breadcrumbs {
 			'header' => 'ys_after_site_header',
 			'footer' => 'ys_before_site_footer',
 		];
-		$position = Option::get_option( 'ys_breadcrumbs_position', 'header' );
+		$position = Option::get_option( 'ys_breadcrumbs_position', 'footer' );
 		if ( ! isset( $filter[ $position ] ) ) {
 			return;
 		}
@@ -594,7 +594,7 @@ class Breadcrumbs {
 		$customizer->add_radio(
 			[
 				'id'          => 'ys_breadcrumbs_position',
-				'default'     => 'header',
+				'default'     => 'footer',
 				'label'       => 'パンくずリストの表示位置',
 				'description' => '',
 				'choices'     => [

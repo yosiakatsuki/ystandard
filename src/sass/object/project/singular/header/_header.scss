@@ -44,3 +44,13 @@
 	margin-left: 0;
   }
 }
+
+.has-background {
+  .singular-header__thumbnail {
+	margin: -1em -1em 0;
+
+	@include media-breakpoint(md) {
+	  margin: -2em -2em 0;
+	}
+  }
+}
