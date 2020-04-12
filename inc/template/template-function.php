@@ -372,3 +372,13 @@ function ys_get_option_by_bool( $name, $default = false ) {
 function ys_get_option_by_int( $name, $default = 0 ) {
 	return \ystandard\Option::get_option_by_int( $name, $default );
 }
+
+
+/** *****************************************************************
+ * Embed関連
+ * *****************************************************************/
+
+function ys_embed_content() {
+	$embed = new \ystandard\Embed();
+	echo $embed->get_embed_content();
+}

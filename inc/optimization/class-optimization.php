@@ -103,9 +103,16 @@ class Optimization {
 	 * Embed関連の調整
 	 */
 	public function optimize_oembed() {
-		if ( ! ys_get_option_by_bool( 'ys_option_disable_wp_oembed', true ) ) {
+		if ( ! Option::get_option_by_bool( 'ys_option_disable_wp_oembed', true ) ) {
 			return;
 		}
+		if ( is_admin() ) {
+			return;
+		}
+		add_filter( 'embed_oembed_discover', '__return_false' );
+		remove_action( 'wp_head', 'rest_output_link_wp_head' );
+		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+		remove_action( 'wp_head', 'wp_oembed_add_host_js' );
 	}
 
 	/**
@@ -246,16 +253,16 @@ class Optimization {
 		$customizer->add_section(
 			[
 				'section'     => 'ys_optimize_oembed',
-				'title'       => '絵文字',
-				'description' => '絵文字関連のCSS・JavaScript設定',
+				'title'       => 'oEmbed',
+				'description' => 'oEmbedによる埋め込みの設定',
 			]
 		);
 		$customizer->add_checkbox(
 			[
 				'id'          => 'ys_option_disable_wp_oembed',
 				'default'     => 1,
-				'label'       => 'oembed関連のCSS・JSの出力を最適化する',
-				'description' => 'ページ表示時に埋め込みリンクの表示が遅く感じる場合はこの設定をOFFにしてください。',
+				'label'       => 'oEmbedによる埋め込みを無効にする',
+				'description' => 'oEmbedの埋め込みリンクを有効にしたい場合はこの設定をOFFにしてください。',
 			]
 		);
 	}
