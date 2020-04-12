@@ -14,3 +14,4 @@ require_once __DIR__ . '/inc/class-ys-loader.php';
 
 
 add_filter( 'ys_use_ystdb_card', '__return_false' );
+

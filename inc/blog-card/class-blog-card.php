@@ -53,7 +53,6 @@ class Blog_Card {
 	public function __construct() {
 
 		add_action( 'after_setup_theme', [ $this, 'embed_register_handler' ] );
-		add_filter( 'oembed_dataparse', [ $this, 'oembed_dataparse' ], 11, 3 );
 		add_shortcode( 'ys_blog_card', [ $this, 'do_shortcode' ] );
 	}
 
@@ -61,6 +60,9 @@ class Blog_Card {
 	 * ブロクカードの展開処理登録
 	 */
 	public function embed_register_handler() {
+		if ( ! apply_filters( 'ys_use_blogcard', true ) ) {
+			return;
+		}
 		wp_embed_register_handler(
 			'ys_blog_card',
 			$this->get_register_pattern(),
@@ -162,7 +164,7 @@ class Blog_Card {
 		 * [yStandard Blocks]利用中の場合、プラグイン側で処理をする
 		 */
 		if ( class_exists( 'ystandard_blocks\Card' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
-			$ystdb_card = new ystandard_blocks\Card();
+			$ystdb_card = new \ystandard_blocks\Card();
 
 			return $ystdb_card->render(
 				[
