@@ -7,19 +7,34 @@
 		overflow: auto;
 
 		-webkit-overflow-scrolling: touch;
+
+
 		& > * {
 			width: auto;
 			min-width: 100%;
 			white-space: nowrap;
 		}
+
 		&::-webkit-scrollbar {
 			height: 0.2rem;
 		}
+
 		&::-webkit-scrollbar-track {
 			background: $color__bg-gray-light;
 		}
+
 		&::-webkit-scrollbar-thumb {
 			background: $color__border-gray;
+		}
+	}
+}
+
+@include media-breakpoint(lg) {
+	.tbl-scroll {
+		white-space: normal;
+
+		table {
+			width: 100%;
 		}
 	}
 }

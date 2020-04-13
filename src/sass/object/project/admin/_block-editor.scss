@@ -1,0 +1,90 @@
+/**
+ * 基本
+ */
+body,
+.editor-post-title__block .editor-post-title__input {
+	background-color: $color__bg-body;
+	color: $color__text-main;
+	font-family: $font__body;
+	line-height: $font__line-height;
+	letter-spacing: $font__spacing;
+	word-wrap: break-word;
+
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+body {
+	font-size: 16px;
+}
+
+.editor-post-title__block .editor-post-title__input {
+	font-size: 1.4em;
+	resize: none;
+}
+
+/**
+ * エディタ幅
+ */
+.wp-block {
+	max-width: calc(800px + 30px);
+}
+
+.wp-block[data-align="wide"] {
+	max-width: calc(800px + 6rem + 30px);
+}
+
+//「全幅」ブロックの幅
+.wp-block[data-align="full"] {
+	max-width: none;
+}
+
+/**
+ * 見出し
+ */
+h1,
+h2 {
+	font-size: get_font_size("xx-large");
+}
+
+h3 {
+	font-size: get_font_size("x-large");
+}
+
+h4 {
+	font-size: 1.4em;
+}
+
+h5,
+h6 {
+	font-size: 1.3em;
+}
+
+/**
+ * 画像
+ */
+img,
+.wp-block-image {
+	max-width: 100%;
+	height: auto;
+}
+
+.wp-block-image {
+	&.is-resized {
+		display: block !important;
+
+		.block-editor-rich-text {
+			display: block !important;
+		}
+
+		> figcaption {
+			display: block !important;
+		}
+	}
+
+	.components-resizable-box__container {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+}

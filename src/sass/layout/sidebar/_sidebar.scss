@@ -1,21 +1,34 @@
 .sidebar {
+	@include child_margin(2rem);
+
 	width: 100%;
-	margin-top: 2rem;
-	margin-right: auto;
-	margin-left: auto;
+	margin-bottom: 2em;
 }
 
-.sidebar__item {
-	margin-top: 1rem;
-	padding: 1rem;
+.sidebar__widget,
+.sidebar__fixed {
+	@include child_margin(2rem);
+}
 
-	&:first-child {
-		margin-top: 0;
+.sidebar__fixed {
+	@include media-breakpoint(lg) {
+		position: sticky;
+		top: 2em;
 	}
+}
 
-	& > * {
-		&:first-child {
-			margin-top: 0;
+.has-background {
+	.sidebar__widget,
+	.sidebar__fixed {
+		> * {
+			@include media-breakpoint-down(md) {
+				margin-right: -1em;
+				margin-left: -1em;
+				padding: 1em;
+			}
+
+			padding: 2em 1.5em;
+			background-color: var(--content-bg);
 		}
 	}
 }

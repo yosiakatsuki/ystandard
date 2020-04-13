@@ -1,0 +1,1 @@
+.admin-bar.custom-header--full .site-header{top:46px}@media screen and (max-width:600px){.admin-bar.has-fixed-header{margin-top:-46px}}@media screen and (min-width:601px){.admin-bar.has-fixed-header .site-header{top:46px}}@media screen and (min-width:783px){.admin-bar.custom-header--full .site-header,.admin-bar.has-fixed-header .site-header{top:32px}}

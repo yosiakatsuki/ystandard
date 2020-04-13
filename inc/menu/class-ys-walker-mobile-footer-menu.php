@@ -20,7 +20,7 @@ class YS_Walker_Mobile_Footer_Menu extends Walker_Nav_Menu {
 	 * @param stdClass $args   An object of wp_nav_menu() arguments.
 	 * @param int      $id     Current item ID.
 	 */
-	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+	function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) {
 		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
 			$t = '';
 			$n = '';
@@ -30,9 +30,8 @@ class YS_Walker_Mobile_Footer_Menu extends Walker_Nav_Menu {
 		}
 		$indent = ( $depth ) ? str_repeat( $t, $depth ) : '';
 
-		$classes   = empty( $item->classes ) ? array() : (array) $item->classes;
+		$classes   = empty( $item->classes ) ? [] : (array) $item->classes;
 		$classes[] = 'menu-item-' . $item->ID;
-		$classes[] = 'footer-mobile-nav__item';
 
 		$args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
 
@@ -44,7 +43,7 @@ class YS_Walker_Mobile_Footer_Menu extends Walker_Nav_Menu {
 
 		$output .= $indent . '<li' . $id . $class_names . '>';
 
-		$atts           = array();
+		$atts           = [];
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
 		$atts['target'] = ! empty( $item->target ) ? $item->target : '';
 		$atts['rel']    = ! empty( $item->xfn ) ? $item->xfn : '';
@@ -65,23 +64,23 @@ class YS_Walker_Mobile_Footer_Menu extends Walker_Nav_Menu {
 
 		$title = apply_filters( 'the_title', $item->title, $item->ID );
 
-		$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
+		$title = do_shortcode( apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth ) );
 
 		/**
 		 * 説明対応
 		 */
 		$description = '';
-		$item_output = '';
 
 		if ( 0 === $depth && $item->description ) {
-			$description = '<span class="footer-mobile-nav__dscr">' . $item->description . '</span>';
+			$description = '<span class="footer-mobile-nav__dscr">' . do_shortcode( $item->description ) . '</span>';
 		}
 
 		$before      = empty( $args->before ) ? '' : $args->before;
 		$link_before = empty( $args->link_before ) ? '' : $args->link_before;
 		$link_after  = empty( $args->link_after ) ? '' : $args->link_after;
 		$after       = empty( $args->after ) ? '' : $args->after;
-
+		$item_output = '';
+		// 結合.
 		$item_output .= $before;
 		$item_output .= '<a' . $attributes . '>';
 		$item_output .= $link_before . $title . $link_after;

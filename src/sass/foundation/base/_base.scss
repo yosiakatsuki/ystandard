@@ -1,7 +1,6 @@
 /**
  * base
  */
-
 * {
 	box-sizing: border-box;
 
@@ -12,8 +11,6 @@
 }
 
 html {
-	font-size: $font__size;
-
 	-ms-text-size-adjust: 100%;
 }
 
@@ -32,11 +29,11 @@ html {
 }
 
 body {
-	background-color: $color__bg-body;
-	color: $color__text-main;
-	font-family: $font__body;
+	background-color: var(--site-bg);
+	color: var(--font-color);
+	font-family: var(--font-family);
 	line-height: $font__line-height;
-	letter-spacing: $font__spacing;
+	letter-spacing: $font__letter-spacing;
 	word-wrap: break-word;
 
 	-moz-osx-font-smoothing: grayscale;
@@ -55,7 +52,6 @@ h5,
 h6 {
 	margin: 3em 0 0.25em;
 	padding: 0;
-	font-weight: normal;
 	line-height: $font__line-height_headline;
 	letter-spacing: $font__spacing_headline;
 }
@@ -66,7 +62,7 @@ $selector: "";
 }
 
 #{$selector} {
-	margin-top: 1.5rem;
+	margin-top: 1em;
 }
 
 h1,
@@ -91,39 +87,33 @@ h6 {
  * image
  */
 img,
-amp-img {
+amp-img,
+svg {
 	max-width: 100%;
 	height: auto;
 	vertical-align: middle;
 }
 
-/**
- * block margin
- */
-p,
-ul,
-ol,
-dl,
-figure,
-blockquote,
-pre,
-table {
-	margin: 1.5em 0 0;
+figure {
+	margin: 0;
+}
 
-	&:first-child {
-		margin-top: 0;
-	}
+figcaption {
+	margin: 0.5em 0 0;
+	color: var(--font-gray);
+	font-size: 0.8em;
+	text-align: center;
 }
 
 /**
  * link
  */
 a {
-	color: $color__link;
+	color: var(--link-text);
 	transition: all 0.3s;
 
 	&:hover {
-		color: $color__link-hover;
+		color: var(--link-text-hover);
 	}
 }
 
@@ -132,6 +122,7 @@ a {
  */
 ul,
 ol {
+	margin-bottom: 0;
 	padding-left: 1.7em;
 
 	ul,
@@ -158,9 +149,11 @@ cite {
 
 blockquote {
 	position: relative;
+	margin-right: 0;
+	margin-left: 0;
 	padding: 1.5rem 1rem 1.5rem 2.5rem;
 	background-color: rgba($color__bg-gray-light, 0.5);
-	border-left: 1px solid $color__border-gray;
+	border-left: 1px solid var(--site-border-gray);
 	font-size: 0.95em;
 
 	&:before {
@@ -185,7 +178,7 @@ blockquote {
 	cite {
 		display: block;
 		margin-top: 1rem;
-		color: $color__text-light;
+		color: var(--font-gray);
 		font-size: 0.9em;
 
 		&:before {
@@ -208,7 +201,7 @@ blockquote {
  */
 code {
 	padding: 0 0.2em;
-	color: $color__text-light;
+	color: var(--font-gray);
 	font-family: $font__code;
 	font-size: 0.9em;
 }
@@ -218,7 +211,7 @@ code {
  */
 pre {
 	padding: 1rem;
-	background-color: $color__bg-gray-light;
+	background-color: var(--site-bg-light-gray);
 	line-height: 1.4;
 	overflow: auto;
 
@@ -236,25 +229,25 @@ pre {
  */
 table {
 	width: 100%;
-	border-top: 1px solid $color__border-gray;
+	border-top: 1px solid var(--site-border-gray);
 	word-break: break-word;
 	border-spacing: 0;
 	border-collapse: collapse;
 }
 
 tr {
-	border-left: 1px solid $color__border-gray;
+	border-left: 1px solid var(--site-border-gray);
 }
 
 td,
 th {
 	padding: 0.5rem 1rem;
-	border-right: 1px solid $color__border-gray;
-	border-bottom: 1px solid $color__border-gray;
+	border-right: 1px solid var(--site-border-gray);
+	border-bottom: 1px solid var(--site-border-gray);
 }
 
 th {
-	background-color: $color__bg-gray-light;
+	background-color: var(--site-bg-light-gray);
 	font-weight: normal;
 	text-align: left;
 }
@@ -264,7 +257,7 @@ th {
  */
 hr {
 	margin: 1.5em auto;
-	border: 0.05rem solid $color__border-gray-light;
+	border: 0.05rem solid var(--site-border-gray-light);
 	clear: both;
 }
 

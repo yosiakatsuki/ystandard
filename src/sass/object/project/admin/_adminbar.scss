@@ -1,17 +1,27 @@
 .admin-bar {
-	@at-root {
-		/**
-     * カスタムヘッダー ヘッダー重ねるタイプ
-     */
-		&.custom-header--full {
-			.site-header {
-				top: 46px;
+	&.has-fixed-header {
+		@media screen and (max-width: 600px) {
+			margin-top: -46px;
+		}
 
-				@include media-breakpoint(lg) {
-					top: 32px;
-				}
+		.site-header {
+			@media screen and (min-width: 601px) {
+				top: 46px;
+			}
+			@media screen and (min-width: 783px) {
+				top: 32px;
 			}
 		}
 	}
-	//@root
+
+	// カスタムヘッダー ヘッダー重ねるタイプ
+	&.custom-header--full {
+		.site-header {
+			top: 46px;
+
+			@media screen and (min-width: 783px) {
+				top: 32px;
+			}
+		}
+	}
 }

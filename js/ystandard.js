@@ -1,1 +1,1 @@
-"use strict";
+"use strict";document.addEventListener("DOMContentLoaded",function(){var a=document.getElementById("global-nav__search-button");a&&a.addEventListener("click",function(){var a=document.getElementById("global-nav__search");a&&a.classList.toggle("is-active")})});

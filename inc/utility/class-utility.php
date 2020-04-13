@@ -1,0 +1,279 @@
+<?php
+/**
+ * Utility
+ *
+ * @package ystandard
+ * @author  yosiakatsuki
+ * @license GPL-2.0+
+ */
+
+namespace ystandard;
+
+/**
+ * ユーティリティークラス
+ */
+class Utility {
+
+	/**
+	 * ページのタイトル部分のみを取得
+	 *
+	 * @return string
+	 */
+	public static function get_page_title() {
+		$sep       = apply_filters( 'document_title_separator', '-' );
+		$title     = wp_get_document_title();
+		$new_title = explode( $sep, $title );
+		if ( isset( $new_title[0] ) ) {
+			return trim( $new_title[0] );
+		}
+
+		return $title;
+	}
+
+	/**
+	 * ページURL取得
+	 *
+	 * @return string
+	 */
+	public static function get_page_url() {
+		$protocol = 'https://';
+		if ( ! is_ssl() ) {
+			$protocol = 'http://';
+		}
+
+		return $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	}
+
+	/**
+	 * アイキャッチ画像の画像オブジェクト
+	 *
+	 * @param int    $post_id int Post ID.
+	 * @param string $size    Size.
+	 * @param bool   $icon    Icon.
+	 *
+	 * @return array|false
+	 */
+	public static function get_post_thumbnail_src( $post_id = 0, $size = 'full', $icon = false ) {
+		$post_id       = 0 === $post_id ? get_the_ID() : $post_id;
+		$attachment_id = get_post_thumbnail_id( $post_id );
+
+		return wp_get_attachment_image_src( $attachment_id, $size, $icon );
+	}
+
+	/**
+	 * カスタムロゴIDを取得
+	 *
+	 * @param int $blog_id Optional. ID of the blog in question. Default is the ID of the current blog.
+	 *
+	 * @return int
+	 */
+	public static function get_custom_logo_id( $blog_id = 0 ) {
+		$switched_blog = false;
+
+		if ( is_multisite() && ! empty( $blog_id ) && get_current_blog_id() !== (int) $blog_id ) {
+			switch_to_blog( $blog_id );
+			$switched_blog = true;
+		}
+
+		$custom_logo_id = get_theme_mod( 'custom_logo' );
+
+		if ( $switched_blog ) {
+			restore_current_blog();
+		}
+
+		return $custom_logo_id;
+	}
+
+
+	/**
+	 * JSON-LD出力
+	 *
+	 * @param array $data Data.
+	 */
+	public static function json_ld( $data = [] ) {
+		if ( ! is_array( $data ) || empty( $data ) ) {
+			return;
+		}
+		echo '<script type="application/ld+json">' . json_encode( $data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . PHP_EOL;
+	}
+
+	/**
+	 * テーマバージョン取得
+	 *
+	 * @param boolean $parent 親テーマ情報かどうか.
+	 *
+	 * @return string
+	 */
+	public static function get_theme_version( $parent = false ) {
+		/**
+		 * 子テーマ情報
+		 */
+		$theme = wp_get_theme();
+		if ( $parent && get_template() !== get_stylesheet() ) {
+			/**
+			 * 親テーマ情報
+			 */
+			$theme = wp_get_theme( get_template() );
+		}
+
+		return $theme->get( 'Version' );
+	}
+
+	/**
+	 * テーマ本体のバージョン取得
+	 *
+	 * @return string
+	 */
+	public static function get_ystandard_version() {
+
+		return self::get_theme_version( true );
+	}
+
+	/**
+	 * ファイル内容の取得
+	 *
+	 * @param string $file ファイルパス.
+	 *
+	 * @return string
+	 */
+	public static function file_get_contents( $file ) {
+		$content = false;
+		if ( self::init_filesystem() ) {
+			/**
+			 * @global \WP_Filesystem_Direct $wp_filesystem ;
+			 */
+			global $wp_filesystem;
+			$content = $wp_filesystem->get_contents( $file );
+		}
+
+		return $content;
+	}
+
+	/**
+	 * ファイルシステムの初期化
+	 *
+	 * @return bool|null
+	 */
+	public static function init_filesystem() {
+		global $wp_filesystem;
+		if ( empty( $wp_filesystem ) ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+		}
+
+		return WP_Filesystem();
+	}
+
+	/**
+	 * ショートコードの作成と実行
+	 *
+	 * @param string $name    ショートコード名.
+	 * @param array  $args    パラメーター.
+	 * @param mixed  $content コンテンツ.
+	 * @param bool   $echo    出力.
+	 *
+	 * @return string
+	 */
+	public static function do_shortcode( $name, $args = [], $content = null, $echo = true ) {
+		$atts = [];
+		/**
+		 * パラメーター展開
+		 */
+		if ( ! empty( $args ) ) {
+			foreach ( $args as $key => $value ) {
+				if ( is_array( $value ) ) {
+					$value = implode( ',', $value );
+				}
+				$atts[] = sprintf(
+					'%s="%s"',
+					$key,
+					$value
+				);
+			}
+		}
+		$atts = empty( $atts ) ? '' : ' ' . implode( ' ', $atts );
+		/**
+		 * ショートコード作成
+		 */
+		if ( null === $content ) {
+			// コンテンツなし.
+			$shortcode = sprintf( '[%s%s]', $name, $atts );
+		} else {
+			// コンテンツあり.
+			$shortcode = sprintf( '[%s%s]%s[/%s]', $name, $atts, $content, $name );
+		}
+		$result = do_shortcode( $shortcode );
+		/**
+		 * 表示 or 取得
+		 */
+		if ( $echo ) {
+			echo $result;
+
+			return '';
+		} else {
+			return $result;
+		}
+	}
+
+	/**
+	 * HTML・改行・ショートコードなしのテキストを取得
+	 *
+	 * @param string $content content.
+	 *
+	 * @return string
+	 */
+	public static function get_plain_text( $content ) {
+		// ショートコード削除.
+		$content = strip_shortcodes( $content );
+		// HTMLタグ削除.
+		$content = wp_strip_all_tags( $content, true );
+
+		return $content;
+	}
+
+	/**
+	 * Boolに変換
+	 *
+	 * @param mixed $value 変換する値.
+	 *
+	 * @return bool
+	 */
+	public static function to_bool( $value ) {
+		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * [false]として判定できるか
+	 *
+	 * @param mixed $value 変換する値.
+	 *
+	 * @return bool
+	 */
+	public static function is_false( $value ) {
+		if ( 'false' === $value || false === $value || 0 === $value || '0' === $value ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * ユーザーエージェントのチェック
+	 *
+	 * @param array $ua 対象ユーザーエージェントのリスト.
+	 *
+	 * @return boolean
+	 */
+	public static function check_user_agent( $ua ) {
+		if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {
+			return false;
+		}
+		$pattern = '/' . implode( '|', $ua ) . '/i';
+
+		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
+	}
+
+}
