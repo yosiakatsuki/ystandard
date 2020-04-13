@@ -28,13 +28,13 @@
   --footer-text: var(--font-white);
   --sub-footer-bg: #{$color__bg-gray-light};
   --sub-footer-text: var(--font-color);
-  --link-color: #{$color__link};
-  --link-color-hover: #{$color__link-hover};
-  --form-text-color: #{rgba($color__text-main, 0.8)};;
+  --link-text: #{$color__link};
+  --link-text-hover: #{$color__link-hover};
+  --form-text: #{rgba($color__text-main, 0.8)};;
   --form-bg-white: #{rgba($color__text-white, 0.9)};
   --form-border-gray: #{rgba($color__border-gray, 0.9)};
-  --button-text-color: #{$color__btn-text};
-  --button-bg-color: #{$color__btn-bg};
+  --button-text: #{$color__btn-text};
+  --button-bg: #{$color__btn-bg};
 
   @each $key, $color in $color__sns {
 	--sns-color-#{$key}: #{$color};
