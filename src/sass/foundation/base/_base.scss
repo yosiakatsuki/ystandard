@@ -109,11 +109,11 @@ figcaption {
  * link
  */
 a {
-  color: var(--link-color);
+  color: var(--link-text);
   transition: all 0.3s;
 
   &:hover {
-	color: var(--link-color-hover);
+	color: var(--link-text-hover);
   }
 }
 
