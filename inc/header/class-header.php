@@ -178,15 +178,15 @@ class Header {
 	 */
 	public function add_css_var( $css_vars ) {
 		$header_bg        = Enqueue_Utility::get_css_var(
-			'header-bg-color',
+			'header-bg',
 			Option::get_option( 'ys_color_header_bg', '#ffffff' )
 		);
 		$header_color     = Enqueue_Utility::get_css_var(
-			'header-text-color',
+			'header-text',
 			Option::get_option( 'ys_color_header_font', '#222222' )
 		);
 		$header_dscr      = Enqueue_Utility::get_css_var(
-			'header-dscr-color',
+			'header-dscr',
 			Option::get_option( 'ys_color_header_dscr_font', '#656565' )
 		);
 		$mobile_nav_bg    = Enqueue_Utility::get_css_var(

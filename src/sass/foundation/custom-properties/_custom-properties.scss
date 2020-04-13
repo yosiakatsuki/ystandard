@@ -8,9 +8,9 @@
   --site-bg: #{$color__bg-body};
   --site-bg-gray: #{$color__bg-gray-dark};
   --site-bg-light-gray: #{$color__bg-gray-light};
-  --header-bg-color: #ffffff;
-  --header-text-color: var(--font-color);
-  --header-dscr-color: var(--font-gray);
+  --header-bg: #ffffff;
+  --header-text: var(--font-color);
+  --header-dscr: var(--font-gray);
   --info-bar-bg: #{$color__bg-gray-light};
   --info-bar-text: #{$color__text-main};
   --mobile-nav-bg-color: #000000;
