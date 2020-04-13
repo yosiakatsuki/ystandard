@@ -6,15 +6,15 @@
 	padding: 0;
 	list-style: none;
 	font-size: 0.9em;
-	border-bottom: 1px solid var(--border-color-gray-light);
+	border-bottom: 1px solid var(--site-border-gray-light);
   }
   > ul {
-	border-top: 1px solid var(--border-color-gray-light);
+	border-top: 1px solid var(--site-border-gray-light);
   }
 
   li {
 	position: relative;
-	border-bottom: 1px solid var(--border-color-gray-light);
+	border-bottom: 1px solid var(--site-border-gray-light);
 
 	&:last-child {
 	  border-bottom: 0;

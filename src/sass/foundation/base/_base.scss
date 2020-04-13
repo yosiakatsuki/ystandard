@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  background-color: var(--site-bg-color);
+  background-color: var(--site-bg);
   color: var(--font-color);
   font-family: var(--font-family);
   line-height: $font__line-height;
@@ -153,7 +153,7 @@ blockquote {
   margin-right: 0;
   margin-left: 0;
   background-color: rgba($color__bg-gray-light, 0.5);
-  border-left: 1px solid var(--border-color-gray);
+  border-left: 1px solid var(--site-border-gray);
   font-size: 0.95em;
 
   &:before {
@@ -211,7 +211,7 @@ code {
  */
 pre {
   padding: 1rem;
-  background-color: var(--site-bg-color-light-gray);
+  background-color: var(--site-bg-light-gray);
   line-height: 1.4;
   overflow: auto;
 
@@ -229,25 +229,25 @@ pre {
  */
 table {
   width: 100%;
-  border-top: 1px solid var(--border-color-gray);
+  border-top: 1px solid var(--site-border-gray);
   word-break: break-word;
   border-spacing: 0;
   border-collapse: collapse;
 }
 
 tr {
-  border-left: 1px solid var(--border-color-gray);
+  border-left: 1px solid var(--site-border-gray);
 }
 
 td,
 th {
   padding: 0.5rem 1rem;
-  border-right: 1px solid var(--border-color-gray);
-  border-bottom: 1px solid var(--border-color-gray);
+  border-right: 1px solid var(--site-border-gray);
+  border-bottom: 1px solid var(--site-border-gray);
 }
 
 th {
-  background-color: var(--site-bg-color-light-gray);
+  background-color: var(--site-bg-light-gray);
   font-weight: normal;
   text-align: left;
 }
@@ -257,7 +257,7 @@ th {
  */
 hr {
   margin: 1.5em auto;
-  border: 0.05rem solid var(--border-color-gray-light);
+  border: 0.05rem solid var(--site-border-gray-light);
   clear: both;
 }
 
