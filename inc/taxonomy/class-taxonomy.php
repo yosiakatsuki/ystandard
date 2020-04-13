@@ -36,7 +36,7 @@ class Taxonomy {
 		add_filter( 'get_the_archive_description', [ $this, 'override_description' ] );
 		add_filter( 'ys_ogp_description_archive', [ $this, 'ogp_description' ] );
 		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
-		add_filter( 'widget_tag_cloud_args', [ $this, '_widget_tag_cloud_args' ] );
+		add_filter( 'wp_tag_cloud', [ $this, '_tag_cloud' ] );
 		add_action(
 			'ys_singular_footer',
 			[ $this, 'post_taxonomy' ],
@@ -46,18 +46,26 @@ class Taxonomy {
 	}
 
 	/**
-	 * タグクラウドのパラメータ操作
+	 * タグクラウドからスタイル属性削除
 	 *
-	 * @param array $args Args used for the tag cloud widget.
+	 * @param string|array $return Tag cloud as a string or an array, depending on 'format' argument.
 	 *
-	 * @return array
+	 * @return string|array
 	 */
-	public function _widget_tag_cloud_args( $args ) {
-		$args['smallest'] = 1;
-		$args['largest']  = 1;
-		$args['unit']     = 'em';
+	public function _tag_cloud( $return ) {
 
-		return $args;
+		if ( is_array( $return ) ) {
+			return $return;
+		}
+
+		$return = preg_replace(
+			'#style=".+?"#',
+			'',
+			$return
+		);
+
+		return $return;
+
 	}
 
 	/**

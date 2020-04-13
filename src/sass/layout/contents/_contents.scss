@@ -1,86 +1,86 @@
 .site-content {
-	margin-top: 1.5em;
-	margin-bottom: 1.5em;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
 
-	@include media-breakpoint(lg) {
-		margin-top: 3em;
-		margin-bottom: 3em;
-	}
+  @include media-breakpoint(lg) {
+    margin-top: 3em;
+    margin-bottom: 3em;
+  }
 }
 
 .content__main {
-	width: 100%;
-	margin-right: auto;
-	margin-bottom: 2em;
-	margin-left: auto;
-	background-color: var(--content-bg);
+  width: 100%;
+  margin-right: auto;
+  margin-bottom: 2em;
+  margin-left: auto;
+  background-color: var(--content-bg);
 
-	@include media-breakpoint(lg) {
-		max-width: 800px;
-	}
+  @include media-breakpoint(lg) {
+    max-width: 800px;
+  }
 }
 
 .has-sidebar {
-	.content__wrap {
-		@include media-breakpoint(lg) {
-			$main: (800 / 1200 * 100);
-			$side: (336 / 1200 * 100);
-			$gap: 100 - $main - $side;
+  .content__wrap {
+    @include media-breakpoint(lg) {
+      $main: (800 / 1200 * 100);
+      $side: (336 / 1200 * 100);
+      $gap: 100 - $main - $side;
 
-			display: grid;
+      display: grid;
 
-			grid-template-columns: #{$main}#{"%"} #{$side}#{"%"};
-			grid-template-rows: auto;
-			gap: #{$gap}#{"%"};
-		}
+      grid-template-columns: #{$main}#{"%"} #{$side}#{"%"};
+      grid-template-rows: auto;
+      gap: #{$gap}#{"%"};
+    }
 
-		> * {
-			width: 100%;
-			max-width: 100%;
-		}
-	}
+    > * {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
 
-	.content__main {
-		margin-left: 0;
-	}
+  .content__main {
+    margin-left: 0;
+  }
 }
 
 body:not(.has-sidebar) {
-	.site-content {
-		overflow: hidden;
-	}
+  .site-content {
+    overflow: hidden;
+  }
 }
 
 .no-title {
-	.site-content {
-		margin-top: 0;
-	}
+  .site-content {
+    margin-top: 0;
+  }
 }
 
 .is-wide {
-	.content__main {
-		max-width: 100%;
-	}
+  .content__main {
+    max-width: 100%;
+  }
 }
 
 .has-background {
-	.content__main {
-		@include media-breakpoint-down(md) {
-			width: auto;
-			max-width: unset;
-			margin-right: -1em;
-			margin-left: -1em;
-			padding: 1em;
-		}
+  .content__main {
+    @include media-breakpoint-down(md) {
+      width: auto;
+      max-width: unset;
+      margin-right: -1rem;
+      margin-left: -1rem;
+      padding: 1rem;
+    }
 
-		padding: 2em;
-	}
+    padding: 2rem;
+  }
 
-	.site-content {
-		margin-top: 0;
+  .site-content {
+    margin-top: 0;
 
-		@include media-breakpoint(md) {
-			margin-top: 2em;
-		}
-	}
+    @include media-breakpoint(md) {
+      margin-top: 2em;
+    }
+  }
 }

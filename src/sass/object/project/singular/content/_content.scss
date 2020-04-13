@@ -1,36 +1,36 @@
 .entry-content {
-	$selector: "";
+  $selector: "";
 
-	@include child_margin();
+  @include child_margin();
 
-	margin-top: 2em;
-	margin-bottom: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
 
-	&::after {
-		content: "";
-		display: block;
-		clear: both;
-	}
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		margin: 3em 0 0.25em;
-	}
-	@for $i from 1 through 5 {
-		$selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 3em 0 0.25em;
+  }
+  @for $i from 1 through 5 {
+    $selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
+  }
 
-	#{$selector} {
-		margin-top: 1em;
-	}
+  #{$selector} {
+    margin-top: 1em;
+  }
 }
 
 .no-title {
-	.entry-content {
-		margin-top: 0;
-	}
+  .entry-content {
+    margin-top: 0;
+  }
 }

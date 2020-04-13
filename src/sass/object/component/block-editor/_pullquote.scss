@@ -1,0 +1,17 @@
+.wp-block-pullquote {
+  blockquote {
+    background: none;
+    border: 0;
+
+    &::before {
+      content: "";
+    }
+  }
+}
+
+
+@if $editor == true {
+  .wp-block-pullquote {
+    border: 0;
+  }
+}
