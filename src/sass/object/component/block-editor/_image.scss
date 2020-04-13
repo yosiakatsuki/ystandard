@@ -1,0 +1,10 @@
+body:not(.has-sidebar) {
+  @include media-breakpoint(lg) {
+    .wp-block-image {
+      &.alignfull {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+}

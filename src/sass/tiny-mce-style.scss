@@ -3,20 +3,20 @@
 
 
 .mce-content-body {
-	@import "foundation/base/base";
-	//Component
-	@import "object/component/component";
-	//Utility
-	@import "object/utility/utility";
+  @import "foundation/base/base";
+  //Component
+  @import "object/component/component";
+  //Utility
+  @import "object/utility/utility";
 
-	background-color: $color__bg-body;
-	color: $color__text-main;
-	font-family: $font__yu;
-	line-height: $font__line-height;
-	letter-spacing: $font__spacing;
-	word-wrap: break-word;
+  background-color: $color__bg-body;
+  color: $color__text-main;
+  font-family: $font__yu;
+  line-height: $font__line-height;
+  letter-spacing: $font__spacing;
+  word-wrap: break-word;
 
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }

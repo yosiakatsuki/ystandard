@@ -1,96 +1,96 @@
 .sns-share {
-	@include child_margin(0.5em);
+  @include child_margin(0.5em);
 
-	&:not(.is-official) {
-		text-align: center;
+  &:not(.is-official) {
+    text-align: center;
 
-		.sns-share__container {
-			justify-content: center;
-		}
-	}
+    .sns-share__container {
+      justify-content: center;
+    }
+  }
 
-	&.is-circle {
-		.sns-share__button {
-			border-radius: 50%;
-		}
-	}
+  &.is-circle {
+    .sns-share__button {
+      border-radius: 50%;
+    }
+  }
 
-	&.is-icon {
-		.sns-share__link {
-			padding: 20%;
-			color: currentColor;
+  &.is-icon {
+    .sns-share__link {
+      padding: 20%;
+      color: currentColor;
 
-			svg {
-				fill: currentColor;
-			}
-		}
-	}
+      svg {
+        fill: currentColor;
+      }
+    }
+  }
 
-	&.is-official {
-		.sns-share__container {
-			flex-wrap: wrap;
-		}
+  &.is-official {
+    .sns-share__container {
+      flex-wrap: wrap;
+    }
 
-		.sns-share__button {
-			margin: 0 0.5em 0.25em 0;
-		}
+    .sns-share__button {
+      margin: 0 0.5em 0.25em 0;
+    }
 
-		.sns-share__after {
-			margin-top: 0;
-		}
-	}
+    .sns-share__after {
+      margin-top: 0;
+    }
+  }
 
-	// 微調整.
-	.icon--pocket {
-		margin-top: 15%;
-	}
+  // 微調整.
+  .icon--pocket {
+    margin-top: 15%;
+  }
 
-	.fb_iframe_widget,
-	.fb_iframe_widget span {
-		display: block;
-	}
+  .fb_iframe_widget,
+  .fb_iframe_widget span {
+    display: block;
+  }
 }
 
 .sns-share__container {
-	display: flex;
-	margin-right: -0.5em;
-	margin-left: -0.5em;
-	padding: 0;
-	list-style: none;
+  display: flex;
+  margin-right: -0.5em;
+  margin-left: -0.5em;
+  padding: 0;
+  list-style: none;
 }
 
 .sns-share__button {
-	margin: 0 0.5em;
-	transition: transform 0.3s;
+  margin: 0 0.5em;
+  transition: transform 0.3s;
 
-	&:hover {
-		transform: scale(1.1);
-	}
+  &:hover {
+    transform: scale(1.1);
+  }
 
-	.sns-share__link {
-		$button-size: 40px;
+  .sns-share__link {
+    $button-size: 40px;
 
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: $button-size;
-		height: $button-size;
-		padding: 25%;
-	}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $button-size;
+    height: $button-size;
+    padding: 25%;
+  }
 
-	svg {
-		display: block;
-		width: 100%;
-		height: auto;
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
 
-		fill: var(--font-white);
-	}
+    fill: var(--font-white);
+  }
 }
 
 .sns-share__before {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .sns-share__after {
-	font-size: 0.8em;
+  font-size: 0.8em;
 }

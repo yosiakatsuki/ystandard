@@ -1,51 +1,51 @@
 .search-form {
-	position: relative;
+  position: relative;
 }
 
 .search-field {
-	padding-right: 3.5em;
+  padding-right: 3.5em;
 
-	&::placeholder {
-		color: inherit;
-		opacity: 0.7;
-	}
+  &::placeholder {
+    color: inherit;
+    opacity: 0.7;
+  }
 
-	&:-ms-input-placeholder {
-		color: inherit;
-		opacity: 0.7;
-	}
+  &:-ms-input-placeholder {
+    color: inherit;
+    opacity: 0.7;
+  }
 
-	&::-ms-input-placeholder {
-		color: inherit;
-		opacity: 0.7;
-	}
+  &::-ms-input-placeholder {
+    color: inherit;
+    opacity: 0.7;
+  }
 }
 
 .search-submit {
-	position: absolute;
-	top: 0;
-	right: 0;
-	height: 100%;
-	padding: 0.5em 1em;
-	background-color: transparent;
-	border-top: 0;
-	border-right: 0;
-	border-bottom: 0;
-	border-left: 1px solid var(--form-border-gray);
-	border-radius: 0;
-	color: var(--form-text);
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  padding: 0.5em 1em;
+  background-color: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 1px solid var(--form-border-gray);
+  border-radius: 0;
+  color: var(--form-text);
 
-	-webkit-appearance: none;
+  -webkit-appearance: none;
 
-	&:hover {
-		box-shadow: none;
-	}
+  &:hover {
+    box-shadow: none;
+  }
 
-	.ys-icon {
-		vertical-align: 0.1em;
-	}
+  .ys-icon {
+    vertical-align: 0.1em;
+  }
 
-	svg {
-		width: 1em;
-	}
+  svg {
+    width: 1em;
+  }
 }
