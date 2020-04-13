@@ -452,7 +452,7 @@ class Breadcrumbs {
 	private function set_front_item() {
 		$post_type = $this->get_post_type();
 		if ( ( is_single() && 'post' === $post_type ) || is_date() || is_author() || is_category() || is_tax() ) {
-			if ( 'page' === $this->show_on_front && $this->page_for_posts && ys_get_option_by_bool( 'ys_show_page_for_posts_on_breadcrumbs', true ) ) {
+			if ( 'page' === $this->show_on_front && $this->page_for_posts && Option::get_option_by_bool( 'ys_show_page_for_posts_on_breadcrumbs', true ) ) {
 				$this->set_item(
 					get_the_title( $this->page_for_posts ),
 					get_permalink( $this->page_for_posts )

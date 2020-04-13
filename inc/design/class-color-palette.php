@@ -108,70 +108,70 @@ class Color_Palette {
 			[
 				'name'        => '青',
 				'slug'        => 'ys-blue',
-				'color'       => ys_get_option( 'ys-color-palette-ys-blue', '#82B9E3' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-blue', '#82B9E3' ),
 				'default'     => '#82B9E3',
 				'description' => '',
 			],
 			[
 				'name'        => '赤',
 				'slug'        => 'ys-red',
-				'color'       => ys_get_option( 'ys-color-palette-ys-red', '#D53939' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-red', '#D53939' ),
 				'default'     => '#D53939',
 				'description' => '',
 			],
 			[
 				'name'        => '緑',
 				'slug'        => 'ys-green',
-				'color'       => ys_get_option( 'ys-color-palette-ys-green', '#92C892' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-green', '#92C892' ),
 				'default'     => '#92C892',
 				'description' => '',
 			],
 			[
 				'name'        => '黄',
 				'slug'        => 'ys-yellow',
-				'color'       => ys_get_option( 'ys-color-palette-ys-yellow', '#F5EC84' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-yellow', '#F5EC84' ),
 				'default'     => '#F5EC84',
 				'description' => '',
 			],
 			[
 				'name'        => 'オレンジ',
 				'slug'        => 'ys-orange',
-				'color'       => ys_get_option( 'ys-color-palette-ys-orange', '#EB962D' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-orange', '#EB962D' ),
 				'default'     => '#EB962D',
 				'description' => '',
 			],
 			[
 				'name'        => '紫',
 				'slug'        => 'ys-purple',
-				'color'       => ys_get_option( 'ys-color-palette-ys-purple', '#B67AC2' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-purple', '#B67AC2' ),
 				'default'     => '#B67AC2',
 				'description' => '',
 			],
 			[
 				'name'        => '灰色',
 				'slug'        => 'ys-gray',
-				'color'       => ys_get_option( 'ys-color-palette-ys-gray', '#757575' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-gray', '#757575' ),
 				'default'     => '#757575',
 				'description' => '',
 			],
 			[
 				'name'        => '薄灰色',
 				'slug'        => 'ys-light-gray',
-				'color'       => ys_get_option( 'ys-color-palette-ys-light-gray', '#F1F1F3' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-light-gray', '#F1F1F3' ),
 				'default'     => '#F1F1F3',
 				'description' => '',
 			],
 			[
 				'name'        => '黒',
 				'slug'        => 'ys-black',
-				'color'       => ys_get_option( 'ys-color-palette-ys-black', '#000000' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-black', '#000000' ),
 				'default'     => '#000000',
 				'description' => '',
 			],
 			[
 				'name'        => '白',
 				'slug'        => 'ys-white',
-				'color'       => ys_get_option( 'ys-color-palette-ys-white', '#ffffff' ),
+				'color'       => Option::get_option( 'ys-color-palette-ys-white', '#ffffff' ),
 				'default'     => '#ffffff',
 				'description' => '',
 			],
@@ -182,11 +182,11 @@ class Color_Palette {
 		 */
 		for ( $i = 1; $i <= 3; $i ++ ) {
 			$option_name = 'ys-color-palette-ys-user-' . $i;
-			if ( $all || ys_get_option( $option_name, '#ffffff' ) !== Option::get_default( $option_name, '#ffffff' ) ) {
+			if ( $all || Option::get_option( $option_name, '#ffffff' ) !== Option::get_default( $option_name, '#ffffff' ) ) {
 				$color[] = [
 					'name'        => 'ユーザー定義' . $i,
 					'slug'        => 'ys-user-' . $i,
-					'color'       => ys_get_option( $option_name, '#ffffff' ),
+					'color'       => Option::get_option( $option_name, '#ffffff' ),
 					'default'     => '#ffffff',
 					'description' => 'よく使う色を設定しておくと便利です。',
 				];

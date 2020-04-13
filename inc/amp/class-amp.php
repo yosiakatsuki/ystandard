@@ -30,7 +30,7 @@ class AMP {
 	 */
 	public static function is_amp() {
 		$ys_amp = false;
-		if ( ys_get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) {
+		if ( Option::get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) {
 			/**
 			 * AMPプラグインでAMPページが作成されているか判断
 			 */

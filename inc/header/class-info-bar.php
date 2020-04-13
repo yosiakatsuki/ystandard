@@ -21,6 +21,7 @@ class Info_Bar {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'ys_after_site_header', [ $this, 'show_info_bar' ], 1 );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'info_bar_css' ] );
+		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_info_bar' ] );
 	}
 
 	/**
@@ -31,22 +32,22 @@ class Info_Bar {
 			return;
 		}
 
-		if ( empty( ys_get_option( 'ys_info_bar_text', '' ) ) ) {
+		if ( empty( Option::get_option( 'ys_info_bar_text', '' ) ) ) {
 			return;
 		}
 		$info_bar_class = [
 			'info-bar',
 		];
-		if ( ys_get_option( 'ys_info_bar_url', '' ) ) {
+		if ( Option::get_option( 'ys_info_bar_url', '' ) ) {
 			$info_bar_class[] = 'has-link';
 		}
 		/**
 		 * 設定取得
 		 */
 		$data = [
-			'text'   => ys_get_option( 'ys_info_bar_text', '' ),
-			'url'    => ys_get_option( 'ys_info_bar_url', '' ),
-			'target' => ys_get_option_by_bool( 'ys_info_bar_external', false ) ? '_blank' : '_self',
+			'text'   => Option::get_option( 'ys_info_bar_text', '' ),
+			'url'    => Option::get_option( 'ys_info_bar_url', '' ),
+			'target' => Option::get_option_by_bool( 'ys_info_bar_external', false ) ? '_blank' : '_self',
 			'class'  => implode( ' ', $info_bar_class ),
 		];
 
@@ -61,6 +62,30 @@ class Info_Bar {
 	}
 
 	/**
+	 * お知らせバー 色
+	 *
+	 * @param array $css_vars CSS.
+	 *
+	 * @return array
+	 */
+	public function add_css_var_info_bar( $css_vars ) {
+		$bg    = Enqueue_Utility::get_css_var(
+			'info-bar-bg',
+			Option::get_option( 'ys_info_bar_bg_color', '#f1f1f3' )
+		);
+		$color = Enqueue_Utility::get_css_var(
+			'info-bar-text',
+			Option::get_option( 'ys_info_bar_text_color', '#222222' )
+		);
+
+		return array_merge(
+			$css_vars,
+			$bg,
+			$color
+		);
+	}
+
+	/**
 	 * お知らせバー用CSS追加
 	 *
 	 * @param string $css スタイルシート.
@@ -68,12 +93,6 @@ class Info_Bar {
 	 * @return string
 	 */
 	public function info_bar_css( $css ) {
-		/**
-		 * 設定取得
-		 */
-		$text_color = ys_get_option( 'ys_info_bar_text_color', '#222222' );
-		$bg_color   = ys_get_option( 'ys_info_bar_bg_color', '#f1f1f3' );
-		$text_bold  = ys_get_option_by_bool( 'ys_info_bar_text_bold', true );
 		/**
 		 * 基本系
 		 */
@@ -97,25 +116,28 @@ class Info_Bar {
 		$styles[] = '
 		.info-bar__link {
 			display:block;
-			text-decoration: none;
+			color:currentColor;
 		}';
 		/**
 		 * 色
 		 */
 		$styles[] = ".info-bar {
-			background-color:${bg_color};
-		}";
-		$styles[] = "
-		.info-bar .info-bar__text,
-		.info-bar .info-bar__text:hover {
-			color:${text_color};
+			background-color:var(--info-bar-bg);
+			color:var(--info-bar-text);
 		}";
 		/**
 		 * 太字
 		 */
-		if ( $text_bold ) {
+		if ( Option::get_option_by_bool( 'ys_info_bar_text_bold', true ) ) {
 			$styles[] = '
 			.info-bar__text{font-weight:700;}';
+		}
+		/**
+		 * 下線
+		 */
+		if ( Option::get_option( 'ys_info_bar_url', '' ) ) {
+			$decoration = Option::get_option_by_bool( 'ys_info_bar_underline', true ) ? 'underline' : 'none';
+			$styles[]   = ".info-bar__link{text-decoration: ${decoration};}";
 		}
 
 		return $css . implode( ' ', $styles );
@@ -140,28 +162,13 @@ class Info_Bar {
 			]
 		);
 
+		$customizer->add_section_label( 'テキスト' );
 		// お知らせバーテキスト.
 		$customizer->add_text(
 			[
 				'id'      => 'ys_info_bar_text',
 				'default' => '',
 				'label'   => 'お知らせテキスト',
-			]
-		);
-		// お知らせURL.
-		$customizer->add_url(
-			[
-				'id'      => 'ys_info_bar_url',
-				'default' => '',
-				'label'   => 'お知らせテキストリンク',
-			]
-		);
-		// お知らせリンクを新しいタブで開く.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_info_bar_external',
-				'default' => 0,
-				'label'   => 'お知らせリンクを新しいタブで開く',
 			]
 		);
 		// テキストカラー.
@@ -188,6 +195,33 @@ class Info_Bar {
 				'label'   => 'お知らせテキストを太字にする',
 			]
 		);
+		$customizer->add_section_label( 'リンク' );
+		// お知らせURL.
+		$customizer->add_url(
+			[
+				'id'      => 'ys_info_bar_url',
+				'default' => '',
+				'label'   => 'お知らせテキストリンク',
+			]
+		);
+		// お知らせリンクを新しいタブで開く.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_info_bar_external',
+				'default' => 0,
+				'label'   => 'お知らせリンクを新しいタブで開く',
+			]
+		);
+
+		// お知らせリンクを新しいタブで開く.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_info_bar_underline',
+				'default' => 0,
+				'label'   => 'お知らせテキストに下線を付ける',
+			]
+		);
+
 	}
 }
 
