@@ -17,11 +17,11 @@
   --mobile-nav-text: var(--font-white);
   --mobile-nav-open: var(--font-color);
   --mobile-nav-close: var(--font-white);
-  --content-bg-color: #{$color__bg-content};
-  --content-meta-color: var(--font-gray);
-  --post-paging-color: var(--font-color);
-  --pagination-text-color: var(--font-color);
-  --advertisement-title-color: var(--font-gray);
+  --content-bg: #{$color__bg-content};
+  --content-meta: var(--font-gray);
+  --post-paging-text: var(--font-color);
+  --pagination-text: var(--font-color);
+  --advertisement-title: var(--font-gray);
   --tagcloud-bg-color: var(--site-bg-light-gray);
   --tagcloud-text-color: var(--font-color);
   --footer-bg-color: #{$color__bg-gray-dark};

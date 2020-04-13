@@ -20,7 +20,7 @@
   .sidebar__widget,
   .sidebar__fixed {
 	> * {
-	  background-color: var(--content-bg-color);
+	  background-color: var(--content-bg);
 	  padding: 2em 1.5em;
 
 	  @include media-breakpoint-down(md) {
