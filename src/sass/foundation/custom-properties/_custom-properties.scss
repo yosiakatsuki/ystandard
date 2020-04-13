@@ -24,10 +24,10 @@
   --advertisement-title: var(--font-gray);
   --tagcloud-bg: var(--site-bg-light-gray);
   --tagcloud-text: var(--font-color);
-  --footer-bg-color: #{$color__bg-gray-dark};
-  --footer-text-color: var(--font-white);
-  --footer-sub-bg-color: #{$color__bg-gray-light};
-  --footer-sub-text-color: var(--font-color);
+  --footer-bg: #{$color__bg-gray-dark};
+  --footer-text: var(--font-white);
+  --sub-footer-bg: #{$color__bg-gray-light};
+  --sub-footer-text: var(--font-color);
   --link-color: #{$color__link};
   --link-color-hover: #{$color__link-hover};
   --form-text-color: #{rgba($color__text-main, 0.8)};;
