@@ -3,11 +3,11 @@
   --font-color: #{$color__text-main};
   --font-white: #{$color__text-white};
   --font-gray: #{$color__text-light};
-  --border-color-gray: #{$color__border-gray};
-  --border-color-gray-light: #{$color__border-gray-light};
-  --site-bg-color: #{$color__bg-body};
-  --site-bg-color-gray: #{$color__bg-gray-dark};
-  --site-bg-color-light-gray: #{$color__bg-gray-light};
+  --site-border-gray: #{$color__border-gray};
+  --site-border-gray-light: #{$color__border-gray-light};
+  --site-bg: #{$color__bg-body};
+  --site-bg-gray: #{$color__bg-gray-dark};
+  --site-bg-light-gray: #{$color__bg-gray-light};
   --header-bg-color: #ffffff;
   --header-text-color: var(--font-color);
   --header-dscr-color: var(--font-gray);
@@ -22,7 +22,7 @@
   --post-paging-color: var(--font-color);
   --pagination-text-color: var(--font-color);
   --advertisement-title-color: var(--font-gray);
-  --tagcloud-bg-color: var(--site-bg-color-light-gray);
+  --tagcloud-bg-color: var(--site-bg-light-gray);
   --tagcloud-text-color: var(--font-color);
   --footer-bg-color: #{$color__bg-gray-dark};
   --footer-text-color: var(--font-white);

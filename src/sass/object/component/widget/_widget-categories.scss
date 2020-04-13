@@ -10,13 +10,13 @@
   }
 
   > ul {
-	border-top: 1px solid var(--border-color-gray-light);
-	border-bottom: 1px solid var(--border-color-gray-light);
+	border-top: 1px solid var(--site-border-gray-light);
+	border-bottom: 1px solid var(--site-border-gray-light);
   }
 
   li {
 	position: relative;
-	border-bottom: 1px solid var(--border-color-gray-light);
+	border-bottom: 1px solid var(--site-border-gray-light);
 
 	&:last-child {
 	  border-bottom: 0;
@@ -60,7 +60,7 @@
 
   .children,
   .sub-menu {
-	border-top: 1px solid var(--border-color-gray-light);
+	border-top: 1px solid var(--site-border-gray-light);
 
 	a {
 	  padding-left: 2em;

@@ -18,7 +18,7 @@
   margin-top: 1em;
 
   &.is-list {
-	border-top: 1px solid var(--border-color-gray-light);
+	border-top: 1px solid var(--site-border-gray-light);
   }
 
   &.is-card {
@@ -37,7 +37,7 @@
 
 .archive__item {
   background-color: var(--content-bg-color);
-  border-bottom: 1px solid var(--border-color-gray-light);
+  border-bottom: 1px solid var(--site-border-gray-light);
 
   &:hover {
 	.archive__image {
@@ -114,7 +114,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--site-bg-color-light-gray);
+  background-color: var(--site-bg-light-gray);
   height: 100%;
   width: 100%;
 }

@@ -59,7 +59,7 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  background-color: var(--site-bg-color-light-gray);
+  background-color: var(--site-bg-light-gray);
   color: var(--font-gray);
 }
 
@@ -72,7 +72,7 @@
 .ys-posts__item {
   padding-top: 1em;
   padding-bottom: 1em;
-  border-bottom: 1px solid var(--border-color-gray-light);
+  border-bottom: 1px solid var(--site-border-gray-light);
 
   .ys-posts__image {
 	transition: transform .3s;
