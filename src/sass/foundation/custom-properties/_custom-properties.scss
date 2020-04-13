@@ -13,10 +13,10 @@
   --header-dscr: var(--font-gray);
   --info-bar-bg: #{$color__bg-gray-light};
   --info-bar-text: #{$color__text-main};
-  --mobile-nav-bg-color: #000000;
-  --mobile-nav-text-color: var(--font-white);
-  --mobile-nav-open-color: var(--font-color);
-  --mobile-nav-close-color: var(--font-white);
+  --mobile-nav-bg: #000000;
+  --mobile-nav-text: var(--font-white);
+  --mobile-nav-open: var(--font-color);
+  --mobile-nav-close: var(--font-white);
   --content-bg-color: #{$color__bg-content};
   --content-meta-color: var(--font-gray);
   --post-paging-color: var(--font-color);
