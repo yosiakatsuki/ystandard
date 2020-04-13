@@ -8,11 +8,15 @@
   border-top: 1px solid var(--site-border-gray-light);
   text-align: center; }
   .footer-mobile-nav ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin: 0;
     padding: 0.75em 0 0.5em;
-    list-style: none;
-    margin: 0; }
+    list-style: none; }
   .footer-mobile-nav li:nth-child(n+5) {
     display: none; }
   .footer-mobile-nav a {

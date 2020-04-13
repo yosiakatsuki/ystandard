@@ -2,72 +2,73 @@
 // ブログカード
 //
 .ys-blog-card__container {
-  display: flex;
-  position: relative;
-  border: 1px solid $color__border-gray-light;
+	display: flex;
+	position: relative;
+	border: 1px solid $color__border-gray-light;
 
-  .ys-blog-card__title {
-	margin: 0;
-	font-size: 0.85em;
-	line-height: $font__line-height_headline;
-	font-weight: $font__weight_bold;
+	.ys-blog-card__title {
+		margin: 0;
+		font-size: 0.85em;
+		font-weight: $font__weight_bold;
+		line-height: $font__line-height_headline;
 
-	@include media-breakpoint(md) {
-	  font-size: 1em;
+		@include media-breakpoint(md) {
+			font-size: 1em;
+		}
 	}
-  }
 }
 
 .ys-blog-card__link {
-  color: $color__text-main;
-  text-decoration: none;
+	color: $color__text-main;
+	text-decoration: none;
 
-  &:after {
-	content: "";
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-  }
-
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
 }
 
 .ys-blog-card__image {
-  max-width: 100px;
-  min-width: 100px;
-  margin: 0;
+	min-width: 100px;
+	max-width: 100px;
+	margin: 0;
 
-  @include media-breakpoint(md) {
-	max-width: 200px;
-  }
+	@include media-breakpoint(md) {
+		max-width: 200px;
+	}
 
-  img,
-  amp-img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-	font-family: 'object-fit: cover;';
-  }
+	img,
+	amp-img {
+		width: 100%;
+		height: 100%;
+		font-family: "object-fit: cover;";
+
+		object-fit: cover;
+	}
 }
 
 .ys-blog-card__text {
-  flex-grow: 1;
-  padding: 1rem;
-  @include media-breakpoint(md) {
-	padding: 1.5rem 1rem;
-  }
+	flex-grow: 1;
+	padding: 1rem;
+
+	@include media-breakpoint(md) {
+		padding: 1.5rem 1rem;
+	}
 }
 
 .ys-blog-card__dscr {
-  margin-top: 1em;
-  font-size: .6em;
-  color: $color__text-light;
-  line-height: 1.4;
+	margin-top: 1em;
+	color: $color__text-light;
+	font-size: 0.6em;
+	line-height: 1.4;
 }
 
 .ys-blog-card__domain {
-  margin-top: 1em;
-  font-size: .5em;
-  color: $color__text-light;
+	margin-top: 1em;
+	color: $color__text-light;
+	font-size: 0.5em;
 }

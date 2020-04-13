@@ -1,14 +1,14 @@
 .footer-sub {
-  padding-top: 1em;
-  padding-bottom: 1em;
-  background-color: var(--sub-footer-bg);
-  color: var(--sub-footer-text);
-
-  a {
+	padding-top: 1em;
+	padding-bottom: 1em;
+	background-color: var(--sub-footer-bg);
 	color: var(--sub-footer-text);
-  }
+
+	a {
+		color: var(--sub-footer-text);
+	}
 }
 
 .footer-sub__content {
-  @include child_margin(1em);
+	@include child_margin(1em);
 }
