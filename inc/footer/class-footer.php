@@ -156,10 +156,15 @@ class Footer {
 			'footer-text',
 			Option::get_option( 'ys_color_footer_font', '#222222' )
 		);
+		$gray  = Enqueue_Utility::get_css_var(
+			'footer-text-gray',
+			Option::get_option( 'ys_color_footer_text_gray', '#a7a7a7' )
+		);
 
 		return array_merge(
 			$css_vars,
 			$bg,
+			$gray,
 			$color
 		);
 	}
@@ -175,11 +180,11 @@ class Footer {
 
 		$bg    = Enqueue_Utility::get_css_var(
 			'sub-footer-bg',
-			Option::get_option( 'ys_color_footer_sub_bg', '#f1f1f3' )
+			Option::get_option( 'ys_color_sub_footer_bg', '#f1f1f3' )
 		);
 		$color = Enqueue_Utility::get_css_var(
 			'sub-footer-text',
-			Option::get_option( 'ys_color_footer_sub_font', '#222222' )
+			Option::get_option( 'ys_color_sub_footer_text', '#222222' )
 		);
 
 		return array_merge(
@@ -261,11 +266,19 @@ class Footer {
 				'label'   => 'フッター文字色',
 			]
 		);
-		$customizer->add_section_label( 'フッターサブエリア設定' );
+		// フッター文字色(グレー).
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_footer_text_gray',
+				'default' => '#a7a7a7',
+				'label'   => 'フッター文字色(グレー)',
+			]
+		);
+		$customizer->add_section_label( 'サブフッター設定' );
 		// フッター背景色.
 		$customizer->add_color(
 			[
-				'id'      => 'ys_color_footer_sub_bg',
+				'id'      => 'ys_color_sub_footer_bg',
 				'default' => '#f1f1f3',
 				'label'   => 'サブフッター背景色',
 			]
@@ -273,7 +286,7 @@ class Footer {
 		// フッター文字色.
 		$customizer->add_color(
 			[
-				'id'      => 'ys_color_footer_sub_font',
+				'id'      => 'ys_color_sub_footer_text',
 				'default' => '#222222',
 				'label'   => 'サブフッター文字色',
 			]
