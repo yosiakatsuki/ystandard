@@ -47,11 +47,25 @@ Source      : <https://fortawesome.github.io/Font-Awesome/>
 License: GPL  
 Source : <http://w-shadow.com/>
 
-
 ### \_decimal.scss
 
 License: MIT License  
 Source : <https://gist.github.com/terkel/4373420>
+
+### css-vars-ponyfill
+
+License: MIT License  
+Source : <https://github.com/jhildenbiddle/css-vars-ponyfill>
+
+### object-fit-images
+
+License: MIT License  
+Source : <https://github.com/fregante/object-fit-images>
+
+### stickyfill
+
+License: MIT License  
+Source : <https://github.com/wilddeer/stickyfill>
 
 ## 変更履歴
 v3.x.x
