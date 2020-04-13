@@ -27,7 +27,7 @@ class Enqueue_Utility {
 	const FILTER_INLINE_CSS = 'ys_get_inline_css';
 
 	/**
-	 * インラインCSSのフック名
+	 * ブロック用インラインCSSのフック名
 	 */
 	const FILTER_BLOCKS_INLINE_CSS = 'ys_get_blocks_inline_css';
 

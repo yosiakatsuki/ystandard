@@ -1,50 +1,57 @@
 .aligncenter,
 .alignleft,
 .alignright {
-	display: block;
+  display: block;
 }
 
 .aligncenter {
-	margin-right: auto;
-	margin-left: auto;
-	text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
 }
 
 @include media-breakpoint(md) {
-	.alignleft {
-		margin-right: 1rem;
-		margin-bottom: 1rem;
-		float: left;
-	}
-	.alignright {
-		margin-bottom: 1rem;
-		margin-left: 1rem;
-		float: right;
-	}
+  .alignleft {
+    margin-right: 1em;
+    margin-bottom: 1em;
+    float: left;
+  }
+  .alignright {
+    margin-bottom: 1em;
+    margin-left: 1em;
+    float: right;
+  }
 }
 
 
 body:not(.has-sidebar) {
-	@include media-breakpoint(lg) {
-		.alignwide {
-			width: auto;
-			margin-right: -4.5rem;
-			margin-left: -4.5rem;
-		}
+  @include media-breakpoint(lg) {
+    .alignwide {
+      width: auto;
+      margin-right: -4.5rem;
+      margin-left: -4.5rem;
+    }
+    &.has-background .alignwide {
+      margin-right: -2rem;
+      margin-left: -2rem;
+      padding-right: 0;
+      padding-left: 0;
+    }
 
-		.alignfull {
-			width: auto;
-			margin-right: calc(-50vw + 50%);
-			margin-left: calc(-50vw + 50%);
-			padding-right: calc(-50% + 50vw);
-			padding-left: calc(-50% + 50vw);
-		}
-	}
-	.alignwide,
-	.alignfull {
-		margin-right: -1rem;
-		margin-left: -1rem;
-		padding-right: 1rem;
-		padding-left: 1rem;
-	}
+    .alignfull {
+      width: auto;
+      margin-right: calc(-50vw + 50%);
+      margin-left: calc(-50vw + 50%);
+      padding-right: calc(-50% + 50vw);
+      padding-left: calc(-50% + 50vw);
+    }
+  }
+
+  .alignwide,
+  .alignfull {
+    margin-right: -1rem;
+    margin-left: -1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
 }

@@ -1,40 +1,40 @@
 @include media-breakpoint-down(md) {
-	.tbl-scroll {
-		display: block;
-		position: relative;
-		width: 100%;
-		padding-bottom: 0.5rem;
-		overflow: auto;
+  .tbl-scroll {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 0.5rem;
+    overflow: auto;
 
-		-webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch;
 
 
-		& > * {
-			width: auto;
-			min-width: 100%;
-			white-space: nowrap;
-		}
+    & > * {
+      width: auto;
+      min-width: 100%;
+      white-space: nowrap;
+    }
 
-		&::-webkit-scrollbar {
-			height: 0.2rem;
-		}
+    &::-webkit-scrollbar {
+      height: 0.2rem;
+    }
 
-		&::-webkit-scrollbar-track {
-			background: $color__bg-gray-light;
-		}
+    &::-webkit-scrollbar-track {
+      background: $color__bg-gray-light;
+    }
 
-		&::-webkit-scrollbar-thumb {
-			background: $color__border-gray;
-		}
-	}
+    &::-webkit-scrollbar-thumb {
+      background: $color__border-gray;
+    }
+  }
 }
 
 @include media-breakpoint(lg) {
-	.tbl-scroll {
-		white-space: normal;
+  .tbl-scroll {
+    white-space: normal;
 
-		table {
-			width: 100%;
-		}
-	}
+    table {
+      width: 100%;
+    }
+  }
 }
