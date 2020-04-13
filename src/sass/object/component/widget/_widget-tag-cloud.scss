@@ -1,5 +1,5 @@
 .tagcloud {
-  color: var(--tagcloud-text-color);
+  color: var(--tagcloud-text);
   font-size: 0.8em;
   letter-spacing: -.4em;
 
@@ -9,7 +9,7 @@
 	margin-bottom: .5em;
 	padding: .25em .5em;
 	text-decoration: none;
-	background-color: var(--tagcloud-bg-color);
+	background-color: var(--tagcloud-bg);
 	color: currentColor;
 	letter-spacing: $font__letter-spacing;
 
