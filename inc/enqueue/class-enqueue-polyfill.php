@@ -17,6 +17,29 @@ namespace ystandard;
 class Enqueue_Polyfill {
 
 	/**
+	 * Enqueue_Polyfill constructor.
+	 */
+	public function __construct() {
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_polyfill' ] );
+	}
+
+	/**
+	 * Polyfill関連のenqueue
+	 */
+	public function enqueue_polyfill() {
+		if ( ! self::is_use_polyfill() ) {
+			return;
+		}
+		wp_enqueue_script(
+			'ys-polyfill',
+			get_template_directory_uri() . '/js/polyfill.js',
+			[],
+			Utility::get_ystandard_version(),
+			true
+		);
+	}
+
+	/**
 	 * Polyfillが必要か
 	 *
 	 * @return bool
@@ -53,3 +76,5 @@ class Enqueue_Polyfill {
 	}
 
 }
+
+new Enqueue_Polyfill();
