@@ -1,136 +1,136 @@
 .comments__area {
+	@include child_margin(1em);
 
-  @include child_margin(1em);
-
-  ol {
-	margin-left: 0;
-	padding-left: 0;
-	list-style: none;
-  }
-  .required {
-	color: #d53939;
-  }
+	ol {
+		margin-left: 0;
+		padding-left: 0;
+		list-style: none;
+	}
+	.required {
+		color: #d53939;
+	}
 }
 
 .comments-title {
-  margin: 0;
-  font-weight: $font__weight_bold;
+	margin: 0;
+	font-weight: $font__weight_bold;
 }
 
 .comment {
-  &.parent {
-	margin-top: 2em;
-	border: 1px solid var(--site-border-gray-light);
+	&.parent {
+		margin-top: 2em;
+		border: 1px solid var(--site-border-gray-light);
 
-	&:first-child {
-	  margin-top: 0;
+		&:first-child {
+			margin-top: 0;
+		}
+
+		.parent {
+			border: 0;
+		}
 	}
 
-	.parent {
-	  border: 0;
+	.children {
+		border-top: 1px solid var(--site-border-gray-light);
 	}
-  }
-
-  .children {
-	border-top: 1px solid var(--site-border-gray-light);
-  }
 }
 
 .comment-meta {
-  padding: 1.5em 1.5em 1em;
-  border-bottom: 1px solid var(--site-border-gray-light);
-  line-height: 1.3;
+	padding: 1.5em 1.5em 1em;
+	border-bottom: 1px solid var(--site-border-gray-light);
+	line-height: 1.3;
 }
 
 .comment-meta__container {
-  display: flex;
+	display: flex;
 }
 
 .comment-author {
-  margin-right: 1em;
+	margin-right: 1em;
 
-  .avatar {
-	width: 42px;
-	height: 42px;
-	object-fit: cover;
-	object-position: 50% 50%;
-	border-radius: 50%;
-	font-family: 'object-fit: cover; object-position: 50% 50%;';
-  }
+	.avatar {
+		width: 42px;
+		height: 42px;
+		border-radius: 50%;
+		font-family: "object-fit: cover; object-position: 50% 50%;";
+
+		object-fit: cover;
+		object-position: 50% 50%;
+	}
 }
 
 .comment-post-time {
-  text-decoration: none;
-  font-size: 0.8em;
-  color: var(--font-gray);
-
-  &:hover {
 	color: var(--font-gray);
-  }
+	font-size: 0.8em;
+	text-decoration: none;
+
+	&:hover {
+		color: var(--font-gray);
+	}
 }
 
 .comment-author-name {
-  margin: 0;
-  font-weight: $font__weight_bold;
+	margin: 0;
+	font-weight: $font__weight_bold;
 
-  a {
-	color: var(--font-color);
-	text-decoration: none;
-  }
+	a {
+		color: var(--font-color);
+		text-decoration: none;
+	}
 }
 
 .comment-edit {
-  margin-left: auto;
+	margin-left: auto;
 
-  a {
-	color: var(--font-gray);
-	font-size: 0.8em;
+	a {
+		color: var(--font-gray);
+		font-size: 0.8em;
 
-	&:hover {
-	  color: var(--font-gray);
+		&:hover {
+			color: var(--font-gray);
+		}
 	}
-  }
 }
 
 .comment-awaiting-moderation {
-  display: block;
-  margin-top: .5em;
-  color: var(--font-gray);
-  font-size: 0.8em;
+	display: block;
+	margin-top: 0.5em;
+	color: var(--font-gray);
+	font-size: 0.8em;
 }
 
 .comment-content {
-  padding: 1.5em;
-  font-size: 0.9em;
+	@include child_margin();
 
-  @include child_margin();
+	padding: 1.5em;
+	font-size: 0.9em;
 }
 
 .comments__reply-title {
-  margin: 2em 0 0;
-  font-weight: $font__weight_bold;
+	margin: 2em 0 0;
+	font-weight: $font__weight_bold;
 
-  small {
-	margin-left: .5em;
-  }
+	small {
+		margin-left: 0.5em;
+	}
 
-  a {
-	font-weight: $font__weight_normal;
-  }
+	a {
+		font-weight: $font__weight_normal;
+	}
 }
 
 .comment-form {
-  @include child_margin(1em);
+	@include child_margin(1em);
 
-  label {
-	font-weight: $font__weight_bold;
-	font-size: 0.9em;
-  }
-  .comments__submit {
-	font-size: 0.9em;
-  }
+	label {
+		font-size: 0.9em;
+		font-weight: $font__weight_bold;
+	}
+	.comments__submit {
+		font-size: 0.9em;
+	}
 }
 .logged-in-as,
 .comment-notes {
-  font-size: 0.8em;
+	font-size: 0.8em;
 }

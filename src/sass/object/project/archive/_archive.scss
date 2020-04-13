@@ -1,159 +1,160 @@
 .archive__main {
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 2em;
+	margin-right: auto;
+	margin-bottom: 2em;
+	margin-left: auto;
 }
 
 .archive__title {
-  margin: 0;
+	margin: 0;
 }
 
 .archive__dscr {
-  margin-top: 1em;
-  font-size: 0.9em;
-  @include child_margin(1em);
+	@include child_margin(1em);
+
+	margin-top: 1em;
+	font-size: 0.9em;
 }
 
 .archive__container {
-  margin-top: 1em;
+	margin-top: 1em;
 
-  &.is-list {
-	border-top: 1px solid var(--site-border-gray-light);
-  }
+	&.is-list {
+		border-top: 1px solid var(--site-border-gray-light);
+	}
 
-  &.is-card {
-	@include media-breakpoint(md) {
-	  display: grid;
-	  grid-template-columns: repeat(2, calc(50% - 1em));
-	  grid-template-rows: auto;
-	  gap: 1em 2em;
+	&.is-card {
+		@include media-breakpoint(md) {
+			display: grid;
+
+			grid-template-columns: repeat(2, calc(50% - 1em));
+			grid-template-rows: auto;
+			gap: 1em 2em;
+		}
+		@include media-breakpoint(lg) {
+			grid-template-columns: repeat(3, calc(33.33% - 1em));
+			grid-template-rows: auto;
+		}
 	}
-	@include media-breakpoint(lg) {
-	  grid-template-columns: repeat(3, calc(33.33% - 1em));
-	  grid-template-rows: auto;
-	}
-  }
 }
 
 .archive__item {
-  background-color: var(--content-bg);
-  border-bottom: 1px solid var(--site-border-gray-light);
+	background-color: var(--content-bg);
+	border-bottom: 1px solid var(--site-border-gray-light);
 
-  &:hover {
-	.archive__image {
-	  transform: scale(1.1);
-	}
-  }
-
-  &.is-list {
-	.archive__detail {
-	  display: flex;
-	}
-	.archive__category {
-	  margin-left: 1em;
-	}
-  }
-
-  &.is-card {
-
-	@include media-breakpoint(md) {
-	  border-bottom: 0;
+	&:hover {
+		.archive__image {
+			transform: scale(1.1);
+		}
 	}
 
-	.archive__meta {
-	  justify-content: space-between;
+	&.is-list {
+		.archive__detail {
+			display: flex;
+		}
+		.archive__category {
+			margin-left: 1em;
+		}
 	}
-  }
 
-  .archive__title {
-	font-size: 1em;
-	color: var(--font-color);
+	&.is-card {
+		@include media-breakpoint(md) {
+			border-bottom: 0;
+		}
 
-	a {
-	  color: currentColor;
-	  text-decoration: none;
-
-	  &::after {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-	  }
+		.archive__meta {
+			justify-content: space-between;
+		}
 	}
-  }
+
+	.archive__title {
+		color: var(--font-color);
+		font-size: 1em;
+
+		a {
+			color: currentColor;
+			text-decoration: none;
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
 }
 
 .archive__detail {
-  position: relative;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  @include child_margin(0.5em);
+	@include child_margin(0.5em);
+
+	position: relative;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 .archive__thumbnail {
-  &.is-list {
-	flex: 0 0 25%;
-	width: 25%;
-	min-width: 100px;
-	margin-right: 1em;
+	&.is-list {
+		flex: 0 0 25%;
+		width: 25%;
+		min-width: 100px;
+		margin-right: 1em;
 
-	@include media-breakpoint(md) {
-	  flex: 0 0 30%;
-	  width: 30%;
+		@include media-breakpoint(md) {
+			flex: 0 0 30%;
+			width: 30%;
+		}
 	}
-  }
 }
 
 .archive__image {
-  transition: transform .3s;
+	transition: transform 0.3s;
 }
 
 .archive__no-img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--site-bg-light-gray);
-  height: 100%;
-  width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: var(--site-bg-light-gray);
 }
 
 .archive__text {
-  @include child_margin(0.5em);
+	@include child_margin(0.5em);
 }
 
 .archive__meta {
-  display: flex;
-  color: var(--content-meta);
-  font-size: 0.8em;
-
-  > div {
 	display: flex;
-	align-items: center;
-  }
+	color: var(--content-meta);
+	font-size: 0.8em;
 
-  .ys-icon {
-	width: 0.8em;
-	margin-right: .25em;
-  }
+	> div {
+		display: flex;
+		align-items: center;
+	}
+
+	.ys-icon {
+		width: 0.8em;
+		margin-right: 0.25em;
+	}
 }
 
 
 .archive__excerpt {
-  font-size: 0.8em;
-  line-height: 1.3;
-  color: var(--font-gray);
+	color: var(--font-gray);
+	font-size: 0.8em;
+	line-height: 1.3;
 }
 
 .has-sidebar {
-
-  .archive__container {
-	&.is-card {
-	  @include media-breakpoint(lg) {
-		grid-template-columns: repeat(2, calc(50% - 1em));
-		grid-template-rows: auto;
-	  }
+	.archive__container {
+		&.is-card {
+			@include media-breakpoint(lg) {
+				grid-template-columns: repeat(2, calc(50% - 1em));
+				grid-template-rows: auto;
+			}
+		}
 	}
-  }
 }

@@ -1,15 +1,15 @@
 @mixin button() {
-  display: inline-block;
-  padding: 0.5em 1.5em;
-  border-radius: 4px;
-  text-decoration: none;
-  background-color: var(--button-bg);
-  border: 1px solid currentColor;
-  color: var(--button-text);
-  font-size: 1em;
-  transition: all 0.3s;
+	display: inline-block;
+	padding: 0.5em 1.5em;
+	background-color: var(--button-bg);
+	border: 1px solid currentColor;
+	border-radius: 4px;
+	color: var(--button-text);
+	font-size: 1em;
+	text-decoration: none;
+	transition: all 0.3s;
 
-  &:hover {
-	box-shadow: 3px 3px 6px rgba(#000000, 0.2);
-  }
+	&:hover {
+		box-shadow: 3px 3px 6px rgba(#000000, 0.2);
+	}
 }

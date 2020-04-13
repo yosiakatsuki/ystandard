@@ -1,9 +1,9 @@
 .widget-inside {
-  select {
-	&.multiple {
-	  width: 100%;
+	select {
+		&.multiple {
+			width: 100%;
+		}
 	}
-  }
 }
 
 
@@ -12,14 +12,14 @@
 	font-size: 0.7rem;
 }
 .widget-form__section {
-  h4 {
-	padding: .5em;
-	margin-bottom: .5em;
-	background-color: $color__ystanadrd;
-	color: $color__text-white;
-  }
+	h4 {
+		margin-bottom: 0.5em;
+		padding: 0.5em;
+		background-color: $color__ystanadrd;
+		color: $color__text-white;
+	}
 }
 .ys-widget-option__sub {
-  font-size: 0.8em;
-  color: $color__text-light;
+	color: $color__text-light;
+	font-size: 0.8em;
 }

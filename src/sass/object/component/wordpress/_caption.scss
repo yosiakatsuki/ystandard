@@ -1,27 +1,27 @@
 .wp-caption {
-  max-width: 100%;
-  padding: 0.25em 0.5em 0.5em;
-  font-size: 0.9em;
-  text-align: center;
+	max-width: 100%;
+	padding: 0.25em 0.5em 0.5em;
+	font-size: 0.9em;
+	text-align: center;
 
-  img {
-	margin: 0;
-	padding: 0;
-  }
+	img {
+		margin: 0;
+		padding: 0;
+	}
 }
 
 figcaption,
 .wp-caption-text {
-  color: var(--font-gray);
-  font-size: 0.9em;
-  font-style: italic;
-  text-align: center;
+	color: var(--font-gray);
+	font-size: 0.9em;
+	font-style: italic;
+	text-align: center;
 }
 
 .wp-caption-text {
-  padding: 0.25em 0.5em 0.5em;
+	padding: 0.25em 0.5em 0.5em;
 }
 
 figcaption {
-  padding: 0.25em 0.5em 0;
+	padding: 0.25em 0.5em 0;
 }

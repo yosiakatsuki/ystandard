@@ -2,14 +2,14 @@
 @import "../foundation/import";
 
 .wp-custom-header {
-  position: relative;
+	position: relative;
 
-  img {
-	display: block;
-	width: 100%;
-	height: auto;
-	margin: 0 auto;
-  }
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin: 0 auto;
+	}
 }
 
 /**
@@ -17,33 +17,33 @@
  */
 
 .header-media {
-  &.is-video {
-	.wp-custom-header {
-	  width: 100%;
-	  padding-top: 56.25%;
+	&.is-video {
+		.wp-custom-header {
+			width: 100%;
+			padding-top: 56.25%;
 
-	  video,
-	  iframe,
-	  img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	  }
+			video,
+			iframe,
+			img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
 	}
-  }
 }
 
 .wp-custom-header-video-button {
-  display: block;
-  position: absolute;
-  bottom: 0.5em;
-  left: 0.5em;
-  padding: 0.5em;
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 0.8em;
-  line-height: 1;
+	display: block;
+	position: absolute;
+	bottom: 0.5em;
+	left: 0.5em;
+	padding: 0.5em;
+	background-color: rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	color: rgba(255, 255, 255, 0.3);
+	font-size: 0.8em;
+	line-height: 1;
 }

@@ -1,145 +1,148 @@
 .ys-posts {
+	&.is-list {
+		.ys-posts__content {
+			display: flex;
+		}
 
-  &.is-list {
-	.ys-posts__content {
-	  display: flex;
+		.ys-posts__thumbnail {
+			flex: 0 0 20%;
+			width: 20%;
+			min-width: 100px;
+			margin-right: 0.5em;
+		}
 	}
 
-	.ys-posts__thumbnail {
-	  flex: 0 0 20%;
-	  width: 20%;
-	  min-width: 100px;
-	  margin-right: .5em;
-	}
-  }
+	&.is-card {
+		.ys-posts__thumbnail {
+			margin-bottom: 0.5em;
+		}
 
-  &.is-card {
-	.ys-posts__thumbnail {
-	  margin-bottom: .5em;
+		.ys-posts__meta {
+			justify-content: space-between;
+		}
 	}
-
-	.ys-posts__meta {
-	  justify-content: space-between;
-	}
-  }
 }
 
 .ys-posts__list {
-  display: grid;
-  gap: 1em;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
+	display: grid;
 
-  @for $i from 2 through 4 {
-	&.col-sp--#{$i} {
-	  $width: #{decimal-floor((1 / $i * 100),2)}#{"%"};
-	  grid-template-columns: repeat(#{$i}, calc(#{$width} - 1em));
-	  grid-template-rows: auto;
+	gap: 1em;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto;
+
+	@for $i from 2 through 4 {
+		&.col-sp--#{$i} {
+			$width: #{decimal-floor((1 / $i * 100),2)}#{"%"};
+
+			grid-template-columns: repeat(#{$i}, calc(#{$width} - 1em));
+			grid-template-rows: auto;
+		}
+		&.col-tablet--#{$i} {
+			@include media-breakpoint(md) {
+				$width: #{decimal-floor((1 / $i * 100),2)}#{"%"};
+
+				grid-template-columns: repeat(#{$i}, calc(#{$width} - 1em));
+				grid-template-rows: auto;
+			}
+		}
+		&.col-pc--#{$i} {
+			@include media-breakpoint(lg) {
+				$width: #{decimal-floor((1 / $i * 100),2)}#{"%"};
+
+				grid-template-columns: repeat(#{$i}, calc(#{$width} - 1em));
+				grid-template-rows: auto;
+			}
+		}
 	}
-	&.col-tablet--#{$i} {
-	  @include media-breakpoint(md) {
-		$width: #{decimal-floor((1 / $i * 100),2)}#{"%"};
-		grid-template-columns: repeat(#{$i}, calc(#{$width} - 1em));
-		grid-template-rows: auto;
-	  }
-	}
-	&.col-pc--#{$i} {
-	  @include media-breakpoint(lg) {
-		$width: #{decimal-floor((1 / $i * 100),2)}#{"%"};
-		grid-template-columns: repeat(#{$i}, calc(#{$width} - 1em));
-		grid-template-rows: auto;
-	  }
-	}
-  }
 }
 
 .ys-post__no-image {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  background-color: var(--site-bg-light-gray);
-  color: var(--font-gray);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: var(--site-bg-light-gray);
+	color: var(--font-gray);
 }
 
 .ys-posts__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 .ys-posts__item {
-  padding-top: 1em;
-  padding-bottom: 1em;
-  border-bottom: 1px solid var(--site-border-gray-light);
+	padding-top: 1em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid var(--site-border-gray-light);
 
-  .ys-posts__image {
-	transition: transform .3s;
-  }
-
-  &:hover {
 	.ys-posts__image {
-	  transform: scale(1.1);
+		transition: transform 0.3s;
 	}
-  }
+
+	&:hover {
+		.ys-posts__image {
+			transform: scale(1.1);
+		}
+	}
 }
 
 .ys-posts__content {
-  position: relative;
-  height: 100%;
+	position: relative;
+	height: 100%;
 }
 
 .ys-posts__text {
-  @include child_margin(.5em);
+	@include child_margin(0.5em);
 }
 
 .ys-posts__meta {
-  display: flex;
-  font-size: .7em;
-  color: var(--content-meta);
-
-  > * {
 	display: flex;
-	align-items: center;
-  }
+	color: var(--content-meta);
+	font-size: 0.7em;
 
-  .ys-icon {
-	width: .8em;
-	margin-right: .25em;
-  }
+	> * {
+		display: flex;
+		align-items: center;
+	}
+
+	.ys-icon {
+		width: 0.8em;
+		margin-right: 0.25em;
+	}
 }
 
 .ys-posts__cat {
-  margin-left: 1em;
+	margin-left: 1em;
 }
 
 .ys-posts__title {
-  font-weight: $font__weight_bold;
-  font-size: 0.9em;
-  line-height: 1.4;
+	font-size: 0.9em;
+	font-weight: $font__weight_bold;
+	line-height: 1.4;
 }
 
 .ys-posts__link {
-  color: currentColor;
-  text-decoration: none;
-
-  &:hover {
 	color: currentColor;
-  }
+	text-decoration: none;
 
-  &::after {
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-  }
+	&:hover {
+		color: currentColor;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .ys-posts__dscr {
-  font-size: .7em;
-  line-height: 1.3;
-  color: var(--content-meta);
+	color: var(--content-meta);
+	font-size: 0.7em;
+	line-height: 1.3;
 }

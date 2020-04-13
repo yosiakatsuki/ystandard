@@ -2,12 +2,12 @@ input,
 textarea,
 select,
 button {
-  padding: 0.5rem;
-  background-color: var(--form-bg-white);
-  border: 1px solid var(--form-border-gray);
-  border-radius: 2px;
-  font-size: 1em;
-  color: var(--form-text);
+	padding: 0.5rem;
+	background-color: var(--form-bg-white);
+	border: 1px solid var(--form-border-gray);
+	border-radius: 2px;
+	color: var(--form-text);
+	font-size: 1em;
 }
 
 input[type="text"],
@@ -16,14 +16,15 @@ input[type="url"],
 input[type="email"],
 textarea,
 select {
-  display: block;
-  width: 100%;
-  -webkit-appearance: none;
+	display: block;
+	width: 100%;
+
+	-webkit-appearance: none;
 }
 
 button,
 input[type="reset"],
 input[type="submit"],
 input[type="button"] {
-  @include button();
+	@include button();
 }

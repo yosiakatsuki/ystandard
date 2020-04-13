@@ -1,22 +1,22 @@
 .widget_recent_comments {
-  ul {
-	margin-right: 0;
-	margin-left: 0;
-	padding: 0;
-	list-style: none;
-	font-size: 0.9em;
-	border-top: 1px solid var(--site-border-gray-light);
-  }
-
-  li {
-	padding: .75em .25em;
-	border-bottom: 1px solid var(--site-border-gray-light);
-  }
-
-  .comment-author-link {
-	&::before {
-	  content: "\A";
-	  white-space: pre;
+	ul {
+		margin-right: 0;
+		margin-left: 0;
+		padding: 0;
+		border-top: 1px solid var(--site-border-gray-light);
+		font-size: 0.9em;
+		list-style: none;
 	}
-  }
+
+	li {
+		padding: 0.75em 0.25em;
+		border-bottom: 1px solid var(--site-border-gray-light);
+	}
+
+	.comment-author-link {
+		&::before {
+			content: "\A";
+			white-space: pre;
+		}
+	}
 }

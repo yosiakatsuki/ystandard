@@ -1,13 +1,13 @@
 .footer-copy {
-  text-align: center;
+	@include child_margin(1em);
 
-  @include child_margin(1em);
+	text-align: center;
 }
 
 .copyright {
-  font-size: 0.9rem;
+	font-size: 0.9rem;
 }
 
 .footer-poweredby {
-  font-size: 0.65rem;
+	font-size: 0.65rem;
 }

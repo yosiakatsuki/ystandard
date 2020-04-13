@@ -1,11 +1,11 @@
 .wp-block-button {
-  color: var(--button-text);
+	color: var(--button-text);
 }
 .wp-block-button__link {
-  font-size: 1em;
-  border-radius: 0.5em;
+	border-radius: 0.5em;
+	font-size: 1em;
 
-  &:hover {
-	box-shadow: 4px 4px 8px rgba(#000000, 0.15);
-  }
+	&:hover {
+		box-shadow: 4px 4px 8px rgba(#000000, 0.15);
+	}
 }

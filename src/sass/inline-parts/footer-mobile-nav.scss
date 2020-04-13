@@ -1,60 +1,61 @@
 @import "../foundation/import";
 
 .footer-mobile-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 8;
-  width: 100%;
-  background-color: rgba(#ffffff, 0.95);
-  border-top: 1px solid var(--site-border-gray-light);
-  text-align: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 8;
+	width: 100%;
+	background-color: rgba(#ffffff, 0.95);
+	border-top: 1px solid var(--site-border-gray-light);
+	text-align: center;
 
-  @include media-breakpoint(lg) {
-	display: none;
-  }
-
-  ul {
-	display: flex;
-	justify-content: space-between;
-	padding: 0.75em 0 0.5em;
-	list-style: none;
-	margin: 0;
-  }
-
-  li {
-	&:nth-child(n+5) {
-	  display: none;
-	  @include media-breakpoint(md) {
-		display: block;
-	  }
+	@include media-breakpoint(lg) {
+		display: none;
 	}
-  }
 
-  a {
-	display: block;
-	color: currentColor;
-	text-decoration: none;
-  }
+	ul {
+		display: flex;
+		justify-content: space-between;
+		margin: 0;
+		padding: 0.75em 0 0.5em;
+		list-style: none;
+	}
 
-  svg,
-  i {
-	font-size: 1.5em;
-  }
+	li {
+		&:nth-child(n+5) {
+			display: none;
+
+			@include media-breakpoint(md) {
+				display: block;
+			}
+		}
+	}
+
+	a {
+		display: block;
+		color: currentColor;
+		text-decoration: none;
+	}
+
+	svg,
+	i {
+		font-size: 1.5em;
+	}
 }
 
 .footer-mobile-nav__dscr {
-  display: block;
-  font-size: 0.7em;
-  line-height: 1.2;
+	display: block;
+	font-size: 0.7em;
+	line-height: 1.2;
 }
 
 .has-mobile-footer {
-  .site-footer {
-	padding-bottom: 4em;
+	.site-footer {
+		padding-bottom: 4em;
 
-	@include media-breakpoint(lg) {
-	  padding-bottom: 0;
+		@include media-breakpoint(lg) {
+			padding-bottom: 0;
+		}
 	}
-  }
 }

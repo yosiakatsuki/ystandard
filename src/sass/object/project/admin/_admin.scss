@@ -1,98 +1,98 @@
 .meta-box__headline {
-  margin: 2em 0 1em;
-  padding-bottom: 0.25em;
-  border-bottom: 1px solid $color__border-gray;
-  font-size: 1.05em;
+	margin: 2em 0 1em;
+	padding-bottom: 0.25em;
+	border-bottom: 1px solid $color__border-gray;
+	font-size: 1.05em;
 }
 
 .meta-box__section {
-  textarea {
-	width: 100%;
-  }
+	textarea {
+		width: 100%;
+	}
 }
 
 .meta-box__label {
-  display: block;
-  margin-top: 0.5rem;
-  font-weight: $font__weight_bold;
+	display: block;
+	margin-top: 0.5rem;
+	font-weight: $font__weight_bold;
 }
 
 .meta-box__dscr {
-  color: $color__text-light;
+	color: $color__text-light;
 }
 
 .meta-box__full-w {
-  width: 100%;
+	width: 100%;
 }
 
 .meta-box__copy-content {
-  display: flex;
+	display: flex;
 }
 
 .meta-box__copy-target {
-  flex-grow: 1;
+	flex-grow: 1;
 }
 
 .copy-form {
-  display: flex;
-  position: relative;
+	display: flex;
+	position: relative;
 }
 
 .copy-form__target {
-  flex-grow: 1;
+	flex-grow: 1;
 }
 
 .copy-form__info {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  padding: 0.25em 0 0;
-  color: #333333;
-  font-size: 0.7rem;
+	display: none;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	padding: 0.25em 0 0;
+	color: #333333;
+	font-size: 0.7rem;
 }
 
 .copy-form__button {
-  position: relative;
+	position: relative;
 
-  &::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 2;
-  }
-
-  .ys-icon {
-	svg {
-	  width: 1rem;
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 2;
+		width: 100%;
+		height: 100%;
 	}
-  }
+
+	.ys-icon {
+		svg {
+			width: 1rem;
+		}
+	}
 }
 
 .ys-custom-uploader {
-  &.is-selected {
-	.ys-custom-uploader__select {
-	  display: none;
-	}
-  }
-
-  &:not(.is-selected) {
-	.ys-custom-uploader__clear {
-	  display: none;
+	&.is-selected {
+		.ys-custom-uploader__select {
+			display: none;
+		}
 	}
 
-	.ys-custom-uploader__preview {
-	  padding: 1em 0;
+	&:not(.is-selected) {
+		.ys-custom-uploader__clear {
+			display: none;
+		}
+
+		.ys-custom-uploader__preview {
+			padding: 1em 0;
+		}
 	}
-  }
 }
 
 .ys-custom-uploader__preview {
-  img {
-	max-width: 400px;
-	height: auto;
-  }
+	img {
+		max-width: 400px;
+		height: auto;
+	}
 }
