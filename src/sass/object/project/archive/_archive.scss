@@ -36,7 +36,7 @@
 }
 
 .archive__item {
-  background-color: var(--content-bg-color);
+  background-color: var(--content-bg);
   border-bottom: 1px solid var(--site-border-gray-light);
 
   &:hover {
@@ -125,7 +125,7 @@
 
 .archive__meta {
   display: flex;
-  color: var(--content-meta-color);
+  color: var(--content-meta);
   font-size: 0.8em;
 
   > div {

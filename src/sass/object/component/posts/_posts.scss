@@ -97,7 +97,7 @@
 .ys-posts__meta {
   display: flex;
   font-size: .7em;
-  color: var(--content-meta-color);
+  color: var(--content-meta);
 
   > * {
 	display: flex;
@@ -141,5 +141,5 @@
 .ys-posts__dscr {
   font-size: .7em;
   line-height: 1.3;
-  color: var(--content-meta-color);
+  color: var(--content-meta);
 }
