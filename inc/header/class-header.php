@@ -190,19 +190,19 @@ class Header {
 			Option::get_option( 'ys_color_header_dscr_font', '#656565' )
 		);
 		$mobile_nav_bg    = Enqueue_Utility::get_css_var(
-			'mobile-nav-bg-color',
+			'mobile-nav-bg',
 			Option::get_option( 'ys_color_nav_bg_sp', '#000000' )
 		);
 		$mobile_nav_color = Enqueue_Utility::get_css_var(
-			'mobile-nav-text-color',
+			'mobile-nav-text',
 			Option::get_option( 'ys_color_nav_font_sp', '#ffffff' )
 		);
 		$mobile_nav_open  = Enqueue_Utility::get_css_var(
-			'mobile-nav-open-color',
+			'mobile-nav-open',
 			Option::get_option( 'ys_color_nav_btn_sp_open', '#222222' )
 		);
 		$mobile_nav_close = Enqueue_Utility::get_css_var(
-			'mobile-nav-close-color',
+			'mobile-nav-close',
 			Option::get_option( 'ys_color_nav_btn_sp', '#ffffff' )
 		);
 

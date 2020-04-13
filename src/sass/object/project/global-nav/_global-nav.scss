@@ -3,7 +3,7 @@
   position: fixed;
   display: flex;
   align-items: center;
-  background-color: var(--mobile-nav-bg-color);
+  background-color: var(--mobile-nav-bg);
   font-size: 0.9em;
 
   @include media-breakpoint-down(lg) {
@@ -31,7 +31,7 @@
   a {
 	display: block;
 	text-decoration: none;
-	color: var(--mobile-nav-text-color);
+	color: var(--mobile-nav-text);
 
 	@include media-breakpoint(lg) {
 	  color: var(--header-text);
@@ -96,7 +96,7 @@
 	border: 0;
 
 	&::placeholder {
-	  color: var(--mobile-nav-text-color);
+	  color: var(--mobile-nav-text);
 	  @include media-breakpoint(lg) {
 		color: var(--header-text);
 	  }
@@ -232,10 +232,10 @@
   padding: 1em;
   z-index: 11;
   background-color: transparent;
-  color: var(--mobile-nav-open-color);
+  color: var(--mobile-nav-open);
 
   &.is-open {
-	color: var(--mobile-nav-close-color);
+	color: var(--mobile-nav-close);
 
 	+ .global-nav {
 	  visibility: visible;
