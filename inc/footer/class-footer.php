@@ -149,11 +149,11 @@ class Footer {
 	public function add_css_var_footer_main( $css_vars ) {
 
 		$bg    = Enqueue_Utility::get_css_var(
-			'footer-bg-color',
+			'footer-bg',
 			Option::get_option( 'ys_color_footer_bg', '#f1f1f3' )
 		);
 		$color = Enqueue_Utility::get_css_var(
-			'footer-text-color',
+			'footer-text',
 			Option::get_option( 'ys_color_footer_font', '#222222' )
 		);
 
@@ -174,11 +174,11 @@ class Footer {
 	public function add_css_var_footer_sub( $css_vars ) {
 
 		$bg    = Enqueue_Utility::get_css_var(
-			'footer-sub-bg-color',
+			'sub-footer-bg',
 			Option::get_option( 'ys_color_footer_sub_bg', '#f1f1f3' )
 		);
 		$color = Enqueue_Utility::get_css_var(
-			'footer-sub-text-color',
+			'sub-footer-text',
 			Option::get_option( 'ys_color_footer_sub_font', '#222222' )
 		);
 

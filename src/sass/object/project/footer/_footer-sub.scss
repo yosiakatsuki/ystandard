@@ -1,11 +1,11 @@
 .footer-sub {
   padding-top: 1em;
   padding-bottom: 1em;
-  background-color: var(--footer-sub-bg-color);
-  color: var(--footer-sub-text-color);
+  background-color: var(--sub-footer-bg);
+  color: var(--sub-footer-text);
 
   a {
-	color: var(--footer-sub-text-color);
+	color: var(--sub-footer-text);
   }
 }
 
