@@ -1,11 +1,19 @@
 .footer-nav {
 	.menu-item {
-		margin-right: 1rem;
-		margin-bottom: 0.5rem;
-		font-size: 0.8rem;
+		display: inline-block;
+		margin-right: 1em;
+		margin-bottom: 0.5em;
+		font-size: 0.8em;
 
 		&:last-child {
 			margin-right: 0;
 		}
 	}
+}
+
+.footer-nav__menu {
+	margin-right: 0;
+	margin-left: 0;
+	padding: 0;
+	list-style: none;
 }

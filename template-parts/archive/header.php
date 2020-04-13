@@ -14,17 +14,17 @@ if ( is_home() ) {
 	return;
 }
 ?>
-<header class="page-header archive__header">
+<header class="archive__header page-header">
 	<?php
 	the_archive_title(
-		'<h1 class="page-title clear-h archive__title">',
+		'<h1 class="archive__title page-title">',
 		'</h1>'
 	);
 	?>
-</header><!-- .page-header -->
+</header>
 <?php
 the_archive_description(
-	'<div class="taxonomy-description archive__dscr">',
+	'<div class="archive__dscr taxonomy-description">',
 	'</div>'
 );
 ?>

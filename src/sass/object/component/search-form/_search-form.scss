@@ -3,7 +3,7 @@
 }
 
 .search-field {
-	padding-right: 3.5rem;
+	padding-right: 3.5em;
 
 	&::placeholder {
 		color: inherit;
@@ -26,14 +26,26 @@
 	top: 0;
 	right: 0;
 	height: 100%;
-	padding: 0.5rem 1rem;
+	padding: 0.5em 1em;
 	background-color: transparent;
 	border-top: 0;
 	border-right: 0;
 	border-bottom: 0;
-	border-left: 1px solid $color__border-gray;
+	border-left: 1px solid var(--form-border-gray);
 	border-radius: 0;
-	color: $color__text-main;
+	color: var(--form-text);
 
 	-webkit-appearance: none;
+
+	&:hover {
+		box-shadow: none;
+	}
+
+	.ys-icon {
+		vertical-align: 0.1em;
+	}
+
+	svg {
+		width: 1em;
+	}
 }

@@ -1,0 +1,11 @@
+.widget-title {
+	margin: 0 0 1em;
+	font-size: 1.1em;
+}
+
+@import "widget-categories";
+@import "widget-tag-cloud";
+@import "widget-archive";
+@import "widget-recent-comments";
+@import "widget-recent-entries";
+@import "widget-calendar";

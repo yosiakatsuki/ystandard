@@ -10,10 +10,41 @@
 	text-align: center;
 }
 
-.alignwide,
-.alignfull {
-	margin-right: -1rem;
-	margin-left: -1rem;
-	padding-right: 1rem;
-	padding-left: 1rem;
+@include media-breakpoint(md) {
+	.alignleft {
+		margin-right: 1rem;
+		margin-bottom: 1rem;
+		float: left;
+	}
+	.alignright {
+		margin-bottom: 1rem;
+		margin-left: 1rem;
+		float: right;
+	}
+}
+
+
+body:not(.has-sidebar) {
+	@include media-breakpoint(lg) {
+		.alignwide {
+			width: auto;
+			margin-right: -4.5rem;
+			margin-left: -4.5rem;
+		}
+
+		.alignfull {
+			width: auto;
+			margin-right: calc(-50vw + 50%);
+			margin-left: calc(-50vw + 50%);
+			padding-right: calc(-50% + 50vw);
+			padding-left: calc(-50% + 50vw);
+		}
+	}
+	.alignwide,
+	.alignfull {
+		margin-right: -1rem;
+		margin-left: -1rem;
+		padding-right: 1rem;
+		padding-left: 1rem;
+	}
 }

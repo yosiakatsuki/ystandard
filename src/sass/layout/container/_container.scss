@@ -1,21 +1,8 @@
-
 .container {
-	@at-root {
-		& {
-			position: relative;
-			max-width: $width__container;
-			margin-right: auto;
-			margin-left: auto;
-			padding: 0 1rem;
-		}
-		.container--full {
-			position: relative;
-			max-width: 100%;
-		}
-	}
-}
-
-.contents {
 	position: relative;
-	overflow: hidden;
+	max-width: $width__container;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: $gutter;
+	padding-left: $gutter;
 }

@@ -7,16 +7,16 @@
  * @license GPL-2.0+
  */
 
-ys_get_header(); ?>
+get_header(); ?>
 	<div class="container">
-		<div class="content__container">
+		<div class="content__wrap">
 			<?php
 			while ( have_posts() ) :
 				the_post();
-				get_template_part( 'template-parts/page/content' );
+				ys_get_template_part( 'template-parts/page/content' );
 			endwhile;
 			?>
 			<?php get_sidebar(); ?>
 		</div>
-	</div><!-- .container -->
+	</div>
 <?php get_footer(); ?>

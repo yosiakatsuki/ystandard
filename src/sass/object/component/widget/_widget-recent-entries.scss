@@ -1,0 +1,24 @@
+.widget_recent_entries, {
+	ul {
+		margin-right: 0;
+		margin-left: 0;
+		padding: 0;
+		border-top: 1px solid var(--site-border-gray-light);
+		font-size: 0.9em;
+		list-style: none;
+	}
+
+	li {
+		padding: 0.75em 0.25em;
+		border-bottom: 1px solid var(--site-border-gray-light);
+	}
+	a {
+		color: currentColor;
+		text-decoration: none;
+	}
+	.post-date {
+		display: block;
+		color: var(--font-gray);
+		font-size: 0.9em;
+	}
+}

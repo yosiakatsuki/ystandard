@@ -7,7 +7,7 @@
 	z-index: 8;
 	width: 100%;
 	background-color: rgba(#ffffff, 0.95);
-	border-top: 1px solid $color__border-gray-light;
+	border-top: 1px solid var(--site-border-gray-light);
 	text-align: center;
 
 	@include media-breakpoint(lg) {
@@ -15,12 +15,26 @@
 	}
 
 	ul {
-		padding: 0.75rem 0 0.5rem;
+		display: flex;
+		justify-content: space-between;
+		margin: 0;
+		padding: 0.75em 0 0.5em;
+		list-style: none;
+	}
+
+	li {
+		&:nth-child(n+5) {
+			display: none;
+
+			@include media-breakpoint(md) {
+				display: block;
+			}
+		}
 	}
 
 	a {
 		display: block;
-		color: inherit;
+		color: currentColor;
 		text-decoration: none;
 	}
 
@@ -37,11 +51,11 @@
 }
 
 .has-mobile-footer {
-	.site__footer {
-		padding-bottom: 5rem;
+	.site-footer {
+		padding-bottom: 4em;
 
 		@include media-breakpoint(lg) {
-			padding-bottom: 1rem;
+			padding-bottom: 0;
 		}
 	}
 }
