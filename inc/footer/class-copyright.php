@@ -45,7 +45,7 @@ class Copyright {
 	 * @return string
 	 */
 	public static function get_default() {
-		$year = ys_get_option( 'ys_copyright_year', date_i18n( 'Y' ) );
+		$year = Option::get_option( 'ys_copyright_year', date_i18n( 'Y' ) );
 		if ( '' === $year ) {
 			$year = date_i18n( 'Y' );
 		}

@@ -44,7 +44,7 @@ class Enqueue_Styles {
 		add_action( 'wp_enqueue_scripts', [ $this, 'dequeue_css' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_style_css' ], 100 );
 		// CSSインライン読み込み.
-		if ( ! is_admin() && ys_get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
+		if ( ! is_admin() && Option::get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
 			add_filter( 'style_loader_tag', [ $this, 'style_loader_inline' ], PHP_INT_MAX, 4 );
 		}
 		add_filter( 'wp_get_custom_css', [ $this, '_wp_get_custom_css' ] );

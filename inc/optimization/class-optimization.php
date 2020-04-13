@@ -119,7 +119,7 @@ class Optimization {
 	 * 絵文字の調整
 	 */
 	public function optimize_emoji() {
-		if ( ! ys_get_option_by_bool( 'ys_option_disable_wp_emoji', true ) ) {
+		if ( ! Option::get_option_by_bool( 'ys_option_disable_wp_emoji', true ) ) {
 			return;
 		}
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );

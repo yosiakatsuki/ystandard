@@ -80,7 +80,7 @@ class Site_Color {
 	 * @return string
 	 */
 	public static function get_site_bg() {
-		return ys_get_option( 'ys_color_site_bg', self::get_site_bg_default() );
+		return Option::get_option( 'ys_color_site_bg', self::get_site_bg_default() );
 	}
 
 	/**

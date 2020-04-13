@@ -81,7 +81,7 @@ class Template {
 				'page-template/template-one-column-wide.php',
 				'page-template/template-blank-wide.php',
 			];
-			if ( is_page_template( $templates ) || 'wide' === ys_get_option( 'ys_design_one_col_content_type', 'normal' ) ) {
+			if ( is_page_template( $templates ) || 'wide' === Option::get_option( 'ys_design_one_col_content_type', 'normal' ) ) {
 				return true;
 			}
 		}

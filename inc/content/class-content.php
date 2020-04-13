@@ -643,7 +643,7 @@ class Content {
 	 */
 	public function excerpt_length( $length = null ) {
 
-		return ys_get_option_by_int( 'ys_option_excerpt_length', 80 );
+		return Option::get_option_by_int( 'ys_option_excerpt_length', 80 );
 	}
 
 	/**
@@ -654,7 +654,7 @@ class Content {
 	 * @return string
 	 */
 	public function title_separator( $sep ) {
-		$sep_option = ys_get_option( 'ys_title_separate', '' );
+		$sep_option = Option::get_option( 'ys_title_separate', '' );
 		if ( '' !== $sep_option ) {
 			$sep = $sep_option;
 		}
