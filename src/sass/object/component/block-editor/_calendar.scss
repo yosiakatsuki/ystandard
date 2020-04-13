@@ -1,0 +1,31 @@
+
+.wp-calendar-table {
+  thead {
+    th {
+      text-align: center;
+    }
+  }
+}
+
+.wp-calendar-nav {
+  display: flex;
+  border-right: 1px solid #e2e4e7;
+  border-bottom: 1px solid #e2e4e7;
+  border-left: 1px solid #e2e4e7;
+
+  > * {
+    padding: 4px 0.5em;
+  }
+
+  .pad {
+    margin: 0 auto;
+  }
+}
+
+.wp-calendar-nav-prev {
+  margin-right: auto;
+}
+
+.wp-calendar-nav-next {
+  margin-left: auto;
+}

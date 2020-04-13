@@ -1,11 +1,16 @@
 .wp-block-button {
-	color: var(--button-text);
-}
-.wp-block-button__link {
-	border-radius: 0.5em;
-	font-size: 1em;
+  color: var(--button-text);
 
-	&:hover {
-		box-shadow: 4px 4px 8px rgba(#000000, 0.15);
-	}
+  &.is-style-outline {
+    color: var(--button-bg);
+  }
+}
+
+.wp-block-button__link {
+  border-radius: 0.5em;
+  font-size: 1em;
+
+  &:hover {
+    box-shadow: 4px 4px 8px rgba(#000000, 0.15);
+  }
 }
