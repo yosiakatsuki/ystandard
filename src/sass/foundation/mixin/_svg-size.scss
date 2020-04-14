@@ -1,0 +1,7 @@
+@mixin svg_size($width:24px,$height:0) {
+  @if $height == 0 {
+	$height: $width;
+  }
+  width: $width;
+  height: $height;
+}
