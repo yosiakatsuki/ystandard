@@ -105,9 +105,10 @@ class Archive {
 		}
 
 		return sprintf(
-			'<div class="archive__category">%s%s</div>',
+			'<div class="archive__category %s">%s%s</div>',
+			esc_attr( $taxonomy ) . '--' . esc_attr( $term[0]->slug ),
 			Icon::get_icon( 'folder' ),
-			$term[0]->name
+			esc_html( $term[0]->name )
 		);
 	}
 }

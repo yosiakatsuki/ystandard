@@ -143,7 +143,7 @@ class Recent_Posts {
 		ob_start();
 		Template::get_template_part(
 			'template-parts/parts/recent-posts',
-			'',
+			$this->shortcode_atts['post_type'],
 			[
 				'recent_posts' => $this->get_template_param(),
 				'posts_query'  => $query,
