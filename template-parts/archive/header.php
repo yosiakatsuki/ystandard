@@ -17,7 +17,7 @@ if ( is_home() ) {
 <header class="archive__header page-header">
 	<?php
 	the_archive_title(
-		'<h1 class="archive__title page-title">',
+		'<h1 class="archive__page-title page-title">',
 		'</h1>'
 	);
 	?>

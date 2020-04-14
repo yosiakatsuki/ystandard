@@ -4,7 +4,7 @@
   margin-left: auto;
 }
 
-.archive__title {
+.archive__page-title {
   margin: 0;
 }
 
@@ -18,22 +18,18 @@
 .archive__container {
   margin-top: 1em;
 
-  &.is-list {
-    border-top: 1px solid var(--site-border-gray-light);
-  }
-
   &.is-card {
-    @include media-breakpoint(md) {
-      display: grid;
+	@include media-breakpoint(md) {
+	  display: grid;
 
-      grid-template-columns: repeat(2, calc(50% - 1em));
-      grid-template-rows: auto;
-      gap: 1em 2em;
-    }
-    @include media-breakpoint(lg) {
-      grid-template-columns: repeat(3, calc(33.33% - 1em));
-      grid-template-rows: auto;
-    }
+	  grid-template-columns: repeat(2, calc(50% - 1em));
+	  grid-template-rows: auto;
+	  gap: 1em 2em;
+	}
+	@include media-breakpoint(lg) {
+	  grid-template-columns: repeat(3, calc(33.33% - 1em));
+	  grid-template-rows: auto;
+	}
   }
 }
 
@@ -42,69 +38,80 @@
   border-bottom: 1px solid var(--site-border-gray-light);
 
   &:hover {
-    .archive__image {
-      transform: scale(1.1);
-    }
+	.archive__image {
+	  transform: scale(1.1);
+	}
   }
 
   &.is-list {
-    .archive__detail {
-      display: flex;
-    }
-    .archive__category {
-      margin-left: 1em;
-    }
+	border-bottom: 1px solid var(--site-border-gray-light);
+
+	.archive__detail {
+	  display: flex;
+	}
+
+	.archive__category {
+	  margin-left: 1em;
+	}
+	.archive__text {
+	  padding: 1em;
+	}
   }
 
   &.is-card {
-    @include media-breakpoint(md) {
-      border-bottom: 0;
-    }
+	@include media-breakpoint(md) {
+	  border-bottom: 0;
+	}
 
-    .archive__meta {
-      justify-content: space-between;
-    }
+	.archive__meta {
+	  justify-content: space-between;
+	}
+
+	.archive__text {
+	  padding-bottom: 1em;
+	}
+
+	.archive__detail {
+	  @include child_margin(0.5em);
+	}
   }
 
   .archive__title {
-    color: var(--font-color);
-    font-size: 1em;
+	color: var(--font-color);
+	font-size: 1em;
 
-    a {
-      color: currentColor;
-      text-decoration: none;
+	a {
+	  color: currentColor;
+	  text-decoration: none;
 
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-    }
+	  &::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	  }
+	}
   }
 }
 
 .archive__detail {
-  @include child_margin(0.5em);
-
   position: relative;
-  padding-top: 1em;
-  padding-bottom: 1em;
 }
 
 .archive__thumbnail {
   &.is-list {
-    flex: 0 0 25%;
-    width: 25%;
-    min-width: 100px;
-    margin-right: 1em;
+	flex: 0 0 25%;
+	width: 25%;
+	min-width: 100px;
+	margin-top: 1em;
 
-    @include media-breakpoint(md) {
-      flex: 0 0 30%;
-      width: 30%;
-    }
+	@include media-breakpoint(md) {
+	  flex: 0 0 30%;
+	  width: 30%;
+	  margin-top: 0;
+	}
   }
 }
 
@@ -128,33 +135,63 @@
 .archive__meta {
   display: flex;
   color: var(--content-meta);
-  font-size: 0.8em;
+  font-size: 0.7em;
 
   > div {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
   }
 
   .ys-icon {
-    width: 0.8em;
-    margin-right: 0.25em;
+	width: 0.8em;
+	margin-right: 0.25em;
   }
 }
 
 
 .archive__excerpt {
   color: var(--font-gray);
-  font-size: 0.8em;
+  font-size: 0.7em;
   line-height: 1.3;
 }
 
 .has-sidebar {
   .archive__container {
-    &.is-card {
-      @include media-breakpoint(lg) {
-        grid-template-columns: repeat(2, calc(50% - 1em));
-        grid-template-rows: auto;
-      }
-    }
+	&.is-card {
+	  @include media-breakpoint(lg) {
+		grid-template-columns: repeat(2, calc(50% - 1em));
+		grid-template-rows: auto;
+	  }
+	}
+  }
+}
+
+.has-background {
+  .archive__page-title {
+	margin-top: 1.5em;
+	@include media-breakpoint(md) {
+	  margin-top: 0;
+	}
+  }
+
+  .archive__item {
+	margin-bottom: 1em;
+
+	&.is-card {
+	  border: 0;
+	}
+	&.is-list {
+	  border: 1px solid var(--site-border-gray-light);
+	}
+  }
+  .archive__thumbnail {
+	&.is-list {
+	  margin-bottom: 1em;
+	  margin-left: 1em;
+	}
+  }
+
+  .archive__text {
+	padding: 1em;
   }
 }
