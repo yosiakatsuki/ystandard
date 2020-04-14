@@ -53,7 +53,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 									</span>
 								<?php endif; ?>
 								<?php if ( $cat && $recent_posts['show_category'] ) : ?>
-									<span class="ys-posts__cat">
+									<span class="ys-posts__cat category--<?php echo esc_attr( $cat[0]->slug ); ?>">
 										<?php echo ys_get_icon( 'folder' ); ?>
 										<?php echo $cat[0]->name; ?>
 									</span>

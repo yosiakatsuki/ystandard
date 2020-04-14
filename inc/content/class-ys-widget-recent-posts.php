@@ -365,6 +365,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 	 * @return array
 	 */
 	public function update( $new_instance, $old_instance ) {
+		$instance['title']           = esc_html( $new_instance['title'] );
 		$instance['count']           = $this->sanitize_num(
 			$new_instance['count'],
 			$this->default_instance['count']
