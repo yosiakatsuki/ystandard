@@ -35,7 +35,6 @@ class Enqueue_Polyfill {
 			get_template_directory_uri() . '/js/polyfill.js',
 			[],
 			Utility::get_ystandard_version(),
-			true
 		);
 	}
 

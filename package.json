@@ -13,6 +13,7 @@
 		"@fortawesome/free-solid-svg-icons": "^5.13.0",
 		"@wordpress/browserslist-config": "^2.6.0",
 		"autoprefixer": "^9.7.6",
+		"babel-loader": "^8.1.0",
 		"babel-preset-minify": "^0.5.1",
 		"browserslist": "^4.11.1",
 		"css-declaration-sorter": "^5.1.2",
