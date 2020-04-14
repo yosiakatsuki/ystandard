@@ -50,6 +50,9 @@
 
 
   .ys-contents__item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	position: relative;
 	padding: 1em;
 	text-align: center;
@@ -72,12 +75,14 @@
 
   .wp-block-button__link {
 	background-color: #0b409c;
+	color: #fff;
   }
 
 
   .ys-contents__text {
 	display: inline-block;
 	text-align: left;
+	flex-grow: 1;
   }
 }
 
