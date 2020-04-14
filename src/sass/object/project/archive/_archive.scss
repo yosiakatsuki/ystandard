@@ -156,8 +156,11 @@
   }
 
   .ys-icon {
-	width: 0.8em;
 	margin-right: 0.25em;
+  }
+
+  svg {
+	@include svg_size(0.8em);
   }
 }
 

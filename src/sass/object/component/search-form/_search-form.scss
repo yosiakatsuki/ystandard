@@ -46,6 +46,6 @@
   }
 
   svg {
-    width: 1em;
+    @include svg_size(1em);
   }
 }
