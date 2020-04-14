@@ -1,5 +1,4 @@
 .breadcrumbs__list {
-  display: flex;
   margin: 0;
   padding: 0.75em 0;
   color: var(--font-gray);
@@ -17,6 +16,7 @@
 }
 
 .breadcrumbs__item {
+  display: inline;
   margin-left: 0.5em;
 
   &::before {
