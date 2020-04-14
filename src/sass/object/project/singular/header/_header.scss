@@ -6,7 +6,7 @@
   font-size: 1.2em;
 
   @include media-breakpoint(md) {
-    font-size: 1.4em;
+	font-size: 1.4em;
   }
 }
 
@@ -17,16 +17,16 @@
   font-size: 0.7em;
 
   > * {
-    margin-right: 1em;
+	margin-right: 1em;
   }
 
   svg {
-    display: block;
+	display: block;
+	@include svg_size(1em);
   }
 
   .ys-icon {
-    width: 1em;
-    margin-right: 0.25em;
+	margin-right: 0.25em;
   }
 }
 
@@ -41,16 +41,16 @@
   margin-left: 0.5em;
 
   &:first-child {
-    margin-left: 0;
+	margin-left: 0;
   }
 }
 
 .has-background {
   .singular-header__thumbnail {
-    margin: -1em -1em 0;
+	margin: -1em -1em 0;
 
-    @include media-breakpoint(md) {
-      margin: -2em -2em 0;
-    }
+	@include media-breakpoint(md) {
+	  margin: -2em -2em 0;
+	}
   }
 }

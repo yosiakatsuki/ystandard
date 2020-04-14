@@ -33,13 +33,14 @@
   list-style: none;
 
   svg {
-    width: 1em;
+    @include svg_size(1em);
   }
 }
 
 .author-box__sns-link {
   padding: 0.5em;
   color: currentColor;
+  text-decoration: none;
 
   &:hover {
     color: currentColor;

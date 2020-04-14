@@ -245,14 +245,14 @@ class Header {
 		 */
 		if ( 0 < Option::get_option_by_int( 'ys_logo_width_sp', 0 ) ) {
 			$css .= sprintf(
-				'.header__title img{width:%spx;}',
+				'.site-title img{width:%spx;}',
 				Option::get_option_by_int( 'ys_logo_width_sp', 0 )
 			);
 		}
 		if ( 0 < Option::get_option_by_int( 'ys_logo_width_pc', 0 ) ) {
 			$css .= Enqueue_Styles::add_media_query(
 				sprintf(
-					'.header__title img{width:%spx;}',
+					'.site-title img{width:%spx;}',
 					Option::get_option_by_int( 'ys_logo_width_pc', 0 )
 				),
 				'md'

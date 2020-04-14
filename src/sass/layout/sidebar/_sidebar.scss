@@ -1,8 +1,11 @@
 .sidebar {
   @include child_margin(2rem);
-
-  width: 100%;
   margin-bottom: 2em;
+
+  @include media-breakpoint(lg) {
+	flex: 0 0 $width__sidebar;
+	width: $width__sidebar;
+  }
 }
 
 .sidebar__widget,
@@ -12,23 +15,23 @@
 
 .sidebar__fixed {
   @include media-breakpoint(lg) {
-    position: sticky;
-    top: 2em;
+	position: sticky;
+	top: 2em;
   }
 }
 
 .has-background {
   .sidebar__widget,
   .sidebar__fixed {
-    > * {
-      @include media-breakpoint-down(md) {
-        margin-right: -1em;
-        margin-left: -1em;
-        padding: 1em;
-      }
+	> * {
+	  @include media-breakpoint-down(md) {
+		margin-right: -1em;
+		margin-left: -1em;
+		padding: 1em;
+	  }
 
-      padding: 2em 1.5em;
-      background-color: var(--content-bg);
-    }
+	  padding: 2em 1.5em;
+	  background-color: var(--content-bg);
+	}
   }
 }

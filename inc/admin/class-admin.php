@@ -56,6 +56,9 @@ class Admin {
 	 * アドミンバー調整用CSS
 	 */
 	public function enqueue_admin_bar_style() {
+		if ( ! is_admin_bar_showing() ) {
+			return;
+		}
 		wp_enqueue_style(
 			'ys-admin-bar',
 			get_template_directory_uri() . '/css/admin-bar.css',
