@@ -107,6 +107,10 @@
 
 .ys-posts__cat {
   margin-left: 1em;
+
+  &:first-child {
+	margin-left: 0;
+  }
 }
 
 .ys-posts__title {
