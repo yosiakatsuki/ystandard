@@ -7,84 +7,84 @@
   border-bottom: 1px solid $color__border-gray;
 
   * {
-    box-sizing: border-box;
+	box-sizing: border-box;
   }
 
   > * {
-    margin: 1.5em 0 0;
+	margin: 1.5em 0 0;
   }
 
   & > *:first-child {
-    margin-top: 0;
+	margin-top: 0;
   }
 
   h3 {
-    font-size: 1.5em;
+	font-size: 1.5em;
   }
 }
 
 .ystandard-info {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   font-size: 1.2em;
 
-  grid-template-columns: 150px 1fr;
-  grid-template-rows: auto;
-
   dt {
-    margin-bottom: 0.5em;
-    font-weight: $font__weight_bold;
+	width: 150px;
+	margin-bottom: 0.5em;
+	font-weight: $font__weight_bold;
   }
 
   dd {
-    margin: 0;
+	width: calc(100% - 150px);
+	margin: 0;
   }
 }
 
 .ys-contents {
   @include media-breakpoint(md) {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -0.5rem;
-    margin-left: -0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -0.5rem;
+	margin-left: -0.5rem;
   }
 
 
   .ys-contents__item {
-    position: relative;
-    padding: 1em;
-    text-align: center;
+	position: relative;
+	padding: 1em;
+	text-align: center;
 
-    @include media-breakpoint(md) {
-      flex: 0 0 50%;
-      width: 50%;
-      padding-right: 2em;
-      padding-left: 2em;
-    }
-    @include media-breakpoint(lg) {
-      flex: 0 0 33.33%;
-      width: 33.33%;
-    }
+	@include media-breakpoint(md) {
+	  flex: 0 0 50%;
+	  width: 50%;
+	  padding-right: 2em;
+	  padding-left: 2em;
+	}
+	@include media-breakpoint(lg) {
+	  flex: 0 0 33.33%;
+	  width: 33.33%;
+	}
 
-    h4 {
-      font-size: 1.3em;
-    }
+	h4 {
+	  font-size: 1.3em;
+	}
   }
 
   .wp-block-button__link {
-    background-color: #0b409c;
+	background-color: #0b409c;
   }
 
 
   .ys-contents__text {
-    display: inline-block;
-    text-align: left;
+	display: inline-block;
+	text-align: left;
   }
 }
 
 .ys-contents__icon {
   svg {
-    width: 50px;
-    height: auto;
+	width: 50px;
+	height: auto;
   }
 }
 
@@ -95,13 +95,13 @@
 
   thead,
   th {
-    font-weight: $font__weight_bold;
-    text-align: left;
+	font-weight: $font__weight_bold;
+	text-align: left;
   }
 
   th,
   td {
-    margin: 0;
-    padding: 0.5em;
+	margin: 0;
+	padding: 0.5em;
   }
 }
