@@ -1,23 +1,19 @@
 .gallery {
-  display: grid;
-
-  gap: 0.5em;
+  display: flex;
+  flex-wrap: wrap;
 
   a:hover {
-    opacity: 0.8;
+	opacity: 0.8;
   }
 
   .gallery-caption {
-    font-size: 0.8em;
-    text-align: center;
+	font-size: 0.8em;
+	text-align: center;
   }
 }
 
 @for $i from 2 through 9 {
   .gallery-columns-#{$i} {
-    $width: decimal-floor(100% / $i);
-
-    grid-template-columns: repeat(#{$i}, calc(#{$width} - 0.5em));
-    grid-template-rows: auto;
+	@include posts_column($i, 1px);
   }
 }

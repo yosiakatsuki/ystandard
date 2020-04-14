@@ -3,8 +3,8 @@
   margin-bottom: 1.5em;
 
   @include media-breakpoint(lg) {
-    margin-top: 3em;
-    margin-bottom: 3em;
+	margin-top: 3em;
+	margin-bottom: 3em;
   }
 }
 
@@ -16,71 +16,64 @@
   background-color: var(--content-bg);
 
   @include media-breakpoint(lg) {
-    max-width: 800px;
+	max-width: 800px;
   }
 }
 
 .has-sidebar {
   .content__wrap {
-    @include media-breakpoint(lg) {
-      $main: (800 / 1200 * 100);
-      $side: (336 / 1200 * 100);
-      $gap: 100 - $main - $side;
-
-      display: grid;
-
-      grid-template-columns: #{$main}#{"%"} #{$side}#{"%"};
-      grid-template-rows: auto;
-      gap: #{$gap}#{"%"};
-    }
-
-    > * {
-      width: 100%;
-      max-width: 100%;
-    }
+	@include media-breakpoint(lg) {
+	  display: flex;
+	  justify-content: space-between;
+	}
   }
 
-  .content__main {
-    margin-left: 0;
+  .content__main,
+  .archive__main {
+	@include media-breakpoint(lg) {
+	  flex: 0 0 $width__content_p;
+	  width: $width__content_p;
+	  margin-left: 0;
+	}
   }
 }
 
 body:not(.has-sidebar) {
   .site-content {
-    overflow: hidden;
+	overflow: hidden;
   }
 }
 
 .no-title {
   .site-content {
-    margin-top: 0;
+	margin-top: 0;
   }
 }
 
 .is-wide {
   .content__main {
-    max-width: 100%;
+	max-width: 100%;
   }
 }
 
 .has-background {
   .content__main {
-    @include media-breakpoint-down(md) {
-      width: auto;
-      max-width: unset;
-      margin-right: -1rem;
-      margin-left: -1rem;
-      padding: 1rem;
-    }
+	@include media-breakpoint-down(md) {
+	  width: auto;
+	  max-width: unset;
+	  margin-right: -1rem;
+	  margin-left: -1rem;
+	  padding: 1rem;
+	}
 
-    padding: 2rem;
+	padding: 2rem;
   }
 
   .site-content {
-    margin-top: 0;
+	margin-top: 0;
 
-    @include media-breakpoint(md) {
-      margin-top: 2em;
-    }
+	@include media-breakpoint(md) {
+	  margin-top: 2em;
+	}
   }
 }
