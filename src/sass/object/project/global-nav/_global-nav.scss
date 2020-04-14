@@ -90,16 +90,24 @@
 	}
   }
 
+  .search-form {
+	color: var(--mobile-nav-text);
+
+	@include media-breakpoint(lg) {
+	  color: var(--header-text);
+	}
+	.search-submit {
+	  color: currentColor;
+	}
+  }
+
   .search-field {
 	background-color: rgba($color__text-white, 0.2);
 	border: 0;
+	color: currentColor;
 
 	&::placeholder {
-	  color: var(--mobile-nav-text);
-
-	  @include media-breakpoint(lg) {
-		color: var(--header-text);
-	  }
+	  color: currentColor;
 	}
   }
 }
