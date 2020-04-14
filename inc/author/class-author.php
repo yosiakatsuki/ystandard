@@ -41,7 +41,7 @@ class Author {
 		add_action( 'show_password_fields', [ $this, 'add_custom_option' ], 10, 2 );
 		add_action( 'profile_update', [ $this, 'profile_update' ], 10, 2 );
 		add_shortcode( 'ys_author', [ $this, 'do_shortcode' ] );
-		add_filter( 'get_avatar', [ $this, '_get_avatar' ], 10, 6 );
+		add_filter( 'pre_get_avatar', [ $this, '_get_avatar' ], 10, 3 );
 		add_action(
 			'ys_singular_footer',
 			[ $this, 'post_author' ],
@@ -58,14 +58,11 @@ class Author {
 	 *
 	 * @param string     $avatar      アバター画像.
 	 * @param string|int $id_or_email ID/メールアドレス.
-	 * @param int        $size        サイズ.
-	 * @param string     $default     デフォルト画像種類.
-	 * @param string     $alt         alt.
 	 * @param array      $args        args.
 	 *
 	 * @return string
 	 */
-	public function _get_avatar( $avatar, $id_or_email, $size, $default, $alt, $args ) {
+	public function _get_avatar( $avatar, $id_or_email, $args ) {
 
 		/**
 		 * ユーザー編集ページでは操作しない
@@ -84,16 +81,24 @@ class Author {
 		if ( empty( $avatar_url ) ) {
 			return $avatar;
 		}
-		$avatar_id = attachment_url_to_postid( $avatar_url );
-
+		$attachment_id = attachment_url_to_postid( $avatar_url );
+		// 属性.
+		$image_args['class']  = isset( $args['class'] ) ? $args['class'] : '';
+		$image_args['height'] = isset( $args['height'] ) ? $args['height'] : '';
+		$image_args['height'] = isset( $args['height'] ) ? $args['height'] : '';
+		$image_args['width']  = isset( $args['width'] ) ? $args['width'] : '';
+		// 画像取得.
 		$custom_avatar = wp_get_attachment_image(
-			$avatar_id,
-			$size,
+			$attachment_id,
+			'full',
 			false,
-			array_merge( $args, [ 'alt' => $alt ] )
+			array_merge( $image_args, [ 'alt' => $alt ] )
 		);
 		if ( $custom_avatar ) {
-			return $custom_avatar;
+			$image = wp_get_attachment_image_src( $attachment_id, 'full' );
+			if ( $image ) {
+				return str_replace( image_hwstring( $image[1], $image[2] ), '', $custom_avatar );
+			}
 		}
 
 		return $avatar;
