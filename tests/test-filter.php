@@ -1,12 +1,12 @@
 <?php
 /**
- * Class ConditionalTagTest
+ * Class FilterTest
  *
  * @package ystandard
  */
 
 /**
- * AMP用テスト
+ * Class FilterTest
  */
 class FilterTest extends WP_UnitTestCase {
 
