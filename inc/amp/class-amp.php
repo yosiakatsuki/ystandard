@@ -60,12 +60,16 @@ class AMP {
 				'title'   => 'AMPプラグイン連携機能 設定',
 			]
 		);
+		$description = '「AMP」プラグインの連携機能を有効化します。AMP用広告設定などが追加されます。';
+		if ( ! function_exists( 'is_amp_endpoint' ) ) {
+			$description .= '<br><strong>「AMP」プラグインが有効化されていません。AMPプラグイン連携機能を使う場合はプラグインをインストール・有効化してください</strong>';
+		}
 		$customizer->add_checkbox(
 			[
 				'id'          => 'ys_amp_enable_amp_plugin_integration',
 				'default'     => 0,
 				'label'       => 'AMPプラグイン連携機能を有効化',
-				'description' => '「AMP」プラグインの連携機能を有効化します。AMP用広告設定などが追加されます。',
+				'description' => $description,
 			]
 		);
 	}
