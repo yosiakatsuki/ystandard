@@ -599,7 +599,9 @@ class Content {
 		 * 長さ調節
 		 */
 		if ( mb_strlen( $content ) > $length ) {
-			$content = mb_substr( $content, 0, $length - mb_strlen( $sep ) ) . $sep;
+			$length  = $length - mb_strlen( $sep );
+			$length  = 0 > $length ? 1 : $length;
+			$content = mb_substr( $content, 0, $length ) . $sep;
 		}
 
 		return apply_filters( 'ys_get_the_custom_excerpt', $content, $post_id );
