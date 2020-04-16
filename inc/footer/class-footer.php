@@ -63,6 +63,13 @@ class Footer {
 		);
 	}
 
+	/**
+	 * モバイルフッター用CSS
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
 	public function add_footer_mobile_nav_css( $css ) {
 
 		if ( ! has_nav_menu( 'mobile-footer' ) ) {

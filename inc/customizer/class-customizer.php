@@ -48,7 +48,7 @@ class Customizer {
 	 */
 	public static function get_priority( $key ) {
 
-		if ( isset( self::PANEL_PRIORITY[ $key ] ) ) {
+		if ( array_key_exists( $key, self::PANEL_PRIORITY ) ) {
 			return self::PANEL_PRIORITY[ $key ];
 		}
 

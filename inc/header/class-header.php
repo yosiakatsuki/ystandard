@@ -26,24 +26,7 @@ class Header {
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_inline_css' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script_amp' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script' ] );
-	}
-
-	/**
-	 * Enqueue Scripts.
-	 */
-	public function enqueue_script() {
-		if ( AMP::is_amp() ) {
-			return;
-		}
-		wp_enqueue_script(
-			'mobile-nav',
-			self::get_mobile_nav_script(),
-			[],
-			Utility::get_ystandard_version(),
-			true
-		);
-		Enqueue_Utility::add_defer( 'mobile-nav' );
+		add_action( 'wp_footer', [ $this, 'amp_mobile_nav' ] );
 	}
 
 	/**
@@ -54,36 +37,50 @@ class Header {
 			return;
 		}
 		wp_enqueue_script(
-			'amp-script',
-			'https://cdn.ampproject.org/v0/amp-script-0.1.js',
+			'amp-sidebar',
+			'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js',
 			[],
 			null
 		);
-		Enqueue_Utility::add_async( 'amp-script' );
-		Enqueue_Utility::add_custom_element( 'amp-script', 'amp-script' );
+		Enqueue_Utility::add_async( 'amp-sidebar' );
+		Enqueue_Utility::add_custom_element( 'amp-sidebar', 'amp-sidebar' );
+	}
+
+	/**
+	 * AMP用モバイルナビゲーション
+	 */
+	public function amp_mobile_nav() {
+		if ( ! AMP::is_amp() ) {
+			return;
+		}
+
+		ys_get_template_part( 'template-parts/header/amp-nav' );
 	}
 
 	/**
 	 * メニュー開閉ボタン取得
-	 */
-	public static function get_toggle_button() {
-		$script = self::get_mobile_nav_script();
-		$button = '<button id="global-nav__toggle" class="global-nav__toggle">' . Icon::get_icon( 'menu' ) . '</button>';
-
-		if ( AMP::is_amp() ) {
-			return "<amp-script layout=\"container\" src=\"${script}\">${button}</amp-script>";
-		}
-
-		return $button;
-	}
-
-	/**
-	 * モバイルナビゲーション用スクリプト取得
+	 *
+	 * @param string $type 開閉タイプ.
 	 *
 	 * @return string
 	 */
-	public static function get_mobile_nav_script() {
-		return get_template_directory_uri() . '/js/mobile-nav.js';
+	public static function get_toggle_button( $type = 'toggle' ) {
+		$icon = Icon::get_icon( 'menu' );
+		$attr = [
+			'id="global-nav__toggle"',
+			'class="global-nav__toggle"',
+			'data-label-open="menu"',
+			'data-label-close="close"',
+		];
+		if ( AMP::is_amp() ) {
+			$attr[] = 'on="tap:mobile-menu.' . $type . '"';
+		}
+
+		return sprintf(
+			'<button %s>%s</button>',
+			trim( implode( ' ', $attr ) ),
+			$icon
+		);
 	}
 
 	/**

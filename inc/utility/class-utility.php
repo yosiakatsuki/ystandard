@@ -140,6 +140,8 @@ class Utility {
 		$content = false;
 		if ( self::init_filesystem() ) {
 			/**
+			 * WP_Filesystem
+			 *
 			 * @global \WP_Filesystem_Direct $wp_filesystem ;
 			 */
 			global $wp_filesystem;

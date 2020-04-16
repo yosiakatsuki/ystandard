@@ -35,10 +35,9 @@ class Enqueue_Scripts {
 	 * Enqueue_Scripts constructor.
 	 */
 	public function __construct() {
-		if ( ! AMP::is_amp() ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
-			add_action( 'wp_enqueue_scripts', [ $this, 'add_data' ] );
-		}
+
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'add_data' ] );
 		add_filter( 'script_loader_tag', [ $this, 'script_loader_tag' ], PHP_INT_MAX, 3 );
 	}
 
@@ -46,6 +45,9 @@ class Enqueue_Scripts {
 	 * Enqueue js
 	 */
 	public function enqueue_scripts() {
+		if ( AMP::is_amp() ) {
+			return;
+		}
 		wp_enqueue_script(
 			self::JS_HANDLE,
 			get_template_directory_uri() . '/js/ystandard.js',
@@ -60,6 +62,9 @@ class Enqueue_Scripts {
 	 * Add Data
 	 */
 	public function add_data() {
+		if ( AMP::is_amp() ) {
+			return;
+		}
 		Enqueue_Utility::add_defer( self::JS_HANDLE );
 
 		do_action( 'ys_script_add_data' );
