@@ -29,15 +29,15 @@ class AMP {
 	 * @return bool
 	 */
 	public static function is_amp() {
-		$ys_amp = false;
+		$is_amp = false;
 		if ( Option::get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) {
 			/**
 			 * AMPプラグインでAMPページが作成されているか判断
 			 */
-			$is_amp_endpoint = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
+			$is_amp = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint();
 		}
 
-		return apply_filters( 'ys_is_amp', $ys_amp );
+		return apply_filters( 'ys_is_amp', $is_amp );
 	}
 
 	/**

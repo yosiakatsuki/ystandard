@@ -30,11 +30,8 @@ class Font_Awesome {
 	 * フックやショートコードの登録
 	 */
 	public function register() {
-		if ( AMP::is_amp() ) {
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome_amp' ] );
-		} else {
-			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome' ] );
-		}
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome_amp' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 
 	}
@@ -110,7 +107,13 @@ class Font_Awesome {
 	 * FontAwesomeの読み込み
 	 */
 	public function enqueue_font_awesome() {
-		$type = Option::get_option( 'ys_enqueue_icon_font_type', 'js' );
+		if ( AMP::is_amp() ) {
+			return;
+		}
+		$type = Option::get_option( 'ys_enqueue_icon_font_type', 'none' );
+		if ( 'none' === $type ) {
+			return;
+		}
 		if ( 'css' === $type ) {
 			wp_enqueue_style(
 				self::FONTAWESOME_HANDLE,
@@ -147,7 +150,7 @@ class Font_Awesome {
 	 * @return string
 	 */
 	private function get_font_awesome_load_js_url() {
-		$type = Option::get_option( 'ys_enqueue_icon_font_type', 'js' );
+		$type = Option::get_option( 'ys_enqueue_icon_font_type', 'none' );
 		if ( 'light' === $type ) {
 			return self::get_font_awesome_js_light_url();
 		}
@@ -164,13 +167,19 @@ class Font_Awesome {
 	 * @return bool
 	 */
 	private function is_enable_font_awesome_kit() {
-		return ( 'kit' === Option::get_option( 'ys_enqueue_icon_font_type', 'js' ) && ! empty( Option::get_option( 'ys_enqueue_icon_font_kit_url', '' ) ) );
+		return ( 'kit' === Option::get_option( 'ys_enqueue_icon_font_type', 'none' ) && ! empty( Option::get_option( 'ys_enqueue_icon_font_kit_url', '' ) ) );
 	}
 
 	/**
 	 * FontAwesome読み込み AMPページ用
 	 */
 	public function enqueue_font_awesome_amp() {
+		if ( ! AMP::is_amp() ) {
+			return;
+		}
+		if ( 'none' === Option::get_option( 'ys_enqueue_icon_font_type', 'none' ) ) {
+			return;
+		}
 		wp_enqueue_style(
 			self::FONTAWESOME_HANDLE,
 			self::get_font_awesome_cdn_css_url(),

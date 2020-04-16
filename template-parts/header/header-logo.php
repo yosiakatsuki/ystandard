@@ -10,6 +10,7 @@
 ?>
 <div class="site-branding">
 	<?php
+	do_action( 'ys_site_branding_prepend' );
 	/**
 	 * ヘッダーロゴ
 	 */
@@ -23,5 +24,6 @@
 	 * 概要
 	 */
 	ys_the_blog_description();
+	do_action( 'ys_site_branding_append' );
 	?>
-</div><!-- .site-branding -->
+</div>

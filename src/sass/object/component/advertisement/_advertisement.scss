@@ -1,6 +1,7 @@
 .ys-ad-content {
   margin-top: 2em;
   margin-bottom: 2em;
+  text-align: center;
 }
 
 .ys-ad__title {
@@ -11,15 +12,15 @@
 
 .ys-ad__double {
   @include media-breakpoint(md) {
-    display: flex;
-    align-items: flex-start;
-    text-align: center;
+	display: flex;
+	align-items: flex-start;
+	text-align: center;
 
-    > * {
-      flex: 0 0 calc(50% - 1rem);
-      width: calc(50% - 1rem);
-      margin-right: auto;
-      margin-left: auto;
-    }
+	> * {
+	  flex: 0 0 calc(50% - 1rem);
+	  width: calc(50% - 1rem);
+	  margin-right: auto;
+	  margin-left: auto;
+	}
   }
 }
