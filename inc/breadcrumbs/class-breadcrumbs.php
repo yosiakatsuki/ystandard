@@ -65,7 +65,26 @@ class Breadcrumbs {
 		add_action( 'wp_footer', [ $this, 'structured_data' ], 11 );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'get_header', [ $this, 'add_breadcrumbs' ] );
+		add_action( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_vars' ] );
+	}
 
+	/**
+	 * パンくず用色設定
+	 *
+	 * @param array $css_vars CSS Vars.
+	 *
+	 * @return array
+	 */
+	public function add_css_vars( $css_vars ) {
+		$breadcrumb_text = Enqueue_Utility::get_css_var(
+			'breadcrumbs-text',
+			Option::get_option( 'ys_color_breadcrumbs_text', '#656565' )
+		);
+
+		return array_merge(
+			$css_vars,
+			$breadcrumb_text
+		);
 	}
 
 	/**
@@ -604,6 +623,14 @@ class Breadcrumbs {
 				],
 			]
 		);
+		// パンくずリスト文字色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_breadcrumbs_text',
+				'default' => '#656565',
+				'label'   => 'パンくずリスト文字色',
+			]
+		);
 		/**
 		 * パンくずリストに「投稿ページ」を表示する
 		 */
@@ -613,7 +640,7 @@ class Breadcrumbs {
 				[
 					'id'          => 'ys_show_page_for_posts_on_breadcrumbs_label',
 					'label'       => 'パンくずリストの「投稿ページ」表示',
-					'description' => 'パンくずリストに「設定」→「表示設定」→「ホームページの表示」で「投稿ページ」で指定したページを表示する。',
+					'description' => 'パンくずリストに「設定」→「表示設定」→「ホームページの表示」で「投稿ページ」で指定したページの表示設定',
 				]
 			);
 			$customizer->add_checkbox(
