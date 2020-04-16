@@ -36,7 +36,7 @@ class Advertisement {
 		 * 設定追加
 		 */
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-//		add_action( 'customize_preview_init', [ $this, 'fix_preview_error' ] );
+		add_action( 'customize_preview_init', [ $this, 'fix_preview_error' ] );
 		/**
 		 * ショートコード
 		 */

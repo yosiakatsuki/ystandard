@@ -6,8 +6,8 @@
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
-?>
 
+?>
 <header id="masthead" class="site-header">
 	<?php do_action( 'ys_site_header_prepend' ); ?>
 	<div class="container">

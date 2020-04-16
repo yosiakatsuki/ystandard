@@ -6,8 +6,8 @@
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
-?>
 
+?>
 <figure class="singular-header__thumbnail post-thumbnail">
 	<?php
 	the_post_thumbnail(

@@ -79,10 +79,7 @@ class Content {
 			[ $this, 'related_posts' ],
 			self::get_footer_priority( 'related' )
 		);
-
-
 	}
-
 
 	/**
 	 * コンテンツヘッダーの優先順位取得
@@ -680,7 +677,7 @@ class Content {
 			]
 		);
 		$customizer->add_section_label( 'レイアウト' );
-		// 表示カラム数
+		// 表示カラム数.
 		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
 		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
 		$img  = '<img src="%s" alt="" width="100" height="100" />';
@@ -799,7 +796,7 @@ class Content {
 			]
 		);
 		$customizer->add_section_label( 'レイアウト' );
-		// 表示カラム数
+		// 表示カラム数.
 		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
 		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
 		$img  = '<img src="%s" alt="" width="100" height="100" />';

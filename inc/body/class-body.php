@@ -121,7 +121,6 @@ class Body {
 		 */
 		$classes[] = 'header-type--' . Header::get_header_type();
 
-
 		/**
 		 * カスタマイズプレビュー
 		 */

@@ -144,10 +144,7 @@ class Meta_Description {
 				'description' => '※HTMLタグ・改行は削除されます',
 			]
 		);
-
-
 	}
-
 }
 
 new Meta_Description();

@@ -61,8 +61,6 @@ function ys_is_active_header_search_form() {
  * メニュー開閉ボタンの出力
  *
  * @param string $type 開閉タイプ.
- *
- * @return string
  */
 function ys_global_nav_toggle_button( $type = 'toggle' ) {
 	echo \ystandard\Header::get_toggle_button( $type );
@@ -377,11 +375,12 @@ function ys_get_option_by_int( $name, $default = 0 ) {
 	return \ystandard\Option::get_option_by_int( $name, $default );
 }
 
-
 /** *****************************************************************
  * Embed関連
  * *****************************************************************/
-
+/**
+ * Embed用コンテンツ取得.
+ */
 function ys_embed_content() {
 	$embed = new \ystandard\Embed();
 	echo $embed->get_embed_content();

@@ -43,7 +43,6 @@ if ( ! function_exists( 'apply_shortcodes' ) ) {
 	 * @see   do_shortcode()
 	 *
 	 * @since 5.4.0
-	 *
 	 */
 	function apply_shortcodes( $content, $ignore_html = false ) {
 		return do_shortcode( $content, $ignore_html );
