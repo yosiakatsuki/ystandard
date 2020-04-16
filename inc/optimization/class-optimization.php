@@ -90,7 +90,7 @@ class Optimization {
 		if ( ! $this->can_optimize_jquery() ) {
 			return;
 		}
-		if ( ! Option::get_option_by_bool( 'ys_not_load_jquery', false ) ) {
+		if ( ! AMP::is_amp() && ! Option::get_option_by_bool( 'ys_not_load_jquery', false ) ) {
 			return;
 		}
 		wp_deregister_script( 'jquery' );

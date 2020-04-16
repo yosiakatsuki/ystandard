@@ -16,7 +16,10 @@ namespace ystandard;
  */
 class Design {
 
-	CONST PANEL_NAME = 'ys_design';
+	/**
+	 * Panel Name.
+	 */
+	const PANEL_NAME = 'ys_design';
 
 	/**
 	 * Design constructor.
