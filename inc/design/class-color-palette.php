@@ -11,6 +11,7 @@ namespace ystandard;
 
 /**
  * Class Color_Palette
+ *
  * @package ystandard
  */
 class Color_Palette {

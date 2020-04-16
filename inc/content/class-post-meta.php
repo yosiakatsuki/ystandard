@@ -104,7 +104,7 @@ class Post_Meta {
 			</div>
 		</div>
 		<?php do_action( 'ys_meta_box_after_page' ); ?>
-		<?php if ( Admin::is_post_type_on_admin( 'post' ) ): ?>
+		<?php if ( Admin::is_post_type_on_admin( 'post' ) ) : ?>
 			<h3 class="meta-box__title">投稿オプション</h3>
 			<div class="meta-box__dscr">※投稿ページ用設定</div>
 			<div class="meta-box__list">
@@ -199,7 +199,6 @@ class Post_Meta {
 			if ( ! current_user_can( 'edit_page', $post_id ) ) {
 				return false;
 			}
-
 		} else {
 
 			if ( ! current_user_can( 'edit_post', $post_id ) ) {

@@ -238,15 +238,13 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 			 * タクソノミーごとにリストを作成
 			 */
 			if ( ! empty( $taxonomies ) ) :
-				foreach ( $taxonomies as $taxonomy ) :
-					?>
-					<optgroup label="<?php echo $taxonomy->label; ?>">
-						<?php $this->get_taxonomies_option_html( $taxonomy, 0, $selected_taxonomy ); ?>
-					</optgroup>
-				<?php
-				endforeach;
-			endif;
-			?>
+				?>
+				<?php foreach ( $taxonomies as $taxonomy ) : ?>
+				<optgroup label="<?php echo $taxonomy->label; ?>">
+					<?php $this->get_taxonomies_option_html( $taxonomy, 0, $selected_taxonomy ); ?>
+				</optgroup>
+			<?php endforeach; ?>
+			<?php endif; ?>
 		</select><br>
 		<span class="ys-widget-option__sub">※ctrlまたはcmdやShiftを押しながらクリックすることで複数選択することが可能です。<br>※選択解除する場合はctrlまたはcmdを押しながらクリックして下さい。</span>
 		<?php
@@ -460,7 +458,8 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 	/**
 	 * カラム数のサニタイズ
 	 *
-	 * @param int|string $col カラム数.
+	 * @param int|string $col     カラム数.
+	 * @param int        $default Default.
 	 *
 	 * @return int
 	 */

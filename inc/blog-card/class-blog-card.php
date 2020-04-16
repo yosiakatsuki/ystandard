@@ -441,7 +441,7 @@ class Blog_Card {
 		if ( $this->params['thumbnail'] ) {
 			return apply_filters( 'post_thumbnail_html', $this->params['thumbnail'], $post_id, 0, '', '' );
 		}
-		$sizes = [ 'large', 'full', 'medium', ];
+		$sizes = [ 'large', 'full', 'medium' ];
 		foreach ( $sizes as $size ) {
 			$image = get_the_post_thumbnail( $post_id, $size );
 			if ( ! empty( $image ) ) {

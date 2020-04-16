@@ -24,6 +24,11 @@ class Widget {
 		add_action( 'after_setup_theme', [ $this, 'set_widget' ] );
 	}
 
+	/**
+	 * サイドバーが有効か
+	 *
+	 * @return bool
+	 */
 	public static function is_active_sidebar() {
 		if ( Template::is_mobile() && Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
 			return false;
@@ -67,6 +72,9 @@ class Widget {
 		}
 	}
 
+	/**
+	 * 記事下ウィジェット
+	 */
 	public function singular_footer_widget() {
 		if ( is_single() && is_active_sidebar( 'after-content' ) ) {
 			$this->after_post();

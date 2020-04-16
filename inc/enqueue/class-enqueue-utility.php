@@ -70,6 +70,7 @@ class Enqueue_Utility {
 	 * Add crossorigin.
 	 *
 	 * @param string $handle handle.
+	 * @param string $value  value.
 	 */
 	public static function add_crossorigin( $handle, $value ) {
 		wp_script_add_data( $handle, 'crossorigin', $value );
@@ -79,6 +80,7 @@ class Enqueue_Utility {
 	 * Add custom-element.
 	 *
 	 * @param string $handle handle.
+	 * @param string $value  value.
 	 */
 	public static function add_custom_element( $handle, $value ) {
 		wp_script_add_data( $handle, 'custom-element', $value );

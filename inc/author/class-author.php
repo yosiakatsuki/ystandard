@@ -49,6 +49,9 @@ class Author {
 		);
 	}
 
+	/**
+	 * Author 表示.
+	 */
 	public function post_author() {
 		echo $this->do_shortcode( [] );
 	}

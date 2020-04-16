@@ -121,10 +121,10 @@ class Info_Bar {
 		/**
 		 * 色
 		 */
-		$styles[] = ".info-bar {
+		$styles[] = '.info-bar {
 			background-color:var(--info-bar-bg);
 			color:var(--info-bar-text);
-		}";
+		}';
 		/**
 		 * 太字
 		 */
