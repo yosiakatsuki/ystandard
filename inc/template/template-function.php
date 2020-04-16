@@ -59,9 +59,13 @@ function ys_is_active_header_search_form() {
 
 /**
  * メニュー開閉ボタンの出力
+ *
+ * @param string $type 開閉タイプ.
+ *
+ * @return string
  */
-function ys_global_nav_toggle_button() {
-	echo \ystandard\Header::get_toggle_button();
+function ys_global_nav_toggle_button( $type = 'toggle' ) {
+	echo \ystandard\Header::get_toggle_button( $type );
 }
 
 /** *****************************************************************

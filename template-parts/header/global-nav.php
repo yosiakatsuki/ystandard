@@ -13,6 +13,7 @@ if ( ! has_nav_menu( 'global' ) ) {
 ?>
 <?php ys_global_nav_toggle_button(); ?>
 <div class="<?php ys_global_nav_class( 'global-nav' ); ?>">
+	<?php do_action( 'ys_global_nav_prepend' ); ?>
 	<nav class="global-nav__container">
 		<?php if ( ys_is_active_header_search_form() ) : ?>
 			<div id="global-nav__search" class="global-nav__search">
@@ -35,8 +36,9 @@ if ( ! has_nav_menu( 'global' ) ) {
 	</nav>
 	<?php if ( ys_is_active_header_search_form() ) : ?>
 		<button id="global-nav__search-button" class="global-nav__search-button">
-			<?php echo ys_get_icon( 'search' ) ?>
+			<?php echo ys_get_icon( 'search' ); ?>
 		</button>
 	<?php endif; ?>
+	<?php do_action( 'ys_global_nav_append' ); ?>
 </div>
 
