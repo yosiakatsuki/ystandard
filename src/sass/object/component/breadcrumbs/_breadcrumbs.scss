@@ -1,7 +1,7 @@
 .breadcrumbs__list {
   margin: 0;
   padding: 0.75em 0;
-  color: var(--font-gray);
+  color: var(--breadcrumbs-text);
   font-size: 0.75em;
   line-height: 1;
   white-space: nowrap;
@@ -10,7 +10,7 @@
   list-style: none;
 
   a {
-    color: var(--font-gray);
+    color: currentColor;
     text-decoration: none;
   }
 }
