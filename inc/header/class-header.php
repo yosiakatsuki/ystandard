@@ -203,7 +203,6 @@ class Header {
 			Option::get_option( 'ys_color_nav_btn_sp', '#ffffff' )
 		);
 
-
 		return array_merge(
 			$css_vars,
 			$header_bg,

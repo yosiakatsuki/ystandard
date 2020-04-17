@@ -47,6 +47,15 @@ class Author {
 			[ $this, 'post_author' ],
 			Content::get_footer_priority( 'author' )
 		);
+		add_action( 'widgets_init', [ $this, 'register_widget' ] );
+	}
+
+	/**
+	 * ウィジェット登録
+	 */
+	public function register_widget() {
+		\YS_Loader::require_file( __DIR__ . '/class-ys-widget-author-box.php' );
+		register_widget( 'YS_Widget_Author_Box' );
 	}
 
 	/**
