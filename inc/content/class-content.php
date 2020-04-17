@@ -741,7 +741,7 @@ class Content {
 		$customizer->add_section_label( '記事下部' );
 		$customizer->add_label(
 			[
-				'id'          => 'ys_after_contents_section_label',
+				'id'          => 'ys_post_after_contents_section_label',
 				'label'       => '記事下コンテンツの表示・非表示設定',
 				'description' => '※シェアボタンの表示は「[ys]SNS」→「SNSシェアボタン」から設定できます',
 			]
