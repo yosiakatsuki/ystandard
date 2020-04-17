@@ -23,6 +23,10 @@
   --post-paging-text: var(--font-color);
   --pagination-text: var(--font-color);
   --advertisement-title: var(--font-gray);
+  --toc-text: var(--font-color);
+  --toc-bg: rgba($color__border-gray-light, .2);
+  --toc-border: var(--site-border-gray);
+  --toc-list-border: var(--site-border-gray);
   --tagcloud-bg: var(--site-bg-light-gray);
   --tagcloud-text: var(--font-color);
   --footer-bg: #{$color__bg-gray-dark};
