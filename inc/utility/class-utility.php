@@ -278,4 +278,58 @@ class Utility {
 		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
 	}
 
+	/**
+	 * 投稿タイプ取得
+	 *
+	 * @param array $args    args.
+	 * @param bool  $exclude 除外.
+	 *
+	 * @return array
+	 */
+	public static function get_post_types( $args = [], $exclude = true ) {
+		$args = array_merge(
+			[ 'public' => true ],
+			$args
+		);
+
+		$types = get_post_types( $args );
+
+		if ( $exclude ) {
+			unset( $types['attachment'] );
+		}
+
+		foreach ( $types as $key => $value ) {
+			$post_type = get_post_type_object( $key );
+			if ( $post_type ) {
+				$types[ $key ] = $post_type->labels->singular_name;
+			}
+		}
+
+
+		return $types;
+	}
+
+
+	/**
+	 * 投稿本文を取得
+	 *
+	 * @param bool $do_filter フィルターをかけるか.
+	 *
+	 * @return string
+	 */
+	public static function get_post_content( $do_filter = true ) {
+		/**
+		 * Post.
+		 *
+		 * @global \WP_Post
+		 */
+		global $post;
+		$content = $post->post_content;
+		if ( $do_filter ) {
+			$content = apply_filters( 'the_content', $content );
+			$content = str_replace( ']]>', ']]&gt;', $content );
+		}
+
+		return $content;
+	}
 }
