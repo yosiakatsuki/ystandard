@@ -203,6 +203,7 @@ class Header {
 			Option::get_option( 'ys_color_nav_btn_sp', '#ffffff' )
 		);
 
+
 		return array_merge(
 			$css_vars,
 			$header_bg,
@@ -211,7 +212,27 @@ class Header {
 			$mobile_nav_bg,
 			$mobile_nav_color,
 			$mobile_nav_open,
-			$mobile_nav_close
+			$mobile_nav_close,
+			$this->get_fixed_sidebar_pos()
+		);
+	}
+
+	/**
+	 * 固定サイドバーの位置作成
+	 *
+	 * @return array
+	 */
+	private function get_fixed_sidebar_pos() {
+
+		$sidebar_top = Option::get_option_by_int( 'ys_header_fixed_height_pc', 0 );
+		$sidebar_top = 0 < $sidebar_top ? ( $sidebar_top + 50 ) . 'px' : '2em';
+		if ( ! Option::get_option_by_bool( 'ys_header_fixed', false ) ) {
+			$sidebar_top = '2em';
+		}
+
+		return Enqueue_Utility::get_css_var(
+			'fixed-sidebar-top',
+			$sidebar_top
 		);
 	}
 

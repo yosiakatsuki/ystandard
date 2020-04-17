@@ -16,7 +16,7 @@
 .sidebar__fixed {
   @include media-breakpoint(lg) {
 	position: sticky;
-	top: 2em;
+	top: var(--fixed-sidebar-top);
   }
 }
 
