@@ -81,7 +81,6 @@ class TOC {
 			if ( Option::get_option_by_bool( 'ys_toc_level_' . $i, $default ) ) {
 				$this->levels[] = $i;
 			}
-
 		}
 		// 必要個数.
 		$this->required_count = Option::get_option_by_int( 'ys_toc_required_count', 3 );
