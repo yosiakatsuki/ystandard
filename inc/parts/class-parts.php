@@ -232,7 +232,7 @@ class Parts {
 		if ( 'ys-parts' === $column_name ) {
 			?>
 			<div class="copy-form">
-				<input type="text" id="ys_parts_shortcode" class="copy-form__target" value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly onfocus="this.select();"/>
+				<input type="text" class="copy-form__target" value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly onfocus="this.select();"/>
 				<button class="copy-form__button button action">
 					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>

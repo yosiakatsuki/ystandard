@@ -11,6 +11,12 @@
   }
 }
 
+.customize-control-checkbox {
+  & + & {
+	margin-top: -12px;
+  }
+}
+
 //  サイトアイコン
 #customize-control-site_icon {
   .app-icon-preview {

@@ -4,6 +4,7 @@ module.exports = {
 	entry: {
 		'font-awesome-ystd': './src/js/font-awesome/app.js',
 		'polyfill': './src/js/polyfill/polyfill.js',
+		'search-icons': './src/js/admin/search-icons.js',
 	},
 	output: {
 		filename: '[name].js',
@@ -25,5 +26,10 @@ module.exports = {
 				]
 			}
 		]
+	},
+	resolve: {
+		alias: {
+			'vue$': 'vue/dist/vue.esm.js'
+		}
 	}
 };
