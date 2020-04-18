@@ -36,6 +36,7 @@ class Admin {
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_action( 'admin_init', [ $this, 'enqueue_visual_editor_styles' ] );
 		add_action( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ] );
+		$this->tgmpa_load();
 	}
 
 	/**
@@ -234,6 +235,53 @@ class Admin {
 			<button class="button ys-custom-uploader__clear" type="button">画像を削除</button>
 		</div>
 		<?php
+	}
+
+	/**
+	 * TGM Plugin Activation
+	 */
+	private function tgmpa_load() {
+		require_once get_template_directory() . '/library/TGM-Plugin-Activation/class-tgm-plugin-activation.php';
+		add_action( 'tgmpa_register', [ $this, 'tgmpa_register' ] );
+	}
+
+	/**
+	 * TGM Plugin Activation 実行
+	 */
+	public function tgmpa_register() {
+		$plugins = [
+			[
+				'name'   => 'yStandard Blocks',
+				'slug'   => 'ystandard-blocks',
+				'source' => 'https://wp-ystandard.com/download/ystandard/plugin/ystandard-blocks/ystandard-blocks.zip',
+			],
+			[
+				'name' => 'WP Multibyte Patch',
+				'slug' => 'wp-multibyte-patch',
+			],
+			[
+				'name' => 'Lazy Load - Optimize Images',
+				'slug' => 'rocket-lazy-load',
+			],
+			[
+				'name' => 'EWWW Image Optimizer',
+				'slug' => 'ewww-image-optimizer',
+			],
+		];
+		$config  = [
+			'id'           => 'tgmpa',
+			'default_path' => '',
+			'menu'         => 'tgmpa-install-plugins',
+			'parent_slug'  => 'themes.php',
+			'capability'   => 'edit_theme_options',
+			'has_notices'  => true,
+			'dismissable'  => true,
+			'dismiss_msg'  => '',
+			'is_automatic' => false,
+			'message'      => '',
+		];
+
+		tgmpa( $plugins, $config );
 	}
 
 	/**
