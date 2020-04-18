@@ -102,3 +102,24 @@
 	height: auto;
   }
 }
+
+.ys-dashboard-info {
+  margin: 0 -12px;
+  padding: 0;
+  list-style: none;
+
+  li {
+	display: flex;
+	padding: .5em 1em;
+	border-bottom: 1px solid $color__border-gray-light;
+	line-height: 1.5;
+
+	&:last-child {
+	  border-bottom: 0;
+	}
+  }
+}
+.ys-dashboard-info__date {
+  width: 80px;
+  flex-shrink: 0;
+}
