@@ -30,6 +30,7 @@ class Admin_Menu {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 9 );
 	}
 
 	/**
@@ -52,6 +53,15 @@ class Admin_Menu {
 			3
 		);
 
+		add_submenu_page(
+			'ystandard-start-page',
+			'アイコン',
+			'アイコン',
+			'manage_options',
+			'ystandard-icons',
+			[ $this, 'icons_page' ]
+		);
+
 		if ( $this->is_enable_cache() ) {
 			/**
 			 * キャッシュメニューの追加
@@ -63,6 +73,31 @@ class Admin_Menu {
 				'manage_options',
 				'ystandard-cache',
 				[ $this, 'cache_page' ]
+			);
+		}
+	}
+
+	/**
+	 * 管理画面-JavaScriptの読み込み
+	 *
+	 * @param string $hook_suffix suffix.
+	 *
+	 * @return void
+	 */
+	public function admin_enqueue_scripts( $hook_suffix ) {
+		// アイコン検索用.
+		if ( 'ystandard_page_ystandard-icons' === $hook_suffix ) {
+			wp_enqueue_script(
+				'search-icons',
+				get_template_directory_uri() . '/js/search-icons.js',
+				[],
+				Utility::get_ystandard_version(),
+				true
+			);
+			wp_localize_script(
+				'search-icons',
+				'searchIcons',
+				$this->get_icon_search_data()
 			);
 		}
 	}
@@ -168,6 +203,78 @@ class Admin_Menu {
 			</div>
 		</div>
 		<?php
+	}
+
+	/**
+	 * アイコン コピーページ
+	 */
+	public function icons_page() {
+		?>
+		<div class="wrap ys-option-page">
+			<h2>アイコン ショートコード一覧</h2>
+			<p>ショートコードをコピーしてサイト内でご使用ください。</p>
+			<div class="ys-option__section">
+				<div id="ys-search-icons">
+					<p class="ys-search-icons__search">
+						検索：<input type="search" class="" v-model="keyword">
+					</p>
+					<div class="ys-icon-search__list">
+						<div class="ys-icon-search__item" v-for="icon in filteredIcons">
+							<div class="ys-icon-search__icon" v-html="icon.svg"></div>
+							<p class="ys-icon-search__label">{{icon.label}}</p>
+							<div class="copy-form">
+								<input type="text" class="copy-form__target" v-bind:value="icon.short_code" readonly onfocus="this.select();"/>
+								<button class="copy-form__button button action">
+									<?php echo ys_get_icon( 'clipboard' ); ?>
+								</button>
+								<div class="copy-form__info">コピーしました！</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * アイコンデータ取得
+	 *
+	 * @return array
+	 */
+	private function get_icon_search_data() {
+		$icons = [];
+		// feather.
+		$icon_dir = get_template_directory() . '/library/feather';
+		$files    = glob( $icon_dir . '/*.svg' );
+		foreach ( $files as $file ) {
+			$icon_name = str_replace(
+				[
+					$icon_dir . '/',
+					'.svg',
+				],
+				'',
+				$file
+			);
+			$icons[]   = [
+				'name'       => $icon_name,
+				'label'      => $icon_name,
+				'short_code' => '[ys_icon name="' . $icon_name . '"]',
+				'svg'        => Icon::get_icon( $icon_name ),
+			];
+		}
+		// sns.
+		$sns_icons = Icon::get_all_sns_icons();
+		foreach ( $sns_icons as $key => $value ) {
+			$icons[] = [
+				'name'       => $key,
+				'label'      => $value['title'],
+				'short_code' => '[ys_sns_icon name="' . $key . '"]',
+				'svg'        => Icon::get_sns_icon( $key ),
+			];
+		}
+
+		return $icons;
 	}
 
 	/**

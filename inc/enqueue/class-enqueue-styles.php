@@ -214,14 +214,14 @@ class Enqueue_Styles {
 	 */
 	public static function add_media_query( $css, $min = '', $max = '' ) {
 
-		if ( ! isset( self::BREAKPOINTS[ $min ] ) && ! isset( self::BREAKPOINTS[ $max ] ) ) {
+		if ( ! array_key_exists( $min, self::BREAKPOINTS ) && ! array_key_exists( $max, self::BREAKPOINTS ) ) {
 			return $css;
 		}
-		if ( isset( self::BREAKPOINTS[ $min ] ) ) {
+		if ( array_key_exists( $min, self::BREAKPOINTS ) ) {
 			$breakpoint = self::BREAKPOINTS[ $min ];
 			$min        = "(min-width: ${breakpoint}px)";
 		}
-		if ( isset( self::BREAKPOINTS[ $max ] ) ) {
+		if ( array_key_exists( $max, self::BREAKPOINTS ) ) {
 			$breakpoint = self::BREAKPOINTS[ $max ] - 1;
 			$max        = "(max-width: ${breakpoint}px)";
 		}

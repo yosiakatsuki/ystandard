@@ -25,14 +25,14 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 ## Third-party resources
 
 ### normalize.css
-License: MIT  
+License: MIT License  
 Source : <https://github.com/necolas/normalize.css>
 
 ### Simple Icons
 License: CC0 - 1.0  
 Source : <https://github.com/simple-icons/simple-icons>
 
-### Simple Icons
+### Feather
 License: MIT  
 Source : <https://github.com/feathericons/feather>
 
@@ -44,8 +44,13 @@ Source      : <https://fortawesome.github.io/Font-Awesome/>
 
 ### Theme Update Checker Library
 
-License: GPL  
-Source : <http://w-shadow.com/>
+License: MIT License  
+Source : <https://github.com/YahnisElsts/plugin-update-checker>
+
+### TGM-Plugin-Activation
+
+License: GPL-2.0  
+Source : <https://github.com/TGMPA/TGM-Plugin-Activation>
 
 ### \_decimal.scss
 
@@ -61,11 +66,6 @@ Source : <https://github.com/jhildenbiddle/css-vars-ponyfill>
 
 License: MIT License  
 Source : <https://github.com/fregante/object-fit-images>
-
-### stickyfill
-
-License: MIT License  
-Source : <https://github.com/wilddeer/stickyfill>
 
 ## 変更履歴
 

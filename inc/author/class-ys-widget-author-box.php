@@ -39,7 +39,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 	 * @var array
 	 */
 	public $widget_options = [
-		'classname'                   => 'ys_profile_box',
+		'classname'                   => 'ys-profile-widget',
 		'description'                 => '著者情報を表示します',
 		'customize_selective_refresh' => true,
 	];

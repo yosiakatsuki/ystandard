@@ -37,6 +37,7 @@
 		"rimraf": "^2.7.1",
 		"simple-icons": "^2.9.0",
 		"stickyfilljs": "^2.1.0",
+		"vue": "^2.6.11",
 		"watch": "^1.0.2",
 		"webpack": "^4.41.5",
 		"webpack-stream": "^5.2.1"
