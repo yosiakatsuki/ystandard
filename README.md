@@ -32,7 +32,7 @@ Source : <https://github.com/necolas/normalize.css>
 License: CC0 - 1.0  
 Source : <https://github.com/simple-icons/simple-icons>
 
-### Simple Icons
+### Feather
 License: MIT  
 Source : <https://github.com/feathericons/feather>
 
@@ -61,11 +61,6 @@ Source : <https://github.com/jhildenbiddle/css-vars-ponyfill>
 
 License: MIT License  
 Source : <https://github.com/fregante/object-fit-images>
-
-### stickyfill
-
-License: MIT License  
-Source : <https://github.com/wilddeer/stickyfill>
 
 ## 変更履歴
 
