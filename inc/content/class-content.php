@@ -203,6 +203,9 @@ class Content {
 		if ( ! Option::get_option_by_bool( 'ys_show_post_related', true ) ) {
 			return false;
 		}
+		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_related' ) ) ) {
+			return false;
+		}
 
 		return true;
 	}
@@ -222,6 +225,9 @@ class Content {
 		$option = is_page() ? 'page' : 'post';
 		$option = Option::get_option( "ys_show_${option}_publish_date", 'both' );
 		if ( 'none' === $option ) {
+			return false;
+		}
+		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_publish_date' ) ) ) {
 			return false;
 		}
 		// 更新日取得.

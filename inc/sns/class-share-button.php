@@ -87,9 +87,6 @@ class Share_Button {
 	 * ヘッダー・フッター コンテンツのセット
 	 */
 	public function set_singular_content() {
-		if ( ! $this->is_active_share_buttons() ) {
-			return;
-		}
 		add_action(
 			'ys_singular_header',
 			[ $this, 'header_share_button' ],
@@ -119,6 +116,9 @@ class Share_Button {
 	 * ヘッダー側シェアボタン
 	 */
 	public function header_share_button() {
+		if ( ! $this->is_active_share_buttons() ) {
+			return;
+		}
 		echo $this->do_shortcode( $this->get_share_button_settings( 'header' ) );
 	}
 
@@ -126,6 +126,9 @@ class Share_Button {
 	 * フッター側シェアボタン
 	 */
 	public function footer_share_button() {
+		if ( ! $this->is_active_share_buttons() ) {
+			return;
+		}
 		echo $this->do_shortcode( $this->get_share_button_settings( 'footer' ) );
 	}
 
