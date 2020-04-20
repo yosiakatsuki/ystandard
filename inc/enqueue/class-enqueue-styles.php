@@ -44,7 +44,7 @@ class Enqueue_Styles {
 		add_action( 'wp_enqueue_scripts', [ $this, 'dequeue_css' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_style_css' ], 100 );
 		// CSSインライン読み込み.
-		if ( ! is_admin() && Option::get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
+		if ( Option::get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
 			add_filter( 'style_loader_tag', [ $this, 'style_loader_inline' ], PHP_INT_MAX, 4 );
 		}
 		add_filter( 'wp_get_custom_css', [ $this, '_wp_get_custom_css' ] );
@@ -102,6 +102,7 @@ class Enqueue_Styles {
 	 */
 	private function style_add_data() {
 		wp_style_add_data( self::HANDLE_MAIN, 'inline', true );
+		wp_style_add_data( 'wp-block-library', 'inline', 'none' );
 		do_action( 'ys_style_add_data' );
 	}
 
@@ -252,7 +253,15 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	public function style_loader_inline( $html, $handle, $href, $media ) {
-		if ( true !== wp_scripts()->get_data( $handle, 'inline' ) ) {
+		if ( false === strpos( $html, 'ystandard' ) ) {
+			if ( true !== wp_styles()->get_data( $handle, 'inline' ) ) {
+				return $html;
+			}
+		}
+		if ( 'none' === wp_styles()->get_data( $handle, 'inline' ) ) {
+			return $html;
+		}
+		if ( is_admin() ) {
 			return $html;
 		}
 		/**
@@ -267,6 +276,7 @@ class Enqueue_Styles {
 		 * サイトURLのチェック
 		 */
 		$url = $matches[1];
+
 		if ( false === strrpos( $url, home_url() ) ) {
 			return $html;
 		}
@@ -275,6 +285,9 @@ class Enqueue_Styles {
 			$style = Utility::file_get_contents( $path );
 		}
 		if ( false === $style ) {
+			return $html;
+		}
+		if ( false !== strpos( $style, '../' ) || false !== strpos( $style, './' ) ) {
 			return $html;
 		}
 		/**
