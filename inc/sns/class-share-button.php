@@ -270,8 +270,8 @@ class Share_Button {
 		$url   = apply_filters( 'ys_share_btn_url', Utility::get_page_url() );
 		$title = apply_filters( 'ys_share_btn_title', Utility::get_page_title() );
 		// 変数にセット.
-		$this->share_url   = urlencode( $url );
-		$this->share_title = urlencode( $title );
+		$this->share_url   = rawurlencode( $url );
+		$this->share_title = rawurlencode( html_entity_decode( $title ) );
 		/**
 		 * URLやTitleのセット
 		 */
