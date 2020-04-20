@@ -88,6 +88,13 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 	public function widget( $args, $instance ) {
 
 		/**
+		 * ランキング作成
+		 */
+		if ( 'ranking' === $instance['orderby'] ) {
+			$instance['filter'] = 'sga';
+		}
+
+		/**
 		 * ショートコード実行
 		 */
 		$shortcode = \ystandard\Utility::do_shortcode(
@@ -205,7 +212,50 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 				<?php $this->the_taxonomies_select_html( $instance['taxonomy_select'] ); ?>
 			</p>
 		</div>
+		<div class="widget-form__section">
+			<h4>並び替え</h4>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'orderby' ); ?>">並び替え</label>
+				<select name="<?php echo $this->get_field_name( 'orderby' ); ?>">
+					<?php
+					$orderby = $this->get_orderby();
+					foreach ( $orderby as $key => $value ) :
+						?>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['orderby'] ); ?>><?php echo $value; ?></option>
+					<?php endforeach; ?>
+				</select>
+			</p>
+			<p>
+				<label for="<?php echo $this->get_field_id( 'order' ); ?>">並び順</label>
+				<select name="<?php echo $this->get_field_name( 'order' ); ?>">
+					<option value="DESC" <?php selected( 'DESC', $instance['order'] ); ?>>降順(最新記事から)</option>
+					<option value="ASC" <?php selected( 'ASC', $instance['order'] ); ?>>昇順(古い記事から)</option>
+				</select>
+				<?php if ( \ystandard\Recent_Posts::is_active_sga_ranking() ) : ?>
+					<br><span class="ys-widget-option__sub">※並び替えで「ランキング」を選んでいる場合は並び順設定は無視され、必ず「降順(最新記事から)」になります。</span>
+				<?php endif; ?>
+			</p>
+		</div>
 		<?php
+	}
+
+	/**
+	 * 並び替え設定取得
+	 *
+	 * @return string[]
+	 */
+	private function get_orderby() {
+		$orderby = [
+			'date'     => '公開日',
+			'title'    => 'タイトル',
+			'modified' => '更新日',
+			'rand'     => 'ランダム',
+		];
+		if ( \ystandard\Recent_Posts::is_active_sga_ranking() ) {
+			$orderby['ranking'] = 'ランキング';
+		}
+
+		return $orderby;
 	}
 
 	/**
@@ -229,10 +279,11 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 			$selected_taxonomy = [ $selected_taxonomy ];
 		}
 		?>
-		<select name="<?php echo $this->get_field_name( 'taxonomy_select' ); ?>[]" class="ys-widget__select multiple" size="6" multiple>
+		<select name="<?php echo $this->get_field_name( 'taxonomy_select' ); ?>[]" class="ys-widget__select multiple" size="6">
 			<?php if ( empty( $taxonomies ) ) : ?>
 				<option value="">選択できるカテゴリー・タグがありません</option>
 			<?php endif; ?>
+			<option value="">絞り込みしない</option>
 			<?php
 			/**
 			 * タクソノミーごとにリストを作成
@@ -245,8 +296,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 				</optgroup>
 			<?php endforeach; ?>
 			<?php endif; ?>
-		</select><br>
-		<span class="ys-widget-option__sub">※ctrlまたはcmdやShiftを押しながらクリックすることで複数選択することが可能です。<br>※選択解除する場合はctrlまたはcmdを押しながらクリックして下さい。</span>
+		</select>
 		<?php
 	}
 
@@ -394,6 +444,17 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 		if ( ! empty( $list ) ) {
 			$instance['taxonomy']  = $list[0]['taxonomy_name'];
 			$instance['term_slug'] = $list[0]['term_slug'];
+		}
+
+		$instance['orderby'] = ! empty( $new_instance['orderby'] ) ? $new_instance['orderby'] : 'date';
+		$instance['order']   = ! empty( $new_instance['order'] ) ? $new_instance['order'] : 'DESC';
+		if ( ! \ystandard\Recent_Posts::is_active_sga_ranking() ) {
+			if ( 'ranking' === $instance['orderby'] ) {
+				$instance['orderby'] = 'date';
+			}
+		}
+		if ( 'ranking' === $instance['orderby'] ) {
+			$instance['order'] = 'DESC';
 		}
 
 		return $instance;
