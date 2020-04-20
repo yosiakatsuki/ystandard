@@ -52,6 +52,12 @@
 	padding: 0.25em 0 0;
 	color: #333333;
 	font-size: 0.7rem;
+
+	&.is-show {
+	  display: block;
+	  animation: show-tooltip 1.5s;
+	  animation-fill-mode: forwards;
+	}
   }
 
   .copy-form__button {
@@ -71,10 +77,19 @@
 	.ys-icon {
 	  svg {
 		width: 1rem;
+		height: 1rem;
 	  }
 	}
   }
+}
 
+@keyframes show-tooltip {
+  0% {
+	opacity: 1;
+  }
+  100% {
+	opacity: 0;
+  }
 }
 
 
@@ -123,3 +138,4 @@
   width: 80px;
   flex-shrink: 0;
 }
+
