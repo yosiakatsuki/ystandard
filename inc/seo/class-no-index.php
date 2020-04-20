@@ -61,7 +61,7 @@ class No_Index {
 			 */
 			$noindex = true;
 		} elseif ( is_single() || is_page() ) {
-			if ( '1' === Content::get_post_meta( 'ys_noindex' ) ) {
+			if ( Utility::to_bool( Content::get_post_meta( 'ys_noindex' ) ) ) {
 				/**
 				 * 投稿・固定ページでnoindex設定されていればnoindex
 				 */
@@ -140,5 +140,6 @@ class No_Index {
 			]
 		);
 	}
-
 }
+
+new No_Index();

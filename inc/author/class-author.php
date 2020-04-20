@@ -127,7 +127,7 @@ class Author {
 			/**
 			 * 投稿個別設定
 			 */
-			if ( '1' === Content::get_post_meta( 'ys_hide_author' ) ) {
+			if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_author' ) ) ) {
 				return false;
 			}
 			/**
