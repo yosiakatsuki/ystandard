@@ -346,17 +346,13 @@ class Content {
 		echo ob_get_clean();
 	}
 
-
 	/**
 	 * 投稿タイトル
 	 */
 	public function singular_title() {
-		do_action( 'ys_singular_before_title' );
-		the_title(
-			'<h1 class="singular-header__title entry-title">',
-			'</h1>'
-		);
-		do_action( 'ys_singular_after_title' );
+		ob_start();
+		Template::get_template_part( 'template-parts/parts/post-title' );
+		echo ob_get_clean();
 	}
 
 	/**
