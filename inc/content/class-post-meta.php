@@ -88,6 +88,11 @@ class Post_Meta {
 				</label>
 			</div>
 			<div class="meta-box__list">
+				<label for="ys_hide_toc">
+					<input type="checkbox" id="ys_hide_toc" name="ys_hide_toc" value="1" <?php $this->checked( 'ys_hide_toc', $post_id ); ?> />目次を<strong>非表示</strong>にする
+				</label>
+			</div>
+			<div class="meta-box__list">
 				<label for="ys_hide_share">
 					<input type="checkbox" id="ys_hide_share" name="ys_hide_share" value="1" <?php $this->checked( 'ys_hide_share', $post_id ); ?> />シェアボタンを<strong>非表示</strong>にする
 				</label>
@@ -150,6 +155,10 @@ class Post_Meta {
 		 * 広告非表示設定
 		 */
 		self::save_post_checkbox( $post_id, 'ys_hide_ad' );
+		/**
+		 * 目次非表示設定
+		 */
+		self::save_post_checkbox( $post_id, 'ys_hide_toc' );
 		/**
 		 * シェアボタン非表示設定
 		 */
