@@ -48,6 +48,7 @@ class Recent_Posts {
 		'thumbnail_size'  => '', // thumbnail, medium, large, full, etc...
 		'thumbnail_ratio' => '', // 4-3, 16-9, 3-1, 2-1, 1-1.
 		'filter'          => '', // category,same-post,sga.
+		'cache'           => 'recent_posts',
 	];
 
 	/**
@@ -132,10 +133,14 @@ class Recent_Posts {
 		$this->set_filter_sga();
 		$this->set_taxonomy();
 
+		/**
+		 * キャッシュ
+		 */
+		$key   = 'ys_query_cache_' . $this->shortcode_atts['cache'];
 		$query = Cache::get_query(
 			self::CACHE_KEY,
 			$this->query_args,
-			Option::get_option( 'ys_query_cache_recent_posts', 'none' )
+			Option::get_option( $key, 'none' )
 		);
 
 		/**

@@ -292,6 +292,7 @@ class Content {
 				'filter'    => 'category,same-post',
 				'list_type' => 'card',
 				'orderby'   => 'rand',
+				'cache'     => 'related_posts',
 			]
 		);
 		if ( $content ) {
