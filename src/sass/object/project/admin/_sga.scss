@@ -1,0 +1,45 @@
+.settings_page_gapiwp-analytics {
+  fieldset {
+	border: 1px solid #ddd;
+	margin: 1em;
+	padding: 1em
+  }
+
+  fieldset small {
+	margin-left: 1em
+  }
+
+  fieldset legend {
+	font-weight: bold;
+	padding: 0.5em 1em;
+	font-size: 18px
+  }
+
+  fieldset dt {
+	margin: 1em 0 0.5em
+  }
+
+  fieldset dd {
+	border-bottom: 1px dotted #ddd;
+	padding: 0.5em;
+	margin: 0
+  }
+
+  fieldset dd:last-child {
+	border-bottom: none
+  }
+
+  fieldset dd label {
+	margin-right: 1em;
+	display: inline-block
+  }
+
+  .token-display {
+	max-width: 500px;
+	overflow: auto;
+	word-break: break-all;
+	background: #ddd;
+	color: #222;
+	padding: 1em
+  }
+}
