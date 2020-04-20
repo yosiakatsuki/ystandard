@@ -30,7 +30,7 @@ class Admin_Menu {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 9 );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 11 );
 	}
 
 	/**
@@ -223,11 +223,11 @@ class Admin_Menu {
 							<div class="ys-icon-search__icon" v-html="icon.svg"></div>
 							<p class="ys-icon-search__label">{{icon.label}}</p>
 							<div class="copy-form">
-								<input type="text" class="copy-form__target" v-bind:value="icon.short_code" readonly onfocus="this.select();"/>
-								<button class="copy-form__button button action">
+								<input type="text" class="copy-form__target" v-bind:value="icon.short_code" readonly onfocus="this.select();" v-bind:ref="icon.name"/>
+								<button class="copy-form__button is-without-event button action" v-on:click="copy(icon.name,`done_${icon.name}`)">
 									<?php echo ys_get_icon( 'clipboard' ); ?>
 								</button>
-								<div class="copy-form__info">コピーしました！</div>
+								<div class="copy-form__info" v-bind:ref="`done_${icon.name}`">コピーしました！</div>
 							</div>
 						</div>
 					</div>
