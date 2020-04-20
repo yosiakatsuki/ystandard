@@ -48,6 +48,7 @@ class Recent_Posts {
 		'thumbnail_size'  => '', // thumbnail, medium, large, full, etc...
 		'thumbnail_ratio' => '', // 4-3, 16-9, 3-1, 2-1, 1-1.
 		'filter'          => '', // category,same-post,sga.
+		'cache'           => 'recent_posts',
 	];
 
 	/**
@@ -80,6 +81,13 @@ class Recent_Posts {
 	 * @var array
 	 */
 	private $shortcode_atts = [];
+
+	/**
+	 * SGAのデータ取得数
+	 *
+	 * @var int
+	 */
+	private $sga_limit = 0;
 
 	/**
 	 * フックやショートコードの登録
@@ -125,10 +133,14 @@ class Recent_Posts {
 		$this->set_filter_sga();
 		$this->set_taxonomy();
 
+		/**
+		 * キャッシュ
+		 */
+		$key   = 'ys_query_cache_' . $this->shortcode_atts['cache'];
 		$query = Cache::get_query(
 			self::CACHE_KEY,
 			$this->query_args,
-			Option::get_option( 'ys_query_cache_recent_posts', 'none' )
+			Option::get_option( $key, 'none' )
 		);
 
 		/**
@@ -226,14 +238,50 @@ class Recent_Posts {
 		if ( false === strpos( $this->shortcode_atts['filter'], 'sga' ) ) {
 			return;
 		}
-		if ( ! $this->is_active_sga_ranking() || true ) {
+		if ( ! self::is_active_sga_ranking() ) {
 			return;
 		}
+
 		/**
-		 * TODO : プラグイン連携
+		 * SGAパラメーター
 		 */
-		$this->query_args['orderby']  = 'post__in';
-		$this->query_args['post__in'] = [];
+		$this->sga_limit = 0;
+		$sga_arg         = [
+			'display_count' => $this->shortcode_atts['count'],
+			'period'        => 30,
+			'post_type'     => $this->shortcode_atts['post_type'],
+		];
+		// タクソノミー指定.
+		if ( '' !== $this->shortcode_atts['taxonomy'] && '' !== $this->shortcode_atts['term_slug'] ) {
+			$this->sga_limit = 500;
+			$key             = $this->shortcode_atts['taxonomy'] . '__in';
+			$sga_arg[ $key ] = $this->shortcode_atts['term_slug'];
+		} else {
+			// 同一カテゴリーのみ.
+			if ( false !== strpos( $this->shortcode_atts['filter'], 'category' ) ) {
+				$cat_ids = $this->get_the_category_ids();
+				if ( ! empty( $cat_ids ) ) {
+					$this->sga_limit = 500;
+					$cat_slug        = [];
+					foreach ( $cat_ids as $cat_id ) {
+						$cat = get_category( $cat_id );
+						if ( $cat ) {
+							$cat_slug[] = $cat->slug;
+						}
+					}
+					$sga_arg['category__in'] = implode( ',', $cat_slug );
+				}
+			}
+		}
+		if ( 0 < $this->sga_limit ) {
+			add_filter( 'sga_ranking_limit_filter', [ $this, 'sga_limit_filter' ] );
+		}
+		$sga_arg      = apply_filters( 'ys_recent_post_sga_arg', $sga_arg );
+		$ranking_data = sga_ranking_get_date( $sga_arg );
+		if ( $ranking_data ) {
+			$this->query_args['orderby']  = 'post__in';
+			$this->query_args['post__in'] = $ranking_data;
+		}
 	}
 
 	/**
@@ -257,26 +305,11 @@ class Recent_Posts {
 		if ( false === strpos( $this->shortcode_atts['filter'], 'category' ) ) {
 			return;
 		}
-		$cat_ids = [];
-		$parent  = [];
-		if ( is_category() ) {
-			$cat       = get_queried_object();
-			$parent[]  = $cat->term_id;
-			$cat_ids[] = $cat->term_id;
-		} elseif ( is_single() ) {
-			$cat = get_the_category();
-			if ( ! $cat ) {
-				return;
-			}
-			foreach ( $cat as $cat_obj ) {
-				$parent[]  = $cat_obj->cat_ID;
-				$cat_ids[] = $cat_obj->cat_ID;
-			}
+		// SGAフィルターがある場合、SGAを優先.
+		if ( false !== strpos( $this->shortcode_atts['filter'], 'sga' ) ) {
+			return;
 		}
-		foreach ( $parent as $id ) {
-			$children = get_term_children( (int) $id, 'category' );
-			$cat_ids  = array_merge( $cat_ids, $children );
-		}
+		$cat_ids = $this->get_the_category_ids();
 		if ( empty( $cat_ids ) ) {
 			return;
 		}
@@ -297,14 +330,59 @@ class Recent_Posts {
 		];
 	}
 
+	/**
+	 * 現在表示中ページのカテゴリーを取得
+	 *
+	 * @return array
+	 */
+	private function get_the_category_ids() {
+		$cat_ids = [];
+		$parent  = [];
+		if ( is_category() ) {
+			$cat       = get_queried_object();
+			$parent[]  = $cat->term_id;
+			$cat_ids[] = $cat->term_id;
+		} elseif ( is_single() ) {
+			$cat = get_the_category();
+			if ( ! $cat ) {
+				return [];
+			}
+			foreach ( $cat as $cat_obj ) {
+				$parent[]  = $cat_obj->cat_ID;
+				$cat_ids[] = $cat_obj->cat_ID;
+			}
+		}
+		foreach ( $parent as $id ) {
+			$children = get_term_children( (int) $id, 'category' );
+			$cat_ids  = array_merge( $cat_ids, $children );
+		}
+
+		return $cat_ids;
+	}
+
 
 	/**
 	 * Simple GA Ranking を使っているか
 	 *
 	 * @return bool
 	 */
-	private function is_active_sga_ranking() {
+	public static function is_active_sga_ranking() {
 		return function_exists( 'sga_ranking_get_date' );
+	}
+
+	/**
+	 * SGAのデータ取得件数操作
+	 *
+	 * @param int $count Limit.
+	 *
+	 * @return int
+	 */
+	public function sga_limit_filter( $count ) {
+		if ( 0 < $this->sga_limit ) {
+			return $this->sga_limit;
+		}
+
+		return $count;
 	}
 }
 

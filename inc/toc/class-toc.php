@@ -173,6 +173,10 @@ class TOC {
 		if ( 'none' === Option::get_option( 'ys_toc_display_type', 'content' ) ) {
 			return $content;
 		}
+		// Post meta.
+		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_toc' ) ) ) {
+			return $content;
+		}
 
 		if ( ! preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
 			return $content;

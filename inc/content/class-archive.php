@@ -17,6 +17,13 @@ namespace ystandard;
 class Archive {
 
 	/**
+	 * アクション・フィルターの登録
+	 */
+	public function register() {
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
+	}
+
+	/**
 	 * アーカイブ画像の縦横比取得
 	 *
 	 * @return string
@@ -111,4 +118,93 @@ class Archive {
 			esc_html( $term[0]->name )
 		);
 	}
+
+	/**
+	 * アーカイブページ設定
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section(
+			[
+				'section'  => 'ys_design_archive',
+				'title'    => 'アーカイブページ',
+				'panel'    => Design::PANEL_NAME,
+				'priority' => 120,
+			]
+		);
+		$customizer->add_section_label( 'レイアウト' );
+		/**
+		 * 表示カラム数
+		 */
+		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
+		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
+		$img  = '<img src="%s" alt="" width="100" height="100" />';
+		$customizer->add_image_label_radio(
+			[
+				'id'          => 'ys_archive_layout',
+				'default'     => '2col',
+				'label'       => 'ページレイアウト',
+				'description' => 'アーカイブページの表示レイアウト',
+				'choices'     => [
+					'2col' => sprintf( $img, $col2 ),
+					'1col' => sprintf( $img, $col1 ),
+				],
+			]
+		);
+		/**
+		 * 一覧タイプ
+		 */
+		$list = Customizer::get_assets_dir_uri( '/design/archive/list.png' );
+		$card = Customizer::get_assets_dir_uri( '/design/archive/card.png' );
+		$img  = '<img src="%s" alt="" width="100" height="100" />';
+		$customizer->add_image_label_radio(
+			[
+				'id'          => 'ys_archive_type',
+				'default'     => 'card',
+				'label'       => '一覧レイアウト',
+				'description' => '記事一覧の表示タイプ',
+				'choices'     => [
+					'card' => sprintf( $img, $card ),
+					'list' => sprintf( $img, $list ),
+				],
+			]
+		);
+		$customizer->add_section_label( '表示・非表示設定' );
+		// 投稿日.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_archive_publish_date',
+				'default' => 1,
+				'label'   => '投稿日を表示する',
+			]
+		);
+		// カテゴリー.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_archive_category',
+				'default' => 1,
+				'label'   => 'カテゴリーを表示する',
+			]
+		);
+		// 概要.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_archive_description',
+				'default' => 1,
+				'label'   => '概要を表示する',
+			]
+		);
+		$customizer->add_number(
+			[
+				'id'      => 'ys_option_excerpt_length',
+				'default' => 80,
+				'label'   => '概要文の文字数',
+			]
+		);
+	}
 }
+
+$class_archive = new Archive();
+$class_archive->register();

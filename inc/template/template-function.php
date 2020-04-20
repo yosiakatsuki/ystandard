@@ -339,6 +339,17 @@ function ys_get_theme_version( $parent = false ) {
 }
 
 /**
+ * 親テーマ(yStandard) バージョン取得
+ *
+ * @param boolean $parent 親テーマ情報かどうか.
+ *
+ * @return string
+ */
+function ys_get_ystandard_version( $parent = false ) {
+	return \ystandard\Utility::get_ystandard_version();
+}
+
+/**
  * 設定取得
  *
  * @param string $name    option key.

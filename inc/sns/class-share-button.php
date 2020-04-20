@@ -87,9 +87,6 @@ class Share_Button {
 	 * ヘッダー・フッター コンテンツのセット
 	 */
 	public function set_singular_content() {
-		if ( ! $this->is_active_share_buttons() ) {
-			return;
-		}
 		add_action(
 			'ys_singular_header',
 			[ $this, 'header_share_button' ],
@@ -119,6 +116,9 @@ class Share_Button {
 	 * ヘッダー側シェアボタン
 	 */
 	public function header_share_button() {
+		if ( ! $this->is_active_share_buttons() ) {
+			return;
+		}
 		echo $this->do_shortcode( $this->get_share_button_settings( 'header' ) );
 	}
 
@@ -126,6 +126,9 @@ class Share_Button {
 	 * フッター側シェアボタン
 	 */
 	public function footer_share_button() {
+		if ( ! $this->is_active_share_buttons() ) {
+			return;
+		}
 		echo $this->do_shortcode( $this->get_share_button_settings( 'footer' ) );
 	}
 
@@ -267,8 +270,8 @@ class Share_Button {
 		$url   = apply_filters( 'ys_share_btn_url', Utility::get_page_url() );
 		$title = apply_filters( 'ys_share_btn_title', Utility::get_page_title() );
 		// 変数にセット.
-		$this->share_url   = urlencode( $url );
-		$this->share_title = urlencode( $title );
+		$this->share_url   = rawurlencode( $url );
+		$this->share_title = rawurlencode( html_entity_decode( $title ) );
 		/**
 		 * URLやTitleのセット
 		 */
