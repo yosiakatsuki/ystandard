@@ -1,0 +1,8 @@
+.blocks-gallery-grid,
+.wp-block-gallery {
+  margin-top: 1.5em;
+
+  &:first-child {
+	margin-top: 0;
+  }
+}
