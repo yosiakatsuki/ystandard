@@ -1,11 +1,11 @@
 @mixin media-breakpoint($name,$breakpoints: $breakpoints) {
   $breakpoint: map-get($breakpoints, $name);
   @if $breakpoint {
-    @media (min-width: $breakpoint) {
-      @content;
-    }
+	@media (min-width: $breakpoint) {
+	  @content;
+	}
   } @else {
-    @warn "`#{$name}` is not found. "
+	@warn "`#{$name}` is not found. "
     + "Please make sure it is defined in `$breakpoints-setting` map.";
   }
 }
@@ -16,14 +16,14 @@
 //  }
 //  sm,md,lg
 
-@mixin media-breakpoint-down($name,$breakpoints: $breakpoints) {
+@mixin media-breakpoint-down($name,$gain:1px,$breakpoints: $breakpoints) {
   $breakpoint: map-get($breakpoints, $name);
   @if $breakpoint {
-    @media (max-width: ($breakpoint - 1px)) {
-      @content;
-    }
+	@media (max-width: ($breakpoint - $gain)) {
+	  @content;
+	}
   } @else {
-    @warn "`#{$name}` is not found. "
+	@warn "`#{$name}` is not found. "
     + "Please make sure it is defined in `$breakpoints-setting` map.";
   }
 }
@@ -32,11 +32,11 @@
   $breakpoint_min: map-get($breakpoints, $up);
   $breakpoint_max: map-get($breakpoints, $down);
   @if $breakpoint_min and $breakpoint_max {
-    @media (min-width: $breakpoint_min) AND (max-width: ($breakpoint_max - 1px)) {
-      @content;
-    }
+	@media (min-width: $breakpoint_min) AND (max-width: ($breakpoint_max - 1px)) {
+	  @content;
+	}
   } @else {
-    @warn "`#{$up} or #{$down}` is not found. "
+	@warn "`#{$up} or #{$down}` is not found. "
     + "Please make sure it is defined in `$breakpoints-setting` map.";
   }
 }
