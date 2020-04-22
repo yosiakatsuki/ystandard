@@ -249,6 +249,7 @@
   padding: .5em 1em;
   background-color: transparent;
   color: var(--mobile-nav-open);
+  outline: none;
 
   &::after {
 	content: attr(data-label-open);
@@ -259,9 +260,27 @@
 	text-align: center;
   }
 
+  line {
+	transition: opacity .3s, transform .3s;
+  }
+
   &.is-open {
 	&::after {
 	  content: attr(data-label-close);
+	}
+
+	svg {
+	  line:nth-child(1) {
+		opacity: 0;
+	  }
+
+	  line:nth-child(2) {
+		transform: translateY(18px) rotate(-45deg);
+	  }
+
+	  line:nth-child(3) {
+		transform: translateX(17px) translateY(-7px) rotate(45deg);
+	  }
 	}
   }
 
