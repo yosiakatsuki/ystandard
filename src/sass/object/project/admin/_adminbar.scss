@@ -14,7 +14,6 @@
 	}
   }
 
-  // カスタムヘッダー ヘッダー重ねるタイプ
   &.custom-header--full {
 	.site-header {
 	  top: 46px;
@@ -27,7 +26,15 @@
 }
 
 #wp-admin-bar-user-info {
-  img {
-	max-width: 150px;
+  img,
+  amp-img {
+	max-width: 96px;
   }
 }
+
+.is-amp {
+  #wpadminbar #wp-admin-bar-my-account {
+	display: none;
+  }
+}
+
