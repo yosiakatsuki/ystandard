@@ -23,7 +23,13 @@ const postcssPlugins = [
 		grid: 'autoplace'
 	} ),
 	mqpacker(),
-	cssnano(),
+	cssnano( {
+			preset: [
+				'default',
+				{ minifyFontValues: { removeQuotes: false } }
+			]
+		}
+	),
 	cssdeclsort( { order: 'smacss' } )
 ];
 const postcssPluginsParts = [
