@@ -11,10 +11,10 @@
 }
 
 // media break point
-//  @include media-breakpoint(md) {
+//  @include media-breakpoint(sm) {
 //    style...
 //  }
-//  md,lg,xl
+//  sm,md,lg
 
 @mixin media-breakpoint-down($name,$breakpoints: $breakpoints) {
   $breakpoint: map-get($breakpoints, $name);

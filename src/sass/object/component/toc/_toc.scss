@@ -10,7 +10,7 @@
 	text-decoration: none;
   }
 
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
 	padding: 1em 1.5em;
   }
 }

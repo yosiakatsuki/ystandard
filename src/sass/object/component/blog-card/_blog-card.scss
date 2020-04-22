@@ -12,7 +12,7 @@
     font-weight: $font__weight_bold;
     line-height: $font__line-height_headline;
 
-    @include media-breakpoint(md) {
+    @include media-breakpoint(sm) {
       font-size: 1em;
     }
   }
@@ -37,7 +37,7 @@
   max-width: 100px;
   margin: 0;
 
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
     max-width: 200px;
   }
 
@@ -55,7 +55,7 @@
   flex-grow: 1;
   padding: 1rem;
 
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
     padding: 1.5rem 1rem;
   }
 }

@@ -32,7 +32,8 @@ class Enqueue_Styles {
 	 * @var array
 	 */
 	const BREAKPOINTS = [
-		'md' => 600,
+		'sm' => 600,
+		'md' => 769,
 		'lg' => 1025,
 	];
 
