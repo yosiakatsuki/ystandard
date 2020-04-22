@@ -48,7 +48,7 @@ body:not(.has-sidebar) {
 	}
   }
   &.has-background {
-	@include media-breakpoint(md) {
+	@include media-breakpoint(sm) {
 	  .alignwide {
 		margin-right: -2rem;
 		margin-left: -2rem;
