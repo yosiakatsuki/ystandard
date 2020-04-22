@@ -24,7 +24,7 @@ class Font_Awesome {
 	/**
 	 * FontAwesomeのバージョン
 	 */
-	const FONTAWESOME_VER = '5.12.0';
+	const FONTAWESOME_VER = '5.13.0';
 
 	/**
 	 * フックやショートコードの登録
@@ -43,6 +43,15 @@ class Font_Awesome {
 	 */
 	public static function get_font_awesome_css_url() {
 		return Template::get_theme_file_uri( '/library/fontawesome/css/all.css' );
+	}
+
+	/**
+	 * FontAwesome Light CSS
+	 *
+	 * @return string
+	 */
+	public static function get_font_awesome_css_light_url() {
+		return Template::get_theme_file_uri( '/css/fontawesome-light.css' );
 	}
 
 	/**
@@ -177,12 +186,17 @@ class Font_Awesome {
 		if ( ! AMP::is_amp() ) {
 			return;
 		}
-		if ( 'none' === Option::get_option( 'ys_enqueue_icon_font_type', 'none' ) ) {
+		$type = Option::get_option( 'ys_enqueue_icon_font_type', 'none' );
+		if ( 'none' === $type ) {
 			return;
+		}
+		$src = self::get_font_awesome_cdn_css_url();
+		if ( 'light' === $type ) {
+			$src = self::get_font_awesome_css_light_url();
 		}
 		wp_enqueue_style(
 			self::FONTAWESOME_HANDLE,
-			self::get_font_awesome_cdn_css_url(),
+			$src,
 			[],
 			self::FONTAWESOME_VER
 		);
