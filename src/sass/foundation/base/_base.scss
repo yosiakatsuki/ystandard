@@ -6,7 +6,7 @@
 
   &::before,
   &::after {
-    box-sizing: border-box;
+	box-sizing: border-box;
   }
 }
 
@@ -15,16 +15,23 @@ html {
 }
 
 //mqpacker対策
+@include media-breakpoint(sm) {
+  html {
+	clear: both;
+  }
+}
+
+//mqpacker対策
 @include media-breakpoint(md) {
   html {
-    zoom: 1;
+	clear: both;
   }
 }
 
 //mqpacker対策
 @include media-breakpoint(lg) {
   html {
-    zoom: 1;
+	clear: both;
   }
 }
 
@@ -113,7 +120,7 @@ a {
   transition: all 0.3s;
 
   &:hover {
-    color: var(--link-text-hover);
+	color: var(--link-text-hover);
   }
 }
 
@@ -127,7 +134,7 @@ ol {
 
   ul,
   ol {
-    margin: 0;
+	margin: 0;
   }
 }
 
@@ -157,42 +164,42 @@ blockquote {
   font-size: 0.95em;
 
   &:before {
-    content: "“";
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    font-family: sans-serif;
-    font-size: 4em;
-    line-height: 1;
-    opacity: 0.08;
+	content: "“";
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	font-family: sans-serif;
+	font-size: 4em;
+	line-height: 1;
+	opacity: 0.08;
   }
 
   a {
-    color: currentColor;
+	color: currentColor;
   }
 
   p {
-    margin-top: 0.5em;
+	margin-top: 0.5em;
   }
 
   cite {
-    display: block;
-    margin-top: 1em;
-    color: var(--font-gray);
-    font-size: 0.9em;
+	display: block;
+	margin-top: 1em;
+	color: var(--font-gray);
+	font-size: 0.9em;
 
-    &:before {
-      content: "-";
-      margin-right: 0.5em;
-    }
+	&:before {
+	  content: "-";
+	  margin-right: 0.5em;
+	}
   }
 
   & > *:first-child {
-    margin-top: 0;
+	margin-top: 0;
   }
 
   & > *:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
   }
 }
 
@@ -216,11 +223,11 @@ pre {
   overflow: auto;
 
   code {
-    padding: 0;
-    color: inherit;
-    line-height: inherit;
-    white-space: pre;
-    word-wrap: normal;
+	padding: 0;
+	color: inherit;
+	line-height: inherit;
+	white-space: pre;
+	word-wrap: normal;
   }
 }
 

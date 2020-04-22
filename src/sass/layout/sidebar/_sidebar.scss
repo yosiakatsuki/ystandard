@@ -24,7 +24,7 @@
   .sidebar__widget,
   .sidebar__fixed {
 	> * {
-	  @include media-breakpoint-down(md) {
+	  @include media-breakpoint-down(sm) {
 		margin-right: -1em;
 		margin-left: -1em;
 		padding: 1em;

@@ -13,7 +13,7 @@
 .footer-widget__container {
   @include child_margin();
 
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
     display: flex;
     margin-right: -1em;
     margin-left: -1em;

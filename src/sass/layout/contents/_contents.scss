@@ -58,7 +58,7 @@ body:not(.has-sidebar) {
 
 .has-background {
   .content__main {
-	@include media-breakpoint-down(md) {
+	@include media-breakpoint-down(sm) {
 	  width: auto;
 	  max-width: unset;
 	  margin-right: -1rem;
@@ -72,7 +72,7 @@ body:not(.has-sidebar) {
   .site-content {
 	margin-top: 0;
 
-	@include media-breakpoint(md) {
+	@include media-breakpoint(sm) {
 	  margin-top: 2em;
 	}
   }
