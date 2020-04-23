@@ -321,7 +321,7 @@ class Header {
 				"body.has-fixed-header {
 					padding-top:${pc}px;
 				}",
-				'lg'
+				'md'
 			);
 		}
 
