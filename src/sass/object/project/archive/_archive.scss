@@ -19,7 +19,7 @@
   margin-top: 1em;
 
   &.is-card {
-	@include media-breakpoint(md) {
+	@include media-breakpoint(sm) {
 	  display: flex;
 	  flex-wrap: wrap;
 	}
@@ -52,7 +52,7 @@
   }
 
   &.is-card {
-	@include media-breakpoint(md) {
+	@include media-breakpoint(sm) {
 	  flex: 0 0 calc(50% - 1em);
 	  width: calc(50% - 1em);
 	  margin: 0 1em 1em 0;
@@ -120,7 +120,7 @@
 	min-width: 100px;
 	margin-top: 1em;
 
-	@include media-breakpoint(md) {
+	@include media-breakpoint(sm) {
 	  flex: 0 0 30%;
 	  width: 30%;
 	  margin-top: 0;
@@ -193,7 +193,7 @@
 .has-background {
   .archive__page-title {
 	margin-top: 1.5em;
-	@include media-breakpoint(md) {
+	@include media-breakpoint(sm) {
 	  margin-top: 0;
 	}
   }

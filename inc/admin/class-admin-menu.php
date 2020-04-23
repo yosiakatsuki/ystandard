@@ -136,7 +136,7 @@ class Admin_Menu {
 							yStandardの設定や使い方のマニュアル
 						</p>
 						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る</a>
+							<a class="wp-block-button__link" href="https://wp-ystandard.com/category/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る</a>
 						</p>
 					</div>
 

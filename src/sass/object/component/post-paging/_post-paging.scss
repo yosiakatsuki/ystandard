@@ -1,5 +1,5 @@
 .paging__container {
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
 	display: flex;
   }
 }
@@ -13,7 +13,7 @@
   font-size: 0.9em;
   transition: opacity 0.3s;
 
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
 	flex: 0 0 calc(50% - 0.5em);
 	width: calc(50% - 0.5em);
 	margin-top: 0;

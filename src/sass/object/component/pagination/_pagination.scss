@@ -49,7 +49,7 @@
   &.is-hide-mobile, {
     display: none;
 
-    @include media-breakpoint(md) {
+    @include media-breakpoint(sm) {
       display: block;
     }
   }

@@ -11,7 +11,7 @@
   text-align: center;
   box-sizing: border-box;
 
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
 	width: 25%;
   }
   @include media-breakpoint(lg) {

@@ -36,7 +36,7 @@
 	  @include posts_column($i);
 	}
 	&.col-tablet--#{$i} {
-	  @include media-breakpoint(md) {
+	  @include media-breakpoint(sm) {
 		@include posts_column($i);
 	  }
 	}
