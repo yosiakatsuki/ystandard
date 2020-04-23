@@ -321,7 +321,7 @@ class Header {
 				"body.has-fixed-header {
 					padding-top:${pc}px;
 				}",
-				'lg'
+				'md'
 			);
 		}
 
@@ -335,6 +335,11 @@ class Header {
 	 */
 	public function register_title_tagline( $wp_customize ) {
 		$customizer = new Customize_Control( $wp_customize );
+
+		$customizer->set_section_description(
+			'title_tagline',
+			'サイトロゴやキャッチフレーズの設定' . Admin::manual_link( 'https://wp-ystandard.com/basic-setting/' )
+		);
 
 		$customizer->set_refresh( 'custom_logo' );
 		$customizer->set_post_message( 'blogname' );

@@ -6,6 +6,18 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			const search = document.getElementById( 'global-nav__search' );
 			if ( search ) {
 				search.classList.toggle( 'is-active' );
+				setTimeout( function () {
+					document.querySelector( '#global-nav__search .search-field' ).focus();
+				}, 50 );
+			}
+		} );
+	}
+	const closeButton = document.getElementById( 'global-nav__search-close' );
+	if ( closeButton ) {
+		closeButton.addEventListener( 'click', ( e ) => {
+			const search = document.getElementById( 'global-nav__search' );
+			if ( search ) {
+				search.classList.remove( 'is-active' );
 			}
 		} );
 	}

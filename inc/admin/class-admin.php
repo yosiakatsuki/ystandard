@@ -185,6 +185,26 @@ class Admin {
 	}
 
 	/**
+	 * マニュアルリンク作成
+	 *
+	 * @param string $url  URL.
+	 * @param string $text Text.
+	 * @param string $icon Icon Name.
+	 *
+	 * @return string
+	 */
+	public static function manual_link( $url, $text = '', $icon = 'book' ) {
+		if ( '' === $text ) {
+			$text = 'マニュアルを見る';
+		}
+		$icon = Icon::get_icon( $icon );
+
+		return wp_targeted_link_rel(
+			"<a class=\"ys-manual-link\" href=\"${url}\" target=\"_blank\">${icon}${text}</a>"
+		);
+	}
+
+	/**
 	 * 管理画面通知
 	 *
 	 * @param string $content notice content.

@@ -540,6 +540,16 @@ class Customize_Control {
 	}
 
 	/**
+	 * 設定をpostMessageにする
+	 *
+	 * @param string $name Name.
+	 * @param string $dscr Description.
+	 */
+	public function set_section_description( $name, $dscr ) {
+		$this->wp_customize->get_section( $name )->description = $dscr;
+	}
+
+	/**
 	 * Select,radio
 	 *
 	 * @param string $input   input.
