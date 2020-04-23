@@ -1,5 +1,6 @@
 // 管理画面 - カスタマイザー用CSS
 @import "foundation/import";
+@import "object/project/admin/manual";
 
 //
 //  全体設定
@@ -74,7 +75,7 @@
 
   .customize-control-title {
     padding: 0.25em 0.5em;
-    background-color: #07689f;
+    background-color: $color__ystanadrd;
     color: #ffffff;
   }
 }
