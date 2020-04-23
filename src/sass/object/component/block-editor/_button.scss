@@ -2,7 +2,7 @@
   color: var(--button-text);
 
   &.is-style-outline {
-    color: var(--button-bg);
+	color: var(--button-bg);
   }
 }
 
@@ -11,6 +11,12 @@
   font-size: 1em;
 
   &:hover {
-    box-shadow: 4px 4px 8px rgba(#000000, 0.15);
+	box-shadow: 4px 4px 8px rgba(#000000, 0.15);
+  }
+}
+
+.is-style-outline {
+  .wp-block-button__link {
+	border-color: currentColor;
   }
 }
