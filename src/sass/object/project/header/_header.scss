@@ -85,13 +85,6 @@
 	.global-nav {
 	  justify-content: center;
 	}
-
-	.global-nav__search {
-	  left: 0;
-	  max-width: 400px;
-	  margin-right: auto;
-	  margin-left: auto;
-	}
   }
 }
 
@@ -99,10 +92,6 @@
   @include media-breakpoint(md) {
 	.site-header__content {
 	  display: block;
-	}
-	.global-nav__search {
-	  right: unset;
-	  left: 0;
 	}
   }
 }
