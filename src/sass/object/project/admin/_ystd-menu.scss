@@ -41,7 +41,7 @@
 }
 
 .ys-contents {
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
 	display: flex;
 	flex-wrap: wrap;
 	margin-right: -0.5rem;
@@ -57,7 +57,7 @@
 	padding: 1em;
 	text-align: center;
 
-	@include media-breakpoint(md) {
+	@include media-breakpoint(sm) {
 	  flex: 0 0 50%;
 	  width: 50%;
 	  padding-right: 2em;

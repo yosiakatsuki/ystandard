@@ -272,7 +272,7 @@ class Header {
 					'.site-title img{width:%spx;}',
 					Option::get_option_by_int( 'ys_logo_width_pc', 0 )
 				),
-				'md'
+				'sm'
 			);
 		}
 
@@ -313,7 +313,7 @@ class Header {
 				"body.has-fixed-header {
 					padding-top:${tablet}px;
 				}",
-				'md'
+				'sm'
 			);
 		}
 		if ( 0 < $pc ) {

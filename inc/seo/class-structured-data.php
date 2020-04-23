@@ -19,7 +19,7 @@ class Structured_Data {
 	/**
 	 * Default.
 	 */
-	const DEFAULT = [
+	const DEFAULT_DATA = [
 		'@context' => 'https://schema.org',
 	];
 
@@ -37,7 +37,7 @@ class Structured_Data {
 	 * Organization.
 	 */
 	public function organization() {
-		$data          = self::DEFAULT;
+		$data          = self::DEFAULT_DATA;
 		$data['@type'] = 'Organization';
 		$data['url']   = home_url( '/' );
 		if ( has_custom_logo() ) {
@@ -60,7 +60,7 @@ class Structured_Data {
 	 * Website.
 	 */
 	public function website() {
-		$data                  = self::DEFAULT;
+		$data                  = self::DEFAULT_DATA;
 		$data['@type']         = 'Website';
 		$data['url']           = home_url( '/' );
 		$data['name']          = get_bloginfo( 'name' );
@@ -95,7 +95,7 @@ class Structured_Data {
 			/**
 			 * データ準備
 			 */
-			$data    = self::DEFAULT;
+			$data    = self::DEFAULT_DATA;
 			$url     = esc_url_raw( get_the_permalink( $post->ID ) );
 			$title   = esc_attr( get_the_title( $post->ID ) );
 			$excerpt = esc_attr( Content::get_custom_excerpt( '', 0, $post->ID ) );

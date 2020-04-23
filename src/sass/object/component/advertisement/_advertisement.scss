@@ -11,7 +11,7 @@
 }
 
 .ys-ad__double {
-  @include media-breakpoint(md) {
+  @include media-breakpoint(sm) {
 	display: flex;
 	align-items: flex-start;
 	text-align: center;

@@ -98,7 +98,7 @@ class Customizer {
 			$css .= Enqueue_Styles::add_media_query(
 				'.is-customize-preview .sidebar {display:none;}',
 				'',
-				'md'
+				'sm'
 			);
 		}
 

@@ -107,7 +107,7 @@ class Info_Bar {
 			'.info-bar {
 				font-size:1rem;
 			}',
-			'md'
+			'sm'
 		);
 		$styles[] = '
 		.info-bar.has-link:hover {

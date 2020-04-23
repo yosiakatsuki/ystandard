@@ -133,7 +133,7 @@ class Font {
 			[
 				'meihiragino' => [
 					'family' => '"Helvetica neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
-					'label'  => 'メイリオ・ヒラギノ',
+					'label'  => 'メイリオ・ヒラギノ角ゴシック',
 				],
 				'yugo'        => [
 					'family' => 'Avenir, "Segoe UI", YuGothic, "Yu Gothic Medium", sans-serif',
