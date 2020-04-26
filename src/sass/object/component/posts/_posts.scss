@@ -91,12 +91,18 @@
 
 .ys-posts__meta {
   display: flex;
+  flex-wrap: wrap;
   color: var(--content-meta);
   font-size: 0.7em;
 
   > * {
 	display: flex;
 	align-items: center;
+	margin-right: 1em;
+
+	&:last-child {
+	  margin-right: 0;
+	}
   }
 
   .ys-icon {
@@ -105,14 +111,6 @@
 
   svg {
 	@include svg_size(0.8em);
-  }
-}
-
-.ys-posts__cat {
-  margin-left: 1em;
-
-  &:first-child {
-	margin-left: 0;
   }
 }
 
