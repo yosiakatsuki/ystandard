@@ -167,6 +167,12 @@ class Header_Media {
 	 */
 	public function customize_register( $wp_customize ) {
 		$customizer = new Customize_Control( $wp_customize );
+
+		$dscr = $wp_customize->get_section( 'header_image' )->description;
+		$customizer->set_section_description(
+			'header_image',
+			$dscr . Admin::manual_link( 'https://wp-ystandard.com/custom-header/' )
+		);
 		// Refresh.
 		$customizer->set_refresh( 'header_video' );
 		$customizer->set_refresh( 'external_header_video' );
@@ -181,7 +187,7 @@ class Header_Media {
 				'label'       => '[ys]ヘッダーメディア用ショートコード',
 				'description' => 'ヘッダー画像をプラグイン等のショートコードで出力する場合、ショートコードを入力してください。',
 				'section'     => 'header_image',
-				'priority'    => 0,
+				'priority'    => 50,
 			]
 		);
 	}
