@@ -131,22 +131,11 @@ class Head {
 	 */
 	private function get_canonical_url() {
 		$canonical = '';
-		if ( is_home() || is_front_page() ) {
+		if ( is_front_page() ) {
 			$canonical = home_url();
-
-		} elseif ( is_category() ) {
-			$canonical = get_category_link( get_query_var( 'cat' ) );
-
-		} elseif ( is_tag() ) {
-			$tag       = get_term_by( 'slug', urldecode( get_query_var( 'tag' ) ), 'post_tag' );
-			$canonical = get_tag_link( $tag->term_id );
-
-		} elseif ( is_search() ) {
-			$canonical = get_search_link();
-
-		} elseif ( is_page() || is_single() ) {
-			$canonical = get_permalink();
-
+		} else {
+			$paged     = get_query_var( 'paged' ) ? (int) get_query_var( 'paged' ) : 1;
+			$canonical = get_pagenum_link( $paged );
 		}
 
 		return apply_filters( 'ys_get_the_canonical_url', $canonical );
