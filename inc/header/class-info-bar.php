@@ -157,7 +157,7 @@ class Info_Bar {
 			[
 				'section'     => 'ys_info_bar',
 				'title'       => '[ys]お知らせバー',
-				'description' => 'ヘッダー下に表示されるお知らせバーの設定',
+				'description' => 'ヘッダー下に表示されるお知らせバーの設定' . Admin::manual_link( 'https://wp-ystandard.com/info-bar/' ),
 				'priority'    => Customizer::get_priority( 'ys_info_bar' ),
 			]
 		);
@@ -201,7 +201,7 @@ class Info_Bar {
 			[
 				'id'      => 'ys_info_bar_url',
 				'default' => '',
-				'label'   => 'お知らせテキストリンク',
+				'label'   => 'リンク先URL',
 			]
 		);
 		// お知らせリンクを新しいタブで開く.

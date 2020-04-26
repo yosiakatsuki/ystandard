@@ -41,7 +41,7 @@ class Font {
 			[
 				'section'     => 'ys_section_font',
 				'title'       => 'フォント',
-				'description' => 'フォントの設定',
+				'description' => 'フォントの設定' . Admin::manual_link( 'https://wp-ystandard.com/font/' ),
 				'priority'    => 10,
 				'panel'       => Design::PANEL_NAME,
 			]

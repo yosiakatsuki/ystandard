@@ -20,7 +20,7 @@ class FilterTest extends WP_UnitTestCase {
 			'post_excerpt' => '',
 		];
 		$post_id = $this->factory->post->create( $args );
-		$this->go_to( "/?p=$post_id" );
+		$this->go_to( get_permalink( $post_id ) );
 
 		update_option( 'ys_option_excerpt_length', 80 );
 		$except = ys_get_custom_excerpt();
@@ -30,6 +30,7 @@ class FilterTest extends WP_UnitTestCase {
 		$except = ys_get_custom_excerpt();
 		$this->assertSame( $except, 'あ …' );
 	}
+
 	/**
 	 * ys_excerpt_length
 	 */
@@ -40,7 +41,7 @@ class FilterTest extends WP_UnitTestCase {
 			'post_excerpt' => 'かきくけこ',
 		];
 		$post_id = $this->factory->post->create( $args );
-		$this->go_to( "/?p=$post_id" );
+		$this->go_to( get_permalink( $post_id ) );
 
 		update_option( 'ys_option_excerpt_length', 80 );
 		$except = ys_get_custom_excerpt();
