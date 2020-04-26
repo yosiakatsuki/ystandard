@@ -28,6 +28,20 @@ class No_Index {
 	 * Noindex処理
 	 */
 	public function meta_noindex() {
+		/**
+		 * Noindex出力
+		 */
+		if ( $this->is_noindex() ) {
+			echo '<meta name="robots" content="noindex,follow">' . PHP_EOL;
+		}
+	}
+
+	/**
+	 * Noindex
+	 *
+	 * @return bool
+	 */
+	public function is_noindex() {
 		$noindex = false;
 		if ( is_404() ) {
 			/**
@@ -68,13 +82,14 @@ class No_Index {
 				$noindex = true;
 			}
 		}
-		$noindex = apply_filters( 'ys_the_noindex', $noindex );
 		/**
-		 * Noindex出力
+		 * 一覧ページで2ページ目以降をnoindex
 		 */
-		if ( $noindex ) {
-			echo '<meta name="robots" content="noindex,follow">' . PHP_EOL;
+		if ( ! is_singular() && ! empty( get_query_var( 'paged' ) ) && Utility::to_bool( Option::get_option_by_bool( 'ys_archive_noindex_paged', true ) ) ) {
+			$noindex = true;
 		}
+
+		return apply_filters( 'ys_the_noindex', $noindex );
 	}
 
 	/**
@@ -89,12 +104,14 @@ class No_Index {
 		 */
 		$customizer->add_section(
 			[
-				'section'  => 'ys_noindex',
-				'title'    => 'アーカイブページのnoindex',
-				'priority' => 1,
-				'panel'    => SEO::PANEL_NAME,
+				'section'     => 'ys_noindex',
+				'title'       => 'アーカイブページのnoindex',
+				'description' => Admin::manual_link( 'https://wp-ystandard.com/archive-noindex/' ),
+				'priority'    => 1,
+				'panel'       => SEO::PANEL_NAME,
 			]
 		);
+		$customizer->add_section_label( '一覧ページタイプ別 noindex設定' );
 		/**
 		 * カテゴリー一覧をnoindexにする
 		 */
@@ -137,6 +154,18 @@ class No_Index {
 				'default'   => 1,
 				'transport' => 'postMessage',
 				'label'     => '日別アーカイブをnoindexにする',
+			]
+		);
+		$customizer->add_section_label( '2ページ目以降のnoindex設定' );
+		/**
+		 * 2ページ目以降をnoindexにする
+		 */
+		$customizer->add_checkbox(
+			[
+				'id'        => 'ys_archive_noindex_paged',
+				'default'   => 1,
+				'transport' => 'postMessage',
+				'label'     => '一覧ページの2ページ目以降をnoindexにする',
 			]
 		);
 	}
