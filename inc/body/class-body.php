@@ -93,13 +93,13 @@ class Body {
 		/**
 		 * 背景色あり
 		 */
-		if ( Site_Color::is_custom_bg_color() ) {
+		if ( Site_Background::is_custom_bg_color() ) {
 			$classes[] = 'has-bg-color';
 		}
 		/**
 		 * なんか背景あり
 		 */
-		if ( Site_Color::is_custom_bg_color() || get_background_image() ) {
+		if ( Site_Background::is_custom_bg_color() || get_background_image() ) {
 			$classes[] = 'has-background';
 		}
 

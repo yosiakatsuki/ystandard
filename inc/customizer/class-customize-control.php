@@ -522,6 +522,16 @@ class Customize_Control {
 	}
 
 	/**
+	 * 設定のセクションを変更にする
+	 *
+	 * @param string $name    Name.
+	 * @param string $section Section.
+	 */
+	public function set_section( $name, $section ) {
+		$this->wp_customize->get_control( $name )->section = $section;
+	}
+
+	/**
 	 * 設定をRefreshにする
 	 *
 	 * @param string $name Name.

@@ -146,12 +146,6 @@ class Customizer {
 	public function customize_register( $wp_customize ) {
 
 		$customizer = new Customize_Control( $wp_customize );
-		$customizer->set_refresh( 'background_image' );
-		$customizer->set_refresh( 'background_preset' );
-		$customizer->set_refresh( 'background_size' );
-		$customizer->set_refresh( 'background_repeat' );
-		$customizer->set_refresh( 'background_attachment' );
-		$customizer->set_refresh( 'background_image' );
 		/**
 		 * WP標準の設定を削除
 		 */
