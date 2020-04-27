@@ -8,7 +8,7 @@
  */
 
 ?>
-<main id="main" class="content__main">
+<main id="main" class="content__main site-main">
 	<?php do_action( 'ys_content_main_prepend' ); ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( [ 'singular-article' ] ); ?>>
 		<?php ys_get_template_part( 'template-parts/single/header' ); ?>
