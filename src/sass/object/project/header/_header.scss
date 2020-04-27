@@ -78,6 +78,10 @@
   .site-branding {
 	padding-right: 2em;
 	padding-left: 2em;
+
+	@include media-breakpoint(md) {
+	  padding-bottom: .5em;
+	}
   }
 
   @include media-breakpoint(md) {
@@ -93,7 +97,11 @@
 	.site-header__content {
 	  display: block;
 	}
+	.site-branding {
+	  padding-bottom: .5em;
+	}
   }
+
 }
 
 .site-header-thumbnail {
