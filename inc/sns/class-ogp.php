@@ -138,7 +138,9 @@ class OGP {
 	 * @return string
 	 */
 	private function get_singular_title() {
-		return apply_filters( 'ys_ogp_title_singular', get_the_title() );
+		$title = apply_filters( 'ys_ogp_title_singular', get_the_title() );
+
+		return Utility::get_plain_text( $title );
 	}
 
 	/**
@@ -147,7 +149,9 @@ class OGP {
 	 * @return string
 	 */
 	private function get_archive_title() {
-		return apply_filters( 'ys_ogp_title_archive', get_the_archive_title() );
+		$title = apply_filters( 'ys_ogp_title_archive', get_the_archive_title() );
+
+		return Utility::get_plain_text( $title );
 	}
 
 	/**
@@ -156,7 +160,9 @@ class OGP {
 	 * @return string
 	 */
 	private function get_archive_dscr() {
-		return apply_filters( 'ys_ogp_description_archive', get_the_archive_description() );
+		$dscr = apply_filters( 'ys_ogp_description_archive', get_the_archive_description() );
+
+		return Utility::get_plain_text( $dscr );
 	}
 
 	/**
@@ -171,7 +177,9 @@ class OGP {
 			$dscr = Content::get_custom_excerpt_raw();
 		}
 
-		return apply_filters( 'ys_ogp_description_singular', $dscr );
+		$dscr = apply_filters( 'ys_ogp_description_singular', $dscr );
+
+		return Utility::get_plain_text( $dscr );
 	}
 
 	/**

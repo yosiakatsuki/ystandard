@@ -88,10 +88,9 @@ class Meta_Description {
 			$dscr = mb_substr( $dscr, 0, $length );
 		}
 
-		return apply_filters(
-			'ys_get_meta_description',
-			Utility::get_plain_text( $dscr )
-		);
+		$dscr = apply_filters( 'ys_get_meta_description', $dscr );
+
+		return Utility::get_plain_text( $dscr );
 	}
 
 	/**

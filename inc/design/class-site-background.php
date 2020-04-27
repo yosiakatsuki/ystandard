@@ -85,7 +85,7 @@ class Site_Background {
 	 *
 	 * @param \WP_Customize_Manager $manager WP_Customize_Manager instance.
 	 */
-	public function customize_save_after( $object ) {
+	public function customize_save_after( $manager ) {
 		if ( empty( get_theme_mod( 'background_image', '' ) ) || 'default' === get_theme_mod( 'background_preset', 'default' ) ) {
 			remove_theme_mod( 'background_preset' );
 			remove_theme_mod( 'background_size' );
