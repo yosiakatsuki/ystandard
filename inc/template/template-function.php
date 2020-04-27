@@ -396,3 +396,10 @@ function ys_embed_content() {
 	$embed = new \ystandard\Embed();
 	echo $embed->get_embed_content();
 }
+
+/** *****************************************************************
+ * AMP関連
+ * *****************************************************************/
+function ys_is_amp() {
+	return \ystandard\AMP::is_amp();
+}
