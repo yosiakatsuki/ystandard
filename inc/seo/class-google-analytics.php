@@ -85,10 +85,11 @@ class Google_Analytics {
 
 		$customizer->add_section(
 			[
-				'section'  => 'ys_google_analytics',
-				'title'    => 'Google Analytics',
-				'priority' => 10,
-				'panel'    => SEO::PANEL_NAME,
+				'section'     => 'ys_google_analytics',
+				'title'       => 'Google Analytics',
+				'priority'    => 10,
+				'description' => Admin::manual_link( 'google-analytics' ),
+				'panel'       => SEO::PANEL_NAME,
 			]
 		);
 

@@ -236,10 +236,11 @@ class Structured_Data {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section'  => 'ys_structured_data',
-				'title'    => '構造化データ',
-				'priority' => 100,
-				'panel'    => SEO::PANEL_NAME,
+				'section'     => 'ys_structured_data',
+				'title'       => '構造化データ',
+				'priority'    => 100,
+				'description' => Admin::manual_link( 'structured-data' ),
+				'panel'       => SEO::PANEL_NAME,
 			]
 		);
 		/**

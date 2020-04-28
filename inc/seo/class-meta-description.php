@@ -111,7 +111,12 @@ class Meta_Description {
 				'panel'    => SEO::PANEL_NAME,
 			]
 		);
-		$customizer->add_section_label( 'meta description自動生成' );
+		$customizer->add_section_label(
+			'meta description自動生成',
+			[
+				'description' => Admin::manual_link( 'meta-description' ),
+			]
+		);
 		// 自動生成する.
 		$customizer->add_checkbox(
 			[
@@ -133,7 +138,12 @@ class Meta_Description {
 		/**
 		 * TOPページ
 		 */
-		$customizer->add_section_label( 'TOPページのmeta description' );
+		$customizer->add_section_label(
+			'TOPページのmeta description',
+			[
+				'description' => Admin::manual_link( 'top-meta-description' ),
+			]
+		);
 		$customizer->add_plain_textarea(
 			[
 				'id'          => 'ys_wp_site_description',
