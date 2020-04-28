@@ -20,6 +20,10 @@ class Recent_Posts {
 	 * ショートコード名
 	 */
 	const SHORTCODE = 'ys_recent_posts';
+	/**
+	 * ショートコード名(ランキング)
+	 */
+	const SHORTCODE_RANKING = 'ys_post_ranking';
 
 	/**
 	 * キャッシュのキー
@@ -35,6 +39,9 @@ class Recent_Posts {
 		'col_sp'          => 1,
 		'col_tablet'      => 3,
 		'col_pc'          => 3,
+		'post__in'        => '',
+		'post_name__in'   => '',
+		'post_parent'     => '',
 		'taxonomy'        => '',
 		'term_slug'       => '',
 		'post_type'       => 'post',
@@ -99,6 +106,9 @@ class Recent_Posts {
 		if ( ! shortcode_exists( self::SHORTCODE ) ) {
 			add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
 		}
+		if ( ! shortcode_exists( self::SHORTCODE_RANKING ) ) {
+			add_shortcode( self::SHORTCODE_RANKING, [ $this, 'do_shortcode' ] );
+		}
 		/**
 		 * ウィジェット
 		 */
@@ -132,7 +142,7 @@ class Recent_Posts {
 		$this->set_filter_same_post();
 		$this->set_filter_sga();
 		$this->set_taxonomy();
-
+		$this->set_post_page();
 		/**
 		 * キャッシュ
 		 */
@@ -207,6 +217,32 @@ class Recent_Posts {
 		$param['thumbnail_ratio'] = $atts['thumbnail_ratio'];
 
 		return $param;
+	}
+
+	/**
+	 * 投稿関連の指定
+	 */
+	private function set_post_page() {
+		if ( ! empty( $this->shortcode_atts['post__in'] ) ) {
+			$post_in = $this->shortcode_atts['post__in'];
+			if ( ! is_array( $post_in ) ) {
+				$post_in = explode( ',', $post_in );
+			}
+			$this->query_args['post__in'] = $post_in;
+		}
+		if ( ! empty( $this->shortcode_atts['post_name__in'] ) ) {
+			$post_name_in = $this->shortcode_atts['post_name__in'];
+			if ( ! is_array( $post_name_in ) ) {
+				$post_name_in = explode( ',', $post_name_in );
+			}
+			$this->query_args['post_name__in'] = $post_name_in;
+		}
+		if ( ! empty( $this->shortcode_atts['post_parent'] ) ) {
+			$this->query_args['post_parent'] = $this->shortcode_atts['post_parent'];
+			if ( 'post' === $this->query_args['post_type'] ) {
+				$this->query_args['post_type'] = 'page';
+			}
+		}
 	}
 
 	/**

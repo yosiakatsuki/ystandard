@@ -144,9 +144,9 @@ class Parts {
 			self::POST_TYPE,
 			[
 				'labels'                => $labels,
-				'public'                => false,
+				'public'                => $this->is_enable_preview(),
 				'exclude_from_search'   => true,
-				'publicly_queryable'    => false,
+				'publicly_queryable'    => $this->is_enable_preview(),
 				'show_ui'               => true,
 				'show_in_nav_menus'     => false,
 				'show_in_menu'          => true,
@@ -166,6 +166,17 @@ class Parts {
 				],
 			]
 		);
+	}
+
+	/**
+	 * プレビューを有効にするか
+	 */
+	private function is_enable_preview() {
+		if ( ! is_user_logged_in() ) {
+			return false;
+		}
+
+		return current_user_can( 'editor' ) || current_user_can( 'administrator' );
 	}
 
 	/**
@@ -190,15 +201,17 @@ class Parts {
 	 *
 	 * @param \WP_Post $post 投稿オブジェクト.
 	 */
-	public function add_parts_shortcode_info( $post ) {
+	public function add_parts_shortcode_info(
+		$post
+	) {
 		if ( 'publish' !== $post->post_status ) {
 			return;
 		}
 		?>
 		<div id="ys-ogp-description-section" class="meta-box__section">
-			<div class="copy-form" style="margin: 1em 0 2em;">
-				<label>ショートコード
-					<input type="text" id="ys_parts_shortcode" class="meta-box__input" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/></label>
+			<label for="ys_parts_shortcode" style="margin: 1em 0 0;display: block;">ショートコード</label>
+			<div class="copy-form" style="margin: 0 0 1.5em;">
+				<input type="text" id="ys_parts_shortcode" class="copy-form__target" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
 				<button class="copy-form__button button action">
 					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>
@@ -216,7 +229,9 @@ class Parts {
 	 *
 	 * @return array
 	 */
-	public function add_columns_head( $defaults ) {
+	public function add_columns_head(
+		$defaults
+	) {
 		$defaults['ys-parts'] = 'ショートコード';
 
 		return $defaults;
@@ -228,7 +243,9 @@ class Parts {
 	 * @param string $column_name カラム名.
 	 * @param int    $post_ID     投稿ID.
 	 */
-	public function add_custom_column( $column_name, $post_ID ) {
+	public function add_custom_column(
+		$column_name, $post_ID
+	) {
 		if ( 'ys-parts' === $column_name ) {
 			?>
 			<div class="copy-form">
