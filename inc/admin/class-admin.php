@@ -194,6 +194,9 @@ class Admin {
 	 * @return string
 	 */
 	public static function manual_link( $url, $text = '', $icon = 'book' ) {
+		if ( false === strpos( $url, 'https://' ) ) {
+			$url = "https://wp-ystandard.com/${url}/";
+		}
 		if ( '' === $text ) {
 			$text = 'マニュアルを見る';
 		}
