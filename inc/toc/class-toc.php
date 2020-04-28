@@ -408,10 +408,11 @@ class TOC {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section'  => 'ys_design_toc',
-				'title'    => '目次',
-				'panel'    => Design::PANEL_NAME,
-				'priority' => 115,
+				'section'     => 'ys_design_toc',
+				'title'       => '目次',
+				'description' => Admin::manual_link( 'table-of-contents' ),
+				'priority'    => 115,
+				'panel'       => Design::PANEL_NAME,
 			]
 		);
 		$customizer->add_section_label( '目次タイトル' );

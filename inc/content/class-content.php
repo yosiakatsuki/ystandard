@@ -712,10 +712,11 @@ class Content {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section'  => 'ys_design_post',
-				'title'    => '投稿ページ',
-				'priority' => 100,
-				'panel'    => Design::PANEL_NAME,
+				'section'     => 'ys_design_post',
+				'title'       => '投稿ページ',
+				'priority'    => 100,
+				'description' => Admin::manual_link( 'post-layout' ),
+				'panel'       => Design::PANEL_NAME,
 			]
 		);
 		$customizer->add_section_label( 'レイアウト' );
@@ -831,10 +832,11 @@ class Content {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section'  => 'ys_design_page',
-				'title'    => '固定ページ',
-				'priority' => 110,
-				'panel'    => Design::PANEL_NAME,
+				'section'     => 'ys_design_page',
+				'title'       => '固定ページ',
+				'priority'    => 110,
+				'description' => Admin::manual_link( 'page-layout' ),
+				'panel'       => Design::PANEL_NAME,
 			]
 		);
 		$customizer->add_section_label( 'レイアウト' );

@@ -294,7 +294,12 @@ class Footer {
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
-		$customizer->add_section_label( 'フッターメインエリア設定' );
+		$customizer->add_section_label(
+			'フッターメインエリア設定',
+			[
+				'description' => Admin::manual_link( 'footer-area' ),
+			]
+		);
 		// フッター背景色.
 		$customizer->add_color(
 			[
@@ -319,7 +324,12 @@ class Footer {
 				'label'   => 'フッター文字色(グレー)',
 			]
 		);
-		$customizer->add_section_label( 'サブフッター設定' );
+		$customizer->add_section_label(
+			'サブフッター設定',
+			[
+				'description' => Admin::manual_link( 'sub-footer' ),
+			]
+		);
 		// フッター背景色.
 		$customizer->add_color(
 			[
