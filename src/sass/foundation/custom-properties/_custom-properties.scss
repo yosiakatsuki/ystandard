@@ -24,7 +24,7 @@
   --pagination-text: var(--font-color);
   --advertisement-title: var(--font-gray);
   --toc-text: var(--font-color);
-  --toc-bg: rgba($color__border-gray-light, .2);
+  --toc-bg: #{rgba($color__border-gray-light, .2)};
   --toc-border: var(--site-border-gray);
   --toc-list-border: var(--site-border-gray);
   --tagcloud-bg: var(--site-bg-light-gray);
@@ -35,6 +35,8 @@
   --footer-text-gray: #a7a7a7;
   --sub-footer-bg: #{$color__bg-gray-light};
   --sub-footer-text: var(--font-color);
+  --mobile-footer-text: var(--font-color);
+  --mobile-footer-bg: #{rgba(#ffffff, 0.95)};
   --link-text: #{$color__link};
   --link-text-hover: #{$color__link-hover};
   --form-text: #{rgba($color__text-main, 0.8)};;
