@@ -440,10 +440,11 @@ class Share_Button {
 
 		$customizer->add_section(
 			[
-				'section'  => 'ys_share_button',
-				'title'    => 'SNSシェアボタン',
-				'priority' => 100,
-				'panel'    => SNS::PANEL_NAME,
+				'section'     => 'ys_share_button',
+				'title'       => 'SNSシェアボタン',
+				'priority'    => 100,
+				'panel'       => SNS::PANEL_NAME,
+				'description' => Admin::manual_link( 'sns-share-button' ),
 			]
 		);
 		$customizer->add_section_label( '表示するボタン' );
@@ -527,7 +528,12 @@ class Share_Button {
 			]
 		);
 
-		$customizer->add_section_label( 'Twitterシェアボタン詳細設定' );
+		$customizer->add_section_label(
+			'Twitterシェアボタン詳細設定',
+			[
+				'description' => Admin::manual_link( 'twitter-share-button' ),
+			]
+		);
 		// Viaに設定するTwitterアカウント名.
 		$customizer->add_text(
 			[
