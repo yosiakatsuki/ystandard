@@ -47,8 +47,7 @@ class Content {
 	 */
 	public function register() {
 		add_filter( 'post_class', [ $this, 'post_class' ] );
-		add_filter( 'the_content', [ $this, 'replace_more' ] );
-		add_filter( 'the_content', [ $this, 'responsive_iframe' ] );
+		add_filter( 'the_content', [ $this, 'the_content_hook' ] );
 		add_filter( 'get_the_excerpt', [ '\ystandard\Content', 'get_custom_excerpt' ] );
 		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
 		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
@@ -408,6 +407,43 @@ class Content {
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * Contentのフック
+	 *
+	 * @param string $content Content.
+	 *
+	 * @return string
+	 */
+	public function the_content_hook( $content ) {
+		// Moreタグの置換.
+		$content = $this->replace_more( $content );
+		// Iframeのレスポンシブ対応.
+		$content = $this->responsive_iframe( $content );
+		// 最初の見出し置換.
+		$content = $this->replace_first_heading( $content );
+
+		return $content;
+	}
+
+	/**
+	 * Moreタグの置換
+	 *
+	 * @param string $content Content.
+	 *
+	 * @return string
+	 */
+	public function replace_first_heading( $content ) {
+
+		if ( preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
+			$replace = apply_filters( 'ys_before_first_heading_content', '', $content );
+			if ( isset( $matches[0] ) && isset( $matches[0][0] ) ) {
+				$content = str_replace( $matches[0][0], $replace, $content );
+			}
+		}
+
+		return $content;
 	}
 
 	/**
