@@ -188,7 +188,7 @@ class SNS {
 				'section'     => 'ys_load_script',
 				'title'       => 'SNS用JavaScript読み込み(上級者向け)',
 				'priority'    => 1000,
-				'description' => 'SNS用のJavaScriptを読み込みます。',
+				'description' => 'SNS用のJavaScriptを読み込みます。' . Admin::manual_link( 'sns-javascript' ),
 			]
 		);
 		/**
