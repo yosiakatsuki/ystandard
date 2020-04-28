@@ -28,7 +28,10 @@ class Copyright {
 	 */
 	public static function get_copyright() {
 
-		$copy = apply_filters( 'ys_copyright', self::get_default() );
+		$copy = apply_filters(
+			'ys_copyright',
+			Option::get_option( 'ys_copyright', self::get_default() )
+		);
 		if ( $copy ) {
 			$copy = sprintf(
 				'<p id="footer-copy" class="copyright">%s</p>',
@@ -45,10 +48,8 @@ class Copyright {
 	 * @return string
 	 */
 	public static function get_default() {
-		$year = Option::get_option( 'ys_copyright_year', date_i18n( 'Y' ) );
-		if ( '' === $year ) {
-			$year = date_i18n( 'Y' );
-		}
+
+		$year      = date_i18n( 'Y' );
 		$url       = esc_url( home_url( '/' ) );
 		$blog_name = get_bloginfo( 'name' );
 
@@ -113,24 +114,43 @@ class Copyright {
 			[
 				'section'     => 'ys_design_copyright',
 				'title'       => 'Copyright',
-				'description' => 'Copyrightの設定',
+				'description' => 'Copyrightの設定' . Admin::manual_link( 'copyright' ),
 				'priority'    => 1010,
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
 		/**
-		 * 発行年数
+		 * Copyright
 		 */
-		$customizer->add_number(
+		$customizer->add_text(
 			[
-				'id'          => 'ys_copyright_year',
-				'default'     => date_i18n( 'Y' ),
-				'label'       => '発行年(Copyright)',
-				'section'     => 'ys_design_copyright',
-				'input_attrs' => [
-					'min' => 1900,
-					'max' => 2100,
-				],
+				'id'                => 'ys_copyright',
+				'default'           => self::get_default(),
+				'label'             => 'Copyright',
+				'sanitize_callback' => [ $this, 'sanitize_copyright' ],
+			]
+		);
+	}
+
+	/**
+	 * Copyrightのサニタイズ
+	 *
+	 * @param string $value Text.
+	 *
+	 * @return string
+	 */
+	public function sanitize_copyright( $value ) {
+		$allowed_html   = wp_kses_allowed_html( 'post' );
+		$allowed_a      = isset( $allowed_html['a'] ) ? $allowed_html['a'] : [];
+		$allowed_span   = isset( $allowed_html['span'] ) ? $allowed_html['span'] : [];
+		$allowed_strong = isset( $allowed_html['strong'] ) ? $allowed_html['strong'] : [];
+
+		return wp_kses(
+			$value,
+			[
+				'a'      => $allowed_a,
+				'span'   => $allowed_span,
+				'strong' => $allowed_strong,
 			]
 		);
 	}
