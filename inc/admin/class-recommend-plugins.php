@@ -42,10 +42,6 @@ class Recommend_Plugins {
 				'name' => 'Lazy Load - Optimize Images',
 				'slug' => 'rocket-lazy-load',
 			],
-			[
-				'name' => 'EWWW Image Optimizer',
-				'slug' => 'ewww-image-optimizer',
-			],
 		];
 		$config  = [
 			'id'           => 'tgmpa',
