@@ -1,4 +1,4 @@
-@mixin posts_column($i,$margin:1em) {
+@mixin posts_column($i,$margin:$card_margin) {
   $width: calc(#{decimal-floor((1 / $i * 100),2)}#{"%"} - #{$margin});
   > * {
 	&:nth-child(1n) {
