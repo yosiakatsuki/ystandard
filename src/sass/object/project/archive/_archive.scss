@@ -52,9 +52,9 @@
 
   &.is-card {
 	@include media-breakpoint(sm) {
-	  flex: 0 0 calc(50% - 1em);
-	  width: calc(50% - 1em);
-	  margin: 0 1em 1em 0;
+	  flex: 0 0 calc(50% - #{$card_margin});
+	  width: calc(50% - #{$card_margin});
+	  margin: 0 #{$card_margin} #{$card_margin} 0;
 	  border: 0;
 
 	  &:nth-child(2n) {
@@ -63,11 +63,11 @@
 	}
 
 	@include media-breakpoint(lg) {
-	  flex: 0 0 calc(33.33% - 1em);
-	  width: calc(33.33% - 1em);
+	  flex: 0 0 calc(33.33% - #{$card_margin});
+	  width: calc(33.33% - #{$card_margin});
 
 	  &:nth-child(2n) {
-		margin-right: 1em;
+		margin-right: #{$card_margin};
 	  }
 
 	  &:nth-child(3n) {
@@ -174,11 +174,11 @@
   .archive__item {
 	&.is-card {
 	  @include media-breakpoint(lg) {
-		flex: 0 0 calc(50% - 1em);
-		width: calc(50% - 1em);
+		flex: 0 0 calc(50% - #{$card_margin});
+		width: calc(50% - #{$card_margin});
 
 		&:nth-child(3n) {
-		  margin-right: 1em;
+		  margin-right: #{$card_margin};
 		}
 
 		&:nth-child(2n) {

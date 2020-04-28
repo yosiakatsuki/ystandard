@@ -13,6 +13,11 @@
   }
 
   &.is-card {
+	.ys-posts__list {
+	  > * {
+		margin: 0 $card_margin $card_margin 0;
+	  }
+	}
 	.ys-posts__thumbnail {
 	  margin-bottom: 0.5em;
 	}
@@ -26,10 +31,6 @@
 .ys-posts__list {
   display: flex;
   flex-wrap: wrap;
-
-  > * {
-	margin: 0 1em 1em 0;
-  }
 
   @for $i from 1 through 4 {
 	&.col-sp--#{$i} {
