@@ -439,7 +439,11 @@ class Content {
 		if ( preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
 			$replace = apply_filters( 'ys_before_first_heading_content', '', $content );
 			if ( isset( $matches[0] ) && isset( $matches[0][0] ) ) {
-				$content = str_replace( $matches[0][0], $replace, $content );
+				$content = str_replace(
+					$matches[0][0],
+					$replace . $matches[0][0],
+					$content
+				);
 			}
 		}
 
