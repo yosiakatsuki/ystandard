@@ -1,6 +1,6 @@
 <?php
 /**
- * 色管理 クラス
+ * 色関連 クラス
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -10,38 +10,97 @@
 namespace ystandard;
 
 /**
- * Class YS_Color
+ * Class Color
+ *
+ * @package ystandard
  */
 class Color {
+	/**
+	 * リンクカラーデフォルト
+	 */
+	const LINK_DEFAULT = '#2980b9';
+	/**
+	 * リンクカラー(hover)デフォルト
+	 */
+	const LINK_HOVER_DEFAULT = '#409ad5';
 
 	/**
-	 * カスタムヘッダーのヘッダーを重ねるタイプ文字色取得
-	 *
-	 * @return string
+	 * アクション・フィルターの登録
 	 */
-	public static function get_custom_header_stack_text_color() {
-		$text_color = '#fff';
-		if ( 'light' === Option::get_option( 'ys_wp_header_media_full_type', 'dark' ) ) {
-			$text_color = '#222';
-		}
-
-		return $text_color;
+	public function register() {
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		add_filter( 'ys_css_vars', [ $this, 'add_css_vars' ] );
 	}
 
 	/**
-	 * カスタムヘッダーのヘッダーを重ねるタイプ背景色取得
+	 * フォントCSS
 	 *
-	 * @param string $opacity 不透明度.
+	 * @param array $css_vars CSS.
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public static function get_custom_header_stack_bg_color( $opacity ) {
-		$bg_color = 'rgba(0,0,0,' . $opacity . ')';
-		if ( 'light' === Option::get_option( 'ys_wp_header_media_full_type', 'dark' ) ) {
-			$bg_color = 'rgba(255,255,255,' . $opacity . ')';
+	public function add_css_vars( $css_vars ) {
+
+		$link       = [];
+		$link_hover = [];
+
+		if ( self::LINK_DEFAULT !== Option::get_option( 'ys_color_link', self::LINK_DEFAULT ) ) {
+			$link = Enqueue_Utility::get_css_var(
+				'link-text',
+				Option::get_option( 'ys_color_link', self::LINK_DEFAULT )
+			);
+		}
+		if ( self::LINK_HOVER_DEFAULT !== Option::get_option( 'ys_color_link_hover', self::LINK_HOVER_DEFAULT ) ) {
+			$link_hover = Enqueue_Utility::get_css_var(
+				'link-text-hover',
+				Option::get_option( 'ys_color_link_hover', self::LINK_DEFAULT )
+			);
 		}
 
-		return $bg_color;
+		return array_merge(
+			$css_vars,
+			$link,
+			$link_hover
+		);
 	}
 
+	/**
+	 * カスタマイザー追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		/**
+		 * セクション追加
+		 */
+		$customizer->add_section(
+			[
+				'section'     => 'ys_section_link_color',
+				'title'       => 'リンクカラー',
+				'description' => 'リンクカラーの設定' . Admin::manual_link( 'https://wp-ystandard.com/link-color/' ),
+				'priority'    => 20,
+				'panel'       => Design::PANEL_NAME,
+			]
+		);
+		// リンク色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_link',
+				'default' => self::LINK_DEFAULT,
+				'label'   => 'リンク色',
+			]
+		);
+		// ホバー色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_link_hover',
+				'default' => self::LINK_HOVER_DEFAULT,
+				'label'   => 'リンク色(マウスホバー)',
+			]
+		);
+	}
 }
+
+$class_color = new Color();
+$class_color->register();

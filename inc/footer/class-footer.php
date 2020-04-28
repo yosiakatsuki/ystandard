@@ -25,6 +25,7 @@ class Footer {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_main' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_sub' ] );
+		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_mobile_footer_menu' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_sub_footer_css' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_footer_mobile_nav_css' ] );
 	}
@@ -83,15 +84,21 @@ class Footer {
 		  left: 0;
 		  z-index: 8;
 		  width: 100%;
-		  background-color: rgba(255, 255, 255, 0.95);
-		  border-top: 1px solid var(--site-border-gray-light);
-		  text-align: center; }
+		  background-color: var(--mobile-footer-bg);
+		  text-align: center;
+		  color: var(--mobile-footer-text);
+		  -webkit-box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07);
+		          box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07); }
 		  .footer-mobile-nav ul {
+		    display: -webkit-box;
+		    display: -ms-flexbox;
 		    display: flex;
-		    justify-content: space-between;
-		    padding: 0.75em 0 0.5em;
-		    list-style: none;
-		    margin: 0; }
+		    -webkit-box-pack: justify;
+		        -ms-flex-pack: justify;
+		            justify-content: space-between;
+		    margin: 0;
+		    padding: 0.75em 0;
+		    list-style: none; }
 		  .footer-mobile-nav li:nth-child(n+5) {
 		    display: none; }
 		  .footer-mobile-nav a {
@@ -192,6 +199,37 @@ class Footer {
 		$color = Enqueue_Utility::get_css_var(
 			'sub-footer-text',
 			Option::get_option( 'ys_color_sub_footer_text', '#222222' )
+		);
+
+		return array_merge(
+			$css_vars,
+			$bg,
+			$color
+		);
+	}
+
+	/**
+	 * モバイルフッターメニュー色
+	 *
+	 * @param array $css_vars CSS.
+	 *
+	 * @return array
+	 */
+	public function add_css_var_mobile_footer_menu( $css_vars ) {
+
+		$bg_color = Utility::hex_2_rgb( Option::get_option( 'ys_color_mobile_footer_bg', '#ffffff' ) );
+		$bg       = Enqueue_Utility::get_css_var(
+			'mobile-footer-bg',
+			sprintf(
+				'rgb(%s,%s,%s,0.95)',
+				$bg_color[0],
+				$bg_color[1],
+				$bg_color[2]
+			)
+		);
+		$color    = Enqueue_Utility::get_css_var(
+			'mobile-footer-text',
+			Option::get_option( 'ys_color_mobile_footer_text', '#222222' )
 		);
 
 		return array_merge(
@@ -308,6 +346,28 @@ class Footer {
 				'label'       => 'サブフッター コンテンツ',
 				'description' => 'サブフッターに表示する内容を[ys]パーツから選択します。',
 				'choices'     => Parts::get_parts_list( true ),
+			]
+		);
+		$customizer->add_section_label(
+			'モバイルフッターメニュー 色設定',
+			[
+				'description' => Admin::manual_link( 'https://wp-ystandard.com/mobile-footer-menu#color' ),
+			]
+		);
+		// モバイルフッター背景色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_mobile_footer_bg',
+				'default' => '#ffffff',
+				'label'   => 'モバイルフッター背景色',
+			]
+		);
+		// モバイルフッター文字色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_mobile_footer_text',
+				'default' => '#222222',
+				'label'   => 'モバイルフッター文字色',
 			]
 		);
 	}
