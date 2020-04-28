@@ -106,7 +106,7 @@ class No_Index {
 			[
 				'section'     => 'ys_noindex',
 				'title'       => 'アーカイブページのnoindex',
-				'description' => Admin::manual_link( 'https://wp-ystandard.com/archive-noindex/' ),
+				'description' => Admin::manual_link( 'archive-noindex' ),
 				'priority'    => 1,
 				'panel'       => SEO::PANEL_NAME,
 			]
