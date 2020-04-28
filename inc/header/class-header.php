@@ -498,7 +498,7 @@ class Header {
 			[
 				'section'     => 'ys_customizer_section_header_design',
 				'title'       => 'サイトヘッダー',
-				'description' => 'サイトヘッダー部分のデザイン設定',
+				'description' => 'サイトヘッダー部分のデザイン設定' . Admin::manual_link( 'site-header' ),
 				'priority'    => 50,
 				'panel'       => Design::PANEL_NAME,
 			]
@@ -572,7 +572,12 @@ class Header {
 		/**
 		 * ヘッダー固定表示
 		 */
-		$customizer->add_section_label( 'ヘッダー固定表示' );
+		$customizer->add_section_label(
+			'ヘッダー固定表示',
+			[
+				'description' => Admin::manual_link( 'fixed-header' ),
+			]
+		);
 
 		$customizer->add_checkbox(
 			[
@@ -638,7 +643,7 @@ class Header {
 			[
 				'section'     => 'ys_mobile_design',
 				'title'       => 'モバイル（メニュー・サイドバー）',
-				'description' => 'モバイルページのメニュー設定・サイドバー表示設定',
+				'description' => 'モバイルページのメニュー設定・サイドバー表示設定' . Admin::manual_link( 'mobile-page' ),
 				'priority'    => 51,
 				'panel'       => Design::PANEL_NAME,
 			]
