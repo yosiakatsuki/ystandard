@@ -30,7 +30,7 @@ class Advertisement {
 		add_action( 'ys_singular_before_title', [ $this, 'before_title' ] );
 		add_action( 'ys_singular_after_title', [ $this, 'after_title' ] );
 		add_action( 'after_setup_theme', [ $this, 'set_singular_content' ] );
-		add_filter( 'ys_more_content', [ $this, 'more_ad' ] );
+		add_filter( 'ys_before_first_heading_content', [ $this, 'heading_ad' ] );
 
 		/**
 		 * 設定追加
@@ -124,7 +124,7 @@ class Advertisement {
 	 *
 	 * @return string
 	 */
-	public function more_ad( $content ) {
+	public function heading_ad( $content ) {
 
 		$key = 'ys_advertisement_replace_more';
 		if ( AMP::is_amp() ) {
@@ -415,9 +415,10 @@ class Advertisement {
 		 */
 		$customizer->add_textarea(
 			[
-				'id'      => 'ys_advertisement_replace_more',
-				'default' => '',
-				'label'   => 'moreタグ部分',
+				'id'          => 'ys_advertisement_replace_more',
+				'default'     => '',
+				'label'       => '最初の見出しの上',
+				'description' => '<small>目次を表示している場合、目次の上に表示されます。</small>',
 			]
 		);
 		/**
@@ -484,9 +485,10 @@ class Advertisement {
 		 */
 		$customizer->add_textarea(
 			[
-				'id'      => 'ys_advertisement_replace_more_sp',
-				'default' => '',
-				'label'   => 'moreタグ部分',
+				'id'          => 'ys_advertisement_replace_more_sp',
+				'default'     => '',
+				'label'       => '最初の見出しの上',
+				'description' => '<small>目次を表示している場合、目次の上に表示されます。</small>',
 			]
 		);
 		/**
@@ -631,10 +633,11 @@ class Advertisement {
 		 */
 		$customizer->add_textarea(
 			[
-				'id'        => 'ys_amp_advertisement_replace_more',
-				'default'   => '',
-				'transport' => 'postMessage',
-				'label'     => 'moreタグ部分',
+				'id'          => 'ys_amp_advertisement_replace_more',
+				'default'     => '',
+				'transport'   => 'postMessage',
+				'label'       => '最初の見出しの上',
+				'description' => '<small>目次を表示している場合、目次の上に表示されます。</small>',
 			]
 		);
 		/**
