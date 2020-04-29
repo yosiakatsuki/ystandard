@@ -38,9 +38,14 @@ class Taxonomy {
 		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
 		add_filter( 'wp_tag_cloud', [ $this, '_tag_cloud' ] );
 		add_action(
-			'ys_singular_footer',
-			[ $this, 'post_taxonomy' ],
-			Content::get_footer_priority( 'taxonomy' )
+			'set_singular_content',
+			function () {
+				add_action(
+					'ys_singular_footer',
+					[ $this, 'post_taxonomy' ],
+					Content::get_footer_priority( 'taxonomy' )
+				);
+			}
 		);
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
 	}
