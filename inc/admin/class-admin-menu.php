@@ -212,8 +212,9 @@ class Admin_Menu {
 		?>
 		<div class="wrap ys-option-page">
 			<h2>アイコン ショートコード一覧</h2>
-			<p>ショートコードをコピーしてサイト内でご使用ください。</p>
+			<?php echo Admin::manual_link( 'icon-search' ); ?>
 			<div class="ys-option__section">
+				<p>ショートコードをコピーしてサイト内でご使用ください。</p>
 				<div id="ys-search-icons">
 					<p class="ys-search-icons__search">
 						検索：<input type="search" class="" v-model="keyword">
@@ -290,6 +291,7 @@ class Admin_Menu {
 		?>
 		<div class="wrap">
 			<h2>キャッシュ管理</h2>
+			<?php echo Admin::manual_link( 'cache-delete' ); ?>
 			<?php if ( $result ) : ?>
 				<div class="notice notice-success is-dismissible">
 					<p><?php echo $result; ?></p>
