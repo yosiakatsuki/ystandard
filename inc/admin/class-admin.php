@@ -36,6 +36,18 @@ class Admin {
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_action( 'admin_init', [ $this, 'enqueue_visual_editor_styles' ] );
 		add_action( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ] );
+		Notice::set_notice( [ $this, 'widget_notice' ] );
+	}
+
+	/**
+	 * ウィジェットページのマニュアルリンク
+	 */
+	public function widget_notice() {
+		global $pagenow;
+		$manual = self::manual_link( 'widget-area' );
+		if ( 'widgets.php' === $pagenow && ! empty( $manual ) ) {
+			Notice::plain( '<p>' . $manual . '</p>' );
+		}
 	}
 
 	/**

@@ -110,7 +110,11 @@ class YS_Widget_Parts extends WP_Widget {
 			(array) $instance,
 			$this->default_instance
 		);
+		$manual   = \ystandard\Admin::manual_link( 'widget-ys-parts' );
 		?>
+		<?php if ( ! empty( $manual ) ) : ?>
+			<p><?php echo $manual; ?></p>
+		<?php endif; ?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>">
