@@ -56,26 +56,30 @@ class Content {
 		add_action( 'customize_register', [ $this, 'customize_register_post' ] );
 		add_action( 'customize_register', [ $this, 'customize_register_page' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
-
-		add_filter(
-			'ys_singular_header',
-			[ $this, 'post_thumbnail_default' ],
-			self::get_header_priority( 'post-thumbnail' )
-		);
-		add_filter(
-			'ys_singular_header',
-			[ $this, 'singular_title' ],
-			self::get_header_priority( 'title' )
-		);
-		add_filter(
-			'ys_singular_header',
-			[ $this, 'singular_meta' ],
-			self::get_header_priority( 'meta' )
-		);
-		add_filter(
-			'ys_singular_footer',
-			[ $this, 'related_posts' ],
-			self::get_footer_priority( 'related' )
+		add_action(
+			'set_singular_content',
+			function () {
+				add_action(
+					'ys_singular_header',
+					[ $this, 'post_thumbnail_default' ],
+					self::get_header_priority( 'post-thumbnail' )
+				);
+				add_action(
+					'ys_singular_header',
+					[ $this, 'singular_title' ],
+					self::get_header_priority( 'title' )
+				);
+				add_action(
+					'ys_singular_header',
+					[ $this, 'singular_meta' ],
+					self::get_header_priority( 'meta' )
+				);
+				add_action(
+					'ys_singular_footer',
+					[ $this, 'related_posts' ],
+					self::get_footer_priority( 'related' )
+				);
+			}
 		);
 	}
 

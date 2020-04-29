@@ -21,7 +21,7 @@ class Widget {
 	 */
 	public function register() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
-		add_action( 'after_setup_theme', [ $this, 'set_widget' ] );
+		add_action( 'set_singular_content', [ $this, 'set_widget' ] );
 	}
 
 	/**
