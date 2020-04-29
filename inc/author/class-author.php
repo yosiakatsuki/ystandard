@@ -43,9 +43,14 @@ class Author {
 		add_shortcode( 'ys_author', [ $this, 'do_shortcode' ] );
 		add_filter( 'pre_get_avatar', [ $this, '_get_avatar' ], 10, 3 );
 		add_action(
-			'ys_singular_footer',
-			[ $this, 'post_author' ],
-			Content::get_footer_priority( 'author' )
+			'set_singular_content',
+			function () {
+				add_action(
+					'ys_singular_footer',
+					[ $this, 'post_author' ],
+					Content::get_footer_priority( 'author' )
+				);
+			}
 		);
 		add_action( 'widgets_init', [ $this, 'register_widget' ] );
 	}

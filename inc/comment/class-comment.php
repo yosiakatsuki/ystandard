@@ -23,10 +23,15 @@ class Comment {
 		add_filter( 'comments_open', [ $this, 'comment_tags' ] );
 		add_filter( 'pre_comment_approved', [ $this, 'comment_tags' ] );
 		add_filter( 'comment_form_fields', [ $this, 'comment_form_fields' ] );
-		add_filter(
-			'ys_singular_footer',
-			[ $this, 'post_comment' ],
-			Content::get_footer_priority( 'comment' )
+		add_action(
+			'set_singular_content',
+			function () {
+				add_action(
+					'ys_singular_footer',
+					[ $this, 'post_comment' ],
+					Content::get_footer_priority( 'comment' )
+				);
+			}
 		);
 	}
 
