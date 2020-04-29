@@ -194,13 +194,22 @@ class Admin {
 	 * @return string
 	 */
 	public static function manual_link( $url, $text = '', $icon = 'book' ) {
-		if ( false === strpos( $url, 'https://' ) ) {
-			$url = "https://wp-ystandard.com/${url}/";
+
+		$url  = apply_filters( 'ys_manual_link_url', $url );
+		$text = apply_filters( 'ys_manual_link_text', $text, $url );
+
+		if ( empty( $url ) ) {
+			return '';
 		}
+
 		if ( '' === $text ) {
 			$text = 'マニュアルを見る';
 		}
 		$icon = Icon::get_icon( $icon );
+
+		if ( false === strpos( $url, 'https://' ) ) {
+			$url = "https://wp-ystandard.com/${url}/";
+		}
 
 		return wp_targeted_link_rel(
 			"<a class=\"ys-manual-link\" href=\"${url}\" target=\"_blank\">${icon}${text}</a>"
