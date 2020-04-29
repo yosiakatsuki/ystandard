@@ -601,10 +601,11 @@ class Breadcrumbs {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section'  => 'ys_breadcrumbs',
-				'title'    => 'パンくずリスト',
-				'priority' => 60,
-				'panel'    => Design::PANEL_NAME,
+				'section'     => 'ys_breadcrumbs',
+				'title'       => 'パンくずリスト',
+				'priority'    => 60,
+				'description' => Admin::manual_link( 'breadcrumbs' ),
+				'panel'       => Design::PANEL_NAME,
 			]
 		);
 		/**

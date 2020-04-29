@@ -22,6 +22,31 @@ class Recommend_Plugins {
 	public function __construct() {
 		require_once get_template_directory() . '/library/TGM-Plugin-Activation/class-tgm-plugin-activation.php';
 		add_action( 'tgmpa_register', [ $this, 'tgmpa_register' ] );
+		Notice::set_notice( [ $this, 'notice' ] );
+		add_filter( 'tgmpa_notice_action_links', [ $this, 'action_links' ] );
+	}
+
+	/**
+	 * Notice
+	 */
+	public function notice() {
+		global $pagenow, $hook_suffix;
+		if ( 'themes.php' === $pagenow && 'appearance_page_tgmpa-install-plugins' === $hook_suffix ) {
+			Notice::plain( '<p>' . Admin::manual_link( 'ystd-plugin' ) . '</p>' );
+		}
+	}
+
+	/**
+	 * オススメプラグイン通知メッセージ
+	 *
+	 * @param array $action_links Action Links.
+	 *
+	 * @return mixed
+	 */
+	public function action_links( $action_links ) {
+		$action_links['manual'] = Admin::manual_link( 'ystd-plugin', '', true );
+
+		return $action_links;
 	}
 
 	/**

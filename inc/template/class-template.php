@@ -133,6 +133,12 @@ class Template {
 		if ( ( is_singular() && ! is_page() ) && '1col' === Option::get_option( 'ys_post_layout', '2col' ) ) {
 			return true;
 		}
+		/**
+		 * [ys]パーツ
+		 */
+		if ( Parts::POST_TYPE === Content::get_post_type() ) {
+			return true;
+		}
 
 		return false;
 	}

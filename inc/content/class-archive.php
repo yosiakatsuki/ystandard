@@ -128,10 +128,11 @@ class Archive {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section'  => 'ys_design_archive',
-				'title'    => 'アーカイブページ',
-				'panel'    => Design::PANEL_NAME,
-				'priority' => 120,
+				'section'     => 'ys_design_archive',
+				'title'       => 'アーカイブページ',
+				'panel'       => Design::PANEL_NAME,
+				'priority'    => 120,
+				'description' => Admin::manual_link( 'archive-layout' ),
 			]
 		);
 		$customizer->add_section_label( 'レイアウト' );
