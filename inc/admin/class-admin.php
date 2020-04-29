@@ -36,6 +36,18 @@ class Admin {
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_action( 'admin_init', [ $this, 'enqueue_visual_editor_styles' ] );
 		add_action( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ] );
+		Notice::set_notice( [ $this, 'widget_notice' ] );
+	}
+
+	/**
+	 * ウィジェットページのマニュアルリンク
+	 */
+	public function widget_notice() {
+		global $pagenow;
+		$manual = self::manual_link( 'widget-area' );
+		if ( 'widgets.php' === $pagenow && ! empty( $manual ) ) {
+			Notice::plain( '<p>' . $manual . '</p>' );
+		}
 	}
 
 	/**
@@ -187,31 +199,36 @@ class Admin {
 	/**
 	 * マニュアルリンク作成
 	 *
-	 * @param string $url  URL.
-	 * @param string $text Text.
-	 * @param string $icon Icon Name.
+	 * @param string $url    URL.
+	 * @param string $text   Text.
+	 * @param bool   $inline Inline.
+	 * @param string $icon   Icon Name.
 	 *
 	 * @return string
 	 */
-	public static function manual_link( $url, $text = '', $icon = 'book' ) {
+	public static function manual_link( $url, $text = '', $inline = false, $icon = 'book' ) {
+
+		$url  = apply_filters( 'ys_manual_link_url', $url );
+		$text = apply_filters( 'ys_manual_link_text', $text, $url );
+
+		if ( empty( $url ) ) {
+			return '';
+		}
+
 		if ( '' === $text ) {
 			$text = 'マニュアルを見る';
 		}
 		$icon = Icon::get_icon( $icon );
 
-		return wp_targeted_link_rel(
-			"<a class=\"ys-manual-link\" href=\"${url}\" target=\"_blank\">${icon}${text}</a>"
-		);
-	}
+		if ( false === strpos( $url, 'https://' ) ) {
+			$url = "https://wp-ystandard.com/${url}/";
+		}
 
-	/**
-	 * 管理画面通知
-	 *
-	 * @param string $content notice content.
-	 * @param string $type    type.
-	 */
-	private function notice( $content, $type = 'error' ) {
-		echo "<div class=\"notice notice-${type} is-dismissible\">${content}</div>";
+		$inline_class = $inline ? 'is-inline' : '';
+
+		return wp_targeted_link_rel(
+			"<a class=\"ys-manual-link ${inline_class}\" href=\"${url}\" target=\"_blank\">${icon}${text}</a>"
+		);
 	}
 
 	/**

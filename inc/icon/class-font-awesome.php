@@ -213,7 +213,7 @@ class Font_Awesome {
 			[
 				'section'     => 'ys_icon_fonts',
 				'title'       => 'アイコンフォント設定',
-				'description' => 'アイコンフォントに関する設定',
+				'description' => 'アイコンフォントに関する設定' . Admin::manual_link( 'icon-font' ),
 				'priority'    => 5100,
 				'panel'       => Design::PANEL_NAME,
 			]
@@ -246,7 +246,7 @@ class Font_Awesome {
 				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'Font Awesome Kits URL',
-				'description' => 'Font Awesome Kitsを使う場合のURL設定',
+				'description' => 'Font Awesome Kitsを使う場合のURL設定' . Admin::manual_link( 'get-font-awesome-kits' ),
 			]
 		);
 	}

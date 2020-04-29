@@ -356,8 +356,9 @@ class Advertisement {
 		);
 		$customizer->add_section(
 			[
-				'section' => 'ys_ads_common',
-				'title'   => '広告共通設定',
+				'section'     => 'ys_ads_common',
+				'title'       => '広告共通設定',
+				'description' => Admin::manual_link( 'advertisement' ),
 			]
 		);
 		/**
@@ -376,8 +377,9 @@ class Advertisement {
 		 */
 		$customizer->add_section(
 			[
-				'section' => 'ys_customizer_section_ads_pc',
-				'title'   => 'PC広告設定',
+				'section'     => 'ys_customizer_section_ads_pc',
+				'title'       => 'PC広告設定',
+				'description' => Admin::manual_link( 'advertisement' ),
 			]
 		);
 		/**
@@ -446,8 +448,9 @@ class Advertisement {
 		 */
 		$customizer->add_section(
 			[
-				'section' => 'ys_customizer_section_ads_sp',
-				'title'   => 'モバイル広告設定',
+				'section'     => 'ys_customizer_section_ads_sp',
+				'title'       => 'モバイル広告設定',
+				'description' => Admin::manual_link( 'advertisement' ),
 			]
 		);
 		/**
@@ -505,8 +508,9 @@ class Advertisement {
 		 */
 		$customizer->add_section(
 			[
-				'section' => 'ys_customizer_section_infeed',
-				'title'   => 'インフィード広告設定',
+				'section'     => 'ys_customizer_section_infeed',
+				'title'       => 'インフィード広告設定',
+				'description' => Admin::manual_link( 'advertisement' ),
 			]
 		);
 		/**
@@ -590,6 +594,7 @@ class Advertisement {
 			[
 				'section'         => 'ys_customizer_section_amp_ads',
 				'title'           => 'AMP広告設定',
+				'description'     => Admin::manual_link( 'amp-advertisement' ),
 				'active_callback' => function () {
 					return Option::get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false );
 				},

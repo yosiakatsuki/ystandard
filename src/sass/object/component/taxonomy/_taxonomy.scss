@@ -7,15 +7,15 @@
 
 .post-taxonomy__title {
   position: relative;
-  min-width: 95px;
+  min-width: 6.5em;
   margin: 0;
   font-weight: $font__weight_bold;
 
   &:after {
-    content: "/";
-    position: absolute;
-    top: 0;
-    right: 0.5em;
+	content: "/";
+	position: absolute;
+	top: 0;
+	right: 0.5em;
   }
 }
 
@@ -32,14 +32,15 @@
   margin-left: 0.5em;
 
   &:first-child {
-    margin-left: 0;
+	margin-left: 0;
   }
 
   &::after {
-    content: ",";
+	content: ",";
   }
+
   &:last-child::after {
-    content: "";
+	content: "";
   }
 }
 
