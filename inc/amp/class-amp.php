@@ -56,8 +56,9 @@ class AMP {
 		);
 		$customizer->add_section(
 			[
-				'section' => 'ys_amp_enable',
-				'title'   => 'AMPプラグイン連携機能 設定',
+				'section'     => 'ys_amp_enable',
+				'title'       => 'AMPプラグイン連携機能 設定',
+				'description' => Admin::manual_link( 'ystadnard-amp-page' ),
 			]
 		);
 		$description = '「AMP」プラグインの連携機能を有効化します。AMP用広告設定などが追加されます。';
