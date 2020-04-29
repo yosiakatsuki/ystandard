@@ -187,13 +187,14 @@ class Admin {
 	/**
 	 * マニュアルリンク作成
 	 *
-	 * @param string $url  URL.
-	 * @param string $text Text.
-	 * @param string $icon Icon Name.
+	 * @param string $url    URL.
+	 * @param string $text   Text.
+	 * @param bool   $inline Inline.
+	 * @param string $icon   Icon Name.
 	 *
 	 * @return string
 	 */
-	public static function manual_link( $url, $text = '', $icon = 'book' ) {
+	public static function manual_link( $url, $text = '', $inline = false, $icon = 'book' ) {
 
 		$url  = apply_filters( 'ys_manual_link_url', $url );
 		$text = apply_filters( 'ys_manual_link_text', $text, $url );
@@ -211,19 +212,11 @@ class Admin {
 			$url = "https://wp-ystandard.com/${url}/";
 		}
 
-		return wp_targeted_link_rel(
-			"<a class=\"ys-manual-link\" href=\"${url}\" target=\"_blank\">${icon}${text}</a>"
-		);
-	}
+		$inline_class = $inline ? 'is-inline' : '';
 
-	/**
-	 * 管理画面通知
-	 *
-	 * @param string $content notice content.
-	 * @param string $type    type.
-	 */
-	private function notice( $content, $type = 'error' ) {
-		echo "<div class=\"notice notice-${type} is-dismissible\">${content}</div>";
+		return wp_targeted_link_rel(
+			"<a class=\"ys-manual-link ${inline_class}\" href=\"${url}\" target=\"_blank\">${icon}${text}</a>"
+		);
 	}
 
 	/**

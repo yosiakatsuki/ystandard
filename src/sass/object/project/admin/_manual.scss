@@ -4,6 +4,10 @@
   color: $color__ystanadrd;
   font-weight: $font__weight_bold;
 
+  &.is-inline {
+	display: inline-block;
+  }
+
   svg {
 	width: 1em;
 	height: 1em;
