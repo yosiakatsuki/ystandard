@@ -594,7 +594,7 @@ class Advertisement {
 			[
 				'section'         => 'ys_customizer_section_amp_ads',
 				'title'           => 'AMP広告設定',
-				'description'     => Admin::manual_link( 'advertisement' ),
+				'description'     => Admin::manual_link( 'amp-advertisement' ),
 				'active_callback' => function () {
 					return Option::get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false );
 				},
