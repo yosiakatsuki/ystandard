@@ -127,7 +127,10 @@ class Init {
 		 * レスポンシブ
 		 */
 		add_theme_support( 'responsive-embeds' );
-
+		/**
+		 * 記事上・記事下のアクションセット
+		 */
+		do_action( 'set_singular_content' );
 	}
 
 	/**

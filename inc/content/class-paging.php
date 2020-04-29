@@ -20,7 +20,7 @@ class Paging {
 	 * フックやショートコードの登録
 	 */
 	public function register() {
-		add_action( 'after_setup_theme', [ $this, 'set_widget' ] );
+		add_action( 'set_singular_content', [ $this, 'set_widget' ] );
 	}
 
 	/**
