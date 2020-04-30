@@ -3,12 +3,16 @@
 //
 @import "caption";
 @import "gallery";
+@import "embed";
+
 .sticky {
-	box-sizing: inherit;
+  box-sizing: inherit;
 }
+
 .bypostauthor {
-	display: block;
+  display: block;
 }
+
 .emoji {
-	width: 1em;
+  width: 1em;
 }

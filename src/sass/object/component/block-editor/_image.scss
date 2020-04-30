@@ -1,27 +1,10 @@
-.wp-block-image {
-	.aligncenter {
-		text-align: center;
-	}
-
-	&.alignwide,
-	&.alignfull {
-		img {
-			width: 100%;
-		}
-	}
-
-	&.alignfull {
-		padding-right: 0;
-		padding-left: 0;
-	}
-}
-
-.is-style-circle-mask img {
-	border-radius: 0;
-
-	mask-image: url("data:image/svg+xml;utf8,<svg viewBox= \"0 0 100 100\" xmlns= \"http://www.w3.org/2000/svg\" ><circle cx= \"50\" cy= \"50\" r= \"50\" /></svg>");
-	mask-mode: alpha;
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: center;
+body:not(.has-sidebar) {
+  @include media-breakpoint(lg) {
+    .wp-block-image {
+      &.alignfull {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
 }

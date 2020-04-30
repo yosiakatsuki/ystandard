@@ -1,66 +1,24 @@
 .wp-block-table {
-	&.has-fixed-layout {
-		table-layout: fixed;
-	}
-
-	&.is-style-stripes {
-		tr:nth-child(odd) {
-			background-color: $color__bg-gray-light;
-		}
-
-		&.has-subtle-light-gray-background-color,
-		.has-subtle-light-gray-background-color {
-			tr:nth-child(odd) {
-				background-color: #f3f4f5;
-			}
-		}
-
-		&.has-subtle-pale-green-background-color,
-		.has-subtle-pale-green-background-color {
-			tr:nth-child(odd) {
-				background-color: #e9fbe5;
-			}
-		}
-
-		&.has-subtle-pale-blue-background-color,
-		.has-subtle-pale-blue-background-color {
-			tr:nth-child(odd) {
-				background-color: #e7f5fe;
-			}
-		}
-
-		&.has-subtle-pale-pink-background-color,
-		.has-subtle-pale-pink-background-color {
-			tr:nth-child(odd) {
-				background-color: #fcf0ef;
-			}
-		}
-	}
+  &.is-style-stripes {
+    table,
+    tr {
+      border-color: transparent;
+    }
+  }
 }
 
 @if $editor == true {
-	.wp-block-table {
-		table.has-background,
-		table:not(.has-background) {
-			background-color: transparent;
-		}
+  .wp-block-table {
+    thead,
+    tfoot {
+      border: 0;
+    }
 
-		th {
-			background-color: $color__bg-gray-light;
-			font-weight: normal;
-			text-align: left;
-		}
-
-		.has-text-align-center {
-			text-align: center;
-		}
-
-		.has-text-align-left {
-			text-align: left;
-		}
-
-		.has-text-align-right {
-			text-align: right;
-		}
-	}
+    thead {
+      th {
+        background-color: $color__bg-gray-light;
+        font-weight: $font__weight_normal;
+      }
+    }
+  }
 }

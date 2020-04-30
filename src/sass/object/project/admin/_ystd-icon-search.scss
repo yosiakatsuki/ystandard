@@ -1,0 +1,33 @@
+.ys-icon-search__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -.5em;
+  margin-left: -.5em;
+}
+
+.ys-icon-search__item {
+  width: 50%;
+  padding: 1em .5em 1.5em;
+  text-align: center;
+  box-sizing: border-box;
+
+  @include media-breakpoint(sm) {
+	width: 25%;
+  }
+  @include media-breakpoint(lg) {
+	width: 20%;
+  }
+}
+
+.ys-icon-search__icon {
+  display: block;
+
+  svg {
+	width: 48px;
+	height: 48px;
+  }
+}
+.ys-icon-search__label {
+  margin: 0 0 .5em;
+  color: var(--font-color);
+}

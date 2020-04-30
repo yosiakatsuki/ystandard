@@ -7,19 +7,14 @@
  * @license GPL-2.0+
  */
 
-if ( is_front_page() || ys_is_no_title_template() ) {
-	return;
-}
-$ys_breadcrumb = new YS_Breadcrumbs();
-$items         = $ys_breadcrumb->get_breadcrumbs();
-if ( empty( $items ) ) {
+if ( empty( $breadcrumbs ) ) {
 	return;
 }
 ?>
 <div id="breadcrumbs" class="breadcrumbs">
 	<div class="container">
 		<ol class="breadcrumbs__list li-clear">
-			<?php foreach ( $items as $key => $item ) : ?>
+			<?php foreach ( $breadcrumbs as $key => $item ) : ?>
 				<li class="breadcrumbs__item">
 					<?php if ( empty( $item['item'] ) ) : ?>
 						<?php echo esc_html( $item['name'] ); ?>

@@ -6,6 +6,7 @@ const autoprefixer = require( 'autoprefixer' );
 const mqpacker = require( 'css-mqpacker' );
 const cssnano = require( 'cssnano' );
 const packageImporter = require( 'node-sass-package-importer' );
+const cssdeclsort = require( 'css-declaration-sorter' );
 const babel = require( 'gulp-babel' );
 const del = require( 'del' );
 const webpackStream = require( 'webpack-stream' );
@@ -29,6 +30,7 @@ const postcssPlugins = [
 			]
 		}
 	),
+	cssdeclsort( { order: 'smacss' } )
 ];
 const postcssPluginsParts = [
 	autoprefixer( {
@@ -96,31 +98,32 @@ function copyProductionFiles() {
 	return src(
 		[
 			'**',
+			'!.github',
+			'!.github/**',
+			'!.travis',
+			'!.travis/**',
+			'!bin',
+			'!bin/**',
+			'!node_modules',
+			'!node_modules/**',
+			'!src',
+			'!src/**',
+			'!tests',
+			'!tests/**',
 			'!.editorconfig',
 			'!.eslintrc.json',
 			'!.gitignore',
 			'!.travis.yml',
-			'!node_modules',
-			'!node_modules/**',
 			'!gulpfile.js',
 			'!package.json',
 			'!package-lock.json',
-			'!phpcs.ruleset.dist',
 			'!phpcs.ruleset.xml',
 			'!phpunit.xml.dist',
 			'!webpack.config.js',
 			'!ystandard-info.json',
 			'!ystandard-info-beta.json',
-			'!tests',
-			'!tests/**',
-			'!bin',
-			'!bin/**',
-			'!src',
-			'!src/**',
 			'!block/**/*.js',
 			'!block/**/*.scss',
-			'!.github',
-			'!.github/**',
 			'!build',
 			'!build/**',
 			'!*.zip',

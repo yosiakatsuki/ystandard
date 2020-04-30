@@ -1,0 +1,20 @@
+.ys-manual-link {
+  display: block;
+  margin-top: .25em;
+  color: $color__ystanadrd;
+  font-weight: $font__weight_bold;
+
+  &.is-inline {
+	display: inline-block;
+  }
+
+  svg {
+	width: 1em;
+	height: 1em;
+	margin-right: .25em;
+  }
+}
+
+p + .ys-manual-link {
+  margin-top: -0.5em;
+}

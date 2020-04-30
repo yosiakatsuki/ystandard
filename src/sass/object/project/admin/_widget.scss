@@ -1,119 +1,25 @@
-select {
-	max-width: 100%;
+.widget-inside {
+  select {
+    &.multiple {
+      width: 100%;
+    }
+  }
 }
+
 
 .widgets-holder-wrap .description a {
-	display: block;
-	font-size: 0.7rem;
+  display: block;
+  font-size: 0.7rem;
 }
-
-.ys-widget-option {
-	position: relative;
-	margin: 0.5rem 0 2rem;
+.widget-form__section {
+  h4 {
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    background-color: $color__ystanadrd;
+    color: $color__text-white;
+  }
 }
-
-.ys-widget-option__container {
-	height: 0;
-	overflow-y: hidden;
-	transition: all 0.3s;
-	opacity: 0;
-}
-
-.ys-widget-option__toggle {
-	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
-	visibility: hidden;
-}
-
-.ys-widget-option__toggle-label {
-	display: block;
-	position: absolute;
-	top: 0;
-	right: 0;
-	max-height: 51px;
-	padding: 1rem;
-	border-left: 1px solid $color__border-gray;
-	color: $color__text-main;
-	line-height: 1.4;;
-}
-
-.ys-widget-option__toggle-icon::before {
-	content: "\f0d7";
-}
-
-.ys-widget-option__toggle:checked {
-	& ~ .ys-widget-option__toggle-label {
-		.ys-widget-option__toggle-icon::before {
-			content: "\f0d8";
-		}
-	}
-
-	& ~ .ys-widget-option__container {
-		height: 100%;
-		opacity: 1;
-	}
-}
-
-.ys-widget-option__section {
-	h4 {
-		margin: 2em 0 1em;
-		padding-bottom: 0.25em;
-		border-bottom: 1px solid $color__border-gray;
-		font-size: 1.05em;
-	}
-}
-
-.ys-widget-option__title {
-	max-height: 51px;
-	margin: 0;
-	padding: 1rem;
-	background-color: $color__bg-gray-light;
-	border: 1px solid $color__border-gray;
-	font-size: 1.1em;
-}
-
-.ys-widget-option__select {
-	&.multiple {
-		display: block;
-		width: 99%;
-		padding: 0.25em;
-		border: 1px solid $color__border-gray-light;
-	}
-}
-
 .ys-widget-option__sub {
-	color: $color__text-light;
-	font-size: 0.8em;
-}
-
-.ys-widget-option__check-list {
-	max-height: 7.5rem;
-	padding: 0.5rem 0;
-	border: 1px solid $color__border-gray;
-	overflow-y: scroll;
-
-	label {
-		display: block;
-		padding: 0.2rem 0.5rem;
-		line-height: 1.5;
-	}
-}
-
-.ys-widget-option__check-list-group {
-	margin: 0.1rem 0 0.5rem;
-
-	& > .ys-widget-option__check-list-group-item {
-		padding-left: 0;
-	}
-}
-
-.ys-widget-option__check-list-group-item {
-	padding-left: 1rem;
-}
-
-.ys-widget-option__check-list-group-title {
-	padding: 0 0.5rem;
-	color: $color__text-light;
-	font-weight: $font__weight_bold;
+  color: $color__text-light;
+  font-size: 0.8em;
 }

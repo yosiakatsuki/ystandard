@@ -12,7 +12,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	/**
 	 * クリップボードにコピー
 	 */
-	var copyButtons = jQuery( '.copy-form__button' );
+	var copyButtons = jQuery( '.copy-form__button:not(.is-without-event)' );
 	if ( copyButtons.length ) {
 		copyButtons.each( ( i, elem ) => {
 			elem.addEventListener( 'click', ( e ) => {

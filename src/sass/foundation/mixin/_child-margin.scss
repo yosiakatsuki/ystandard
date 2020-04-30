@@ -1,0 +1,10 @@
+@mixin child_margin($margin: 1.5em) {
+  > * {
+    margin-top: $margin;
+    margin-bottom: 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}

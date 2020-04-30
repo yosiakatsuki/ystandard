@@ -1,32 +1,36 @@
-.entry__content {
-	margin-top: 1.5em;
+.entry-content {
+  $selector: "";
 
-	& > *:not(h1):not(h2):not(h3):not(h4):not(h5) {
-		margin-top: 1.5em;
-	}
+  @include child_margin();
 
-	& > *:first-child {
-		margin-top: 0;
-	}
+  margin-top: 2em;
+  margin-bottom: 2em;
 
-	&::after {
-		content: "";
-		display: block;
-		clear: both;
-	}
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 3em 0 0.25em;
+  }
+  @for $i from 1 through 5 {
+    $selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
+  }
+
+  #{$selector} {
+    margin-top: 1em;
+  }
 }
 
-.singular-article {
-	@at-root {
-		& {
-			max-width: $width__content_one_col;
-			margin-right: auto;
-			margin-left: auto;
-		}
-
-		.full-width &,
-		.has-sidebar & {
-			max-width: unset;
-		}
-	}
+.no-title {
+  .entry-content {
+    margin-top: 0;
+  }
 }

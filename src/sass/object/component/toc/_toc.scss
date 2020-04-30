@@ -1,0 +1,51 @@
+.ys-toc {
+  padding: 1em;
+  font-size: 0.9em;
+  border: 1px solid var(--toc-border);
+  background-color: var(--toc-bg);
+  color: var(--toc-text);
+
+  a {
+	color: currentColor;
+	text-decoration: none;
+  }
+
+  @include media-breakpoint(sm) {
+	padding: 1em 1.5em;
+  }
+}
+
+.ys-toc__title {
+  margin: 0 0 .5em;
+  font-weight: $font__weight_bold;
+}
+
+.ys-toc__list {
+  &,
+  ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+  }
+
+  li {
+	padding: .25em 0;
+  }
+
+  > li {
+	padding-left: 1em;
+	margin-bottom: .5em;
+	border-left: 1px solid var(--toc-list-border);
+  }
+
+  ul {
+	padding-left: 1em;
+	font-size: .95em;
+	li {
+	  &::before {
+		content: "-";
+		margin-right: 0.25em;
+	  }
+	}
+  }
+}

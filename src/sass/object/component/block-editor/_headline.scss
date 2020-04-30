@@ -1,0 +1,21 @@
+@if $editor == true {
+  [data-type="core/heading"] {
+	h1,
+	h2 {
+	  font-size: get_font_size("x-large");
+	}
+
+	h3 {
+	  font-size: get_font_size("large");
+	}
+
+	h4 {
+	  font-size: 1.2em;
+	}
+
+	h5,
+	h6 {
+	  font-size: 1.1em;
+	}
+  }
+}

@@ -1,9 +1,0 @@
-- v3.1.0
-  - ys_get_option -> ys_get_option_{$name}
-  - ys_get_option_default -> ys_get_option_default_{$name}
-  - ys_get_font_awesome_css_url -> ys_get_font_awesome_cdn_css_url
-  - ys_get_font_awesome_css_version -> ys_get_font_awesome_cdn_css_version
-  - ys_get_font_awesome_svg_url -> ys_get_font_awesome_cdn_svg_url
-  - ys_get_font_awesome_svg_version -> ys_get_font_awesome_cdn_svg_version
-  - delete: ys_exclude_add_defer_scripts_file
-  - add: ys_defer_scripts

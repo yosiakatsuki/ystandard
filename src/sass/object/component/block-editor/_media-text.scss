@@ -1,112 +1,44 @@
+
 .wp-block-media-text {
-	display: grid;
+  &.is-stacked-on-mobile {
+    .wp-block-media-text__content {
+      padding: 1em 0;
 
-	grid-template-rows: auto;
-	grid-template-areas: "media-text-media media-text-content";
-	grid-template-columns: 50% auto;
+      @include media-breakpoint(sm) {
+        padding: 0 2em;
+      }
+    }
+  }
 
-	& > * {
-		align-self: center;
-	}
+  &.has-background {
+    .wp-block-media-text__content {
+      padding: 1em;
 
-	&.is-vertically-aligned-top {
-		> * {
-			align-self: start;
-		}
+      @include media-breakpoint(sm) {
+        padding: 1em 2em;
+      }
+    }
+  }
 
-		.wp-block-media-text__content {
-			padding-top: 0;
-		}
-	}
+  & + & {
+    margin-top: 0;
+  }
 
-	&.is-vertically-aligned-center {
-		& > * {
-			align-self: center;
-		}
-	}
+  @media (max-width: 600px) {
+    &.is-stacked-on-mobile.has-media-on-the-right {
+      .wp-block-media-text__media {
+        grid-column: 1;
+        grid-row: 1;
+      }
 
-	&.is-vertically-aligned-bottom {
-		& > * {
-			align-self: end;
-		}
-
-		.wp-block-media-text__content {
-			padding-bottom: 0;
-		}
-	}
-
-	&.has-background {
-		.wp-block-media-text__content {
-			padding-top: 1rem;
-			padding-bottom: 1rem;
-		}
-	}
-
-	.wp-block-media-text__media {
-		grid-area: media-text-media;
-	}
-
-	&.is-image-fill {
-		.wp-block-media-text__media {
-			position: relative;
-			width: 100%;
-			height: 100%;
-			background-size: cover;
-
-			img {
-				position: absolute;
-				width: 1px;
-				height: 1px;
-				margin: -1px;
-				padding: 0;
-				border: 0;
-				overflow: hidden;
-				clip: rect(0, 0, 0, 0);
-			}
-		}
-	}
-
-	.wp-block-media-text__content {
-		grid-area: media-text-content;
-	}
-
-	&.has-media-on-the-right {
-		grid-template-areas: "media-text-content media-text-media";
-
-		.wp-block-media-text__content {
-			padding-right: 1rem;
-			padding-left: 0;
-		}
-	}
-
-	&.is-stacked-on-mobile {
-		@include media-breakpoint-down(md) {
-			display: block;
-
-			.wp-block-media-text__content {
-				padding: 1rem 0;
-			}
-			&.has-background {
-				.wp-block-media-text__content {
-					padding: 1rem;
-				}
-			}
-		}
-	}
-
-	& + & {
-		margin-top: 0;
-	}
+      .wp-block-media-text__content {
+        grid-column: 1;
+        grid-row: 2;
+      }
+    }
+  }
 }
 
 .wp-block-media-text__content {
-	padding-left: 1rem;
-
-	& > * {
-		margin-top: 1em;
-
-		&:first-child {
-			margin-top: 0;
-		}
-	}
+  @include child_margin();
 }
