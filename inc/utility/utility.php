@@ -49,80 +49,80 @@ function ys_get_page_url() {
 function ys_get_sns_icons() {
 	return apply_filters(
 		'ys_get_sns_icons',
-		array(
-			'twitter'   => array(
+		[
+			'twitter'   => [
 				'class'      => 'twitter',
 				'option_key' => 'twitter',
 				'icon'       => 'fab fa-twitter',
 				'color'      => 'twitter',
 				'title'      => 'twitter',
 				'label'      => 'Twitter',
-			),
-			'facebook'  => array(
+			],
+			'facebook'  => [
 				'class'      => 'facebook',
 				'option_key' => 'facebook',
 				'icon'       => 'fab fa-facebook-f',
 				'color'      => 'facebook',
 				'title'      => 'facebook',
 				'label'      => 'Facebook',
-			),
-			'instagram' => array(
+			],
+			'instagram' => [
 				'class'      => 'instagram',
 				'option_key' => 'instagram',
 				'icon'       => 'fab fa-instagram',
 				'color'      => 'instagram',
 				'title'      => 'instagram',
 				'label'      => 'Instagram',
-			),
-			'tumblr'    => array(
+			],
+			'tumblr'    => [
 				'class'      => 'tumblr',
 				'option_key' => 'tumblr',
 				'icon'       => 'fab fa-tumblr',
 				'color'      => 'tumblr',
 				'title'      => 'tumblr',
 				'label'      => 'Tumblr',
-			),
-			'youtube'   => array(
+			],
+			'youtube'   => [
 				'class'      => 'youtube',
 				'option_key' => 'youtube',
 				'icon'       => 'fab fa-youtube',
 				'color'      => 'youtube-play',
 				'title'      => 'youtube',
 				'label'      => 'YouTube',
-			),
-			'github'    => array(
+			],
+			'github'    => [
 				'class'      => 'github',
 				'option_key' => 'github',
 				'icon'       => 'fab fa-github',
 				'color'      => 'github',
 				'title'      => 'github',
 				'label'      => 'GitHub',
-			),
-			'pinterest' => array(
+			],
+			'pinterest' => [
 				'class'      => 'pinterest',
 				'option_key' => 'pinterest',
 				'icon'       => 'fab fa-pinterest-p',
 				'color'      => 'pinterest',
 				'title'      => 'pinterest',
 				'label'      => 'Pinterest',
-			),
-			'linkedin'  => array(
+			],
+			'linkedin'  => [
 				'class'      => 'linkedin',
 				'option_key' => 'linkedin',
 				'icon'       => 'fab fa-linkedin-in',
 				'color'      => 'linkedin',
 				'title'      => 'linkedin',
 				'label'      => 'LinkedIn',
-			),
-			'amazon'    => array(
+			],
+			'amazon'    => [
 				'class'      => 'amazon',
 				'option_key' => 'amazon',
 				'icon'       => 'fab fa-amazon',
 				'color'      => 'amazon',
 				'title'      => 'amazon',
 				'label'      => 'Amazon',
-			),
-		)
+			],
+		]
 	);
 }
 
@@ -146,11 +146,17 @@ function ys_get_font_awesome_cdn_css_url() {
 		YS_Utility::get_font_awesome_version()
 	);
 
-	return apply_filters(
+	$url = apply_filters(
 		'ys_get_font_awesome_cdn_css_url',
 		'https://use.fontawesome.com/releases/' . $version . '/css/all.css',
 		$version
 	);
+
+	if ( ys_is_amp() ) {
+		$url = get_template_directory_uri() . '/css/fontawesome-light.css';
+	}
+
+	return $url;
 }
 
 /**
@@ -301,13 +307,13 @@ function ys_get_feedly_subscribe_url( $type = '' ) {
  *
  * @return array
  */
-function ys_get_posts_args( $posts_per_page = 4, $args = array() ) {
-	$defaults = array(
+function ys_get_posts_args( $posts_per_page = 4, $args = [] ) {
+	$defaults = [
 		'post_type'           => 'post',
 		'posts_per_page'      => $posts_per_page,
 		'no_found_rows'       => true,
 		'ignore_sticky_posts' => true,
-	);
+	];
 	$args     = wp_parse_args( $args, $defaults );
 
 	return $args;
@@ -321,8 +327,8 @@ function ys_get_posts_args( $posts_per_page = 4, $args = array() ) {
  *
  * @return array
  */
-function ys_get_posts_args_rand( $posts_per_page = 4, $args = array() ) {
-	$rand_args = array( 'orderby' => 'rand' );
+function ys_get_posts_args_rand( $posts_per_page = 4, $args = [] ) {
+	$rand_args = [ 'orderby' => 'rand' ];
 	$rand_args = wp_parse_args( $rand_args, $args );
 
 	/**
