@@ -151,9 +151,32 @@ class Taxonomy {
 
 		foreach ( $taxonomies as $tax ) {
 			add_action( "${tax}_edit_form_fields", [ $this, 'edit_form_fields' ], 10, 2 );
+			add_action( "${tax}_add_form_fields", [ $this, 'add_form_fields' ] );
 			add_action( "edit_${tax}", [ $this, 'update_term_meta' ] );
 		}
 
+	}
+
+	/**
+	 * カテゴリー追加画面に入力欄追加
+	 *
+	 * @param string $taxonomy Current taxonomy slug.
+	 */
+	public function add_form_fields( $taxonomy ) {
+		$taxonomy = get_taxonomy( $taxonomy );
+		$manual   = Admin::manual_link( 'category/manual/taxonomies', '', true );
+		?>
+		<?php if ( ! empty( $manual ) ) : ?>
+			<hr>
+			<div class="form-field term-parent-wrap">
+				<p style="font-style: normal;">
+					<?php echo $taxonomy->label; ?>一覧ページの編集機能について
+					<?php echo $manual; ?>
+				</p>
+			</div>
+			<hr>
+		<?php endif; ?>
+		<?php
 	}
 
 	/**
@@ -172,6 +195,7 @@ class Taxonomy {
 		<tr class="form-field term-title-override-wrap">
 			<th scope="row">
 				<label for="title-override">[ys]一覧ページのタイトルを置き換える</label>
+				<?php echo Admin::manual_link( 'cat-tag-archive-title' ); ?>
 			</th>
 			<td>
 				<input name="title-override" id="title-override" type="text" value="<?php echo esc_attr( get_term_meta( $term->term_id, 'title-override', true ) ); ?>" size="40">
@@ -181,6 +205,7 @@ class Taxonomy {
 		<tr class="form-field term-dscr-override-wrap">
 			<th scope="row">
 				<label for="dscr-override">[ys]一覧ページの説明を置き換える</label>
+				<?php echo Admin::manual_link( 'cat-tag-archive-content' ); ?>
 			</th>
 			<td>
 				<?php
@@ -207,6 +232,7 @@ class Taxonomy {
 		<tr>
 			<th scope="row">
 				<label for="term-image">[ys]<?php echo $taxonomy->label; ?>一覧ページ画像</label>
+				<?php echo Admin::manual_link( 'cat-tag-archive-eye-catch' ); ?>
 			</th>
 			<td>
 				<div class="form-field term-image-wrap">
