@@ -48,6 +48,10 @@ Source : <https://gist.github.com/terkel/4373420>
 ## 変更履歴
 v3.x.x
 
+### v3.15.0
+- [追加] yStandard v4 アップグレード機能追加
+- [修正] AMPページ用 Font Awesome CSS追加
+
 ### v3.14.2
 - [調整] WordPerss 5.4向け調整
 
