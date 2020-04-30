@@ -77,6 +77,16 @@ class Notice {
 	public static function error( $content ) {
 		self::notice( $content, 'error' );
 	}
+
+	/**
+	 * 管理画面通知 - マニュアル
+	 *
+	 * @param string $content notice content.
+	 */
+	public static function manual( $content ) {
+		echo "<div class=\"notice notice-manual\">${content}</div>";
+	}
+
 	/**
 	 * 管理画面通知 - 装飾なし
 	 *
@@ -85,6 +95,5 @@ class Notice {
 	public static function plain( $content ) {
 		echo "<div class=\"notice\">${content}</div>";
 	}
-
 
 }

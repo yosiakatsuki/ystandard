@@ -111,22 +111,9 @@ class Admin_Menu {
 		}
 		?>
 		<div class="wrap ys-option-page">
-			<h2><span class="orbitron">yStandard</span> スタートページ</h2>
+			<h2><span class="orbitron">yStandard</span>を始めよう！</h2>
 			<div class="ys-option__section">
-				<h3><span class="orbitron">yStandard</span>情報</h3>
-				<dl class="ystandard-info">
-					<dt><span class="orbitron">yStandard</span>本体</span></dt>
-					<dd><?php echo Utility::get_ystandard_version(); ?></dd>
-					<?php if ( get_template() !== get_stylesheet() ) : ?>
-						<dt>子テーマ</dt>
-						<dd><?php echo Utility::get_theme_version(); ?></dd>
-					<?php endif; ?>
-				</dl>
-			</div>
-			<div class="ys-option__section">
-				<h3><span class="orbitron">yStandard</span>コンテンツ</h3>
 				<div class="ys-contents">
-
 					<div class="ys-contents__item">
 						<h4>マニュアル</h4>
 						<div class="ys-contents__icon">
@@ -136,7 +123,7 @@ class Admin_Menu {
 							yStandardの設定や使い方のマニュアル
 						</p>
 						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/category/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る</a>
+							<a class="wp-block-button__link" href="https://wp-ystandard.com/category/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 						</p>
 					</div>
 
@@ -150,7 +137,7 @@ class Admin_Menu {
 							ブロック拡張プラグインやデザインスキンの配布・販売を予定しています！
 						</p>
 						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/plugins/" target="_blank" rel="noopener noreferrer nofollow">拡張プラグインを見る</a>
+							<a class="wp-block-button__link" href="https://wp-ystandard.com/plugins/" target="_blank" rel="noopener noreferrer nofollow">拡張プラグインを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 						</p>
 					</div>
 
@@ -169,7 +156,7 @@ class Admin_Menu {
 							</p>
 						</div>
 						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/contribute/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>を応援する</a>
+							<a class="wp-block-button__link" href="https://wp-ystandard.com/contribute/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>を応援する <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 						</p>
 					</div>
 
@@ -182,7 +169,7 @@ class Admin_Menu {
 							yStandardの使い方や機能要望、不具合かも？という内容はフォーラムにて質問・相談を受け付けております。
 						</p>
 						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://support.wp-ystandard.com/forums/" target="_blank" rel="noopener noreferrer nofollow">フォーラムを見る</a>
+							<a class="wp-block-button__link" href="https://support.wp-ystandard.com/forums/" target="_blank" rel="noopener noreferrer nofollow">フォーラムを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 						</p>
 					</div>
 
@@ -196,7 +183,7 @@ class Admin_Menu {
 							コミュニティ参加者限定のオンラインもくもく会などを開催しています。
 						</p>
 						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/ystandard-user-community/" target="_blank" rel="noopener noreferrer nofollow">ユーザーコミュニティに参加する</a>
+							<a class="wp-block-button__link" href="https://wp-ystandard.com/ystandard-user-community/" target="_blank" rel="noopener noreferrer nofollow">ユーザーコミュニティに参加する <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 						</p>
 					</div>
 				</div>
