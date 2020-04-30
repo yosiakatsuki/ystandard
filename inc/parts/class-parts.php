@@ -52,6 +52,19 @@ class Parts {
 		 * ウィジェット
 		 */
 		add_action( 'widgets_init', [ $this, 'register_widget' ] );
+		Notice::set_notice( [ $this, 'manual' ] );
+	}
+
+	/**
+	 * マニュアルリンク
+	 */
+	public function manual() {
+		global $pagenow;
+		$post_type = Content::get_post_type();
+		$manual    = Admin::manual_link( 'ys-parts' );
+		if ( 'edit.php' === $pagenow && Parts::POST_TYPE === $post_type ) {
+			Notice::manual( '<p>' . $manual . '</p>' );
+		}
 	}
 
 	/**

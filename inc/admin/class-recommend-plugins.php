@@ -32,7 +32,7 @@ class Recommend_Plugins {
 	public function notice() {
 		global $pagenow, $hook_suffix;
 		if ( 'themes.php' === $pagenow && 'appearance_page_tgmpa-install-plugins' === $hook_suffix ) {
-			Notice::plain( '<p>' . Admin::manual_link( 'ystd-plugin' ) . '</p>' );
+			Notice::manual( '<p>' . Admin::manual_link( 'ystd-plugin' ) . '</p>' );
 		}
 	}
 
@@ -53,6 +53,9 @@ class Recommend_Plugins {
 	 * TGM Plugin Activation 実行
 	 */
 	public function tgmpa_register() {
+		if ( apply_filters( 'ys_disable_tgmpa_register', false ) ) {
+			return;
+		}
 		$plugins = [
 			[
 				'name'   => 'yStandard Blocks',

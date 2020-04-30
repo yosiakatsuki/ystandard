@@ -161,3 +161,20 @@
   flex-shrink: 0;
 }
 
+.notice-manual {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+
+  p {
+	margin: .5em 0 0;
+	&:first-child {
+	  margin-top: 0;
+	}
+  }
+}
+.wrap .notice.notice-manual {
+  margin-top: 0;
+}
