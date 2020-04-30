@@ -19,6 +19,13 @@ function ys_update_check() {
 		'ys_update_check_url',
 		'https://wp-ystandard.com/download/ystandard/v3/ystandard-info.json'
 	);
+
+	/**
+	 * アップグレード
+	 */
+	if ( '1' === get_option( 'ys_v4_upgrade', '0' ) ) {
+		$check_url = 'https://wp-ystandard.com/download/ystandard/v4/ystandard-info.json';
+	}
 	/**
 	 * アップデート確認
 	 */

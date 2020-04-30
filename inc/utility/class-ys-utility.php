@@ -96,6 +96,6 @@ class YS_Utility {
 	 * @return string
 	 */
 	public static function get_font_awesome_version() {
-		return 'v5.12.0';
+		return 'v5.13.0';
 	}
 }

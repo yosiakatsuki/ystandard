@@ -146,11 +146,17 @@ function ys_get_font_awesome_cdn_css_url() {
 		YS_Utility::get_font_awesome_version()
 	);
 
-	return apply_filters(
+	$url = apply_filters(
 		'ys_get_font_awesome_cdn_css_url',
 		'https://use.fontawesome.com/releases/' . $version . '/css/all.css',
 		$version
 	);
+
+	if ( ys_is_amp() ) {
+		$url = get_template_directory_uri() . '/css/fontawesome-light.css';
+	}
+
+	return $url;
 }
 
 /**
