@@ -170,4 +170,8 @@ if ( is_admin() ) {
 	 * 通知
 	 */
 	require_once get_template_directory() . '/inc/notice/class-ys-notice.php';
+	/**
+	 * アップグレード
+	 */
+	require_once get_template_directory() . '/inc/upgrade/class-ys-upgrade.php';
 }

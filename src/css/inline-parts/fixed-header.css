@@ -4,4 +4,5 @@
   left: 0;
   z-index: 9;
   width: 100%;
-  box-shadow: 0 1px 1px rgba(189, 195, 199, 0.2); }
+  -webkit-box-shadow: 0 1px 1px rgba(189, 195, 199, 0.2);
+          box-shadow: 0 1px 1px rgba(189, 195, 199, 0.2); }
