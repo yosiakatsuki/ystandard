@@ -1,64 +1,82 @@
-.ystd-settings__section {
-	padding: 2em 0;
-	border-bottom: 1px solid $color__border-gray;
-
-	* {
-		box-sizing: border-box;
-	}
-
-	& > *:first-child {
-		margin-top: 0;
-	}
-	& > *:last-child {
-		margin-bottom: 0;
-	}
-
-	h3 {
-		margin: 2em 0 1em;
-		font-size: 1.5em;
-	}
-	.card {
-		max-width: 100%;
-		margin: 0;
-		padding: 0;
-	}
-
-	.text-gray {
-		color: $color__text-light;
-	}
+img {
+  max-width: 100%;
+  height: auto;
 }
 
+figure {
+  margin: 0;
+}
+
+.ystd-settings__section {
+  padding: 2em 0;
+  border-bottom: 1px solid $color__border-gray;
+
+  * {
+	box-sizing: border-box;
+  }
+
+  & > *:first-child {
+	margin-top: 0;
+  }
+
+  & > *:last-child {
+	margin-bottom: 0;
+  }
+
+  h3 {
+	margin: 2em 0 1em;
+	font-size: 1.5em;
+  }
+
+  .card {
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
+  }
+
+  .text-gray {
+	color: $color__text-light;
+  }
+}
 
 
 .ystd-settings__icon {
-	margin-top: 2rem;
-	margin-bottom: 0.5rem;
-	font-size: 1.5em;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.5em;
 }
+
 .ystd-settings__btn {
-	margin-top: 1.5rem;
+  margin-top: 1.5rem;
 }
+
 .orbitron {
-	font-family: Orbitron, sans-serif;
+  font-family: Orbitron, sans-serif;
 }
 
 .ystd-settings__table {
-	width: 100%;
-	border-collapse: collapse;
-	thead,
-	th {
-		font-weight: $font__weight_bold;
-		text-align: left;
-	}
-	th,
-	td {
-		margin: 0;
-		padding: 0.5em;
-	}
+  width: 100%;
+  border-collapse: collapse;
+
+  thead,
+  th {
+	font-weight: $font__weight_bold;
+	text-align: left;
+  }
+
+  th,
+  td {
+	margin: 0;
+	padding: 0.5em;
+  }
 }
 
 .ystd-settings__text {
-	max-width: 500px;
-	margin-right: auto;
-	margin-left: auto;
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ys-blog-card__link {
+  background-color: #fff;
 }
