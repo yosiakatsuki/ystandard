@@ -23,23 +23,6 @@
   }
 }
 
-.ystandard-info {
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 1.2em;
-
-  dt {
-	width: 150px;
-	margin-bottom: 0.5em;
-	font-weight: $font__weight_bold;
-  }
-
-  dd {
-	width: calc(100% - 150px);
-	margin: 0;
-  }
-}
-
 .ys-contents {
   @include media-breakpoint(sm) {
 	display: flex;

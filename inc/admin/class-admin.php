@@ -36,17 +36,29 @@ class Admin {
 		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_action( 'admin_init', [ $this, 'enqueue_visual_editor_styles' ] );
 		add_action( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ] );
-		Notice::set_notice( [ $this, 'widget_notice' ] );
+		Notice::set_notice( [ $this, 'widget_manual' ] );
+		Notice::set_notice( [ $this, 'menu_manual' ] );
+	}
+
+	/**
+	 * メニューページのマニュアルリンク
+	 */
+	public function menu_manual() {
+		global $pagenow;
+		$manual = self::manual_link( 'category/manual/menu' );
+		if ( 'nav-menus.php' === $pagenow && ! empty( $manual ) ) {
+			Notice::manual( '<p>' . $manual . '</p>' );
+		}
 	}
 
 	/**
 	 * ウィジェットページのマニュアルリンク
 	 */
-	public function widget_notice() {
+	public function widget_manual() {
 		global $pagenow;
 		$manual = self::manual_link( 'widget-area' );
 		if ( 'widgets.php' === $pagenow && ! empty( $manual ) ) {
-			Notice::plain( '<p>' . $manual . '</p>' );
+			Notice::manual( '<p>' . $manual . '</p>' );
 		}
 	}
 
