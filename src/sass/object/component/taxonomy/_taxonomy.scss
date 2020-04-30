@@ -1,0 +1,50 @@
+
+.post-taxonomy__container {
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.9em;
+}
+
+.post-taxonomy__title {
+  position: relative;
+  min-width: 6.5em;
+  margin: 0;
+  font-weight: $font__weight_bold;
+
+  &:after {
+	content: "/";
+	position: absolute;
+	top: 0;
+	right: 0.5em;
+  }
+}
+
+.post-taxonomy__items {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  color: var(--font-gray);
+  list-style: none;
+}
+
+.post-taxonomy__item {
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+
+  &:first-child {
+	margin-left: 0;
+  }
+
+  &::after {
+	content: ",";
+  }
+
+  &:last-child::after {
+	content: "";
+  }
+}
+
+.post-taxonomy__link {
+  color: currentColor;
+  text-decoration: none;
+}

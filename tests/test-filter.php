@@ -1,21 +1,51 @@
 <?php
 /**
- * Class ConditionalTagTest
+ * Class FilterTest
  *
  * @package ystandard
  */
 
 /**
- * AMP用テスト
+ * Class FilterTest
  */
 class FilterTest extends WP_UnitTestCase {
 
 	/**
+	 * ys_get_custom_excerpt
+	 */
+	function test_ys_excerpt_by_content() {
+		$args    = [
+			'post_type'    => 'post',
+			'post_content' => 'あいうえお',
+			'post_excerpt' => '',
+		];
+		$post_id = $this->factory->post->create( $args );
+		$this->go_to( get_permalink( $post_id ) );
+
+		update_option( 'ys_option_excerpt_length', 80 );
+		$except = ys_get_custom_excerpt();
+		$this->assertSame( $except, 'あいうえお' );
+
+		update_option( 'ys_option_excerpt_length', 1 );
+		$except = ys_get_custom_excerpt();
+		$this->assertSame( $except, 'あ …' );
+	}
+
+	/**
 	 * ys_excerpt_length
 	 */
-	function test_ys_excerpt_length() {
+	function test_ys_excerpt_by_excerpt() {
+		$args    = [
+			'post_type'    => 'post',
+			'post_content' => 'あいうえお',
+			'post_excerpt' => 'かきくけこ',
+		];
+		$post_id = $this->factory->post->create( $args );
+		$this->go_to( get_permalink( $post_id ) );
+
 		update_option( 'ys_option_excerpt_length', 80 );
-		$this->assertSame( ys_excerpt_length( 100 ), 80 );
+		$except = ys_get_custom_excerpt();
+		$this->assertSame( $except, 'かきくけこ' );
 	}
 
 	/**

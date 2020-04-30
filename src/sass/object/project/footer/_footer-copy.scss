@@ -1,16 +1,13 @@
 .footer-copy {
-	margin-top: 2rem;
+  @include child_margin(1em);
 
-	p {
-		margin-bottom: 0;
-	}
+  text-align: center;
 }
 
 .copyright {
-	font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .footer-poweredby {
-	margin-top: 0.5rem;
-	font-size: 0.65rem;
+  font-size: 0.65rem;
 }

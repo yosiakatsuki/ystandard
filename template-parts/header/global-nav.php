@@ -7,36 +7,41 @@
  * @license GPL-2.0+
  */
 
-if ( has_nav_menu( 'global' ) ) :
-	?>
-	<div class="<?php ys_the_header_col_class( 'nav', array( 'h-nav', 'rwd' ) ); ?>">
-		<input type="checkbox" id="h-nav__toggle" class="h-nav__toggle" hidden>
-		<label class="h-nav__btn" for="h-nav__toggle">
-			<span class="hamburger">
-				<span class="top"></span>
-				<span class="middle"></span>
-				<span class="bottom"></span>
-			</span>
-		</label>
-		<nav id="h-nav__main" class="h-nav__main">
-			<?php if ( ys_is_active_slide_menu_search_form() ) : ?>
-				<div class="h-nav__search">
-					<?php get_search_form(); ?>
-				</div><!-- .global-nav__search -->
-			<?php endif; ?>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'global',
-					'menu_class'     => 'h-nav__menu li-clear',
-					'menu_id'        => 'h-nav__menu',
-					'container'      => false,
-					'depth'          => 2,
-					'fallback_cb'    => '',
-					'walker'         => new YS_Walker_Global_Nav_Menu(),
-				)
-			);
-			?>
-		</nav><!-- .global-nav -->
-	</div><!-- .header__nav -->
-<?php endif; ?>
+if ( ! has_nav_menu( 'global' ) ) {
+	return;
+}
+?>
+<?php ys_global_nav_toggle_button(); ?>
+<div class="<?php ys_global_nav_class( 'global-nav' ); ?>">
+	<?php do_action( 'ys_global_nav_prepend' ); ?>
+	<nav class="global-nav__container">
+		<?php if ( ys_is_active_header_search_form() ) : ?>
+			<div id="global-nav__search" class="global-nav__search">
+				<?php get_search_form(); ?>
+				<button id="global-nav__search-close" class="global-nav__search-close">
+					<?php echo ys_get_icon( 'x' ); ?> 閉じる
+				</button>
+			</div>
+		<?php endif; ?>
+		<?php
+		wp_nav_menu(
+			[
+				'theme_location' => 'global',
+				'menu_class'     => 'global-nav__menu',
+				'menu_id'        => 'global-nav__menu',
+				'container'      => false,
+				'depth'          => 2,
+				'fallback_cb'    => '',
+				'walker'         => new YS_Walker_Global_Nav_Menu(),
+			]
+		);
+		?>
+	</nav>
+	<?php if ( ys_is_active_header_search_form() ) : ?>
+		<button id="global-nav__search-button" class="global-nav__search-button">
+			<?php echo ys_get_icon( 'search' ); ?>
+		</button>
+	<?php endif; ?>
+	<?php do_action( 'ys_global_nav_append' ); ?>
+</div>
+

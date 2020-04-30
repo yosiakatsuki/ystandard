@@ -1,25 +1,7 @@
-.wp-block-file {
-	a:not(.wp-block-file__button) {
-		font-size: 1.2em;
-		font-weight: $font__weight_bold;
-	}
-}
+.wp-block-file .wp-block-file__button {
+  border-radius: 0.5em;
 
-.wp-block-file__button {
-	@include button();
-
-	margin-left: 2em;
-
-	&:hover {
-		color: #ffffff;
-	}
-}
-
-@if $editor == true {
-	.wp-block-file {
-		.rich-text:not(.wp-block-file__button) {
-			font-size: 1.2em;
-			font-weight: $font__weight_bold;
-		}
-	}
+  &:hover {
+    box-shadow: 4px 4px 8px rgba(#000000, 0.15);
+  }
 }

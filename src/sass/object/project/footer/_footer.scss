@@ -1,13 +1,27 @@
 .site-footer {
-	padding-bottom: 1rem;
-	background-color: $color__bg-dark;
-	border-top: 1px solid transparent;
-	color: #ffffff;
-	a {
-		color: #ffffff;
-		text-decoration: none;
-	}
+  a {
+	text-decoration: none;
+  }
+
+  --font-gray: var(--footer-text-gray);
+  --content-meta: var(--footer-text-gray);
 }
-.footer-section {
-	margin-top: 1rem;
+
+.footer-main {
+  padding-top: 2em;
+  padding-bottom: 1em;
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+
+  > * {
+	margin-top: 1.5em;
+
+	&:first-child {
+	  margin-top: 0;
+	}
+  }
+
+  a {
+	color: currentColor;
+  }
 }

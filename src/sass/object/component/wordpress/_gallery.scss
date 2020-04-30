@@ -1,30 +1,19 @@
 .gallery {
-	@at-root {
-		& {
-			display: flex;
-			flex-wrap: wrap;
-			margin: 1.5rem -1px;
-		}
+  display: flex;
+  flex-wrap: wrap;
 
-		.gallery-item {
-			align-items: flex-start;
-			flex: 0 1 auto;
-			margin: 0;
-			padding: 1px;
+  a:hover {
+	opacity: 0.8;
+  }
 
-			a:hover {
-				opacity: 0.8;
-			}
-		}
+  .gallery-caption {
+	font-size: 0.8em;
+	text-align: center;
+  }
+}
 
-		@for $i from 2 through 9 {
-			.gallery-columns-#{$i} .gallery-item {
-				width: decimal-floor(100% / $i);
-			}
-		}
-		.gallery-caption {
-			text-align: center;
-		}
-	}
-	// @
+@for $i from 2 through 9 {
+  .gallery-columns-#{$i} {
+	@include posts_column($i, 1px);
+  }
 }

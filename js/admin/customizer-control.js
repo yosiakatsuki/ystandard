@@ -1,1 +1,1 @@
-"use strict";(function(){wp.customize.bind("ready",function(){this})})(jQuery);
+"use strict";(function(a){wp.customize.bind("ready",function(){var b=this;a("#_customize-input-background_repeat,#_customize-input-background_attachment,#_customize-input-background_size,[name=\"background-position\"]").change(function(){setBackgroundPresetCustom(a)})})})(jQuery);function setBackgroundPresetCustom(a){var b=a("#_customize-input-background_preset");"default"===b.val()&&b.val("custom")}

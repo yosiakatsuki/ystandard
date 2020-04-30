@@ -1,3 +1,9 @@
-.not-found {
-	margin-bottom: 5rem;
+.no-results__title {
+  margin-top: 0;
+}
+
+.no-results__search-title {
+  margin: 0 0 0.5em;
+  font-size: 1.1em;
+  font-weight: $font__weight_bold;
 }

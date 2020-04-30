@@ -1,67 +1,77 @@
-.wp-block-latest-posts {
-	margin-right: 0;
-	margin-left: 0;
-	padding-right: 0;
-	padding-left: 0;
-	list-style: none;
+.wp-block-latest-posts.wp-block-latest-posts__list {
+  padding: 0;
 
-	li {
-		padding: 0.5rem 0;
-	}
+  a {
+    text-decoration: none;
+  }
 
-	&.has-dates:not(.is-grid) {
-		li {
-			display: grid;
+  li {
+    padding: 0.5em 0;
+    border-bottom: 1px solid $color__border-gray-light;
+    overflow: hidden;
+  }
 
-			grid-template-columns: auto 1fr;
-			grid-template-rows: auto auto;
-		}
+  time {
+    margin-top: 0.25em;
+  }
 
-		.wp-block-latest-posts__post-date {
-			order: 1;
-			margin-top: 0.25rem;
-			white-space: nowrap;
-		}
+  .wp-block-latest-posts__post-excerpt {
+    margin-top: 0.25em;
+    color: $color__text-light;
+    font-size: 0.8em;
+    line-height: 1.5;
+    overflow: hidden;
+  }
 
-		a {
-			order: 2;
-		}
+  .wp-block-latest-posts__featured-image {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+  }
 
-		.wp-block-latest-posts__post-excerpt {
-			order: 3;
+  &.has-dates.is-one-line {
+    li {
+      display: flex;
+      align-items: flex-start;
+    }
 
-			grid-column-start: 1;
-			grid-column-end: 3;
-			grid-row-start: 2;
-			grid-row-end: 3;
-		}
-	}
-	&.is-grid {
-		.wp-block-latest-posts__post-date {
-			display: block;
-		}
-	}
-}
+    time {
+      order: 1;
+      margin-top: 0.25em;
+      margin-right: 1em;
+    }
 
-.wp-block-latest-posts__post-date,
-.wp-block-latest-posts__post-excerpt {
-	font-size: 0.8rem;
-}
+    a {
+      flex-grow: 1;
+      order: 2;
+    }
 
-.wp-block-latest-posts__post-date {
-	margin-right: 0.5rem;
-	color: $color__text-light;
-}
-.wp-block-latest-posts__post-excerpt {
-	margin: 0.5rem 0 1rem;
-	a {
-		display: block;
-	}
-}
+    .wp-block-latest-posts__post-excerpt {
+      order: 3;
+      max-width: 30%;
+      margin: 0 0 0 0.5em;
+    }
+  }
 
-@if $editor == true {
-	.wp-block-latest-posts__post-excerpt {
-		max-height: 2.5rem;
-		overflow: hidden;
-	}
+  &.is-grid {
+    .wp-block-latest-posts__featured-image {
+      margin-top: 0;
+    }
+
+    a {
+      display: block;
+      color: currentColor;
+      font-weight: $font__weight_bold;
+      line-height: 1.4;
+    }
+  }
+
+  .wp-block-latest-posts__featured-image {
+    &.alignleft,
+    &.alignright {
+      & + a {
+        display: block;
+        margin-top: 1em;
+      }
+    }
+  }
 }

@@ -1,63 +1,74 @@
 //
 // ブログカード
 //
+.ys-blog-card__container {
+  display: flex;
+  position: relative;
+  border: 1px solid $color__border-gray-light;
+
+  .ys-blog-card__title {
+    margin: 0;
+    font-size: 0.85em;
+    font-weight: $font__weight_bold;
+    line-height: $font__line-height_headline;
+
+    @include media-breakpoint(sm) {
+      font-size: 1em;
+    }
+  }
+}
+
 .ys-blog-card__link {
-	@include box-shadow(0, 1px, 5px);
+  color: $color__text-main;
+  text-decoration: none;
 
-	display: block;
-	position: relative;
-	margin-top: 1.5em;
-	margin-bottom: 1.5em;
-	padding: 0 1rem;
-	text-decoration: none;
-
-	&:hover {
-		@include box-shadow(0, 1px, 10px);
-
-		text-decoration: none;
-	}
-}
-
-.ys-blog-card__title {
-	color: $color__text-main;
-	font-size: 0.9em;
-	line-height: $font__line-height_headline;
-}
-
-.ys-blog-card__dscr {
-	display: none;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 .ys-blog-card__image {
-	max-width: 100px;
-	margin-right: 1rem;
+  min-width: 100px;
+  max-width: 100px;
+  margin: 0;
 
-	amp-img {
-		min-width: 50px;
-	}
+  @include media-breakpoint(sm) {
+    max-width: 200px;
+  }
+
+  img,
+  amp-img {
+    width: 100%;
+    height: 100%;
+    font-family: "object-fit: cover;";
+
+    object-fit: cover;
+  }
 }
 
-.ys-blog-card__btn-wrap {
-	margin-top: 1rem;
+.ys-blog-card__text {
+  flex-grow: 1;
+  padding: 1rem;
+
+  @include media-breakpoint(sm) {
+    padding: 1.5rem 1rem;
+  }
 }
 
-.ys-blog-card__btn {
-	display: inline-block;
-	padding: 0.5em 0.75em;
-	background-color: $color__bg-dark;
-	border: 1px solid $color__border-dark;
-	border-radius: 4px;
-	color: #ffffff;
-	font-size: 0.7em;
-	line-height: 1;
-	white-space: nowrap;
-
-	i,
-	svg {
-		margin-left: 0.25rem;
-		vertical-align: -0.1em;
-	}
+.ys-blog-card__dscr {
+  margin-top: 1em;
+  color: $color__text-light;
+  font-size: 0.6em;
+  line-height: 1.4;
 }
+
 .ys-blog-card__domain {
-	display: none;
+  margin-top: 1em;
+  color: $color__text-light;
+  font-size: 0.5em;
 }

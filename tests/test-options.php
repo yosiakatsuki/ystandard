@@ -1,12 +1,12 @@
 <?php
 /**
- * Class ConditionalTagTest
+ * Class OptionsTest
  *
  * @package ystandard
  */
 
 /**
- * AMP用テスト
+ * Class OptionsTest
  */
 class OptionsTest extends WP_UnitTestCase {
 
@@ -22,7 +22,7 @@ class OptionsTest extends WP_UnitTestCase {
 	 */
 	function test_ys_get_option() {
 		update_option( 'ys_design_header_type', 'center' );
-		$this->assertSame( ys_get_option( 'ys_design_header_type' ), 'center' );
+		$this->assertSame( ys_get_option( 'ys_design_header_type', 'row1' ), 'center' );
 	}
 
 	/**
@@ -30,7 +30,7 @@ class OptionsTest extends WP_UnitTestCase {
 	 */
 	function test_ys_get_option_by_bool_true() {
 		update_option( 'ys_show_post_thumbnail', '1' );
-		$this->assertTrue( ys_get_option_by_bool( 'ys_show_post_thumbnail' ) );
+		$this->assertTrue( ys_get_option_by_bool( 'ys_show_post_thumbnail', false ) );
 	}
 
 	/**
