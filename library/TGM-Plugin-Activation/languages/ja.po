@@ -3,7 +3,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Project-Id-Version: TGM Plugin Activation\n"
 "POT-Creation-Date: 2016-05-19 02:57+0200\n"
-"PO-Revision-Date: 2020-04-18 22:52+0900\n"
+"PO-Revision-Date: 2020-05-01 17:48+0900\n"
 "Language-Team: TGMPA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -300,7 +300,7 @@ msgstr ""
 
 #: class-tgm-plugin-activation.php:2626
 msgid "No plugins to install, update or activate."
-msgstr ""
+msgstr "インストール・有効化が必要なプラグインはありません。"
 
 #: class-tgm-plugin-activation.php:2640
 msgid "Plugin"
@@ -358,11 +358,11 @@ msgstr "有効化"
 
 #: class-tgm-plugin-activation.php:2850
 msgid "No plugins were selected to be installed. No action taken."
-msgstr ""
+msgstr "インストールするプラグインが選択されていません。"
 
 #: class-tgm-plugin-activation.php:2852
 msgid "No plugins were selected to be updated. No action taken."
-msgstr ""
+msgstr "アップデートするプラグインが選択されていません。"
 
 #: class-tgm-plugin-activation.php:2893
 msgid "No plugins are available to be installed at this time."
@@ -374,7 +374,7 @@ msgstr ""
 
 #: class-tgm-plugin-activation.php:3001
 msgid "No plugins were selected to be activated. No action taken."
-msgstr ""
+msgstr "有効化するプラグインが選択されていません。"
 
 #: class-tgm-plugin-activation.php:3027
 msgid "No plugins are available to be activated at this time."
@@ -412,7 +412,7 @@ msgstr ""
 #: class-tgm-plugin-activation.php:3602
 #, php-format
 msgid "%1$s installed and activated successfully."
-msgstr ""
+msgstr "%1$s のインストールと有効化が完了しました"
 
 #: class-tgm-plugin-activation.php:3602 class-tgm-plugin-activation.php:3610
 msgid "Show Details"
@@ -437,6 +437,8 @@ msgid ""
 "The installation process is starting. This process may take a while on some "
 "hosts, so please be patient."
 msgstr ""
+"インストールを開始しました。プラグインによってはインストールに時間がかかりま"
+"す。しばらくお待ち下さい…"
 
 #. translators: 1: plugin name.
 #: class-tgm-plugin-activation.php:3610
