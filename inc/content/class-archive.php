@@ -21,6 +21,7 @@ class Archive {
 	 */
 	public function register() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		add_filter( 'get_the_archive_description', [ $this, 'archive_description' ], 999 );
 	}
 
 	/**
@@ -117,6 +118,21 @@ class Archive {
 			Icon::get_icon( 'folder' ),
 			esc_html( $term[0]->name )
 		);
+	}
+
+	/**
+	 * 説明 2ページ目以降削除
+	 *
+	 * @param string $description 説明文.
+	 *
+	 * @return string
+	 */
+	public function archive_description( $description ) {
+		if ( get_query_var( 'paged' ) ) {
+			$description = '';
+		}
+
+		return $description;
 	}
 
 	/**
