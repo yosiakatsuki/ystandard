@@ -8,4 +8,8 @@
   flex-shrink: 0;
   line-height: 1;
   vertical-align: -0.25em;
+
+  &.sns-icon {
+	vertical-align: baseline;
+  }
 }
