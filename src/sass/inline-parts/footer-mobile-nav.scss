@@ -38,10 +38,12 @@
 	color: currentColor;
 	text-decoration: none;
   }
-
-  svg,
   i {
 	font-size: 1.5em;
+  }
+  svg {
+	width: 1.5em;
+	height: 1.5em;
   }
 }
 

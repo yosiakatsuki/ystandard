@@ -105,9 +105,11 @@ class Footer {
 		    display: block;
 		    color: currentColor;
 		    text-decoration: none; }
-		  .footer-mobile-nav svg,
 		  .footer-mobile-nav i {
 		    font-size: 1.5em; }
+		  .footer-mobile-nav svg {
+		    width: 1.5em;
+		    height: 1.5em; }
 
 		.footer-mobile-nav__dscr {
 		  display: block;
@@ -125,8 +127,7 @@ class Footer {
 
 		@media (min-width: 600px) {
 		      .footer-mobile-nav li:nth-child(n+5) {
-		        display: block; } }
-';
+		        display: block; } }';
 
 		return $css;
 	}
