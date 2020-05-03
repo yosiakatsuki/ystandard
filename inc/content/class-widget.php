@@ -30,6 +30,10 @@ class Widget {
 	 * @return bool
 	 */
 	public static function is_active_sidebar() {
+		$pre = apply_filters( 'ys_pre_is_active_sidebar', null );
+		if ( ! is_null( $pre ) ) {
+			return $pre;
+		}
 		if ( Template::is_mobile() && Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
 			return false;
 		}

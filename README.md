@@ -70,6 +70,9 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.x.x
 
+#### v4.0.2
+- [追加] サイドバー無効化フック追加
+
 #### v4.0.1
 - [修正] 著者情報のSNSアイコンでWebのアイコンが下にずれる点の修正
 - [修正] スペーサーブロックmargin-topが効いてしまう点の修正
