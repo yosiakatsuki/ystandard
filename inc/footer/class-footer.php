@@ -117,7 +117,7 @@ class Footer {
 		.has-mobile-footer .site-footer {
 		  padding-bottom: 4em; }
 
-		@media (min-width: 1025px) {
+		@media (min-width: 769px) {
 		    .footer-mobile-nav {
 		      display: none; }
 		    .has-mobile-footer .site-footer {
@@ -125,7 +125,8 @@ class Footer {
 
 		@media (min-width: 600px) {
 		      .footer-mobile-nav li:nth-child(n+5) {
-		        display: block; } }';
+		        display: block; } }
+';
 
 		return $css;
 	}
