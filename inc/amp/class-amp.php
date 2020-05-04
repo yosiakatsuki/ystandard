@@ -21,6 +21,7 @@ class AMP {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		add_filter( 'ys_get_the_canonical_url', [ $this, 'remove_amp' ] );
 	}
 
 	/**
@@ -38,6 +39,15 @@ class AMP {
 		}
 
 		return apply_filters( 'ys_is_amp', $is_amp );
+	}
+
+	/**
+	 * Canonical URL からampを削除
+	 *
+	 * @param string $url URL.
+	 */
+	public function remove_amp( $url ) {
+		return remove_query_arg( 'amp', $url );
 	}
 
 	/**
