@@ -161,6 +161,7 @@ class Customizer {
 			[
 				'title'       => '[ys]拡張機能',
 				'description' => 'yStandard専用プラグイン等による拡張機能の設定',
+				'priority'    => 9999,
 			]
 		);
 	}
