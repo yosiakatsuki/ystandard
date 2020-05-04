@@ -115,12 +115,26 @@ class Admin_Menu {
 			<div class="ys-option__section">
 				<div class="ys-contents">
 					<div class="ys-contents__item">
+						<h4>テーマの設定</h4>
+						<div class="ys-contents__icon">
+							<?php echo Icon::get_icon( 'settings' ); ?>
+						</div>
+						<p class="ys-contents__text">
+							テーマカスタマイザーを開いてテーマの設定を始めましょう！<br>
+							<small>※「外観」→「カスタマイズ」からも設定画面を開けます。</small>
+						</p>
+						<p class="wp-block-button">
+							<a class="wp-block-button__link" href="<?php echo esc_url_raw( add_query_arg( 'return', rawurlencode( Utility::get_page_url() ), wp_customize_url() ) ); ?>" rel="noopener noreferrer nofollow">設定を始める <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
+						</p>
+					</div>
+					<div class="ys-contents__item">
 						<h4>マニュアル</h4>
 						<div class="ys-contents__icon">
 							<?php echo Icon::get_icon( 'book' ); ?>
 						</div>
 						<p class="ys-contents__text">
-							yStandardの設定や使い方のマニュアル
+							yStandardの設定や使い方のマニュアル<br>
+							<small>※yStandard公式サイトのマニュアルページを開きます。</small>
 						</p>
 						<p class="wp-block-button">
 							<a class="wp-block-button__link" href="https://wp-ystandard.com/category/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
