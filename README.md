@@ -73,6 +73,7 @@ Source : <https://github.com/fregante/object-fit-images>
 ### v4.0.5
 - [修正] 新着記事・関連記事のキャッシュ機能不具合修正
 - [調整] yStandardからのお知らせをキャッシュ
+- [調整] 一覧ページレイアウトの余白調整
 
 ### v4.0.4
 - [修正] 「AMPエラー：参照している AMP URL はスタンドアロン AMP です」が発生する点の修正

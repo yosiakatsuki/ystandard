@@ -28,6 +28,7 @@
 .archive__item {
   background-color: var(--content-bg);
   border-bottom: 1px solid var(--site-border-gray-light);
+  margin-bottom: 1em;
 
   &:hover {
 	.archive__image {
@@ -36,6 +37,9 @@
   }
 
   &.is-list {
+	@include media-breakpoint(sm) {
+	  padding-bottom: 1em;
+	}
 
 	.archive__detail {
 	  display: flex;
