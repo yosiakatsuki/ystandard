@@ -105,7 +105,26 @@ class Parts {
 		if ( ! $post ) {
 			return '';
 		}
-		$content = apply_filters( 'the_content', $post->post_content );
+		$filter  = apply_filters(
+			'ys_parts_filters',
+			[
+				'do_blocks',
+				'wptexturize',
+				'shortcode_unautop',
+				'prepend_attachment',
+				'wp_make_content_images_responsive',
+				'wpautop',
+				'capital_P_dangit',
+				'do_shortcode',
+				'convert_smilies',
+			]
+		);
+		$content = $post->post_content;
+		foreach ( $filter as $function ) {
+			if ( function_exists( $function ) ) {
+				$content = call_user_func( $function, $content );
+			}
+		}
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
 		return sprintf( $wrap, $content );
