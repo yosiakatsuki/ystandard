@@ -26,11 +26,6 @@ class Recent_Posts {
 	const SHORTCODE_RANKING = 'ys_post_ranking';
 
 	/**
-	 * キャッシュのキー
-	 */
-	const CACHE_KEY = 'recent_posts';
-
-	/**
 	 * ショートコード特有のパラメーター
 	 */
 	const SHORTCODE_ATTR = [
@@ -148,7 +143,7 @@ class Recent_Posts {
 		 */
 		$key   = 'ys_query_cache_' . $this->shortcode_atts['cache'];
 		$query = Cache::get_query(
-			self::CACHE_KEY,
+			$this->shortcode_atts['cache'],
 			$this->query_args,
 			Option::get_option( $key, 'none' )
 		);

@@ -71,6 +71,7 @@ Source : <https://github.com/fregante/object-fit-images>
 ### v4.x.x
 
 ### v4.0.5
+- [修正] 新着記事・関連記事のキャッシュ機能不具合修正
 - [調整] yStandardからのお知らせをキャッシュ
 
 ### v4.0.4

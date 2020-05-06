@@ -304,7 +304,7 @@ class Admin_Menu {
 					<p>テーマ内で作成したキャッシュの件数確認・削除を行います。</p>
 					<table class="ys-option__table">
 						<thead>
-						<tr>
+						<tr style="border-bottom: 1px solid #ddd;">
 							<th>種類</th>
 							<td>件数</td>
 							<td></td>
@@ -313,8 +313,8 @@ class Admin_Menu {
 						<tbody>
 						<tr>
 							<th>新着記事一覧</th>
-							<td><?php echo $this->get_cache_count( 'tax_posts' ); ?></td>
-							<td><input type="submit" name="delete[tax_posts]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
+							<td><?php echo $this->get_cache_count( 'recent_posts' ); ?></td>
+							<td><input type="submit" name="delete[recent_posts]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
 						</tr>
 						<tr>
 							<th>記事下エリア「関連記事」</th>
@@ -369,8 +369,14 @@ class Admin_Menu {
 		 * 全削除
 		 */
 		if ( isset( $_POST['delete_all'] ) ) {
+			$delete = $this->get_delete_types();
+			$count  = 0;
+			foreach ( $delete as $key => $value ) {
+				$count += $this->delete_cache_data( $key );
+			}
 			$result = $this->get_cache_delete_message(
-				$this->delete_cache_data( 'all' )
+				'all',
+				$count
 			);
 		}
 		/**
@@ -379,11 +385,13 @@ class Admin_Menu {
 		if ( isset( $_POST['delete'] ) ) {
 			foreach ( $_POST['delete'] as $key => $value ) {
 				$result = $this->get_cache_delete_message(
+					$key,
 					$this->delete_cache_data( $key )
 				);
 			}
 		}
 
+		return $result;
 	}
 
 
@@ -473,11 +481,7 @@ class Admin_Menu {
 		}
 		$cache_type = apply_filters(
 			'ys_get_cache_delete_message_type',
-			[
-				'all'           => 'すべて',
-				'tax_posts'     => 'カテゴリーに属する記事一覧',
-				'related_posts' => '関連記事',
-			],
+			$this->get_delete_types(),
 			$type
 		);
 		/**
@@ -485,10 +489,24 @@ class Admin_Menu {
 		 */
 		$message = '';
 		if ( isset( $cache_type[ $type ] ) ) {
-			$message = $cache_type[ $type ] . 'のキャッシュを' . $count . '件 削除しました。';
+			$message = $cache_type[ $type ] . 'のキャッシュを ' . $count . '件 削除しました。';
 		}
 
 		return apply_filters( 'ys_get_cache_delete_message', $message, $type );
+	}
+
+	/**
+	 * キャッシュ削除タイプ
+	 *
+	 * @return array
+	 */
+	private function get_delete_types() {
+		return [
+			'all'                => 'すべて',
+			'recent_posts'       => '新着記事一覧',
+			'related_posts'      => '関連記事',
+			Blog_Card::CACHE_KEY => 'ブログカード',
+		];
 	}
 
 }
