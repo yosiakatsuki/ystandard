@@ -91,13 +91,7 @@ class Icon {
 			}
 		}
 
-		$html_class = [
-			'ys-icon',
-			$class,
-		];
-		$html_class = trim( implode( ' ', $html_class ) );
-
-		return "<span class=\"${html_class}\">${icon}</span>";
+		return self::wrap_icon_html( $icon );
 	}
 
 	/**
@@ -132,9 +126,32 @@ class Icon {
 		}
 		$title = empty( $title ) ? $icons[ $name ]['title'] : $title;
 		$path  = $icons[ $name ]['path'];
-		$class = "sns-icon icon--${name}";
+		$class = "icon--${name}";
+		$icon  = "<svg class=\"${class}\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" aria-hidden=\"true\" focusable=\"false\"><title>${title}</title><path d=\"${path}\"/></svg>";
 
-		return "<svg class=\"${class}\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" focusable=\"false\"><title>${title}</title><path d=\"${path}\"/></svg>";
+		return self::wrap_icon_html( $icon, 'sns-icon' );
+	}
+
+	/**
+	 * アイコン表示用HTML取得
+	 *
+	 * @param string $icon  Icon.
+	 * @param string $class Class.
+	 *
+	 * @return string
+	 */
+	public static function wrap_icon_html( $icon, $class = '' ) {
+
+		if ( is_array( $class ) ) {
+			$class = trim( implode( ' ', $class ) );
+		}
+		$html_class = [
+			'ys-icon',
+			$class,
+		];
+		$html_class = trim( implode( ' ', $html_class ) );
+
+		return "<span class=\"${html_class}\">${icon}</span>";
 	}
 
 	/**
