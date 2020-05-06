@@ -269,7 +269,7 @@ class Admin_Menu {
 		$sns_icons = Icon::get_all_sns_icons();
 		foreach ( $sns_icons as $key => $value ) {
 			$icons[] = [
-				'name'       => $key,
+				'name'       => 'sns_' . $key,
 				'label'      => $value['title'],
 				'short_code' => '[ys_sns_icon name="' . $key . '"]',
 				'svg'        => Icon::get_sns_icon( $key ),
