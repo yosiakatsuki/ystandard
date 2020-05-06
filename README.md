@@ -75,6 +75,7 @@ Source : <https://github.com/fregante/object-fit-images>
 - [調整] yStandardからのお知らせをキャッシュ
 - [調整] 一覧ページレイアウトの余白調整
 - [調整] パーツ機能のフィルター調整
+- [調整] SNSアイコン表示ショートコードのHTML構造調整
 
 ### v4.0.4
 - [修正] 「AMPエラー：参照している AMP URL はスタンドアロン AMP です」が発生する点の修正
