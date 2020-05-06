@@ -22,6 +22,7 @@
 
       svg {
         fill: currentColor;
+		@include svg_size(1.5em);
       }
     }
   }
@@ -80,9 +81,6 @@
 
   svg {
     display: block;
-    width: 100%;
-    height: auto;
-
     fill: var(--font-white);
   }
 }
