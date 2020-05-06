@@ -70,6 +70,9 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.x.x
 
+### v4.0.5
+- [調整] yStandardからのお知らせをキャッシュ
+
 ### v4.0.4
 - [修正] 「AMPエラー：参照している AMP URL はスタンドアロン AMP です」が発生する点の修正
 

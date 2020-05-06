@@ -22,6 +22,11 @@ class Theme_Info {
 	const RSS_URL = 'https://wp-ystandard.com/category/infomation/feed/';
 
 	/**
+	 * お知らせ取得のキャッシュキー
+	 */
+	const RSS_CACHE_KEY = 'ystandard_info';
+
+	/**
 	 * Theme_Info constructor.
 	 */
 	public function __construct() {
@@ -77,6 +82,13 @@ class Theme_Info {
 	 * @return array
 	 */
 	public function get_feed() {
+
+		$cache = get_transient( self::RSS_CACHE_KEY );
+
+		if ( false !== $cache ) {
+			return $cache;
+		}
+
 		if ( ! function_exists( 'fetch_feed' ) ) {
 			include_once( ABSPATH . WPINC . '/feed.php' );
 		}
@@ -86,6 +98,8 @@ class Theme_Info {
 		}
 		$maxitems  = $rss->get_item_quantity( 5 );
 		$rss_items = $rss->get_items( 0, $maxitems );
+
+		set_transient( self::RSS_CACHE_KEY, $rss_items, 60 * 60 * 24 );
 
 		return $rss_items;
 	}
