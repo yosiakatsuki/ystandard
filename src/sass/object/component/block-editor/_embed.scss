@@ -1,0 +1,9 @@
+.wp-embed-responsive {
+  .wp-block-embed {
+	&.wp-block-embed-spotify {
+	  .wp-block-embed__wrapper:before {
+		padding-top: 110%;
+	  }
+	}
+  }
+}
