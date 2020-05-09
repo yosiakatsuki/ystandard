@@ -65,9 +65,9 @@ class Theme_Info {
 			<?php else : ?>
 				<?php foreach ( $feed as $item ) : ?>
 					<li>
-						<span class="ys-dashboard-info__date"><?php echo esc_html( $item->get_date( 'Y.m.d' ) ); ?></span>
-						<a class="ys-dashboard-info__link" href="<?php echo esc_url_raw( $item->get_permalink() ); ?>">
-							<?php echo esc_html( $item->get_title() ); ?>
+						<span class="ys-dashboard-info__date"><?php echo esc_html( $item['date'] ); ?></span>
+						<a class="ys-dashboard-info__link" href="<?php echo esc_url_raw( $item['url'] ); ?>">
+							<?php echo esc_html( $item['title'] ); ?>
 						</a>
 					</li>
 				<?php endforeach; ?>
@@ -83,15 +83,19 @@ class Theme_Info {
 	 */
 	public function get_feed() {
 
-		$cache = get_transient( self::RSS_CACHE_KEY );
-
-		if ( false !== $cache ) {
-			return $cache;
-		}
-
 		if ( ! function_exists( 'fetch_feed' ) ) {
 			include_once( ABSPATH . WPINC . '/feed.php' );
 		}
+		// キャッシュ取得.
+		$cache = get_transient( self::RSS_CACHE_KEY );
+		if ( false !== $cache ) {
+			if ( is_array( $cache ) && ! empty( $cache ) ) {
+				if ( isset( $cache[0]['date'] ) && isset( $cache[0]['url'] ) && isset( $cache[0]['title'] ) ) {
+					return $cache;
+				}
+			}
+		}
+
 		$rss = fetch_feed( self::RSS_URL );
 		if ( is_wp_error( $rss ) ) {
 			return [];
@@ -99,9 +103,17 @@ class Theme_Info {
 		$maxitems  = $rss->get_item_quantity( 5 );
 		$rss_items = $rss->get_items( 0, $maxitems );
 
-		set_transient( self::RSS_CACHE_KEY, $rss_items, 60 * 60 * 24 );
+		$data = [];
+		foreach ( $rss_items as $item ) {
+			$data[] = [
+				'date'  => $item->get_date( 'Y.m.d' ),
+				'url'   => $item->get_permalink(),
+				'title' => wp_encode_emoji( $item->get_title() ),
+			];
+		}
+		set_transient( self::RSS_CACHE_KEY, $data, ( 60 * 60 * 24 ) );
 
-		return $rss_items;
+		return $data;
 	}
 }
 
