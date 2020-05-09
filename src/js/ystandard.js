@@ -22,9 +22,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		} );
 	}
 	// メニュー.
-	document.getElementById( 'global-nav__toggle' ).addEventListener( 'click', ( e ) => {
-		e.currentTarget.classList.toggle( 'is-open' );
-	} );
+	const glovalNav = document.getElementById( 'global-nav__toggle' );
+	if ( glovalNav ) {
+		glovalNav.addEventListener( 'click', ( e ) => {
+			e.currentTarget.classList.toggle( 'is-open' );
+		} );
+	}
 	// スムーススクロール.
 	const links = document.querySelectorAll( 'a[href^="#"]' );
 	for ( let i = 0; i < links.length; i++ ) {
