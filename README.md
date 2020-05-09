@@ -70,6 +70,9 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.x.x
 
+### v4.0.7
+- [修正] yStandardのお知らせ機能調整
+
 ### v4.0.6
 - [修正] SNSシェアボタンアイコン表示不具合修正
 
