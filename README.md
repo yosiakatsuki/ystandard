@@ -70,6 +70,9 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.x.x
 
+### v4.0.8
+- [修正] グローバルナビゲーションを表示していない時にJavaScriptのエラーが発生する点の修正
+
 ### v4.0.7
 - [修正] yStandardのお知らせ機能調整
 
