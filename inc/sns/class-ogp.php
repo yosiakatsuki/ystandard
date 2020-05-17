@@ -174,7 +174,7 @@ class OGP {
 
 		$dscr = Content::get_post_meta( 'ys_ogp_description' );
 		if ( empty( $dscr ) ) {
-			$dscr = Content::get_custom_excerpt_raw();
+			$dscr = Content::get_custom_excerpt( '' );
 		}
 
 		$dscr = apply_filters( 'ys_ogp_description_singular', $dscr );
