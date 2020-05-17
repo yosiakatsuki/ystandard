@@ -72,6 +72,7 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.0.9
 - [修正] 投稿内にXMLがあるとdescription自動生成がおかしくなる点の修正
+- [修正] ギャラリーブロックのキャプションが中央表示されない点の修正
 
 ### v4.0.8
 - [修正] グローバルナビゲーションを表示していない時にJavaScriptのエラーが発生する点の修正
