@@ -228,6 +228,8 @@ class Utility {
 		$content = strip_shortcodes( $content );
 		// HTMLタグ削除.
 		$content = wp_strip_all_tags( $content, true );
+		// HTMLタグらしき文字の変換.
+		$content = htmlspecialchars( $content, ENT_QUOTES );
 
 		return $content;
 	}
