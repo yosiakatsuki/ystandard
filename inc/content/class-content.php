@@ -158,22 +158,6 @@ class Content {
 		if ( ! has_post_thumbnail( $post_id ) ) {
 			$result = false;
 		}
-		/**
-		 * 投稿ページ
-		 */
-		if ( is_single() ) {
-			if ( ! Option::get_option_by_bool( 'ys_show_post_thumbnail', true ) ) {
-				$result = false;
-			}
-		}
-		/**
-		 * 固定ページ
-		 */
-		if ( is_page() ) {
-			if ( ! Option::get_option_by_bool( 'ys_show_page_thumbnail', true ) ) {
-				$result = false;
-			}
-		}
 
 		return apply_filters( 'ys_is_active_post_thumbnail', $result );
 	}
