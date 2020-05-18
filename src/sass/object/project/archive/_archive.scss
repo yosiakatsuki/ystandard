@@ -4,6 +4,10 @@
   margin-left: auto;
 }
 
+.archive__header {
+  margin-bottom: 1em;
+}
+
 .archive__page-title {
   margin: 0;
 }
@@ -15,7 +19,6 @@
 }
 
 .archive__container {
-  margin-top: 1em;
 
   &.is-card {
 	@include media-breakpoint(sm) {
