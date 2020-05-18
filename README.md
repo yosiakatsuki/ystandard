@@ -77,6 +77,7 @@ Source : <https://github.com/fregante/object-fit-images>
 - [修正] 投稿一覧ページのレイアウト修正
   - template-parts/header/header-logo.php
 - [修正] 背景色ありレイアウト - 一覧ページ（リスト）の画像周りの余白調整
+- [修正] 投稿一覧ウィジェットで長いタイトルを入力すると画面からはみ出ることがある点の修正
 
 ### v4.0.8
 - [修正] グローバルナビゲーションを表示していない時にJavaScriptのエラーが発生する点の修正
