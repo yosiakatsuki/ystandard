@@ -88,6 +88,7 @@
 
 .ys-posts__text {
   @include child_margin(0.5em);
+  word-break: break-word;
 }
 
 .ys-posts__meta {
