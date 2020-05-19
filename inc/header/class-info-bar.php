@@ -119,6 +119,10 @@ class Info_Bar {
 			opacity:0.8;
 		}';
 		$styles[] = '
+		.info-bar a {
+			color:currentColor;
+		}';
+		$styles[] = '
 		.info-bar__link {
 			display:block;
 			color:currentColor;
