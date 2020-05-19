@@ -270,7 +270,7 @@ class Info_Bar {
 	 * @return string
 	 */
 	public function sanitize_info_bar_text( $text ) {
-
+		$text = wp_encode_emoji( $text );
 		$text = wp_kses( $text, self::info_bar_kses_allowed_html() );
 
 		return $text;
