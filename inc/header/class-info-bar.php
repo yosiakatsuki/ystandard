@@ -41,12 +41,17 @@ class Info_Bar {
 		if ( Option::get_option( 'ys_info_bar_url', '' ) ) {
 			$info_bar_class[] = 'has-link';
 		}
+		$text = Option::get_option( 'ys_info_bar_text', '' );
+		$url  = Option::get_option( 'ys_info_bar_url', '' );
+		if ( ! empty( $url ) ) {
+			$text = wp_kses( $text, self::info_bar_kses_allowed_html( [ 'a' ] ) );
+		}
 		/**
 		 * 設定取得
 		 */
 		$data = [
-			'text'   => Option::get_option( 'ys_info_bar_text', '' ),
-			'url'    => Option::get_option( 'ys_info_bar_url', '' ),
+			'text'   => $text,
+			'url'    => $url,
 			'target' => Option::get_option_by_bool( 'ys_info_bar_external', false ) ? '_blank' : '_self',
 			'class'  => implode( ' ', $info_bar_class ),
 		];
@@ -166,9 +171,11 @@ class Info_Bar {
 		// お知らせバーテキスト.
 		$customizer->add_text(
 			[
-				'id'      => 'ys_info_bar_text',
-				'default' => '',
-				'label'   => 'お知らせテキスト',
+				'id'                => 'ys_info_bar_text',
+				'default'           => '',
+				'label'             => 'お知らせテキスト',
+				'description'       => 'span,br,strongタグが使えます。<br>「リンク先URL」が空白の場合に限りaタグも使えます。',
+				'sanitize_callback' => [ $this, 'sanitize_info_bar_text' ],
 			]
 		);
 		// テキストカラー.
@@ -222,6 +229,51 @@ class Info_Bar {
 			]
 		);
 
+	}
+
+	/**
+	 * お知らせバーで使えるHTML
+	 *
+	 * @param array $remove 除外するHTML.
+	 *
+	 * @return array
+	 */
+	public static function info_bar_kses_allowed_html( $remove = [] ) {
+		$allowed_html     = wp_kses_allowed_html( 'post' );
+		$new_allowed_html = [];
+		if ( isset( $allowed_html['a'] ) ) {
+			$new_allowed_html['a'] = $allowed_html['a'];
+		}
+		if ( isset( $allowed_html['span'] ) ) {
+			$new_allowed_html['span'] = $allowed_html['span'];
+		}
+		if ( isset( $allowed_html['br'] ) ) {
+			$new_allowed_html['br'] = $allowed_html['br'];
+		}
+		if ( isset( $allowed_html['strong'] ) ) {
+			$new_allowed_html['strong'] = $allowed_html['strong'];
+		}
+		foreach ( $remove as $item ) {
+			if ( array_key_exists( $item, $new_allowed_html ) ) {
+				unset( $new_allowed_html[ $item ] );
+			}
+		}
+
+		return apply_filters( 'info_bar_kses_allowed_html', $new_allowed_html );
+	}
+
+	/**
+	 * お知らせバーテキストのサニタイズ
+	 *
+	 * @param string $text Text.
+	 *
+	 * @return string
+	 */
+	public function sanitize_info_bar_text( $text ) {
+
+		$text = wp_kses( $text, self::info_bar_kses_allowed_html() );
+
+		return $text;
 	}
 }
 
