@@ -306,7 +306,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_footer_bg',
-				'default' => '#222222',
+				'default' => '#f1f1f3',
 				'label'   => 'フッター背景色',
 			]
 		);
@@ -314,7 +314,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_footer_font',
-				'default' => '#ffffff',
+				'default' => '#222222',
 				'label'   => 'フッター文字色',
 			]
 		);
