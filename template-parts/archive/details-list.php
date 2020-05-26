@@ -17,7 +17,7 @@
 						<figure class="ratio__image">
 							<?php
 							the_post_thumbnail(
-								'post-thumbnail',
+								apply_filters( 'ys_archive_thumbnail_size', 'post-thumbnail' ),
 								[
 									'class' => 'archive__image',
 									'alt'   => get_the_title(),

@@ -73,6 +73,9 @@ Source : <https://github.com/fregante/object-fit-images>
 ### v4.2.0
 - [追加] サイト全体の文字色・薄文字色の設定追加
 - [追加] アイキャッチ画像の表示・非表示を切り替える設定追加
+- [追加] アーカイブページサムネイル変更用フック追加
+  - template-parts/archive/details.php
+  - template-parts/archive/details-list.php
 - [修正] フッターメインエリアのデフォルトカラーがカスタマイザーと表示側で違う点の修正
 - [調整] 編集画面:グループブロックで背景色ありの時の上下余白調整 
 - [調整] カテゴリー・タグの表示スタイル調整 
