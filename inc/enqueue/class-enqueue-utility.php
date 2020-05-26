@@ -34,12 +34,18 @@ class Enqueue_Utility {
 	/**
 	 * CSSカスタムプロパティ追加用配列の取得
 	 *
-	 * @param string $name  変数名.
-	 * @param string $value 値.
+	 * @param string $name    変数名.
+	 * @param string $value   値.
+	 * @param mixed  $default 初期値.
 	 *
 	 * @return array
 	 */
-	public static function get_css_var( $name, $value ) {
+	public static function get_css_var( $name, $value, $default = null ) {
+		// 初期値と同じ場合無効.
+		if ( ! is_null( $default ) && $value === $default ) {
+			$value = '';
+		}
+
 		return [
 			[
 				'name'  => $name,
