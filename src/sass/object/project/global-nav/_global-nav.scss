@@ -25,11 +25,17 @@
 .global-nav__container {
   margin-right: auto;
   margin-left: auto;
+  padding: 0 .5em;
+  max-height: 84vh;
+  overflow: scroll;
 
   @include media-breakpoint(md) {
 	height: 100%;
+	max-height: unset;
 	margin-right: 0;
 	margin-left: 0;
+	padding: 0;
+	overflow: unset;
   }
 
 
