@@ -27,7 +27,7 @@
   margin-left: auto;
   padding: 0 .5em;
   max-height: 84vh;
-  overflow: scroll;
+  overflow: auto;
 
   @include media-breakpoint(md) {
 	height: 100%;
