@@ -158,6 +158,16 @@ class Content {
 		if ( ! has_post_thumbnail( $post_id ) ) {
 			$result = false;
 		}
+		if ( is_single() ) {
+			if ( ! Option::get_option_by_bool( 'ys_show_post_header_thumbnail', true ) ) {
+				$result = false;
+			}
+		}
+		if ( is_page() ) {
+			if ( ! Option::get_option_by_bool( 'ys_show_page_header_thumbnail', true ) ) {
+				$result = false;
+			}
+		}
 
 		return apply_filters( 'ys_is_active_post_thumbnail', $result );
 	}
@@ -740,6 +750,20 @@ class Content {
 			]
 		);
 		$customizer->add_section_label( '記事上部' );
+		// アイキャッチの表示.
+		$customizer->add_label(
+			[
+				'id'    => 'ys_show_post_header_thumbnail_label',
+				'label' => 'アイキャッチ画像の表示設定',
+			]
+		);
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_post_header_thumbnail',
+				'default' => 1,
+				'label'   => 'アイキャッチ画像を表示する',
+			]
+		);
 		// 投稿日時を表示する.
 		$customizer->add_select(
 			[
@@ -860,6 +884,20 @@ class Content {
 			]
 		);
 		$customizer->add_section_label( '記事上部' );
+		// アイキャッチの表示.
+		$customizer->add_label(
+			[
+				'id'    => 'ys_show_page_header_thumbnail_label',
+				'label' => 'アイキャッチ画像の表示設定',
+			]
+		);
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_show_page_header_thumbnail',
+				'default' => 1,
+				'label'   => 'アイキャッチ画像を表示する',
+			]
+		);
 		// 投稿日時を表示する.
 		$customizer->add_select(
 			[
