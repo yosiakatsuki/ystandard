@@ -40,8 +40,8 @@ class Font {
 		$customizer->add_section(
 			[
 				'section'     => 'ys_section_font',
-				'title'       => 'フォント',
-				'description' => 'フォントの設定' . Admin::manual_link( 'https://wp-ystandard.com/font/' ),
+				'title'       => 'フォント・文字色',
+				'description' => 'フォント・文字色の設定' . Admin::manual_link( 'https://wp-ystandard.com/font/' ),
 				'priority'    => 10,
 				'panel'       => Design::PANEL_NAME,
 			]
@@ -60,6 +60,27 @@ class Font {
 					'yugo'        => $this->get_font_label( 'yugo' ),
 					'serif'       => $this->get_font_label( 'serif' ),
 				],
+			]
+		);
+		/**
+		 * 文字色
+		 */
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_site_text',
+				'default' => '#222222',
+				'label'   => '文字色',
+			]
+		);
+		/**
+		 * グレー文字色
+		 */
+		$customizer->add_color(
+			[
+				'id'          => 'ys_color_site_gray',
+				'default'     => '#656565',
+				'label'       => 'グレー文字色',
+				'description' => '少し薄めの色で表示される部分の色設定',
 			]
 		);
 	}
@@ -95,7 +116,17 @@ class Font {
 
 		return array_merge(
 			$css_vars,
-			Enqueue_Utility::get_css_var( 'font-family', $font_family )
+			Enqueue_Utility::get_css_var( 'font-family', $font_family ),
+			Enqueue_Utility::get_css_var(
+				'font-color',
+				Option::get_option( 'ys_color_site_text', '#222222' ),
+				Option::get_default( 'ys_color_site_text', '#222222' )
+			),
+			Enqueue_Utility::get_css_var(
+				'font-gray',
+				Option::get_option( 'ys_color_site_gray', '#656565' ),
+				Option::get_default( 'ys_color_site_gray', '#656565' )
+			)
 		);
 	}
 
