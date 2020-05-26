@@ -37,6 +37,7 @@ class Author {
 	 * アクション・フィルターの登録
 	 */
 	public function register() {
+		add_filter( 'get_the_author_description', 'do_shortcode' );
 		add_filter( 'user_contactmethods', [ $this, 'user_contactmethods' ] );
 		add_action( 'show_password_fields', [ $this, 'add_custom_option' ], 10, 2 );
 		add_action( 'profile_update', [ $this, 'profile_update' ], 10, 2 );
