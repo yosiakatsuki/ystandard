@@ -84,9 +84,10 @@
 	}
   }
 
-  @include media-breakpoint(md) {
-
-	.global-nav {
+  .global-nav {
+	text-align: left;
+	@include media-breakpoint(md) {
+	  text-align: center;
 	  justify-content: center;
 	}
   }
