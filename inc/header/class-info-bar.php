@@ -166,7 +166,7 @@ class Info_Bar {
 			[
 				'section'     => 'ys_info_bar',
 				'title'       => '[ys]お知らせバー',
-				'description' => 'ヘッダー下に表示されるお知らせバーの設定' . Admin::manual_link( 'https://wp-ystandard.com/info-bar/' ),
+				'description' => 'ヘッダー下に表示されるお知らせバーの設定' . Admin::manual_link( 'info-bar' ),
 				'priority'    => Customizer::get_priority( 'ys_info_bar' ),
 			]
 		);

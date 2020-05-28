@@ -338,7 +338,7 @@ class Header {
 
 		$customizer->set_section_description(
 			'title_tagline',
-			'サイトロゴやキャッチフレーズの設定' . Admin::manual_link( 'https://wp-ystandard.com/basic-setting/' )
+			'サイトロゴやキャッチフレーズの設定' . Admin::manual_link( 'basic-setting' )
 		);
 
 		$customizer->set_refresh( 'custom_logo' );

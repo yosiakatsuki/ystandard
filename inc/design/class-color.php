@@ -78,7 +78,7 @@ class Color {
 			[
 				'section'     => 'ys_section_link_color',
 				'title'       => 'リンクカラー',
-				'description' => 'リンクカラーの設定' . Admin::manual_link( 'https://wp-ystandard.com/link-color/' ),
+				'description' => 'リンクカラーの設定' . Admin::manual_link( 'link-color' ),
 				'priority'    => 20,
 				'panel'       => Design::PANEL_NAME,
 			]
