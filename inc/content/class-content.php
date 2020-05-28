@@ -48,7 +48,7 @@ class Content {
 	public function register() {
 		add_filter( 'post_class', [ $this, 'post_class' ] );
 		add_filter( 'the_content', [ $this, 'the_content_hook' ] );
-		add_filter( 'get_the_excerpt', [ '\ystandard\Content', 'get_custom_excerpt' ] );
+		add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ], 10, 2 );
 		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
 		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
 		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
@@ -423,6 +423,16 @@ class Content {
 		$content = $this->replace_first_heading( $content );
 
 		return $content;
+	}
+
+	/**
+	 * Hook:get_the_excerpt
+	 *
+	 * @param string   $content excerpt
+	 * @param \WP_Post $post    Post.
+	 */
+	public function get_the_excerpt( $content, $post ) {
+		return self::get_custom_excerpt( ' …', 0, $post->ID );
 	}
 
 	/**
