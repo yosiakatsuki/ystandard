@@ -363,7 +363,7 @@ class Footer {
 		$customizer->add_section_label(
 			'モバイルフッターメニュー 色設定',
 			[
-				'description' => Admin::manual_link( 'https://wp-ystandard.com/mobile-footer-menu#color' ),
+				'description' => Admin::manual_link( 'mobile-footer-menu#color' ),
 			]
 		);
 		// モバイルフッター背景色.

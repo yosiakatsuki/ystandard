@@ -1,5 +1,5 @@
 .ys-manual-link {
-  display: block;
+  display: inline-block;
   margin-top: .25em;
   color: $color__ystanadrd;
   font-weight: $font__weight_bold;
@@ -15,6 +15,6 @@
   }
 }
 
-p + .ys-manual-link {
-  margin-top: -0.5em;
+p + .ys-manual-link__wrap {
+  margin-top: -0.75em;
 }
