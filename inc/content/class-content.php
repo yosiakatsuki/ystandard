@@ -428,7 +428,7 @@ class Content {
 	/**
 	 * Hook:get_the_excerpt
 	 *
-	 * @param string   $content excerpt
+	 * @param string   $content excerpt.
 	 * @param \WP_Post $post    Post.
 	 */
 	public function get_the_excerpt( $content, $post ) {
