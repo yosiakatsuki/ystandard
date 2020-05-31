@@ -71,6 +71,7 @@ Source : <https://github.com/fregante/object-fit-images>
 ### v4.x.x
 
 ### v4.2.2
+- [修正] シェアボタン表示タイプの初期値不具合修正
 - [調整] ビジュアルエディタ用CSS調整
 
 ### v4.2.1

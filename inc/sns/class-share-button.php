@@ -119,7 +119,7 @@ class Share_Button {
 		if ( ! $this->is_active_share_buttons() ) {
 			return;
 		}
-		echo $this->do_shortcode( $this->get_share_button_settings( 'header' ) );
+		echo $this->do_shortcode( $this->get_share_button_settings( 'header', 'none' ) );
 	}
 
 	/**
@@ -129,7 +129,7 @@ class Share_Button {
 		if ( ! $this->is_active_share_buttons() ) {
 			return;
 		}
-		echo $this->do_shortcode( $this->get_share_button_settings( 'footer' ) );
+		echo $this->do_shortcode( $this->get_share_button_settings( 'footer', 'circle' ) );
 	}
 
 
@@ -137,12 +137,13 @@ class Share_Button {
 	 * コンテンツ ヘッダー・フッター表示用 設定取得
 	 *
 	 * @param string $position header,footer.
+	 * @param string $default  Default.
 	 *
 	 * @return array
 	 */
-	private function get_share_button_settings( $position ) {
+	private function get_share_button_settings( $position, $default ) {
 		$settings = [
-			'type'       => Option::get_option( "ys_share_button_type_${position}", 'circle' ),
+			'type'       => Option::get_option( "ys_share_button_type_${position}", $default ),
 			'use-option' => true,
 		];
 
