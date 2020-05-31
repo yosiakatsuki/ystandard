@@ -565,7 +565,7 @@ class Header {
 			[
 				'id'      => 'ys_show_header_search_form',
 				'default' => 1,
-				'label'   => 'モバイルメニューに検索フォームを表示する',
+				'label'   => '検索フォームを表示する',
 			]
 		);
 
