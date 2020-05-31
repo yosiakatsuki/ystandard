@@ -380,8 +380,6 @@ class Share_Button {
 	 * Twitter
 	 */
 	private function set_twitter() {
-		$via     = '';
-		$related = '';
 		if ( $this->is_use_option() ) {
 			if ( ! $this->is_active_button( 'twitter' ) ) {
 				return;
@@ -394,10 +392,10 @@ class Share_Button {
 			}
 			$via     = $this->shortcode_atts['twitter_via_user'];
 			$related = $this->shortcode_atts['twitter_related_user'];
-			// オフィシャル用.
-			$this->data['official']['twitter-via']     = $via;
-			$this->data['official']['twitter-related'] = $related;
 		}
+		// オフィシャル用.
+		$this->data['official']['twitter-via']     = $via;
+		$this->data['official']['twitter-related'] = $related;
 		// via.
 		$via = empty( $via ) ? '' : "&via=${via}";
 		// related.
