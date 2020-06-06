@@ -72,6 +72,7 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.2.3
 - [修正] 目次を無効化する投稿タイプに[ys]パーツが混ざって表示されている点の修正
+- [調整] カスタムアバター取得処理調整
 
 
 ### v4.2.2
