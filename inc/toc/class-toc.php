@@ -472,6 +472,13 @@ class TOC {
 			]
 		);
 		$post_types = Utility::get_post_types();
+		$remove     = [ 'ys-parts' ];
+		foreach ( $remove as $type ) {
+			if ( isset( $post_types[ $type ] ) ) {
+				unset( $post_types[ $type ] );
+			}
+		}
+
 		foreach ( $post_types as $name => $label ) {
 			$customizer->add_checkbox(
 				[
