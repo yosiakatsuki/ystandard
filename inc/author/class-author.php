@@ -88,6 +88,11 @@ class Author {
 		if ( preg_match( '/^(profile\.php|user-edit\.php)/', basename( $_SERVER['REQUEST_URI'] ) ) ) {
 			return $avatar;
 		}
+		// メールが指定されている場合IDに変更.
+		$avatar_data = get_user_by( 'email', $id_or_email );
+		if ( $avatar_data ) {
+			$id_or_email = $avatar_data->ID;
+		}
 
 		/**
 		 * Alt取得
