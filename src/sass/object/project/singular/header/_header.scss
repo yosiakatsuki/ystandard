@@ -3,11 +3,7 @@
 }
 
 .singular-header__title {
-  font-size: 1.2em;
-
-  @include media-breakpoint(sm) {
-	font-size: 1.4em;
-  }
+  font-size: 1.4em;
 }
 
 .singular-header__meta {
