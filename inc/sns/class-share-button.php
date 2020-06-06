@@ -195,7 +195,7 @@ class Share_Button {
 			[ 'share_button' => $this->data ]
 		);
 
-		return ob_get_clean();
+		return wp_targeted_link_rel( ob_get_clean() );
 	}
 
 	/**
