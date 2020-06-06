@@ -141,6 +141,7 @@ class Breadcrumbs {
 	 * @return array
 	 */
 	public function get_breadcrumbs() {
+		$this->position       = 1;
 		$this->show_on_front  = get_option( 'show_on_front' );
 		$this->page_on_front  = get_option( 'page_on_front' );
 		$this->page_for_posts = get_option( 'page_for_posts' );
