@@ -437,18 +437,6 @@ class TOC {
 			]
 		);
 		$customizer->add_section_label( '表示条件' );
-		$customizer->add_number(
-			[
-				'id'          => 'ys_toc_required_count',
-				'default'     => 3,
-				'label'       => '目次の表示に必要な見出しの数',
-				'input_attrs' => [
-					'min' => 1,
-					'max' => 10,
-				],
-				'description' => '例)設定が「3」の場合、投稿内に3つ以上見出しがある場合に目次が表示されます。',
-			]
-		);
 		$customizer->add_label(
 			[
 				'id'    => 'ys_toc_level_label',
@@ -465,6 +453,19 @@ class TOC {
 				]
 			);
 		}
+		$customizer->add_number(
+			[
+				'id'          => 'ys_toc_required_count',
+				'default'     => 3,
+				'label'       => '目次の表示に必要な見出しの数',
+				'input_attrs' => [
+					'min' => 1,
+					'max' => 10,
+				],
+				'description' => '例)設定が「3」の場合、投稿内に3つ以上見出しがある場合に目次が表示されます。',
+			]
+		);
+
 		$customizer->add_section_label(
 			'目次を無効化するタイプ',
 			[
