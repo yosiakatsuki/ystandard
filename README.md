@@ -72,6 +72,7 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.2.4
 - [修正] 目次ウィジェットでタイトルが表示されなくなる場合がある点の修正
+- [調整] 目次設定　設定項目の並び調整
 
 ### v4.2.3
 - [修正] パンくずリスト構造化データのposition指定不具合修正
