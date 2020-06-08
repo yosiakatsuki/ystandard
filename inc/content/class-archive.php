@@ -25,6 +25,18 @@ class Archive {
 	}
 
 	/**
+	 * アーカイブタイプ取得
+	 *
+	 * @return string
+	 */
+	public static function get_archive_type() {
+		return apply_filters(
+			'ys_get_archive_type',
+			Option::get_option( 'ys_archive_type', 'card' )
+		);
+	}
+
+	/**
 	 * アーカイブ画像の縦横比取得
 	 *
 	 * @return string

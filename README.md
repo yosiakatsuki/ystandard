@@ -70,6 +70,10 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.x.x
 
+### v4.3.0
+- [追加] アーカイブレイアウトカスタマイズ用フック`ys_get_archive_type`を追加
+- [追加] モバイル判定用関数`ys_is_mobile`を追加
+
 ### v4.2.4
 - [修正] 目次ウィジェットでタイトルが表示されなくなる場合がある点の修正
 - [調整] 目次設定　設定項目の並び調整
