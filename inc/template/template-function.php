@@ -135,6 +135,18 @@ function ys_get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
 	return \ystandard\Content::get_custom_excerpt( $sep, $length, $post_id );
 }
 
+/**
+ * 投稿オプション(post-meta)取得
+ *
+ * @param string  $key     設定キー.
+ * @param integer $post_id 投稿ID.
+ *
+ * @return string
+ */
+function ys_get_post_meta( $key, $post_id = 0 ) {
+	return \ystandard\Content::get_post_meta( $key, $post_id );
+}
+
 /** *****************************************************************
  * アーカイブ
  * *****************************************************************/
@@ -160,7 +172,7 @@ function ys_the_archive_item_class() {
  * アーカイブテンプレートタイプ取得
  */
 function ys_get_archive_type() {
-	return \ystandard\Option::get_option( 'ys_archive_type', 'card' );
+	return \ystandard\Archive::get_archive_type();
 }
 
 /**
@@ -209,19 +221,9 @@ function ys_is_active_sidebar() {
 	return \ystandard\Widget::is_active_sidebar();
 }
 
-
-/**
- * 投稿オプション(post-meta)取得
- *
- * @param string  $key     設定キー.
- * @param integer $post_id 投稿ID.
- *
- * @return string
- */
-function ys_get_post_meta( $key, $post_id = 0 ) {
-	return \ystandard\Content::get_post_meta( $key, $post_id );
-}
-
+/** *****************************************************************
+ * 広告
+ * *****************************************************************/
 
 /**
  * インフィード広告の表示
@@ -230,17 +232,9 @@ function ys_the_ad_infeed() {
 	echo \ystandard\Advertisement::get_infeed();
 }
 
-/**
- * テンプレート読み込み拡張
- *
- * @param string $slug The slug name for the generic template.
- * @param string $name The name of the specialised template.
- * @param array  $args テンプレートに渡す変数.
- */
-function ys_get_template_part( $slug, $name = null, $args = [] ) {
-	\ystandard\Template::get_template_part( $slug, $name, $args );
-}
-
+/** *****************************************************************
+ * フッター
+ * *****************************************************************/
 
 /**
  * フッターウィジェットが有効か
@@ -255,6 +249,10 @@ function ys_is_active_footer_widgets() {
 function ys_get_footer_sub_contents() {
 	return \ystandard\Footer::get_footer_sub_contents();
 }
+
+/** *****************************************************************
+ * コピーライト
+ * *****************************************************************/
 
 /**
  * フッターコピーライト表示取得
@@ -303,6 +301,10 @@ function ys_get_poweredby() {
 	return \ystandard\Copyright::get_poweredby();
 }
 
+/** *****************************************************************
+ * アイコン
+ * *****************************************************************/
+
 /**
  * アイコン取得
  *
@@ -327,6 +329,10 @@ function ys_get_sns_icon( $name, $title = '' ) {
 	return \ystandard\Icon::get_sns_icon( $name, $title );
 }
 
+/** *****************************************************************
+ * テーマバージョン
+ * *****************************************************************/
+
 /**
  * テーマバージョン取得
  *
@@ -348,6 +354,10 @@ function ys_get_theme_version( $parent = false ) {
 function ys_get_ystandard_version( $parent = false ) {
 	return \ystandard\Utility::get_ystandard_version();
 }
+
+/** *****************************************************************
+ * 設定
+ * *****************************************************************/
 
 /**
  * 設定取得
@@ -402,4 +412,26 @@ function ys_embed_content() {
  * *****************************************************************/
 function ys_is_amp() {
 	return \ystandard\AMP::is_amp();
+}
+
+/** *****************************************************************
+ * その他
+ * *****************************************************************/
+
+/**
+ * テンプレート読み込み拡張
+ *
+ * @param string $slug The slug name for the generic template.
+ * @param string $name The name of the specialised template.
+ * @param array  $args テンプレートに渡す変数.
+ */
+function ys_get_template_part( $slug, $name = null, $args = [] ) {
+	\ystandard\Template::get_template_part( $slug, $name, $args );
+}
+
+/**
+ * モバイル判定
+ */
+function ys_is_mobile() {
+	return \ystandard\Template::is_mobile();
 }
