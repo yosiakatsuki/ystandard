@@ -72,6 +72,7 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.3.0
 - [追加] アーカイブレイアウトカスタマイズ用フック`ys_get_archive_type`を追加
+- [追加] アーカイブ明細クラスカスタマイズ用フック`get_archive_item_class`を追加
 - [追加] モバイル判定用関数`ys_is_mobile`を追加
 
 ### v4.2.4

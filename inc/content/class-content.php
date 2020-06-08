@@ -619,14 +619,14 @@ class Content {
 	 * @return array
 	 */
 	public static function get_archive_item_class() {
-		$class = [];
+		$classes = [];
 		/**
 		 * 共通でセットするクラス
 		 */
-		$class[] = 'archive__item';
-		$class[] = 'is-' . Archive::get_archive_type();
+		$classes[] = 'archive__item';
+		$classes[] = 'is-' . Archive::get_archive_type();
 
-		return $class;
+		return apply_filters( 'get_archive_item_class', $classes );
 	}
 
 
