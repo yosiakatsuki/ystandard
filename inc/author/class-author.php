@@ -89,10 +89,7 @@ class Author {
 			return $avatar;
 		}
 		// メールが指定されている場合IDに変更.
-		$avatar_data = get_user_by( 'email', $id_or_email );
-		if ( $avatar_data ) {
-			$id_or_email = $avatar_data->ID;
-		}
+		$id_or_email = get_the_author_meta( 'ID', $id_or_email );
 
 		/**
 		 * Alt取得
