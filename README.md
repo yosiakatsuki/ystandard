@@ -70,6 +70,9 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.x.x
 
+### v4.3.1
+- [修正] コメント欄で class-wp-user.php 関連のエラーが発生する事がある点の修正
+
 ### v4.3.0
 - [追加] アーカイブレイアウトカスタマイズ用フック`ys_get_archive_type`を追加
 - [追加] アーカイブ明細クラスカスタマイズ用フック`get_archive_item_class`を追加

@@ -41,7 +41,12 @@ class YS_Walker_Comment extends Walker_Comment {
 				<div class="comment-meta__container">
 					<?php if ( 0 !== $args['avatar_size'] ) : ?>
 						<div class="comment-author">
-							<?php echo get_avatar( $comment, $args['avatar_size'] ); ?>
+							<?php
+							echo get_avatar(
+								$comment->comment_author_email,
+								$args['avatar_size']
+							);
+							?>
 						</div><!-- .comment-author -->
 					<?php endif; ?>
 					<div class="comment-metadata">
