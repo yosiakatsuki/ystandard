@@ -30,7 +30,7 @@ class Recent_Posts {
 	 */
 	const SHORTCODE_ATTR = [
 		'list_type'       => 'list', // list , card.
-		'col'             => 1,
+		'col'             => 0,
 		'col_sp'          => 1,
 		'col_tablet'      => 3,
 		'col_pc'          => 3,
@@ -182,11 +182,13 @@ class Recent_Posts {
 		$param = [];
 		$atts  = $this->shortcode_atts;
 		/**
-		 * クラス
+		 * 列数
 		 */
-		$col_sp         = empty( $atts['col_sp'] ) ? $atts['col'] : $atts['col_sp'];
-		$col_tablet     = empty( $atts['col_tablet'] ) ? $atts['col'] : $atts['col_tablet'];
-		$col_pc         = empty( $atts['col_pc'] ) ? $atts['col'] : $atts['col_pc'];
+		$col        = $this->parse_col();
+		$col_sp     = $col['col_sp'];
+		$col_tablet = $col['col_tablet'];
+		$col_pc     = $col['col_pc'];
+		// クラス作成.
 		$param['class'] = "col-sp--${col_sp} col-tablet--${col_tablet} col-pc--${col_pc}";
 		/**
 		 * 表示タイプ
@@ -212,6 +214,60 @@ class Recent_Posts {
 		$param['thumbnail_ratio'] = $atts['thumbnail_ratio'];
 
 		return $param;
+	}
+
+	/**
+	 * 列数設定の展開
+	 *
+	 * @return array
+	 */
+	private function parse_col() {
+		$atts = $this->shortcode_atts;
+
+		$col_sp     = $this->check_range( $atts['col_sp'], 1 );
+		$col_tablet = $this->check_range( $atts['col_tablet'], 3 );
+		$col_pc     = $this->check_range( $atts['col_pc'], 3 );
+		// 一括設定チェック.
+		$col = 0;
+		if ( is_numeric( $atts['col'] ) && 0 < $atts['col'] ) {
+			$col = $this->check_range( $atts['col'], 0 );
+		}
+		if ( 0 < $col ) {
+			$col_sp     = $col;
+			$col_tablet = $col;
+			$col_pc     = $col;
+		}
+
+		return [
+			'col_sp'     => $col_sp,
+			'col_tablet' => $col_tablet,
+			'col_pc'     => $col_pc,
+		];
+	}
+
+	/**
+	 * 範囲チェック
+	 *
+	 * @param int $value   値.
+	 * @param int $default 初期値.
+	 * @param int $min     最小値.
+	 * @param int $max     最大値.
+	 *
+	 * @return int
+	 */
+	private function check_range( $value, $default, $min = 1, $max = 4 ) {
+
+		if ( ! is_numeric( $value ) ) {
+			return $default;
+		}
+		if ( $value < $min ) {
+			return $min;
+		}
+		if ( $value > $max ) {
+			return $max;
+		}
+
+		return $value;
 	}
 
 	/**

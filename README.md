@@ -70,6 +70,9 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.x.x
 
+### v4.4.0
+- [調整] 最新記事ショートコード 列数指定機能の調整
+
 ### v4.3.1
 - [修正] コメント欄で class-wp-user.php 関連のエラーが発生する事がある点の修正
 
