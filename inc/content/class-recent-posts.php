@@ -49,8 +49,9 @@ class Recent_Posts {
 		'show_excerpt'    => false,
 		'thumbnail_size'  => '', // thumbnail, medium, large, full, etc...
 		'thumbnail_ratio' => '', // 4-3, 16-9, 3-1, 2-1, 1-1.
-		'filter'          => '', // category,same-post,sga.
-		'cache'           => 'recent_posts',
+		'filter'          => '', // category,remove-same-post,sga.
+		'post_status'     => 'publish', // 隠しパラメーター.
+		'cache'           => 'recent_posts', // 隠しパラメーター。変えるとキャッシュ削除できなくなる可能性があるのでお気をつけください.
 	];
 
 	/**
@@ -134,7 +135,7 @@ class Recent_Posts {
 		 */
 		$this->set_base_args();
 		$this->set_filter_category();
-		$this->set_filter_same_post();
+		$this->set_filter_remove_same_post();
 		$this->set_filter_sga();
 		$this->set_taxonomy();
 		$this->set_post_page();
@@ -372,10 +373,16 @@ class Recent_Posts {
 	}
 
 	/**
-	 * フィルター:投稿除外
+	 * フィルター:閲覧中の投稿除外
 	 */
-	private function set_filter_same_post() {
-		if ( false === strpos( $this->shortcode_atts['filter'], 'same-post' ) ) {
+	private function set_filter_remove_same_post() {
+		// 後方互換.
+		$filter = str_replace(
+			'same-post',
+			'remove-same-post',
+			$this->shortcode_atts['filter']
+		);
+		if ( false === strpos( $filter, 'remove-same-post' ) ) {
 			return;
 		}
 		if ( ! is_single() ) {
@@ -412,6 +419,7 @@ class Recent_Posts {
 			'posts_per_page'      => $this->shortcode_atts['count'],
 			'order'               => $this->shortcode_atts['order'],
 			'orderby'             => $this->shortcode_atts['orderby'],
+			'post_status'         => $this->shortcode_atts['post_status'],
 			'ignore_sticky_posts' => true,
 			'no_found_rows'       => true,
 		];
