@@ -16,7 +16,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 	 *
 	 * @var string
 	 */
-	const TITLE = '記事一覧';
+	const TITLE = '新着記事一覧';
 
 	/**
 	 * タクソノミーとタームの区切り文字
@@ -73,6 +73,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 			[
 				'col_tablet'      => 1,
 				'col_pc'          => 1,
+				'thumbnail_ratio' => '1-1',
 				'taxonomy_select' => [],
 				'title'           => self::TITLE,
 			]
