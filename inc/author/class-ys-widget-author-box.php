@@ -166,6 +166,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 	 * @return array Settings to save or bool false to cancel saving.
 	 */
 	public function update( $new_instance, $old_instance ) {
+		$instance['title'] = $new_instance['title'];
 		/**
 		 * Author Box 設定
 		 */

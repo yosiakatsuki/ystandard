@@ -147,7 +147,7 @@ class YS_Widget_Advertisement extends WP_Widget {
 	 * @see WP_Widget::update()
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$instance['text'] = $new_instance['title'];
+		$instance['title'] = $new_instance['title'];
 		if ( current_user_can( 'unfiltered_html' ) ) {
 			$instance['text'] = $new_instance['text'];
 		} else {

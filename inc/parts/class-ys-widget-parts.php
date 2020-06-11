@@ -156,9 +156,8 @@ class YS_Widget_Parts extends WP_Widget {
 	 * @see WP_Widget::update()
 	 */
 	public function update( $new_instance, $old_instance ) {
-		/**
-		 * 共通設定保存
-		 */
+
+		$instance['title']    = $new_instance['title'];
 		$instance['parts_id'] = $new_instance['parts_id'];
 
 		return $instance;
