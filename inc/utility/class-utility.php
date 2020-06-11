@@ -23,8 +23,9 @@ class Utility {
 		$sep       = apply_filters( 'document_title_separator', '-' );
 		$title     = wp_get_document_title();
 		$new_title = explode( $sep, $title );
-		if ( isset( $new_title[0] ) ) {
-			return trim( $new_title[0] );
+		if ( ! empty( $new_title ) && 1 < count( $new_title ) ) {
+			array_pop( $new_title );
+			$title = implode( $sep, $new_title );
 		}
 
 		return $title;
