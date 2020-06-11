@@ -65,7 +65,7 @@ class Cache {
 		/**
 		 * キャッシュ設定が有効な場合のみキャッシュの取得を試みる
 		 */
-		if ( is_numeric( $expiration ) ) {
+		if ( is_numeric( $expiration ) && self::can_use_cache() ) {
 			$cache_key = self::get_cache_key( $key, $args );
 			/**
 			 * キャッシュの取得・判定、キャッシュがあれば返す
@@ -140,6 +140,12 @@ class Cache {
 		if ( ! is_numeric( $expiration ) ) {
 			return false;
 		}
+		// キャッシュNGユーザーの場合、削除して抜ける.
+		if ( ! self::can_use_cache() ) {
+			self::delete_cache( $key, $args );
+
+			return false;
+		}
 		/**
 		 * キャッシュキー、有効期限を作成
 		 */
@@ -158,6 +164,22 @@ class Cache {
 	 */
 	public static function get_expiration( $day = 1 ) {
 		return $day * 60 * 60 * 24;
+	}
+
+	/**
+	 * キャッシュ作成・取得できるユーザーかチェック
+	 *
+	 * @return bool
+	 */
+	public static function can_use_cache() {
+		if ( ! is_user_logged_in() ) {
+			return true;
+		}
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 }
