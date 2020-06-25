@@ -25,7 +25,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 				<div class="ys-posts__content">
 					<?php if ( $recent_posts['show_img'] ) : ?>
 						<div class="ys-posts__thumbnail">
-							<div class="ratio is-<?php echo $recent_posts['thumbnail_ratio']; ?>">
+							<a href="<?php the_permalink(); ?>" class="ratio is-<?php echo $recent_posts['thumbnail_ratio']; ?>">
 								<div class="ratio__item">
 									<figure class="ratio__image">
 										<?php if ( has_post_thumbnail() ) : ?>
@@ -40,7 +40,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 										<?php endif; ?>
 									</figure>
 								</div>
-							</div>
+							</a>
 						</div>
 					<?php endif; ?>
 					<div class="ys-posts__text">

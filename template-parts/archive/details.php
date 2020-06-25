@@ -11,7 +11,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_item_class() ); ?>>
 	<div class="archive__detail">
 		<div class="archive__thumbnail is-card">
-			<div class="ratio <?php ys_the_archive_image_ratio(); ?>">
+			<a href="<?php the_permalink(); ?>" class="ratio <?php ys_the_archive_image_ratio(); ?>">
 				<?php if ( has_post_thumbnail() ) : ?>
 					<div class="ratio__item">
 						<figure class="ratio__image">
@@ -33,7 +33,7 @@
 						</div>
 					</div>
 				<?php endif; ?>
-			</div>
+			</a>
 		</div>
 		<div class="archive__text">
 			<?php
