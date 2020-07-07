@@ -11,7 +11,7 @@
 }
 
 .footer-widget__container {
-  @include child_margin();
+  @include child_margin(2em);
 
   @include media-breakpoint(sm) {
     display: flex;
@@ -25,4 +25,8 @@
       padding-left: 1em;
     }
   }
+}
+
+.footer-widget__column {
+  @include child_margin(2em);
 }
