@@ -214,7 +214,9 @@ class Template {
 		do_action( "get_template_part_{$slug}", $slug, $name );
 
 		$templates = [];
-		$name      = is_null( $name ) ? '' : (string) $name;
+		if ( ! is_string( $name ) ) {
+			$name = '';
+		}
 		if ( '' !== $name ) {
 			$templates[] = "{$slug}-{$name}.php";
 		}
