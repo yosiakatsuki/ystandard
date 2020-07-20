@@ -31,6 +31,8 @@ body:not(.has-sidebar) {
 	margin-left: -1rem;
 	padding-right: 1rem;
 	padding-left: 1rem;
+	width: auto;
+	max-width: calc(100% + 2rem);
   }
 
   @include media-breakpoint(lg) {
@@ -47,6 +49,7 @@ body:not(.has-sidebar) {
 	  padding-left: calc(-50% + 50vw);
 	}
   }
+
   &.has-background {
 	@include media-breakpoint(sm) {
 	  .alignwide {
