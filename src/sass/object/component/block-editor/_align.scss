@@ -32,7 +32,6 @@ body:not(.has-sidebar) {
 	padding-right: 1rem;
 	padding-left: 1rem;
 	width: auto;
-	max-width: calc(100% + 2rem);
   }
 
   @include media-breakpoint(lg) {
