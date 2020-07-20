@@ -1,5 +1,7 @@
 .singular__footer {
-  margin-top: 4em;
 
-  @include child_margin(4em);
+  > * {
+	margin-top: 4em;
+	margin-bottom: 0;
+  }
 }
