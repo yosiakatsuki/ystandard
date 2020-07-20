@@ -1,0 +1,40 @@
+body.no-title {
+  background-color: unset;
+}
+
+.no-title {
+  .site-content {
+	margin-top: 0;
+	margin-bottom: 0;
+  }
+
+  .content__main {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+
+	@include media-breakpoint-down(sm) {
+	  padding-top: 0;
+	  padding-bottom: 0;
+	  margin-top: 0;
+	  margin-bottom: 0;
+	}
+  }
+
+  .site-content {
+	margin-top: 0;
+	margin-bottom: 0;
+
+	@include media-breakpoint(sm) {
+	  margin-top: 0;
+	  margin-bottom: 0;
+	}
+  }
+
+  .singular__footer {
+	> *:last-child {
+	  margin-bottom: 4em;
+	}
+  }
+}
