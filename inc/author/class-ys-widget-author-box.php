@@ -153,6 +153,16 @@ class YS_Widget_Author_Box extends WP_Widget {
 				<span class="ys-widget-option__sub">※特定のユーザー情報を常に表示する場合は選択して下さい。</span><br><span class="ys-widget-option__sub">※デフォルトユーザーと特定のユーザーの両方を指定している場合、特定ユーザーの表示が優先されます。</span>
 			</p>
 		</div>
+		<div class="ys-widget-option__section">
+			<h4>非表示設定の連動</h4>
+			<p>
+				<label>
+					<input name="<?php echo $this->get_field_name( 'sync_hide_option' ); ?>" type="hidden" value="false">
+					<input name="<?php echo $this->get_field_name( 'sync_hide_option' ); ?>" type="checkbox" value="true" <?php checked( $instance['sync_hide_option'] ) ?>>非表示設定と連動する
+				</label><br>
+				<span class="ys-widget-option__sub">※チェックを付けた場合、著者情報の非表示設定に連動して表示・非表示が切り替わります。</span></span>
+			</p>
+		</div>
 		<?php
 	}
 
@@ -172,6 +182,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 		 */
 		$instance['default_user_name'] = $this->sanitize_author( $new_instance['default_user_name'] );
 		$instance['user_name']         = $this->sanitize_author( $new_instance['user_name'] );
+		$instance['sync_hide_option']  = \ystandard\Utility::to_bool( $new_instance['sync_hide_option'] );
 
 		return $instance;
 	}
