@@ -31,6 +31,7 @@ class Author {
 	const SHORTCODE_ATTR = [
 		'default_user_name' => '',
 		'user_name'         => '',
+		'sync_hide_option'  => false,
 	];
 
 	/**
@@ -68,7 +69,7 @@ class Author {
 	 * Author 表示.
 	 */
 	public function post_author() {
-		echo $this->do_shortcode( [] );
+		echo $this->do_shortcode( [ 'sync_hide_option' => true ] );
 	}
 
 	/**
@@ -268,7 +269,7 @@ class Author {
 	public function do_shortcode( $atts ) {
 		$atts = shortcode_atts( self::SHORTCODE_ATTR, $atts );
 
-		if ( ! $this->is_active_author() ) {
+		if ( Utility::to_bool( $atts['sync_hide_option'] ) && ! $this->is_active_author() ) {
 			return '';
 		}
 		$author_id = $this->get_author_id( $atts );
