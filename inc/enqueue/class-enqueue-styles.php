@@ -144,11 +144,12 @@ class Enqueue_Styles {
 			return '';
 		}
 		$result = '';
-		foreach ( $vars as $item ) {
-			if ( isset( $item['name'] ) && isset( $item['value'] ) && ! empty( $item['name'] ) && ! empty( $item['value'] ) ) {
-				$result .= "--{$item['name']}: {$item['value']};";
+		foreach ( $vars as $key => $value ) {
+			if ( ! empty( $key ) && ! empty( $value ) ) {
+				$result .= "--{$key}: {$value};";
 			}
 		}
+
 		if ( ! $result ) {
 			return '';
 		}

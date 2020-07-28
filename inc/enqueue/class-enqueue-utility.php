@@ -46,12 +46,7 @@ class Enqueue_Utility {
 			$value = '';
 		}
 
-		return [
-			[
-				'name'  => $name,
-				'value' => $value,
-			],
-		];
+		return [ $name => $value ];
 	}
 
 	/**
