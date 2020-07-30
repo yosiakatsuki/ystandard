@@ -38,17 +38,11 @@ class Init {
 	 * 初期化
 	 */
 	public function init() {
-		/**
-		 * 投稿とコメントのフィード出力
-		 */
+		// 投稿とコメントのフィード出力.
 		add_theme_support( 'automatic-feed-links' );
-		/**
-		 * タイトル出力
-		 */
+		// タイトル出力.
 		add_theme_support( 'title-tag' );
-		/**
-		 * メニュー有効化
-		 */
+		// メニュー有効化.
 		register_nav_menus(
 			[
 				'global'        => 'グローバルナビゲーション',
@@ -56,9 +50,7 @@ class Init {
 				'mobile-footer' => 'モバイルフッター',
 			]
 		);
-		/**
-		 * HTML5
-		 */
+		// HTML5.
 		add_theme_support(
 			'html5',
 			[
@@ -69,9 +61,7 @@ class Init {
 				'caption',
 			]
 		);
-		/**
-		 * カスタムロゴ
-		 */
+		// カスタムロゴ.
 		add_theme_support(
 			'custom-logo',
 			apply_filters(
@@ -84,9 +74,7 @@ class Init {
 				]
 			)
 		);
-		/**
-		 * カスタムヘッダー
-		 */
+		// カスタムヘッダー.
 		add_theme_support(
 			'custom-header',
 			[
@@ -99,38 +87,26 @@ class Init {
 				'default-text-color' => '222222',
 			]
 		);
-		/**
-		 * カスタム背景
-		 */
+		// カスタム背景.
 		add_theme_support( 'custom-background' );
-		/**
-		 * アイキャッチ画像を有効
-		 */
+		// アイキャッチ画像を有効.
 		add_theme_support( 'post-thumbnails' );
-		/**
-		 * テキストウィジェットでショートコードを有効にする
-		 */
+		// テキストウィジェットでショートコードを有効にする.
 		add_filter( 'widget_text', 'do_shortcode' );
-		/**
-		 * テーマカスタマイザーでウィジェットの編集をしやすくする
-		 */
+		// テーマカスタマイザーでウィジェットの編集をしやすくする.
 		add_theme_support( 'customize-selective-refresh-widgets' );
-		/**
-		 * ブロックエディターサポート
-		 */
+		// ブロックエディターサポート.
 		add_theme_support( 'wp-block-styles' );
-		/**
-		 * 幅広画像のサポート
-		 */
+		// 幅広画像のサポート.
 		add_theme_support( 'align-wide' );
-		/**
-		 * レスポンシブ
-		 */
+		// レスポンシブ.
 		add_theme_support( 'responsive-embeds' );
-		/**
-		 * 記事上・記事下のアクションセット
-		 */
+		// 記事上・記事下のアクションセット.
 		do_action( 'set_singular_content' );
+		// line-height(5.5~).
+		add_theme_support( 'custom-line-height' );
+		// カバーブロックの高さ単位.
+		add_theme_support( 'custom-units', 'px', 'rem', 'em', 'percentages', 'vh', 'vw' );
 	}
 
 	/**
