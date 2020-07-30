@@ -72,6 +72,7 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.8.0
 - [追加] 段落ブロックのline-heightサポート（WordPress 5.5対応）
+- [追加] ウィジェットのアクセシビリティ対応（WordPress 5.5対応）
 
 ### v4.7.0
 - [追加] 著者情報表示ウィジェットに非表示設定との連動オプションを追加

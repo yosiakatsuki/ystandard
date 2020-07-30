@@ -54,6 +54,7 @@ class Init {
 		add_theme_support(
 			'html5',
 			[
+				'navigation-widgets',
 				'search-form',
 				'comment-form',
 				'comment-list',
