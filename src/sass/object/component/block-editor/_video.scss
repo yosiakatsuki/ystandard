@@ -1,0 +1,15 @@
+body:not(.has-sidebar) {
+  @include media-breakpoint(lg) {
+    .wp-block-video {
+      &.alignfull {
+        padding-right: 0;
+        padding-left: 0;
+
+		video {
+		  width: 100%;
+		  display: block;
+		}
+      }
+    }
+  }
+}
