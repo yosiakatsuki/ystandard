@@ -21,57 +21,13 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 - WordPress : 5.4以上
 - PHP : 7.3以上
 
-## Third-party resources
-
-### normalize.css
-License: MIT License  
-Source : <https://github.com/necolas/normalize.css>
-
-### Simple Icons
-License: CC0 - 1.0  
-Source : <https://github.com/simple-icons/simple-icons>
-
-### Feather
-License: MIT  
-Source : <https://github.com/feathericons/feather>
-
-### Font Awesome
-
-Font License: SIL OFL 1.1  
-Code License: MIT License  
-Source      : <https://fortawesome.github.io/Font-Awesome/>
-
-### Theme Update Checker Library
-
-License: MIT License  
-Source : <https://github.com/YahnisElsts/plugin-update-checker>
-
-### TGM-Plugin-Activation
-
-License: GPL-2.0  
-Source : <https://github.com/TGMPA/TGM-Plugin-Activation>
-
-### \_decimal.scss
-
-License: MIT License  
-Source : <https://gist.github.com/terkel/4373420>
-
-### css-vars-ponyfill
-
-License: MIT License  
-Source : <https://github.com/jhildenbiddle/css-vars-ponyfill>
-
-### object-fit-images
-
-License: MIT License  
-Source : <https://github.com/fregante/object-fit-images>
-
 ## 変更履歴
 
 ### v4.x.x
 
 ### v4.8.1
 - [追加] 新着記事一覧ショートコード ブロックエディタープレビュースタイル追加（yStandard Toolbox対応）
+- [調整] 動画ブロックの全幅スタイル調整
 - [調整] 管理画面用JavaScriptの依存関係調整
 
 ### v4.8.0
@@ -207,3 +163,50 @@ Source : <https://github.com/fregante/object-fit-images>
 
 v3以前の履歴は以下のページをご覧ください。  
 https://wp-ystandard.com/ystandard-update/ystandard-update-old/
+
+
+
+## Third-party resources
+
+### normalize.css
+License: MIT License  
+Source : <https://github.com/necolas/normalize.css>
+
+### Simple Icons
+License: CC0 - 1.0  
+Source : <https://github.com/simple-icons/simple-icons>
+
+### Feather
+License: MIT  
+Source : <https://github.com/feathericons/feather>
+
+### Font Awesome
+
+Font License: SIL OFL 1.1  
+Code License: MIT License  
+Source      : <https://fortawesome.github.io/Font-Awesome/>
+
+### Theme Update Checker Library
+
+License: MIT License  
+Source : <https://github.com/YahnisElsts/plugin-update-checker>
+
+### TGM-Plugin-Activation
+
+License: GPL-2.0  
+Source : <https://github.com/TGMPA/TGM-Plugin-Activation>
+
+### \_decimal.scss
+
+License: MIT License  
+Source : <https://gist.github.com/terkel/4373420>
+
+### css-vars-ponyfill
+
+License: MIT License  
+Source : <https://github.com/jhildenbiddle/css-vars-ponyfill>
+
+### object-fit-images
+
+License: MIT License  
+Source : <https://github.com/fregante/object-fit-images>
