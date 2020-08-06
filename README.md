@@ -70,6 +70,9 @@ Source : <https://github.com/fregante/object-fit-images>
 
 ### v4.x.x
 
+### v4.8.1
+- [追加] 新着記事一覧ショートコード ブロックエディタープレビュースタイル追加（yStandard Toolbox対応）
+
 ### v4.8.0
 - [追加] 段落ブロックのline-heightサポート（WordPress 5.5対応）
 - [追加] ウィジェットのアクセシビリティ対応（WordPress 5.5対応）
