@@ -297,7 +297,14 @@ class Utility {
 
 		$types = get_post_types( $args );
 
-		if ( $exclude ) {
+		if ( is_array( $exclude ) ) {
+			$exclude[] = 'attachment';
+			foreach ( $exclude as $item ) {
+				unset( $types[ $item ] );
+			}
+		}
+
+		if ( true === $exclude ) {
 			unset( $types['attachment'] );
 		}
 
@@ -309,6 +316,42 @@ class Utility {
 		}
 
 		return $types;
+	}
+
+	/**
+	 * タクソノミー取得
+	 *
+	 * @param array $args    args.
+	 * @param bool  $exclude 除外.
+	 *
+	 * @return array
+	 */
+	public static function get_taxonomies( $args = [], $exclude = true ) {
+		$args       = array_merge(
+			[ 'public' => true ],
+			$args
+		);
+		$taxonomies = get_taxonomies( $args );
+
+		if ( is_array( $exclude ) ) {
+			$exclude[] = 'post_format';
+			foreach ( $exclude as $item ) {
+				unset( $taxonomies[ $item ] );
+			}
+		}
+
+		if ( true === $exclude ) {
+			unset( $taxonomies['post_format'] );
+		}
+
+		foreach ( $taxonomies as $key => $value ) {
+			$taxonomy = get_taxonomy( $key );
+			if ( $taxonomy ) {
+				$taxonomies[ $key ] = $taxonomy->label;
+			}
+		}
+
+		return $taxonomies;
 	}
 
 
