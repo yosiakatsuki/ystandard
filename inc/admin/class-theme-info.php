@@ -39,7 +39,7 @@ class Theme_Info {
 	public function dashboard_info_setup() {
 		wp_add_dashboard_widget(
 			'ystandard-info',
-			'<span class="orbitron">yStandard</span>のおしらせ',
+			'<span><span class="orbitron">yStandard</span>のおしらせ</span>',
 			[ $this, 'dashboard_info' ]
 		);
 	}
