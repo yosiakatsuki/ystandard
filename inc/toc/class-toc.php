@@ -472,13 +472,7 @@ class TOC {
 				'description' => '目次を<strong>表示しない</strong>投稿タイプにチェックをつけてください。',
 			]
 		);
-		$post_types = Utility::get_post_types();
-		$remove     = [ 'ys-parts' ];
-		foreach ( $remove as $type ) {
-			if ( isset( $post_types[ $type ] ) ) {
-				unset( $post_types[ $type ] );
-			}
-		}
+		$post_types = Utility::get_post_types( [], [ 'ys-parts' ] );
 
 		foreach ( $post_types as $name => $label ) {
 			$customizer->add_checkbox(

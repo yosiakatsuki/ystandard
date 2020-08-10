@@ -22,8 +22,9 @@ class Customizer {
 		'ys_design'             => 1010,
 		'ys_sns'                => 1100,
 		'ys_seo'                => 1110,
-		'ys_performance_tuning' => 1120,
-		'ys_advertisement'      => 1130,
+		'ys_wp_sitemap'         => 1120,
+		'ys_performance_tuning' => 1130,
+		'ys_advertisement'      => 1140,
 		'ys_amp'                => 1300,
 		'ys_extension'          => 2000,
 	];
