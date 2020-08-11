@@ -35,7 +35,7 @@ class Color_Palette {
 	 * @return string
 	 */
 	public function add_color_palette_css( $css ) {
-		return $css . self::get_editor_color_palette_css();
+		return $css . self::get_editor_color_palette_css( '.ystd' );
 	}
 
 	/**
