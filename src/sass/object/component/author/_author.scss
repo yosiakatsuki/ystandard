@@ -7,7 +7,7 @@
   margin-right: 1em;
 
   img {
-    border-radius: 50%;
+	border-radius: 50%;
   }
 }
 
@@ -33,7 +33,7 @@
   list-style: none;
 
   svg {
-    @include svg_size(1em);
+	@include svg_size(1em);
   }
 }
 
@@ -43,9 +43,9 @@
   text-decoration: none;
 
   &:hover {
-    color: currentColor;
+	color: currentColor;
 
-    filter: brightness(1.2);
+	filter: brightness(1.2);
   }
 }
 
@@ -59,4 +59,9 @@
 .ys-profile-widget {
   padding: 1em;
   border: 1px solid var(--site-border-gray-light);
+}
+
+.author-widget-title {
+  margin: 0 0 1em;
+  font-size: 1.1em;
 }
