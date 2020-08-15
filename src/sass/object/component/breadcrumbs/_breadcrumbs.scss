@@ -1,3 +1,25 @@
+.has-background {
+  .breadcrumbs {
+	+ .site-content {
+	  margin-top: 0;
+	  @include media-breakpoint(sm) {
+		margin-top: 0;
+	  }
+	}
+  }
+
+  .site-content {
+	+ .breadcrumbs {
+	  margin-top: -1.5em;
+
+	  @include media-breakpoint(lg) {
+		margin-top: -3em;
+	  }
+	}
+  }
+}
+
+
 .breadcrumbs__list {
   margin: 0;
   padding: 0.75em 0;
@@ -10,8 +32,8 @@
   list-style: none;
 
   a {
-    color: currentColor;
-    text-decoration: none;
+	color: currentColor;
+	text-decoration: none;
   }
 }
 
@@ -20,15 +42,15 @@
   margin-left: 0.5em;
 
   &::before {
-    content: "/";
-    margin-right: 0.25em;
+	content: "/";
+	margin-right: 0.25em;
   }
 
   &:first-child {
-    margin-left: 0;
+	margin-left: 0;
 
-    &::before {
-      display: none;
-    }
+	&::before {
+	  display: none;
+	}
   }
 }

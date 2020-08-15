@@ -62,13 +62,26 @@ body:not(.has-sidebar) {
 
 	padding: 2rem;
   }
+}
 
+.has-background {
   .site-content {
 	margin-top: 0;
+	margin-bottom: 0;
 
 	@include media-breakpoint(sm) {
-	  margin-top: 2em;
+	  margin-top: 3em;
+	  margin-bottom: 3em;
+	}
+  }
+
+  &.home {
+	.site-content {
+	  margin-top: 1.5em;
+
+	  @include media-breakpoint(sm) {
+		margin-top: 3em;
+	  }
 	}
   }
 }
-
