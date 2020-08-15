@@ -21,6 +21,10 @@ class Utility {
 	 */
 	public static function get_page_title() {
 		$sep       = apply_filters( 'document_title_separator', '-' );
+		$sep       = wptexturize( $sep );
+		$sep       = convert_chars( $sep );
+		$sep       = esc_html( $sep );
+		$sep       = capital_P_dangit( $sep );
 		$title     = wp_get_document_title();
 		$new_title = explode( $sep, $title );
 		if ( ! empty( $new_title ) && 1 < count( $new_title ) ) {
