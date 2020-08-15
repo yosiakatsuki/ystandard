@@ -82,7 +82,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 	public function widget( $args, $instance ) {
 
 		if ( ! empty( $instance['title'] ) ) {
-			$widget_title = $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+			$widget_title = '<h2 class="author-widget-title">' . apply_filters( 'widget_title', $instance['title'] ) . '</h2>';
 		}
 
 		$shortcode = ystandard\Utility::do_shortcode(
