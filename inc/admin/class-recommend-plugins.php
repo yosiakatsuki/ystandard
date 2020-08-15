@@ -66,10 +66,6 @@ class Recommend_Plugins {
 				'name' => 'WP Multibyte Patch',
 				'slug' => 'wp-multibyte-patch',
 			],
-			[
-				'name' => 'Lazy Load - Optimize Images',
-				'slug' => 'rocket-lazy-load',
-			],
 		];
 		$config  = [
 			'id'           => 'tgmpa',
