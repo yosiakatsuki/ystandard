@@ -124,7 +124,7 @@ class Template {
 		/**
 		 * 固定ページ
 		 */
-		if ( ( is_page() && ! is_front_page() ) && '1col' === Option::get_option( 'ys_page_layout', '2col' ) ) {
+		if ( is_page() && '1col' === Option::get_option( 'ys_page_layout', '2col' ) ) {
 			return true;
 		}
 		/**
