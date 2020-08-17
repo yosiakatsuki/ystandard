@@ -5,9 +5,9 @@
 .mce-content-body {
   @import "foundation/base/base";
   //Component
-  @import "object/component/component";
+  @import "component/component";
   //Utility
-  @import "object/utility/utility";
+  @import "utility/utility";
 
   background-color: $color__bg-body;
   color: $color__text-main;
