@@ -6,17 +6,17 @@ $editor: true;
 /**
  * component
  */
-@import "object/component/blog-card/blog-card";
-@import "object/component/block-editor/blocks";
-@import "object/component/posts/posts";
-@import "object/component/ratio/ratio";
+@import "component/blog-card/blog-card";
+@import "component/block-editor/blocks";
+@import "component/posts/posts";
+@import "component/ratio/ratio";
 
 /**
  * utility
  */
-@import "object/utility/utility";
+@import "utility/utility";
 
 /**
  * admin
  */
-@import "object/project/admin/block-editor";
+@import "project/admin/block-editor";
