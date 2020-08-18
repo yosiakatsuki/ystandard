@@ -37,6 +37,7 @@ if ( ! has_nav_menu( 'global' ) ) {
 		);
 		?>
 	</nav>
+	<?php do_action( 'ys_global_nav_before_search' ); ?>
 	<?php if ( ys_is_active_header_search_form() ) : ?>
 		<button id="global-nav__search-button" class="global-nav__search-button">
 			<?php echo ys_get_icon( 'search' ); ?>
