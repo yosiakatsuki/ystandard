@@ -22,12 +22,14 @@ class Footer {
 	public function __construct() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
 		add_action( 'wp_footer', [ $this, 'footer_mobile_nav' ], 1 );
+		add_action( 'wp_footer', [ $this, 'back_to_top' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_main' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_sub' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_mobile_footer_menu' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_sub_footer_css' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_footer_mobile_nav_css' ] );
+		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_back_to_top_css' ] );
 	}
 
 	/**
@@ -62,6 +64,74 @@ class Footer {
 				'use_entry_content' => true,
 			]
 		);
+	}
+
+	/**
+	 * ページ先頭へ戻るボタン
+	 */
+	public function back_to_top() {
+		if ( ! Option::get_option_by_bool( 'ys_back_to_top_active', false ) ) {
+			return;
+		}
+		$text = Option::get_option( 'ys_back_to_top_text', '[ys_icon name="arrow-up"]' );
+		if ( '' === $text ) {
+			return;
+		}
+		echo sprintf(
+			'<button id="back-to-top" type="button"><span class="back-to-top__content">%s</span></button>',
+			do_shortcode( $text )
+		);
+	}
+
+	/**
+	 * ページ先頭へ戻る CSS追加
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public function add_back_to_top_css( $css ) {
+		if ( ! Option::get_option_by_bool( 'ys_back_to_top_active', false ) ) {
+			return $css;
+		}
+		$bg     = Option::get_option( 'ys_back_to_top_bg_color', '#f1f1f3' );
+		$color  = Option::get_option( 'ys_back_to_top_color', '#222222' );
+		$radius = Option::get_option( 'ys_back_to_top_border_radius', 100 );
+		// CSS.
+		$css .= "
+		#back-to-top {
+			position:fixed;
+			bottom:5vh;
+			right:5vh;
+			padding:0;
+			margin:0;
+			background:none;
+			border: 0;
+			outline:none;
+			appearance: none;
+			z-index:10;
+			cursor: pointer;
+		}
+		#back-to-top:hover{
+			box-shadow:none;
+
+		}
+		.back-to-top__content {
+			display:block;
+			padding:.75em;
+			background-color:${bg};
+			border-radius:${radius}px;
+			color:${color};
+			line-height:1;
+			white-space:nowarp;
+			box-shadow:0 0 4px rgba(0,0,0,0.1);
+		}
+		";
+		if ( has_nav_menu( 'mobile-footer' ) ) {
+			$css .= Enqueue_Styles::add_media_query( '#back-to-top {display:none;}', '', 'md' );
+		}
+
+		return $css;
 	}
 
 	/**
@@ -361,6 +431,58 @@ class Footer {
 			]
 		);
 		$customizer->add_section_label(
+			'ページ先頭へ戻るボタン',
+			[
+				'description' => Admin::manual_link( 'back-to-top' ),
+			]
+		);
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_back_to_top_active',
+				'default' => 0,
+				'label'   => 'ページ先頭へ戻るボタンを表示する',
+			]
+		);
+		// ページ先頭へ戻るボタンテキスト.
+		$short_code_page = admin_url( 'admin.php?page=ystandard-icons' );
+		$customizer->add_text(
+			[
+				'id'                => 'ys_back_to_top_text',
+				'default'           => '[ys_icon name="arrow-up"]',
+				'label'             => 'ページ先頭へ戻るテキスト',
+				'description'       => "<a href='${short_code_page}' target='_blank'>アイコンショートコード</a>と<code>img</code>タグが使用できます。",
+				'sanitize_callback' => [ $this, 'sanitize_back_to_top_text' ],
+			]
+		);
+		// ページ先頭へ戻るボタン背景色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_back_to_top_bg_color',
+				'default' => '#f1f1f3',
+				'label'   => '先頭へ戻るボタン背景色',
+			]
+		);
+		// ページ先頭へ戻るボタン文字色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_back_to_top_color',
+				'default' => '#222222',
+				'label'   => '先頭へ戻るボタン文字色',
+			]
+		);
+		$customizer->add_number(
+			[
+				'id'          => 'ys_back_to_top_border_radius',
+				'default'     => 100,
+				'label'       => '先頭へ戻るボタンの角丸',
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			]
+		);
+
+		$customizer->add_section_label(
 			'モバイルフッターメニュー 色設定',
 			[
 				'description' => Admin::manual_link( 'mobile-footer-menu#color' ),
@@ -380,6 +502,29 @@ class Footer {
 				'id'      => 'ys_color_mobile_footer_text',
 				'default' => '#222222',
 				'label'   => 'モバイルフッター文字色',
+			]
+		);
+	}
+
+	/**
+	 * Topへ戻るボタンのサニタイズ
+	 *
+	 * @param string $value Text.
+	 *
+	 * @return string
+	 */
+	public function sanitize_back_to_top_text( $value ) {
+		$allowed_html   = wp_kses_allowed_html( 'post' );
+		$allowed_img    = isset( $allowed_html['img'] ) ? $allowed_html['img'] : [];
+		$allowed_span   = isset( $allowed_html['span'] ) ? $allowed_html['span'] : [];
+		$allowed_strong = isset( $allowed_html['strong'] ) ? $allowed_html['strong'] : [];
+
+		return wp_kses(
+			$value,
+			[
+				'img'    => $allowed_img,
+				'span'   => $allowed_span,
+				'strong' => $allowed_strong,
 			]
 		);
 	}

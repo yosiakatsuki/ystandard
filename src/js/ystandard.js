@@ -33,19 +33,35 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	for ( let i = 0; i < links.length; i++ ) {
 		links[ i ].addEventListener( 'click', ( e ) => {
 			e.preventDefault();
+			let top = 0;
 			const id = e.currentTarget.getAttribute( 'href' ).replace( '#', '' );
 			const target = document.getElementById( id );
-			if ( ! target ) {
+			if ( ! target && '' !== id ) {
 				return;
 			}
-			const pos = target.getBoundingClientRect().top;
-			let buffer = 50;
-			const header = document.getElementById( 'masthead' );
-			if ( 'fixed' === getComputedStyle( header, null ).getPropertyValue( 'position' ) ) {
-				buffer = header.getBoundingClientRect().bottom + 20;
+			if ( target ) {
+				const pos = target.getBoundingClientRect().top;
+				let buffer = 50;
+				const header = document.getElementById( 'masthead' );
+				if ( 'fixed' === getComputedStyle( header, null ).getPropertyValue( 'position' ) ) {
+					buffer = header.getBoundingClientRect().bottom + 20;
+				}
+				top = pos + window.pageYOffset - buffer;
 			}
+
 			window.scroll( {
-				top: pos + window.pageYOffset - buffer,
+				top: top,
+				behavior: 'smooth'
+			} );
+		} );
+	}
+	// TOPへ戻る.
+	const backToTop = document.getElementById( 'back-to-top' );
+	if ( backToTop ) {
+		backToTop.addEventListener( 'click', ( e ) => {
+			e.preventDefault();
+			window.scroll( {
+				top: 0,
 				behavior: 'smooth'
 			} );
 		} );
