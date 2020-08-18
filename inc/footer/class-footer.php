@@ -449,7 +449,7 @@ class Footer {
 			[
 				'id'                => 'ys_back_to_top_text',
 				'default'           => '[ys_icon name="arrow-up"]',
-				'label'             => 'ページ先頭へ戻るテキスト',
+				'label'             => 'ページ先頭へ戻るボタンテキスト',
 				'description'       => "<a href='${short_code_page}' target='_blank'>アイコンショートコード</a>と<code>img</code>タグが使用できます。",
 				'sanitize_callback' => [ $this, 'sanitize_back_to_top_text' ],
 			]
