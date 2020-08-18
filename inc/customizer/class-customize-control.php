@@ -599,7 +599,7 @@ class Customize_Control {
 	 * @return int
 	 */
 	public static function sanitize_number( $number, $setting ) {
-		if ( 1 !== preg_match( '/^\d+$/', $number ) ) {
+		if ( ! is_numeric( $number ) ) {
 			return $setting->default;
 		}
 		$attr = $setting->manager->get_control( $setting->id )->input_attrs;
@@ -607,7 +607,7 @@ class Customize_Control {
 		$max  = ( isset( $attr['max'] ) ? $attr['max'] : $number );
 		$step = ( isset( $attr['step'] ) ? $attr['step'] : 1 );
 
-		return ( $min <= $number && $number <= $max && is_int( $number / $step ) ? $number : $setting->default );
+		return ( $min <= $number && $number <= $max ? $number : $setting->default );
 	}
 
 	/**

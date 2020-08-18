@@ -167,6 +167,25 @@ class Header {
 	}
 
 	/**
+	 * ヘッダーボックスシャドウ取得
+	 *
+	 * @return mixed|string
+	 */
+	private function get_header_shadow() {
+		$option = Option::get_option( 'ys_header_box_shadow', 'none' );
+		$props  = [
+			'none'  => 'none',
+			'small' => '0 0 4px rgba(0,0,0,0.1)',
+			'large' => '0 0 12px rgba(0,0,0,0.1)',
+		];
+		if ( ! isset( $props[ $option ] ) ) {
+			return 'none';
+		}
+
+		return $props[ $option ];
+	}
+
+	/**
 	 * フッターメイン
 	 *
 	 * @param array $css_vars CSS.
@@ -174,31 +193,39 @@ class Header {
 	 * @return array
 	 */
 	public function add_css_var( $css_vars ) {
-		$header_bg        = Enqueue_Utility::get_css_var(
+		$header_bg         = Enqueue_Utility::get_css_var(
 			'header-bg',
 			Option::get_option( 'ys_color_header_bg', '#ffffff' )
 		);
-		$header_color     = Enqueue_Utility::get_css_var(
+		$header_color      = Enqueue_Utility::get_css_var(
 			'header-text',
 			Option::get_option( 'ys_color_header_font', '#222222' )
 		);
-		$header_dscr      = Enqueue_Utility::get_css_var(
+		$header_dscr       = Enqueue_Utility::get_css_var(
 			'header-dscr',
 			Option::get_option( 'ys_color_header_dscr_font', '#656565' )
 		);
-		$mobile_nav_bg    = Enqueue_Utility::get_css_var(
+		$header_shadow     = Enqueue_Utility::get_css_var(
+			'header-shadow',
+			$this->get_header_shadow()
+		);
+		$global_nav_margin = Enqueue_Utility::get_css_var(
+			'global-nav-margin',
+			Option::get_option( 'ys_header_nav_margin', 1.5 ) . 'em'
+		);
+		$mobile_nav_bg     = Enqueue_Utility::get_css_var(
 			'mobile-nav-bg',
 			Option::get_option( 'ys_color_nav_bg_sp', '#000000' )
 		);
-		$mobile_nav_color = Enqueue_Utility::get_css_var(
+		$mobile_nav_color  = Enqueue_Utility::get_css_var(
 			'mobile-nav-text',
 			Option::get_option( 'ys_color_nav_font_sp', '#ffffff' )
 		);
-		$mobile_nav_open  = Enqueue_Utility::get_css_var(
+		$mobile_nav_open   = Enqueue_Utility::get_css_var(
 			'mobile-nav-open',
 			Option::get_option( 'ys_color_nav_btn_sp_open', '#222222' )
 		);
-		$mobile_nav_close = Enqueue_Utility::get_css_var(
+		$mobile_nav_close  = Enqueue_Utility::get_css_var(
 			'mobile-nav-close',
 			Option::get_option( 'ys_color_nav_btn_sp', '#ffffff' )
 		);
@@ -208,6 +235,8 @@ class Header {
 			$header_bg,
 			$header_color,
 			$header_dscr,
+			$header_shadow,
+			$global_nav_margin,
 			$mobile_nav_bg,
 			$mobile_nav_color,
 			$mobile_nav_open,
@@ -302,7 +331,6 @@ class Header {
 			left:0;
 			width:100%;
 			z-index:10;
-			box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
 		}
 		body.has-fixed-header {
 			padding-top:${mobile}px;
@@ -526,7 +554,7 @@ class Header {
 				],
 			]
 		);
-		$customizer->add_section_label( 'ヘッダーカラー' );
+		$customizer->add_section_label( 'ヘッダーデザイン' );
 		// ヘッダー背景色.
 		$customizer->add_color(
 			[
@@ -549,6 +577,32 @@ class Header {
 				'id'      => 'ys_color_header_dscr_font',
 				'default' => '#656565',
 				'label'   => '概要文の文字色',
+			]
+		);
+		// ボックスシャドウ.
+		$customizer->add_select(
+			[
+				'id'      => 'ys_header_box_shadow',
+				'default' => 'none',
+				'label'   => 'ヘッダーに影をつける',
+				'choices' => [
+					'none'  => '影なし',
+					'small' => '小さめ',
+					'large' => '大きめ',
+				],
+			]
+		);
+		$customizer->add_number(
+			[
+				'id'          => 'ys_header_nav_margin',
+				'default'     => 1.5,
+				'label'       => 'メニュー間の間隔',
+				'description' => '単位はemです。大きくすればメニュー間の余白が大きくなります。メニューが潰れたり折り返さない範囲で調整してください。',
+				'input_attrs' => [
+					'min'  => 0.1,
+					'max'  => 10.0,
+					'step' => 0.1,
+				],
 			]
 		);
 		// 検索フォーム.

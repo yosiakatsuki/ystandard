@@ -1,6 +1,7 @@
 .site-header {
   position: relative;
   background-color: var(--header-bg);
+  box-shadow: var(--header-shadow);
 
   button {
 	background-color: transparent;
