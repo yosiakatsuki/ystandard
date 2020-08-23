@@ -39,8 +39,6 @@ matrix:
     env: WP_VERSION=latest
   - php: 7.1
     env: WP_VERSION=latest
-  - php: 7.0
-    env: WP_VERSION=latest
 before_script:
 - export PATH="$HOME/.composer/vendor/bin:$PATH"
 - |
