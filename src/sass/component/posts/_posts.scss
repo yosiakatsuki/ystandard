@@ -10,6 +10,10 @@
 	  min-width: 100px;
 	  margin-right: 0.5em;
 	}
+
+	.ys-posts__item {
+	  border-bottom: 1px solid var(--site-border-gray-light);
+	}
   }
 
   &.is-card {
@@ -18,6 +22,7 @@
 		margin: 0 $card_margin $card_margin 0;
 	  }
 	}
+
 	.ys-posts__thumbnail {
 	  margin-bottom: 0.5em;
 	}
@@ -68,7 +73,6 @@
 .ys-posts__item {
   padding-top: 1em;
   padding-bottom: 1em;
-  border-bottom: 1px solid var(--site-border-gray-light);
 
   .ys-posts__image {
 	transition: transform 0.3s;
