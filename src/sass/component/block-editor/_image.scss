@@ -1,10 +1,18 @@
 body:not(.has-sidebar) {
   @include media-breakpoint(lg) {
-    .wp-block-image {
-      &.alignfull {
-        padding-right: 0;
-        padding-left: 0;
-      }
-    }
+	.wp-block-image {
+	  &.alignfull {
+		padding-right: 0;
+		padding-left: 0;
+	  }
+	}
+  }
+}
+
+.wp-block-image {
+  figcaption {
+	padding: 0 .5em;
+	margin: 0;
+	font-style: normal;
   }
 }
