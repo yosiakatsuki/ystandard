@@ -70,6 +70,9 @@ class Footer {
 	 * ページ先頭へ戻るボタン
 	 */
 	public function back_to_top() {
+		if ( AMP::is_amp() ) {
+			return;
+		}
 		if ( ! Option::get_option_by_bool( 'ys_back_to_top_active', false ) ) {
 			return;
 		}
