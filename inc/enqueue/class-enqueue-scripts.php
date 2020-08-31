@@ -48,6 +48,7 @@ class Enqueue_Scripts {
 		if ( AMP::is_amp() ) {
 			return;
 		}
+		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script(
 			self::JS_HANDLE,
 			get_template_directory_uri() . '/js/ystandard.js',
