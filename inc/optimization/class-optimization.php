@@ -334,15 +334,15 @@ class Optimization {
 		$customizer->add_label(
 			[
 				'id'    => 'ys_load_jquery_in_footer_label',
-				'label' => 'jQueryの読み込みを最適化する',
+				'label' => 'jQuery読み込み位置変更',
 			]
 		);
 		$customizer->add_checkbox(
 			[
 				'id'          => 'ys_load_jquery_in_footer',
 				'default'     => 0,
-				'label'       => 'jQueryの読み込みを最適化する',
-				'description' => 'jQueryをフッターで読み込み、サイトの高速化を図ります。<br>※この設定を有効にすると利用しているプラグインの動作が不安定になる恐れがあります。<br>プラグインの機能が正常に動作しなくなる場合は設定を無効化してください。',
+				'label'       => 'jQueryをフッター側で読み込む',
+				'description' => 'jQueryを&lt;/footer&gt;直前で読み込み、サイトの高速化を図ります。<br>※この設定を有効にすると利用しているプラグインの動作が不安定になる恐れがあります。<br>プラグインの機能が正常に動作しなくなる場合は設定を無効化してください。',
 			]
 		);
 		// CDNにホストされているjQueryを読み込む.
