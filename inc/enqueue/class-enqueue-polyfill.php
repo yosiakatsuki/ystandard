@@ -20,14 +20,15 @@ class Enqueue_Polyfill {
 	 * Enqueue_Polyfill constructor.
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_polyfill' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_polyfill_scripts' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_polyfill_styles' ], PHP_INT_MAX );
 	}
 
 	/**
 	 * Polyfill関連のenqueue
 	 */
-	public function enqueue_polyfill() {
-		if ( ! self::is_use_polyfill() ) {
+	public function enqueue_polyfill_scripts() {
+		if ( ! self::need_polyfill() ) {
 			return;
 		}
 		wp_enqueue_script(
@@ -39,11 +40,26 @@ class Enqueue_Polyfill {
 	}
 
 	/**
+	 * Polyfill関連のenqueue
+	 */
+	public function enqueue_polyfill_styles() {
+		if ( ! self::need_polyfill() ) {
+			return;
+		}
+		wp_enqueue_style(
+			'ys-polyfill-styles',
+			get_template_directory_uri() . '/css/ystandard-polyfill.css',
+			[],
+			Utility::get_ystandard_version()
+		);
+	}
+
+	/**
 	 * Polyfillが必要か
 	 *
 	 * @return bool
 	 */
-	public static function is_use_polyfill() {
+	public static function need_polyfill() {
 		return ( self::is_ie() || self::is_edge() );
 	}
 
