@@ -112,7 +112,7 @@ class Parts {
 				'wptexturize',
 				'shortcode_unautop',
 				'prepend_attachment',
-				'wp_make_content_images_responsive',
+				'wp_filter_content_tags',
 				'wpautop',
 				'capital_P_dangit',
 				'do_shortcode',

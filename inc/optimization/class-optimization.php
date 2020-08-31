@@ -21,7 +21,7 @@ class Optimization {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_action( 'after_setup_theme', [ $this, 'optimize_emoji' ] );
+		add_action( 'wp', [ $this, 'optimize_emoji' ] );
 		add_action( 'after_setup_theme', [ $this, 'optimize_oembed' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'disable_jquery' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'defer_jquery' ] );

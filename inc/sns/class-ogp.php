@@ -211,7 +211,7 @@ class OGP {
 				}
 			}
 		}
-		
+
 		return apply_filters( 'ys_ogp_image', $image );
 	}
 
