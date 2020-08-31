@@ -193,18 +193,15 @@ class Admin {
 	 * アップデートのチェック
 	 */
 	public function update_check() {
-		require_once get_template_directory() . '/library/theme-update-checker/theme-update-checker.php';
+		require_once get_template_directory() . '/library/plugin-update-checker/plugin-update-checker.php';
 
 		$dir = apply_filters( 'ys_update_check_dir', 'v4' );
 		$url = "https://wp-ystandard.com/download/ystandard/${dir}/ystandard-info.json";
 
-		// アップデート確認.
-		$theme_update_checker = new \ThemeUpdateChecker(
-			'ystandard',
-			apply_filters(
-				'ys_update_check_url',
-				$url
-			)
+		\Puc_v4_Factory::buildUpdateChecker(
+			apply_filters( 'ys_update_check_url', $url ),
+			get_template_directory() . '/functions.php', // Full path to the main plugin file or functions.php.
+			'ystandard'
 		);
 	}
 
