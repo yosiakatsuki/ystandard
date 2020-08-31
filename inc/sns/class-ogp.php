@@ -198,16 +198,20 @@ class OGP {
 		if ( empty( $image ) ) {
 			$image = Option::get_option( 'ys_ogp_default_image', '' );
 		}
+
 		/**
 		 * ロゴ
 		 */
 		if ( empty( $image ) ) {
 			$logo_id = Utility::get_custom_logo_id();
 			if ( $logo_id ) {
-				$image = wp_get_attachment_image_src( $logo_id, self::ATTACHMENT_SIZE );
+				$image_src = wp_get_attachment_image_src( $logo_id, self::ATTACHMENT_SIZE );
+				if ( $image_src ) {
+					$image = $image_src[0];
+				}
 			}
 		}
-
+		
 		return apply_filters( 'ys_ogp_image', $image );
 	}
 
