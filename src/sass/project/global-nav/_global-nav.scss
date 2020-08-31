@@ -31,11 +31,11 @@
 
   @include media-breakpoint(md) {
 	height: 100%;
-	max-height: unset;
+	max-height: none;
 	margin-right: 0;
 	margin-left: 0;
 	padding: 0;
-	overflow: unset;
+	overflow: visible;
   }
 
 
@@ -257,8 +257,7 @@
   .menu-item-has-children {
 	@include media-breakpoint(md) {
 	  a:focus + .sub-menu,
-	  &:hover .sub-menu,
-	  .sub-menu:focus-within {
+	  &:hover .sub-menu {
 		background-color: var(--header-bg);
 		font-size: 0.9em;
 		visibility: visible;
