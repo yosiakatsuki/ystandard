@@ -1,5 +1,8 @@
-@mixin posts_column($i,$margin:$card_margin) {
+@mixin posts_column($i,$margin:$card_margin,$margin_ceil:false) {
   $minus: $card_margin * ( ($i - 1) / $i );
+  @if $margin_ceil {
+	$minus: decimal-ceil($minus, 1);
+  }
   $width: calc(#{decimal-floor((1 / $i * 100),2)}#{"%"} - #{$minus});
   @if 1 == $i {
 	$width: calc(#{decimal-floor((1 / $i * 100),2)}#{"%"});

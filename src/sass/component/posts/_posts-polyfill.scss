@@ -1,0 +1,17 @@
+.ys-posts__list {
+  @for $i from 1 through 4 {
+	&.col-sp--#{$i} {
+	  @include posts_column($i, $card_margin, true);
+	}
+	&.col-tablet--#{$i} {
+	  @include media-breakpoint(sm) {
+		@include posts_column($i, $card_margin, true);
+	  }
+	}
+	&.col-pc--#{$i} {
+	  @include media-breakpoint(lg) {
+		@include posts_column($i, $card_margin, true);
+	  }
+	}
+  }
+}
