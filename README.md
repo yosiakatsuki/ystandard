@@ -29,6 +29,7 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 - [修正] OGPタグ作成用処理でのエラー対処
 - [修正] 環境によってjQueryが読み込まれない点の対処
 - [修正] IE11向けCSS不具合調整
+- [追加] IE11向けscript,css読み込みフック追加（`ys_enqueue_polyfill_scripts`,`ys_enqueue_polyfill_styles`）
 
 ### v4.10.1
 - [調整] 記事一覧ショートコード カードスタイルでの下線削除

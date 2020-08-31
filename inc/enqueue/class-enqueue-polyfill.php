@@ -37,6 +37,7 @@ class Enqueue_Polyfill {
 			[],
 			Utility::get_ystandard_version()
 		);
+		do_action( 'ys_enqueue_polyfill_scripts' );
 	}
 
 	/**
@@ -52,6 +53,7 @@ class Enqueue_Polyfill {
 			[],
 			Utility::get_ystandard_version()
 		);
+		do_action( 'ys_enqueue_polyfill_styles' );
 	}
 
 	/**
