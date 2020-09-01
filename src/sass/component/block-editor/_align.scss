@@ -37,8 +37,10 @@ body:not(.has-sidebar) {
   @include media-breakpoint(lg) {
 	.alignwide {
 	  width: auto;
-	  margin-right: -4.5rem;
-	  margin-left: -4.5rem;
+	  margin-right: -5%;
+	  margin-left: -5%;
+	  padding-right: 5%;
+	  padding-left: 5%;
 	}
 	.alignfull {
 	  width: auto;
@@ -51,12 +53,23 @@ body:not(.has-sidebar) {
 
   &.has-background {
 	@include media-breakpoint(sm) {
-	  .alignwide {
+	  .alignwide,
+	  .alignfull {
 		margin-right: -2rem;
 		margin-left: -2rem;
-		padding-right: 0;
-		padding-left: 0;
+		padding-right: 2rem;
+		padding-left: 2rem;
 	  }
+	}
+	@include media-breakpoint(sm) {
+	  .alignfull {
+		margin-right: -3rem;
+		margin-left: -3rem;
+		padding-right: 3rem;
+		padding-left: 3rem;
+	  }
+	}
+	@include media-breakpoint(lg) {
 	  .alignfull {
 		width: auto;
 		margin-right: calc(-50vw + 50%);
@@ -65,6 +78,5 @@ body:not(.has-sidebar) {
 		padding-left: calc(-50% + 50vw);
 	  }
 	}
-
   }
 }
