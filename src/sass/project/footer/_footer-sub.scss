@@ -5,10 +5,11 @@
   color: var(--sub-footer-text);
 
   a {
-    color: var(--sub-footer-text);
+	color: var(--sub-footer-text);
   }
 }
 
 .footer-sub__content {
+  overflow: hidden visible;
   @include child_margin(1em);
 }
