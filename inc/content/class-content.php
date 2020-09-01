@@ -513,9 +513,19 @@ class Content {
 		 */
 		foreach ( $list as $value ) {
 			if ( isset( $value['url'] ) && isset( $value['aspect'] ) ) {
-				$replace = '<div class="wp-embed-aspect-' . $value['aspect'] . ' wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">${0}</div></div>';
 				$pattern = '/<iframe[^>]+?' . $value['url'] . '[^<]+?<\/iframe>/is';
-				$content = preg_replace( $pattern, $replace, $content );
+				if ( preg_match_all( $pattern, $content, $match ) ) {
+					foreach ( $match[0] as $map ) {
+						$aspect = preg_match( '/data-aspect-ratio="(.+)?"/is', $map, $aspect_match );
+						if ( empty( $aspect ) || ( isset( $aspect_match[1] ) && 'none' !== $aspect_match[1] ) ) {
+							$embed_aspect = isset( $aspect_match[1] ) ? $aspect_match[1] : $value['aspect'];
+							// 変換.
+							$replace = '<div class="wp-embed-aspect-' . $embed_aspect . ' wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">' . $map . '</div></div>';
+							$content = str_replace( $map, $replace, $content );
+						}
+					}
+
+				}
 			}
 		}
 

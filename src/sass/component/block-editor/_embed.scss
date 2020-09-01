@@ -6,4 +6,15 @@
 	  }
 	}
   }
+
+  .wp-embed-aspect-3-1 {
+	.wp-block-embed__wrapper::before {
+	  padding-top: 33.33%;
+	}
+  }
+  .wp-embed-aspect-2-1 {
+	.wp-block-embed__wrapper::before {
+	  padding-top: 50%;
+	}
+  }
 }
