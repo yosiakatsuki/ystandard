@@ -224,7 +224,8 @@ class TOC {
 		for ( $i = 0; $i < count( $data ); $i ++ ) {
 			$toc .= $this->get_toc_item_html( $data, $i );
 			// 下層アイテムの作成.
-			if ( $i + 1 > count( $data ) && (int) $data[ $i ][2] < (int) $data[ $i + 1 ][2] ) {
+			$next_level = isset( $data[ $i + 1 ] ) ? (int) $data[ $i + 1 ][2] : (int) $data[ $i ][2];
+			if ( (int) $data[ $i ][2] < $next_level ) {
 				$i ++;
 				$i = $this->get_toc_children( $toc, $data, $i );
 			}
@@ -254,16 +255,18 @@ class TOC {
 		for ( $i = $num; $i < count( $data ); $i ++ ) {
 			$toc .= $this->get_toc_item_html( $data, $i );
 			// 下層アイテムの作成.
-			if ( $i + 1 > count( $data ) && (int) $data[ $i ][2] < (int) $data[ $i + 1 ][2] ) {
+			$next_level = isset( $data[ $i + 1 ] ) ? (int) $data[ $i + 1 ][2] : (int) $data[ $i ][2];
+			if ( (int) $data[ $i ][2] < $next_level ) {
 				$i ++;
 				$i = $this->get_toc_children( $toc, $data, $i );
 			}
 			$toc .= '</li>' . PHP_EOL;
 			// 自レベル以上のアイテムが来たら終了.
-			if ( $i + 1 > count( $data ) && (int) $data[ $i ][2] > (int) $data[ $i + 1 ][2] ) {
+			if ( (int) $data[ $i ][2] > $next_level ) {
 				$num = $i;
 				break;
 			}
+			$num = $i;
 		}
 		$toc .= '</ul>';
 
