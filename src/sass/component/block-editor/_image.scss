@@ -1,6 +1,7 @@
 body:not(.has-sidebar) {
-  @include media-breakpoint(lg) {
+  @media (min-width: 1px) {
 	.wp-block-image {
+	  &.alignwide,
 	  &.alignfull {
 		padding-right: 0;
 		padding-left: 0;
