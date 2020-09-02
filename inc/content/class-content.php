@@ -524,7 +524,6 @@ class Content {
 							$content = str_replace( $map, $replace, $content );
 						}
 					}
-
 				}
 			}
 		}
