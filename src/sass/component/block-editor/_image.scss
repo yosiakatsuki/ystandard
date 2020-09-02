@@ -11,9 +11,12 @@ body:not(.has-sidebar) {
 }
 
 .wp-block-image {
+  margin-bottom: 0;
+
   figcaption {
-	padding: 0 .5em;
+	padding: 0 .5em .5em;
 	margin: 0;
+	font-size: .8em;
 	font-style: normal;
   }
 }
