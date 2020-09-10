@@ -6,20 +6,35 @@
 }
 
 .meta-box__section {
+  margin: 2em 0;
+
+  > *:first-child {
+	margin-top: 0;
+  }
+
+  input[type="text"],
   textarea {
+	display: block;
 	width: 100%;
+  }
+
+
+  .meta-box__title {
+	margin: 1em 0 .5em;
+  }
+
+  .meta-box__label {
+	display: block;
+	margin-top: 0.5rem;
+	font-weight: $font__weight_bold;
+  }
+
+  .meta-box__dscr {
+	color: $color__text-light;
+	font-size: 0.8em;
   }
 }
 
-.meta-box__label {
-  display: block;
-  margin-top: 0.5rem;
-  font-weight: $font__weight_bold;
-}
-
-.meta-box__dscr {
-  color: $color__text-light;
-}
 
 .meta-box__full-w {
   width: 100%;
@@ -170,11 +185,13 @@
 
   p {
 	margin: .5em 0 0;
+
 	&:first-child {
 	  margin-top: 0;
 	}
   }
 }
+
 .wrap .notice.notice-manual {
   margin-top: 0;
 }

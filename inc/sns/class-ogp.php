@@ -138,7 +138,12 @@ class OGP {
 	 * @return string
 	 */
 	private function get_singular_title() {
-		$title = apply_filters( 'ys_ogp_title_singular', get_the_title() );
+		$title = Content::get_post_meta( 'ys_ogp_title' );
+		if ( empty( $title ) ) {
+			$title = get_the_title();
+		}
+
+		$title = apply_filters( 'ys_ogp_title_singular', $title );
 
 		return Utility::get_plain_text( $title );
 	}

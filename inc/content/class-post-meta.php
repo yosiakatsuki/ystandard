@@ -30,38 +30,47 @@ class Post_Meta {
 	 */
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_meta_box' ] );
-		add_action( 'save_post', [ $this, 'save_post_meta' ] );
+		add_action( 'save_post', [ $this, 'save_post_meta_seo' ] );
+		add_action( 'save_post', [ $this, 'save_post_meta_sns' ] );
+		add_action( 'save_post', [ $this, 'save_post_meta_post' ] );
 	}
 
 	/**
 	 * メタボックスの追加
 	 */
 	public function add_meta_box() {
-		/**
-		 * 投稿オプション
-		 */
 		add_meta_box(
 			'ys_post_option',
-			'yStandard 投稿オプション',
+			'[ys] 投稿設定',
 			[ $this, 'add_post_option' ],
+			[ 'post', 'page' ],
+			'side'
+		);
+		add_meta_box(
+			'ys_seo_option',
+			'[ys] SEO設定',
+			[ $this, 'add_seo_option' ],
+			[ 'post', 'page' ],
+			'side'
+		);
+		add_meta_box(
+			'ys_sns_option',
+			'[ys] SNS設定',
+			[ $this, 'add_sns_option' ],
 			[ 'post', 'page' ],
 			'side'
 		);
 	}
 
 	/**
-	 * 投稿オプションHTML
+	 * SEO設定HTML
 	 *
 	 * @param \WP_Post $post The object for the current post/page.
 	 */
-	public function add_post_option( $post ) {
-
-		wp_nonce_field( self::NONCE_ACTION, self::NONCE_NAME );
-
+	public function add_seo_option( $post ) {
+		$this->nonce_field( 'seo' );
 		$post_id = $post->ID;
-		do_action( 'ys_meta_box_before' );
 		?>
-		<h3 class="meta-box__title">SEO設定</h3>
 		<div class="meta-box__section">
 			<div class="meta-box__list">
 				<label for="ys_noindex">
@@ -73,14 +82,45 @@ class Post_Meta {
 					<input type="checkbox" id="ys_hide_meta_dscr" name="ys_hide_meta_dscr" value="1" <?php $this->checked( 'ys_hide_meta_dscr', $post_id ); ?> />meta descriptionタグを<strong>無効化</strong>する
 				</label>
 			</div>
+			<?php do_action( 'ys_meta_box_seo' ); ?>
+		</div>
+		<?php
+	}
+
+	/**
+	 * SNSオプションHTML
+	 *
+	 * @param \WP_Post $post The object for the current post/page.
+	 */
+	public function add_sns_option( $post ) {
+		$this->nonce_field( 'sns' );
+		$post_id = $post->ID;
+		?>
+		<div class="meta-box__section">
+			<div class="meta-box__list">
+				<label class="meta-box__label" for="ys_ogp_title">OGP/Twitter Cards用タイトル</label>
+				<input id="ys_ogp_title" type="text" class="meta-box__text" name="ys_ogp_title" value="<?php echo esc_attr( Content::get_post_meta( 'ys_ogp_title', $post_id ) ); ?>"/>
+				<div class="meta-box__dscr">※OGP/Twitter Cardsのタイトルとして出力する文章を設定できます。空白の場合投稿タイトルになります。</div>
+			</div>
 			<div class="meta-box__list">
 				<label class="meta-box__label" for="ys_ogp_description">OGP/Twitter Cards用description</label>
 				<textarea id="ys_ogp_description" class="meta-box__textarea" name="ys_ogp_description" rows="4" cols="40"><?php echo esc_textarea( Content::get_post_meta( 'ys_ogp_description', $post_id ) ); ?></textarea>
 				<div class="meta-box__dscr">※OGP/Twitter Cardsのdescriptionとして出力する文章を設定できます。空白の場合、投稿本文から自動でdescriptionを作成します。</div>
 			</div>
-			<?php do_action( 'ys_meta_box_after_seo' ); ?>
+			<?php do_action( 'ys_meta_box_sns' ); ?>
 		</div>
-		<h3 class="meta-box__title">投稿・固定ページ オプション</h3>
+		<?php
+	}
+
+	/**
+	 * 投稿オプションHTML
+	 *
+	 * @param \WP_Post $post The object for the current post/page.
+	 */
+	public function add_post_option( $post ) {
+		$this->nonce_field( 'post' );
+		$post_id = $post->ID;
+		?>
 		<div class="meta-box__section">
 			<div class="meta-box__list">
 				<label for="ys_hide_ad">
@@ -108,24 +148,24 @@ class Post_Meta {
 				</label>
 			</div>
 		</div>
-		<?php do_action( 'ys_meta_box_after_page' ); ?>
 		<?php if ( Admin::is_post_type_on_admin( 'post' ) ) : ?>
-			<h3 class="meta-box__title">投稿オプション</h3>
-			<div class="meta-box__dscr">※投稿ページ用設定</div>
-			<div class="meta-box__list">
-				<label for="ys_hide_related">
-					<input type="checkbox" id="ys_hide_related" name="ys_hide_related" value="1" <?php $this->checked( 'ys_hide_related', $post_id ); ?> />関連記事を<strong>非表示</strong>にする
-				</label>
+			<div class="meta-box__section">
+				<h3 class="meta-box__title">投稿オプション</h3>
+				<div class="meta-box__dscr">※投稿ページ用設定</div>
+				<div class="meta-box__list">
+					<label for="ys_hide_related">
+						<input type="checkbox" id="ys_hide_related" name="ys_hide_related" value="1" <?php $this->checked( 'ys_hide_related', $post_id ); ?> />関連記事を<strong>非表示</strong>にする
+					</label>
+				</div>
+				<div class="meta-box__list">
+					<label for="ys_hide_paging">
+						<input type="checkbox" id="ys_hide_paging" name="ys_hide_paging" value="1" <?php $this->checked( 'ys_hide_paging', $post_id ); ?> />前の記事・次の記事を<strong>非表示</strong>にする
+					</label>
+				</div>
 			</div>
-			<div class="meta-box__list">
-				<label for="ys_hide_paging">
-					<input type="checkbox" id="ys_hide_paging" name="ys_hide_paging" value="1" <?php $this->checked( 'ys_hide_paging', $post_id ); ?> />前の記事・次の記事を<strong>非表示</strong>にする
-				</label>
-			</div>
-			<?php do_action( 'ys_meta_box_after_post' ); ?>
 		<?php endif; ?>
 		<?php
-		do_action( 'ys_meta_box_after' );
+		do_action( 'ys_meta_box_post' );
 	}
 
 	/**
@@ -133,12 +173,11 @@ class Post_Meta {
 	 *
 	 * @param int $post_id The ID of the post being saved.
 	 */
-	public function save_post_meta( $post_id ) {
+	public function save_post_meta_seo( $post_id ) {
 
-		if ( ! $this->verify_save_post_meta( $post_id ) ) {
+		if ( ! $this->verify_save_post_meta( $post_id, 'seo' ) ) {
 			return;
 		}
-
 		/**
 		 * Noindex設定
 		 */
@@ -147,10 +186,39 @@ class Post_Meta {
 		 * Meta description設定
 		 */
 		self::save_post_checkbox( $post_id, 'ys_hide_meta_dscr' );
+
+		do_action( 'ys_save_post_meta_seo', $post_id );
+	}
+
+	/**
+	 * Post meta保存
+	 *
+	 * @param int $post_id The ID of the post being saved.
+	 */
+	public function save_post_meta_sns( $post_id ) {
+
+		if ( ! $this->verify_save_post_meta( $post_id, 'sns' ) ) {
+			return;
+		}
+		self::save_post_text( $post_id, 'ys_ogp_title' );
 		/**
 		 * OGP用description
 		 */
 		self::save_post_textarea( $post_id, 'ys_ogp_description' );
+
+		do_action( 'ys_save_post_meta_sns', $post_id );
+	}
+
+	/**
+	 * Post meta保存
+	 *
+	 * @param int $post_id The ID of the post being saved.
+	 */
+	public function save_post_meta_post( $post_id ) {
+
+		if ( ! $this->verify_save_post_meta( $post_id, 'post' ) ) {
+			return;
+		}
 		/**
 		 * 広告非表示設定
 		 */
@@ -180,21 +248,33 @@ class Post_Meta {
 		 */
 		self::save_post_checkbox( $post_id, 'ys_hide_paging' );
 
-		do_action( 'ys_save_post_meta', $post_id );
+		do_action( 'ys_save_post_meta_post', $post_id );
+	}
+
+	/**
+	 * Nonce Field
+	 *
+	 * @param string $type タイプ.
+	 */
+	private function nonce_field( $type ) {
+		$action = self::NONCE_ACTION . '_' . $type;
+		$nonce  = self::NONCE_NAME . '_' . $type;
+		wp_nonce_field( $action, $nonce );
 	}
 
 	/**
 	 * Post meta保存 チェック
 	 *
-	 * @param int $post_id The ID of the post being saved.
+	 * @param int    $post_id The ID of the post being saved.
+	 * @param string $type    Type.
 	 *
 	 * @return bool
 	 */
-	private function verify_save_post_meta( $post_id ) {
+	private function verify_save_post_meta( $post_id, $type ) {
 		/**
 		 * Nonceチェック.
 		 */
-		if ( ! Admin::verify_nonce( self::NONCE_NAME, self::NONCE_ACTION ) ) {
+		if ( ! Admin::verify_nonce( self::NONCE_NAME . '_' . $type, self::NONCE_ACTION . '_' . $type ) ) {
 			return false;
 		}
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -227,6 +307,25 @@ class Post_Meta {
 	public static function save_post_checkbox( $post_id, $key ) {
 		if ( isset( $_POST[ $key ] ) ) {
 			update_post_meta( $post_id, $key, $_POST[ $key ] );
+		} else {
+			delete_post_meta( $post_id, $key );
+		}
+	}
+
+	/**
+	 * 投稿オプションの更新：textarea
+	 *
+	 * @param int    $post_id 投稿ID.
+	 * @param string $key     設定キー.
+	 *
+	 */
+	public static function save_post_text( $post_id, $key ) {
+		if ( ! isset( $_POST[ $key ] ) ) {
+			return;
+		}
+		if ( ! empty( $_POST[ $key ] ) ) {
+			$text = esc_attr( $_POST[ $key ] );
+			update_post_meta( $post_id, $key, $text );
 		} else {
 			delete_post_meta( $post_id, $key );
 		}
