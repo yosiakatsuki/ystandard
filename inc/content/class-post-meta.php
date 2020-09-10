@@ -317,7 +317,6 @@ class Post_Meta {
 	 *
 	 * @param int    $post_id 投稿ID.
 	 * @param string $key     設定キー.
-	 *
 	 */
 	public static function save_post_text( $post_id, $key ) {
 		if ( ! isset( $_POST[ $key ] ) ) {
