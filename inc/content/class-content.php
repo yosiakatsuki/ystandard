@@ -155,7 +155,7 @@ class Content {
 		if ( ! is_singular() ) {
 			return false;
 		}
-		if( ! Template::is_active_post_header()) {
+		if ( ! Template::is_active_post_header() ) {
 			return false;
 		}
 		if ( ! has_post_thumbnail( $post_id ) ) {
