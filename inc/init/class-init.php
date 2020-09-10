@@ -108,6 +108,8 @@ class Init {
 		add_theme_support( 'custom-line-height' );
 		// カバーブロックの高さ単位.
 		add_theme_support( 'custom-units', 'px', 'rem', 'em', 'percentages', 'vh', 'vw' );
+		// 固定ページで抜粋を有効化.
+		add_post_type_support( 'page', 'excerpt' );
 	}
 
 	/**
