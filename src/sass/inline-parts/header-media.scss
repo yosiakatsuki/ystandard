@@ -17,6 +17,8 @@
  */
 
 .header-media {
+  overflow: visible hidden;
+
   &.is-video {
     .wp-custom-header {
       width: 100%;
