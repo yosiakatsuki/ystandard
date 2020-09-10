@@ -10,17 +10,19 @@
 /**
  * ビデオ表示
  */
-.header-media.is-video .wp-custom-header {
-  width: 100%;
-  padding-top: 56.25%; }
-  .header-media.is-video .wp-custom-header video,
-  .header-media.is-video .wp-custom-header iframe,
-  .header-media.is-video .wp-custom-header img {
-    position: absolute;
-    top: 0;
-    left: 0;
+.header-media {
+  overflow: visible hidden; }
+  .header-media.is-video .wp-custom-header {
     width: 100%;
-    height: 100%; }
+    padding-top: 56.25%; }
+    .header-media.is-video .wp-custom-header video,
+    .header-media.is-video .wp-custom-header iframe,
+    .header-media.is-video .wp-custom-header img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%; }
 
 .wp-custom-header-video-button {
   display: block;
