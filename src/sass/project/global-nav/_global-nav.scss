@@ -4,14 +4,13 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	padding: 2em;
+	padding: 6em 2em;
 	visibility: hidden;
 	transition: all 0.3s;
 	opacity: 0;
+	overflow: auto;
   }
 
-  display: flex;
-  align-items: center;
   position: fixed;
   background-color: var(--mobile-nav-bg);
   font-size: 0.9em;
@@ -26,8 +25,6 @@
   margin-right: auto;
   margin-left: auto;
   padding: 0 .5em;
-  max-height: 84vh;
-  overflow: auto;
 
   @include media-breakpoint(md) {
 	height: 100%;
@@ -255,11 +252,13 @@
   }
 
   .menu-item-has-children {
+	.sub-menu {
+	  font-size: 0.9em;
+	}
 	@include media-breakpoint(md) {
 	  a:focus + .sub-menu,
 	  &:hover .sub-menu {
 		background-color: var(--header-bg);
-		font-size: 0.9em;
 		visibility: visible;
 		opacity: 1;
 	  }
