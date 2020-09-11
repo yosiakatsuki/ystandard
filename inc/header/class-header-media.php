@@ -109,7 +109,7 @@ class Header_Media {
 
 		$css .= '
 		.header-media {
-			overflow: hidden visible;
+			overflow: hidden;
 		}
 		.wp-custom-header {
 		  position: relative; }
