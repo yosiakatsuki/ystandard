@@ -182,7 +182,7 @@ class Parts {
 				'show_ui'               => true,
 				'show_in_nav_menus'     => false,
 				'show_in_menu'          => true,
-				'menu_icon'             => 'dashicons-edit',
+				'menu_icon'             => Admin_Menu::get_menu_icon(),
 				'menu_position'         => 20,
 				'description'           => 'サイト内で使用するコンテンツのパーツを登録できます。',
 				'has_archive'           => false,
