@@ -82,7 +82,7 @@ class Post_Meta {
 					<input type="checkbox" id="ys_hide_meta_dscr" name="ys_hide_meta_dscr" value="1" <?php $this->checked( 'ys_hide_meta_dscr', $post_id ); ?> />meta descriptionタグを<strong>無効化</strong>する
 				</label>
 			</div>
-			<?php do_action( 'ys_meta_box_seo' ); ?>
+			<?php do_action( 'ys_meta_box_seo', $post_id ); ?>
 		</div>
 		<?php
 	}
@@ -107,7 +107,7 @@ class Post_Meta {
 				<textarea id="ys_ogp_description" class="meta-box__textarea" name="ys_ogp_description" rows="4" cols="40"><?php echo esc_textarea( Content::get_post_meta( 'ys_ogp_description', $post_id ) ); ?></textarea>
 				<div class="meta-box__dscr">※OGP/Twitter Cardsのdescriptionとして出力する文章を設定できます。空白の場合、投稿本文から自動でdescriptionを作成します。</div>
 			</div>
-			<?php do_action( 'ys_meta_box_sns' ); ?>
+			<?php do_action( 'ys_meta_box_sns', $post_id ); ?>
 		</div>
 		<?php
 	}
@@ -165,7 +165,7 @@ class Post_Meta {
 			</div>
 		<?php endif; ?>
 		<?php
-		do_action( 'ys_meta_box_post' );
+		do_action( 'ys_meta_box_post', $post_id );
 	}
 
 	/**
