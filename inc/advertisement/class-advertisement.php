@@ -282,6 +282,11 @@ class Advertisement {
 	 * @return bool
 	 */
 	public static function is_active_advertisement() {
+		$hook = apply_filters( 'ys_is_active_advertisement', null );
+		if ( ! is_null( $hook ) ) {
+			return $hook;
+		}
+
 		if ( is_404() ) {
 			return false;
 		}
