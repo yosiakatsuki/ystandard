@@ -196,6 +196,16 @@ function ys_the_archive_image_ratio() {
 	echo esc_attr( \ystandard\Archive::get_archive_image_ratio() );
 }
 
+/**
+ * アーカイブデフォルト画像
+ *
+ * @param string $class      Class.
+ * @param string $icon_class Icon Class.
+ */
+function ys_the_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image' ) {
+	echo \ystandard\Archive::get_archive_default_image( $class, $icon_class );
+}
+
 /** *****************************************************************
  * ページネーション
  * *****************************************************************/

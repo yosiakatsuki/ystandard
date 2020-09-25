@@ -12,10 +12,10 @@
 	<div class="archive__detail">
 		<div class="archive__thumbnail is-list">
 			<a href="<?php the_permalink(); ?>" class="ratio <?php ys_the_archive_image_ratio(); ?>">
-				<?php if ( has_post_thumbnail() ) : ?>
-					<div class="ratio__item">
-						<figure class="ratio__image">
-							<?php
+				<div class="ratio__item">
+					<figure class="ratio__image">
+						<?php
+						if ( has_post_thumbnail() ) {
 							the_post_thumbnail(
 								apply_filters( 'ys_archive_thumbnail_size', 'post-thumbnail' ),
 								[
@@ -23,16 +23,13 @@
 									'alt'   => get_the_title(),
 								]
 							);
-							?>
-						</figure>
-					</div>
-				<?php else : ?>
-					<div class="ratio__item">
-						<div class="archive__no-img">
-							<?php echo ys_get_icon( 'image', 'archive__image' ); ?>
-						</div>
-					</div>
-				<?php endif; ?>
+
+						} else {
+							ys_the_archive_default_image();
+						}
+						?>
+					</figure>
+				</div>
 			</a>
 		</div>
 		<div class="archive__text">

@@ -46,6 +46,20 @@ class Archive {
 	}
 
 	/**
+	 * アーカイブデフォルト画像
+	 *
+	 * @param string $class      Class.
+	 * @param string $icon_class Icon Class.
+	 *
+	 * @return string
+	 */
+	public static function get_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image' ) {
+		$image = '<div class="' . $class . '">' . Icon::get_icon( 'image', $icon_class ) . '</div>';
+
+		return apply_filters( 'ys_get_archive_default_image', $image, $class, $icon_class );
+	}
+
+	/**
 	 * アーカイブメタ情報取得
 	 */
 	public static function the_archive_meta() {
