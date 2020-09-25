@@ -28,16 +28,18 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 							<a href="<?php the_permalink(); ?>" class="ratio is-<?php echo $recent_posts['thumbnail_ratio']; ?>">
 								<div class="ratio__item">
 									<figure class="ratio__image">
-										<?php if ( has_post_thumbnail() ) : ?>
-											<?php
+										<?php
+										if ( has_post_thumbnail() ) {
+
+
 											the_post_thumbnail(
 												$recent_posts['thumbnail_size'],
 												[ 'class' => 'ys-posts__image' ]
 											);
-											?>
-										<?php else : ?>
-											<span class="ys-post__no-image"><?php echo ys_get_icon( 'image', 'ys-posts__image' ); ?></span>
-										<?php endif; ?>
+										} else {
+											ys_the_archive_default_image( 'ys-post__no-image', 'ys-posts__image' );
+										}
+										?>
 									</figure>
 								</div>
 							</a>
