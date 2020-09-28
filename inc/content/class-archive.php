@@ -48,15 +48,16 @@ class Archive {
 	/**
 	 * アーカイブデフォルト画像
 	 *
-	 * @param string $class      Class.
-	 * @param string $icon_class Icon Class.
+	 * @param string $class          Class.
+	 * @param string $icon_class     Icon Class.
+	 * @param string $thumbnail_size Thumbnail size.
 	 *
 	 * @return string
 	 */
-	public static function get_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image' ) {
+	public static function get_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image', $thumbnail_size = 'full' ) {
 		$image = '<div class="' . $class . '">' . Icon::get_icon( 'image', $icon_class ) . '</div>';
 
-		return apply_filters( 'ys_get_archive_default_image', $image, $class, $icon_class );
+		return apply_filters( 'ys_get_archive_default_image', $image, $class, $icon_class, $thumbnail_size );
 	}
 
 	/**

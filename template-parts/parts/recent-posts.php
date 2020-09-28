@@ -37,7 +37,11 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 												[ 'class' => 'ys-posts__image' ]
 											);
 										} else {
-											ys_the_archive_default_image( 'ys-post__no-image', 'ys-posts__image' );
+											ys_the_archive_default_image(
+												'ys-post__no-image',
+												'ys-posts__image',
+												$recent_posts['thumbnail_size']
+											);
 										}
 										?>
 									</figure>
