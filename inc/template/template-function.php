@@ -201,9 +201,10 @@ function ys_the_archive_image_ratio() {
  *
  * @param string $class      Class.
  * @param string $icon_class Icon Class.
+ * @param string $thumbnail_size Thumbnail size.
  */
-function ys_the_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image' ) {
-	echo \ystandard\Archive::get_archive_default_image( $class, $icon_class );
+function ys_the_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image', $thumbnail_size = 'full' ) {
+	echo \ystandard\Archive::get_archive_default_image( $class, $icon_class, $thumbnail_size );
 }
 
 /** *****************************************************************
