@@ -57,6 +57,8 @@ class Archive {
 	public static function get_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image', $thumbnail_size = 'full' ) {
 		$image = '<div class="' . $class . '">' . Icon::get_icon( 'image', $icon_class ) . '</div>';
 
+		$thumbnail_size = apply_filters( 'ys_get_archive_default_image_size', $thumbnail_size );
+
 		return apply_filters( 'ys_get_archive_default_image', $image, $class, $icon_class, $thumbnail_size );
 	}
 
