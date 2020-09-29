@@ -115,12 +115,14 @@ class Archive {
 			return '';
 		}
 
-		return sprintf(
-			'<div class="archive__date">%s<time class="updated" datetime="%s">%s</time></div>',
-			Icon::get_icon( 'calendar' ),
-			get_the_date( 'Y-m-d' ),
-			get_the_date( get_option( 'date_format' ) )
-		);
+		$format      = '<div class="archive__date">%s<time class="updated" datetime="%s">%s</time></div>';
+		$icon        = Icon::get_icon( 'calendar' );
+		$date_time   = get_the_date( 'Y-m-d' );
+		$date_format = get_option( 'date_format' );
+		$date_label  = get_the_date( $date_format );
+		$date        = sprintf( $format, $icon, $date_time, $date_label );
+
+		return apply_filters( 'ys_get_archive_detail_date', $date, $format, $icon, $date_format );
 
 	}
 
