@@ -20,6 +20,10 @@
     padding-top: (decimal-floor(( 1 / 3 ), 2) * 100)#{"%"};
   }
 
+  &.is-3-2:before {
+    padding-top: (decimal-floor(( 2 / 3 ), 2) * 100)#{"%"};
+  }
+
   &.is-2-1:before {
     padding-top: (decimal-floor(( 1 / 2 ), 2) * 100)#{"%"};
   }
