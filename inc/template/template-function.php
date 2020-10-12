@@ -147,6 +147,25 @@ function ys_get_post_meta( $key, $post_id = 0 ) {
 	return \ystandard\Content::get_post_meta( $key, $post_id );
 }
 
+/**
+ * タクソノミー情報を取得
+ *
+ * @return array | bool
+ */
+function ys_get_the_taxonomies_data() {
+	return \ystandard\Taxonomy::get_the_taxonomies_data();
+}
+
+/**
+ * 記事一覧 ターム情報取得
+ *
+ * @param string $taxonomy タクソノミー.
+ */
+function ys_get_the_term_data( $taxonomy = false ) {
+	return \ystandard\Taxonomy::get_the_term_data( $taxonomy );
+}
+
+
 /** *****************************************************************
  * アーカイブ
  * *****************************************************************/
@@ -199,8 +218,8 @@ function ys_the_archive_image_ratio() {
 /**
  * アーカイブデフォルト画像
  *
- * @param string $class      Class.
- * @param string $icon_class Icon Class.
+ * @param string $class          Class.
+ * @param string $icon_class     Icon Class.
  * @param string $thumbnail_size Thumbnail size.
  */
 function ys_the_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image', $thumbnail_size = 'full' ) {

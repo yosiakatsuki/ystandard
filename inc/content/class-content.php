@@ -265,7 +265,7 @@ class Content {
 			return '';
 		}
 
-		$taxonomy = apply_filters( 'ys_get_post_header_taxonomy', 'category' );
+		$taxonomy = apply_filters( 'ys_get_post_header_taxonomy', Utility::get_meta_taxonomy() );
 		$term     = get_the_terms( false, $taxonomy );
 		if ( is_wp_error( $term ) || empty( $term ) ) {
 			return '';
@@ -597,14 +597,7 @@ class Content {
 		} elseif ( is_post_type_archive() ) {
 			$title = sprintf( $title_format, post_type_archive_title( '', false ) );
 		} elseif ( is_tax() ) {
-			$object = get_queried_object();
-			$tax    = get_taxonomy( $object->taxonomy );
-			/* translators: 1: Taxonomy singular name, 2: Current taxonomy term */
-			$title = sprintf(
-				'%1$s : %2$s',
-				$tax->labels->singular_name,
-				single_term_title( '', false )
-			);
+			$title = sprintf( '%s', single_term_title( '', false ) );
 		} elseif ( is_home() ) {
 			if ( 'page' === get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
 				$title = get_the_title( get_option( 'page_for_posts' ) );

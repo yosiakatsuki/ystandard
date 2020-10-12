@@ -137,7 +137,7 @@ class Archive {
 			return '';
 		}
 
-		$taxonomy = apply_filters( 'ys_archive_detail_taxonomy', 'category' );
+		$taxonomy = apply_filters( 'ys_archive_detail_taxonomy', Utility::get_meta_taxonomy() );
 		$term     = get_the_terms( false, $taxonomy );
 		if ( is_wp_error( $term ) || empty( $term ) ) {
 			return '';

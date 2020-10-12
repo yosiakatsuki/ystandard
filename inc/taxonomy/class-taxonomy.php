@@ -120,6 +120,56 @@ class Taxonomy {
 	}
 
 	/**
+	 * タクソノミー情報を取得
+	 *
+	 * @return array | bool
+	 */
+	public static function get_the_taxonomies_data() {
+		$data       = [];
+		$taxonomies = get_the_taxonomies();
+		if ( ! $taxonomies ) {
+			return false;
+		}
+		foreach ( $taxonomies as $name => $label ) {
+			$taxonomy = get_taxonomy( $name );
+			$terms    = get_the_terms( false, $name );
+			if ( ! is_wp_error( $terms ) || ! $terms ) {
+				$data[ $name ] = [
+					'label' => $taxonomy ? $taxonomy->label : '',
+					'terms' => $terms,
+				];
+			}
+		}
+
+		return $data;
+	}
+
+
+	/**
+	 * 記事一覧表示用ターム情報取得
+	 *
+	 * @param string $taxonomy タクソノミー.
+	 *
+	 * @return bool|array
+	 */
+	public static function get_the_term_data( $taxonomy = false ) {
+
+		if ( false === $taxonomy ) {
+			$taxonomy = Utility::get_meta_taxonomy();
+		}
+		$terms = get_the_terms( false, $taxonomy );
+
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			return false;
+		}
+
+		return [
+			'name' => $terms[0]->name,
+			'slug' => $terms[0]->slug,
+		];
+	}
+
+	/**
 	 * 投稿ページカテゴリー・タグ表示 判定
 	 *
 	 * @return bool;

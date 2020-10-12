@@ -358,6 +358,25 @@ class Utility {
 		return $taxonomies;
 	}
 
+	/**
+	 * メタ情報として表示するタクソノミー取得
+	 *
+	 * @return bool|string
+	 */
+	public static function get_meta_taxonomy() {
+		$taxonomies = get_the_taxonomies();
+		if ( ! $taxonomies ) {
+			return false;
+		}
+		$taxonomy = array_key_first( $taxonomies );
+
+		if ( 'post' === get_post_type( get_the_ID() ) ) {
+			$taxonomy = 'category';
+		}
+
+		return $taxonomy;
+	}
+
 
 	/**
 	 * 投稿本文を取得
