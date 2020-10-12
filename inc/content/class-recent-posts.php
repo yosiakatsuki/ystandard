@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use http\Encoding\Stream\Inflate;
+
 /**
  * Class Posts
  *
@@ -50,6 +52,7 @@ class Recent_Posts {
 		'thumbnail_size'  => '', // thumbnail, medium, large, full, etc...
 		'thumbnail_ratio' => '', // 4-3, 16-9, 3-1, 2-1, 1-1.
 		'filter'          => '', // category,remove-same-post,sga.
+		'run_type'        => 'shortcode', // 上級者向け.
 		'post_status'     => 'publish', // 隠しパラメーター.
 		'cache'           => 'recent_posts', // 隠しパラメーター。変えるとキャッシュ削除できなくなる可能性があるのでお気をつけください.
 	];
@@ -129,7 +132,10 @@ class Recent_Posts {
 	 */
 	public function do_shortcode( $atts, $content = null ) {
 
-		$this->shortcode_atts = shortcode_atts( self::SHORTCODE_ATTR, $atts );
+		$this->shortcode_atts = apply_filters(
+			'ys_recent_posts_shortcode_atts',
+			shortcode_atts( self::SHORTCODE_ATTR, $atts )
+		);
 		/**
 		 * パラメーターのセット
 		 */
@@ -145,7 +151,7 @@ class Recent_Posts {
 		$key   = 'ys_query_cache_' . $this->shortcode_atts['cache'];
 		$query = Cache::get_query(
 			$this->shortcode_atts['cache'],
-			$this->query_args,
+			apply_filters( 'ys_recent_posts_query_args', $this->query_args ),
 			Option::get_option( $key, 'none' )
 		);
 
@@ -346,18 +352,21 @@ class Recent_Posts {
 			$sga_arg[ $key ] = $this->shortcode_atts['term_slug'];
 		} else {
 			// 同一カテゴリーのみ.
-			if ( false !== strpos( $this->shortcode_atts['filter'], 'category' ) ) {
-				$cat_ids = $this->get_the_category_ids();
-				if ( ! empty( $cat_ids ) ) {
-					$this->sga_limit = 500;
-					$cat_slug        = [];
-					foreach ( $cat_ids as $cat_id ) {
-						$cat = get_category( $cat_id );
-						if ( $cat ) {
-							$cat_slug[] = $cat->slug;
+			if ( false !== strpos( $this->shortcode_atts['filter'], 'tax:' ) ) {
+				$taxonomy = $this->get_filter_taxonomy( $this->shortcode_atts['filter'] );
+				if ( $taxonomy ) {
+					$term_ids = $this->get_the_term_ids( $taxonomy );
+					if ( ! empty( $term_ids ) ) {
+						$this->sga_limit = 500;
+						$term_slug       = [];
+						foreach ( $term_ids as $term_id ) {
+							$term = get_term( $term_id, $taxonomy );
+							if ( $term ) {
+								$term_slug[] = $term->slug;
+							}
 						}
+						$sga_arg[ $taxonomy . '__in' ] = implode( ',', $term_slug );
 					}
-					$sga_arg['category__in'] = implode( ',', $cat_slug );
 				}
 			}
 		}
@@ -396,18 +405,31 @@ class Recent_Posts {
 	 * フィルター:カテゴリー
 	 */
 	private function set_filter_category() {
-		if ( false === strpos( $this->shortcode_atts['filter'], 'category' ) ) {
+		$filter = $this->shortcode_atts['filter'];
+		// 後方互換.
+		if ( false !== strpos( $filter, 'category' ) ) {
+			$filter = str_replace( 'category', 'tax:category', $filter );
+		}
+		if ( false === strpos( $filter, 'tax:' ) ) {
 			return;
 		}
 		// SGAフィルターがある場合、SGAを優先.
-		if ( false !== strpos( $this->shortcode_atts['filter'], 'sga' ) ) {
+		if ( false !== strpos( $filter, 'sga' ) ) {
 			return;
 		}
-		$cat_ids = $this->get_the_category_ids();
-		if ( empty( $cat_ids ) ) {
+		$taxonomy = $this->get_filter_taxonomy( $filter );
+		if ( ! $taxonomy ) {
 			return;
 		}
-		$this->query_args['category__in'] = $cat_ids;
+		$term_ids = $this->get_the_term_ids( $taxonomy );
+		// tax_queryセット.
+		$this->query_args['tax_query'] = [
+			[
+				'taxonomy' => $taxonomy,
+				'field'    => 'term_id',
+				'terms'    => $term_ids,
+			],
+		];
 	}
 
 	/**
@@ -426,33 +448,51 @@ class Recent_Posts {
 	}
 
 	/**
-	 * 現在表示中ページのカテゴリーを取得
+	 * 現在表示中ページのターム一覧を取得
+	 *
+	 * @param string $taxonomy Taxonomy.
 	 *
 	 * @return array
 	 */
-	private function get_the_category_ids() {
-		$cat_ids = [];
-		$parent  = [];
-		if ( is_category() ) {
-			$cat       = get_queried_object();
-			$parent[]  = $cat->term_id;
-			$cat_ids[] = $cat->term_id;
+	private function get_the_term_ids( $taxonomy ) {
+		$parent = [];
+
+		if ( is_tax( $taxonomy ) ) {
+			$term       = get_queried_object();
+			$parent[]   = $term->term_id;
+			$term_ids[] = $term->term_id;
 		} elseif ( is_single() ) {
-			$cat = get_the_category();
-			if ( ! $cat ) {
+			$term = get_the_terms( false, $taxonomy );
+			if ( is_wp_error( $term ) || ! $term ) {
 				return [];
 			}
-			foreach ( $cat as $cat_obj ) {
-				$parent[]  = $cat_obj->cat_ID;
-				$cat_ids[] = $cat_obj->cat_ID;
+			foreach ( $term as $term_obj ) {
+
+				$parent[]   = $term_obj->term_id;
+				$term_ids[] = $term_obj->term_id;
 			}
 		}
 		foreach ( $parent as $id ) {
-			$children = get_term_children( (int) $id, 'category' );
-			$cat_ids  = array_merge( $cat_ids, $children );
+			$children = get_term_children( (int) $id, $taxonomy );
+			$term_ids = array_merge( $term_ids, $children );
 		}
 
-		return $cat_ids;
+		return $term_ids;
+	}
+
+	/**
+	 * フィルター指定されたタクソノミーを取得
+	 *
+	 * @param string $filter Filter.
+	 *
+	 * @return bool|string
+	 */
+	private function get_filter_taxonomy( $filter ) {
+		if ( ! preg_match( '/tax:.+?(,|$)/', $filter, $match ) ) {
+			return false;
+		}
+
+		return str_replace( 'tax:', '', rtrim( $match[0], ',' ) );
 	}
 
 

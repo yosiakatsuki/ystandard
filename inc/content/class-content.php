@@ -285,14 +285,32 @@ class Content {
 		if ( ! self::is_active_related_posts() ) {
 			return;
 		}
+
+		/**
+		 * フィルター
+		 */
+		$tax_filter = '';
+
+		if ( is_singular( 'post' ) ) {
+			$tax_filter = 'category';
+		} elseif ( is_singular() ) {
+			$taxonomies = get_the_taxonomies();
+			if ( $taxonomies ) {
+				$tax_filter = array_key_first( $taxonomies );
+			}
+		}
+		$tax_filter = ! empty( $tax_filter ) ? "tax:${tax_filter}," : '';
+
 		$related = new Recent_Posts();
 		$content = $related->do_shortcode(
 			[
+				'post_type' => get_post_type(),
 				'count'     => 6,
-				'filter'    => 'category,same-post',
+				'filter'    => "${tax_filter}same-post",
 				'list_type' => 'card',
 				'orderby'   => 'rand',
 				'cache'     => 'related_posts',
+				'run_type'  => 'related_posts',
 			]
 		);
 		if ( $content ) {
