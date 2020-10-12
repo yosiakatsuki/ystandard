@@ -7,36 +7,23 @@
  * @license GPL-2.0+
  */
 
+$taxonomies = ys_get_the_taxonomies_data();
+
+if ( ! $taxonomies ) {
+	return;
+}
 ?>
 <div class="post-taxonomy">
-	<?php
-	$categories = get_the_category();
-	if ( $categories ) :
-		?>
-		<div class="post-taxonomy__container is-category">
-			<p class="post-taxonomy__title">カテゴリー</p>
+	<?php foreach ( $taxonomies as $name => $data ) : ?>
+		<div class="post-taxonomy__container is-<?php echo esc_attr( $name ); ?>">
+			<p class="post-taxonomy__title"><?php echo esc_html( $data['label'] ); ?></p>
 			<ul class="post-taxonomy__items">
-				<?php foreach ( $categories as $category ) : ?>
+				<?php foreach ( $data['terms'] as $term ) : ?>
 					<li class="post-taxonomy__item">
-						<a href="<?php echo esc_url_raw( get_category_link( $category->term_id ) ); ?>" class="post-taxonomy__link"><?php echo $category->name; ?></a>
+						<a href="<?php echo esc_url_raw( get_term_link( $term->term_id ) ); ?>" class="post-taxonomy__link"><?php echo $term->name; ?></a>
 					</li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
-	<?php endif; ?>
-	<?php
-	$tags = get_the_tags();
-	if ( $tags ) :
-		?>
-		<div class="post-taxonomy__container is-tag">
-			<p class="post-taxonomy__title">タグ</p>
-			<ul class="post-taxonomy__items">
-				<?php foreach ( $tags as $tag ) : ?>
-					<li class="post-taxonomy__item">
-						<a href="<?php echo esc_url_raw( get_tag_link( $tag->term_id ) ); ?>" class="post-taxonomy__link"><?php echo $tag->name; ?></a>
-					</li>
-				<?php endforeach; ?>
-			</ul>
-		</div>
-	<?php endif; ?>
+	<?php endforeach; ?>
 </div>

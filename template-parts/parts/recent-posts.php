@@ -19,7 +19,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 		<?php while ( $posts_query->have_posts() ) : ?>
 			<?php
 			$posts_query->the_post();
-			$cat = get_the_category();
+			$term = ys_get_the_term_data();
 			?>
 			<li class="ys-posts__item">
 				<div class="ys-posts__content">
@@ -50,7 +50,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 						</div>
 					<?php endif; ?>
 					<div class="ys-posts__text">
-						<?php if ( $recent_posts['show_date'] || ( $cat && $recent_posts['show_category'] ) ) : ?>
+						<?php if ( $recent_posts['show_date'] || ( $term && $recent_posts['show_category'] ) ) : ?>
 							<div class="ys-posts__meta">
 								<?php if ( $recent_posts['show_date'] ) : ?>
 									<span class="ys-posts__date">
@@ -58,10 +58,10 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 										<time class="updated" datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
 									</span>
 								<?php endif; ?>
-								<?php if ( $cat && $recent_posts['show_category'] ) : ?>
-									<span class="ys-posts__cat category--<?php echo esc_attr( $cat[0]->slug ); ?>">
+								<?php if ( $term && $recent_posts['show_category'] ) : ?>
+									<span class="ys-posts__cat category--<?php echo esc_attr( $term['slug'] ); ?>">
 										<?php echo ys_get_icon( 'folder' ); ?>
-										<?php echo $cat[0]->name; ?>
+										<?php echo $term['name']; ?>
 									</span>
 								<?php endif; ?>
 							</div>
