@@ -95,6 +95,8 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 			$instance['filter'] = 'sga';
 		}
 
+		$instance['run_type'] = 'widget';
+
 		/**
 		 * ショートコード実行
 		 */
