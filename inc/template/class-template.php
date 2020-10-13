@@ -95,6 +95,11 @@ class Template {
 	 * @return bool
 	 */
 	public static function is_one_column() {
+
+		$pre = apply_filters( 'ys_is_one_column', null );
+		if ( ! is_null( $pre ) ) {
+			return $pre;
+		}
 		/**
 		 * ワンカラムテンプレート
 		 */
