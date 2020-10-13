@@ -181,6 +181,11 @@ class Content {
 	 * @return bool
 	 */
 	public static function is_full_post_thumbnail() {
+
+		$pre = apply_filters( 'ys_is_full_post_thumbnail', null );
+		if ( ! is_null( $pre ) ) {
+			return $pre;
+		}
 		if ( is_single() && 'full' === Option::get_option( 'ys_post_post_thumbnail_type', 'default' ) ) {
 			return true;
 		}
