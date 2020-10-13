@@ -30,7 +30,7 @@ class Taxonomy {
 	 * YS_Taxonomy constructor.
 	 */
 	public function __construct() {
-		$this->add_term_meta_options();
+		add_action( 'init', [ $this, 'add_term_meta_options' ], PHP_INT_MAX );
 		add_filter( 'ys_get_the_archive_title', [ $this, 'override_title' ] );
 		add_filter( 'document_title_parts', [ $this, 'document_title_parts' ] );
 		add_filter( 'get_the_archive_description', [ $this, 'override_description' ] );
@@ -187,17 +187,20 @@ class Taxonomy {
 	/**
 	 * タームの拡張設定追加
 	 */
-	private function add_term_meta_options() {
+	public function add_term_meta_options() {
 		/**
 		 * 設定追加対象のタクソノミー
 		 */
-		$taxonomies = apply_filters(
-			'ys_add_term_meta_options_taxonomies',
+		$taxonomies = get_taxonomies(
 			[
-				'category',
-				'post_tag',
+				'public'  => true,
+				'show_ui' => true,
 			]
 		);
+		if ( $taxonomies ) {
+			$taxonomies = array_keys( $taxonomies );
+		}
+		$taxonomies = apply_filters( 'ys_add_term_meta_options_taxonomies', $taxonomies );
 
 		foreach ( $taxonomies as $tax ) {
 			add_action( "${tax}_edit_form_fields", [ $this, 'edit_form_fields' ], 10, 2 );
