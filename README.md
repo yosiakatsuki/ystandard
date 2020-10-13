@@ -29,6 +29,7 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 - [追加] カスタム投稿タイプ対応
     - template-parts/parts/post-taxonomy.php
     - template-parts/parts/recent-posts.php
+- [追加] 投稿ヘッダー・サイドバー条件書き換えフック追加
 - [修正] yStandardのお知らせ取得不具合修正
 
 ### v4.13.2
