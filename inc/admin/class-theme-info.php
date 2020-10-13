@@ -147,6 +147,7 @@ class Theme_Info {
 
 	/**
 	 * REST APIから取得
+	 *
 	 * @return array
 	 */
 	private function get_feed_from_rest() {
