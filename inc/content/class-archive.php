@@ -137,7 +137,7 @@ class Archive {
 			return '';
 		}
 
-		$taxonomy = apply_filters( 'ys_archive_detail_taxonomy', Utility::get_meta_taxonomy() );
+		$taxonomy = apply_filters( 'ys_archive_detail_taxonomy', self::get_archive_meta_taxonomy() );
 		$term     = get_the_terms( false, $taxonomy );
 		if ( is_wp_error( $term ) || empty( $term ) ) {
 			return '';
@@ -146,9 +146,41 @@ class Archive {
 		return sprintf(
 			'<div class="archive__category %s">%s%s</div>',
 			esc_attr( $taxonomy ) . '--' . esc_attr( $term[0]->slug ),
-			Icon::get_icon( 'folder' ),
+			Utility::get_taxonomy_icon( $taxonomy ),
 			esc_html( $term[0]->name )
 		);
+	}
+
+	/**
+	 * アーカイブ用タクソノミー情報取得
+	 *
+	 * @return bool|string
+	 */
+	public static function get_archive_meta_taxonomy() {
+		$taxonomy = false;
+
+		if ( is_tax() ) {
+			$taxonomy = get_query_var( 'taxonomy' );
+		}
+		if ( is_category() ) {
+			$taxonomy = 'category';
+		}
+		if ( is_tag() ) {
+			$taxonomy = 'post_tag';
+		}
+
+		if ( ! $taxonomy ) {
+			$taxonomies = get_the_taxonomies();
+			if ( ! $taxonomies ) {
+				return false;
+			}
+			$taxonomy = array_key_first( $taxonomies );
+			if ( 'post' === get_post_type( get_the_ID() ) ) {
+				$taxonomy = 'category';
+			}
+		}
+
+		return $taxonomy;
 	}
 
 	/**

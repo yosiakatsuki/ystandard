@@ -368,6 +368,7 @@ class Utility {
 		if ( ! $taxonomies ) {
 			return false;
 		}
+
 		$taxonomy = array_key_first( $taxonomies );
 
 		if ( 'post' === get_post_type( get_the_ID() ) ) {
@@ -375,6 +376,24 @@ class Utility {
 		}
 
 		return $taxonomy;
+	}
+
+	/**
+	 * ターム用アイコン
+	 *
+	 * @param string $taxonomy Taxonomy.
+	 *
+	 * @return string
+	 */
+	public static function get_taxonomy_icon( $taxonomy ) {
+		$icon_name = 'folder';
+		if ( ! is_taxonomy_hierarchical( $taxonomy ) ) {
+			$icon_name = 'tag';
+		}
+
+		$icon_name = apply_filters( "ys_get_taxonomy_icon_name_${taxonomy}", $icon_name );
+
+		return apply_filters( 'ys_get_taxonomy_icon', Icon::get_icon( $icon_name ) );
 	}
 
 
