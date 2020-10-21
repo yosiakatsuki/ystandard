@@ -68,10 +68,19 @@ class Paging {
 	 * @return bool
 	 */
 	private function is_active_paging() {
-		if ( ! is_single() ) {
+		if ( ! is_singular() ) {
 			return false;
 		}
-		if ( ! Option::get_option_by_bool( 'ys_show_post_paging', true ) ) {
+		$post_type = Content::get_post_type();
+		$filter    = apply_filters( "ys_show_${post_type}_paging", null );
+		if ( is_null( $filter ) ) {
+			$fallback = Content::get_fallback_post_type( $post_type );
+			$option   = Option::get_option_by_bool( "ys_show_${fallback}_paging", true );
+		} else {
+			$option = $filter;
+		}
+
+		if ( is_singular( $post_type ) && ! $option ) {
 			return false;
 		}
 		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_paging' ) ) ) {

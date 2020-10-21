@@ -96,9 +96,9 @@ class Template {
 	 */
 	public static function is_one_column() {
 
-		$pre = apply_filters( 'ys_is_one_column', null );
-		if ( ! is_null( $pre ) ) {
-			return $pre;
+		$filter = apply_filters( 'ys_is_one_column', null );
+		if ( ! is_null( $filter ) ) {
+			return $filter;
 		}
 		/**
 		 * ワンカラムテンプレート
@@ -121,21 +121,57 @@ class Template {
 		/**
 		 * 一覧系
 		 */
+		$post_type = Content::get_post_type();
+		// 投稿タイプ一覧.
+		$post_type_archive = apply_filters( "ys_${post_type}_archive_one_column", null );
+		if ( is_post_type_archive( $post_type ) && ! is_null( $post_type_archive ) ) {
+			return Utility::to_bool( $post_type_archive );
+		}
+		// タクソノミー一覧.
+		if ( is_tax() ) {
+			$taxonomy    = get_query_var( 'taxonomy' );
+			$tax_archive = apply_filters( "ys_${taxonomy}_taxonomy_archive_one_column", null );
+			if ( is_tax( $taxonomy ) && ! is_null( $tax_archive ) ) {
+				return Utility::to_bool( $tax_archive );
+			}
+		}
+		// カテゴリー一覧.
+		if ( is_category() ) {
+			$tax_archive = apply_filters( 'ys_category_taxonomy_archive_one_column', null );
+			if ( ! is_null( $tax_archive ) ) {
+				return Utility::to_bool( $tax_archive );
+			}
+		}
+		// タグ一覧.
+		if ( is_tag() ) {
+			$tax_archive = apply_filters( 'ys_post_tag_taxonomy_archive_one_column', null );
+			if ( ! is_null( $tax_archive ) ) {
+				return Utility::to_bool( $tax_archive );
+			}
+		}
+		// その他一覧.
 		if ( is_home() || is_archive() || is_search() || is_404() ) {
 			if ( '1col' === Option::get_option( 'ys_archive_layout', '2col' ) ) {
 				return true;
 			}
 		}
+
 		/**
-		 * 固定ページ
+		 * 投稿タイプ別
 		 */
-		if ( is_page() && '1col' === Option::get_option( 'ys_page_layout', '2col' ) ) {
-			return true;
+		$one_col = apply_filters( "ys_${post_type}_one_column", null );
+		if ( is_singular( $post_type ) && ! is_null( $one_col ) ) {
+			return Utility::to_bool( $one_col );
 		}
-		/**
-		 * 投稿
-		 */
-		if ( ( is_singular() && ! is_page() ) && '1col' === Option::get_option( 'ys_post_layout', '2col' ) ) {
+		$filter = apply_filters( "ys_${post_type}_layout", null );
+		if ( is_null( $filter ) ) {
+			$fallback = Content::get_fallback_post_type( $post_type );
+			$type     = Option::get_option( "ys_${fallback}_layout", '2col' );
+		} else {
+			$type = $filter;
+		}
+
+		if ( is_singular( $post_type ) && '1col' === $type ) {
 			return true;
 		}
 		/**

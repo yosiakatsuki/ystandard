@@ -359,6 +359,17 @@ function ys_get_sns_icon( $name, $title = '' ) {
 	return \ystandard\Icon::get_sns_icon( $name, $title );
 }
 
+/**
+ * タクソノミー表示用アイコン取得
+ *
+ * @param string $taxonomy name.
+ *
+ * @return string
+ */
+function ys_get_taxonomy_icon( $taxonomy = false ) {
+	return \ystandard\Utility::get_taxonomy_icon( $taxonomy );
+}
+
 /** *****************************************************************
  * テーマバージョン
  * *****************************************************************/

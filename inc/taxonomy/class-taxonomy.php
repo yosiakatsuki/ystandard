@@ -140,8 +140,9 @@ class Taxonomy {
 				];
 			}
 		}
+		$post_type = Content::get_post_type();
 
-		return $data;
+		return apply_filters( "ys_get_${post_type}_taxonomies", $data );
 	}
 
 
@@ -175,12 +176,10 @@ class Taxonomy {
 	 * @return bool;
 	 */
 	private function is_active_post_taxonomy() {
-		$result = Option::get_option_by_bool( 'ys_show_post_category', true );
-		if ( ! is_single() ) {
-			$result = false;
-		}
+		$post_type = Content::get_post_type();
+		$result    = Option::get_option_by_bool( "ys_show_${post_type}_category", true );
 
-		return apply_filters( 'ys_is_active_post_taxonomy', $result );
+		return apply_filters( "ys_is_active_${post_type}_taxonomy", $result );
 	}
 
 

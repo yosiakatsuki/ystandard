@@ -19,7 +19,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 		<?php while ( $posts_query->have_posts() ) : ?>
 			<?php
 			$posts_query->the_post();
-			$term = ys_get_the_term_data();
+			$term = ys_get_the_term_data( $recent_posts['taxonomy'] );
 			?>
 			<li class="ys-posts__item">
 				<div class="ys-posts__content">
@@ -30,8 +30,6 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 									<figure class="ratio__image">
 										<?php
 										if ( has_post_thumbnail() ) {
-
-
 											the_post_thumbnail(
 												$recent_posts['thumbnail_size'],
 												[ 'class' => 'ys-posts__image' ]
@@ -60,7 +58,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 								<?php endif; ?>
 								<?php if ( $term && $recent_posts['show_category'] ) : ?>
 									<span class="ys-posts__cat category--<?php echo esc_attr( $term['slug'] ); ?>">
-										<?php echo ys_get_icon( 'folder' ); ?>
+										<?php echo ys_get_taxonomy_icon( $recent_posts['taxonomy'] ); ?>
 										<?php echo $term['name']; ?>
 									</span>
 								<?php endif; ?>

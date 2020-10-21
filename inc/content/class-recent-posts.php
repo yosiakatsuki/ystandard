@@ -140,7 +140,7 @@ class Recent_Posts {
 		 * パラメーターのセット
 		 */
 		$this->set_base_args();
-		$this->set_filter_category();
+		$this->set_filter_taxonomy();
 		$this->set_filter_remove_same_post();
 		$this->set_filter_sga();
 		$this->set_taxonomy();
@@ -219,6 +219,7 @@ class Recent_Posts {
 		}
 		$param['thumbnail_size']  = $atts['thumbnail_size'];
 		$param['thumbnail_ratio'] = $atts['thumbnail_ratio'];
+		$param['taxonomy']        = empty( $atts['taxonomy'] ) ? false : $atts['taxonomy'];
 
 		return $param;
 	}
@@ -404,7 +405,7 @@ class Recent_Posts {
 	/**
 	 * フィルター:カテゴリー
 	 */
-	private function set_filter_category() {
+	private function set_filter_taxonomy() {
 		$filter = $this->shortcode_atts['filter'];
 		// 後方互換.
 		if ( false !== strpos( $filter, 'category' ) ) {
@@ -423,13 +424,14 @@ class Recent_Posts {
 		}
 		$term_ids = $this->get_the_term_ids( $taxonomy );
 		// tax_queryセット.
-		$this->query_args['tax_query'] = [
+		$this->query_args['tax_query']    = [
 			[
 				'taxonomy' => $taxonomy,
 				'field'    => 'term_id',
 				'terms'    => $term_ids,
 			],
 		];
+		$this->shortcode_atts['taxonomy'] = $taxonomy;
 	}
 
 	/**
