@@ -140,15 +140,17 @@ class Author {
 				return false;
 			}
 			/**
-			 * 投稿ページ
+			 * 投稿タイプ別設定
 			 */
-			if ( is_single() && ! Option::get_option_by_bool( 'ys_show_post_author', true ) ) {
-				return false;
+			$post_type = Content::get_post_type();
+			$filter    = apply_filters( "ys_show_${post_type}_author", null );
+			if ( is_null( $filter ) ) {
+				$fallback = Content::get_fallback_post_type( $post_type );
+				$option   = Option::get_option_by_bool( "ys_show_${fallback}_author", true );
+			} else {
+				$option = $filter;
 			}
-			/**
-			 * 固定ページ
-			 */
-			if ( is_page() && ! Option::get_option_by_bool( 'ys_show_page_author', true ) ) {
+			if ( is_singular( $post_type ) && ! $option ) {
 				return false;
 			}
 		}

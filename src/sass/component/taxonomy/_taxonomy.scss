@@ -3,11 +3,18 @@
   display: flex;
   align-items: flex-start;
   font-size: 0.9em;
+
+  &.is-category,
+  &.is-post_tag {
+	.post-taxonomy__title {
+	  min-width: 6.5em;
+	}
+  }
 }
 
 .post-taxonomy__title {
   position: relative;
-  min-width: 6.5em;
+
   margin: 0;
   padding-right: 1.5em;
   font-weight: $font__weight_bold;
@@ -18,7 +25,9 @@
 	top: 0;
 	right: 0.5em;
   }
+
 }
+
 
 .post-taxonomy__items {
   display: flex;

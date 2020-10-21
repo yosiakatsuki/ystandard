@@ -105,6 +105,11 @@ class Share_Button {
 	 * @return bool
 	 */
 	private function is_active_share_buttons() {
+		$post_type = Content::get_post_type();
+		$filter    = apply_filters( "ys_${post_type}_active_share_buttons", null );
+		if ( ! is_null( $filter ) ) {
+			return Utility::to_bool( $filter );
+		}
 		if ( is_singular() ) {
 			return ! Utility::to_bool( Content::get_post_meta( 'ys_hide_share' ) );
 		}
@@ -142,8 +147,15 @@ class Share_Button {
 	 * @return array
 	 */
 	private function get_share_button_settings( $position, $default ) {
+
+		$post_type = Content::get_post_type();
+		$type      = apply_filters(
+			"ys_${post_type}_share_button_type_${position}",
+			Option::get_option( "ys_share_button_type_${position}", $default )
+		);
+
 		$settings = [
-			'type'       => Option::get_option( "ys_share_button_type_${position}", $default ),
+			'type'       => $type,
 			'use-option' => true,
 		];
 
