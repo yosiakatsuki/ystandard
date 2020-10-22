@@ -137,7 +137,7 @@ class Archive {
 			return '';
 		}
 
-		$taxonomy = apply_filters( 'ys_archive_detail_taxonomy', self::get_archive_meta_taxonomy() );
+		$taxonomy = self::get_archive_meta_taxonomy();
 		$term     = get_the_terms( false, $taxonomy );
 		if ( is_wp_error( $term ) || empty( $term ) ) {
 			return '';
@@ -174,10 +174,12 @@ class Archive {
 			if ( ! $taxonomies ) {
 				return false;
 			}
-			$taxonomy = array_key_first( $taxonomies );
-			if ( 'post' === get_post_type( get_the_ID() ) ) {
+			$taxonomy  = array_key_first( $taxonomies );
+			$post_type = Content::get_post_type();
+			if ( 'post' === $post_type ) {
 				$taxonomy = 'category';
 			}
+			$taxonomy = apply_filters( "ys_get_${post_type}_archive_taxonomy", $taxonomy );
 		}
 
 		return $taxonomy;
