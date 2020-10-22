@@ -71,6 +71,9 @@ class Paging {
 		if ( ! is_singular() ) {
 			return false;
 		}
+		if ( is_page() ) {
+			return false;
+		}
 		$post_type = Content::get_post_type();
 		$filter    = apply_filters( "ys_show_${post_type}_paging", null );
 		if ( is_null( $filter ) ) {
