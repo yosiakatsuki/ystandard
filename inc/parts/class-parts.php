@@ -261,7 +261,7 @@ class Parts {
 	 */
 	public function set_order( $query ) {
 		if ( is_admin() ) {
-			if ( self::POST_TYPE === $query->query['post_type'] ) {
+			if ( isset( $query->query['post_type'] ) && self::POST_TYPE === $query->query['post_type'] ) {
 				$query->set( 'orderby', 'date' );
 				$query->set( 'order', 'DESC' );
 			}
