@@ -41,6 +41,7 @@ class Parts {
 	public function register() {
 		$post_type = self::POST_TYPE;
 		add_action( 'init', [ $this, 'register_post_type' ], 9 );
+		add_filter( 'pre_get_posts', [ $this, 'set_order' ] );
 		add_action( "add_meta_boxes_${post_type}", [ $this, 'add_meta_box' ] );
 		add_filter( "manage_${post_type}_posts_columns", [ $this, 'add_columns_head' ] );
 		add_action( "manage_${post_type}_posts_custom_column", [ $this, 'add_custom_column' ], 10, 2 );
@@ -252,6 +253,19 @@ class Parts {
 			<div class="meta-box__dscr">投稿・固定ページやウィジェットに表示するためのショートコード</div>
 		</div>
 		<?php
+	}
+
+
+	/**
+	 * @param \WP_Query $query query.
+	 */
+	public function set_order( $query ) {
+		if ( is_admin() ) {
+			if ( self::POST_TYPE === $query->query['post_type'] ) {
+				$query->set( 'orderby', 'date' );
+				$query->set( 'order', 'DESC' );
+			}
+		}
 	}
 
 	/**
