@@ -257,6 +257,8 @@ class Parts {
 
 
 	/**
+	 * 管理画面並び替え
+	 *
 	 * @param \WP_Query $query query.
 	 */
 	public function set_order( $query ) {
