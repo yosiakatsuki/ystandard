@@ -365,7 +365,7 @@ class Advertisement {
 			[
 				'section'     => 'ys_ads_common',
 				'title'       => '広告共通設定',
-				'description' => Admin::manual_link( 'advertisement' ),
+				'description' => Admin::manual_link( 'manual/advertisement' ),
 			]
 		);
 		/**
@@ -386,7 +386,7 @@ class Advertisement {
 			[
 				'section'     => 'ys_customizer_section_ads_pc',
 				'title'       => 'PC広告設定',
-				'description' => Admin::manual_link( 'advertisement' ),
+				'description' => Admin::manual_link( 'manual/advertisement' ),
 			]
 		);
 		/**
@@ -457,7 +457,7 @@ class Advertisement {
 			[
 				'section'     => 'ys_customizer_section_ads_sp',
 				'title'       => 'モバイル広告設定',
-				'description' => Admin::manual_link( 'advertisement' ),
+				'description' => Admin::manual_link( 'manual/advertisement' ),
 			]
 		);
 		/**
@@ -517,7 +517,7 @@ class Advertisement {
 			[
 				'section'     => 'ys_customizer_section_infeed',
 				'title'       => 'インフィード広告設定',
-				'description' => Admin::manual_link( 'advertisement' ),
+				'description' => Admin::manual_link( 'manual/advertisement' ),
 			]
 		);
 		/**
