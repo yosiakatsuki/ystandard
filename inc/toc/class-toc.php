@@ -101,7 +101,7 @@ class TOC {
 	 * アクション・フィルターの登録
 	 */
 	public function register() {
-		add_filter( 'the_content', [ $this, '_the_content' ] );
+		add_filter( 'the_content', [ $this, 'create_toc' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		if ( ! shortcode_exists( self::SHORTCODE ) ) {
 			add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
@@ -143,7 +143,7 @@ class TOC {
 		}
 		$this->toc_title = $atts['title'];
 
-		$content = $this->_the_content( $content );
+		$content = $this->create_toc( $content );
 
 		return $this->toc_html;
 	}
@@ -155,7 +155,7 @@ class TOC {
 	 *
 	 * @return string
 	 */
-	public function _the_content( $content ) {
+	public function create_toc( $content ) {
 		/**
 		 * Post.
 		 *
@@ -163,6 +163,12 @@ class TOC {
 		 */
 		global $post;
 		if ( ! is_singular() ) {
+			return $content;
+		}
+		if ( is_singular( Parts::POST_TYPE ) ) {
+			return $content;
+		}
+		if ( ! apply_filters( 'ys_create_toc', true ) ) {
 			return $content;
 		}
 		// 投稿タイプ.

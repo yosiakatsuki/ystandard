@@ -106,27 +106,17 @@ class Parts {
 		if ( ! $post ) {
 			return '';
 		}
-		$filter  = apply_filters(
-			'ys_parts_filters',
-			[
-				'do_blocks',
-				'wptexturize',
-				'shortcode_unautop',
-				'prepend_attachment',
-				'wp_filter_content_tags',
-				'wpautop',
-				'capital_P_dangit',
-				'do_shortcode',
-				'convert_smilies',
-			]
-		);
-		$content = $post->post_content;
-		foreach ( $filter as $function ) {
-			if ( function_exists( $function ) ) {
-				$content = call_user_func( $function, $content );
-			}
-		}
+		// TOC処理のキャンセル.
+		$temp = apply_filters( 'ys_create_toc', true );
+		add_filter( 'ys_create_toc', '__return_false' );
+		// コンテンツ展開.
+		do_action( 'ys_parts_content_before' );
+		$content = apply_filters( 'the_content', $post->post_content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
+		do_action( 'ys_parts_content_after' );
+		// TOC処理戻し.
+		$filter = true === $temp ? '__return_true' : '__return_false';
+		add_filter( 'ys_create_toc', $filter );
 
 		return sprintf( $wrap, $content );
 	}
