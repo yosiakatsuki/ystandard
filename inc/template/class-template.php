@@ -194,6 +194,13 @@ class Template {
 		if ( self::is_no_title_template() ) {
 			$result = false;
 		}
+		if ( is_singular() ) {
+			$post_type = Content::get_post_type();
+			$result    = apply_filters(
+				"ys_is_active_post_header_${post_type}",
+				$result
+			);
+		}
 
 		return apply_filters( 'ys_is_active_post_header', $result );
 	}
