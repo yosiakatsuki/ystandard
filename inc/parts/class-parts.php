@@ -108,6 +108,7 @@ class Parts {
 		}
 		// TOC処理のキャンセル.
 		$temp = apply_filters( 'ys_create_toc', true );
+		remove_all_filters( 'ys_create_toc' );
 		add_filter( 'ys_create_toc', '__return_false' );
 		// コンテンツ展開.
 		do_action( 'ys_parts_content_before' );

@@ -52,6 +52,7 @@ class YS_Widget_Parts extends WP_Widget {
 	private $default_instance = [
 		'parts_id'          => 0,
 		'use_entry_content' => true,
+		'title'             => '',
 	];
 
 	/**
@@ -133,6 +134,8 @@ class YS_Widget_Parts extends WP_Widget {
 					'selected'          => $instance['parts_id'],
 					'post_type'         => 'ys-parts',
 					'post_status'       => 'publish',
+					'sort_column'       => 'post_date',
+					'sort_order'        => 'DESC',
 				]
 			);
 			if ( $html ) {
