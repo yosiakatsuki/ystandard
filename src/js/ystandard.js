@@ -66,4 +66,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			} );
 		} );
 	}
+	// スクロールバー分.
+	const scrollbar = window.innerWidth - document.body.clientWidth;
+	if ( getComputedStyle( document.documentElement ).getPropertyValue( '--scrollbar-width' ) ) {
+		document.querySelector( ':root' ).style.setProperty( '--scrollbar-width', scrollbar + 'px' );
+	}
 } );
