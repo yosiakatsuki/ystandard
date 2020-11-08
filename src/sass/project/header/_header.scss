@@ -44,10 +44,9 @@
 	  color: var(--header-text);
 	  text-decoration: none;
 	}
-
-	.custom-logo {
-	  display: block;
-	}
+  }
+  .custom-logo {
+	display: block;
   }
 
   .site-description {
@@ -86,6 +85,10 @@
 
 	@include media-breakpoint(md) {
 	  padding-bottom: .5em;
+	}
+	.custom-logo {
+	  margin-right: auto;
+	  margin-left: auto;
 	}
   }
 
