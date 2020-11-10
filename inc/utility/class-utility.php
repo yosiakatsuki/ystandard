@@ -163,11 +163,16 @@ class Utility {
 	 */
 	public static function init_filesystem() {
 		global $wp_filesystem;
-		if ( empty( $wp_filesystem ) ) {
-			require_once ABSPATH . '/wp-admin/includes/file.php';
+		if ( ! empty( $wp_filesystem ) ) {
+			return true;
+		}
+		$creds = false;
+		require_once ABSPATH . '/wp-admin/includes/file.php';
+		if ( defined( 'FTP_PASS' ) || is_admin() ) {
+			$creds = request_filesystem_credentials( '', '', false, false, null );
 		}
 
-		return WP_Filesystem();
+		return WP_Filesystem( $creds );
 	}
 
 	/**
