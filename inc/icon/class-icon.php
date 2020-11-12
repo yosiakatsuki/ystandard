@@ -86,7 +86,7 @@ class Icon {
 			}
 			$icon = Utility::file_get_contents( $path );
 			if ( ! empty( $icon ) ) {
-
+				self::add_icon_cache( $name, $icon );
 			}
 		}
 
@@ -160,16 +160,19 @@ class Icon {
 		if ( isset( $all_icons['sns'] ) && ! empty( $all_icons['sns'] ) ) {
 			return $all_icons['sns'];
 		}
-
-		$path  = get_template_directory() . '/library/simple-icons/brand-icons.json';
-		$json  = Utility::file_get_contents( $path );
-		$data  = json_decode( $json, true );
 		$icons = [];
-		foreach ( $data['data'] as $key => $value ) {
-			$icons[ $key ] = $value;
-		}
-		if ( ! empty( $icons ) ) {
-			self::add_sns_icon_cache( $icons );
+
+		// サーバー上のファイルから取得.
+		$path = get_template_directory() . '/library/simple-icons/brand-icons.json';
+		$json = Utility::file_get_contents( $path );
+		if ( ! empty( $json ) ) {
+			$data = json_decode( $json, true );
+			foreach ( $data['data'] as $key => $value ) {
+				$icons[ $key ] = $value;
+			}
+			if ( ! empty( $icons ) ) {
+				self::add_sns_icon_cache( $icons );
+			}
 		}
 
 		return $icons;
@@ -198,6 +201,7 @@ class Icon {
 		if ( empty( $icons ) ) {
 			return true;
 		}
+
 		if ( ! isset( $icons['icon'] ) && ! isset( $icons['sns'] ) ) {
 			return true;
 		}
@@ -211,7 +215,7 @@ class Icon {
 			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 	/**
@@ -267,8 +271,11 @@ class Icon {
 		}
 
 		$icons = self::get_all_sns_icons();
+		if ( isset( $icons[ $name ] ) ) {
+			return $icons[ $name ];
+		}
 
-		return $icons[ $name ];
+		return false;
 	}
 
 	/**
@@ -279,10 +286,17 @@ class Icon {
 	 */
 	public static function add_icon_cache( $name, $icon ) {
 		$icons_cache = self::get_all_icons_cache();
+
+		if ( self::is_empty_icons( $icons_cache ) ) {
+			$icons_cache = self::get_icon_cache_schema();
+		}
+
 		if ( ! isset( $icons_cache['icon'] ) ) {
 			$icons_cache['icon'] = [];
 		}
 		$icons_cache['icon'][ $name ] = $icon;
+		$icons_cache                  = apply_filters( 'ys_set_icon_cache', $icons_cache );
+		Cache::delete_cache( self::CACHE_KEY, [] );
 		Cache::set_cache( self::CACHE_KEY, $icons_cache, [], 30, true );
 	}
 
@@ -292,8 +306,13 @@ class Icon {
 	 * @param array $icons icons.
 	 */
 	public static function add_sns_icon_cache( $icons ) {
-		$icons_cache        = self::get_all_icons_cache();
+		$icons_cache = self::get_all_icons_cache();
+		if ( self::is_empty_icons( $icons_cache ) ) {
+			$icons_cache = self::get_icon_cache_schema();
+		}
 		$icons_cache['sns'] = $icons;
+		$icons_cache        = apply_filters( 'ys_set_sns_icon_cache', $icons_cache );
+		Cache::delete_cache( self::CACHE_KEY, [] );
 		Cache::set_cache( self::CACHE_KEY, $icons_cache, [], 30, true );
 	}
 }
