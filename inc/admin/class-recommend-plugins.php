@@ -20,6 +20,9 @@ class Recommend_Plugins {
 	 * Recommend_Plugins constructor.
 	 */
 	public function __construct() {
+		if ( apply_filters( 'ys_disable_recommend_plugins', false ) ) {
+			return;
+		}
 		require_once get_template_directory() . '/library/TGM-Plugin-Activation/class-tgm-plugin-activation.php';
 		add_action( 'tgmpa_register', [ $this, 'tgmpa_register' ] );
 		Notice::set_notice( [ $this, 'notice' ] );
