@@ -21,8 +21,8 @@ before_install:
 - mv .travis/github_deploy_key ~/.ssh/id_rsa
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- nvm install 8
-- nvm use 8
+- nvm install 12
+- nvm use 12
 - node --version
 node_js:
   - 'stable'
@@ -50,12 +50,12 @@ before_script:
 - |
   if [[ ! -z "$WP_VERSION" ]] ; then
     bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
-    composer global require "phpunit/phpunit=5.7.*|7.*"
+    composer global require "phpunit/phpunit=4.8.*|5.7.*|6.*.*|7.*.*"
   fi
 - |
   if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
-    composer global require "squizlabs/php_codesniffer=*"
-    composer global require wp-coding-standards/wpcs
+    composer require "squizlabs/php_codesniffer=*"
+    composer require wp-coding-standards/wpcs
     phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
   fi
 script:
