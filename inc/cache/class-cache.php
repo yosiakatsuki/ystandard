@@ -133,10 +133,11 @@ class Cache {
 	 * @param mixed  $obj        キャッシュするオブジェクト.
 	 * @param array  $args       オプション.
 	 * @param mixed  $expiration キャッシュ作成する日数.
+	 * @param bool   $force      強制的に作成するか.
 	 *
 	 * @return bool
 	 */
-	public static function set_cache( $key, $obj, $args, $expiration ) {
+	public static function set_cache( $key, $obj, $args, $expiration, $force = false ) {
 		if ( ! is_numeric( $expiration ) ) {
 			return false;
 		}
@@ -144,7 +145,10 @@ class Cache {
 		if ( ! self::can_use_cache() ) {
 			self::delete_cache( $key, $args );
 
-			return false;
+			// 強制的にキャッシュ作成する場合は抜けない.
+			if ( false === $force ) {
+				return false;
+			}
 		}
 		/**
 		 * キャッシュキー、有効期限を作成
