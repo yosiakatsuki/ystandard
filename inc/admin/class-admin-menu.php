@@ -335,6 +335,12 @@ class Admin_Menu {
 							<td><?php echo $this->get_cache_count( Blog_Card::CACHE_KEY ); ?></td>
 							<td><input type="submit" name="delete[<?php echo Blog_Card::CACHE_KEY; ?>]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
 						</tr>
+
+						<tr>
+							<th>アイコン</th>
+							<td><?php echo $this->get_cache_count( Icon::CACHE_KEY ); ?></td>
+							<td><input type="submit" name="delete[<?php echo Icon::CACHE_KEY; ?>]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
+						</tr>
 						<?php do_action( 'ys_option_cache_table_row' ); ?>
 						</tbody>
 					</table>

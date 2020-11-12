@@ -166,10 +166,13 @@ class Utility {
 		if ( ! empty( $wp_filesystem ) ) {
 			return true;
 		}
-		$creds = false;
+		$creds = apply_filters( 'ys_filesystem_credentials', false );
 		require_once ABSPATH . '/wp-admin/includes/file.php';
-		if ( defined( 'FTP_PASS' ) || is_admin() ) {
-			$creds = request_filesystem_credentials( '', '', false, false, null );
+		// 認証情報のチェック.
+		if ( false === $creds ) {
+			if ( ( defined( 'FTP_HOST' ) && defined( 'FTP_USER' ) && defined( 'FTP_PASS' ) ) || is_admin() ) {
+				$creds = request_filesystem_credentials( '', '', false, false, null );
+			}
 		}
 
 		return WP_Filesystem( $creds );
