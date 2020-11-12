@@ -37,4 +37,22 @@ body.no-title {
 	  margin-bottom: 4em;
 	}
   }
+
+  &.has-background {
+	.content__main {
+	  padding: 0;
+	}
+
+	&.home {
+	  .site-content {
+		margin-top: 0;
+		margin-bottom: 0;
+
+		@include media-breakpoint(sm) {
+		  margin-top: 0;
+		  margin-bottom: 0;
+		}
+	  }
+	}
+  }
 }
