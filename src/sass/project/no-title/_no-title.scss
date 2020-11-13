@@ -40,7 +40,9 @@ body.no-title {
 
   &.has-background {
 	.content__main {
-	  padding: 0;
+	  @include media-breakpoint(sm) {
+		padding: 0;
+	  }
 	}
 
 	&.home {
