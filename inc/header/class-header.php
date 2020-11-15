@@ -366,7 +366,7 @@ class Header {
 
 		$customizer->set_section_description(
 			'title_tagline',
-			'サイトロゴやキャッチフレーズの設定' . Admin::manual_link( 'basic-setting' )
+			'サイトロゴやキャッチフレーズの設定' . Admin::manual_link( 'manual/basic-settings' )
 		);
 
 		$customizer->set_refresh( 'custom_logo' );
