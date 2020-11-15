@@ -51,7 +51,7 @@ class Site_Background {
 			[
 				'section'     => 'ys_site_background',
 				'title'       => 'サイト背景',
-				'description' => Admin::manual_link( 'site-background' ),
+				'description' => Admin::manual_link( 'manual/site-background' ),
 				'priority'    => 20,
 				'panel'       => Design::PANEL_NAME,
 			]

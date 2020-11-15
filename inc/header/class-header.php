@@ -526,7 +526,7 @@ class Header {
 			[
 				'section'     => 'ys_customizer_section_header_design',
 				'title'       => 'サイトヘッダー',
-				'description' => 'サイトヘッダー部分のデザイン設定' . Admin::manual_link( 'site-header' ),
+				'description' => 'サイトヘッダー部分のデザイン設定' . Admin::manual_link( 'manual/site-header' ),
 				'priority'    => 50,
 				'panel'       => Design::PANEL_NAME,
 			]
@@ -697,7 +697,7 @@ class Header {
 			[
 				'section'     => 'ys_mobile_design',
 				'title'       => 'モバイル（メニュー・サイドバー）',
-				'description' => 'モバイルページのメニュー設定・サイドバー表示設定' . Admin::manual_link( 'mobile-page' ),
+				'description' => 'モバイルページのメニュー設定・サイドバー表示設定' . Admin::manual_link( 'manual/mobile-page' ),
 				'priority'    => 51,
 				'panel'       => Design::PANEL_NAME,
 			]

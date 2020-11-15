@@ -45,7 +45,7 @@ class Admin {
 	 */
 	public function menu_manual() {
 		global $pagenow;
-		$manual = self::manual_link( 'category/manual/menu' );
+		$manual = self::manual_link( 'manual_category/menu' );
 		if ( 'nav-menus.php' === $pagenow && ! empty( $manual ) ) {
 			Notice::manual( '<p>' . $manual . '</p>' );
 		}
