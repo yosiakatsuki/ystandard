@@ -118,7 +118,7 @@ jobs:
         uses: 8398a7/action-slack@v3.8.0
         with:
           status: ${{ job.status }}
-          author_name: "開発バージョンのアップデート準備が完成したよ！"
+          author_name: 開発バージョンのアップデート準備が完成したよ！
           fields: repo,message,author
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
