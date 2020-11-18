@@ -117,6 +117,8 @@ function copyProductionFiles() {
 			'!gulpfile.js',
 			'!package.json',
 			'!package-lock.json',
+			'!composer.json',
+			'!composer.lock',
 			'!phpcs.ruleset.xml',
 			'!phpunit.xml.dist',
 			'!webpack.config.js',
