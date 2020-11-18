@@ -39,6 +39,7 @@ class Share_Button {
 		'line'                 => true,
 		'twitter_via_user'     => '',
 		'twitter_related_user' => '',
+		'twitter_hash_tags'    => '',
 		'use-option'           => false,
 		'before'               => '',
 		'after'                => '',
@@ -396,14 +397,16 @@ class Share_Button {
 			if ( ! $this->is_active_button( 'twitter' ) ) {
 				return;
 			}
-			$via     = Option::get_option( 'ys_sns_share_tweet_via_account', '' );
-			$related = Option::get_option( 'ys_sns_share_tweet_related_account', '' );
+			$via       = Option::get_option( 'ys_sns_share_tweet_via_account', '' );
+			$related   = Option::get_option( 'ys_sns_share_tweet_related_account', '' );
+			$hash_tags = '';
 		} else {
 			if ( ! $this->shortcode_atts['twitter'] ) {
 				return;
 			}
-			$via     = $this->shortcode_atts['twitter_via_user'];
-			$related = $this->shortcode_atts['twitter_related_user'];
+			$via       = $this->shortcode_atts['twitter_via_user'];
+			$related   = $this->shortcode_atts['twitter_related_user'];
+			$hash_tags = $this->shortcode_atts['twitter_hash_tags'];
 		}
 		// オフィシャル用.
 		$this->data['official']['twitter-via']     = $via;
@@ -412,13 +415,15 @@ class Share_Button {
 		$via = empty( $via ) ? '' : "&via=${via}";
 		// related.
 		$related = empty( $related ) ? '' : "&related=${related}";
+		// hash tags.
+		$hash_tags = empty( $hash_tags ) ? '' : "&hashtags=${hash_tags}";
 		// Title,Url.
 		$title = $this->share_title;
 		$url   = $this->share_url;
 		/**
 		 * URL作成
 		 */
-		$this->data['sns']['twitter'] = "https://twitter.com/share?text=${title}&url=${url}${via}${related}";
+		$this->data['sns']['twitter'] = "https://twitter.com/share?text=${title}&url=${url}${via}${related}${hash_tags}";
 	}
 
 	/**
