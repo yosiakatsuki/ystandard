@@ -24,9 +24,12 @@ jobs:
           ref: 'develop-v4'
 
       - name: Setup PHP
-        uses: nanasess/setup-php@master
-        with:
-          php-version: ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+          with:
+            php-version: ${{ matrix.php }}
+            extensions: mbstring, intl
+            ini-values: post_max_size=256M, short_open_tag=On
+            coverage: xdebug
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -63,9 +66,12 @@ jobs:
           ref: 'develop-v4'
 
       - name: Setup PHP
-        uses: nanasess/setup-php@master
-        with:
-          php-version: 7.3
+        uses: shivammathur/setup-php@v2
+          with:
+            php-version: 7.3
+            extensions: mbstring, intl
+            ini-values: post_max_size=256M, short_open_tag=On
+            coverage: xdebug
 
       - name: Check PHP Version
         run: php -v
@@ -118,7 +124,7 @@ jobs:
         uses: 8398a7/action-slack@v3.8.0
         with:
           status: ${{ job.status }}
-          author_name: Release development version
+          author_name: "開発バージョンのアップデート準備OKだよ！"
           fields: repo,message,author
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
