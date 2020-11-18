@@ -10,8 +10,16 @@
  */
 class NoindexTest extends WP_UnitTestCase {
 
+	/**
+	 * 変数
+	 *
+	 * @var \ystandard\No_Index
+	 */
 	public $noindex;
 
+	/**
+	 * NoindexTest constructor.
+	 */
 	public function __construct() {
 		parent::__construct();
 		$this->noindex = new \ystandard\No_Index();
@@ -45,10 +53,12 @@ class NoindexTest extends WP_UnitTestCase {
 	 * 投稿ページのnoindex
 	 */
 	public function test_post_noindex() {
-		$post_id = self::factory()->post->create( [
-			'post_type'    => 'post',
-			'post_content' => 'あいうえお',
-		] );
+		$post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_content' => 'あいうえお',
+			]
+		);
 		$this->go_to( get_permalink( $post_id ) );
 
 		$this->assertFalse( $this->noindex->is_noindex() );
@@ -73,10 +83,12 @@ class NoindexTest extends WP_UnitTestCase {
 	 * 固定ページnoindex(false)
 	 */
 	function test_page_noindex() {
-		$post_id = self::factory()->post->create( [
-			'post_type'    => 'post',
-			'post_content' => 'あいうえお',
-		] );
+		$post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_content' => 'あいうえお',
+			]
+		);
 		$this->go_to( get_permalink( $post_id ) );
 
 		$this->assertFalse( $this->noindex->is_noindex() );
@@ -86,10 +98,12 @@ class NoindexTest extends WP_UnitTestCase {
 	 * 固定ページnoindex(true)
 	 */
 	function test_page_disable_noindex() {
-		$post_id = self::factory()->post->create( [
-			'post_type'    => 'post',
-			'post_content' => 'あいうえお',
-		] );
+		$post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_content' => 'あいうえお',
+			]
+		);
 		update_post_meta( $post_id, 'ys_noindex', '1' );
 		$this->go_to( get_permalink( $post_id ) );
 
@@ -100,10 +114,12 @@ class NoindexTest extends WP_UnitTestCase {
 	 * 404ページのnoindex
 	 */
 	function test_404_noindex() {
-		$post_id = $this->factory->post->create( [
-			'post_type'    => 'post',
-			'post_content' => 'あいうえお',
-		] );
+		$post_id = $this->factory->post->create(
+			[
+				'post_type'    => 'post',
+				'post_content' => 'あいうえお',
+			]
+		);
 		$this->go_to( "/?p=${post_id}1234567890" );
 		$this->assertTrue( $this->noindex->is_noindex() );
 	}
@@ -114,11 +130,13 @@ class NoindexTest extends WP_UnitTestCase {
 	function test_category_noindex() {
 		update_option( 'ys_archive_noindex_category', '1' );
 		$cat_id  = $this->factory->category->create( [ 'name' => 'Foo' ] );
-		$post_id = $this->factory->post->create( [
-			'post_type'     => 'post',
-			'post_content'  => 'あいうえお',
-			'post_category' => [ $cat_id ],
-		] );
+		$post_id = $this->factory->post->create(
+			[
+				'post_type'     => 'post',
+				'post_content'  => 'あいうえお',
+				'post_category' => [ $cat_id ],
+			]
+		);
 		$this->go_to( get_category_link( $cat_id ) );
 		$this->assertTrue( $this->noindex->is_noindex() );
 	}
@@ -129,11 +147,13 @@ class NoindexTest extends WP_UnitTestCase {
 	function test_category_disable_noindex() {
 		update_option( 'ys_archive_noindex_category', '0' );
 		$cat_id  = $this->factory->category->create( [ 'name' => 'Foo' ] );
-		$post_id = $this->factory->post->create( [
-			'post_type'     => 'post',
-			'post_content'  => 'あいうえお',
-			'post_category' => [ $cat_id ],
-		] );
+		$post_id = $this->factory->post->create(
+			[
+				'post_type'     => 'post',
+				'post_content'  => 'あいうえお',
+				'post_category' => [ $cat_id ],
+			]
+		);
 		$this->go_to( get_category_link( $cat_id ) );
 		$this->assertFalse( $this->noindex->is_noindex() );
 	}
@@ -149,11 +169,13 @@ class NoindexTest extends WP_UnitTestCase {
 				'taxonomy' => 'post_tag',
 			]
 		);
-		$post_id = $this->factory->post->create( [
-			'post_type'    => 'post',
-			'post_content' => 'あいうえお',
-			'tags_input'   => [ $term_id ],
-		] );
+		$post_id = $this->factory->post->create(
+			[
+				'post_type'    => 'post',
+				'post_content' => 'あいうえお',
+				'tags_input'   => [ $term_id ],
+			]
+		);
 		$this->go_to( get_term_link( $term_id, 'post_tag' ) );
 		$this->assertTrue( $this->noindex->is_noindex() );
 	}
@@ -169,11 +191,13 @@ class NoindexTest extends WP_UnitTestCase {
 				'taxonomy' => 'post_tag',
 			]
 		);
-		$post_id = $this->factory->post->create( [
-			'post_type'    => 'post',
-			'post_content' => 'あいうえお',
-			'tags_input'   => [ $term_id ],
-		] );
+		$post_id = $this->factory->post->create(
+			[
+				'post_type'    => 'post',
+				'post_content' => 'あいうえお',
+				'tags_input'   => [ $term_id ],
+			]
+		);
 		$this->go_to( get_term_link( $term_id, 'post_tag' ) );
 		$this->assertFalse( $this->noindex->is_noindex() );
 	}
@@ -190,11 +214,13 @@ class NoindexTest extends WP_UnitTestCase {
 			]
 		);
 		for ( $i = 0; $i < 5; $i ++ ) {
-			$post_id = $this->factory->post->create( [
-				'post_type'    => 'post',
-				'post_content' => 'あいうえお',
-				'tags_input'   => [ $term_id ],
-			] );
+			$post_id = $this->factory->post->create(
+				[
+					'post_type'    => 'post',
+					'post_content' => 'あいうえお',
+					'tags_input'   => [ $term_id ],
+				]
+			);
 		}
 		update_option( 'posts_per_page', 1 );
 		$this->go_to( home_url( '/' ) );
@@ -217,11 +243,13 @@ class NoindexTest extends WP_UnitTestCase {
 			]
 		);
 		for ( $i = 0; $i < 5; $i ++ ) {
-			$post_id = $this->factory->post->create( [
-				'post_type'    => 'post',
-				'post_content' => 'あいうえお',
-				'tags_input'   => [ $term_id ],
-			] );
+			$post_id = $this->factory->post->create(
+				[
+					'post_type'    => 'post',
+					'post_content' => 'あいうえお',
+					'tags_input'   => [ $term_id ],
+				]
+			);
 		}
 		update_option( 'posts_per_page', 1 );
 		$this->go_to( home_url( '/' ) );

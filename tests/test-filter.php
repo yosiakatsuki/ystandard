@@ -11,7 +11,7 @@
 class FilterTest extends WP_UnitTestCase {
 
 	/**
-	 * ys_get_custom_excerpt
+	 * Test: ys_get_custom_excerpt
 	 */
 	function test_ys_excerpt_by_content() {
 		$args    = [
@@ -32,7 +32,7 @@ class FilterTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * ys_excerpt_length
+	 * Test: ys_excerpt_length
 	 */
 	function test_ys_excerpt_by_excerpt() {
 		$args    = [
@@ -49,12 +49,15 @@ class FilterTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * ys_option_default
+	 * Test: ys_option_default
 	 */
 	function test_ys_option_default_filter() {
-		add_filter( 'ys_get_option_default_ys_color_site_bg', function ( $default ) {
-			return '#123456';
-		} );
+		add_filter(
+			'ys_get_option_default_ys_color_site_bg',
+			function ( $default ) {
+				return '#123456';
+			}
+		);
 		delete_option( 'ys_color_site_bg' );
 		$this->assertSame( ys_get_option( 'ys_color_site_bg', '#ffffff' ), '#123456' );
 	}

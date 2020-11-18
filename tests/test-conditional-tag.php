@@ -11,7 +11,7 @@
 class ConditionalTagTest extends WP_UnitTestCase {
 
 	/**
-	 * ys_is_top_page
+	 * Test: ys_is_top_page
 	 */
 	function test_ys_is_top_page_home_1() {
 		$post_id = $this->factory->post->create();
@@ -20,7 +20,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * ys_is_top_page 2
+	 * Test: ys_is_top_page 2
 	 */
 	function test_ys_is_top_page_home_2() {
 		$post_id = $this->factory->post->create();
@@ -40,7 +40,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * ys_is_top_page
+	 * Test: ys_is_top_page
 	 */
 	function test_ys_is_top_page_front() {
 		$post_id = $this->factory->post->create(
@@ -55,7 +55,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * ys_is_no_title_template
+	 * Test: ys_is_no_title_template
 	 */
 	function test_ys_is_no_title_template_select() {
 		$post_id = $this->factory->post->create( [ 'post_type' => 'page' ] );
@@ -68,7 +68,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * ys_is_no_title_template
+	 * Test: ys_is_no_title_template
 	 */
 	function test_ys_is_no_title_template_no_select() {
 		$post_id = $this->factory->post->create( [ 'post_type' => 'page' ] );
