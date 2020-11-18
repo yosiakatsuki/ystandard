@@ -4,8 +4,92 @@ on:
     branches:
       - develop-v4
 jobs:
-  FTP-Deploy-Action:
-    name: FTP-Deploy-Action
+  test:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php: [ '7.3', '7.4' ]
+        wp: [ '5.3', 'latest', 'trunk' ]
+    services:
+      mysql:
+        image: mysql:5.7
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+        env:
+          MYSQL_ROOT_PASSWORD: root
+    name: WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest
+    steps:
+      - uses: actions/checkout@v1
+          with:
+            ref: 'develop-v4'
+
+      - name: Setup PHP
+        uses: nanasess/setup-php@master
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Start MySQL
+        run: sudo systemctl start mysql
+
+      - name: Install WordPress
+        run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1 ${{ matrix.wp }}
+
+      - name: Run test suite
+        run: composer test
+
+      - name: Notify Unit Test
+          uses: 8398a7/action-slack@v3.8.0
+          with:
+            status: ${{ job.status }}
+            author_name: Failure PHP Unit Test
+            fields: repo,message,commit,author,job
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          if: failure()
+
+  lint:
+    runs-on:  ubuntu-latest
+    name: PHP lint
+    steps:
+      - uses: actions/checkout@v1
+          with:
+            ref: 'develop-v4'
+
+      - name: Setup PHP
+        uses: nanasess/setup-php@master
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Check PHP Version
+        run: php -v
+
+      - name: Composer install
+        run: composer install --optimize-autoloader --prefer-dist
+
+      - name: phpcs tests
+        run: composer phpcs
+
+      - name: Notify PHP Lint
+          uses: 8398a7/action-slack@v3.8.0
+          with:
+            status: ${{ job.status }}
+            author_name: Failure phpcs
+            fields: repo,message,commit,author,job
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          if: failure()
+
+  release:
+    name: Release Develop Version
+    needs: [ test, lint ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -29,3 +113,14 @@ jobs:
           LOCAL_DIR: build
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP_V4 }}
           ARGS: --verbose --exclude=ystandard-info-beta.json
+
+      - name: Notify Deployment Develop Vesion
+          uses: 8398a7/action-slack@v3.8.0
+          with:
+            status: ${{ job.status }}
+            author_name: Deployment Develop Vesion
+            fields: repo,message,author
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          if: success()

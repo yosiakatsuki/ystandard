@@ -1,0 +1,27 @@
+{
+  "name": "yosiakatsuki/ystandard",
+  "description": "yStandard - WordPress Theme.",
+  "type": "wordpress-theme",
+  "license": "GPL-2.0+",
+  "authors": [
+	{
+	  "name": "yosiakatsuki",
+	  "email": "info@yosiakatsuki.net"
+	}
+  ],
+  "require": {
+	"php": ">=7.3",
+	"ext-json": "*"
+  },
+  "require-dev": {
+	"dealerdirect/phpcodesniffer-composer-installer": "*",
+	"phpcompatibility/phpcompatibility-wp": "*",
+	"squizlabs/php_codesniffer": "*",
+	"wp-coding-standards/wpcs": "*",
+	"phpunit/phpunit":"4.8.*|5.7.*|6.*.*|7.*.*"
+  },
+  "scripts": {
+	"test": "phpunit",
+	"phpcs": "phpcs --standard=./phpcs.ruleset.xml"
+  }
+}
