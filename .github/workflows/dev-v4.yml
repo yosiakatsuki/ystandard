@@ -20,8 +20,8 @@ jobs:
     name: WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest
     steps:
       - uses: actions/checkout@v1
-          with:
-            ref: 'develop-v4'
+        with:
+          ref: 'develop-v4'
 
       - name: Setup PHP
         uses: nanasess/setup-php@master
@@ -44,23 +44,23 @@ jobs:
         run: composer test
 
       - name: Notify Unit Test
-          uses: 8398a7/action-slack@v3.8.0
-          with:
-            status: ${{ job.status }}
-            author_name: Failure PHP Unit Test
-            fields: repo,message,commit,author,job
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          if: failure()
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          status: ${{ job.status }}
+          author_name: Failure PHP Unit Test
+          fields: repo,message,commit,author,job
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: failure()
 
   lint:
     runs-on:  ubuntu-latest
     name: PHP lint
     steps:
       - uses: actions/checkout@v1
-          with:
-            ref: 'develop-v4'
+        with:
+          ref: 'develop-v4'
 
       - name: Setup PHP
         uses: nanasess/setup-php@master
@@ -77,15 +77,15 @@ jobs:
         run: composer phpcs
 
       - name: Notify PHP Lint
-          uses: 8398a7/action-slack@v3.8.0
-          with:
-            status: ${{ job.status }}
-            author_name: Failure phpcs
-            fields: repo,message,commit,author,job
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          if: failure()
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          status: ${{ job.status }}
+          author_name: Failure phpcs
+          fields: repo,message,commit,author,job
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: failure()
 
   release:
     name: Release Develop Version
@@ -115,12 +115,12 @@ jobs:
           ARGS: --verbose --exclude=ystandard-info-beta.json
 
       - name: Notify Deployment Develop Vesion
-          uses: 8398a7/action-slack@v3.8.0
-          with:
-            status: ${{ job.status }}
-            author_name: Deployment Develop Vesion
-            fields: repo,message,author
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          if: success()
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          status: ${{ job.status }}
+          author_name: Deployment Develop Vesion
+          fields: repo,message,author
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: success()
