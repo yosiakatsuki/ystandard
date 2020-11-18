@@ -47,7 +47,7 @@ jobs:
         uses: 8398a7/action-slack@v3.8.0
         with:
           status: ${{ job.status }}
-          author_name: Failure PHP Unit Test
+          author_name: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
           fields: repo,message,commit,author,job
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -65,7 +65,7 @@ jobs:
       - name: Setup PHP
         uses: nanasess/setup-php@master
         with:
-          php-version: ${{ matrix.php }}
+          php-version: 7.3
 
       - name: Check PHP Version
         run: php -v
