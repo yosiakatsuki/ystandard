@@ -25,11 +25,11 @@ jobs:
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
-          with:
-            php-version: ${{ matrix.php }}
-            extensions: mbstring, intl
-            ini-values: post_max_size=256M, short_open_tag=On
-            coverage: xdebug
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, short_open_tag=On
+          coverage: xdebug
 
       - name: Validate composer.json and composer.lock
         run: composer validate
@@ -67,11 +67,11 @@ jobs:
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
-          with:
-            php-version: 7.3
-            extensions: mbstring, intl
-            ini-values: post_max_size=256M, short_open_tag=On
-            coverage: xdebug
+        with:
+          php-version: 7.3
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, short_open_tag=On
+          coverage: xdebug
 
       - name: Check PHP Version
         run: php -v
