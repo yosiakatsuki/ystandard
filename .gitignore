@@ -25,3 +25,4 @@ ystandard.zip
 .node-version
 ystandard/
 build/
+/vendor
