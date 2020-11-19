@@ -165,6 +165,13 @@ function ys_get_the_term_data( $taxonomy = false ) {
 	return \ystandard\Taxonomy::get_the_term_data( $taxonomy );
 }
 
+/**
+ * 投稿フッター情報を隠すか
+ */
+function ys_is_active_post_footer() {
+	return \ystandard\Template::is_active_post_footer();
+}
+
 
 /** *****************************************************************
  * アーカイブ

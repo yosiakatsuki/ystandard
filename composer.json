@@ -22,6 +22,6 @@
   },
   "scripts": {
 	"test": "phpunit",
-	"phpcs": "phpcs --standard=./phpcs.ruleset.xml"
+	"phpcs": "phpcs --standard=./.phpcs.xml.dist"
   }
 }
