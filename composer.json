@@ -2,7 +2,7 @@
   "name": "yosiakatsuki/ystandard",
   "description": "yStandard - WordPress Theme.",
   "type": "wordpress-theme",
-  "license": "GPL-2.0+",
+  "license": "GPL-2.0-or-later",
   "authors": [
 	{
 	  "name": "yosiakatsuki",
