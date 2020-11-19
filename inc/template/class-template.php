@@ -74,6 +74,11 @@ class Template {
 	 * @return bool
 	 */
 	public static function is_wide() {
+		$post_type = Content::get_post_type();
+		$is_wide   = apply_filters( "ys_${post_type}_is_wide", null );
+		if ( ! is_null( $is_wide ) ) {
+			return Utility::to_bool( $is_wide );
+		}
 		if ( self::is_one_column() ) {
 			/**
 			 * フル幅にするテンプレート
