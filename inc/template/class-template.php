@@ -235,6 +235,13 @@ class Template {
 	 * @return bool
 	 */
 	public static function is_no_title_template() {
+
+		$post_type = Content::get_post_type();
+		$result    = apply_filters( "ys_${post_type}_no_title", null );
+		if ( ! is_null( $result ) ) {
+			return Utility::to_bool( $result );
+		}
+
 		$template = [
 			'page-template/template-blank.php',
 			'page-template/template-blank-wide.php',
