@@ -51,7 +51,7 @@ jobs:
         with:
           status: ${{ job.status }}
           author_name: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
-          fields: repo,message,commit,author,job
+          fields: repo,message,commit,job
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
@@ -87,7 +87,7 @@ jobs:
         with:
           status: ${{ job.status }}
           author_name: Failure phpcs
-          fields: repo,message,commit,author,job
+          fields: repo,message,commit,job
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
