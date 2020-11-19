@@ -7,6 +7,9 @@
  * @license GPL-2.0+
  */
 
+if ( ! ys_is_active_post_footer() ) {
+	return;
+}
 ?>
 <footer class="singular__footer entry-footer">
 	<?php
