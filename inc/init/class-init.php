@@ -38,6 +38,10 @@ class Init {
 	 * 初期化
 	 */
 	public function init() {
+		load_theme_textdomain(
+			'ystandard',
+			get_template_directory() . '/languages'
+		);
 		// 投稿とコメントのフィード出力.
 		add_theme_support( 'automatic-feed-links' );
 		// タイトル出力.

@@ -413,9 +413,13 @@ class Content {
 			$content
 		);
 		if ( $content ) {
-			$related_post = sprintf(
+			$related_post_title = apply_filters(
+				'ys_related_post_title',
+				__( 'Related Posts', 'ystandard' )
+			);
+			$related_post       = sprintf(
 				'<div class="post-related">%s%s</div>',
-				'<p class="post-related__title">関連記事</p>',
+				"<p class=\"post-related__title\">${related_post_title}</p>",
 				$content
 			);
 
