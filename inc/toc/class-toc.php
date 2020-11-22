@@ -226,18 +226,34 @@ class TOC {
 	 * @return string
 	 */
 	private function get_toc( $data ) {
+		// 階層データ作成.
+		$hierarchy = $this->build_hierarchy( $data );
+		// 目次HTML.
 		$toc = '<ul class="ys-toc__list">' . PHP_EOL;
-		for ( $i = 0; $i < count( $data ); $i ++ ) {
-			$toc .= $this->get_toc_item_html( $data, $i );
-			// 下層アイテムの作成.
-			$next_level = isset( $data[ $i + 1 ] ) ? (int) $data[ $i + 1 ][2] : (int) $data[ $i ][2];
-			if ( (int) $data[ $i ][2] < $next_level ) {
-				$i ++;
-				$i = $this->get_toc_children( $toc, $data, $i );
+		for ( $i = 0; $i < count( $hierarchy[0] ); $i ++ ) {
+			$key   = $hierarchy[0][ $i ];
+			$next  = isset( $hierarchy[0][ $i + 1 ] ) ? $hierarchy[0][ $i + 1 ] : false;
+			$depth = 0;
+			// HTML.
+			$toc .= $this->get_toc_item_html( $data, $key );
+			if ( $key + 1 !== $next ) {
+				if ( isset( $hierarchy[ $depth + 1 ] ) ) {
+					$this->get_toc_children(
+						$toc,
+						[
+							'data'      => $data,
+							'current'   => $key,
+							'depth'     => $depth + 1,
+							'hierarchy' => $hierarchy,
+							'next'      => $next,
+						]
+					);
+				}
 			}
 			$toc .= '</li>' . PHP_EOL;
 		}
 		$toc .= '</ul>';
+
 		// タイトル.
 		$title = $this->toc_title;
 		$title = '<p class="ys-toc__title">' . $title . '</p>';
@@ -251,32 +267,47 @@ class TOC {
 	 * 目次下層HTML作成
 	 *
 	 * @param string $toc  HTML.
-	 * @param array  $data Data.
-	 * @param int    $num  Current index.
-	 *
-	 * @return int
+	 * @param array  $args Args.
 	 */
-	private function get_toc_children( &$toc, $data, $num ) {
+	private function get_toc_children( &$toc, $args ) {
+		$data        = $args['data'];
+		$current     = $args['current'];
+		$depth       = $args['depth'];
+		$hierarchy   = $args['hierarchy'];
+		$parent_next = $args['next'];
+		$items       = $hierarchy[ $depth ];
+		// 開始.
 		$toc .= '<ul class="ys-toc__children">' . PHP_EOL;
-		for ( $i = $num; $i < count( $data ); $i ++ ) {
-			$toc .= $this->get_toc_item_html( $data, $i );
-			// 下層アイテムの作成.
-			$next_level = isset( $data[ $i + 1 ] ) ? (int) $data[ $i + 1 ][2] : (int) $data[ $i ][2];
-			if ( (int) $data[ $i ][2] < $next_level ) {
-				$i ++;
-				$i = $this->get_toc_children( $toc, $data, $i );
+		for ( $i = 0; $i < count( $items ); $i ++ ) {
+			$key = $items[ $i ];
+			// 次の親レベルより大きければ抜ける.
+			if ( false !== $parent_next && $parent_next < $key ) {
+				continue;
+			}
+			// 親キーより小さい場合は次へ(処理済み).
+			if ( $current > $key ) {
+				continue;
+			}
+			$next = isset( $items[ $i + 1 ] ) ? $items[ $i + 1 ] : false;
+			// HTML.
+			$toc .= $this->get_toc_item_html( $data, $key );
+			if ( $key + 1 !== $next ) {
+				if ( isset( $hierarchy[ $depth + 1 ] ) ) {
+					$this->get_toc_children(
+						$toc,
+						[
+							'data'      => $data,
+							'current'   => $key,
+							'depth'     => $depth + 1,
+							'hierarchy' => $hierarchy,
+							'next'      => $next,
+						]
+					);
+				}
 			}
 			$toc .= '</li>' . PHP_EOL;
-			// 自レベル以上のアイテムが来たら終了.
-			if ( (int) $data[ $i ][2] > $next_level ) {
-				$num = $i;
-				break;
-			}
-			$num = $i;
 		}
 		$toc .= '</ul>';
-
-		return $num;
 	}
 
 	/**
@@ -296,6 +327,33 @@ class TOC {
 		$item .= '</a>' . PHP_EOL;
 
 		return $item;
+	}
+
+	/**
+	 * 目次の階層を作成
+	 *
+	 * @param array $data Data.
+	 *
+	 * @return array
+	 */
+	private function build_hierarchy( $data ) {
+		$hierarchy     = [];
+		$start_level   = (int) $data[0][2];
+		$current_level = (int) $data[0][2];
+		for ( $i = 0; $i < count( $this->levels ); $i ++ ) {
+			$memo = [];
+			foreach ( $data as $key => $item ) {
+				if ( ( $current_level === (int) $item[2] || $start_level > (int) $item[2] ) ) {
+					$memo[] = $key;
+				}
+			}
+			if ( ! empty( $memo ) ) {
+				$hierarchy[ $i ] = $memo;
+			}
+			$current_level ++;
+		}
+
+		return $hierarchy;
 	}
 
 	/**
