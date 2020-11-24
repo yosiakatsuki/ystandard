@@ -13,16 +13,22 @@
 	<div class="no-results__header not-found__header">
 		<h2 class="singular__title entry__title no-results__title not-found__title">
 			<?php if ( is_search() ) : ?>
-				<?php echo esc_html( '"' . get_search_query( false ) . '"' ); ?>の検索結果が見つかりませんでした。
+				<?php
+				printf(
+				/* translators: %s: Search Keywords. */
+					__( 'No results found for "%s".', 'ystandard' ),
+					esc_html( get_search_query( false ) )
+				);
+				?>
 			<?php else : ?>
-				お探しのページは見つかりませんでした
+				<?php _e( 'Page Not Found', 'ystandard' ); ?>
 			<?php endif; ?>
 		</h2>
 	</div>
 
 	<div class="no-results__content entry-content">
 		<div class="no-results__search">
-			<p class="no-results__search-title">サイト内を検索する</p>
+			<p class="no-results__search-title"><?php _e( 'Search again', 'ystandard' ); ?></p>
 			<?php get_search_form(); ?>
 		</div>
 		<?php do_action( 'ys_no_results_content' ); ?>
