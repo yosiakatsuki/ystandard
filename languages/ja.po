@@ -2,27 +2,25 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: yStandard "
-"4.16.0-beta-4\n"
+"Project-Id-Version: yStandard 4.16.0-"
+"beta-4\n"
 "Report-Msgid-Bugs-To: https://"
 "wordpress.org/support/theme/"
 "ystandard\n"
+"POT-Creation-Date: "
+"2020-11-24T04:58:33+00:00\n"
+"PO-Revision-Date: 2020-11-24 "
+"14:00+0900\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; "
 "charset=UTF-8\n"
-"Content-Transfer-Encoding: "
-"8bit\n"
-"POT-Creation-Date: "
-"2020-11-22T12:34:59+00:00\n"
-"PO-Revision-Date: 2020-11-22 "
-"21:42+0900\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.2\n"
 "X-Domain: ystandard\n"
-"Last-Translator: \n"
-"Plural-Forms: nplurals=1; "
-"plural=0;\n"
-"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. Theme Name of the theme
 msgid "yStandard"
@@ -34,10 +32,9 @@ msgstr ""
 
 #. Description of the theme
 msgid ""
-"「自分色に染めた、自分だけのサ"
-"イトを作る楽しさ」を感じてもら"
-"うために作った一風変わった"
-"WordPressテーマ"
+"「自分色に染めた、自分だけのサイトを"
+"作る楽しさ」を感じてもらうために作っ"
+"た一風変わったWordPressテーマ"
 msgstr ""
 
 #. Author of the theme
@@ -50,9 +47,14 @@ msgstr ""
 
 #: header.php:22
 msgid "Skip to content"
-msgstr ""
+msgstr "コンテンツへ移動"
 
-#: inc/content/class-content.php:418
+#. translators: %s: Search Keywords.
+#: inc/content/class-archive.php:54
+msgid "Search Results for \"%s\""
+msgstr "「%s」の検索結果"
+
+#: inc/content/class-content.php:417
 msgid "Related Posts"
 msgstr "関連記事"
 
@@ -114,8 +116,7 @@ msgstr ""
 
 #. Template Name of the theme
 msgid ""
-"投稿ヘッダーなし 1カラム(ワイ"
-"ド)"
+"投稿ヘッダーなし 1カラム(ワイド)"
 msgstr ""
 
 #. Template Name of the theme
@@ -129,3 +130,19 @@ msgstr ""
 #. Template Name of the theme
 msgid "1カラム"
 msgstr ""
+
+#. translators: %s: Search Keywords.
+#: template-parts/404/content.php:19
+msgid "No results found for \"%s\"."
+msgstr ""
+"「%s」の検索結果が見つかりませんでし"
+"た。"
+
+#: template-parts/404/content.php:24
+msgid "Page Not Found"
+msgstr ""
+"お探しのページは見つかりませんでした"
+
+#: template-parts/404/content.php:31
+msgid "Search again"
+msgstr "サイト内を検索する"
