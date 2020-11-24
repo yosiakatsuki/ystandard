@@ -445,13 +445,38 @@ class Content {
 	 * アイキャッチ画像の表示 - ヘッダー
 	 */
 	public function header_post_thumbnail() {
-		if ( ! self::is_full_post_thumbnail() ) {
+		$thumbnail = $this->get_header_post_thumbnail();
+		if ( empty( $thumbnail ) ) {
 			return;
+		}
+		ob_start();
+		Template::get_template_part(
+			'template-parts/parts/header-thumbnail',
+			'',
+			[ 'header_thumbnail' => $thumbnail ]
+		);
+		echo ob_get_clean();
+	}
+
+	/**
+	 * ヘッダーサムネイル取得
+	 *
+	 * @return string
+	 */
+	private function get_header_post_thumbnail() {
+
+		$hook = apply_filters( 'ys_get_header_post_thumbnail', null );
+		if ( ! is_null( $hook ) ) {
+			return $hook;
+		}
+		if ( ! self::is_full_post_thumbnail() ) {
+			return '';
 		}
 		if ( ! self::is_active_post_thumbnail() ) {
-			return;
+			return '';
 		}
-		$thumbnail = get_the_post_thumbnail(
+
+		return get_the_post_thumbnail(
 			get_the_ID(),
 			'post-thumbnail',
 			[
@@ -460,13 +485,6 @@ class Content {
 				'alt'   => get_the_title(),
 			]
 		);
-		ob_start();
-		Template::get_template_part(
-			'template-parts/parts/header-thumbnail',
-			'',
-			[ 'header_thumbnail' => $thumbnail ]
-		);
-		echo ob_get_clean();
 	}
 
 	/**
