@@ -184,7 +184,7 @@ function ys_is_active_post_footer() {
  */
 function ys_get_archive_item_class() {
 
-	return \ystandard\Content::get_archive_item_class();
+	return \ystandard\Archive::get_archive_item_class();
 }
 
 /**

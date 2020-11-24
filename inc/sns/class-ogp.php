@@ -82,7 +82,7 @@ class OGP {
 		 * アーカイブ系
 		 */
 		if ( is_archive() && ! Template::is_top_page() ) {
-			$this->set_param( 'og:url', Content::get_archive_url() );
+			$this->set_param( 'og:url', Archive::get_archive_url() );
 			$this->set_param( 'og:title', $this->get_archive_title() );
 			$this->set_param( 'og:description', $this->get_archive_dscr() );
 		}
