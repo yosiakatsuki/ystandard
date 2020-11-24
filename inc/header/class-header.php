@@ -274,6 +274,7 @@ class Header {
 	public function add_inline_css( $css ) {
 
 		$css .= $this->get_logo_css();
+		$css .= $this->get_header_shadow_css();
 		$css .= $this->get_fixed_header_css();
 
 		return $css;
@@ -306,6 +307,17 @@ class Header {
 		}
 
 		return $css;
+	}
+
+	/**
+	 * 影ありヘッダー用CSS
+	 */
+	private function get_header_shadow_css() {
+		if ( 'none' === $this->get_header_shadow() || Option::get_option_by_bool( 'ys_header_fixed', false ) ) {
+			return '';
+		}
+
+		return '.site-header {z-index:1}';
 	}
 
 	/**
