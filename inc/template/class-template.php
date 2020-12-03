@@ -340,16 +340,16 @@ class Template {
 			$name = '';
 		}
 		if ( '' !== $name ) {
-			$templates[] = "{$slug}-{$name}.php";
 			if ( '' !== $custom_post_type ) {
 				$templates[] = "{$slug}-{$name}-${custom_post_type}.php";
 			}
+			$templates[] = "{$slug}-{$name}.php";
 		}
 
-		$templates[] = "{$slug}.php";
 		if ( '' !== $custom_post_type ) {
 			$templates[] = "{$slug}-${custom_post_type}.php";
 		}
+		$templates[] = "{$slug}.php";
 
 		do_action( 'get_template_part', $slug, $name, $templates );
 
