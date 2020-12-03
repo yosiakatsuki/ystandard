@@ -332,15 +332,24 @@ class Template {
 		$args = apply_filters( 'ys_get_template_part_args', $args, $slug, $name );
 		do_action( "get_template_part_{$slug}", $slug, $name );
 
+		$custom_post_type = Content::get_post_type();
+		$custom_post_type = false === $custom_post_type ? '' : $custom_post_type;
+
 		$templates = [];
 		if ( ! is_string( $name ) ) {
 			$name = '';
 		}
 		if ( '' !== $name ) {
 			$templates[] = "{$slug}-{$name}.php";
+			if ( '' !== $custom_post_type ) {
+				$templates[] = "{$slug}-{$name}-${custom_post_type}.php";
+			}
 		}
 
 		$templates[] = "{$slug}.php";
+		if ( '' !== $custom_post_type ) {
+			$templates[] = "{$slug}-${custom_post_type}.php";
+		}
 
 		do_action( 'get_template_part', $slug, $name, $templates );
 
