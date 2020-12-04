@@ -180,11 +180,13 @@ function ys_is_active_post_footer() {
 /**
  * アーカイブ明細 CSSクラス作成
  *
+ * @param string|string[] $class Class.
+ *
  * @return array
  */
-function ys_get_archive_item_class() {
+function ys_get_archive_item_class( $class = '' ) {
 
-	return \ystandard\Archive::get_archive_item_class();
+	return \ystandard\Archive::get_archive_item_class( $class );
 }
 
 /**
