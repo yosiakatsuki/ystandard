@@ -98,15 +98,21 @@ class Archive {
 	/**
 	 * アーカイブアイテムクラス作成
 	 *
+	 * @param string|string[] $class Class.
+	 *
 	 * @return array
 	 */
-	public static function get_archive_item_class() {
+	public static function get_archive_item_class( $class = '' ) {
 		$classes = [];
 		/**
 		 * 共通でセットするクラス
 		 */
 		$classes[] = 'archive__item';
 		$classes[] = 'is-' . Archive::get_archive_type();
+		if ( ! empty( $class ) ) {
+			$class     = is_array( $class ) ? implode( ' ', $class ) : $class;
+			$classes[] = $class;
+		}
 
 		return apply_filters( 'get_archive_item_class', $classes );
 	}
