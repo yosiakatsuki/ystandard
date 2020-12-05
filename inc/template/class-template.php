@@ -332,20 +332,38 @@ class Template {
 		$args = apply_filters( 'ys_get_template_part_args', $args, $slug, $name );
 		do_action( "get_template_part_{$slug}", $slug, $name );
 
+		// 投稿タイプ.
 		$custom_post_type = Content::get_post_type();
-		$custom_post_type = false === $custom_post_type ? '' : $custom_post_type;
+		$custom_post_type = empty( $custom_post_type ) ? '' : $custom_post_type;
+		// タクソノミー.
+		$taxonomy = '';
+		if ( is_category() ) {
+			$taxonomy = 'category';
+		}
+		if ( is_tag() ) {
+			$taxonomy = 'tag';
+		}
+		if ( is_tax() ) {
+			$taxonomy = get_query_var( 'taxonomy' );
+		}
 
 		$templates = [];
 		if ( ! is_string( $name ) ) {
 			$name = '';
 		}
 		if ( '' !== $name ) {
+			if ( '' !== $taxonomy ) {
+				$templates[] = "{$slug}-{$name}-${taxonomy}.php";
+			}
 			if ( '' !== $custom_post_type ) {
 				$templates[] = "{$slug}-{$name}-${custom_post_type}.php";
 			}
 			$templates[] = "{$slug}-{$name}.php";
 		}
 
+		if ( '' !== $taxonomy ) {
+			$templates[] = "{$slug}-${taxonomy}.php";
+		}
 		if ( '' !== $custom_post_type ) {
 			$templates[] = "{$slug}-${custom_post_type}.php";
 		}
