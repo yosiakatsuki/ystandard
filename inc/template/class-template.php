@@ -336,7 +336,8 @@ class Template {
 		$custom_post_type = Content::get_post_type();
 		$custom_post_type = empty( $custom_post_type ) ? '' : $custom_post_type;
 		// タクソノミー.
-		$taxonomy = '';
+		$taxonomy   = '';
+		$post_types = [];
 		if ( is_category() ) {
 			$taxonomy = 'category';
 		}
@@ -344,7 +345,10 @@ class Template {
 			$taxonomy = 'tag';
 		}
 		if ( is_tax() ) {
-			$taxonomy = get_query_var( 'taxonomy' );
+			$taxonomy         = get_query_var( 'taxonomy' );
+			$taxonomy_objects = get_taxonomy( $taxonomy );
+			$post_types       = $taxonomy_objects->object_type;
+			$post_types       = array_diff( $post_types, [ $custom_post_type ] );
 		}
 
 		$templates = [];
@@ -354,6 +358,11 @@ class Template {
 		if ( '' !== $name ) {
 			if ( '' !== $taxonomy ) {
 				$templates[] = "{$slug}-{$name}-${taxonomy}.php";
+				if ( ! empty( $post_types ) ) {
+					foreach ( $post_types as $type ) {
+						$templates[] = "{$slug}-{$name}-${type}.php";
+					}
+				}
 			}
 			if ( '' !== $custom_post_type ) {
 				$templates[] = "{$slug}-{$name}-${custom_post_type}.php";
@@ -363,6 +372,11 @@ class Template {
 
 		if ( '' !== $taxonomy ) {
 			$templates[] = "{$slug}-${taxonomy}.php";
+			if ( ! empty( $post_types ) ) {
+				foreach ( $post_types as $type ) {
+					$templates[] = "{$slug}-${type}.php";
+				}
+			}
 		}
 		if ( '' !== $custom_post_type ) {
 			$templates[] = "{$slug}-${custom_post_type}.php";
