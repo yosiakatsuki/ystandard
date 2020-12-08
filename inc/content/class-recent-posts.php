@@ -9,8 +9,6 @@
 
 namespace ystandard;
 
-use http\Encoding\Stream\Inflate;
-
 /**
  * Class Posts
  *
@@ -31,30 +29,32 @@ class Recent_Posts {
 	 * ショートコード特有のパラメーター
 	 */
 	const SHORTCODE_ATTR = [
-		'list_type'       => 'list', // list , card.
-		'col'             => 0,
-		'col_sp'          => 1,
-		'col_tablet'      => 3,
-		'col_pc'          => 3,
-		'post__in'        => '',
-		'post_name__in'   => '',
-		'post_parent'     => '',
-		'taxonomy'        => '',
-		'term_slug'       => '',
-		'post_type'       => 'post',
-		'count'           => 3,
-		'order'           => 'DESC',
-		'orderby'         => 'date',
-		'show_img'        => true,
-		'show_date'       => true,
-		'show_category'   => true,
-		'show_excerpt'    => false,
-		'thumbnail_size'  => '', // thumbnail, medium, large, full, etc...
-		'thumbnail_ratio' => '', // 4-3, 16-9, 3-1, 2-1, 1-1.
-		'filter'          => '', // category,remove-same-post,sga.
-		'run_type'        => 'shortcode', // 上級者向け.
-		'post_status'     => 'publish', // 隠しパラメーター.
-		'cache'           => 'recent_posts', // 隠しパラメーター。変えるとキャッシュ削除できなくなる可能性があるのでお気をつけください.
+		'list_type'        => 'list', // list , card.
+		'list_type_mobile' => '', // list , card.
+		'col'              => 0,
+		'col_sp'           => 1,
+		'col_tablet'       => 3,
+		'col_pc'           => 3,
+		'post__in'         => '',
+		'post_name__in'    => '',
+		'post_parent'      => '',
+		'taxonomy'         => '',
+		'term_slug'        => '',
+		'post_type'        => 'post',
+		'count'            => 3,
+		'count_mobile'     => 0,
+		'order'            => 'DESC',
+		'orderby'          => 'date',
+		'show_img'         => true,
+		'show_date'        => true,
+		'show_category'    => true,
+		'show_excerpt'     => false,
+		'thumbnail_size'   => '', // thumbnail, medium, large, full, etc...
+		'thumbnail_ratio'  => '', // 4-3, 16-9, 3-1, 2-1, 1-1.
+		'filter'           => '', // category,remove-same-post,sga.
+		'run_type'         => 'shortcode', // 上級者向け.
+		'post_status'      => 'publish', // 隠しパラメーター.
+		'cache'            => 'recent_posts', // 隠しパラメーター。変えるとキャッシュ削除できなくなる可能性があるのでお気をつけください.
 	];
 
 	/**
@@ -200,7 +200,7 @@ class Recent_Posts {
 		/**
 		 * 表示タイプ
 		 */
-		$param['list_type'] = 'list' === $atts['list_type'] ? 'list' : 'card';
+		$param['list_type'] = $this->get_list_type();
 		/**
 		 * 表示・非表示系
 		 */
@@ -212,10 +212,10 @@ class Recent_Posts {
 		 * 画像設定
 		 */
 		if ( empty( $atts['thumbnail_size'] ) ) {
-			$atts['thumbnail_size'] = 'list' === $atts['list_type'] ? 'thumbnail' : 'full';
+			$atts['thumbnail_size'] = 'list' === $param['list_type'] ? 'thumbnail' : 'full';
 		}
 		if ( empty( $atts['thumbnail_ratio'] ) ) {
-			$atts['thumbnail_ratio'] = 'list' === $atts['list_type'] ? '1-1' : '16-9';
+			$atts['thumbnail_ratio'] = 'list' === $param['list_type'] ? '1-1' : '16-9';
 		}
 		$param['thumbnail_size']  = $atts['thumbnail_size'];
 		$param['thumbnail_ratio'] = $atts['thumbnail_ratio'];
@@ -342,7 +342,7 @@ class Recent_Posts {
 		 */
 		$this->sga_limit = 0;
 		$sga_arg         = [
-			'display_count' => $this->shortcode_atts['count'],
+			'display_count' => $this->get_count(),
 			'period'        => 30,
 			'post_type'     => $this->shortcode_atts['post_type'],
 		];
@@ -440,7 +440,7 @@ class Recent_Posts {
 	private function set_base_args() {
 		$this->query_args = [
 			'post_type'           => $this->shortcode_atts['post_type'],
-			'posts_per_page'      => $this->shortcode_atts['count'],
+			'posts_per_page'      => $this->get_count(),
 			'order'               => $this->shortcode_atts['order'],
 			'orderby'             => $this->shortcode_atts['orderby'],
 			'post_status'         => $this->shortcode_atts['post_status'],
@@ -520,6 +520,45 @@ class Recent_Posts {
 		}
 
 		return $count;
+	}
+
+	/**
+	 * Countパラメーターの取得.
+	 *
+	 * @return int
+	 */
+	private function get_count() {
+		$count = $this->shortcode_atts['count'];
+		if ( 0 < $this->shortcode_atts['count_mobile'] ) {
+			$count = $this->is_mobile() ? $this->shortcode_atts['count_mobile'] : $count;
+		}
+
+		return $count;
+	}
+
+	/**
+	 * 表示タイプの取得.
+	 *
+	 * @return string
+	 */
+	private function get_list_type() {
+		$type = $this->shortcode_atts['list_type'];
+		if ( ! empty( $this->shortcode_atts['list_type_mobile'] ) ) {
+			$type = $this->is_mobile() ? $this->shortcode_atts['list_type_mobile'] : $type;
+		}
+
+		$type = 'list' === $type ? 'list' : 'card';
+
+		return $type;
+	}
+
+	/**
+	 * 新着記事一覧ショートコード用モバイル判定.
+	 *
+	 * @return bool
+	 */
+	private function is_mobile() {
+		return apply_filters( 'ys_recent_posts_is_mobile', ys_is_mobile() );
 	}
 }
 
