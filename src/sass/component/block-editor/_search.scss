@@ -3,4 +3,35 @@
 	width: auto;
 	max-width: unset;
   }
+
+  .wp-block-search__button {
+	&.has-icon {
+	  padding-top: 0;
+	  padding-bottom: 0;
+
+	  svg {
+		fill: currentColor;
+		vertical-align: middle;
+	  }
+	}
+  }
+
+  &.wp-block-search__button-inside {
+	.wp-block-search__inside-wrapper {
+
+	  .wp-block-search__button {
+		font-size: 0.8em;
+		padding: 0.5em 1em;
+	  }
+	}
+
+  }
+}
+
+@if $editor == true {
+  .wp-block-search {
+	.wp-block-search__button {
+	  @include button();
+	}
+  }
 }
