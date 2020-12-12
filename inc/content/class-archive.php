@@ -307,7 +307,7 @@ class Archive {
 				'title'       => 'アーカイブページ',
 				'panel'       => Design::PANEL_NAME,
 				'priority'    => 120,
-				'description' => Admin::manual_link( 'archive-layout' ),
+				'description' => Admin::manual_link( 'manual/archive-layout' ),
 			]
 		);
 		$customizer->add_section_label( 'レイアウト' );

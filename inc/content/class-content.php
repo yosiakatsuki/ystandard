@@ -784,7 +784,7 @@ class Content {
 				'section'     => 'ys_design_post',
 				'title'       => '投稿ページ',
 				'priority'    => 100,
-				'description' => Admin::manual_link( 'post-layout' ),
+				'description' => Admin::manual_link( 'manual/post-layout' ),
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
@@ -918,7 +918,7 @@ class Content {
 				'section'     => 'ys_design_page',
 				'title'       => '固定ページ',
 				'priority'    => 110,
-				'description' => Admin::manual_link( 'page-layout' ),
+				'description' => Admin::manual_link( 'manual/page-layout' ),
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
