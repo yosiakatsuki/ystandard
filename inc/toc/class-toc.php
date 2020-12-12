@@ -477,7 +477,7 @@ class TOC {
 			[
 				'section'     => 'ys_design_toc',
 				'title'       => '目次',
-				'description' => Admin::manual_link( 'table-of-contents' ),
+				'description' => Admin::manual_link( 'manual/table-of-contents' ),
 				'priority'    => 115,
 				'panel'       => Design::PANEL_NAME,
 			]

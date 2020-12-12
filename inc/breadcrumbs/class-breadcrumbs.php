@@ -605,7 +605,7 @@ class Breadcrumbs {
 				'section'     => 'ys_breadcrumbs',
 				'title'       => 'パンくずリスト',
 				'priority'    => 60,
-				'description' => Admin::manual_link( 'breadcrumbs' ),
+				'description' => Admin::manual_link( 'manual/breadcrumbs' ),
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
