@@ -2,7 +2,6 @@ module.exports = {
 	mode: "production",
 
 	entry: {
-		'font-awesome-ystd': './src/js/font-awesome/app.js',
 		'polyfill': './src/js/polyfill/polyfill.js',
 		'search-icons': './src/js/admin/search-icons.js',
 	},
