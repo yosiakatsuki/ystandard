@@ -43,6 +43,13 @@ class Content {
 	];
 
 	/**
+	 * 埋め込みの縦横比
+	 *
+	 * @var string
+	 */
+	private $embed_aspect;
+
+	/**
 	 * アクション・フィルターの登録
 	 */
 	public function register() {
@@ -657,18 +664,22 @@ class Content {
 		 */
 		foreach ( $list as $value ) {
 			if ( isset( $value['url'] ) && isset( $value['aspect'] ) ) {
-				$pattern = '/<iframe[^>]+?' . $value['url'] . '[^<]+?<\/iframe>/is';
-				if ( preg_match_all( $pattern, $content, $match ) ) {
-					foreach ( $match[0] as $map ) {
-						$aspect = preg_match( '/data-aspect-ratio="(.+)?"/is', $map, $aspect_match );
+				$this->embed_aspect = $value['aspect'];
+				$pattern            = '/<iframe[^>]+?' . $value['url'] . '[^<]+?<\/iframe>/is';
+				$content            = preg_replace_callback(
+					$pattern,
+					function ( $matches ) {
+						$map    = $matches[0];
+						$aspect = preg_match( '/data-aspect-ratio="(.+?)"/is', $map, $aspect_match );
 						if ( empty( $aspect ) || ( isset( $aspect_match[1] ) && 'none' !== $aspect_match[1] ) ) {
-							$embed_aspect = isset( $aspect_match[1] ) ? $aspect_match[1] : $value['aspect'];
-							// 変換.
-							$replace = '<div class="wp-embed-aspect-' . $embed_aspect . ' wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">' . $map . '</div></div>';
-							$content = str_replace( $map, $replace, $content );
+							$embed_aspect = isset( $aspect_match[1] ) ? $aspect_match[1] : $this->embed_aspect;
+							$map          = '<div class="wp-embed-aspect-' . $embed_aspect . ' wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">' . $map . '</div></div>';
 						}
-					}
-				}
+
+						return $map;
+					},
+					$content
+				);
 			}
 		}
 
