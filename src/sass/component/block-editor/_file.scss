@@ -1,10 +1,23 @@
 .wp-block-file {
+  margin-top: 1em;
+
+  a {
+	display: inline-block;
+	margin-top: .5em;
+	margin-right: .75em;
+  }
+
   .wp-block-file__button {
 	border-radius: 0.5em;
 
 	&:hover {
 	  box-shadow: 4px 4px 8px rgba(#000000, 0.15);
 	}
+  }
+
+  * + .wp-block-file__button {
+	margin-left: 0;
+	margin-right: 0;
   }
 
   .wp-block-file__button,
