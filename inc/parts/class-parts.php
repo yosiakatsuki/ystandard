@@ -106,20 +106,44 @@ class Parts {
 		if ( ! $post ) {
 			return '';
 		}
+		$content = $this->get_parts_content( $post->post_content );
+
+		return sprintf( $wrap, $content );
+	}
+
+	/**
+	 * パーツのコンテンツ部分取得
+	 *
+	 * @param string $content Content.
+	 *
+	 * @return string
+	 */
+	private function get_parts_content( $content ) {
 		// TOC処理のキャンセル.
 		$temp = apply_filters( 'ys_create_toc', true );
 		remove_all_filters( 'ys_create_toc' );
 		add_filter( 'ys_create_toc', '__return_false' );
+		// [wpautop]のキャンセル.
+		$priority      = has_filter( 'the_content', 'wpautop' );
+		$remove_auto_p = false !== $priority && has_blocks( $content );
+		if ( $remove_auto_p ) {
+			remove_filter( 'the_content', 'wpautop', $priority );
+		}
 		// コンテンツ展開.
 		do_action( 'ys_parts_content_before' );
-		$content = apply_filters( 'the_content', $post->post_content );
+		$content = apply_filters( 'the_content', $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
 		do_action( 'ys_parts_content_after' );
+		// [wpautop]戻し.
+		if ( $remove_auto_p ) {
+			add_filter( 'the_content', '_restore_wpautop_hook', $priority + 1 );
+		}
+
 		// TOC処理戻し.
 		$filter = true === $temp ? '__return_true' : '__return_false';
 		add_filter( 'ys_create_toc', $filter );
 
-		return sprintf( $wrap, $content );
+		return $content;
 	}
 
 	/**

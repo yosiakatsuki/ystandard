@@ -460,4 +460,23 @@ class Utility {
 			hexdec( substr( $color, 5, 2 ) ),
 		];
 	}
+
+	/**
+	 * 改行削除
+	 *
+	 * @param string $text Text.
+	 *
+	 * @return string
+	 */
+	public static function remove_nl( $text ) {
+		return str_replace(
+			[
+				"\r\n",
+				"\r",
+				"\n",
+			],
+			'',
+			$text
+		);
+	}
 }
