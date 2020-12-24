@@ -62,7 +62,7 @@ class Parts {
 	public function manual() {
 		global $pagenow;
 		$post_type = Content::get_post_type();
-		$manual    = Admin::manual_link( 'ys-parts' );
+		$manual    = Admin::manual_link( 'manual/ys-parts' );
 		if ( 'edit.php' === $pagenow && Parts::POST_TYPE === $post_type ) {
 			Notice::manual( '<p>' . $manual . '</p>' );
 		}

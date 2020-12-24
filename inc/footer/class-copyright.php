@@ -114,7 +114,7 @@ class Copyright {
 			[
 				'section'     => 'ys_design_copyright',
 				'title'       => 'Copyright',
-				'description' => 'Copyrightの設定' . Admin::manual_link( 'copyright' ),
+				'description' => 'Copyrightの設定' . Admin::manual_link( 'manual/copyright' ),
 				'priority'    => 1010,
 				'panel'       => Design::PANEL_NAME,
 			]
