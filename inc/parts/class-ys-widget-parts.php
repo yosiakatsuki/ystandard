@@ -111,7 +111,7 @@ class YS_Widget_Parts extends WP_Widget {
 			(array) $instance,
 			$this->default_instance
 		);
-		$manual   = \ystandard\Admin::manual_link( 'widget-ys-parts' );
+		$manual   = \ystandard\Admin::manual_link( 'manual/contents-template' );
 		?>
 		<?php if ( ! empty( $manual ) ) : ?>
 			<p><?php echo $manual; ?></p>

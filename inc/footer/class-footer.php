@@ -372,7 +372,7 @@ class Footer {
 		$customizer->add_section_label(
 			'フッターメインエリア設定',
 			[
-				'description' => Admin::manual_link( 'footer-area' ),
+				'description' => Admin::manual_link( 'manual/footer-area' ),
 			]
 		);
 		// フッター背景色.
@@ -402,7 +402,7 @@ class Footer {
 		$customizer->add_section_label(
 			'サブフッター設定',
 			[
-				'description' => Admin::manual_link( 'sub-footer' ),
+				'description' => Admin::manual_link( 'manual/sub-footer' ),
 			]
 		);
 		// フッター背景色.
@@ -436,7 +436,7 @@ class Footer {
 		$customizer->add_section_label(
 			'ページ先頭へ戻るボタン',
 			[
-				'description' => Admin::manual_link( 'back-to-top' ),
+				'description' => Admin::manual_link( 'manual/back-to-top' ),
 			]
 		);
 		$customizer->add_checkbox(
@@ -488,7 +488,7 @@ class Footer {
 		$customizer->add_section_label(
 			'モバイルフッターメニュー 色設定',
 			[
-				'description' => Admin::manual_link( 'mobile-footer-menu#color' ),
+				'description' => Admin::manual_link( 'manual/mobile-footer-menu' ),
 			]
 		);
 		// モバイルフッター背景色.

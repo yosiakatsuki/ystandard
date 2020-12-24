@@ -222,7 +222,7 @@ class Admin_Menu {
 		?>
 		<div class="wrap ys-option-page">
 			<h2>アイコン ショートコード一覧</h2>
-			<?php echo Admin::manual_link( 'icon-search' ); ?>
+			<?php echo Admin::manual_link( 'manual/icon-search' ); ?>
 			<div class="ys-option__section">
 				<p>ショートコードをコピーしてサイト内でご使用ください。</p>
 				<div id="ys-search-icons">
