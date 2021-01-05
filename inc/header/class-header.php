@@ -113,7 +113,7 @@ class Header {
 			$logo = sprintf(
 				'<a href="%s" class="custom-logo-link" rel="home">%s</a>',
 				esc_url( home_url( '/' ) ),
-				get_bloginfo( 'name' )
+				get_bloginfo( 'name', 'display' )
 			);
 		}
 

@@ -51,7 +51,7 @@ class Copyright {
 
 		$year      = date_i18n( 'Y' );
 		$url       = esc_url( home_url( '/' ) );
-		$blog_name = get_bloginfo( 'name' );
+		$blog_name = get_bloginfo( 'name', 'display' );
 
 		return sprintf(
 			'&copy; %s <a href="%s" rel="home">%s</a>',
