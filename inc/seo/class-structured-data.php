@@ -63,8 +63,8 @@ class Structured_Data {
 		$data                  = self::DEFAULT_DATA;
 		$data['@type']         = 'Website';
 		$data['url']           = home_url( '/' );
-		$data['name']          = get_bloginfo( 'name' );
-		$data['alternateName'] = get_bloginfo( 'name' );
+		$data['name']          = get_bloginfo( 'name', 'display' );
+		$data['alternateName'] = get_bloginfo( 'name', 'display' );
 		if ( Template::is_top_page() ) {
 			$data['potentialAction'] = [
 				'@type'       => 'SearchAction',
@@ -177,7 +177,7 @@ class Structured_Data {
 		$data = [];
 		$name = Option::get_option( 'ys_option_structured_data_publisher_name', '' );
 		if ( '' === $name ) {
-			$name = get_bloginfo( 'name' );
+			$name = get_bloginfo( 'name', 'display' );
 		}
 		$data['publisher'] = [
 			'@type' => 'Organization',

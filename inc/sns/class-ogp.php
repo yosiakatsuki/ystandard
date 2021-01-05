@@ -61,11 +61,11 @@ class OGP {
 		/**
 		 * デフォルト
 		 */
-		$this->set_param( 'og:site_name', get_bloginfo( 'name' ) );
+		$this->set_param( 'og:site_name', get_bloginfo( 'name', 'display' ) );
 		$this->set_param( 'og:locale', get_bloginfo( 'language' ) );
 		$this->set_param( 'og:type', 'website' );
 		$this->set_param( 'og:url', home_url( '/' ) );
-		$this->set_param( 'og:title', get_bloginfo( 'name' ) );
+		$this->set_param( 'og:title', get_bloginfo( 'name', 'display' ) );
 		$this->set_param( 'og:description', Meta_Description::get_meta_description() );
 		$this->set_param( 'og:image', $this->get_ogp_image() );
 		$this->set_param( 'fb:app_id', Option::get_option( 'ys_ogp_fb_app_id', '' ) );
@@ -100,7 +100,7 @@ class OGP {
 		 */
 		$this->set_param( 'twitter:card', Option::get_option( 'ys_twittercard_type', 'summary_large_image' ) );
 		$this->set_param( 'twitter:site', Option::get_option( 'ys_twittercard_user', '' ) );
-		$this->set_param( 'twitter:title', get_bloginfo( 'name' ) );
+		$this->set_param( 'twitter:title', get_bloginfo( 'name', 'display' ) );
 		$this->set_param( 'twitter:description', Meta_Description::get_meta_description() );
 		$this->set_param( 'twitter:image', $this->get_ogp_image() );
 		/**
