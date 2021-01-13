@@ -22,6 +22,7 @@ class AMP {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'ys_get_the_canonical_url', [ $this, 'remove_amp' ] );
+		add_filter( 'ys_google_analytics_additional_config_info', [ $this, 'add_ga_tracking_option' ] );
 	}
 
 	/**
@@ -45,9 +46,27 @@ class AMP {
 	 * Canonical URL からampを削除
 	 *
 	 * @param string $url URL.
+	 *
+	 * @return string
 	 */
 	public function remove_amp( $url ) {
 		return remove_query_arg( 'amp', $url );
+	}
+
+	/**
+	 * Google Analyticsのパラメーター追加.
+	 *
+	 * @param array $options Options
+	 *
+	 * @return array
+	 */
+	public function add_ga_tracking_option( $options ) {
+
+		if ( Option::get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false ) ) {
+			$options['useAmpClientId'] = true;
+		}
+
+		return $options;
 	}
 
 	/**

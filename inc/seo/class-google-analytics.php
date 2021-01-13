@@ -32,12 +32,14 @@ class Google_Analytics {
 		if ( ! $this->is_enable_google_analytics() ) {
 			return;
 		}
+		$ys_tracking_option = apply_filters( 'ys_google_analytics_additional_config_info', [] );
 		ob_start();
 		Template::get_template_part(
 			'template-parts/parts/ga',
 			Option::get_option( 'ys_ga_tracking_type', 'gtag' ),
 			[
-				'ys_tracking_id' => trim( Option::get_option( 'ys_ga_tracking_id', '' ) ),
+				'ys_tracking_id'     => trim( Option::get_option( 'ys_ga_tracking_id', '' ) ),
+				'ys_tracking_option' => empty( $ys_tracking_option ) ? '' : json_encode( $ys_tracking_option, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ),
 			]
 		);
 		echo ob_get_clean();
@@ -101,9 +103,10 @@ class Google_Analytics {
 				'id'          => 'ys_ga_tracking_id',
 				'default'     => '',
 				'transport'   => 'postMessage',
-				'label'       => 'Google Analytics トラッキングID',
+				'label'       => 'Google Analytics 測定ID',
+				'description' => '「G-」から始まる測定ID、もしくは「UA-」から始まるトラッキングIDを入力してください。',
 				'input_attrs' => [
-					'placeholder' => 'UA-00000000-0',
+					'placeholder' => 'G-0000000000',
 				],
 			]
 		);
@@ -116,7 +119,7 @@ class Google_Analytics {
 				'default'     => 'gtag',
 				'transport'   => 'postMessage',
 				'label'       => 'トラッキングコードタイプ',
-				'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。<br>※デフォルトはグローバル サイトタグ(gtag.js)です。',
+				'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。<br>※Google Analytics 4の場合は「グローバル サイトタグ(gtag.js)」を選択してください',
 				'choices'     => [
 					'gtag'      => 'グローバル サイトタグ(gtag.js)',
 					'analytics' => 'ユニバーサルアナリティクス(analytics.js)',
