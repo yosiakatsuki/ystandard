@@ -27,6 +27,7 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 ### v4.20.0
 - [追加] Google Analytics 追加パラーメーターカスタマイズ用フック(`ys_google_analytics_additional_config_info`)追加
+- [調整] Google Analytics設定欄のGoogle Analytics 4向け説明文調整
 
 ### v4.19.1
 - [調整] サイト名取得処理の調整
