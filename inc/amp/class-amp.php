@@ -56,7 +56,7 @@ class AMP {
 	/**
 	 * Google Analyticsのパラメーター追加.
 	 *
-	 * @param array $options Options
+	 * @param array $options Options.
 	 *
 	 * @return array
 	 */
