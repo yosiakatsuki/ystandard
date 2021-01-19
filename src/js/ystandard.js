@@ -26,6 +26,10 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	if ( glovalNav ) {
 		glovalNav.addEventListener( 'click', ( e ) => {
 			e.currentTarget.classList.toggle( 'is-open' );
+			const mobileFooter = document.getElementsByClassName( 'footer-mobile-nav' );
+			if ( mobileFooter ) {
+				mobileFooter[ 0 ].classList.toggle( 'is-hide' );
+			}
 		} );
 	}
 	// スムーススクロール.

@@ -96,7 +96,7 @@
 
   &.is-active {
 	@include media-breakpoint(md) {
-	  z-index: 11;
+	  z-index: var(--z-index-global-nav);
 	  visibility: visible;
 	  opacity: 0.98;
 	}
@@ -174,7 +174,7 @@
 	  position: absolute;
 	  top: 100%;
 	  left: 0;
-	  z-index: 11;
+	  z-index: var(--z-index-global-nav-sub-menu);
 	  margin-left: 0;
 	  text-align: left;
 	  white-space: nowrap;
@@ -271,7 +271,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 11;
+  z-index: var(--z-index-global-nav);
   padding: .5em 1em;
   background-color: transparent;
   color: var(--mobile-nav-open);
@@ -327,7 +327,7 @@
 	color: var(--mobile-nav-close);
 
 	+ .global-nav {
-	  z-index: 10;
+	  z-index: var(--z-index-global-nav-button);
 	  visibility: visible;
 	  opacity: 1;
 	}
