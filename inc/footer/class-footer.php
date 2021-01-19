@@ -155,13 +155,16 @@ class Footer {
 		  position: fixed;
 		  bottom: 0;
 		  left: 0;
-		  z-index: 8;
+		  z-index: var(--z-index-mobile-footer);
 		  width: 100%;
 		  background-color: var(--mobile-footer-bg);
 		  text-align: center;
 		  color: var(--mobile-footer-text);
 		  -webkit-box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07);
-		          box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07); }
+		          box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07);
+		  transition:transform .3s;}
+		  .footer-mobile-nav.is-hide {
+		    transform: translateY(100%); }
 		  .footer-mobile-nav ul {
 		    display: -webkit-box;
 		    display: -ms-flexbox;

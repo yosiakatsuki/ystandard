@@ -47,6 +47,11 @@
   --form-border-gray: #{rgba($color__border-gray, 0.9)};
   --button-text: #{$color__btn-text};
   --button-bg: #{$color__btn-bg};
+  --z-index-global-nav: 11;
+  --z-index-global-nav-button: 10;
+  --z-index-global-nav-sub-menu: 12;
+  --z-index-mobile-footer: 8;
+
 
   @each $key, $color in $color__sns {
 	--sns-color-#{$key}: #{$color};
