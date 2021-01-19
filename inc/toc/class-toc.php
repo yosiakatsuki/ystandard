@@ -209,9 +209,9 @@ class TOC {
 		}
 		// 置換.
 		foreach ( $matches as $value ) {
-			$search  = $value['search'];
+			$search  = preg_quote( $value['search'], '/' );
 			$replace = $toc . $value['replace'];
-			$content = str_replace( $search, $replace, $content );
+			$content = preg_replace( "/${search}/", $replace, $content, 1 );
 			$toc     = '';
 		}
 
