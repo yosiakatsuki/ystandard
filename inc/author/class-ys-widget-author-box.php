@@ -30,7 +30,8 @@ class YS_Widget_Author_Box extends WP_Widget {
 	 * @var array
 	 */
 	private $default_instance = [
-		'text' => '',
+		'text'  => '',
+		'title' => '',
 	];
 
 	/**
@@ -80,7 +81,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 	 * @param array $instance instance.
 	 */
 	public function widget( $args, $instance ) {
-
+		$widget_title = '';
 		if ( ! empty( $instance['title'] ) ) {
 			$widget_title = '<h2 class="author-widget-title">' . apply_filters( 'widget_title', $instance['title'] ) . '</h2>';
 		}
