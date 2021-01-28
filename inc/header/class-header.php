@@ -193,6 +193,10 @@ class Header {
 	 * @return array
 	 */
 	public function add_css_var( $css_vars ) {
+		$site_cover        = Enqueue_Utility::get_css_var(
+			'site-cover',
+			Option::get_option( 'ys_color_header_bg', '#ffffff' )
+		);
 		$header_bg         = Enqueue_Utility::get_css_var(
 			'header-bg',
 			Option::get_option( 'ys_color_header_bg', '#ffffff' )
@@ -232,6 +236,7 @@ class Header {
 
 		return array_merge(
 			$css_vars,
+			$site_cover,
 			$header_bg,
 			$header_color,
 			$header_dscr,
