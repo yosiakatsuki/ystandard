@@ -40,6 +40,7 @@
 			);
 			ys_the_archive_meta();
 			ys_the_archive_description();
+			ys_the_archive_read_more();
 			?>
 		</div>
 	</div>
