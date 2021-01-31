@@ -181,6 +181,16 @@
   line-height: 1.3;
 }
 
+.archive__read-more {
+  margin-top: 1em;
+  font-size: 0.7em;
+  line-height: 1.3;
+  text-align: right;
+  a {
+	color: var(--font-gray);
+  }
+}
+
 .has-sidebar {
   .archive__item {
 	&.is-card {
