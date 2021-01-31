@@ -216,6 +216,12 @@ function ys_the_archive_meta() {
 function ys_the_archive_description() {
 	\ystandard\Archive::the_archive_description();
 }
+/**
+ * アーカイブ リンク
+ */
+function ys_the_archive_read_more() {
+	echo \ystandard\Archive::get_archive_detail_read_more();
+}
 
 /**
  * アーカイブ 画像縦横比
