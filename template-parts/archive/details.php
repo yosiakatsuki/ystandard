@@ -39,6 +39,7 @@
 				'</a></h2>'
 			);
 			ys_the_archive_description();
+			ys_the_archive_read_more();
 			?>
 		</div>
 	</div>

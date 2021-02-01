@@ -280,6 +280,27 @@ class Archive {
 	}
 
 	/**
+	 * カテゴリー
+	 *
+	 * @return string
+	 */
+	public static function get_archive_detail_read_more() {
+
+		$read_more = Option::get_option( 'ys_archive_read_more_text', '' );
+		if ( ! trim( $read_more ) ) {
+			return '';
+		}
+
+		$read_more = sprintf(
+			'<div class="archive__read-more"><a href="%s">%s</a></div>',
+			get_permalink( get_the_ID() ),
+			apply_filters( 'ys_get_archive_detail_read_more_text', $read_more, get_the_ID() )
+		);
+
+		return apply_filters( 'ys_get_archive_detail_read_more', $read_more, get_the_ID() );
+	}
+
+	/**
 	 * 説明 2ページ目以降削除
 	 *
 	 * @param string $description 説明文.
@@ -379,6 +400,35 @@ class Archive {
 				'label'   => '概要文の文字数',
 			]
 		);
+		$customizer->add_section_label( '続きを読むリンク' );
+		$customizer->add_text(
+			[
+				'id'                => 'ys_archive_read_more_text',
+				'default'           => '',
+				'label'             => '「続きを読む」リンクのテキスト',
+				'sanitize_callback' => [ $this, 'sanitize_read_more' ],
+			]
+		);
+	}
+
+	/**
+	 * 続きを読むリンクのサニタイズ
+	 *
+	 * @param string $value Text.
+	 *
+	 * @return string
+	 */
+	public function sanitize_read_more( $value ) {
+		$allowed_html = Utility::get_kses_allowed_html(
+			[
+				'span',
+				'strong',
+				'br',
+				'img',
+			]
+		);
+
+		return wp_kses( $value, $allowed_html );
 	}
 }
 
