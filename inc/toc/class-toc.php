@@ -143,7 +143,7 @@ class TOC {
 		}
 		$this->toc_title = $atts['title'];
 
-		$content = $this->create_toc( $content );
+		$this->create_toc( $content );
 
 		return $this->toc_html;
 	}
@@ -255,10 +255,19 @@ class TOC {
 		$toc .= '</ul>';
 
 		// タイトル.
-		$title = $this->toc_title;
-		$title = '<p class="ys-toc__title">' . $title . '</p>';
+		$title = apply_filters( 'ys_toc_title', $this->toc_title, $this->is_widget );
+		$title = apply_filters(
+			'ys_toc_title_html',
+			'<p class="ys-toc__title">' . $title . '</p>',
+			$this->is_widget
+		);
 		// HTML.
-		$this->toc_html = "<div class=\"ys-toc\">${title}${toc}</div>";
+		$toc            = apply_filters( 'ys_toc_list_html', $toc, $this->is_widget );
+		$this->toc_html = apply_filters(
+			'ys_toc_html',
+			"<div class=\"ys-toc\">${title}${toc}</div>",
+			$this->is_widget
+		);
 
 		return $this->toc_html;
 	}
