@@ -181,7 +181,7 @@ class Optimization {
 			[
 				'section'     => 'ys_cache_query',
 				'title'       => 'キャッシュ',
-				'description' => '記事一覧作成結果のキャッシュ機能設定' . Admin::manual_link( 'query-cache' ),
+				'description' => '記事一覧作成結果のキャッシュ機能設定' . Admin::manual_link( 'manual/query-cache' ),
 			]
 		);
 		// 新着記事一覧.
@@ -231,7 +231,7 @@ class Optimization {
 			[
 				'section'     => 'ys_optimize_emoji',
 				'title'       => '絵文字',
-				'description' => '絵文字関連のCSS・JavaScript設定' . Admin::manual_link( 'emoji' ),
+				'description' => '絵文字関連のCSS・JavaScript設定' . Admin::manual_link( 'manual/emoji' ),
 			]
 		);
 		$customizer->add_checkbox(
@@ -257,7 +257,7 @@ class Optimization {
 			[
 				'section'     => 'ys_optimize_oembed',
 				'title'       => 'oEmbed',
-				'description' => 'oEmbedによる埋め込みの設定' . Admin::manual_link( 'oembed' ),
+				'description' => 'oEmbedによる埋め込みの設定' . Admin::manual_link( 'manual/oembed' ),
 			]
 		);
 		$customizer->add_checkbox(
@@ -283,7 +283,7 @@ class Optimization {
 			[
 				'section'     => 'ys_optimize_css',
 				'title'       => 'CSSインライン読み込み（上級者向け）',
-				'description' => Admin::manual_link( 'inline-css' ),
+				'description' => Admin::manual_link( 'manual/inline-css' ),
 
 			]
 		);
@@ -311,7 +311,7 @@ class Optimization {
 			[
 				'section'     => 'ys_optimize_load_js',
 				'title'       => 'JavaScript・jQueryの読み込み設定（上級者向け）',
-				'description' => Admin::manual_link( 'js-optimize' ),
+				'description' => Admin::manual_link( 'manual/js-optimize' ),
 
 			]
 		);

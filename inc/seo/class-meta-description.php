@@ -114,7 +114,7 @@ class Meta_Description {
 		$customizer->add_section_label(
 			'meta description自動生成',
 			[
-				'description' => Admin::manual_link( 'meta-description' ),
+				'description' => Admin::manual_link( 'manual/meta-description' ),
 			]
 		);
 		// 自動生成する.
@@ -141,7 +141,7 @@ class Meta_Description {
 		$customizer->add_section_label(
 			'TOPページのmeta description',
 			[
-				'description' => Admin::manual_link( 'top-meta-description' ),
+				'description' => Admin::manual_link( 'manual/top-meta-description' ),
 			]
 		);
 		$customizer->add_plain_textarea(
