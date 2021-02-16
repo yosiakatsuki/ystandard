@@ -301,7 +301,7 @@ class Admin_Menu {
 		?>
 		<div class="wrap">
 			<h2>キャッシュ管理</h2>
-			<?php echo Admin::manual_link( 'cache-delete' ); ?>
+			<?php echo Admin::manual_link( 'manual/cache-delete' ); ?>
 			<?php if ( $result ) : ?>
 				<div class="notice notice-success is-dismissible">
 					<p><?php echo $result; ?></p>
