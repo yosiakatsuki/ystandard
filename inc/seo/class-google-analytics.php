@@ -90,7 +90,7 @@ class Google_Analytics {
 				'section'     => 'ys_google_analytics',
 				'title'       => 'Google Analytics',
 				'priority'    => 10,
-				'description' => Admin::manual_link( 'google-analytics' ),
+				'description' => Admin::manual_link( 'manual/google-analytics' ),
 				'panel'       => SEO::PANEL_NAME,
 			]
 		);

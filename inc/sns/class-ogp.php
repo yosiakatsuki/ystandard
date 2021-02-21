@@ -234,7 +234,7 @@ class OGP {
 				'title'       => 'OGP',
 				'priority'    => 1,
 				'panel'       => SNS::PANEL_NAME,
-				'description' => Admin::manual_link( 'ogp-meta' ),
+				'description' => Admin::manual_link( 'manual/ogp-meta' ),
 			]
 		);
 
@@ -284,7 +284,7 @@ class OGP {
 				'section'     => 'ys_twitter_cards',
 				'title'       => 'Twitterカード',
 				'priority'    => 2,
-				'description' => Admin::manual_link( 'twitter-card' ),
+				'description' => Admin::manual_link( 'manual/twitter-card' ),
 				'panel'       => SNS::PANEL_NAME,
 			]
 		);
