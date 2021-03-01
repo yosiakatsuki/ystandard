@@ -239,7 +239,7 @@ class Structured_Data {
 				'section'     => 'ys_structured_data',
 				'title'       => '構造化データ',
 				'priority'    => 100,
-				'description' => Admin::manual_link( 'structured-data' ),
+				'description' => Admin::manual_link( 'manual/structured-data' ),
 				'panel'       => SEO::PANEL_NAME,
 			]
 		);
