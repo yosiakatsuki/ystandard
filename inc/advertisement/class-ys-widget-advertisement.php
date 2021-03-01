@@ -121,7 +121,7 @@ class YS_Widget_Advertisement extends WP_Widget {
 			(array) $instance,
 			$this->default_instance
 		);
-		$manual   = \ystandard\Admin::manual_link( 'widget-advertisement' );
+		$manual   = \ystandard\Admin::manual_link( 'manual/widget-advertisement' );
 		?>
 		<?php if ( ! empty( $manual ) ) : ?>
 			<p><?php echo $manual; ?></p>
