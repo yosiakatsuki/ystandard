@@ -223,7 +223,7 @@ class Taxonomy {
 	 */
 	public function add_form_fields( $taxonomy ) {
 		$taxonomy = get_taxonomy( $taxonomy );
-		$manual   = Admin::manual_link( 'category/manual/taxonomies', '', true );
+		$manual   = Admin::manual_link( 'manual_category/taxonomies', '', true );
 		?>
 		<?php if ( ! empty( $manual ) ) : ?>
 			<hr>
@@ -254,7 +254,7 @@ class Taxonomy {
 		<tr class="form-field term-title-override-wrap">
 			<th scope="row">
 				<label for="title-override">[ys]一覧ページのタイトルを置き換える</label>
-				<?php echo Admin::manual_link( 'cat-tag-archive-title' ); ?>
+				<?php echo Admin::manual_link( 'manual/cat-tag-archive-title' ); ?>
 			</th>
 			<td>
 				<input name="title-override" id="title-override" type="text" value="<?php echo esc_attr( get_term_meta( $term->term_id, 'title-override', true ) ); ?>" size="40">
@@ -264,7 +264,7 @@ class Taxonomy {
 		<tr class="form-field term-dscr-override-wrap">
 			<th scope="row">
 				<label for="dscr-override">[ys]一覧ページの説明を置き換える</label>
-				<?php echo Admin::manual_link( 'cat-tag-archive-content' ); ?>
+				<?php echo Admin::manual_link( 'manual/cat-tag-archive-content' ); ?>
 			</th>
 			<td>
 				<?php
@@ -291,7 +291,7 @@ class Taxonomy {
 		<tr>
 			<th scope="row">
 				<label for="term-image">[ys]<?php echo $taxonomy->label; ?>一覧ページ画像</label>
-				<?php echo Admin::manual_link( 'cat-tag-archive-eye-catch' ); ?>
+				<?php echo Admin::manual_link( 'manual/cat-tag-archive-eye-catch' ); ?>
 			</th>
 			<td>
 				<div class="form-field term-image-wrap">
