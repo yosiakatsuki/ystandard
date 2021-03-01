@@ -117,7 +117,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 		 * ユーザーリストの作成
 		 */
 		$user_list = $this->get_author_list();
-		$manual    = \ystandard\Admin::manual_link( 'widget-author' );
+		$manual    = \ystandard\Admin::manual_link( 'manual/widget-author' );
 		?>
 		<?php if ( ! empty( $manual ) ) : ?>
 			<p><?php echo $manual; ?></p>

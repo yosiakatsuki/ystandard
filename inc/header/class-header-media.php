@@ -174,7 +174,7 @@ class Header_Media {
 		$dscr = $wp_customize->get_section( 'header_image' )->description;
 		$customizer->set_section_description(
 			'header_image',
-			$dscr . Admin::manual_link( 'custom-header' )
+			$dscr . Admin::manual_link( 'manual/custom-header' )
 		);
 		// Refresh.
 		$customizer->set_refresh( 'header_video' );

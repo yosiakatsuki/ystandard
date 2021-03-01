@@ -56,7 +56,7 @@ class Admin {
 	 */
 	public function widget_manual() {
 		global $pagenow;
-		$manual = self::manual_link( 'widget-area' );
+		$manual = self::manual_link( 'manual/widget-area' );
 		if ( 'widgets.php' === $pagenow && ! empty( $manual ) ) {
 			Notice::manual( '<p>' . $manual . '</p>' );
 		}
