@@ -115,7 +115,7 @@ class YS_Widget_TOC extends WP_Widget {
 			(array) $instance,
 			$this->default_instance
 		);
-		$manual   = \ystandard\Admin::manual_link( 'widget-toc' );
+		$manual   = \ystandard\Admin::manual_link( 'manual/widget-toc' );
 		?>
 		<?php if ( ! empty( $manual ) ) : ?>
 			<p><?php echo $manual; ?></p>

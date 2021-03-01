@@ -109,7 +109,7 @@ class Sitemap {
 			[
 				'section'     => self::PANEL_NAME,
 				'title'       => '[ys]XMLサイトマップ',
-				'description' => Admin::manual_link( 'wp-xml-sitemap' ) . 'WordPress標準のXMLサイトマップ生成機能に関する設定',
+				'description' => Admin::manual_link( 'manual/wp-xml-sitemap' ) . 'WordPress標準のXMLサイトマップ生成機能に関する設定',
 			]
 		);
 		$customizer->add_section_label( 'XMLサイトマップ生成機能の有効化' );
