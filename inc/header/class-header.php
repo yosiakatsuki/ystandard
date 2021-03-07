@@ -84,24 +84,6 @@ class Header {
 	}
 
 	/**
-	 * グローバルナビゲーションクラス
-	 *
-	 * @param string $class class.
-	 *
-	 * @return string
-	 */
-	public static function get_global_nav_class( $class ) {
-		$class   = [ $class ];
-		$bg      = Option::get_option( 'ys_color_header_bg', '#ffffff' );
-		$default = Option::get_default( 'ys_color_header_bg', '#ffffff' );
-		if ( $bg !== $default ) {
-			$class[] = 'has-background';
-		}
-
-		return trim( implode( ' ', $class ) );
-	}
-
-	/**
 	 * ヘッダーロゴ取得
 	 *
 	 * @return string
