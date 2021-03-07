@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-if ( ! has_nav_menu( 'global' ) ) {
+if ( ! ys_has_global_nav() ) {
 	return;
 }
 ?>
@@ -24,6 +24,7 @@ if ( ! has_nav_menu( 'global' ) ) {
 			</div>
 		<?php endif; ?>
 		<?php
+		do_action( 'ys_before_global_nav_menu' );
 		wp_nav_menu(
 			[
 				'theme_location' => 'global',
@@ -32,9 +33,10 @@ if ( ! has_nav_menu( 'global' ) ) {
 				'container'      => false,
 				'depth'          => 2,
 				'fallback_cb'    => '',
-				'walker'         => new YS_Walker_Global_Nav_Menu(),
+				'walker'         => ys_global_nav_walker(),
 			]
 		);
+		do_action( 'ys_after_global_nav_menu' );
 		?>
 	</nav>
 	<?php do_action( 'ys_global_nav_before_search' ); ?>
