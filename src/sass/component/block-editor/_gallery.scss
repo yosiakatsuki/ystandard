@@ -13,3 +13,12 @@
 	font-style: normal;
   }
 }
+
+body:not(.has-sidebar) {
+  .wp-block-gallery {
+	&.alignwide {
+	  padding-right: 0;
+	  padding-left: 0;
+	}
+  }
+}
