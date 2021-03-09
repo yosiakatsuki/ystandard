@@ -50,6 +50,19 @@ class Template {
 	}
 
 	/**
+	 * 固定ページで設定されたフロントページか
+	 *
+	 * @return bool
+	 */
+	public static function is_single_front_page() {
+		if ( 'page' === get_option( 'show_on_front' ) ) {
+			return is_front_page();
+		}
+
+		return false;
+	}
+
+	/**
 	 * TOPページか
 	 *
 	 * @return bool
@@ -197,6 +210,9 @@ class Template {
 	 */
 	public static function is_active_post_header() {
 		$result = true;
+		if ( self::is_single_front_page() ) {
+			$result = false;
+		}
 		if ( self::is_no_title_template() ) {
 			$result = false;
 		}

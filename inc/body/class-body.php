@@ -55,6 +55,12 @@ class Body {
 			$classes[] = 'has-sidebar';
 		}
 		/**
+		 * フロントページ
+		 */
+		if ( Template::is_single_front_page()  ) {
+			$classes[] = 'is-front-page';
+		}
+		/**
 		 * Type: singular
 		 */
 		if ( is_singular() && ! is_front_page() ) {
@@ -80,6 +86,9 @@ class Body {
 		 * タイトルなしテンプレート
 		 */
 		if ( Template::is_no_title_template() ) {
+			$classes[] = 'no-title';
+		}
+		if ( Template::is_single_front_page() && Template::is_one_column() ) {
 			$classes[] = 'no-title';
 		}
 
