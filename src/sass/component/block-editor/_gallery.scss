@@ -24,15 +24,15 @@ body:not(.has-sidebar) {
 }
 
 @if $editor == true {
-  @include media-breakpoint(lg) {
-	[data-align=full] > .wp-block-gallery {
-	  max-width: 100%;
-	  margin-right: 0;
-	  margin-left: 0;
-	  padding-right: 0;
-	  padding-left: 0;
-	}
+  .wp-block[data-align=wide] > .wp-block-gallery,
+  .wp-block[data-align=full] > .wp-block-gallery {
+	max-width: 100%;
+	margin-right: 0;
+	margin-left: 0;
+	padding-right: 0;
+	padding-left: 0;
   }
+
   .blocks-gallery-grid,
   .wp-block-gallery {
 	.blocks-gallery-caption {
