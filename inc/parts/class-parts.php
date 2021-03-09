@@ -279,8 +279,10 @@ class Parts {
 	public function set_order( $query ) {
 		if ( is_admin() ) {
 			if ( isset( $query->query['post_type'] ) && self::POST_TYPE === $query->query['post_type'] ) {
-				$query->set( 'orderby', 'date' );
-				$query->set( 'order', 'DESC' );
+				if ( ! filter_input( INPUT_GET, 'orderby' ) ) {
+					$query->set( 'orderby', 'date' );
+					$query->set( 'order', 'DESC' );
+				}
 			}
 		}
 	}
