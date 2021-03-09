@@ -28,3 +28,9 @@ body:not(.has-sidebar) {
 	}
   }
 }
+
+@if $editor == true {
+  [data-align=full]>.wp-block-image img {
+	display: block;
+  }
+}
