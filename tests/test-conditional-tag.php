@@ -75,4 +75,38 @@ class ConditionalTagTest extends WP_UnitTestCase {
 		$this->go_to( "/?page_id=$post_id" );
 		$this->assertFalse( ys_is_no_title_template() );
 	}
+
+	/**
+	 * Test:Template::is_single_front_page
+	 */
+	function test_single_top_page_site_default() {
+		$post_id = $this->factory->post->create( [ 'post_type' => 'page' ] );
+		$post_id = $this->factory->post->create();
+		$this->go_to( "/" );
+		$this->assertFalse( ystandard\Template::is_single_front_page() );
+	}
+
+	/**
+	 * Test:Template::is_single_front_page
+	 */
+	function test_single_top_page_set_front_page() {
+		$post_id = $this->factory->post->create( [ 'post_type' => 'page' ] );
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_on_front', $post_id );
+		$this->go_to( "/?page_id=$post_id" );
+		$this->assertTrue( ystandard\Template::is_single_front_page() );
+	}
+
+	/**
+	 * Test:Template::is_single_front_page
+	 */
+	function test_single_top_page_set_front_go_to_home() {
+		$post_id      = $this->factory->post->create( [ 'post_type' => 'page' ] );
+		$post_id_home = $this->factory->post->create( [ 'post_type' => 'page' ] );
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_on_front', $post_id );
+		update_option( 'page_for_posts', $post_id_home );
+		$this->go_to( "/?page_id=$post_id_home" );
+		$this->assertFalse( ystandard\Template::is_single_front_page() );
+	}
 }
