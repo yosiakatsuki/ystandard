@@ -30,7 +30,14 @@ body:not(.has-sidebar) {
 }
 
 @if $editor == true {
-  [data-align=full]>.wp-block-image img {
-	display: block;
+  [data-align=full]>.wp-block-image {
+	img {
+	  display: block;
+	}
+  }
+  .wp-block-image {
+	&.is-resized {
+	  max-width: 100%;
+	}
   }
 }
