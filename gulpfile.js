@@ -159,6 +159,13 @@ function cleanFiles( cb ) {
 		],
 		cb );
 }
+function cleanTempFiles( cb ) {
+	return del(
+		[
+			'./ystandard',
+		],
+		cb );
+}
 
 /**
  * サーバーにデプロイするファイルを作成
@@ -169,6 +176,7 @@ exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( z
  */
 exports.zip = series( copyProductionFiles, zip );
 exports.clean = series( cleanFiles );
+exports.cleanTemp = series( cleanTempFiles );
 exports.js = parallel( js, jsAdmin );
 exports.sass = parallel( sass, sassParts );
 exports.webpack = series( buildWebpack );
