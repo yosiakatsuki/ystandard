@@ -57,7 +57,7 @@ class Body {
 		/**
 		 * フロントページ
 		 */
-		if ( Template::is_single_front_page()  ) {
+		if ( Template::is_single_front_page() ) {
 			$classes[] = 'is-front-page';
 		}
 		/**
