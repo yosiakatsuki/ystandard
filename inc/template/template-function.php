@@ -45,7 +45,25 @@ function ys_the_blog_description() {
  * @param string $class class.
  */
 function ys_global_nav_class( $class ) {
-	echo \ystandard\Header::get_global_nav_class( $class );
+	echo \ystandard\Global_Nav::get_global_nav_class( $class );
+}
+
+/**
+ * グローバルナビゲーションを表示するか
+ *
+ * @return boolean
+ */
+function ys_has_global_nav() {
+	return \ystandard\Global_Nav::has_global_nav();
+}
+
+/**
+ * グローバルナビゲーションワーカー
+ *
+ * @return \Walker_Nav_Menu
+ */
+function ys_global_nav_walker() {
+	return \ystandard\Global_Nav::global_nav_walker();
 }
 
 /**
@@ -216,6 +234,7 @@ function ys_the_archive_meta() {
 function ys_the_archive_description() {
 	\ystandard\Archive::the_archive_description();
 }
+
 /**
  * アーカイブ リンク
  */

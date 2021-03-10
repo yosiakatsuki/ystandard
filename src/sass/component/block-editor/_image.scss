@@ -19,4 +19,25 @@ body:not(.has-sidebar) {
 	font-size: .8em;
 	font-style: normal;
   }
+  &.alignfull {
+	img {
+	  display: block;
+	}
+	+ &.alignfull {
+	  margin-top: 0;
+	}
+  }
+}
+
+@if $editor == true {
+  [data-align=full]>.wp-block-image {
+	img {
+	  display: block;
+	}
+  }
+  .wp-block-image {
+	&.is-resized {
+	  max-width: 100%;
+	}
+  }
 }

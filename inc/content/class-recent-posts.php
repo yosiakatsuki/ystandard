@@ -75,6 +75,11 @@ class Recent_Posts {
 	];
 
 	/**
+	 * ランキングデータ取得リミット
+	 */
+	const RANKING_DATA_LIMIT = 1000;
+
+	/**
 	 * クエリパラメーター
 	 *
 	 * @var array
@@ -348,7 +353,7 @@ class Recent_Posts {
 		];
 		// タクソノミー指定.
 		if ( '' !== $this->shortcode_atts['taxonomy'] && '' !== $this->shortcode_atts['term_slug'] ) {
-			$this->sga_limit = 500;
+			$this->sga_limit = self::RANKING_DATA_LIMIT;
 			$key             = $this->shortcode_atts['taxonomy'] . '__in';
 			$sga_arg[ $key ] = $this->shortcode_atts['term_slug'];
 		} else {
@@ -358,7 +363,7 @@ class Recent_Posts {
 				if ( $taxonomy ) {
 					$term_ids = $this->get_the_term_ids( $taxonomy );
 					if ( ! empty( $term_ids ) ) {
-						$this->sga_limit = 500;
+						$this->sga_limit = self::RANKING_DATA_LIMIT;
 						$term_slug       = [];
 						foreach ( $term_ids as $term_id ) {
 							$term = get_term( $term_id, $taxonomy );
