@@ -13,3 +13,30 @@
 	font-style: normal;
   }
 }
+
+body:not(.has-sidebar) {
+  .wp-block-gallery {
+	&.alignwide {
+	  padding-right: 0;
+	  padding-left: 0;
+	}
+  }
+}
+
+@if $editor == true {
+  .wp-block[data-align=wide] > .wp-block-gallery,
+  .wp-block[data-align=full] > .wp-block-gallery {
+	max-width: 100%;
+	margin-right: 0;
+	margin-left: 0;
+	padding-right: 0;
+	padding-left: 0;
+  }
+
+  .blocks-gallery-grid,
+  .wp-block-gallery {
+	.blocks-gallery-caption {
+	  margin-top: .5em;
+	}
+  }
+}
