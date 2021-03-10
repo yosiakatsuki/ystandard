@@ -82,7 +82,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 	function test_single_top_page_site_default() {
 		$post_id = $this->factory->post->create( [ 'post_type' => 'page' ] );
 		$post_id = $this->factory->post->create();
-		$this->go_to( "/" );
+		$this->go_to( '/' );
 		$this->assertFalse( ystandard\Template::is_single_front_page() );
 	}
 
