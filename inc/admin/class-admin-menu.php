@@ -31,6 +31,7 @@ class Admin_Menu {
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ], 11 );
+		add_filter( 'admin_body_class', [ $this, 'admin_body_class' ] );
 	}
 
 	/**
@@ -75,6 +76,24 @@ class Admin_Menu {
 				[ $this, 'cache_page' ]
 			);
 		}
+	}
+
+	/**
+	 * Admin Body Class.
+	 *
+	 * @param string $classes Classes.
+	 *
+	 * @return string
+	 */
+	public function admin_body_class( $classes ) {
+		global $hook_suffix;
+		if ( isset( $hook_suffix ) ) {
+			if ( false !== strpos( $hook_suffix, 'ystandard-start-page' ) || false !== strpos( $hook_suffix, 'ystandard_page' ) ) {
+				$classes .= ' ystandard-option';
+			}
+		}
+
+		return $classes;
 	}
 
 	/**
@@ -124,90 +143,51 @@ class Admin_Menu {
 			<div class="ys-option__section">
 				<div class="ys-contents">
 					<div class="ys-contents__item">
-						<h4>テーマの設定</h4>
-						<div class="ys-contents__icon">
-							<?php echo Icon::get_icon( 'settings' ); ?>
-						</div>
-						<p class="ys-contents__text">
-							テーマカスタマイザーを開いてテーマの設定を始めましょう！<br>
-							<small>※「外観」→「カスタマイズ」からも設定画面を開けます。</small>
-						</p>
-						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="<?php echo esc_url_raw( add_query_arg( 'return', rawurlencode( Utility::get_page_url() ), wp_customize_url() ) ); ?>" rel="noopener noreferrer nofollow">設定を始める <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
-						</p>
-					</div>
-					<div class="ys-contents__item">
-						<h4>マニュアル</h4>
 						<div class="ys-contents__icon">
 							<?php echo Icon::get_icon( 'book' ); ?>
 						</div>
-						<p class="ys-contents__text">
-							yStandardの設定や使い方のマニュアル<br>
-							<small>※yStandard公式サイトのマニュアルページを開きます。</small>
-						</p>
-						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/category/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
-						</p>
+						<div class="ys-contents__text">
+							<h3>マニュアル</h3>
+							<p class="ys-contents__detail">
+								yStandardの設定や使い方の公式マニュアルページです。<br>
+								テーマをインストールしたら最初にやっておきたい設定など、様々なマニュアルを用意しています。
+							</p>
+							<p class="wp-block-button">
+								<a class="wp-block-button__link" href="https://wp-ystandard.com/category/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
+							</p>
+						</div>
 					</div>
 
 					<div class="ys-contents__item">
-						<h4>拡張プラグイン</h4>
+						<div class="ys-contents__icon">
+							<?php echo Icon::get_icon( 'settings' ); ?>
+						</div>
+						<div class="ys-contents__text">
+							<h3>テーマの設定</h3>
+							<p class="ys-contents__detail">
+								テーマカスタマイザーを開いてテーマの設定を始めましょう！<br>
+								<small>※「外観」→「カスタマイズ」からも設定画面を開けます。</small>
+							</p>
+							<p class="wp-block-button">
+								<a class="wp-block-button__link" href="<?php echo esc_url_raw( add_query_arg( 'return', rawurlencode( Utility::get_page_url() ), wp_customize_url() ) ); ?>" rel="noopener noreferrer nofollow">設定を始める <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
+							</p>
+						</div>
+					</div>
+
+					<div class="ys-contents__item">
 						<div class="ys-contents__icon">
 							<?php echo Icon::get_icon( 'tool' ); ?>
 						</div>
-						<p class="ys-contents__text">
-							yStandardでブログを書くことがもっと楽しくなる拡張プラグイン！<br>
-							ブロック拡張プラグインやデザインスキンの配布・販売を予定しています！
-						</p>
-						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/plugins/" target="_blank" rel="noopener noreferrer nofollow">拡張プラグインを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
-						</p>
-					</div>
-
-					<div class="ys-contents__item">
-						<h4><span class="orbitron">yStandard</span>を応援する</h4>
-						<div class="ys-contents__icon">
-							<?php echo Icon::get_icon( 'gift' ); ?>
-						</div>
 						<div class="ys-contents__text">
-							<ul style="text-align: center;">
-								<li>「知り合いにyStandardを紹介する」</li>
-								<li>「ブログでyStandardを紹介する」</li>
-							</ul>
-							<p>
-								…など、ちょっとしたことでもyStandadを応援する方法があります。
+							<h3>拡張プラグイン</h3>
+							<p class="ys-contents__detail">
+								yStandardの機能を更に強化する拡張プラグイン。<br>
+								見出しスタイルのカスタマイズ機能やページ先頭の画像や動画の上にヘッダーメニューを重ねて表示できる機能など、コードを書かなくてもキレイなWebサイト・ブログを作れる機能を詰め込んだプラグインです。
+							</p>
+							<p class="wp-block-button">
+								<a class="wp-block-button__link" href="https://wp-ystandard.com/plugins/" target="_blank" rel="noopener noreferrer nofollow">拡張プラグインを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 							</p>
 						</div>
-						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/contribute/" target="_blank" rel="noopener noreferrer nofollow"><span class="orbitron">yStandard</span>を応援する <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
-						</p>
-					</div>
-
-					<div class="ys-contents__item">
-						<h4>フォーラム</h4>
-						<div class="ys-contents__icon">
-							<?php echo Icon::get_icon( 'message-square' ); ?>
-						</div>
-						<p class="ys-contents__text">
-							yStandardの使い方や機能要望、不具合かも？という内容はフォーラムにて質問・相談を受け付けております。
-						</p>
-						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://support.wp-ystandard.com/forums/" target="_blank" rel="noopener noreferrer nofollow">フォーラムを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
-						</p>
-					</div>
-
-					<div class="ys-contents__item">
-						<h4>ユーザーコミュニティ</h4>
-						<div class="ys-contents__icon">
-							<?php echo Icon::get_icon( 'slack' ); ?>
-						</div>
-						<p class="ys-contents__text">
-							yStandard利用者同士での交流を目的としたSlackチームです<br>
-							コミュニティ参加者限定のオンラインもくもく会などを開催しています。
-						</p>
-						<p class="wp-block-button">
-							<a class="wp-block-button__link" href="https://wp-ystandard.com/ystandard-user-community/" target="_blank" rel="noopener noreferrer nofollow">ユーザーコミュニティに参加する <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
-						</p>
 					</div>
 				</div>
 			</div>
