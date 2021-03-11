@@ -35,7 +35,7 @@ class Recommend_Plugins {
 	public function notice() {
 		global $pagenow, $hook_suffix;
 		if ( 'themes.php' === $pagenow && 'appearance_page_tgmpa-install-plugins' === $hook_suffix ) {
-			Notice::manual( '<p>' . Admin::manual_link( 'ystd-plugin' ) . '</p>' );
+			Notice::manual( Admin::manual_link( 'ystd-plugin' ) );
 		}
 	}
 
