@@ -120,7 +120,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 		$manual    = \ystandard\Admin::manual_link( 'manual/widget-author' );
 		?>
 		<?php if ( ! empty( $manual ) ) : ?>
-			<p><?php echo $manual; ?></p>
+			<?php echo $manual; ?>
 		<?php endif; ?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>

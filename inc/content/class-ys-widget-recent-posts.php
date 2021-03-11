@@ -135,7 +135,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 		$manual   = \ystandard\Admin::manual_link( 'manual/widget-recent-posts' );
 		?>
 		<?php if ( ! empty( $manual ) ) : ?>
-			<p><?php echo $manual; ?></p>
+			<?php echo $manual; ?>
 		<?php endif; ?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'タイトル:' ); ?></label>
