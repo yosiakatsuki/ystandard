@@ -1,3 +1,8 @@
+.ystandard-option,
+.ystandard-option #wpcontent {
+  background-color: #fff;
+}
+
 .orbitron {
   font-family: Orbitron, sans-serif;
 }
@@ -24,55 +29,69 @@
 }
 
 .ys-contents {
-  @include media-breakpoint(sm) {
-	display: flex;
-	flex-wrap: wrap;
-	margin-right: -0.5rem;
-	margin-left: -0.5rem;
-  }
-
 
   .ys-contents__item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	position: relative;
-	padding: 1em;
-	text-align: center;
+	margin-top: 1.5em;
+	padding: 2em;
+	box-shadow: 0 0 16px rgba(#000, 0.1);
 
 	@include media-breakpoint(sm) {
-	  flex: 0 0 50%;
-	  width: 50%;
-	  padding-right: 2em;
-	  padding-left: 2em;
-	}
-	@include media-breakpoint(lg) {
-	  flex: 0 0 33.33%;
-	  width: 33.33%;
+	  display: flex;
+	  align-items: center;
 	}
 
-	h4 {
-	  font-size: 1.3em;
+	&:first-child {
+	  margin-top: 0;
+	}
+
+	h3 {
+	  text-align: center;
+	  font-size: 1.5em;
+	  color: $color__ystanadrd;
+
+	  @include media-breakpoint(sm) {
+		text-align: left;
+	  }
+	}
+  }
+
+  .ys-contents__icon {
+	margin-right: 1.5em;
+	padding: 2em;
+	text-align: center;
+
+	svg {
+	  width: 64px;
+	  height: 64px;
+	}
+  }
+
+  .ys-contents__text {
+
+	> * {
+	  margin-top: 1.5em;
+	  margin-bottom: 0;
+
+	  &:first-child {
+		margin-top: 0;
+	  }
 	}
   }
 
   .wp-block-button__link {
+	display: block;
 	background-color: $color__ystanadrd;
 	color: #fff;
+	font-size: .9rem;
+	text-align: center;
+
+	@include media-breakpoint(sm) {
+	  display: inline-block;
+	}
   }
 
-
-  .ys-contents__text {
-	display: inline-block;
-	text-align: left;
-	flex-grow: 1;
-  }
-}
-
-.ys-contents__icon {
-  svg {
-	width: 50px;
-	height: auto;
+  .ys-contents__detail {
+	font-size: 1rem;
   }
 }
 
