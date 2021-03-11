@@ -47,7 +47,7 @@ class Admin {
 		global $pagenow;
 		$manual = self::manual_link( 'manual_category/menu' );
 		if ( 'nav-menus.php' === $pagenow && ! empty( $manual ) ) {
-			Notice::manual( '<p>' . $manual . '</p>' );
+			Notice::manual( $manual );
 		}
 	}
 
@@ -58,7 +58,7 @@ class Admin {
 		global $pagenow;
 		$manual = self::manual_link( 'manual/widget-area' );
 		if ( 'widgets.php' === $pagenow && ! empty( $manual ) ) {
-			Notice::manual( '<p>' . $manual . '</p>' );
+			Notice::manual( $manual );
 		}
 	}
 
