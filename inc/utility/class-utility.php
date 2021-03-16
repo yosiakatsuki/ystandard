@@ -134,49 +134,6 @@ class Utility {
 		return self::get_theme_version( true );
 	}
 
-	/**
-	 * ファイル内容の取得
-	 *
-	 * @param string $file ファイルパス.
-	 *
-	 * @return string
-	 */
-	public static function file_get_contents( $file ) {
-		$content = false;
-		if ( self::init_filesystem() ) {
-			/**
-			 * WP_Filesystem
-			 *
-			 * @global \WP_Filesystem_Direct $wp_filesystem ;
-			 */
-			global $wp_filesystem;
-			$content = $wp_filesystem->get_contents( $file );
-		}
-
-		return $content;
-	}
-
-	/**
-	 * ファイルシステムの初期化
-	 *
-	 * @return bool|null
-	 */
-	public static function init_filesystem() {
-		global $wp_filesystem;
-		if ( ! empty( $wp_filesystem ) ) {
-			return true;
-		}
-		$creds = apply_filters( 'ys_filesystem_credentials', false );
-		require_once ABSPATH . '/wp-admin/includes/file.php';
-		// 認証情報のチェック.
-		if ( false === $creds ) {
-			if ( ( defined( 'FTP_HOST' ) && defined( 'FTP_USER' ) && defined( 'FTP_PASS' ) ) || is_admin() ) {
-				$creds = request_filesystem_credentials( '', '', false, false, null );
-			}
-		}
-
-		return WP_Filesystem( $creds );
-	}
 
 	/**
 	 * ショートコードの作成と実行
