@@ -110,9 +110,15 @@ class Header {
 			return '';
 		}
 
+		$description = apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) );
+
+		if ( empty( $description ) ) {
+			return '';
+		}
+
 		return sprintf(
 			'<p class="site-description">%s</p>',
-			apply_filters( 'ys_the_blog_description', get_bloginfo( 'description', 'display' ) )
+			$description
 		);
 	}
 
