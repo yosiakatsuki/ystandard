@@ -84,7 +84,7 @@ class Icon {
 			if ( ! file_exists( $path ) ) {
 				return '';
 			}
-			$icon = Utility::file_get_contents( $path );
+			$icon = Filesystem::file_get_contents( $path );
 			if ( ! empty( $icon ) ) {
 				self::add_icon_cache( $name, $icon );
 			}
@@ -164,7 +164,7 @@ class Icon {
 
 		// サーバー上のファイルから取得.
 		$path = get_template_directory() . '/library/simple-icons/brand-icons.json';
-		$json = Utility::file_get_contents( $path );
+		$json = Filesystem::file_get_contents( $path );
 		if ( ! empty( $json ) ) {
 			$data = json_decode( $json, true );
 			foreach ( $data['data'] as $key => $value ) {
