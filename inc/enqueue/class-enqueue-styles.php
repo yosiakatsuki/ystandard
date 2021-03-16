@@ -284,7 +284,7 @@ class Enqueue_Styles {
 		}
 		$path = str_replace( site_url( '/' ), ABSPATH, $url );
 		if ( file_exists( $path ) ) {
-			$style = Utility::file_get_contents( $path );
+			$style = Filesystem::file_get_contents( $path );
 		}
 		if ( false === $style ) {
 			return $html;
