@@ -64,6 +64,9 @@
 
 .header-type--row1 {
   @include media-breakpoint(md) {
+	.site-header__content {
+	  align-items: center;
+	}
 	.site-branding {
 	  padding: 1em 0;
 	}
