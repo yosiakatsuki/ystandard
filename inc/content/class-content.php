@@ -53,6 +53,7 @@ class Content {
 	 * アクション・フィルターの登録
 	 */
 	public function register() {
+		add_action( 'wp', [ $this, 'content_action' ] );
 		add_filter( 'post_class', [ $this, 'post_class' ] );
 		add_filter( 'the_content', [ $this, 'the_content_hook' ] );
 		add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ], 10, 2 );
@@ -90,6 +91,14 @@ class Content {
 	}
 
 	/**
+	 * コンテンツ関連のアクション登録
+	 */
+	public function content_action() {
+		// 記事上・記事下のアクションセット.
+		do_action( 'set_singular_content' );
+	}
+
+	/**
 	 * コンテンツヘッダーの優先順位取得
 	 *
 	 * @param string $key Key.
@@ -97,14 +106,19 @@ class Content {
 	 * @return int
 	 */
 	public static function get_header_priority( $key ) {
+		$post_type = self::get_post_type();
+		$cache_key = "${post_type}-header-priority";
+		$priority  = wp_cache_get( $cache_key );
+		if ( ! $priority ) {
+			$priority = apply_filters(
+				'ys_get_content_header_priority',
+				self::HEADER_PRIORITY
+			);
+			wp_cache_set( $cache_key, $priority );
+		}
 
-		$list = apply_filters(
-			'ys_get_content_header_priority',
-			self::HEADER_PRIORITY
-		);
-
-		if ( isset( $list[ $key ] ) ) {
-			return $list[ $key ];
+		if ( isset( $priority[ $key ] ) ) {
+			return $priority[ $key ];
 		}
 
 		return 10;
@@ -118,14 +132,19 @@ class Content {
 	 * @return int
 	 */
 	public static function get_footer_priority( $key ) {
+		$post_type = self::get_post_type();
+		$cache_key = "${post_type}-footer-priority";
+		$priority  = wp_cache_get( $cache_key );
+		if ( ! $priority ) {
+			$priority = apply_filters(
+				'ys_get_content_footer_priority',
+				self::FOOTER_PRIORITY
+			);
+			wp_cache_set( $cache_key, $priority );
+		}
 
-		$list = apply_filters(
-			'ys_get_content_footer_priority',
-			self::FOOTER_PRIORITY
-		);
-
-		if ( isset( $list[ $key ] ) ) {
-			return $list[ $key ];
+		if ( isset( $priority[ $key ] ) ) {
+			return $priority[ $key ];
 		}
 
 		return 10;
