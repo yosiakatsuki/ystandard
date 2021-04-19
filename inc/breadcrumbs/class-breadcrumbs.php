@@ -126,10 +126,19 @@ class Breadcrumbs {
 		if ( ! is_array( $items ) || empty( $items ) ) {
 			return;
 		}
+		$item_list_element = [];
+		$position          = 1;
+		foreach ( $items as $item ) {
+			if ( isset( $item['item'] ) && ! empty( $item['item'] ) ) {
+				$item['position']    = $position;
+				$item_list_element[] = $item;
+				$position ++;
+			}
+		}
 		$breadcrumbs = [
 			'@context'        => 'https://schema.org',
 			'@type'           => 'BreadcrumbList',
-			'itemListElement' => $items,
+			'itemListElement' => $item_list_element,
 		];
 
 		Utility::json_ld( $breadcrumbs );
@@ -152,8 +161,12 @@ class Breadcrumbs {
 		 */
 		if ( is_front_page() ) {
 			if ( $this->page_on_front ) {
+				$title = get_the_title( $this->page_on_front );
+				if ( ! $title ) {
+					$title = get_bloginfo( 'name', 'display' );
+				}
 				$this->set_item(
-					get_the_title( $this->page_on_front ),
+					$title,
 					home_url( '/' )
 				);
 			} else {
