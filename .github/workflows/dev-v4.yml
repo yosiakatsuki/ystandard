@@ -42,7 +42,7 @@ jobs:
         run: sudo systemctl start mysql
 
       - name: MySQL Version
-        run: mysqladmin version
+        run: mysql --version
 
       - name: Install WordPress
         run: bash bin/install-wp-tests.sh wordpress root root 127.0.0.1 ${{ matrix.wp }}
