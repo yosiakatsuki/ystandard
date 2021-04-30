@@ -83,16 +83,16 @@ jobs:
       - name: phpcs tests
         run: composer phpcs
 
-      - name: Notify PHP Lint
-        uses: 8398a7/action-slack@v3.8.0
-        with:
-          status: ${{ job.status }}
-          author_name: Failure phpcs
-          fields: repo,message,commit,job
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: failure()
+#      - name: Notify PHP Lint
+#        uses: 8398a7/action-slack@v3.8.0
+#        with:
+#          status: ${{ job.status }}
+#          author_name: Failure phpcs
+#          fields: repo,message,commit,job
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: failure()
 
   release:
     name: Release Develop Version
