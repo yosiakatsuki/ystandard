@@ -11,14 +11,10 @@ jobs:
         operating-system: [ ubuntu-latest ]
         php: [ '7.3', '7.4' ]
         wp: [ '5.3', 'latest', 'trunk' ]
-    services:
-      mysql:
-        image: mysql:5.7
-        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: root
     name: WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest
+    env:
+      DB_USER: root
+      DB_PASSWORD: 'root'
     steps:
       - uses: actions/checkout@v1
         with:
@@ -39,7 +35,7 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Start MySQL
-        run: sudo systemctl start mysql
+        run: sudo /etc/init.d/mysql start
 
       - name: MySQL Version
         run: mysql --version
