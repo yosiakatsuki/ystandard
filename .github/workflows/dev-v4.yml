@@ -11,6 +11,7 @@ jobs:
         operating-system: [ ubuntu-latest ]
         php: [ '7.3', '7.4' ]
         wp: [ '5.3', 'latest', 'trunk' ]
+    name: WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest
     steps:
       - uses: actions/checkout@v1
         with:
@@ -23,6 +24,9 @@ jobs:
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
           coverage: xdebug
+
+      - name: Shutdown Ubuntu MySQL (SUDO)
+        run: sudo service mysql stop
 
       - name: Setup MySQL
         uses: mirromutth/mysql-action@v1.1
@@ -46,16 +50,16 @@ jobs:
       - name: Run test suite
         run: composer test
 
-      - name: Notify Unit Test
-        uses: 8398a7/action-slack@v3.8.0
-        with:
-          status: ${{ job.status }}
-          author_name: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
-          fields: repo,message,commit,job
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: failure()
+#      - name: Notify Unit Test
+#        uses: 8398a7/action-slack@v3.8.0
+#        with:
+#          status: ${{ job.status }}
+#          author_name: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
+#          fields: repo,message,commit,job
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: failure()
 
   lint:
     runs-on:  ubuntu-latest
