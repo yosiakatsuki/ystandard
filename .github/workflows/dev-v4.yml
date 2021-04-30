@@ -11,11 +11,6 @@ jobs:
         operating-system: [ ubuntu-latest ]
         php: [ '7.3', '7.4' ]
         wp: [ '5.3', 'latest', 'trunk' ]
-    services:
-      mysql:
-        image: mysql:8
-        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=root --entrypoint sh mysql:8 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
-    name: WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest
     steps:
       - uses: actions/checkout@v1
         with:
@@ -29,14 +24,18 @@ jobs:
           ini-values: post_max_size=256M, short_open_tag=On
           coverage: xdebug
 
+      - name: Setup MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql version: 5.7
+          mysql root password: root
+          mysql database: root
+
       - name: Validate composer.json and composer.lock
         run: composer validate
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
-
-      - name: Start MySQL
-        run: sudo systemctl start mysql
 
       - name: MySQL Version
         run: mysql --version
@@ -83,16 +82,16 @@ jobs:
       - name: phpcs tests
         run: composer phpcs
 
-      - name: Notify PHP Lint
-        uses: 8398a7/action-slack@v3.8.0
-        with:
-          status: ${{ job.status }}
-          author_name: Failure phpcs
-          fields: repo,message,commit,job
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: failure()
+#      - name: Notify PHP Lint
+#        uses: 8398a7/action-slack@v3.8.0
+#        with:
+#          status: ${{ job.status }}
+#          author_name: Failure phpcs
+#          fields: repo,message,commit,job
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: failure()
 
   release:
     name: Release Develop Version
