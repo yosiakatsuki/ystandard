@@ -32,8 +32,21 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			}
 		} );
 	}
+	const globalNavLinks = document.querySelectorAll( '.global-nav a[href*="#"]' );
+	for ( let i = 0; i < globalNavLinks.length; i++ ) {
+		globalNavLinks[ i ].addEventListener( 'click', ( e ) => {
+			const toggle = document.getElementById( 'global-nav__toggle' );
+			if ( toggle ) {
+				toggle.classList.remove( 'is-open' );
+			}
+			const mobileFooter = document.getElementsByClassName( 'footer-mobile-nav' );
+			if ( mobileFooter ) {
+				mobileFooter[ 0 ].classList.remove( 'is-hide' );
+			}
+		} );
+	}
 	// スムーススクロール.
-	const links = document.querySelectorAll( 'a[href^="#"]' );
+	const links = document.querySelectorAll( 'a[href^	="#"]' );
 	for ( let i = 0; i < links.length; i++ ) {
 		links[ i ].addEventListener( 'click', ( e ) => {
 			e.preventDefault();
