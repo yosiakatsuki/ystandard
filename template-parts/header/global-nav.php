@@ -19,7 +19,7 @@ if ( ! ys_has_global_nav() ) {
 			<div id="global-nav__search" class="global-nav__search">
 				<?php get_search_form(); ?>
 				<button id="global-nav__search-close" class="global-nav__search-close">
-					<?php echo ys_get_icon( 'x' ); ?> 閉じる
+					<?php echo ys_get_icon( 'x' ); ?> <?php _ex( 'close', 'global nav', 'ystandard' ); ?>
 				</button>
 			</div>
 		<?php endif; ?>
