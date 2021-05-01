@@ -2,15 +2,15 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: yStandard 4.16.0-"
-"beta-4\n"
+"Project-Id-Version: yStandard "
+"4.16.0-beta-4\n"
 "Report-Msgid-Bugs-To: https://"
 "wordpress.org/support/theme/"
 "ystandard\n"
 "POT-Creation-Date: "
-"2020-11-24T04:58:33+00:00\n"
-"PO-Revision-Date: 2020-11-24 "
-"14:00+0900\n"
+"2021-05-01T11:40:16+00:00\n"
+"PO-Revision-Date: 2021-05-01 "
+"20:41+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -18,9 +18,10 @@ msgstr ""
 "Content-Type: text/plain; "
 "charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Domain: ystandard\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; "
+"plural=0;\n"
 
 #. Theme Name of the theme
 msgid "yStandard"
@@ -32,9 +33,9 @@ msgstr ""
 
 #. Description of the theme
 msgid ""
-"「自分色に染めた、自分だけのサイトを"
-"作る楽しさ」を感じてもらうために作っ"
-"た一風変わったWordPressテーマ"
+"「自分色に染めた、自分だけのサイト"
+"を作る楽しさ」を感じてもらうために"
+"作った一風変わったWordPressテーマ"
 msgstr ""
 
 #. Author of the theme
@@ -54,7 +55,7 @@ msgstr "コンテンツへ移動"
 msgid "Search Results for \"%s\""
 msgstr "「%s」の検索結果"
 
-#: inc/content/class-content.php:417
+#: inc/content/class-content.php:443
 msgid "Related Posts"
 msgstr "関連記事"
 
@@ -135,14 +136,20 @@ msgstr ""
 #: template-parts/404/content.php:19
 msgid "No results found for \"%s\"."
 msgstr ""
-"「%s」の検索結果が見つかりませんでし"
-"た。"
+"「%s」の検索結果が見つかりませんで"
+"した。"
 
 #: template-parts/404/content.php:24
 msgid "Page Not Found"
 msgstr ""
-"お探しのページは見つかりませんでした"
+"お探しのページは見つかりませんでし"
+"た"
 
 #: template-parts/404/content.php:31
 msgid "Search again"
 msgstr "サイト内を検索する"
+
+#: template-parts/header/global-nav.php:22
+msgctxt "global nav"
+msgid "close"
+msgstr "閉じる"
