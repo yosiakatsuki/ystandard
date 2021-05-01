@@ -210,10 +210,10 @@ class TOC {
 		// 置換.
 		foreach ( $matches as $value ) {
 			$search  = preg_quote( $value['search'], '/' );
-			$replace = $toc . $value['replace'];
+			$replace = $value['replace'];
 			$content = preg_replace( "/${search}/", $replace, $content, 1 );
-			$toc     = '';
 		}
+		$content = preg_replace( '/(<h([1-6]{1})|<div.*?class="ystdb-heading)/mu', $toc . '${1}', $content, 1 );
 
 		return $content;
 	}
