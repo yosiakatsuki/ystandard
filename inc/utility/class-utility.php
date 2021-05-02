@@ -334,13 +334,32 @@ class Utility {
 			return false;
 		}
 
-		$taxonomy = array_key_first( $taxonomies );
+		$taxonomy = self::array_key_first( $taxonomies );
 
 		if ( 'post' === get_post_type( get_the_ID() ) ) {
 			$taxonomy = 'category';
 		}
 
 		return $taxonomy;
+	}
+
+	/**
+	 * Polyfill array_key_first
+	 *
+	 * @param array $arr array.
+	 *
+	 * @return int|string|null
+	 */
+	public static function array_key_first( $arr ) {
+		if ( ! function_exists( 'array_key_first' ) ) {
+			foreach ( $arr as $key => $unused ) {
+				return $key;
+			}
+
+			return null;
+		}
+
+		return array_key_first( $arr );
 	}
 
 	/**
