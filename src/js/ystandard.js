@@ -46,7 +46,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		} );
 	}
 	// スムーススクロール.
-	const links = document.querySelectorAll( 'a[href^	="#"]' );
+	const links = document.querySelectorAll( 'a[href^="#"]' );
 	for ( let i = 0; i < links.length; i++ ) {
 		links[ i ].addEventListener( 'click', ( e ) => {
 			e.preventDefault();
