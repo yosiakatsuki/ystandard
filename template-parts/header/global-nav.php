@@ -15,14 +15,7 @@ if ( ! ys_has_global_nav() ) {
 <div class="<?php ys_global_nav_class( 'global-nav' ); ?>">
 	<?php do_action( 'ys_global_nav_prepend' ); ?>
 	<nav class="global-nav__container">
-		<?php if ( ys_is_active_header_search_form() ) : ?>
-			<div id="global-nav__search" class="global-nav__search">
-				<?php get_search_form(); ?>
-				<button id="global-nav__search-close" class="global-nav__search-close">
-					<?php echo ys_get_icon( 'x' ); ?> <?php _ex( 'close', 'global nav', 'ystandard' ); ?>
-				</button>
-			</div>
-		<?php endif; ?>
+		<?php ys_get_template_part( 'template-parts/header/global-nav-search-form' ); ?>
 		<?php
 		do_action( 'ys_before_global_nav_menu' );
 		wp_nav_menu(
