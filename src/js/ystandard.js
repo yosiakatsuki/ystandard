@@ -32,6 +32,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			}
 		} );
 	}
+	// グロナビ閉じる.
 	const globalNavLinks = document.querySelectorAll( '.global-nav a[href*="#"]' );
 	for ( let i = 0; i < globalNavLinks.length; i++ ) {
 		globalNavLinks[ i ].addEventListener( 'click', ( e ) => {
@@ -74,7 +75,13 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	}
 	// TOPへ戻る.
 	const backToTop = document.getElementById( 'back-to-top' );
-	if ( backToTop ) {
+	if ( backToTop && backToTop.classList.contains( 'is-square' ) ) {
+		const width = backToTop.getBoundingClientRect().width;
+		const height = backToTop.getBoundingClientRect().height;
+		const size = width < height ? `${ height }px` : `${ width }px`;
+		backToTop.style.width = size;
+		backToTop.style.height = size;
+		console.log( backToTop.style.width );
 		backToTop.addEventListener( 'click', ( e ) => {
 			e.preventDefault();
 			window.scroll( {
