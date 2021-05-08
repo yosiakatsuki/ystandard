@@ -30,10 +30,33 @@ class Font_Awesome {
 	 * フックやショートコードの登録
 	 */
 	public function register() {
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome_amp' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome' ] );
-		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		if ( $this->is_use_option() ) {
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome_amp' ] );
+			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_font_awesome' ] );
+			add_action( 'customize_register', [ $this, 'customize_register' ] );
+			Notice::set_notice(
+				function () {
+					Notice::warning( '<p>yStandardのFont Awesome関連の設定はまもなく廃止されます。<br>アイコン表示にFont Awesome以外を使うか別プラグインでFont Awesomeのアイコンフォントを読み込むようにしてください。<br>このメッセージを消すためには「外観」→「カスタマイザー」を開き、「[ys]デザイン」→「アイコンフォント設定」で以下のように設定を変更してください。</p><ul><li>
+・アイコンフォント（Font Awesome）読み込み方式 → 読み込まない(デフォルト)</li><li>・Font Awesome Kits URL → 中身を削除（空白にする）</li></ul><p>このメッセージが表示されている間はyStandardのアップデートをしないようにしてください。</p>' );
+				}
+			);
+		}
+	}
 
+	/**
+	 * Font Awesome関連の設定を使っているか
+	 *
+	 * @return bool
+	 */
+	private function is_use_option() {
+		if ( 'none' !== Option::get_option( 'ys_enqueue_icon_font_type', 'none' ) ) {
+			return true;
+		}
+		if ( '' !== Option::get_option( 'ys_enqueue_icon_font_kit_url', '' ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
