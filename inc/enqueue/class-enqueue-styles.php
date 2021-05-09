@@ -145,7 +145,7 @@ class Enqueue_Styles {
 		}
 		$result = '';
 		foreach ( $vars as $key => $value ) {
-			if ( ! empty( $key ) && ! empty( $value ) ) {
+			if ( ! empty( $key ) && '' !== $value ) {
 				$result .= "--{$key}: {$value};";
 			}
 		}

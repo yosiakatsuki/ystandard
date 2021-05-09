@@ -84,7 +84,7 @@ class Footer {
 		if ( Option::get_option_by_bool( 'ys_back_to_top_square', true ) ) {
 			$button_class = 'is-square';
 		}
-		$button_class = empty($button_class) ? '' : "class=\"${button_class}\"";
+		$button_class = empty( $button_class ) ? '' : "class=\"${button_class}\"";
 		echo sprintf(
 			'<button id="back-to-top" %s type="button"><span class="back-to-top__content">%s</span></button>',
 			$button_class,
@@ -294,21 +294,42 @@ class Footer {
 	 * @return array
 	 */
 	public function add_css_var_footer_sub( $css_vars ) {
-
-		$bg    = Enqueue_Utility::get_css_var(
+		$bg       = Option::get_option( 'ys_color_sub_footer_bg', '#f1f1f3' );
+		$bg       = '' === $bg ? 'transparent' : $bg;
+		$bg       = Enqueue_Utility::get_css_var(
 			'sub-footer-bg',
-			Option::get_option( 'ys_color_sub_footer_bg', '#f1f1f3' )
-		);
-		$color = Enqueue_Utility::get_css_var(
-			'sub-footer-text',
-			Option::get_option( 'ys_color_sub_footer_text', '#222222' )
-		);
-
-		return array_merge(
-			$css_vars,
 			$bg,
-			$color
 		);
+		$css_vars = array_merge(
+			$css_vars,
+			$bg
+		);
+		$color    = Option::get_option( 'ys_color_sub_footer_text', '#222222' );
+		if ( '' !== $color ) {
+			$color    = Enqueue_Utility::get_css_var(
+				'sub-footer-text',
+				$color
+			);
+			$css_vars = array_merge(
+				$css_vars,
+				$color
+			);
+		}
+
+		$padding = Option::get_option( 'ys_color_sub_footer_padding', '' );
+		if ( '' !== $padding ) {
+			$padding  = empty( $padding ) ? 0 : "${padding}px";
+			$padding  = Enqueue_Utility::get_css_var(
+				'sub-footer-padding',
+				$padding
+			);
+			$css_vars = array_merge(
+				$css_vars,
+				$padding
+			);
+		}
+
+		return $css_vars;
 	}
 
 	/**
@@ -449,9 +470,7 @@ class Footer {
 				'label'   => 'サブフッター文字色',
 			]
 		);
-		/**
-		 * サブフッター コンテンツ
-		 */
+		// サブフッター コンテンツ.
 		$customizer->add_select(
 			[
 				'id'          => 'ys_footer_sub_content',
@@ -461,6 +480,16 @@ class Footer {
 				'choices'     => Parts::get_parts_list( true ),
 			]
 		);
+		$customizer->add_number(
+			[
+				'id'      => 'ys_color_sub_footer_padding',
+				'default' => '',
+				'label'   => 'サブフッター上下余白',
+			]
+		);
+		/**
+		 * ページ先頭へ戻るボタン
+		 */
 		$customizer->add_section_label(
 			'ページ先頭へ戻るボタン',
 			[
