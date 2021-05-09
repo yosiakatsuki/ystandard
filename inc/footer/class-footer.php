@@ -80,8 +80,14 @@ class Footer {
 		if ( '' === $text ) {
 			return;
 		}
+		$button_class = '';
+		if ( Option::get_option_by_bool( 'ys_back_to_top_square', true ) ) {
+			$button_class = 'is-square';
+		}
+		$button_class = empty( $button_class ) ? '' : "class=\"${button_class}\"";
 		echo sprintf(
-			'<button id="back-to-top" type="button"><span class="back-to-top__content">%s</span></button>',
+			'<button id="back-to-top" %s type="button"><span class="back-to-top__content">%s</span></button>',
+			$button_class,
 			do_shortcode( $text )
 		);
 	}
@@ -103,21 +109,23 @@ class Footer {
 		// CSS.
 		$css .= "
 		#back-to-top {
-			position:fixed;
-			bottom:5vh;
-			right:5vh;
-			padding:0;
-			margin:0;
-			background:none;
+			position: fixed;
+			bottom: 5vh;
+			right: 5vh;
+			padding: 0;
+			margin: 0;
+			background: none;
 			border: 0;
-			outline:none;
-			appearance: none;
-			z-index:10;
+			outline: none;
+			-webkit-appearance: none;
+			 -moz-appearance: none;
+			      appearance: none;
+			z-index: 10;
 			cursor: pointer;
 		}
 		#back-to-top:hover{
-			box-shadow:none;
-
+			-webkit-box-shadow: none;
+			        box-shadow: none;
 		}
 		.back-to-top__content {
 			display:block;
@@ -126,8 +134,25 @@ class Footer {
 			border-radius:${radius}px;
 			color:${color};
 			line-height:1;
-			white-space:nowarp;
-			box-shadow:0 0 4px rgba(0,0,0,0.1);
+			white-space:nowrap;
+			-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+				    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+		}
+		.is-square .back-to-top__content {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-pack: center;
+			  -ms-flex-pack: center;
+				  justify-content: center;
+			-webkit-box-align: center;
+			  -ms-flex-align: center;
+				  align-items: center;
+			width:100%;
+			height:100%;
+		}
+		.back-to-top__content > * {
+			margin:0;
 		}
 		";
 		if ( has_nav_menu( 'mobile-footer' ) ) {
@@ -269,21 +294,42 @@ class Footer {
 	 * @return array
 	 */
 	public function add_css_var_footer_sub( $css_vars ) {
-
-		$bg    = Enqueue_Utility::get_css_var(
+		$bg       = Option::get_option( 'ys_color_sub_footer_bg', '#f1f1f3' );
+		$bg       = '' === $bg ? 'transparent' : $bg;
+		$bg       = Enqueue_Utility::get_css_var(
 			'sub-footer-bg',
-			Option::get_option( 'ys_color_sub_footer_bg', '#f1f1f3' )
-		);
-		$color = Enqueue_Utility::get_css_var(
-			'sub-footer-text',
-			Option::get_option( 'ys_color_sub_footer_text', '#222222' )
-		);
-
-		return array_merge(
-			$css_vars,
 			$bg,
-			$color
 		);
+		$css_vars = array_merge(
+			$css_vars,
+			$bg
+		);
+		$color    = Option::get_option( 'ys_color_sub_footer_text', '#222222' );
+		if ( '' !== $color ) {
+			$color    = Enqueue_Utility::get_css_var(
+				'sub-footer-text',
+				$color
+			);
+			$css_vars = array_merge(
+				$css_vars,
+				$color
+			);
+		}
+
+		$padding = Option::get_option( 'ys_color_sub_footer_padding', '' );
+		if ( '' !== $padding ) {
+			$padding  = empty( $padding ) ? 0 : "${padding}px";
+			$padding  = Enqueue_Utility::get_css_var(
+				'sub-footer-padding',
+				$padding
+			);
+			$css_vars = array_merge(
+				$css_vars,
+				$padding
+			);
+		}
+
+		return $css_vars;
 	}
 
 	/**
@@ -424,9 +470,7 @@ class Footer {
 				'label'   => 'サブフッター文字色',
 			]
 		);
-		/**
-		 * サブフッター コンテンツ
-		 */
+		// サブフッター コンテンツ.
 		$customizer->add_select(
 			[
 				'id'          => 'ys_footer_sub_content',
@@ -436,6 +480,16 @@ class Footer {
 				'choices'     => Parts::get_parts_list( true ),
 			]
 		);
+		$customizer->add_number(
+			[
+				'id'      => 'ys_color_sub_footer_padding',
+				'default' => '',
+				'label'   => 'サブフッター上下余白',
+			]
+		);
+		/**
+		 * ページ先頭へ戻るボタン
+		 */
 		$customizer->add_section_label(
 			'ページ先頭へ戻るボタン',
 			[
@@ -487,7 +541,23 @@ class Footer {
 				],
 			]
 		);
+		// 正方形.
+		$customizer->add_label(
+			[
+				'id'          => 'ys_back_to_top_square_label',
+				'label'       => 'ボタンの縦・横サイズをあわせる',
+				'description' => '縦長・横長のボタンにする場合はチェックを外してください',
+			]
+		);
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_back_to_top_square',
+				'default' => 1,
+				'label'   => 'ボタンの縦・横サイズをあわせる',
+			]
+		);
 
+		// モバイルフッター.
 		$customizer->add_section_label(
 			'モバイルフッターメニュー 色設定',
 			[

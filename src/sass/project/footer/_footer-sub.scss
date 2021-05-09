@@ -1,8 +1,9 @@
 .footer-sub {
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: var(--sub-footer-padding);
+  padding-bottom: var(--sub-footer-padding);
   background-color: var(--sub-footer-bg);
   color: var(--sub-footer-text);
+  overflow: hidden;
 
   a {
 	color: var(--sub-footer-text);
@@ -10,6 +11,5 @@
 }
 
 .footer-sub__content {
-  overflow: hidden;
   @include child_margin(1em);
 }
