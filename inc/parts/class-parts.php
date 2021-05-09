@@ -163,7 +163,7 @@ class Parts {
 		$parts = get_posts(
 			[
 				'post_type'      => self::POST_TYPE,
-				'posts_per_page' => 0,
+				'posts_per_page' => -1,
 			]
 		);
 
