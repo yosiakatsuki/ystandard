@@ -249,6 +249,13 @@
 		  }
 		}
 	  }
+
+	  &:last-child {
+		.sub-menu {
+		  left: unset;
+		  right: 0;
+		}
+	  }
 	}
   }
 
