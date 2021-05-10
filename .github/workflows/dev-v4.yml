@@ -85,8 +85,14 @@ jobs:
       - name: Composer install
         run: composer install --optimize-autoloader --prefer-dist
 
+      - name: npm install
+        run: npm install
+
       - name: phpcs tests
         run: composer phpcs
+
+      - name: eslint
+        run: npm run lint-js
 
       - name: Notify PHP Lint
         uses: 8398a7/action-slack@v3.8.0
