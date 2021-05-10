@@ -7,9 +7,9 @@
   margin-bottom: 2em;
 
   &::after {
-    content: "";
-    display: block;
-    clear: both;
+	content: "";
+	display: block;
+	clear: both;
   }
 
   h1,
@@ -18,23 +18,29 @@
   h4,
   h5,
   h6 {
-    margin: 3em 0 0.25em;
+	margin: 3em 0 0.25em;
   }
+
   @for $i from 1 through 5 {
-    $selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
+	$selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
   }
 
   #{$selector} {
-    margin-top: 1em;
+	margin-top: 1em;
+  }
+
+  p:empty {
+	display: none;
   }
 }
 
 .no-title {
   .entry-content {
-    margin-top: 0;
+	margin-top: 0;
 	margin-bottom: 0;
   }
 }
+
 .is-front-page {
   .entry-content {
 	margin-top: 0;
