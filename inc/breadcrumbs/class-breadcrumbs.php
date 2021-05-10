@@ -69,6 +69,22 @@ class Breadcrumbs {
 	}
 
 	/**
+	 * パンくずを表示するか
+	 *
+	 * @return bool
+	 */
+	public function is_show_breadcrumbs() {
+		if ( 'none' === Option::get_option( 'ys_breadcrumbs_position', 'footer' ) ) {
+			return false;
+		}
+		if ( is_front_page() || Template::is_no_title_template() ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * パンくず用色設定
 	 *
 	 * @param array $css_vars CSS Vars.
@@ -106,7 +122,7 @@ class Breadcrumbs {
 	 * パンくずリスト表示
 	 */
 	public function show_breadcrumbs() {
-		if ( is_front_page() || Template::is_no_title_template() ) {
+		if ( ! $this->is_show_breadcrumbs() ) {
 			return;
 		}
 		ob_start();
@@ -122,6 +138,9 @@ class Breadcrumbs {
 	 * パンくずリスト構造化データ出力
 	 */
 	public function structured_data() {
+		if ( ! $this->is_show_breadcrumbs() ) {
+			return;
+		}
 		$items = $this->get_breadcrumbs();
 		if ( ! is_array( $items ) || empty( $items ) ) {
 			return;
