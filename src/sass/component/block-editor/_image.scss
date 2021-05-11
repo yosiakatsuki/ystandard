@@ -1,4 +1,5 @@
-body:not(.has-sidebar) {
+body,
+.has-sidebar .site-content {
   @media (min-width: 1px) {
 	.wp-block-image {
 	  &.alignwide,

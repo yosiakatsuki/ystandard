@@ -24,7 +24,7 @@
 }
 
 
-body:not(.has-sidebar) {
+body {
   .alignwide,
   .alignfull {
 	margin-right: -1rem;
@@ -33,6 +33,7 @@ body:not(.has-sidebar) {
 	padding-left: 1rem;
 	width: auto;
   }
+
 
   @include media-breakpoint(lg) {
 	.alignwide {
@@ -61,14 +62,6 @@ body:not(.has-sidebar) {
 		padding-left: 2rem;
 	  }
 	}
-	@include media-breakpoint(sm) {
-	  .alignfull {
-		margin-right: -3rem;
-		margin-left: -3rem;
-		padding-right: 3rem;
-		padding-left: 3rem;
-	  }
-	}
 	@include media-breakpoint(lg) {
 	  .alignfull {
 		width: auto;
@@ -76,6 +69,45 @@ body:not(.has-sidebar) {
 		margin-left: calc(-50vw + 50% + (var(--scrollbar-width) / 2));
 		padding-right: calc(-50% + 50vw - (var(--scrollbar-width) / 2));
 		padding-left: calc(-50% + 50vw - (var(--scrollbar-width) / 2));
+	  }
+	}
+  }
+}
+
+.has-sidebar {
+  .site-content {
+	@include media-breakpoint(lg) {
+	  .alignwide,
+	  .alignfull {
+		margin-right: 0;
+		margin-left: 0;
+		padding-right: 0;
+		padding-left: 0;
+	  }
+	}
+  }
+
+  &.has-background {
+	.content__main {
+	  @include media-breakpoint(lg) {
+		.alignwide,
+		.alignfull {
+		  margin-right: -2rem;
+		  margin-left: -2rem;
+		  padding-right: 2rem;
+		  padding-left: 2rem;
+		}
+	  }
+	}
+	.sidebar {
+	  @include media-breakpoint(sm) {
+		.alignwide,
+		.alignfull {
+		  margin-right: -1.5rem;
+		  margin-left: -1.5rem;
+		  padding-right: 1.5rem;
+		  padding-left: 1.5rem;
+		}
 	  }
 	}
   }
