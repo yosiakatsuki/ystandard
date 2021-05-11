@@ -112,6 +112,7 @@ function copyProductionFiles() {
 			'!tests/**',
 			'!.editorconfig',
 			'!.eslintrc.json',
+			'!.prettierrc.js',
 			'!.gitignore',
 			'!.travis.yml',
 			'!gulpfile.js',
