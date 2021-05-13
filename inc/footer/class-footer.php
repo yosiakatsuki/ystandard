@@ -302,7 +302,7 @@ class Footer {
 		);
 		$css_vars = array_merge(
 			$css_vars,
-			$bg,
+			$bg
 		);
 		$color    = Option::get_option( 'ys_color_sub_footer_text', '#222222' );
 		if ( '' !== $color ) {
