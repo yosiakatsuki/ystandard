@@ -298,7 +298,7 @@ class Footer {
 		$bg       = '' === $bg ? 'transparent' : $bg;
 		$bg       = Enqueue_Utility::get_css_var(
 			'sub-footer-bg',
-			$bg,
+			$bg
 		);
 		$css_vars = array_merge(
 			$css_vars,
