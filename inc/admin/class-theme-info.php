@@ -56,34 +56,112 @@ class Theme_Info {
 	}
 
 	/**
+	 * 必要PHPバージョンの取得
+	 *
+	 * @return array|false|string
+	 */
+	public static function get_requires_php() {
+		$theme = wp_get_theme( get_template() );
+
+		return $theme->get( 'RequiresPHP' );
+	}
+
+	/**
+	 * 必要WordPressバージョンの取得
+	 *
+	 * @return array|false|string
+	 */
+	public static function get_requires_wp() {
+		$theme = wp_get_theme( get_template() );
+
+		return $theme->get( 'RequiresWP' );
+	}
+
+	/**
+	 * 動作要件のチェック-PHP
+	 *
+	 * @return bool
+	 */
+	private function check_php_version() {
+
+		if ( version_compare( phpversion(), self::get_requires_php(), '<=' ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * 動作要件のチェック-WP
+	 *
+	 * @return bool
+	 */
+	private function check_wordpress_version() {
+
+		if ( version_compare( get_bloginfo( 'version' ), self::get_requires_wp(), '<=' ) ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * ダッシュボード おしらせ表示
 	 */
 	public function dashboard_info() {
 		$feed = $this->get_feed();
-		?>
-		<div class="ys-dashboard-version">
-			<p><strong><span class="orbitron">yStandard</span>バージョン情報</strong></p>
-			<div class="ys-dashboard-version__list">
-				<p>本体 : <?php echo Utility::get_ystandard_version(); ?></p>
-				<?php if ( get_template() !== get_stylesheet() ) : ?>
-					<p>子テーマ : <?php echo Utility::get_theme_version(); ?></p>
-				<?php endif; ?>
+		if ( ! $this->check_php_version() ) :
+			?>
+			<div class="ys-dashboard-section">
+				<div class="ys-dashboard__notice is-warning">
+					<?php echo Icon::get_icon( 'alert-triangle' ); ?>
+					<div class="ys-dashboard__notice-text">
+						<p>
+							サイトがyStandardの動作要件以下のPHPバージョン（<?php echo phpversion(); ?>）で動作しています。 <?php echo self::get_requires_php(); ?>以上に更新してください。
+						</p>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
+		<?php if ( ! $this->check_wordpress_version() ) : ?>
+			<div class="ys-dashboard-section">
+				<div class="ys-dashboard__notice is-warning">
+					<?php echo Icon::get_icon( 'alert-triangle' ); ?>
+					<div class="ys-dashboard__notice-text">
+						<p>
+							サイトがyStandardの動作要件以下のWordPressバージョン（<?php bloginfo( 'version' ); ?>）で動作しています。 <?php echo self::get_requires_wp(); ?>以上に更新してください。
+						</p>
+					</div>
+				</div>
+			</div>
+		<?php endif; ?>
+		<div class="ys-dashboard-section">
+			<div>
+				<p style="margin: 0;"><strong><span class="orbitron">yStandard</span>バージョン情報</strong></p>
+				<div class="ys-dashboard-version__list">
+					<p>本体 : <?php echo Utility::get_ystandard_version(); ?></p>
+					<?php if ( get_template() !== get_stylesheet() ) : ?>
+						<p>子テーマ : <?php echo Utility::get_theme_version(); ?></p>
+					<?php endif; ?>
+				</div>
 			</div>
 		</div>
-		<ul class="ys-dashboard-info">
-			<?php if ( empty( $feed ) ) : ?>
-				<li>お知らせを取得できませんでした。</li>
-			<?php else : ?>
-				<?php foreach ( $feed as $item ) : ?>
-					<li>
-						<span class="ys-dashboard-info__date"><?php echo esc_html( $item['date'] ); ?></span>
-						<a class="ys-dashboard-info__link" href="<?php echo esc_url_raw( $item['url'] ); ?>">
-							<?php echo esc_html( $item['title'] ); ?>
-						</a>
-					</li>
-				<?php endforeach; ?>
-			<?php endif; ?>
-		</ul>
+		<div class="ys-dashboard-section">
+			<ul class="ys-dashboard-info">
+				<?php if ( empty( $feed ) ) : ?>
+					<li>お知らせを取得できませんでした。</li>
+				<?php else : ?>
+					<?php foreach ( $feed as $item ) : ?>
+						<li>
+							<span class="ys-dashboard-info__date"><?php echo esc_html( $item['date'] ); ?></span>
+							<a class="ys-dashboard-info__link" href="<?php echo esc_url_raw( $item['url'] ); ?>">
+								<?php echo esc_html( $item['title'] ); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</ul>
+		</div>
 		<?php
 	}
 
