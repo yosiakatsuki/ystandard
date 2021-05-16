@@ -30,6 +30,7 @@
     "node-sass-package-importer": "^5.2.0",
     "normalize.css": "^8.0.1",
     "object-fit-images": "^3.2.4",
+    "postcss": "^8.2.15",
     "postcss-clean": "^1.1.0",
     "postcss-cli": "^8.3.1",
     "prettier": "npm:wp-prettier@^2.2.1-beta-1",
