@@ -4,8 +4,8 @@ Theme URI: https://wp-ystandard.com
 Author: yosiakatsuki
 Author URI: https://yosiakatsuki.net
 Description:「自分色に染めた、自分だけのサイトを作る楽しさ」を感じてもらうために作った一風変わったWordPressテーマ
-Version: 4.24.1
-Requires at least: 5.0
+Version: 4.24.2
+Requires at least: 5.4
 Requires PHP: 7.3.0
 Text Domain: ystandard
 License: GNU General Public License v2 or later
@@ -16,7 +16,6 @@ Use it to make something cool, have fun, and share what you've learned with othe
 */
 
 /**
- * 子テーマ作るときにぶつかって面倒なので何も入れていませんが、CSS自体は読み込まれます。
- * サイト独自のスタイルの記述（カスタマイズ）にご利用ください。（テーマオリジナルのスタイルを上書きできます）
+ * yStandardではテーマ本体のstyle.css編集は推奨していません。外観→カスタマイズの追加CSSをご利用ください。
  * 子テーマを使っている場合は子テーマのstyle.cssが読み込まれ、このファイルは無視されます。
  */

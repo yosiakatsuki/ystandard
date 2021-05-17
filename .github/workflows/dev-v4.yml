@@ -4,6 +4,40 @@ on:
     branches:
       - develop-v4
 jobs:
+  codeCheck:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ ubuntu-latest ]
+        php: [ '5.6','7.2','7.3', '7.4' ]
+    name: PHP Error Check
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: 'develop-v4'
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
+          ini-values: post_max_size=256M, short_open_tag=On
+          coverage: xdebug
+
+      - name: php -l
+        run: bash bin/php-l.sh
+
+      - name: Error Check
+        uses: 8398a7/action-slack@v3.8.0
+        with:
+          status: ${{ job.status }}
+          author_name: "Failure : Error Check"
+          fields: repo,message,commit,job
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: failure()
+
   test:
     runs-on: ${{ matrix.operating-system }}
     strategy:
@@ -64,7 +98,7 @@ jobs:
         if: failure()
 
   lint:
-    runs-on:  ubuntu-latest
+    runs-on: ubuntu-latest
     name: PHP lint
     steps:
       - uses: actions/checkout@v1
@@ -107,7 +141,7 @@ jobs:
 
   release:
     name: Release Develop Version
-    needs: [ test, lint ]
+    needs: [ codeCheck, test, lint ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
