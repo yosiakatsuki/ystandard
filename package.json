@@ -54,7 +54,7 @@
     "build:icons": "node ./src/js/icons/brand.js",
     "build:pot": "wp i18n make-pot . languages/ystandard.pot --domain=\"ystandard\" --exclude=\"library,tests,vendor,bin\"",
     "build": "npm run build:icons && gulp build",
-    "rename:beta-json": "rename -f build/ystandard-info-beta.json ystandard-info.json",
+    "rename:beta-json": "rename -f ./build/ystandard-info-beta.json ./build/ystandard-info.json",
     "build:theme-zip": "gulp createDeployFiles && gulp cleanTemp"
   },
   "browserslist": [
