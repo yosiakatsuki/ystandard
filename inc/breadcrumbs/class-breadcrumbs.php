@@ -157,6 +157,7 @@ class Breadcrumbs {
 		$breadcrumbs = [
 			'@context'        => 'https://schema.org',
 			'@type'           => 'BreadcrumbList',
+			'name'            => _x( 'Breadcrumb', 'structured-data', 'ystandard' ),
 			'itemListElement' => $item_list_element,
 		];
 
