@@ -11,6 +11,7 @@ const babel = require( 'gulp-babel' );
 const del = require( 'del' );
 const webpackStream = require( 'webpack-stream' );
 const webpack = require( 'webpack' );
+const rename = require( 'gulp-rename' );
 
 const webpackConfig = require( './webpack.config' );
 
@@ -148,7 +149,13 @@ function zip() {
 }
 
 function copyJson() {
-	return src( [ 'ystandard-info.json', 'ystandard-info-beta.json' ] )
+	return src( 'ystandard-info.json' )
+		.pipe( dest( 'build' ) );
+}
+
+function copyJsonBeta() {
+	return src( 'ystandard-info-beta.json' )
+		.pipe( rename( 'ystandard-info.json' ) )
 		.pipe( dest( 'build' ) );
 }
 
@@ -160,6 +167,7 @@ function cleanFiles( cb ) {
 		],
 		cb );
 }
+
 function cleanTempFiles( cb ) {
 	return del(
 		[
@@ -172,6 +180,7 @@ function cleanTempFiles( cb ) {
  * サーバーにデプロイするファイルを作成
  */
 exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyJson ) );
+exports.createDeployFilesBeta = series( cleanFiles, copyProductionFiles, parallel( zip, copyJsonBeta ) );
 /**
  * タスクの登録
  */

@@ -162,6 +162,39 @@ class Theme_Info {
 				<?php endif; ?>
 			</ul>
 		</div>
+		<div class="ys-dashboard-section">
+			<div class="ys-dashboard__system-info">
+				<div class="ys-dashboard__system-info-title">
+					<span>システム情報（サポート用）</span>
+					<button class="ys-dashboard__system-info-open"><?php echo Icon::get_icon( 'chevrons-down' ); ?></button>
+				</div>
+				<?php
+				$system_info   = [];
+				$system_info[] = 'WordPressバージョン: ' . get_bloginfo( 'version' );
+				$system_info[] = 'PHPバージョン: ' . phpversion();
+				$system_info[] = 'yStandardバージョン: ' . Utility::get_ystandard_version();
+				$system_info   = apply_filters( 'ys_system_info', $system_info );
+				$system_info   = implode( PHP_EOL, $system_info );
+				?>
+				<div class="ys-dashboard__system-info-text">
+					<textarea cols="30" rows="5" style="min-width: 100%;" readonly><?php echo esc_textarea( $system_info ); ?></textarea>
+					<button class="ys-dashboard__system-info-copy button action">システム情報をコピー</button>
+				</div>
+				<script>
+					jQuery( document ).ready( function ( $ ) {
+						$( '.ys-dashboard__system-info-open' ).on( 'click', function () {
+							$( '.ys-dashboard__system-info-text' ).slideToggle( 300 );
+						} );
+						$( '.ys-dashboard__system-info-copy' ).on( 'click', function () {
+							$( '.ys-dashboard__system-info-text textarea' ).select();
+							document.execCommand( 'copy' );
+							alert( 'システム情報をコピーしました' );
+						} );
+					} );
+				</script>
+			</div>
+
+		</div>
 		<?php
 	}
 
