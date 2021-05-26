@@ -457,6 +457,23 @@ class Utility {
 	}
 
 	/**
+	 * タブ削除
+	 *
+	 * @param string $text Text.
+	 *
+	 * @return string
+	 */
+	public static function remove_tab( $text ) {
+		return str_replace(
+			[
+				"\t",
+			],
+			'',
+			$text
+		);
+	}
+
+	/**
 	 * サニタイズで許可するHTML属性を取得
 	 *
 	 * @param array  $tags    HTML Tags.

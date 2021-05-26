@@ -24,6 +24,7 @@ class Archive {
 		add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'get_the_archive_description', [ $this, 'archive_description' ], 999 );
+		add_action( 'ys_after_site_header', [ $this, 'home_post_thumbnail' ] );
 	}
 
 	/**
@@ -313,6 +314,35 @@ class Archive {
 		}
 
 		return $description;
+	}
+
+	/**
+	 * 一覧ページのアイキャッチ画像表示
+	 */
+	public function home_post_thumbnail() {
+		if ( ! is_home() || 'page' !== get_option( 'show_on_front' ) ) {
+			return;
+		}
+		$page = get_option( 'page_for_posts' );
+		if ( ! $page ) {
+			return;
+		}
+		$thumbnail = get_the_post_thumbnail(
+			$page,
+			'post-thumbnail',
+			[
+				'id'    => 'site-header-thumbnail__image',
+				'class' => 'site-header-thumbnail__image',
+				'alt'   => get_the_title( $page ),
+			]
+		);
+		ob_start();
+		Template::get_template_part(
+			'template-parts/parts/header-thumbnail',
+			'',
+			[ 'header_thumbnail' => $thumbnail ]
+		);
+		echo ob_get_clean();
 	}
 
 	/**
