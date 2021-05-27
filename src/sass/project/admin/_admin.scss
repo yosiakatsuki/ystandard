@@ -209,6 +209,7 @@
 
   .ys-icon {
 	margin-right: 1em;
+
 	svg {
 	  width: 1.5em;
 	  height: 1.5em;
@@ -237,4 +238,60 @@
 
 .wrap .notice.notice-manual {
   margin-top: 0;
+}
+
+.ys-dashboard__system-info {
+  button {
+
+	appearance: none;
+	outline: none;
+	line-height: 1;
+	cursor: pointer;
+  }
+}
+
+.ys-dashboard__system-info-title {
+  display: flex;
+  align-items: center;
+
+  span {
+	font-weight: bold;
+  }
+}
+
+.ys-dashboard__system-info-open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  margin-left: .5em;
+  border: 1px solid $color__border-gray-light;
+  background-color: transparent;
+  border-radius: 50%;
+
+  svg {
+	display: block;
+  }
+}
+
+
+.ys-dashboard__system-info-text {
+  display: none;
+  margin-top: 1em;
+  width: 100%;
+
+  textarea {
+	border: 1px solid $color__border-gray;
+	background-color: $color__bg-gray-light;
+	appearance: none;
+	outline: none;
+  }
+}
+
+.ys-dashboard__system-info-copy {
+  width: 100%;
+  text-align: center;
+  padding: .5em 0;
 }

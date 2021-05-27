@@ -39,27 +39,43 @@ class Post_Meta {
 	 * メタボックスの追加
 	 */
 	public function add_meta_box() {
+		$types = $this->get_meta_box_post_types();
 		add_meta_box(
 			'ys_post_option',
 			'[ys] 投稿設定',
 			[ $this, 'add_post_option' ],
-			[ 'post', 'page' ],
+			$types,
 			'side'
 		);
 		add_meta_box(
 			'ys_seo_option',
 			'[ys] SEO設定',
 			[ $this, 'add_seo_option' ],
-			[ 'post', 'page' ],
+			$types,
 			'side'
 		);
 		add_meta_box(
 			'ys_sns_option',
 			'[ys] SNS設定',
 			[ $this, 'add_sns_option' ],
-			[ 'post', 'page' ],
+			$types,
 			'side'
 		);
+	}
+
+	/**
+	 * Meta Boxを追加する投稿タイプを取得
+	 *
+	 * @return array
+	 */
+	private function get_meta_box_post_types() {
+		$types = Utility::get_post_types( [], [ 'ys-parts' ] );
+
+		return apply_filters(
+			'ys_get_meta_box_post_types',
+			array_keys( $types )
+		);
+
 	}
 
 	/**
