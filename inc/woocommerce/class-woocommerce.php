@@ -19,6 +19,13 @@ defined( 'ABSPATH' ) || exit;
 class WooCommerce {
 
 	/**
+	 * Store the shop page ID.
+	 *
+	 * @var integer
+	 */
+	private static $shop_page_id = 0;
+
+	/**
 	 * WooCommerce constructor.
 	 */
 	public function __construct() {
@@ -28,7 +35,7 @@ class WooCommerce {
 		}
 		add_action( 'after_setup_theme', [ $this, 'setup' ] );
 		add_filter( 'woocommerce_template_loader_files', [ $this, 'template_loader_files' ] );
-		add_action( 'template_redirect', [ __CLASS__, 'remove_action' ] );
+		add_action( 'template_redirect', [ __CLASS__, 'init' ] );
 	}
 
 
@@ -83,10 +90,25 @@ class WooCommerce {
 	}
 
 	/**
-	 * フック削除
+	 * Init
 	 */
-	public static function remove_action() {
+	public static function init() {
+		self::$shop_page_id = wc_get_page_id( 'shop' );
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+
+		if ( 0 < self::$shop_page_id ) {
+			if ( is_product() ) {
+				remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+				add_action( 'woocommerce_single_product_summary', [ __CLASS__, 'single_product_title' ], 5 );
+			}
+		}
+	}
+
+	/**
+	 * 商品タイトル
+	 */
+	public static function single_product_title() {
+		the_title( '<h1 class="product_title">', '</h1>' );
 	}
 }
 
