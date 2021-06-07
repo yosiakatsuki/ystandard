@@ -166,14 +166,7 @@ class Blog_Card {
 		if ( class_exists( 'ystandard_blocks\Card' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
 			$ystdb_card = new \ystandard_blocks\Card();
 
-			return $ystdb_card->render(
-				[
-					'url'         => $this->params['url'],
-					'dscr'        => $this->params['dscr'],
-					'image'       => $this->params['thumbnail'],
-					'link_target' => $this->params['target'],
-				]
-			);
+			return $ystdb_card->render( $this->params );
 		}
 		/**
 		 * URLチェック
