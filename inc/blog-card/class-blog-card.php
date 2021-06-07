@@ -154,7 +154,6 @@ class Blog_Card {
 			$atts
 		);
 
-
 		/**
 		 * URL指定なしの場合は表示しない
 		 */
