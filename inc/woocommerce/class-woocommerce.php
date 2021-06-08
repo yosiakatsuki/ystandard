@@ -47,12 +47,6 @@ class WooCommerce {
 		add_action( 'woocommerce_after_main_content', [ __CLASS__, 'main_html_end' ] );
 		add_action( 'woocommerce_after_main_content', [ __CLASS__, 'get_sidebar' ] );
 		add_action( 'woocommerce_after_main_content', [ __CLASS__, 'wrapper_html_end' ], 15 );
-		/**
-		 * Archive
-		 */
-		add_action( 'woocommerce_archive_description', [ __CLASS__, 'product_archive_description' ] );
-		add_action( 'woocommerce_archive_description', [ __CLASS__, 'taxonomy_archive_description' ] );
-
 	}
 
 
@@ -88,8 +82,6 @@ class WooCommerce {
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper' );
 		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' );
 		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
-		remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description' );
-		remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description' );
 	}
 
 	/**
@@ -150,37 +142,6 @@ class WooCommerce {
 	 */
 	public static function wrapper_html_end() {
 		echo apply_filters( 'ys_woo_wrapper_html_end', '</div></div>' );
-	}
-
-	/**
-	 * アーカイブ概要
-	 */
-	public static function product_archive_description() {
-		if ( is_search() ) {
-			return;
-		}
-		if ( is_post_type_archive( 'product' ) && in_array( absint( get_query_var( 'paged' ) ), [ 0, 1 ], true ) ) {
-			$shop_page = get_post( wc_get_page_id( 'shop' ) );
-			if ( $shop_page ) {
-				$description = wc_format_content( $shop_page->post_content );
-				if ( $description ) {
-					echo '<div class="page-description">' . $description . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				}
-			}
-		}
-	}
-
-	/**
-	 * タクソノミーアーカイブ概要
-	 */
-	public static function taxonomy_archive_description() {
-		if ( is_product_taxonomy() && 0 === absint( get_query_var( 'paged' ) ) ) {
-			$term = get_queried_object();
-
-			if ( $term && ! empty( $term->description ) ) {
-				echo '<div class="term-description">' . wc_format_content( $term->description ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			}
-		}
 	}
 }
 
