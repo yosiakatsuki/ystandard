@@ -38,13 +38,21 @@ class WooCommerce {
 		add_action( 'template_redirect', [ __CLASS__, 'init' ] );
 		add_action( 'template_redirect', [ __CLASS__, 'remove_action' ] );
 
+		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ __CLASS__, 'enqueue_inline_css' ] );
+		/**
+		 * Content
+		 */
 		add_action( 'woocommerce_before_main_content', [ __CLASS__, 'wrapper_html_start' ], 5 );
 		add_action( 'woocommerce_before_main_content', [ __CLASS__, 'main_html_start' ] );
 		add_action( 'woocommerce_after_main_content', [ __CLASS__, 'main_html_end' ] );
 		add_action( 'woocommerce_after_main_content', [ __CLASS__, 'get_sidebar' ] );
 		add_action( 'woocommerce_after_main_content', [ __CLASS__, 'wrapper_html_end' ], 15 );
+		/**
+		 * Archive
+		 */
+		add_action( 'woocommerce_archive_description', [ __CLASS__, 'product_archive_description' ] );
+		add_action( 'woocommerce_archive_description', [ __CLASS__, 'taxonomy_archive_description' ] );
 
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ __CLASS__, 'enqueue_inline_css' ] );
 	}
 
 
@@ -80,6 +88,21 @@ class WooCommerce {
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper' );
 		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end' );
 		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar' );
+		remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description' );
+		remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description' );
+	}
+
+	/**
+	 * WooCommerce用調整CSS
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public static function enqueue_inline_css( $css ) {
+		$css .= '.woocommerce-products-header .woocommerce-products-header__title {margin-top:0;}';
+
+		return $css;
 	}
 
 	/**
@@ -130,16 +153,34 @@ class WooCommerce {
 	}
 
 	/**
-	 * WooCommerce用調整CSS
-	 *
-	 * @param string $css CSS.
-	 *
-	 * @return string
+	 * アーカイブ概要
 	 */
-	public static function enqueue_inline_css( $css ) {
-		$css .= '.woocommerce-products-header .woocommerce-products-header__title {margin-top:0;}';
+	public static function product_archive_description() {
+		if ( is_search() ) {
+			return;
+		}
+		if ( is_post_type_archive( 'product' ) && in_array( absint( get_query_var( 'paged' ) ), [ 0, 1 ], true ) ) {
+			$shop_page = get_post( wc_get_page_id( 'shop' ) );
+			if ( $shop_page ) {
+				$description = wc_format_content( $shop_page->post_content );
+				if ( $description ) {
+					echo '<div class="page-description">' . $description . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
+			}
+		}
+	}
 
-		return $css;
+	/**
+	 * タクソノミーアーカイブ概要
+	 */
+	public static function taxonomy_archive_description() {
+		if ( is_product_taxonomy() && 0 === absint( get_query_var( 'paged' ) ) ) {
+			$term = get_queried_object();
+
+			if ( $term && ! empty( $term->description ) ) {
+				echo '<div class="term-description">' . wc_format_content( $term->description ) . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+		}
 	}
 }
 
