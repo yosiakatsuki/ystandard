@@ -47,6 +47,17 @@ class Footer {
 	}
 
 	/**
+	 * モバイルフッター表示判断
+	 *
+	 * @return bool
+	 */
+	public static function show_footer_mobile_nav() {
+		$result = has_nav_menu( 'mobile-footer' );
+
+		return Utility::to_bool( apply_filters( 'ys_show_footer_mobile_nav', $result ) );
+	}
+
+	/**
 	 * サブフッター用コンテンツ取得
 	 *
 	 * @return string
@@ -171,7 +182,7 @@ class Footer {
 	 */
 	public function add_footer_mobile_nav_css( $css ) {
 
-		if ( ! has_nav_menu( 'mobile-footer' ) ) {
+		if ( ! self::show_footer_mobile_nav() ) {
 			return $css;
 		}
 
@@ -237,6 +248,9 @@ class Footer {
 	 * モバイルフッターナビゲーションの表示
 	 */
 	public function footer_mobile_nav() {
+		if ( ! self::show_footer_mobile_nav() ) {
+			return;
+		}
 		Template::get_template_part( 'template-parts/footer/footer-mobile-nav' );
 	}
 
