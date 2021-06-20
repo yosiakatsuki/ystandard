@@ -1,6 +1,6 @@
 <?php
 /**
- * 詳細ページ用ページネーション
+ * 投稿詳細用ページネーション
  *
  * @package ystandard
  * @author  yosiakatsuki

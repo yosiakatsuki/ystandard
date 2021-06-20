@@ -1,6 +1,6 @@
 <?php
 /**
- * 結果なしテンプレート
+ * 結果なし(404)テンプレート
  *
  * @package ystandard
  * @author  yosiakatsuki
