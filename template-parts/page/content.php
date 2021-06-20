@@ -1,6 +1,6 @@
 <?php
 /**
- * 固定ページテンプレート
+ * 固定ページ メインコンテンツ テンプレート
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -15,7 +15,7 @@
 		<div class="entry-content">
 			<?php
 			the_content();
-			ys_get_template_part( 'template-parts/single/pagination' );
+			ys_get_template_part( 'template-parts/page/pagination' );
 			?>
 		</div>
 		<?php ys_get_template_part( 'template-parts/page/footer' ); ?>
