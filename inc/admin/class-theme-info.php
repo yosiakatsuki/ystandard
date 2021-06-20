@@ -277,12 +277,14 @@ class Theme_Info {
 		$response = wp_remote_get( self::REST_POST_URL . $child );
 		if ( ! is_wp_error( $response ) ) {
 			$body = json_decode( $response['body'] );
-			foreach ( $body as $item ) {
-				$data[] = [
-					'date'  => date_i18n( 'Y.m.d', strtotime( $item->date ) ),
-					'url'   => $item->link,
-					'title' => wp_encode_emoji( $item->title->rendered ),
-				];
+			if ( is_array( $body ) ) {
+				foreach ( $body as $item ) {
+					$data[] = [
+						'date'  => date_i18n( 'Y.m.d', strtotime( $item->date ) ),
+						'url'   => $item->link,
+						'title' => wp_encode_emoji( $item->title->rendered ),
+					];
+				}
 			}
 		}
 
