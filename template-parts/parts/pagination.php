@@ -9,7 +9,7 @@
 
 /**
  * ページネーション作成に必要なデータは下記ファイル内で作成しています。
- * inc/pagination/class-pagination.php
+ * inc/archive/class-pagination.php
  */
 $pagination = ys_get_pagination();
 if ( empty( $pagination ) ) {
