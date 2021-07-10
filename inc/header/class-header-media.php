@@ -25,6 +25,7 @@ class Header_Media {
 		add_filter( 'header_video_settings', [ $this, 'header_video_settings' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'header_media_style' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_media' ], 2 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'add_header_video_scripts' ] );
 	}
 
 	/**
@@ -51,6 +52,31 @@ class Header_Media {
 		}
 
 		return apply_filters( 'ys_get_custom_header_type', $type );
+	}
+
+	/**
+	 * カスタムヘッダー：videoタグ調整
+	 */
+	public function add_header_video_scripts() {
+		if ( ! is_header_video_active() || ! has_header_video() ) {
+			return;
+		}
+		wp_add_inline_script(
+			'wp-custom-header',
+			'document.addEventListener( \'DOMContentLoaded\', function() {
+			  var video =  document.getElementById( \'wp-custom-header-video\' );
+			  if( video && ! video.hasAttribute( \'playsinline\' ) ) {
+			    video.setAttribute( \'playsinline\', \'\');
+			    if( 0 < video.width && 0 < video.height ) {
+			        var ratio = video.height / video.width * 100;
+			        var wrap =  document.getElementById( \'wp-custom-header\' );
+			        if( wrap ) {
+			          wrap.style.paddingTop = ratio + \'%\';
+			        }
+			    }
+			  }
+			});'
+		);
 	}
 
 
