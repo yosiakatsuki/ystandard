@@ -91,6 +91,9 @@ class Structured_Data {
 		 */
 		global $posts;
 		$article = [];
+		if ( ! is_array( $posts ) ) {
+			return;
+		}
 		foreach ( $posts as $post ) {
 			/**
 			 * データ準備
