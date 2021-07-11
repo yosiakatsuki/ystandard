@@ -54,7 +54,13 @@ class Footer {
 	public static function show_footer_mobile_nav() {
 		$result = has_nav_menu( 'mobile-footer' );
 
-		return Utility::to_bool( apply_filters( 'ys_show_footer_mobile_nav', $result ) );
+		$result = Utility::to_bool( apply_filters( 'ys_show_footer_mobile_nav', $result ) );
+
+		if ( is_admin() ) {
+			$result = false;
+		}
+
+		return $result;
 	}
 
 	/**
