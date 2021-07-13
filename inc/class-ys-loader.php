@@ -80,7 +80,11 @@ class YS_Loader {
 		 */
 		$class = str_replace( '_', '-', ltrim( $class, '\\' ) );
 		$file  = 'class-' . str_replace( 'ystandard\\', '', $class ) . '.php';
-		$file  = mb_strtolower( $file );
+		if ( function_exists( 'mb_strtolower' ) ) {
+			$file = mb_strtolower( $file );
+		} else {
+			$file = strtolower( $file );
+		}
 
 		foreach ( $this->dir_list as $dir ) {
 			$target = __DIR__ . DIRECTORY_SEPARATOR . $dir;
