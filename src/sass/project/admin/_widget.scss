@@ -46,8 +46,49 @@
 	}
   }
 }
+
 .wp-block-legacy-widget__edit-preview {
   .wp-block-legacy-widget__edit-preview-iframe {
 	display: block;
+  }
+}
+
+/**
+ * ウィジェット編集画面
+ */
+.wp-block[data-type="core/widget-area"] {
+  .editor-styles-wrapper {
+	h1, h2, h3, h4, h5, h6 {
+	  position: relative !important;
+	  margin: 0 0 1em !important;
+	  padding: 0 !important;
+	  border: 0 !important;
+	  background: none !important;
+	  box-shadow: none !important;
+	  font-weight: $font__weight_bold;
+
+	  &:before,
+	  &:after {
+		display: none !important;
+	  }
+	}
+
+	h1,
+	h2 {
+	  font-size: get_font_size("x-large") !important;
+	}
+
+	h3 {
+	  font-size: get_font_size("large") !important;
+	}
+
+	h4 {
+	  font-size: 1.2em !important;
+	}
+
+	h5,
+	h6 {
+	  font-size: 1.1em !important;
+	}
   }
 }
