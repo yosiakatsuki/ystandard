@@ -12,6 +12,7 @@ $editor: true;
 @import "component/posts/posts";
 @import "component/ratio/ratio";
 @import "component/share-button/share-button";
+@import "component/widget/widget";
 
 /**
  * utility
@@ -22,3 +23,5 @@ $editor: true;
  * admin
  */
 @import "project/admin/block-editor";
+@import "project/admin/widget";
+@import "project/admin/manual";
