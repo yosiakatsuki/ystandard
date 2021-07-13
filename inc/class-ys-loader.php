@@ -36,13 +36,6 @@ class YS_Loader {
 	private $dir_list = [];
 
 	/**
-	 * 読み込み済みファイル
-	 *
-	 * @var array
-	 */
-	private $loaded_files = [];
-
-	/**
 	 * YS_Loader constructor.
 	 */
 	public function __construct() {
