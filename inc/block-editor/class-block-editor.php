@@ -82,7 +82,7 @@ class Block_Editor {
 	/**
 	 * FSE関連ブロックを削除
 	 *
-	 * @param $disallowed_block_types
+	 * @param array $disallowed_block_types 除外ブロックリスト.
 	 *
 	 * @return array
 	 */
