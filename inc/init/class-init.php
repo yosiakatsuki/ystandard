@@ -110,8 +110,10 @@ class Init {
 		add_theme_support( 'responsive-embeds' );
 		// line-height(5.5~).
 		add_theme_support( 'custom-line-height' );
-		// カバーブロックの高さ単位.
+		// カバーブロックの高さ単位(5.5~).
 		add_theme_support( 'custom-units', 'px', 'rem', 'em', 'percentages', 'vh', 'vw' );
+		// カスタム余白(5.6~).
+		add_theme_support( 'custom-spacing' );
 		// 固定ページで抜粋を有効化.
 		add_post_type_support( 'page', 'excerpt' );
 	}
