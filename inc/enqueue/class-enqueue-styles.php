@@ -71,7 +71,6 @@ class Enqueue_Styles {
 			self::HANDLE_MAIN,
 			$this->get_inline_css()
 		);
-		do_action( 'ys_enqueue_css' );
 
 		// 位置調整.
 		wp_dequeue_style( 'wp-block-library' );
@@ -86,6 +85,8 @@ class Enqueue_Styles {
 			self::HANDLE_BLOCKS,
 			$this->get_blocks_inline_css()
 		);
+
+		do_action( 'ys_enqueue_css' );
 
 		/**
 		 * Style css
