@@ -55,12 +55,12 @@ class Widget {
 	public function set_widget() {
 		add_action(
 			'ys_singular_header',
-			[ $this, 'singular_header_widget' ],
+			[ __CLASS__, 'singular_header_widget' ],
 			Content::get_header_priority( 'widget' )
 		);
 		add_action(
 			'ys_singular_footer',
-			[ $this, 'singular_footer_widget' ],
+			[ __CLASS__, 'singular_footer_widget' ],
 			Content::get_footer_priority( 'widget' )
 		);
 	}
@@ -68,32 +68,32 @@ class Widget {
 	/**
 	 * 記事上ウィジェット
 	 */
-	public function singular_header_widget() {
+	public static function singular_header_widget() {
 
 		if ( is_single() && is_active_sidebar( 'before-content' ) ) {
-			$this->before_post();
+			self::before_post();
 		}
 		if ( is_page() && is_active_sidebar( 'before-content-page' ) ) {
-			$this->before_page();
+			self::before_page();
 		}
 	}
 
 	/**
 	 * 記事下ウィジェット
 	 */
-	public function singular_footer_widget() {
+	public static function singular_footer_widget() {
 		if ( is_single() && is_active_sidebar( 'after-content' ) ) {
-			$this->after_post();
+			self::after_post();
 		}
 		if ( is_page() && is_active_sidebar( 'after-content-page' ) ) {
-			$this->after_page();
+			self::after_page();
 		}
 	}
 
 	/**
 	 * 投稿 コンテンツ前ウィジェット
 	 */
-	public function before_post() {
+	public static function before_post() {
 
 		if ( ! apply_filters( 'ys_post_before_widget', true ) ) {
 			return;
@@ -108,7 +108,7 @@ class Widget {
 	/**
 	 * 投稿 コンテンツ後ウィジェット
 	 */
-	public function after_post() {
+	public static function after_post() {
 
 		if ( ! apply_filters( 'ys_post_after_widget', true ) ) {
 			return;
@@ -123,7 +123,7 @@ class Widget {
 	/**
 	 * 固定ページ コンテンツ前ウィジェット
 	 */
-	public function before_page() {
+	public static function before_page() {
 
 		if ( ! apply_filters( 'ys_page_before_widget', true ) ) {
 			return;
@@ -138,7 +138,7 @@ class Widget {
 	/**
 	 * 固定ページ コンテンツ後ウィジェット
 	 */
-	public function after_page() {
+	public static function after_page() {
 
 		if ( ! apply_filters( 'ys_page_after_widget', true ) ) {
 			return;
