@@ -278,6 +278,15 @@ class Template {
 	}
 
 	/**
+	 * レガシーウィジェットプレビュー中判定
+	 *
+	 * @return bool
+	 */
+	public static function is_legacy_widget_preview() {
+		return ! empty( $_GET['legacy-widget-preview'] );
+	}
+
+	/**
 	 * カスタムテンプレート選択追加
 	 *
 	 * @param string[]      $post_templates Array of template header names keyed by the template file name.

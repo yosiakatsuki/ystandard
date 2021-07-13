@@ -56,6 +56,9 @@ class Google_Analytics {
 		if ( AMP::is_amp() ) {
 			return false;
 		}
+		if ( Template::is_legacy_widget_preview() ) {
+			return false;
+		}
 		/**
 		 * 設定チェック
 		 */
