@@ -7,6 +7,7 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
 ?>
 <main id="main" class="content__main site-main">
 	<?php do_action( 'ys_content_main_prepend' ); ?>

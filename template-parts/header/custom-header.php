@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 if ( ! ys_is_active_header_media() ) {
 	return;
 }

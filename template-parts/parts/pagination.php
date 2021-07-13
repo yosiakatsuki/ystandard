@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * ページネーション作成に必要なデータは下記ファイル内で作成しています。
  * inc/archive/class-pagination.php

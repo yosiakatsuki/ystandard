@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 $taxonomies = ys_get_the_taxonomies_data();
 
 if ( ! $taxonomies ) {

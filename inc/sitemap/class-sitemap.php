@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Sitemap
  *

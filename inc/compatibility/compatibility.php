@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 if ( ! function_exists( 'wp_body_open' ) ) {
 	/**
 	 * WP 5.2以前で wp_body_open を動作させる
