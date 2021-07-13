@@ -99,6 +99,7 @@ body {
 		}
 	  }
 	}
+
 	.sidebar {
 	  @include media-breakpoint(sm) {
 		.alignwide,
@@ -108,6 +109,21 @@ body {
 		  padding-right: 1.5rem;
 		  padding-left: 1.5rem;
 		}
+	  }
+	}
+  }
+}
+
+.footer-widget {
+  .footer-widget__column {
+	@include media-breakpoint(sm) {
+	  .alignwide,
+	  .alignfull {
+		width: auto;
+		margin-right: 0;
+		margin-left: 0;
+		padding-right: 0;
+		padding-left: 0;
 	  }
 	}
   }
