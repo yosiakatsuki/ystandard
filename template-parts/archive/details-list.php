@@ -7,6 +7,7 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_item_class() ); ?>>
 	<div class="archive__detail">

@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 if ( ! has_nav_menu( 'footer' ) ) {
 	return;
 }

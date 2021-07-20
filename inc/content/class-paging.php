@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Paging
  *
@@ -20,16 +22,16 @@ class Paging {
 	 * フックやショートコードの登録
 	 */
 	public function register() {
-		add_action( 'set_singular_content', [ $this, 'set_widget' ] );
+		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
 	}
 
 	/**
-	 * フィルターのセット
+	 * ページングのセット
 	 */
-	public function set_widget() {
+	public function set_singular_content() {
 		add_action(
 			'ys_singular_footer',
-			[ $this, 'post_paging' ],
+			[ __CLASS__, 'post_paging' ],
 			Content::get_footer_priority( 'paging' )
 		);
 	}
@@ -37,9 +39,9 @@ class Paging {
 	/**
 	 * ページング表示
 	 */
-	public function post_paging() {
+	public static function post_paging() {
 
-		if ( ! $this->is_active_paging() ) {
+		if ( ! self::is_active_paging() ) {
 			return;
 		}
 		$in_same_term = apply_filters( 'ys_paging_in_same_term', false );
@@ -67,7 +69,7 @@ class Paging {
 	 *
 	 * @return bool
 	 */
-	private function is_active_paging() {
+	private static function is_active_paging() {
 		if ( ! is_singular() ) {
 			return false;
 		}

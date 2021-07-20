@@ -1,8 +1,8 @@
 .widget-inside {
   select {
-    &.multiple {
-      width: 100%;
-    }
+	&.multiple {
+	  width: 100%;
+	}
   }
 }
 
@@ -11,15 +11,94 @@
   display: block;
   font-size: 0.7rem;
 }
+
 .widget-form__section {
   h4 {
-    margin-bottom: 0.5em;
-    padding: 0.5em;
-    background-color: $color__ystanadrd;
-    color: $color__text-white;
+	margin-bottom: 0.5em;
+	padding: 0.5em;
+	background-color: $color__ystanadrd;
+	color: $color__text-white;
   }
 }
+
 .ys-widget-option__sub {
   color: $color__text-light;
   font-size: 0.8em;
+}
+
+/**
+ * レガシーウィジェット
+ */
+.wp-block-legacy-widget__edit-form {
+  .wp-block-legacy-widget__edit-form-title {
+	position: relative !important;
+	font-size: 1.2em !important;
+	margin: 0 0 1em !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: none !important;
+	box-shadow: none !important;
+	font-weight: $font__weight_bold;
+
+	&:before,
+	&:after {
+	  display: none !important;
+	}
+  }
+}
+
+.wp-block-legacy-widget__edit-preview {
+  .wp-block-legacy-widget__edit-preview-iframe {
+	display: block;
+  }
+}
+
+/**
+ * ウィジェット編集画面
+ */
+.wp-block[data-type="core/widget-area"] {
+  .editor-styles-wrapper {
+	h1, h2, h3, h4, h5, h6 {
+	  &:not([class*="is-style-ystdtb-"]):not(.is-clear-style) {
+		position: relative !important;
+		margin: 0 0 1em !important;
+		padding: 0 !important;
+		border: 0 !important;
+		background: none !important;
+		box-shadow: none !important;
+		font-weight: $font__weight_bold;
+
+		&:before,
+		&:after {
+		  display: none !important;
+		}
+	  }
+	}
+
+	h1,
+	h2 {
+	  &:not([class*="is-style-ystdtb-"]):not(.is-clear-style) {
+		font-size: get_font_size("x-large") !important;
+	  }
+	}
+
+	h3 {
+	  &:not([class*="is-style-ystdtb-"]):not(.is-clear-style) {
+		font-size: get_font_size("large") !important;
+	  }
+	}
+
+	h4 {
+	  &:not([class*="is-style-ystdtb-"]):not(.is-clear-style) {
+		font-size: 1.2em !important;
+	  }
+	}
+
+	h5,
+	h6 {
+	  &:not([class*="is-style-ystdtb-"]):not(.is-clear-style) {
+		font-size: 1.1em !important;
+	  }
+	}
+  }
 }

@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 if ( ! isset( $ys_tracking_id ) || empty( $ys_tracking_id ) ) {
 	return;
 }

@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class OGP
  *
@@ -40,11 +42,14 @@ class OGP {
 	 * OGPタグ出力
 	 */
 	public function ogp_meta() {
-
+		if ( Template::is_legacy_widget_preview() ) {
+			return;
+		}
 		$this->set_ogp_param();
 		$this->set_twitter_card_param();
 
-		$ogp = '';
+		$ogp              = '';
+		$this->meta_param = apply_filters( 'ys_ogp_meta_param', $this->meta_param );
 		foreach ( $this->meta_param as $key => $value ) {
 			$ogp .= "<meta property=\"${key}\" content=\"${value}\" />" . PHP_EOL;
 		}

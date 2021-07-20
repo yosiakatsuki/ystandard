@@ -1,14 +1,16 @@
 <?php
 /**
- * 人気記事ランキング
+ * 新着記事ウィジェット
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 /**
- * 人気記事ランキングウィジェット
+ * 新着記事ウィジェット
  */
 class YS_Widget_Recent_Posts extends WP_Widget {
 	/**

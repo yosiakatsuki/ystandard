@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * 実態は下記テンプレート
  * template-parts/singular/pagination.php

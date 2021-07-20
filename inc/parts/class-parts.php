@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Parts
  *
@@ -39,13 +41,19 @@ class Parts {
 	 * Register
 	 */
 	public function register() {
+		/**
+		 * 投稿タイプ
+		 */
 		$post_type = self::POST_TYPE;
 		add_action( 'init', [ $this, 'register_post_type' ], 9 );
 		add_filter( 'pre_get_posts', [ $this, 'set_order' ] );
 		add_action( "add_meta_boxes_${post_type}", [ $this, 'add_meta_box' ] );
 		add_filter( "manage_${post_type}_posts_columns", [ $this, 'add_columns_head' ] );
 		add_action( "manage_${post_type}_posts_custom_column", [ $this, 'add_custom_column' ], 10, 2 );
-		// ショートコード.
+		/**
+		 * 展開
+		 */
+		$this->set_parts_content_filter();
 		if ( ! shortcode_exists( self::SHORTCODE ) ) {
 			add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
 		}
@@ -119,31 +127,31 @@ class Parts {
 	 * @return string
 	 */
 	private function get_parts_content( $content ) {
-		// TOC処理のキャンセル.
-		$temp = apply_filters( 'ys_create_toc', true );
-		remove_all_filters( 'ys_create_toc' );
-		add_filter( 'ys_create_toc', '__return_false' );
-		// [wpautop]のキャンセル.
-		$priority      = has_filter( 'the_content', 'wpautop' );
-		$remove_auto_p = false !== $priority && has_blocks( $content );
-		if ( $remove_auto_p ) {
-			remove_filter( 'the_content', 'wpautop', $priority );
-		}
+
 		// コンテンツ展開.
 		do_action( 'ys_parts_content_before' );
-		$content = apply_filters( 'the_content', $content );
-		$content = str_replace( ']]>', ']]&gt;', $content );
+		$content = str_replace(
+			']]>',
+			']]&gt;',
+			apply_filters( 'ys_parts_the_content', $content )
+		);
 		do_action( 'ys_parts_content_after' );
-		// [wpautop]戻し.
-		if ( $remove_auto_p ) {
-			add_filter( 'the_content', '_restore_wpautop_hook', $priority + 1 );
-		}
-
-		// TOC処理戻し.
-		$filter = true === $temp ? '__return_true' : '__return_false';
-		add_filter( 'ys_create_toc', $filter );
 
 		return $content;
+	}
+
+	/**
+	 * パーツコンテンツのフィルターセット
+	 */
+	private function set_parts_content_filter() {
+		add_filter( 'ys_parts_the_content', 'do_blocks', 9 );
+		add_filter( 'ys_parts_the_content', 'wptexturize' );
+		add_filter( 'ys_parts_the_content', 'convert_smilies', 20 );
+		add_filter( 'ys_parts_the_content', 'shortcode_unautop' );
+		add_filter( 'ys_parts_the_content', 'prepend_attachment' );
+		add_filter( 'ys_parts_the_content', 'wp_filter_content_tags' );
+		add_filter( 'ys_parts_the_content', 'wp_replace_insecure_home_url' );
+		add_filter( 'ys_parts_the_content', 'do_shortcode', 11 );
 	}
 
 	/**
@@ -163,7 +171,7 @@ class Parts {
 		$parts = get_posts(
 			[
 				'post_type'      => self::POST_TYPE,
-				'posts_per_page' => -1,
+				'posts_per_page' => - 1,
 			]
 		);
 

@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Structured_Data
  *
@@ -37,6 +39,9 @@ class Structured_Data {
 	 * Organization.
 	 */
 	public function organization() {
+		if ( Template::is_legacy_widget_preview() ) {
+			return;
+		}
 		$data          = self::DEFAULT_DATA;
 		$data['@type'] = 'Organization';
 		$data['url']   = home_url( '/' );
@@ -60,6 +65,9 @@ class Structured_Data {
 	 * Website.
 	 */
 	public function website() {
+		if ( Template::is_legacy_widget_preview() ) {
+			return;
+		}
 		$data                  = self::DEFAULT_DATA;
 		$data['@type']         = 'Website';
 		$data['url']           = home_url( '/' );
@@ -80,7 +88,9 @@ class Structured_Data {
 	 * Article
 	 */
 	public function article() {
-
+		if ( Template::is_legacy_widget_preview() ) {
+			return;
+		}
 		if ( is_front_page() || is_404() ) {
 			return;
 		}
@@ -91,6 +101,9 @@ class Structured_Data {
 		 */
 		global $posts;
 		$article = [];
+		if ( ! is_array( $posts ) ) {
+			return;
+		}
 		foreach ( $posts as $post ) {
 			/**
 			 * データ準備

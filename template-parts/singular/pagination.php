@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 wp_link_pages(
 	[
 		'before'      => '<nav class="page-links pagination">',

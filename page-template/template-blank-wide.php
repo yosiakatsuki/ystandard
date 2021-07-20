@@ -9,6 +9,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 get_header(); ?>
 	<div class="container">
 		<div class="content__wrap">
