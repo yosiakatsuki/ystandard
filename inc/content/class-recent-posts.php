@@ -189,7 +189,7 @@ class Recent_Posts {
 		);
 		$html = ob_get_clean();
 		wp_reset_postdata();
-		
+
 		$html = $this->add_error_message( $html );
 
 		return $html;

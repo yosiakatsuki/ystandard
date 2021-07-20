@@ -19,6 +19,11 @@ defined( 'ABSPATH' ) || die();
 class Author {
 
 	/**
+	 * ショートコード
+	 */
+	const SHORT_CODE = 'ys_author';
+
+	/**
 	 * Nonce Action.
 	 */
 	const NONCE_ACTION = 'ystandard_profile_update';
@@ -44,19 +49,23 @@ class Author {
 		add_filter( 'user_contactmethods', [ $this, 'user_contactmethods' ] );
 		add_action( 'show_password_fields', [ $this, 'add_custom_option' ], 10, 2 );
 		add_action( 'profile_update', [ $this, 'profile_update' ], 10, 2 );
-		add_shortcode( 'ys_author', [ $this, 'do_shortcode' ] );
 		add_filter( 'pre_get_avatar', [ $this, '_get_avatar' ], 10, 3 );
-		add_action(
-			'set_singular_content',
-			function () {
-				add_action(
-					'ys_singular_footer',
-					[ $this, 'post_author' ],
-					Content::get_footer_priority( 'author' )
-				);
-			}
-		);
+		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
 		add_action( 'widgets_init', [ $this, 'register_widget' ] );
+		if ( ! shortcode_exists( self::SHORT_CODE ) ) {
+			add_shortcode( self::SHORT_CODE, [ $this, 'do_shortcode' ] );
+		}
+	}
+
+	/**
+	 * 著者情報表示セット
+	 */
+	public function set_singular_content() {
+		add_action(
+			'ys_singular_footer',
+			[ __CLASS__, 'post_author' ],
+			Content::get_footer_priority( 'author' )
+		);
 	}
 
 	/**
@@ -70,8 +79,11 @@ class Author {
 	/**
 	 * Author 表示.
 	 */
-	public function post_author() {
-		echo $this->do_shortcode( [ 'sync_hide_option' => true ] );
+	public static function post_author() {
+		echo Utility::do_shortcode(
+			self::SHORT_CODE,
+			[ 'sync_hide_option' => true ]
+		);
 	}
 
 	/**
