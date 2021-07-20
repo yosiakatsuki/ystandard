@@ -25,22 +25,24 @@ class Comment {
 		add_filter( 'comments_open', [ $this, 'comment_tags' ] );
 		add_filter( 'pre_comment_approved', [ $this, 'comment_tags' ] );
 		add_filter( 'comment_form_fields', [ $this, 'comment_form_fields' ] );
+		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+	}
+
+	/**
+	 * コメント表示セット
+	 */
+	public function set_singular_content() {
 		add_action(
-			'set_singular_content',
-			function () {
-				add_action(
-					'ys_singular_footer',
-					[ $this, 'post_comment' ],
-					Content::get_footer_priority( 'comment' )
-				);
-			}
+			'ys_singular_footer',
+			[ __CLASS__, 'post_comment' ],
+			Content::get_footer_priority( 'comment' )
 		);
 	}
 
 	/**
 	 * コメントフォーム表示
 	 */
-	public function post_comment() {
+	public static function post_comment() {
 		comments_template();
 	}
 

@@ -19,6 +19,11 @@ defined( 'ABSPATH' ) || die();
 class Share_Button {
 
 	/**
+	 * ショートコード
+	 */
+	const SHORT_CODE = 'ys_share_button';
+
+	/**
 	 * シェアボタンタイプ
 	 */
 	const TYPE = [
@@ -81,8 +86,8 @@ class Share_Button {
 	public function register() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
-		if ( ! shortcode_exists( 'ys_share_button' ) ) {
-			add_shortcode( 'ys_share_button', [ $this, 'do_shortcode' ] );
+		if ( ! shortcode_exists( self::SHORT_CODE ) ) {
+			add_shortcode( self::SHORT_CODE, [ $this, 'do_shortcode' ] );
 		}
 	}
 
@@ -92,12 +97,12 @@ class Share_Button {
 	public function set_singular_content() {
 		add_action(
 			'ys_singular_header',
-			[ $this, 'header_share_button' ],
+			[ __CLASS__, 'header_share_button' ],
 			Content::get_header_priority( 'sns-share' )
 		);
 		add_action(
 			'ys_singular_footer',
-			[ $this, 'footer_share_button' ],
+			[ __CLASS__, 'footer_share_button' ],
 			Content::get_footer_priority( 'sns-share' )
 		);
 	}
@@ -107,7 +112,7 @@ class Share_Button {
 	 *
 	 * @return bool
 	 */
-	private function is_active_share_buttons() {
+	private static function is_active_share_buttons() {
 		$post_type = Content::get_post_type();
 		$filter    = apply_filters( "ys_${post_type}_active_share_buttons", null );
 		if ( ! is_null( $filter ) ) {
@@ -123,21 +128,27 @@ class Share_Button {
 	/**
 	 * ヘッダー側シェアボタン
 	 */
-	public function header_share_button() {
-		if ( ! $this->is_active_share_buttons() ) {
+	public static function header_share_button() {
+		if ( ! self::is_active_share_buttons() ) {
 			return;
 		}
-		echo $this->do_shortcode( $this->get_share_button_settings( 'header', 'none' ) );
+		echo Utility::do_shortcode(
+			self::SHORT_CODE,
+			self::get_share_button_settings( 'header', 'none' )
+		);
 	}
 
 	/**
 	 * フッター側シェアボタン
 	 */
-	public function footer_share_button() {
-		if ( ! $this->is_active_share_buttons() ) {
+	public static function footer_share_button() {
+		if ( ! self::is_active_share_buttons() ) {
 			return;
 		}
-		echo $this->do_shortcode( $this->get_share_button_settings( 'footer', 'circle' ) );
+		echo Utility::do_shortcode(
+			self::SHORT_CODE,
+			self::get_share_button_settings( 'footer', 'circle' )
+		);
 	}
 
 
@@ -149,7 +160,7 @@ class Share_Button {
 	 *
 	 * @return array
 	 */
-	private function get_share_button_settings( $position, $default ) {
+	private static function get_share_button_settings( $position, $default ) {
 
 		$post_type = Content::get_post_type();
 		$type      = apply_filters(

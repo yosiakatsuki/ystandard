@@ -39,17 +39,19 @@ class Taxonomy {
 		add_filter( 'ys_ogp_description_archive', [ $this, 'ogp_description' ] );
 		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
 		add_filter( 'wp_tag_cloud', [ $this, '_tag_cloud' ] );
-		add_action(
-			'set_singular_content',
-			function () {
-				add_action(
-					'ys_singular_footer',
-					[ $this, 'post_taxonomy' ],
-					Content::get_footer_priority( 'taxonomy' )
-				);
-			}
-		);
+		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
+	}
+
+	/**
+	 * タクソノミー表示セット
+	 */
+	public function set_singular_content() {
+		add_action(
+			'ys_singular_footer',
+			[ __CLASS__, 'post_taxonomy' ],
+			Content::get_footer_priority( 'taxonomy' )
+		);
 	}
 
 	/**
@@ -113,8 +115,8 @@ class Taxonomy {
 	/**
 	 * 投稿ページカテゴリー・タグ表示
 	 */
-	public function post_taxonomy() {
-		if ( ! $this->is_active_post_taxonomy() ) {
+	public static function post_taxonomy() {
+		if ( ! self::is_active_post_taxonomy() ) {
 			return;
 		}
 
@@ -177,7 +179,7 @@ class Taxonomy {
 	 *
 	 * @return bool;
 	 */
-	private function is_active_post_taxonomy() {
+	private static function is_active_post_taxonomy() {
 		$post_type = Content::get_post_type();
 
 		$filter = apply_filters( "ys_is_active_${post_type}_taxonomy", null );

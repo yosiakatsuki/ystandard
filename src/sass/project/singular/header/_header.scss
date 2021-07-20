@@ -31,6 +31,11 @@
 .singular-header__terms {
   display: flex;
   align-items: center;
+
+  a {
+	color: currentColor;
+	text-decoration: none;
+  }
 }
 
 .singular-date__item {

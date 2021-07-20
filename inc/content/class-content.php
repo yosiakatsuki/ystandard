@@ -19,6 +19,18 @@ defined( 'ABSPATH' ) || die();
 class Content {
 
 	/**
+	 * ヘッダーコンテンツの優先順位
+	 */
+	const HEADER_PRIORITY = [
+		'post-thumbnail' => 10,
+		'title'          => 20,
+		'meta'           => 30,
+		'sns-share'      => 40,
+		'ad'             => 50,
+		'widget'         => 60,
+	];
+
+	/**
 	 * フッターコンテンツの優先順位
 	 */
 	const FOOTER_PRIORITY = [
@@ -33,18 +45,6 @@ class Content {
 	];
 
 	/**
-	 * ヘッダーコンテンツの優先順位
-	 */
-	const HEADER_PRIORITY = [
-		'post-thumbnail' => 10,
-		'title'          => 20,
-		'meta'           => 30,
-		'sns-share'      => 40,
-		'ad'             => 50,
-		'widget'         => 60,
-	];
-
-	/**
 	 * 埋め込みの縦横比
 	 *
 	 * @var string
@@ -55,7 +55,7 @@ class Content {
 	 * アクション・フィルターの登録
 	 */
 	public function register() {
-		add_action( 'wp', [ $this, 'content_action' ] );
+		add_action( 'wp', [ $this, 'set_singular_action_hook' ] );
 		add_filter( 'post_class', [ $this, 'post_class' ] );
 		add_filter( 'the_content', [ $this, 'the_content_hook' ] );
 		add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ], 10, 2 );
@@ -65,37 +65,39 @@ class Content {
 		add_action( 'customize_register', [ $this, 'customize_register_post' ] );
 		add_action( 'customize_register', [ $this, 'customize_register_page' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
+		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+	}
+
+	/**
+	 * 記事上下表示のセット
+	 */
+	public function set_singular_content() {
 		add_action(
-			'set_singular_content',
-			function () {
-				add_action(
-					'ys_singular_header',
-					[ $this, 'post_thumbnail_default' ],
-					self::get_header_priority( 'post-thumbnail' )
-				);
-				add_action(
-					'ys_singular_header',
-					[ $this, 'singular_title' ],
-					self::get_header_priority( 'title' )
-				);
-				add_action(
-					'ys_singular_header',
-					[ $this, 'singular_meta' ],
-					self::get_header_priority( 'meta' )
-				);
-				add_action(
-					'ys_singular_footer',
-					[ $this, 'related_posts' ],
-					self::get_footer_priority( 'related' )
-				);
-			}
+			'ys_singular_header',
+			[ __CLASS__, 'post_thumbnail_default' ],
+			self::get_header_priority( 'post-thumbnail' )
+		);
+		add_action(
+			'ys_singular_header',
+			[ __CLASS__, 'singular_title' ],
+			self::get_header_priority( 'title' )
+		);
+		add_action(
+			'ys_singular_header',
+			[ __CLASS__, 'singular_meta' ],
+			self::get_header_priority( 'meta' )
+		);
+		add_action(
+			'ys_singular_footer',
+			[ __CLASS__, 'related_posts' ],
+			self::get_footer_priority( 'related' )
 		);
 	}
 
 	/**
 	 * コンテンツ関連のアクション登録
 	 */
-	public function content_action() {
+	public function set_singular_action_hook() {
 		// 記事上・記事下のアクションセット.
 		do_action( 'set_singular_content' );
 	}
@@ -114,7 +116,8 @@ class Content {
 		if ( ! $priority ) {
 			$priority = apply_filters(
 				'ys_get_content_header_priority',
-				self::HEADER_PRIORITY
+				self::HEADER_PRIORITY,
+				$post_type
 			);
 			wp_cache_set( $cache_key, $priority );
 		}
@@ -362,8 +365,9 @@ class Content {
 				return '';
 			}
 			$result[] = sprintf(
-				'<div class="singular-header__terms">%s%s</div>',
+				'<div class="singular-header__terms">%s<a href="%s">%s</a></div>',
 				Utility::get_taxonomy_icon( $taxonomy ),
+				get_term_link( $term[0] ),
 				$term[0]->name
 			);
 		}
@@ -398,7 +402,7 @@ class Content {
 	/**
 	 * 関連記事表示
 	 */
-	public function related_posts() {
+	public static function related_posts() {
 		if ( ! self::is_active_related_posts() ) {
 			return;
 		}
@@ -457,7 +461,7 @@ class Content {
 	/**
 	 * アイキャッチ画像の表示
 	 */
-	public function post_thumbnail_default() {
+	public static function post_thumbnail_default() {
 		if ( self::is_full_post_thumbnail() ) {
 			return;
 		}
@@ -518,7 +522,7 @@ class Content {
 	/**
 	 * 投稿タイトル
 	 */
-	public function singular_title() {
+	public static function singular_title() {
 		ob_start();
 		Template::get_template_part( 'template-parts/parts/post-title' );
 		echo ob_get_clean();
@@ -527,7 +531,7 @@ class Content {
 	/**
 	 * 投稿メタ情報
 	 */
-	public function singular_meta() {
+	public static function singular_meta() {
 		$date = '';
 		// 投稿日・更新日.
 		$post_date = self::get_post_date_data();
