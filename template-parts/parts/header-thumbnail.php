@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 if ( empty( $header_thumbnail ) ) {
 	return;
 }

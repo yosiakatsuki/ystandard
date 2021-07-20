@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class YS_Loader
  */
@@ -34,13 +36,6 @@ class YS_Loader {
 	 * @var array
 	 */
 	private $dir_list = [];
-
-	/**
-	 * 読み込み済みファイル
-	 *
-	 * @var array
-	 */
-	private $loaded_files = [];
 
 	/**
 	 * YS_Loader constructor.
@@ -80,7 +75,11 @@ class YS_Loader {
 		 */
 		$class = str_replace( '_', '-', ltrim( $class, '\\' ) );
 		$file  = 'class-' . str_replace( 'ystandard\\', '', $class ) . '.php';
-		$file  = mb_strtolower( $file );
+		if ( function_exists( 'mb_strtolower' ) ) {
+			$file = mb_strtolower( $file );
+		} else {
+			$file = strtolower( $file );
+		}
 
 		foreach ( $this->dir_list as $dir ) {
 			$target = __DIR__ . DIRECTORY_SEPARATOR . $dir;

@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Advertisement
  *
@@ -55,12 +57,12 @@ class Advertisement {
 	public function set_singular_content() {
 		add_action(
 			'ys_singular_header',
-			[ $this, 'header_ad' ],
+			[ __CLASS__, 'header_ad' ],
 			Content::get_header_priority( 'ad' )
 		);
 		add_action(
 			'ys_singular_footer',
-			[ $this, 'footer_ad' ],
+			[ __CLASS__, 'footer_ad' ],
 			Content::get_footer_priority( 'ad' )
 		);
 	}
@@ -102,7 +104,7 @@ class Advertisement {
 	/**
 	 * 記事上広告
 	 */
-	public function header_ad() {
+	public static function header_ad() {
 
 		$key = 'ys_advertisement_before_content';
 		if ( AMP::is_amp() ) {
@@ -146,8 +148,7 @@ class Advertisement {
 	/**
 	 * 記事下広告
 	 */
-	public function footer_ad() {
-		$ad        = '';
+	public static function footer_ad() {
 		$key_left  = 'ys_advertisement_under_content_left';
 		$key_right = 'ys_advertisement_under_content_right';
 

@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Posts
  *
@@ -101,6 +103,13 @@ class Recent_Posts {
 	private $sga_limit = 0;
 
 	/**
+	 * エラーに関する文字列
+	 *
+	 * @var string
+	 */
+	private $error = '';
+
+	/**
 	 * フックやショートコードの登録
 	 */
 	public function register() {
@@ -136,7 +145,7 @@ class Recent_Posts {
 	 * @return string
 	 */
 	public function do_shortcode( $atts, $content = null ) {
-
+		$this->error          = '';
 		$this->shortcode_atts = apply_filters(
 			'ys_recent_posts_shortcode_atts',
 			shortcode_atts( self::SHORTCODE_ATTR, $atts )
@@ -180,6 +189,8 @@ class Recent_Posts {
 		);
 		$html = ob_get_clean();
 		wp_reset_postdata();
+
+		$html = $this->add_error_message( $html );
 
 		return $html;
 
@@ -379,8 +390,13 @@ class Recent_Posts {
 		if ( 0 < $this->sga_limit ) {
 			add_filter( 'sga_ranking_limit_filter', [ $this, 'sga_limit_filter' ] );
 		}
-		$sga_arg      = apply_filters( 'ys_recent_post_sga_arg', $sga_arg );
+		$sga_arg = apply_filters( 'ys_recent_post_sga_arg', $sga_arg );
+		ob_start();
 		$ranking_data = sga_ranking_get_date( $sga_arg );
+		$dump         = ob_get_clean();
+		if ( ! empty( $dump ) ) {
+			$this->error = $dump;
+		}
 		if ( $ranking_data ) {
 			$this->query_args['orderby']  = 'post__in';
 			$this->query_args['post__in'] = $ranking_data;
@@ -564,6 +580,36 @@ class Recent_Posts {
 	 */
 	private function is_mobile() {
 		return apply_filters( 'ys_recent_posts_is_mobile', ys_is_mobile() );
+	}
+
+	/**
+	 * エラーメッセージの追加
+	 *
+	 * @param string $html HTML.
+	 *
+	 * @return string
+	 */
+	private function add_error_message( $html ) {
+		if ( ! defined( 'WP_DEBUG' ) || ! WP_DEBUG ) {
+			return $html;
+		}
+		if ( ! is_user_logged_in() ) {
+			return $html;
+		}
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return $html;
+		}
+		if ( empty( $this->error ) ) {
+			return $html;
+		}
+
+		$error_message = sprintf(
+			'<div style="padding: 1em;background: #eee;font-size: 0.8em;"><p style="margin: 0 0 0.5em;">--このメッセージは管理者ユーザーにのみ表示されています--<br>Simple GA Ranking連携機能で以下のメッセージが出力されました。<br>Simple GA Rankingの設定に不備がある場合などにメッセージが出力されることがあるため、まずは設定を再確認してください。</p>%s</div>',
+			$this->error
+		);
+		$this->error   = '';
+
+		return $html . $error_message;
 	}
 }
 

@@ -9,17 +9,14 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Admin
  *
  * @package ystandard
  */
 class Admin {
-
-	/**
-	 * ブロックエディター用インラインCSSフック名
-	 */
-	const BLOCK_EDITOR_ASSETS_HOOK = 'ys_block_editor_assets_inline_css';
 
 	/**
 	 * Admin constructor.
@@ -32,8 +29,6 @@ class Admin {
 		add_action( 'after_setup_theme', [ $this, 'update_check' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_styles' ] );
-		add_action( 'after_setup_theme', [ $this, 'enqueue_block_css' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_action( 'admin_init', [ $this, 'enqueue_visual_editor_styles' ] );
 		add_action( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ] );
 		Notice::set_notice( [ $this, 'widget_manual' ] );
@@ -139,30 +134,6 @@ class Admin {
 			Utility::get_ystandard_version()
 		);
 	}
-
-	/**
-	 * Enqueue block editor style
-	 */
-	public function enqueue_block_css() {
-		add_theme_support( 'editor-styles' );
-		add_editor_style( 'css/block-editor.css' );
-		add_editor_style( 'style.css' );
-	}
-
-	/**
-	 * ブロックエディタのスタイル追加
-	 */
-	public function enqueue_block_editor_assets() {
-		wp_enqueue_style(
-			'ys-block-editor-assets',
-			get_template_directory_uri() . '/css/block-editor-assets.css'
-		);
-		wp_add_inline_style(
-			'ys-block-editor-assets',
-			apply_filters( self::BLOCK_EDITOR_ASSETS_HOOK, '' )
-		);
-	}
-
 
 	/**
 	 * ビジュアルエディタ用CSS追加

@@ -9,7 +9,7 @@
 
 namespace ystandard;
 
-defined( 'ABSPATH' ) || exit;
+defined( 'ABSPATH' ) || die();
 
 /**
  * Class WooCommerce

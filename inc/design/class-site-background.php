@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Site_Background
  *
@@ -111,6 +113,9 @@ class Site_Background {
 	 * @return string
 	 */
 	public static function get_site_bg() {
+		if ( Template::is_legacy_widget_preview() ) {
+			return self::get_site_bg_default();
+		}
 		return Option::get_option( 'ys_color_site_bg', self::get_site_bg_default() );
 	}
 

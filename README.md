@@ -25,6 +25,12 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 ### v4.x.x
 
+### v4.27.0
+- [調整] WordPress 5.8対応
+- [追加] 記事上部カテゴリー表示にリンク追加
+- [調整] ysパーツ機能調整
+- [削除] Font Awesome関連機能の削除
+
 ### v4.26.3
 - [調整] ヘッダーメディアの動画がiPhoneでも自動再生されるように調整
 - [調整] ヘッダーメディアの動画表示サイズを自動調整されるように調整
@@ -451,12 +457,6 @@ Source : <https://github.com/simple-icons/simple-icons>
 ### Feather
 License: MIT  
 Source : <https://github.com/feathericons/feather>
-
-### Font Awesome
-
-Font License: SIL OFL 1.1  
-Code License: MIT License  
-Source      : <https://fortawesome.github.io/Font-Awesome/>
 
 ### Theme Update Checker Library
 

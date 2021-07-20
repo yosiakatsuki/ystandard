@@ -7,6 +7,7 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
 ?>
 <div class="site-branding">
 	<?php
