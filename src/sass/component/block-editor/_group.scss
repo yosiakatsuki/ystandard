@@ -1,7 +1,14 @@
-.wp-block-group.has-background {
-  padding: 1.5em;
+.wp-block-group {
+  @include child_margin();
+
+  &.has-background {
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+  }
 }
 
 .wp-block-group__inner-container {
   @include child_margin();
 }
+
+
