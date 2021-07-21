@@ -1,11 +1,9 @@
 /**
- * - src/sass/component/widget/_widget-parts.scss
+ * .entry-content - src/sass/component/widget/_widget-parts.scss
+ * .entry-content - src/sass/component/block-editor/_content.scss
  */
 
 .entry-content {
-  $selector: "";
-
-  @include child_margin();
 
   margin-top: 2em;
   margin-bottom: 2em;
@@ -14,27 +12,6 @@
 	content: "";
 	display: block;
 	clear: both;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-	margin: 3em 0 0.25em;
-  }
-
-  @for $i from 1 through 5 {
-	$selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
-  }
-
-  #{$selector} {
-	margin-top: 1em;
-  }
-
-  p:empty {
-	display: none;
   }
 }
 
