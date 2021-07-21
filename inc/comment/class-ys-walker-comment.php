@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Core walker class used to create an HTML list of comments.
  *

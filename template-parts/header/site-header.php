@@ -7,6 +7,7 @@
  * @license GPL-2.0+
  */
 
+defined( 'ABSPATH' ) || die();
 ?>
 <header id="masthead" class="site-header">
 	<?php do_action( 'ys_site_header_prepend' ); ?>

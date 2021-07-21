@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
 	 * カスタマイザーコントロール : 画像選択ラジオボタン

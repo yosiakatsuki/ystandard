@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Template_Function
  *
@@ -273,6 +275,15 @@ class Template {
 		);
 
 		return is_page_template( $template );
+	}
+
+	/**
+	 * レガシーウィジェットプレビュー中判定
+	 *
+	 * @return bool
+	 */
+	public static function is_legacy_widget_preview() {
+		return ! empty( $_GET['legacy-widget-preview'] );
 	}
 
 	/**

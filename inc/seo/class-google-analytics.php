@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Google_Analytics
  *
@@ -52,6 +54,9 @@ class Google_Analytics {
 	 */
 	public static function is_enable_google_analytics() {
 		if ( AMP::is_amp() ) {
+			return false;
+		}
+		if ( Template::is_legacy_widget_preview() ) {
 			return false;
 		}
 		/**

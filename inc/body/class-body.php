@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Body
  *
@@ -19,7 +21,7 @@ class Body {
 	 * Body constructor.
 	 */
 	public function __construct() {
-		add_filter( 'body_class', [ $this, '_body_class' ] );
+		add_filter( 'body_class', [ $this, 'add_body_class' ] );
 	}
 
 	/**
@@ -29,7 +31,7 @@ class Body {
 	 *
 	 * @return array
 	 */
-	public function _body_class( $classes ) {
+	public function add_body_class( $classes ) {
 		$classes[] = 'ystandard';
 		$classes[] = 'ystd'; // CSS用.
 		/**

@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Embed
  *
@@ -28,7 +30,7 @@ class Embed {
 			remove_action( 'embed_content_meta', 'print_embed_sharing_button' );
 			remove_action( 'embed_footer', 'print_embed_sharing_dialog' );
 			add_filter(
-				Admin::BLOCK_EDITOR_ASSETS_HOOK,
+				Block_Editor_Assets::BLOCK_EDITOR_ASSETS_HOOK,
 				function ( $css ) {
 					$css .= '.block-editor__container .wp-embedded-content {height:auto;}';
 

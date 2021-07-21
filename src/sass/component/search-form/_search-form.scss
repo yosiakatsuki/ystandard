@@ -42,10 +42,12 @@
   }
 
   .ys-icon {
+	display: block;
     vertical-align: 0.1em;
   }
 
   svg {
+	display: block;
     @include svg_size(1em);
   }
 }

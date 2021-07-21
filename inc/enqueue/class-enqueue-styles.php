@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Enqueue_Styles
  *
@@ -62,14 +64,13 @@ class Enqueue_Styles {
 			self::HANDLE_MAIN,
 			get_template_directory_uri() . '/css/ystandard.css',
 			[],
-			Utility::get_ystandard_version()
+			filemtime( get_template_directory() . '/css/ystandard.css' )
 		);
 
 		wp_add_inline_style(
 			self::HANDLE_MAIN,
 			$this->get_inline_css()
 		);
-		do_action( 'ys_enqueue_css' );
 
 		// 位置調整.
 		wp_dequeue_style( 'wp-block-library' );
@@ -78,12 +79,14 @@ class Enqueue_Styles {
 			self::HANDLE_BLOCKS,
 			get_template_directory_uri() . '/css/blocks.css',
 			[],
-			Utility::get_ystandard_version()
+			filemtime( get_template_directory() . '/css/blocks.css' )
 		);
 		wp_add_inline_style(
 			self::HANDLE_BLOCKS,
 			$this->get_blocks_inline_css()
 		);
+
+		do_action( 'ys_enqueue_css' );
 
 		/**
 		 * Style css
