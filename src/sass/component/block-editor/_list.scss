@@ -1,0 +1,10 @@
+@if $editor == true {
+  ul.wp-block-list,
+  ol.wp-block-list {
+	box-sizing: border-box;
+
+	ul, ol {
+	  box-sizing: border-box;
+	}
+  }
+}
