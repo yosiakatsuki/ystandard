@@ -60,3 +60,9 @@
 .has-avatars .wp-block-latest-comments__comment .wp-block-latest-comments__comment-meta {
   margin-left: 0;
 }
+
+@if $editor == true {
+  .wp-block-latest-comments {
+	margin-left: auto;
+  }
+}
