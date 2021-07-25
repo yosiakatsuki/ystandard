@@ -1,8 +1,16 @@
 .wp-block-group {
   @include child_margin();
-
   &.has-background {
-	padding: 1.5em;
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+  }
+  &.has-background:not(.alignfull):not(.alignwide) {
+	padding-right: 1.5em;
+	padding-left: 1.5em;
+  }
+
+  &.alignfull + &.alignfull {
+	margin-top: 0;
   }
 }
 
