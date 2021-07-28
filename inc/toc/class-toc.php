@@ -173,6 +173,7 @@ class TOC {
 		if ( ! $this->is_create_toc() ) {
 			return $content;
 		}
+		$this->toc_matches = apply_filters( 'ys_toc_matches', $this->toc_matches );
 		if ( is_null( $this->toc_matches ) ) {
 			if ( ! preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
 				return $content;

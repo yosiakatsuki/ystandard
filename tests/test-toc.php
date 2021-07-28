@@ -41,9 +41,12 @@ class TocTest extends WP_UnitTestCase {
 		$post_id = $this->factory->post->create( $args );
 		$this->go_to( get_permalink( $post_id ) );
 		the_post();
-		
+
 		ob_start();
 		remove_filter( 'the_content', 'wpautop' );
+		add_filter( 'ys_toc_matches', function ( $matches ) {
+			return null;
+		} );
 		the_content();
 
 		return ob_get_clean();
