@@ -59,6 +59,13 @@ class TOC {
 	private $toc_title = '目次';
 
 	/**
+	 * 見出し一覧
+	 *
+	 * @var null
+	 */
+	private $toc_matches = null;
+
+	/**
 	 * 目次HTML.
 	 *
 	 * @var string
@@ -144,8 +151,7 @@ class TOC {
 		if ( empty( $content ) ) {
 			$content = '';
 			if ( is_singular() ) {
-				global $post;
-				$content = $post->post_content;
+				$content = Utility::get_post_content();
 			}
 		}
 		$this->toc_title = $atts['title'];
@@ -167,19 +173,24 @@ class TOC {
 		if ( ! $this->is_create_toc() ) {
 			return $content;
 		}
-		if ( ! preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
-			return $content;
+		if ( is_null( $this->toc_matches ) ) {
+			if ( ! preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
+				return $content;
+			}
+			// 必要な部分だけ抜き出し.
+			$matches = $this->get_required_levels( $matches );
+			// 空要素の削除.
+			$matches = $this->remove_empty( $matches );
+			// 必要個数のチェック.
+			if ( count( $matches ) < $this->required_count ) {
+				return $content;
+			}
+			// ID・変換文字列の作成.
+			$matches = $this->get_replace_data( $matches );
+		} else {
+			$matches = $this->toc_matches;
 		}
-		// 必要な部分だけ抜き出し.
-		$matches = $this->get_required_levels( $matches );
-		// 空要素の削除.
-		$matches = $this->remove_empty( $matches );
-		// 必要個数のチェック.
-		if ( count( $matches ) < $this->required_count ) {
-			return $content;
-		}
-		// ID・変換文字列の作成.
-		$matches = $this->get_replace_data( $matches );
+
 		// 目次の作成.
 		$toc = $this->get_toc( $matches );
 		// ウィジェット動作の場合は置換不要.
@@ -199,6 +210,8 @@ class TOC {
 			}
 			$content = preg_replace( '/(<h([1-6]{1})|<div.*?class="ystdb-heading)/mu', $toc . '${1}', $content, 1 );
 		}
+		// 目次情報の保存.
+		$this->toc_matches = $matches;
 
 		return $content;
 	}
