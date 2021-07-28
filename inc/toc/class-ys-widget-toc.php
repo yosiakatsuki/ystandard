@@ -83,9 +83,13 @@ class YS_Widget_TOC extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 
-		if ( ! isset( $instance['title'] ) || is_null( $instance['title'] ) ) {
-			$instance['title'] = '目次';
+		if ( ! isset( $instance['title'] ) ) {
+			$instance['title'] = '';
+			if ( is_null( $instance['title'] ) ) {
+				$instance['title'] = '目次';
+			}
 		}
+		$widget_title = '';
 		if ( ! empty( $instance['title'] ) ) {
 			$widget_title = $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
