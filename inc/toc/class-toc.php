@@ -59,6 +59,13 @@ class TOC {
 	private $toc_title = '目次';
 
 	/**
+	 * 見出し一覧
+	 *
+	 * @var null
+	 */
+	private $toc_matches = null;
+
+	/**
 	 * 目次HTML.
 	 *
 	 * @var string
@@ -88,6 +95,7 @@ class TOC {
 		$this->required_count = Option::get_option_by_int( 'ys_toc_required_count', 3 );
 		// タイトル.
 		$this->toc_title = Option::get_option( 'ys_toc_title', '目次' );
+		$this->is_widget = false;
 	}
 
 	/**
@@ -141,7 +149,10 @@ class TOC {
 		$atts    = shortcode_atts( $default, $atts );
 		$this->set_is_widget( true );
 		if ( empty( $content ) ) {
-			$content = Utility::get_post_content();
+			$content = '';
+			if ( is_singular() ) {
+				$content = Utility::get_post_content();
+			}
 		}
 		$this->toc_title = $atts['title'];
 
@@ -158,66 +169,90 @@ class TOC {
 	 * @return string
 	 */
 	public function create_toc( $content ) {
+
+		if ( ! $this->is_create_toc() ) {
+			return $content;
+		}
+		$this->toc_matches = apply_filters( 'ys_toc_matches', $this->toc_matches );
+		if ( is_null( $this->toc_matches ) ) {
+			if ( ! preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
+				return $content;
+			}
+			// 必要な部分だけ抜き出し.
+			$matches = $this->get_required_levels( $matches );
+			// 空要素の削除.
+			$matches = $this->remove_empty( $matches );
+			// 必要個数のチェック.
+			if ( count( $matches ) < $this->required_count ) {
+				return $content;
+			}
+			// ID・変換文字列の作成.
+			$matches = $this->get_replace_data( $matches );
+		} else {
+			$matches = $this->toc_matches;
+		}
+
+		// 目次の作成.
+		$toc = $this->get_toc( $matches );
+		// ウィジェット動作の場合は置換不要.
+		if ( $this->is_widget ) {
+			$toc = '';
+		}
+		// 表示タイプ.
+		if ( 'content' !== Option::get_option( 'ys_toc_display_type', 'content' ) ) {
+			$toc = '';
+		}
+		if ( doing_filter( 'the_content' ) ) {
+			// 置換.
+			foreach ( $matches as $value ) {
+				$search  = preg_quote( $value['search'], '/' );
+				$replace = $value['replace'];
+				$content = preg_replace( "/${search}/", $replace, $content, 1 );
+			}
+			$content = preg_replace( '/(<h([1-6]{1})|<div.*?class="ystdb-heading)/mu', $toc . '${1}', $content, 1 );
+		}
+		// 目次情報の保存.
+		$this->toc_matches = $matches;
+
+		return $content;
+	}
+
+	/**
+	 * 目次作成判断
+	 *
+	 * @return bool
+	 */
+	public function is_create_toc() {
+
+		if ( ! is_singular() ) {
+			return false;
+		}
+		if ( is_singular( Parts::POST_TYPE ) ) {
+			return false;
+		}
+		if ( ! apply_filters( 'ys_create_toc', true ) ) {
+			return false;
+		}
 		/**
 		 * Post.
 		 *
 		 * @global \WP_Post
 		 */
 		global $post;
-		if ( ! is_singular() ) {
-			return $content;
-		}
-		if ( is_singular( Parts::POST_TYPE ) ) {
-			return $content;
-		}
-		if ( ! apply_filters( 'ys_create_toc', true ) ) {
-			return $content;
-		}
 		// 投稿タイプ.
 		if ( Option::get_option_by_bool( 'ys_disable_toc_post_type_' . $post->post_type, false ) ) {
-			return $content;
+			return false;
 		}
 		// 表示タイプ.
 		if ( 'none' === Option::get_option( 'ys_toc_display_type', 'content' ) ) {
-			return $content;
+			return false;
 		}
 		// Post meta.
 		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_toc' ) ) ) {
-			return $content;
+			return false;
 		}
 
-		if ( ! preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
-			return $content;
-		}
-		// 必要な部分だけ抜き出し.
-		$matches = $this->get_required_levels( $matches );
-		// 空要素の削除.
-		$matches = $this->remove_empty( $matches );
-		// 必要個数のチェック.
-		if ( count( $matches ) < $this->required_count ) {
-			return $content;
-		}
-		// ID・変換文字列の作成.
-		$matches = $this->get_replace_data( $matches );
-		// 目次の作成.
-		$toc = $this->get_toc( $matches );
-		// ウィジェット動作の場合は置換不要.
-		if ( $this->is_widget ) {
-			return $content;
-		}
-		// 表示タイプ.
-		if ( 'content' !== Option::get_option( 'ys_toc_display_type', 'content' ) ) {
-			$toc = '';
-		}
-		// 置換.
-		foreach ( $matches as $value ) {
-			$search  = preg_quote( $value['search'], '/' );
-			$replace = $value['replace'];
-			$content = preg_replace( "/${search}/", $replace, $content, 1 );
-		}
-		$content = preg_replace( '/(<h([1-6]{1})|<div.*?class="ystdb-heading)/mu', $toc . '${1}', $content, 1 );
-
-		return $content;
+		return true;
 	}
 
 	/**
