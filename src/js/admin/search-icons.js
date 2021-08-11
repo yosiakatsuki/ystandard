@@ -1,36 +1,16 @@
-import Vue from 'vue';
-// search-icon.
-new Vue( {
-	el: '#ys-search-icons',
-	data: {
-		keyword: '',
-		icons: searchIcons
-	},
-	methods: {
-		copy: function ( target, done ) {
-			if ( this.$refs[ target ] ) {
-				this.$refs[ done ][ 0 ].classList.remove( 'is-show' );
-				this.$refs[ target ][ 0 ].focus();
-				this.$refs[ target ][ 0 ].select();
-				document.execCommand( 'copy' );
-				this.$refs[ done ][ 0 ].classList.add( 'is-show' );
+document.addEventListener( 'DOMContentLoaded', () => {
+	const search = document.getElementById( 'icon-search' );
+	search.addEventListener( 'keyup', ( e ) => {
+		const $ = jQuery;
+		const inputValue = $( e.target ).val();
+		$( '.ys-icon-search__item' ).each( ( index, element ) => {
+			if ( ! inputValue ) {
+				$( element ).css( 'display', 'block' );
+			} else {
+				const iconName = $( element ).data( 'icon-name' );
+				const display = -1 === iconName.indexOf( inputValue ) ? 'none' : 'block';
+				$( element ).css( 'display', display );
 			}
-		}
-	},
-	computed: {
-		filteredIcons() {
-			let result = [];
-			if ( ! this.keyword.trim() ) {
-				return this.icons;
-			}
-			for ( var i in this.icons ) {
-				var icon = this.icons[ i ];
-				if ( icon.name.indexOf( this.keyword ) !== -1 ) {
-					result.push( icon );
-				}
-			}
-			return result;
-		}
-	}
+		} );
+	} );
 } );
-
