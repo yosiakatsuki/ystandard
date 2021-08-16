@@ -1,58 +1,71 @@
-.ratio {
-  display: block;
-  position: relative;
-  width: 100%;
+@use "../../global";
+@use "sass:math";
 
-  &:before {
-    content: "";
-    display: block;
+$editor: false !default;
+
+@mixin ratio() {
+
+  .ratio {
+	display: block;
+	position: relative;
+	width: 100%;
+
+	&:before {
+	  content: "";
+	  display: block;
+	}
+
+	&.is-4-3:before {
+	  padding-top: #{(global.decimal-floor(math.div( 3 , 4 ), 2) * 100)}#{"%"};
+	}
+
+	&.is-16-9:before {
+	  padding-top: #{(global.decimal-floor(math.div( 9 , 16 ), 2) * 100)}#{"%"};
+	}
+
+	&.is-3-1:before {
+	  padding-top: #{(global.decimal-floor(math.div( 1 , 3 ), 2) * 100)}#{"%"};
+	}
+
+	&.is-3-2:before {
+	  padding-top: #{(global.decimal-floor(math.div( 2 , 3 ), 2) * 100)}#{"%"};
+	}
+
+	&.is-2-1:before {
+	  padding-top: #{(global.decimal-floor(math.div( 1 , 2 ), 2) * 100)}#{"%"};
+	}
+
+	&.is-1-1:before {
+	  padding-top: #{(global.decimal-floor(math.div( 1 , 1 ), 2) * 100)}#{"%"};
+	}
+
+	.ratio__item {
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  left: 0;
+	  overflow: hidden;
+	}
+
+	.ratio__image {
+	  position: relative;
+	  height: 100%;
+	  margin: 0;
+
+	  img,
+	  amp-img {
+		width: 100%;
+		height: 100%;
+		font-family: "object-fit: cover;";
+
+		object-fit: cover;
+	  }
+	}
   }
 
-  &.is-4-3:before {
-    padding-top: (decimal-floor(( 3 / 4 ), 2) * 100)#{"%"};
-  }
+}
 
-  &.is-16-9:before {
-    padding-top: (decimal-floor(( 9 / 16 ), 2) * 100)#{"%"};
-  }
-
-  &.is-3-1:before {
-    padding-top: (decimal-floor(( 1 / 3 ), 2) * 100)#{"%"};
-  }
-
-  &.is-3-2:before {
-    padding-top: (decimal-floor(( 2 / 3 ), 2) * 100)#{"%"};
-  }
-
-  &.is-2-1:before {
-    padding-top: (decimal-floor(( 1 / 2 ), 2) * 100)#{"%"};
-  }
-
-  &.is-1-1:before {
-    padding-top: (decimal-floor(( 1 / 1 ), 2) * 100)#{"%"};
-  }
-
-  .ratio__item {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-  }
-
-  .ratio__image {
-    position: relative;
-    height: 100%;
-	margin: 0;
-
-    img,
-    amp-img {
-      width: 100%;
-      height: 100%;
-      font-family: "object-fit: cover;";
-
-      object-fit: cover;
-    }
-  }
+@if false == $editor {
+  @include ratio();
 }

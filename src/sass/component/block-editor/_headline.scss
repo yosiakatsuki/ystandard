@@ -1,21 +1,29 @@
-@if $editor == true {
-  [data-type="core/heading"] {
-	h1,
-	h2 {
-	  font-size: get_font_size("x-large");
-	}
+@use "../../global";
 
-	h3 {
-	  font-size: get_font_size("large");
-	}
+$editor: false !default;
 
-	h4 {
-	  font-size: 1.2em;
-	}
+@mixin headline($editor:false) {
 
-	h5,
-	h6 {
-	  font-size: 1.1em;
+  @if $editor == true {
+	[data-type="core/heading"] {
+	  h1,
+	  h2 {
+		font-size: global.get_font_size("x-large");
+	  }
+
+	  h3 {
+		font-size: global.get_font_size("large");
+	  }
+
+	  h4 {
+		font-size: 1.2em;
+	  }
+
+	  h5,
+	  h6 {
+		font-size: 1.1em;
+	  }
 	}
   }
 }
+

@@ -1,5 +1,15 @@
-.wp-block-spacer,
-.entry-content .wp-block-spacer {
-  margin-top: 0;
-  margin-bottom: 0;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin spacer() {
+  .wp-block-spacer,
+  .entry-content .wp-block-spacer {
+	margin-top: 0;
+	margin-bottom: 0;
+  }
+}
+
+@if false == $editor {
+  @include spacer();
 }

@@ -1,0 +1,26 @@
+@use "../variable/content";
+@use "../function/decimal";
+@use "sass:math";
+
+@mixin posts_column($i,$margin:content.$card_margin,$margin_ceil:false) {
+  $minus: content.$card_margin * math.div( ($i - 1) , $i );
+  @if $margin_ceil {
+	$minus: decimal-ceil($minus, 1);
+  }
+  $width: calc(#{decimal.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
+  @if 1 == $i {
+	$width: calc(#{decimal.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"});
+  }
+  > * {
+	&:nth-child(1n) {
+	  margin-right: $margin;
+	}
+  }
+  > * {
+	width: $width;
+
+	&:nth-child(#{$i}#{"n"}) {
+	  margin-right: 0;
+	}
+  }
+}

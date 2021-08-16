@@ -1,3 +1,6 @@
+@use "../../global";
+@use "sass:math";
+
 .archive__main {
   margin-right: auto;
   margin-bottom: 2em;
@@ -13,7 +16,7 @@
 }
 
 .archive__dscr {
-  @include child_margin(1em);
+  @include global.child_margin(1em);
 
   margin-top: 1em;
   margin-bottom: 2em;
@@ -22,7 +25,7 @@
 .archive__container {
 
   &.is-card {
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  display: flex;
 	  flex-wrap: wrap;
 	}
@@ -56,11 +59,11 @@
   }
 
   &.is-card {
-	@include media-breakpoint(sm) {
-	  $card_minus: $card_margin / 2;
+	@include global.media-breakpoint(sm) {
+	  $card_minus: math.div(global.$card_margin , 2);
 	  flex: 0 0 calc(50% - #{$card_minus});
 	  width: calc(50% - #{$card_minus});
-	  margin: 0 #{$card_margin} #{$card_margin} 0;
+	  margin: 0 #{global.$card_margin} #{global.$card_margin} 0;
 	  border: 0;
 
 	  &:nth-child(2n) {
@@ -68,13 +71,13 @@
 	  }
 	}
 
-	@include media-breakpoint(lg) {
-	  $card_minus: $card_margin * 2 / 3;
+	@include global.media-breakpoint(lg) {
+	  $card_minus: math.div(global.$card_margin * 2 , 3);
 	  flex: 0 0 calc(33.33% - #{$card_minus});
 	  width: calc(33.33% - #{$card_minus});
 
 	  &:nth-child(2n) {
-		margin-right: #{$card_margin};
+		margin-right: #{global.$card_margin};
 	  }
 
 	  &:nth-child(3n) {
@@ -91,7 +94,7 @@
 	}
 
 	.archive__detail {
-	  @include child_margin(0.5em);
+	  @include global.child_margin(0.5em);
 	}
   }
 
@@ -127,7 +130,7 @@
 	margin-top: 1em;
 	margin-bottom: 1em;
 
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  flex: 0 0 30%;
 	  width: 30%;
 	  margin-top: 0;
@@ -152,7 +155,7 @@
 }
 
 .archive__text {
-  @include child_margin(0.5em);
+  @include global.child_margin(0.5em);
 }
 
 .archive__meta {
@@ -170,7 +173,7 @@
   }
 
   svg {
-	@include svg_size(0.8em);
+	@include global.svg_size(0.8em);
   }
 }
 
@@ -194,13 +197,13 @@
 .has-sidebar {
   .archive__item {
 	&.is-card {
-	  @include media-breakpoint(lg) {
-		$card_minus: $card_margin / 2;
+	  @include global.media-breakpoint(lg) {
+		$card_minus: math.div(global.$card_margin , 2);
 		flex: 0 0 calc(50% - #{$card_minus});
 		width: calc(50% - #{$card_minus});
 
 		&:nth-child(3n) {
-		  margin-right: #{$card_margin};
+		  margin-right: #{global.$card_margin};
 		}
 
 		&:nth-child(2n) {
@@ -214,7 +217,7 @@
 .has-background {
   .archive__page-title {
 	margin-top: 1em;
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  margin-top: 0;
 	}
   }

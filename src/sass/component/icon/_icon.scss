@@ -1,16 +1,26 @@
-.sns-icon {
-  color: currentColor;
-  fill: currentColor;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin icon() {
+  .sns-icon {
+	color: currentColor;
+	fill: currentColor;
+  }
+
+  .ys-icon {
+	display: inline-block;
+	flex-shrink: 0;
+	line-height: 1;
+	vertical-align: -0.25em;
+
+	svg {
+	  width: 1.25em;
+	  height: 1.25em;
+	}
+  }
 }
 
-.ys-icon {
-  display: inline-block;
-  flex-shrink: 0;
-  line-height: 1;
-  vertical-align: -0.25em;
-
-  svg {
-	width: 1.25em;
-	height: 1.25em;
-  }
+@if false == $editor {
+  @include icon();
 }

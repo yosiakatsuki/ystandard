@@ -1,4 +1,1 @@
-//変数、mixin、functionなど
-@import "foundation/import";
-//Component
-@import "component/block-editor/blocks";
+@use "component/block-editor/index" as block-editor;

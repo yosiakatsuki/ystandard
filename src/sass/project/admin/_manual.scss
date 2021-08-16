@@ -1,8 +1,10 @@
+@use "../../global";
+
 .ys-manual-link {
   display: inline-block;
   margin-top: .25em;
-  color: $color__ystanadrd !important;
-  font-weight: $font__weight_bold !important;
+  color: global.$color__ystanadrd !important;
+  font-weight: global.$font__weight_bold !important;
   font-size: 14px !important;
 
   &.is-inline {

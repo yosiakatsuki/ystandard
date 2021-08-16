@@ -1,15 +1,25 @@
-body:not(.has-sidebar) {
-  @include media-breakpoint(lg) {
-    .wp-block-video {
-      &.alignfull {
-        padding-right: 0;
-        padding-left: 0;
+@use "../../global";
 
-		video {
-		  width: 100%;
-		  display: block;
+$editor: false !default;
+
+@mixin video {
+  body:not(.has-sidebar) {
+	@include global.media-breakpoint(lg) {
+	  .wp-block-video {
+		&.alignfull {
+		  padding-right: 0;
+		  padding-left: 0;
+
+		  video {
+			width: 100%;
+			display: block;
+		  }
 		}
-      }
-    }
+	  }
+	}
   }
+}
+
+@if false == $editor {
+  @include video();
 }

@@ -1,3 +1,4 @@
+@use "sass:math";
 // ブレークポイント
 $breakpoints: (
 		sm : 600px,
@@ -9,10 +10,10 @@ $breakpoints: (
 $gutter: 1rem !default;
 //メインコンテンツ幅
 $width__content: 800px !default;
-$width__content_p: #{(800 / 1200 * 100)}#{"%"} !default;
+$width__content_p: #{(math.div(800 , 1200) * 100)}#{"%"} !default;
 //サイドバー幅
 $width__sidebar-inner: 336px !default;
-$width__sidebar: #{(336 / 1200 * 100)}#{"%"} !default;
+$width__sidebar: #{(math.div(336 , 1200) * 100)}#{"%"} !default;
 //コンテナ幅
 $width__container: calc(1200px + #{($gutter * 2)}) !default;
 // カード表示のマージン

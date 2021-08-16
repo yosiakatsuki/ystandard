@@ -1,67 +1,78 @@
-.author-box__header {
-  display: flex;
-}
+@use "../../global";
 
-.author-box__avatar {
-  width: 96px;
-  margin-right: 1em;
+$editor: false !default;
 
-  img {
-	border-radius: 50%;
+@mixin author() {
+
+  .author-box__header {
+	display: flex;
   }
-}
 
-.author-box__name {
-  margin: 0;
-  font-size: 1.1em;
-  font-weight: $font__weight_bold;
-}
+  .author-box__avatar {
+	width: 96px;
+	margin-right: 1em;
 
-.author-box__position {
-  margin: 0;
-  color: var(--font-gray);
-  font-size: 0.8em;
-}
-
-.author-box__sns {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 0.5em;
-  margin-right: -0.5em;
-  margin-left: -0.5em;
-  padding: 0;
-  list-style: none;
-
-  svg {
-	@include svg_size(1em);
+	img {
+	  border-radius: 50%;
+	}
   }
-}
 
-.author-box__sns-link {
-  padding: 0.5em;
-  color: currentColor;
-  text-decoration: none;
+  .author-box__name {
+	margin: 0;
+	font-size: 1.1em;
+	font-weight: global.$font__weight_bold;
+  }
 
-  &:hover {
+  .author-box__position {
+	margin: 0;
+	color: var(--font-gray);
+	font-size: 0.8em;
+  }
+
+  .author-box__sns {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 0.5em;
+	margin-right: -0.5em;
+	margin-left: -0.5em;
+	padding: 0;
+	list-style: none;
+
+	svg {
+	  @include global.svg_size(1em);
+	}
+  }
+
+  .author-box__sns-link {
+	padding: 0.5em;
 	color: currentColor;
+	text-decoration: none;
 
-	filter: brightness(1.2);
+	&:hover {
+	  color: currentColor;
+
+	  filter: brightness(1.2);
+	}
+  }
+
+  .author-box__description {
+	@include global.child_margin(1em);
+
+	margin-top: 1em;
+	font-size: 0.9em;
+  }
+
+  .ys-profile-widget {
+	padding: 1em;
+	border: 1px solid var(--site-border-gray-light);
+  }
+
+  .author-widget-title {
+	margin: 0 0 1em;
+	font-size: 1.1em;
   }
 }
 
-.author-box__description {
-  @include child_margin(1em);
-
-  margin-top: 1em;
-  font-size: 0.9em;
-}
-
-.ys-profile-widget {
-  padding: 1em;
-  border: 1px solid var(--site-border-gray-light);
-}
-
-.author-widget-title {
-  margin: 0 0 1em;
-  font-size: 1.1em;
+@if false == $editor {
+  @include author();
 }
