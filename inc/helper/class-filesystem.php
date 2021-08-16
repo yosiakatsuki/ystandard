@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-namespace ystandard;
+namespace ystandard\helper;
 
 defined( 'ABSPATH' ) || die();
 
@@ -57,11 +57,11 @@ class Filesystem {
 			require_once ABSPATH . '/wp-admin/includes/file.php';
 		}
 
-		add_filter( 'filesystem_method', [ '\ystandard\Filesystem', 'filesystem_direct' ] );
+		add_filter( 'filesystem_method', [ '\ystandard\helper\Filesystem', 'filesystem_direct' ] );
 
 		WP_Filesystem();
 
-		remove_filter( 'filesystem_method', [ '\ystandard\Filesystem', 'filesystem_direct' ] );
+		remove_filter( 'filesystem_method', [ '\ystandard\helper\Filesystem', 'filesystem_direct' ] );
 
 		return $wp_filesystem;
 	}

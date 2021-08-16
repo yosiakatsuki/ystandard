@@ -154,7 +154,7 @@ class Admin {
 	 * @return array;
 	 */
 	public function tiny_mce_before_init( $settings ) {
-		$settings['content_style'] = str_replace( '"', '\'', Enqueue_Styles::minify( wp_get_custom_css() ) );
+		$settings['content_style'] = str_replace( '"', '\'', Style_Sheet::minify( wp_get_custom_css() ) );
 
 		return $settings;
 

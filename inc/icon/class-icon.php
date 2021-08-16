@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\helper\Filesystem;
+
 defined( 'ABSPATH' ) || die();
 
 /**
