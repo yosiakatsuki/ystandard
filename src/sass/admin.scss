@@ -1,14 +1,13 @@
-@import "foundation/import";
-@import "foundation/custom-properties/custom-properties";
-@import "component/block-editor/blocks";
-@import "component/icon/icon";
-@import "project/admin/admin";
-@import "project/admin/author";
-@import "project/admin/adminbar";
-@import "project/admin/ystd-menu";
-@import "project/admin/ystd-icon-search";
-@import "project/admin/widget";
-@import "project/admin/sga";
-@import "project/admin/manual";
+@use "foundation/custom-properties/custom-properties";
+@use "component/block-editor/index";
+@use "component/icon/icon";
+@use "project/admin/admin";
+@use "project/admin/author";
+@use "project/admin/adminbar";
+@use "project/admin/ystd-menu";
+@use "project/admin/ystd-icon-search";
+@use "project/admin/widget";
+@use "project/admin/sga";
+@use "project/admin/manual";
 
-@import "utility/utility";
+@use "utility/utility";

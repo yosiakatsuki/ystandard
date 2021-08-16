@@ -1,27 +1,39 @@
-.wp-block-button {
-  color: var(--button-text);
+@use "../../global";
 
-  &.is-style-outline {
-	color: var(--button-bg);
-  }
-}
+$editor: false !default;
 
-.wp-block-button__link {
-  border-radius: 0.5em;
-  font-size: 1em;
+@mixin button() {
+  .wp-block-button {
+	color: var(--button-text);
 
-  &:hover {
-	box-shadow: 4px 4px 8px rgba(#000000, 0.15);
+	&.is-style-outline {
+	  color: var(--button-bg);
+	}
   }
 
-  svg {
-	width: 1.25em;
-	height: 1.25em;
-  }
-}
-
-.is-style-outline {
   .wp-block-button__link {
-	border-color: currentColor;
+	border-radius: 0.5em;
+	font-size: 1em;
+
+	&:hover {
+	  box-shadow: 4px 4px 8px rgba(#000000, 0.15);
+	}
+
+	svg {
+	  width: 1.25em;
+	  height: 1.25em;
+	}
+  }
+
+  .is-style-outline {
+	.wp-block-button__link {
+	  border-color: currentColor;
+	}
   }
 }
+
+@if false == $editor {
+  @include button();
+}
+
+

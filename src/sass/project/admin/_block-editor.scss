@@ -1,13 +1,15 @@
+@use "../../global";
+
 /**
  * 基本
  */
 body,
 .editor-post-title__block .editor-post-title__input {
-  background-color: $color__bg-body;
-  color: $color__text-main;
-  font-family: $font__body;
-  line-height: $font__line-height;
-  letter-spacing: $font__spacing;
+  background-color: global.$color__bg-body;
+  color: global.$color__text-main;
+  font-family: global.$font__body;
+  line-height: global.$font__line-height;
+  letter-spacing: global.$font__spacing;
   word-wrap: break-word;
 
   -moz-osx-font-smoothing: grayscale;
@@ -45,11 +47,11 @@ body {
  */
 h1,
 h2 {
-  font-size: get_font_size("xx-large");
+  font-size: global.get_font_size("xx-large");
 }
 
 h3 {
-  font-size: get_font_size("x-large");
+  font-size: global.get_font_size("x-large");
 }
 
 h4 {

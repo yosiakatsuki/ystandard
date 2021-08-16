@@ -1,27 +1,23 @@
-//変数、mixin、functionなど
-@import "foundation/import";
-
-$editor: true;
-@import "foundation/custom-properties/custom-properties";
-@import "foundation/base/base-editor";
+@use "foundation/custom-properties/custom-properties";
+@use "foundation/base/base-editor";
 /**
  * component
  */
-@import "component/blog-card/blog-card";
-@import "component/block-editor/blocks";
-@import "component/posts/posts";
-@import "component/ratio/ratio";
-@import "component/share-button/share-button";
-@import "component/widget/widget";
+@use "component/blog-card/blog-card";
+@use "component/block-editor/index" as block-editor;
+@use "component/posts/posts";
+@use "component/ratio/ratio";
+@use "component/share-button/share-button";
+@use "component/widget/index" as widget;
 
 /**
  * utility
  */
-@import "utility/utility";
+@use "utility/utility";
 
 /**
  * admin
  */
-@import "project/admin/block-editor";
-@import "project/admin/widget";
-@import "project/admin/manual";
+@use "project/admin/block-editor" as admin-block-editor;
+@use "project/admin/widget" as admin-widget;
+@use "project/admin/manual";

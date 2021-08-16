@@ -1,18 +1,21 @@
-//
-// WordPress基本機能
-//
-@import "caption";
-@import "gallery";
-@import "embed";
+@use "../../global";
 
-.sticky {
-  box-sizing: inherit;
+$editor: false !default;
+
+@mixin wp() {
+  .sticky {
+	box-sizing: inherit;
+  }
+
+  .bypostauthor {
+	display: block;
+  }
+
+  .emoji {
+	width: 1em;
+  }
 }
 
-.bypostauthor {
-  display: block;
-}
-
-.emoji {
-  width: 1em;
+@if false == $editor {
+  @include wp();
 }

@@ -1,151 +1,163 @@
-.ys-posts {
-  &.is-list {
-	.ys-posts__content {
-	  display: flex;
-	}
+@use "../../global";
 
-	.ys-posts__thumbnail {
-	  flex: 0 0 20%;
-	  width: 20%;
-	  min-width: 100px;
-	  margin-right: 0.5em;
-	}
+$editor: false !default;
 
-	.ys-posts__item {
-	  border-bottom: 1px solid var(--site-border-gray-light);
-	}
-  }
+@mixin ys-posts() {
 
-  &.is-card {
-	.ys-posts__list {
-	  > * {
-		margin: 0 $card_margin $card_margin 0;
+  .ys-posts {
+	&.is-list {
+	  .ys-posts__content {
+		display: flex;
+	  }
+
+	  .ys-posts__thumbnail {
+		flex: 0 0 20%;
+		width: 20%;
+		min-width: 100px;
+		margin-right: 0.5em;
+	  }
+
+	  .ys-posts__item {
+		border-bottom: 1px solid var(--site-border-gray-light);
 	  }
 	}
 
-	.ys-posts__thumbnail {
-	  margin-bottom: 0.5em;
-	}
-
-	.ys-posts__meta {
-	  justify-content: space-between;
-	}
-  }
-}
-
-.ys-posts__list {
-  display: flex;
-  flex-wrap: wrap;
-
-  @for $i from 1 through 4 {
-	&.col-sp--#{$i} {
-	  @include posts_column($i);
-	}
-	&.col-tablet--#{$i} {
-	  @include media-breakpoint(sm) {
-		@include posts_column($i);
+	&.is-card {
+	  .ys-posts__list {
+		> * {
+		  margin: 0 global.$card_margin global.$card_margin 0;
+		}
 	  }
-	}
-	&.col-pc--#{$i} {
-	  @include media-breakpoint(lg) {
-		@include posts_column($i);
+
+	  .ys-posts__thumbnail {
+		margin-bottom: 0.5em;
+	  }
+
+	  .ys-posts__meta {
+		justify-content: space-between;
 	  }
 	}
   }
-}
 
-.ys-post__no-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: var(--site-bg-light-gray);
-  color: var(--font-gray);
-}
+  .ys-posts__list {
+	display: flex;
+	flex-wrap: wrap;
 
-.ys-posts__list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ys-posts__item {
-  padding-top: 1em;
-  padding-bottom: 1em;
-
-  .ys-posts__image {
-	transition: transform 0.3s;
-  }
-
-  &:hover {
-	.ys-posts__image {
-	  transform: scale(1.1);
+	@for $i from 1 through 4 {
+	  &.col-sp--#{$i} {
+		@include global.posts_column($i);
+	  }
+	  &.col-tablet--#{$i} {
+		@include global.media-breakpoint(sm) {
+		  @include global.posts_column($i);
+		}
+	  }
+	  &.col-pc--#{$i} {
+		@include global.media-breakpoint(lg) {
+		  @include global.posts_column($i);
+		}
+	  }
 	}
   }
-}
 
-.ys-posts__content {
-  position: relative;
-  height: 100%;
-}
-
-.ys-posts__text {
-  @include child_margin(0.5em);
-  word-break: break-word;
-}
-
-.ys-posts__meta {
-  display: flex;
-  flex-wrap: wrap;
-  color: var(--content-meta);
-  font-size: 0.7em;
-
-  > * {
+  .ys-post__no-image {
 	display: flex;
 	align-items: center;
-	margin-right: 1em;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: var(--site-bg-light-gray);
+	color: var(--font-gray);
+  }
 
-	&:last-child {
-	  margin-right: 0;
+  .ys-posts__list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+  }
+
+  .ys-posts__item {
+	padding-top: 1em;
+	padding-bottom: 1em;
+
+	.ys-posts__image {
+	  transition: transform 0.3s;
+	}
+
+	&:hover {
+	  .ys-posts__image {
+		transform: scale(1.1);
+	  }
 	}
   }
 
-  .ys-icon {
-	margin-right: 0.25em;
-  }
-
-  svg {
-	@include svg_size(0.8em);
-  }
-}
-
-.ys-posts__title {
-  font-size: 0.9em;
-  font-weight: $font__weight_bold;
-  line-height: 1.4;
-}
-
-.ys-posts__link {
-  color: currentColor;
-  text-decoration: none;
-
-  &:hover {
-	color: currentColor;
-  }
-
-  &::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
+  .ys-posts__content {
+	position: relative;
 	height: 100%;
   }
+
+  .ys-posts__text {
+	@include global.child_margin(0.5em);
+	word-break: break-word;
+  }
+
+  .ys-posts__meta {
+	display: flex;
+	flex-wrap: wrap;
+	color: var(--content-meta);
+	font-size: 0.7em;
+
+	> * {
+	  display: flex;
+	  align-items: center;
+	  margin-right: 1em;
+
+	  &:last-child {
+		margin-right: 0;
+	  }
+	}
+
+	.ys-icon {
+	  margin-right: 0.25em;
+	}
+
+	svg {
+	  @include global.svg_size(0.8em);
+	}
+  }
+
+  .ys-posts__title {
+	font-size: 0.9em;
+	font-weight: global.$font__weight_bold;
+	line-height: 1.4;
+  }
+
+  .ys-posts__link {
+	color: currentColor;
+	text-decoration: none;
+
+	&:hover {
+	  color: currentColor;
+	}
+
+	&::after {
+	  content: "";
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	}
+  }
+
+  .ys-posts__dscr {
+	color: var(--content-meta);
+	font-size: 0.7em;
+	line-height: 1.3;
+  }
+
 }
 
-.ys-posts__dscr {
-  color: var(--content-meta);
-  font-size: 0.7em;
-  line-height: 1.3;
+@if false == $editor {
+  @include ys-posts();
 }

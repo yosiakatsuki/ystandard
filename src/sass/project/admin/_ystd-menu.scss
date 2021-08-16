@@ -1,3 +1,5 @@
+@use "../../global";
+
 .ystandard-option,
 .ystandard-option #wpcontent {
   background-color: #fff;
@@ -9,7 +11,7 @@
 
 .ys-option__section {
   padding: 2em 0;
-  border-bottom: 1px solid $color__border-gray;
+  border-bottom: 1px solid global.$color__border-gray;
 
   * {
 	box-sizing: border-box;
@@ -35,7 +37,7 @@
 	padding: 2em;
 	box-shadow: 0 0 16px rgba(#000, 0.1);
 
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  display: flex;
 	  align-items: center;
 	}
@@ -47,9 +49,9 @@
 	h3 {
 	  text-align: center;
 	  font-size: 1.5em;
-	  color: $color__ystanadrd;
+	  color: global.$color__ystanadrd;
 
-	  @include media-breakpoint(sm) {
+	  @include global.media-breakpoint(sm) {
 		text-align: left;
 	  }
 	}
@@ -80,12 +82,12 @@
 
   .wp-block-button__link {
 	display: block;
-	background-color: $color__ystanadrd;
+	background-color: global.$color__ystanadrd;
 	color: #fff;
 	font-size: .9rem;
 	text-align: center;
 
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  display: inline-block;
 	}
   }
@@ -102,7 +104,7 @@
 
   thead,
   th {
-	font-weight: $font__weight_bold;
+	font-weight: global.$font__weight_bold;
 	text-align: left;
   }
 

@@ -1,19 +1,32 @@
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
+@use "../../global";
 
-  a:hover {
-	opacity: 0.8;
+$editor: false !default;
+
+@mixin gallery() {
+
+  .gallery {
+	display: flex;
+	flex-wrap: wrap;
+
+	a:hover {
+	  opacity: 0.8;
+	}
+
+	.gallery-caption {
+	  font-size: 0.8em;
+	  text-align: center;
+	}
   }
 
-  .gallery-caption {
-	font-size: 0.8em;
-	text-align: center;
+  @for $i from 2 through 9 {
+	.gallery-columns-#{$i} {
+	  @include global.posts_column($i, 1px);
+	}
   }
+
 }
 
-@for $i from 2 through 9 {
-  .gallery-columns-#{$i} {
-	@include posts_column($i, 1px);
-  }
+@if false == $editor {
+  @include gallery();
 }
+

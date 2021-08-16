@@ -1,3 +1,4 @@
+@use "sass:math";
 // _decimal.scss | MIT License | gist.github.com/terkel/4373420
 
 // Round a number to specified digits.
@@ -33,11 +34,11 @@
     $n: $n * 10;
   }
   @if $mode == round {
-    @return round($number * $n) / $n;
+    @return math.div(round($number * $n) , $n);
   } @else if $mode == ceil {
-    @return ceil($number * $n) / $n;
+    @return math.div(ceil($number * $n) , $n);
   } @else if $mode == floor {
-    @return floor($number * $n) / $n;
+    @return math.div(floor($number * $n) , $n);
   } @else {
     @warn "#{ $mode } is undefined keyword.";
     @return $number;

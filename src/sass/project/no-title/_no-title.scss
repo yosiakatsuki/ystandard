@@ -1,3 +1,5 @@
+@use "../../global";
+
 body.no-title {
   background-color: unset;
 }
@@ -14,7 +16,7 @@ body.no-title {
 	margin-top: 0;
 	margin-bottom: 0;
 
-	@include media-breakpoint-down(sm) {
+	@include global.media-breakpoint-down(sm) {
 	  padding-top: 0;
 	  padding-bottom: 0;
 	  margin-top: 0;
@@ -26,7 +28,7 @@ body.no-title {
 	margin-top: 0;
 	margin-bottom: 0;
 
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  margin-top: 0;
 	  margin-bottom: 0;
 	}
@@ -40,7 +42,7 @@ body.no-title {
 
   &.has-background {
 	.content__main {
-	  @include media-breakpoint(sm) {
+	  @include global.media-breakpoint(sm) {
 		padding: 0;
 	  }
 	}
@@ -50,7 +52,7 @@ body.no-title {
 		margin-top: 0;
 		margin-bottom: 0;
 
-		@include media-breakpoint(sm) {
+		@include global.media-breakpoint(sm) {
 		  margin-top: 0;
 		  margin-bottom: 0;
 		}

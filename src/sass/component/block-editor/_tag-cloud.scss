@@ -1,27 +1,39 @@
-.wp-block-tag-cloud,
-.tagcloud {
-  color: var(--tagcloud-text);
-  font-size: 0.8em;
-  letter-spacing: -0.4em;
+@use "../../global";
 
-  a {
-	display: inline-block;
-	margin-right: 0.5em;
-	margin-bottom: 0.5em;
-	padding: 0.25em 0.5em;
-	background-color: var(--tagcloud-bg);
-	color: currentColor;
-	text-decoration: none;
-	letter-spacing: $font__letter-spacing;
+$editor: false !default;
 
-	&::before {
-	  content: "#";
-	  margin-right: 0.25em;
-	  font-family: $font__code;
-	}
+@mixin tag-cloud() {
 
-	&:hover {
-	  opacity: 0.8;
+  .wp-block-tag-cloud,
+  .tagcloud {
+	color: var(--tagcloud-text);
+	font-size: 0.8em;
+	letter-spacing: -0.4em;
+
+	a {
+	  display: inline-block;
+	  margin-right: 0.5em;
+	  margin-bottom: 0.5em;
+	  padding: 0.25em 0.5em;
+	  background-color: var(--tagcloud-bg);
+	  color: currentColor;
+	  text-decoration: none;
+	  letter-spacing: global.$font__letter-spacing;
+
+	  &::before {
+		content: var(--tagcloud-icon);
+		margin-right: 0.25em;
+		font-family: global.$font__code;
+	  }
+
+	  &:hover {
+		opacity: 0.8;
+	  }
 	}
   }
 }
+
+@if false == $editor {
+  @include tag-cloud();
+}
+

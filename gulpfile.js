@@ -1,10 +1,9 @@
 const { series, parallel, watch, src, dest } = require( 'gulp' );
 const gulpZip = require( 'gulp-zip' );
-const gulpSass = require( 'gulp-sass' )( require( 'node-sass' ) );
+const gulpSass = require( 'gulp-sass' )( require( 'sass' ) );
 const postcss = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
 const cssnano = require( 'cssnano' );
-const packageImporter = require( 'node-sass-package-importer' );
 const cssdeclsort = require( 'css-declaration-sorter' );
 const babel = require( 'gulp-babel' );
 const del = require( 'del' );
@@ -54,11 +53,7 @@ const babelOption = {
  */
 function sass() {
 	return src( './src/sass/*.scss' )
-		.pipe( gulpSass( {
-			importer: packageImporter( {
-				extensions: [ '.scss', '.css' ]
-			} )
-		} ) )
+		.pipe( gulpSass() )
 		.pipe( postcss( postcssPlugins ) )
 		.pipe( dest( './css' ) )
 }
@@ -215,3 +210,11 @@ exports.default = function () {
 	watch( './src/js/admin/*.js', jsAdmin );
 	watch( './src/js/polyfill/polyfill.js', buildWebpack );
 };
+
+
+exports.test = () => {
+	return src( './src/sass/test.scss' )
+		.pipe( gulpSass() )
+		.pipe( postcss( postcssPlugins ) )
+		.pipe( dest( './css' ) )
+}

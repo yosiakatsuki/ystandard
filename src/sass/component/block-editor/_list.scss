@@ -1,10 +1,18 @@
-@if $editor == true {
-  ul.wp-block-list,
-  ol.wp-block-list {
-	box-sizing: border-box;
+$editor: false !default;
 
-	ul, ol {
+@mixin list($editor:false) {
+  @if true == $editor {
+	ul.wp-block-list,
+	ol.wp-block-list {
 	  box-sizing: border-box;
+
+	  ul, ol {
+		box-sizing: border-box;
+	  }
 	}
   }
+}
+
+@if false == $editor {
+  @include list();
 }

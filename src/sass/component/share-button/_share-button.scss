@@ -1,94 +1,106 @@
-.sns-share {
-  @include child_margin(0.5em);
+@use "../../global";
 
-  &:not(.is-official) {
-    text-align: center;
+$editor: false !default;
 
-    .sns-share__container {
-      justify-content: center;
-    }
+@mixin share-buttons() {
+
+  .sns-share {
+	@include global.child_margin(0.5em);
+
+	&:not(.is-official) {
+	  text-align: center;
+
+	  .sns-share__container {
+		justify-content: center;
+	  }
+	}
+
+	&.is-circle {
+	  .sns-share__button {
+		border-radius: 50%;
+	  }
+	}
+
+	&.is-icon {
+	  .sns-share__link {
+		padding: 20%;
+		color: currentColor;
+
+		svg {
+		  fill: currentColor;
+		  @include global.svg_size(1.5em);
+		}
+	  }
+	}
+
+	&.is-official {
+	  .sns-share__container {
+		flex-wrap: wrap;
+	  }
+
+	  .sns-share__button {
+		margin: 0 0.5em 0.25em 0;
+	  }
+
+	  .sns-share__after {
+		margin-top: 0;
+	  }
+	}
+
+	// 微調整.
+	.icon--pocket {
+	  margin-top: 15%;
+	}
+
+	.fb_iframe_widget,
+	.fb_iframe_widget span {
+	  display: block;
+	}
   }
 
-  &.is-circle {
-    .sns-share__button {
-      border-radius: 50%;
-    }
+  .sns-share__container {
+	display: flex;
+	margin-right: -0.5em;
+	margin-left: -0.5em;
+	padding: 0;
+	list-style: none;
   }
 
-  &.is-icon {
-    .sns-share__link {
-      padding: 20%;
-      color: currentColor;
+  .sns-share__button {
+	margin: 0 0.5em;
+	transition: transform 0.3s;
 
-      svg {
-        fill: currentColor;
-		@include svg_size(1.5em);
-      }
-    }
+	&:hover {
+	  transform: scale(1.1);
+	}
+
+	.sns-share__link {
+	  $button-size: 40px;
+
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  width: $button-size;
+	  height: $button-size;
+	  padding: 25%;
+	}
+
+	svg {
+	  display: block;
+	  fill: var(--font-white);
+	}
   }
 
-  &.is-official {
-    .sns-share__container {
-      flex-wrap: wrap;
-    }
-
-    .sns-share__button {
-      margin: 0 0.5em 0.25em 0;
-    }
-
-    .sns-share__after {
-      margin-top: 0;
-    }
+  .sns-share__before {
+	font-weight: bold;
   }
 
-  // 微調整.
-  .icon--pocket {
-    margin-top: 15%;
-  }
-
-  .fb_iframe_widget,
-  .fb_iframe_widget span {
-    display: block;
+  .sns-share__after {
+	font-size: 0.8em;
   }
 }
 
-.sns-share__container {
-  display: flex;
-  margin-right: -0.5em;
-  margin-left: -0.5em;
-  padding: 0;
-  list-style: none;
+@if false == $editor {
+  @include share-buttons();
 }
 
-.sns-share__button {
-  margin: 0 0.5em;
-  transition: transform 0.3s;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-
-  .sns-share__link {
-    $button-size: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: $button-size;
-    height: $button-size;
-    padding: 25%;
-  }
-
-  svg {
-    display: block;
-    fill: var(--font-white);
-  }
-}
-
-.sns-share__before {
-  font-weight: bold;
-}
-
-.sns-share__after {
-  font-size: 0.8em;
-}

@@ -1,6 +1,7 @@
 // 管理画面 - カスタマイザー用CSS
-@import "foundation/import";
-@import "project/admin/manual";
+@use "global";
+@use "foundation/custom-properties/custom-properties";
+@use "project/admin/manual";
 
 //
 //  全体設定
@@ -8,7 +9,7 @@
 #customize-controls {
   .description {
     margin-top: 0.5em;
-    color: $color__text-light;
+    color: global.$color__text-light;
   }
 }
 
@@ -53,7 +54,7 @@
 
     &:checked + label {
       img {
-        border-color: $color__link;
+        border-color: global.$color__link;
       }
     }
   }
@@ -75,7 +76,7 @@
 
   .customize-control-title {
     padding: 0.25em 0.5em;
-    background-color: $color__ystanadrd;
+    background-color: global.$color__ystanadrd;
     color: #ffffff;
   }
 }

@@ -1,21 +1,34 @@
-.wp-block-group {
-  @include child_margin();
-  &.has-background {
-	padding-top: 1.5em;
-	padding-bottom: 1.5em;
-  }
-  &.has-background:not(.alignfull):not(.alignwide) {
-	padding-right: 1.5em;
-	padding-left: 1.5em;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin group() {
+
+  .wp-block-group {
+	@include global.child_margin();
+
+	&.has-background {
+	  padding-top: 1.5em;
+	  padding-bottom: 1.5em;
+	}
+
+	&.has-background:not(.alignfull):not(.alignwide) {
+	  padding-right: 1.5em;
+	  padding-left: 1.5em;
+	}
+
+	&.alignfull + &.alignfull {
+	  margin-top: 0;
+	}
   }
 
-  &.alignfull + &.alignfull {
-	margin-top: 0;
+  .wp-block-group__inner-container {
+	@include global.child_margin();
   }
+
 }
 
-.wp-block-group__inner-container {
-  @include child_margin();
+@if false == $editor {
+  @include group();
 }
-
 

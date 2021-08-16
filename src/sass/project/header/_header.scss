@@ -1,3 +1,5 @@
+@use "../../global";
+
 .site-header {
   position: relative;
   background-color: var(--header-bg);
@@ -8,7 +10,7 @@
 	border: 0;
 	color: var(--mobile-nav-open);
 
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  color: var(--header-text);
 	}
 
@@ -27,7 +29,7 @@
 .site-branding {
   padding: 0.5em 2em 0.5em 0;
 
-  @include media-breakpoint(md) {
+  @include global.media-breakpoint(md) {
 	padding: 1em 0 0;
   }
 
@@ -36,7 +38,7 @@
 	padding: 0;
 	color: var(--header-text);
 	font-size: 1.5em;
-	font-weight: $font__weight_normal;
+	font-weight: global.$font__weight_normal;
 	line-height: 1.3;
 	letter-spacing: 0.05em;
 
@@ -55,7 +57,7 @@
 	font-size: 0.7em;
 	line-height: 1.3;
 
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  font-size: 0.8em;
 	}
   }
@@ -63,7 +65,7 @@
 
 
 .header-type--row1 {
-  @include media-breakpoint(md) {
+  @include global.media-breakpoint(md) {
 	.site-header__content {
 	  align-items: center;
 	}
@@ -86,7 +88,7 @@
 	padding-right: 2em;
 	padding-left: 2em;
 
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  padding-bottom: .5em;
 	}
 	.custom-logo {
@@ -97,7 +99,7 @@
 
   .global-nav {
 	text-align: left;
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  text-align: center;
 	  justify-content: center;
 	}
@@ -105,7 +107,7 @@
 }
 
 .header-type--row2 {
-  @include media-breakpoint(md) {
+  @include global.media-breakpoint(md) {
 	.site-header__content {
 	  display: block;
 	}
@@ -123,7 +125,7 @@
 	display: block;
 	width: 100%;
 
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  height: 50vh;
 	  max-height: 400px;
 	  font-family: "object-fit: cover; object-position: bottom;";

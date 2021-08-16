@@ -1,5 +1,7 @@
+@use "../../../global";
+
 .singular-header {
-  @include child_margin(1em);
+  @include global.child_margin(1em);
 }
 
 .singular-header__title {
@@ -18,7 +20,7 @@
 
   svg {
 	display: block;
-	@include svg_size(1em);
+	@include global.svg_size(1em);
   }
 
   .ys-icon {
@@ -50,7 +52,7 @@
   .singular-header__thumbnail {
 	margin: -1em -1em 0;
 
-	@include media-breakpoint(sm) {
+	@include global.media-breakpoint(sm) {
 	  margin: -2em -2em 0;
 	}
   }

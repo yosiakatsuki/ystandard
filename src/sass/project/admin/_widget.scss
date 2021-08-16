@@ -1,3 +1,5 @@
+@use "../../global";
+
 .widget-inside {
   select {
 	&.multiple {
@@ -16,13 +18,13 @@
   h4 {
 	margin-bottom: 0.5em;
 	padding: 0.5em;
-	background-color: $color__ystanadrd;
-	color: $color__text-white;
+	background-color: global.$color__ystanadrd;
+	color: global.$color__text-white;
   }
 }
 
 .ys-widget-option__sub {
-  color: $color__text-light;
+  color: global.$color__text-light;
   font-size: 0.8em;
 }
 
@@ -38,7 +40,7 @@
 	border: 0 !important;
 	background: none !important;
 	box-shadow: none !important;
-	font-weight: $font__weight_bold;
+	font-weight: global.$font__weight_bold;
 
 	&:before,
 	&:after {
@@ -66,7 +68,7 @@
 		border: 0 !important;
 		background: none !important;
 		box-shadow: none !important;
-		font-weight: $font__weight_bold;
+		font-weight: global.$font__weight_bold;
 
 		&:before,
 		&:after {
@@ -78,13 +80,13 @@
 	h1,
 	h2 {
 	  &:not([class*="is-style-ystdtb-"]):not(.is-clear-style) {
-		font-size: get_font_size("x-large") !important;
+		font-size: global.get_font_size("x-large") !important;
 	  }
 	}
 
 	h3 {
 	  &:not([class*="is-style-ystdtb-"]):not(.is-clear-style) {
-		font-size: get_font_size("large") !important;
+		font-size: global.get_font_size("large") !important;
 	  }
 	}
 
