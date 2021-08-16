@@ -11,9 +11,9 @@
 class Header_Thumbnail_Test extends WP_UnitTestCase {
 
 	private function remove_nl_tab( $text ) {
-		$utility = new \ystandard\Utility();
+		$text_helper = new \ystandard\helper\Text();
 
-		return $utility->remove_tab( $utility->remove_nl( $text ) );
+		return $text_helper->remove_tab( $text_helper->remove_nl( $text ) );
 	}
 
 	private function create_test_image( $file, $post_id ) {
