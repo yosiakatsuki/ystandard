@@ -1,24 +1,36 @@
-.wp-block-table {
-  &.is-style-stripes {
-    table,
-    tr {
-      border-color: transparent;
-    }
-  }
-}
+@use "../../global";
 
-@if $editor == true {
+$editor: false !default;
+
+@mixin table($editor:false) {
+
   .wp-block-table {
-    thead,
-    tfoot {
-      border: 0;
-    }
+	&.is-style-stripes {
+	  table,
+	  tr {
+		border-color: transparent;
+	  }
+	}
+  }
 
-    thead {
-      th {
-        background-color: $color__bg-gray-light;
-        font-weight: $font__weight_normal;
-      }
-    }
+  @if true == $editor {
+	.wp-block-table {
+	  thead,
+	  tfoot {
+		border: 0;
+	  }
+
+	  thead {
+		th {
+		  background-color: global.$color__bg-gray-light;
+		  font-weight: global.$font__weight_normal;
+		}
+	  }
+	}
   }
 }
+
+@if false == $editor {
+  @include table();
+}
+

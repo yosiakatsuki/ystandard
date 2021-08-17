@@ -7,6 +7,8 @@
  * @license GPL-2.0+
  */
 
+use ystandard\helper\Style_Sheet;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -28,6 +30,13 @@ class YS_Loader {
 	const EXCLUDE_DIR = [
 		'..',
 		'.',
+	];
+
+	/**
+	 * Autoload用調整
+	 */
+	const REMOVE_NAMESPACE = [
+		'helper',
 	];
 
 	/**
@@ -73,6 +82,11 @@ class YS_Loader {
 		/**
 		 * ファイル名を作成
 		 */
+		foreach ( self::REMOVE_NAMESPACE as $item ) {
+			if ( false !== strpos( $class, $item ) ) {
+				$class = str_replace( $item . '\\', '', $class );
+			}
+		}
 		$class = str_replace( '_', '-', ltrim( $class, '\\' ) );
 		$file  = 'class-' . str_replace( 'ystandard\\', '', $class ) . '.php';
 		if ( function_exists( 'mb_strtolower' ) ) {

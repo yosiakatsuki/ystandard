@@ -1,4 +1,4 @@
-@import "../foundation/import";
+@use "../global";
 
 .footer-mobile-nav {
   position: fixed;
@@ -16,7 +16,7 @@
 	transform: translateY(100%);
   }
 
-  @include media-breakpoint(md) {
+  @include global.media-breakpoint(md) {
 	display: none;
   }
 
@@ -32,7 +32,7 @@
 	&:nth-child(n+5) {
 	  display: none;
 
-	  @include media-breakpoint(sm) {
+	  @include global.media-breakpoint(sm) {
 		display: block;
 	  }
 	}
@@ -64,7 +64,7 @@
   .site-footer {
 	padding-bottom: 4em;
 
-	@include media-breakpoint(md) {
+	@include global.media-breakpoint(md) {
 	  padding-bottom: 0;
 	}
   }

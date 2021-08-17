@@ -1,17 +1,26 @@
-.wp-block-pullquote {
-  blockquote {
-    background: none;
-    border: 0;
+@use "../../global";
 
-    &::before {
-      content: "";
-    }
+$editor: false !default;
+
+@mixin pullquote($editor:false) {
+  .wp-block-pullquote {
+	blockquote {
+	  background: none;
+	  border: 0;
+
+	  &::before {
+		content: "";
+	  }
+	}
+  }
+
+  @if true== $editor {
+	.wp-block-pullquote {
+	  border: 0;
+	}
   }
 }
 
-
-@if $editor == true {
-  .wp-block-pullquote {
-    border: 0;
-  }
+@if false == $editor {
+  @include pullquote();
 }

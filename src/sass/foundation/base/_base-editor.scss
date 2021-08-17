@@ -1,11 +1,10 @@
-@if $editor == true {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  strong {
-	font-weight: $font__weight_bold;
-  }
+@use "../../global";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: global.$font__weight_bold;
 }

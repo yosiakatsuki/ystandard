@@ -1,3 +1,5 @@
+@use "../../global";
+
 .footer-widget {
   th {
     color: var(--font-color);
@@ -11,9 +13,9 @@
 }
 
 .footer-widget__container {
-  @include child_margin(2em);
+  @include global.child_margin(2em);
 
-  @include media-breakpoint(sm) {
+  @include global.media-breakpoint(sm) {
     display: flex;
     margin-right: -1em;
     margin-left: -1em;
@@ -28,5 +30,5 @@
 }
 
 .footer-widget__column {
-  @include child_margin(2em);
+  @include global.child_margin(2em);
 }

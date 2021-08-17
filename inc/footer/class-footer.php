@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\helper\Style_Sheet;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -178,7 +180,7 @@ class Footer {
 		}
 		";
 		if ( has_nav_menu( 'mobile-footer' ) ) {
-			$css .= Enqueue_Styles::add_media_query( '#back-to-top {display:none;}', '', 'md' );
+			$css .= Style_Sheet::add_media_query( '#back-to-top {display:none;}', '', 'md' );
 		}
 
 		return $css;
@@ -366,7 +368,7 @@ class Footer {
 	 */
 	public function add_css_var_mobile_footer_menu( $css_vars ) {
 
-		$bg_color = Utility::hex_2_rgb( Option::get_option( 'ys_color_mobile_footer_bg', '#ffffff' ) );
+		$bg_color = Style_Sheet::hex_2_rgb( Option::get_option( 'ys_color_mobile_footer_bg', '#ffffff' ) );
 		$bg       = Enqueue_Utility::get_css_var(
 			'mobile-footer-bg',
 			sprintf(

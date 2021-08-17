@@ -1,145 +1,157 @@
-.comments__area {
-  @include child_margin(1em);
+@use "../../global";
 
-  ol {
-	margin-left: 0;
-	padding-left: 0;
-	list-style: none;
+$editor: false !default;
+
+@mixin comments() {
+
+  .comments__area {
+	@include global.child_margin(1em);
+
+	ol {
+	  margin-left: 0;
+	  padding-left: 0;
+	  list-style: none;
+	}
+
+	.required {
+	  color: #d53939;
+	}
   }
 
-  .required {
-	color: #d53939;
-  }
-}
-
-.comments-title {
-  margin: 0;
-  font-weight: $font__weight_bold;
-}
-
-.comment {
-  border: 1px solid var(--site-border-gray-light);
-  margin-top: 2em;
-
-  &:first-child {
-	margin-top: 0;
+  .comments-title {
+	margin: 0;
+	font-weight: global.$font__weight_bold;
   }
 
   .comment {
-	border: 0;
-  }
+	border: 1px solid var(--site-border-gray-light);
+	margin-top: 2em;
 
-  .children {
+	&:first-child {
+	  margin-top: 0;
+	}
 
 	.comment {
-	  border-top: 1px solid var(--site-border-gray-light);
-	  border-bottom: 1px solid var(--site-border-gray-light);
+	  border: 0;
+	}
 
-	  &:last-child {
-		border-bottom: 0;
+	.children {
+
+	  .comment {
+		border-top: 1px solid var(--site-border-gray-light);
+		border-bottom: 1px solid var(--site-border-gray-light);
+
+		&:last-child {
+		  border-bottom: 0;
+		}
 	  }
 	}
   }
-}
 
-.comment-meta {
-  padding: 1.5em 1.5em 1em;
-  border-bottom: 1px solid var(--site-border-gray-light);
-  line-height: 1.3;
-}
-
-.comment-meta__container {
-  display: flex;
-}
-
-.comment-author {
-  margin-right: 1em;
-
-  .avatar {
-	width: 42px;
-	height: 42px;
-	border-radius: 50%;
-	font-family: "object-fit: cover; object-position: 50% 50%;";
-
-	object-fit: cover;
-	object-position: 50% 50%;
+  .comment-meta {
+	padding: 1.5em 1.5em 1em;
+	border-bottom: 1px solid var(--site-border-gray-light);
+	line-height: 1.3;
   }
-}
 
-.comment-post-time {
-  color: var(--font-gray);
-  font-size: 0.8em;
-  text-decoration: none;
-
-  &:hover {
-	color: var(--font-gray);
+  .comment-meta__container {
+	display: flex;
   }
-}
 
-.comment-author-name {
-  margin: 0;
-  font-weight: $font__weight_bold;
+  .comment-author {
+	margin-right: 1em;
 
-  a {
-	color: var(--font-color);
-	text-decoration: none;
+	.avatar {
+	  width: 42px;
+	  height: 42px;
+	  border-radius: 50%;
+	  font-family: "object-fit: cover; object-position: 50% 50%;";
+
+	  object-fit: cover;
+	  object-position: 50% 50%;
+	}
   }
-}
 
-.comment-edit {
-  margin-left: auto;
-
-  a {
+  .comment-post-time {
 	color: var(--font-gray);
 	font-size: 0.8em;
+	text-decoration: none;
 
 	&:hover {
 	  color: var(--font-gray);
 	}
   }
-}
 
-.comment-awaiting-moderation {
-  display: block;
-  margin-top: 0.5em;
-  color: var(--font-gray);
-  font-size: 0.8em;
-}
+  .comment-author-name {
+	margin: 0;
+	font-weight: global.$font__weight_bold;
 
-.comment-content {
-  @include child_margin();
-
-  padding: 1.5em;
-  font-size: 0.9em;
-}
-
-.comments__reply-title {
-  margin: 2em 0 0;
-  font-weight: $font__weight_bold;
-
-  small {
-	margin-left: 0.5em;
+	a {
+	  color: var(--font-color);
+	  text-decoration: none;
+	}
   }
 
-  a {
-	font-weight: $font__weight_normal;
+  .comment-edit {
+	margin-left: auto;
+
+	a {
+	  color: var(--font-gray);
+	  font-size: 0.8em;
+
+	  &:hover {
+		color: var(--font-gray);
+	  }
+	}
   }
-}
 
-.comment-form {
-  @include child_margin(1em);
-
-  label {
-	font-size: 0.9em;
-	font-weight: $font__weight_bold;
+  .comment-awaiting-moderation {
+	display: block;
+	margin-top: 0.5em;
+	color: var(--font-gray);
+	font-size: 0.8em;
   }
 
-  .comments__submit {
+  .comment-content {
+	@include global.child_margin();
+
+	padding: 1.5em;
 	font-size: 0.9em;
   }
+
+  .comments__reply-title {
+	margin: 2em 0 0;
+	font-weight: global.$font__weight_bold;
+
+	small {
+	  margin-left: 0.5em;
+	}
+
+	a {
+	  font-weight: global.$font__weight_normal;
+	}
+  }
+
+  .comment-form {
+	@include global.child_margin(1em);
+
+	label {
+	  font-size: 0.9em;
+	  font-weight: global.$font__weight_bold;
+	}
+
+	.comments__submit {
+	  font-size: 0.9em;
+	}
+  }
+
+  .logged-in-as,
+  .comment-notes {
+	font-size: 0.8em;
+  }
+
 }
 
-.logged-in-as,
-.comment-notes {
-  font-size: 0.8em;
+@if false == $editor {
+  @include comments();
 }

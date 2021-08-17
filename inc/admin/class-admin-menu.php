@@ -119,15 +119,10 @@ class Admin_Menu {
 		if ( 'ystandard_page_ystandard-icons' === $hook_suffix ) {
 			wp_enqueue_script(
 				'search-icons',
-				get_template_directory_uri() . '/js/search-icons.js',
+				get_template_directory_uri() . '/js/admin/search-icons.js',
 				[],
-				Utility::get_ystandard_version(),
+				filemtime( get_template_directory() . '/js/admin/search-icons.js' ),
 				true
-			);
-			wp_localize_script(
-				'search-icons',
-				'searchIcons',
-				$this->get_icon_search_data()
 			);
 		}
 	}
@@ -201,6 +196,8 @@ class Admin_Menu {
 	 * アイコン コピーページ
 	 */
 	public function icons_page() {
+
+		$icons = $this->get_icon_search_data();
 		?>
 		<div class="wrap ys-option-page">
 			<h2>アイコン ショートコード一覧</h2>
@@ -209,20 +206,22 @@ class Admin_Menu {
 				<p>ショートコードをコピーしてサイト内でご使用ください。</p>
 				<div id="ys-search-icons">
 					<p class="ys-search-icons__search">
-						検索：<input type="search" class="" v-model="keyword">
+						<label for="icon-search">検索：</label><input id="icon-search" name="icon-search" type="search" class="">
 					</p>
 					<div class="ys-icon-search__list">
-						<div class="ys-icon-search__item" v-for="icon in filteredIcons">
-							<div class="ys-icon-search__icon" v-html="icon.svg"></div>
-							<p class="ys-icon-search__label">{{icon.label}}</p>
-							<div class="copy-form">
-								<input type="text" class="copy-form__target" v-bind:value="icon.short_code" readonly onfocus="this.select();" v-bind:ref="icon.name"/>
-								<button class="copy-form__button is-without-event button action" v-on:click="copy(icon.name,`done_${icon.name}`)">
-									<?php echo ys_get_icon( 'clipboard' ); ?>
-								</button>
-								<div class="copy-form__info" v-bind:ref="`done_${icon.name}`">コピーしました！</div>
+						<?php foreach ( $icons as $icon ) : ?>
+							<div class="ys-icon-search__item" data-icon-name="<?php echo esc_attr( $icon['name'] ); ?>">
+								<div class="ys-icon-search__icon"><?php echo $icon['svg']; ?></div>
+								<label for="icon-shortcode--<?php echo esc_attr( $icon['name'] ); ?>" class="ys-icon-search__label"><?php echo esc_html( $icon['label'] ); ?></label>
+								<div class="copy-form">
+									<input type="text" id="icon-shortcode--<?php echo esc_attr( $icon['name'] ); ?>" class="copy-form__target" value="<?php echo esc_attr( $icon['short_code'] ); ?>" readonly onfocus="this.select();"/>
+									<button class="copy-form__button button action">
+										<?php echo ys_get_icon( 'clipboard' ); ?>
+									</button>
+									<div class="copy-form__info">コピーしました！</div>
+								</div>
 							</div>
-						</div>
+						<?php endforeach; ?>
 					</div>
 				</div>
 			</div>

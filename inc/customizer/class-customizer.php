@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\helper\Style_Sheet;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -22,6 +24,7 @@ class Customizer {
 	const PANEL_PRIORITY = [
 		'ys_info_bar'           => 1000,
 		'ys_design'             => 1010,
+		'ys_block_editor'       => 1020,
 		'ys_sns'                => 1100,
 		'ys_seo'                => 1110,
 		'ys_wp_sitemap'         => 1120,
@@ -98,7 +101,7 @@ class Customizer {
 		}';
 		// サイドバー表示用.
 		if ( Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
-			$css .= Enqueue_Styles::add_media_query(
+			$css .= Style_Sheet::add_media_query(
 				'.is-customize-preview .sidebar {display:none;}',
 				'',
 				'sm'
