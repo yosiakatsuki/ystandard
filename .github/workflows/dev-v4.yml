@@ -111,7 +111,7 @@ jobs:
       matrix:
         operating-system: [ ubuntu-latest ]
         php: [ '7.3', '7.4' ]
-        wp: [ '5.3', 'latest', 'trunk' ]
+        wp: [ '5.3', 'latest' ]
     services:
       mysql:
         image: mysql:5.7
