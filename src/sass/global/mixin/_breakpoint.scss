@@ -1,4 +1,6 @@
-@mixin media-breakpoint($name,$breakpoints: $breakpoints) {
+@use "../variable/content";
+
+@mixin media-breakpoint($name,$breakpoints: content.$breakpoints) {
   $breakpoint: map-get($breakpoints, $name);
   @if $breakpoint {
 	@media (min-width: $breakpoint) {
@@ -16,7 +18,7 @@
 //  }
 //  sm,md,lg
 
-@mixin media-breakpoint-down($name,$gain:1px,$breakpoints: $breakpoints) {
+@mixin media-breakpoint-down($name,$gain:1px,$breakpoints: content.$breakpoints) {
   $breakpoint: map-get($breakpoints, $name);
   @if $breakpoint {
 	@media (max-width: ($breakpoint - $gain)) {
@@ -28,7 +30,7 @@
   }
 }
 
-@mixin media-breakpoint-between($up,$down,$breakpoints: $breakpoints) {
+@mixin media-breakpoint-between($up,$down,$breakpoints: content.$breakpoints) {
   $breakpoint_min: map-get($breakpoints, $up);
   $breakpoint_max: map-get($breakpoints, $down);
   @if $breakpoint_min and $breakpoint_max {

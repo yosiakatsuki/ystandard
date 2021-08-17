@@ -1,11 +1,9 @@
 const { series, parallel, watch, src, dest } = require( 'gulp' );
 const gulpZip = require( 'gulp-zip' );
-const gulpSass = require( 'gulp-sass' );
+const gulpSass = require( 'gulp-sass' )( require( 'sass' ) );
 const postcss = require( 'gulp-postcss' );
 const autoprefixer = require( 'autoprefixer' );
-const mqpacker = require( 'css-mqpacker' );
 const cssnano = require( 'cssnano' );
-const packageImporter = require( 'node-sass-package-importer' );
 const cssdeclsort = require( 'css-declaration-sorter' );
 const babel = require( 'gulp-babel' );
 const del = require( 'del' );
@@ -23,7 +21,6 @@ const postcssPlugins = [
 	autoprefixer( {
 		grid: 'autoplace'
 	} ),
-	mqpacker(),
 	cssnano( {
 			preset: [
 				'default',
@@ -38,13 +35,16 @@ const postcssPluginsParts = [
 		overrideBrowserslist: [ 'last 2 version, not ie < 11' ],
 		grid: 'autoplace'
 	} ),
-	mqpacker()
 ];
 /**
  * babel option
  */
 const babelOption = {
-	presets: [ '@babel/preset-env', 'minify' ],
+	presets: [ '@babel/env' ],
+	targets: {
+		ie: '11',
+	},
+	minified: true,
 	comments: false
 };
 
@@ -53,11 +53,7 @@ const babelOption = {
  */
 function sass() {
 	return src( './src/sass/*.scss' )
-		.pipe( gulpSass( {
-			importer: packageImporter( {
-				extensions: [ '.scss', '.css' ]
-			} )
-		} ) )
+		.pipe( gulpSass() )
 		.pipe( postcss( postcssPlugins ) )
 		.pipe( dest( './css' ) )
 }
@@ -179,8 +175,18 @@ function cleanTempFiles( cb ) {
 /**
  * サーバーにデプロイするファイルを作成
  */
-exports.createDeployFiles = series( cleanFiles, copyProductionFiles, parallel( zip, copyJson ) );
-exports.createDeployFilesBeta = series( cleanFiles, copyProductionFiles, parallel( zip, copyJsonBeta ) );
+exports.production = series(
+	cleanFiles,
+	copyProductionFiles,
+	parallel( zip, copyJson ),
+	cleanTempFiles
+);
+exports.productionBeta = series(
+	cleanFiles,
+	copyProductionFiles,
+	parallel( zip, copyJsonBeta ),
+	cleanTempFiles
+);
 /**
  * タスクの登録
  */
@@ -202,5 +208,13 @@ exports.default = function () {
 	watch( './src/sass/inline-parts/**/*.scss', sassParts );
 	watch( './src/js/*.js', js );
 	watch( './src/js/admin/*.js', jsAdmin );
-	watch( './src/js/**/*.js', buildWebpack );
+	watch( './src/js/polyfill/polyfill.js', buildWebpack );
 };
+
+
+exports.test = () => {
+	return src( './src/sass/test.scss' )
+		.pipe( gulpSass() )
+		.pipe( postcss( postcssPlugins ) )
+		.pipe( dest( './css' ) )
+}

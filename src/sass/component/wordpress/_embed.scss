@@ -1,4 +1,14 @@
-.wp-embedded-content {
-  width: 100%;
-  height: auto;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin embed() {
+  .wp-embedded-content {
+	width: 100%;
+	height: auto;
+  }
+}
+
+@if false == $editor {
+  @include embed();
 }

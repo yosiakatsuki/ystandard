@@ -3,7 +3,6 @@ module.exports = {
 
 	entry: {
 		'polyfill': './src/js/polyfill/polyfill.js',
-		'search-icons': './src/js/admin/search-icons.js',
 	},
 	output: {
 		filename: '[name].js',
@@ -18,17 +17,12 @@ module.exports = {
 						loader: 'babel-loader',
 						options: {
 							presets: [
-								'@babel/preset-env',
+								'@babel/env',
 							]
 						}
 					}
 				]
 			}
 		]
-	},
-	resolve: {
-		alias: {
-			'vue$': 'vue/dist/vue.esm.js'
-		}
 	}
 };

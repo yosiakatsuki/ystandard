@@ -1,30 +1,43 @@
-input,
-textarea,
-select,
-button {
-  padding: 0.5rem;
-  background-color: var(--form-bg-white);
-  border: 1px solid var(--form-border-gray);
-  border-radius: 2px;
-  color: var(--form-text);
-  font-size: 1em;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin forms() {
+
+  input,
+  textarea,
+  select,
+  button {
+	padding: 0.5rem;
+	background-color: var(--form-bg-white);
+	border: 1px solid var(--form-border-gray);
+	border-radius: 2px;
+	color: var(--form-text);
+	font-size: 1em;
+  }
+
+  input[type="text"],
+  input[type="search"],
+  input[type="url"],
+  input[type="email"],
+  textarea,
+  select {
+	display: block;
+	width: 100%;
+
+	-webkit-appearance: none;
+  }
+
+  button,
+  input[type="reset"],
+  input[type="submit"],
+  input[type="button"] {
+	@include global.button();
+  }
 }
 
-input[type="text"],
-input[type="search"],
-input[type="url"],
-input[type="email"],
-textarea,
-select {
-  display: block;
-  width: 100%;
-
-  -webkit-appearance: none;
+@if false == $editor {
+  @include forms();
 }
 
-button,
-input[type="reset"],
-input[type="submit"],
-input[type="button"] {
-  @include button();
-}
+

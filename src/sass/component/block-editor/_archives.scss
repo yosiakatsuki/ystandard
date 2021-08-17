@@ -1,67 +1,78 @@
-.wp-block-archives-list {
-  margin-right: 0;
-  margin-left: 0;
-  padding: 0;
-  list-style: none;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin archives() {
+
+  .wp-block-archives-list {
+	margin-right: 0;
+	margin-left: 0;
+	padding: 0;
+	list-style: none;
+  }
+
+  .wp-block-archives-list,
+  .widget_archive,
+  .widget_meta {
+	ul {
+	  margin-right: 0;
+	  margin-left: 0;
+	  padding: 0;
+	  border-bottom: 1px solid var(--site-border-gray-light);
+	  font-size: 0.9em;
+	  list-style: none;
+	}
+
+	> ul {
+	  border-top: 1px solid var(--site-border-gray-light);
+	}
+
+	li {
+	  position: relative;
+	  border-bottom: 1px solid var(--site-border-gray-light);
+
+	  &:last-child {
+		border-bottom: 0;
+	  }
+	}
+
+	a {
+	  display: inline-block;
+	  padding: 0.75em 0.25em;
+	  color: currentColor;
+	  text-decoration: none;
+
+	  &::before {
+		content: "";
+		display: inline-block;
+		width: 0.5em;
+		height: 0.5em;
+		margin-right: 0.75em;
+		margin-bottom: 0.1em;
+		border-right: 1px solid currentColor;
+		border-bottom: 1px solid currentColor;
+		transition: margin 0.3s;
+		transform: rotate(-45deg);
+	  }
+
+	  &::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	  }
+
+	  &:hover {
+		&::before {
+		  margin-right: 1em;
+		}
+	  }
+	}
+  }
 }
 
-.wp-block-archives-list,
-.widget_archive,
-.widget_meta {
-  ul {
-    margin-right: 0;
-    margin-left: 0;
-    padding: 0;
-    border-bottom: 1px solid var(--site-border-gray-light);
-    font-size: 0.9em;
-    list-style: none;
-  }
-
-  > ul {
-    border-top: 1px solid var(--site-border-gray-light);
-  }
-
-  li {
-    position: relative;
-    border-bottom: 1px solid var(--site-border-gray-light);
-
-    &:last-child {
-      border-bottom: 0;
-    }
-  }
-
-  a {
-    display: inline-block;
-    padding: 0.75em 0.25em;
-    color: currentColor;
-    text-decoration: none;
-
-    &::before {
-      content: "";
-      display: inline-block;
-      width: 0.5em;
-      height: 0.5em;
-      margin-right: 0.75em;
-      margin-bottom: 0.1em;
-      border-right: 1px solid currentColor;
-      border-bottom: 1px solid currentColor;
-      transition: margin 0.3s;
-      transform: rotate(-45deg);
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    &:hover {
-      &::before {
-        margin-right: 1em;
-      }
-    }
-  }
+@if false == $editor {
+  @include archives();
 }

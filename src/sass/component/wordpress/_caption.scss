@@ -1,27 +1,40 @@
-.wp-caption {
-  max-width: 100%;
-  padding: 0.25em 0.5em 0.5em;
-  font-size: 0.9em;
-  text-align: center;
+@use "../../global";
 
-  img {
-    margin: 0;
-    padding: 0;
+$editor: false !default;
+
+@mixin caption() {
+
+  .wp-caption {
+	max-width: 100%;
+	padding: 0.25em 0.5em 0.5em;
+	font-size: 0.9em;
+	text-align: center;
+
+	img {
+	  margin: 0;
+	  padding: 0;
+	}
+  }
+
+  figcaption,
+  .wp-caption-text {
+	color: var(--font-gray);
+	font-size: 0.9em;
+	font-style: italic;
+	text-align: center;
+  }
+
+  .wp-caption-text {
+	padding: 0.25em 0.5em 0.5em;
+  }
+
+  figcaption {
+	padding: 0.25em 0.5em 0;
   }
 }
 
-figcaption,
-.wp-caption-text {
-  color: var(--font-gray);
-  font-size: 0.9em;
-  font-style: italic;
-  text-align: center;
+@if false == $editor {
+  @include caption();
 }
 
-.wp-caption-text {
-  padding: 0.25em 0.5em 0.5em;
-}
 
-figcaption {
-  padding: 0.25em 0.5em 0;
-}

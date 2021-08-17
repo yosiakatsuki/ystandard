@@ -1,12 +1,23 @@
-.wp-block-cover {
-  & + & {
-	margin-top: 0;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin cover() {
+  .wp-block-cover {
+	& + & {
+	  margin-top: 0;
+	}
+  }
+
+  .wp-block-cover-image,
+  .wp-block-cover {
+	.wp-block-cover__inner-container {
+	  width: 100%;
+	}
   }
 }
 
-.wp-block-cover-image,
-.wp-block-cover {
-  .wp-block-cover__inner-container {
-	width: 100%;
-  }
+@if false == $editor {
+  @include cover();
 }
+

@@ -8,6 +8,8 @@
  */
 
 namespace ystandard;
+use ystandard\helper\Filesystem;
+use ystandard\helper\Style_Sheet;
 
 defined( 'ABSPATH' ) || die();
 
@@ -28,16 +30,6 @@ class Enqueue_Styles {
 	 */
 	const HANDLE_BLOCKS = 'ys-blocks';
 
-	/**
-	 * ブレークポイント
-	 *
-	 * @var array
-	 */
-	const BREAKPOINTS = [
-		'sm' => 600,
-		'md' => 769,
-		'lg' => 1025,
-	];
 
 	/**
 	 * Enqueue_Styles constructor.
@@ -116,7 +108,7 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	private function get_inline_css() {
-		$inline   = self::minify( apply_filters( Enqueue_Utility::FILTER_INLINE_CSS, '' ) );
+		$inline   = Style_Sheet::minify( apply_filters( Enqueue_Utility::FILTER_INLINE_CSS, '' ) );
 		$css_vars = self::get_css_vars_selector();
 
 		return $inline . $css_vars;
@@ -129,7 +121,7 @@ class Enqueue_Styles {
 	 */
 	private function get_blocks_inline_css() {
 
-		return self::minify( apply_filters( Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS, '' ) );
+		return Style_Sheet::minify( apply_filters( Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS, '' ) );
 	}
 
 	/**
@@ -188,63 +180,7 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	public function _wp_get_custom_css( $css ) {
-		return self::minify( $css );
-	}
-
-	/**
-	 * CSSの圧縮
-	 *
-	 * @param string $style inline css styles.
-	 *
-	 * @return string
-	 */
-	public static function minify( $style ) {
-		// コメント削除.
-		$style = preg_replace( '#/\*[^!][^*]*\*+([^/][^*]*\*+)*/#', '', $style );
-		// コロンの後の空白を削除する.
-		$style = str_replace( ': ', ':', $style );
-		// タブ、スペース、改行などを削除する.
-		$style = str_replace( [ "\r\n", "\r", "\n", "\t", '  ', '    ' ], '', $style );
-
-		return $style;
-	}
-
-	/**
-	 * メディアクエリを追加
-	 *
-	 * @param string $css Styles.
-	 * @param string $min Breakpoint.
-	 * @param string $max Breakpoint.
-	 *
-	 * @return string
-	 */
-	public static function add_media_query( $css, $min = '', $max = '' ) {
-
-		if ( ! array_key_exists( $min, self::BREAKPOINTS ) && ! array_key_exists( $max, self::BREAKPOINTS ) ) {
-			return $css;
-		}
-		if ( array_key_exists( $min, self::BREAKPOINTS ) ) {
-			$breakpoint = self::BREAKPOINTS[ $min ];
-			$min        = "(min-width: ${breakpoint}px)";
-		}
-		if ( array_key_exists( $max, self::BREAKPOINTS ) ) {
-			$breakpoint = self::BREAKPOINTS[ $max ] - 1;
-			$max        = "(max-width: ${breakpoint}px)";
-		}
-		$breakpoint = $min . $max;
-		if ( '' !== $min && '' !== $max ) {
-			$breakpoint = $min . ' AND ' . $max;
-		}
-
-		if ( empty( $breakpoint ) ) {
-			return $css;
-		}
-
-		return sprintf(
-			'@media %s {%s}',
-			$breakpoint,
-			$css
-		);
+		return Style_Sheet::minify( $css );
 	}
 
 	/**
@@ -298,7 +234,7 @@ class Enqueue_Styles {
 		/**
 		 * インラインCSSのminify
 		 */
-		$style = $this->minify( str_replace( '@charset "UTF-8";', '', $style ) );
+		$style = Style_Sheet::minify( str_replace( '@charset "UTF-8";', '', $style ) );
 		/**
 		 * 中身がなければ何も出さない
 		 */

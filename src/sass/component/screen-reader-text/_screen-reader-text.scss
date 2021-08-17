@@ -1,7 +1,17 @@
-.screen-reader-text {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  visibility: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
+@use "../../global";
+
+$editor: false !default;
+
+@mixin screen-reader-text() {
+  .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	visibility: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+  }
+}
+
+@if false == $editor {
+  @include screen-reader-text();
 }

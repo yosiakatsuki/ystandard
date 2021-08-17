@@ -1,3 +1,13 @@
-.wp-social-link {
-  margin: 4px 8px 4px 0;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin social-link() {
+  .wp-social-link {
+	margin: 4px 8px 4px 0;
+  }
+}
+
+@if false == $editor {
+  @include social-link();
 }

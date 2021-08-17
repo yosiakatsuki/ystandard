@@ -1,4 +1,15 @@
-.post-related__title {
-  margin: 0 0 1em;
-  font-weight: $font__weight_bold;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin recent-posts() {
+
+  .post-related__title {
+	margin: 0 0 1em;
+	font-weight: global.$font__weight_bold;
+  }
+}
+
+@if false == $editor {
+  @include recent-posts();
 }

@@ -1,61 +1,72 @@
+@use "../../global";
 
-.post-taxonomy__container {
-  display: flex;
-  align-items: flex-start;
-  font-size: 0.9em;
+$editor: false !default;
 
-  &.is-category,
-  &.is-post_tag {
-	.post-taxonomy__title {
-	  min-width: 6.5em;
+@mixin taxonomy() {
+
+  .post-taxonomy__container {
+	display: flex;
+	align-items: flex-start;
+	font-size: 0.9em;
+
+	&.is-category,
+	&.is-post_tag {
+	  .post-taxonomy__title {
+		min-width: 6.5em;
+	  }
 	}
   }
-}
 
-.post-taxonomy__title {
-  position: relative;
+  .post-taxonomy__title {
+	position: relative;
 
-  margin: 0;
-  padding-right: 1.5em;
-  font-weight: $font__weight_bold;
+	margin: 0;
+	padding-right: 1.5em;
+	font-weight: global.$font__weight_bold;
 
-  &:after {
-	content: "/";
-	position: absolute;
-	top: 0;
-	right: 0.5em;
+	&:after {
+	  content: "/";
+	  position: absolute;
+	  top: 0;
+	  right: 0.5em;
+	}
+
+  }
+
+
+  .post-taxonomy__items {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
+	color: var(--font-gray);
+	list-style: none;
+  }
+
+  .post-taxonomy__item {
+	margin-bottom: 0.25em;
+	margin-right: 0.5em;
+
+	&:last-child {
+	  margin-right: 0;
+	}
+
+	&::after {
+	  content: ",";
+	}
+
+	&:last-child::after {
+	  content: "";
+	}
+  }
+
+  .post-taxonomy__link {
+	color: currentColor;
+	text-decoration: none;
   }
 
 }
 
-
-.post-taxonomy__items {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  color: var(--font-gray);
-  list-style: none;
-}
-
-.post-taxonomy__item {
-  margin-bottom: 0.25em;
-  margin-right: 0.5em;
-
-  &:last-child {
-	margin-right: 0;
-  }
-
-  &::after {
-	content: ",";
-  }
-
-  &:last-child::after {
-	content: "";
-  }
-}
-
-.post-taxonomy__link {
-  color: currentColor;
-  text-decoration: none;
+@if false == $editor {
+  @include taxonomy();
 }

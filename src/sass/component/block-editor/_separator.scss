@@ -1,3 +1,13 @@
-.wp-block-separator {
-  clear: both;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin separator() {
+  .wp-block-separator {
+	clear: both;
+  }
+}
+
+@if false == $editor {
+  @include separator();
 }

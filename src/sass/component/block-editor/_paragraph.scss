@@ -1,11 +1,21 @@
-p.has-background {
-  padding: 1em 1.5em;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin paragraph() {
+  p.has-background {
+	padding: 1em 1.5em;
+  }
+
+  .has-drop-cap:not(:focus):first-letter {
+	margin-right: 0.05em;
+	font-size: 3em;
+	font-weight: global.$font__weight_normal;
+	vertical-align: -0.05em;
+	float: none;
+  }
 }
 
-.has-drop-cap:not(:focus):first-letter {
-  margin-right: 0.05em;
-  font-size: 3em;
-  font-weight: $font__weight_normal;
-  vertical-align: -0.05em;
-  float: none;
+@if false == $editor {
+  @include paragraph();
 }

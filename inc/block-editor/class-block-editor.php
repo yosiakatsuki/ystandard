@@ -19,6 +19,11 @@ defined( 'ABSPATH' ) || die();
 class Block_Editor {
 
 	/**
+	 * Panel Name.
+	 */
+	const PANEL_NAME = 'ys_block_editor';
+
+	/**
 	 * Block_Editor constructor.
 	 */
 	public function __construct() {
@@ -26,6 +31,7 @@ class Block_Editor {
 			add_filter( 'allowed_block_types_all', [ $this, 'disallow_block_types' ], 10, 2 );
 		}
 		add_filter( 'ys_disallowed_block_types_all', [ $this, 'disallow_fse_blocks' ], 1 );
+		add_action( 'customize_register', [ $this, 'customize_register' ], 9 );
 	}
 
 	/**
@@ -114,6 +120,23 @@ class Block_Editor {
 				'core/site-logo',
 				'core/site-title',
 				'core/site-tagline',
+			]
+		);
+	}
+
+	/**
+	 * カスタマイザー追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+
+		$customizer->add_panel(
+			[
+				'panel'       => self::PANEL_NAME,
+				'title'       => '[ys]ブロックエディター',
+				'description' => 'ブロックエディター関連の設定',
 			]
 		);
 	}

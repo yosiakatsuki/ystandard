@@ -1,3 +1,5 @@
+@use "../../global";
+
 .footer-sub {
   padding-top: var(--sub-footer-padding);
   padding-bottom: var(--sub-footer-padding);
@@ -11,5 +13,5 @@
 }
 
 .footer-sub__content {
-  @include child_margin(1em);
+  @include global.child_margin(1em);
 }

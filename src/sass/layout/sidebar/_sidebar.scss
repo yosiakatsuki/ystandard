@@ -1,20 +1,22 @@
+@use "../../global";
+
 .sidebar {
-  @include child_margin(2rem);
+  @include global.child_margin(2rem);
   margin-bottom: 2em;
 
-  @include media-breakpoint(lg) {
-	flex: 0 0 $width__sidebar;
-	width: $width__sidebar;
+  @include global.media-breakpoint(lg) {
+	flex: 0 0 global.$width__sidebar;
+	width: global.$width__sidebar;
   }
 }
 
 .sidebar__widget,
 .sidebar__fixed {
-  @include child_margin(2rem);
+  @include global.child_margin(2rem);
 }
 
 .sidebar__fixed {
-  @include media-breakpoint(lg) {
+  @include global.media-breakpoint(lg) {
 	position: sticky;
 	top: var(--fixed-sidebar-top);
   }
@@ -24,7 +26,7 @@
   .sidebar__widget,
   .sidebar__fixed {
 	> * {
-	  @include media-breakpoint-down(sm) {
+	  @include global.media-breakpoint-down(sm) {
 		margin-right: -1em;
 		margin-left: -1em;
 		padding: 1em;

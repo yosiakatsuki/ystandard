@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\helper\Style_Sheet;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -110,7 +112,7 @@ class Info_Bar {
 			line-height:1.3;
 			font-size:0.8em;
 		}';
-		$styles[] = Enqueue_Styles::add_media_query(
+		$styles[] = Style_Sheet::add_media_query(
 			'.info-bar {
 				font-size:1rem;
 			}',

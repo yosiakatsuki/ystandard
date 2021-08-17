@@ -1,44 +1,58 @@
-body,
-.has-sidebar .site-content {
-  @media (min-width: 1px) {
-	.wp-block-image {
-	  &.alignwide,
-	  &.alignfull {
-		padding-right: 0;
-		padding-left: 0;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin image($editor:false) {
+
+  body,
+  .has-sidebar .site-content {
+	@media (min-width: 1px) {
+	  .wp-block-image {
+		&.alignwide,
+		&.alignfull {
+		  padding-right: 0;
+		  padding-left: 0;
+		}
 	  }
 	}
   }
-}
 
-.wp-block-image {
-  margin-bottom: 0;
-
-  figcaption {
-	padding: 0 .5em .5em;
-	margin: 0;
-	font-size: .8em;
-	font-style: normal;
-  }
-  &.alignfull {
-	img {
-	  display: block;
-	}
-	+ &.alignfull {
-	  margin-top: 0;
-	}
-  }
-}
-
-@if $editor == true {
-  [data-align=full]>.wp-block-image {
-	img {
-	  display: block;
-	}
-  }
   .wp-block-image {
-	&.is-resized {
-	  max-width: 100%;
+	margin-bottom: 0;
+
+	figcaption {
+	  padding: 0 .5em .5em;
+	  margin: 0;
+	  font-size: .8em;
+	  font-style: normal;
+	}
+
+	&.alignfull {
+	  img {
+		display: block;
+	  }
+
+	  + &.alignfull {
+		margin-top: 0;
+	  }
 	}
   }
+
+  @if $editor == true {
+	[data-align=full] > .wp-block-image {
+	  img {
+		display: block;
+	  }
+	}
+	.wp-block-image {
+	  &.is-resized {
+		max-width: 100%;
+	  }
+	}
+  }
+
+}
+
+@if false == $editor {
+  @include image();
 }
