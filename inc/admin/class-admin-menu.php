@@ -209,7 +209,7 @@ class Admin_Menu {
 						<label for="icon-search">検索：</label><input id="icon-search" name="icon-search" type="search" class="">
 					</p>
 					<div class="ys-icon-search__list">
-						<?php foreach ( $icons as $icon ): ?>
+						<?php foreach ( $icons as $icon ) : ?>
 							<div class="ys-icon-search__item" data-icon-name="<?php echo esc_attr( $icon['name'] ); ?>">
 								<div class="ys-icon-search__icon"><?php echo $icon['svg']; ?></div>
 								<label for="icon-shortcode--<?php echo esc_attr( $icon['name'] ); ?>" class="ys-icon-search__label"><?php echo esc_html( $icon['label'] ); ?></label>
