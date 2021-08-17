@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @package ystandard
  */
-class Block_Editor_Color_Pallet {
+class Block_Editor_Color_Palette {
 
 	/**
 	 * Block_Editor_Color_Pallet constructor.
@@ -117,6 +117,16 @@ class Block_Editor_Color_Pallet {
 		return Style_Sheet::minify( implode( ' ', $css ) );
 	}
 
+	/**
+	 * カラーパレット用CSS作成
+	 *
+	 * @param string $slug   Slug.
+	 * @param string $color  Color.
+	 * @param array  $args   Args.
+	 * @param string $prefix CSS Prefix.
+	 *
+	 * @return string
+	 */
 	public static function create_color_palette_css( $slug, $color, $args, $prefix = '' ) {
 		$color_name  = $slug;
 		$color_class = "has-${color_name}-" . $args['palette'];
@@ -421,4 +431,4 @@ class Block_Editor_Color_Pallet {
 	}
 }
 
-new Block_Editor_Color_Pallet();
+new Block_Editor_Color_Palette();
