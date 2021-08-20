@@ -119,19 +119,42 @@ class Customize_Control {
 				'sanitize_callback' => 'sanitize_hex_color',
 			]
 		);
-		$this->wp_customize->add_control(
-			new \WP_Customize_Color_Control(
-				$this->wp_customize,
-				$args['id'],
-				[
-					'label'       => $args['label'],
-					'description' => $args['description'],
-					'section'     => $args['section'],
-					'priority'    => $args['priority'],
-					'settings'    => $args['id'],
-				]
-			)
-		);
+		$palettes      = true;
+		$color_palette = get_theme_support( 'editor-color-palette' );
+		if ( $color_palette && is_array( $color_palette ) ) {
+			$palettes = array_column( $color_palette[0], 'color' );
+		}
+
+		if ( class_exists( __NAMESPACE__ . '\Color_Control' ) ) {
+			$this->wp_customize->add_control(
+				new Color_Control(
+					$this->wp_customize,
+					$args['id'],
+					[
+						'label'       => $args['label'],
+						'description' => $args['description'],
+						'section'     => $args['section'],
+						'priority'    => $args['priority'],
+						'settings'    => $args['id'],
+						'palette'     => $palettes,
+					]
+				)
+			);
+		} else {
+			$this->wp_customize->add_control(
+				new \WP_Customize_Color_Control(
+					$this->wp_customize,
+					$args['id'],
+					[
+						'label'       => $args['label'],
+						'description' => $args['description'],
+						'section'     => $args['section'],
+						'priority'    => $args['priority'],
+						'settings'    => $args['id'],
+					]
+				)
+			);
+		}
 	}
 
 	/**
