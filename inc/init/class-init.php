@@ -20,6 +20,7 @@ class Init {
 	 */
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'content_width' ], 1 );
+		add_action( 'after_setup_theme', [ $this, 'load_textdomain' ], 9 );
 		add_action( 'after_setup_theme', [ $this, 'init' ] );
 		add_action( 'after_setup_theme', [ $this, 'remove_meta' ] );
 		add_action( 'after_setup_theme', [ $this, 'tax_dscr_filter' ] );
@@ -37,13 +38,20 @@ class Init {
 	}
 
 	/**
-	 * 初期化
+	 * 翻訳ファイル読み込み
 	 */
-	public function init() {
+	public function load_textdomain() {
 		load_theme_textdomain(
 			'ystandard',
 			get_template_directory() . '/languages'
 		);
+	}
+
+	/**
+	 * 初期化
+	 */
+	public function init() {
+
 		// 投稿とコメントのフィード出力.
 		add_theme_support( 'automatic-feed-links' );
 		// タイトル出力.
