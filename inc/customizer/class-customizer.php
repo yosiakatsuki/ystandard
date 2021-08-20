@@ -121,7 +121,7 @@ class Customizer {
 			'ys-customize-controls-js',
 			get_template_directory_uri() . '/js/admin/customizer-control.js',
 			[ 'customize-controls', 'jquery' ],
-			Utility::get_ystandard_version(),
+			filemtime( get_template_directory() . '/js/admin/customizer-control.js' ),
 			true
 		);
 	}
@@ -151,13 +151,17 @@ class Customizer {
 	 */
 	public function customize_register( $wp_customize ) {
 
-		$customizer = new Customize_Control( $wp_customize );
 		/**
 		 * WP標準の設定を削除
 		 */
 		$wp_customize->remove_setting( 'background_color' );
 		$wp_customize->remove_section( 'colors' );
 		$wp_customize->remove_control( 'display_header_text' );
+
+		/**
+		 * カスタムコントロールの追加
+		 */
+		$wp_customize->register_control_type( __NAMESPACE__ . '\Color_Control' );
 
 		/**
 		 * 拡張機能
