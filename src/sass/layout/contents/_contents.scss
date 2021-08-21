@@ -66,6 +66,19 @@ body:not(.has-sidebar) {
   }
 }
 
+.has-content-bg-color {
+  .content__main {
+	@include global.media-breakpoint-down(md) {
+	  width: auto;
+	  max-width: unset;
+	  margin-right: -1rem;
+	  margin-left: -1rem;
+	  padding: 1rem;
+	}
+	padding: 2rem;
+  }
+}
+
 .has-background {
   .site-content {
 	margin-top: 0;
