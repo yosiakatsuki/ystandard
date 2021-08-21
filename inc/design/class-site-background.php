@@ -36,10 +36,20 @@ class Site_Background {
 	 */
 	public function add_css_vars( $css_vars ) {
 
-		return array_merge(
-			$css_vars,
-			Enqueue_Utility::get_css_var( 'site-bg', self::get_site_bg() )
-		);
+		if ( self::is_custom_bg_color() ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var( 'site-bg', self::get_site_bg() )
+			);
+		}
+		if ( self::is_custom_contet_bg_color() ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var( 'content-bg', self::get_content_bg() )
+			);
+		}
+
+		return $css_vars;
 	}
 
 	/**
@@ -58,6 +68,8 @@ class Site_Background {
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
+
+		$customizer->add_section_label( 'サイト背景色' );
 		// サイト背景色.
 		$customizer->add_color(
 			[
@@ -80,6 +92,20 @@ class Site_Background {
 		$customizer->set_refresh( 'background_attachment' );
 		$customizer->set_refresh( 'background_position_x' );
 		$customizer->set_refresh( 'background_position_y' );
+		// コンテンツ域 背景色.
+		$customizer->add_section_label(
+			'本文エリア背景色',
+			[ 'priority' => 10 ]
+		);
+		$customizer->add_color(
+			[
+				'id'          => 'ys_color_content_bg',
+				'default'     => self::get_content_bg_default(),
+				'label'       => '本文エリア背景色',
+				'description' => '投稿本文エリアの背景色を設定できます。',
+				'priority'    => 10,
+			]
+		);
 	}
 
 	/**
@@ -116,6 +142,7 @@ class Site_Background {
 		if ( Template::is_legacy_widget_preview() ) {
 			return self::get_site_bg_default();
 		}
+
 		return Option::get_option( 'ys_color_site_bg', self::get_site_bg_default() );
 	}
 
@@ -126,6 +153,37 @@ class Site_Background {
 	 */
 	public static function is_custom_bg_color() {
 		return self::get_site_bg_default() !== self::get_site_bg();
+	}
+
+	/**
+	 * コンテンツ域背景色デフォルト
+	 *
+	 * @return string
+	 */
+	public static function get_content_bg_default() {
+		return Option::get_default( 'ys_color_content_bg', '#ffffff' );
+	}
+
+	/**
+	 * コンテンツ域背景色
+	 *
+	 * @return string
+	 */
+	public static function get_content_bg() {
+		if ( Template::is_legacy_widget_preview() ) {
+			return self::get_content_bg_default();
+		}
+
+		return Option::get_option( 'ys_color_content_bg', self::get_content_bg_default() );
+	}
+
+	/**
+	 * コンテンツ背景色を変更しているか
+	 *
+	 * @return bool
+	 */
+	public static function is_custom_contet_bg_color() {
+		return self::get_content_bg_default() !== self::get_content_bg();
 	}
 }
 
