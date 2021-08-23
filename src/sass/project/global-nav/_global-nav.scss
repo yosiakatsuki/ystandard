@@ -66,6 +66,10 @@
 
   .ys-icon {
 	display: block;
+
+	@include global.media-breakpoint-down(md) {
+	  display: inline-block;
+	}
   }
 }
 

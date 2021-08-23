@@ -2,16 +2,16 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: yStandard 4.24.2\n"
+"Project-Id-Version: yStandard 4.28.0-beta-1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/ystandard\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-21T08:12:38+00:00\n"
+"POT-Creation-Date: 2021-08-19T12:45:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: ystandard\n"
 
 #. Theme Name of the theme
@@ -38,73 +38,164 @@ msgstr ""
 msgid "Skip to content"
 msgstr ""
 
-#: inc/breadcrumbs/class-breadcrumbs.php:160
+#. translators: %s: Search Keywords.
+#: inc/archive/class-archive.php:57
+msgid "Search Results for \"%s\""
+msgstr ""
+
+#. translators: %s: User Setting No.
+#: inc/block-editor/class-block-editor-color-palette.php:226
+msgctxt "color-palette"
+msgid "User Color %s"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:235
+msgctxt "color-palette"
+msgid "よく使う色を設定しておくと便利です。"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:268
+msgctxt "color-palette"
+msgid "Blue"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:275
+msgctxt "color-palette"
+msgid "Light Blue"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:282
+msgctxt "color-palette"
+msgid "Red"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:289
+msgctxt "color-palette"
+msgid "Pink"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:296
+msgctxt "color-palette"
+msgid "Green"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:303
+msgctxt "color-palette"
+msgid "Light Green"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:310
+msgctxt "color-palette"
+msgid "Yellow"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:317
+msgctxt "color-palette"
+msgid "Light Yellow"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:324
+msgctxt "color-palette"
+msgid "Orange"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:331
+msgctxt "color-palette"
+msgid "Light Orange"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:338
+msgctxt "color-palette"
+msgid "Purple"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:345
+msgctxt "color-palette"
+msgid "Light Purple"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:352
+msgctxt "color-palette"
+msgid "Gray"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:359
+msgctxt "color-palette"
+msgid "Light Gray"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:366
+msgctxt "color-palette"
+msgid "Black"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:373
+msgctxt "color-palette"
+msgid "White"
+msgstr ""
+
+#: inc/breadcrumbs/class-breadcrumbs.php:162
 msgctxt "structured-data"
 msgid "Breadcrumb"
 msgstr ""
 
-#. translators: %s: Search Keywords.
-#: inc/content/class-archive.php:54
-msgid "Search Results for \"%s\""
-msgstr ""
-
-#: inc/content/class-content.php:443
+#: inc/content/class-content.php:449
 msgid "Related Posts"
 msgstr ""
 
-#: inc/design/class-font.php:189
+#: inc/design/class-font.php:191
 msgid "極小"
 msgstr ""
 
-#: inc/design/class-font.php:190
+#: inc/design/class-font.php:192
 msgid "x-small"
 msgstr ""
 
-#: inc/design/class-font.php:195
+#: inc/design/class-font.php:197
 msgid "小"
 msgstr ""
 
-#: inc/design/class-font.php:196
+#: inc/design/class-font.php:198
 msgid "small"
 msgstr ""
 
-#: inc/design/class-font.php:201
+#: inc/design/class-font.php:203
 msgid "標準"
 msgstr ""
 
-#: inc/design/class-font.php:202
+#: inc/design/class-font.php:204
 msgid "normal"
 msgstr ""
 
-#: inc/design/class-font.php:207
+#: inc/design/class-font.php:209
 msgid "中"
 msgstr ""
 
-#: inc/design/class-font.php:208
+#: inc/design/class-font.php:210
 msgid "medium"
 msgstr ""
 
-#: inc/design/class-font.php:213
+#: inc/design/class-font.php:215
 msgid "大"
 msgstr ""
 
-#: inc/design/class-font.php:214
+#: inc/design/class-font.php:216
 msgid "large"
 msgstr ""
 
-#: inc/design/class-font.php:219
+#: inc/design/class-font.php:221
 msgid "極大"
 msgstr ""
 
-#: inc/design/class-font.php:220
+#: inc/design/class-font.php:222
 msgid "x-large"
 msgstr ""
 
-#: inc/design/class-font.php:225
+#: inc/design/class-font.php:227
 msgid "巨大"
 msgstr ""
 
-#: inc/design/class-font.php:226
+#: inc/design/class-font.php:228
 msgid "xx-large"
 msgstr ""
 
@@ -130,19 +221,19 @@ msgid "Search"
 msgstr ""
 
 #. translators: %s: Search Keywords.
-#: template-parts/404/content.php:19
+#: template-parts/404/content.php:20
 msgid "No results found for \"%s\"."
 msgstr ""
 
-#: template-parts/404/content.php:24
+#: template-parts/404/content.php:25
 msgid "Page Not Found"
 msgstr ""
 
-#: template-parts/404/content.php:31
+#: template-parts/404/content.php:32
 msgid "Search again"
 msgstr ""
 
-#: template-parts/header/global-nav-search-form.php:14
+#: template-parts/header/global-nav-search-form.php:16
 msgctxt "global nav"
 msgid "close"
 msgstr ""

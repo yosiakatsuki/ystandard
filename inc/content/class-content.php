@@ -738,11 +738,12 @@ class Content {
 	 */
 	public static function get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
 		$length  = 0 === $length ? Option::get_option_by_int( 'ys_option_excerpt_length', 80 ) : $length;
+		$post    = get_post( $post_id );
 		$content = self::get_custom_excerpt_raw( $post_id );
 		/**
 		 * 長さ調節
 		 */
-		if ( mb_strlen( $content ) > $length ) {
+		if ( empty( $post->post_excerpt ) && mb_strlen( $content ) > $length ) {
 			$length  = $length - mb_strlen( $sep );
 			$length  = 0 > $length ? 1 : $length;
 			$content = mb_substr( $content, 0, $length ) . $sep;

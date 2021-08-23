@@ -1,0 +1,49 @@
+.customize-control-ys-color-control {
+  .iris-border {
+	max-width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+
+	&.iris-picker {
+	  height: auto !important;
+
+	  .iris-square,
+	  .iris-slider {
+		float: none;
+	  }
+	}
+
+	.iris-picker-inner {
+	  position: relative;
+	  display: flex;
+	  top: auto;
+	  right: auto;
+	  bottom: auto;
+	  left: auto;
+
+
+	  .iris-slider {
+	  }
+	}
+
+	.iris-palette-container {
+	  display: flex;
+	  flex-wrap: wrap;
+	  position: relative;
+	  margin: 10px 0 -5px;
+	  bottom: auto;
+	  left: auto;
+
+	  a {
+		flex: 0 0 calc((100% - 45px) / 10);
+		width: calc((100% - 45px) / 10) !important;
+		height: 19px !important;
+		margin: 0 5px 5px 0 !important;
+
+		&:nth-child(10n) {
+		  margin-right: 0 !important;
+		}
+	  }
+	}
+  }
+}

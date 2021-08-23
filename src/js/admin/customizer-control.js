@@ -6,6 +6,16 @@
 		$( selector ).change( function () {
 			setBackgroundPresetCustom( $ );
 		} );
+		$( '.customize-control-ys-color-control .wp-color-result' ).each( function ( index, element ) {
+			$( element ).on( 'click', function () {
+				if ( $( this ).hasClass( 'wp-picker-open' ) ) {
+					const holder = $( this ).nextAll( '.wp-picker-holder' );
+					const pickerInner = holder.find( '.iris-picker-inner' );
+					const square = holder.find( '.iris-square' );
+					square.height( pickerInner.height() );
+				}
+			} );
+		} );
 	} );
 } )( jQuery );
 
