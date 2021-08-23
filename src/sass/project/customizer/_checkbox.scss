@@ -1,0 +1,5 @@
+.customize-control-checkbox {
+  & + & {
+	margin-top: -12px;
+  }
+}

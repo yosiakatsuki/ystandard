@@ -1,0 +1,12 @@
+@use "../../global";
+
+#customize-controls {
+  .description {
+	margin-top: 0.5em;
+	color: global.$color__text-light;
+  }
+}
+
+.wp-full-overlay-main {
+  background-color: #fff;
+}

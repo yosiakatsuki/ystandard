@@ -189,7 +189,7 @@ class Archive {
 			return '';
 		}
 		if ( 0 === $length ) {
-			$length = Option::get_option_by_int( 'ys_option_excerpt_length', 40 );
+			$length = Option::get_option_by_int( 'ys_option_excerpt_length', 80 );
 		}
 		$excerpt = Content::get_custom_excerpt( '…', $length );
 		if ( empty( $excerpt ) ) {

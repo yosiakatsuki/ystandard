@@ -1,0 +1,12 @@
+@use "../../global";
+
+.customize-control__section_label {
+  margin-top: 1.5em;
+  margin-bottom: 1em;
+
+  .customize-control-title {
+	padding: 0.25em 0.5em;
+	background-color: global.$color__ystanadrd;
+	color: #ffffff;
+  }
+}

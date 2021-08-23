@@ -210,11 +210,3 @@ exports.default = function () {
 	watch( './src/js/admin/*.js', jsAdmin );
 	watch( './src/js/polyfill/polyfill.js', buildWebpack );
 };
-
-
-exports.test = () => {
-	return src( './src/sass/test.scss' )
-		.pipe( gulpSass() )
-		.pipe( postcss( postcssPlugins ) )
-		.pipe( dest( './css' ) )
-}
