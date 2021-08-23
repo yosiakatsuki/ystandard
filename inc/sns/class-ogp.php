@@ -184,7 +184,10 @@ class OGP {
 
 		$dscr = Content::get_post_meta( 'ys_ogp_description' );
 		if ( empty( $dscr ) ) {
-			$dscr = Content::get_custom_excerpt( '' );
+			$dscr = Content::get_custom_excerpt(
+				'',
+				Option::get_option_by_int( 'ys_option_meta_description_length', 80 )
+			);
 		}
 
 		$dscr = apply_filters( 'ys_ogp_description_singular', $dscr );
