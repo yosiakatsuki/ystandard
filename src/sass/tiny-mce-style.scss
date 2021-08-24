@@ -1,19 +1,113 @@
-//変数、mixin、functionなど
-@import "foundation/import";
+@use "global";
+@use "foundation/base/base" with ($editor:true);
+//Component
+@use "component/advertisement/advertisement" with ($editor:true);
+@use "component/author/author" with ($editor:true);
+@use "component/block-editor/align" with ($editor:true);
+@use "component/block-editor/archives" with ($editor:true);
+@use "component/block-editor/block-quote" with ($editor:true);
+@use "component/block-editor/button" with ($editor:true);
+@use "component/block-editor/calendar" with ($editor:true);
+@use "component/block-editor/categories" with ($editor:true);
+@use "component/block-editor/columns" with ($editor:true);
+@use "component/block-editor/content" with ($editor:true);
+@use "component/block-editor/cover" with ($editor:true);
+@use "component/block-editor/embed" with ($editor:true);
+@use "component/block-editor/file" with ($editor:true);
+@use "component/block-editor/gallery" with ($editor:true);
+@use "component/block-editor/group" with ($editor:true);
+@use "component/block-editor/headline" with ($editor:true);
+@use "component/block-editor/image" with ($editor:true);
+@use "component/block-editor/latest-comments" with ($editor:true);
+@use "component/block-editor/latest-posts" with ($editor:true);
+@use "component/block-editor/list" with ($editor:true);
+@use "component/block-editor/media-text" with ($editor:true);
+@use "component/block-editor/paragraph" with ($editor:true);
+@use "component/block-editor/pullquote" with ($editor:true);
+@use "component/block-editor/search" with ($editor:true);
+@use "component/block-editor/separator" with ($editor:true);
+@use "component/block-editor/social-links" with ($editor:true);
+@use "component/block-editor/spacer" with ($editor:true);
+@use "component/block-editor/table" with ($editor:true);
+@use "component/block-editor/tag-cloud" with ($editor:true);
+@use "component/block-editor/video" with ($editor:true);
+@use "component/blog-card/blog-card" with ($editor:true);
+@use "component/forms/forms" with ($editor:true);
+@use "component/icon/icon" with ($editor:true);
+@use "component/posts/posts" with ($editor:true);
+@use "component/ratio/ratio" with ($editor:true);
+@use "component/search-form/search-form" with ($editor:true);
+@use "component/share-button/share-button" with ($editor:true);
+@use "component/taxonomy/taxonomy" with ($editor:true);
+@use "component/toc/toc" with ($editor:true);
+@use "component/wordpress/caption" with ($editor:true);
+@use "component/wordpress/embed" as wordpress-embed with ($editor:true);
+@use "component/wordpress/gallery" as wordpress-gallery with ($editor:true);
+@use "component/wordpress/wp" as wordpress-wp with ($editor:true);
 
+
+// Utility
+@use "utility/clearfix/clearfix" as utility-clearfix with ($editor:true);
+@use "utility/sns/sns" as utility-sns with ($editor:true);
+@use "utility/table/table" as utility-table with ($editor:true);
 
 .mce-content-body {
-  @import "foundation/base/base";
+  @include base.base();
   //Component
-  @import "component/component";
-  //Utility
-  @import "utility/utility";
+  @include advertisement.advertisement();
+  @include author.author();
+  @include align.align();
+  @include archives.archives();
+  @include block-quote.block-quote();
+  @include button.button();
+  @include calendar.calendar();
+  @include categories.categories();
+  @include columns.column();
+  @include content.content();
+  @include cover.cover();
+  @include embed.embed();
+  @include file.file();
+  @include gallery.gallery();
+  @include group.group();
+  @include headline.headline();
+  @include image.image();
+  @include latest-comments.latest-comments();
+  @include latest-posts.latest-posts();
+  @include list.list();
+  @include media-text.media-text();
+  @include paragraph.paragraph();
+  @include pullquote.pullquote();
+  @include search.search();
+  @include separator.separator();
+  @include social-links.social-link();
+  @include spacer.spacer();
+  @include table.table();
+  @include tag-cloud.tag-cloud();
+  @include video.video();
+  @include blog-card.blog-card();
+  @include forms.forms();
+  @include icon.icon();
+  @include posts.ys-posts();
+  @include ratio.ratio();
+  @include search-form.search-form();
+  @include share-button.share-buttons();
+  @include taxonomy.taxonomy();
+  @include toc.toc();
+  @include caption.caption();
+  @include wordpress-embed.embed();
+  @include wordpress-gallery.gallery();
+  @include wordpress-wp.wp();
 
-  background-color: $color__bg-body;
-  color: $color__text-main;
-  font-family: $font--default;
-  line-height: $font__line-height;
-  letter-spacing: $font__spacing;
+  // Utility
+  @include utility-clearfix.clearfix();
+  @include utility-sns.sns-color();
+  @include utility-table.table();
+
+  background-color: global.$color__bg-body;
+  color: global.$color__text-main;
+  font-family: global.$font--default;
+  line-height: global.$font__line-height;
+  letter-spacing: global.$font__spacing;
   word-wrap: break-word;
 
   -moz-osx-font-smoothing: grayscale;

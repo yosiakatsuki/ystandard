@@ -1,3 +1,2 @@
-@import "foundation/import";
-
-@import "component/blog-card/blog-card";
+@use "foundation/index";
+@use "component/blog-card/blog-card";

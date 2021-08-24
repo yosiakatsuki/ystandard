@@ -1,21 +1,14 @@
-//変数、mixin、functionなど
-@import "foundation/import";
-
-//スタイル
-
-//Base
-@import "foundation/custom-properties/custom-properties";
-@import "~normalize.css";
-@import "foundation/base/base";
+// ベース
+@use "foundation/index";
 
 //Layout
-@import "layout/layout";
+@use "layout/layout";
 
 //Component
-@import "component/component";
+@use "component/component";
 
 //Project
-@import "project/project";
+@use "project/project";
 
 //Utility
-@import "utility/utility";
+@use "utility/utility";

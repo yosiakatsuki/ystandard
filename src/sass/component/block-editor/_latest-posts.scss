@@ -1,77 +1,87 @@
-.wp-block-latest-posts.wp-block-latest-posts__list {
-  padding: 0;
+@use "../../global";
 
-  a {
-    text-decoration: none;
+$editor: false !default;
+
+@mixin latest-posts() {
+  .wp-block-latest-posts.wp-block-latest-posts__list {
+	padding: 0;
+
+	a {
+	  text-decoration: none;
+	}
+
+	li {
+	  padding: 0.5em 0;
+	  border-bottom: 1px solid global.$color__border-gray-light;
+	  overflow: hidden;
+	}
+
+	time {
+	  margin-top: 0.25em;
+	}
+
+	.wp-block-latest-posts__post-excerpt {
+	  margin-top: 0.25em;
+	  color: global.$color__text-light;
+	  font-size: 0.8em;
+	  line-height: 1.5;
+	  overflow: hidden;
+	}
+
+	.wp-block-latest-posts__featured-image {
+	  margin-top: 1em;
+	  margin-bottom: 0.5em;
+	}
+
+	&.has-dates.is-one-line {
+	  li {
+		display: flex;
+		align-items: flex-start;
+	  }
+
+	  time {
+		order: 1;
+		margin-top: 0.25em;
+		margin-right: 1em;
+	  }
+
+	  a {
+		flex-grow: 1;
+		order: 2;
+	  }
+
+	  .wp-block-latest-posts__post-excerpt {
+		order: 3;
+		max-width: 30%;
+		margin: 0 0 0 0.5em;
+	  }
+	}
+
+	&.is-grid {
+	  .wp-block-latest-posts__featured-image {
+		margin-top: 0;
+	  }
+
+	  a {
+		display: block;
+		color: currentColor;
+		font-weight: global.$font__weight_bold;
+		line-height: 1.4;
+	  }
+	}
+
+	.wp-block-latest-posts__featured-image {
+	  &.alignleft,
+	  &.alignright {
+		& + a {
+		  display: block;
+		  margin-top: 1em;
+		}
+	  }
+	}
   }
+}
 
-  li {
-    padding: 0.5em 0;
-    border-bottom: 1px solid $color__border-gray-light;
-    overflow: hidden;
-  }
-
-  time {
-    margin-top: 0.25em;
-  }
-
-  .wp-block-latest-posts__post-excerpt {
-    margin-top: 0.25em;
-    color: $color__text-light;
-    font-size: 0.8em;
-    line-height: 1.5;
-    overflow: hidden;
-  }
-
-  .wp-block-latest-posts__featured-image {
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-  }
-
-  &.has-dates.is-one-line {
-    li {
-      display: flex;
-      align-items: flex-start;
-    }
-
-    time {
-      order: 1;
-      margin-top: 0.25em;
-      margin-right: 1em;
-    }
-
-    a {
-      flex-grow: 1;
-      order: 2;
-    }
-
-    .wp-block-latest-posts__post-excerpt {
-      order: 3;
-      max-width: 30%;
-      margin: 0 0 0 0.5em;
-    }
-  }
-
-  &.is-grid {
-    .wp-block-latest-posts__featured-image {
-      margin-top: 0;
-    }
-
-    a {
-      display: block;
-      color: currentColor;
-      font-weight: $font__weight_bold;
-      line-height: 1.4;
-    }
-  }
-
-  .wp-block-latest-posts__featured-image {
-    &.alignleft,
-    &.alignright {
-      & + a {
-        display: block;
-        margin-top: 1em;
-      }
-    }
-  }
+@if false == $editor {
+  @include latest-posts();
 }

@@ -86,9 +86,6 @@ class Meta_Description {
 				$dscr = Content::get_custom_excerpt( '', $length );
 			}
 		}
-		if ( '' !== $dscr ) {
-			$dscr = mb_substr( $dscr, 0, $length );
-		}
 
 		$dscr = apply_filters( 'ys_get_meta_description', $dscr );
 
@@ -125,7 +122,7 @@ class Meta_Description {
 				'id'        => 'ys_option_create_meta_description',
 				'default'   => 1,
 				'transport' => 'postMessage',
-				'label'     => 'meta descriptionを自動生成する',
+				'label'     => 'meta descriptionを出力する',
 			]
 		);
 		// 抜粋文字数.

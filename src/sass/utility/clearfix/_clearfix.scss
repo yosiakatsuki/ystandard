@@ -1,3 +1,14 @@
-.clearfix {
-  @include clearfix;
+@use "../../global";
+
+$editor: false !default;
+
+@mixin clearfix() {
+  .clearfix {
+	@include global.clearfix();
+  }
 }
+
+@if false == $editor {
+  @include clearfix();
+}
+

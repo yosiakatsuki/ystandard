@@ -1,5 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-	// 検索ボタン.
+/**
+ * 検索ボタンの開閉処理
+ */
+const setGlobalNavSearch = () => {
 	const searchButton = document.getElementById('global-nav__search-button');
 	if (searchButton) {
 		searchButton.addEventListener('click', () => {
@@ -23,7 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	}
-	// メニュー.
+};
+
+/**
+ * グローバルナビゲーションの開閉処理
+ */
+const setGlobalNavToggle = () => {
 	const globalNav = document.getElementById('global-nav__toggle');
 	if (globalNav) {
 		globalNav.addEventListener('click', (e) => {
@@ -52,7 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	}
-	// スムーススクロール.
+};
+
+/**
+ * ページ内リンクのスムーススクロール.
+ */
+const setSmoothScroll = () => {
 	const links = document.querySelectorAll('a[href^="#"]');
 	for (let i = 0; i < links.length; i++) {
 		links[i].addEventListener('click', (e) => {
@@ -84,7 +96,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		});
 	}
-	// TOPへ戻る.
+};
+
+/**
+ * TOPへ戻る.
+ */
+const setBackToTop = () => {
 	const backToTop = document.getElementById('back-to-top');
 	if (backToTop && backToTop.classList.contains('is-square')) {
 		const width = backToTop.getBoundingClientRect().width;
@@ -100,7 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		});
 	}
-	// スクロールバー分.
+};
+
+/**
+ * スクロールバー幅の変数セット.
+ */
+const setScrollBarWidth = () => {
 	const scrollbar = window.innerWidth - document.body.clientWidth;
 	if (
 		window
@@ -111,4 +133,43 @@ document.addEventListener('DOMContentLoaded', () => {
 			.querySelector(':root')
 			.style.setProperty('--scrollbar-width', scrollbar + 'px');
 	}
+};
+
+const setFixedHeaderPadding = () => {
+	const body = document.getElementsByTagName('body')[0];
+	if (
+		body.classList.contains('has-fixed-header') &&
+		!body.classList.contains('disable-auto-padding')
+	) {
+		const header = document.getElementById('masthead');
+		if (header) {
+			const size = Math.floor(header.getBoundingClientRect().height);
+			body.style.paddingTop = `${size}px`;
+		}
+	}
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+	// スクロールバー分.
+	setScrollBarWidth();
+	// 固定ヘッダー高さセット.
+	setFixedHeaderPadding();
+	// メニュー.
+	setGlobalNavToggle();
+	// 検索ボタン.
+	setGlobalNavSearch();
+	// スムーススクロール.
+	setSmoothScroll();
+	// TOPへ戻る.
+	setBackToTop();
+});
+
+window.addEventListener('resize', () => {
+	if (window.ysResizeFixedHeader) {
+		clearTimeout(window.ysResizeFixedHeader);
+	}
+	window.ysResizeFixedHeader = setTimeout(function () {
+		// 固定ヘッダー高さセット.
+		setFixedHeaderPadding();
+	}, 100);
 });

@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\helper\Style_Sheet;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -292,7 +294,7 @@ class Header {
 			);
 		}
 		if ( 0 < Option::get_option_by_int( 'ys_logo_width_pc', 0 ) ) {
-			$css .= Enqueue_Styles::add_media_query(
+			$css .= Style_Sheet::add_media_query(
 				sprintf(
 					'.site-title img{width:%spx;}',
 					Option::get_option_by_int( 'ys_logo_width_pc', 0 )
@@ -344,7 +346,7 @@ class Header {
 		}";
 
 		if ( 0 < $tablet ) {
-			$css .= Enqueue_Styles::add_media_query(
+			$css .= Style_Sheet::add_media_query(
 				"body.has-fixed-header {
 					padding-top:${tablet}px;
 				}",
@@ -352,7 +354,7 @@ class Header {
 			);
 		}
 		if ( 0 < $pc ) {
-			$css .= Enqueue_Styles::add_media_query(
+			$css .= Style_Sheet::add_media_query(
 				"body.has-fixed-header {
 					padding-top:${pc}px;
 				}",
@@ -654,7 +656,7 @@ class Header {
 			[
 				'id'          => 'ys_header_fixed_height_label',
 				'label'       => 'ヘッダー高さ',
-				'description' => 'ヘッダーの固定表示をする場合、ヘッダー高さの指定が必要になります。<br><br>プレビュー画面左上に表示された「ヘッダー高さ」の数字を参考に以下の設定に入力してください。',
+				'description' => 'ヘッダーの固定表示をする場合、ヘッダー高さを指定すると表示のガタつきを抑えられます。<br><br>プレビュー画面左上に表示された「ヘッダー高さ」の数字を参考に以下の設定に入力してください。',
 
 			]
 		);

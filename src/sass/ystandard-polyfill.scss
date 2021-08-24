@@ -1,4 +1,1 @@
-//変数、mixin、functionなど
-@import "foundation/import";
-
-@import "component/posts/posts-polyfill";
+@use "component/posts/posts-polyfill";

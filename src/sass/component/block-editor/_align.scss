@@ -1,68 +1,54 @@
-.aligncenter,
-.alignleft,
-.alignright {
-  display: block;
-}
+@use "../../global";
 
-.aligncenter {
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-}
+$editor: false !default;
 
-@include media-breakpoint(sm) {
-  .alignleft {
-	margin-right: 1em;
-	margin-bottom: 1em;
-	float: left;
-  }
+@mixin align() {
+
+  .aligncenter,
+  .alignleft,
   .alignright {
-	margin-bottom: 1em;
-	margin-left: 1em;
-	float: right;
-  }
-}
-
-
-body {
-  .alignwide,
-  .alignfull {
-	margin-right: -1rem;
-	margin-left: -1rem;
-	padding-right: 1rem;
-	padding-left: 1rem;
-	width: auto;
+	display: block;
   }
 
+  .aligncenter {
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+  }
 
-  @include media-breakpoint(lg) {
-	.alignwide {
-	  width: auto;
-	  margin-right: -5%;
-	  margin-left: -5%;
-	  padding-right: 5%;
-	  padding-left: 5%;
+  @include global.media-breakpoint(sm) {
+	.alignleft {
+	  margin-right: 1em;
+	  margin-bottom: 1em;
+	  float: left;
 	}
+	.alignright {
+	  margin-bottom: 1em;
+	  margin-left: 1em;
+	  float: right;
+	}
+  }
+
+
+  body {
+	.alignwide,
 	.alignfull {
+	  margin-right: -1rem;
+	  margin-left: -1rem;
+	  padding-right: 1rem;
+	  padding-left: 1rem;
 	  width: auto;
-	  margin-right: calc(-50vw + 50% + (var(--scrollbar-width) / 2));
-	  margin-left: calc(-50vw + 50% + (var(--scrollbar-width) / 2));
-	  padding-right: calc(-50% + 50vw - (var(--scrollbar-width) / 2));
-	  padding-left: calc(-50% + 50vw - (var(--scrollbar-width) / 2));
 	}
-  }
 
-  &.has-background {
-	@include media-breakpoint(sm) {
-	  .alignwide,
-	  .alignfull {
-		margin-right: -2rem;
-		margin-left: -2rem;
-		padding-right: 2rem;
-		padding-left: 2rem;
+
+	@include global.media-breakpoint(lg) {
+	  .alignwide {
+		width: auto;
+		margin-right: -5%;
+		margin-left: -5%;
+		padding-right: 5%;
+		padding-left: 5%;
 	  }
-	}
-	@include media-breakpoint(lg) {
 	  .alignfull {
 		width: auto;
 		margin-right: calc(-50vw + 50% + (var(--scrollbar-width) / 2));
@@ -71,25 +57,9 @@ body {
 		padding-left: calc(-50% + 50vw - (var(--scrollbar-width) / 2));
 	  }
 	}
-  }
-}
 
-.has-sidebar {
-  .site-content {
-	@include media-breakpoint(lg) {
-	  .alignwide,
-	  .alignfull {
-		margin-right: 0;
-		margin-left: 0;
-		padding-right: 0;
-		padding-left: 0;
-	  }
-	}
-  }
-
-  &.has-background {
-	.content__main {
-	  @include media-breakpoint(lg) {
+	&.has-background {
+	  @include global.media-breakpoint(sm) {
 		.alignwide,
 		.alignfull {
 		  margin-right: -2rem;
@@ -98,33 +68,74 @@ body {
 		  padding-left: 2rem;
 		}
 	  }
+	  @include global.media-breakpoint(lg) {
+		.alignfull {
+		  width: auto;
+		  margin-right: calc(-50vw + 50% + (var(--scrollbar-width) / 2));
+		  margin-left: calc(-50vw + 50% + (var(--scrollbar-width) / 2));
+		  padding-right: calc(-50% + 50vw - (var(--scrollbar-width) / 2));
+		  padding-left: calc(-50% + 50vw - (var(--scrollbar-width) / 2));
+		}
+	  }
 	}
+  }
 
-	.sidebar {
-	  @include media-breakpoint(sm) {
+  .has-sidebar {
+	.site-content {
+	  @include global.media-breakpoint(lg) {
 		.alignwide,
 		.alignfull {
-		  margin-right: -1.5rem;
-		  margin-left: -1.5rem;
-		  padding-right: 1.5rem;
-		  padding-left: 1.5rem;
+		  margin-right: 0;
+		  margin-left: 0;
+		  padding-right: 0;
+		  padding-left: 0;
+		}
+	  }
+	}
+
+	&.has-background {
+	  .content__main {
+		@include global.media-breakpoint(lg) {
+		  .alignwide,
+		  .alignfull {
+			margin-right: -2rem;
+			margin-left: -2rem;
+			padding-right: 2rem;
+			padding-left: 2rem;
+		  }
+		}
+	  }
+
+	  .sidebar {
+		@include global.media-breakpoint(sm) {
+		  .alignwide,
+		  .alignfull {
+			margin-right: -1.5rem;
+			margin-left: -1.5rem;
+			padding-right: 1.5rem;
+			padding-left: 1.5rem;
+		  }
+		}
+	  }
+	}
+  }
+
+  .footer-widget {
+	.footer-widget__column {
+	  @include global.media-breakpoint(sm) {
+		.alignwide,
+		.alignfull {
+		  width: auto;
+		  margin-right: 0;
+		  margin-left: 0;
+		  padding-right: 0;
+		  padding-left: 0;
 		}
 	  }
 	}
   }
 }
 
-.footer-widget {
-  .footer-widget__column {
-	@include media-breakpoint(sm) {
-	  .alignwide,
-	  .alignfull {
-		width: auto;
-		margin-right: 0;
-		margin-left: 0;
-		padding-right: 0;
-		padding-left: 0;
-	  }
-	}
-  }
+@if false == $editor {
+  @include align();
 }

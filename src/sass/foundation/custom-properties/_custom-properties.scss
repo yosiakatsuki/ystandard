@@ -1,61 +1,128 @@
+@use "../../global";
+
 :root {
+  /**
+   * スクロールバー
+   */
   --scrollbar-width: 0px;
-  --font-family: #{$font__body};
-  --font-color: #{$color__text-main};
-  --font-white: #{$color__text-white};
-  --font-gray: #{$color__text-light};
-  --site-border-gray: #{$color__border-gray};
-  --site-border-gray-light: #{$color__border-gray-light};
-  --site-bg: #{$color__bg-body};
-  --site-bg-gray: #{$color__bg-gray-dark};
-  --site-bg-light-gray: #{$color__bg-gray-light};
-  --site-cover: #ffffff;
+  /**
+   * Typography
+   */
+  --font-family: #{global.$font__body};
+  --font-color: #{global.$color__text-main};
+  --font-white: #{global.$color__text-white};
+  --font-gray: #{global.$color__text-light};
+  /**
+   * Background
+   */
+  --site-bg: #{global.$color__bg-body};
+  --site-bg-gray: #{global.$color__bg-gray-dark};
+  --site-bg-light-gray: #{global.$color__bg-gray-light};
+  /**
+   * Border
+   */
+  --site-border-gray: #{global.$color__border-gray};
+  --site-border-gray-light: #{global.$color__border-gray-light};
+  /**
+   * Link
+   */
+  --link-text: #{global.$color__link};
+  --link-text-hover: #{global.$color__link-hover};
+  /**
+   * Header
+   */
   --header-bg: #ffffff;
   --header-text: var(--font-color);
   --header-dscr: var(--font-gray);
   --header-shadow: none;
-  --breadcrumbs-text: var(--font-gray);
-  --info-bar-bg: #{$color__bg-gray-light};
-  --info-bar-text: #{$color__text-main};
+  /**
+   * Global Navigation
+   */
+  --global-nav-search-cover: #ffffff;
   --global-nav-margin: 1.5em;
   --mobile-nav-bg: #000000;
   --mobile-nav-text: var(--font-white);
   --mobile-nav-open: var(--font-color);
   --mobile-nav-close: var(--font-white);
-  --content-bg: #{$color__bg-content};
+  /**
+   * Breadcrumbs
+   */
+  --breadcrumbs-text: var(--font-gray);
+  /**
+   * Info bar
+   */
+  --info-bar-bg: #{global.$color__bg-gray-light};
+  --info-bar-text: #{global.$color__text-main};
+  /**
+   * Content
+   */
+  --content-bg: #{global.$color__bg-content};
   --content-meta: var(--font-gray);
+  /**
+   * Paging / Pagination
+   */
   --post-paging-text: var(--font-color);
   --pagination-text: var(--font-color);
+  /**
+   * Advertisement
+   */
   --advertisement-title: var(--font-gray);
+  /**
+   * TOC
+   */
   --toc-text: var(--font-color);
-  --toc-bg: #{rgba($color__border-gray-light, .2)};
+  --toc-bg: #{rgba(global.$color__border-gray-light, .2)};
   --toc-border: var(--site-border-gray);
   --toc-list-border: var(--site-border-gray);
+  /**
+   * Tag Cloud
+   */
   --tagcloud-bg: var(--site-bg-light-gray);
   --tagcloud-text: var(--font-color);
+  --tagcloud-icon: "#";
+  /**
+   * Sidebar
+   */
   --fixed-sidebar-top: 2em;
-  --footer-bg: #{$color__bg-gray-dark};
+  /**
+   * Footer
+   */
+  --footer-bg: #{global.$color__bg-gray-dark};
   --footer-text: var(--font-white);
   --footer-text-gray: #a7a7a7;
-  --sub-footer-bg: #{$color__bg-gray-light};
+  /**
+   * Sub Footer
+   */
+  --sub-footer-bg: #{global.$color__bg-gray-light};
   --sub-footer-text: var(--font-color);
   --sub-footer-padding: 1em;
+  /**
+   * Mobile Footer
+   */
   --mobile-footer-text: var(--font-color);
   --mobile-footer-bg: #{rgba(#ffffff, 0.95)};
-  --link-text: #{$color__link};
-  --link-text-hover: #{$color__link-hover};
+  /**
+   * Form
+   */
   --form-text: var(--font-color);
-  --form-bg-white: #{rgba($color__text-white, 0.9)};
-  --form-border-gray: #{rgba($color__border-gray, 0.9)};
-  --button-text: #{$color__btn-text};
-  --button-bg: #{$color__btn-bg};
+  --form-bg-white: #{rgba(global.$color__text-white, 0.9)};
+  --form-border-gray: #{rgba(global.$color__border-gray, 0.9)};
+  /**
+   * Button
+   */
+  --button-text: #{global.$color__btn-text};
+  --button-bg: #{global.$color__btn-bg};
+  /**
+   * Z Index
+   */
   --z-index-global-nav: 11;
   --z-index-global-nav-button: 10;
   --z-index-global-nav-sub-menu: 12;
   --z-index-mobile-footer: 8;
-
-
-  @each $key, $color in $color__sns {
+  /**
+   * SNS
+   */
+  @each $key, $color in global.$color__sns {
 	--sns-color-#{$key}: #{$color};
   }
 }

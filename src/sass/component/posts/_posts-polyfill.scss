@@ -1,17 +1,28 @@
-.ys-posts__list {
-  @for $i from 1 through 4 {
-	&.col-sp--#{$i} {
-	  @include posts_column($i, $card_margin, true);
-	}
-	&.col-tablet--#{$i} {
-	  @include media-breakpoint(sm) {
-		@include posts_column($i, $card_margin, true);
+@use "../../global";
+
+$editor: false !default;
+
+@mixin ys-posts-polyfill() {
+
+  .ys-posts__list {
+	@for $i from 1 through 4 {
+	  &.col-sp--#{$i} {
+		@include global.posts_column($i, global.$card_margin, true);
 	  }
-	}
-	&.col-pc--#{$i} {
-	  @include media-breakpoint(lg) {
-		@include posts_column($i, $card_margin, true);
+	  &.col-tablet--#{$i} {
+		@include global.media-breakpoint(sm) {
+		  @include global.posts_column($i, global.$card_margin, true);
+		}
+	  }
+	  &.col-pc--#{$i} {
+		@include global.media-breakpoint(lg) {
+		  @include global.posts_column($i, global.$card_margin, true);
+		}
 	  }
 	}
   }
+}
+
+@if false == $editor {
+  @include ys-posts-polyfill();
 }

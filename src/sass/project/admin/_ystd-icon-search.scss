@@ -1,3 +1,5 @@
+@use "../../global";
+
 .ys-icon-search__list {
   display: flex;
   flex-wrap: wrap;
@@ -11,10 +13,10 @@
   text-align: center;
   box-sizing: border-box;
 
-  @include media-breakpoint(sm) {
+  @include global.media-breakpoint(sm) {
 	width: 25%;
   }
-  @include media-breakpoint(lg) {
+  @include global.media-breakpoint(lg) {
 	width: 20%;
   }
 }

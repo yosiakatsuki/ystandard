@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\helper\Style_Sheet;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -22,6 +24,7 @@ class Customizer {
 	const PANEL_PRIORITY = [
 		'ys_info_bar'           => 1000,
 		'ys_design'             => 1010,
+		'ys_block_editor'       => 1020,
 		'ys_sns'                => 1100,
 		'ys_seo'                => 1110,
 		'ys_wp_sitemap'         => 1120,
@@ -98,7 +101,7 @@ class Customizer {
 		}';
 		// サイドバー表示用.
 		if ( Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
-			$css .= Enqueue_Styles::add_media_query(
+			$css .= Style_Sheet::add_media_query(
 				'.is-customize-preview .sidebar {display:none;}',
 				'',
 				'sm'
@@ -118,7 +121,7 @@ class Customizer {
 			'ys-customize-controls-js',
 			get_template_directory_uri() . '/js/admin/customizer-control.js',
 			[ 'customize-controls', 'jquery' ],
-			Utility::get_ystandard_version(),
+			filemtime( get_template_directory() . '/js/admin/customizer-control.js' ),
 			true
 		);
 	}
@@ -148,13 +151,17 @@ class Customizer {
 	 */
 	public function customize_register( $wp_customize ) {
 
-		$customizer = new Customize_Control( $wp_customize );
 		/**
 		 * WP標準の設定を削除
 		 */
 		$wp_customize->remove_setting( 'background_color' );
 		$wp_customize->remove_section( 'colors' );
 		$wp_customize->remove_control( 'display_header_text' );
+
+		/**
+		 * カスタムコントロールの追加
+		 */
+		$wp_customize->register_control_type( __NAMESPACE__ . '\Color_Control' );
 
 		/**
 		 * 拡張機能

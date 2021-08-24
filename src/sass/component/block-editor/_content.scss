@@ -1,27 +1,37 @@
+@use "../../global";
 
-.entry-content {
-  $selector: "";
+$editor: false !default;
 
-  @include child_margin();
+@mixin content() {
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-	margin: 3em 0 0.25em;
+  .entry-content {
+	$selector: "";
+
+	@include global.child_margin();
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+	  margin: 3em 0 0.25em;
+	}
+
+	@for $i from 1 through 5 {
+	  $selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
+	}
+
+	#{$selector} {
+	  margin-top: 1em;
+	}
+
+	p:empty {
+	  display: none;
+	}
   }
+}
 
-  @for $i from 1 through 5 {
-	$selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
-  }
-
-  #{$selector} {
-	margin-top: 1em;
-  }
-
-  p:empty {
-	display: none;
-  }
+@if false == $editor {
+  @include content();
 }

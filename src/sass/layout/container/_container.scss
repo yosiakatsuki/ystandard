@@ -1,8 +1,10 @@
+@use "../../global";
+
 .container {
   position: relative;
-  max-width: $width__container;
+  max-width: global.$width__container;
   margin-right: auto;
   margin-left: auto;
-  padding-right: $gutter;
-  padding-left: $gutter;
+  padding-right: global.$gutter;
+  padding-left: global.$gutter;
 }

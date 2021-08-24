@@ -12,7 +12,7 @@ namespace ystandard;
 defined( 'ABSPATH' ) || die();
 
 /**
- * ユーティリティークラス
+ * ユーティリティー
  */
 class Utility {
 
@@ -425,57 +425,6 @@ class Utility {
 	}
 
 	/**
-	 * カラーコードをrgbに変換
-	 *
-	 * @param string $color カラーコード.
-	 *
-	 * @return array
-	 */
-	public static function hex_2_rgb( $color ) {
-		return [
-			hexdec( substr( $color, 1, 2 ) ),
-			hexdec( substr( $color, 3, 2 ) ),
-			hexdec( substr( $color, 5, 2 ) ),
-		];
-	}
-
-	/**
-	 * 改行削除
-	 *
-	 * @param string $text Text.
-	 *
-	 * @return string
-	 */
-	public static function remove_nl( $text ) {
-		return str_replace(
-			[
-				"\r\n",
-				"\r",
-				"\n",
-			],
-			'',
-			$text
-		);
-	}
-
-	/**
-	 * タブ削除
-	 *
-	 * @param string $text Text.
-	 *
-	 * @return string
-	 */
-	public static function remove_tab( $text ) {
-		return str_replace(
-			[
-				"\t",
-			],
-			'',
-			$text
-		);
-	}
-
-	/**
 	 * サニタイズで許可するHTML属性を取得
 	 *
 	 * @param array  $tags    HTML Tags.
@@ -484,7 +433,7 @@ class Utility {
 	 * @return array
 	 */
 	public static function get_kses_allowed_html( $tags, $context = 'post' ) {
-		$allowed_html = wp_kses_allowed_html( 'post' );
+		$allowed_html = wp_kses_allowed_html( $context );
 		$result       = [];
 		foreach ( $tags as $tag ) {
 			$result[ $tag ] = isset( $allowed_html[ $tag ] ) ? $allowed_html[ $tag ] : [];

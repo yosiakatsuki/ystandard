@@ -1,8 +1,18 @@
-@each $key, $color in $color__sns {
-  .sns-bg--#{$key} {
-    background-color: var(--sns-color-#{$key});
+@use "../../global";
+
+$editor: false !default;
+
+@mixin sns-color() {
+  @each $key, $color in global.$color__sns {
+	.sns-bg--#{$key} {
+	  background-color: var(--sns-color-#{$key});
+	}
+	.sns-text--#{$key} {
+	  color: var(--sns-color-#{$key});
+	}
   }
-  .sns-text--#{$key} {
-    color: var(--sns-color-#{$key});
-  }
+}
+
+@if false == $editor {
+  @include sns-color();
 }

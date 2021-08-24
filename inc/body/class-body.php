@@ -106,6 +106,13 @@ class Body {
 		 */
 		if ( Site_Background::is_custom_bg_color() ) {
 			$classes[] = 'has-bg-color';
+		} else {
+			/**
+			 * コンテンツだけ背景色あり
+			 */
+			if ( Site_Background::is_custom_contet_bg_color() ) {
+				$classes[] = 'has-content-bg-color';
+			}
 		}
 		/**
 		 * なんか背景あり
