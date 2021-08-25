@@ -136,15 +136,16 @@ const setScrollBarWidth = () => {
 };
 
 const setFixedHeaderPadding = () => {
-	const body = document.getElementsByTagName('body')[0];
+	const classes = document.body.classList;
 	if (
-		body.classList.contains('has-fixed-header') &&
-		!body.classList.contains('disable-auto-padding')
+		classes.contains('has-fixed-header') &&
+		!classes.contains('disable-auto-padding') &&
+		!classes.contains('is-overlay')
 	) {
 		const header = document.getElementById('masthead');
 		if (header) {
 			const size = Math.floor(header.getBoundingClientRect().height);
-			body.style.paddingTop = `${size}px`;
+			document.body.style.paddingTop = `${size}px`;
 		}
 	}
 };
