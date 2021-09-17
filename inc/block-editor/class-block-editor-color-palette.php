@@ -54,6 +54,8 @@ class Block_Editor_Color_Palette {
 	 * @return string
 	 */
 	public function enqueue_color_palette_css( $css ) {
+		add_filter( 'ys_is_enqueue_color_pallet', '__return_true' );
+
 		return $css . self::get_color_palette_css( '.ystd' );
 	}
 
@@ -65,6 +67,8 @@ class Block_Editor_Color_Palette {
 	 * @return string
 	 */
 	public function enqueue_block_editor_color_palette_css( $css ) {
+		add_filter( 'ys_is_enqueue_block_editor_color_pallet', '__return_true' );
+
 		return $css . self::get_color_palette_css( '.editor-styles-wrapper' );
 	}
 
