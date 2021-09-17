@@ -5,6 +5,33 @@ $editor: false !default;
 @mixin separator() {
   .wp-block-separator {
 	clear: both;
+	width: 100px;
+	padding: 0;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	opacity: 0.8;
+
+	&.has-background:not(.is-style-dots) {
+	  height: 0;
+	  border-bottom: 1px solid;
+	}
+
+	&.is-style-dots {
+	  width: auto;
+	  border: 0;
+
+	  &::before {
+		font-size: 1.8em;
+		font-weight: bold;
+		line-height: 1;
+	  }
+	}
+
+	&.is-style-wide {
+	  width: auto;
+	  border-top-width: 1px;
+	  border-bottom-width: 1px;
+	}
   }
 }
 
