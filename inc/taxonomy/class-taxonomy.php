@@ -39,7 +39,7 @@ class Taxonomy {
 		add_filter( 'ys_ogp_description_archive', [ $this, 'ogp_description' ] );
 		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
 		add_filter( 'wp_tag_cloud', [ $this, '_tag_cloud' ] );
-		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
 	}
 

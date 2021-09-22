@@ -23,7 +23,7 @@ class Widget {
 	 */
 	public function register() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
-		add_action( 'set_singular_content', [ $this, 'set_widget' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_widget' ] );
 	}
 
 	/**

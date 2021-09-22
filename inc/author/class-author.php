@@ -50,7 +50,7 @@ class Author {
 		add_action( 'show_password_fields', [ $this, 'add_custom_option' ], 10, 2 );
 		add_action( 'profile_update', [ $this, 'profile_update' ], 10, 2 );
 		add_filter( 'pre_get_avatar', [ $this, '_get_avatar' ], 10, 3 );
-		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
 		add_action( 'widgets_init', [ $this, 'register_widget' ] );
 		if ( ! shortcode_exists( self::SHORT_CODE ) ) {
 			add_shortcode( self::SHORT_CODE, [ $this, 'do_shortcode' ] );

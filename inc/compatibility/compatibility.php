@@ -50,3 +50,18 @@ if ( ! function_exists( 'apply_shortcodes' ) ) {
 		return do_shortcode( $content, $ignore_html );
 	}
 }
+
+/**
+ * コンテンツ追加用フックの下位互換.
+ */
+add_action(
+	'wp',
+	function () {
+		do_action_deprecated(
+			'set_singular_content',
+			[],
+			'v4.30.0',
+			'ys_set_singular_content'
+		);
+	}
+);
