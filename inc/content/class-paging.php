@@ -22,7 +22,7 @@ class Paging {
 	 * フックやショートコードの登録
 	 */
 	public function register() {
-		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
 	}
 
 	/**
