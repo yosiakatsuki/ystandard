@@ -18,7 +18,7 @@
 	"phpcompatibility/phpcompatibility-wp": "*",
 	"squizlabs/php_codesniffer": "*",
 	"wp-coding-standards/wpcs": "*",
-	"phpunit/phpunit":"*"
+	"phpunit/phpunit":"7.*.*"
   },
   "scripts": {
 	"test": "phpunit",
