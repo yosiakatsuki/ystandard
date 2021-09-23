@@ -30,41 +30,47 @@ class Enqueue_Polyfill {
 	 * Polyfill関連のenqueue
 	 */
 	public function enqueue_polyfill_scripts() {
-		if ( ! self::need_polyfill() ) {
-			return;
+		$polyfill = false;
+		if ( self::is_ie() || self::is_edge() ) {
+			wp_enqueue_script(
+				'ys-ie-polyfill',
+				get_template_directory_uri() . '/js/polyfill.js',
+				[],
+				Utility::get_ystandard_version()
+			);
+			$polyfill = true;
 		}
-		wp_enqueue_script(
-			'ys-polyfill',
-			get_template_directory_uri() . '/js/polyfill.js',
-			[],
-			Utility::get_ystandard_version()
-		);
-		do_action( 'ys_enqueue_polyfill_scripts' );
+		if ( self::is_safari() || self::is_ie() || self::is_edge() ) {
+			wp_enqueue_script(
+				'ys-smooth-scroll-polyfill',
+				get_template_directory_uri() . '/library/smoothscroll/smoothscroll.js',
+				[],
+				Utility::get_ystandard_version()
+			);
+			$polyfill = true;
+		}
+		if ( $polyfill ) {
+			do_action( 'ys_enqueue_polyfill_scripts' );
+		}
 	}
 
 	/**
 	 * Polyfill関連のenqueue
 	 */
 	public function enqueue_polyfill_styles() {
-		if ( ! self::need_polyfill() ) {
-			return;
+		$polyfill = false;
+		if ( self::is_ie() || self::is_edge() ) {
+			wp_enqueue_style(
+				'ys-polyfill-styles',
+				get_template_directory_uri() . '/css/ystandard-polyfill.css',
+				[],
+				Utility::get_ystandard_version()
+			);
+			$polyfill = true;
 		}
-		wp_enqueue_style(
-			'ys-polyfill-styles',
-			get_template_directory_uri() . '/css/ystandard-polyfill.css',
-			[],
-			Utility::get_ystandard_version()
-		);
-		do_action( 'ys_enqueue_polyfill_styles' );
-	}
-
-	/**
-	 * Polyfillが必要か
-	 *
-	 * @return bool
-	 */
-	public static function need_polyfill() {
-		return ( self::is_ie() || self::is_edge() );
+		if ( $polyfill ) {
+			do_action( 'ys_enqueue_polyfill_styles' );
+		}
 	}
 
 	/**
@@ -92,6 +98,25 @@ class Enqueue_Polyfill {
 		];
 
 		return Utility::check_user_agent( $ua );
+	}
+
+	/**
+	 * Safari チェック
+	 *
+	 * @return bool
+	 */
+	public static function is_safari() {
+		if ( self::is_ie() || self::is_edge() ) {
+			return false;
+		}
+		if ( Utility::check_user_agent( [ 'chrome' ] ) ) {
+			return false;
+		}
+		if ( Utility::check_user_agent( [ 'firefox' ] ) ) {
+			return false;
+		}
+
+		return Utility::check_user_agent( [ 'safari' ] );
 	}
 
 }
