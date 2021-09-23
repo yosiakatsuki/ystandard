@@ -14,10 +14,11 @@ jobs:
         with:
           node-version: '12.14'
 
+      - name: npm install
+        run: npm install
+
       - name: Build Files
-        run: |
-          npm install
-          npm run build:deploy-files
+        run: npm run production
 
       - name: Create release
         id: create_release
