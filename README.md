@@ -25,6 +25,9 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 ### v4.x.x
 
+### v4.29.1
+- [追加] Safariでのページ内リンクのスムーススクロール対応
+
 ### v4.29.0
 - [追加] yStandard Blocks v3.0.0向け調整
 - [調整] 区切り線ブロックの調整
@@ -515,3 +518,8 @@ Source : <https://github.com/jhildenbiddle/css-vars-ponyfill>
 
 License: MIT License  
 Source : <https://github.com/fregante/object-fit-images>
+
+### Smooth Scroll behavior polyfill
+
+License: MIT License  
+Source : <https://github.com/iamdustan/smoothscroll>
