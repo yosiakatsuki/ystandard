@@ -314,7 +314,7 @@ class Header {
 			return '';
 		}
 
-		return '.site-header {z-index:1}';
+		return '.site-header {z-index:var(--z-index-header)}';
 	}
 
 	/**
@@ -339,7 +339,7 @@ class Header {
 			top:0;
 			left:0;
 			width:100%;
-			z-index:10;
+			z-index:var(--z-index-header);
 		}
 		body.has-fixed-header {
 			padding-top:${mobile}px;
