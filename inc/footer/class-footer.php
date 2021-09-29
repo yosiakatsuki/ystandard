@@ -134,8 +134,8 @@ class Footer {
 		$css .= "
 		#back-to-top {
 			position: fixed;
-			bottom: 5vh;
-			right: 5vh;
+			bottom: 24px;
+			right: 24px;
 			padding: 0;
 			margin: 0;
 			background: none;
@@ -144,7 +144,7 @@ class Footer {
 			-webkit-appearance: none;
 			 -moz-appearance: none;
 			      appearance: none;
-			z-index: 10;
+			z-index: var(--z-index-back-to-top);
 			cursor: pointer;
 		}
 		#back-to-top:hover{
@@ -179,6 +179,10 @@ class Footer {
 			margin:0;
 		}
 		";
+		$css .= Style_Sheet::add_media_query(
+			'#back-to-top {bottom:5vh;right:5vh;}',
+			'md'
+		);
 		if ( has_nav_menu( 'mobile-footer' ) ) {
 			$css .= Style_Sheet::add_media_query( '#back-to-top {display:none;}', '', 'md' );
 		}
