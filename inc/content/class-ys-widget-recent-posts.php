@@ -153,9 +153,10 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 				<label for="<?php echo $this->get_field_id( 'list_type' ); ?>">表示タイプ:</label>
 				<select name="<?php echo $this->get_field_name( 'list_type' ); ?>">
 					<?php
-					foreach ( \ystandard\Recent_Posts::LIST_TYPE as $key => $value ) :
+					$list_type = \ystandard\Recent_Posts::get_list_type_config();
+					foreach ( $list_type as $key => $value ) :
 						?>
-						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['list_type'] ); ?>><?php echo $value; ?></option>
+						<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $key, $instance['list_type'] ); ?>><?php echo $value['label']; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</p>
