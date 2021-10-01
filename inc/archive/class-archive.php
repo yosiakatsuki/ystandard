@@ -385,19 +385,23 @@ class Archive {
 		/**
 		 * 一覧タイプ
 		 */
-		$list = Customizer::get_assets_dir_uri( '/design/archive/list.png' );
-		$card = Customizer::get_assets_dir_uri( '/design/archive/card.png' );
-		$img  = '<img src="%s" alt="" width="100" height="100" />';
+		$list          = Customizer::get_assets_dir_uri( '/design/archive/list.png' );
+		$card          = Customizer::get_assets_dir_uri( '/design/archive/card.png' );
+		$img           = '<img src="%s" alt="%s" width="100" height="100" />';
+		$archive_types = apply_filters(
+			'ys_customizer_archive_type_choices',
+			[
+				'card' => sprintf( $img, $card, 'card' ),
+				'list' => sprintf( $img, $list, 'list' ),
+			]
+		);
 		$customizer->add_image_label_radio(
 			[
 				'id'          => 'ys_archive_type',
 				'default'     => 'card',
 				'label'       => '一覧レイアウト',
 				'description' => '記事一覧の表示タイプ',
-				'choices'     => [
-					'card' => sprintf( $img, $card ),
-					'list' => sprintf( $img, $list ),
-				],
+				'choices'     => $archive_types,
 			]
 		);
 		$customizer->add_section_label( '表示・非表示設定' );
