@@ -60,11 +60,22 @@ class Recent_Posts {
 	];
 
 	/**
+	 * デフォルトテンプレート.
+	 */
+	const DEFAULT_TEMPLATE = 'template-parts/parts/recent-posts';
+
+	/**
 	 * 表示タイプ
 	 */
 	const LIST_TYPE = [
-		'list' => 'リスト',
-		'card' => 'カード',
+		'list' => [
+			'label'    => 'リスト',
+			'template' => self::DEFAULT_TEMPLATE,
+		],
+		'card' => [
+			'label'    => 'カード',
+			'template' => self::DEFAULT_TEMPLATE,
+		],
 	];
 
 	/**
@@ -137,6 +148,18 @@ class Recent_Posts {
 	}
 
 	/**
+	 * リストタイプの取得
+	 *
+	 * @return array
+	 */
+	public static function get_list_type_config() {
+		return apply_filters(
+			'ys_get_recent_posts_list_type',
+			self::LIST_TYPE
+		);
+	}
+
+	/**
 	 * ショートコード実行
 	 *
 	 * @param array $atts    Attributes.
@@ -177,13 +200,22 @@ class Recent_Posts {
 
 			return '';
 		}
+		$list_types = self::get_list_type_config();
+		$params     = $this->get_template_param();
+		$type       = $params['list_type'];
+
+		$template = self::DEFAULT_TEMPLATE;
+
+		if ( isset( $list_types[ $type ] ) && isset( $list_types[ $type ]['template'] ) ) {
+			$template = $list_types[ $type ]['template'];
+		}
 
 		ob_start();
 		Template::get_template_part(
-			'template-parts/parts/recent-posts',
+			$template,
 			$this->shortcode_atts['post_type'],
 			[
-				'recent_posts' => $this->get_template_param(),
+				'recent_posts' => $params,
 				'posts_query'  => $query,
 			]
 		);
@@ -563,12 +595,11 @@ class Recent_Posts {
 	 * @return string
 	 */
 	private function get_list_type() {
-		$type = $this->shortcode_atts['list_type'];
-		if ( ! empty( $this->shortcode_atts['list_type_mobile'] ) ) {
-			$type = $this->is_mobile() ? $this->shortcode_atts['list_type_mobile'] : $type;
+		$type        = $this->shortcode_atts['list_type'];
+		$mobile_type = $this->shortcode_atts['list_type_mobile'];
+		if ( ! empty( $mobile_type ) && $this->is_mobile() ) {
+			return $mobile_type;
 		}
-
-		$type = 'list' === $type ? 'list' : 'card';
 
 		return $type;
 	}

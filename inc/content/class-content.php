@@ -65,7 +65,7 @@ class Content {
 		add_action( 'customize_register', [ $this, 'customize_register_post' ] );
 		add_action( 'customize_register', [ $this, 'customize_register_page' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
-		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
 	}
 
 	/**
@@ -99,7 +99,7 @@ class Content {
 	 */
 	public function set_singular_action_hook() {
 		// 記事上・記事下のアクションセット.
-		do_action( 'set_singular_content' );
+		do_action( 'ys_set_singular_content' );
 	}
 
 	/**

@@ -30,10 +30,12 @@
 
 .customizer__image-label-radio-list {
   display: flex;
+  flex-wrap: wrap;
   margin-right: -5px;
   margin-left: -5px;
 
   .customize-inside-control-row {
 	padding: 0 5px;
+	margin-bottom: 10px;
   }
 }
