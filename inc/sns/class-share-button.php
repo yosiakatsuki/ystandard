@@ -85,7 +85,7 @@ class Share_Button {
 	 */
 	public function register() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
 		if ( ! shortcode_exists( self::SHORT_CODE ) ) {
 			add_shortcode( self::SHORT_CODE, [ $this, 'do_shortcode' ] );
 		}
