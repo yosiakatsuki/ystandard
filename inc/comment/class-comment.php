@@ -25,7 +25,7 @@ class Comment {
 		add_filter( 'comments_open', [ $this, 'comment_tags' ] );
 		add_filter( 'pre_comment_approved', [ $this, 'comment_tags' ] );
 		add_filter( 'comment_form_fields', [ $this, 'comment_form_fields' ] );
-		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
 	}
 
 	/**

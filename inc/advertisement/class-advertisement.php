@@ -31,7 +31,7 @@ class Advertisement {
 		add_action( 'ys_archive_after_content', [ $this, 'archive_infeed' ] );
 		add_action( 'ys_singular_before_title', [ $this, 'before_title' ] );
 		add_action( 'ys_singular_after_title', [ $this, 'after_title' ] );
-		add_action( 'set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
 		add_filter( 'ys_before_first_heading_content', [ $this, 'heading_ad' ] );
 
 		/**
