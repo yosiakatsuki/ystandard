@@ -39,9 +39,10 @@ class Block_Editor_Assets {
 			'ys-block-editor-assets',
 			get_template_directory_uri() . '/css/block-editor-assets.css'
 		);
+		$custom_property = Enqueue_Styles::get_css_vars_selector();
 		wp_add_inline_style(
 			'ys-block-editor-assets',
-			apply_filters( self::BLOCK_EDITOR_ASSETS_HOOK, '' )
+			apply_filters( self::BLOCK_EDITOR_ASSETS_HOOK, $custom_property )
 		);
 	}
 
