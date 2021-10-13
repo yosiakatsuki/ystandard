@@ -95,15 +95,13 @@ class Share_Button {
 	 * ヘッダー・フッター コンテンツのセット
 	 */
 	public function set_singular_content() {
-		add_action(
-			'ys_singular_header',
-			[ __CLASS__, 'header_share_button' ],
-			Content::get_header_priority( 'sns-share' )
+		Content::set_singular_header(
+			'sns-share',
+			[ __CLASS__, 'header_share_button' ]
 		);
-		add_action(
-			'ys_singular_footer',
-			[ __CLASS__, 'footer_share_button' ],
-			Content::get_footer_priority( 'sns-share' )
+		Content::set_singular_footer(
+			'sns-share',
+			[ __CLASS__, 'footer_share_button' ]
 		);
 	}
 

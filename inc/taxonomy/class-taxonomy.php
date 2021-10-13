@@ -47,10 +47,9 @@ class Taxonomy {
 	 * タクソノミー表示セット
 	 */
 	public function set_singular_content() {
-		add_action(
-			'ys_singular_footer',
-			[ __CLASS__, 'post_taxonomy' ],
-			Content::get_footer_priority( 'taxonomy' )
+		Content::set_singular_footer(
+			'taxonomy',
+			[ __CLASS__, 'post_taxonomy' ]
 		);
 	}
 
