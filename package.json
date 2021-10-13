@@ -40,6 +40,7 @@
   },
   "scripts": {
 	"watch": "gulp",
+	"lint:php": "composer phpcs",
 	"lint-js": "eslint ./src/js/*.js",
 	"lint-js:fix": "eslint --fix ./src/js/*.js",
 	"build:js": "gulp js && gulp webpack",

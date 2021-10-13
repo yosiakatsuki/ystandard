@@ -72,25 +72,21 @@ class Content {
 	 * 記事上下表示のセット
 	 */
 	public function set_singular_content() {
-		add_action(
-			'ys_singular_header',
-			[ __CLASS__, 'post_thumbnail_default' ],
-			self::get_header_priority( 'post-thumbnail' )
+		self::set_singular_header(
+			'post-thumbnail',
+			[ __CLASS__, 'post_thumbnail_default' ]
 		);
-		add_action(
-			'ys_singular_header',
-			[ __CLASS__, 'singular_title' ],
-			self::get_header_priority( 'title' )
+		self::set_singular_header(
+			'title',
+			[ __CLASS__, 'singular_title' ]
 		);
-		add_action(
-			'ys_singular_header',
-			[ __CLASS__, 'singular_meta' ],
-			self::get_header_priority( 'meta' )
+		self::set_singular_header(
+			'meta',
+			[ __CLASS__, 'singular_meta' ]
 		);
-		add_action(
-			'ys_singular_footer',
-			[ __CLASS__, 'related_posts' ],
-			self::get_footer_priority( 'related' )
+		self::set_singular_footer(
+			'related',
+			[ __CLASS__, 'related_posts' ]
 		);
 	}
 
@@ -100,6 +96,42 @@ class Content {
 	public function set_singular_action_hook() {
 		// 記事上・記事下のアクションセット.
 		do_action( 'ys_set_singular_content' );
+	}
+
+	/**
+	 * 記事ヘッダー設定
+	 *
+	 * @param string   $key             Key.
+	 * @param callable $function_to_add The name of the function you wish to be called.
+	 */
+	public static function set_singular_header( $key, $function_to_add ) {
+		$priority = self::get_header_priority( $key );
+		if ( 'none' === $priority ) {
+			return;
+		}
+		add_action(
+			'ys_singular_header',
+			$function_to_add,
+			$priority
+		);
+	}
+
+	/**
+	 * 記事フッター設定
+	 *
+	 * @param string   $key             Key.
+	 * @param callable $function_to_add The name of the function you wish to be called.
+	 */
+	public static function set_singular_footer( $key, $function_to_add ) {
+		$priority = self::get_footer_priority( $key );
+		if ( 'none' === $priority ) {
+			return;
+		}
+		add_action(
+			'ys_singular_footer',
+			$function_to_add,
+			$priority
+		);
 	}
 
 	/**
