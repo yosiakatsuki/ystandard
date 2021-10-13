@@ -53,15 +53,13 @@ class Widget {
 	 * フィルターのセット
 	 */
 	public function set_widget() {
-		add_action(
-			'ys_singular_header',
-			[ __CLASS__, 'singular_header_widget' ],
-			Content::get_header_priority( 'widget' )
+		Content::set_singular_header(
+			'widget',
+			[ __CLASS__, 'singular_header_widget' ]
 		);
-		add_action(
-			'ys_singular_footer',
-			[ __CLASS__, 'singular_footer_widget' ],
-			Content::get_footer_priority( 'widget' )
+		Content::set_singular_footer(
+			'widget',
+			[ __CLASS__, 'singular_footer_widget' ]
 		);
 	}
 

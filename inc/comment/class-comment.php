@@ -32,10 +32,9 @@ class Comment {
 	 * コメント表示セット
 	 */
 	public function set_singular_content() {
-		add_action(
-			'ys_singular_footer',
-			[ __CLASS__, 'post_comment' ],
-			Content::get_footer_priority( 'comment' )
+		Content::set_singular_footer(
+			'comment',
+			[ __CLASS__, 'post_comment' ]
 		);
 	}
 

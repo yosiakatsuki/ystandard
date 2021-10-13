@@ -55,15 +55,13 @@ class Advertisement {
 	 * ヘッダー・フッター コンテンツのセット
 	 */
 	public function set_singular_content() {
-		add_action(
-			'ys_singular_header',
-			[ __CLASS__, 'header_ad' ],
-			Content::get_header_priority( 'ad' )
+		Content::set_singular_header(
+			'ad',
+			[ __CLASS__, 'header_ad' ]
 		);
-		add_action(
-			'ys_singular_footer',
-			[ __CLASS__, 'footer_ad' ],
-			Content::get_footer_priority( 'ad' )
+		Content::set_singular_footer(
+			'ad',
+			[ __CLASS__, 'footer_ad' ]
 		);
 	}
 
