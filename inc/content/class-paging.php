@@ -29,10 +29,9 @@ class Paging {
 	 * ページングのセット
 	 */
 	public function set_singular_content() {
-		add_action(
-			'ys_singular_footer',
-			[ __CLASS__, 'post_paging' ],
-			Content::get_footer_priority( 'paging' )
+		Content::set_singular_footer(
+			'paging',
+			[ __CLASS__, 'post_paging' ]
 		);
 	}
 

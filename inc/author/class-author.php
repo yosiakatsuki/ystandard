@@ -61,10 +61,9 @@ class Author {
 	 * 著者情報表示セット
 	 */
 	public function set_singular_content() {
-		add_action(
-			'ys_singular_footer',
-			[ __CLASS__, 'post_author' ],
-			Content::get_footer_priority( 'author' )
+		Content::set_singular_footer(
+			'author',
+			[ __CLASS__, 'post_author' ]
 		);
 	}
 
