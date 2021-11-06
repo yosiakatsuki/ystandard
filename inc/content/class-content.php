@@ -458,8 +458,9 @@ class Content {
 			);
 			$tax_filter = ! empty( $tax_filter ) ? "tax:${tax_filter}," : '';
 
-			$related = new Recent_Posts();
-			$content = $related->do_shortcode(
+			$related        = new Recent_Posts();
+			$shortcode_atts = apply_filters(
+				'ys_related_posts_atts',
 				[
 					'post_type' => self::get_post_type(),
 					'count'     => 6,
@@ -468,8 +469,11 @@ class Content {
 					'orderby'   => 'rand',
 					'cache'     => 'related_posts',
 					'run_type'  => 'related_posts',
-				]
+				],
+				self::get_post_type(),
+				get_the_ID()
 			);
+			$content        = $related->do_shortcode( $shortcode_atts );
 		}
 		$content = apply_filters(
 			"ys_${post_type}_related_posts",

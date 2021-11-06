@@ -37,7 +37,7 @@ const setGlobalNavToggle = () => {
 			e.currentTarget.classList.toggle('is-open');
 			const mobileFooter =
 				document.getElementsByClassName('footer-mobile-nav');
-			if (mobileFooter) {
+			if (mobileFooter && mobileFooter.length) {
 				mobileFooter[0].classList.toggle('is-hide');
 			}
 		});
