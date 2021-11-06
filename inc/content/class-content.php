@@ -471,7 +471,7 @@ class Content {
 					'run_type'  => 'related_posts',
 				],
 				self::get_post_type(),
-				get_the_ID(),
+				get_the_ID()
 			);
 			$content        = $related->do_shortcode( $shortcode_atts );
 		}
