@@ -23,7 +23,7 @@ const iconList = [
 const data = {};
 
 iconList.map( ( value ) => {
-	const icon = simpleIcons.get( value );
+	const icon = simpleIcons.get( value.toLowerCase().split(' ').join('') );
 	data[ icon.slug ] = icon;
 	return '';
 } );
