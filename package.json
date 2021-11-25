@@ -50,7 +50,8 @@
 	"i18n:pot": "wp i18n make-pot . languages/ystandard.pot --domain=\"ystandard\" --exclude=\"library,tests,vendor,bin\" --skip-js",
 	"i18n:blocks": "po2json languages/ja.po languages/ystandard-ja-ys-block-editor-scripts.json -f jed",
 	"production": "gulp production",
-	"production:beta": "gulp productionBeta"
+	"production:beta": "gulp productionBeta",
+	"production:manual": "npm run build && gulp productionManual"
   },
   "browserslist": [
 	"extends @wordpress/browserslist-config"
