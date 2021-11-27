@@ -18,11 +18,16 @@ module.exports = {
 						options: {
 							presets: [
 								'@babel/env',
-							]
+							],
+							targets: {
+								ie: '11',
+								esmodules: true
+							}
 						}
 					}
 				]
 			}
 		]
-	}
+	},
+	target: [ 'web', 'es5' ],
 };
