@@ -11,7 +11,7 @@ const webpackStream = require( 'webpack-stream' );
 const webpack = require( 'webpack' );
 const rename = require( 'gulp-rename' );
 
-const webpackConfig = require( './webpack.config' );
+const webpackConfig = require( './webpack.polyfill.config' );
 
 
 /**
@@ -149,6 +149,15 @@ function copyJson() {
 		.pipe( dest( 'build' ) );
 }
 
+
+function deleteVendor( cb ) {
+	return del(
+		[
+			'./ystandard/vendor',
+		],
+		cb );
+}
+
 function copyJsonBeta() {
 	return src( 'ystandard-info-beta.json' )
 		.pipe( rename( 'ystandard-info.json' ) )
@@ -185,6 +194,13 @@ exports.productionBeta = series(
 	cleanFiles,
 	copyProductionFiles,
 	parallel( zip, copyJsonBeta ),
+	cleanTempFiles
+);
+exports.productionManual = series(
+	cleanFiles,
+	copyProductionFiles,
+	deleteVendor,
+	parallel( zip ),
 	cleanTempFiles
 );
 /**

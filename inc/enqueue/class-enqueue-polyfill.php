@@ -36,7 +36,7 @@ class Enqueue_Polyfill {
 				'ys-ie-polyfill',
 				get_template_directory_uri() . '/js/polyfill.js',
 				[],
-				Utility::get_ystandard_version()
+				filemtime( get_template_directory() . '/js/polyfill.js' )
 			);
 			$polyfill = true;
 		}
@@ -64,7 +64,7 @@ class Enqueue_Polyfill {
 				'ys-polyfill-styles',
 				get_template_directory_uri() . '/css/ystandard-polyfill.css',
 				[],
-				Utility::get_ystandard_version()
+				filemtime( get_template_directory() . '/css/ystandard-polyfill.css' )
 			);
 			$polyfill = true;
 		}
