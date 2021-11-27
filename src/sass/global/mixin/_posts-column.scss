@@ -5,7 +5,7 @@
 @mixin posts_column($i,$margin:content.$card_margin,$margin_ceil:false) {
   $minus: content.$card_margin * math.div( ($i - 1) , $i );
   @if $margin_ceil {
-	$minus: decimal-ceil($minus, 1);
+	$minus: decimal.decimal-ceil($minus, 1);
   }
   $width: calc(#{decimal.decimal-floor((math.div(1 , $i) * 100),2)}#{"%"} - #{$minus});
   @if 1 == $i {
