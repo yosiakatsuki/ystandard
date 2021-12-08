@@ -236,6 +236,10 @@
 
 	&.is-list {
 	  border: 1px solid var(--site-border-gray-light);
+
+	  .archive__text {
+		padding-top: 1em;
+	  }
 	}
   }
 
