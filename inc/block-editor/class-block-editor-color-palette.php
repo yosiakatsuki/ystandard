@@ -170,7 +170,7 @@ class Block_Editor_Color_Palette {
 			[
 				'color'            => [
 					'property'    => 'color',
-					'conditional' => [ 'text-color', 'has-inline-color' ],
+					'conditional' => [ 'text-color', 'inline-color' ],
 					'palette'     => 'color',
 					'state'       => [ 'hover' ],
 				],
