@@ -146,6 +146,9 @@ const setFixedHeaderPadding = () => {
 		if (header) {
 			const size = Math.floor(header.getBoundingClientRect().height);
 			document.body.style.paddingTop = `${size}px`;
+			document
+				.querySelector(':root')
+				.style.setProperty('--fixed-sidebar-top', `${size + 48}px`);
 		}
 	}
 };
