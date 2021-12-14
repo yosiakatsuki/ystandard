@@ -601,19 +601,6 @@ class Header {
 				],
 			]
 		);
-		$customizer->add_number(
-			[
-				'id'          => 'ys_header_nav_margin',
-				'default'     => 1.5,
-				'label'       => 'メニュー間の間隔',
-				'description' => '単位はemです。大きくすればメニュー間の余白が大きくなります。メニューが潰れたり折り返さない範囲で調整してください。',
-				'input_attrs' => [
-					'min'  => 0.1,
-					'max'  => 10.0,
-					'step' => 0.1,
-				],
-			]
-		);
 		// 検索フォーム.
 		$customizer->add_section_label( '検索フォーム' );
 		$customizer->add_label(
@@ -707,7 +694,7 @@ class Header {
 				'section'     => 'ys_mobile_design',
 				'title'       => 'モバイル（メニュー・サイドバー）',
 				'description' => 'モバイルページのメニュー設定・サイドバー表示設定' . Admin::manual_link( 'manual/mobile-page' ),
-				'priority'    => 51,
+				'priority'    => 70,
 				'panel'       => Design::PANEL_NAME,
 			]
 		);

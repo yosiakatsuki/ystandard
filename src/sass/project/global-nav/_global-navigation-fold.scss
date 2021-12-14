@@ -1,0 +1,155 @@
+@use "../../global";
+
+.global-nav {
+  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	display: block;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: var(--mobile-nav-container-padding) 2em 2em;
+	background-color: var(--mobile-nav-bg) !important;
+	visibility: hidden;
+	transition: all 0.3s;
+	opacity: 0;
+	overflow: auto;
+  }
+}
+
+.global-nav__container {
+  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	height: auto;
+	max-height: 100%;
+	max-width: var(--mobile-nav-container-width);
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0 .5em;
+	overflow: auto;
+  }
+
+  a {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  color: var(--mobile-nav-text);
+	}
+  }
+
+  .global-nav__dscr {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  display: none;
+	}
+  }
+
+  .ys-icon {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  display: inline-block;
+	}
+  }
+}
+
+.global-nav__search {
+  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	position: relative;
+	display: block;
+	margin: 0 0 1em;
+	background-color: var(--mobile-nav-bg);
+	border: 1px solid var(--mobile-nav-text);
+	visibility: visible;
+	opacity: 1;
+	z-index: 0;
+  }
+
+  .search-form {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  border: 0;
+	  width: auto;
+	  font-size: 1em;
+	}
+  }
+
+  &.is-active {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  opacity: 1;
+	}
+  }
+
+  .search-form {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  color: var(--mobile-nav-text);
+	}
+  }
+}
+
+.global-nav__search-button {
+  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	display: none;
+  }
+}
+
+.global-nav__search-close {
+  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	display: none;
+  }
+}
+
+.global-nav__menu {
+  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	display: block;
+	height: auto;
+  }
+
+  .sub-menu {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  position: relative;
+	  top: 0;
+	  margin-left: 1em;
+	  white-space: normal;
+	  visibility: visible;
+	  z-index: 0;
+	  opacity: 1;
+	}
+
+	a {
+	  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  }
+	}
+  }
+
+  > .menu-item {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  margin-top: 0.5em;
+	  margin-left: 0;
+	  text-align: left;
+	  > a {
+		display: block;
+		height: auto;
+		padding: 0.5em 0;
+
+		&::after {
+		  display: none;
+		}
+	  }
+
+	  &:last-child {
+		.sub-menu {
+		  left: 0;
+		  right: unset;
+		}
+	  }
+	}
+  }
+}
+
+.global-nav__toggle {
+  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	display: block;
+  }
+}
+
+.is-amp {
+  .global-nav {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  display: none;
+	}
+  }
+}
