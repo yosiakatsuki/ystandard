@@ -83,7 +83,7 @@ function ys_is_active_header_search_form() {
  * @param string $type 開閉タイプ.
  */
 function ys_global_nav_toggle_button( $type = 'toggle' ) {
-	echo \ystandard\Header::get_toggle_button( $type );
+	echo \ystandard\Drawer_Menu::get_toggle_button( $type );
 }
 
 /** *****************************************************************

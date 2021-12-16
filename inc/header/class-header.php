@@ -26,7 +26,6 @@ class Header {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'register_title_tagline' ] );
 		add_action( 'customize_register', [ $this, 'register_header_design' ] );
-		add_action( 'customize_register', [ $this, 'register_mobile_design' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_inline_css' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script_amp' ] );
@@ -59,32 +58,6 @@ class Header {
 		}
 
 		ys_get_template_part( 'template-parts/header/amp-nav' );
-	}
-
-	/**
-	 * メニュー開閉ボタン取得
-	 *
-	 * @param string $type 開閉タイプ.
-	 *
-	 * @return string
-	 */
-	public static function get_toggle_button( $type = 'toggle' ) {
-		$icon = Icon::get_icon( 'menu' );
-		$attr = [
-			'id="global-nav__toggle"',
-			'class="global-nav__toggle"',
-			'data-label-open="menu"',
-			'data-label-close="close"',
-		];
-		if ( AMP::is_amp() ) {
-			$attr[] = 'on="tap:mobile-menu.' . $type . '"';
-		}
-
-		return sprintf(
-			'<button %s>%s</button>',
-			trim( implode( ' ', $attr ) ),
-			$icon
-		);
 	}
 
 	/**
@@ -185,46 +158,27 @@ class Header {
 	 * @return array
 	 */
 	public function add_css_var( $css_vars ) {
-		$site_cover        = Enqueue_Utility::get_css_var(
+		$site_cover    = Enqueue_Utility::get_css_var(
 			'site-cover',
 			Option::get_option( 'ys_color_header_bg', '#ffffff' )
 		);
-		$header_bg         = Enqueue_Utility::get_css_var(
+		$header_bg     = Enqueue_Utility::get_css_var(
 			'header-bg',
 			Option::get_option( 'ys_color_header_bg', '#ffffff' )
 		);
-		$header_color      = Enqueue_Utility::get_css_var(
+		$header_color  = Enqueue_Utility::get_css_var(
 			'header-text',
 			Option::get_option( 'ys_color_header_font', '#222222' )
 		);
-		$header_dscr       = Enqueue_Utility::get_css_var(
+		$header_dscr   = Enqueue_Utility::get_css_var(
 			'header-dscr',
 			Option::get_option( 'ys_color_header_dscr_font', '#656565' )
 		);
-		$header_shadow     = Enqueue_Utility::get_css_var(
+		$header_shadow = Enqueue_Utility::get_css_var(
 			'header-shadow',
 			$this->get_header_shadow()
 		);
-		$global_nav_margin = Enqueue_Utility::get_css_var(
-			'global-nav-margin',
-			Option::get_option( 'ys_header_nav_margin', 1.5 ) . 'em'
-		);
-		$mobile_nav_bg     = Enqueue_Utility::get_css_var(
-			'mobile-nav-bg',
-			Option::get_option( 'ys_color_nav_bg_sp', '#000000' )
-		);
-		$mobile_nav_color  = Enqueue_Utility::get_css_var(
-			'mobile-nav-text',
-			Option::get_option( 'ys_color_nav_font_sp', '#ffffff' )
-		);
-		$mobile_nav_open   = Enqueue_Utility::get_css_var(
-			'mobile-nav-open',
-			Option::get_option( 'ys_color_nav_btn_sp_open', '#222222' )
-		);
-		$mobile_nav_close  = Enqueue_Utility::get_css_var(
-			'mobile-nav-close',
-			Option::get_option( 'ys_color_nav_btn_sp', '#ffffff' )
-		);
+
 
 		return array_merge(
 			$css_vars,
@@ -233,11 +187,6 @@ class Header {
 			$header_color,
 			$header_dscr,
 			$header_shadow,
-			$global_nav_margin,
-			$mobile_nav_bg,
-			$mobile_nav_color,
-			$mobile_nav_open,
-			$mobile_nav_close,
 			$this->get_fixed_sidebar_pos()
 		);
 	}
@@ -675,72 +624,6 @@ class Header {
 				'id'      => 'ys_header_fixed_height_mobile',
 				'default' => 0,
 				'label'   => '高さ(モバイル)',
-			]
-		);
-	}
-
-	/**
-	 * モバイル用デザイン設定追加
-	 *
-	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
-	 */
-	public function register_mobile_design( $wp_customize ) {
-		$customizer = new Customize_Control( $wp_customize );
-		/**
-		 * セクション追加
-		 */
-		$customizer->add_section(
-			[
-				'section'     => 'ys_mobile_design',
-				'title'       => 'モバイル（メニュー・サイドバー）',
-				'description' => 'モバイルページのメニュー設定・サイドバー表示設定' . Admin::manual_link( 'manual/mobile-page' ),
-				'priority'    => 70,
-				'panel'       => Design::PANEL_NAME,
-			]
-		);
-		// ナビゲーション色.
-		$customizer->add_section_label( 'モバイルメニュー' );
-		// ナビゲーション背景色（SP）.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_nav_bg_sp',
-				'default' => '#000000',
-				'label'   => 'モバイルメニュー背景色',
-			]
-		);
-		// ナビゲーション文字色（SP）.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_nav_font_sp',
-				'default' => '#ffffff',
-				'label'   => 'モバイルメニュー文字色',
-			]
-		);
-		// ナビゲーションボタン色（SP）.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_nav_btn_sp_open',
-				'default' => '#222222',
-				'label'   => 'モバイルメニュー ボタン色：開く',
-			]
-		);
-		// ナビゲーションボタン色（SP）.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_nav_btn_sp',
-				'default' => '#ffffff',
-				'label'   => 'モバイルメニュー ボタン色：閉じる',
-			]
-		);
-
-		// サイドバー.
-		$customizer->add_section_label( 'サイドバー表示' );
-		// サイドバー出力.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_hide_sidebar_mobile',
-				'default' => 0,
-				'label'   => 'モバイル表示でサイドバーを非表示にする',
 			]
 		);
 	}

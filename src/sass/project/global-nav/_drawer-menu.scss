@@ -9,7 +9,7 @@
 	bottom: 0;
 	left: 0;
 	padding: var(--mobile-nav-container-padding) 2em 2em;
-	background-color: var(--mobile-nav-bg) !important;
+	background-color: var(--mobile-nav-bg);
 	visibility: hidden;
 	transition: all 0.3s;
 	opacity: 0;
@@ -138,6 +138,15 @@
 	  }
 	}
   }
+
+  .menu-item-has-children {
+	a:focus + .sub-menu,
+	&:hover .sub-menu {
+	  @media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+		background-color: transparent;
+	  }
+	}
+  }
 }
 
 .global-nav__toggle {
@@ -150,6 +159,14 @@
   .global-nav {
 	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
 	  display: none;
+	}
+  }
+}
+
+.site-header {
+  button {
+	@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+	  color: var(--mobile-nav-open);
 	}
   }
 }
