@@ -27,7 +27,7 @@ class Drawer_Menu {
 	/**
 	 * メニュー展開サイズ取得用フィルター.
 	 */
-	const DRAWER_MENU_START_SIZE_FILTER = 'ys_get_global_nav_expand';
+	const DRAWER_MENU_START_SIZE_FILTER = 'ys_get_drawer_menu_start';
 
 	/**
 	 * Drawer_Menu constructor.
@@ -120,9 +120,6 @@ class Drawer_Menu {
 			self::DRAWER_MENU_START_SIZE_FILTER,
 			self::DRAWER_MENU_START_SIZE
 		);
-		if ( Option::get_option_by_bool( 'ys_always_drawer_menu', false ) ) {
-			$breakpoint = 9999;
-		}
 
 		$css .= str_replace(
 			'{{mobaile-nav-breakpoint}}',
@@ -139,7 +136,12 @@ class Drawer_Menu {
 	 * @return int
 	 */
 	public static function get_drawer_menu_start() {
-		return Option::get_option_by_int( 'ys_drawer_menu_start', self::DRAWER_MENU_START_SIZE );
+		$size = Option::get_option_by_int( 'ys_drawer_menu_start', self::DRAWER_MENU_START_SIZE );
+		if ( Option::get_option_by_bool( 'ys_always_drawer_menu', false ) ) {
+			$size = 9999;
+		}
+
+		return $size;
 	}
 
 	/**
