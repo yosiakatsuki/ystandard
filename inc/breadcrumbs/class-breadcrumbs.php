@@ -639,7 +639,7 @@ class Breadcrumbs {
 			[
 				'section'     => 'ys_breadcrumbs',
 				'title'       => 'パンくずリスト',
-				'priority'    => 80,
+				'priority'    => 90,
 				'description' => Admin::manual_link( 'manual/breadcrumbs' ),
 				'panel'       => Design::PANEL_NAME,
 			]

@@ -21,20 +21,12 @@ defined( 'ABSPATH' ) || die();
 class Global_Nav {
 
 	/**
-	 * メニュー展開サイズ.
+	 * Global_Nav constructor.
 	 */
-	const GLOBAL_NAV_EXPAND = 768;
-	/**
-	 * メニュー展開サイズ取得用フィルター.
-	 */
-	const GLOBAL_NAV_EXPAND_FILTER = 'ys_get_global_nav_expand';
-
-
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'global_nav_inline_css' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'global_nav_css_vars' ] );
-		add_filter( self::GLOBAL_NAV_EXPAND_FILTER, [ __CLASS__, 'get_global_nav_expand' ] );
+		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'css_vars' ] );
+
 	}
 
 	/**
@@ -87,56 +79,22 @@ class Global_Nav {
 	 *
 	 * @return array
 	 */
-	public function global_nav_css_vars( $css_vars ) {
+	public function css_vars( $css_vars ) {
 
-		$toggle_top = Option::get_option_by_int( 'ys_global_nav_toggle_top', 0 );
-		if ( 0 !== $toggle_top ) {
-			$css_vars['mobile-nav-toggle-top'] = "${toggle_top}px";
-		}
-		$css_vars['global-nav-bold'] = Option::get_option(
-			'ys_global_nav_bold',
-			'normal'
+		$bold   = Enqueue_Utility::get_css_var(
+			'global-nav-bold',
+			Option::get_option( 'ys_global_nav_bold', 'normal' )
+		);
+		$margin = Enqueue_Utility::get_css_var(
+			'global-nav-margin',
+			Option::get_option( 'ys_header_nav_margin', 1.5 ) . 'em'
 		);
 
-		return $css_vars;
-	}
-
-	/**
-	 * 開閉式グローバルナビゲーション用
-	 *
-	 * @param string $css CSS.
-	 *
-	 * @return string
-	 */
-	public function global_nav_inline_css( $css ) {
-
-		$global_nav_css = Filesystem::file_get_contents(
-			get_template_directory() . '/css/global-navigation-fold.css'
+		return array_merge(
+			$css_vars,
+			$bold,
+			$margin
 		);
-		$breakpoint     = apply_filters(
-			self::GLOBAL_NAV_EXPAND_FILTER,
-			self::GLOBAL_NAV_EXPAND
-		);
-		if ( Option::get_option_by_bool( 'ys_global_nav_expand_none', false ) ) {
-			$breakpoint = 9999;
-		}
-
-		$css .= str_replace(
-			'{{mobaile-nav-breakpoint}}',
-			$breakpoint . 'px',
-			$global_nav_css
-		);
-
-		return $css;
-	}
-
-	/**
-	 * メニュー展開サイズ取得
-	 *
-	 * @return int
-	 */
-	public static function get_global_nav_expand() {
-		return Option::get_option_by_int( 'ys_global_nav_expand', self::GLOBAL_NAV_EXPAND );
 	}
 
 	/**
@@ -193,53 +151,7 @@ class Global_Nav {
 				],
 			]
 		);
-		$customizer->add_section_label(
-			'ドロワーメニュー設定',
-			[
-				'description' => 'グローバルメニューの折りたたみ表示に関する設定',
-			]
-		);
-		$customizer->add_number(
-			[
-				'id'          => 'ys_global_nav_expand',
-				'default'     => self::GLOBAL_NAV_EXPAND,
-				'label'       => 'ドロワーメニュー開始サイズ(px)',
-				'description' => '設定した画面サイズ以下でドロワーメニュー表示になります。',
-				'input_attrs' => [
-					'min'  => 600,
-					'max'  => 1440,
-					'step' => 1,
-				],
-			]
-		);
-		$customizer->add_label(
-			[
-				'id'          => 'ys_global_nav_expand_none_label',
-				'label'       => '常にドロワーメニュー表示にする',
-				'description' => 'チェックをつけるとグローバルメニューが常にドロワーメニューになります。',
-			]
-		);
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_global_nav_expand_none',
-				'label'   => '常にドロワーメニュー表示にする',
-				'default' => 0,
-			]
-		);
-		$customizer->add_number(
-			[
-				'id'          => 'ys_global_nav_toggle_top',
-				'default'     => 0,
-				'label'       => 'メニュー開閉ボタンの縦位置調整(px)',
-				'description' => 'メニュー開閉ボタンの上下位置を微調整できます。',
 
-				'input_attrs' => [
-					'min'  => - 100,
-					'max'  => 100,
-					'step' => 1,
-				],
-			]
-		);
 	}
 }
 

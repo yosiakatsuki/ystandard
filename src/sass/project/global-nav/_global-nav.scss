@@ -1,5 +1,4 @@
 @use "../../global";
-
 .global-nav {
   display: flex;
   position: relative;
@@ -310,6 +309,20 @@
 	  line:nth-child(3) {
 		transform: translateX(17px) translateY(-7px) rotate(45deg);
 	  }
+	}
+  }
+}
+
+// 開閉ボタン.
+.site-header {
+  button {
+	background-color: transparent;
+	border: 0;
+	color: var(--header-text);
+	appearance: none;
+
+	&:hover {
+	  box-shadow: none;
 	}
   }
 }
