@@ -38,8 +38,8 @@ class Mobile {
 		$customizer->add_section(
 			[
 				'section'     => 'ys_mobile_design',
-				'title'       => 'モバイル',
-				'description' => 'モバイルページの設定' . Admin::manual_link( 'manual/mobile-page' ),
+				'title'       => 'モバイル表示',
+				'description' => 'モバイル表示の設定' . Admin::manual_link( 'manual/mobile-page' ),
 				'priority'    => 80,
 				'panel'       => Design::PANEL_NAME,
 			]
