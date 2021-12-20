@@ -179,7 +179,6 @@ class Header {
 			$this->get_header_shadow()
 		);
 
-
 		return array_merge(
 			$css_vars,
 			$site_cover,
