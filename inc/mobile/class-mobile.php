@@ -45,7 +45,6 @@ class Mobile {
 			]
 		);
 
-
 		// サイドバー.
 		$customizer->add_section_label( 'サイドバー表示' );
 		// サイドバー出力.
