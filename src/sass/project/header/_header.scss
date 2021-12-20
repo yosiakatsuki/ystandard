@@ -4,22 +4,6 @@
   position: relative;
   background-color: var(--header-bg);
   box-shadow: var(--header-shadow);
-
-  button {
-	background-color: transparent;
-	border: 0;
-	color: var(--mobile-nav-open);
-
-	@include global.media-breakpoint(md) {
-	  color: var(--header-text);
-	}
-
-	appearance: none;
-
-	&:hover {
-	  box-shadow: none;
-	}
-  }
 }
 
 .site-header__content {

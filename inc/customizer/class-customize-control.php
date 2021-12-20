@@ -630,7 +630,6 @@ class Customize_Control {
 		$attr = $setting->manager->get_control( $setting->id )->input_attrs;
 		$min  = ( isset( $attr['min'] ) ? $attr['min'] : $number );
 		$max  = ( isset( $attr['max'] ) ? $attr['max'] : $number );
-		$step = ( isset( $attr['step'] ) ? $attr['step'] : 1 );
 
 		return ( $min <= $number && $number <= $max ? $number : $setting->default );
 	}

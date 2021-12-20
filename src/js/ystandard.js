@@ -35,6 +35,7 @@ const setGlobalNavToggle = () => {
 	if (globalNav) {
 		globalNav.addEventListener('click', (e) => {
 			e.currentTarget.classList.toggle('is-open');
+			toggleContentDisableScroll(e.currentTarget);
 			const mobileFooter =
 				document.getElementsByClassName('footer-mobile-nav');
 			if (mobileFooter && mobileFooter.length) {
@@ -51,6 +52,7 @@ const setGlobalNavToggle = () => {
 			const toggle = document.getElementById('global-nav__toggle');
 			if (toggle) {
 				toggle.classList.remove('is-open');
+				toggleContentDisableScroll(toggle);
 			}
 			const mobileFooter =
 				document.getElementsByClassName('footer-mobile-nav');
@@ -58,6 +60,20 @@ const setGlobalNavToggle = () => {
 				mobileFooter[0].classList.remove('is-hide');
 			}
 		});
+	}
+};
+
+const toggleContentDisableScroll = (target) => {
+	if (target.classList.contains('is-open')) {
+		document.body.style.top = `-${window.scrollY}px`;
+		document.body.style.position = 'fixed';
+		document.body.style.width = '100%';
+	} else {
+		const top = document.body.style.top;
+		document.body.style.position = '';
+		document.body.style.top = '';
+		document.body.style.width = '';
+		window.scrollTo(0, parseInt(top || '0') * -1);
 	}
 };
 
@@ -135,6 +151,14 @@ const setScrollBarWidth = () => {
 	}
 };
 
+const getHeaderHeight = () => {
+	const header = document.getElementById('masthead');
+	if (!header) {
+		return undefined;
+	}
+	return Math.floor(header.getBoundingClientRect().height);
+};
+
 const setFixedHeaderPadding = () => {
 	const classes = document.body.classList;
 	if (
@@ -142,11 +166,25 @@ const setFixedHeaderPadding = () => {
 		!classes.contains('disable-auto-padding') &&
 		!classes.contains('is-overlay')
 	) {
-		const header = document.getElementById('masthead');
-		if (header) {
-			const size = Math.floor(header.getBoundingClientRect().height);
+		const size = getHeaderHeight();
+		if (size) {
 			document.body.style.paddingTop = `${size}px`;
+			document
+				.querySelector(':root')
+				.style.setProperty('--fixed-sidebar-top', `${size + 48}px`);
 		}
+	}
+};
+
+const setDrawerNavPadding = () => {
+	const size = getHeaderHeight();
+	if (size) {
+		document
+			.querySelector(':root')
+			.style.setProperty(
+				'--mobile-nav-container-padding',
+				`${size * 1.5}px`
+			);
 	}
 };
 
@@ -157,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	setFixedHeaderPadding();
 	// メニュー.
 	setGlobalNavToggle();
+	setDrawerNavPadding();
 	// 検索ボタン.
 	setGlobalNavSearch();
 	// スムーススクロール.
