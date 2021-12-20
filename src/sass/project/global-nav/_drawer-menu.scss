@@ -1,0 +1,140 @@
+@use "../../global";
+
+@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
+  .global-nav {
+	display: block;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: var(--mobile-nav-container-padding) 2em 2em;
+	background-color: var(--mobile-nav-bg);
+	visibility: hidden;
+	transition: all 0.3s;
+	opacity: 0;
+	overflow: auto;
+  }
+
+  .global-nav__container {
+	height: auto;
+	max-height: none;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0 .5em;
+
+	a {
+	  color: var(--mobile-nav-text);
+	}
+
+	.global-nav__dscr {
+	  display: none;
+	}
+
+	.ys-icon {
+	  display: inline-block;
+	}
+
+	.global-nav__menu,
+	.global-nav__search {
+	  max-width: var(--mobile-global-nav-width);
+	  margin-right: auto;
+	  margin-left: auto;
+	}
+  }
+
+  .global-nav__search {
+	position: relative;
+	display: block;
+	margin: 0 0 1em;
+	background-color: var(--mobile-nav-bg);
+	border: 1px solid var(--mobile-nav-text);
+	visibility: visible;
+	opacity: 1;
+	z-index: 0;
+
+	.search-form {
+	  border: 0;
+	  width: auto;
+	  font-size: 1em;
+	}
+
+	&.is-active {
+	  opacity: 1;
+	}
+
+	.search-form {
+	  color: var(--mobile-nav-text);
+	}
+  }
+
+  .global-nav__search-button {
+	display: none;
+  }
+
+  .global-nav__search-close {
+	display: none;
+  }
+
+  .global-nav__menu {
+	display: block;
+	height: auto;
+
+	.sub-menu {
+	  position: relative;
+	  top: 0;
+	  margin-left: 1em;
+	  white-space: normal;
+	  visibility: visible;
+	  z-index: 0;
+	  opacity: 1;
+	}
+
+	> .menu-item {
+	  margin-top: 0.5em;
+	  margin-left: 0;
+	  text-align: left;
+
+	  > a {
+		display: block;
+		height: auto;
+		padding: 0.5em 0;
+
+		&::after {
+		  display: none;
+		}
+	  }
+
+	  &:last-child {
+		.sub-menu {
+		  left: 0;
+		  right: unset;
+		}
+	  }
+	}
+
+	.menu-item-has-children {
+	  a:focus + .sub-menu,
+	  &:hover .sub-menu {
+		background-color: transparent;
+	  }
+	}
+  }
+
+
+  .global-nav__toggle {
+	display: block;
+  }
+
+  .is-amp {
+	.global-nav {
+	  display: none;
+	}
+  }
+
+  .site-header {
+	button {
+	  color: var(--mobile-nav-open);
+	}
+  }
+}
