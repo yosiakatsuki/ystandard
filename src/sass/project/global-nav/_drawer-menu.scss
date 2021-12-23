@@ -49,9 +49,12 @@
 	margin: 0 0 1em;
 	background-color: var(--mobile-nav-bg);
 	border: 1px solid var(--mobile-nav-text);
-	visibility: visible;
-	opacity: 1;
 	z-index: 0;
+
+	&.is-open {
+	  visibility: visible;
+	  opacity: 1;
+	}
 
 	.search-form {
 	  border: 0;
@@ -85,9 +88,14 @@
 	  top: 0;
 	  margin-left: 1em;
 	  white-space: normal;
-	  visibility: visible;
 	  z-index: 0;
-	  opacity: 1;
+	}
+
+	&.is-open {
+	  .sub-menu {
+		visibility: visible;
+		opacity: 1;
+	  }
 	}
 
 	> .menu-item {
