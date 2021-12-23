@@ -35,6 +35,14 @@ const setGlobalNavToggle = () => {
 	if (globalNav) {
 		globalNav.addEventListener('click', (e) => {
 			e.currentTarget.classList.toggle('is-open');
+			const globalMenu = document.getElementById('global-nav__menu');
+			if (globalMenu) {
+				globalMenu.classList.toggle('is-open');
+			}
+			const globalSearch = document.getElementById('global-nav__search');
+			if (globalSearch) {
+				globalSearch.classList.toggle('is-open');
+			}
 			toggleContentDisableScroll(e.currentTarget);
 			const mobileFooter =
 				document.getElementsByClassName('footer-mobile-nav');
