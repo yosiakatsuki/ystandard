@@ -73,7 +73,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 						</p>
 						<?php if ( $recent_posts['show_excerpt'] ) : ?>
 							<p class="ys-posts__dscr">
-								<?php echo ys_get_custom_excerpt( ' …', 40 ); ?>
+								<?php echo ys_get_custom_excerpt( ' …', $recent_posts['excerpt_length'] ); ?>
 							</p>
 						<?php endif; ?>
 					</div>

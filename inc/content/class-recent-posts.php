@@ -51,6 +51,7 @@ class Recent_Posts {
 		'show_date'        => true,
 		'show_category'    => true,
 		'show_excerpt'     => false,
+		'excerpt_length'   => 0,
 		'thumbnail_size'   => '', // thumbnail, medium, large, full, etc...
 		'thumbnail_ratio'  => '', // 4-3, 16-9, 3-1, 2-1, 1-1.
 		'filter'           => '', // category,remove-same-post,sga.
@@ -256,6 +257,10 @@ class Recent_Posts {
 		$param['show_date']     = Utility::to_bool( $atts['show_date'] );
 		$param['show_category'] = Utility::to_bool( $atts['show_category'] );
 		$param['show_excerpt']  = Utility::to_bool( $atts['show_excerpt'] );
+		/**
+		 * 概要
+		 */
+		$param['excerpt_length'] = ! is_numeric( $atts['excerpt_length'] ) ? 0 : (int) $atts['excerpt_length'];
 		/**
 		 * 画像設定
 		 */
