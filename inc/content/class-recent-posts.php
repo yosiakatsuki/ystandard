@@ -260,7 +260,7 @@ class Recent_Posts {
 		/**
 		 * 概要
 		 */
-		$param['excerpt_length'] = ! is_numeric( $atts['excerpt_length'] ) ? 0 : $atts['excerpt_length'];
+		$param['excerpt_length'] = ! is_numeric( $atts['excerpt_length'] ) ? 0 : (int) $atts['excerpt_length'];
 		/**
 		 * 画像設定
 		 */
