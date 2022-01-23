@@ -34,6 +34,13 @@
   --ystd-sidebar-max-width: 336px;
   --ystd-sidebar-padding: 1rem;
   /**
+   * サイズ - アーカイブ
+   */
+  --ystd-archive-gap: var(--ystd-layout-gap);
+  --ystd-archive-padding: 1em;
+  --ystd-archive-item-width: 100%;
+  --ystd-archive-thumbnail-width: 100%;
+  /**
    * Typography
    */
   --font-family: #{global.$font__body};
@@ -90,6 +97,10 @@
    */
   --content-bg: #{global.$color__bg-content};
   --content-meta: var(--font-gray);
+  /**
+   * Archive
+   */
+  --ystd-archive-item-border: var(--site-border-gray-light);
   /**
    * Paging / Pagination
    */
