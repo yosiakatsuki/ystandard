@@ -30,11 +30,11 @@ body {
  * エディタ幅
  */
 .wp-block {
-  max-width: calc(800px + 30px);
+  max-width: var(--ystd-content-default-width);
 }
 
 .wp-block[data-align="wide"] {
-  max-width: calc(800px + 6rem + 30px);
+  max-width: var(--ystd-content-align-wide-width);
 }
 
 //「全幅」ブロックの幅
@@ -73,20 +73,20 @@ img {
 
 .wp-block-image {
   &.is-resized {
-    display: block !important;
+	display: block !important;
 
-    .block-editor-rich-text {
-      display: block !important;
-    }
+	.block-editor-rich-text {
+	  display: block !important;
+	}
 
-    > figcaption {
-      display: block !important;
-    }
+	> figcaption {
+	  display: block !important;
+	}
   }
 
   .components-resizable-box__container {
-    max-width: 100% !important;
-    height: auto !important;
+	max-width: 100% !important;
+	height: auto !important;
   }
 }
 

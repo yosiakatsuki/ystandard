@@ -6,6 +6,34 @@
    */
   --scrollbar-width: 0px;
   /**
+   * Spacing - Gap
+   */
+  --ystd-layout-gap: 1.5rem;
+  --ystd-container-margin-vertical: var(--ystd-layout-gap);
+  --ystd-content-margin-bottom: calc(2 * var(--ystd-layout-gap));
+  --ystd-content-horizon-margin: auto;
+  --ystd-content-padding: auto;
+  /**
+   * Body
+   */
+  --ystd-body-padding-top: 0;
+  /**
+   * サイズ - コンテナ
+   */
+  --ystd-container-width: 1200px;
+  /**
+   * サイズ - コンテンツ
+   */
+  --ystd-content-default-width: 800px;
+  --ystd-content-align-wide-width: 896px;
+  --ystd-content-min-width: 66.66%;
+  /**
+  * サイズ - サイドバー
+  */
+  --ystd-sidebar-width: 28%;
+  --ystd-sidebar-max-width: 336px;
+  --ystd-sidebar-padding: 1rem;
+  /**
    * Typography
    */
   --font-family: #{global.$font__body};
