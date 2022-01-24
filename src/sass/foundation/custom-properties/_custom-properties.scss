@@ -41,6 +41,10 @@
   --ystd-archive-item-width: 100%;
   --ystd-archive-thumbnail-width: 100%;
   /**
+   * サイズ - Block Gap
+   */
+  --ystd-block-gap: 1.5em;
+  /**
    * Typography
    */
   --font-family: #{global.$font__body};
