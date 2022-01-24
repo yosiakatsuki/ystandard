@@ -4,10 +4,11 @@ $editor: false !default;
 
 @mixin button() {
   .wp-block-button {
-	color: var(--button-text);
+	color: var(--ystd-button-text-color);
+
 
 	&.is-style-outline {
-	  color: var(--button-bg);
+	  color: var(--ystd-button-background-color);
 	}
   }
 
