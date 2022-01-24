@@ -31,8 +31,8 @@ $editor: false !default;
 	a.wp-block-file__button:focus,
 	a.wp-block-file__button:hover,
 	a.wp-block-file__button:visited {
-	  background-color: var(--button-bg);
-	  color: var(--button-text);
+	  background-color: var(--ystd-button-background-color);
+	  color: var(--ystd-button-text-color);
 	}
   }
 }

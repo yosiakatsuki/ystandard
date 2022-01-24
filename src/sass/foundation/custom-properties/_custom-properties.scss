@@ -157,8 +157,16 @@
   /**
    * Button
    */
-  --button-text: #{global.$color__btn-text};
-  --button-bg: #{global.$color__btn-bg};
+  --ystd-button-text-color : #{global.$color__btn-text};
+  --ystd-button-background-color : #{global.$color__btn-bg};
+  --ystd-button-display : inline-block;
+  --ystd-button-padding : 0.5em 1.5em;
+  --ystd-button-border-width : 1px;
+  --ystd-button-border-style : solid;
+  --ystd-button-border-color : var(--ystd-button-background-color);
+  --ystd-button-border-radius : 4px;
+  --ystd-button-font-size : 1em;
+  --ystd-button-box-shadow : 3px 3px 6px #{rgba(#000000, 0.2)};
   /**
    * Z Index
    */
