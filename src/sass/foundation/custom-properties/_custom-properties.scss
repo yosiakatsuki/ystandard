@@ -104,7 +104,7 @@
   /**
    * Archive
    */
-  --ystd-archive-item-border: var(--site-border-gray-light);
+  --ystd-archive-item-border: 1px solid var(--site-border-gray-light);
   /**
    * Paging / Pagination
    */
@@ -157,16 +157,25 @@
   /**
    * Button
    */
-  --ystd-button-text-color : #{global.$color__btn-text};
-  --ystd-button-background-color : #{global.$color__btn-bg};
-  --ystd-button-display : inline-block;
-  --ystd-button-padding : 0.5em 1.5em;
-  --ystd-button-border-width : 1px;
-  --ystd-button-border-style : solid;
-  --ystd-button-border-color : var(--ystd-button-background-color);
-  --ystd-button-border-radius : 4px;
-  --ystd-button-font-size : 1em;
-  --ystd-button-box-shadow : 3px 3px 6px #{rgba(#000000, 0.2)};
+  --ystd-button-text-color: #{global.$color__btn-text};
+  --ystd-button-background-color: #{global.$color__btn-bg};
+  --ystd-button-display: inline-block;
+  --ystd-button-padding: 0.5em 1.5em;
+  --ystd-button-border-width: 1px;
+  --ystd-button-border-style: solid;
+  --ystd-button-border-color: var(--ystd-button-background-color);
+  --ystd-button-border-radius: 4px;
+  --ystd-button-font-size: 1em;
+  --ystd-button-box-shadow: 3px 3px 6px #{rgba(#000000, 0.2)};
+  /**
+   * Post List
+   */
+  --ystd-posts-item-gap: var(--ystd-layout-gap);
+  --ystd-posts-item-width: 100%;
+  --ystd-posts-inner-gap: 0.5em;
+  --ystd-posts-item-border: var(--ystd-archive-item-border);
+  --ystd-posts-thumbnail-width: 100%;
+  --ystd-posts-content-gap: var(--ystd-posts-inner-gap);
   /**
    * Z Index
    */
