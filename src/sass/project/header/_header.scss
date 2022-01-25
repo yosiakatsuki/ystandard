@@ -113,11 +113,8 @@
 	@include global.media-breakpoint(sm) {
 	  height: 50vh;
 	  max-height: 400px;
-	  font-family: "object-fit: cover; object-position: bottom;";
-
 	  object-fit: cover;
 	  object-position: 50% 50%;
-	  filter: blur(2px);
 	}
   }
 
