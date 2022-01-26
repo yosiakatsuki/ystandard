@@ -6,6 +6,45 @@
    */
   --scrollbar-width: 0px;
   /**
+   * Spacing - Gap
+   */
+  --ystd-layout-gap: 1.5rem;
+  --ystd-container-margin-vertical: var(--ystd-layout-gap);
+  --ystd-content-margin-bottom: calc(2 * var(--ystd-layout-gap));
+  --ystd-content-horizon-margin: auto;
+  --ystd-content-padding: auto;
+  /**
+   * Body
+   */
+  --ystd-body-padding-top: 0;
+  /**
+   * サイズ - コンテナ
+   */
+  --ystd-container-width: 1200px;
+  /**
+   * サイズ - コンテンツ
+   */
+  --ystd-content-default-width: 800px;
+  --ystd-content-align-wide-width: 896px;
+  --ystd-content-min-width: 66.66%;
+  /**
+  * サイズ - サイドバー
+  */
+  --ystd-sidebar-width: 28%;
+  --ystd-sidebar-max-width: 336px;
+  --ystd-sidebar-padding: 1rem;
+  /**
+   * サイズ - アーカイブ
+   */
+  --ystd-archive-gap: var(--ystd-layout-gap);
+  --ystd-archive-padding: 1em;
+  --ystd-archive-item-width: 100%;
+  --ystd-archive-thumbnail-width: 100%;
+  /**
+   * サイズ - Block Gap
+   */
+  --ystd-block-gap: 1.5em;
+  /**
    * Typography
    */
   --font-family: #{global.$font__body};
@@ -63,6 +102,10 @@
   --content-bg: #{global.$color__bg-content};
   --content-meta: var(--font-gray);
   /**
+   * Archive
+   */
+  --ystd-archive-item-border: 1px solid var(--site-border-gray-light);
+  /**
    * Paging / Pagination
    */
   --post-paging-text: var(--font-color);
@@ -114,8 +157,25 @@
   /**
    * Button
    */
-  --button-text: #{global.$color__btn-text};
-  --button-bg: #{global.$color__btn-bg};
+  --ystd-button-text-color: #{global.$color__btn-text};
+  --ystd-button-background-color: #{global.$color__btn-bg};
+  --ystd-button-display: inline-block;
+  --ystd-button-padding: 0.5em 1.5em;
+  --ystd-button-border-width: 1px;
+  --ystd-button-border-style: solid;
+  --ystd-button-border-color: var(--ystd-button-background-color);
+  --ystd-button-border-radius: 4px;
+  --ystd-button-font-size: 1em;
+  --ystd-button-box-shadow: 3px 3px 6px #{rgba(#000000, 0.2)};
+  /**
+   * Post List
+   */
+  --ystd-posts-item-gap: var(--ystd-layout-gap);
+  --ystd-posts-item-width: 100%;
+  --ystd-posts-inner-gap: 0.5em;
+  --ystd-posts-item-border: var(--ystd-archive-item-border);
+  --ystd-posts-thumbnail-width: 100%;
+  --ystd-posts-content-gap: var(--ystd-posts-inner-gap);
   /**
    * Z Index
    */

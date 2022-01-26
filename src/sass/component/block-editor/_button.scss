@@ -4,20 +4,16 @@ $editor: false !default;
 
 @mixin button() {
   .wp-block-button {
-	color: var(--button-text);
+	color: var(--ystd-button-text-color);
+
 
 	&.is-style-outline {
-	  color: var(--button-bg);
+	  color: var(--ystd-button-background-color);
 	}
   }
 
   .wp-block-button__link {
-	border-radius: 0.5em;
-	font-size: 1em;
-
-	&:hover {
-	  box-shadow: 4px 4px 8px rgba(#000000, 0.15);
-	}
+	@include global.button();
 
 	svg {
 	  width: 1.25em;

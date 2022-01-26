@@ -1,18 +1,17 @@
 @use "../../global";
 
 .sidebar {
-  @include global.child_margin(2rem);
-  margin-bottom: 2em;
+  @include global.child_margin();
+  margin-bottom: var(--ystd-content-margin-bottom);
 
   @include global.media-breakpoint(lg) {
-	flex: 0 0 global.$width__sidebar;
-	width: global.$width__sidebar;
+	width: min(var(--ystd-sidebar-width), var(--ystd-sidebar-max-width));
   }
 }
 
 .sidebar__widget,
 .sidebar__fixed {
-  @include global.child_margin(2rem);
+  @include global.child_margin();
 }
 
 .sidebar__fixed {
@@ -26,14 +25,14 @@
   .sidebar__widget,
   .sidebar__fixed {
 	> * {
-	  @include global.media-breakpoint-down(sm) {
-		margin-right: -1em;
-		margin-left: -1em;
-		padding: 1em;
-	  }
-
-	  padding: 2em 1.5em;
+	  padding: calc(1.5 * var(--ystd-sidebar-padding));
 	  background-color: var(--content-bg);
+
+	  @include global.media-breakpoint-down(sm) {
+		margin-right: calc(-1 * var(--ystd-sidebar-padding));
+		margin-left: calc(-1 * var(--ystd-sidebar-padding));
+		padding: var(--ystd-sidebar-padding);
+	  }
 	}
   }
 }
