@@ -120,6 +120,11 @@ class Block_Editor {
 				'core/site-logo',
 				'core/site-title',
 				'core/site-tagline',
+				'core/navigation',
+				'core/post-author',
+				'core/post-navigation-link',
+				'core/post-comments',
+				'core/term-description',
 			]
 		);
 	}
