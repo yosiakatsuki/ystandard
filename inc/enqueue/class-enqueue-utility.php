@@ -24,6 +24,11 @@ class Enqueue_Utility {
 	const FILTER_CSS_VARS = 'ys_css_vars';
 
 	/**
+	 * CSSカスタムプロパティ preset 上書き用 フィルター名
+	 */
+	const FILTER_CSS_VARS_PRESETS = 'ys_css_vars_presets';
+
+	/**
 	 * インラインCSSのフック名
 	 */
 	const FILTER_INLINE_CSS = 'ys_get_inline_css';
