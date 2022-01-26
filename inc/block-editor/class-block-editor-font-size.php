@@ -26,6 +26,7 @@ class Block_Editor_Font_Size {
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
 		add_filter( Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS, [ $this, 'add_font_sizes_css' ] );
+		add_filter( Enqueue_Utility::FILTER_CSS_VARS_PRESETS, [ $this, 'add_font_sizes_presets' ] );
 		add_filter( Block_Editor_Assets::BLOCK_EDITOR_ASSETS_HOOK, [ $this, 'add_block_editor_font_sizes_css' ] );
 	}
 
@@ -41,6 +42,21 @@ class Block_Editor_Font_Size {
 		add_filter( 'ys_is_enqueue_font_size', '__return_true' );
 
 		return $css . self::get_font_size_css( '.ystd' );
+	}
+
+	/**
+	 * フロント用フォントサイズ presets 上書きCSS
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public function add_font_sizes_presets( $css ) {
+
+		return array_merge(
+			$css,
+			self::get_font_size_presets_css()
+		);
 	}
 
 	/**
@@ -78,6 +94,33 @@ class Block_Editor_Font_Size {
 		}
 
 		return Style_Sheet::minify( $result );
+	}
+
+	/**
+	 * フォントサイズ用 presets 上書きCSS作成
+	 *
+	 * @return array
+	 */
+	public static function get_font_size_presets_css() {
+		$font_size = get_theme_support( 'editor-font-sizes' );
+		if ( empty( $font_size ) || ! is_array( $font_size ) ) {
+			return [];
+		}
+		$result = [];
+		foreach ( $font_size[0] as $value ) {
+			$unit = isset( $value['unit'] ) ? $value['unit'] : 'px';
+			$size = is_numeric( $value['size'] ) ? "{$value['size']}${unit}" : $value['size'];
+			// CSS.
+			$result = array_merge(
+				$result,
+				Enqueue_Utility::get_css_var(
+					'wp--preset--font-size--' . $value['slug'],
+					$size
+				)
+			);
+		}
+
+		return $result;
 	}
 
 	/**
