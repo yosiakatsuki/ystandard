@@ -27,7 +27,7 @@ class Block_Editor_Assets {
 	 * Block_Editor_Assets constructor.
 	 */
 	public function __construct() {
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ],11 );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ], 11 );
 		add_action( 'after_setup_theme', [ $this, 'enqueue_block_css' ] );
 	}
 
