@@ -153,6 +153,8 @@ class Enqueue_Styles {
 	/**
 	 * WP preset 上書き用CSSカスタムプロパティを作成する
 	 *
+	 * @param string $selector Selector.
+	 *
 	 * @return string
 	 */
 	public static function get_css_vars_selector_preset( $selector = 'body' ) {
@@ -176,7 +178,7 @@ class Enqueue_Styles {
 	/**
 	 * カスタムプロパティCSSを作成
 	 *
-	 * @param array $vars Variables
+	 * @param array $vars Variables.
 	 *
 	 * @return string
 	 */
