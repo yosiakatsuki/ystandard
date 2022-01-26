@@ -13,12 +13,7 @@ $editor: false !default;
   }
 
   .wp-block-button__link {
-	border-radius: 0.5em;
-	font-size: 1em;
-
-	&:hover {
-	  box-shadow: 4px 4px 8px rgba(#000000, 0.15);
-	}
+	@include global.button();
 
 	svg {
 	  width: 1.25em;
