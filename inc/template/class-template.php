@@ -283,7 +283,15 @@ class Template {
 	 * @return bool
 	 */
 	public static function is_legacy_widget_preview() {
-		return ! empty( $_GET['legacy-widget-preview'] );
+		$is_preview = false;
+		if ( ! empty( $_GET['legacy-widget-preview'] ) ) {
+			$is_preview = true;
+		}
+		if ( defined( 'IFRAME_REQUEST' ) && IFRAME_REQUEST ) {
+			$is_preview = true;
+		}
+
+		return $is_preview;
 	}
 
 	/**

@@ -25,6 +25,7 @@ $editor: false !default;
 	line-height: global.$font__line-height;
 	letter-spacing: global.$font__letter-spacing;
 	word-wrap: break-word;
+	word-break: break-word;
 	overflow-x: hidden;
 
 	-moz-osx-font-smoothing: grayscale;

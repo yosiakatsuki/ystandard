@@ -8,6 +8,7 @@
  */
 
 namespace ystandard;
+
 use ystandard\helper\Filesystem;
 use ystandard\helper\Style_Sheet;
 
@@ -29,7 +30,6 @@ class Enqueue_Styles {
 	 * Blocks CSS.
 	 */
 	const HANDLE_BLOCKS = 'ys-blocks';
-
 
 	/**
 	 * Enqueue_Styles constructor.
@@ -108,10 +108,13 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	private function get_inline_css() {
-		$inline   = Style_Sheet::minify( apply_filters( Enqueue_Utility::FILTER_INLINE_CSS, '' ) );
-		$css_vars = self::get_css_vars_selector();
+		$inline          = Style_Sheet::minify(
+			apply_filters( Enqueue_Utility::FILTER_INLINE_CSS, '' )
+		);
+		$css_vars        = self::get_css_vars_selector();
+		$css_vars_preset = self::get_css_vars_selector_preset();
 
-		return $inline . $css_vars;
+		return $css_vars . $css_vars_preset . $inline;
 	}
 
 	/**
@@ -138,6 +141,48 @@ class Enqueue_Styles {
 		if ( empty( $vars ) ) {
 			return '';
 		}
+		$result = self::create_custom_properties_css( $vars );
+
+		if ( ! $result ) {
+			return '';
+		}
+
+		return ":root{ ${result} }";
+	}
+
+	/**
+	 * WP preset 上書き用CSSカスタムプロパティを作成する
+	 *
+	 * @param string $selector Selector.
+	 *
+	 * @return string
+	 */
+	public static function get_css_vars_selector_preset( $selector = 'body' ) {
+		/**
+		 * CSSカスタムプロパティに指定する値
+		 * name,value
+		 */
+		$vars = apply_filters( Enqueue_Utility::FILTER_CSS_VARS_PRESETS, [] );
+		if ( empty( $vars ) ) {
+			return '';
+		}
+		$result = self::create_custom_properties_css( $vars );
+
+		if ( ! $result ) {
+			return '';
+		}
+
+		return "${selector} { ${result} }";
+	}
+
+	/**
+	 * カスタムプロパティCSSを作成
+	 *
+	 * @param array $vars Variables.
+	 *
+	 * @return string
+	 */
+	private static function create_custom_properties_css( $vars ) {
 		$result = '';
 		foreach ( $vars as $key => $value ) {
 			if ( ! empty( $key ) && '' !== $value ) {
@@ -145,11 +190,7 @@ class Enqueue_Styles {
 			}
 		}
 
-		if ( ! $result ) {
-			return '';
-		}
-
-		return ":root{ ${result} }";
+		return $result;
 	}
 
 	/**

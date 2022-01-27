@@ -18,13 +18,13 @@ $editor: false !default;
 
   @include global.media-breakpoint(sm) {
 	.alignleft {
-	  margin-right: 1em;
-	  margin-bottom: 1em;
+	  margin-right: var(--ystd-layout-gap);
+	  margin-bottom: var(--ystd-layout-gap);
 	  float: left;
 	}
 	.alignright {
-	  margin-bottom: 1em;
-	  margin-left: 1em;
+	  margin-bottom: var(--ystd-layout-gap);
+	  margin-left: var(--ystd-layout-gap);
 	  float: right;
 	}
   }
@@ -33,10 +33,10 @@ $editor: false !default;
   body {
 	.alignwide,
 	.alignfull {
-	  margin-right: -1rem;
-	  margin-left: -1rem;
-	  padding-right: 1rem;
-	  padding-left: 1rem;
+	  margin-right: calc(-1 * var(--ystd-layout-gap));
+	  margin-left: calc(-1 * var(--ystd-layout-gap));
+	  padding-right: var(--ystd-layout-gap);
+	  padding-left: var(--ystd-layout-gap);
 	  width: auto;
 	}
 
@@ -62,10 +62,10 @@ $editor: false !default;
 	  @include global.media-breakpoint(sm) {
 		.alignwide,
 		.alignfull {
-		  margin-right: -2rem;
-		  margin-left: -2rem;
-		  padding-right: 2rem;
-		  padding-left: 2rem;
+		  margin-right: calc(-1 * var(--ystd-layout-gap));
+		  margin-left: calc(-1 * var(--ystd-layout-gap));
+		  padding-right: var(--ystd-layout-gap);
+		  padding-left: var(--ystd-layout-gap);
 		}
 	  }
 	  @include global.media-breakpoint(lg) {
@@ -98,10 +98,10 @@ $editor: false !default;
 		@include global.media-breakpoint(lg) {
 		  .alignwide,
 		  .alignfull {
-			margin-right: -2rem;
-			margin-left: -2rem;
-			padding-right: 2rem;
-			padding-left: 2rem;
+			margin-right: calc(-1 * var(--ystd-layout-gap));;
+			margin-left: calc(-1 * var(--ystd-layout-gap));;
+			padding-right: var(--ystd-layout-gap);
+			padding-left: var(--ystd-layout-gap);
 		  }
 		}
 	  }
@@ -110,10 +110,10 @@ $editor: false !default;
 		@include global.media-breakpoint(sm) {
 		  .alignwide,
 		  .alignfull {
-			margin-right: -1.5rem;
-			margin-left: -1.5rem;
-			padding-right: 1.5rem;
-			padding-left: 1.5rem;
+			margin-right: calc(-1.5 * var(--ystd-sidebar-padding));
+			margin-left: calc(-1.5 * var(--ystd-sidebar-padding));
+			padding-right: calc(1.5 * var(--ystd-sidebar-padding));
+			padding-left: calc(1.5 * var(--ystd-sidebar-padding));
 		  }
 		}
 	  }

@@ -27,7 +27,7 @@ class Block_Editor_Assets {
 	 * Block_Editor_Assets constructor.
 	 */
 	public function __construct() {
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ], 11 );
 		add_action( 'after_setup_theme', [ $this, 'enqueue_block_css' ] );
 	}
 
@@ -39,10 +39,11 @@ class Block_Editor_Assets {
 			'ys-block-editor-assets',
 			get_template_directory_uri() . '/css/block-editor-assets.css'
 		);
-		$custom_property = Enqueue_Styles::get_css_vars_selector();
+		$custom_property        = Enqueue_Styles::get_css_vars_selector();
+		$custom_property_preset = Enqueue_Styles::get_css_vars_selector_preset( 'body .editor-styles-wrapper' );
 		wp_add_inline_style(
 			'ys-block-editor-assets',
-			apply_filters( self::BLOCK_EDITOR_ASSETS_HOOK, $custom_property )
+			apply_filters( self::BLOCK_EDITOR_ASSETS_HOOK, $custom_property . $custom_property_preset )
 		);
 	}
 

@@ -24,3 +24,13 @@
 	}
   }
 }
+
+@mixin posts_column_cp($i,$gap:var(--ystd-posts-item-gap)) {
+  $_gap: calc(var(--ystd-posts-item-gap) * #{math.div( ($i - 1) , $i )});
+  @if 1 == $i {
+	$_gap: 0;
+  }
+  > * {
+	--ystd-posts-item-width: calc(100% / #{$i} - #{$_gap});
+  }
+}

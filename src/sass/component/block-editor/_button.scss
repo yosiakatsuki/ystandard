@@ -4,19 +4,26 @@ $editor: false !default;
 
 @mixin button() {
   .wp-block-button {
-	color: var(--button-text);
+	color: var(--ystd-button-text-color);
+
 
 	&.is-style-outline {
-	  color: var(--button-bg);
+	  color: var(--ystd-button-background-color);
 	}
   }
 
   .wp-block-button__link {
-	border-radius: 0.5em;
-	font-size: 1em;
+	display: var(--ystd-button-display);
+	padding: var(--ystd-button-padding);
+	background-color: var(--ystd-button-background-color);
+	border-radius: var(--ystd-button-border-radius);
+	color: var(--ystd-button-text-color);
+	font-size: var(--ystd-button-font-size);
+	text-decoration: none;
+	transition: all 0.3s;
 
 	&:hover {
-	  box-shadow: 4px 4px 8px rgba(#000000, 0.15);
+	  box-shadow: var(--ystd-button-box-shadow);
 	}
 
 	svg {
@@ -27,7 +34,8 @@ $editor: false !default;
 
   .is-style-outline {
 	.wp-block-button__link {
-	  border-color: currentColor;
+	  --ystd-button-border-color: currentColor;
+	  border: var(--ystd-button-border-width) var(--ystd-button-border-style) var(--ystd-button-border-color);
 	}
   }
 }
