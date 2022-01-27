@@ -32,12 +32,16 @@ $editor: false !default;
 		display: flex;
 		flex-direction: column;
 		gap: var(--ystd-posts-inner-gap);
-		width: calc(100% - var(--ystd-posts-thumbnail-width) - var(--ystd-posts-content-gap));
+		max-width: 100%;
 
 		> * {
 		  margin-top: 0;
 		  margin-bottom: 0;
 		}
+	  }
+
+	  .ys-posts__thumbnail + .ys-posts__text {
+		max-width: calc(100% - var(--ystd-posts-thumbnail-width) - var(--ystd-posts-content-gap));
 	  }
 
 	  .ys-posts__title {
