@@ -58,18 +58,19 @@ class Enqueue_Styles {
 			[],
 			filemtime( get_template_directory() . '/css/ystandard.css' )
 		);
-		wp_add_inline_style(
-			self::HANDLE_MAIN,
-			self::get_css_vars_selector()
-		);
-		wp_add_inline_style(
-			self::HANDLE_MAIN,
-			self::get_css_vars_selector_preset()
-		);
-		wp_add_inline_style(
-			self::HANDLE_MAIN,
-			$this->get_inline_css()
-		);
+		/**
+		 * カスタムプロパティ
+		 */
+		wp_register_style( 'ystandard-custom-properties', false, [ self::HANDLE_MAIN ], true, true );
+		wp_add_inline_style( 'ystandard-custom-properties', self::get_css_vars_selector() );
+		wp_add_inline_style( 'ystandard-custom-properties', self::get_css_vars_selector_preset() );
+		wp_enqueue_style( 'ystandard-custom-properties' );
+		/**
+		 * 設定・その他連携機能で追加されたCSS
+		 */
+		wp_register_style( 'ystandard-custom-inline', false, [ 'ystandard-custom-properties' ], true, true );
+		wp_add_inline_style( 'ystandard-custom-inline', $this->get_inline_css() );
+		wp_enqueue_style( 'ystandard-custom-inline' );
 
 		// 位置調整.
 		wp_dequeue_style( 'wp-block-library' );
