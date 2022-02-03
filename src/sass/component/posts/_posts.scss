@@ -98,7 +98,7 @@ $editor: false !default;
 	  width: var(--ystd-posts-item-width);
 	}
 
-	@for $i from 1 through 4 {
+	@for $i from 1 through 6 {
 	  &.col-sp--#{$i} {
 		@include global.posts_column_cp($i);
 	  }

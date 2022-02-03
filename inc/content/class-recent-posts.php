@@ -316,7 +316,7 @@ class Recent_Posts {
 	 *
 	 * @return int
 	 */
-	private function check_range( $value, $default, $min = 1, $max = 4 ) {
+	private function check_range( $value, $default, $min = 1, $max = 6 ) {
 
 		if ( ! is_numeric( $value ) ) {
 			return $default;

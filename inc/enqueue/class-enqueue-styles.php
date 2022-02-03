@@ -58,11 +58,19 @@ class Enqueue_Styles {
 			[],
 			filemtime( get_template_directory() . '/css/ystandard.css' )
 		);
-
-		wp_add_inline_style(
-			self::HANDLE_MAIN,
-			$this->get_inline_css()
-		);
+		/**
+		 * カスタムプロパティ
+		 */
+		wp_register_style( 'ystandard-custom-properties', false, [ self::HANDLE_MAIN ], true, true );
+		wp_add_inline_style( 'ystandard-custom-properties', self::get_css_vars_selector() );
+		wp_add_inline_style( 'ystandard-custom-properties', self::get_css_vars_selector_preset() );
+		wp_enqueue_style( 'ystandard-custom-properties' );
+		/**
+		 * 設定・その他連携機能で追加されたCSS
+		 */
+		wp_register_style( 'ystandard-custom-inline', false, [ 'ystandard-custom-properties' ], true, true );
+		wp_add_inline_style( 'ystandard-custom-inline', $this->get_inline_css() );
+		wp_enqueue_style( 'ystandard-custom-inline' );
 
 		// 位置調整.
 		wp_dequeue_style( 'wp-block-library' );
@@ -108,13 +116,10 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	private function get_inline_css() {
-		$inline          = Style_Sheet::minify(
+
+		return Style_Sheet::minify(
 			apply_filters( Enqueue_Utility::FILTER_INLINE_CSS, '' )
 		);
-		$css_vars        = self::get_css_vars_selector();
-		$css_vars_preset = self::get_css_vars_selector_preset();
-
-		return $css_vars . $css_vars_preset . $inline;
 	}
 
 	/**
@@ -183,11 +188,20 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	private static function create_custom_properties_css( $vars ) {
-		$result = '';
+		$result     = '';
+		$user_input = [ 'font-family' ];
+		$vars_temp  = [];
 		foreach ( $vars as $key => $value ) {
 			if ( ! empty( $key ) && '' !== $value ) {
-				$result .= "--{$key}: {$value};";
+				if ( in_array( $key, $user_input, true ) ) {
+					$vars_temp[ $key ] = $value;
+				} else {
+					$result .= "--{$key}: {$value};";
+				}
 			}
+		}
+		foreach ( $vars_temp as $key => $value ) {
+			$result .= "--{$key}: {$value};";
 		}
 
 		return $result;
