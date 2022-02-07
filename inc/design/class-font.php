@@ -45,32 +45,23 @@ class Font {
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
-		if ( ! apply_filters( 'ys_customizer_disable__design_font_type', false ) ) {
-			/**
-			 * フォント種類
-			 */
-			$customizer->add_radio(
-				[
-					'id'          => 'ys_design_font_type',
-					'default'     => 'meihiragino',
-					'label'       => '表示フォントタイプ',
-					'description' => '文字のフォントを変更できます',
-					'choices'     => [
-						'meihiragino' => $this->get_font_label( 'meihiragino' ),
-						'yugo'        => $this->get_font_label( 'yugo' ),
-						'serif'       => $this->get_font_label( 'serif' ),
-					],
-				]
-			);
-		} else {
-			$customizer->add_label(
-				[
-					'id'          => 'ys_design_font_type',
-					'label'       => '表示フォントタイプ',
-					'description' => '※現在、フォントはyStandard Toolboxの「Webフォント設定」機能で設定されています。<br><br>',
-				]
-			);
-		}
+		/**
+		 * フォント種類
+		 */
+		$customizer->add_radio(
+			[
+				'id'          => 'ys_design_font_type',
+				'default'     => 'meihiragino',
+				'label'       => '表示フォントタイプ',
+				'description' => '文字のフォントを変更できます',
+				'choices'     => [
+					'meihiragino' => $this->get_font_label( 'meihiragino' ),
+					'yugo'        => $this->get_font_label( 'yugo' ),
+					'serif'       => $this->get_font_label( 'serif' ),
+				],
+			]
+		);
+
 		/**
 		 * 文字色
 		 */
@@ -122,6 +113,7 @@ class Font {
 		if ( isset( $font[ $option ] ) ) {
 			$font_family = $font[ $option ]['family'];
 		}
+
 		return array_merge(
 			$css_vars,
 			Enqueue_Utility::get_css_var( 'font-family', $font_family ),
