@@ -135,9 +135,11 @@ class Enqueue_Styles {
 	/**
 	 * CSSカスタムプロパティを作成する
 	 *
+	 * @param string $selector Selector.
+	 *
 	 * @return string
 	 */
-	public static function get_css_vars_selector() {
+	public static function get_css_vars_selector( $selector = ':root' ) {
 		/**
 		 * CSSカスタムプロパティに指定する値
 		 * name,value
@@ -152,7 +154,7 @@ class Enqueue_Styles {
 			return '';
 		}
 
-		return ":root{ ${result} }";
+		return "${selector}{ ${result} }";
 	}
 
 	/**
