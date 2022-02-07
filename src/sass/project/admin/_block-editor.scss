@@ -7,7 +7,7 @@ body,
 .editor-post-title__block .editor-post-title__input {
   background-color: global.$color__bg-body;
   color: global.$color__text-main;
-  font-family: global.$font__body;
+  font-family: var(--font-family);
   line-height: global.$font__line-height;
   letter-spacing: global.$font__spacing;
   word-wrap: break-word;
