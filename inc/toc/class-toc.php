@@ -73,11 +73,17 @@ class TOC {
 	private $toc_html = '';
 
 	/**
-	 * ウィジェット・ショートコードで実行しているか
+	 * ウィジェットで実行しているか
 	 *
 	 * @var bool
 	 */
 	private $is_widget = false;
+	/**
+	 * ショートコードで実行しているか
+	 *
+	 * @var bool
+	 */
+	private $is_shortcode = false;
 
 	/**
 	 * TOC constructor.
@@ -105,6 +111,16 @@ class TOC {
 	 */
 	public function set_is_widget( $value = true ) {
 		$this->is_widget = $value;
+	}
+
+	/**
+	 * ショートコード動作モード
+	 *
+	 * @param bool $value ショートコード動作か.
+	 */
+	public function set_is_shortcode( $value = true ) {
+		$this->is_widget    = $value;
+		$this->is_shortcode = $value;
 	}
 
 	/**
@@ -147,11 +163,13 @@ class TOC {
 			[ 'title' => $this->toc_title ]
 		);
 		$atts    = shortcode_atts( $default, $atts );
-		$this->set_is_widget( true );
+		$this->set_is_shortcode( true );
 		if ( empty( $content ) ) {
 			$content = '';
 			if ( is_singular() ) {
+				remove_shortcode( self::SHORTCODE );
 				$content = Utility::get_post_content();
+				add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
 			}
 		}
 		$this->toc_title = $atts['title'];
@@ -229,6 +247,9 @@ class TOC {
 		}
 		if ( is_singular( Parts::POST_TYPE ) ) {
 			return false;
+		}
+		if ( $this->is_shortcode ) {
+			return true;
 		}
 		if ( ! apply_filters( 'ys_create_toc', true ) ) {
 			return false;
