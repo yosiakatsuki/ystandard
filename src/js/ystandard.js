@@ -103,13 +103,15 @@ const setSmoothScroll = () => {
 				const pos = target.getBoundingClientRect().top;
 				let buffer = 50;
 				const header = document.getElementById('masthead');
-				if (
-					'fixed' ===
-					window
-						.getComputedStyle(header, null)
-						.getPropertyValue('position')
-				) {
-					buffer = header.getBoundingClientRect().bottom + 20;
+				if (header) {
+					if (
+						'fixed' ===
+						window
+							.getComputedStyle(header, null)
+							.getPropertyValue('position')
+					) {
+						buffer = header.getBoundingClientRect().bottom + 20;
+					}
 				}
 				top = pos + window.pageYOffset - buffer;
 			}
