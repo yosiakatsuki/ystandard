@@ -77,7 +77,7 @@
   /**
    * Global Navigation
    */
-  --global-nav-search-cover: #ffffff;
+  --global-nav-search-cover: var(--header-bg);
   --global-nav-margin: 1.5em;
   --global-nav-bold: normal;
   --mobile-nav-toggle-top: 0;
