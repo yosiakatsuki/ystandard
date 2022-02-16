@@ -76,7 +76,9 @@ const toggleContentDisableScroll = (target) => {
 		document.body.style.top = `-${window.scrollY}px`;
 		document.body.style.position = 'fixed';
 		document.body.style.width = '100%';
-	} else {
+	} else if (
+		'none' !== document.defaultView.getComputedStyle(target, null).display
+	) {
 		const top = document.body.style.top;
 		document.body.style.position = '';
 		document.body.style.top = '';
@@ -89,12 +91,22 @@ const toggleContentDisableScroll = (target) => {
  * ページ内リンクのスムーススクロール.
  */
 const setSmoothScroll = () => {
-	const links = document.querySelectorAll('a[href^="#"]');
+	const links = document.querySelectorAll('a[href*="#"]');
 	for (let i = 0; i < links.length; i++) {
 		links[i].addEventListener('click', (e) => {
+			const urlSplit = e.currentTarget.getAttribute('href').split('#');
+			const targetPageUrl = urlSplit[0].split('?')[0].replace(/\/$/, '');
+			const currentPageUrl = location.href
+				.split('#')[0]
+				.split('?')[0]
+				.replace(/\/$/, '');
+			const id = urlSplit[1].split('?')[0];
+			if ('' !== targetPageUrl && targetPageUrl !== currentPageUrl) {
+				location.href = e.currentTarget.getAttribute('href');
+				return;
+			}
 			e.preventDefault();
 			let top = 0;
-			const id = e.currentTarget.getAttribute('href').replace('#', '');
 			const target = document.getElementById(id);
 			if (!target && '' !== id) {
 				return;

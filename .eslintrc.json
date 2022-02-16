@@ -8,7 +8,8 @@
 	"plugin:prettier/recommended"
   ],
   "parserOptions": {
-	"sourceType": "module"
+	"sourceType": "module",
+	"requireConfigFile": false
   },
   "rules": {
 	"@wordpress/no-global-event-listener": "off",

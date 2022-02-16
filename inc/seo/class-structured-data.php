@@ -76,7 +76,7 @@ class Structured_Data {
 		if ( Template::is_top_page() ) {
 			$data['potentialAction'] = [
 				'@type'       => 'SearchAction',
-				'target'      => home_url( '/?s={search_term_string}' ),
+				'target'      => home_url( '/' ) . '?s={search_term_string}',
 				'query-input' => 'required name=search_term_string',
 			];
 		}
