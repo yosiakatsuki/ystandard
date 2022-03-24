@@ -138,6 +138,12 @@
 	.global-nav {
 	  display: none;
 	}
+	.global-nav__menu {
+	  .sub-menu {
+		visibility: visible;
+		opacity: 1;
+	  }
+	}
   }
 
   .site-header {
