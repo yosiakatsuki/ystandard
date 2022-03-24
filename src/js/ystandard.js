@@ -205,7 +205,7 @@ const setDrawerNavPadding = () => {
 			.querySelector(':root')
 			.style.setProperty(
 				'--mobile-nav-container-padding',
-				`${(size + 24)}px`
+				`${size + 24}px`
 			);
 	}
 };
