@@ -50,10 +50,7 @@
 
 .has-background {
   .singular-header__thumbnail {
-	margin: -1em -1em 0;
-
-	@include global.media-breakpoint(sm) {
-	  margin: -2em -2em 0;
-	}
+	--ystd-header-thumb-margin: calc(-1 * var(--ystd-content-padding));
+	margin: var(--ystd-header-thumb-margin) var(--ystd-header-thumb-margin) 0;
   }
 }

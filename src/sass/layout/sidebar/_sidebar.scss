@@ -25,13 +25,13 @@
   .sidebar__widget,
   .sidebar__fixed {
 	> * {
-	  padding: calc(1.5 * var(--ystd-sidebar-padding));
+	  padding: calc(var(--ystd-layout-gap));
 	  background-color: var(--content-bg);
 
 	  @include global.media-breakpoint-down(sm) {
-		margin-right: calc(-1 * var(--ystd-sidebar-padding));
-		margin-left: calc(-1 * var(--ystd-sidebar-padding));
-		padding: var(--ystd-sidebar-padding);
+		margin-right: calc(-1 * var(--ystd-layout-gap));
+		margin-left: calc(-1 * var(--ystd-layout-gap));
+		padding: var(--ystd-layout-gap);
 	  }
 	}
   }
