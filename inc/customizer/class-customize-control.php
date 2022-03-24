@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\helper\Trigger_Error;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -192,32 +194,33 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_radio( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
+		$args['control_type'] = 'radio';
+		$args                 = $this->parse_args( $args );
+
+		$this->add_setting_and_control(
 			$args['id'],
 			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => [ $this, 'sanitize_select' ],
-			]
-		);
-		$this->wp_customize->add_control(
-			$args['id'],
-			[
-				'label'       => $args['label'],
-				'description' => $args['description'],
-				'section'     => $args['section'],
-				'priority'    => $args['priority'],
-				'type'        => 'radio',
-				'settings'    => $args['id'],
-				'choices'     => $args['choices'],
+				'setting' => [
+					'default'           => $args['default'],
+					'type'              => $args['setting_type'],
+					'transport'         => $args['transport'],
+					'sanitize_callback' => [ $this, 'sanitize_select' ],
+				],
+				'control' => [
+					'label'       => $args['label'],
+					'description' => $args['description'],
+					'section'     => $args['section'],
+					'priority'    => $args['priority'],
+					'type'        => $args['control_type'],
+					'settings'    => $args['id'],
+					'choices'     => $args['choices'],
+				],
 			]
 		);
 	}
 
 	/**
-	 * Add setting and control : radio
+	 * Add setting and control : select
 	 *
 	 * @param array $args オプション.
 	 */
@@ -247,7 +250,7 @@ class Customize_Control {
 	}
 
 	/**
-	 * Add setting and control : radio
+	 * Add setting and control : label radio
 	 *
 	 * @param array $args オプション.
 	 */
@@ -506,6 +509,37 @@ class Customize_Control {
 	}
 
 	/**
+	 * 設定・コントロール追加
+	 *
+	 * @param string       $id   ID.
+	 * @param array|object $args Args.
+	 *
+	 * @return void
+	 */
+	private function add_setting_and_control( $id, $args ) {
+
+		if ( ! isset( $args['setting'] ) ) {
+			Trigger_Error::trigger_error( __( 'カスタマイザーエラー:"setting"が不足しています。', 'ystandard' ) );
+
+			return;
+		}
+		if ( ! isset( $args['control'] ) ) {
+			Trigger_Error::trigger_error( __( 'カスタマイザーエラー:"control"が不足しています。', 'ystandard' ) );
+
+			return;
+		}
+		$setting = $args['setting'];
+		$control = $args['control'];
+
+		$this->wp_customize->add_setting( $id, $setting );
+		if ( is_array( $control ) ) {
+			$this->wp_customize->add_control( $id, $control );
+		} else {
+			$this->wp_customize->add_control( $control );
+		}
+	}
+
+	/**
 	 * デフォルト値のセット
 	 *
 	 * @param array $args オプション.
@@ -513,6 +547,7 @@ class Customize_Control {
 	 * @return array
 	 */
 	public function parse_args( $args ) {
+		$id = '';
 		/**
 		 * デフォルト指定チェック
 		 */
@@ -520,7 +555,8 @@ class Customize_Control {
 			$args['default'] = '';
 		}
 		if ( isset( $args['id'] ) ) {
-			$args['default'] = Option::get_default( $args['id'], $args['default'] );
+			$id              = $args['id'];
+			$args['default'] = Option::get_default( $id, $args['default'] );
 		}
 
 		/**
@@ -528,7 +564,12 @@ class Customize_Control {
 		 */
 		$args['section'] = isset( $args['section'] ) ? $args['section'] : $this->section;
 
-		return wp_parse_args( $args, $this->get_default_option() );
+		return apply_filters(
+			'ys_customizer_parse_args__' . $id,
+			wp_parse_args( $args, $this->get_default_option() ),
+			$this->wp_customize,
+			$id
+		);
 	}
 
 	/**
