@@ -2,9 +2,7 @@
 @use "sass:math";
 
 .archive__main {
-  margin-right: auto;
   margin-bottom: var(--ystd-layout-gap);
-  margin-left: auto;
 }
 
 .archive__header {
@@ -235,9 +233,17 @@
 
 	&.is-card {
 	  border: 0;
+	  padding-bottom: var(--ystd-archive-padding);
 
 	  .archive__text {
 		padding-top: 0;
+		margin-bottom: 0;
+	  }
+
+	  .archive__thumbnail {
+		margin-right: calc(-1 * var(--ystd-archive-padding));
+		margin-left: calc(-1 * var(--ystd-archive-padding));
+		width: calc(var(--ystd-archive-thumbnail-width) + 2 * var(--ystd-archive-padding));
 	  }
 	}
 
