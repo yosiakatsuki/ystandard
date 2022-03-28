@@ -102,11 +102,15 @@ $editor: false !default;
 	  &.col-sp--#{$i} {
 		@include global.posts_column_cp($i);
 	  }
+	}
+	@for $i from 1 through 6 {
 	  &.col-tablet--#{$i} {
 		@include global.media-breakpoint(sm) {
 		  @include global.posts_column_cp($i);
 		}
 	  }
+	}
+	@for $i from 1 through 6 {
 	  &.col-pc--#{$i} {
 		@include global.media-breakpoint(lg) {
 		  @include global.posts_column_cp($i);
