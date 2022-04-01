@@ -1,7 +1,7 @@
 /**
  * 検索ボタンの開閉処理
  */
-const setGlobalNavSearch = () => {
+const ysSetGlobalNavSearch = () => {
 	const searchButton = document.getElementById('global-nav__search-button');
 	if (searchButton) {
 		searchButton.addEventListener('click', () => {
@@ -30,7 +30,7 @@ const setGlobalNavSearch = () => {
 /**
  * グローバルナビゲーションの開閉処理
  */
-const setGlobalNavToggle = () => {
+const ysSetGlobalNavToggle = () => {
 	const globalNav = document.getElementById('global-nav__toggle');
 	if (globalNav) {
 		globalNav.addEventListener('click', (e) => {
@@ -43,7 +43,7 @@ const setGlobalNavToggle = () => {
 			if (globalSearch) {
 				globalSearch.classList.toggle('is-open');
 			}
-			toggleContentDisableScroll(e.currentTarget);
+			ysToggleContentDisableScroll(e.currentTarget);
 			const mobileFooter =
 				document.getElementsByClassName('footer-mobile-nav');
 			if (mobileFooter && mobileFooter.length) {
@@ -60,18 +60,19 @@ const setGlobalNavToggle = () => {
 			const toggle = document.getElementById('global-nav__toggle');
 			if (toggle) {
 				toggle.classList.remove('is-open');
-				toggleContentDisableScroll(toggle);
+				ysToggleContentDisableScroll(toggle);
 			}
 			const mobileFooter =
 				document.getElementsByClassName('footer-mobile-nav');
-			if (mobileFooter) {
+
+			if (mobileFooter && mobileFooter.length) {
 				mobileFooter[0].classList.remove('is-hide');
 			}
 		});
 	}
 };
 
-const toggleContentDisableScroll = (target) => {
+const ysToggleContentDisableScroll = (target) => {
 	if (target.classList.contains('is-open')) {
 		document.body.style.top = `-${window.scrollY}px`;
 		document.body.style.position = 'fixed';
@@ -90,7 +91,7 @@ const toggleContentDisableScroll = (target) => {
 /**
  * ページ内リンクのスムーススクロール.
  */
-const setSmoothScroll = () => {
+const ysSetSmoothScroll = () => {
 	const links = document.querySelectorAll('a[href*="#"]');
 	for (let i = 0; i < links.length; i++) {
 		links[i].addEventListener('click', (e) => {
@@ -106,40 +107,65 @@ const setSmoothScroll = () => {
 				return;
 			}
 			e.preventDefault();
-			let top = 0;
-			const target = document.getElementById(id);
-			if (!target && '' !== id) {
-				return;
-			}
-			if (target) {
-				const pos = target.getBoundingClientRect().top;
-				let buffer = 50;
-				const header = document.getElementById('masthead');
-				if (header) {
-					if (
-						'fixed' ===
-						window
-							.getComputedStyle(header, null)
-							.getPropertyValue('position')
-					) {
-						buffer = header.getBoundingClientRect().bottom + 20;
-					}
-				}
-				top = pos + window.pageYOffset - buffer;
-			}
-
-			window.scroll({
-				top,
-				behavior: 'smooth',
-			});
+			ysScrollToTarget(id);
 		});
 	}
+};
+
+const ysScrollToTarget = (id, behavior = 'smooth') => {
+	const target = document.getElementById(id);
+	if (!target && '' !== id) {
+		return;
+	}
+	let top = 0;
+	if (target) {
+		const pos = target.getBoundingClientRect().top;
+		top = pos + window.pageYOffset - ysGetScrollBuffer();
+	}
+	window.scroll({
+		top,
+		behavior,
+	});
+};
+
+const ysGetScrollBuffer = () => {
+	let buffer = 50;
+	const header = document.getElementById('masthead');
+	if (header) {
+		if (
+			'fixed' ===
+			window.getComputedStyle(header, null).getPropertyValue('position')
+		) {
+			buffer = header.getBoundingClientRect().bottom + 20;
+		}
+	}
+	return buffer;
+};
+
+/**
+ * ページ表示時の位置調整
+ */
+const ysSetLoadedPosition = () => {
+	if (-1 === location.href.indexOf('#')) {
+		return;
+	}
+	const id = location.href.split('#')[1].split('?')[0];
+	const target = document.getElementById(id);
+	if (!target && '' !== id) {
+		return;
+	}
+	window.scrollTo({
+		top:
+			target.getBoundingClientRect().top +
+			window.pageYOffset -
+			ysGetScrollBuffer(),
+	});
 };
 
 /**
  * TOPへ戻る.
  */
-const setBackToTop = () => {
+const ysSetBackToTop = () => {
 	const backToTop = document.getElementById('back-to-top');
 	if (backToTop && backToTop.classList.contains('is-square')) {
 		const width = backToTop.getBoundingClientRect().width;
@@ -160,7 +186,7 @@ const setBackToTop = () => {
 /**
  * スクロールバー幅の変数セット.
  */
-const setScrollBarWidth = () => {
+const ysSetScrollBarWidth = () => {
 	const scrollbar = window.innerWidth - document.body.clientWidth;
 	if (
 		window
@@ -181,7 +207,7 @@ const getHeaderHeight = () => {
 	return Math.floor(header.getBoundingClientRect().height);
 };
 
-const setFixedHeaderPadding = () => {
+const ysSetFixedHeaderPadding = () => {
 	const classes = document.body.classList;
 	if (
 		classes.contains('has-fixed-header') &&
@@ -198,7 +224,7 @@ const setFixedHeaderPadding = () => {
 	}
 };
 
-const setDrawerNavPadding = () => {
+const ysSetDrawerNavPadding = () => {
 	const size = getHeaderHeight();
 	if (size) {
 		document
@@ -212,18 +238,22 @@ const setDrawerNavPadding = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
 	// スクロールバー分.
-	setScrollBarWidth();
+	ysSetScrollBarWidth();
 	// 固定ヘッダー高さセット.
-	setFixedHeaderPadding();
+	ysSetFixedHeaderPadding();
 	// メニュー.
-	setGlobalNavToggle();
-	setDrawerNavPadding();
+	ysSetGlobalNavToggle();
+	ysSetDrawerNavPadding();
 	// 検索ボタン.
-	setGlobalNavSearch();
+	ysSetGlobalNavSearch();
 	// スムーススクロール.
-	setSmoothScroll();
+	ysSetSmoothScroll();
 	// TOPへ戻る.
-	setBackToTop();
+	ysSetBackToTop();
+	// ページ内リンクの位置調整.
+	setTimeout(function () {
+		ysSetLoadedPosition();
+	}, 1);
 });
 
 window.addEventListener('resize', () => {
@@ -232,6 +262,6 @@ window.addEventListener('resize', () => {
 	}
 	window.ysResizeFixedHeader = setTimeout(function () {
 		// 固定ヘッダー高さセット.
-		setFixedHeaderPadding();
+		ysSetFixedHeaderPadding();
 	}, 100);
 });
