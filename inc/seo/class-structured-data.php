@@ -129,9 +129,13 @@ class Structured_Data {
 			$data['author']           = [
 				'@type' => 'Person',
 				'name'  => get_the_author_meta( 'display_name', $post->post_author ),
+				'url'   => get_author_posts_url( $post->post_author ),
 			];
-			$data['datePublished']    = get_the_date( DATE_ATOM, $post->ID );
-			$data['dateModified']     = get_post_modified_time( DATE_ATOM, false, $post->ID );
+			if ( get_the_author_meta( 'url', $post->post_author ) ) {
+				$data['author']['url'] = get_the_author_meta( 'url', $post->post_author );
+			}
+			$data['datePublished'] = get_the_date( DATE_ATOM, $post->ID );
+			$data['dateModified']  = get_post_modified_time( DATE_ATOM, false, $post->ID );
 			// カテゴリー.
 			$category = get_the_category();
 			if ( $category ) {
