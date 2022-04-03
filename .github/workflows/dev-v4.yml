@@ -92,7 +92,7 @@ jobs:
         run: composer phpcs
 
       - name: eslint
-        run: npm run test:lint:js:fix
+        run: npm run test:lint:js
 
       - name: Notify PHP Lint
         uses: 8398a7/action-slack@v3.8.0
