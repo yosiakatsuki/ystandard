@@ -19,11 +19,12 @@ const iconList = [
 	'GitHub',
 	'Tumblr',
 	'Amazon',
+	'Discord',
 ];
 const data = {};
 
 iconList.map( ( value ) => {
-	const icon = simpleIcons.get( value.toLowerCase().split(' ').join('') );
+	const icon = simpleIcons.Get( value.toLowerCase().split(' ').join('') );
 	data[ icon.slug ] = icon;
 	return '';
 } );
