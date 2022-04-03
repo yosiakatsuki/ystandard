@@ -49,6 +49,7 @@
 	"clean:upload": "rimraf upload",
 	"clean:css": "rimraf css & rimraf src/css",
 	"clean:js": "rimraf js",
+	"clean:zip": "rimraf ystandard.zip",
 	"clean": "run-p clean:*",
 	"i18n:pot": "wp i18n make-pot . languages/ystandard.pot --domain=\"ystandard\" --exclude=\"library,tests,vendor,bin\" --skip-js",
 	"i18n:blocks": "po2json languages/ja.po languages/ystandard-ja-ys-block-editor-scripts.json -f jed",
