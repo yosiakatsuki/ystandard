@@ -47,7 +47,7 @@
 	"build": "run-s clean build:*",
 	"clean:temp": "rimraf temp",
 	"clean:upload": "rimraf upload",
-	"clean:css": "rimraf css & rimraf src/css",
+	"clean:css": "rimraf css",
 	"clean:js": "rimraf js",
 	"clean:zip": "rimraf ystandard.zip",
 	"clean": "run-p clean:*",
