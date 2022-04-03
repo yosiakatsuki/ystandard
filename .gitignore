@@ -27,3 +27,4 @@ ystandard/
 build/
 /vendor
 /temp
+/upload

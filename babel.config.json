@@ -1,0 +1,10 @@
+{
+  "presets": [
+	"@babel/env"
+  ],
+  "targets": {
+	"ie": "11"
+  },
+  "minified": true,
+  "comments": false
+}
