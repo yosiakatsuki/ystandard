@@ -26,3 +26,5 @@ ystandard.zip
 ystandard/
 build/
 /vendor
+/temp
+/upload
