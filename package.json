@@ -56,11 +56,12 @@
 	"zip:copy": "rsync -a --exclude='.*' --exclude='/node_modules' --exclude='/vendor' --exclude='/bin' --exclude='/upload' --exclude='/composer.*' --exclude='*.config.js' --exclude='*.config.json' --exclude='*.xml.dist' --exclude='/tests' --exclude='/src' --exclude='package*.json' --exclude='ystandard-info*.json' . ystandard",
 	"zip:archive": "zip -9 -qmr ystandard.zip ystandard",
 	"zip": "run-s clean:upload clean:zip zip:copy zip:archive",
+	"mkdir:upload": "mkdir upload",
 	"copy:json:production": "cp ystandard-info.json upload/ystandard-info.json",
 	"copy:json:develop": "cp ystandard-info-beta.json upload/ystandard-info.json",
 	"copy:theme": "cp ystandard.zip upload/ystandard.zip",
-	"copy:production": "run-p copy:json:production copy:theme",
-	"copy:develop": "run-p copy:json:develop copy:theme"
+	"copy:production": "run-p mkdir:upload copy:json:production copy:theme",
+	"copy:develop": "run-p mkdir:upload copy:json:develop copy:theme"
   },
   "browserslist": [
 	"extends @wordpress/browserslist-config"
