@@ -39,7 +39,7 @@ jobs:
         run: npm run zip
 
       - name: Create Upload Files
-        run: npm run copy:develop
+        run: npm run copy:production
 
       - name: Deploy
         uses: SamKirkland/FTP-Deploy-Action@2.0.0
