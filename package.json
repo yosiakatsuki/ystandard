@@ -60,8 +60,8 @@
 	"copy:json:production": "cp ystandard-info.json upload/ystandard-info.json",
 	"copy:json:develop": "cp ystandard-info-beta.json upload/ystandard-info.json",
 	"copy:theme": "cp ystandard.zip upload/ystandard.zip",
-	"copy:production": "run-p mkdir:upload copy:json:production copy:theme",
-	"copy:develop": "run-p mkdir:upload copy:json:develop copy:theme"
+	"copy:production": "run-s mkdir:upload copy:json:production copy:theme",
+	"copy:develop": "run-s mkdir:upload copy:json:develop copy:theme"
   },
   "browserslist": [
 	"extends @wordpress/browserslist-config"
