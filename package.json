@@ -8,6 +8,7 @@
 	"@babel/core": "^7.17.8",
 	"@babel/preset-env": "^7.16.11",
 	"@wordpress/browserslist-config": "^4.1.2",
+	"@wordpress/env": "^4.5.0",
 	"@wordpress/eslint-plugin": "^11.1.0",
 	"@wordpress/prettier-config": "^1.1.3",
 	"autoprefixer": "^10.4.4",
@@ -34,6 +35,10 @@
 	"webpack-cli": "^4.9.2"
   },
   "scripts": {
+	"activate:theme": "wp-env run cli 'wp theme activate ystandard'",
+	"start:update": "wp-env start --update && npm run activate:theme",
+	"start": "wp-env start",
+	"stop": "wp-env stop",
 	"watch:js": "babel src/js --out-dir js --ignore 'src/js/polyfill/polyfill.js','src/js/icons/*' -w -s & webpack -c ./webpack.polyfill.config.js -w",
 	"watch:css": "sass src/sass:temp/css --no-source-map –w & postcss temp/css/*.css --dir css -w",
 	"watch": "run-p watch:*",
