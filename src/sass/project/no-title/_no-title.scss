@@ -1,7 +1,7 @@
 @use "../../global";
 
 body.no-title {
-  background-color: unset;
+  background-color: var(--content-bg, #fff);
 }
 
 .no-title {
