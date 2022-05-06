@@ -51,6 +51,7 @@
 	"build:css": "sass src/sass:css --no-source-map && postcss css/*.css -r",
 	"build:icons": "node ./src/js/icons/brand.js",
 	"build": "run-s clean build:*",
+	"test:php": "wp-env start && wp-env run phpunit 'phpunit -c /var/www/html/wp-content/themes/ystandard/phpunit.xml.dist --verbose'",
 	"clean:temp": "rimraf temp",
 	"clean:upload": "rimraf upload & rimraf /ystandard",
 	"clean:css": "rimraf css",
