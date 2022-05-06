@@ -1,0 +1,51 @@
+@use "../../global";
+@use "sass:math";
+
+.archive__item {
+  &.is-list {
+	padding-top: var(--ystd-archive-padding);
+	padding-bottom: var(--ystd-archive-padding);
+
+	--ystd-archive-thumbnail-width: min(25%, 100px);
+
+	@include global.media-breakpoint(sm) {
+	  --ystd-archive-thumbnail-width: min(30%, 360px);
+	}
+
+	.archive__detail {
+	  width: 100%;
+	  display: flex;
+	  gap: var(--ystd-archive-padding);
+	}
+
+	.archive__text {
+	  width: calc(100% - var(--ystd-archive-thumbnail-width) - var(--ystd-archive-padding));
+	}
+
+	.archive__category {
+	  margin-left: 1em;
+	}
+
+	.archive__meta {
+	  white-space: nowrap;
+	  text-overflow: ellipsis;
+
+	  > div {
+		display: inline;
+	  }
+
+	  .ys-icon {
+		vertical-align: -0.1em;
+	  }
+	}
+  }
+}
+
+
+.has-background {
+  .archive__item {
+	&.is-list {
+	  border: 0;
+	}
+  }
+}

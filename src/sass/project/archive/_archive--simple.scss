@@ -1,0 +1,34 @@
+@use "../../global";
+@use "sass:math";
+
+.archive__item {
+  &.is-simple {
+	position: relative;
+	display: flex;
+	padding: 1em 0;
+	gap: 1em;
+
+	.archive__meta {
+	  display: flex;
+	  align-items: center;
+	  gap: 1em;
+	  font-size: 0.9em;
+	  color: var(--content-meta);
+	}
+
+	.archive__date {
+	  white-space: nowrap;
+	}
+
+	.archive__category {
+
+	}
+
+	.archive__title {
+	  font-size: 1.2em;
+	  font-weight: 400;
+	  margin: 0;
+	  padding: 0;
+	}
+  }
+}
