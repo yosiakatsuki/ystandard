@@ -37,47 +37,59 @@ class Notice {
 	/**
 	 * 管理画面通知
 	 *
-	 * @param string $content notice content.
-	 * @param string $type    type.
+	 * @param string  $content notice content.
+	 * @param string  $type    type.
+	 * @param boolean $echo    echo.
 	 */
-	public static function notice( $content, $type = 'error' ) {
-		echo "<div class=\"notice notice-${type} is-dismissible\">${content}</div>";
+	public static function notice( $content, $type = 'error', $echo = true ) {
+		$notice = "<div class=\"notice notice-${type} is-dismissible\">${content}</div>";
+		if ( $echo ) {
+			echo $notice;
+
+			return '';
+		}
+
+		return $notice;
 	}
 
 	/**
 	 * 管理画面通知 - 完了
 	 *
-	 * @param string $content notice content.
+	 * @param string  $content notice content.
+	 * @param boolean $echo    echo.
 	 */
-	public static function success( $content ) {
-		self::notice( $content, 'success' );
+	public static function success( $content, $echo = true ) {
+		return self::notice( $content, 'success', $echo );
 	}
 
 	/**
 	 * 管理画面通知 - お知らせ
 	 *
-	 * @param string $content notice content.
+	 * @param string  $content notice content.
+	 * @param boolean $echo    echo.
 	 */
-	public static function info( $content ) {
-		self::notice( $content, 'info' );
+	public static function info( $content, $echo = true ) {
+		return self::notice( $content, 'info', $echo );
 	}
 
 	/**
 	 * 管理画面通知 - 警告
 	 *
-	 * @param string $content notice content.
+	 * @param string  $content notice content.
+	 * @param boolean $echo    echo.
 	 */
-	public static function warning( $content ) {
-		self::notice( $content, 'warning' );
+	public static function warning( $content, $echo = true ) {
+		return self::notice( $content, 'warning', $echo );
 	}
 
 	/**
 	 * 管理画面通知 - エラー
 	 *
-	 * @param string $content notice content.
+	 * @param string  $content notice content.
+	 * @param boolean $echo    echo.
 	 */
-	public static function error( $content ) {
-		self::notice( $content, 'error' );
+	public static function error( $content, $echo = true ) {
+		return self::notice( $content, 'error', $echo );
 	}
 
 	/**
