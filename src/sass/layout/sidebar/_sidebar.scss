@@ -29,9 +29,9 @@
 	  background-color: var(--content-bg);
 
 	  @include global.media-breakpoint-down(sm) {
-		margin-right: calc(-1 * var(--ystd-layout-gap));
-		margin-left: calc(-1 * var(--ystd-layout-gap));
-		padding: var(--ystd-layout-gap);
+		margin-right: calc(-1 * var(--ystd-container-gutter));
+		margin-left: calc(-1 * var(--ystd-container-gutter));
+		padding: var(--ystd-layout-gap) var(--ystd-container-gutter);
 	  }
 	}
   }

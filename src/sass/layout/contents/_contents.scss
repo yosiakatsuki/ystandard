@@ -77,8 +77,8 @@ body:not(.has-sidebar) {
 	@include global.media-breakpoint-down(sm) {
 	  width: auto;
 	  max-width: unset;
-	  --ystd-content-horizon-margin: calc(-1 * var(--ystd-layout-gap));
-	  --ystd-content-padding: var(--ystd-layout-gap);
+	  --ystd-content-horizon-margin: calc(-1 * var(--ystd-container-gutter));
+	  --ystd-content-padding: var(--ystd-layout-gap) var(--ystd-container-gutter);
 	}
   }
 }
