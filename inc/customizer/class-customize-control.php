@@ -111,16 +111,9 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_color( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => 'sanitize_hex_color',
-			]
-		);
+		$args                      = $this->parse_args( $args );
+		$args['sanitize_callback'] = 'sanitize_hex_color';
+		$this->add_setting_and_control( $args, false );
 		$palettes      = true;
 		$color_palette = get_theme_support( 'editor-color-palette' );
 		if ( $color_palette && is_array( $color_palette ) ) {
@@ -132,14 +125,11 @@ class Customize_Control {
 				new Color_Control(
 					$this->wp_customize,
 					$args['id'],
-					[
-						'label'       => $args['label'],
-						'description' => $args['description'],
-						'section'     => $args['section'],
-						'priority'    => $args['priority'],
-						'settings'    => $args['id'],
-						'palette'     => $palettes,
-					]
+					self::get_control_args(
+						$args,
+						$args['id'],
+						[ 'palette' => $palettes ]
+					)
 				)
 			);
 		} else {
@@ -147,13 +137,7 @@ class Customize_Control {
 				new \WP_Customize_Color_Control(
 					$this->wp_customize,
 					$args['id'],
-					[
-						'label'       => $args['label'],
-						'description' => $args['description'],
-						'section'     => $args['section'],
-						'priority'    => $args['priority'],
-						'settings'    => $args['id'],
-					]
+					self::get_control_args( $args, $args['id'] )
 				)
 			);
 		}
@@ -166,24 +150,12 @@ class Customize_Control {
 	 */
 	public function add_image( $args ) {
 		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'type'      => $args['setting_type'],
-				'transport' => $args['transport'],
-			]
-		);
+		$this->add_setting_and_control( $args, false );
 		$this->wp_customize->add_control(
 			new \WP_Customize_Image_Control(
 				$this->wp_customize,
 				$args['id'],
-				[
-					'label'       => $args['label'],
-					'description' => $args['description'],
-					'section'     => $args['section'],
-					'priority'    => $args['priority'],
-					'settings'    => $args['id'],
-				]
+				self::get_control_args( $args, $args['id'] )
 			)
 		);
 	}
@@ -195,28 +167,8 @@ class Customize_Control {
 	 */
 	public function add_radio( $args ) {
 		$args['control_type'] = 'radio';
-		$args                 = $this->parse_args( $args );
 
-		$this->add_setting_and_control(
-			$args['id'],
-			[
-				'setting' => [
-					'default'           => $args['default'],
-					'type'              => $args['setting_type'],
-					'transport'         => $args['transport'],
-					'sanitize_callback' => [ $this, 'sanitize_select' ],
-				],
-				'control' => [
-					'label'       => $args['label'],
-					'description' => $args['description'],
-					'section'     => $args['section'],
-					'priority'    => $args['priority'],
-					'type'        => $args['control_type'],
-					'settings'    => $args['id'],
-					'choices'     => $args['choices'],
-				],
-			]
-		);
+		$this->add_setting_and_control( $args );
 	}
 
 	/**
@@ -225,28 +177,9 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_select( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => [ $this, 'sanitize_select' ],
-			]
-		);
-		$this->wp_customize->add_control(
-			$args['id'],
-			[
-				'label'       => $args['label'],
-				'description' => $args['description'],
-				'section'     => $args['section'],
-				'priority'    => $args['priority'],
-				'type'        => 'select',
-				'settings'    => $args['id'],
-				'choices'     => $args['choices'],
-			]
-		);
+		$args['control_type']      = 'select';
+		$args['sanitize_callback'] = [ $this, 'sanitize_select' ];
+		$this->add_setting_and_control( $args );
 	}
 
 	/**
@@ -255,29 +188,15 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_image_label_radio( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => [ $this, 'sanitize_select' ],
-			]
-		);
+		$args                      = $this->parse_args( $args );
+		$args['control_type']      = 'radio';
+		$args['sanitize_callback'] = [ $this, 'sanitize_select' ];
+		$this->add_setting_and_control( $args, false );
 		$this->wp_customize->add_control(
 			new Image_Label_Radio_Control(
 				$this->wp_customize,
 				$args['id'],
-				[
-					'label'       => $args['label'],
-					'description' => $args['description'],
-					'section'     => $args['section'],
-					'priority'    => $args['priority'],
-					'type'        => 'radio',
-					'settings'    => $args['id'],
-					'choices'     => $args['choices'],
-				]
+				self::get_control_args( $args, $args['id'] )
 			)
 		);
 	}
@@ -288,27 +207,9 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_checkbox( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => [ $this, 'sanitize_checkbox' ],
-			]
-		);
-		$this->wp_customize->add_control(
-			$args['id'],
-			[
-				'label'       => $args['label'],
-				'description' => $args['description'],
-				'section'     => $args['section'],
-				'priority'    => $args['priority'],
-				'type'        => 'checkbox',
-				'settings'    => $args['id'],
-			]
-		);
+		$args['control_type']      = 'checkbox';
+		$args['sanitize_callback'] = [ $this, 'sanitize_checkbox' ];
+		$this->add_setting_and_control( $args );
 	}
 
 	/**
@@ -317,31 +218,11 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_text( $args ) {
+		$args['control_type'] = 'text';
 		if ( ! isset( $args['sanitize_callback'] ) ) {
 			$args['sanitize_callback'] = 'sanitize_text_field';
 		}
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => $args['sanitize_callback'],
-			]
-		);
-		$this->wp_customize->add_control(
-			$args['id'],
-			[
-				'label'       => $args['label'],
-				'description' => $args['description'],
-				'section'     => $args['section'],
-				'priority'    => $args['priority'],
-				'type'        => 'text',
-				'settings'    => $args['id'],
-				'input_attrs' => $args['input_attrs'],
-			]
-		);
+		$this->add_setting_and_control( $args );
 	}
 
 	/**
@@ -350,28 +231,9 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_number( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => [ $this, 'sanitize_number' ],
-			]
-		);
-		$this->wp_customize->add_control(
-			$args['id'],
-			[
-				'label'       => $args['label'],
-				'description' => $args['description'],
-				'section'     => $args['section'],
-				'priority'    => $args['priority'],
-				'type'        => 'number',
-				'settings'    => $args['id'],
-				'input_attrs' => $args['input_attrs'],
-			]
-		);
+		$args['control_type']      = 'number';
+		$args['sanitize_callback'] = [ $this, 'sanitize_number' ];
+		$this->add_setting_and_control( $args );
 	}
 
 	/**
@@ -380,27 +242,8 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_textarea( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => $args['sanitize_callback'],
-			]
-		);
-		$this->wp_customize->add_control(
-			$args['id'],
-			[
-				'label'       => $args['label'],
-				'description' => $args['description'],
-				'section'     => $args['section'],
-				'priority'    => $args['priority'],
-				'type'        => 'textarea',
-				'settings'    => $args['id'],
-			]
-		);
+		$args['control_type'] = 'textarea';
+		$this->add_setting_and_control( $args );
 	}
 
 	/**
@@ -409,7 +252,6 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_plain_textarea( $args ) {
-		$args = $this->parse_args( $args );
 		/**
 		 * サニタイズのセット
 		 */
@@ -423,27 +265,9 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_url( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'default'           => $args['default'],
-				'type'              => $args['setting_type'],
-				'transport'         => $args['transport'],
-				'sanitize_callback' => 'esc_url_raw',
-			]
-		);
-		$this->wp_customize->add_control(
-			$args['id'],
-			[
-				'label'       => $args['label'],
-				'description' => $args['description'],
-				'section'     => $args['section'],
-				'priority'    => $args['priority'],
-				'type'        => 'url',
-				'settings'    => $args['id'],
-			]
-		);
+		$args['control_type']      = 'url';
+		$args['sanitize_callback'] = 'esc_url_raw';
+		$this->add_setting_and_control( $args );
 	}
 
 	/**
@@ -452,25 +276,9 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_label( $args ) {
-		$args = $this->parse_args( $args );
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'type'      => 'option',
-				'transport' => 'postMessage',
-			]
-		);
-		$this->wp_customize->add_control(
-			$args['id'],
-			[
-				'label'       => $args['label'],
-				'description' => $args['description'],
-				'section'     => $args['section'],
-				'priority'    => $args['priority'],
-				'type'        => 'hidden',
-				'settings'    => $args['id'],
-			]
-		);
+		$args['control_type'] = 'hidden';
+		$args['transport']    = 'postMessage';
+		$this->add_setting_and_control( $args );
 	}
 
 	/**
@@ -480,30 +288,19 @@ class Customize_Control {
 	 * @param array  $args  オプション.
 	 */
 	public function add_section_label( $label, $args = [] ) {
-		$args = $this->parse_args( $args );
+		$args                 = $this->parse_args( $args );
+		$args['control_type'] = 'hidden';
+		$args['transport']    = 'postMessage';
+		$args['label']        = $label;
 		if ( ! isset( $args['id'] ) ) {
 			$args['id'] = 'ys_' . substr( md5( $label . $args['section'] ), 0, 40 );
 		}
-		$args['label'] = $label;
-		$this->wp_customize->add_setting(
-			$args['id'],
-			[
-				'type'      => 'option',
-				'transport' => 'postMessage',
-			]
-		);
+		$this->add_setting_and_control( $args, false );
 		$this->wp_customize->add_control(
 			new Section_Label_Control(
 				$this->wp_customize,
 				$args['id'],
-				[
-					'label'       => $args['label'],
-					'description' => $args['description'],
-					'section'     => $args['section'],
-					'priority'    => $args['priority'],
-					'type'        => 'hidden',
-					'settings'    => $args['id'],
-				]
+				self::get_control_args( $args, $args['id'] )
 			)
 		);
 	}
@@ -511,32 +308,105 @@ class Customize_Control {
 	/**
 	 * 設定・コントロール追加
 	 *
-	 * @param string       $id   ID.
-	 * @param array|object $args Args.
+	 * @param array               $args    Args.
+	 * @param object|null|boolean $control Control.
 	 *
 	 * @return void
 	 */
-	private function add_setting_and_control( $id, $args ) {
-
-		if ( ! isset( $args['setting'] ) ) {
-			Trigger_Error::trigger_error( __( 'カスタマイザーエラー:"setting"が不足しています。', 'ystandard' ) );
-
-			return;
+	private function add_setting_and_control( $args, $control = null ) {
+		$args = $this->parse_args( $args );
+		$id   = $args['id'];
+		/**
+		 * 設定値分割.
+		 */
+		$setting = self::get_setting_args( $args, $id );
+		if ( is_null( $control ) ) {
+			$control = self::get_control_args( $args, $id );
 		}
-		if ( ! isset( $args['control'] ) ) {
-			Trigger_Error::trigger_error( __( 'カスタマイザーエラー:"control"が不足しています。', 'ystandard' ) );
-
-			return;
-		}
-		$setting = $args['setting'];
-		$control = $args['control'];
 
 		$this->wp_customize->add_setting( $id, $setting );
 		if ( is_array( $control ) ) {
 			$this->wp_customize->add_control( $id, $control );
-		} else {
+		} elseif ( false !== $control ) {
 			$this->wp_customize->add_control( $control );
 		}
+	}
+
+
+	/**
+	 * 設定用パラメーターの抽出
+	 *
+	 * @param array  $args   パラメーター.
+	 * @param string $id     ID.
+	 * @param array  $option 追加パラメーター.
+	 *
+	 * @return array
+	 */
+	public static function get_setting_args( $args, $id = '', $option = [] ) {
+		$setting_keys = [
+			'setting_type'      => 'type',
+			'transport'         => 'transport',
+			'default'           => 'default',
+			'sanitize_callback' => 'sanitize_callback',
+		];
+
+		return apply_filters(
+			'ys_customize_get_setting_args__' . $id,
+			array_merge(
+				self::parse_customize_args( $args, $setting_keys ),
+				$option
+			)
+		);
+	}
+
+	/**
+	 * コントロール用パラメーターの抽出
+	 *
+	 * @param array  $args   パラメーター.
+	 * @param string $id     ID.
+	 * @param array  $option 追加パラメーター.
+	 *
+	 * @return array
+	 */
+	public static function get_control_args( $args, $id = '', $option = [] ) {
+		$control_keys = [
+			'control_type'    => 'type',
+			'active_callback' => 'active_callback',
+			'priority'        => 'priority',
+			'section'         => 'section',
+			'label'           => 'label',
+			'description'     => 'description',
+			'choices'         => 'choices',
+			'input_attrs'     => 'input_attrs',
+			'id'              => 'settings',
+		];
+
+		return apply_filters(
+			'ys_customize_get_control_args__' . $id,
+			array_merge(
+				self::parse_customize_args( $args, $control_keys ),
+				$option
+			)
+		);
+	}
+
+	/**
+	 * カスタマイズコントロール用パラメーター作成
+	 *
+	 * @param array $args Args.
+	 * @param array $keys 変換元キーと変換後キーの組み合わせ.
+	 *
+	 * @return array
+	 */
+	private static function parse_customize_args( $args, $keys ) {
+		$result = [];
+		foreach ( $keys as $key => $value ) {
+			if ( array_key_exists( $key, $args ) ) {
+				$result[ $value ] = $args[ $key ];
+			}
+		}
+
+		return $result;
 	}
 
 	/**
@@ -584,6 +454,7 @@ class Customize_Control {
 			'default'           => '',
 			'input_attrs'       => [],
 			'sanitize_callback' => '',
+			'active_callback'   => [],
 		];
 	}
 
