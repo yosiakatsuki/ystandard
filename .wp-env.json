@@ -8,5 +8,13 @@
 	"https://downloads.wordpress.org/plugin/wp-multibyte-patch.zip",
 	"../ystandard-blocks",
 	"../ystandard-toolbox"
-  ]
+  ],
+  "env": {
+	"tests": {
+	  "port": 10001
+	}
+  },
+  "mappings": {
+	".wp-content": "./.wp-content"
+  }
 }
