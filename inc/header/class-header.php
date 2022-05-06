@@ -220,7 +220,8 @@ class Header {
 
 		$css .= $this->get_logo_css();
 		$css .= $this->get_header_shadow_css();
-		$css .= $this->get_fixed_header_css();
+		$css .= self::get_fixed_header_css();
+		$css .= self::get_header_height_css();
 
 		return $css;
 	}
@@ -266,48 +267,71 @@ class Header {
 	}
 
 	/**
-	 * 固定ヘッダー用CSS
+	 * ヘッダー高さ指定.
+	 *
+	 * @return string
 	 */
-	private function get_fixed_header_css() {
-		if ( ! Option::get_option_by_bool( 'ys_header_fixed', false ) ) {
-			return '';
-		}
+	public static function get_header_height_css() {
+		$css    = '';
 		$pc     = Option::get_option_by_int( 'ys_header_fixed_height_pc', 0 );
 		$tablet = Option::get_option_by_int( 'ys_header_fixed_height_tablet', 0 );
 		$mobile = Option::get_option_by_int( 'ys_header_fixed_height_mobile', 0 );
-		if ( 0 === $mobile ) {
-			$mobile = 0 < $tablet ? $tablet : $pc;
+		if ( 0 < $pc || 0 < $tablet || 0 < $mobile ) {
+			$css = '.site-header {
+				height:var(--ys-site-header-height,auto);
+			}';
 		}
-		if ( 0 === $tablet ) {
-			$tablet = 0 < $mobile ? 0 : $pc;
+		if ( 0 < $mobile ) {
+			$css .= Style_Sheet::add_media_query(
+				":root {
+					--ys-site-header-height:${mobile}px;
+				}",
+				'',
+				'sm'
+			);
 		}
-		$css = "
-		.has-fixed-header .site-header {
-			position: fixed;
-			top:0;
-			left:0;
-			width:100%;
-			z-index:var(--z-index-header);
-		}
-		body.has-fixed-header {
-			padding-top:${mobile}px;
-		}";
-
 		if ( 0 < $tablet ) {
 			$css .= Style_Sheet::add_media_query(
-				"body.has-fixed-header {
-					padding-top:${tablet}px;
+				":root {
+					--ys-site-header-height:${tablet}px;
 				}",
 				'sm'
 			);
 		}
 		if ( 0 < $pc ) {
 			$css .= Style_Sheet::add_media_query(
-				"body.has-fixed-header {
-					padding-top:${pc}px;
+				":root {
+					--ys-site-header-height:${pc}px;
 				}",
 				'md'
 			);
+		}
+
+		return $css;
+	}
+
+	/**
+	 * 固定ヘッダー用CSS
+	 */
+	public static function get_fixed_header_css() {
+		if ( ! Option::get_option_by_bool( 'ys_header_fixed', false ) ) {
+			return '';
+		}
+		$css    = '
+		.has-fixed-header .site-header {
+			position: fixed;
+			top:0;
+			left:0;
+			width:100%;
+			z-index:var(--z-index-header);
+		}';
+		$pc     = Option::get_option_by_int( 'ys_header_fixed_height_pc', 0 );
+		$tablet = Option::get_option_by_int( 'ys_header_fixed_height_tablet', 0 );
+		$mobile = Option::get_option_by_int( 'ys_header_fixed_height_mobile', 0 );
+		if ( 0 < $pc || 0 < $tablet || 0 < $mobile ) {
+			$css .= 'body.has-fixed-header {
+				padding-top:var(--ys-site-header-height,0);
+			}';
 		}
 
 		return $css;

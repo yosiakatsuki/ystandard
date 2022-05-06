@@ -53,4 +53,33 @@ class Text {
 			$text
 		);
 	}
+
+	/**
+	 * スペース削除
+	 *
+	 * @param string $text Text.
+	 *
+	 * @return string
+	 */
+	public static function remove_space( $text ) {
+		return str_replace(
+			[
+				' ',
+				'　',
+			],
+			'',
+			$text
+		);
+	}
+
+	/**
+	 * まとめて削除
+	 *
+	 * @param string $text Text.
+	 *
+	 * @return string
+	 */
+	public static function remove_nl_tab_space( $text ) {
+		return self::remove_nl( self::remove_tab( self::remove_space( $text ) ) );
+	}
 }
