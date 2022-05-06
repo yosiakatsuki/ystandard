@@ -231,6 +231,19 @@ function ys_the_archive_meta() {
 }
 
 /**
+ * アーカイブ 日付情報
+ */
+function ys_the_archive_date( $icon = true ) {
+	echo \ystandard\Archive::get_archive_detail_date( $icon );
+}
+/**
+ * アーカイブ カテゴリー情報
+ */
+function ys_the_archive_category( $icon = true ) {
+	echo \ystandard\Archive::get_archive_detail_category( $icon );
+}
+
+/**
  * アーカイブ 概要
  */
 function ys_the_archive_description() {
