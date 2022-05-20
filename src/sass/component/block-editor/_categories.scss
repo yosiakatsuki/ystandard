@@ -4,14 +4,18 @@ $editor: false !default;
 
 @mixin categories() {
 
-  .wp-block-categories-list {
+  .wp-block-categories-list,
+  .wp-block-categories__list {
 	margin-right: 0;
 	margin-left: 0;
 	padding: 0;
 	list-style: none;
   }
-
+  ul.wp-block-categories__list {
+	font-size: 0.9em;
+  }
   .wp-block-categories-list,
+  .wp-block-categories__list,
   .widget_categories,
   .widget_nav_menu,
   .widget_pages {
@@ -73,7 +77,8 @@ $editor: false !default;
 	}
 
 	.children,
-	.sub-menu {
+	.sub-menu,
+	> li > .wp-block-categories__list {
 	  border-top: 1px solid var(--site-border-gray-light);
 
 	  a {
@@ -81,7 +86,8 @@ $editor: false !default;
 		font-size: 0.9em;
 	  }
 
-	  .children {
+	  .children,
+	  > li > .wp-block-categories__list {
 		a {
 		  padding-left: 3em;
 		  font-size: 1em;
