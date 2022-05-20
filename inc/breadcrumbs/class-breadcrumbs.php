@@ -130,7 +130,7 @@ class Breadcrumbs {
 		ob_start();
 		Template::get_template_part(
 			'template-parts/parts/breadcrumbs',
-			[],
+			'',
 			[ 'breadcrumbs' => $this->get_breadcrumbs() ]
 		);
 		echo ob_get_clean();
