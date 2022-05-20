@@ -6,15 +6,16 @@ $editor: false !default;
 
   .wp-block-tag-cloud,
   .tagcloud {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1ch;
 	color: var(--tagcloud-text);
 	font-size: 0.8em;
-	letter-spacing: -0.4em;
 
 	a {
-	  display: inline-block;
-	  margin-right: 0.5em;
-	  margin-bottom: 0.5em;
-	  padding: 0.25em 0.5em;
+	  display: block;
+	  margin: 0;
+	  padding: 0.5ch 2ch;
 	  background-color: var(--tagcloud-bg);
 	  color: currentColor;
 	  text-decoration: none;
@@ -28,6 +29,15 @@ $editor: false !default;
 
 	  &:hover {
 		opacity: 0.8;
+	  }
+	}
+  }
+  .wp-block-tag-cloud {
+	&.is-style-outline {
+	  a {
+		background: transparent;
+		border-color: currentColor;
+		padding: 0.5ch 2ch;
 	  }
 	}
   }
