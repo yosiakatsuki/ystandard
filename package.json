@@ -36,8 +36,8 @@
   },
   "scripts": {
 	"activate:theme": "wp-env run cli 'wp theme activate ystandard'",
-	"start:update": "wp-env start --update && npm run activate:theme",
-	"start": "wp-env start",
+	"start:update": "wp-env start --xdebug=develop,debug -- --update && npm run activate:theme",
+	"start": "wp-env start --xdebug=develop,debug",
 	"stop": "wp-env stop",
 	"watch:js": "babel src/js --out-dir js --ignore 'src/js/polyfill/polyfill.js','src/js/icons/*' -w -s & webpack -c ./webpack.polyfill.config.js -w",
 	"watch:css": "sass src/sass:temp/css --no-source-map –w & postcss temp/css/*.css --dir css -w",
