@@ -40,7 +40,7 @@
 	"start": "wp-env start --xdebug=develop && npm run import && open http://localhost:10000/",
 	"stop": "npm run export && wp-env stop",
 	"watch:js": "babel src/js --out-dir js --ignore 'src/js/polyfill/polyfill.js','src/js/icons/*' -w -s & webpack -c ./webpack.polyfill.config.js -w",
-	"watch:postcss": "postcss temp/css/*.css --base temp/css --dir css --verbose -w",
+	"watch:postcss": "postcss temp/**/*.css --base temp/css --dir css --verbose -w",
 	"watch:sass": "sass src/sass:temp/css --no-source-map --no-stop-on-error -w",
 	"watch": "run-p watch:*",
 	"lint:php": "composer phpcs",
