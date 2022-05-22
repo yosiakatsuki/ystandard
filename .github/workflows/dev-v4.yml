@@ -40,7 +40,7 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
-    name: PHP lint
+    name: Lint
     needs: [ codeCheck ]
     steps:
       - uses: actions/checkout@v1
@@ -50,7 +50,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.3
+          php-version: 7.4
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
           coverage: xdebug
