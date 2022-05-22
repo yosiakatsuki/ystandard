@@ -214,11 +214,7 @@ class Utility {
 	 * @return bool
 	 */
 	public static function to_bool( $value ) {
-		if ( true === $value || 'true' === $value || 1 === $value || '1' === $value ) {
-			return true;
-		} else {
-			return false;
-		}
+		return helper\Boolean::to_bool( $value );
 	}
 
 	/**

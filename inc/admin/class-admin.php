@@ -104,14 +104,14 @@ class Admin {
 			'ys-admin-scripts',
 			get_template_directory_uri() . '/js/admin/admin.js',
 			[ 'jquery' ],
-			Utility::get_ystandard_version(),
+			filemtime( get_template_directory() . '/js/admin/admin.js' ),
 			true
 		);
 		wp_enqueue_script(
 			'ys-custom-uploader',
 			get_template_directory_uri() . '/js/admin/custom-uploader.js',
 			[ 'jquery' ],
-			Utility::get_ystandard_version(),
+			filemtime( get_template_directory() . '/js/admin/custom-uploader.js' ),
 			true
 		);
 	}

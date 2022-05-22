@@ -31,6 +31,7 @@
 	  text-decoration: none;
 	}
   }
+
   .custom-logo {
 	display: block;
   }
@@ -76,6 +77,7 @@
 	@include global.media-breakpoint(md) {
 	  padding-bottom: .5em;
 	}
+
 	.custom-logo {
 	  margin-right: auto;
 	  margin-left: auto;
