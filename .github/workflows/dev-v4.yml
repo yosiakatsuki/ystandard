@@ -88,13 +88,10 @@ jobs:
       - name: npm install
         run: npm install
 
-      - name: phpcs tests
-        run: composer phpcs
+      - name: lint
+        run: npm run lint
 
-      - name: eslint
-        run: npm run test:lint:js
-
-      - name: Notify PHP Lint
+      - name: Notify Lint
         uses: 8398a7/action-slack@v3.8.0
         with:
           status: ${{ job.status }}
