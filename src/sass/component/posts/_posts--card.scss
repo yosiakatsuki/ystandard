@@ -1,0 +1,24 @@
+@use "../../global";
+
+$editor: false !default;
+
+@mixin ys-posts--card() {
+
+  .ys-posts {
+	&.is-card {
+
+	  .ys-posts__thumbnail {
+		margin-bottom: var(--ystd-posts-inner-gap);
+	  }
+
+	  .ys-posts__text {
+		@include global.child_margin(var(--ystd-posts-inner-gap));
+		word-break: break-word;
+	  }
+
+	  .ys-posts__meta {
+		justify-content: space-between;
+	  }
+	}
+  }
+}
