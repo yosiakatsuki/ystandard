@@ -52,7 +52,8 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description"><?php echo $this->description; ?></span>
 				<?php endif; ?>
 				<div class="customizer__image-label-radio-list">
-					<?php foreach ( $this->choices as $value => $label ) :
+					<?php
+					foreach ( $this->choices as $value => $label ) :
 						$text = '';
 						if ( is_array( $label ) ) {
 							$text  = $label['text'];

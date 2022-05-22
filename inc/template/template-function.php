@@ -232,12 +232,17 @@ function ys_the_archive_meta() {
 
 /**
  * アーカイブ 日付情報
+ *
+ * @param string $icon アイコンを表示するか.
  */
 function ys_the_archive_date( $icon = true ) {
 	echo \ystandard\Archive::get_archive_detail_date( $icon );
 }
+
 /**
  * アーカイブ カテゴリー情報
+ *
+ * @param string $icon アイコンを表示するか.
  */
 function ys_the_archive_category( $icon = true ) {
 	echo \ystandard\Archive::get_archive_detail_category( $icon );
