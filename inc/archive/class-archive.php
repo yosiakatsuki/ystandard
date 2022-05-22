@@ -409,9 +409,18 @@ class Archive {
 		$archive_types = apply_filters(
 			'ys_customizer_archive_type_choices',
 			[
-				'card'   => sprintf( $img, $card, 'card' ),
-				'list'   => sprintf( $img, $list, 'list' ),
-				'simple' => sprintf( $img, $simple, 'simple' ),
+				'card'   => [
+					'image' => sprintf( $img, $card, 'card' ),
+					'text'  => __( 'カード', 'ystandard' ),
+				],
+				'list'   => [
+					'image' => sprintf( $img, $list, 'list' ),
+					'text'  => __( 'リスト', 'ystandard' ),
+				],
+				'simple' => [
+					'image' => sprintf( $img, $simple, 'simple' ),
+					'text'  => __( 'シンプル', 'ystandard' ),
+				],
 			]
 		);
 		$customizer->add_image_label_radio(
