@@ -10,7 +10,7 @@
 	}
   ],
   "require": {
-	"php": ">=7.3",
+	"php": ">=7.4",
 	"ext-json": "*"
   },
   "require-dev": {
@@ -26,5 +26,12 @@
   "scripts": {
 	"test": "phpunit",
 	"phpcs": "phpcs --standard=./.phpcs.xml.dist"
+  },
+  "config": {
+	"process-timeout": 0,
+	"vendor-dir": "vendor",
+	"allow-plugins": {
+	  "dealerdirect/phpcodesniffer-composer-installer": true
+	}
   }
 }
