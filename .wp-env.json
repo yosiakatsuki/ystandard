@@ -5,9 +5,7 @@
 	"."
   ],
   "plugins": [
-	"https://downloads.wordpress.org/plugin/wp-multibyte-patch.zip",
-	"../ystandard-blocks",
-	"../ystandard-toolbox"
+	"https://downloads.wordpress.org/plugin/wp-multibyte-patch.zip"
   ],
   "env": {
 	"tests": {
