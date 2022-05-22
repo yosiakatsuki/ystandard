@@ -3,6 +3,8 @@
 require_once dirname( dirname( __FILE__ ) ) . '/vendor/autoload.php';
 define( 'DIR_TEST_DATA', __DIR__ . '/data' );
 
+require_once __DIR__ . '/wp-tests-config.php';
+
 // If we're running in WP's build directory, ensure that WP knows that, too.
 if ( 'build' === getenv( 'LOCAL_DIR' ) ) {
 	define( 'WP_RUN_CORE_TESTS', true );
