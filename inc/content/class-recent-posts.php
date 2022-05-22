@@ -31,8 +31,8 @@ class Recent_Posts {
 	 * ショートコード特有のパラメーター
 	 */
 	const SHORTCODE_ATTR = [
-		'list_type'        => 'list', // list , card.
-		'list_type_mobile' => '', // list , card.
+		'list_type'        => 'list', // list , card, simple.
+		'list_type_mobile' => '', // list , card, simple.
 		'col'              => 0,
 		'col_sp'           => 1,
 		'col_tablet'       => 3,
@@ -71,13 +71,17 @@ class Recent_Posts {
 	 * 表示タイプ
 	 */
 	const LIST_TYPE = [
-		'list' => [
+		'list'   => [
 			'label'    => 'リスト',
 			'template' => self::DEFAULT_TEMPLATE,
 		],
-		'card' => [
+		'card'   => [
 			'label'    => 'カード',
 			'template' => self::DEFAULT_TEMPLATE,
+		],
+		'simple' => [
+			'label'    => 'シンプル',
+			'template' => 'template-parts/parts/recent-posts-simple',
 		],
 	];
 
