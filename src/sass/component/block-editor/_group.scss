@@ -20,9 +20,6 @@ $editor: false !default;
 	&.alignfull + &.alignfull {
 	  margin-top: 0;
 	}
-	+ .wp-block-group {
-	  margin-top: 0;
-	}
   }
 
   .wp-block-group__inner-container {
