@@ -8,7 +8,8 @@ $editor: false !default;
 	margin-top: 0;
 	margin-bottom: 0;
   }
-  .wp-block-spacer + * {
+  .wp-block-spacer + *,
+  .entry-content .wp-block-spacer + * {
 	margin-top: 0;
   }
 }
