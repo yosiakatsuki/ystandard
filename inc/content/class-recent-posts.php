@@ -31,8 +31,8 @@ class Recent_Posts {
 	 * ショートコード特有のパラメーター
 	 */
 	const SHORTCODE_ATTR = [
-		'list_type'        => 'list', // list , card.
-		'list_type_mobile' => '', // list , card.
+		'list_type'        => 'list', // list , card, simple.
+		'list_type_mobile' => '', // list , card, simple.
 		'col'              => 0,
 		'col_sp'           => 1,
 		'col_tablet'       => 3,
@@ -45,6 +45,8 @@ class Recent_Posts {
 		'post_type'        => 'post',
 		'count'            => 3,
 		'count_mobile'     => 0,
+		'offset'           => 0,
+		'offset_mobile'    => 0,
 		'order'            => 'DESC',
 		'orderby'          => 'date',
 		'show_img'         => true,
@@ -69,13 +71,17 @@ class Recent_Posts {
 	 * 表示タイプ
 	 */
 	const LIST_TYPE = [
-		'list' => [
+		'list'   => [
 			'label'    => 'リスト',
 			'template' => self::DEFAULT_TEMPLATE,
 		],
-		'card' => [
+		'card'   => [
 			'label'    => 'カード',
 			'template' => self::DEFAULT_TEMPLATE,
+		],
+		'simple' => [
+			'label'    => 'シンプル',
+			'template' => 'template-parts/parts/recent-posts-simple',
 		],
 	];
 
@@ -85,6 +91,9 @@ class Recent_Posts {
 	const RATIO_TYPE = [
 		'16-9' => '16-9',
 		'4-3'  => '4-3',
+		'3-2'  => '3-2',
+		'3-1'  => '3-1',
+		'2-1'  => '2-1',
 		'1-1'  => '1-1',
 	];
 
@@ -499,6 +508,7 @@ class Recent_Posts {
 		$this->query_args = [
 			'post_type'           => $this->shortcode_atts['post_type'],
 			'posts_per_page'      => $this->get_count(),
+			'offset'              => $this->get_offset(),
 			'order'               => $this->shortcode_atts['order'],
 			'orderby'             => $this->shortcode_atts['orderby'],
 			'post_status'         => $this->shortcode_atts['post_status'],
@@ -587,11 +597,28 @@ class Recent_Posts {
 	 */
 	private function get_count() {
 		$count = $this->shortcode_atts['count'];
-		if ( 0 < $this->shortcode_atts['count_mobile'] ) {
+		if ( 0 !== $this->shortcode_atts['count_mobile'] ) {
 			$count = $this->is_mobile() ? $this->shortcode_atts['count_mobile'] : $count;
 		}
 
 		return $count;
+	}
+
+	/**
+	 * Offset値の取得
+	 *
+	 * @return int
+	 */
+	private function get_offset() {
+		$offset = $this->shortcode_atts['offset'];
+		if ( 0 >= $offset ) {
+			return 0;
+		}
+		if ( 0 < $this->shortcode_atts['offset_mobile'] ) {
+			$offset = $this->is_mobile() ? $this->shortcode_atts['offset_mobile'] : $offset;
+		}
+
+		return $offset;
 	}
 
 	/**

@@ -2,9 +2,9 @@
 
 .container {
   position: relative;
-  max-width: calc(var(--ystd-container-width) + var(--ystd-layout-gap) * 2);
+  max-width: calc(var(--ystd-container-width) + var(--ystd-container-gutter) * 2);
   margin-right: auto;
   margin-left: auto;
-  padding-right: var(--ystd-layout-gap);
-  padding-left: var(--ystd-layout-gap);
+  padding-right: var(--ystd-container-gutter);
+  padding-left: var(--ystd-container-gutter);
 }

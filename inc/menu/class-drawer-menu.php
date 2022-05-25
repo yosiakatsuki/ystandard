@@ -58,10 +58,13 @@ class Drawer_Menu {
 			$attr[] = 'on="tap:mobile-menu.' . $type . '"';
 		}
 
-		return sprintf(
-			'<button %s>%s</button>',
-			trim( implode( ' ', $attr ) ),
-			$icon
+		return apply_filters(
+			'ys_get_toggle_button_html',
+			sprintf(
+				'<button %s>%s</button>',
+				trim( implode( ' ', $attr ) ),
+				$icon
+			)
 		);
 	}
 

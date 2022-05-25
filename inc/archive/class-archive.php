@@ -204,20 +204,28 @@ class Archive {
 	/**
 	 * 日付取得
 	 *
+	 * @param string|boolean $icon Icon.
+	 *
 	 * @return string
 	 */
-	public static function get_archive_detail_date() {
+	public static function get_archive_detail_date( $icon = true ) {
 
 		if ( ! Option::get_option_by_bool( 'ys_show_archive_publish_date', true ) ) {
 			return '';
 		}
 
-		$format      = '<div class="archive__date">%s<time class="updated" datetime="%s">%s</time></div>';
-		$icon        = Icon::get_icon( 'calendar' );
+		$format    = '<div class="archive__date">%s<time class="updated" datetime="%s">%s</time></div>';
+		$date_icon = Icon::get_icon( 'calendar' );
+		if ( ! empty( $icon ) && is_string( $icon ) ) {
+			$date_icon = $icon;
+		}
+		if ( empty( $icon ) ) {
+			$date_icon = '';
+		}
 		$date_time   = get_the_date( 'Y-m-d' );
 		$date_format = get_option( 'date_format' );
 		$date_label  = get_the_date( $date_format );
-		$date        = sprintf( $format, $icon, $date_time, $date_label );
+		$date        = sprintf( $format, $date_icon, $date_time, $date_label );
 
 		return apply_filters( 'ys_get_archive_detail_date', $date, $format, $icon, $date_format );
 
@@ -226,9 +234,11 @@ class Archive {
 	/**
 	 * カテゴリー
 	 *
+	 * @param string|boolean $icon Icon.
+	 *
 	 * @return string
 	 */
-	public static function get_archive_detail_category() {
+	public static function get_archive_detail_category( $icon = true ) {
 
 		if ( ! Option::get_option_by_bool( 'ys_show_archive_category', true ) ) {
 			return '';
@@ -239,11 +249,18 @@ class Archive {
 		if ( is_wp_error( $term ) || empty( $term ) ) {
 			return '';
 		}
+		$category_icon = Utility::get_taxonomy_icon( $taxonomy );
+		if ( ! empty( $icon ) && is_string( $icon ) ) {
+			$category_icon = $icon;
+		}
+		if ( empty( $icon ) ) {
+			$category_icon = '';
+		}
 
 		return sprintf(
 			'<div class="archive__category %s">%s%s</div>',
 			esc_attr( $taxonomy ) . '--' . esc_attr( $term[0]->slug ),
-			Utility::get_taxonomy_icon( $taxonomy ),
+			$category_icon,
 			esc_html( $term[0]->name )
 		);
 	}
@@ -387,12 +404,23 @@ class Archive {
 		 */
 		$list          = Customizer::get_assets_dir_uri( '/design/archive/list.png' );
 		$card          = Customizer::get_assets_dir_uri( '/design/archive/card.png' );
+		$simple        = Customizer::get_assets_dir_uri( '/design/archive/simple.png' );
 		$img           = '<img src="%s" alt="%s" width="100" height="100" />';
 		$archive_types = apply_filters(
 			'ys_customizer_archive_type_choices',
 			[
-				'card' => sprintf( $img, $card, 'card' ),
-				'list' => sprintf( $img, $list, 'list' ),
+				'card'   => [
+					'image' => sprintf( $img, $card, 'card' ),
+					'text'  => __( 'カード', 'ystandard' ),
+				],
+				'list'   => [
+					'image' => sprintf( $img, $list, 'list' ),
+					'text'  => __( 'リスト', 'ystandard' ),
+				],
+				'simple' => [
+					'image' => sprintf( $img, $simple, 'simple' ),
+					'text'  => __( 'シンプル', 'ystandard' ),
+				],
 			]
 		);
 		$customizer->add_image_label_radio(
@@ -402,6 +430,15 @@ class Archive {
 				'label'       => '一覧レイアウト',
 				'description' => '記事一覧の表示タイプ',
 				'choices'     => $archive_types,
+			]
+		);
+		$customizer->add_label(
+			[
+				'id'              => 'ys_archive_type_simple_select_warning',
+				'description'     => Notice::warning( '※選択したレイアウト(シンプル)はβ版機能となります。', false ),
+				'active_callback' => function () {
+					return ! $this->is_archive_type_not_simple();
+				},
 			]
 		);
 		$customizer->add_section_label( '表示・非表示設定' );
@@ -424,25 +461,31 @@ class Archive {
 		// 概要.
 		$customizer->add_checkbox(
 			[
-				'id'      => 'ys_show_archive_description',
-				'default' => 1,
-				'label'   => '概要を表示する',
+				'id'              => 'ys_show_archive_description',
+				'default'         => 1,
+				'label'           => '概要を表示する',
+				'active_callback' => [ $this, 'is_archive_type_not_simple' ],
 			]
 		);
 		$customizer->add_number(
 			[
-				'id'      => 'ys_option_excerpt_length',
-				'default' => 80,
-				'label'   => '概要文の文字数',
+				'id'              => 'ys_option_excerpt_length',
+				'default'         => 80,
+				'label'           => '概要文の文字数',
+				'active_callback' => [ $this, 'is_archive_type_not_simple' ],
 			]
 		);
-		$customizer->add_section_label( '続きを読むリンク' );
+		$customizer->add_section_label(
+			'続きを読むリンク',
+			[ 'active_callback' => [ $this, 'is_archive_type_not_simple' ] ]
+		);
 		$customizer->add_text(
 			[
 				'id'                => 'ys_archive_read_more_text',
 				'default'           => '',
 				'label'             => '「続きを読む」リンクのテキスト',
 				'sanitize_callback' => [ $this, 'sanitize_read_more' ],
+				'active_callback'   => [ $this, 'is_archive_type_not_simple' ],
 			]
 		);
 	}
@@ -465,6 +508,15 @@ class Archive {
 		);
 
 		return wp_kses( $value, $allowed_html );
+	}
+
+	/**
+	 * 一覧タイプがシンプルかどうか.
+	 *
+	 * @return bool
+	 */
+	public function is_archive_type_not_simple() {
+		return 'simple' !== Option::get_option( 'ys_archive_type', 'card' );
 	}
 }
 

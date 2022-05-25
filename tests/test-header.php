@@ -52,4 +52,107 @@ class HeaderTest extends WP_UnitTestCase {
 		$description = ob_get_clean();
 		$this->assertEmpty( $description );
 	}
+
+	function test_header_height_css_all() {
+		update_option( 'ys_header_fixed_height_pc', 10 );
+		update_option( 'ys_header_fixed_height_tablet', 20 );
+		update_option( 'ys_header_fixed_height_mobile', 30 );
+		$expected = <<<EOD
+.site-header {
+	height:var(--ys-site-header-height,auto);
+}
+@media (max-width: 599px) {
+	:root {
+		--ys-site-header-height:30px;
+	}
+}
+@media (min-width: 600px) {
+	:root {
+		--ys-site-header-height:20px;
+	}
+}
+@media (min-width: 769px) {
+	:root {
+		--ys-site-header-height:10px;
+	}
+}
+EOD;
+		$actual   = \ystandard\Header::get_header_height_css();
+		$this->assertSame(
+			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
+			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+		);
+	}
+
+	function test_header_height_css_empty() {
+		update_option( 'ys_header_fixed_height_pc', 0 );
+		update_option( 'ys_header_fixed_height_tablet', 0 );
+		update_option( 'ys_header_fixed_height_mobile', 0 );
+		$expected = '';
+		$actual   = \ystandard\Header::get_header_height_css();
+		$this->assertSame(
+			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
+			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+		);
+	}
+	function test_header_height_css_pc() {
+		update_option( 'ys_header_fixed_height_pc', 10 );
+		update_option( 'ys_header_fixed_height_tablet', 0 );
+		update_option( 'ys_header_fixed_height_mobile', 0 );
+		$expected = <<<EOD
+.site-header {
+	height:var(--ys-site-header-height,auto);
+}
+@media (min-width: 769px) {
+	:root {
+		--ys-site-header-height:10px;
+	}
+}
+EOD;
+		$actual   = \ystandard\Header::get_header_height_css();
+		$this->assertSame(
+			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
+			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+		);
+	}
+	function test_header_height_css_tablet() {
+		update_option( 'ys_header_fixed_height_pc', 0 );
+		update_option( 'ys_header_fixed_height_tablet', 20 );
+		update_option( 'ys_header_fixed_height_mobile', 0 );
+		$expected = <<<EOD
+.site-header {
+	height:var(--ys-site-header-height,auto);
+}
+@media (min-width: 600px) {
+	:root {
+		--ys-site-header-height:20px;
+	}
+}
+EOD;
+		$actual   = \ystandard\Header::get_header_height_css();
+		$this->assertSame(
+			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
+			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+		);
+	}
+	function test_header_height_css_mobile() {
+		update_option( 'ys_header_fixed_height_pc', 0 );
+		update_option( 'ys_header_fixed_height_tablet', 0 );
+		update_option( 'ys_header_fixed_height_mobile', 30 );
+		$expected = <<<EOD
+.site-header {
+	height:var(--ys-site-header-height,auto);
+}
+@media (max-width: 599px) {
+	:root {
+		--ys-site-header-height:30px;
+	}
+}
+EOD;
+		$actual   = \ystandard\Header::get_header_height_css();
+		$this->assertSame(
+			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
+			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+		);
+	}
 }

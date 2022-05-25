@@ -52,7 +52,14 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 					<span id="<?php echo esc_attr( $description_id ); ?>" class="description customize-control-description"><?php echo $this->description; ?></span>
 				<?php endif; ?>
 				<div class="customizer__image-label-radio-list">
-					<?php foreach ( $this->choices as $value => $label ) : ?>
+					<?php
+					foreach ( $this->choices as $value => $label ) :
+						$text = '';
+						if ( is_array( $label ) ) {
+							$text  = $label['text'];
+							$label = $label['image'];
+						}
+						?>
 						<span class="customize-inside-control-row">
 							<input
 								id="<?php echo esc_attr( $input_id . '-radio-' . $value ); ?>"
@@ -69,7 +76,14 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 							 */
 							?>
 							<label
-								for="<?php echo esc_attr( $input_id . '-radio-' . $value ); ?>"><?php echo wp_kses( $label, $allowed_html ); ?></label>
+								for="<?php echo esc_attr( $input_id . '-radio-' . $value ); ?>">
+								<?php
+								echo wp_kses( $label, $allowed_html );
+								if ( $text ) {
+									echo '<span class="customizer__image-label-radio-list-text">' . $text . '</span>';
+								}
+								?>
+							</label>
 						</span>
 					<?php endforeach; ?>
 				</div>

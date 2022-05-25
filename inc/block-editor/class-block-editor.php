@@ -125,6 +125,11 @@ class Block_Editor {
 				'core/post-navigation-link',
 				'core/post-comments',
 				'core/term-description',
+				'core/avatar',
+				'core/read-more',
+				'core/read-more',
+				'core/post-comments-form',
+				'core/post-author-biography',
 			]
 		);
 	}
