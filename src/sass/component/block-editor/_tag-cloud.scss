@@ -33,6 +33,21 @@ $editor: false !default;
 	}
   }
   .wp-block-tag-cloud {
+	&.alignleft,
+	&.alignright {
+	  float: none;
+	  margin-right: 0;
+	  margin-left: 0;
+	}
+	&.alignleft {
+	  justify-content: flex-start;
+	}
+	&.aligncenter {
+	  justify-content: center;
+	}
+	&.alignright {
+	  justify-content: flex-end;
+	}
 	&.is-style-outline {
 	  a {
 		background: transparent;
