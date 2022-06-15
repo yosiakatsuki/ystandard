@@ -31,15 +31,6 @@ class Enqueue_Polyfill {
 	 */
 	public function enqueue_polyfill_scripts() {
 		$polyfill = false;
-		if ( self::is_ie() || self::is_edge() ) {
-			wp_enqueue_script(
-				'ys-ie-polyfill',
-				get_template_directory_uri() . '/js/polyfill.js',
-				[],
-				filemtime( get_template_directory() . '/js/polyfill.js' )
-			);
-			$polyfill = true;
-		}
 		if ( self::is_safari() || self::is_ie() || self::is_edge() ) {
 			wp_enqueue_script(
 				'ys-smooth-scroll-polyfill',
@@ -59,15 +50,6 @@ class Enqueue_Polyfill {
 	 */
 	public function enqueue_polyfill_styles() {
 		$polyfill = false;
-		if ( self::is_ie() || self::is_edge() ) {
-			wp_enqueue_style(
-				'ys-polyfill-styles',
-				get_template_directory_uri() . '/css/ystandard-polyfill.css',
-				[],
-				filemtime( get_template_directory() . '/css/ystandard-polyfill.css' )
-			);
-			$polyfill = true;
-		}
 		if ( $polyfill ) {
 			do_action( 'ys_enqueue_polyfill_styles' );
 		}
