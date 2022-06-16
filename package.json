@@ -43,7 +43,7 @@
     "lint:js": "eslint --fix ./src/js/*.js",
     "lint": "run-s lint:*",
     "build:js": "babel src/js --out-dir js --ignore 'src/js/icons/*'",
-    "build:css": "sass src/sass:css --no-source-map && postcss css/*.css -r",
+    "build:css": "sass src/sass:css --no-source-map && postcss css/*.css -r && postcss css/**/*.css -r",
     "build:icons": "node ./src/js/icons/brand.js",
     "build": "run-s clean build:*",
     "test:php": "wp-env start && wp-env run phpunit 'phpunit -c /var/www/html/wp-content/themes/ystandard/phpunit.xml.dist --verbose'",

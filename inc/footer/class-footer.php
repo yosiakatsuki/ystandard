@@ -133,47 +133,39 @@ class Footer {
 		// CSS.
 		$css .= "
 		#back-to-top {
+			-webkit-appearance: none;
+			appearance: none;
 			position: fixed;
-			bottom: 24px;
-			right: 24px;
-			padding: 0;
+			right: 5vh;
+			bottom: 5vh;
 			margin: 0;
-			background: none;
+			padding: 0;
 			border: 0;
 			outline: none;
-			-webkit-appearance: none;
-			 -moz-appearance: none;
-			      appearance: none;
+			background: none;
+			cursor: pointer
 			z-index: var(--z-index-back-to-top);
-			cursor: pointer;
 		}
 		#back-to-top:hover{
-			-webkit-box-shadow: none;
-			        box-shadow: none;
+			box-shadow: none;
 		}
 		.back-to-top__content {
-			display:block;
-			padding:.75em;
+			display: block;
+			padding: .75em;
+			box-shadow: 0 0 4px #0000001a;
+			line-height: 1;
+			white-space: nowrap;
+
 			background-color:${bg};
 			border-radius:${radius}px;
 			color:${color};
-			line-height:1;
-			white-space:nowrap;
-			-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-				    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 		}
 		.is-square .back-to-top__content {
-			display: -webkit-box;
-			display: -ms-flexbox;
 			display: flex;
-			-webkit-box-pack: center;
-			  -ms-flex-pack: center;
-				  justify-content: center;
-			-webkit-box-align: center;
-			  -ms-flex-align: center;
-				  align-items: center;
-			width:100%;
-			height:100%;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
 		}
 		.back-to-top__content > * {
 			margin:0;
@@ -205,58 +197,76 @@ class Footer {
 
 		$css .= '
 		.footer-mobile-nav {
-		  position: fixed;
-		  bottom: 0;
-		  left: 0;
-		  z-index: var(--z-index-mobile-footer);
-		  width: 100%;
-		  background-color: var(--mobile-footer-bg);
-		  text-align: center;
-		  color: var(--mobile-footer-text);
-		  -webkit-box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07);
-		          box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07);
-		  transition:transform .3s;}
-		  .footer-mobile-nav.is-hide {
-		    transform: translateY(100%); }
-		  .footer-mobile-nav ul {
-		    display: -webkit-box;
-		    display: -ms-flexbox;
-		    display: flex;
-		    -webkit-box-pack: justify;
-		        -ms-flex-pack: justify;
-		            justify-content: space-between;
-		    margin: 0;
-		    padding: 0.75em 0;
-		    list-style: none; }
-		  .footer-mobile-nav li:nth-child(n+5) {
-		    display: none; }
-		  .footer-mobile-nav a {
-		    display: block;
-		    color: currentColor;
-		    text-decoration: none; }
-		  .footer-mobile-nav i {
-		    font-size: 1.5em; }
-		  .footer-mobile-nav svg {
-		    width: 1.5em;
-		    height: 1.5em; }
+			z-index: var(--z-index-mobile-footer);
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background-color: var(--mobile-footer-bg);
+			box-shadow: 0 -1px 2px #00000012;
+			color: var(--mobile-footer-text);
+			text-align: center;
+			transition: transform .3s
+		}
 
-		.footer-mobile-nav__dscr {
-		  display: block;
-		  font-size: 0.7em;
-		  line-height: 1.2; }
-
-		.has-mobile-footer .site-footer {
-		  padding-bottom: 4em; }
+		.footer-mobile-nav.is-hide {
+			transform: translateY(100%)
+		}
 
 		@media (min-width: 769px) {
-		    .footer-mobile-nav {
-		      display: none; }
-		    .has-mobile-footer .site-footer {
-		      padding-bottom: 0; } }
+			.footer-mobile-nav {
+				display: none
+			}
+		}
+
+		.footer-mobile-nav ul {
+			display: flex;
+			justify-content: space-between;
+			margin: 0;
+			padding: .75em 0;
+			list-style: none
+		}
+
+		.footer-mobile-nav li:nth-child(n+5) {
+			display: none
+		}
 
 		@media (min-width: 600px) {
-		      .footer-mobile-nav li:nth-child(n+5) {
-		        display: block; } }';
+			.footer-mobile-nav li:nth-child(n+5) {
+				display: block
+			}
+		}
+
+		.footer-mobile-nav a {
+			display: block;
+			color: currentColor;
+			text-decoration: none
+		}
+
+		.footer-mobile-nav i {
+			font-size: 1.5em
+		}
+
+		.footer-mobile-nav svg {
+			width: 1.5em;
+			height: 1.5em
+		}
+
+		.footer-mobile-nav__dscr {
+			display: block;
+			font-size: .7em;
+			line-height: 1.2
+		}
+
+		.has-mobile-footer .site-footer {
+			padding-bottom: 4em
+		}
+
+		@media (min-width: 769px) {
+			.has-mobile-footer .site-footer {
+				padding-bottom: 0
+			}
+		}';
 
 		return $css;
 	}
