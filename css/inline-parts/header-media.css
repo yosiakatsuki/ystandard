@@ -1,1 +1,40 @@
-.wp-custom-header{position:relative}.wp-custom-header img{display:block;width:100%;height:auto;margin:0 auto}.header-media{overflow:visible hidden}.header-media.is-video .wp-custom-header{width:100%;padding-top:56.25%}.header-media.is-video .wp-custom-header iframe,.header-media.is-video .wp-custom-header img,.header-media.is-video .wp-custom-header video{position:absolute;top:0;left:0;width:100%;height:100%}.wp-custom-header-video-button{display:block;position:absolute;bottom:.5em;left:.5em;padding:.5em;border:1px solid hsla(0,0%,100%,.3);background-color:rgba(0,0,0,.3);color:hsla(0,0%,100%,.3);font-size:.8em;line-height:1}
+.wp-custom-header {
+	position: relative
+}
+
+.wp-custom-header img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0 auto
+}
+
+.header-media {
+	overflow: visible hidden
+}
+
+.header-media.is-video .wp-custom-header {
+	width: 100%;
+	padding-top: 56.25%
+}
+
+.header-media.is-video .wp-custom-header iframe, .header-media.is-video .wp-custom-header img, .header-media.is-video .wp-custom-header video {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%
+}
+
+.wp-custom-header-video-button {
+	display: block;
+	position: absolute;
+	bottom: .5em;
+	left: .5em;
+	padding: .5em;
+	border: 1px solid #ffffff4d;
+	background-color: #0000004d;
+	color: #ffffff4d;
+	font-size: .8em;
+	line-height: 1
+}
