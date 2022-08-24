@@ -192,7 +192,7 @@ $editor: false !default;
   code {
 	padding: 0 0.2em;
 	color: var(--font-gray);
-	font-family: global.$font__code;
+	font-family: var(--font-family-code);
 	font-size: 0.9em;
   }
 

@@ -47,7 +47,7 @@ class Drawer_Menu {
 	 * @return string
 	 */
 	public static function get_toggle_button( $type = 'toggle' ) {
-		$icon = Icon::get_icon( 'menu' );
+		$icon = apply_filters( 'ys_get_drawer_menu_icon', Icon::get_icon( 'menu' ) );
 		$attr = [
 			'id="global-nav__toggle"',
 			'class="global-nav__toggle"',
