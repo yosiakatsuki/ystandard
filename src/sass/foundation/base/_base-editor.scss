@@ -1,4 +1,5 @@
 @use "../../global";
+
 h1,
 h2,
 h3,
@@ -7,4 +8,14 @@ h5,
 h6,
 strong {
   font-weight: global.$font__weight_bold;
+}
+
+code,
+kbd {
+  &:not(.rich-text) {
+	padding: 0 0.2em;
+	color: var(--font-gray);
+	font-size: .9em;
+	font-family: var(--font-family-code);
+  }
 }

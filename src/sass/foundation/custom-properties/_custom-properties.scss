@@ -49,6 +49,7 @@
    * Typography
    */
   --font-family: #{global.$font__body};
+  --font-family-code: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --font-color: #{global.$color__text-main};
   --font-white: #{global.$color__text-white};
   --font-gray: #{global.$color__text-light};
