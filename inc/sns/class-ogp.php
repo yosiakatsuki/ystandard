@@ -74,22 +74,34 @@ class OGP {
 		$this->set_param( 'og:description', Meta_Description::get_meta_description() );
 		$this->set_param( 'og:image', $this->get_ogp_image() );
 		$this->set_param( 'fb:app_id', Option::get_option( 'ys_ogp_fb_app_id', '' ) );
-		/**
-		 * 投稿・固定ページ系
-		 */
-		if ( is_singular() && ! Template::is_top_page() ) {
-			$this->set_param( 'og:type', 'article' );
-			$this->set_param( 'og:url', get_the_permalink() );
-			$this->set_param( 'og:title', $this->get_singular_title() );
-			$this->set_param( 'og:description', $this->get_singular_dscr() );
-		}
-		/**
-		 * アーカイブ系
-		 */
-		if ( is_archive() && ! Template::is_top_page() ) {
-			$this->set_param( 'og:url', Archive::get_archive_url() );
-			$this->set_param( 'og:title', $this->get_archive_title() );
-			$this->set_param( 'og:description', $this->get_archive_dscr() );
+
+		if ( ! Template::is_top_page() ) {
+			$this->set_param( 'og:url', helper\URL::get_page_url() );
+			$this->set_param( 'og:title', wp_get_document_title() );
+			/**
+			 * 投稿・固定ページ系
+			 */
+			if ( is_singular() ) {
+				$this->set_param( 'og:type', 'article' );
+				$this->set_param( 'og:url', get_the_permalink() );
+				$this->set_param( 'og:title', $this->get_singular_title() );
+				$this->set_param( 'og:description', $this->get_singular_dscr() );
+			}
+			/**
+			 * アーカイブ系
+			 */
+			if ( is_archive() ) {
+				$this->set_param( 'og:type', 'article' );
+				$this->set_param( 'og:url', Archive::get_archive_url() );
+				$this->set_param( 'og:title', $this->get_archive_title() );
+				$this->set_param( 'og:description', $this->get_archive_dscr() );
+			}
+			/**
+			 * 検索系
+			 */
+			if ( is_search() ) {
+				$this->set_param( 'og:type', 'article' );
+			}
 		}
 	}
 
