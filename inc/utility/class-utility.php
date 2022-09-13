@@ -41,14 +41,11 @@ class Utility {
 	 * ページURL取得
 	 *
 	 * @return string
+	 * @deprecated
 	 */
 	public static function get_page_url() {
-		$protocol = 'https://';
-		if ( ! is_ssl() ) {
-			$protocol = 'http://';
-		}
 
-		return $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		return helper\URL::get_page_url();
 	}
 
 	/**

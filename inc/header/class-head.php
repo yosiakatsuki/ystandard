@@ -36,14 +36,8 @@ class Head {
 	 */
 	public static function get_head_attr() {
 		$attr = [];
-		if ( is_singular() ) {
-			$attr[] = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#"';
-		} else {
-			$attr[] = 'prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#"';
-		}
-		$attr = apply_filters( 'ys_get_head_attr', $attr );
 
-		return implode( ' ', $attr );
+		return implode( ' ', apply_filters( 'ys_get_head_attr', $attr ) );
 	}
 
 	/**
