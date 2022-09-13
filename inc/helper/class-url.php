@@ -11,7 +11,9 @@ namespace ystandard\helper;
 
 defined( 'ABSPATH' ) || die();
 
-
+/**
+ * Class : Helper URL
+ */
 class URL {
 
 	/**
