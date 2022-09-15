@@ -118,6 +118,11 @@ class Blog_Card {
 		return $blog_card;
 	}
 
+	/**
+	 * Embedでの展開か
+	 *
+	 * @return bool
+	 */
 	private function is_oembed() {
 		return false !== strpos( URL::get_page_url(), 'oembed/1.0' );
 	}
@@ -177,8 +182,8 @@ class Blog_Card {
 		/**
 		 * [yStandard Blocks]利用中の場合、プラグイン側で処理をする
 		 */
-		if ( class_exists( 'ystandard_blocks\Card' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
-			$ystdb_card = new \ystandard_blocks\Card();
+		if ( class_exists( 'ystandard_blocks\Card_Block' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
+			$ystdb_card = new \ystandard_blocks\Card_Block();
 
 			return $ystdb_card->render( $this->params );
 		}
