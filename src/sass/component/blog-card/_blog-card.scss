@@ -42,6 +42,7 @@ $editor: false !default;
 	min-width: 100px;
 	max-width: 100px;
 	margin: 0;
+	overflow: hidden;
 
 	@include global.media-breakpoint(sm) {
 	  max-width: 200px;

@@ -313,7 +313,9 @@ class Admin_Menu {
 						</tr>
 						<tr>
 							<th>ブログカード</th>
-							<td><?php echo $this->get_cache_count( Blog_Card::CACHE_KEY ); ?></td>
+							<td>
+								<?php echo $this->get_cache_count( Blog_Card::CACHE_KEY ); ?>
+							</td>
 							<td><input type="submit" name="delete[<?php echo Blog_Card::CACHE_KEY; ?>]" id="submit" class="button button-primary" value="キャッシュを削除"></td>
 						</tr>
 
@@ -406,7 +408,12 @@ class Admin_Menu {
 		 * @global \wpdb
 		 */
 		global $wpdb;
-		$transient_key = $prefix . $cache_key;
+		$transient_key = apply_filters(
+			'ys_cache_count_key__' . $cache_key,
+			$prefix . $cache_key,
+			$cache_key,
+			$prefix
+		);
 		// クエリ実行.
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
@@ -437,7 +444,12 @@ class Admin_Menu {
 		 * @global \wpdb
 		 */
 		global $wpdb;
-		$transient_key = $prefix . $cache_key;
+		$transient_key = apply_filters(
+			'ys_cache_delete_key__' . $cache_key,
+			$prefix . $cache_key,
+			$cache_key,
+			$prefix
+		);
 		/**
 		 * キャッシュの削除
 		 */

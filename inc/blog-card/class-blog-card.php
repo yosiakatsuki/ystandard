@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\helper\URL;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -62,7 +64,7 @@ class Blog_Card {
 	 * ブロクカードの展開処理登録
 	 */
 	public function embed_register_handler() {
-		if ( ! apply_filters( 'ys_use_blogcard', true ) ) {
+		if ( ! apply_filters( 'ys_use_blogcard', ! is_admin() ) ) {
 			return;
 		}
 		wp_embed_register_handler(
@@ -106,7 +108,7 @@ class Blog_Card {
 		/**
 		 * ビジュアルエディタ用処理
 		 */
-		if ( is_admin() ) {
+		if ( is_admin() || $this->is_oembed() ) {
 			/**
 			 * ビジュアルエディタの中でショートコードを展開する
 			 */
@@ -114,6 +116,15 @@ class Blog_Card {
 		}
 
 		return $blog_card;
+	}
+
+	/**
+	 * Embedでの展開か
+	 *
+	 * @return bool
+	 */
+	private function is_oembed() {
+		return false !== strpos( URL::get_page_url(), 'oembed/1.0' );
 	}
 
 	/**
@@ -139,6 +150,12 @@ class Blog_Card {
 		);
 		$blog_card = str_replace( '<a ', '<span ', $blog_card );
 		$blog_card = str_replace( '</a>', '</span>', $blog_card );
+		// CSS追加.
+		$css       = apply_filters(
+			'ys_editor_blog_card_embed_css',
+			file_get_contents( get_template_directory() . '/css/embed.css' )
+		);
+		$blog_card = sprintf( '%s<style>%s</style>', $blog_card, $css );
 
 		return $blog_card;
 	}
@@ -165,8 +182,8 @@ class Blog_Card {
 		/**
 		 * [yStandard Blocks]利用中の場合、プラグイン側で処理をする
 		 */
-		if ( class_exists( 'ystandard_blocks\Card' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
-			$ystdb_card = new \ystandard_blocks\Card();
+		if ( class_exists( 'ystandard_blocks\Card_Block' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
+			$ystdb_card = new \ystandard_blocks\Card_Block();
 
 			return $ystdb_card->render( $this->params );
 		}
@@ -251,15 +268,17 @@ class Blog_Card {
 						self::CACHE_EXPIRATION
 					);
 				}
+			} else {
+				return false;
 			}
 		}
 		// タイトル.
-		if ( empty( $this->params['title'] ) ) {
+		if ( empty( $this->params['title'] ) && isset( $site_data['title'] ) ) {
 			$this->params['title'] = $site_data['title'];
 		}
 		// 概要.
 		if ( ! Utility::is_false( $this->params['dscr'] ) ) {
-			if ( empty( $this->params['dscr'] ) ) {
+			if ( empty( $this->params['dscr'] ) && isset( $site_data['dscr'] ) ) {
 				$this->params['dscr'] = wp_trim_words(
 					html_entity_decode( $site_data['dscr'] ),
 					40
@@ -276,7 +295,7 @@ class Blog_Card {
 		}
 
 		// 画像.
-		if ( Utility::to_bool( $this->params['show_image'] ) ) {
+		if ( Utility::to_bool( $this->params['show_image'] ) && isset( $site_data['thumbnail'] ) ) {
 			$this->params['thumbnail'] = $site_data['thumbnail'];
 		}
 
