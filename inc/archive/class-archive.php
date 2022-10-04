@@ -244,31 +244,47 @@ class Archive {
 			return '';
 		}
 
-		$taxonomy = self::get_archive_meta_taxonomy();
-		$term     = get_the_terms( false, $taxonomy );
-		if ( is_wp_error( $term ) || empty( $term ) ) {
+		$taxonomies = self::get_archive_meta_taxonomy();
+		if ( ! $taxonomies ){
 			return '';
 		}
-		$category_icon = Utility::get_taxonomy_icon( $taxonomy );
-		if ( ! empty( $icon ) && is_string( $icon ) ) {
-			$category_icon = $icon;
+		if ( is_string( $taxonomies ) ){
+			$taxonomies = [ $taxonomies ];
 		}
-		if ( empty( $icon ) ) {
-			$category_icon = '';
-		}
+		$result = [];
+		foreach ( $taxonomies as $taxonomy ) {
+			$terms     = get_the_terms( false, $taxonomy );
+			if ( is_wp_error( $terms ) || empty( $terms ) ) {
+				return '';
+			}
+			foreach ( $terms as $term ) {
+				$category_icon = Utility::get_taxonomy_icon( $taxonomy );
+				if ( ! empty( $icon ) && is_string( $icon ) ) {
+					$category_icon = $icon;
+				}
+				if ( empty( $icon ) ) {
+					$category_icon = '';
+				}
 
-		return sprintf(
-			'<div class="archive__category %s">%s%s</div>',
-			esc_attr( $taxonomy ) . '--' . esc_attr( $term[0]->slug ),
-			$category_icon,
-			esc_html( $term[0]->name )
+				$result[] = sprintf(
+					'<div class="archive__category %s">%s%s</div>',
+					esc_attr( $taxonomy ) . '--' . esc_attr( $term->slug ),
+					$category_icon,
+					esc_html( $term->name )
+				);
+			}
+		}
+		return apply_filters(
+			"ys_get_${post_type}_archive_detail_category",
+			implode('', $result),
+			$terms
 		);
 	}
 
 	/**
 	 * アーカイブ用タクソノミー情報取得
 	 *
-	 * @return bool|string
+	 * @return array|bool|string
 	 */
 	public static function get_archive_meta_taxonomy() {
 		$taxonomy = false;
@@ -293,9 +309,9 @@ class Archive {
 			if ( 'post' === $post_type ) {
 				$taxonomy = 'category';
 			}
-			$taxonomy = apply_filters( "ys_get_${post_type}_archive_taxonomy", $taxonomy );
 		}
 
+		$taxonomy = apply_filters( "ys_get_${post_type}_archive_taxonomy" , $taxonomy );
 		return $taxonomy;
 	}
 
