@@ -252,11 +252,13 @@ class Archive {
 			$taxonomies = [ $taxonomies ];
 		}
 		$result = [];
+		$terms_lenght = apply_filters( "ys_get_${post_type}_archive_category_terms_lenght", 1 );
 		foreach ( $taxonomies as $taxonomy ) {
 			$terms     = get_the_terms( false, $taxonomy );
 			if ( is_wp_error( $terms ) || empty( $terms ) ) {
 				return '';
 			}
+			$terms = array_slice( $terms, 0, $terms_lenght );
 			foreach ( $terms as $term ) {
 				$category_icon = Utility::get_taxonomy_icon( $taxonomy );
 				if ( ! empty( $icon ) && is_string( $icon ) ) {
