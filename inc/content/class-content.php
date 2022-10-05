@@ -391,13 +391,13 @@ class Content {
 		if ( empty( $taxonomies ) ) {
 			return '';
 		}
-		$terms_lenght = apply_filters( "ys_get_${post_type}_header_terms_lenght", 1 );
+		$terms_length = apply_filters( "ys_get_${post_type}_header_terms_length", 1 );
 		foreach ( $taxonomies as $taxonomy ) {
 			$terms = get_the_terms( false, $taxonomy );
 			if ( is_wp_error( $terms ) || empty( $terms ) ) {
 				return '';
 			}
-			$terms = array_slice( $terms, 0, $terms_lenght );
+			$terms = array_slice( $terms, 0, $terms_length );
 			foreach ( $terms as $term ) {
 				$result[] = sprintf(
 					'<div class="singular-header__terms">%s<a href="%s">%s</a></div>',
