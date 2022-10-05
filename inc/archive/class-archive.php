@@ -245,16 +245,17 @@ class Archive {
 		}
 
 		$taxonomies = self::get_archive_meta_taxonomy();
-		if ( ! $taxonomies ){
+		if ( ! $taxonomies ) {
 			return '';
 		}
-		if ( is_string( $taxonomies ) ){
+		if ( is_string( $taxonomies ) ) {
 			$taxonomies = [ $taxonomies ];
 		}
-		$result = [];
+		$post_type    = Content::get_post_type();
+		$result       = [];
 		$terms_length = apply_filters( "ys_get_${post_type}_archive_category_terms_length", 1 );
 		foreach ( $taxonomies as $taxonomy ) {
-			$terms     = get_the_terms( false, $taxonomy );
+			$terms = get_the_terms( false, $taxonomy );
 			if ( is_wp_error( $terms ) || empty( $terms ) ) {
 				return '';
 			}
@@ -276,9 +277,10 @@ class Archive {
 				);
 			}
 		}
+
 		return apply_filters(
 			"ys_get_${post_type}_archive_detail_category",
-			implode('', $result),
+			implode( '', $result ),
 			$terms
 		);
 	}
@@ -301,7 +303,7 @@ class Archive {
 			$taxonomy = 'post_tag';
 		}
 
-		$taxonomy = apply_filters( "ys_get_${taxonomy}_archive_taxonomy",$taxonomy );
+		$taxonomy = apply_filters( "ys_get_${taxonomy}_archive_taxonomy", $taxonomy );
 		if ( ! $taxonomy ) {
 			$taxonomies = get_the_taxonomies();
 			if ( ! $taxonomies ) {
@@ -312,7 +314,7 @@ class Archive {
 			if ( 'post' === $post_type ) {
 				$taxonomy = 'category';
 			}
-			$taxonomy = apply_filters( "ys_get_${post_type}_archive_taxonomy",$taxonomy );
+			$taxonomy = apply_filters( "ys_get_${post_type}_archive_taxonomy", $taxonomy );
 		}
 
 		return $taxonomy;
