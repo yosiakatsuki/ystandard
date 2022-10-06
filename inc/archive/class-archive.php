@@ -244,31 +244,51 @@ class Archive {
 			return '';
 		}
 
-		$taxonomy = self::get_archive_meta_taxonomy();
-		$term     = get_the_terms( false, $taxonomy );
-		if ( is_wp_error( $term ) || empty( $term ) ) {
+		$taxonomies = self::get_archive_meta_taxonomy();
+		if ( ! $taxonomies ) {
 			return '';
 		}
-		$category_icon = Utility::get_taxonomy_icon( $taxonomy );
-		if ( ! empty( $icon ) && is_string( $icon ) ) {
-			$category_icon = $icon;
+		if ( is_string( $taxonomies ) ) {
+			$taxonomies = [ $taxonomies ];
 		}
-		if ( empty( $icon ) ) {
-			$category_icon = '';
+		$post_type    = Content::get_post_type();
+		$result       = [];
+		$terms_length = apply_filters( "ys_get_${post_type}_archive_category_terms_length", 1 );
+		foreach ( $taxonomies as $taxonomy ) {
+			$terms = get_the_terms( false, $taxonomy );
+			if ( is_wp_error( $terms ) || empty( $terms ) ) {
+				return '';
+			}
+			$terms = array_slice( $terms, 0, $terms_length );
+			foreach ( $terms as $term ) {
+				$category_icon = Utility::get_taxonomy_icon( $taxonomy );
+				if ( ! empty( $icon ) && is_string( $icon ) ) {
+					$category_icon = $icon;
+				}
+				if ( empty( $icon ) ) {
+					$category_icon = '';
+				}
+
+				$result[] = sprintf(
+					'<div class="archive__category %s">%s%s</div>',
+					esc_attr( $taxonomy ) . '--' . esc_attr( $term->slug ),
+					$category_icon,
+					esc_html( $term->name )
+				);
+			}
 		}
 
-		return sprintf(
-			'<div class="archive__category %s">%s%s</div>',
-			esc_attr( $taxonomy ) . '--' . esc_attr( $term[0]->slug ),
-			$category_icon,
-			esc_html( $term[0]->name )
+		return apply_filters(
+			"ys_get_${post_type}_archive_detail_category",
+			implode( '', $result ),
+			$terms
 		);
 	}
 
 	/**
 	 * アーカイブ用タクソノミー情報取得
 	 *
-	 * @return bool|string
+	 * @return array|bool|string
 	 */
 	public static function get_archive_meta_taxonomy() {
 		$taxonomy = false;
@@ -283,6 +303,7 @@ class Archive {
 			$taxonomy = 'post_tag';
 		}
 
+		$taxonomy = apply_filters( "ys_get_${taxonomy}_archive_taxonomy", $taxonomy );
 		if ( ! $taxonomy ) {
 			$taxonomies = get_the_taxonomies();
 			if ( ! $taxonomies ) {
