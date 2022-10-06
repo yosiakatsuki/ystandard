@@ -391,17 +391,21 @@ class Content {
 		if ( empty( $taxonomies ) ) {
 			return '';
 		}
+		$terms_length = apply_filters( "ys_get_${post_type}_header_terms_length", 1 );
 		foreach ( $taxonomies as $taxonomy ) {
-			$term = get_the_terms( false, $taxonomy );
-			if ( is_wp_error( $term ) || empty( $term ) ) {
+			$terms = get_the_terms( false, $taxonomy );
+			if ( is_wp_error( $terms ) || empty( $terms ) ) {
 				return '';
 			}
-			$result[] = sprintf(
-				'<div class="singular-header__terms">%s<a href="%s">%s</a></div>',
-				Utility::get_taxonomy_icon( $taxonomy ),
-				get_term_link( $term[0] ),
-				$term[0]->name
-			);
+			$terms = array_slice( $terms, 0, $terms_length );
+			foreach ( $terms as $term ) {
+				$result[] = sprintf(
+					'<div class="singular-header__terms">%s<a href="%s">%s</a></div>',
+					Utility::get_taxonomy_icon( $taxonomy ),
+					get_term_link( $term ),
+					$term->name
+				);
+			}
 		}
 
 		return apply_filters(
