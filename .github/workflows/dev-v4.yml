@@ -187,9 +187,6 @@ jobs:
       - name: npm install
         run: npm install
 
-      - name: Build
-        run: npm run build
-
       - name: Zip
         run: npm run zip
 
