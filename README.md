@@ -25,6 +25,18 @@ yStandardは「自分色に染めた、自分だけのサイトを作る楽し�
 
 ### v4.x.x
 
+### v4.41.0
+- [追加] ブロック用のスタイルをブロック別に読み込む方式に変更
+- [追加] ブロックスタイルの自動読み込み機能追加
+  - `/css/block-styles` 内に `{ネームスペース}__{ブロック名}/ブロック名.css` のルールで配置されたCSSを自動で読み込みます。（子テーマも対応）
+  - プラグインの場合は `ys_block_styles_dir_path` フックで対象ディレクトリを追加出来ます。
+
+### v4.40.0
+- [追加] ターム・タクソノミー表示に関するフックの追加
+  - ys_get_${post_type}_archive_category_terms_length
+  - ys_get_${taxonomy}_archive_taxonomy
+  - ys_get_${post_type}_archive_taxonomy
+
 ### v4.39.0
 - [修正] ブログカードショートコード不具合修正
 - [調整] ブログカードショートコードの展開調整

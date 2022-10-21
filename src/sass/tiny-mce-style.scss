@@ -6,7 +6,6 @@
 @use "component/block-editor/align" with ($editor:true);
 @use "component/block-editor/archives" with ($editor:true);
 @use "component/block-editor/block-quote" with ($editor:true);
-@use "component/block-editor/button" with ($editor:true);
 @use "component/block-editor/calendar" with ($editor:true);
 @use "component/block-editor/categories" with ($editor:true);
 @use "component/block-editor/columns" with ($editor:true);
@@ -59,7 +58,6 @@
   @include align.align();
   @include archives.archives();
   @include block-quote.block-quote();
-  @include button.button();
   @include calendar.calendar();
   @include categories.categories();
   @include columns.column();
