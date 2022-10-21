@@ -1,0 +1,8 @@
+.wp-block-button.is-style-outline {
+  color: var(--ystd-button-background-color);
+
+  .wp-block-button__link {
+	--ystd-button-border-color: currentColor;
+	border: var(--ystd-button-border-width) var(--ystd-button-border-style) var(--ystd-button-border-color);
+  }
+}
