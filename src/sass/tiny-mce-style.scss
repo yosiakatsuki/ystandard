@@ -5,7 +5,6 @@
 @use "component/author/author" with ($editor:true);
 @use "component/block-editor/align" with ($editor:true);
 @use "component/block-editor/content" with ($editor:true);
-@use "component/block-editor/gallery" with ($editor:true);
 @use "component/block-editor/group" with ($editor:true);
 @use "component/block-editor/headline" with ($editor:true);
 @use "component/block-editor/image" with ($editor:true);
@@ -54,12 +53,12 @@
   @include meta.load-css('../block-styles/core__cover/cover');
   @include meta.load-css('../block-styles/core__embed/embed');
   @include meta.load-css('../block-styles/core__file/file');
+  @include meta.load-css('../block-styles/core__gallery/gallery');
   //Component
   @include advertisement.advertisement();
   @include author.author();
   @include align.align();
   @include content.content();
-  @include gallery.gallery();
   @include group.group();
   @include headline.headline();
   @include image.image();

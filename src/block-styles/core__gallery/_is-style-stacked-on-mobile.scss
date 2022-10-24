@@ -1,0 +1,11 @@
+@use "../../sass/global";
+
+.wp-block-gallery.is-style-stacked-on-mobile {
+  &.has-nested-images {
+	figure.wp-block-image:not(#individual-image) {
+	  @include global.media-breakpoint-down(sm) {
+		width: 100%;
+	  }
+	}
+  }
+}

@@ -64,7 +64,8 @@ class Blocks {
 				$style_handle .= '-child';
 			}
 			$theme_css_path = $dir_path . '/' . $block['name'] . '.css';
-			$style_src      = $this->replace_path_to_uri( $theme_css_path, $is_child );
+			// URL.
+			$style_src = $this->replace_path_to_uri( $theme_css_path, $is_child );
 			if ( function_exists( 'wp_enqueue_block_style' ) ) {
 				wp_enqueue_block_style(
 					$block_name,
@@ -86,6 +87,19 @@ class Blocks {
 					if ( false !== strpos( $block['name'], $item ) ) {
 						$this->enqueue_style( $style_handle, $style_src, $theme_css_path );
 					}
+				}
+			}
+
+			// エディター用.
+			$editor_css_path = $dir_path . '/' . $block['name'] . '-editor.css';
+			if ( is_admin() ) {
+				if ( file_exists( $editor_css_path ) ) {
+					$editor_src = $this->replace_path_to_uri( $editor_css_path, $is_child );
+					$this->enqueue_style(
+						"${style_handle}-editor",
+						$editor_src,
+						$editor_css_path
+					);
 				}
 			}
 		}
