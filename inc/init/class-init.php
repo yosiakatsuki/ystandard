@@ -124,6 +124,8 @@ class Init {
 		add_theme_support( 'custom-spacing' );
 		// 固定ページで抜粋を有効化.
 		add_post_type_support( 'page', 'excerpt' );
+		// Appearance Tools(6.1~ 特に変化なし？).
+		add_theme_support( 'appearance-tools' );
 	}
 
 	/**
