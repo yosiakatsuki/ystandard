@@ -19,3 +19,10 @@ kbd {
 	font-family: var(--font-family-code);
   }
 }
+
+body {
+  .wp-block {
+	box-sizing: border-box;
+  }
+}
+
