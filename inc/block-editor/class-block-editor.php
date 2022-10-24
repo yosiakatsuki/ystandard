@@ -130,6 +130,7 @@ class Block_Editor {
 				'core/read-more',
 				'core/post-comments-form',
 				'core/post-author-biography',
+				'core/comments',
 			]
 		);
 	}
