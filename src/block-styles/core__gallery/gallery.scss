@@ -1,0 +1,25 @@
+@use "is-style-stacked-on-mobile";
+
+.blocks-gallery-grid,
+.wp-block-gallery {
+
+  &.has-background {
+	padding: 0.5em;
+  }
+
+  .blocks-gallery-caption {
+	width: 100%;
+	padding-top: 0;
+	font-size: .8em;
+	font-style: normal;
+  }
+}
+
+body:not(.has-sidebar) {
+  .wp-block-gallery {
+	&.alignwide {
+	  padding-right: 0;
+	  padding-left: 0;
+	}
+  }
+}
