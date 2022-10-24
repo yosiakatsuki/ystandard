@@ -4,7 +4,6 @@
 @use "component/advertisement/advertisement" with ($editor:true);
 @use "component/author/author" with ($editor:true);
 @use "component/block-editor/align" with ($editor:true);
-@use "component/block-editor/block-quote" with ($editor:true);
 @use "component/block-editor/calendar" with ($editor:true);
 @use "component/block-editor/categories" with ($editor:true);
 @use "component/block-editor/columns" with ($editor:true);
@@ -52,11 +51,11 @@
   @include meta.load-css('foundation/base/base');
   @include meta.load-css('../block-styles/core__button/button');
   @include meta.load-css('../block-styles/core__archives/archives');
+  @include meta.load-css('../block-styles/core__quote/quote');
   //Component
   @include advertisement.advertisement();
   @include author.author();
   @include align.align();
-  @include block-quote.block-quote();
   @include calendar.calendar();
   @include categories.categories();
   @include columns.column();
