@@ -1,0 +1,12 @@
+.wp-block-column {
+  --ys-column-item-gap: 1em;
+
+  > * {
+	margin-top: var(--ys-column-item-gap);
+	margin-bottom: 0;
+
+	&:first-child {
+	  margin-top: 0;
+	}
+  }
+}
