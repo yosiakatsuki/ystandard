@@ -52,6 +52,7 @@
   @include meta.load-css('../block-styles/core__quote/quote');
   @include meta.load-css('../block-styles/core__calendar/calendar');
   @include meta.load-css('../block-styles/core__categories/categories');
+  @include meta.load-css('../block-styles/core__code/code');
 
   //Component
   @include advertisement.advertisement();
