@@ -1,5 +1,5 @@
+@use "sass:meta";
 @use "global";
-@use "foundation/base/base" with ($editor:true);
 //Component
 @use "component/advertisement/advertisement" with ($editor:true);
 @use "component/author/author" with ($editor:true);
@@ -44,14 +44,13 @@
 @use "component/wordpress/gallery" as wordpress-gallery with ($editor:true);
 @use "component/wordpress/wp" as wordpress-wp with ($editor:true);
 
-
 // Utility
 @use "utility/clearfix/clearfix" as utility-clearfix with ($editor:true);
 @use "utility/sns/sns" as utility-sns with ($editor:true);
 @use "utility/table/table" as utility-table with ($editor:true);
 
 .mce-content-body {
-  @include base.base();
+  @include meta.load-css('foundation/base/base');
   //Component
   @include advertisement.advertisement();
   @include author.author();
