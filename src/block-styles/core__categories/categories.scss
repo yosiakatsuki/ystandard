@@ -1,0 +1,32 @@
+@use "sass:meta";
+
+
+ul.wp-block-categories__list {
+  font-size: 0.9em;
+}
+
+.wp-block-categories-list,
+.wp-block-categories__list {
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0;
+  list-style: none;
+
+  @include meta.load-css('parts-categories-items');
+
+  > li > .wp-block-categories__list {
+	border-top: 1px solid var(--site-border-gray-light);
+
+	a {
+	  padding-left: 2em;
+	  font-size: 0.9em;
+	}
+
+	> li > .wp-block-categories__list {
+	  a {
+		padding-left: 3em;
+		font-size: 1em;
+	  }
+	}
+  }
+}
