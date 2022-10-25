@@ -64,20 +64,22 @@ class Blocks {
 				$style_handle .= '-child';
 			}
 			$theme_css_path = $dir_path . '/' . $block['name'] . '.css';
-			// URL.
-			$style_src = $this->replace_path_to_uri( $theme_css_path, $is_child );
-			if ( function_exists( 'wp_enqueue_block_style' ) ) {
-				wp_enqueue_block_style(
-					$block_name,
-					[
-						'handle' => $style_handle,
-						'src'    => $style_src,
-						'ver'    => filemtime( $theme_css_path ),
-						'path'   => $theme_css_path,
-					]
-				);
-			} else {
-				$this->enqueue_style( $style_handle, $style_src, $theme_css_path );
+			if ( file_exists( $theme_css_path ) ) {
+				// URL.
+				$style_src = $this->replace_path_to_uri( $theme_css_path, $is_child );
+				if ( function_exists( 'wp_enqueue_block_style' ) ) {
+					wp_enqueue_block_style(
+						$block_name,
+						[
+							'handle' => $style_handle,
+							'src'    => $style_src,
+							'ver'    => filemtime( $theme_css_path ),
+							'path'   => $theme_css_path,
+						]
+					);
+				} else {
+					$this->enqueue_style( $style_handle, $style_src, $theme_css_path );
+				}
 			}
 
 			// 必ず読み込むスタイル.
