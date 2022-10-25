@@ -1,0 +1,7 @@
+
+
+.wp-block:not(:first-child)[data-align="full"] {
+  > .wp-block-group {
+	margin-top: -28px;
+  }
+}
