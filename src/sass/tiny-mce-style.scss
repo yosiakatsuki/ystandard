@@ -53,7 +53,7 @@
   @include meta.load-css('../block-styles/core__file/file');
   @include meta.load-css('../block-styles/core__gallery/gallery');
   @include meta.load-css('../block-styles/core__group/group');
-  @include meta.load-css('../block-styles/core__headline/headline-editor');
+  @include meta.load-css('../block-styles/core__heading/heading-editor');
   //Component
   @include advertisement.advertisement();
   @include author.author();
