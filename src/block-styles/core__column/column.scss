@@ -1,8 +1,8 @@
 .wp-block-column {
-  --ys-column-item-gap: 1em;
+  --ystd-column-item-gap: 1em;
 
   > * {
-	margin-top: var(--ys-column-item-gap);
+	margin-top: var(--ystd-column-item-gap);
 	margin-bottom: 0;
 
 	&:first-child {
