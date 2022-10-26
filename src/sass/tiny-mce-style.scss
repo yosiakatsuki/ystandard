@@ -5,7 +5,6 @@
 @use "component/author/author" with ($editor:true);
 @use "component/block-editor/align" with ($editor:true);
 @use "component/block-editor/content" with ($editor:true);
-@use "component/block-editor/list" with ($editor:true);
 @use "component/block-editor/media-text" with ($editor:true);
 @use "component/block-editor/paragraph" with ($editor:true);
 @use "component/block-editor/pullquote" with ($editor:true);
@@ -61,7 +60,6 @@
   @include author.author();
   @include align.align();
   @include content.content();
-  @include list.list();
   @include media-text.media-text();
   @include paragraph.paragraph();
   @include pullquote.pullquote();
