@@ -5,7 +5,6 @@
 @use "component/author/author" with ($editor:true);
 @use "component/block-editor/align" with ($editor:true);
 @use "component/block-editor/content" with ($editor:true);
-@use "component/block-editor/latest-comments" with ($editor:true);
 @use "component/block-editor/latest-posts" with ($editor:true);
 @use "component/block-editor/list" with ($editor:true);
 @use "component/block-editor/media-text" with ($editor:true);
@@ -55,12 +54,13 @@
   @include meta.load-css('../block-styles/core__heading/heading-editor');
   @include meta.load-css('../block-styles/core__image/image');
   @include meta.load-css('../block-styles/core__image/image-editor');
+  @include meta.load-css('../block-styles/core__latest-comments/latest-comments');
+  @include meta.load-css('../block-styles/core__latest-comments/latest-comments-editor');
   //Component
   @include advertisement.advertisement();
   @include author.author();
   @include align.align();
   @include content.content();
-  @include latest-comments.latest-comments();
   @include latest-posts.latest-posts();
   @include list.list();
   @include media-text.media-text();
