@@ -1,8 +1,6 @@
-@use "../../global";
+@use "../../sass/global";
 
-$editor: false !default;
-
-@mixin paragraph() {
+.ystd {
   p.has-background {
 	padding: 1em 1.5em;
   }
@@ -16,6 +14,5 @@ $editor: false !default;
   }
 }
 
-@if false == $editor {
-  @include paragraph();
-}
+
+
