@@ -1,0 +1,16 @@
+.wp-block-pullquote {
+  blockquote {
+	background: none;
+	border: 0;
+
+	&::before {
+	  content: "";
+	}
+  }
+  cite {
+	font-style: normal;
+	&::before {
+	  display: none;
+	}
+  }
+}
