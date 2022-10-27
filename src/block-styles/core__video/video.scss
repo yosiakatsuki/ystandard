@@ -1,0 +1,18 @@
+@use "../../sass/global";
+
+
+body:not(.has-sidebar) {
+  @include global.media-breakpoint(lg) {
+	.wp-block-video {
+	  &.alignfull {
+		padding-right: 0;
+		padding-left: 0;
+
+		video {
+		  width: 100%;
+		  display: block;
+		}
+	  }
+	}
+  }
+}
