@@ -1,6 +1,5 @@
-@use "../../global";
-
-.tagcloud {
+@use "../../sass/global";
+.wp-block-tag-cloud {
   display: flex;
   flex-wrap: wrap;
   gap: 1ch;
@@ -24,6 +23,29 @@
 
 	&:hover {
 	  opacity: 0.8;
+	}
+  }
+
+  &.alignleft,
+  &.alignright {
+	float: none;
+	margin-right: 0;
+	margin-left: 0;
+  }
+  &.alignleft {
+	justify-content: flex-start;
+  }
+  &.aligncenter {
+	justify-content: center;
+  }
+  &.alignright {
+	justify-content: flex-end;
+  }
+  &.is-style-outline {
+	a {
+	  background: transparent;
+	  border-color: currentColor;
+	  padding: 0.5ch 2ch;
 	}
   }
 }
