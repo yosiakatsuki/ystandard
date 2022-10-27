@@ -1,0 +1,15 @@
+@use "../../sass/global";
+
+.wp-block-table {
+  thead,
+  tfoot {
+	border: 0;
+  }
+
+  thead {
+	th {
+	  background-color: global.$color__bg-gray-light;
+	  font-weight: global.$font__weight_normal;
+	}
+  }
+}
