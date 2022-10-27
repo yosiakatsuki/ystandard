@@ -5,7 +5,6 @@
 @use "component/author/author" with ($editor:true);
 @use "component/block-editor/align" with ($editor:true);
 @use "component/block-editor/content" with ($editor:true);
-@use "component/block-editor/table" with ($editor:true);
 @use "component/block-editor/tag-cloud" with ($editor:true);
 @use "component/block-editor/video" with ($editor:true);
 @use "component/blog-card/blog-card" with ($editor:true);
@@ -56,13 +55,14 @@
   @include meta.load-css('../block-styles/core__search/search-editor');
   @include meta.load-css('../block-styles/core__separator/separator');
   @include meta.load-css('../block-styles/core__spacer/spacer');
+  @include meta.load-css('../block-styles/core__table/table');
+  @include meta.load-css('../block-styles/core__table/table-editor');
 
   //Component
   @include advertisement.advertisement();
   @include author.author();
   @include align.align();
   @include content.content();
-  @include table.table();
   @include tag-cloud.tag-cloud();
   @include video.video();
   @include blog-card.blog-card();
