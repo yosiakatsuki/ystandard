@@ -5,7 +5,6 @@
 @use "component/author/author" with ($editor:true);
 @use "component/block-editor/align" with ($editor:true);
 @use "component/block-editor/content" with ($editor:true);
-@use "component/block-editor/social-links" with ($editor:true);
 @use "component/block-editor/spacer" with ($editor:true);
 @use "component/block-editor/table" with ($editor:true);
 @use "component/block-editor/tag-cloud" with ($editor:true);
@@ -63,7 +62,6 @@
   @include author.author();
   @include align.align();
   @include content.content();
-  @include social-links.social-link();
   @include spacer.spacer();
   @include table.table();
   @include tag-cloud.tag-cloud();
