@@ -84,7 +84,10 @@ class Icon {
 	public static function get_icon( $name, $class = '' ) {
 		$icon = self::get_icon_cache( $name );
 		if ( false === $icon ) {
-			$path = get_template_directory() . '/library/feather/' . $name . '.svg';
+			$path = get_theme_file_path( 'library/feather/' . $name . '.svg' );
+
+			$path = apply_filters( "ys_get_icon_path__${name}", $path, $name );
+
 			if ( ! file_exists( $path ) ) {
 				return '';
 			}
@@ -166,7 +169,7 @@ class Icon {
 		}
 		$icons = [];
 
-		// サーバー上のファイルから取得.
+		// ファイルから取得.
 		$path = get_template_directory() . '/library/simple-icons/brand-icons.json';
 		$json = Filesystem::file_get_contents( $path );
 		if ( ! empty( $json ) ) {
@@ -247,6 +250,9 @@ class Icon {
 	 * @return string|bool
 	 */
 	public static function get_icon_cache( $name ) {
+		if ( apply_filters( 'ys_disable_icon_cache', false ) ) {
+			return false;
+		}
 		$icons = self::get_all_icons_cache();
 		if ( false === $icons ) {
 			return false;
@@ -289,6 +295,9 @@ class Icon {
 	 * @param string $icon icon.
 	 */
 	public static function add_icon_cache( $name, $icon ) {
+		if ( apply_filters( 'ys_disable_icon_cache', false ) ) {
+			return;
+		}
 		$icons_cache = self::get_all_icons_cache();
 
 		if ( self::is_empty_icons( $icons_cache ) ) {
