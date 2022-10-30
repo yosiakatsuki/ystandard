@@ -17,11 +17,29 @@ defined( 'ABSPATH' ) || die();
  * Blocks
  */
 class Blocks {
+
+	/**
+	 * Admin Styles.
+	 *
+	 * @var array
+	 */
+	private $enqueue_block_editor_styles;
+	/**
+	 * Styles.
+	 *
+	 * @var array
+	 */
+	private $enqueue_styles;
+
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
+		$this->enqueue_block_editor_styles = [];
+		$this->enqueue_styles              = [];
 		add_action( 'after_setup_theme', [ $this, 'enqueue_theme_block_styles' ], 100 );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_styles' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 	}
 
 	/**
@@ -78,7 +96,11 @@ class Blocks {
 						]
 					);
 				} else {
-					$this->enqueue_style( $style_handle, $style_src, $theme_css_path );
+					$this->enqueue_styles[] = [
+						'handle' => $style_handle,
+						'src'    => $style_src,
+						'path'   => $theme_css_path,
+					];
 				}
 			}
 
@@ -87,7 +109,11 @@ class Blocks {
 			if ( is_array( $required ) ) {
 				foreach ( $required as $item ) {
 					if ( false !== strpos( $block['name'], $item ) ) {
-						$this->enqueue_style( $style_handle, $style_src, $theme_css_path );
+						$this->enqueue_styles[] = [
+							'handle' => $style_handle,
+							'src'    => $style_src,
+							'path'   => $theme_css_path,
+						];
 					}
 				}
 			}
@@ -97,14 +123,44 @@ class Blocks {
 			if ( is_admin() ) {
 				if ( file_exists( $editor_css_path ) ) {
 					$editor_src = $this->replace_path_to_uri( $editor_css_path, $is_child );
-					$this->enqueue_style(
-						"${style_handle}-editor",
-						$editor_src,
-						$editor_css_path
-					);
+					// 読み込むCSS登録.
+					$this->enqueue_admin_styles[] = [
+						'handle' => "${style_handle}-editor",
+						'src'    => $editor_src,
+						'path'   => $editor_css_path,
+					];
 				}
 			}
 		}
+	}
+
+	/**
+	 * ブロックCSS
+	 *
+	 * @return void
+	 */
+	public function enqueue_styles() {
+		if ( ! is_array( $this->enqueue_styles ) ) {
+			return;
+		}
+		foreach ( $this->enqueue_styles as $style ) {
+			$this->enqueue_style( $style['handle'], $style['src'], $style['path'] );
+		}
+		$this->enqueue_styles = [];
+	}
+	/**
+	 * ブロックエディター用CSS
+	 *
+	 * @return void
+	 */
+	public function enqueue_block_editor_styles() {
+		if ( ! is_array( $this->enqueue_block_editor_styles ) ) {
+			return;
+		}
+		foreach ( $this->enqueue_block_editor_styles as $style ) {
+			$this->enqueue_style( $style['handle'], $style['src'], $style['path'] );
+		}
+		$this->enqueue_block_editor_styles = [];
 	}
 
 	/**
