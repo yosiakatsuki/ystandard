@@ -48,9 +48,7 @@ class Blocks {
 	 * @return void
 	 */
 	public function enqueue_theme_block_styles() {
-		$this->enqueue_block_styles(
-			get_template_directory() . '/css/block-styles',
-		);
+		$this->enqueue_block_styles( get_template_directory() . '/css/block-styles' );
 		// フックで追加.
 		$style_dir_path = apply_filters( 'ys_block_styles_dir_path', [] );
 		// 子テーマも検索.
