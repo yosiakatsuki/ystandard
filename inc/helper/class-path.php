@@ -19,7 +19,8 @@ class Path {
 	/**
 	 * テーマパスをテーマURLに変換
 	 *
-	 * @param string $path Path
+	 * @param string  $path     Path.
+	 * @param boolean $is_child 子テーマか.
 	 *
 	 * @return string
 	 */
@@ -39,7 +40,7 @@ class Path {
 	/**
 	 * テーマパスをテーマURLに変換
 	 *
-	 * @param string $path Path
+	 * @param string $path Path.
 	 *
 	 * @return string
 	 */

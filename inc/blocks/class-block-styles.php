@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || die();
  */
 class Block_Styles {
 	/**
-	 * constructor.
+	 * Constructor.
 	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_block_styles' ] );
