@@ -1,0 +1,30 @@
+@use "../../sass/global";
+
+.wp-block-group {
+
+  &.has-background {
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+  }
+
+  &.has-background:not(.alignfull):not(.alignwide) {
+	padding-right: 1.5em;
+	padding-left: 1.5em;
+  }
+
+  &.alignfull + &.alignfull {
+	margin-top: 0;
+  }
+}
+
+.wp-block-group,
+.wp-block-group__inner-container {
+  > * {
+	margin-top: 0;
+	margin-bottom: 0;
+
+	& + * {
+	  margin-top: var(--ystd-layout-gap);
+	}
+  }
+}

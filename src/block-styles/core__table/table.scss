@@ -1,0 +1,8 @@
+.wp-block-table {
+  &.is-style-stripes {
+	table,
+	tr {
+	  border-color: transparent;
+	}
+  }
+}

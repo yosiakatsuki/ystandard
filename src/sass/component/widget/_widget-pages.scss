@@ -1,0 +1,18 @@
+@use "sass:meta";
+
+.widget_pages {
+  ul {
+	margin-right: 0;
+	margin-left: 0;
+	padding: 0;
+	font-size: 0.9em;
+	list-style: none;
+  }
+
+  > ul {
+	border-top: 1px solid var(--site-border-gray-light);
+	border-bottom: 1px solid var(--site-border-gray-light);
+  }
+
+  @include meta.load-css('../../../block-styles/core__categories/parts-categories-items');
+}

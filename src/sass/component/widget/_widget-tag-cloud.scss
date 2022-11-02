@@ -1,1 +1,29 @@
-// wp-block-tag-cloud に統合
+@use "../../global";
+
+.tagcloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1ch;
+  color: var(--tagcloud-text);
+  font-size: 0.8em;
+
+  a {
+	display: block;
+	margin: 0;
+	padding: 0.5ch 2ch;
+	background-color: var(--tagcloud-bg);
+	color: currentColor;
+	text-decoration: none;
+	letter-spacing: global.$font__letter-spacing;
+
+	&::before {
+	  content: var(--tagcloud-icon);
+	  margin-right: 0.25em;
+	  font-family: global.$font__code;
+	}
+
+	&:hover {
+	  opacity: 0.8;
+	}
+  }
+}

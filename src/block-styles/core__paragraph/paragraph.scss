@@ -1,0 +1,18 @@
+@use "../../sass/global";
+
+.ystd {
+  p.has-background {
+	padding: 1em 1.5em;
+  }
+
+  .has-drop-cap:not(:focus):first-letter {
+	margin-right: 0.05em;
+	font-size: 3em;
+	font-weight: global.$font__weight_normal;
+	vertical-align: -0.05em;
+	float: none;
+  }
+}
+
+
+

@@ -43,6 +43,7 @@ class Enqueue_Styles {
 			add_filter( 'style_loader_tag', [ $this, 'style_loader_inline' ], PHP_INT_MAX, 4 );
 		}
 		add_filter( 'wp_get_custom_css', [ $this, '_wp_get_custom_css' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'dequeue_core_style' ], PHP_INT_MAX );
 	}
 
 	/**
@@ -220,6 +221,16 @@ class Enqueue_Styles {
 			[],
 			Utility::get_theme_version( true )
 		);
+	}
+
+	/**
+	 * 不要なコアCSS削除.
+	 *
+	 * @return void
+	 */
+	public function dequeue_core_style() {
+		// 6.1で追加.
+		wp_dequeue_style( 'classic-theme-styles' );
 	}
 
 	/**
