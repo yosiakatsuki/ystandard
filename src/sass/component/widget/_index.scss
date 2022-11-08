@@ -1,9 +1,11 @@
-@use "widget-title";
-@use "widget-categories";
-@use "widget-tag-cloud";
 @use "widget-archive";
+@use "widget-calendar";
+@use "widget-categories";
+@use "widget-meta";
+@use "widget-nav-menu";
+@use "widget-pages";
+@use "widget-parts";
 @use "widget-recent-comments";
 @use "widget-recent-entries";
-@use "widget-calendar";
-@use "widget-parts";
-@use "widget-pages";
+@use "widget-tag-cloud";
+@use "widget-title";
