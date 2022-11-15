@@ -143,7 +143,7 @@ class Footer {
 			border: 0;
 			outline: none;
 			background: none;
-			cursor: pointer
+			cursor: pointer;
 			z-index: var(--z-index-back-to-top);
 		}
 		#back-to-top:hover{
