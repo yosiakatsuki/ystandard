@@ -27,9 +27,10 @@ class Customizer {
 		'ys_block_editor'       => 1020,
 		'ys_sns'                => 1100,
 		'ys_seo'                => 1110,
-		'ys_wp_sitemap'         => 1120,
-		'ys_performance_tuning' => 1130,
-		'ys_advertisement'      => 1140,
+		'ys_feed'               => 1120,
+		'ys_wp_sitemap'         => 1210,
+		'ys_performance_tuning' => 1220,
+		'ys_advertisement'      => 1230,
 		'ys_amp'                => 1300,
 		'ys_extension'          => 2000,
 	];
