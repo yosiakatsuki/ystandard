@@ -76,11 +76,19 @@ class Breadcrumbs {
 	 * @return bool
 	 */
 	public function is_show_breadcrumbs() {
-		if ( 'none' === Option::get_option( 'ys_breadcrumbs_position', 'footer' ) ) {
+		$position = Option::get_option( 'ys_breadcrumbs_position', 'footer' );
+		if ( 'none' === $position ) {
 			return false;
 		}
-		if ( is_front_page() || Template::is_no_title_template() ) {
+		if ( is_front_page() ) {
 			return false;
+		}
+		if ( Template::is_no_title_template() ) {
+			if ( 'footer' !== $position ) {
+				return false;
+			} else {
+				return Option::get_option_by_bool( 'ys_show_breadcrumb_blank_template', false );
+			}
 		}
 
 		return true;
@@ -629,6 +637,15 @@ class Breadcrumbs {
 	}
 
 	/**
+	 * ヘッダー無しテンプレートオプションを表示するか.
+	 *
+	 * @return boolean
+	 */
+	public function is_show_blank_option() {
+		return 'footer' === Option::get_option( 'ys_breadcrumbs_position', 'footer' );
+	}
+
+	/**
 	 * カスタマイザー追加
 	 *
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
@@ -644,6 +661,7 @@ class Breadcrumbs {
 				'panel'       => Design::PANEL_NAME,
 			]
 		);
+		$customizer->add_section_label( '表示設定' );
 		/**
 		 * パンくずリスト表示位置
 		 */
@@ -660,6 +678,22 @@ class Breadcrumbs {
 				],
 			]
 		);
+		$customizer->add_section_label(
+			'投稿ヘッダー無しテンプレート用設定',
+			[
+				'active_callback' => [ $this, 'is_show_blank_option' ],
+			]
+		);
+		$customizer->add_checkbox(
+			[
+				'id'              => 'ys_show_breadcrumb_blank_template',
+				'default'         => 0,
+				'label'           => '投稿ヘッダー無しテンプレートでもパンくずリストを表示する',
+				'active_callback' => [ $this, 'is_show_blank_option' ],
+			]
+		);
+
+		$customizer->add_section_label( '色設定' );
 		// パンくずリスト文字色.
 		$customizer->add_color(
 			[
