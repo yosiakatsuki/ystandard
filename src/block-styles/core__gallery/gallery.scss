@@ -2,24 +2,26 @@
 
 .blocks-gallery-grid,
 .wp-block-gallery {
+	display: flex;
+	flex-wrap: wrap;
 
-  &.has-background {
-	padding: 0.5em;
-  }
+	&.has-background {
+		padding: 0.5em;
+	}
 
-  .blocks-gallery-caption {
-	width: 100%;
-	padding-top: 0;
-	font-size: .8em;
-	font-style: normal;
-  }
+	.blocks-gallery-caption {
+		width: 100%;
+		padding-top: 0;
+		font-size: 0.8em;
+		font-style: normal;
+	}
 }
 
 body:not(.has-sidebar) {
-  .wp-block-gallery {
-	&.alignwide {
-	  padding-right: 0;
-	  padding-left: 0;
+	.wp-block-gallery {
+		&.alignwide {
+			padding-right: 0;
+			padding-left: 0;
+		}
 	}
-  }
 }
