@@ -203,14 +203,7 @@ class Admin {
 		$icon = Icon::get_icon( $icon );
 
 		if ( false === strpos( $url, 'https://' ) ) {
-			$url = add_query_arg(
-				[
-					'utm_source'   => 'manual-link',
-					'utm_medium'   => 'referral',
-					'utm_campaign' => $url,
-				],
-				"https://wp-ystandard.com/${url}/"
-			);
+			$url = "https://wp-ystandard.com/${url}/";
 		}
 
 		$inline_class = $inline ? 'is-inline' : '';
