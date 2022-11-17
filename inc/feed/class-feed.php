@@ -54,8 +54,8 @@ class Feed {
 		$customizer->add_section(
 			[
 				'section'     => self::PANEL_NAME,
-				'title'       => '[ys]フィード',
-				'description' => 'フィードの設定' . Admin::manual_link( 'manual/feed' ),
+				'title'       => '[ys]RSSフィード',
+				'description' => 'RSSフィードの設定' . Admin::manual_link( 'manual/rss-feed' ),
 			]
 		);
 		$customizer->add_section_label( 'コメントフィード' );
