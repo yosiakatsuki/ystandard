@@ -106,5 +106,25 @@ class BreadcrumbsTest extends WP_UnitTestCase {
 
 		$this->assertFalse($breadcrumbs->is_show_breadcrumbs());
 	}
+	/**
+	 * Test: is_show_breadcrumbs
+	 */
+	function test_is_show_breadcrumbs_pre() {
+		$breadcrumbs = new Breadcrumbs();
+		$post_id = $this->factory->post->create(
+			[
+				'post_type' => 'page',
+			]
+		);
+		$this->go_to( get_the_permalink($post_id) );
+		update_post_meta($post_id,'_wp_page_template','page-template/template-blank.php');
+		update_option( 'ys_breadcrumbs_position', 'header' );
+		update_option( 'ys_show_breadcrumb_blank_template', 1 );
+
+		$this->assertFalse($breadcrumbs->is_show_breadcrumbs());
+
+		add_filter('ys_pre_is_show_breadcrumbs','__return_true');
+		$this->assertTrue($breadcrumbs->is_show_breadcrumbs());
+	}
 
 }

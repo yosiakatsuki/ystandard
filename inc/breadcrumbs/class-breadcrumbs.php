@@ -76,6 +76,12 @@ class Breadcrumbs {
 	 * @return bool
 	 */
 	public function is_show_breadcrumbs() {
+
+		$pre = apply_filters( 'ys_pre_is_show_breadcrumbs', null );
+		if ( ! is_null( $pre ) ) {
+			return $pre;
+		}
+
 		$position = Option::get_option( 'ys_breadcrumbs_position', 'footer' );
 		if ( 'none' === $position ) {
 			return false;
