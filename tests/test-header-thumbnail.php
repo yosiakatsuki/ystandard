@@ -51,9 +51,10 @@ class Header_Thumbnail_Test extends WP_UnitTestCase {
 			$post_id,
 			'post-thumbnail',
 			[
-				'id'    => 'site-header-thumbnail__image',
-				'class' => 'site-header-thumbnail__image',
-				'alt'   => get_the_title( $post_id ),
+				'id'      => 'site-header-thumbnail__image',
+				'class'   => 'site-header-thumbnail__image',
+				'alt'     => get_the_title( $post_id ),
+				'loading' => 'eager',
 			]
 		);
 

@@ -371,9 +371,10 @@ class Archive {
 			$page,
 			'post-thumbnail',
 			[
-				'id'    => 'site-header-thumbnail__image',
-				'class' => 'site-header-thumbnail__image',
-				'alt'   => get_the_title( $page ),
+				'id'      => 'site-header-thumbnail__image',
+				'class'   => 'site-header-thumbnail__image',
+				'alt'     => get_the_title( $page ),
+				'loading' => 'eager',
 			]
 		);
 		ob_start();

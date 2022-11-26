@@ -552,9 +552,10 @@ class Content {
 			get_the_ID(),
 			'post-thumbnail',
 			[
-				'id'    => 'site-header-thumbnail__image',
-				'class' => 'site-header-thumbnail__image',
-				'alt'   => get_the_title(),
+				'id'      => 'site-header-thumbnail__image',
+				'class'   => 'site-header-thumbnail__image',
+				'alt'     => get_the_title(),
+				'loading' => 'eager',
 			]
 		);
 	}
