@@ -15,9 +15,10 @@ defined( 'ABSPATH' ) || die();
 	the_post_thumbnail(
 		'post-thumbnail',
 		[
-			'id'    => 'singular-header__image',
-			'class' => 'singular-header__image',
-			'alt'   => get_the_title(),
+			'id'      => 'singular-header__image',
+			'class'   => 'singular-header__image',
+			'alt'     => get_the_title(),
+			'loading' => 'eager',
 		]
 	);
 	?>
