@@ -4,7 +4,10 @@ module.exports = {
 		require( 'cssnano' )( {
 			preset: [
 				'default',
-				{ minifyFontValues: { removeQuotes: false } },
+				{
+					minifyFontValues: { removeQuotes: false },
+					colormin: false,
+				},
 			],
 		} ),
 		require( 'css-declaration-sorter' )( { order: 'smacss' } ),

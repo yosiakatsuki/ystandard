@@ -57,7 +57,6 @@
 		"build": "run-s clean build:*",
 		"test:php": "wp-env start && wp-env run phpunit 'phpunit -c /var/www/html/wp-content/themes/ystandard/phpunit.xml.dist --verbose'",
 		"test": "run-s test:*",
-		"clean:temp": "rimraf temp",
 		"clean:upload": "rimraf upload & rimraf /ystandard",
 		"clean:css": "rimraf css",
 		"clean:js": "rimraf js",
