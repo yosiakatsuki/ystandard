@@ -1,31 +1,52 @@
-const simpleIcons = require( 'simple-icons' );
+const {
+	siTwitter,
+	siFacebook,
+	siHatenabookmark,
+	siPocket,
+	siLine,
+	siFeedly,
+	siRss,
+	siWordpress,
+	siPinterest,
+	siInstagram,
+	siLinkerd,
+	siYoutube,
+	siTwitch,
+	siDribbble,
+	siGithub,
+	siTumblr,
+	siAmazon,
+	siDiscord,
+	siTiktok,
+	siLinkedin,
+} = require( 'simple-icons' );
 const fs = require( 'fs' );
 const jsonPath = './library/simple-icons/brand-icons.json';
 const iconList = [
-	'Twitter',
-	'Facebook',
-	'Hatena Bookmark',
-	'Pocket',
-	'Line',
-	'Feedly',
-	'RSS',
-	'WordPress',
-	'Pinterest',
-	'Instagram',
-	'linkedIn',
-	'YouTube',
-	'Twitch',
-	'Dribbble',
-	'GitHub',
-	'Tumblr',
-	'Amazon',
-	'Discord',
+	siTwitter,
+	siFacebook,
+	siHatenabookmark,
+	siPocket,
+	siLine,
+	siFeedly,
+	siRss,
+	siWordpress,
+	siPinterest,
+	siInstagram,
+	siLinkedin,
+	siYoutube,
+	siTwitch,
+	siDribbble,
+	siGithub,
+	siTumblr,
+	siAmazon,
+	siDiscord,
+	siTiktok,
 ];
 const data = {};
 
 iconList.map( ( value ) => {
-	const icon = simpleIcons.Get( value.toLowerCase().split(' ').join('') );
-	data[ icon.slug ] = icon;
+	data[ value.slug ] = value;
 	return '';
 } );
 fs.writeFile( jsonPath, JSON.stringify( { data } ), ( err ) => {
