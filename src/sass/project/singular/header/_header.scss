@@ -50,7 +50,12 @@
 
 .has-background {
   .singular-header__thumbnail {
-	--ystd-header-thumb-margin: calc(-1 * var(--ystd-content-padding));
-	margin: var(--ystd-header-thumb-margin) var(--ystd-header-thumb-margin) 0;
+	--ystd-header-thumb-margin-top: var(--ystd-content-padding);
+	--ystd-header-thumb-margin-inline: calc(var(--ystd-content-padding)*-1);
+	margin: var(--ystd-header-thumb-margin-top) var(--ystd-header-thumb-margin-inline) 0;
+
+	&:first-child {
+	  --ystd-header-thumb-margin-top: calc(var(--ystd-content-padding)*-1);
+	}
   }
 }
