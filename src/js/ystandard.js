@@ -121,13 +121,19 @@ const ysSetSmoothScroll = () => {
 			const urlSplit = e.currentTarget
 				.getAttribute( 'href' )
 				.split( '#' );
-			const targetPageUrl = urlSplit[ 0 ]
-				.split( '?' )[ 0 ]
-				.replace( /\/$/, '' );
-			const currentPageUrl = location.href
-				.split( '#' )[ 0 ]
-				.split( '?' )[ 0 ]
-				.replace( /\/$/, '' );
+
+			let targetPageUrl = urlSplit[ 0 ];
+			if ( ! window?.ystdScriptOption?.isPermalinkBasic ) {
+				targetPageUrl = targetPageUrl.split( '?' )[ 0 ];
+			}
+			targetPageUrl = targetPageUrl.replace( /\/$/, '' );
+
+			let currentPageUrl = location.href.split( '#' )[ 0 ];
+			if ( ! window?.ystdScriptOption?.isPermalinkBasic ) {
+				currentPageUrl = currentPageUrl.split( '?' )[ 0 ];
+			}
+			currentPageUrl = currentPageUrl.replace( /\/$/, '' );
+
 			const id = urlSplit[ 1 ].split( '?' )[ 0 ];
 			if ( '' !== targetPageUrl && targetPageUrl !== currentPageUrl ) {
 				location.href = e.currentTarget.getAttribute( 'href' );
