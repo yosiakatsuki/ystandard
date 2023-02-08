@@ -58,6 +58,13 @@ class Enqueue_Scripts {
 			Utility::get_ystandard_version(),
 			true
 		);
+		wp_localize_script(
+			self::JS_HANDLE,
+			'ystdScriptOption',
+			[
+				'isPermalinkBasic' => ! get_option( 'permalink_structure', '' ),
+			]
+		);
 		do_action( 'ys_enqueue_script' );
 	}
 
