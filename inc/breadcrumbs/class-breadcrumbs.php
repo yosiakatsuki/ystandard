@@ -519,14 +519,39 @@ class Breadcrumbs {
 	 * 一覧ページ先頭アイテムをセット
 	 */
 	private function set_front_item() {
+		$add_item = false;
+		if ( 'page' !== $this->show_on_front || ! $this->page_for_posts ) {
+			return;
+		}
+		if ( ! Option::get_option_by_bool( 'ys_show_page_for_posts_on_breadcrumbs', true ) ) {
+			return;
+		}
 		$post_type = $this->get_post_type();
-		if ( ( is_single() && 'post' === $post_type ) || is_date() || is_author() || is_category() || is_tax() ) {
-			if ( 'page' === $this->show_on_front && $this->page_for_posts && Option::get_option_by_bool( 'ys_show_page_for_posts_on_breadcrumbs', true ) ) {
-				$this->set_item(
-					get_the_title( $this->page_for_posts ),
-					get_permalink( $this->page_for_posts )
-				);
+		// 詳細ページ.
+		if ( is_single() ) {
+			if ( 'post' === $post_type ) {
+				$add_item = true;
 			}
+		}
+		// WP標準.
+		if ( is_date() || is_author() || is_category() || is_tag() ) {
+			$add_item = true;
+		}
+		// カスタムタクソノミー.
+		if ( is_tax() ) {
+			$term = get_queried_object();
+			if ( $term ) {
+				$taxonomy = get_taxonomy( $term->taxonomy );
+				if ( in_array( 'post', $taxonomy->object_type, true ) ) {
+					$add_item = true;
+				}
+			}
+		}
+		if ( $add_item ) {
+			$this->set_item(
+				get_the_title( $this->page_for_posts ),
+				get_permalink( $this->page_for_posts )
+			);
 		}
 	}
 

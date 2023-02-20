@@ -3,14 +3,14 @@
 .tagcloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 1ch;
+  gap: .5em;
   color: var(--tagcloud-text);
   font-size: 0.8em;
 
   a {
 	display: block;
 	margin: 0;
-	padding: 0.5ch 2ch;
+	padding: 0.25em 1em;
 	background-color: var(--tagcloud-bg);
 	color: currentColor;
 	text-decoration: none;
