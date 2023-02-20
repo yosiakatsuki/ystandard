@@ -299,10 +299,6 @@ class Breadcrumbs {
 				);
 			}
 			if ( is_taxonomy_hierarchical( $taxonomy ) && $term->parent ) {
-				$this->set_item(
-					$label,
-					get_post_type_archive_link( $post_type )
-				);
 				$this->set_ancestors( $term->term_id, $taxonomy );
 			}
 		}
