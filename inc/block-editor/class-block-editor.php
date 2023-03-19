@@ -131,6 +131,7 @@ class Block_Editor {
 				'core/post-comments-form',
 				'core/post-author-biography',
 				'core/comments',
+				'core/post-author-name',
 			]
 		);
 	}
