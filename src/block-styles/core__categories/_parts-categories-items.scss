@@ -44,7 +44,9 @@ a {
 
 .children,
 .sub-menu {
+  list-style: none;
   border-top: 1px solid var(--site-border-gray-light);
+  padding-left: 0;
 
   a {
 	padding-left: 2em;

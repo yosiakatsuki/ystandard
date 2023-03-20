@@ -1,5 +1,6 @@
 @use "sass:meta";
 
+.wp-block-archives,
 .wp-block-archives-list {
   margin-right: 0;
   margin-left: 0;
@@ -7,4 +8,11 @@
   list-style: none;
 
   @include meta.load-css('parts-archives-list-items');
+}
+
+ul {
+  &.wp-block-archives,
+  &.wp-block-archives-list {
+	padding-left: 0;
+  }
 }
