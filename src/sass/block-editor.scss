@@ -4,7 +4,8 @@
  * component
  */
 @use "component/blog-card/blog-card";
-@use "component/block-editor/index" as block-editor;
+@use "component/block-editor/content" as block-editor-content;
+@use "component/block-editor/align-editor" as block-editor-align;
 @use "component/posts/posts";
 @use "component/ratio/ratio";
 @use "component/share-button/share-button";

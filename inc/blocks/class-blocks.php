@@ -122,7 +122,7 @@ class Blocks {
 				if ( file_exists( $editor_css_path ) ) {
 					$editor_src = $this->replace_path_to_uri( $editor_css_path, $is_child );
 					// 読み込むCSS登録.
-					$this->enqueue_admin_styles[] = [
+					$this->enqueue_block_editor_styles[] = [
 						'handle' => "${style_handle}-editor",
 						'src'    => $editor_src,
 						'path'   => $editor_css_path,

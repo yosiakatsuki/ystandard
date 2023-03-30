@@ -1,0 +1,4 @@
+@use "sass:meta";
+.editor-styles-wrapper:not(html) {
+  @include meta.load-css("./button.scss");
+}
