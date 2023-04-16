@@ -34,7 +34,8 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 									</span>
 								<?php endif; ?>
 								<?php if ( $term && $recent_posts['show_category'] ) : ?>
-									<span class="ys-posts__cat category--<?php echo esc_attr( $term['slug'] ); ?>">
+									<?php $class_taxonomy = $recent_posts['taxonomy'] . '--' . $term['slug']; ?>
+									<span class="ys-posts__cat <?php echo esc_attr( $class_taxonomy ); ?>">
 										<?php echo $term['name']; ?>
 									</span>
 								<?php endif; ?>
