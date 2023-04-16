@@ -28,7 +28,7 @@ jobs:
         run: bash bin/php-l.sh
 
       - name: Error Check
-        uses: 8398a7/action-slack@v3.8.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: "Failure : Error Check"
@@ -58,22 +58,11 @@ jobs:
       - name: Check PHP Version
         run: php -v
 
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
       - name: Composer install
         run: composer install --optimize-autoloader --prefer-dist
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -92,7 +81,7 @@ jobs:
         run: npm run lint
 
       - name: Notify Lint
-        uses: 8398a7/action-slack@v3.8.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: Failure phpcs
@@ -107,26 +96,15 @@ jobs:
     name: WordPress UnitTest
     needs: [ codeCheck, lint ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: 'develop-v4'
-
-      - name: Get Composer Cache Directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -148,7 +126,7 @@ jobs:
         run: npm run test
 
       - name: Notify Unit Test
-        uses: 8398a7/action-slack@v3.8.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
@@ -167,12 +145,10 @@ jobs:
         with:
           ref: 'develop-v4'
       - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.14'
+        uses: actions/setup-node@v3
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -204,7 +180,7 @@ jobs:
           ARGS: --verbose --exclude=ystandard-info-beta.json
 
       - name: Notify Deployment Develop Vesion
-        uses: 8398a7/action-slack@v3.8.0
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: "[yStandard]開発バージョンのアップデート準備OK！"
