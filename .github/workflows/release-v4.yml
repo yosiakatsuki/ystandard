@@ -12,12 +12,10 @@ jobs:
         with:
           ref: 'release-v4'
       - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.14'
+        uses: actions/setup-node@v3
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -48,8 +46,8 @@ jobs:
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION_V4 }}
           ARGS: --verbose --exclude=ystandard-info-beta.json
 
-      - name: Notify Deployment Develop Vesion
-        uses: 8398a7/action-slack@v3.8.0
+      - name: Notify Deployment Release Version
+        uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
           author_name: "[yStandard]新バージョンのアップデート準備OK！"
