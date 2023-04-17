@@ -169,8 +169,9 @@ class Taxonomy {
 		}
 
 		return [
-			'name' => $terms[0]->name,
-			'slug' => $terms[0]->slug,
+			'name'     => $terms[0]->name,
+			'slug'     => $terms[0]->slug,
+			'taxonomy' => $terms[0]->taxonomy,
 		];
 	}
 
