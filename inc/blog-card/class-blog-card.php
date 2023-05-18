@@ -73,7 +73,6 @@ class Blog_Card {
 	 */
 	public function embed_register_handler() {
 
-
 		if ( ! apply_filters( 'ys_use_blogcard', Option::get_option_by_bool( 'ys_blog_card_create_card_auto', false ) ) ) {
 			return;
 		}
