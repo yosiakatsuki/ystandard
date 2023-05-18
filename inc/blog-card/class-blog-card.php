@@ -52,21 +52,36 @@ class Blog_Card {
 	private $params = [];
 
 	/**
+	 * パネル名
+	 *
+	 * @var string
+	 */
+	const PANEL_NAME = 'ys_blog_card';
+
+	/**
 	 * YS_Blog_Card constructor.
 	 */
 	public function __construct() {
 
 		add_action( 'after_setup_theme', [ $this, 'embed_register_handler' ] );
 		add_shortcode( 'ys_blog_card', [ $this, 'do_shortcode' ] );
+		add_action( 'customize_register', [ $this, 'customize_register' ] );
 	}
 
 	/**
 	 * ブロクカードの展開処理登録
 	 */
 	public function embed_register_handler() {
-		if ( ! apply_filters( 'ys_use_blogcard', ! is_admin() ) ) {
+
+
+		if ( ! apply_filters( 'ys_use_blogcard', Option::get_option_by_bool( 'ys_blog_card_create_card_auto', false ) ) ) {
 			return;
 		}
+
+		if ( apply_filters( 'ys_use_blogcard_admin', is_admin() ) ) {
+			return;
+		}
+
 		wp_embed_register_handler(
 			'ys_blog_card',
 			$this->get_register_pattern(),
@@ -481,6 +496,32 @@ class Blog_Card {
 		}
 
 		return wp_targeted_link_rel( "<div class=\"ys-blog-card__text-link\"><a href=\"${url}\" ${target}>${url}</a></div>" );
+	}
+
+	/**
+	 * 設定追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 */
+	public function customize_register( $wp_customize ) {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section(
+			[
+				'section'     => self::PANEL_NAME,
+				'title'       => '[ys]ブログカード',
+				'description' => 'ブログフィードの設定',
+			]
+		);
+		$customizer->add_section_label( 'URLの自動変換' );
+		$customizer->add_checkbox(
+			[
+				'id'          => 'ys_blog_card_create_card_auto',
+				'label'       => 'URLのみの行を自動でブログカード形式に変換する',
+				'default'     => 0,
+				'transport'   => 'postMessage',
+				'description' => '※クラシックエディターをご使用の場合、この設定をONにすることで、自動でURLのみが入力された行をブログカード形式に変換します',
+			]
+		);
 	}
 }
 
