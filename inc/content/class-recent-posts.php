@@ -525,8 +525,8 @@ class Recent_Posts {
 	 * @return array
 	 */
 	private function get_the_term_ids( $taxonomy ) {
-		$parent = [];
-
+		$parent   = [];
+		$term_ids = [];
 		if ( is_tax( $taxonomy ) ) {
 			$term       = get_queried_object();
 			$parent[]   = $term->term_id;
