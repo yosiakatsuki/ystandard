@@ -28,6 +28,7 @@ class Customizer {
 		'ys_sns'                => 1100,
 		'ys_seo'                => 1110,
 		'ys_feed'               => 1120,
+		'ys_blog_card'          => 1121,
 		'ys_wp_sitemap'         => 1210,
 		'ys_performance_tuning' => 1220,
 		'ys_advertisement'      => 1230,
