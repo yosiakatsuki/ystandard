@@ -518,7 +518,7 @@ class Blog_Card {
 				'label'       => 'URLのみの行を自動でブログカード形式に変換する',
 				'default'     => 1,
 				'transport'   => 'postMessage',
-				'description' => '※クラシックエディターをご使用の場合、この設定をONにすることで、自動でURLのみが入力された行をブログカード形式に変換します',
+				'description' => '※この設定をONにすることで、自動でURLのみが入力された行をブログカード形式に変換します。',
 			]
 		);
 	}
