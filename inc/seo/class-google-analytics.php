@@ -124,9 +124,9 @@ class Google_Analytics {
 				'default'     => 'gtag',
 				'transport'   => 'postMessage',
 				'label'       => 'トラッキングコードタイプ',
-				'description' => 'Google Analytics トラッキングコードタイプを選択出来ます。<br>※Google Analytics 4の場合は「グローバル サイトタグ(gtag.js)」を選択してください',
+				'description' => 'Google Analytics トラッキングコードタイプを選択出来ます',
 				'choices'     => [
-					'gtag'      => 'グローバル サイトタグ(gtag.js)',
+					'gtag'      => 'GA4・グローバル サイトタグ(gtag.js)',
 					'analytics' => 'ユニバーサルアナリティクス(analytics.js)',
 				],
 			]
