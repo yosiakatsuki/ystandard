@@ -111,7 +111,7 @@ class Meta_Description {
 			]
 		);
 		$customizer->add_section_label(
-			'meta description自動生成',
+			'meta descriptionの出力',
 			[
 				'description' => Admin::manual_link( 'manual/meta-description' ),
 			]
@@ -125,6 +125,7 @@ class Meta_Description {
 				'label'     => 'meta descriptionを出力する',
 			]
 		);
+		$customizer->add_section_label( 'meta description自動生成' );
 		// 抜粋文字数.
 		$customizer->add_number(
 			[
