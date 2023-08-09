@@ -1,6 +1,6 @@
 @use "../../sass/global";
 
-.ystd {
+body {
   p.has-background {
 	padding: 1em 1.5em;
   }
@@ -9,10 +9,9 @@
 	margin-right: 0.05em;
 	font-size: 3em;
 	font-weight: global.$font__weight_normal;
-	vertical-align: -0.05em;
-	float: none;
+	vertical-align: 1em;
+	line-height: 1;
+	text-transform: uppercase
   }
 }
-
-
 
