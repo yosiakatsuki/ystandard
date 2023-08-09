@@ -1,3 +1,5 @@
 .wp-block-pullquote {
-  border: 0;
+  &:where(:not(.has-border-color)) {
+	border: 0;
+  }
 }
