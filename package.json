@@ -31,9 +31,9 @@
 		"simple-icons": "^9.9.0"
 	},
 	"scripts": {
-		"activate:theme": "wp-env run cli 'wp theme activate ystandard'",
+		"activate:theme": "wp-env run cli wp theme activate ystandard",
 		"start:update": "wp-env start --xdebug=develop,debug -- --update && npm run activate:theme",
-		"start": "wp-env start --xdebug=develop && npm run import && open http://localhost:10000/",
+		"start": "wp-env start --xdebug=develop && open http://localhost:10000/",
 		"stop": "npm run export && wp-env stop",
 		"watch:js": "babel src/js --out-dir js --ignore 'src/js/icons/*' -w -s",
 		"watch:postcss:block-style": "postcss temp/css/block-styles/**/*.css --base temp/css/block-styles --dir css/block-styles --verbose -w",
@@ -55,7 +55,7 @@
 		"build:css": "run-s build:css:*",
 		"build:icons": "node ./src/js/icons/brand.js",
 		"build": "run-s clean build:*",
-		"test:php": "wp-env start && wp-env run phpunit 'phpunit -c /var/www/html/wp-content/themes/ystandard/phpunit.xml.dist --verbose'",
+		"test:php": "wp-env start && wp-env run tests-cli --env-cwd='wp-content/themes/ystandard' vendor/bin/phpunit -c phpunit.xml.dist --verbose",
 		"test": "run-s test:*",
 		"clean:upload": "rimraf upload & rimraf /ystandard",
 		"clean:css": "rimraf css",
@@ -81,8 +81,8 @@
 		"export:clean:mkdir": "npm run cli 'mkdir -p .wp-content/uploads'",
 		"export:clean": "run-s export:clean:remove export:clean:mkdir",
 		"export": "npm run export:clean && run-p export:uploads export:db",
-		"import:uploads": "npm run cli 'cp -r .wp-content/uploads wp-content'",
-		"import:db": "npm run wp 'db import .wp-content/db.sql'",
+		"import:uploads": "npm run cli cp -r .wp-content/uploads wp-content",
+		"import:db": "npm run wp db import .wp-content/db.sql",
 		"import": "run-s import:*"
 	},
 	"browserslist": [
