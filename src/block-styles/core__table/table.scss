@@ -1,4 +1,10 @@
 .wp-block-table {
+  thead {
+	border-bottom: 0;
+  }
+  tfoot {
+	border-top: 0;
+  }
   &.is-style-stripes {
 	table,
 	tr {
