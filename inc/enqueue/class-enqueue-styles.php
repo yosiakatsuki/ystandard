@@ -74,8 +74,6 @@ class Enqueue_Styles {
 		wp_enqueue_style( 'ystandard-custom-inline' );
 
 		// 位置調整.
-		wp_dequeue_style( 'wp-block-library' );
-		wp_enqueue_style( 'wp-block-library' );
 		wp_enqueue_style(
 			self::HANDLE_BLOCKS,
 			get_template_directory_uri() . '/css/blocks.css',
@@ -107,7 +105,6 @@ class Enqueue_Styles {
 	 */
 	private function style_add_data() {
 		wp_style_add_data( self::HANDLE_MAIN, 'inline', true );
-		wp_style_add_data( 'wp-block-library', 'inline', 'none' );
 		do_action( 'ys_style_add_data' );
 	}
 
