@@ -47,14 +47,16 @@ class Header_Thumbnail_Test extends WP_UnitTestCase {
 		);
 		set_post_thumbnail( $post_id, $attachment_id );
 
+		wp_high_priority_element_flag( false );
+
 		$expected = get_the_post_thumbnail(
 			$post_id,
 			'post-thumbnail',
 			[
-				'id'      => 'site-header-thumbnail__image',
-				'class'   => 'site-header-thumbnail__image',
-				'alt'     => get_the_title( $post_id ),
-				'loading' => 'eager',
+				'id'            => 'site-header-thumbnail__image',
+				'class'         => 'site-header-thumbnail__image',
+				'alt'           => get_the_title( $post_id ),
+				'loading'       => 'eager',
 			]
 		);
 
