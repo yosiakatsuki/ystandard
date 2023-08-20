@@ -31,10 +31,9 @@
 		"simple-icons": "^9.9.0"
 	},
 	"scripts": {
-		"activate:theme": "wp-env run cli wp theme activate ystandard",
-		"start:update": "wp-env start --xdebug=develop,debug -- --update && npm run activate:theme",
-		"start": "wp-env start --xdebug=develop && open http://localhost:10000/",
-		"stop": "npm run export && wp-env stop",
+		"start:update": "wp-env start --xdebug=develop,debug -- --update",
+		"start": "wp-env start --xdebug=develop",
+		"stop": "wp-env stop",
 		"watch:js": "babel src/js --out-dir js --ignore 'src/js/icons/*' -w -s",
 		"watch:postcss:block-style": "postcss temp/css/block-styles/**/*.css --base temp/css/block-styles --dir css/block-styles --verbose -w",
 		"watch:postcss:theme": "postcss temp/**/*.css --base temp/css --dir css --verbose -w",
@@ -72,18 +71,7 @@
 		"copy:json:develop": "cp ystandard-info-beta.json upload/ystandard-info.json",
 		"copy:theme": "cp ystandard.zip upload/ystandard.zip",
 		"copy:production": "run-s mkdir:upload copy:json:production copy:theme",
-		"copy:develop": "run-s mkdir:upload copy:json:develop copy:theme",
-		"cli": "wp-env run cli",
-		"wp": "wp-env run cli wp",
-		"export:uploads": "npm run cli 'cp -r wp-content/uploads .wp-content'",
-		"export:db": "npm run wp 'db export .wp-content/db.sql'",
-		"export:clean:remove": "npm run cli 'rm -rf .wp-content/uploads'",
-		"export:clean:mkdir": "npm run cli 'mkdir -p .wp-content/uploads'",
-		"export:clean": "run-s export:clean:remove export:clean:mkdir",
-		"export": "npm run export:clean && run-p export:uploads export:db",
-		"import:uploads": "npm run cli cp -r .wp-content/uploads wp-content",
-		"import:db": "npm run wp db import .wp-content/db.sql",
-		"import": "run-s import:*"
+		"copy:develop": "run-s mkdir:upload copy:json:develop copy:theme"
 	},
 	"browserslist": [
 		"extends @wordpress/browserslist-config"
