@@ -39,7 +39,8 @@ class Share_Button {
 	 */
 	const SHORTCODE_ATTR = [
 		'type'                 => 'circle',
-		'twitter'              => true,
+		'x'                    => true,
+		'twitter'              => false,
 		'facebook'             => true,
 		'hatenabookmark'       => true,
 		'pocket'               => true,
@@ -200,6 +201,7 @@ class Share_Button {
 		$this->data = [];
 
 		$this->set_page();
+		$this->set_x();
 		$this->set_twitter();
 		$this->set_facebook();
 		$this->set_hatenabookmark();
@@ -401,6 +403,22 @@ class Share_Button {
 	}
 
 	/**
+	 * X
+	 */
+	private function set_x() {
+		if ( $this->is_use_option() ) {
+			if ( ! $this->is_active_button( 'x' ) ) {
+				return;
+			}
+		} else {
+			if ( ! $this->shortcode_atts['x'] ) {
+				return;
+			}
+		}
+		$this->set_x_share_url( 'x' );
+	}
+
+	/**
 	 * Twitter
 	 */
 	private function set_twitter() {
@@ -408,13 +426,27 @@ class Share_Button {
 			if ( ! $this->is_active_button( 'twitter' ) ) {
 				return;
 			}
-			$via       = Option::get_option( 'ys_sns_share_tweet_via_account', '' );
-			$related   = Option::get_option( 'ys_sns_share_tweet_related_account', '' );
-			$hash_tags = '';
 		} else {
 			if ( ! $this->shortcode_atts['twitter'] ) {
 				return;
 			}
+		}
+		$this->set_x_share_url( 'twitter' );
+	}
+
+	/**
+	 * X,TwitterのURLをセット
+	 *
+	 * @param string $type Twitter/x.
+	 *
+	 * @return void
+	 */
+	private function set_x_share_url( $type = 'x' ) {
+		if ( $this->is_use_option() ) {
+			$via       = Option::get_option( 'ys_sns_share_tweet_via_account', '' );
+			$related   = Option::get_option( 'ys_sns_share_tweet_related_account', '' );
+			$hash_tags = '';
+		} else {
 			$via       = $this->shortcode_atts['twitter_via_user'];
 			$related   = $this->shortcode_atts['twitter_related_user'];
 			$hash_tags = $this->shortcode_atts['twitter_hash_tags'];
@@ -434,7 +466,7 @@ class Share_Button {
 		/**
 		 * URL作成
 		 */
-		$this->data['sns']['twitter'] = "https://twitter.com/share?text=${title}&url=${url}${via}${related}${hash_tags}";
+		$this->data['sns'][ $type ] = "https://twitter.com/share?text=${title}&url=${url}${via}${related}${hash_tags}";
 	}
 
 	/**
@@ -475,12 +507,20 @@ class Share_Button {
 			]
 		);
 		$customizer->add_section_label( '表示するボタン' );
+		// X.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_sns_share_button_x',
+				'default' => 0,
+				'label'   => 'X',
+			]
+		);
 		// Twitter.
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_sns_share_button_twitter',
 				'default' => 1,
-				'label'   => 'Twitter',
+				'label'   => '旧Twitter',
 			]
 		);
 		// Facebook.
@@ -556,7 +596,7 @@ class Share_Button {
 		);
 
 		$customizer->add_section_label(
-			'Twitterシェアボタン詳細設定',
+			'X(旧Twitter)シェアボタン詳細設定',
 			[
 				'description' => Admin::manual_link( 'manual/twitter-share-button' ),
 			]
@@ -568,7 +608,7 @@ class Share_Button {
 				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => '投稿ユーザー（via）',
-				'description' => '「@」なしのTwitterユーザー名を入力して下さい。',
+				'description' => '「@」なしのユーザー名を入力して下さい。',
 				'input_attrs' => [
 					'placeholder' => 'username',
 				],
@@ -583,7 +623,7 @@ class Share_Button {
 				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'ツイート後に表示するおすすめアカウント',
-				'description' => '「@」なしのTwitterユーザー名を入力して下さい。',
+				'description' => '「@」なしのユーザー名を入力して下さい。',
 				'input_attrs' => [
 					'placeholder' => 'username',
 				],
