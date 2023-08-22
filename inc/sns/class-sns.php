@@ -55,13 +55,21 @@ class SNS {
 		return apply_filters(
 			'ys_get_sns_icons',
 			[
+				'x'         => [
+					'class'      => 'x',
+					'option_key' => 'x',
+					'icon'       => 'x',
+					'color'      => 'x',
+					'title'      => 'x',
+					'label'      => 'x',
+				],
 				'twitter'   => [
 					'class'      => 'twitter',
 					'option_key' => 'twitter',
 					'icon'       => 'twitter',
 					'color'      => 'twitter',
 					'title'      => 'twitter',
-					'label'      => 'Twitter',
+					'label'      => '旧Twitter',
 				],
 				'facebook'  => [
 					'class'      => 'facebook',
