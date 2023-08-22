@@ -35,7 +35,7 @@ class SNS {
 	/**
 	 * Facebook App Version.
 	 */
-	const FACEBOOK_API_VERSION = 'v6.0';
+	const FACEBOOK_API_VERSION = 'v17.0';
 
 	/**
 	 * Copyright constructor.
