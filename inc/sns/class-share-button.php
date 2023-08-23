@@ -407,7 +407,8 @@ class Share_Button {
 	 */
 	private function set_x() {
 		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'x' ) ) {
+			$x_default = ! $this->is_active_button( 'twitter', false );
+			if ( ! $this->is_active_button( 'x', $x_default ) ) {
 				return;
 			}
 		} else {
@@ -423,7 +424,7 @@ class Share_Button {
 	 */
 	private function set_twitter() {
 		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'twitter' ) ) {
+			if ( ! $this->is_active_button( 'twitter', false ) ) {
 				return;
 			}
 		} else {
@@ -481,12 +482,13 @@ class Share_Button {
 	/**
 	 * SNSボタンを表示する設定になっているか
 	 *
-	 * @param string $sns name.
+	 * @param string $sns     name.
+	 * @param bool   $default default.
 	 *
 	 * @return bool
 	 */
-	private function is_active_button( $sns ) {
-		return Option::get_option_by_bool( "ys_sns_share_button_${sns}", true );
+	private function is_active_button( $sns, $default = true ) {
+		return Option::get_option_by_bool( "ys_sns_share_button_${sns}", $default );
 	}
 
 	/**
@@ -511,7 +513,7 @@ class Share_Button {
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_sns_share_button_x',
-				'default' => 0,
+				'default' => ! Option::get_option_by_bool( 'ys_sns_share_button_twitter' ),
 				'label'   => 'X',
 			]
 		);
@@ -519,7 +521,7 @@ class Share_Button {
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_sns_share_button_twitter',
-				'default' => 1,
+				'default' => 0,
 				'label'   => '旧Twitter',
 			]
 		);
