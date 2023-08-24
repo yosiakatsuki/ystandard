@@ -119,7 +119,6 @@ class Author {
 		// 属性.
 		$image_args['class']  = isset( $args['class'] ) ? $args['class'] : '';
 		$image_args['height'] = isset( $args['height'] ) ? $args['height'] : '';
-		$image_args['height'] = isset( $args['height'] ) ? $args['height'] : '';
 		$image_args['width']  = isset( $args['width'] ) ? $args['width'] : '';
 		// 画像取得.
 		$custom_avatar = wp_get_attachment_image(

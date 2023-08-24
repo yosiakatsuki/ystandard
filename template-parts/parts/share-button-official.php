@@ -15,10 +15,10 @@ if ( empty( $share_button ) ) {
 $url          = $share_button['official']['url'];
 $title        = $share_button['official']['title'];
 $twitter_attr = '';
-if ( $share_button['official']['twitter-via'] ) {
+if ( isset( $share_button['official']['twitter-via'] ) && $share_button['official']['twitter-via'] ) {
 	$twitter_attr .= ' data-via="' . $share_button['official']['twitter-via'] . '"';
 }
-if ( $share_button['official']['twitter-related'] ) {
+if ( isset( $share_button['official']['twitter-related'] ) && $share_button['official']['twitter-related'] ) {
 	$twitter_attr .= ' data-related="' . $share_button['official']['twitter-related'] . '"';
 }
 ?>
@@ -39,7 +39,7 @@ if ( $share_button['official']['twitter-related'] ) {
 		<?php endif; ?>
 		<?php if ( isset( $share_button['sns']['hatenabookmark'] ) ) : ?>
 			<li class="sns-share__button is-hatenabookmark">
-				<a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a>
+				<a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"/></a>
 			</li>
 		<?php endif; ?>
 		<?php if ( isset( $share_button['sns']['pocket'] ) ) : ?>

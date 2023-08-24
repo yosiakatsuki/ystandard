@@ -35,7 +35,7 @@ class SNS {
 	/**
 	 * Facebook App Version.
 	 */
-	const FACEBOOK_API_VERSION = 'v6.0';
+	const FACEBOOK_API_VERSION = 'v17.0';
 
 	/**
 	 * Copyright constructor.
@@ -55,13 +55,21 @@ class SNS {
 		return apply_filters(
 			'ys_get_sns_icons',
 			[
+				'x'         => [
+					'class'      => 'x',
+					'option_key' => 'x',
+					'icon'       => 'x',
+					'color'      => 'x',
+					'title'      => 'x',
+					'label'      => 'x',
+				],
 				'twitter'   => [
 					'class'      => 'twitter',
 					'option_key' => 'twitter',
 					'icon'       => 'twitter',
 					'color'      => 'twitter',
 					'title'      => 'twitter',
-					'label'      => 'Twitter',
+					'label'      => '旧Twitter',
 				],
 				'facebook'  => [
 					'class'      => 'facebook',

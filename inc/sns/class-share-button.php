@@ -39,7 +39,8 @@ class Share_Button {
 	 */
 	const SHORTCODE_ATTR = [
 		'type'                 => 'circle',
-		'twitter'              => true,
+		'x'                    => true,
+		'twitter'              => false,
 		'facebook'             => true,
 		'hatenabookmark'       => true,
 		'pocket'               => true,
@@ -200,6 +201,7 @@ class Share_Button {
 		$this->data = [];
 
 		$this->set_page();
+		$this->set_x();
 		$this->set_twitter();
 		$this->set_facebook();
 		$this->set_hatenabookmark();
@@ -401,20 +403,51 @@ class Share_Button {
 	}
 
 	/**
+	 * X
+	 */
+	private function set_x() {
+		if ( $this->is_use_option() ) {
+			$x_default = ! $this->is_active_button( 'twitter', false );
+			if ( ! $this->is_active_button( 'x', $x_default ) ) {
+				return;
+			}
+		} else {
+			if ( ! $this->shortcode_atts['x'] ) {
+				return;
+			}
+		}
+		$this->set_x_share_url( 'x' );
+	}
+
+	/**
 	 * Twitter
 	 */
 	private function set_twitter() {
 		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'twitter' ) ) {
+			if ( ! $this->is_active_button( 'twitter', false ) ) {
 				return;
 			}
-			$via       = Option::get_option( 'ys_sns_share_tweet_via_account', '' );
-			$related   = Option::get_option( 'ys_sns_share_tweet_related_account', '' );
-			$hash_tags = '';
 		} else {
 			if ( ! $this->shortcode_atts['twitter'] ) {
 				return;
 			}
+		}
+		$this->set_x_share_url( 'twitter' );
+	}
+
+	/**
+	 * X,TwitterのURLをセット
+	 *
+	 * @param string $type Twitter/x.
+	 *
+	 * @return void
+	 */
+	private function set_x_share_url( $type = 'x' ) {
+		if ( $this->is_use_option() ) {
+			$via       = Option::get_option( 'ys_sns_share_tweet_via_account', '' );
+			$related   = Option::get_option( 'ys_sns_share_tweet_related_account', '' );
+			$hash_tags = '';
+		} else {
 			$via       = $this->shortcode_atts['twitter_via_user'];
 			$related   = $this->shortcode_atts['twitter_related_user'];
 			$hash_tags = $this->shortcode_atts['twitter_hash_tags'];
@@ -434,7 +467,7 @@ class Share_Button {
 		/**
 		 * URL作成
 		 */
-		$this->data['sns']['twitter'] = "https://twitter.com/share?text=${title}&url=${url}${via}${related}${hash_tags}";
+		$this->data['sns'][ $type ] = "https://twitter.com/share?text=${title}&url=${url}${via}${related}${hash_tags}";
 	}
 
 	/**
@@ -449,12 +482,13 @@ class Share_Button {
 	/**
 	 * SNSボタンを表示する設定になっているか
 	 *
-	 * @param string $sns name.
+	 * @param string $sns     name.
+	 * @param bool   $default default.
 	 *
 	 * @return bool
 	 */
-	private function is_active_button( $sns ) {
-		return Option::get_option_by_bool( "ys_sns_share_button_${sns}", true );
+	private function is_active_button( $sns, $default = true ) {
+		return Option::get_option_by_bool( "ys_sns_share_button_${sns}", $default );
 	}
 
 	/**
@@ -475,12 +509,20 @@ class Share_Button {
 			]
 		);
 		$customizer->add_section_label( '表示するボタン' );
+		// X.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_sns_share_button_x',
+				'default' => ! Option::get_option_by_bool( 'ys_sns_share_button_twitter' ),
+				'label'   => 'X',
+			]
+		);
 		// Twitter.
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_sns_share_button_twitter',
-				'default' => 1,
-				'label'   => 'Twitter',
+				'default' => 0,
+				'label'   => '旧Twitter',
 			]
 		);
 		// Facebook.
@@ -556,7 +598,7 @@ class Share_Button {
 		);
 
 		$customizer->add_section_label(
-			'Twitterシェアボタン詳細設定',
+			'X(旧Twitter)シェアボタン詳細設定',
 			[
 				'description' => Admin::manual_link( 'manual/twitter-share-button' ),
 			]
@@ -568,7 +610,7 @@ class Share_Button {
 				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => '投稿ユーザー（via）',
-				'description' => '「@」なしのTwitterユーザー名を入力して下さい。',
+				'description' => '「@」なしのユーザー名を入力して下さい。',
 				'input_attrs' => [
 					'placeholder' => 'username',
 				],
@@ -583,7 +625,7 @@ class Share_Button {
 				'default'     => '',
 				'transport'   => 'postMessage',
 				'label'       => 'ツイート後に表示するおすすめアカウント',
-				'description' => '「@」なしのTwitterユーザー名を入力して下さい。',
+				'description' => '「@」なしのユーザー名を入力して下さい。',
 				'input_attrs' => [
 					'placeholder' => 'username',
 				],
