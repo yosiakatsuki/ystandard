@@ -283,7 +283,7 @@ class Advertisement {
 	public static function is_active_advertisement() {
 		$post_type = Content::get_post_type();
 		$hook      = apply_filters( 'ys_is_active_advertisement', null );
-		$hook      = apply_filters( "ys_is_active_${post_type}_advertisement", $hook );
+		$hook      = apply_filters( "ys_is_active_{$post_type}_advertisement", $hook );
 		if ( ! is_null( $hook ) ) {
 			return $hook;
 		}

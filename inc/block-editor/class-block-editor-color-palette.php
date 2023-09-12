@@ -133,28 +133,28 @@ class Block_Editor_Color_Palette {
 	 */
 	public static function create_color_palette_css( $slug, $color, $args, $prefix = '' ) {
 		$color_name  = $slug;
-		$color_class = "has-${color_name}-" . $args['palette'];
+		$color_class = "has-{$color_name}-" . $args['palette'];
 		$property    = $args['property'];
 		$state       = isset( $args['state'] ) && ! empty( $args['state'] ) ? ':' . $args['state'] : '';
 
 		// 色指定.
-		$color_class_section = "${prefix} .${color_class}${state}";
+		$color_class_section = "{$prefix} .{$color_class}{$state}";
 		// 条件付き.
 		if ( is_array( $args['conditional'] ) ) {
 			foreach ( $args['conditional'] as $conditional ) {
 				$conditional_class           = 'has-' . $conditional;
-				$conditional_class_section[] = "${prefix} .${conditional_class}.${color_class}${state}";
+				$conditional_class_section[] = "{$prefix} .{$conditional_class}.{$color_class}{$state}";
 			}
 			$conditional_class_section = implode( ',', $conditional_class_section );
 		} else {
 			$conditional_class         = 'has-' . $args['conditional'];
-			$conditional_class_section = "${prefix} .${conditional_class}.${color_class}${state}";
+			$conditional_class_section = "{$prefix} .{$conditional_class}.{$color_class}{$state}";
 		}
 
 		return "
-			${color_class_section},
-			${conditional_class_section}{
-				${property}:${color};
+			{$color_class_section},
+			{$conditional_class_section}{
+				{$property}:{$color};
 			}
 		";
 	}

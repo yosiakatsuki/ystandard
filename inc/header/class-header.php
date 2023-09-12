@@ -284,7 +284,7 @@ class Header {
 		if ( 0 < $mobile ) {
 			$css .= Style_Sheet::add_media_query(
 				":root {
-					--ys-site-header-height:${mobile}px;
+					--ys-site-header-height:{$mobile}px;
 				}",
 				'',
 				'sm'
@@ -293,7 +293,7 @@ class Header {
 		if ( 0 < $tablet ) {
 			$css .= Style_Sheet::add_media_query(
 				":root {
-					--ys-site-header-height:${tablet}px;
+					--ys-site-header-height:{$tablet}px;
 				}",
 				'sm'
 			);
@@ -301,7 +301,7 @@ class Header {
 		if ( 0 < $pc ) {
 			$css .= Style_Sheet::add_media_query(
 				":root {
-					--ys-site-header-height:${pc}px;
+					--ys-site-header-height:{$pc}px;
 				}",
 				'md'
 			);

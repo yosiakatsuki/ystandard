@@ -494,7 +494,7 @@ class Blog_Card {
 			$target = ' target="' . $this->params['target'] . '"';
 		}
 
-		return wp_targeted_link_rel( "<div class=\"ys-blog-card__text-link\"><a href=\"${url}\" ${target}>${url}</a></div>" );
+		return wp_targeted_link_rel( "<div class=\"ys-blog-card__text-link\"><a href=\"{$url}\" {$target}>{$url}</a></div>" );
 	}
 
 	/**

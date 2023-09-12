@@ -71,7 +71,7 @@ class Blocks {
 	 * @return void
 	 */
 	private function enqueue_block_styles( $dir ) {
-		foreach ( glob( "${dir}/*", GLOB_ONLYDIR ) as $dir_path ) {
+		foreach ( glob( "{$dir}/*", GLOB_ONLYDIR ) as $dir_path ) {
 			$block        = $this->parse_block_name( basename( $dir_path ) );
 			$block_name   = $block['namespace'] . '/' . $block['name'];
 			$style_handle = "ystd-$block_name";
@@ -123,7 +123,7 @@ class Blocks {
 					$editor_src = $this->replace_path_to_uri( $editor_css_path, $is_child );
 					// 読み込むCSS登録.
 					$this->enqueue_block_editor_styles[] = [
-						'handle' => "${style_handle}-editor",
+						'handle' => "{$style_handle}-editor",
 						'src'    => $editor_src,
 						'path'   => $editor_css_path,
 					];

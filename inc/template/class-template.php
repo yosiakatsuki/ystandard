@@ -90,7 +90,7 @@ class Template {
 	 */
 	public static function is_wide() {
 		$post_type = Content::get_post_type();
-		$is_wide   = apply_filters( "ys_${post_type}_is_wide", null );
+		$is_wide   = apply_filters( "ys_{$post_type}_is_wide", null );
 		if ( ! is_null( $is_wide ) ) {
 			return Utility::to_bool( $is_wide );
 		}
@@ -150,14 +150,14 @@ class Template {
 		 */
 		$post_type = Content::get_post_type();
 		// 投稿タイプ一覧.
-		$post_type_archive = apply_filters( "ys_${post_type}_archive_one_column", null );
+		$post_type_archive = apply_filters( "ys_{$post_type}_archive_one_column", null );
 		if ( is_post_type_archive( $post_type ) && ! is_null( $post_type_archive ) ) {
 			return Utility::to_bool( $post_type_archive );
 		}
 		// タクソノミー一覧.
 		if ( is_tax() ) {
 			$taxonomy    = get_query_var( 'taxonomy' );
-			$tax_archive = apply_filters( "ys_${taxonomy}_taxonomy_archive_one_column", null );
+			$tax_archive = apply_filters( "ys_{$taxonomy}_taxonomy_archive_one_column", null );
 			if ( is_tax( $taxonomy ) && ! is_null( $tax_archive ) ) {
 				return Utility::to_bool( $tax_archive );
 			}
@@ -186,14 +186,14 @@ class Template {
 		/**
 		 * 投稿タイプ別
 		 */
-		$one_col = apply_filters( "ys_${post_type}_one_column", null );
+		$one_col = apply_filters( "ys_{$post_type}_one_column", null );
 		if ( is_singular( $post_type ) && ! is_null( $one_col ) ) {
 			return Utility::to_bool( $one_col );
 		}
-		$filter = apply_filters( "ys_${post_type}_layout", null );
+		$filter = apply_filters( "ys_{$post_type}_layout", null );
 		if ( is_null( $filter ) ) {
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$type     = Option::get_option( "ys_${fallback}_layout", '2col' );
+			$type     = Option::get_option( "ys_{$fallback}_layout", '2col' );
 		} else {
 			$type = $filter;
 		}
@@ -227,7 +227,7 @@ class Template {
 		if ( is_singular() ) {
 			$post_type = Content::get_post_type();
 			$result    = apply_filters(
-				"ys_is_active_post_header_${post_type}",
+				"ys_is_active_post_header_{$post_type}",
 				$result
 			);
 		}
@@ -245,7 +245,7 @@ class Template {
 		if ( is_singular() ) {
 			$post_type = Content::get_post_type();
 			$result    = apply_filters(
-				"ys_is_active_post_footer_${post_type}",
+				"ys_is_active_post_footer_{$post_type}",
 				$result
 			);
 		}
@@ -261,7 +261,7 @@ class Template {
 	public static function is_no_title_template() {
 
 		$post_type = Content::get_post_type();
-		$result    = apply_filters( "ys_${post_type}_no_title", null );
+		$result    = apply_filters( "ys_{$post_type}_no_title", null );
 		if ( ! is_null( $result ) ) {
 			return Utility::to_bool( $result );
 		}
@@ -401,29 +401,29 @@ class Template {
 		}
 		if ( '' !== $name ) {
 			if ( '' !== $taxonomy ) {
-				$templates[] = "{$slug}-{$name}-${taxonomy}.php";
+				$templates[] = "{$slug}-{$name}-{$taxonomy}.php";
 				if ( ! empty( $post_types ) ) {
 					foreach ( $post_types as $type ) {
-						$templates[] = "{$slug}-{$name}-${type}.php";
+						$templates[] = "{$slug}-{$name}-{$type}.php";
 					}
 				}
 			}
 			if ( '' !== $custom_post_type ) {
-				$templates[] = "{$slug}-{$name}-${custom_post_type}.php";
+				$templates[] = "{$slug}-{$name}-{$custom_post_type}.php";
 			}
 			$templates[] = "{$slug}-{$name}.php";
 		}
 
 		if ( '' !== $taxonomy ) {
-			$templates[] = "{$slug}-${taxonomy}.php";
+			$templates[] = "{$slug}-{$taxonomy}.php";
 			if ( ! empty( $post_types ) ) {
 				foreach ( $post_types as $type ) {
-					$templates[] = "{$slug}-${type}.php";
+					$templates[] = "{$slug}-{$type}.php";
 				}
 			}
 		}
 		if ( '' !== $custom_post_type ) {
-			$templates[] = "{$slug}-${custom_post_type}.php";
+			$templates[] = "{$slug}-{$custom_post_type}.php";
 		}
 		$templates[] = "{$slug}.php";
 

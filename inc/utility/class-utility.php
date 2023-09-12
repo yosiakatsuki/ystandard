@@ -372,7 +372,7 @@ class Utility {
 			}
 		}
 
-		$icon_name = apply_filters( "ys_get_taxonomy_icon_name_${taxonomy}", $icon_name );
+		$icon_name = apply_filters( "ys_get_taxonomy_icon_name_{$taxonomy}", $icon_name );
 
 		return apply_filters( 'ys_get_taxonomy_icon', Icon::get_icon( $icon_name ) );
 	}
@@ -390,7 +390,7 @@ class Utility {
 			return $hook;
 		}
 
-		return "${hook}_${post_type}";
+		return "{$hook}_{$post_type}";
 	}
 
 

@@ -42,7 +42,7 @@ class Notice {
 	 * @param boolean $echo    echo.
 	 */
 	public static function notice( $content, $type = 'error', $echo = true ) {
-		$notice = "<div class=\"notice notice-${type} is-dismissible\">${content}</div>";
+		$notice = "<div class=\"notice notice-{$type} is-dismissible\">{$content}</div>";
 		if ( $echo ) {
 			echo $notice;
 
@@ -98,7 +98,7 @@ class Notice {
 	 * @param string $content notice content.
 	 */
 	public static function manual( $content ) {
-		echo "<div class=\"notice notice-manual\">${content}</div>";
+		echo "<div class=\"notice notice-manual\">{$content}</div>";
 	}
 
 	/**
@@ -107,7 +107,7 @@ class Notice {
 	 * @param string $content notice content.
 	 */
 	public static function plain( $content ) {
-		echo "<div class=\"notice\">${content}</div>";
+		echo "<div class=\"notice\">{$content}</div>";
 	}
 
 }

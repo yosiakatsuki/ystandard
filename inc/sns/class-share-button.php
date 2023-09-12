@@ -113,7 +113,7 @@ class Share_Button {
 	 */
 	private static function is_active_share_buttons() {
 		$post_type = Content::get_post_type();
-		$filter    = apply_filters( "ys_${post_type}_active_share_buttons", null );
+		$filter    = apply_filters( "ys_{$post_type}_active_share_buttons", null );
 		if ( ! is_null( $filter ) ) {
 			return Utility::to_bool( $filter );
 		}
@@ -163,8 +163,8 @@ class Share_Button {
 
 		$post_type = Content::get_post_type();
 		$type      = apply_filters(
-			"ys_${post_type}_share_button_type_${position}",
-			Option::get_option( "ys_share_button_type_${position}", $default )
+			"ys_{$post_type}_share_button_type_{$position}",
+			Option::get_option( "ys_share_button_type_{$position}", $default )
 		);
 
 		$settings = [
@@ -247,7 +247,7 @@ class Share_Button {
 			$sdk_ver = SNS::FACEBOOK_API_VERSION;
 			wp_enqueue_script(
 				'share-button-facebook',
-				"https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=${sdk_ver}${app_id}&autoLogAppEvents=1",
+				"https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version={$sdk_ver}{$app_id}&autoLogAppEvents=1",
 				[],
 				null,
 				true
@@ -334,7 +334,7 @@ class Share_Button {
 		/**
 		 * URL作成
 		 */
-		$this->data['sns']['line'] = "https://social-plugins.line.me/lineit/share?url=${url}";
+		$this->data['sns']['line'] = "https://social-plugins.line.me/lineit/share?url={$url}";
 	}
 
 	/**
@@ -356,7 +356,7 @@ class Share_Button {
 		/**
 		 * URL作成
 		 */
-		$this->data['sns']['pocket'] = "https://getpocket.com/edit?url=${url}&title=${title}";
+		$this->data['sns']['pocket'] = "https://getpocket.com/edit?url={$url}&title={$title}";
 	}
 
 	/**
@@ -377,7 +377,7 @@ class Share_Button {
 		/**
 		 * URL作成
 		 */
-		$this->data['sns']['hatenabookmark'] = "https://b.hatena.ne.jp/add?mode=confirm&url=${url}";
+		$this->data['sns']['hatenabookmark'] = "https://b.hatena.ne.jp/add?mode=confirm&url={$url}";
 	}
 
 	/**
@@ -399,7 +399,7 @@ class Share_Button {
 		/**
 		 * URL作成
 		 */
-		$this->data['sns']['facebook'] = "https://www.facebook.com/sharer.php?src=bm&u=${url}&t=${title}";
+		$this->data['sns']['facebook'] = "https://www.facebook.com/sharer.php?src=bm&u={$url}&t={$title}";
 	}
 
 	/**
@@ -456,18 +456,18 @@ class Share_Button {
 		$this->data['official']['twitter-via']     = $via;
 		$this->data['official']['twitter-related'] = $related;
 		// via.
-		$via = empty( $via ) ? '' : "&via=${via}";
+		$via = empty( $via ) ? '' : "&via={$via}";
 		// related.
-		$related = empty( $related ) ? '' : "&related=${related}";
+		$related = empty( $related ) ? '' : "&related={$related}";
 		// hash tags.
-		$hash_tags = empty( $hash_tags ) ? '' : "&hashtags=${hash_tags}";
+		$hash_tags = empty( $hash_tags ) ? '' : "&hashtags={$hash_tags}";
 		// Title,Url.
 		$title = $this->share_title;
 		$url   = $this->share_url;
 		/**
 		 * URL作成
 		 */
-		$this->data['sns'][ $type ] = "https://twitter.com/share?text=${title}&url=${url}${via}${related}${hash_tags}";
+		$this->data['sns'][ $type ] = "https://twitter.com/share?text={$title}&url={$url}{$via}{$related}{$hash_tags}";
 	}
 
 	/**
@@ -488,7 +488,7 @@ class Share_Button {
 	 * @return bool
 	 */
 	private function is_active_button( $sns, $default = true ) {
-		return Option::get_option_by_bool( "ys_sns_share_button_${sns}", $default );
+		return Option::get_option_by_bool( "ys_sns_share_button_{$sns}", $default );
 	}
 
 	/**

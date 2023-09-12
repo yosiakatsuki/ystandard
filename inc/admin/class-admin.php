@@ -169,7 +169,7 @@ class Admin {
 		require_once get_template_directory() . '/library/plugin-update-checker/plugin-update-checker.php';
 
 		$dir = apply_filters( 'ys_update_check_dir', 'v4' );
-		$url = "https://wp-ystandard.com/download/ystandard/${dir}/ystandard-info.json";
+		$url = "https://wp-ystandard.com/download/ystandard/{$dir}/ystandard-info.json";
 
 		\Puc_v4_Factory::buildUpdateChecker(
 			apply_filters( 'ys_update_check_url', $url ),
@@ -203,13 +203,13 @@ class Admin {
 		$icon = Icon::get_icon( $icon );
 
 		if ( false === strpos( $url, 'https://' ) ) {
-			$url = "https://wp-ystandard.com/${url}/";
+			$url = "https://wp-ystandard.com/{$url}/";
 		}
 
 		$inline_class = $inline ? 'is-inline' : '';
 
 		$link = wp_targeted_link_rel(
-			"<a class=\"ys-manual-link ${inline_class}\" href=\"${url}\" target=\"_blank\">${icon}${text}</a>"
+			"<a class=\"ys-manual-link {$inline_class}\" href=\"{$url}\" target=\"_blank\">{$icon}{$text}</a>"
 		);
 		if ( ! $inline ) {
 			$link = sprintf( '<div class="ys-manual-link__wrap">%s</div>', $link );

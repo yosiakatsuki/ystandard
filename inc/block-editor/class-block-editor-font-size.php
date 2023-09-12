@@ -88,9 +88,9 @@ class Block_Editor_Font_Size {
 		$result = '';
 		foreach ( $font_size[0] as $value ) {
 			$unit = isset( $value['unit'] ) ? $value['unit'] : 'px';
-			$size = is_numeric( $value['size'] ) ? "{$value['size']}${unit}" : $value['size'];
+			$size = is_numeric( $value['size'] ) ? "{$value['size']}{$unit}" : $value['size'];
 			// CSS.
-			$result .= "${prefix}.has-{$value['slug']}-font-size{font-size:${size} !important;}";
+			$result .= "{$prefix}.has-{$value['slug']}-font-size{font-size:{$size} !important;}";
 		}
 
 		return Style_Sheet::minify( $result );
@@ -109,7 +109,7 @@ class Block_Editor_Font_Size {
 		$result = [];
 		foreach ( $font_size[0] as $value ) {
 			$unit = isset( $value['unit'] ) ? $value['unit'] : 'px';
-			$size = is_numeric( $value['size'] ) ? "{$value['size']}${unit}" : $value['size'];
+			$size = is_numeric( $value['size'] ) ? "{$value['size']}{$unit}" : $value['size'];
 			// CSS.
 			$result = array_merge(
 				$result,

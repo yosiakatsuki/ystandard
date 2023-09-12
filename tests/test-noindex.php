@@ -120,7 +120,7 @@ class NoindexTest extends WP_UnitTestCase {
 				'post_content' => 'あいうえお',
 			]
 		);
-		$this->go_to( "/?p=${post_id}1234567890" );
+		$this->go_to( "/?p={$post_id}1234567890" );
 		$this->assertTrue( $this->noindex->is_noindex() );
 	}
 
