@@ -43,7 +43,7 @@ class Option {
 			}
 		}
 
-		return apply_filters( "ys_get_option_${name}", $result, $name );
+		return apply_filters( "ys_get_option_{$name}", $result, $name );
 	}
 
 	/**
@@ -55,7 +55,7 @@ class Option {
 	 * @return mixed
 	 */
 	public static function get_default( $name, $default = false ) {
-		return apply_filters( "ys_get_option_default_${name}", $default, $name );
+		return apply_filters( "ys_get_option_default_{$name}", $default, $name );
 	}
 
 	/**

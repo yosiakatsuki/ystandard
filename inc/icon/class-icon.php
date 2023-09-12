@@ -86,7 +86,7 @@ class Icon {
 		if ( false === $icon ) {
 			$path = get_theme_file_path( 'library/feather/' . $name . '.svg' );
 
-			$path = apply_filters( "ys_get_icon_path__${name}", $path, $name );
+			$path = apply_filters( "ys_get_icon_path__{$name}", $path, $name );
 
 			if ( ! file_exists( $path ) ) {
 				return '';
@@ -129,8 +129,8 @@ class Icon {
 		$icon  = self::get_sns_icon_cache( $name );
 		$title = empty( $title ) ? $icon['title'] : $title;
 		$path  = $icon['path'];
-		$class = "icon--${name}";
-		$icon  = "<svg class=\"${class}\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" aria-hidden=\"true\" focusable=\"false\"><title>${title}</title><path d=\"${path}\"/></svg>";
+		$class = "icon--{$name}";
+		$icon  = "<svg class=\"{$class}\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" aria-hidden=\"true\" focusable=\"false\"><title>{$title}</title><path d=\"{$path}\"/></svg>";
 
 		return self::wrap_icon_html( $icon, 'sns-icon' );
 	}
@@ -154,7 +154,7 @@ class Icon {
 		];
 		$html_class = trim( implode( ' ', $html_class ) );
 
-		return "<span class=\"${html_class}\">${icon}</span>";
+		return "<span class=\"{$html_class}\">{$icon}</span>";
 	}
 
 	/**

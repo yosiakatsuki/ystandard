@@ -254,7 +254,7 @@ class Recent_Posts {
 		$col_tablet = $col['col_tablet'];
 		$col_pc     = $col['col_pc'];
 		// クラス作成.
-		$param['class'] = "col-sp--${col_sp} col-tablet--${col_tablet} col-pc--${col_pc}";
+		$param['class'] = "col-sp--{$col_sp} col-tablet--{$col_tablet} col-pc--{$col_pc}";
 		/**
 		 * 表示タイプ
 		 */

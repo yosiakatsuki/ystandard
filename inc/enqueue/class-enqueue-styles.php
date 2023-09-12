@@ -152,7 +152,7 @@ class Enqueue_Styles {
 			return '';
 		}
 
-		return "${selector}{ ${result} }";
+		return "{$selector}{ {$result} }";
 	}
 
 	/**
@@ -177,7 +177,7 @@ class Enqueue_Styles {
 			return '';
 		}
 
-		return "${selector} { ${result} }";
+		return "{$selector} { {$result} }";
 	}
 
 	/**

@@ -63,7 +63,7 @@ class Header_Thumbnail_Test extends WP_UnitTestCase {
 		ob_start();
 		$archive->home_post_thumbnail();
 		$this->assertSame(
-			"<figure class=\"site-header-thumbnail\">${expected}</figure>",
+			"<figure class=\"site-header-thumbnail\">{$expected}</figure>",
 			$this->remove_nl_tab( ob_get_clean() )
 		);
 	}

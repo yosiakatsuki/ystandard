@@ -108,7 +108,7 @@ class Footer {
 		if ( Option::get_option_by_bool( 'ys_back_to_top_square', true ) ) {
 			$button_class = 'is-square';
 		}
-		$button_class = empty( $button_class ) ? '' : "class=\"${button_class}\"";
+		$button_class = empty( $button_class ) ? '' : "class=\"{$button_class}\"";
 		echo sprintf(
 			'<button id="back-to-top" %s type="button"><span class="back-to-top__content">%s</span></button>',
 			$button_class,
@@ -156,9 +156,9 @@ class Footer {
 			line-height: 1;
 			white-space: nowrap;
 
-			background-color:${bg};
-			border-radius:${radius}px;
-			color:${color};
+			background-color:{$bg};
+			border-radius:{$radius}px;
+			color:{$color};
 		}
 		.is-square .back-to-top__content {
 			display: flex;
@@ -359,7 +359,7 @@ class Footer {
 
 		$padding = Option::get_option( 'ys_color_sub_footer_padding', '' );
 		if ( '' !== $padding ) {
-			$padding  = empty( $padding ) ? 0 : "${padding}px";
+			$padding  = empty( $padding ) ? 0 : "{$padding}px";
 			$padding  = Enqueue_Utility::get_css_var(
 				'sub-footer-padding',
 				$padding
@@ -551,7 +551,7 @@ class Footer {
 				'id'                => 'ys_back_to_top_text',
 				'default'           => '[ys_icon name="arrow-up"]',
 				'label'             => 'ページ先頭へ戻るボタンテキスト',
-				'description'       => "<a href='${short_code_page}' target='_blank'>アイコンショートコード</a>と<code>img</code>タグが使用できます。",
+				'description'       => "<a href='{$short_code_page}' target='_blank'>アイコンショートコード</a>と<code>img</code>タグが使用できます。",
 				'sanitize_callback' => [ $this, 'sanitize_back_to_top_text' ],
 			]
 		);

@@ -57,7 +57,7 @@ class Sitemap {
 	 */
 	public function _wp_sitemaps_post_types( $post_types ) {
 		foreach ( $post_types as $type => $item ) {
-			if ( ! Option::get_option_by_bool( "ys_sitemap_enable_post_type_${type}", true ) ) {
+			if ( ! Option::get_option_by_bool( "ys_sitemap_enable_post_type_{$type}", true ) ) {
 				unset( $post_types[ $type ] );
 			}
 		}
@@ -75,7 +75,7 @@ class Sitemap {
 	 */
 	public function _wp_sitemaps_taxonomies( $taxonomies ) {
 		foreach ( $taxonomies as $type => $item ) {
-			if ( ! Option::get_option_by_bool( "ys_sitemap_enable_taxonomy_${type}", true ) ) {
+			if ( ! Option::get_option_by_bool( "ys_sitemap_enable_taxonomy_{$type}", true ) ) {
 				unset( $taxonomies[ $type ] );
 			}
 		}
