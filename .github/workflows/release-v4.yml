@@ -61,7 +61,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          author_name: "[yStandard]新バージョンのアップデート準備OK！"
+          title: "[yStandard]新バージョンのアップデート準備OK！"
           color: 0x059669
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
