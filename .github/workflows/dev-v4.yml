@@ -42,7 +42,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          author_name: "Failure : Error Check"
+          title: "Failure : Error Check"
           color: 0xdc2626
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -105,7 +105,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          author_name: "Failure : phpcs"
+          title: "Failure : phpcs"
           color: 0xdc2626
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -149,7 +149,7 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          author_name: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
+          title: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
           fields: repo,message,commit,job
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -160,7 +160,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          author_name: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
+          title: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
           color: 0xdc2626
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -224,7 +224,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
-          author_name: "[yStandard]開発バージョンのアップデート準備OK！"
+          title: "[yStandard]開発バージョンのアップデート準備OK！"
           color: 0x059669
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
