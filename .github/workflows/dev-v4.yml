@@ -38,6 +38,16 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: failure()
 
+      - name: Error Check for Discord
+        uses: sarisia/actions-status-discord@v1
+        with:
+          nodetail: true
+          author_name: "Failure : Error Check"
+          color: 0xdc2626
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        if: failure()
+
   lint:
     runs-on: ubuntu-latest
     name: Lint
@@ -91,6 +101,16 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: failure()
 
+      - name: Notify Lint for Discord
+        uses: sarisia/actions-status-discord@v1
+        with:
+          nodetail: true
+          author_name: "Failure : phpcs"
+          color: 0xdc2626
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        if: failure()
+
   test:
     runs-on: ubuntu-latest
     name: WordPress UnitTest
@@ -136,6 +156,16 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: failure()
 
+      - name: Notify Unit Test for Discord
+        uses: sarisia/actions-status-discord@v1
+        with:
+          nodetail: true
+          author_name: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
+          color: 0xdc2626
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        if: failure()
+
   release:
     name: Release Develop Version
     needs: [ codeCheck, test, lint ]
@@ -179,7 +209,7 @@ jobs:
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP_V4 }}
           ARGS: --verbose --exclude=ystandard-info-beta.json
 
-      - name: Notify Deployment Develop Vesion
+      - name: Notify Deployment Develop Version for Slack
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
@@ -188,4 +218,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: success()
+
+      - name: Notify Deployment Develop Version for Discord
+        uses: sarisia/actions-status-discord@v1
+        with:
+          nodetail: true
+          author_name: "[yStandard]開発バージョンのアップデート準備OK！"
+          color: 0x059669
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: success()
