@@ -225,7 +225,7 @@ class TOC {
 			foreach ( $matches as $value ) {
 				$search  = preg_quote( $value['search'], '/' );
 				$replace = $value['replace'];
-				$content = preg_replace( "/${search}/", $replace, $content, 1 );
+				$content = preg_replace( "/{$search}/", $replace, $content, 1 );
 			}
 			$content = preg_replace( '/(<h([1-6]{1})|<div.*?class="ystdb-heading)/mu', $toc . '${1}', $content, 1 );
 		}
@@ -323,7 +323,7 @@ class TOC {
 		$toc            = apply_filters( 'ys_toc_list_html', $toc, $this->is_widget );
 		$this->toc_html = apply_filters(
 			'ys_toc_html',
-			"<div class=\"ys-toc\">${title}${toc}</div>",
+			"<div class=\"ys-toc\">{$title}{$toc}</div>",
 			$this->is_widget
 		);
 
@@ -441,7 +441,7 @@ class TOC {
 				$anchor  = $this->get_anchor( $i, $matches[ $i ][2] );
 				$replace = str_replace(
 					$matches[ $i ][1],
-					str_replace( '>', " id=\"${anchor}\">", $matches[ $i ][1] ),
+					str_replace( '>', " id=\"{$anchor}\">", $matches[ $i ][1] ),
 					$matches[ $i ][0]
 				);
 			}

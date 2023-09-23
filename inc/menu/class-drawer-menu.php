@@ -79,7 +79,7 @@ class Drawer_Menu {
 
 		$toggle_top = Option::get_option_by_int( 'ys_drawer_menu_toggle_top', 0 );
 		if ( 0 !== $toggle_top ) {
-			$css_vars['mobile-nav-toggle-top'] = "${toggle_top}px";
+			$css_vars['mobile-nav-toggle-top'] = "{$toggle_top}px";
 		}
 		$mobile_nav_bg    = Enqueue_Utility::get_css_var(
 			'mobile-nav-bg',

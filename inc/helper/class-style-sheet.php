@@ -63,11 +63,11 @@ class Style_Sheet {
 		}
 		if ( array_key_exists( $min, self::BREAKPOINTS ) ) {
 			$breakpoint = self::BREAKPOINTS[ $min ];
-			$min        = "(min-width: ${breakpoint}px)";
+			$min        = "(min-width: {$breakpoint}px)";
 		}
 		if ( array_key_exists( $max, self::BREAKPOINTS ) ) {
 			$breakpoint = self::BREAKPOINTS[ $max ] - 1;
-			$max        = "(max-width: ${breakpoint}px)";
+			$max        = "(max-width: {$breakpoint}px)";
 		}
 		$breakpoint = $min . $max;
 		if ( '' !== $min && '' !== $max ) {

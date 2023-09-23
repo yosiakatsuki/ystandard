@@ -155,10 +155,10 @@ class Author {
 			 * 投稿タイプ別設定
 			 */
 			$post_type = Content::get_post_type();
-			$filter    = apply_filters( "ys_show_${post_type}_author", null );
+			$filter    = apply_filters( "ys_show_{$post_type}_author", null );
 			if ( is_null( $filter ) ) {
 				$fallback = Content::get_fallback_post_type( $post_type );
-				$option   = Option::get_option_by_bool( "ys_show_${fallback}_author", true );
+				$option   = Option::get_option_by_bool( "ys_show_{$fallback}_author", true );
 			} else {
 				$option = $filter;
 			}

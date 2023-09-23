@@ -76,11 +76,11 @@ class Paging {
 			return false;
 		}
 		$post_type = Content::get_post_type();
-		$filter    = apply_filters( "ys_show_${post_type}_paging", null );
+		$filter    = apply_filters( "ys_show_{$post_type}_paging", null );
 		if ( is_null( $filter ) ) {
 			$option   = ! is_post_type_hierarchical( $post_type );
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$option   = Option::get_option_by_bool( "ys_show_${fallback}_paging", $option );
+			$option   = Option::get_option_by_bool( "ys_show_{$fallback}_paging", $option );
 		} else {
 			$option = $filter;
 		}

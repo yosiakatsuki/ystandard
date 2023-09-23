@@ -143,7 +143,7 @@ class Content {
 	 */
 	public static function get_header_priority( $key ) {
 		$post_type = self::get_post_type();
-		$cache_key = "${post_type}-header-priority";
+		$cache_key = "{$post_type}-header-priority";
 		$priority  = wp_cache_get( $cache_key );
 		if ( ! $priority ) {
 			$priority = apply_filters(
@@ -170,7 +170,7 @@ class Content {
 	 */
 	public static function get_footer_priority( $key ) {
 		$post_type = self::get_post_type();
-		$cache_key = "${post_type}-footer-priority";
+		$cache_key = "{$post_type}-footer-priority";
 		$priority  = wp_cache_get( $cache_key );
 		if ( ! $priority ) {
 			$priority = apply_filters(
@@ -246,10 +246,10 @@ class Content {
 			$result = false;
 		}
 		$post_type = self::get_post_type();
-		$filter    = apply_filters( "ys_show_${post_type}_header_thumbnail", null );
+		$filter    = apply_filters( "ys_show_{$post_type}_header_thumbnail", null );
 		if ( is_null( $filter ) ) {
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$option   = Option::get_option_by_bool( "ys_show_${fallback}_header_thumbnail", true );
+			$option   = Option::get_option_by_bool( "ys_show_{$fallback}_header_thumbnail", true );
 		} else {
 			$option = $filter;
 		}
@@ -268,10 +268,10 @@ class Content {
 	public static function is_full_post_thumbnail() {
 
 		$post_type = self::get_post_type();
-		$filter    = apply_filters( "ys_${post_type}_post_thumbnail_type", null );
+		$filter    = apply_filters( "ys_{$post_type}_post_thumbnail_type", null );
 		if ( is_null( $filter ) ) {
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$type     = Option::get_option( "ys_${fallback}_post_thumbnail_type", 'default' );
+			$type     = Option::get_option( "ys_{$fallback}_post_thumbnail_type", 'default' );
 		} else {
 			$type = $filter;
 		}
@@ -293,10 +293,10 @@ class Content {
 			return false;
 		}
 		$post_type = self::get_post_type();
-		$filter    = apply_filters( "ys_show_${post_type}_related", null );
+		$filter    = apply_filters( "ys_show_{$post_type}_related", null );
 		if ( is_null( $filter ) ) {
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$show     = Option::get_option_by_bool( "ys_show_${fallback}_related", true );
+			$show     = Option::get_option_by_bool( "ys_show_{$fallback}_related", true );
 		} else {
 			$show = $filter;
 		}
@@ -325,10 +325,10 @@ class Content {
 		 * 設定取得
 		 */
 		$post_type = self::get_post_type();
-		$filter    = apply_filters( "ys_show_${post_type}_publish_date", null );
+		$filter    = apply_filters( "ys_show_{$post_type}_publish_date", null );
 		if ( is_null( $filter ) ) {
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$option   = Option::get_option( "ys_show_${fallback}_publish_date", 'both' );
+			$option   = Option::get_option( "ys_show_{$fallback}_publish_date", 'both' );
 		} else {
 			$option = $filter;
 		}
@@ -371,10 +371,10 @@ class Content {
 	public static function get_post_header_category() {
 
 		$post_type = self::get_post_type();
-		$filter    = apply_filters( "ys_show_${post_type}_header_taxonomy", null );
+		$filter    = apply_filters( "ys_show_{$post_type}_header_taxonomy", null );
 		if ( is_null( $filter ) ) {
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$show     = Option::get_option_by_bool( "ys_show_${fallback}_header_category", true );
+			$show     = Option::get_option_by_bool( "ys_show_{$fallback}_header_category", true );
 		} else {
 			$show = $filter;
 		}
@@ -385,13 +385,13 @@ class Content {
 
 		$result     = [];
 		$taxonomies = apply_filters(
-			"ys_get_${post_type}_header_taxonomy",
+			"ys_get_{$post_type}_header_taxonomy",
 			self::get_post_header_taxonomies()
 		);
 		if ( empty( $taxonomies ) ) {
 			return '';
 		}
-		$terms_length = apply_filters( "ys_get_${post_type}_header_terms_length", 1 );
+		$terms_length = apply_filters( "ys_get_{$post_type}_header_terms_length", 1 );
 		foreach ( $taxonomies as $taxonomy ) {
 			$terms = get_the_terms( false, $taxonomy );
 			if ( is_wp_error( $terms ) || empty( $terms ) ) {
@@ -409,7 +409,7 @@ class Content {
 		}
 
 		return apply_filters(
-			"ys_get_${post_type}_header_category",
+			"ys_get_{$post_type}_header_category",
 			implode( '', $result ),
 			$taxonomies
 		);
@@ -457,10 +457,10 @@ class Content {
 		}
 		if ( ! empty( $tax_filter ) ) {
 			$tax_filter = apply_filters(
-				"ys_${post_type}_related_posts_taxonomy",
+				"ys_{$post_type}_related_posts_taxonomy",
 				$tax_filter
 			);
-			$tax_filter = ! empty( $tax_filter ) ? "tax:${tax_filter}," : '';
+			$tax_filter = ! empty( $tax_filter ) ? "tax:{$tax_filter}," : '';
 
 			$related        = new Recent_Posts();
 			$shortcode_atts = apply_filters(
@@ -468,7 +468,7 @@ class Content {
 				[
 					'post_type' => self::get_post_type(),
 					'count'     => 6,
-					'filter'    => "${tax_filter}same-post",
+					'filter'    => "{$tax_filter}same-post",
 					'list_type' => 'card',
 					'orderby'   => 'rand',
 					'cache'     => 'related_posts',
@@ -480,7 +480,7 @@ class Content {
 			$content        = $related->do_shortcode( $shortcode_atts );
 		}
 		$content = apply_filters(
-			"ys_${post_type}_related_posts",
+			"ys_{$post_type}_related_posts",
 			$content
 		);
 		if ( $content ) {
@@ -490,7 +490,7 @@ class Content {
 			);
 			$related_post       = sprintf(
 				'<div class="post-related">%s%s</div>',
-				"<p class=\"post-related__title\">${related_post_title}</p>",
+				"<p class=\"post-related__title\">{$related_post_title}</p>",
 				$content
 			);
 

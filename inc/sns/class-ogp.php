@@ -51,7 +51,7 @@ class OGP {
 		$ogp              = '';
 		$this->meta_param = apply_filters( 'ys_ogp_meta_param', $this->meta_param );
 		foreach ( $this->meta_param as $key => $value ) {
-			$ogp .= "<meta property=\"${key}\" content=\"${value}\" />" . PHP_EOL;
+			$ogp .= "<meta property=\"{$key}\" content=\"{$value}\" />" . PHP_EOL;
 		}
 		echo apply_filters( 'ys_get_the_ogp', $ogp );
 	}

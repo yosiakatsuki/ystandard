@@ -146,7 +146,7 @@ class Taxonomy {
 		}
 		$post_type = Content::get_post_type();
 
-		return apply_filters( "ys_get_${post_type}_taxonomies", $data );
+		return apply_filters( "ys_get_{$post_type}_taxonomies", $data );
 	}
 
 
@@ -183,10 +183,10 @@ class Taxonomy {
 	private static function is_active_post_taxonomy() {
 		$post_type = Content::get_post_type();
 
-		$filter = apply_filters( "ys_is_active_${post_type}_taxonomy", null );
+		$filter = apply_filters( "ys_is_active_{$post_type}_taxonomy", null );
 		if ( is_null( $filter ) ) {
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$result   = Option::get_option_by_bool( "ys_show_${fallback}_category", true );
+			$result   = Option::get_option_by_bool( "ys_show_{$fallback}_category", true );
 		} else {
 			$result = $filter;
 		}
@@ -214,9 +214,9 @@ class Taxonomy {
 		$taxonomies = apply_filters( 'ys_add_term_meta_options_taxonomies', $taxonomies );
 
 		foreach ( $taxonomies as $tax ) {
-			add_action( "${tax}_edit_form_fields", [ $this, 'edit_form_fields' ], 10, 2 );
-			add_action( "${tax}_add_form_fields", [ $this, 'add_form_fields' ] );
-			add_action( "edit_${tax}", [ $this, 'update_term_meta' ] );
+			add_action( "{$tax}_edit_form_fields", [ $this, 'edit_form_fields' ], 10, 2 );
+			add_action( "{$tax}_add_form_fields", [ $this, 'add_form_fields' ] );
+			add_action( "edit_{$tax}", [ $this, 'update_term_meta' ] );
 		}
 
 	}

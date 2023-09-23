@@ -150,7 +150,7 @@ class Info_Bar {
 		 */
 		if ( Option::get_option( 'ys_info_bar_url', '' ) ) {
 			$decoration = Option::get_option_by_bool( 'ys_info_bar_underline', true ) ? 'underline' : 'none';
-			$styles[]   = ".info-bar__link{text-decoration: ${decoration};}";
+			$styles[]   = ".info-bar__link{text-decoration: {$decoration};}";
 		}
 
 		return $css . implode( ' ', $styles );
