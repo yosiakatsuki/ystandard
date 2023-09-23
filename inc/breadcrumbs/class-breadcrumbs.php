@@ -350,37 +350,49 @@ class Breadcrumbs {
 	 */
 	private function set_single() {
 		$post_type = $this->get_post_type();
-		if ( $post_type && 'post' !== $post_type ) {
-			$post_type_object = get_post_type_object( $post_type );
-			$label            = $post_type_object->label;
-			$taxonomies       = $post_type_object->taxonomies;
-			$taxonomy         = array_shift( $taxonomies );
-			$terms            = get_the_terms( get_the_ID(), $taxonomy );
-			$this->set_item(
-				$label,
-				get_post_type_archive_link( $post_type )
-			);
+		if ( $post_type ) {
+			$taxonomy = '';
+			if ( 'post' === $post_type ) {
+				// 投稿.
+				$taxonomy = apply_filters( 'ys_breadcrumbs_single_taxonomy', 'category', $post_type );
+			} else {
+				// カスタム投稿タイプ.
+				$post_type_object = get_post_type_object( $post_type );
+				$label            = $post_type_object->label;
+				$this->set_item(
+					$label,
+					get_post_type_archive_link( $post_type )
+				);
+				$taxonomies = $post_type_object->taxonomies;
+				if ( ! empty( $taxonomies ) ) {
+					$taxonomy = array_shift( $taxonomies );
+					$taxonomy = apply_filters(
+						'ys_breadcrumbs_custom_post_type_taxonomy',
+						$taxonomy,
+						$post_type
+					);
+					$taxonomy = apply_filters(
+						"ys_breadcrumbs_{$post_type}_taxonomy",
+						$taxonomy,
+						$post_type
+					);
+				}
+			}
+			$terms = get_the_terms( get_the_ID(), $taxonomy );
 			if ( $terms ) {
-				$term = array_shift( $terms );
+				$term = $terms[0];
 				$this->set_ancestors( $term->term_id, $taxonomy );
+				$link = get_term_link( $term );
+				if ( is_wp_error( $link ) ) {
+					$link = '';
+				}
 				$this->set_item(
 					$term->name,
-					get_term_link( $term )
+					$link
 				);
 			}
-		} else {
-			$categories = get_the_category( get_the_ID() );
-			$category   = $categories[0];
-			$this->set_ancestors( $category->term_id, 'category' );
-			$link = get_term_link( $category );
-			if ( is_wp_error( $link ) ) {
-				$link = '';
-			}
-			$this->set_item(
-				$category->name,
-				$link
-			);
 		}
+
 		$this->set_item(
 			get_the_title(),
 			get_the_permalink()
