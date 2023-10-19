@@ -114,9 +114,41 @@ class Parts {
 		if ( ! $post ) {
 			return '';
 		}
+
+		if ( 'publish' !== $post->post_status ) {
+			if ( $this->is_block_editor() ) {
+				return $this->admin_no_publish_contents( $post->post_title );
+			} else {
+				return '';
+			}
+		}
 		$content = $this->get_parts_content( $post->post_content );
 
 		return sprintf( $wrap, $content );
+	}
+
+	/**
+	 * ブロックエディター内で動作しているか判断.
+	 *
+	 * @return bool
+	 */
+	private function is_block_editor() {
+		if ( ! defined( 'REST_REQUEST' ) ) {
+			return false;
+		}
+
+		return \REST_REQUEST;
+	}
+
+	/**
+	 * パーツが公開状態ではない場合の
+	 *
+	 * @param string $title タイトル.
+	 *
+	 * @return string
+	 */
+	private function admin_no_publish_contents( $title ) {
+		return '<div style="font-size: 12px;">※パーツが公開されていません。下書きやゴミ箱に入っていないか確認してください。(パーツ名「' . $title . '」)</div>';
 	}
 
 	/**
