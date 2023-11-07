@@ -219,14 +219,17 @@ class Parts {
 	 */
 	public function register_post_type() {
 		$labels = [
-			'name'               => '[ys]パーツ',
-			'add_new_item'       => 'パーツを追加',
-			'edit_item'          => '編集',
-			'new_item'           => '新規作成',
-			'view_item'          => 'パーツを表示',
-			'search_items'       => '検索',
-			'not_found'          => '見つかりませんでした',
-			'not_found_in_trash' => 'ゴミ箱にはありません',
+			'name'               => _x( '[ys]パーツ', 'register_parts', 'ystandard' ),
+			'singular_name'      => _x( '[ys]パーツ', 'register_parts', 'ystandard' ),
+			'add_new'            => _x( '新規パーツを追加', 'register_parts', 'ystandard' ),
+			'add_new_item'       => _x( 'パーツを追加', 'register_parts', 'ystandard' ),
+			'edit_item'          => _x( 'パーツを編集', 'register_parts', 'ystandard' ),
+			'new_item'           => _x( 'パーツを新規作成', 'register_parts', 'ystandard' ),
+			'view_item'          => _x( 'パーツを表示', 'register_parts', 'ystandard' ),
+			'search_items'       => _x( 'パーツを検索', 'register_parts', 'ystandard' ),
+			'not_found'          => _x( 'パーツが見つかりませんでした', 'register_parts', 'ystandard' ),
+			'not_found_in_trash' => _x( 'ゴミ箱にパーツはありません', 'register_parts', 'ystandard' ),
+			'item_updated'       => _x( 'パーツを更新しました', 'register_parts', 'ystandard' ),
 		];
 		register_post_type(
 			self::POST_TYPE,
