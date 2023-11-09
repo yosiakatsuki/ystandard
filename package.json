@@ -31,9 +31,10 @@
 		"simple-icons": "^9.11.0"
 	},
 	"scripts": {
-		"start:update": "wp-env start --xdebug=develop,debug -- --update",
-		"start": "wp-env start --xdebug=develop",
-		"stop": "wp-env stop",
+		"wpenv:start:update": "wp-env start --xdebug=debug,develop -- --update",
+		"wpenv:start": "wp-env start --xdebug=debug,develop",
+		"wpenv:stop": "wp-env stop",
+		"wpenv:destroy": "wp-env destroy",
 		"watch:js": "babel src/js --out-dir js --ignore 'src/js/icons/*' -w -s",
 		"watch:postcss:block-style": "postcss temp/css/block-styles/**/*.css --base temp/css/block-styles --dir css/block-styles --verbose -w",
 		"watch:postcss:theme": "postcss temp/**/*.css --base temp/css --dir css --verbose -w",
@@ -54,7 +55,7 @@
 		"build:css": "run-s build:css:*",
 		"build:icons": "node ./src/js/icons/brand.js",
 		"build": "run-s clean build:*",
-		"test:php": "wp-env start && wp-env run tests-cli --env-cwd='wp-content/themes/ystandard' vendor/bin/phpunit -c phpunit.xml.dist --verbose",
+		"test:php": "wp-env start && wp-env run tests-cli --env-cwd='wp-content/themes/ystandard' vendor/bin/phpunit -c phpunit.xml.dist",
 		"test": "run-s test:*",
 		"clean:upload": "rimraf upload & rimraf /ystandard",
 		"clean:css": "rimraf css",

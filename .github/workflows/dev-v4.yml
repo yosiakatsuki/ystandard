@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]
-        php: [ '5.6','7.2','7.3', '7.4' ]
+        php: [ '7.2', '7.4', '8.0', '8.1', '8.2' ]
     name: PHP Error Check
     steps:
       - uses: actions/checkout@v1
@@ -60,7 +60,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 7.4
+          php-version: 8.1
           extensions: mbstring, intl
           ini-values: post_max_size=256M, short_open_tag=On
           coverage: xdebug
@@ -208,17 +208,6 @@ jobs:
           LOCAL_DIR: upload
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_DEVELOP_V4 }}
           ARGS: --verbose --exclude=ystandard-info-beta.json
-
-      - name: Notify Deployment Develop Version for Slack
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          author_name: "[yStandard]開発バージョンのアップデート準備OK！"
-          fields: repo,message
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: success()
 
       - name: Notify Deployment Develop Version for Discord
         uses: sarisia/actions-status-discord@v1

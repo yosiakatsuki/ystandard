@@ -251,10 +251,10 @@ class Enqueue_Styles {
 	/**
 	 * CSSのインライン出力化
 	 *
-	 * @param string $html   Html.
+	 * @param string $html Html.
 	 * @param string $handle Handle.
-	 * @param string $href   Href.
-	 * @param string $media  Media.
+	 * @param string $href Href.
+	 * @param string $media Media.
 	 *
 	 * @return string
 	 */
@@ -286,7 +286,8 @@ class Enqueue_Styles {
 		if ( false === strrpos( $url, home_url() ) ) {
 			return $html;
 		}
-		$path = str_replace( site_url( '/' ), ABSPATH, $url );
+		$style = false;
+		$path  = str_replace( site_url( '/' ), ABSPATH, $url );
 		if ( file_exists( $path ) ) {
 			$style = Filesystem::file_get_contents( $path );
 		}
