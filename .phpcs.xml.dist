@@ -5,6 +5,25 @@
 	<rule ref="WordPress-Core">
 		<exclude name="Generic.Files.EndFileNewline.NotFound"/>
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+		<exclude name="Universal.Arrays.DisallowShortArraySyntax.Found"/>
+
+		<exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose"/>
+		<exclude name="Generic.WhiteSpace.IncrementDecrementSpacing.SpaceAfterIncrement"/>
+		<exclude name="PSR2.Methods.FunctionClosingBrace.SpacingBeforeClose"/>
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.defaultFound"/>
+		<exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.echoFound"/>
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.parentFound"/>
+		<exclude name="Squiz.Scope.MethodScope.Missing"/>
+		<exclude name="Universal.Operators.DisallowStandalonePostIncrementDecrement.PostIncrementFound"/>
+		<exclude name="PSR12.Classes.ClassInstantiation.MissingParentheses"/>
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.classFound"/>
+		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.OneParamPerLine"/>
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.returnFound"/>
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.listFound"/>
+		<exclude name="Universal.NamingConventions.NoReservedKeywordParameterNames.functionFound"/>
+		<exclude name="PEAR.Files.IncludingFile.BracketsNotRequired"/>
+		<exclude name="Generic.WhiteSpace.IncrementDecrementSpacing.SpaceAfterDecrement"/>
 	</rule>
 	<rule ref="WordPress-Docs"/>
 	<file>.</file>
