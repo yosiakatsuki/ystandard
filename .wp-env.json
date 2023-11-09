@@ -1,18 +1,19 @@
 {
-  "port": 10000,
-  "core": "https://ja.wordpress.org/latest-ja.zip",
-  "themes": [
-	"."
-  ],
-  "plugins": [
-	"https://downloads.wordpress.org/plugin/wp-multibyte-patch.zip"
-  ],
-  "env": {
-	"tests": {
-	  "port": 10001
+	"port": 10000,
+	"core": "https://ja.wordpress.org/latest-ja.zip",
+	"phpVersion": "8.1",
+	"themes": [
+		"."
+	],
+	"plugins": [
+		"https://downloads.wordpress.org/plugin/wp-multibyte-patch.zip"
+	],
+	"env": {
+		"tests": {
+			"port": 10001
+		}
+	},
+	"mappings": {
+		".wp-content": "./.wp-content"
 	}
-  },
-  "mappings": {
-	".wp-content": "./.wp-content"
-  }
 }

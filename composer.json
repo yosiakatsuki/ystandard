@@ -1,37 +1,38 @@
 {
-  "name": "yosiakatsuki/ystandard",
-  "description": "yStandard - WordPress Theme.",
-  "type": "wordpress-theme",
-  "license": "GPL-2.0-or-later",
-  "authors": [
-	{
-	  "name": "yosiakatsuki",
-	  "email": "info@yosiakatsuki.net"
+	"name": "yosiakatsuki/ystandard",
+	"description": "yStandard - WordPress Theme.",
+	"type": "wordpress-theme",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "yosiakatsuki",
+			"email": "info@yosiakatsuki.net"
+		}
+	],
+	"require": {
+		"php": ">=8.0",
+		"ext-json": "*"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
+		"squizlabs/php_codesniffer": "^3.7.2",
+		"phpcompatibility/php-compatibility": "^9.3",
+		"wp-coding-standards/wpcs": "^3.0",
+		"sirbrillig/phpcs-variable-analysis": "^2.8",
+		"wp-phpunit/wp-phpunit": "^6.3",
+		"phpunit/phpunit": "9.6.13",
+		"spatie/phpunit-watcher": "^1.23",
+		"yoast/phpunit-polyfills": "^2.0"
+	},
+	"scripts": {
+		"test": "phpunit",
+		"phpcs": "phpcs -s --standard=./.phpcs.xml.dist"
+	},
+	"config": {
+		"process-timeout": 0,
+		"vendor-dir": "vendor",
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
-  ],
-  "require": {
-	"php": ">=7.4",
-	"ext-json": "*"
-  },
-  "require-dev": {
-	"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-	"squizlabs/php_codesniffer": "^3.6",
-	"phpcompatibility/php-compatibility": "^9.3",
-	"wp-coding-standards/wpcs": "^2.3",
-	"sirbrillig/phpcs-variable-analysis": "^2.11",
-	"wp-phpunit/wp-phpunit": "^5.8",
-	"spatie/phpunit-watcher": "^1.23",
-	"yoast/phpunit-polyfills": "^1.0"
-  },
-  "scripts": {
-	"test": "phpunit",
-	"phpcs": "phpcs --standard=./.phpcs.xml.dist"
-  },
-  "config": {
-	"process-timeout": 0,
-	"vendor-dir": "vendor",
-	"allow-plugins": {
-	  "dealerdirect/phpcodesniffer-composer-installer": true
-	}
-  }
 }
