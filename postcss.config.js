@@ -1,7 +1,8 @@
 module.exports = {
-	plugins: [
-		require( 'autoprefixer' ),
-		require( 'cssnano' )( {
+	plugins: {
+		tailwindcss: {},
+		autoprefixer: { grid: 'autoplace' },
+		cssnano: {
 			preset: [
 				'default',
 				{
@@ -9,7 +10,7 @@ module.exports = {
 					colormin: false,
 				},
 			],
-		} ),
-		require( 'css-declaration-sorter' )( { order: 'smacss' } ),
-	],
+		},
+		'css-declaration-sorter': { order: 'smacss' },
+	},
 };
