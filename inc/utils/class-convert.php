@@ -1,20 +1,22 @@
 <?php
 /**
- * Helper : Boolean
+ * 変換系
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-namespace ystandard\helper;
+namespace ystandard\utils;
 
 defined( 'ABSPATH' ) || die();
 
 /**
- * Class : Boolean
+ * Class Convert
+ *
+ * @package ystandard
  */
-class Boolean {
+class Convert {
 
 	/**
 	 * Boolに変換

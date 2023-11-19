@@ -334,31 +334,7 @@ class Template {
 		return $post_templates;
 	}
 
-	/**
-	 * モバイル判定
-	 *
-	 * @return bool
-	 */
-	public static function is_mobile() {
 
-		$ua = [
-			'^(?!.*iPad).*iPhone',
-			'iPod',
-			'Android.*Mobile',
-			'Mobile.*Firefox',
-			'Windows.*Phone',
-			'blackberry',
-			'dream',
-			'CUPCAKE',
-			'webOS',
-			'incognito',
-			'webmate',
-		];
-
-		$ua = apply_filters( 'ys_is_mobile_ua_list', $ua );
-
-		return Utility::check_user_agent( $ua );
-	}
 
 	/**
 	 * テンプレート読み込み拡張

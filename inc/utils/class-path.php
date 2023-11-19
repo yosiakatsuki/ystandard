@@ -1,18 +1,20 @@
 <?php
 /**
- * Helper : Path
+ * テーマパス関連
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-namespace ystandard\helper;
+namespace ystandard\utils;
 
 defined( 'ABSPATH' ) || die();
 
 /**
- * Path
+ * Class Path
+ *
+ * @package ystandard
  */
 class Path {
 
@@ -24,14 +26,14 @@ class Path {
 	 *
 	 * @return string
 	 */
-	public static function replace_template_path_to_uri( $path, $is_child = false ) {
+	public static function to_template_uri( $path, $is_child = false ) {
 		$replace = str_replace(
 			get_template_directory(),
 			get_template_directory_uri(),
 			$path
 		);
 		if ( $is_child ) {
-			$replace = self::replace_stylesheet_path_to_uri( $path );
+			$replace = self::to_stylesheet_uri( $path );
 		}
 
 		return $replace;
@@ -44,7 +46,7 @@ class Path {
 	 *
 	 * @return string
 	 */
-	public static function replace_stylesheet_path_to_uri( $path ) {
+	public static function to_stylesheet_uri( $path ) {
 		return str_replace(
 			get_stylesheet_directory(),
 			get_stylesheet_directory_uri(),

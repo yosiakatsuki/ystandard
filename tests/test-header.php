@@ -79,8 +79,8 @@ class HeaderTest extends WP_UnitTestCase {
 EOD;
 		$actual   = \ystandard\Header::get_header_height_css();
 		$this->assertSame(
-			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
-			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+			utils\Text::remove_nl_tab_space( $expected ),
+			utils\Text::remove_nl_tab_space( $actual )
 		);
 	}
 
@@ -91,8 +91,8 @@ EOD;
 		$expected = '';
 		$actual   = \ystandard\Header::get_header_height_css();
 		$this->assertSame(
-			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
-			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+			utils\Text::remove_nl_tab_space( $expected ),
+			utils\Text::remove_nl_tab_space( $actual )
 		);
 	}
 	function test_header_height_css_pc() {
@@ -111,8 +111,8 @@ EOD;
 EOD;
 		$actual   = \ystandard\Header::get_header_height_css();
 		$this->assertSame(
-			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
-			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+			utils\Text::remove_nl_tab_space( $expected ),
+			utils\Text::remove_nl_tab_space( $actual )
 		);
 	}
 	function test_header_height_css_tablet() {
@@ -131,8 +131,8 @@ EOD;
 EOD;
 		$actual   = \ystandard\Header::get_header_height_css();
 		$this->assertSame(
-			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
-			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+			utils\Text::remove_nl_tab_space( $expected ),
+			utils\Text::remove_nl_tab_space( $actual )
 		);
 	}
 	function test_header_height_css_mobile() {
@@ -151,8 +151,8 @@ EOD;
 EOD;
 		$actual   = \ystandard\Header::get_header_height_css();
 		$this->assertSame(
-			\ystandard\helper\Text::remove_nl_tab_space( $expected ),
-			\ystandard\helper\Text::remove_nl_tab_space( $actual )
+			utils\Text::remove_nl_tab_space( $expected ),
+			utils\Text::remove_nl_tab_space( $actual )
 		);
 	}
 }

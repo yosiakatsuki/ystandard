@@ -1,13 +1,13 @@
 <?php
 /**
- * Text
+ * 文字列関連
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-namespace ystandard\helper;
+namespace ystandard\utils;
 
 defined( 'ABSPATH' ) || die();
 
@@ -17,6 +17,24 @@ defined( 'ABSPATH' ) || die();
  * @package ystandard
  */
 class Text {
+
+	/**
+	 * HTML・改行・ショートコードなしのテキストを取得
+	 *
+	 * @param string $content content.
+	 *
+	 * @return string
+	 */
+	public static function get_plain_text( $content ) {
+		// ショートコード削除.
+		$content = strip_shortcodes( $content );
+		// HTMLタグ削除.
+		$content = wp_strip_all_tags( $content, true );
+		// HTMLタグらしき文字の変換.
+		$content = htmlspecialchars( $content, ENT_QUOTES );
+
+		return $content;
+	}
 
 	/**
 	 * 改行削除
@@ -45,13 +63,7 @@ class Text {
 	 * @return string
 	 */
 	public static function remove_tab( $text ) {
-		return str_replace(
-			[
-				"\t",
-			],
-			'',
-			$text
-		);
+		return str_replace( [ "\t" ], '', $text );
 	}
 
 	/**

@@ -76,7 +76,7 @@ class OGP {
 		$this->set_param( 'fb:app_id', Option::get_option( 'ys_ogp_fb_app_id', '' ) );
 
 		if ( ! Template::is_top_page() ) {
-			$this->set_param( 'og:url', helper\URL::get_page_url() );
+			$this->set_param( 'og:url', \utils\URL::get_page_url() );
 			$this->set_param( 'og:title', wp_get_document_title() );
 			/**
 			 * 投稿・固定ページ系

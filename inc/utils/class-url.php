@@ -1,18 +1,20 @@
 <?php
 /**
- * Helper : URL
+ * URL関連
  *
  * @package ystandard
  * @author  yosiakatsuki
  * @license GPL-2.0+
  */
 
-namespace ystandard\helper;
+namespace ystandard\utils;
 
 defined( 'ABSPATH' ) || die();
 
 /**
- * Class : Helper URL
+ * Class URL
+ *
+ * @package ystandard
  */
 class URL {
 

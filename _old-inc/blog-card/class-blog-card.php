@@ -9,7 +9,7 @@
 
 namespace ystandard;
 
-use ystandard\helper\URL;
+use utils\URL;
 
 defined( 'ABSPATH' ) || die();
 
