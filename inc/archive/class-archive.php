@@ -227,7 +227,7 @@ class Archive {
 		$date_label  = get_the_date( $date_format );
 		$date        = sprintf( $format, $date_icon, $date_time, $date_label );
 
-		return apply_filters( 'ys_get_archive_detail_date', $date, $format, $icon, $date_format );
+		return apply_filters( 'ys_get_archive_detail_date', $date, $format, $date_icon, $date_format );
 
 	}
 
