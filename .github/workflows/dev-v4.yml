@@ -27,23 +27,12 @@ jobs:
       - name: php -l
         run: bash bin/php-l.sh
 
-      - name: Error Check
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          author_name: "Failure : Error Check"
-          fields: repo,message,commit,job
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: failure()
-
       - name: Error Check for Discord
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
           title: "Failure : Error Check"
-          color: 0xdc2626
+          color: 0x962305
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: failure()
@@ -91,22 +80,11 @@ jobs:
         run: npm run lint
 
       - name: Notify Lint
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          author_name: Failure phpcs
-          fields: repo,message,commit,job
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: failure()
-
-      - name: Notify Lint for Discord
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
           title: "Failure : phpcs"
-          color: 0xdc2626
+          color: 0x962305
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: failure()
@@ -145,23 +123,12 @@ jobs:
       - name: Run test
         run: npm run test
 
-      - name: Notify Unit Test
-        uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          title: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
-          fields: repo,message,commit,job
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: failure()
-
       - name: Notify Unit Test for Discord
         uses: sarisia/actions-status-discord@v1
         with:
           nodetail: true
           title: "Failure : WordPress ${{ matrix.wp }} in PHP ${{ matrix.php }} UnitTest"
-          color: 0xdc2626
+          color: 0x962305
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         if: failure()
