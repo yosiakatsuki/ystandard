@@ -24,6 +24,7 @@ class Head {
 	public function __construct() {
 		add_action( 'wp_head', [ $this, 'add_charset' ], 1 );
 		add_action( 'wp_head', [ $this, 'add_head_meta' ], 1 );
+		add_action( 'after_setup_theme', [ $this, 'remove_meta' ] );
 	}
 
 	/**
@@ -64,6 +65,16 @@ class Head {
 		$attr = [];
 
 		return implode( ' ', apply_filters( 'ys_get_head_attr', $attr ) );
+	}
+
+	/**
+	 * 不要なメタ情報を削除
+	 *
+	 * @return void
+	 */
+	public function remove_meta() {
+		// WPのバージョン削除.
+		remove_action( 'wp_head', 'wp_generator' );
 	}
 }
 
