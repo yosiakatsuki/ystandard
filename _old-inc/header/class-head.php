@@ -31,14 +31,7 @@ class Head {
 		add_filter( 'site_icon_meta_tags', [ $this, 'site_icon_meta_tags' ] );
 	}
 
-	/**
-	 * <head>タグにつける属性取得
-	 */
-	public static function get_head_attr() {
-		$attr = [];
 
-		return implode( ' ', apply_filters( 'ys_get_head_attr', $attr ) );
-	}
 
 	/**
 	 * Next,Prevタグ出力

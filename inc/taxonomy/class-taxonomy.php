@@ -11,8 +11,33 @@ namespace ystandard;
 
 defined( 'ABSPATH' ) || die();
 
-
+/**
+ * Class Taxonomy
+ *
+ * @package ystandard
+ */
 class Taxonomy {
+
+	/**
+	 * Taxonomy constructor.
+	 */
+	public function __construct() {
+		add_action( 'after_setup_theme', [ $this, 'taxonomy_description_filter' ] );
+	}
+
+	/**
+	 * タクソノミー説明の処理カスタマイズ
+	 */
+	public function taxonomy_description_filter() {
+		// サニタイズのフィルターを投稿と同じにする.
+		remove_filter( 'pre_term_description', 'wp_filter_kses' );
+		add_filter( 'pre_term_description', 'wp_filter_post_kses' );
+		// ショートコードを有効にする（管理画面では展開しない）.
+		if ( ! is_admin() ) {
+			add_filter( 'term_description', 'do_shortcode' );
+		}
+	}
+
 	/**
 	 * ターム用アイコン
 	 *
@@ -38,3 +63,5 @@ class Taxonomy {
 		);
 	}
 }
+
+new Taxonomy();

@@ -23,7 +23,6 @@ class Init {
 		add_action( 'after_setup_theme', [ $this, 'load_textdomain' ], 9 );
 		add_action( 'after_setup_theme', [ $this, 'init' ] );
 		add_action( 'after_setup_theme', [ $this, 'remove_meta' ] );
-		add_action( 'after_setup_theme', [ $this, 'tax_dscr_filter' ] );
 	}
 
 	/**
@@ -138,17 +137,6 @@ class Init {
 		// WP標準のcanonicalとnext,prevを削除.
 		remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
 		remove_action( 'wp_head', 'rel_canonical' );
-	}
-
-	/**
-	 * タクソノミー説明の処理カスタマイズ
-	 */
-	public function tax_dscr_filter() {
-		remove_filter( 'pre_term_description', 'wp_filter_kses' );
-		add_filter( 'pre_term_description', 'wp_filter_post_kses' );
-		if ( ! is_admin() ) {
-			add_filter( 'term_description', 'do_shortcode' );
-		}
 	}
 }
 
