@@ -110,18 +110,13 @@ function ys_the_header_media_markup() {
  * コンテンツ
  * *****************************************************************/
 
-/**
- * Front-pageでロードするテンプレート
- */
-function ys_get_front_page_template() {
-	return \ystandard\Template::get_front_page_template();
-}
+
 
 /**
  * 投稿ヘッダー情報を隠すか
  */
 function ys_is_active_post_header() {
-	return \ystandard\Template::is_active_post_header();
+	return page\Template::is_active_post_header();
 }
 
 /**
@@ -129,7 +124,7 @@ function ys_is_active_post_header() {
  */
 function ys_is_no_title_template() {
 
-	return \ystandard\Template::is_no_title_template();
+	return page\Template::is_no_title_template();
 }
 
 /**
@@ -179,7 +174,7 @@ function ys_get_the_term_data( $taxonomy = false ) {
  * 投稿フッター情報を隠すか
  */
 function ys_is_active_post_footer() {
-	return \ystandard\Template::is_active_post_footer();
+	return page\Template::is_active_post_footer();
 }
 
 
@@ -511,12 +506,12 @@ function ys_is_amp() {
  * @param array  $args テンプレートに渡す変数.
  */
 function ys_get_template_part( $slug, $name = null, $args = [] ) {
-	\ystandard\Template::get_template_part( $slug, $name, $args );
+	page\Template::get_template_part( $slug, $name, $args );
 }
 
 /**
  * モバイル判定
  */
 function ys_is_mobile() {
-	return \ystandard\Template::is_mobile();
+	return page\Template::is_mobile();
 }

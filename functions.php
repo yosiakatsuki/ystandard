@@ -4,7 +4,7 @@
  *
  * @package ystandard
  * @author  yosiakatsuki
- * @license GPL-2.0+
+ * @license GPL-3.0+
  */
 
 /**

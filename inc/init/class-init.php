@@ -29,6 +29,22 @@ class Init {
 		 */
 		add_action( 'after_setup_theme', [ $this, 'load_textdomain' ], 9 );
 		add_action( 'after_setup_theme', [ $this, 'theme_support' ] );
+		add_filter( 'body_class', [ $this, 'add_body_class' ] );
+	}
+
+	/**
+	 * body_classにクラスを追加
+	 *
+	 * @param array $classes クラス.
+	 *
+	 * @return mixed
+	 */
+	public function add_body_class( $classes ) {
+
+		$classes[] = 'ystandard';
+		$classes[] = 'ystd'; // CSS用の省略形.
+
+		return $classes;
 	}
 
 	/**

@@ -28,60 +28,6 @@ class Template {
 		add_filter( 'theme_templates', [ $this, 'custom_template' ], 10, 4 );
 	}
 
-	/**
-	 * フロントページのテンプレート情報を取得
-	 *
-	 * @return string
-	 */
-	public static function get_front_page_template() {
-		$type = get_option( 'show_on_front' );
-		if ( 'page' === $type ) {
-			$template      = 'page';
-			$page_template = get_page_template_slug();
-
-			if ( $page_template ) {
-				if ( file_exists( get_stylesheet_directory() . $page_template ) || file_exists( $page_template ) ) {
-					$template = str_replace( '.php', '', $page_template );
-				}
-			}
-		} else {
-			$template = 'home';
-		}
-
-		return $template;
-	}
-
-	/**
-	 * 固定ページで設定されたフロントページか
-	 *
-	 * @return bool
-	 */
-	public static function is_single_front_page() {
-		if ( 'page' === get_option( 'show_on_front' ) ) {
-			return is_front_page();
-		}
-
-		return false;
-	}
-
-	/**
-	 * TOPページか
-	 *
-	 * @return bool
-	 */
-	public static function is_top_page() {
-		if ( 'page' === get_option( 'show_on_front' ) ) {
-			if ( is_front_page() ) {
-				return true;
-			}
-		} else {
-			if ( is_home() && ! is_paged() ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
 
 	/**
 	 * フル幅テンプレートか
@@ -485,4 +431,4 @@ class Template {
 	}
 }
 
-new Template();
+new page\Template();

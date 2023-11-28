@@ -9,5 +9,7 @@
 
 defined( 'ABSPATH' ) || die();
 
-// <head>関連
+// <head>関連.
 require_once __DIR__ . '/head.php';
+// テンプレート関連.
+require_once __DIR__ . '/template.php';

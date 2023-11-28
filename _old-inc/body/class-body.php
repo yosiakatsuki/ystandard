@@ -32,8 +32,6 @@ class Body {
 	 * @return array
 	 */
 	public function add_body_class( $classes ) {
-		$classes[] = 'ystandard';
-		$classes[] = 'ystd'; // CSS用.
 		/**
 		 * 背景画像があればクラス追加
 		 */

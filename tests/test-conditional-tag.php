@@ -16,7 +16,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 	function test_ys_is_top_page_home_1() {
 		$post_id = $this->factory->post->create();
 		$this->go_to( home_url( '/' ) );
-		$this->assertTrue( \ystandard\Template::is_top_page() );
+		$this->assertTrue( page\Template::is_top_page() );
 	}
 
 	/**
@@ -36,7 +36,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 		 */
 		$this->go_to( home_url( '/' ) );
 		$this->go_to( get_pagenum_link( 2 ) );
-		$this->assertFalse( \ystandard\Template::is_top_page() );
+		$this->assertFalse( page\Template::is_top_page() );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 		update_option( 'show_on_front', 'page' );
 		update_option( 'page_on_front', $post_id );
 		$this->go_to( home_url( '/' ) );
-		$this->assertTrue( \ystandard\Template::is_top_page() );
+		$this->assertTrue( page\Template::is_top_page() );
 	}
 
 	/**
@@ -83,7 +83,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 		$post_id = $this->factory->post->create( [ 'post_type' => 'page' ] );
 		$post_id = $this->factory->post->create();
 		$this->go_to( '/' );
-		$this->assertFalse( ystandard\Template::is_single_front_page() );
+		$this->assertFalse( page\Template::is_single_front_page() );
 	}
 
 	/**
@@ -94,7 +94,7 @@ class ConditionalTagTest extends WP_UnitTestCase {
 		update_option( 'show_on_front', 'page' );
 		update_option( 'page_on_front', $post_id );
 		$this->go_to( "/?page_id=$post_id" );
-		$this->assertTrue( ystandard\Template::is_single_front_page() );
+		$this->assertTrue( page\Template::is_single_front_page() );
 	}
 
 	/**
@@ -107,6 +107,6 @@ class ConditionalTagTest extends WP_UnitTestCase {
 		update_option( 'page_on_front', $post_id );
 		update_option( 'page_for_posts', $post_id_home );
 		$this->go_to( "/?page_id=$post_id_home" );
-		$this->assertFalse( ystandard\Template::is_single_front_page() );
+		$this->assertFalse( page\Template::is_single_front_page() );
 	}
 }
