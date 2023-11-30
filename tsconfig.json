@@ -29,6 +29,9 @@
             "@aktk/blocks/*": [
                 "src/blocks/*"
             ],
+            "@ystd/*": [
+                "src/scripts/*"
+            ],
         },
 		"typeRoots": [
             "./src/types",

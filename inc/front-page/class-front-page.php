@@ -37,7 +37,6 @@ class Front_Page {
 			$classes[] = 'is-front-page';
 		}
 
-
 		return $classes;
 	}
 

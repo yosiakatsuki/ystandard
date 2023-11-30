@@ -29,10 +29,6 @@ class Admin {
 			return;
 		}
 		add_action( 'after_setup_theme', [ $this, 'update_check' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_scripts' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_styles' ] );
-		add_action( 'admin_init', [ $this, 'enqueue_visual_editor_styles' ] );
-		add_action( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ] );
 		Notice::set_notice( [ $this, 'widget_manual' ] );
 		Notice::set_notice( [ $this, 'menu_manual' ] );
 	}
@@ -86,80 +82,6 @@ class Admin {
 			[ 'admin-bar' ],
 			Utility::get_ystandard_version()
 		);
-	}
-
-	/**
-	 * 管理画面-JavaScriptの読み込み
-	 *
-	 * @param string $hook_suffix suffix.
-	 *
-	 * @return void
-	 */
-	public function admin_enqueue_scripts( $hook_suffix ) {
-		/**
-		 * メディアアップローダ
-		 */
-		wp_enqueue_media();
-		wp_enqueue_script(
-			'ys-admin-scripts',
-			get_template_directory_uri() . '/js/admin/admin.js',
-			[ 'jquery' ],
-			filemtime( get_template_directory() . '/js/admin/admin.js' ),
-			true
-		);
-		wp_enqueue_script(
-			'ys-custom-uploader',
-			get_template_directory_uri() . '/js/admin/custom-uploader.js',
-			[ 'jquery' ],
-			filemtime( get_template_directory() . '/js/admin/custom-uploader.js' ),
-			true
-		);
-	}
-
-	/**
-	 * 管理画面-CSSの読み込み
-	 *
-	 * @param string $hook_suffix suffix.
-	 *
-	 * @return void
-	 */
-	public function admin_enqueue_styles( $hook_suffix ) {
-		wp_enqueue_style( 'wp-block-library' );
-		wp_enqueue_style(
-			'ys-google-font',
-			'https://fonts.googleapis.com/css?family=Orbitron'
-		);
-		wp_enqueue_style(
-			'ys-admin',
-			get_template_directory_uri() . '/css/admin.css',
-			[],
-			Utility::get_ystandard_version()
-		);
-	}
-
-	/**
-	 * ビジュアルエディタ用CSS追加
-	 */
-	public function enqueue_visual_editor_styles() {
-		/**
-		 * ビジュアルエディターへのCSSセット
-		 */
-		add_editor_style( 'css/tiny-mce-style.css' );
-		add_editor_style( 'style.css' );
-	}
-
-	/**
-	 * TinyMCEに追加CSSを適用させる
-	 *
-	 * @param array $settings TinyMCE設定.
-	 *
-	 * @return array;
-	 */
-	public function tiny_mce_before_init( $settings ) {
-		$settings['content_style'] = str_replace( '"', '\'', Style_Sheet::minify( wp_get_custom_css() ) );
-
-		return $settings;
-
 	}
 
 	/**

@@ -30,6 +30,7 @@ class Init {
 		add_action( 'after_setup_theme', [ $this, 'load_textdomain' ], 9 );
 		add_action( 'after_setup_theme', [ $this, 'theme_support' ] );
 		add_filter( 'body_class', [ $this, 'add_body_class' ] );
+		add_action( 'pre_ping', [ $this, 'no_self_ping' ] );
 	}
 
 	/**
@@ -75,6 +76,21 @@ class Init {
 			'ystandard',
 			get_template_directory() . '/languages'
 		);
+	}
+
+	/**
+	 * セルフピンバック対策
+	 *
+	 * @param array $links links.
+	 *
+	 * @return void
+	 */
+	public function no_self_ping( &$links ) {
+		foreach ( $links as $l => $link ) {
+			if ( 0 === strpos( $link, home_url() ) ) {
+				unset( $links[ $l ] );
+			}
+		}
 	}
 }
 

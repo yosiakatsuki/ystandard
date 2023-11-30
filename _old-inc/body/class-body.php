@@ -55,12 +55,6 @@ class Body {
 			$classes[] = 'has-sidebar';
 		}
 		/**
-		 * フロントページ
-		 */
-		if ( Template::is_single_front_page() ) {
-			$classes[] = 'is-front-page';
-		}
-		/**
 		 * Type: singular
 		 */
 		if ( is_singular() && ! is_front_page() ) {

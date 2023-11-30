@@ -4,24 +4,24 @@
  *
  * @package ystandard
  * @author  yosiakatsuki
- * @license GPL-2.0+
+ * @license GPL-3.0+
  */
 
-namespace ystandard;
+namespace ystandard\utils;
 
 defined( 'ABSPATH' ) || die();
 
 /**
- * Class Notice
+ * Class Admin_Notice
  *
  * @package ystandard
  */
-class Notice {
+class Admin_Notice {
 
 	/**
 	 * アクション名
 	 */
-	const ACTION = 'admin_notices';
+	const ACTION_NAME = 'admin_notices';
 
 	/**
 	 * アクションのセット
@@ -31,7 +31,7 @@ class Notice {
 	 * @param int          $accepted_args Args.
 	 */
 	public static function set_notice( $function, $priority = 10, $accepted_args = 1 ) {
-		add_action( self::ACTION, $function, $priority, $accepted_args );
+		add_action( self::ACTION_NAME, $function, $priority, $accepted_args );
 	}
 
 	/**
@@ -109,5 +109,4 @@ class Notice {
 	public static function plain( $content ) {
 		echo "<div class=\"notice\">{$content}</div>";
 	}
-
 }

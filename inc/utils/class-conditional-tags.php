@@ -4,7 +4,7 @@
  *
  * @package ystandard
  * @author  yosiakatsuki
- * @license GPL-2.0+
+ * @license GPL-3.0+
  */
 
 namespace ystandard\utils;
@@ -69,5 +69,18 @@ class Conditional_Tags {
 		$pattern = '/' . implode( '|', $ua ) . '/i';
 
 		return preg_match( $pattern, $_SERVER['HTTP_USER_AGENT'] );
+	}
+
+	/**
+	 * ブロックエディターで動作しているか
+	 *
+	 * @return bool
+	 */
+	public static function is_block_editor() {
+		if ( ! defined( 'REST_REQUEST' ) ) {
+			return false;
+		}
+
+		return \REST_REQUEST;
 	}
 }

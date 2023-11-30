@@ -4,7 +4,7 @@
  *
  * @package ystandard
  * @author  yosiakatsuki
- * @license GPL-2.0+
+ * @license GPL-3.0+
  */
 defined( 'ABSPATH' ) || die();
 
@@ -22,3 +22,4 @@ require_once __DIR__ . '/class-theme.php';
 require_once __DIR__ . '/class-sanitize.php';
 require_once __DIR__ . '/class-taxonomy.php';
 require_once __DIR__ . '/class-conditional-tags.php';
+require_once __DIR__ . '/class-admin-notice.php';

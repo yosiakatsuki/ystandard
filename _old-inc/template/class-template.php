@@ -24,8 +24,6 @@ class Template {
 	public function __construct() {
 		add_filter( 'the_excerpt_rss', [ $this, 'add_rss_thumbnail' ] );
 		add_filter( 'the_content_feed', [ $this, 'add_rss_thumbnail' ] );
-		add_action( 'pre_ping', [ $this, 'no_self_ping' ] );
-		add_filter( 'theme_templates', [ $this, 'custom_template' ], 10, 4 );
 	}
 
 
@@ -240,45 +238,7 @@ class Template {
 		return $is_preview;
 	}
 
-	/**
-	 * カスタムテンプレート選択追加
-	 *
-	 * @param string[]      $post_templates Array of template header names keyed by the template file name.
-	 * @param \WP_Theme     $theme          The theme object.
-	 * @param \WP_Post|null $post           The post being edited, provided for context, or null.
-	 * @param string        $post_type      Post type to get the templates for.
-	 *
-	 * @return string[];
-	 */
-	public function custom_template( $post_templates, $theme, $post, $post_type ) {
 
-		if ( Parts::POST_TYPE === $post_type ) {
-			return $post_templates;
-		}
-
-		$post_type = get_post_type_object( $post_type );
-		if ( is_null( $post_type ) ) {
-			return $post_templates;
-		}
-
-		if ( ! $post_type->public ) {
-			return $post_templates;
-		}
-
-		$templates = [
-			'page-template/template-blank-wide.php'      => '投稿ヘッダーなし 1カラム(ワイド)',
-			'page-template/template-blank.php'           => '投稿ヘッダーなし 1カラム',
-			'page-template/template-one-column-wide.php' => '1カラム(ワイド)',
-			'page-template/template-one-column.php'      => '1カラム',
-		];
-		foreach ( $templates as $file => $name ) {
-			if ( ! array_key_exists( $file, $post_templates ) ) {
-				$post_templates[ $file ] = $name;
-			}
-		}
-
-		return $post_templates;
-	}
 
 
 
@@ -381,25 +341,6 @@ class Template {
 	}
 
 	/**
-	 * テーマ内のファイルURLを取得する
-	 *
-	 * @param string $file テーマディレクトリからのファイルパス.
-	 *
-	 * @return string
-	 */
-	public static function get_theme_file_uri( $file ) {
-		/**
-		 * 4.7以下の場合 親テーマのファイルを返す
-		 */
-		if ( version_compare( get_bloginfo( 'version' ), '4.7-alpha', '<' ) ) {
-			return get_template_directory_uri() . $file;
-		}
-
-		return get_theme_file_uri( $file );
-	}
-
-
-	/**
 	 * RSSフィードにアイキャッチ画像を表示
 	 *
 	 * @param string $content content.
@@ -413,21 +354,6 @@ class Template {
 		}
 
 		return $content;
-	}
-
-	/**
-	 * セルフピンバック対策
-	 *
-	 * @param array $links links.
-	 *
-	 * @return void
-	 */
-	public function no_self_ping( &$links ) {
-		foreach ( $links as $l => $link ) {
-			if ( 0 === strpos( $link, home_url() ) ) {
-				unset( $links[ $l ] );
-			}
-		}
 	}
 }
 
