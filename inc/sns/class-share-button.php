@@ -467,7 +467,7 @@ class Share_Button {
 		/**
 		 * URL作成
 		 */
-		$this->data['sns'][ $type ] = "https://twitter.com/share?text={$title}&url={$url}{$via}{$related}{$hash_tags}";
+		$this->data['sns'][ $type ] = "https://twitter.com/intent/tweet?text={$title}&url={$url}{$via}{$related}{$hash_tags}";
 	}
 
 	/**
