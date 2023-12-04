@@ -191,7 +191,7 @@ class Parts {
 				'show_ui'               => true,
 				'show_in_nav_menus'     => false,
 				'show_in_menu'          => true,
-				'menu_icon'             => Admin_Menu::get_menu_icon(),
+				'menu_icon'             => Icons_Admin::get_admin_menu_icon(),
 				'menu_position'         => 20,
 				'description'           => 'サイト内で使用する定型文を登録し、ショートコードで使用できます。',
 				'has_archive'           => false,

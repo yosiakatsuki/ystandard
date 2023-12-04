@@ -1,21 +1,20 @@
 <?php
 /**
- * キャッシュ処理クラス
+ * キャッシュ
  *
  * @package ystandard
  * @author  yosiakatsuki
- * @license GPL-2.0+
+ * @license GPL-3.0+
  */
 
-namespace ystandard;
-
-defined( 'ABSPATH' ) || die();
+namespace ystandard\utils;
 
 /**
- * キャッシュ処理クラス
+ * Class Cache
+ *
+ * @package ystandard
  */
 class Cache {
-
 	/**
 	 * キャッシュプレフィックス
 	 */
@@ -24,8 +23,8 @@ class Cache {
 	/**
 	 * キャッシュ作成に使用するキーを作成
 	 *
-	 * @param string $key  キー文字列.
-	 * @param array  $args オプション.
+	 * @param string $key キー文字列.
+	 * @param array $args オプション.
 	 *
 	 * @return bool|string
 	 */
@@ -45,8 +44,8 @@ class Cache {
 	/**
 	 * キャッシュキーのプレフィックス作成
 	 *
-	 * @param string $key  キー.
-	 * @param array  $args オプション.
+	 * @param string $key キー.
+	 * @param array $args オプション.
 	 *
 	 * @return string
 	 */
@@ -57,9 +56,9 @@ class Cache {
 	/**
 	 * キャッシュ機能を使ったクエリ取得
 	 *
-	 * @param string $key        キー.
-	 * @param array  $args       オプション.
-	 * @param mixed  $expiration 有効期限.
+	 * @param string $key キー.
+	 * @param array $args オプション.
+	 * @param mixed $expiration 有効期限.
 	 *
 	 * @return mixed
 	 */
@@ -92,12 +91,12 @@ class Cache {
 	/**
 	 * キャッシュを取得
 	 *
-	 * @param string $key  キー.
-	 * @param array  $args オプション.
+	 * @param string $key キー.
+	 * @param array $args オプション.
 	 *
 	 * @return mixed
 	 */
-	public static function get_cache( $key, $args ) {
+	public static function get_cache( $key, $args = [] ) {
 		$cache_key = self::get_cache_key( $key, $args );
 
 		return get_transient( $cache_key );
@@ -106,12 +105,12 @@ class Cache {
 	/**
 	 * キャッシュ削除
 	 *
-	 * @param string $key  キー.
-	 * @param array  $args オプション.
+	 * @param string $key キー.
+	 * @param array $args オプション.
 	 *
 	 * @return bool
 	 */
-	public static function delete_cache( $key, $args ) {
+	public static function delete_cache( $key, $args = [] ) {
 		$cache_key = self::get_cache_key( $key, $args );
 
 		return delete_transient( $cache_key );
@@ -131,15 +130,15 @@ class Cache {
 	/**
 	 * クエリ結果のキャッシュを作成
 	 *
-	 * @param string $key        キー.
-	 * @param mixed  $obj        キャッシュするオブジェクト.
-	 * @param array  $args       オプション.
-	 * @param mixed  $expiration キャッシュ作成する日数.
-	 * @param bool   $force      強制的に作成するか.
+	 * @param string $key キー.
+	 * @param mixed $obj キャッシュするオブジェクト.
+	 * @param array $args オプション.
+	 * @param mixed $expiration キャッシュ作成する日数.
+	 * @param bool $force 強制的に作成するか.
 	 *
 	 * @return bool
 	 */
-	public static function set_cache( $key, $obj, $args, $expiration, $force = false ) {
+	public static function set_cache( $key, $obj, $args = [], $expiration = 7, $force = false ) {
 		if ( ! is_numeric( $expiration ) ) {
 			return false;
 		}
@@ -178,14 +177,19 @@ class Cache {
 	 * @return bool
 	 */
 	public static function can_use_cache() {
+		// デバッグモードの場合はキャッシュを使わない.
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			return false;
+		}
+		// ログインしていない場合はキャッシュ使用.
 		if ( ! is_user_logged_in() ) {
 			return true;
 		}
+		// ログイン中でも編集権限が無いユーザーはキャッシュ使用.
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return true;
 		}
 
 		return false;
 	}
-
 }

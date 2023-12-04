@@ -33,6 +33,9 @@ require_once __DIR__ . '/nav-menu/class-nav-menu.php';
 require_once __DIR__ . '/logo/class-logo.php';
 // パーツ.
 require_once __DIR__ . '/parts/index.php';
+// アイコン.
+require_once __DIR__ . '/icon/index.php';
+
 
 // 投稿タイプ.
 require_once __DIR__ . '/post-type/index.php';

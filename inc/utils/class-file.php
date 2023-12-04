@@ -21,15 +21,15 @@ class File {
 	/**
 	 * ファイル内容の取得
 	 *
-	 * @param string $file ファイルパス.
+	 * @param string $path ファイルパス.
 	 *
 	 * @return string|false
 	 */
-	public static function file_get_contents( $file ) {
+	public static function file_get_contents( $path ) {
 
 		try {
-			if ( file_exists( $file ) ) {
-				$content = file_get_contents( $file );
+			if ( file_exists( $path ) ) {
+				$content = file_get_contents( $path );
 			} else {
 				$content = false;
 			}
@@ -38,6 +38,27 @@ class File {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * JSONファイルの内容を取得
+	 *
+	 * @param string $path ファイルパス.
+	 * @param bool $associative 配列で取得するか.
+	 *
+	 * @return false|array
+	 */
+	public static function get_json_contents( $path, $associative = true ) {
+		if ( ! file_exists( $path ) ) {
+			return false;
+		}
+		// JSONファイルの内容を取得（）
+		$json = wp_json_file_decode( $path, [ 'associative' => $associative ] );
+		if ( null === $json ) {
+			return false;
+		}
+
+		return $json;
 	}
 
 }

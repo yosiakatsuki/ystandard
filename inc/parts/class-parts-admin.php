@@ -10,6 +10,8 @@
 namespace ystandard;
 
 use ystandard\utils\Admin_Notice;
+use ystandard\utils\Manual;
+use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
 
@@ -70,8 +72,8 @@ class Parts_Admin {
 	 */
 	public function add_manual_link_notice() {
 		global $pagenow;
-		$post_type = Content::get_post_type();
-		$manual    = Admin::manual_link( 'manual/ys-parts' );
+		$post_type = Post_Type::get_post_type();
+		$manual    = Manual::manual_link( 'manual/ys-parts' );
 		// パーツの投稿一覧でマニュアルリンクを表示
 		if ( 'edit.php' === $pagenow && Parts::POST_TYPE === $post_type ) {
 			Admin_Notice::manual( $manual );
@@ -145,9 +147,11 @@ class Parts_Admin {
 		if ( 'shortcode' === $column_name ) {
 			?>
 			<div class="copy-form">
-				<input type="text" class="copy-form__target"
-					   value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly
-					   onfocus="this.select();"/>
+				<label>
+					<input type="text" class="copy-form__target"
+						   value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly
+						   onfocus="this.select();"/>
+				</label>
 				<button type="button" class="copy-form__button button action">
 					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>
