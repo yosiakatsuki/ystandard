@@ -45,5 +45,8 @@ require_once __DIR__ . '/post-type/index.php';
 // パーツ.
 require_once __DIR__ . '/parts/class-parts.php';
 
+// RSS.
+require_once __DIR__ . '/rss/class-rss.php';
+
 // タクソノミー.
 require_once __DIR__ . '/taxonomy/class-taxonomy.php';

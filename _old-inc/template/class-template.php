@@ -22,8 +22,7 @@ class Template {
 	 * Template_Function constructor.
 	 */
 	public function __construct() {
-		add_filter( 'the_excerpt_rss', [ $this, 'add_rss_thumbnail' ] );
-		add_filter( 'the_content_feed', [ $this, 'add_rss_thumbnail' ] );
+
 	}
 
 
@@ -217,21 +216,7 @@ class Template {
 
 
 
-	/**
-	 * RSSフィードにアイキャッチ画像を表示
-	 *
-	 * @param string $content content.
-	 *
-	 * @return string
-	 */
-	public function add_rss_thumbnail( $content ) {
-		global $post;
-		if ( Content::is_active_post_thumbnail( $post->ID ) ) {
-			$content = get_the_post_thumbnail( $post->ID ) . $content;
-		}
 
-		return $content;
-	}
 }
 
 new page\Template();

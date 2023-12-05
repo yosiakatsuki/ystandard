@@ -83,7 +83,6 @@ class Template {
 		self::set_templates( $slug, $name ); // nameあり.
 		self::set_templates( $slug ); // nameなし.
 
-		var_dump( self::$templates );
 		// テンプレート読み込み.
 		if ( ! locate_template( self::$templates, true, false, $args ) ) {
 			return false;
