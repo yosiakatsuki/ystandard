@@ -21,20 +21,13 @@ defined( 'ABSPATH' ) || die();
 class Icon {
 
 	/**
-	 * SNSアイコン ショートコードパラメーター
+	 * ショートコードパラメーター
 	 */
-	const SHORTCODE_ATTR_SNS = [
+	const SHORTCODE_ATTR = [
 		'name'  => '',
 		'title' => '',
-	];
-	/**
-	 * アイコン ショートコードパラメーター
-	 */
-	const SHORTCODE_ATTR_ICON = [
-		'name'  => '',
 		'class' => '',
 	];
-
 
 	/**
 	 * Constructor.
@@ -49,16 +42,20 @@ class Icon {
 	 * アイコン取得
 	 *
 	 * @param string $name name.
-	 * @param string $class class.
+	 * @param array $options Options.
 	 *
 	 * @return string
 	 */
-	public static function get_icon( $name, $class = '' ) {
+	public static function get_icon( $name, $options = [] ) {
+		// クラスの取得.
+		$class = isset( $options['class'] ) ? $options['class'] : '';
+
+		// アイコン取得.
 		$icon = Icon_Cache::get_icon_cache( $name );
 
 		// キャッシュがあればそれを返す.
 		if ( false !== $icon ) {
-			return self::wrap_icon_html( $icon );
+			return self::wrap_icon_html( $icon, $class );
 		}
 
 		// アイコンのSVGファイルパスを取得.
@@ -76,35 +73,39 @@ class Icon {
 			Icon_Cache::add_icon_cache( $name, $icon );
 		}
 
-		return self::wrap_icon_html( $icon );
+		return self::wrap_icon_html( $icon, $class );
 	}
 
 	/**
 	 * SNSアイコン取得
 	 *
-	 * @param string $name  name.
-	 * @param string $title title.
+	 * @param string $name name.
+	 * @param array $options Options.
 	 *
 	 * @return string
 	 */
-	public static function get_sns_icon( $name, $title = '' ) {
+	public static function get_sns_icon( $name, $options = [] ) {
+		// オプション取得.
+		$title = isset( $options['title'] ) ? $options['title'] : '';
+		$class = isset( $options['class'] ) ? $options['class'] : '';
+
 		// キャッシュから取得.
-		$icon  = Icon_Cache::get_sns_icon_cache( $name );
+		$icon = Icon_Cache::get_sns_icon_cache( $name );
 		// 各属性の取得・作成.
 		$title = empty( $title ) ? $icon['title'] : $title;
 		$path  = $icon['path'];
 		$class = "icon--{$name}";
 		// SVG作成.
-		$icon  = "<svg class=\"{$class}\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" aria-hidden=\"true\" focusable=\"false\"><title>{$title}</title><path d=\"{$path}\"/></svg>";
+		$icon = "<svg class=\"{$class}\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" aria-hidden=\"true\" focusable=\"false\"><title>{$title}</title><path d=\"{$path}\"/></svg>";
 
-		return self::wrap_icon_html( $icon, 'sns-icon' );
+		return self::wrap_icon_html( $icon, "sns-icon {$class}" );
 	}
 
 
 	/**
 	 * アイコン表示用HTML取得
 	 *
-	 * @param string $icon  Icon.
+	 * @param string $icon Icon.
 	 * @param string $class Class.
 	 *
 	 * @return string
@@ -132,13 +133,13 @@ class Icon {
 	 * @return string
 	 */
 	public function do_shortcode_icon( $attributes ) {
-		$attributes = shortcode_atts( self::SHORTCODE_ATTR_ICON, $attributes );
+		$attributes = shortcode_atts( self::SHORTCODE_ATTR, $attributes );
 
 		if ( empty( $attributes['name'] ) ) {
 			return '';
 		}
 
-		return self::get_icon( $attributes['name'], $attributes['class'] );
+		return self::get_icon( $attributes['name'], $attributes );
 	}
 
 	/**
@@ -149,12 +150,12 @@ class Icon {
 	 * @return string
 	 */
 	public function do_shortcode_sns( $attributes ) {
-		$attributes = shortcode_atts( self::SHORTCODE_ATTR_SNS, $attributes );
+		$attributes = shortcode_atts( self::SHORTCODE_ATTR, $attributes );
 		if ( empty( $attributes['name'] ) ) {
 			return '';
 		}
 
-		return self::get_sns_icon( $attributes['name'], $attributes['title'] );
+		return self::get_sns_icon( $attributes['name'], $attributes );
 	}
 
 	/**

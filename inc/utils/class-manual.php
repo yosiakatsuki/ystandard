@@ -40,20 +40,20 @@ class Manual {
 		if ( '' === $text ) {
 			$text = __( 'マニュアルを見る', 'ystandard' );
 		}
-		$icon = do_shortcode( "[ys_icon name=\"{$icon}\"]" );
+		$icon = do_shortcode( "[ys_icon name=\"{$icon}\" class=\"\"]" );
 
 		// URLではなくパスで指定されている場合は公式サイトへリンク.
 		if ( false === strpos( $url, 'https://' ) ) {
 			$url = "https://wp-ystandard.com/{$url}/";
 		}
 
-		$inline_class = $inline ? 'inline-flex' : '';
+		$flex = $inline ? 'inline-flex' : 'flex';
 
-		$link = "<a class=\"{$inline_class}\" href=\"{$url}\" target=\"_blank\">{$icon}{$text}</a>";
+		$link = "<a class=\"{$flex} gap-1 items-center text-fz-xs\" href=\"{$url}\" target=\"_blank\">{$icon}{$text}</a>";
 
 		// インライン指定がない場合はラップする.
 		if ( ! $inline ) {
-			$link = sprintf( '<div class="">%s</div>', $link );
+			$link = sprintf( '<div class="block">%s</div>', $link );
 		}
 
 		return wp_targeted_link_rel( $link );

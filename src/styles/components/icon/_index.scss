@@ -1,0 +1,10 @@
+:where(.ys-icon) {
+	display: inline-flex;
+	line-height: 1;
+
+	:where(svg,img) {
+		width: 1em;
+		height: 1em;
+		display: block;
+	}
+}
