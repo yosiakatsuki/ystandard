@@ -488,26 +488,9 @@ function ys_embed_content() {
 }
 
 /** *****************************************************************
- * AMP関連
- * *****************************************************************/
-function ys_is_amp() {
-	return \ystandard\AMP::is_amp();
-}
-
-/** *****************************************************************
  * その他
  * *****************************************************************/
 
-/**
- * テンプレート読み込み拡張
- *
- * @param string $slug The slug name for the generic template.
- * @param string $name The name of the specialised template.
- * @param array  $args テンプレートに渡す変数.
- */
-function ys_get_template_part( $slug, $name = null, $args = [] ) {
-	page\Template::get_template_part( $slug, $name, $args );
-}
 
 /**
  * モバイル判定

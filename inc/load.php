@@ -36,6 +36,8 @@ require_once __DIR__ . '/parts/index.php';
 // アイコン.
 require_once __DIR__ . '/icon/index.php';
 
+// フロントページ.
+require_once __DIR__ . '/front-page/index.php';
 
 // 投稿タイプ.
 require_once __DIR__ . '/post-type/index.php';

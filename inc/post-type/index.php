@@ -1,6 +1,6 @@
 <?php
 /**
- * 投稿タイプ関連
+ * 投稿タイプ別の処理
  *
  * @package ystandard
  * @author  yosiakatsuki

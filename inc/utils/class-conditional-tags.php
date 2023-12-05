@@ -83,4 +83,21 @@ class Conditional_Tags {
 
 		return \REST_REQUEST;
 	}
+
+	/**
+	 * レガシーウィジェットプレビュー判定
+	 *
+	 * @return bool
+	 */
+	public static function is_legacy_widget_preview() {
+		$is_preview = false;
+		if ( ! empty( $_GET['legacy-widget-preview'] ) ) {
+			$is_preview = true;
+		}
+		if ( defined( 'IFRAME_REQUEST' ) && IFRAME_REQUEST ) {
+			$is_preview = true;
+		}
+
+		return $is_preview;
+	}
 }

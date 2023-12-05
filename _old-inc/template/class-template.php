@@ -145,12 +145,6 @@ class Template {
 		if ( is_singular( $post_type ) && '1col' === $type ) {
 			return true;
 		}
-		/**
-		 * [ys]パーツ
-		 */
-		if ( Parts::POST_TYPE === Content::get_post_type() ) {
-			return true;
-		}
 
 		return false;
 	}
@@ -221,124 +215,7 @@ class Template {
 		return is_page_template( $template );
 	}
 
-	/**
-	 * レガシーウィジェットプレビュー中判定
-	 *
-	 * @return bool
-	 */
-	public static function is_legacy_widget_preview() {
-		$is_preview = false;
-		if ( ! empty( $_GET['legacy-widget-preview'] ) ) {
-			$is_preview = true;
-		}
-		if ( defined( 'IFRAME_REQUEST' ) && IFRAME_REQUEST ) {
-			$is_preview = true;
-		}
 
-		return $is_preview;
-	}
-
-
-
-
-
-	/**
-	 * テンプレート読み込み拡張
-	 *
-	 * @param string $slug The slug name for the generic template.
-	 * @param string $name The name of the specialised template.
-	 * @param array  $args テンプレートに渡す変数.
-	 */
-	public static function get_template_part( $slug, $name = null, $args = [] ) {
-		/**
-		 * テンプレート上書き
-		 */
-		$slug = apply_filters( 'ys_get_template_part_slug', $slug, $name, $args );
-		$name = apply_filters( 'ys_get_template_part_name', $name, $slug, $args );
-		$args = apply_filters( 'ys_get_template_part_args', $args, $slug, $name );
-		do_action( "get_template_part_{$slug}", $slug, $name );
-
-		// 投稿タイプ.
-		$custom_post_type = Content::get_post_type();
-		$custom_post_type = empty( $custom_post_type ) ? '' : $custom_post_type;
-		// タクソノミー.
-		$taxonomy   = '';
-		$post_types = [];
-		if ( is_category() ) {
-			$taxonomy = 'category';
-		}
-		if ( is_tag() ) {
-			$taxonomy = 'tag';
-		}
-		if ( is_tax() ) {
-			$taxonomy         = get_query_var( 'taxonomy' );
-			$taxonomy_objects = get_taxonomy( $taxonomy );
-			$post_types       = $taxonomy_objects->object_type;
-			$post_types       = array_diff( $post_types, [ $custom_post_type ] );
-		}
-
-		$templates = [];
-		if ( ! is_string( $name ) ) {
-			$name = '';
-		}
-		if ( '' !== $name ) {
-			if ( '' !== $taxonomy ) {
-				$templates[] = "{$slug}-{$name}-{$taxonomy}.php";
-				if ( ! empty( $post_types ) ) {
-					foreach ( $post_types as $type ) {
-						$templates[] = "{$slug}-{$name}-{$type}.php";
-					}
-				}
-			}
-			if ( '' !== $custom_post_type ) {
-				$templates[] = "{$slug}-{$name}-{$custom_post_type}.php";
-			}
-			$templates[] = "{$slug}-{$name}.php";
-		}
-
-		if ( '' !== $taxonomy ) {
-			$templates[] = "{$slug}-{$taxonomy}.php";
-			if ( ! empty( $post_types ) ) {
-				foreach ( $post_types as $type ) {
-					$templates[] = "{$slug}-{$type}.php";
-				}
-			}
-		}
-		if ( '' !== $custom_post_type ) {
-			$templates[] = "{$slug}-{$custom_post_type}.php";
-		}
-		$templates[] = "{$slug}.php";
-
-		do_action( 'get_template_part', $slug, $name, $templates );
-
-		$located = locate_template( $templates );
-		/**
-		 * テーマ・プラグイン内のファイルのパスが指定されてきた場合そちらを優先
-		 */
-		if ( false !== strpos( $slug, ABSPATH ) && file_exists( $slug ) ) {
-			$located = $slug;
-		}
-		/**
-		 * テンプレート読み込み
-		 */
-		if ( ! empty( $located ) ) {
-			global $posts, $post, $wp_did_header, $wp_query, $wp_rewrite, $wpdb, $wp_version, $wp, $id, $comment, $user_ID;
-
-			if ( is_array( $wp_query->query_vars ) ) {
-				// phpcs:ignore WordPress.PHP.DontExtract.extract_extract
-				extract( $wp_query->query_vars, EXTR_SKIP );
-			}
-			if ( is_array( $args ) ) {
-				// phpcs:ignore WordPress.PHP.DontExtract.extract_extract
-				extract( $args, EXTR_SKIP );
-			}
-
-			if ( isset( $s ) ) {
-				$s = esc_attr( $s );
-			}
-			require $located;
-		}
-	}
 
 	/**
 	 * RSSフィードにアイキャッチ画像を表示

@@ -70,10 +70,12 @@ class Custom_Template {
 	 */
 	public static function get_theme_custom_templates() {
 		return [
-			'page-template/template-blank-wide.php'      => __( '投稿ヘッダーなし 1カラム(ワイド)', 'ystandard' ),
-			'page-template/template-blank.php'           => __( '投稿ヘッダーなし 1カラム', 'ystandard' ),
+			'page-template/template-blank-wide.php'      => __( '本文のみ 1カラム(ワイド)', 'ystandard' ),
+			'page-template/template-blank.php'           => __( '本文のみ 1カラム', 'ystandard' ),
 			'page-template/template-one-column-wide.php' => __( '1カラム(ワイド)', 'ystandard' ),
 			'page-template/template-one-column.php'      => __( '1カラム', 'ystandard' ),
+			'page-template/template-sidebar-right.php'   => __( '右サイドバー', 'ystandard' ),
+			'page-template/template-sidebar-left.php'    => __( '左サイドバー', 'ystandard' ),
 		];
 	}
 }
