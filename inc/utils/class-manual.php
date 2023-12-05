@@ -47,13 +47,12 @@ class Manual {
 			$url = "https://wp-ystandard.com/{$url}/";
 		}
 
-		$flex = $inline ? 'inline-flex' : 'flex';
-
-		$link = "<a class=\"{$flex} gap-1 items-center text-fz-xs\" href=\"{$url}\" target=\"_blank\">{$icon}{$text}</a>";
+		// リンク作成.
+		$link = "<a class=\"tw-inline-flex tw-gap-1 tw-items-center tw-text-fz-xs\" href=\"{$url}\" target=\"_blank\">{$icon}{$text}</a>";
 
 		// インライン指定がない場合はラップする.
 		if ( ! $inline ) {
-			$link = sprintf( '<div class="block">%s</div>', $link );
+			$link = sprintf( '<div class="tw-block">%s</div>', $link );
 		}
 
 		return wp_targeted_link_rel( $link );

@@ -1,5 +1,6 @@
 // @ts-ignore
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
+const path = require("path");
 
 module.exports = {
 	...defaultConfig,
@@ -11,6 +12,8 @@ module.exports = {
 		...defaultConfig.resolve,
 		alias: {
 			...defaultConfig.resolve.alias,
+			'@aktk/blocks': path.resolve(__dirname, 'src/blocks'),
+			'@ystd': path.resolve(__dirname, 'src/scripts'),
 		},
 	},
 	cache: false,

@@ -11,7 +11,7 @@ namespace ystandard;
 
 use ystandard\utils\File;
 use ystandard\utils\Cache;
-use ystandard\utils\Version;
+use ystandard\utils\Theme;
 
 class Icon_Cache {
 	/**
@@ -136,7 +136,7 @@ class Icon_Cache {
 	 */
 	public static function get_cache_key() {
 		// キャッシュはテーマバージョンごとに作り直し
-		return self::CACHE_KEY_PREFIX . Version::get_version();
+		return self::CACHE_KEY_PREFIX . Theme::get_ystandard_version();
 	}
 
 

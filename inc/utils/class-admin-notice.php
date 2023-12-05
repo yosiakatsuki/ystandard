@@ -98,7 +98,7 @@ class Admin_Notice {
 	 * @param string $content notice content.
 	 */
 	public static function manual( $content ) {
-		echo "<div class=\"notice notice-manual bg-transparent border-0 p-0 shadow-none\">{$content}</div>";
+		echo "<div class=\"notice notice-manual tw-bg-transparent tw-border-0 tw-p-0 tw-shadow-none\">{$content}</div>";
 	}
 
 	/**

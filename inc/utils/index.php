@@ -26,4 +26,3 @@ require_once __DIR__ . '/class-conditional-tags.php';
 require_once __DIR__ . '/class-admin-notice.php';
 require_once __DIR__ . '/class-manual.php';
 require_once __DIR__ . '/class-cache.php';
-require_once __DIR__ . '/class-version.php';

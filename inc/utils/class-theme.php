@@ -18,6 +18,7 @@ defined( 'ABSPATH' ) || die();
  * @package ystandard
  */
 class Theme {
+
 	/**
 	 * テーマバージョン取得
 	 *
@@ -26,6 +27,7 @@ class Theme {
 	 * @return string
 	 */
 	public static function get_theme_version( $parent = false ) {
+
 		/**
 		 * 子テーマ情報
 		 */

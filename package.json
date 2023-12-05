@@ -2,7 +2,7 @@
 	"name": "ystandard",
 	"version": "1.0.0",
 	"author": "yosiakatuki",
-	"license": "GPLv2",
+	"license": "GPLv3",
 	"devDependencies": {
 		"@wordpress/browserslist-config": "^5.23.0",
 		"@wordpress/env": "^8.6.0",

@@ -103,23 +103,15 @@ class Parts_Admin {
 	 * @param \WP_Post $post 投稿オブジェクト.
 	 */
 	public function add_parts_shortcode_info( $post ) {
-		// 公開されていない場合ショートコードも表示しない.
-		if ( 'publish' !== $post->post_status ) {
-			return;
-		}
 		?>
 		<div>
-			<label for="ys_parts_shortcode">ショートコード</label>
-			<div class="copy-form">
-				<input type="text" id="ys_parts_shortcode" class="copy-form__target"
-					   value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly
-					   onfocus="this.select();"/>
-				<button class="copy-form__button button action">
-					<?php echo ys_get_icon( 'clipboard' ); ?>
-				</button>
-				<div class="copy-form__info">コピーしました！</div>
-			</div>
-			<div class="meta-box__dscr">パーツを表示するためのショートコード</div>
+			<?php
+			if ( 'publish' === $post->post_status ) {
+				self::the_copy_form( $post->ID );
+			} else {
+				self::the_not_publish_info();
+			}
+			?>
 		</div>
 		<?php
 	}
@@ -145,20 +137,57 @@ class Parts_Admin {
 	 */
 	public function add_custom_column( $column_name, $post_ID ) {
 		if ( 'shortcode' === $column_name ) {
-			?>
-			<div class="copy-form">
-				<label>
-					<input type="text" class="copy-form__target"
-						   value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly
-						   onfocus="this.select();"/>
-				</label>
-				<button type="button" class="copy-form__button button action">
-					<?php echo ys_get_icon( 'clipboard' ); ?>
-				</button>
-				<div class="copy-form__info">コピーしました！</div>
-			</div>
-			<?php
+			$post = get_post( $post_ID );
+			if ( 'publish' === $post->post_status ) {
+				self::the_copy_form( $post_ID );
+			} else {
+				self::the_not_publish_info();
+			}
 		}
+	}
+
+
+	/**
+	 * クリップボードコピーフォーム出力
+	 *
+	 * @param int $post_ID 投稿ID.
+	 *
+	 * @return void
+	 */
+	private static function the_copy_form( $post_ID ) {
+		?>
+		<div class="ys-clipboard-copy tw-flex tw-gap-2 tw-relative">
+			<label class="tw-w-full">
+				<input type="text" class="ys-clipboard-copy__target tw-block tw-w-full"
+					   value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly
+					   onfocus="this.select();"/>
+			</label>
+			<button type="button"
+					class="ys-clipboard-copy__button button action tw-flex tw-items-center tw-justify-center tw-px-2">
+				<?php echo do_shortcode( '[ys_icon name="clipboard"]' ); ?>
+			</button>
+			<span
+				class="ys-clipboard-copy__info tw-text-fz-xxs tw-text-gray-600 tw-absolute tw-bottom-0 tw-left-0 tw-translate-y-full">コピーしました！</span>
+		</div>
+		<?php
+	}
+
+	/**
+	 * パーツ未公開状態の説明
+	 *
+	 * @return void
+	 */
+	private static function the_not_publish_info() {
+		?>
+		<div class="tw-text-gray-600">
+			<p class="tw-text-fz-xs tw-m-0 tw-mb-1">
+				<?php _e( 'パーツが公開されていません。', 'ystandard' ); ?>
+			</p>
+			<p class="tw-text-fz-xs tw-m-0">
+				<?php _e( 'パーツ公開後、ページを再読み込みすると表示用のショートコードが表示されます。', 'ystandard' ); ?>
+			</p>
+		</div>
+		<?php
 	}
 
 	/**

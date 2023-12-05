@@ -3,7 +3,7 @@
         "allowJs": true,
         "checkJs": true,
         "allowSyntheticDefaultImports": true,
-        "jsx": "preserve",
+        "jsx": "react-jsx",
         "target": "esnext",
         "module": "esnext",
 		"lib": [
@@ -37,9 +37,8 @@
             "./src/types",
             "./node_modules/@types"
         ],
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ],
+		"exclude": [
+			"dist"
+		]
+	},
 }
