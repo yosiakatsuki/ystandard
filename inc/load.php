@@ -10,6 +10,8 @@ defined( 'ABSPATH' ) || die();
 
 // ユーティリティー.
 require_once __DIR__ . '/utils/index.php';
+// 設定.
+require_once __DIR__ . '/option/index.php';
 // テンプレート.
 require_once __DIR__ . '/template-function/index.php';
 
