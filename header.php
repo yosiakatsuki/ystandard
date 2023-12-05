@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) || die();
 
-echo '<!DOCTYPE html>';
+echo '<!DOCTYPE html>' . PHP_EOL;
 ?>
 <html <?php language_attributes(); ?>>
 <head <?php ys_the_head_attr(); ?>>
@@ -32,13 +32,9 @@ echo '<!DOCTYPE html>';
 wp_body_open();
 // bodyタグの直後に挿入するコンテンツ
 do_action( 'ys_body_prepend' );
-/**
- * サイトのヘッダー出力
- *
- * @see template-parts/header/site-header.php
- */
+// サイトのヘッダー.
 ys_get_template_part( 'template-parts/header/site-header' );
-// サイトヘッダーの直後に挿入するコンテンツ
+// サイトヘッダーの後に挿入するコンテンツ
 do_action( 'ys_after_site_header' );
 ?>
 <div id="content" class="site-content">

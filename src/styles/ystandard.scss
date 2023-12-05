@@ -1,7 +1,5 @@
-.test {
-	color: red;
+@use "foundation";
 
-	.hoge {
-		color: blue;
-	}
+a {
+	color: currentColor;
 }
