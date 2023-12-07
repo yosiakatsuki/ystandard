@@ -53,3 +53,6 @@ require_once __DIR__ . '/rss/class-rss.php';
 
 // タクソノミー.
 require_once __DIR__ . '/taxonomy/class-taxonomy.php';
+
+// 拡張機能(連携プラグイン用).
+require_once __DIR__ . '/extension/class-extension.php';

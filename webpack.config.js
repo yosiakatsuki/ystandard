@@ -7,7 +7,8 @@ module.exports = {
 	entry: {
 		ystandard: './src/scripts/app/ystandard.ts',
 		'ystandard-admin': './src/scripts/admin/ystandard-admin.ts',
-		'ystandard-customizer': './src/scripts/admin/ystandard-customizer.ts',
+		'ystandard-customizer-control' : './src/scripts/admin/ystandard-customizer-control.ts',
+		'ystandard-customizer-preview' : './src/scripts/admin/ystandard-customizer-preview.ts',
 	},
 	resolve: {
 		...defaultConfig.resolve,
