@@ -196,4 +196,4 @@ class Customizer {
 	}
 }
 
-new Customizer();
+new \customizer\Customizer();

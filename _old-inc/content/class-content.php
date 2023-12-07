@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use customizer\Customizer;
+
 defined( 'ABSPATH' ) || die();
 
 /**

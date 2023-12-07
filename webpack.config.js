@@ -7,6 +7,7 @@ module.exports = {
 	entry: {
 		ystandard: './src/scripts/app/ystandard.ts',
 		'ystandard-admin': './src/scripts/admin/ystandard-admin.ts',
+		'ystandard-customizer': './src/scripts/admin/ystandard-customizer.ts',
 	},
 	resolve: {
 		...defaultConfig.resolve,

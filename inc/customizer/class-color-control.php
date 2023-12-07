@@ -4,10 +4,10 @@
  *
  * @package ystandard
  * @author  yosiakatsuki
- * @license GPL-2.0+
+ * @license GPL-3.0+
  */
 
-namespace ystandard;
+namespace ystandard\customizer;
 
 defined( 'ABSPATH' ) || die();
 

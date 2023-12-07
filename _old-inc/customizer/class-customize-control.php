@@ -9,6 +9,7 @@
 
 namespace ystandard;
 
+use customizer\Customizer;
 use ystandard\helper\Trigger_Error;
 
 defined( 'ABSPATH' ) || die();

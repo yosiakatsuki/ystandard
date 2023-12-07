@@ -7,7 +7,7 @@
  * @license GPL-2.0+
  */
 
-namespace ystandard;
+namespace ystandard\customizer;
 
 defined( 'ABSPATH' ) || die();
 
