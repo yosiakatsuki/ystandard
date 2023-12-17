@@ -13,13 +13,14 @@ require_once __DIR__ . '/utils/index.php';
 // 設定.
 require_once __DIR__ . '/option/class-option.php';
 require_once __DIR__ . '/customizer/index.php';
-// テンプレート.
+// テンプレート関数.
 require_once __DIR__ . '/template-function/index.php';
 
 // 初期化.
 require_once __DIR__ . '/init/class-init.php';
 // テンプレート.
 require_once __DIR__ . '/template/index.php';
+
 // CSS.
 require_once __DIR__ . '/styles/index.php';
 // JS.

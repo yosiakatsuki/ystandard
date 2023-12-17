@@ -24,7 +24,17 @@ class Head {
 	public function __construct() {
 		add_action( 'wp_head', [ $this, 'add_charset' ], 1 );
 		add_action( 'wp_head', [ $this, 'add_head_meta' ], 1 );
+		add_action( 'wp_head', [ $this, 'add_custom_head' ], 11 );
 		add_action( 'after_setup_theme', [ $this, 'remove_meta' ] );
+	}
+
+	/**
+	 * <head>タグにユーザーカスタマイズ用テンプレートを読み込む
+	 *
+	 * @return void
+	 */
+	public function add_custom_head() {
+		Template::get_template_part( 'template-parts/head/head' );
 	}
 
 	/**

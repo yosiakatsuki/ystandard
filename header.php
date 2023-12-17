@@ -17,8 +17,10 @@ echo '<!DOCTYPE html>' . PHP_EOL;
 	/**
 	 * wp_head
 	 * Charsetやビューポート関連などのmetaはclass-head.phpで出力しています。
+	 * フックでのカスタマイズが難しい場合、カスタマイズ用テンプレート template-parts/head/head.php を使って子テーマでカスタマイズしてください。
 	 *
 	 * @see inc/head/class-head.php
+	 * @see template-parts/head/head.php
 	 */
 	wp_head();
 	?>
