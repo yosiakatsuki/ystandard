@@ -3,9 +3,84 @@
 	"version": 2,
 	"settings": {
 		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
 		"layout": {
 			"contentSize": "800px",
 			"wideSize": "1200px"
-		  }
+		},
+		"color": {
+			"palette": [
+				{
+					"color": "#C9323F",
+					"name": "赤",
+					"slug": "ys-red"
+				},
+				{
+					"color": "#FEC5C5",
+					"name": "淡い赤",
+					"slug": "ys-red-light"
+				},
+				{
+					"color": "#E87D3F",
+					"name": "オレンジ",
+					"slug": "ys-orange"
+				},
+				{
+					"color": "#FCC99A",
+					"name": "淡いオレンジ",
+					"slug": "ys-orange-light"
+				},
+				{
+					"color": "#F2B031",
+					"name": "黄",
+					"slug": "ys-yellow"
+				},
+				{
+					"color": "#FFF4C2",
+					"name": "淡い黄色",
+					"slug": "ys-yellow-light"
+				},
+				{
+					"color": "#2A8C44",
+					"name": "緑",
+					"slug": "ys-green"
+				},
+				{
+					"color": "#C7FDDF",
+					"name": "淡い緑",
+					"slug": "ys-green-light"
+				},
+				{
+					"color": "#06669E",
+					"name": "青",
+					"slug": "ys-blue"
+				},
+				{
+					"color": "#B7D7FD",
+					"name": "淡い青",
+					"slug": "ys-blue-light"
+				},
+				{
+					"color": "#6C2885",
+					"name": "紫",
+					"slug": "ys-purple"
+				},
+				{
+					"color": "#F8C7FD",
+					"name": "淡い紫",
+					"slug": "ys-purple-light"
+				},
+				{
+					"color": "#1E1E1E",
+					"name": "黒",
+					"slug": "ys-black"
+				},
+				{
+					"color": "#1E1E1E",
+					"name": "白",
+					"slug": "ys-white"
+				}
+			]
+		}
 	}
 }
