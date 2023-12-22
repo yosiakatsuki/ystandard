@@ -71,6 +71,21 @@
 					"slug": "ys-purple-light"
 				},
 				{
+					"color": "#989EA1",
+					"name": "グレー",
+					"slug": "ys-gray"
+				},
+				{
+					"color": "#ECEDF0",
+					"name": "淡いグレー",
+					"slug": "ys-gray-light"
+				},
+				{
+					"color": "#FAFBFC",
+					"name": "グレー(セクション)",
+					"slug": "ys-gray-section"
+				},
+				{
 					"color": "#1E1E1E",
 					"name": "黒",
 					"slug": "ys-black"
