@@ -13,15 +13,23 @@ defined( 'ABSPATH' ) || die();
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
 	/**
-	 * カスタマイザーコントロール : 画像選択ラジオボタン
+	 * カスタマイザーコントロール : ラベル
 	 */
 	class Section_Label_Control extends \WP_Customize_Control {
+
+
 		/**
-		 * Type
-		 *
-		 * @var string
+		 * コントロール外側
 		 */
-		public $type = 'section-label';
+		protected function render() {
+			$id    = 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id );
+			$class = 'customize-control customize-control-ys-section-label customize-control-' . $this->type;
+
+			printf( '<li id="%s" class="%s">', esc_attr( $id ), esc_attr( $class ) );
+			$this->render_content();
+			echo '</li>';
+		}
+
 
 		/**
 		 * カスタマイザー出力
@@ -34,7 +42,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 				return;
 			}
 			?>
-			<div class="customize-control__section_label">
+			<div class="customize-control__section-label">
 				<?php if ( ! empty( $this->label ) ) : ?>
 					<label for="<?php echo esc_attr( $input_id ); ?>" class="customize-control-title"><?php echo esc_html( $this->label ); ?></label>
 				<?php endif; ?>

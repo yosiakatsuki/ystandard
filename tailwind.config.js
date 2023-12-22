@@ -11,7 +11,7 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				'aktk-blue': '#07689f',
+				'aktk-blue': 'var(--ys--global--brand-color--main)',
 			},
 			fontFamily: {
 				orbitron: ['Orbitron', 'sans-serif'],

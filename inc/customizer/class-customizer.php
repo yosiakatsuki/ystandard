@@ -22,6 +22,7 @@ class Customizer {
 	 * パネルの優先度.
 	 */
 	const PANEL_PRIORITY = [
+		'ys_panel_logo'         => 1000,
 		'ys_info_bar'           => 1000,
 		'ys_design'             => 1010,
 		'ys_block_editor'       => 1020,
@@ -76,7 +77,7 @@ class Customizer {
 		add_action( 'customize_preview_init', [ $this, 'enqueue_preview_styles' ], 999 );
 
 		add_action( 'customize_register', [ $this, 'add_control_type' ] );
-		add_action( 'customize_register', [ $this, 'remove_default_control' ] );
+		add_action( 'customize_register', [ $this, 'change_default_control' ] );
 	}
 
 	/**
@@ -89,15 +90,27 @@ class Customizer {
 	}
 
 	/**
-	 * 標準設定の一部を削除
+	 * 標準設定の一部を変更
 	 *
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
 	 */
-	public function remove_default_control( $wp_customize ) {
+	public function change_default_control( $wp_customize ) {
+		$customizer = new Customizer_Controls( $wp_customize );
+		$customizer->add_section_label(
+			_x( 'ロゴ・サイトタイトル設定', 'customizer', 'ystandard' ),
+			[
+				'section'     => 'title_tagline',
+				'description' => _x( 'ロゴ・サイトタイトル設定は「[ys]ロゴ・タイトル」設定に移動しました。', 'customizer', 'ystandard' ),
+			]
+		);
 		// 設定の場所変更等のため一旦削除.
-		$wp_customize->remove_control( 'background_color' );
+		// セクション削除.
 		$wp_customize->remove_section( 'colors' );
-		$wp_customize->remove_control( 'display_header_text' );
+		$wp_customize->remove_section( 'background_image' );
+		// transportの設定変更.
+		$customizer->set_refresh( 'custom_logo' );
+		$customizer->set_refresh( 'blogname' );
+		$customizer->set_refresh( 'blogdescription' );
 	}
 
 	/**

@@ -169,6 +169,7 @@ class Customizer_Controls {
 					self::get_control_args( $args, $args['id'] )
 				)
 			);
+			$this->do_action_after_add_setting( $args['id'], $args );
 		}
 	}
 
@@ -188,6 +189,7 @@ class Customizer_Controls {
 				self::get_control_args( $args, $args['id'] )
 			)
 		);
+		$this->do_action_after_add_setting( $args['id'], $args );
 	}
 
 	/**
@@ -230,6 +232,7 @@ class Customizer_Controls {
 				)
 			);
 		}
+		$this->do_action_after_add_setting( $args['id'], $args );
 	}
 
 	/**
@@ -259,6 +262,7 @@ class Customizer_Controls {
 					self::get_control_args( $args, $args['id'] )
 				)
 			);
+			$this->do_action_after_add_setting( $args['id'], $args );
 		}
 	}
 
@@ -271,6 +275,7 @@ class Customizer_Controls {
 		if ( ! isset( $args['panel'] ) ) {
 			return;
 		}
+		// デフォルト設定の追加.
 		$args = wp_parse_args(
 			$args,
 			[
@@ -337,11 +342,30 @@ class Customizer_Controls {
 		// 設定追加.
 		$this->wp_customize->add_setting( $setting_name, $setting );
 		// コントロール追加.
+		$add_control = false;
 		if ( is_array( $control ) ) {
 			$this->wp_customize->add_control( $setting_name, $control );
+			$add_control = true;
 		} elseif ( false !== $control ) {
 			$this->wp_customize->add_control( $control );
+			$add_control = true;
 		}
+		// コントロール追加していたらアクションを実行.
+		if ( $add_control ) {
+			$this->do_action_after_add_setting( $setting_name, $args );
+		}
+	}
+
+	/**
+	 * 設定・コントロール追加後のアクション
+	 *
+	 * @param array $args Args.
+	 * @param object|null|boolean $control Control.
+	 *
+	 * @return void
+	 */
+	public function do_action_after_add_setting( $setting, $args ) {
+		do_action( "ys_customizer_add_setting__{$setting}", $this->wp_customize, $args );
 	}
 
 

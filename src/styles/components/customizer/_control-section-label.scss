@@ -1,0 +1,29 @@
+
+.customize-control-ys-section-label {
+	margin-top: 2em;
+	margin-bottom: 1em;
+}
+
+.customize-control-ys-section-label:first-child,
+.customize-section-description-container + .customize-control-ys-section-label {
+	margin-top: 0;
+}
+
+.customize-control__section-label {
+	.customize-control-title {
+		background-color: var(--ys--customizer--background-color--section-label);
+		color: var(--ys--customizer--text-color--section-label);
+		padding: 0.5em;
+		margin-bottom: 0;
+	}
+}
+#customize-controls {
+	.customize-control__section-label {
+		.customize-control-description {
+			margin-top: 0.5em;
+			color: var(--ys--customizer--text-color--section-description);
+			font-size: 0.9em;
+			line-height: 1.3;
+		}
+	}
+}
