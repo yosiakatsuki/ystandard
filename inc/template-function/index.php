@@ -13,3 +13,5 @@ defined( 'ABSPATH' ) || die();
 require_once __DIR__ . '/head.php';
 // テンプレート関連.
 require_once __DIR__ . '/template.php';
+// ヘッダー.
+require_once __DIR__ . '/header.php';

@@ -480,6 +480,17 @@ class Customizer_Controls {
 	}
 
 	/**
+	 * 設定の優先度を変更する
+	 *
+	 * @param string $setting_name Name.
+	 * @param int $priority Priority.
+	 */
+	public function set_priority( $setting_name, $priority ) {
+		// セクションを移動させたいときに使う.
+		$this->wp_customize->get_control( $setting_name )->priority = $priority;
+	}
+
+	/**
 	 * セクションの説明を設定する
 	 *
 	 * @param string $name Name.
@@ -515,7 +526,7 @@ class Customizer_Controls {
 			'setting_type'      => 'option',
 			'description'       => '',
 			'transport'         => 'refresh',
-			'priority'          => 1,
+			'priority'          => 10,
 			'default'           => '',
 			'input_attrs'       => [],
 			'sanitize_callback' => '',

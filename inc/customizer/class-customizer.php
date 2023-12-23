@@ -22,7 +22,7 @@ class Customizer {
 	 * パネルの優先度.
 	 */
 	const PANEL_PRIORITY = [
-		'ys_panel_logo'         => 1000,
+		'ys_panel_header'       => 1000,
 		'ys_info_bar'           => 1000,
 		'ys_design'             => 1010,
 		'ys_block_editor'       => 1020,

@@ -40,6 +40,19 @@ class Styles {
 			self::HANDLE_MAIN,
 			'/assets/css/ystandard.css'
 		);
+		// カスタムプロパティ.
+		$css = self::get_custom_property_css();
+		if ( $css ) {
+			wp_add_inline_style(
+				self::HANDLE_MAIN,
+				sprintf( ':root{%s}', $css )
+			);
+		}
+		// インラインCSS.
+		wp_add_inline_style(
+			self::HANDLE_MAIN,
+			apply_filters( 'ys_add_inline_style', '' )
+		);
 	}
 
 	/**
@@ -75,6 +88,24 @@ class Styles {
 			'path',
 			get_template_directory() . $path
 		);
+	}
+
+	/**
+	 * カスタムプロパティのCSSを取得
+	 *
+	 * @return string
+	 */
+	public static function get_custom_property_css() {
+
+		$properties = apply_filters( 'ys_get_custom_property', [] );
+		$properties = ! is_array( $properties ) ? [] : $properties;
+		// カスタムプロパティ作成.
+		$result = '';
+		foreach ( $properties as $key => $value ) {
+			$result .= sprintf( '--%s: %s;', $key, $value );
+		}
+
+		return $result;
 	}
 }
 

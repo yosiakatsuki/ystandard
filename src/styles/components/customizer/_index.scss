@@ -3,5 +3,14 @@
 :root {
 	--ys--customizer--background-color--section-label: var(--ys--global--brand-color--main);
 	--ys--customizer--text-color--section-label: #fff;
-	--ys--customizer--text-color--section-description: var(--ys--global--color--gray);
+	--ys--customizer--text-color--section-description: var(--ys--global--text-color--gray);
+}
+
+
+#customize-controls {
+	.description {
+		color: var(--ys--customizer--text-color--section-description);
+		font-size: 0.9em;
+		line-height: 1.3;
+	}
 }
