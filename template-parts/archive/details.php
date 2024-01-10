@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die();
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_item_class() ); ?>>
 	<div class="archive__detail">
+		<?php do_action( 'ys_archive_detail_prepend', '' ); ?>
 		<div class="archive__thumbnail is-card">
 			<a href="<?php the_permalink(); ?>" class="ratio <?php ys_the_archive_image_ratio(); ?>">
 				<div class="ratio__item">
@@ -43,5 +44,6 @@ defined( 'ABSPATH' ) || die();
 			ys_the_archive_read_more();
 			?>
 		</div>
+		<?php do_action( 'ys_archive_detail_append', '' ); ?>
 	</div>
 </article>
