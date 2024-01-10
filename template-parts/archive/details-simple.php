@@ -10,6 +10,7 @@
 defined( 'ABSPATH' ) || die();
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class( ys_get_archive_item_class() ); ?>>
+	<?php do_action( 'ys_archive_detail_prepend', 'simple' ); ?>
 	<div class="archive__meta">
 		<?php ys_the_archive_date( false ); ?>
 		<?php ys_the_archive_category( false ); ?>
@@ -20,4 +21,5 @@ defined( 'ABSPATH' ) || die();
 		'</a></h2>'
 	);
 	?>
+	<?php do_action( 'ys_archive_detail_append', 'simple' ); ?>
 </article>
