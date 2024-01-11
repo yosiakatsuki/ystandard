@@ -22,7 +22,7 @@ class Meta_Description {
 	 * Meta_Description constructor.
 	 */
 	public function __construct() {
-		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		// @todo メタディスクリプションの出力移行.
 		add_action( 'wp_head', [ $this, 'meta_description' ] );
 	}
 
@@ -92,68 +92,6 @@ class Meta_Description {
 		return Utility::get_plain_text( $dscr );
 	}
 
-	/**
-	 * カスタマイザー追加
-	 *
-	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
-	 */
-	public function customize_register( $wp_customize ) {
-		$customizer = new Customize_Control( $wp_customize );
-		/**
-		 * SEO : meta description
-		 */
-		$customizer->add_section(
-			[
-				'section'  => 'ys_meta_description',
-				'title'    => 'meta description設定',
-				'priority' => 1,
-				'panel'    => SEO::PANEL_NAME,
-			]
-		);
-		$customizer->add_section_label(
-			'meta descriptionの出力',
-			[
-				'description' => Admin::manual_link( 'manual/meta-description' ),
-			]
-		);
-		// 自動生成する.
-		$customizer->add_checkbox(
-			[
-				'id'        => 'ys_option_create_meta_description',
-				'default'   => 1,
-				'transport' => 'postMessage',
-				'label'     => 'meta descriptionを出力する',
-			]
-		);
-		$customizer->add_section_label( 'meta description自動生成' );
-		// 抜粋文字数.
-		$customizer->add_number(
-			[
-				'id'        => 'ys_option_meta_description_length',
-				'default'   => 80,
-				'transport' => 'postMessage',
-				'label'     => 'meta descriptionに使用する文字数',
-			]
-		);
-		/**
-		 * TOPページ
-		 */
-		$customizer->add_section_label(
-			'TOPページのmeta description',
-			[
-				'description' => Admin::manual_link( 'manual/top-meta-description' ),
-			]
-		);
-		$customizer->add_plain_textarea(
-			[
-				'id'          => 'ys_wp_site_description',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => 'TOPページのmeta description',
-				'description' => '※HTMLタグ・改行は削除されます',
-			]
-		);
-	}
 }
 
 new Meta_Description();

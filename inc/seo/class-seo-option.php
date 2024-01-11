@@ -42,7 +42,7 @@ class SEO_Option {
 		$customizer = new Customizer_Controls( $wp_customize );
 		$customizer->add_panel(
 			[
-				'[ys]' . _x( 'SEO', 'customizer', 'ystandard' ),
+				'title' => '[ys]' . _x( 'SEO', 'customizer', 'ystandard' ),
 				'panel' => self::PANEL_NAME,
 			]
 		);

@@ -60,16 +60,6 @@ class Header_Option {
 		$customizer->set_section( 'blogdescription', $section );
 		$customizer->set_priority( 'blogdescription', 10 );
 
-		$customizer->add_text(
-			[
-				'id'          => 'ys_title_separate',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => _x( 'titleタグの区切り文字', 'customizer', 'ystandard' ),
-				'description' => _x( '※区切り文字の前後に半角空白が自動で挿入されます', 'customizer', 'ystandard' ),
-			]
-		);
-
 		$customizer->add_checkbox(
 			[
 				'id'          => 'ys_wp_hidden_blogdescription',

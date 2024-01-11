@@ -9,3 +9,4 @@
 defined( 'ABSPATH' ) || die();
 
 require_once __DIR__ . '/class-seo-option.php';
+require_once __DIR__ . '/class-seo-title-description.php';
