@@ -49,17 +49,6 @@ class Global_Nav {
 	}
 
 	/**
-	 * グローバルナビゲーションを表示するか
-	 *
-	 * @return boolean
-	 */
-	public static function has_global_nav() {
-		$result = has_nav_menu( 'global' );
-
-		return Utility::to_bool( apply_filters( 'ys_has_global_nav', $result ) );
-	}
-
-	/**
 	 * グローバルナビゲーションワーカー
 	 *
 	 * @return \Walker_Nav_Menu

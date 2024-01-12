@@ -1,6 +1,6 @@
 <?php
 /**
- * スタイル
+ * theme.json関連
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -12,11 +12,11 @@ namespace ystandard\utils;
 defined( 'ABSPATH' ) || die();
 
 /**
- * Class Style.
+ * Class Theme_Json.
  *
  * @package ystandard
  */
-class Style {
+class Theme_Json {
 
 	/**
 	 * @return array

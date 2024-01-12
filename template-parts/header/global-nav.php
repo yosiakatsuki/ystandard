@@ -4,12 +4,12 @@
  *
  * @package ystandard
  * @author  yosiakatsuki
- * @license GPL-2.0+
+ * @license GPL-3.0+
  */
 
 defined( 'ABSPATH' ) || die();
 
-if ( ! ys_has_global_nav() ) {
+if ( ! has_nav_menu( 'global' ) ) {
 	return;
 }
 ?>

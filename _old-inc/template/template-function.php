@@ -25,14 +25,7 @@ function ys_global_nav_class( $class ) {
 	echo \ystandard\Global_Nav::get_global_nav_class( $class );
 }
 
-/**
- * グローバルナビゲーションを表示するか
- *
- * @return boolean
- */
-function ys_has_global_nav() {
-	return \ystandard\Global_Nav::has_global_nav();
-}
+
 
 /**
  * グローバルナビゲーションワーカー

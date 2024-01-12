@@ -22,18 +22,17 @@ class Customizer {
 	 * パネルの優先度.
 	 */
 	const PANEL_PRIORITY = [
-		'ys_panel_header'       => 1000,
+		'ys_panel_logo'         => 1000,
+		'ys_panel_header'       => 1010,
 		'ys_info_bar'           => 1000,
 		'ys_design'             => 1010,
 		'ys_block_editor'       => 1020,
 		'ys_sns'                => 1100,
 		'ys_seo'                => 1110,
 		'ys_feed'               => 1120,
-		'ys_blog_card'          => 1121,
 		'ys_wp_sitemap'         => 1210,
 		'ys_performance_tuning' => 1220,
 		'ys_advertisement'      => 1230,
-		'ys_amp'                => 1300,
 		'ys_extension'          => 10000,
 	];
 
@@ -100,7 +99,7 @@ class Customizer {
 			_x( 'ロゴ・サイトタイトル設定', 'customizer', 'ystandard' ),
 			[
 				'section'     => 'title_tagline',
-				'description' => _x( 'ロゴ・サイトタイトル設定は「[ys]ロゴ・タイトル」設定に移動しました。', 'customizer', 'ystandard' ),
+				'description' => _x( 'yStandardの機能により、ロゴ・サイトタイトル設定は「[ys]ロゴ・タイトル」設定に移動しました。', 'customizer', 'ystandard' ),
 			]
 		);
 		// 設定の場所変更等のため一旦削除.

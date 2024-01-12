@@ -34,7 +34,7 @@ require_once __DIR__ . '/screen-reader/class-screen-reader.php';
 // メニュー.
 require_once __DIR__ . '/nav-menu/class-nav-menu.php';
 // ロゴ.
-require_once __DIR__ . '/logo/class-logo.php';
+require_once __DIR__ . '/logo/index.php';
 // ヘッダー.
 require_once __DIR__ . '/header/index.php';
 // パーツ.

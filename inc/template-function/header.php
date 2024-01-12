@@ -17,10 +17,11 @@ defined( 'ABSPATH' ) || die();
 function ys_get_header_logo() {
 	return \ystandard\Header::get_header_logo();
 }
+
 /**
  * ヘッダーロゴ出力
  *
- * @return string;
+ * @return void;
  */
 function ys_the_header_logo() {
 	echo ys_get_header_logo();
