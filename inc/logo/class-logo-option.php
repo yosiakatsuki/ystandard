@@ -35,6 +35,15 @@ class Logo_Option {
 	 */
 	public function customize_register_logo( $wp_customize ) {
 		$customizer = new Customizer_Controls( $wp_customize );
+		// ロゴ・サイトタイトル設定が移動したことの案内.
+		$customizer->add_section_label(
+			_x( 'ロゴ・サイトタイトル設定', 'customizer', 'ystandard' ),
+			[
+				'section'     => 'title_tagline',
+				'description' => _x( 'yStandardの機能により、ロゴ・サイトタイトル設定は「[ys]ロゴ・タイトル」設定に移動しました。', 'customizer', 'ystandard' ),
+			]
+		);
+
 		// セクション名.
 		$section = self::SECTION_NAME;
 		// セクション追加.

@@ -24,13 +24,13 @@ class SEO_Option {
 	/**
 	 * パネル名
 	 */
-	const PANEL_NAME = 'ys_seo';
+	const PANEL_NAME = 'ys_panel_seo';
 
 	/**
 	 * constructor.
 	 */
 	public function __construct() {
-		add_action( 'customize_register', [ $this, 'add_seo_option_panel' ] );
+		add_action( 'customize_register', [ $this, 'add_option_panel' ] );
 	}
 
 	/**
@@ -38,7 +38,7 @@ class SEO_Option {
 	 *
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
 	 */
-	public function add_seo_option_panel( $wp_customize ) {
+	public function add_option_panel( $wp_customize ) {
 		$customizer = new Customizer_Controls( $wp_customize );
 		$customizer->add_panel(
 			[

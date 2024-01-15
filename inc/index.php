@@ -1,6 +1,7 @@
 <?php
 /**
- * inc
+ * /inc/ 空ファイル。
+ * /inc/load.php にて各種ファイルを読み込んでいます。
  *
  * @package ystandard
  * @author  yosiakatsuki

@@ -23,12 +23,13 @@ class Customizer {
 	 */
 	const PANEL_PRIORITY = [
 		'ys_panel_logo'         => 1000,
-		'ys_panel_header'       => 1010,
+		'ys_panel_site-icon'    => 1001,
+		'ys_panel_header'       => 1002,
+		'ys_panel_seo'          => 1110,
 		'ys_info_bar'           => 1000,
 		'ys_design'             => 1010,
 		'ys_block_editor'       => 1020,
 		'ys_sns'                => 1100,
-		'ys_seo'                => 1110,
 		'ys_feed'               => 1120,
 		'ys_wp_sitemap'         => 1210,
 		'ys_performance_tuning' => 1220,
@@ -95,13 +96,7 @@ class Customizer {
 	 */
 	public function change_default_control( $wp_customize ) {
 		$customizer = new Customizer_Controls( $wp_customize );
-		$customizer->add_section_label(
-			_x( 'ロゴ・サイトタイトル設定', 'customizer', 'ystandard' ),
-			[
-				'section'     => 'title_tagline',
-				'description' => _x( 'yStandardの機能により、ロゴ・サイトタイトル設定は「[ys]ロゴ・タイトル」設定に移動しました。', 'customizer', 'ystandard' ),
-			]
-		);
+
 		// 設定の場所変更等のため一旦削除.
 		// セクション削除.
 		$wp_customize->remove_section( 'colors' );

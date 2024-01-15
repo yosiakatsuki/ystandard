@@ -1,6 +1,8 @@
 <?php
 /**
  * 各種ファイルの読み込み
+ * /inc 以下のファイルは子テーマでは上書きできません。
+ * フィルターフック・アクションフックを利用してカスタマイズを実施してください。
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -53,6 +55,8 @@ require_once __DIR__ . '/parts/class-parts.php';
 
 // SEO.
 require_once __DIR__ . '/seo/index.php';
+// サイトアイコン.
+require_once __DIR__ . '/site-icon/class-site-icon.php';
 
 // RSS.
 require_once __DIR__ . '/rss/class-rss.php';
