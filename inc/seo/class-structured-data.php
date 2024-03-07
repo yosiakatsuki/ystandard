@@ -58,6 +58,8 @@ class Structured_Data {
 			}
 		}
 
+		$data = apply_filters( 'ys_get_json_ld_data', $data, 'organization' );
+
 		Utility::json_ld( $data );
 	}
 
@@ -80,6 +82,8 @@ class Structured_Data {
 				'query-input' => 'required name=search_term_string',
 			];
 		}
+
+		$data = apply_filters( 'ys_get_json_ld_data', $data, 'website' );
 
 		Utility::json_ld( $data );
 	}
@@ -158,6 +162,8 @@ class Structured_Data {
 				$this->get_publisher()
 			);
 		}
+
+		$article = apply_filters( 'ys_get_json_ld_data', $article, 'article' );
 
 		Utility::json_ld( $article );
 	}

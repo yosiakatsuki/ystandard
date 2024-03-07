@@ -177,6 +177,8 @@ class Breadcrumbs {
 			'itemListElement' => $item_list_element,
 		];
 
+		$breadcrumbs = apply_filters( 'ys_get_json_ld_data', $breadcrumbs, 'breadcrumblist' );
+
 		Utility::json_ld( $breadcrumbs );
 	}
 
