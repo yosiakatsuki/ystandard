@@ -8,8 +8,8 @@
 
   thead {
 	th {
-	  background-color: global.$color__bg-gray-light;
-	  font-weight: global.$font__weight_normal;
+	  background-color: var(--ystd--site-background--light-gray);
+	  font-weight: var(--ystd--font-weight--normal);
 	}
   }
 }

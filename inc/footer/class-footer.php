@@ -144,7 +144,7 @@ class Footer {
 			outline: none;
 			background: none;
 			cursor: pointer;
-			z-index: var(--z-index-back-to-top);
+			z-index: var(--ystd--z-index--back-to-top);
 		}
 		#back-to-top:hover{
 			box-shadow: none;
@@ -197,14 +197,14 @@ class Footer {
 
 		$css .= '
 		.footer-mobile-nav {
-			z-index: var(--z-index-mobile-footer);
+			z-index: var(--ystd--z-index--mobile-footer);
 			position: fixed;
 			bottom: 0;
 			left: 0;
 			width: 100%;
-			background-color: var(--mobile-footer-bg);
+			background-color: var(--ystd--mobile-footer--background);
 			box-shadow: 0 -1px 2px #00000012;
-			color: var(--mobile-footer-text);
+			color: var(--ytsd--mobile-footer--text-color);
 			text-align: center;
 			transition: transform .3s
 		}

@@ -9,10 +9,10 @@ $editor: false !default;
   select,
   button {
 	padding: 0.5rem;
-	background-color: var(--form-bg-white);
-	border: 1px solid var(--form-border-gray);
+	background-color: var(--ystd--form--background);
+	border: 1px solid var(--ystd--form--border-color);
 	border-radius: 2px;
-	color: var(--form-text);
+	color: var(--ystd--form--text-color);
 	font-size: 1em;
   }
 

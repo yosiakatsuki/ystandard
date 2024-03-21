@@ -3,7 +3,7 @@
 #customize-controls {
   .description {
 	margin-top: 0.5em;
-	color: global.$color__text-light;
+	color: var(--ystd--text-color--gray);
   }
 }
 

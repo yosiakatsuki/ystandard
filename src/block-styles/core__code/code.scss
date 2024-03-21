@@ -2,9 +2,9 @@
   box-sizing: border-box;
   padding: 1rem;
   overflow: auto;
-  background-color: var(--site-bg-light-gray);
+  background-color: var(--ystd--site-background--light-gray);
   line-height: 1.4;
-  font-family: var(--font-family-code);
+  font-family: var(--ystd--font-family--code);
 }
 .editor-styles-wrapper {
   .wp-block-code {

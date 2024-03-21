@@ -3,22 +3,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: .5em;
-  color: var(--tagcloud-text);
+  color: var(--ystd--tagcloud--text-color);
   font-size: 0.8em;
 
   a {
 	display: block;
 	margin: 0;
 	padding: 0.25em 1em;
-	background-color: var(--tagcloud-bg);
+	background-color: var(--ystd--tagcloud--background);
 	color: currentColor;
 	text-decoration: none;
-	letter-spacing: global.$font__letter-spacing;
+	letter-spacing: var(--ystd--letter-spacing);
 
 	&::before {
-	  content: var(--tagcloud-icon);
+	  content: var(--ystd--tagcloud--icon);
 	  margin-right: 0.25em;
-	  font-family: global.$font__code;
+	  font-family: var(--ystd--font-family--code);
 	}
 
 	&:hover {

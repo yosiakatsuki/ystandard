@@ -22,7 +22,7 @@ $editor: false !default;
 
 	margin: 0;
 	padding-right: 1.5em;
-	font-weight: global.$font__weight_bold;
+	font-weight: var(--ystd--font-weight--bold);
 
 	&:after {
 	  content: "/";
@@ -39,7 +39,7 @@ $editor: false !default;
 	flex-wrap: wrap;
 	margin: 0;
 	padding: 0;
-	color: var(--font-gray);
+	color: var(--ystd--text-color--gray);
 	list-style: none;
   }
 

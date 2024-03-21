@@ -18,13 +18,13 @@ $editor: false !default;
 
   @include global.media-breakpoint(sm) {
 	.alignleft {
-	  margin-right: var(--ystd-container-gutter);
-	  margin-bottom: var(--ystd-container-gutter);
+	  margin-right: var(--ystd--container--gutter);
+	  margin-bottom: var(--ystd--container--gutter);
 	  float: left;
 	}
 	.alignright {
-	  margin-bottom: var(--ystd-container-gutter);
-	  margin-left: var(--ystd-container-gutter);
+	  margin-bottom: var(--ystd--container--gutter);
+	  margin-left: var(--ystd--container--gutter);
 	  float: right;
 	}
   }
@@ -33,10 +33,10 @@ $editor: false !default;
   body {
 	.alignwide,
 	.alignfull {
-	  margin-right: calc(-1 * var(--ystd-container-gutter));
-	  margin-left: calc(-1 * var(--ystd-container-gutter));
-	  padding-right: var(--ystd-container-gutter);
-	  padding-left: var(--ystd-container-gutter);
+	  margin-right: calc(-1 * var(--ystd--container--gutter));
+	  margin-left: calc(-1 * var(--ystd--container--gutter));
+	  padding-right: var(--ystd--container--gutter);
+	  padding-left: var(--ystd--container--gutter);
 	  width: auto;
 	}
 
@@ -62,10 +62,10 @@ $editor: false !default;
 	  @include global.media-breakpoint(sm) {
 		.alignwide,
 		.alignfull {
-		  margin-right: calc(-1 * var(--ystd-container-gutter));
-		  margin-left: calc(-1 * var(--ystd-container-gutter));
-		  padding-right: var(--ystd-container-gutter);
-		  padding-left: var(--ystd-container-gutter);
+		  margin-right: calc(-1 * var(--ystd--container--gutter));
+		  margin-left: calc(-1 * var(--ystd--container--gutter));
+		  padding-right: var(--ystd--container--gutter);
+		  padding-left: var(--ystd--container--gutter);
 		}
 	  }
 	  @include global.media-breakpoint(lg) {
@@ -98,10 +98,10 @@ $editor: false !default;
 		@include global.media-breakpoint(lg) {
 		  .alignwide,
 		  .alignfull {
-			margin-right: calc(-1 * var(--ystd-container-gutter));;
-			margin-left: calc(-1 * var(--ystd-container-gutter));;
-			padding-right: var(--ystd-container-gutter);
-			padding-left: var(--ystd-container-gutter);
+			margin-right: calc(-1 * var(--ystd--container--gutter));;
+			margin-left: calc(-1 * var(--ystd--container--gutter));;
+			padding-right: var(--ystd--container--gutter);
+			padding-left: var(--ystd--container--gutter);
 		  }
 		}
 	  }
@@ -110,10 +110,10 @@ $editor: false !default;
 		@include global.media-breakpoint(sm) {
 		  .alignwide,
 		  .alignfull {
-			margin-right: calc(-1.5 * var(--ystd-sidebar-padding));
-			margin-left: calc(-1.5 * var(--ystd-sidebar-padding));
-			padding-right: calc(1.5 * var(--ystd-sidebar-padding));
-			padding-left: calc(1.5 * var(--ystd-sidebar-padding));
+			margin-right: calc(-1.5 * var(--ystd--sidebar--padding));
+			margin-left: calc(-1.5 * var(--ystd--sidebar--padding));
+			padding-right: calc(1.5 * var(--ystd--sidebar--padding));
+			padding-left: calc(1.5 * var(--ystd--sidebar--padding));
 		  }
 		}
 	  }

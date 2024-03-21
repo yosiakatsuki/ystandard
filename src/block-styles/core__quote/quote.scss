@@ -6,8 +6,8 @@
   border: 0;
   position: relative;
   padding: 1.5em 1em 1.5em 2.5em;
-  background-color: rgba(global.$color__bg-gray-light, 0.5);
-  border-left: 1px solid var(--site-border-gray);
+  background-color: rgba(var(--ystd--site-background--light-gray-rgb), 0.5);
+  border-left: 1px solid var(--ystd--site--border-color--gray);
   font-size: 0.95em;
 
   &:before {

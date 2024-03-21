@@ -1,6 +1,6 @@
 li {
   position: relative;
-  border-bottom: 1px solid var(--site-border-gray-light);
+  border-bottom: 1px solid var(--ystd--site--border-color--light-gray);
 
   &:last-child {
 	border-bottom: 0;
@@ -45,7 +45,7 @@ a {
 .children,
 .sub-menu {
   list-style: none;
-  border-top: 1px solid var(--site-border-gray-light);
+  border-top: 1px solid var(--ystd--site--border-color--light-gray);
   padding-left: 0;
 
   a {

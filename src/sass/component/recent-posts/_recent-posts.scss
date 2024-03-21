@@ -6,7 +6,7 @@ $editor: false !default;
 
   .post-related__title {
 	margin: 0 0 1em;
-	font-weight: global.$font__weight_bold;
+	font-weight: var(--ystd--font-weight--bold);
   }
 }
 

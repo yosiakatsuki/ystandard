@@ -11,7 +11,7 @@
 
 .ys-option__section {
   padding: 2em 0;
-  border-bottom: 1px solid global.$color__border-gray;
+  border-bottom: 1px solid var(--ystd--form--border-color);
 
   * {
 	box-sizing: border-box;
@@ -49,7 +49,7 @@
 	h3 {
 	  text-align: center;
 	  font-size: 1.5em;
-	  color: global.$color__ystanadrd;
+	  color: var(--ystd-ystandard-color);
 
 	  @include global.media-breakpoint(sm) {
 		text-align: left;
@@ -82,7 +82,7 @@
 
   .wp-block-button__link {
 	display: block;
-	background-color: global.$color__ystanadrd;
+	background-color: var(--ystd-ystandard-color);
 	color: #fff;
 	font-size: .9rem;
 	text-align: center;
@@ -104,7 +104,7 @@
 
   thead,
   th {
-	font-weight: global.$font__weight_bold;
+	font-weight: var(--ystd--font-weight--bold);
 	text-align: left;
   }
 

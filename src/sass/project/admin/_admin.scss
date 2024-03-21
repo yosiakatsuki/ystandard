@@ -3,7 +3,7 @@
 .meta-box__headline {
   margin: 2em 0 1em;
   padding-bottom: 0.25em;
-  border-bottom: 1px solid global.$color__border-gray;
+  border-bottom: 1px solid var(--ystd--form--border-color);
   font-size: 1.05em;
 }
 
@@ -28,11 +28,11 @@
   .meta-box__label {
 	display: block;
 	margin-top: 0.5rem;
-	font-weight: global.$font__weight_bold;
+	font-weight: var(--ystd--font-weight--bold);
   }
 
   .meta-box__dscr {
-	color: global.$color__text-light;
+	color: var(--ystd--text-color--gray);
 	font-size: 0.8em;
   }
 }
@@ -139,7 +139,7 @@
 .ys-dashboard-section {
   padding: 1em 11px;
   margin: 0 -11px;
-  border-top: 1px solid global.$color__border-gray-light;
+  border-top: 1px solid var(--ystd--site--border-color--light-gray);
 
   &:first-child {
 	border: 0;
@@ -174,7 +174,7 @@
   li {
 	display: flex;
 	padding: .5em 1em;
-	border-bottom: 1px solid global.$color__border-gray-light;
+	border-bottom: 1px solid var(--ystd--site--border-color--light-gray);
 	line-height: 1.5;
 
 	&:last-child {
@@ -269,7 +269,7 @@
   height: 2em;
   padding: 0;
   margin-left: .5em;
-  border: 1px solid global.$color__border-gray-light;
+  border: 1px solid var(--ystd--site--border-color--light-gray);
   background-color: transparent;
   border-radius: 50%;
 
@@ -285,8 +285,8 @@
   width: 100%;
 
   textarea {
-	border: 1px solid global.$color__border-gray;
-	background-color: global.$color__bg-gray-light;
+	border: 1px solid var(--ystd--form--border-color);
+	background-color: var(--ystd--site-background--light-gray);
 	appearance: none;
 	outline: none;
   }

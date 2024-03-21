@@ -1,22 +1,5 @@
 //フォント
 
-$font__size: 16px !default;
-$font__line-height: 1.7 !default;
-$font__line-height_headline: 1.4 !default;
-$font__letter-spacing: 0.025em;
-$font__spacing: 0.025em !default;
-$font__spacing_headline: 0.05em !default;
-$font__weight_normal: 400 !default;
-$font__weight_bold: 700 !default;
-
-// 4.x系からのデフォルトフォント
-$font--default: "Helvetica neue", "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif !default;
-// 游系
-$font--yu: Avenir, "Segoe UI", "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", sans-serif !default;
-//font-family
-$font__body: sans-serif !default;
-$font__code: SFMono-Regular, Menlo, Monaco, Consolas, monospace !default;
-
 //block
 $font__editor_font_size: (
 		"x-small" : 0.75em,

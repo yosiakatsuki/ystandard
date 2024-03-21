@@ -10,13 +10,13 @@ $editor: false !default;
   .ys-blog-card__container {
 	display: flex;
 	position: relative;
-	border: 1px solid global.$color__border-gray-light;
+	border: 1px solid var(--ystd--site--border-color--light-gray);
 
 	.ys-blog-card__title {
 	  margin: 0;
 	  font-size: 0.85em;
-	  font-weight: global.$font__weight_bold;
-	  line-height: global.$font__line-height_headline;
+	  font-weight: var(--ystd--font-weight--bold);
+	  line-height: var(--ystd--line-height--headline);
 
 	  @include global.media-breakpoint(sm) {
 		font-size: 1em;
@@ -25,7 +25,7 @@ $editor: false !default;
   }
 
   .ys-blog-card__link {
-	color: global.$color__text-main;
+	color: var(--ystd--text-color);
 	text-decoration: none;
 
 	&:after {
@@ -69,14 +69,14 @@ $editor: false !default;
 
   .ys-blog-card__dscr {
 	margin-top: 1em;
-	color: global.$color__text-light;
+	color: var(--ystd--text-color--gray);
 	font-size: 0.6em;
 	line-height: 1.4;
   }
 
   .ys-blog-card__domain {
 	margin-top: 1em;
-	color: global.$color__text-light;
+	color: var(--ystd--text-color--gray);
 	font-size: 0.5em;
   }
 

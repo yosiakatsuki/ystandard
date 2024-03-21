@@ -6,26 +6,26 @@ $editor: false !default;
 
   .ys-posts {
 	&.is-list {
-	  --ystd-posts-thumbnail-width: min(25%, 100px);
-	  --ystd-posts-content-gap: clamp(var(--ystd-posts-inner-gap), 2.3%, var(--ystd-posts-item-gap));
+	  --ystd--posts--thumbnail--width: min(25%, 100px);
+	  --ystd--posts--content--gap: clamp(var(--ystd--posts--gap--inner), 2.3%, var(--ystd--posts-item--gap));
 	  @include global.media-breakpoint(sm) {
-		--ystd-posts-thumbnail-width: min(30%, 360px);
+		--ystd--posts--thumbnail--width: min(30%, 360px);
 	  }
 
 	  .ys-posts__content {
 		display: flex;
-		gap: var(--ystd-posts-content-gap);
+		gap: var(--ystd--posts--content--gap);
 	  }
 
 	  .ys-posts__item {
-		padding-bottom: var(--ystd-posts-item-gap);
-		border-bottom: var(--ystd-posts-item-border);
+		padding-bottom: var(--ystd--posts-item--gap);
+		border-bottom: var(--ystd--posts-item--border-color);
 	  }
 
 	  .ys-posts__text {
 		display: flex;
 		flex-direction: column;
-		gap: var(--ystd-posts-inner-gap);
+		gap: var(--ystd--posts--gap--inner);
 		max-width: 100%;
 
 		> * {
@@ -35,7 +35,7 @@ $editor: false !default;
 	  }
 
 	  .ys-posts__thumbnail + .ys-posts__text {
-		max-width: calc(100% - var(--ystd-posts-thumbnail-width) - var(--ystd-posts-content-gap));
+		max-width: calc(100% - var(--ystd--posts--thumbnail--width) - var(--ystd--posts--content--gap));
 	  }
 
 	  .ys-posts__title {
@@ -50,7 +50,7 @@ $editor: false !default;
 		  display: inline;
 
 		  &:last-child {
-			margin-left: var(--ystd-posts-inner-gap);
+			margin-left: var(--ystd--posts--gap--inner);
 		  }
 		}
 

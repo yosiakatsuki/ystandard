@@ -1,28 +1,28 @@
 @use "../../global";
 
 .site-content {
-  margin-top: var(--ystd-container-margin-vertical);
-  margin-bottom: var(--ystd-container-margin-vertical);
+  margin-top: var(--ystd--container--margin-vertical);
+  margin-bottom: var(--ystd--container--margin-vertical);
 
   @include global.media-breakpoint(lg) {
-	--ystd-container-margin-vertical: calc(2 * var(--ystd-layout-gap));
+	--ystd--container--margin-vertical: calc(2 * var(--ystd--layout-gap));
   }
 }
 
 .content__main,
 .archive__main {
   width: 100%;
-  margin-right: var(--ystd-content-horizon-margin);
-  margin-bottom: var(--ystd-content-margin-bottom);
-  margin-left: var(--ystd-content-horizon-margin);
-  padding: var(--ystd-content-padding);
+  margin-right: var(--ystd--content--margin-horizon);
+  margin-bottom: var(--ystd--content--margin-bottom);
+  margin-left: var(--ystd--content--margin-horizon);
+  padding: var(--ystd--content--padding);
 }
 
 .content__main {
-  background-color: var(--content-bg);
+  background-color: var(--ystd--content--background);
 
   @include global.media-breakpoint(lg) {
-	max-width: var(--ystd-content-default-width);
+	max-width: var(--ystd--content--width--default);
   }
 }
 .archive__main {
@@ -43,7 +43,7 @@
   .content__main,
   .archive__main {
 	@include global.media-breakpoint(lg) {
-	  width: min(var(--ystd-content-min-width), var(--ystd-content-default-width));
+	  width: min(var(--ystd--content--min-width), var(--ystd--content--width--default));
 	  margin-left: 0;
 	}
   }
@@ -72,29 +72,29 @@ body:not(.has-sidebar) {
 .has-content-bg-color {
   .content__main,
   .archive__main {
-	--ystd-content-padding: calc(var(--ystd-layout-gap));
+	--ystd--content--padding: calc(var(--ystd--layout-gap));
 
 	@include global.media-breakpoint-down(sm) {
 	  width: auto;
 	  max-width: unset;
-	  --ystd-content-horizon-margin: calc(-1 * var(--ystd-container-gutter));
-	  --ystd-content-padding: var(--ystd-layout-gap) var(--ystd-container-gutter);
+	  --ystd--content--margin-horizon: calc(-1 * var(--ystd--container--gutter));
+	  --ystd--content--padding: var(--ystd--layout-gap) var(--ystd--container--gutter);
 	}
   }
 }
 
 .has-background {
   .site-content {
-	--ystd-container-margin-vertical: 0;
+	--ystd--container--margin-vertical: 0;
 
 	@include global.media-breakpoint(sm) {
-	  --ystd-container-margin-vertical: calc(2 * var(--ystd-layout-gap));
+	  --ystd--container--margin-vertical: calc(2 * var(--ystd--layout-gap));
 	}
   }
 
   &.home {
 	.site-content {
-	  margin-top: var(--ystd-layout-gap);
+	  margin-top: var(--ystd--layout-gap);
 	}
   }
 }

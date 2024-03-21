@@ -7,16 +7,16 @@ h4,
 h5,
 h6,
 strong {
-  font-weight: global.$font__weight_bold;
+  font-weight: var(--ystd--font-weight--bold);
 }
 
 code,
 kbd {
   &:not(.rich-text) {
 	padding: 0 0.2em;
-	color: var(--font-gray);
+	color: var(--ystd--text-color--gray);
 	font-size: .9em;
-	font-family: var(--font-family-code);
+	font-family: var(--ystd--font-family--code);
   }
 }
 

@@ -3,7 +3,7 @@
 
 .archive__container {
   &.is-card {
-	gap: var(--ystd-archive-gap);
+	gap: var(--ystd--archive--gap);
 
 	@include global.media-breakpoint(sm) {
 	  flex-direction: row;
@@ -15,13 +15,13 @@
 .archive__item {
   &.is-card {
 	@include global.media-breakpoint(sm) {
-	  --ystd-archive-item-width: calc(50% - var(--ystd-archive-gap) / 2);
+	  --ystd--archive--item--width: calc(50% - var(--ystd--archive--gap) / 2);
 	  margin-bottom: 0;
 	  border: 0;
 	}
 
 	@include global.media-breakpoint(lg) {
-	  --ystd-archive-item-width: calc(33.33% - var(--ystd-archive-gap) * 2 / 3);
+	  --ystd--archive--item--width: calc(33.33% - var(--ystd--archive--gap) * 2 / 3);
 	}
 
 	.archive__meta {
@@ -43,7 +43,7 @@
 	}
 
 	.archive__text {
-	  margin-bottom: var(--ystd-archive-gap);
+	  margin-bottom: var(--ystd--archive--gap);
 	  @include global.media-breakpoint(sm) {
 		margin-bottom: 0;
 	  }
@@ -55,7 +55,7 @@
   .archive__item {
 	&.is-card {
 	  @include global.media-breakpoint(lg) {
-		--ystd-archive-item-width: calc(50% - var(--ystd-archive-gap) / 2);
+		--ystd--archive--item--width: calc(50% - var(--ystd--archive--gap) / 2);
 	  }
 	}
   }
@@ -65,7 +65,7 @@
   .archive__item {
 	&.is-card {
 	  border: 0;
-	  padding-bottom: var(--ystd-archive-padding);
+	  padding-bottom: var(--ystd--archive--padding);
 
 	  .archive__text {
 		padding-top: 0;
@@ -73,9 +73,9 @@
 	  }
 
 	  .archive__thumbnail {
-		margin-right: calc(-1 * var(--ystd-archive-padding));
-		margin-left: calc(-1 * var(--ystd-archive-padding));
-		width: calc(var(--ystd-archive-thumbnail-width) + 2 * var(--ystd-archive-padding));
+		margin-right: calc(-1 * var(--ystd--archive--padding));
+		margin-left: calc(-1 * var(--ystd--archive--padding));
+		width: calc(var(--ystd--archive--thumbnail--width) + 2 * var(--ystd--archive--padding));
 	  }
 	}
   }

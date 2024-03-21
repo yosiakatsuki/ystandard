@@ -8,11 +8,11 @@ $editor: false !default;
 	&.is-card {
 
 	  .ys-posts__thumbnail {
-		margin-bottom: var(--ystd-posts-inner-gap);
+		margin-bottom: var(--ystd--posts--gap--inner);
 	  }
 
 	  .ys-posts__text {
-		@include global.child_margin(var(--ystd-posts-inner-gap));
+		@include global.child_margin(var(--ystd--posts--gap--inner));
 		word-break: break-word;
 	  }
 

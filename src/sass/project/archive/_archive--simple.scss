@@ -21,7 +21,7 @@
 	  align-items: center;
 	  gap: 1em;
 	  font-size: 0.9em;
-	  color: var(--content-meta);
+	  color: var(--ystd--content--meta--color);
 	}
 
 	.archive__date {
@@ -32,7 +32,7 @@
 	  display: block;
 	  font-size: 0.7em;
 	  padding: 0.1em 1em;
-	  background-color: var(--ystd-archive-category-bg-color);
+	  background-color: var(--ystd--archive--category--background);
 	  color: #fff;
 	}
 

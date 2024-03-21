@@ -3,11 +3,11 @@
 
 
 .archive__main {
-  margin-bottom: var(--ystd-layout-gap);
+  margin-bottom: var(--ystd--layout-gap);
 }
 
 .archive__header {
-  margin-bottom: var(--ystd-archive-padding);
+  margin-bottom: var(--ystd--archive--padding);
 }
 
 .archive__page-title {
@@ -15,10 +15,10 @@
 }
 
 .archive__dscr {
-  @include global.child_margin(var(--ystd-archive-padding));
+  @include global.child_margin(var(--ystd--archive--padding));
 
-  margin-top: var(--ystd-archive-padding);
-  margin-bottom: calc(2 * var(--ystd-archive-padding));
+  margin-top: var(--ystd--archive--padding);
+  margin-bottom: calc(2 * var(--ystd--archive--padding));
 }
 
 .archive__container {
@@ -27,10 +27,10 @@
 }
 
 .archive__item {
-  flex: 0 0 var(--ystd-archive-item-width);
-  width: var(--ystd-archive-item-width);
-  background-color: var(--content-bg);
-  border-bottom: var(--ystd-archive-item-border);
+  flex: 0 0 var(--ystd--archive--item--width);
+  width: var(--ystd--archive--item--width);
+  background-color: var(--ystd--content--background);
+  border-bottom: var(--ystd--archive--item--border-color);
 
   &:hover {
 	.archive__image {
@@ -44,7 +44,7 @@
   }
 
   .archive__title {
-	color: var(--font-color);
+	color: var(--ystd--text-color);
 	font-size: 1em;
 
 	a {
@@ -69,7 +69,7 @@
 
 .archive__thumbnail {
   flex-shrink: 0;
-  width: var(--ystd-archive-thumbnail-width);
+  width: var(--ystd--archive--thumbnail--width);
 
   a {
 	color: currentColor;
@@ -87,7 +87,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: var(--site-bg-light-gray);
+  background-color: var(--ystd--site-background--light-gray);
 }
 
 .archive__text {
@@ -95,7 +95,7 @@
 }
 
 .archive__meta {
-  color: var(--content-meta);
+  color: var(--ystd--content--meta--color);
   font-size: 0.7em;
   overflow: hidden;
 
@@ -110,7 +110,7 @@
 
 
 .archive__excerpt {
-  color: var(--font-gray);
+  color: var(--ystd--text-color--gray);
   font-size: 0.7em;
   line-height: 1.3;
 }
@@ -122,13 +122,13 @@
   text-align: right;
 
   a {
-	color: var(--font-gray);
+	color: var(--ystd--text-color--gray);
   }
 }
 
 .has-background {
   .archive__container {
-	gap: var(--ystd-archive-gap);
+	gap: var(--ystd--archive--gap);
   }
 
   .archive__page-title {
@@ -138,7 +138,7 @@
 	}
   }
   .archive__item {
-	padding-right: var(--ystd-archive-padding);
-	padding-left: var(--ystd-archive-padding);
+	padding-right: var(--ystd--archive--padding);
+	padding-left: var(--ystd--archive--padding);
   }
 }

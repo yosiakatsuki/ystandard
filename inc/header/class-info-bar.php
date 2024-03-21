@@ -135,8 +135,8 @@ class Info_Bar {
 		 * 色
 		 */
 		$styles[] = '.info-bar {
-			background-color:var(--info-bar-bg);
-			color:var(--info-bar-text);
+			background-color:var(--ystd--info-bar--background);
+			color:var(--ystd--info-bar--text-color);
 		}';
 		/**
 		 * 太字

@@ -82,11 +82,11 @@
   @include utility-sns.sns-color();
   @include utility-table.table();
 
-  background-color: global.$color__bg-body;
-  color: global.$color__text-main;
-  font-family: global.$font--default;
-  line-height: global.$font__line-height;
-  letter-spacing: global.$font__spacing;
+  background-color: var(--ystd--site-background);
+  color: var(--ystd--text-color);
+  font-family: var(--ystd--font-family);
+  line-height: var(--ystd--line-height);
+  letter-spacing: var(--ystd--letter-spacing);
   word-wrap: break-word;
 
   -moz-osx-font-smoothing: grayscale;
