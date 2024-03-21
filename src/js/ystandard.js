@@ -248,7 +248,10 @@ const ysSetFixedHeaderPadding = () => {
 			document.body.style.paddingTop = `${size}px`;
 			document
 				.querySelector(':root')
-				.style.setProperty('--fixed-sidebar-top', `${size + 48}px`);
+				.style.setProperty(
+					'--ystd--sidebar--fixed-position--top',
+					`${size + 48}px`
+				);
 		}
 	}
 };

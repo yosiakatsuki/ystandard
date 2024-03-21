@@ -2,7 +2,7 @@
 .global-nav {
   display: flex;
   position: relative;
-  background-color: var(--header-bg);
+  background-color: var(--ystd--header--background);
   font-size: 0.9em;
 }
 
@@ -23,13 +23,13 @@
 
   a {
 	display: block;
-	color: var(--header-text);
+	color: var(--ystd--header--text-color);
 	text-decoration: none;
   }
 
   .global-nav__dscr {
 	display: block;
-	color: var(--header-dscr);
+	color: var(--ystd--header--description-color);
 	font-weight: normal;
   }
 
@@ -50,7 +50,7 @@
   bottom: 0;
   left: 0;
   margin: 0;
-  background-color: var(--global-nav-search-cover);
+  background-color: var(--ystd--global-nav--search--cover--background);
   visibility: hidden;
   transition: all 0.5s;
   opacity: 0;
@@ -58,18 +58,18 @@
 
   .search-form {
 	width: 50vw;
-	border: 1px solid var(--header-dscr);
+	border: 1px solid currentColor;
 	font-size: 1.2em;
   }
 
   &.is-active {
-	z-index: var(--z-index-global-nav);
+	z-index: var(--ystd--z-index--global-nav);
 	visibility: visible;
 	opacity: 0.98;
   }
 
   .search-form {
-	color: var(--header-text);
+	color: var(--ystd--header--text-color);
 
 	.search-submit {
 	  color: currentColor;
@@ -77,7 +77,7 @@
   }
 
   .search-field {
-	background-color: rgba(global.$color__text-white, 0.2);
+	background-color: rgba(#fff, 0.2);
 	border: 0;
 	color: currentColor;
 
@@ -89,7 +89,7 @@
 
 .global-nav__search-button {
   display: block;
-  margin-left: var(--global-nav-margin);
+  margin-left: var(--ystd--global-nav--gap);
   padding-right: 0;
   padding-left: 0;
 
@@ -122,7 +122,7 @@
 	position: absolute;
 	top: 100%;
 	left: 0;
-	z-index: var(--z-index-global-nav-sub-menu);
+	z-index: var(--ystd--z-index--global-nav--sub-menu);
 	margin-left: 0;
 	text-align: left;
 	white-space: nowrap;
@@ -152,7 +152,7 @@
 
   > .menu-item {
 	position: relative;
-	margin-left: var(--global-nav-margin);
+	margin-left: var(--ystd--global-nav--gap);
 	line-height: 1.3;
 	text-align: center;
 
@@ -163,7 +163,7 @@
 	  position: relative;
 	  height: 100%;
 	  padding: 1em 0;
-	  font-weight: var(--global-nav-bold);
+	  font-weight: var(--ystd--global-nav--font-weight);
 
 	  &::after {
 		content: "";
@@ -172,7 +172,7 @@
 		left: 0;
 		width: 0;
 		height: 1px;
-		background-color: var(--header-text);
+		background-color: var(--ystd--header--text-color);
 		transition: width 0.3s;
 	  }
 
@@ -211,7 +211,7 @@
 
 	a:focus + .sub-menu,
 	&:hover .sub-menu {
-	  background-color: var(--header-bg);
+	  background-color: var(--ystd--header--background);
 	  visibility: visible;
 	  opacity: 1;
 	}
@@ -222,13 +222,13 @@
   display: none;
 
   position: absolute;
-  top: var(--mobile-nav-toggle-top);
+  top: var(--ystd--mobile-nav--toggle--position-top);
   right: 0;
-  z-index: var(--z-index-global-nav);
+  z-index: var(--ystd--z-index--global-nav);
   padding: .5em 1em;
   background-color: transparent;
   border-radius: 0;
-  color: var(--mobile-nav-open);
+  color: var(--ystd--mobile-nav--button-color--open);
   outline: none;
 
   @include global.media-breakpoint(sm) {
@@ -274,10 +274,10 @@
   }
 
   &.is-open {
-	color: var(--mobile-nav-close);
+	color: var(--ystd--mobile-nav--button-color--close);
 
 	+ .global-nav {
-	  z-index: var(--z-index-global-nav-button);
+	  z-index: var(--ystd--z-index--global-nav--button);
 	  visibility: visible;
 	  opacity: 1;
 	}
@@ -286,13 +286,13 @@
 
 .amp-nav {
   padding: 5em 3em 2em;
-  background-color: var(--mobile-nav-bg);
+  background-color: var(--ystd--mobile-nav--background);
 
   .global-nav__toggle {
 	appearance: none;
 	border: 0;
 	background-color: transparent;
-	color: var(--mobile-nav-close);
+	color: var(--ystd--mobile-nav--button-color--close);
 
 	&::after {
 	  content: attr(data-label-close);
@@ -319,7 +319,7 @@
   button {
 	background-color: transparent;
 	border: 0;
-	color: var(--header-text);
+	color: var(--ystd--header--text-color);
 	appearance: none;
 
 	&:hover {

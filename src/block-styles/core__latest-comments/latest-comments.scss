@@ -27,7 +27,7 @@
 
 .wp-block-latest-comments__comment {
   padding: 1em;
-  border: 1px solid global.$color__border-gray-light;
+  border: 1px solid var(--ystd--site--border-color--gray);
 
   .wp-block-latest-comments__comment-excerpt {
 	> * {
@@ -47,7 +47,7 @@
 }
 
 .wp-block-latest-comments__comment-author {
-  color: global.$color__text-main;
+  color: var(--ystd--text-color);
   font-style: normal;
 }
 
@@ -59,7 +59,7 @@
 .wp-block-latest-comments__comment-excerpt {
   margin-top: 0.5em;
   padding-top: 0.5em;
-  border-top: 1px solid global.$color__border-gray-light;
+  border-top: 1px solid var(--ystd--site--border-color--light-gray);
 }
 
 .has-avatars .wp-block-latest-comments__comment {

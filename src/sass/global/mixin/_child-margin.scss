@@ -1,4 +1,4 @@
-@mixin child_margin($margin: var(--ystd-layout-gap)) {
+@mixin child_margin($margin: var(--ystd--layout-gap)) {
   > * {
 	margin-top: $margin;
 	margin-bottom: 0;

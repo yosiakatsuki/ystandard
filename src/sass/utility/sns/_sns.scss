@@ -5,10 +5,10 @@ $editor: false !default;
 @mixin sns-color() {
   @each $key, $color in global.$color__sns {
 	.sns-bg--#{$key} {
-	  background-color: var(--sns-color-#{$key});
+	  background-color: var(--ystd--sns--color--#{$key});
 	}
 	.sns-text--#{$key} {
-	  color: var(--sns-color-#{$key});
+	  color: var(--ystd--sns--color--#{$key});
 	}
   }
 }

@@ -9,7 +9,7 @@
 
   li {
 	padding: 0.5em 0;
-	border-bottom: 1px solid global.$color__border-gray-light;
+	border-bottom: 1px solid var(--ystd--site--border-color--light-gray);
 	overflow: hidden;
   }
 
@@ -19,7 +19,7 @@
 
   .wp-block-latest-posts__post-excerpt {
 	margin-top: 0.25em;
-	color: global.$color__text-light;
+	color: var(--ystd--text-color--gray);
 	font-size: 0.8em;
 	line-height: 1.5;
 	overflow: hidden;
@@ -62,7 +62,7 @@
 	a {
 	  display: block;
 	  color: currentColor;
-	  font-weight: global.$font__weight_bold;
+	  font-weight: var(--ystd--font-weight--bold);
 	  line-height: 1.4;
 	}
   }

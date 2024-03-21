@@ -26,11 +26,11 @@ $editor: false !default;
 	  }
 
 	  &::-webkit-scrollbar-track {
-		background: global.$color__bg-gray-light;
+		background: var(--ystd--site-background--light-gray);
 	  }
 
 	  &::-webkit-scrollbar-thumb {
-		background: global.$color__border-gray;
+		background: var(--ystd--form--border-color);
 	  }
 	}
   }

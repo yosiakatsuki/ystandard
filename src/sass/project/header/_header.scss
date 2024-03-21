@@ -2,8 +2,8 @@
 
 .site-header {
   position: relative;
-  background-color: var(--header-bg);
-  box-shadow: var(--header-shadow);
+  background-color: var(--ystd--header--background);
+  box-shadow: var(--ystd--header--shadow);
 }
 
 .site-header__content {
@@ -20,14 +20,14 @@
   .site-title {
 	margin: 0;
 	padding: 0;
-	color: var(--header-text);
+	color: var(--ystd--header--text-color);
 	font-size: 1.5em;
-	font-weight: global.$font__weight_normal;
+	font-weight: var(--ystd--font-weight--normal);
 	line-height: 1.3;
 	letter-spacing: 0.05em;
 
 	a {
-	  color: var(--header-text);
+	  color: var(--ystd--header--text-color);
 	  text-decoration: none;
 	}
   }
@@ -38,7 +38,7 @@
 
   .site-description {
 	margin: 0.5em 0 0;
-	color: var(--header-dscr);
+	color: var(--ystd--header--description-color);
 	font-size: 0.7em;
 	line-height: 1.3;
 

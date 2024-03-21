@@ -10,19 +10,19 @@ $editor: false !default;
   .ys-posts {
 
 	.ys-posts__thumbnail {
-	  flex: 0 0 var(--ystd-posts-thumbnail-width);
-	  width: var(--ystd-posts-thumbnail-width);
+	  flex: 0 0 var(--ystd--posts--thumbnail--width);
+	  width: var(--ystd--posts--thumbnail--width);
 	}
   }
 
   .ys-posts__list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--ystd-posts-item-gap);
+	gap: var(--ystd--posts-item--gap);
 
 	> * {
-	  flex: 0 0 var(--ystd-posts-item-width);
-	  width: var(--ystd-posts-item-width);
+	  flex: 0 0 var(--ystd--posts-item--width);
+	  width: var(--ystd--posts-item--width);
 	}
 
 	@for $i from 1 through 6 {
@@ -52,8 +52,8 @@ $editor: false !default;
 	justify-content: center;
 	width: 100%;
 	height: 100%;
-	background-color: var(--site-bg-light-gray);
-	color: var(--font-gray);
+	background-color: var(--ystd--site-background--light-gray);
+	color: var(--ystd--text-color--gray);
   }
 
   .ys-posts__list {
@@ -86,8 +86,8 @@ $editor: false !default;
   .ys-posts__meta {
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--ystd-posts-inner-gap);
-	color: var(--content-meta);
+	gap: var(--ystd--posts--gap--inner);
+	color: var(--ystd--content--meta--color);
 	font-size: 0.7em;
 	overflow: hidden;
 	white-space: nowrap;
@@ -109,7 +109,7 @@ $editor: false !default;
 
   .ys-posts__title {
 	font-size: 0.9em;
-	font-weight: global.$font__weight_bold;
+	font-weight: var(--ystd--font-weight--bold);
 	line-height: 1.4;
   }
 
@@ -132,7 +132,7 @@ $editor: false !default;
   }
 
   .ys-posts__dscr {
-	color: var(--content-meta);
+	color: var(--ystd--content--meta--color);
 	font-size: 0.7em;
 	line-height: 1.3;
   }

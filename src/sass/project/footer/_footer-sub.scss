@@ -1,14 +1,14 @@
 @use "../../global";
 
 .footer-sub {
-  padding-top: var(--sub-footer-padding);
-  padding-bottom: var(--sub-footer-padding);
-  background-color: var(--sub-footer-bg);
-  color: var(--sub-footer-text);
+  padding-top: var(--ystd--sub-footer--padding);
+  padding-bottom: var(--ystd--sub-footer--padding);
+  background-color: var(--ystd--sub-footer--background);
+  color: var(--ystd--sub-footer--text-color);
   overflow: hidden;
 
   a {
-	color: var(--sub-footer-text);
+	color: var(--ystd--sub-footer--text-color);
   }
 }
 

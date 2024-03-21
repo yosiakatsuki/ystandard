@@ -7,9 +7,9 @@ $editor: false !default;
   .ys-toc {
 	padding: 1em;
 	font-size: 0.9em;
-	border: 1px solid var(--toc-border);
-	background-color: var(--toc-bg);
-	color: var(--toc-text);
+	border: 1px solid var(--ystd--toc--border-color);
+	background-color: var(--ystd--toc--background);
+	color: var(--ystd--toc--text-color);
 
 	a {
 	  color: currentColor;
@@ -23,7 +23,7 @@ $editor: false !default;
 
   .ys-toc__title {
 	margin: 0 0 .5em;
-	font-weight: global.$font__weight_bold;
+	font-weight: var(--ystd--font-weight--bold);
   }
 
   .ys-toc__list {
@@ -41,7 +41,7 @@ $editor: false !default;
 	> li {
 	  padding-left: 1em;
 	  margin-bottom: .5em;
-	  border-left: 1px solid var(--toc-list-border);
+	  border-left: 1px solid var(--ystd--toc--list--border-color);
 	}
 
 	ul {

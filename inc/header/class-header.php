@@ -263,7 +263,7 @@ class Header {
 			return '';
 		}
 
-		return '.site-header {z-index:var(--z-index-header)}';
+		return '.site-header {z-index:var(--ystd--z-index--header)}';
 	}
 
 	/**
@@ -323,7 +323,7 @@ class Header {
 			top:0;
 			left:0;
 			width:100%;
-			z-index:var(--z-index-header);
+			z-index:var(--ystd--z-index--header);
 		}';
 		$pc     = Option::get_option_by_int( 'ys_header_fixed_height_pc', 0 );
 		$tablet = Option::get_option_by_int( 'ys_header_fixed_height_tablet', 0 );

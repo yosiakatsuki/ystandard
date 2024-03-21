@@ -22,7 +22,7 @@
 
 	&:checked + label {
 	  img {
-		border-color: global.$color__link;
+		border-color: var(--ystd--link--text-color);
 	  }
 	}
   }

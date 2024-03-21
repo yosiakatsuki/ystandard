@@ -1,20 +1,20 @@
 .wp-block-button {
-  color: var(--ystd-button-text-color);
+  color: var(--ystd--button--text-color);
 }
 
 .wp-block-button__link {
-  display: var(--ystd-button-display);
-  padding: var(--ystd-button-padding);
-  background-color: var(--ystd-button-background-color);
-  border-radius: var(--ystd-button-border-radius);
-  color: var(--ystd-button-text-color);
-  font-size: var(--ystd-button-font-size);
+  display: var(--ystd--button--display);
+  padding: var(--ystd--button--padding);
+  background-color: var(--ystd--button--background-color);
+  border-radius: var(--ystd--button--border-radius);
+  color: var(--ystd--button--text-color);
+  font-size: var(--ystd--button--font-size);
   text-decoration: none;
   transition: all 0.3s;
 
   &:hover {
-	color: var(--ystd-button-hover-text-color);
-	box-shadow: var(--ystd-button-box-shadow);
+	color: var(--ystd--button--hover--text-color);
+	box-shadow: var(--ystd--button--box-shadow);
   }
 
   svg {

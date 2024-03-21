@@ -15,7 +15,7 @@ ul.wp-block-categories__list {
   @include meta.load-css('parts-categories-items');
 
   > li > .wp-block-categories__list {
-	border-top: 1px solid var(--site-border-gray-light);
+	border-top: 1px solid var(--ystd--site--border-color--light-gray);
 
 	a {
 	  padding-left: 2em;

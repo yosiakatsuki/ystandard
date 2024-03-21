@@ -13,7 +13,7 @@ $editor: false !default;
 	  .ys-posts__item {
 		position: relative;
 		padding: 1em 0;
-		border-bottom: var(--ystd-posts-item-border);
+		border-bottom: var(--ystd--posts-item--border-color);
 	  }
 
 	  .ys-posts__text {
@@ -30,13 +30,13 @@ $editor: false !default;
 		flex-wrap: nowrap;
 		align-items: center;
 		gap: 1em;
-		color: var(--content-meta);
+		color: var(--ystd--content--meta--color);
 		font-size: .9em;
 
 		.ys-posts__cat {
 		  display: block;
 		  padding: 0.1em 1em;
-		  background-color: var(--ystd-archive-category-bg-color);
+		  background-color: var(--ystd--archive--category--background);
 		  color: #fff;
 		  font-size: .7em;
 		}

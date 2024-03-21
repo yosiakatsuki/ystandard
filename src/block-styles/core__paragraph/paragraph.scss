@@ -8,7 +8,7 @@ body {
   .has-drop-cap:not(:focus):first-letter {
 	margin-right: 0.05em;
 	font-size: 3em;
-	font-weight: global.$font__weight_normal;
+	font-weight: var(--ystd--font-weight--normal);
 	vertical-align: 1em;
 	line-height: 1;
 	text-transform: uppercase

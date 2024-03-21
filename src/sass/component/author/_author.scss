@@ -20,12 +20,12 @@ $editor: false !default;
   .author-box__name {
 	margin: 0;
 	font-size: 1.1em;
-	font-weight: global.$font__weight_bold;
+	font-weight: var(--ystd--font-weight--bold);
   }
 
   .author-box__position {
 	margin: 0;
-	color: var(--font-gray);
+	color: var(--ystd--text-color--gray);
 	font-size: 0.8em;
   }
 
@@ -64,7 +64,7 @@ $editor: false !default;
 
   .ys-profile-widget {
 	padding: 1em;
-	border: 1px solid var(--site-border-gray-light);
+	border: 1px solid var(--ystd--site--border-color--light-gray);
   }
 
   .author-widget-title {

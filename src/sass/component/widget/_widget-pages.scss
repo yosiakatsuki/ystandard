@@ -10,8 +10,8 @@
   }
 
   > ul {
-	border-top: 1px solid var(--site-border-gray-light);
-	border-bottom: 1px solid var(--site-border-gray-light);
+	border-top: 1px solid var(--ystd--site--border-color--light-gray);
+	border-bottom: 1px solid var(--ystd--site--border-color--light-gray);
   }
 
   @include meta.load-css('../../../block-styles/core__categories/parts-categories-items');

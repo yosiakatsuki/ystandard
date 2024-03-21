@@ -18,13 +18,13 @@
   h4 {
 	margin-bottom: 0.5em;
 	padding: 0.5em;
-	background-color: global.$color__ystanadrd;
-	color: global.$color__text-white;
+	background-color: var(--ystd-ystandard-color);
+	color: var(--ystd--text-color--white);
   }
 }
 
 .ys-widget-option__sub {
-  color: global.$color__text-light;
+  color: var(--ystd--text-color--gray);
   font-size: 0.8em;
 }
 
@@ -40,7 +40,7 @@
 	border: 0 !important;
 	background: none !important;
 	box-shadow: none !important;
-	font-weight: global.$font__weight_bold;
+	font-weight: var(--ystd--font-weight--bold);
 
 	&:before,
 	&:after {
@@ -68,7 +68,7 @@
 		border: 0 !important;
 		background: none !important;
 		box-shadow: none !important;
-		font-weight: global.$font__weight_bold;
+		font-weight: var(--ystd--font-weight--bold);
 
 		&:before,
 		&:after {

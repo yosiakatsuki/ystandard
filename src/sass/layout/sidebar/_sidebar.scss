@@ -2,10 +2,10 @@
 
 .sidebar {
   @include global.child_margin();
-  margin-bottom: var(--ystd-content-margin-bottom);
+  margin-bottom: var(--ystd--content--margin-bottom);
 
   @include global.media-breakpoint(lg) {
-	width: min(var(--ystd-sidebar-width), var(--ystd-sidebar-max-width));
+	width: min(var(--ystd--sidebar--width), var(--ystd--sidebar--max-width));
   }
 }
 
@@ -17,7 +17,7 @@
 .sidebar__fixed {
   @include global.media-breakpoint(lg) {
 	position: sticky;
-	top: var(--fixed-sidebar-top);
+	top: var(--ystd--sidebar--fixed-position--top);
   }
 }
 
@@ -25,13 +25,13 @@
   .sidebar__widget,
   .sidebar__fixed {
 	> * {
-	  padding: calc(var(--ystd-layout-gap));
-	  background-color: var(--content-bg);
+	  padding: calc(var(--ystd--layout-gap));
+	  background-color: var(--ystd--content--background);
 
 	  @include global.media-breakpoint-down(sm) {
-		margin-right: calc(-1 * var(--ystd-container-gutter));
-		margin-left: calc(-1 * var(--ystd-container-gutter));
-		padding: var(--ystd-layout-gap) var(--ystd-container-gutter);
+		margin-right: calc(-1 * var(--ystd--container--gutter));
+		margin-left: calc(-1 * var(--ystd--container--gutter));
+		padding: var(--ystd--layout-gap) var(--ystd--container--gutter);
 	  }
 	}
   }
