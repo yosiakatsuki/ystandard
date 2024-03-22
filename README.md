@@ -957,11 +957,6 @@ https://wp-ystandard.com/ystandard-update/ystandard-update-old/
 
 ## Third-party resources
 
-### normalize.css
-
-License: MIT License  
-Source : <https://github.com/necolas/normalize.css>
-
 ### Simple Icons
 
 License: CC0 - 1.0  
