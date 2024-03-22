@@ -1,6 +1,6 @@
 @use "foundation/custom-properties/custom-properties";
-@use "component/block-editor/index";
-@use "component/icon/icon";
+@use "components/block-editor";
+@use "components/icon/index";
 @use "project/admin/admin";
 @use "project/admin/author";
 @use "project/admin/adminbar";

@@ -1,14 +1,4 @@
 @use "sass:math";
-// ブレークポイント
-$breakpoints: (
-	sm : 600px,
-	mobile : 640px,
-	md : 769px,
-	tablet:768px,
-	lg : 1025px,
-	desktop:1024px,
-) !default;
-
 // カード表示のマージン
 $card_margin: 1.5em;
 

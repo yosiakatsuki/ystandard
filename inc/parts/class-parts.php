@@ -235,9 +235,9 @@ class Parts {
 			self::POST_TYPE,
 			[
 				'labels'                => $labels,
-				'public'                => $this->is_enable_preview(),
+				'public'                => false,
 				'exclude_from_search'   => true,
-				'publicly_queryable'    => $this->is_enable_preview(),
+				'publicly_queryable'    => false,
 				'show_ui'               => true,
 				'show_in_nav_menus'     => false,
 				'show_in_menu'          => true,
@@ -257,17 +257,6 @@ class Parts {
 				],
 			]
 		);
-	}
-
-	/**
-	 * プレビューを有効にするか
-	 */
-	private function is_enable_preview() {
-		if ( ! is_user_logged_in() ) {
-			return false;
-		}
-
-		return current_user_can( 'editor' ) || current_user_can( 'administrator' );
 	}
 
 	/**

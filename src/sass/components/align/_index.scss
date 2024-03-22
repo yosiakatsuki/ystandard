@@ -1,0 +1,30 @@
+@use "../../global";
+
+.aligncenter,
+.alignleft,
+.alignright {
+	display: block;
+}
+
+.aligncenter {
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.alignleft {
+	@include global.media-up-mobile() {
+		margin-right: var(--ystd--align--gutter);
+		margin-bottom: var(--ystd--align--gutter);
+		float: left;
+	}
+}
+
+.alignright {
+	@include global.media-up-mobile() {
+		margin-bottom: var(--ystd--align--gutter);
+		margin-left: var(--ystd--align--gutter);
+		float: right;
+	}
+}
+

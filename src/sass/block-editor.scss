@@ -3,13 +3,12 @@
 /**
  * component
  */
-@use "component/blog-card/blog-card";
-@use "component/block-editor/content" as block-editor-content;
-@use "component/block-editor/align-editor" as block-editor-align;
-@use "component/posts/posts";
-@use "component/ratio/ratio";
-@use "component/share-button/share-button";
-@use "component/widget/index" as widget;
+@use "components/blog-card/blog-card";
+@use "components/block-editor/align-editor" as block-editor-align;
+@use "components/posts/posts";
+@use "components/ratio/ratio";
+@use "components/share-button/share-button";
+@use "components/widget";
 
 /**
  * utility

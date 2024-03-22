@@ -26,28 +26,12 @@ body {
   resize: none;
 }
 
-/**
- * エディタ幅
- */
-.wp-block {
-  max-width: var(--ystd--content--width--default);
-}
-
-.wp-block[data-align="wide"] {
-  max-width: var(--ystd--content--width--align-wide);
-}
-
-//「全幅」ブロックの幅
-.wp-block[data-align="full"] {
-  max-width: none;
-}
-
-.block-editor-block-list__layout.is-root-container > .wp-block[data-align=full] .alignfull {
-  margin-right: 0;
-  margin-left: 0;
-  padding-right: 0;
-  padding-left: 0;
-}
+//.block-editor-block-list__layout.is-root-container > .wp-block[data-align=full] .alignfull {
+//  margin-right: 0;
+//  margin-left: 0;
+//  padding-right: 0;
+//  padding-left: 0;
+//}
 
 /**
  * 見出し

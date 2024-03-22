@@ -219,9 +219,10 @@
   }
 
   &.is-warning {
-	background-color: global.$color__alerts_yellow_bg;
-	border: 1px solid global.$color__alerts_yellow_text;
-	color: global.$color__alerts_yellow_text;
+	background-color: var(--ystd--alert--background--yellow);
+	border: 1px solid currentColor;
+	color: var(--ystd--alert--text-color--yellow);
+
   }
 }
 

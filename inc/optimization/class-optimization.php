@@ -164,8 +164,6 @@ class Optimization {
 		$this->add_emoji_section( $customizer );
 		// embed.
 		$this->add_oembed_section( $customizer );
-		// css.
-		$this->add_css_section( $customizer );
 		// JavaScript.
 		$this->add_javascript_section( $customizer );
 	}
@@ -268,34 +266,6 @@ class Optimization {
 				'default'     => 1,
 				'label'       => 'oEmbedによる埋め込みを無効にする',
 				'description' => 'oEmbedの埋め込みリンクを有効にしたい場合はこの設定をOFFにしてください。',
-			]
-		);
-	}
-
-	/**
-	 * CSS設定追加
-	 *
-	 * @param Customize_Control $customizer customize control.
-	 */
-	private function add_css_section( $customizer ) {
-		/**
-		 * CSSの読み込みを最適化
-		 */
-		$customizer->add_section(
-			[
-				'section'     => 'ys_optimize_css',
-				'title'       => 'CSSインライン読み込み（上級者向け）',
-				'description' => Admin::manual_link( 'manual/inline-css' ),
-
-			]
-		);
-
-		$customizer->add_checkbox(
-			[
-				'id'          => 'ys_option_optimize_load_css',
-				'default'     => 0,
-				'label'       => 'CSSをインラインで読み込む',
-				'description' => 'この設定をONにすると、yStandard関連のCSSが全てhead内にインラインで読み込まれます。',
 			]
 		);
 	}

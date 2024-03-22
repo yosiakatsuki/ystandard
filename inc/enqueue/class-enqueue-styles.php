@@ -38,11 +38,7 @@ class Enqueue_Styles {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_css' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'dequeue_css' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_style_css' ], 100 );
-		// CSSインライン読み込み.
-		if ( Option::get_option_by_bool( 'ys_option_optimize_load_css', false ) ) {
-			add_filter( 'style_loader_tag', [ $this, 'style_loader_inline' ], PHP_INT_MAX, 4 );
-		}
-		add_filter( 'wp_get_custom_css', [ $this, '_wp_get_custom_css' ] );
+		add_filter( 'wp_get_custom_css', [ $this, 'minify_custom_css' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'dequeue_core_style' ], PHP_INT_MAX );
 	}
 
@@ -137,7 +133,7 @@ class Enqueue_Styles {
 	 *
 	 * @return string
 	 */
-	public static function get_css_vars_selector( $selector = ':root' ) {
+	public static function get_css_vars_selector( $selector = 'body:where([class])' ) {
 		/**
 		 * CSSカスタムプロパティに指定する値
 		 * name,value
@@ -244,80 +240,9 @@ class Enqueue_Styles {
 	 *
 	 * @return string
 	 */
-	public function _wp_get_custom_css( $css ) {
+	public function minify_custom_css( $css ) {
 		return Style_Sheet::minify( $css );
 	}
-
-	/**
-	 * CSSのインライン出力化
-	 *
-	 * @param string $html Html.
-	 * @param string $handle Handle.
-	 * @param string $href Href.
-	 * @param string $media Media.
-	 *
-	 * @return string
-	 */
-	public function style_loader_inline( $html, $handle, $href, $media ) {
-		if ( false === strpos( $html, 'ystandard' ) ) {
-			if ( true !== wp_styles()->get_data( $handle, 'inline' ) ) {
-				return $html;
-			}
-		}
-		if ( 'none' === wp_styles()->get_data( $handle, 'inline' ) ) {
-			return $html;
-		}
-		if ( is_admin() ) {
-			return $html;
-		}
-		/**
-		 * URLとメディア指定を取得
-		 */
-		$pattern = '/<link.+href=[\'"](.+?)[\'"\?\#].+media=[\'"](.+?)[\'"].*\/>/i';
-		$matches = null;
-		if ( 1 !== preg_match( $pattern, $html, $matches ) ) {
-			return $html;
-		}
-		/**
-		 * サイトURLのチェック
-		 */
-		$url = $matches[1];
-
-		if ( false === strrpos( $url, home_url() ) ) {
-			return $html;
-		}
-		$style = false;
-		$path  = str_replace( site_url( '/' ), ABSPATH, $url );
-		if ( file_exists( $path ) ) {
-			$style = Filesystem::file_get_contents( $path );
-		}
-		if ( false === $style ) {
-			return $html;
-		}
-		if ( false !== strpos( $style, '../' ) || false !== strpos( $style, './' ) ) {
-			return $html;
-		}
-		/**
-		 * インラインCSSのminify
-		 */
-		$style = Style_Sheet::minify( str_replace( '@charset "UTF-8";', '', $style ) );
-		/**
-		 * 中身がなければ何も出さない
-		 */
-		if ( empty( $style ) ) {
-			return '';
-		}
-		/**
-		 * インラインCSS出力
-		 */
-		$tag = '<style>%s</style>';
-		if ( isset( $matches[2] ) && 'all' !== $matches[2] ) {
-			$tag = '<style>@media ' . $matches[2] . ' {%s}</style>';
-		}
-
-		return sprintf( $tag, $style ) . PHP_EOL;
-	}
-
 }
 
 new Enqueue_Styles();

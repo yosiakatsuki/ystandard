@@ -2,28 +2,28 @@
  * .entry-content - src/sass/component/widget/_widget-parts.scss
  * .entry-content - src/sass/component/block-editor/_content.scss
  */
-
-.entry-content {
-
-  margin-top: 2em;
-  margin-bottom: 2em;
-
-  &::after {
-	content: "";
-	display: block;
-	clear: both;
-  }
-}
-
-.no-title {
-  .entry-content {
-	margin-top: 0;
-	margin-bottom: 0;
-  }
-}
-
-.is-front-page {
-  .entry-content {
-	margin-top: 0;
-  }
-}
+//
+//.entry-content {
+//
+//  margin-top: 2em;
+//  margin-bottom: 2em;
+//
+//  &::after {
+//	content: "";
+//	display: block;
+//	clear: both;
+//  }
+//}
+//
+//.no-title {
+//  .entry-content {
+//	margin-top: 0;
+//	margin-bottom: 0;
+//  }
+//}
+//
+//.is-front-page {
+//  .entry-content {
+//	margin-top: 0;
+//  }
+//}

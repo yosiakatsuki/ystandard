@@ -34,6 +34,8 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [変更] CSSカスタムプロパティ名変更
 	- プレフィックスに`ystd`を追加
 	- プレフィックス追加以外に変更があるものの変更前・変更後は下記「v5.0.0 - カスタムプロパティ変換表」を参照
+- [変更] 「CSSインライン読み込み」オプション削除
+- [変更] カスタムプロパティの詳細度を変更 `:root` -> `body:where([class])`
 
 #### v5.0.0 - カスタムプロパティ変換表
 
@@ -47,8 +49,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --ystd-body-padding-top          | --ystd--body--padding-top                     |
 | --ystd-container-width           | --ystd--container--width                      |
 | --ystd-container-gutter          | --ystd--container--gutter                     |
-| --ystd-content-default-width     | --ystd--content--width--default               |
-| --ystd-content-align-wide-width  | --ystd--content--width--align-wide            |
+| --ystd-content-default-width     | --ystd--content--width                        |
 | --ystd-content-min-width         | --ystd--content--min-width                    |
 | --ystd-sidebar-width             | --ystd--sidebar--width                        |
 | --ystd-sidebar-max-width         | --ystd--sidebar--max-width                    |
@@ -136,6 +137,10 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --z-index-mobile-footer          | --ystd--z-index--mobile-footer                |
 | --z-index-back-to-top            | --ystd--z-index--back-to-top                  |
 | --sns-color-*                    | --ystd--sns--color--*                         |
+
+#### v5.0.0 - 廃止されたカスタムプロパティ
+
+- --ystd-content-align-wide-width
 
 ### v4.x.x
 
