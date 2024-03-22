@@ -1,0 +1,191 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "800px",
+			"wideSize": "1200px"
+		},
+		"color": {
+			"defaultPalette": true,
+			"palette": [
+				{
+					"color": "#07689f",
+					"name": "Blue",
+					"slug": "ys-blue"
+				},
+				{
+					"color": "#ceecfd",
+					"name": "Light Blue",
+					"slug": "ys-light-blue"
+				},
+				{
+					"color": "#ae3b43",
+					"name": "Red",
+					"slug": "ys-red"
+				},
+				{
+					"color": "#f2d9db",
+					"name": "Pink",
+					"slug": "ys-light-red"
+				},
+				{
+					"color": "#007660",
+					"name": "Green",
+					"slug": "ys-green"
+				},
+				{
+					"color": "#c8eae4",
+					"name": "Light Green",
+					"slug": "ys-light-green"
+				},
+				{
+					"color": "#e29e21",
+					"name": "Yellow",
+					"slug": "ys-yellow"
+				},
+				{
+					"color": "#ffedcc",
+					"name": "Light Yellow",
+					"slug": "ys-light-yellow"
+				},
+				{
+					"color": "#dc760a",
+					"name": "Orange",
+					"slug": "ys-orange"
+				},
+				{
+					"color": "#fdebd8",
+					"name": "Light Orange",
+					"slug": "ys-light-orange"
+				},
+				{
+					"color": "#711593",
+					"name": "Purple",
+					"slug": "ys-purple"
+				},
+				{
+					"color": "#f6e3fd",
+					"name": "Light Purple",
+					"slug": "ys-light-purple"
+				},
+				{
+					"color": "#656565",
+					"name": "Gray",
+					"slug": "ys-gray"
+				},
+				{
+					"color": "#f1f1f3",
+					"name": "Light Gray",
+					"slug": "ys-light-gray"
+				},
+				{
+					"color": "#222222",
+					"name": "Black",
+					"slug": "ys-black"
+				},
+				{
+					"color": "#ffffff",
+					"name": "White",
+					"slug": "ys-white"
+				}
+			]
+		},
+		"spacing": {
+			"blockGap" : true,
+			"spacingSizes": [
+				{
+					"size": "20px",
+					"slug": "20",
+					"name": "20px"
+				},
+				{
+					"size": "30px",
+					"slug": "30",
+					"name": "30px"
+				},
+				{
+					"size": "40px",
+					"slug": "40",
+					"name": "40px"
+				},
+				{
+					"size": "50px",
+					"slug": "50",
+					"name": "50px"
+				},
+				{
+					"size": "60px",
+					"slug": "60",
+					"name": "60px"
+				},
+				{
+					"size": "70px",
+					"slug": "70",
+					"name": "70px"
+				},
+				{
+					"size": "80px",
+					"slug": "80",
+					"name": "80px"
+				}
+			],
+			"units": [
+				"%",
+				"px",
+				"em",
+				"rem",
+				"vh",
+				"vw"
+			]
+		},
+		"typography": {
+			"dropCap": false,
+			"fluid": {
+				"minFontSize": "10px",
+				"minViewportWidth": "375px",
+				"maxViewportWidth": "1024px"
+			},
+			"fontFamilies": [
+				{
+					"fontFamily": "\"Helvetica Neue\", Arial, \"Hiragino Kaku Gothic ProN\", \"Hiragino Sans\", Meiryo, sans-serif",
+					"name": "ゴシック系",
+					"slug": "ystd-gothic"
+				},
+				{
+					"fontFamily": "serif",
+					"name": "明朝系",
+					"slug": "ystd-serif"
+				},
+				{
+					"fontFamily": "\"Helvetica Neue\", Arial, \"Yu Gothic\", YuGothic, sans-serif",
+					"name": "游ゴシック",
+					"slug": "ystd-yu-gothic"
+				}
+			],
+			"fontSizes": [
+				{
+					"size": "16px",
+					"name": "デフォルト",
+					"slug": "base"
+				},
+				{
+					"fluid": {
+						"min": "14px",
+						"max": "14px"
+					},
+					"size": "14px",
+					"name": "小",
+					"slug": "small"
+				}
+			]
+		},
+		"custom": {
+			"font-size": {
+				"default": "16px"
+			}
+		}
+	}
+}
