@@ -1,0 +1,46 @@
+:where(*),
+:where(*::before),
+:where(*::after) {
+	box-sizing: border-box;
+}
+
+:where(html) {
+	text-size-adjust: none;
+	-webkit-text-size-adjust: 100%;
+}
+
+:where(body) {
+	margin: 0;
+}
+
+:where(h1, h2, h3, h4, h5, h6, p, blockquote, dl, dd) {
+	margin-block-end: 0;
+}
+
+:where(figure) {
+	margin-block-start: 0;
+	margin-block-end: 0;
+}
+
+:where(a) {
+	text-underline-offset: 0.2ex;
+}
+
+:where(button) {
+	all: unset;
+}
+
+:where(input, button, textarea, select) {
+	font: inherit;
+	color: inherit;
+}
+
+:where(button, label, select, summary, [role='button'], [role='option']) {
+	cursor: pointer;
+}
+
+:where(:disabled) {
+	cursor: not-allowed;
+}
+
+
