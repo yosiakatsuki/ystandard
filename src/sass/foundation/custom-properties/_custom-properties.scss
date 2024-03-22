@@ -165,6 +165,8 @@ body:where([class]) {
 	 * Advertisement
 	 */
 	--ystd--advertisement--title--text-color: var(--ystd--text-color--gray);
+	--ystd--advertisement--title--font-size: 0.7em;
+	--ystd--advertisement--outer--margin: 2rem;
 	/**
 	 * TOC
 	 */

@@ -1,11 +1,10 @@
 @use "screen-reader-text/screen-reader-text";
 @use "forms/forms";
-@use "icon";
-@use "wordpress";
+
 @use "search-form/search-form";
 @use "breadcrumbs/breadcrumbs";
 @use "ratio/ratio";
-@use "advertisement/advertisement";
+
 @use "share-button/share-button";
 @use "taxonomy/taxonomy";
 @use "author/author";
@@ -17,6 +16,12 @@
 @use "pagination/page-links";
 @use "blog-card/blog-card";
 @use "comments/comments";
-@use "widget";
 @use "toc/toc";
+
+@use "icon";
+@use "wordpress";
+
 @use "contents";
+@use "advertisement";
+@use "widget";
+
