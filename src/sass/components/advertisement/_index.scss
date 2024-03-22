@@ -1,0 +1,32 @@
+@use "../../global";
+
+:where(.ys-ad-content) {
+	text-align: center;
+
+	:where(.ys-ad__title) {
+		color: var(--ystd--advertisement--title--text-color);
+		font-size: var(--ystd--advertisement--title--font-size);
+		text-align: center;
+	}
+
+	&:not(:first-child) {
+		margin-top: var(--ystd--advertisement--outer--margin);
+	}
+	&:not(:last-child) {
+		margin-bottom: var(--ystd--advertisement--outer--margin);
+	}
+}
+
+:where(.ys-ad__double) {
+	@include global.media-up-mobile() {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+		text-align: center;
+
+		> * {
+			margin-right: auto;
+			margin-left: auto;
+		}
+	}
+}

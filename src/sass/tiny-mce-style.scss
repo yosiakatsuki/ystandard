@@ -1,7 +1,6 @@
 @use "sass:meta";
 @use "global";
 //Component
-@use "components/advertisement/advertisement" with ($editor:true);
 @use "components/author/author" with ($editor:true);
 @use "components/block-editor/align" with ($editor:true);
 @use "components/blog-card/blog-card" with ($editor:true);
@@ -56,9 +55,9 @@
   @include meta.load-css('../block-styles/core__tag-cloud/tag-cloud');
   @include meta.load-css('../block-styles/core__video/video');
   @include meta.load-css('components/icon/index');
+  @include meta.load-css('components/advertisement/index');
 
   //Component
-  @include advertisement.advertisement();
   @include author.author();
   @include align.align();
   @include blog-card.blog-card();
