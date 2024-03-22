@@ -1,23 +1,21 @@
 @use "sass:meta";
 @use "global";
 //Component
-@use "component/advertisement/advertisement" with ($editor:true);
-@use "component/author/author" with ($editor:true);
-@use "component/block-editor/align" with ($editor:true);
-@use "component/block-editor/content" with ($editor:true);
-@use "component/blog-card/blog-card" with ($editor:true);
-@use "component/forms/forms" with ($editor:true);
-@use "component/icon/icon" with ($editor:true);
-@use "component/posts/posts" with ($editor:true);
-@use "component/ratio/ratio" with ($editor:true);
-@use "component/search-form/search-form" with ($editor:true);
-@use "component/share-button/share-button" with ($editor:true);
-@use "component/taxonomy/taxonomy" with ($editor:true);
-@use "component/toc/toc" with ($editor:true);
-@use "component/wordpress/caption" with ($editor:true);
-@use "component/wordpress/embed" as wordpress-embed with ($editor:true);
-@use "component/wordpress/gallery" as wordpress-gallery with ($editor:true);
-@use "component/wordpress/wp" as wordpress-wp with ($editor:true);
+@use "components/advertisement/advertisement" with ($editor:true);
+@use "components/author/author" with ($editor:true);
+@use "components/block-editor/align" with ($editor:true);
+@use "components/blog-card/blog-card" with ($editor:true);
+@use "components/forms/forms" with ($editor:true);
+@use "components/posts/posts" with ($editor:true);
+@use "components/ratio/ratio" with ($editor:true);
+@use "components/search-form/search-form" with ($editor:true);
+@use "components/share-button/share-button" with ($editor:true);
+@use "components/taxonomy/taxonomy" with ($editor:true);
+@use "components/toc/toc" with ($editor:true);
+@use "components/wordpress/caption" with ($editor:true);
+@use "components/wordpress/embed" as wordpress-embed with ($editor:true);
+@use "components/wordpress/gallery" as wordpress-gallery with ($editor:true);
+@use "components/wordpress/wp" as wordpress-wp with ($editor:true);
 
 // Utility
 @use "utility/clearfix/clearfix" as utility-clearfix with ($editor:true);
@@ -57,15 +55,14 @@
   @include meta.load-css('../block-styles/core__table/table-editor');
   @include meta.load-css('../block-styles/core__tag-cloud/tag-cloud');
   @include meta.load-css('../block-styles/core__video/video');
+  @include meta.load-css('components/icon/index');
 
   //Component
   @include advertisement.advertisement();
   @include author.author();
   @include align.align();
-  @include content.content();
   @include blog-card.blog-card();
   @include forms.forms();
-  @include icon.icon();
   @include posts.ys-posts();
   @include ratio.ratio();
   @include search-form.search-form();

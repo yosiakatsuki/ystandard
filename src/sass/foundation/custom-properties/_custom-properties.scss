@@ -8,52 +8,12 @@
 	--scrollbar-width: 0px;
 }
 
-body[class] {
+body:where([class]) {
+
 	/**
 	 * ブランド
 	 */
 	--ystd-ystandard-color: #07689f;
-	/**
-	 * Spacing - Gap
-	 */
-	--ystd--layout-gap: 1.5rem;
-	/**
-	 * Body
-	 */
-	--ystd-body-padding-top: 0;
-	/**
-	 * コンテナ
-	 */
-	--ystd--container--width: var(--wp--style--global--wide-size, 1200px);
-	--ystd--container--gutter: 1rem;
-	--ystd--container--size: min(calc(100% - var(--ystd--container--gutter) * 2), var(--ystd--container--width));
-	--ystd--container--margin-vertical: var(--ystd--layout-gap);
-	/**
-	 * コンテンツ
-	 */
-	--ystd--content--width: var(--wp--style--global--content-size, 800px);
-	--ystd--content--min-width: 66.66%;
-	--ystd--content--margin-bottom: calc(2 * var(--ystd--layout-gap));
-	--ystd--content--margin-horizon: auto;
-	--ystd--content--padding: auto;
-	/**
-	 * サイドバー
-	 */
-	--ystd--sidebar--width: 28%;
-	--ystd--sidebar--max-width: 336px;
-	--ystd--sidebar--padding: 1rem;
-	--ystd--sidebar--fixed-position--top: 2em;
-	/**
-	 * アーカイブ
-	 */
-	--ystd--archive--gap: var(--ystd--layout-gap);
-	--ystd--archive--padding: 1em;
-	--ystd--archive--item--width: 100%;
-	--ystd--archive--thumbnail--width: 100%;
-	/**
-	 * Block Gap
-	 */
-	--ystd--block-gap: 1.5em;
 	/**
 	 * Typography
 	 */
@@ -80,6 +40,56 @@ body[class] {
 	--ystd--headline--font-size--h6: 1.1em;
 	--ystd--headline--line-height: 1.4;
 	--ystd--headline--letter-spacing: 0.05em;
+	/**
+	 * Spacing - Gap
+	 */
+	--ystd--layout-gap: var(--wp--style--block-gap, 1.5rem);
+	/**
+	 * Body
+	 */
+	--ystd-body-padding-top: 0;
+	/**
+	 * コンテナ
+	 */
+	--ystd--container--width: var(--wp--style--global--wide-size, 1200px);
+	--ystd--container--gutter: 1rem;
+	--ystd--container--size: min(calc(100% - var(--ystd--container--gutter) * 2), var(--ystd--container--width));
+	--ystd--container--margin-vertical: var(--ystd--layout-gap);
+	/**
+	 * コンテンツ
+	 */
+	--ystd--content--width: var(--wp--style--global--content-size, 800px);
+	--ystd--content--size: min(calc(100% - var(--ystd--container--gutter) * 2), var(--ystd--content--width));
+	--ystd--content--header--gap: 1em;
+	--ystd--content--footer--gap: 4rem;
+	--ystd--content--post-title--font-size: var(--ystd--headline--font-size--h1, 1.4em);
+	--ystd--content--header--meta--font-size: 0.7em;
+	--ystd--content--header--meta--gap: 1.5em;
+	--ystd--content--header--meta--icon-size: 1em;
+
+	--ystd--content--min-width: 66.66%;
+	--ystd--content--margin-bottom: calc(2 * var(--ystd--layout-gap));
+	--ystd--content--margin-horizon: auto;
+	--ystd--content--padding: auto;
+	/**
+	 * Block Gap
+	 */
+	--ystd--block-gap: var(--ystd--layout-gap, 1.5em);
+	/**
+	 * サイドバー
+	 */
+	--ystd--sidebar--width: 28%;
+	--ystd--sidebar--max-width: 336px;
+	--ystd--sidebar--padding: 1rem;
+	--ystd--sidebar--fixed-position--top: 2em;
+	/**
+	 * アーカイブ
+	 */
+	--ystd--archive--gap: var(--ystd--layout-gap);
+	--ystd--archive--padding: 1em;
+	--ystd--archive--item--width: 100%;
+	--ystd--archive--thumbnail--width: 100%;
+
 	/**
 	 * Background
 	 */

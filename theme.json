@@ -187,5 +187,10 @@
 				"default": "16px"
 			}
 		}
+	},
+	"styles": {
+		"spacing": {
+			"blockGap": "1.5rem"
+		}
 	}
 }

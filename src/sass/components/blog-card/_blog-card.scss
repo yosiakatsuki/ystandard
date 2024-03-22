@@ -16,7 +16,7 @@ $editor: false !default;
 	  margin: 0;
 	  font-size: 0.85em;
 	  font-weight: var(--ystd--font-weight--bold);
-	  line-height: var(--ystd--line-height--headline);
+	  line-height: var(--ystd--headline--line-height);
 
 	  @include global.media-breakpoint(sm) {
 		font-size: 1em;

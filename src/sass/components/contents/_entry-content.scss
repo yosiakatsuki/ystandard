@@ -1,0 +1,16 @@
+:where(.entry-content) {
+
+	> * + *:where(:not(h1,h2,h3,h4,h5,h6,.alignfull)) {
+		margin-top: var(--ystd--block-gap);
+	}
+
+	*:where(:not(.alignfull)) {
+		max-width: var(--ystd--content--size);
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	*:where(.alignwide) {
+		max-width: var(--ystd--container--size);
+	}
+}

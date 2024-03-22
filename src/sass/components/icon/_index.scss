@@ -1,0 +1,18 @@
+@use "../../global";
+
+:where(.sns-icon) {
+	color: currentColor;
+	fill: currentColor;
+}
+
+:where(.ys-icon) {
+	--ystd--icon--size: 1.25em;
+	display: inline-flex;
+	flex-shrink: 0;
+	line-height: 1;
+
+	:where(svg) {
+		width: var(--ystd--icon--size);
+		height: var(--ystd--icon--size);
+	}
+}

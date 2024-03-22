@@ -1,0 +1,9 @@
+:where(.site-content) {
+	--ystd--content--width: var(--wp--style--global--content-size, 800px);
+}
+body:where(.is-wide) {
+	:where(.site-content) {
+		--ystd--content--size: var(--ystd--container--size);
+		--wp--style--global--content-size: var(--ystd--container--width);
+	}
+}

@@ -1,7 +1,7 @@
 @use "screen-reader-text/screen-reader-text";
 @use "forms/forms";
-@use "icon/icon";
-@use "wordpress/index" as wordpress;
+@use "icon";
+@use "wordpress";
 @use "search-form/search-form";
 @use "breadcrumbs/breadcrumbs";
 @use "ratio/ratio";
@@ -17,5 +17,6 @@
 @use "pagination/page-links";
 @use "blog-card/blog-card";
 @use "comments/comments";
-@use "widget/index" as widget;
+@use "widget";
 @use "toc/toc";
+@use "contents";

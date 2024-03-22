@@ -1,15 +1,30 @@
 @use "../variable/content";
 
-@mixin media-breakpoint($name,$breakpoints: content.$breakpoints) {
-  $breakpoint: map-get($breakpoints, $name);
-  @if $breakpoint {
-	@media (min-width: $breakpoint) {
-	  @content;
+$breakpoints_setting: (
+	sm : 600px,
+	mobile : 640px,
+	md : 769px,
+	tablet:768px,
+	lg : 1025px,
+	desktop:1024px,
+);
+
+@mixin media-up-mobile() {
+	@include media-breakpoint(mobile) {
+		@content;
 	}
-  } @else {
-	@warn "`#{$name}` is not found. "
+}
+
+@mixin media-breakpoint($name,$breakpoints: $breakpoints_setting) {
+	$breakpoint: map-get($breakpoints, $name);
+	@if $breakpoint {
+		@media (min-width: $breakpoint) {
+			@content;
+		}
+	} @else {
+		@warn "`#{$name}` is not found. "
     + "Please make sure it is defined in `$breakpoints-setting` map.";
-  }
+	}
 }
 
 // media break point
@@ -18,27 +33,27 @@
 //  }
 //  sm,md,lg
 
-@mixin media-breakpoint-down($name,$gain:1px,$breakpoints: content.$breakpoints) {
-  $breakpoint: map-get($breakpoints, $name);
-  @if $breakpoint {
-	@media (max-width: ($breakpoint - $gain)) {
-	  @content;
-	}
-  } @else {
-	@warn "`#{$name}` is not found. "
+@mixin media-breakpoint-down($name,$gain:1px,$breakpoints: $breakpoints_setting) {
+	$breakpoint: map-get($breakpoints, $name);
+	@if $breakpoint {
+		@media (max-width: ($breakpoint - $gain)) {
+			@content;
+		}
+	} @else {
+		@warn "`#{$name}` is not found. "
     + "Please make sure it is defined in `$breakpoints-setting` map.";
-  }
+	}
 }
 
-@mixin media-breakpoint-between($up,$down,$breakpoints: content.$breakpoints) {
-  $breakpoint_min: map-get($breakpoints, $up);
-  $breakpoint_max: map-get($breakpoints, $down);
-  @if $breakpoint_min and $breakpoint_max {
-	@media (min-width: $breakpoint_min) AND (max-width: ($breakpoint_max - 1px)) {
-	  @content;
-	}
-  } @else {
-	@warn "`#{$up} or #{$down}` is not found. "
+@mixin media-breakpoint-between($up,$down,$breakpoints: $breakpoints_setting) {
+	$breakpoint_min: map-get($breakpoints, $up);
+	$breakpoint_max: map-get($breakpoints, $down);
+	@if $breakpoint_min and $breakpoint_max {
+		@media (min-width: $breakpoint_min) AND (max-width: ($breakpoint_max - 1px)) {
+			@content;
+		}
+	} @else {
+		@warn "`#{$up} or #{$down}` is not found. "
     + "Please make sure it is defined in `$breakpoints-setting` map.";
-  }
+	}
 }

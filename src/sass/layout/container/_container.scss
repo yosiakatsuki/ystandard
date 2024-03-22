@@ -1,10 +1,10 @@
 @use "../../global";
 
 .container {
-  position: relative;
-  max-width: calc(var(--ystd--container--width) + var(--ystd--container--gutter) * 2);
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: var(--ystd--container--gutter);
-  padding-left: var(--ystd--container--gutter);
+  //position: relative;
+  //max-width: calc(var(--ystd--container--width) + var(--ystd--container--gutter) * 2);
+  //margin-right: auto;
+  //margin-left: auto;
+  //padding-right: var(--ystd--container--gutter);
+  //padding-left: var(--ystd--container--gutter);
 }

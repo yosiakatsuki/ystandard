@@ -1,0 +1,13 @@
+:where(.singular__footer) {
+	display: grid;
+	grid-template-columns:repeat(1, 1fr);
+	gap: var(--ystd--content--footer--gap);
+	margin-top: var(--ystd--content--footer--gap);
+
+	> * {
+		width: 100%;
+		max-width: var(--ystd--content--size);
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
