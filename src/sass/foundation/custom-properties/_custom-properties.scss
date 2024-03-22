@@ -8,7 +8,7 @@
 	--scrollbar-width: 0px;
 }
 
-:root {
+body[class] {
 	/**
 	 * ブランド
 	 */
@@ -17,34 +17,41 @@
 	 * Spacing - Gap
 	 */
 	--ystd--layout-gap: 1.5rem;
-	--ystd--container--margin-vertical: var(--ystd--layout-gap);
-	--ystd--content--margin-bottom: calc(2 * var(--ystd--layout-gap));
-	--ystd--content--margin-horizon: auto;
-	--ystd--content--padding: auto;
 	/**
 	 * Body
 	 */
 	--ystd-body-padding-top: 0;
 	/**
-	 * サイズ - コンテナ
+	 * コンテナ
 	 */
-	--ystd--container--width: 1200px;
+	--ystd--container--width: var(--wp--style--global--wide-size, 1200px);
 	--ystd--container--gutter: 1rem;
+	--ystd--container--size: min(calc(100% - var(--ystd--container--gutter) * 2), var(--ystd--container--width));
+	--ystd--container--margin-vertical: var(--ystd--layout-gap);
 	/**
-	 * サイズ - コンテンツ
+	 * コンテンツ
 	 */
-	--ystd--content--width--default: 800px;
-	--ystd--content--width--align-wide: 896px;
+	--ystd--content--width: var(--wp--style--global--content-size, 800px);
 	--ystd--content--min-width: 66.66%;
+	--ystd--content--margin-bottom: calc(2 * var(--ystd--layout-gap));
+	--ystd--content--margin-horizon: auto;
+	--ystd--content--padding: auto;
 	/**
-	 * サイズ - アーカイブ
+	 * サイドバー
+	 */
+	--ystd--sidebar--width: 28%;
+	--ystd--sidebar--max-width: 336px;
+	--ystd--sidebar--padding: 1rem;
+	--ystd--sidebar--fixed-position--top: 2em;
+	/**
+	 * アーカイブ
 	 */
 	--ystd--archive--gap: var(--ystd--layout-gap);
 	--ystd--archive--padding: 1em;
 	--ystd--archive--item--width: 100%;
 	--ystd--archive--thumbnail--width: 100%;
 	/**
-	 * サイズ - Block Gap
+	 * Block Gap
 	 */
 	--ystd--block-gap: 1.5em;
 	/**
@@ -57,11 +64,22 @@
 	--ystd--text-color--white: #ffffff;
 	--ystd--text-color--gray: #656565;
 	--ystd--line-height: 1.7;
-	--ystd--line-height--headline: 1.4;
 	--ystd--letter-spacing: 0.025em;
-	--ystd--letter-spacing--headline: 0.05em;
 	--ystd--font-weight--normal: 400;
 	--ystd--font-weight--bold: 700;
+	/**
+	 * 見出し
+	 */
+	--ystd--headline--default--padding-top: 3em;
+	--ystd--headline--default--padding-bottom: 0.25em;
+	--ystd--headline--font-size--h1: 1.4em;
+	--ystd--headline--font-size--h2: 1.4em;
+	--ystd--headline--font-size--h3: 1.3em;
+	--ystd--headline--font-size--h4: 1.2em;
+	--ystd--headline--font-size--h5: 1.1em;
+	--ystd--headline--font-size--h6: 1.1em;
+	--ystd--headline--line-height: 1.4;
+	--ystd--headline--letter-spacing: 0.05em;
 	/**
 	 * Background
 	 */
@@ -85,6 +103,10 @@
 	 */
 	--ystd--link--text-color: #2980b9;
 	--ystd--link--text-color--hover: #409ad5;
+	/**
+	 * Align
+	 */
+	--ystd--align--gutter: var(--ystd--layout-gap);
 	/**
 	 * Header
 	 */
@@ -146,13 +168,7 @@
 	--ystd--tagcloud--background: var(--ystd--site-background--light-gray);
 	--ystd--tagcloud--text-color: var(--ystd--text-color);
 	--ystd--tagcloud--icon: "#";
-	/**
-	 * Sidebar
-	 */
-	--ystd--sidebar--width: 28%;
-	--ystd--sidebar--max-width: 336px;
-	--ystd--sidebar--padding: 1rem;
-	--ystd--sidebar--fixed-position--top: 2em;
+
 	/**
 	 * Footer
 	 */

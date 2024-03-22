@@ -1,7 +1,6 @@
 @use "../../global";
 
 
-
 body {
 	background-color: var(--ystd--site-background);
 	color: var(--ystd--text-color);
@@ -20,59 +19,66 @@ body {
 /**
  * headline
  */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 3em 0 0.25em;
+:where(h1,h2,h3,h4,h5,h6) {
+	margin-top: var(--ystd--headline--default--padding-top);
+	margin-bottom: var(--ystd--headline--default--padding-bottom);
 	padding: 0;
-	line-height: var(--ystd--line-height--headline);
-	letter-spacing: var(--ystd--letter-spacing--headline);
+	line-height: var(--ystd--headline--line-height);
+	letter-spacing: var(--ystd--headline--letter-spacing);
 }
 
-$selector: "";
-@for $i from 1 through 5 {
-	$selector: #{$selector}h#{$i}#{"+"}h#{($i+1)}#{","};
+:where(h1+h2,h2+h3,h3+h4,h4+h5,h5+h6) {
+	margin-top: var(--ystd--layout-gap);
 }
 
-#{$selector} {
-	margin-top: 1em;
+:where(h1) {
+	font-size: var(--ystd--headline--font-size--h1);
+	//font-size: global.get_font_size("x-large");
 }
 
-h1,
-h2 {
-	font-size: global.get_font_size("x-large");
+:where(h2) {
+	font-size: var(--ystd--headline--font-size--h2);
 }
 
-h3 {
-	font-size: global.get_font_size("large");
+:where(h3) {
+	font-size: var(--ystd--headline--font-size--h3);
 }
 
-h4 {
-	font-size: 1.2em;
+:where(h4) {
+	font-size: var(--ystd--headline--font-size--h4);
 }
 
-h5,
-h6 {
-	font-size: 1.1em;
+:where(h5) {
+	font-size: var(--ystd--headline--font-size--h5);
+}
+
+:where(h6) {
+	font-size: var(--ystd--headline--font-size--h6);
 }
 
 /**
  * image
  */
-img,
-amp-img {
+:where(img,amp-img) {
 	max-width: 100%;
 	height: auto;
 }
 
-figure {
-	margin: 0;
+:where(p):empty {
+	display: none;
 }
 
-figcaption {
+:where(figure) {
+	margin: 0;
+	padding: 0;
+
+	:where(img,video,iframe) {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+:where(figcaption) {
 	margin: 0.5em 0 0;
 	color: var(--ystd--text-color--gray);
 	font-size: 0.8em;
@@ -82,46 +88,46 @@ figcaption {
 /**
  * link
  */
-a {
+:where(a) {
 	color: var(--ystd--link--text-color);
 	transition: all 0.3s;
 
-	&:hover {
-		color: var(--ystd--link--text-color--hover);
+	@media (hover: hover) {
+		&:hover {
+			color: var(--ystd--link--text-color--hover);
+		}
 	}
 }
 
 /**
  * list
  */
-ul,
-ol {
+:where(ul,ol) {
 	margin-bottom: 0;
 	padding-left: 1.7em;
 
-	ul,
-	ol {
+	:where(ul,ol) {
 		margin: 0;
 	}
 }
 
-dt {
+:where(dt) {
 	margin-top: 0.5em;
 	font-weight: var(--ystd--font-weight--bold);
 }
 
-dd {
+:where(dd) {
 	margin-left: 1em;
 }
 
 /**
  * blockquote
  */
-cite {
+:where(cite) {
 	font-style: italic;
 }
 
-blockquote {
+:where(blockquote) {
 	position: relative;
 	margin-right: 0;
 	margin-left: 0;
@@ -141,12 +147,16 @@ blockquote {
 		opacity: 0.08;
 	}
 
-	a {
-		color: currentColor;
+	> * {
+		margin-bottom: 0;
 	}
 
-	p {
+	> * + * {
 		margin-top: 0.5em;
+	}
+
+	a {
+		color: currentColor;
 	}
 
 	cite {
@@ -160,20 +170,12 @@ blockquote {
 			margin-right: 0.5em;
 		}
 	}
-
-	& > *:first-child {
-		margin-top: 0;
-	}
-
-	& > *:last-child {
-		margin-bottom: 0;
-	}
 }
 
 /**
  * code
  */
-code {
+:where(code) {
 	padding: 0 0.2em;
 	color: var(--ystd--text-color--gray);
 	font-family: var(--ystd--font-family--code);
@@ -183,7 +185,7 @@ code {
 /**
  * pre
  */
-pre {
+:where(pre) {
 	padding: 1rem;
 	background-color: var(--ystd--site-background--light-gray);
 	line-height: 1.4;
@@ -201,7 +203,7 @@ pre {
 /**
  * table
  */
-table {
+:where(table) {
 	width: 100%;
 	border-top: 1px solid var(--ystd--site--border-color--gray);
 	word-break: break-word;
@@ -209,18 +211,17 @@ table {
 	border-collapse: collapse;
 }
 
-tr {
+:where(tr) {
 	border-left: 1px solid var(--ystd--site--border-color--gray);
 }
 
-td,
-th {
+:where(td,th) {
 	padding: 0.5em 1em;
 	border-right: 1px solid var(--ystd--site--border-color--gray);
 	border-bottom: 1px solid var(--ystd--site--border-color--gray);
 }
 
-th {
+:where(th) {
 	background-color: var(--ystd--site-background--light-gray);
 	font-weight: normal;
 	text-align: left;
@@ -229,25 +230,22 @@ th {
 /**
  * hr
  */
-hr {
+:where(hr) {
 	margin: 1.5em auto;
 	border: 0.05rem solid var(--ystd--site--border-color--light-gray);
 	clear: both;
 }
 
-iframe,
-video {
+:where(iframe,video) {
 	max-width: 100%;
 	border: 0;
 }
 
-audio {
+:where(audio) {
 	width: 100%;
 	min-width: 300px;
 }
 
-
-strong,
-b {
+:where(strong,b) {
 	font-weight: var(--ystd--font-weight--bold);
 }
