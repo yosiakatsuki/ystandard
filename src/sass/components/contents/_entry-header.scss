@@ -8,6 +8,10 @@
 		max-width: var(--ystd--content--size);
 		margin-right: auto;
 		margin-left: auto;
+
+		&:where(:first-child) {
+			margin-top: 0;
+		}
 	}
 
 	> * + * {
