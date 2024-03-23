@@ -9,4 +9,9 @@
 	:where(a) {
 		color: currentColor;
 	}
+
+	:where(.entry-content) {
+		--ystd--content--size: var(--ystd--container--size);
+		--wp--style--global--content-size: var(--ystd--container--width);
+	}
 }
