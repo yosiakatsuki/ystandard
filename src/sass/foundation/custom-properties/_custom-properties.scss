@@ -67,6 +67,9 @@ body:where([class]) {
 	--ystd--content--header--meta--gap: 1.5em;
 	--ystd--content--header--meta--icon-size: 1em;
 	--ystd--content--2col--size: clamp(700px, 70%, 800px);
+	--ystd--site-content--background: transparent;
+	--ystd--site-content--padding: calc(var(--ystd--layout-gap) * 2);
+	--ystd--site-content--padding--mobile: calc(var(--ystd--site-content--padding) / 2);
 
 
 	--ystd--content--min-width: 66.66%;
@@ -84,8 +87,6 @@ body:where([class]) {
 	--ystd--sidebar--2col--gap: 2rem;
 	--ystd--sidebar--fixed-position--top: 2em;
 
-	--ystd--sidebar--width: 28%;
-	--ystd--sidebar--max-width: 336px;
 	--ystd--sidebar--padding: 1rem;
 	/**
 	 * アーカイブ
