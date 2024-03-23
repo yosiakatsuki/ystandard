@@ -3,6 +3,13 @@
 	> * + *:where(:not(h1,h2,h3,h4,h5,h6,.alignfull)) {
 		margin-top: var(--ystd--block-gap);
 	}
+	*:where(:first-child) {
+		margin-top: 0;
+	}
+
+	*:where(:last-child) {
+		margin-bottom: 0;
+	}
 
 	*:where(:not(.alignfull)) {
 		max-width: var(--ystd--content--size);

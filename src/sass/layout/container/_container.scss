@@ -1,15 +1,13 @@
 @use "../../global";
 
-:where(.container) {
+:where(.content-container) {
 	position: relative;
 	margin-right: auto;
 	margin-left: auto;
-	//padding-right: var(--ystd--container--gutter);
-	//padding-left: var(--ystd--container--gutter);
 }
 
 :where(.has-sidebar) {
-	:where(.container) {
+	:where(.content-container) {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: var(--ystd--sidebar--2col--gap);

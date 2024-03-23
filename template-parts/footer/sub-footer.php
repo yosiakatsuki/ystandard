@@ -9,14 +9,14 @@
 
 defined( 'ABSPATH' ) || die();
 
-if ( ! ys_get_footer_sub_contents() ) {
+if ( ! ys_get_sub_footer_contents() ) {
 	return;
 }
 ?>
-<div class="footer-sub">
-	<div class="container">
-		<div class="footer-sub__content">
-			<?php echo ys_get_footer_sub_contents(); ?>
+<div class="sub-footer">
+	<div class="sub-footer-container">
+		<div class="sub-footer__content">
+			<?php echo ys_get_sub_footer_contents(); ?>
 		</div>
 	</div>
 </div>

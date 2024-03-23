@@ -330,7 +330,7 @@ function ys_is_active_footer_widgets() {
 /**
  * サブフッターコンテンツ取得
  */
-function ys_get_footer_sub_contents() {
+function ys_get_sub_footer_contents() {
 	return \ystandard\Footer::get_footer_sub_contents();
 }
 

@@ -8,7 +8,7 @@
  */
 
 get_header(); ?>
-<div class="container">
+<div class="content-container">
 	<?php
 	if ( have_posts() ) {
 		ys_get_template_part( 'template-parts/archive/content' );

@@ -14,7 +14,7 @@ if ( empty( $breadcrumbs ) ) {
 }
 ?>
 <div id="breadcrumbs" class="breadcrumbs">
-	<div class="container">
+	<div class="breadcrumbs-container">
 		<ol class="breadcrumbs__list li-clear">
 			<?php foreach ( $breadcrumbs as $key => $item ) : ?>
 				<li class="breadcrumbs__item">

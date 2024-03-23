@@ -185,19 +185,12 @@ class Enqueue_Styles {
 	 */
 	private static function create_custom_properties_css( $vars ) {
 		$result     = '';
-		$user_input = [ 'font-family' ];
-		$vars_temp  = [];
 		foreach ( $vars as $key => $value ) {
 			if ( ! empty( $key ) && '' !== $value ) {
-				if ( in_array( $key, $user_input, true ) ) {
-					$vars_temp[ $key ] = $value;
-				} else {
-					$result .= "--{$key}: {$value};";
-				}
+				// プレフィックス追加.
+				$key = str_replace( '--ystd--', '', $key );
+				$result .= "--ystd--{$key}: {$value};";
 			}
-		}
-		foreach ( $vars_temp as $key => $value ) {
-			$result .= "--{$key}: {$value};";
 		}
 
 		return $result;
