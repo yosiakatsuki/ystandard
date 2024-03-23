@@ -82,11 +82,11 @@ body:where([class]) {
 	 */
 	--ystd--sidebar--2col--max-width: 336px;
 	--ystd--sidebar--2col--gap: 2rem;
+	--ystd--sidebar--fixed-position--top: 2em;
 
 	--ystd--sidebar--width: 28%;
 	--ystd--sidebar--max-width: 336px;
 	--ystd--sidebar--padding: 1rem;
-	--ystd--sidebar--fixed-position--top: 2em;
 	/**
 	 * アーカイブ
 	 */
@@ -167,11 +167,18 @@ body:where([class]) {
 	--ystd--archive--item--border-color: 1px solid var(--ystd--site--border-color--light-gray);
 	--ystd--archive--category--background: var(--ystd--content--meta--color);
 	/**
-	 * Paging / Pagination
+	 * Paging
 	 */
 	--ystd--post-paging--text-color: var(--ystd--text-color);
 	--ystd--post-paging--font-size: 0.9em;
+	/**
+	 * Pagination
+	 */
+	--ystd--pagination--margin-top: 2em;
+	--ystd--pagination--gap: 1em;
 	--ystd--pagination--text-color: var(--ystd--text-color);
+	--ystd--pagination--current-text-color: var(--ystd--pagination--text-color);
+	--ystd--pagination--font-size: 1em;
 	/**
 	 * Advertisement
 	 */

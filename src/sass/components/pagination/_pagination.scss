@@ -1,68 +1,55 @@
 @use "../../global";
 
-$editor: false !default;
-
-@mixin pagination() {
-
-  .pagination {
+:where(.pagination) {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 1.5em;
+	gap: var(--ystd--pagination--gap);
+	margin-top: var(--ystd--pagination--margin-top);
 	color: var(--ystd--pagination--text-color);
+	font-size: var(--ystd--pagination--font-size);
 
 	a {
-	  color: currentColor;
-	  text-decoration: none;
+		color: currentColor;
+		text-decoration: none;
+
+		@media (hover: hover) {
+			&:hover {
+				color: currentColor;
+			}
+		}
 	}
-  }
+}
 
-
-  .pagination__item {
-	display: block;
+:where(.pagination__item) {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	position: relative;
-	margin-right: 0.5em;
-	margin-left: 0.5em;
 	padding: 0.5rem;
 
-	&:first-child {
-	  margin-left: 0;
-	}
-
-	&:last-child {
-	  margin-right: 0;
-	}
-
 	&::after {
-	  content: "";
-	  width: 0;
-	  transition: width 0.3s;
-	}
-
-	&.is-current,
-	&:not(.is-dot):hover {
-	  &::after {
 		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 1px;
-		background-color: currentColor;
-	  }
+		width: 0;
+		transition: width 0.3s;
 	}
 
-	&.is-hide-mobile, {
-	  display: none;
-
-	  @include global.media-breakpoint(sm) {
-		display: block;
-	  }
+	&:where(&.is-current,&:not(.is-dot):hover) {
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background-color: currentColor;
+		}
 	}
-  }
 
+	&:where(.is-hide-mobile) {
+		@include global.media-only-mobile() {
+			display: none;
+		}
+	}
 }
 
-@if false == $editor {
-  @include pagination();
-}

@@ -12,7 +12,6 @@
 @use "posts/posts";
 @use "post-related/post-related";
 
-@use "pagination/pagination";
 @use "pagination/page-links";
 @use "blog-card/blog-card";
 @use "comments/comments";
@@ -29,4 +28,5 @@
 @use "widget";
 
 @use "post-paging";
+@use "pagination";
 
