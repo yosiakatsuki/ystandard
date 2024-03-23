@@ -1,0 +1,11 @@
+:where(.site-header) {
+	position: relative;
+	background-color: var(--ystd--header--background);
+	box-shadow: var(--ystd--header--shadow);
+}
+
+:where(.header-container) {
+	max-width: var(--ystd--container--size);
+	margin-right: auto;
+	margin-left: auto;
+}

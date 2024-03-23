@@ -38,7 +38,7 @@ class Footer_Test extends WP_UnitTestCase {
 	 * サブフッター 余白設定テスト
 	 */
 	function test_sub_footer_css_var_padding_empty() {
-		update_option( 'ys_color_sub_footer_padding', '' );
+		update_option( 'ys_sub_footer_padding', '' );
 		$footer   = new \ystandard\Footer();
 		$expected = [
 			'sub-footer-bg'   => '#f1f1f3',
@@ -51,7 +51,7 @@ class Footer_Test extends WP_UnitTestCase {
 	 * サブフッター 余白設定テスト
 	 */
 	function test_sub_footer_css_var_padding_zero() {
-		update_option( 'ys_color_sub_footer_padding', '0' );
+		update_option( 'ys_sub_footer_padding', '0' );
 		$footer   = new \ystandard\Footer();
 		$expected = [
 			'sub-footer-bg'      => '#f1f1f3',
@@ -65,7 +65,7 @@ class Footer_Test extends WP_UnitTestCase {
 	 * サブフッター 余白設定テスト
 	 */
 	function test_sub_footer_css_var_padding_30() {
-		update_option( 'ys_color_sub_footer_padding', '30' );
+		update_option( 'ys_sub_footer_padding', '30' );
 		$footer   = new \ystandard\Footer();
 		$expected = [
 			'sub-footer-bg'      => '#f1f1f3',

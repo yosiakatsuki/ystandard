@@ -1,10 +1,6 @@
 @use "../../global";
 
-.site-header {
-  position: relative;
-  background-color: var(--ystd--header--background);
-  box-shadow: var(--ystd--header--shadow);
-}
+
 
 .site-header__content {
   display: flex;

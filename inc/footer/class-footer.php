@@ -31,7 +31,6 @@ class Footer {
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_main' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_sub' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_mobile_footer_menu' ] );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_sub_footer_css' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_footer_mobile_nav_css' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_back_to_top_css' ] );
 	}
@@ -282,22 +281,6 @@ class Footer {
 	}
 
 	/**
-	 * サブフッターのインラインCSS
-	 *
-	 * @param string $css CSS.
-	 *
-	 * @return string
-	 */
-	public function add_sub_footer_css( $css ) {
-
-		if ( 'vertical' === Option::get_option( 'ys_footer_sub_type', 'horizon' ) ) {
-			$css .= '.footer-sub__widget {flex-direction: column;}';
-		}
-
-		return $css;
-	}
-
-	/**
 	 * フッターメイン
 	 *
 	 * @param array $css_vars CSS.
@@ -308,7 +291,7 @@ class Footer {
 
 		$bg    = Enqueue_Utility::get_css_var(
 			'footer-bg',
-			Option::get_option( 'ys_color_footer_bg', '#f1f1f3' )
+			Option::get_option( 'ys_color_footer_bg', '' )
 		);
 		$color = Enqueue_Utility::get_css_var(
 			'footer-text',
@@ -335,20 +318,23 @@ class Footer {
 	 * @return array
 	 */
 	public function add_css_var_footer_sub( $css_vars ) {
-		$bg       = Option::get_option( 'ys_color_sub_footer_bg', '#f1f1f3' );
-		$bg       = '' === $bg ? 'transparent' : $bg;
-		$bg       = Enqueue_Utility::get_css_var(
-			'sub-footer-bg',
-			$bg
-		);
-		$css_vars = array_merge(
-			$css_vars,
-			$bg
-		);
-		$color    = Option::get_option( 'ys_color_sub_footer_text', '#222222' );
+		// サブフッター背景色.
+		$bg = Option::get_option( 'ys_color_sub_footer_bg', '' );
+		if ( $bg ) {
+			$bg       = Enqueue_Utility::get_css_var(
+				'sub-footer--background',
+				$bg
+			);
+			$css_vars = array_merge(
+				$css_vars,
+				$bg
+			);
+		}
+		// サブフッターテキスト色.
+		$color = Option::get_option( 'ys_color_sub_footer_text', '' );
 		if ( '' !== $color ) {
 			$color    = Enqueue_Utility::get_css_var(
-				'sub-footer-text',
+				'sub-footer--text-color',
 				$color
 			);
 			$css_vars = array_merge(
@@ -357,11 +343,11 @@ class Footer {
 			);
 		}
 
-		$padding = Option::get_option( 'ys_color_sub_footer_padding', '' );
+		$padding = Option::get_option( 'ys_sub_footer_padding', '' );
 		if ( '' !== $padding ) {
 			$padding  = empty( $padding ) ? 0 : "{$padding}px";
 			$padding  = Enqueue_Utility::get_css_var(
-				'sub-footer-padding',
+				'sub-footer--padding',
 				$padding
 			);
 			$css_vars = array_merge(
@@ -469,7 +455,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_footer_bg',
-				'default' => '#f1f1f3',
+				'default' => '',
 				'label'   => 'フッター背景色',
 			]
 		);
@@ -499,7 +485,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_sub_footer_bg',
-				'default' => '#f1f1f3',
+				'default' => '',
 				'label'   => 'サブフッター背景色',
 			]
 		);
@@ -507,7 +493,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_sub_footer_text',
-				'default' => '#222222',
+				'default' => '',
 				'label'   => 'サブフッター文字色',
 			]
 		);
@@ -523,7 +509,7 @@ class Footer {
 		);
 		$customizer->add_number(
 			[
-				'id'      => 'ys_color_sub_footer_padding',
+				'id'      => 'ys_sub_footer_padding',
 				'default' => '',
 				'label'   => 'サブフッター上下余白',
 			]

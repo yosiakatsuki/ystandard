@@ -11,7 +11,7 @@ defined( 'ABSPATH' ) || die();
 ?>
 <header id="masthead" class="site-header">
 	<?php do_action( 'ys_site_header_prepend' ); ?>
-	<div class="container">
+	<div class="header-container">
 		<div class="site-header__content">
 			<?php
 			/**

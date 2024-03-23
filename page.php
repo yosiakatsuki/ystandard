@@ -8,7 +8,7 @@
  */
 
 get_header(); ?>
-<div class="container">
+<div class="content-container">
 	<?php
 	while ( have_posts() ) :
 		the_post();

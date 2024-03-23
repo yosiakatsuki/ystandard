@@ -1,0 +1,16 @@
+:where(.footer-container) {
+	> * {
+		max-width: var(--ystd--container--size);
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+:where(.site-footer) {
+	:where(a) {
+		text-decoration: none;
+	}
+
+	--ystd--text-color--gray: var(--ystd--footer--text-color--gray);
+	--ystd--content--meta--color: var(--ystd--footer--text-color--gray);
+}
