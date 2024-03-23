@@ -10,7 +10,7 @@
 defined( 'ABSPATH' ) || die();
 ?>
 <div class="site-info">
-	<div class="footer-copy">
+	<div class="footer-copyright">
 		<?php ys_the_footer_site_info(); ?>
 	</div>
 </div>
