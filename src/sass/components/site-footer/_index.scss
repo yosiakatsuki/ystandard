@@ -1,3 +1,5 @@
+@use "footer-copyright";
+
 :where(.footer-container) {
 	> * {
 		max-width: var(--ystd--container--size);

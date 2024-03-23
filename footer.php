@@ -28,7 +28,7 @@
 				// フッターナビゲーション.
 				ys_get_template_part( 'template-parts/footer/footer-nav' );
 				// Copyright.
-				ys_get_template_part( 'template-parts/footer/footer-copy' );
+				ys_get_template_part( 'template-parts/footer/footer-copyright' );
 				?>
 		</div>
 	</div>
