@@ -15,6 +15,12 @@ $breakpoints_setting: (
 	}
 }
 
+@mixin media-up-desktop() {
+	@include media-breakpoint(desktop) {
+		@content;
+	}
+}
+
 @mixin media-breakpoint($name,$breakpoints: $breakpoints_setting) {
 	$breakpoint: map-get($breakpoints, $name);
 	@if $breakpoint {
@@ -26,12 +32,6 @@ $breakpoints_setting: (
     + "Please make sure it is defined in `$breakpoints-setting` map.";
 	}
 }
-
-// media break point
-//  @include media-breakpoint(sm) {
-//    style...
-//  }
-//  sm,md,lg
 
 @mixin media-breakpoint-down($name,$gain:1px,$breakpoints: $breakpoints_setting) {
 	$breakpoint: map-get($breakpoints, $name);

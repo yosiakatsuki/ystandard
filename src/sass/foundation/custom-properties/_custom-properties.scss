@@ -66,6 +66,8 @@ body:where([class]) {
 	--ystd--content--header--meta--font-size: 0.7em;
 	--ystd--content--header--meta--gap: 1.5em;
 	--ystd--content--header--meta--icon-size: 1em;
+	--ystd--content--2col--size: clamp(700px, 70%, 800px);
+
 
 	--ystd--content--min-width: 66.66%;
 	--ystd--content--margin-bottom: calc(2 * var(--ystd--layout-gap));
@@ -78,6 +80,9 @@ body:where([class]) {
 	/**
 	 * サイドバー
 	 */
+	--ystd--sidebar--2col--max-width: 336px;
+	--ystd--sidebar--2col--gap: 2rem;
+
 	--ystd--sidebar--width: 28%;
 	--ystd--sidebar--max-width: 336px;
 	--ystd--sidebar--padding: 1rem;
