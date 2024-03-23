@@ -1,10 +1,25 @@
 @use "../../global";
 
-.container {
-  //position: relative;
-  //max-width: calc(var(--ystd--container--width) + var(--ystd--container--gutter) * 2);
-  //margin-right: auto;
-  //margin-left: auto;
-  //padding-right: var(--ystd--container--gutter);
-  //padding-left: var(--ystd--container--gutter);
+:where(.container) {
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	//padding-right: var(--ystd--container--gutter);
+	//padding-left: var(--ystd--container--gutter);
 }
+
+:where(.has-sidebar) {
+	:where(.container) {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--ystd--sidebar--2col--gap);
+
+		@include global.media-up-desktop() {
+			max-width: var(--ystd--container--size);
+			justify-content: space-between;
+			gap: var(--ystd--sidebar--2col--gap);
+			grid-template-columns: var(--ystd--content--2col--size) 1fr;
+		}
+	}
+}
+
