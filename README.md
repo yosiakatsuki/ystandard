@@ -59,8 +59,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --ystd-container-gutter          | --ystd--container--gutter                     |
 | --ystd-content-default-width     | --ystd--content--width                        |
 | --ystd-content-min-width         | --ystd--content--min-width                    |
-| --ystd-sidebar-width             | --ystd--sidebar--width                        |
-| --ystd-sidebar-max-width         | --ystd--sidebar--max-width                    |
+| --ystd-sidebar-max-width         | --ystd--sidebar--2col--max-width              |
 | --ystd-sidebar-padding           | --ystd--sidebar--padding                      |
 | --ystd-archive-gap               | --ystd--archive--gap                          |
 | --ystd-archive-padding           | --ystd--archive--padding                      |
@@ -149,6 +148,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 #### v5.0.0 - 廃止されたカスタムプロパティ
 
 - --ystd-content-align-wide-width
+- --ystd-sidebar-width
 
 #### v5.0.0 - ファイル移動表
 
