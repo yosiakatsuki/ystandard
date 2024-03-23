@@ -11,13 +11,13 @@
 		margin-bottom: 0;
 	}
 
-	*:where(:not(.alignfull)) {
+	> *:where(:not(.alignfull)) {
 		max-width: var(--ystd--content--size);
 		margin-right: auto;
 		margin-left: auto;
 	}
 
-	*:where(.alignwide) {
+	> *:where(.alignwide) {
 		max-width: var(--ystd--container--size);
 	}
 }
