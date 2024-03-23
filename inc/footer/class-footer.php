@@ -289,25 +289,38 @@ class Footer {
 	 */
 	public function add_css_var_footer_main( $css_vars ) {
 
-		$bg    = Enqueue_Utility::get_css_var(
-			'footer-bg',
-			Option::get_option( 'ys_color_footer_bg', '' )
-		);
-		$color = Enqueue_Utility::get_css_var(
-			'footer-text',
-			Option::get_option( 'ys_color_footer_font', '#222222' )
-		);
-		$gray  = Enqueue_Utility::get_css_var(
-			'footer-text-gray',
-			Option::get_option( 'ys_color_footer_text_gray', '#a7a7a7' )
-		);
+		$footer_bg_color = Option::get_option( 'ys_color_footer_bg', '' );
+		if ( $footer_bg_color ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'footer--background',
+					$footer_bg_color
+				)
+			);
+		}
+		$footer_text_color = Option::get_option( 'ys_color_footer_font', '' );
+		if ( '' === $footer_text_color ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'footer--text-color',
+					$footer_text_color
+				)
+			);
+		}
+		$footer_text_gray = Option::get_option( 'ys_color_footer_text_gray', '' );
+		if ( $footer_text_gray ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'footer--text-color--gray',
+					$footer_text_gray
+				)
+			);
+		}
 
-		return array_merge(
-			$css_vars,
-			$bg,
-			$gray,
-			$color
-		);
+		return $css_vars;
 	}
 
 	/**

@@ -14,7 +14,6 @@ if ( ! has_nav_menu( 'footer' ) ) {
 }
 ?>
 <nav class="footer-nav">
-	<div class="container">
 		<?php
 		wp_nav_menu(
 			[
@@ -26,5 +25,4 @@ if ( ! has_nav_menu( 'footer' ) ) {
 			]
 		);
 		?>
-	</div>
 </nav>
