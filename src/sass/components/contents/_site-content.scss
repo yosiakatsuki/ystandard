@@ -13,9 +13,23 @@
 	}
 }
 
+/**
+ * ワイド幅
+ */
 body:where(.is-wide) {
 	:where(.site-content) {
 		--ystd--content--size: var(--ystd--container--size);
 		--wp--style--global--content-size: var(--ystd--container--width);
+	}
+}
+
+/**
+ * サイドバーあり(2カラム)
+ */
+body:where(.has-sidebar) {
+	:where(.site-content .entry-header,.site-content .entry-content,.site-content .entry-footer) {
+		--ystd--content--size: 100%;
+		--ystd--container--size: 100%;
+		--wp--style--global--content-size: 100%;
 	}
 }
