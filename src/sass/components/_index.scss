@@ -11,7 +11,7 @@
 @use "recent-posts/recent-posts";
 @use "posts/posts";
 @use "post-related/post-related";
-@use "post-paging/post-paging";
+
 @use "pagination/pagination";
 @use "pagination/page-links";
 @use "blog-card/blog-card";
@@ -27,4 +27,6 @@
 @use "contents";
 @use "advertisement";
 @use "widget";
+
+@use "post-paging";
 
