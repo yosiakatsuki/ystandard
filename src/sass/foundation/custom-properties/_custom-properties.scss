@@ -190,14 +190,17 @@ body:where([class]) {
 	 * Footer
 	 */
 	--ystd--footer--background: #e9ecef;
-	--ystd--footer--text-color: var(--ystd--text-color--white);
+	--ystd--footer--text-color: #222222;
 	--ystd--footer--text-color--gray: #a7a7a7;
+	--ystd--footer--padding-top: 4em;
+	--ystd--footer--padding-bottom: 1em;
+	--ystd--footer--content--gap: 2em;
 	/**
 	 * Sub Footer
 	 */
 	--ystd--sub-footer--background: var(--ystd--site-background--light-gray);
 	--ystd--sub-footer--text-color: var(--ystd--text-color);
-	--ystd--sub-footer--padding: 1em;
+	--ystd--sub-footer--padding: 4em;
 	/**
 	 * Mobile Footer
 	 */
