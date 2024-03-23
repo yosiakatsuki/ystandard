@@ -2,7 +2,7 @@
 @use "global-nav/global-nav";
 @use "archive/archive";
 @use "singular/singular";
-@use "footer/footer-nav";
+@use "../components/site-footer/footer-nav";
 @use "footer/footer-widget";
 @use "404/not-found";
 @use "no-title/no-title";

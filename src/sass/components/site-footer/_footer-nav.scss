@@ -1,0 +1,30 @@
+@use "../../global";
+
+
+:where(.footer-nav) {
+	:where(.footer-nav__menu) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--ystd--footer--nav--gap--row) var(--ystd--footer--nav--gap--column);
+		font-size: 0.8em;
+
+		@include global.media-up-mobile() {
+			justify-content: center;
+		}
+	}
+
+	:where(ul,ol) {
+		list-style: none;
+		padding: 0;
+	}
+
+	a {
+		color: currentColor;
+
+		@media (hover: hover) {
+			&:hover {
+				color: currentColor;
+			}
+		}
+	}
+}

@@ -1,4 +1,5 @@
 @use "footer-copyright";
+@use "footer-nav";
 
 :where(.footer-container) {
 	> * {
