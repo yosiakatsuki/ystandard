@@ -1,0 +1,45 @@
+@use "../../global";
+
+:where(.footer-widget) {
+	th {
+		color: var(--ystd--text-color);
+	}
+
+	:where(.widget_calendar) {
+		a {
+			text-decoration: underline;
+		}
+	}
+}
+
+:where(.footer-widget__container) {
+
+	> * {
+		width: 100%;
+	}
+
+	:where(.widget_block) {
+
+		> :where(*) {
+			&:where(:first-child) {
+				margin-top: 0;
+			}
+		}
+	}
+
+	@include global.media-up-mobile() {
+		display: flex;
+		gap: var(--ystd--footer--widget--column-gap);
+	}
+}
+
+:where(.footer-widget__column) {
+	* {
+		margin-top: 0;
+		margin-bottom: 0;
+
+		+ * {
+			margin-top: var(--ystd--footer--widget--content-gap);
+		}
+	}
+}
