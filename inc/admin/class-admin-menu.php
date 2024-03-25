@@ -119,9 +119,9 @@ class Admin_Menu {
 		if ( 'ystandard_page_ystandard-icons' === $hook_suffix ) {
 			wp_enqueue_script(
 				'search-icons',
-				get_template_directory_uri() . '/js/admin/search-icons.js',
+				get_template_directory_uri() . '/js/search-icons.js',
 				[],
-				filemtime( get_template_directory() . '/js/admin/search-icons.js' ),
+				filemtime( get_template_directory() . '/js/search-icons.js' ),
 				true
 			);
 		}

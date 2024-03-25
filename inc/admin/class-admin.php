@@ -102,16 +102,16 @@ class Admin {
 		wp_enqueue_media();
 		wp_enqueue_script(
 			'ys-admin-scripts',
-			get_template_directory_uri() . '/js/admin/admin.js',
+			get_template_directory_uri() . '/js/admin.js',
 			[ 'jquery' ],
-			filemtime( get_template_directory() . '/js/admin/admin.js' ),
+			filemtime( get_template_directory() . '/js/admin.js' ),
 			true
 		);
 		wp_enqueue_script(
 			'ys-custom-uploader',
-			get_template_directory_uri() . '/js/admin/custom-uploader.js',
+			get_template_directory_uri() . '/js/custom-uploader.js',
 			[ 'jquery' ],
-			filemtime( get_template_directory() . '/js/admin/custom-uploader.js' ),
+			filemtime( get_template_directory() . '/js/custom-uploader.js' ),
 			true
 		);
 	}

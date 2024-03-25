@@ -152,10 +152,12 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 #### v5.0.0 - ファイル移動表
 
-| 変更前                                   | 変更後                                        |
-|---------------------------------------|--------------------------------------------|
-| template-parts/footer/footer-sub.php  | template-parts/footer/sub-footer.php       |
-| template-parts/footer/footer-copy.php | template-parts/footer/footer-copyright.php |
+| 変更前                                              | 変更後                                                  |
+|--------------------------------------------------|------------------------------------------------------|
+| template-parts/footer/footer-sub.php             | template-parts/footer/sub-footer.php                 |
+| template-parts/footer/footer-copy.php            | template-parts/footer/footer-copyright.php           |
+| template-parts/header/global-nav.php             | template-parts/navigation/global-nav.php             |
+| template-parts/header/global-nav-search-form.php | template-parts/navigation/global-nav-search-form.php |
 
 ### v4.x.x
 

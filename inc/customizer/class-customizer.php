@@ -71,7 +71,7 @@ class Customizer {
 	public function preview_init() {
 		wp_enqueue_script(
 			'ys-customize-preview-js',
-			get_template_directory_uri() . '/js/admin/customizer-preview.js',
+			get_template_directory_uri() . '/js/customizer-preview.js',
 			[ 'jquery', 'customize-preview' ],
 			date_i18n( 'YmdHis' ),
 			true
@@ -121,9 +121,9 @@ class Customizer {
 	public function enqueue_scripts() {
 		wp_enqueue_script(
 			'ys-customize-controls-js',
-			get_template_directory_uri() . '/js/admin/customizer-control.js',
+			get_template_directory_uri() . '/js/customizer-control.js',
 			[ 'customize-controls', 'jquery' ],
-			filemtime( get_template_directory() . '/js/admin/customizer-control.js' ),
+			filemtime( get_template_directory() . '/js/customizer-control.js' ),
 			true
 		);
 	}
