@@ -41,9 +41,9 @@ if ( class_exists( 'WP_Customize_Color_Control' ) ) {
 			$file_name = 'customizer-control-ys-color-control.js';
 			wp_enqueue_script(
 				'customizer-control-ys-color-control',
-				get_template_directory_uri() . "/js/admin/{$file_name}",
+				get_template_directory_uri() . "/js/{$file_name}",
 				[ 'customize-controls', 'jquery', 'customize-base', 'wp-color-picker' ],
-				filemtime( get_template_directory() . "/js/admin/{$file_name}" ),
+				filemtime( get_template_directory() . "/js/{$file_name}" ),
 				false
 			);
 		}

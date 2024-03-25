@@ -1,2 +1,0 @@
-"use strict";function copyClipboardForm(target){var text=jQuery(target).prev();var info=jQuery(target).next();text.select();document.execCommand("copy");if(info.length){info.show().fadeOut(2000)}}document.addEventListener("DOMContentLoaded",function(){var copyButtons=jQuery(".copy-form__button:not(.is-without-event)");if(copyButtons.length){copyButtons.each(function(i,elem){elem.addEventListener("click",function(e){e.preventDefault();copyClipboardForm(e.target)})})}});
-//# sourceMappingURL=admin.js.map
