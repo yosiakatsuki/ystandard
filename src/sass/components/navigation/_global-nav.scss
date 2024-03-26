@@ -8,10 +8,16 @@
 }
 
 :where(.global-nav__container) {
+	display: flex;
 	height: 100%;
 	margin-right: 0;
 	margin-left: 0;
 	padding: 0;
+
+	> *:where(:not(.global-nav__menu)) {
+		display: flex;
+		align-items: center;
+	}
 
 	ul {
 		margin: 0;
