@@ -158,34 +158,55 @@ class Header {
 	 * @return array
 	 */
 	public function add_css_var( $css_vars ) {
-		$site_cover    = Enqueue_Utility::get_css_var(
-			'site-cover',
-			Option::get_option( 'ys_color_header_bg', '#ffffff' )
-		);
-		$header_bg     = Enqueue_Utility::get_css_var(
-			'header-bg',
-			Option::get_option( 'ys_color_header_bg', '#ffffff' )
-		);
-		$header_color  = Enqueue_Utility::get_css_var(
-			'header-text',
-			Option::get_option( 'ys_color_header_font', '#222222' )
-		);
-		$header_dscr   = Enqueue_Utility::get_css_var(
-			'header-dscr',
-			Option::get_option( 'ys_color_header_dscr_font', '#656565' )
-		);
-		$header_shadow = Enqueue_Utility::get_css_var(
-			'header-shadow',
-			$this->get_header_shadow()
+
+		// ヘッダー背景色・検索フォームカバー色.
+		$header_bg = Option::get_option( 'ys_color_header_bg', '' );
+		if ( $header_bg ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--global-nav--search--cover--background',
+					$header_bg
+				),
+				Enqueue_Utility::get_css_var(
+					'--ystd--header--background',
+					$header_bg
+				),
+			);
+		}
+		// ヘッダー文字色
+		$text_color = Option::get_option( 'ys_color_header_font', '' );
+		if ( $text_color ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--header--text-color',
+					$text_color
+				),
+			);
+		}
+		// ヘッダー概要文の文字色.
+		$description_color = Option::get_option( 'ys_color_header_dscr_font', '' );
+		if ( $description_color ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--header--description-color',
+					$description_color
+				),
+			);
+		}
+		// ヘッダーボックスシャドウ
+		$css_vars = array_merge(
+			$css_vars,
+			Enqueue_Utility::get_css_var(
+				'--ystd--header--shadow',
+				$this->get_header_shadow()
+			),
 		);
 
 		return array_merge(
 			$css_vars,
-			$site_cover,
-			$header_bg,
-			$header_color,
-			$header_dscr,
-			$header_shadow,
 			$this->get_fixed_sidebar_pos()
 		);
 	}
@@ -540,7 +561,7 @@ class Header {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_header_bg',
-				'default' => '#ffffff',
+				'default' => '',
 				'label'   => '背景色',
 			]
 		);
@@ -548,7 +569,7 @@ class Header {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_header_font',
-				'default' => '#222222',
+				'default' => '',
 				'label'   => '文字色',
 			]
 		);
@@ -556,7 +577,7 @@ class Header {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_header_dscr_font',
-				'default' => '#656565',
+				'default' => '',
 				'label'   => '概要文の文字色',
 			]
 		);
