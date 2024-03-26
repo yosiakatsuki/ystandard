@@ -1,0 +1,107 @@
+:where(.global-nav__search) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 0;
+	height: 0;
+
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	margin: 0;
+	background-color: var(--ystd--global-nav--search--cover--background);
+	visibility: hidden;
+	transition: opacity 0.5s, z-index 0.5s, width 1s ease-out 0.5s, height 1s ease-out 0.5s;
+	opacity: 0;
+	z-index: -1;
+
+	&:where(.is-active) {
+		z-index: var(--ystd--z-index--global-nav);
+		visibility: visible;
+		opacity: 0.98;
+		width: 100%;
+		height: 100%;
+		transition: opacity 0.5s, z-index 0.5s;
+	}
+
+	:where(.search-form) {
+		width: min(50vw, calc(100% - var(--ystd--layout-gap) * 2));
+		border: 1px solid currentColor;
+		font-size: 1.2em;
+		color: var(--ystd--header--text-color);
+
+		:where(.search-submit) {
+			color: currentColor;
+		}
+	}
+
+	:where(.search-field) {
+		background-color: rgba(#fff, 0.2);
+		border: 0;
+		color: currentColor;
+
+		&::placeholder {
+			color: currentColor;
+		}
+	}
+
+	:where(.global-nav__search-close) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 2em;
+		font-size: 0.8em;
+		color: var(--ystd--header--text-color);
+
+		appearance: none;
+		background-color: transparent;
+		box-shadow: none;
+		border: 0;
+		@media (hover: hover) {
+			&:hover {
+				box-shadow: none;
+			}
+		}
+
+		svg {
+			--ystd--global-nav--search-close--icon--size: 24px;
+			width: var(--ystd--global-nav--search-close--icon--size);
+			height: var(--ystd--global-nav--search-close--icon--size);
+		}
+	}
+}
+
+
+:where(.global-nav__search-button) {
+	display: block;
+	margin-left: var(--ystd--global-nav--gap);
+	padding-right: 0;
+	padding-left: 0;
+	color: var(--ystd--header--text-color);
+
+	background-color: transparent;
+	border: 0;
+	appearance: none;
+
+	&:focus {
+		box-shadow: none;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			box-shadow: none;
+		}
+	}
+
+	:where(svg) {
+		--ystd--button-icon--size: 24px;
+		width: var(--ystd--button-icon--size);
+		height: var(--ystd--button-icon--size);
+	}
+}
+
+

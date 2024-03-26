@@ -1,43 +1,20 @@
 @use "../../global";
 
-$editor: false !default;
-
-@mixin forms() {
-
-  input,
-  textarea,
-  select,
-  button {
+:where(input,textarea,select,button) {
 	padding: 0.5rem;
 	background-color: var(--ystd--form--background);
 	border: 1px solid var(--ystd--form--border-color);
 	border-radius: 2px;
 	color: var(--ystd--form--text-color);
 	font-size: 1em;
-  }
+}
 
-  input[type="text"],
-  input[type="search"],
-  input[type="url"],
-  input[type="email"],
-  input[type="tel"],
-  textarea,
-  select {
+:where(input[type="text"],input[type="search"],input[type="url"],input[type="email"],input[type="tel"],textarea,select) {
 	display: block;
 	width: 100%;
 	-webkit-appearance: none;
-  }
+}
 
-  button,
-  input[type="reset"],
-  input[type="submit"],
-  input[type="button"] {
+:where(button,input[type="reset"],input[type="submit"],input[type="button"]) {
 	@include global.button();
-  }
 }
-
-@if false == $editor {
-  @include forms();
-}
-
-

@@ -17,51 +17,109 @@ __webpack_require__.r(__webpack_exports__);
  */
 function drawerNav() {
   document.addEventListener('DOMContentLoaded', () => {
-    const globalNavToggle = document.getElementById('global-nav__toggle');
-    if (!globalNavToggle) {
+    // ドロワーメニューの開閉処理セット.
+    if (!toggleDrawerNav()) {
       return;
     }
-    // ドロワーメニュー開閉ボタン取得.
-    const globalNavToggleButtons = document.querySelectorAll('#global-nav__toggle, .drawer-menu-toggle');
-    // ボタンがあれば開閉処理追加.
-    if (0 < globalNavToggleButtons.length) {
-      globalNavToggleButtons.forEach(element => {
-        element.addEventListener('click', e => {
-          e.preventDefault();
-          const display = window.getComputedStyle(globalNavToggle).display;
-          // ボタンが表示なしの場合は何もしない.
-          if ('none' === display) {
-            return;
-          }
-          globalNavToggle.classList.toggle('is-open');
-          // グローバルメニューの開閉.
-          const globalMenu = document.getElementById('global-nav__menu');
-          if (globalMenu) {
-            globalMenu.classList.toggle('is-open');
-          }
-          // グローバルサーチの開閉.
-          const globalSearch = document.getElementById('global-nav__search');
-          if (globalSearch) {
-            globalSearch.classList.toggle('is-open');
-          }
-          // メイン要素のスクロール制御.
-          disableScroll(globalNavToggle);
-          // モバイルフッターの開閉.
-          const mobileFooter = document.getElementsByClassName('footer-mobile-nav');
-          if (mobileFooter && mobileFooter.length) {
-            mobileFooter[0].classList.toggle('is-hide');
-          }
-        });
-      });
-    }
+    // ドロワーメニューを閉じる処理セット.
+    closeDrawerNav();
   });
+}
+
+/**
+ * ドロワーメニューの開閉処理.
+ */
+function toggleDrawerNav() {
+  const globalNavToggle = document.getElementById('global-nav__toggle');
+  const drawerNavToggle = document.getElementById('drawer-nav__toggle');
+  if (!globalNavToggle || !drawerNavToggle) {
+    return false;
+  }
+  // ドロワーメニュー開閉ボタン取得.
+  const globalNavToggleButtons = document.querySelectorAll('.global-nav__toggle, .drawer-menu-toggle');
+  // ボタンが無ければ処理終了
+  if (0 >= globalNavToggleButtons.length) {
+    return false;
+  }
+  // ボタンクリック時の処理追加.
+  globalNavToggleButtons.forEach(element => {
+    element.addEventListener('click', e => {
+      e.preventDefault();
+      const display = window.getComputedStyle(globalNavToggle).display;
+      // ボタンが表示なしの場合は何もしない.
+      if ('none' === display) {
+        return;
+      }
+      // ドロワーメニュー開閉に関するクラス設定.
+      setDrawerNavClass();
+      // メイン要素のスクロール制御.
+      toggleBodyScroll(globalNavToggle);
+    });
+  });
+  return true;
+}
+
+/**
+ * ドロワーメニューを閉じる処理.
+ */
+function closeDrawerNav() {
+  // ドロワーメニュー閉じる.
+  const drawerNavCloseLinks = document.querySelectorAll('.global-nav a[href*="#"]');
+  // ドロワーメニュー閉じるリンク・ボタンのチェック.
+  if (0 >= drawerNavCloseLinks.length) {
+    return false;
+  }
+  // ドロワーメニュー閉じるリンククリック時の処理追加.
+  drawerNavCloseLinks.forEach(element => {
+    element.addEventListener('click', () => {
+      const globalNavToggle = document.getElementById('global-nav__toggle');
+
+      // ドロワーメニュー開閉に関するクラス設定.
+      setDrawerNavClass('remove');
+      if (globalNavToggle) {
+        // メイン要素のスクロール制御.
+        toggleBodyScroll(globalNavToggle);
+      }
+    });
+  });
+  return true;
+}
+
+/**
+ * ドロワーメニュー開閉に関するクラス設定
+ * @param type
+ */
+function setDrawerNavClass(type = 'toggle') {
+  // クラスの設定
+  const setClass = (target, className) => {
+    if (!target) return;
+    if ('toggle' === type) {
+      target.classList.toggle(className);
+    } else {
+      target.classList.remove(className);
+    }
+  };
+  // グローバルメニュー開閉ボタン.
+  setClass(document.getElementById('global-nav__toggle'), 'is-open');
+  // ドロワーメニュー開閉ボタン.
+  setClass(document.getElementById('drawer-nav__toggle'), 'is-open');
+  // グローバルメニュー.
+  setClass(document.getElementById('global-nav__menu'), 'is-open');
+  // ドロワーメニュー.
+  setClass(document.getElementById('drawer-nav'), 'is-open');
+  // グローバルサーチ.
+  setClass(document.getElementById('global-nav__search'), 'is-drawer-nav-open');
+  // メイン要素.
+  setClass(document.documentElement, 'is-open');
+  // モバイルフッター.
+  setClass(document.getElementById('footer-mobile-nav'), 'is-open');
 }
 
 /**
  * メニュー開閉時のメイン要素のスクロール制御
  * @param target
  */
-function disableScroll(target) {
+function toggleBodyScroll(target) {
   if (target.classList.contains('is-open')) {
     document.body.style.top = `-${window.scrollY}px`;
     document.body.style.position = 'fixed';
@@ -73,6 +131,68 @@ function disableScroll(target) {
     document.body.style.width = '';
     window.scrollTo(0, parseInt(top || '0') * -1);
   }
+}
+
+/***/ }),
+
+/***/ "./src/js/search-form/index.ts":
+/*!*************************************!*\
+  !*** ./src/js/search-form/index.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   setGlobalNavSearch: () => (/* binding */ setGlobalNavSearch)
+/* harmony export */ });
+function setGlobalNavSearch() {
+  document.addEventListener('DOMContentLoaded', () => {
+    // 検索フォームを開く処理セット.
+    setOpenSearch();
+    // 検索フォームを閉じる処理セット.
+    setCloseSearch();
+  });
+}
+
+/**
+ * 検索フォームを開く処理セット.
+ */
+function setOpenSearch() {
+  const searchButton = document.getElementById('global-nav__search-button');
+  if (!searchButton) {
+    return;
+  }
+  searchButton.addEventListener('click', e => {
+    e.preventDefault();
+    const search = document.getElementById('global-nav__search');
+    if (search) {
+      search.classList.toggle('is-active');
+      // 検索フォームが表示されたらフォーカスをセット
+      setTimeout(function () {
+        const field = document.querySelector('#global-nav__search .search-field');
+        // フォーカスをセット
+        if (field) {
+          field.focus();
+        }
+      }, 50);
+    }
+  });
+}
+
+/**
+ * 検索フォームを閉じる処理セット.
+ */
+function setCloseSearch() {
+  const closeButton = document.getElementById('global-nav__search-close');
+  if (!closeButton) {
+    return;
+  }
+  closeButton.addEventListener('click', () => {
+    const search = document.getElementById('global-nav__search');
+    if (search) {
+      search.classList.remove('is-active');
+    }
+  });
 }
 
 /***/ })
@@ -141,8 +261,11 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _drawer_nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./drawer-nav */ "./src/js/drawer-nav/index.ts");
+/* harmony import */ var _search_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-form */ "./src/js/search-form/index.ts");
+
 
 (0,_drawer_nav__WEBPACK_IMPORTED_MODULE_0__.drawerNav)();
+(0,_search_form__WEBPACK_IMPORTED_MODULE_1__.setGlobalNavSearch)();
 })();
 
 /******/ })()

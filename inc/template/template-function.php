@@ -80,10 +80,16 @@ function ys_is_active_header_search_form() {
 /**
  * メニュー開閉ボタンの出力
  *
- * @param string $type 開閉タイプ.
+ * @param array $args {
+ * 開閉ボタンタイプ・クラス.
+ *
+ * @type string $type ボタンタイプ.
+ * @type string $id ID.
+ * @type string $class クラス.
+ * }
  */
-function ys_global_nav_toggle_button( $type = 'toggle' ) {
-	echo \ystandard\Drawer_Menu::get_toggle_button( $type );
+function ys_global_nav_toggle_button( $args = [] ) {
+	echo \ystandard\Drawer_Menu::get_toggle_button( $args );
 }
 
 /** *****************************************************************
@@ -145,8 +151,8 @@ function ys_is_no_title_template() {
 /**
  * 投稿抜粋文を作成
  *
- * @param string  $sep     抜粋最後の文字.
- * @param integer $length  抜粋長さ.
+ * @param string $sep 抜粋最後の文字.
+ * @param integer $length 抜粋長さ.
  * @param integer $post_id 投稿ID.
  *
  * @return string
@@ -158,7 +164,7 @@ function ys_get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
 /**
  * 投稿オプション(post-meta)取得
  *
- * @param string  $key     設定キー.
+ * @param string $key 設定キー.
  * @param integer $post_id 投稿ID.
  *
  * @return string
@@ -272,8 +278,8 @@ function ys_the_archive_image_ratio() {
 /**
  * アーカイブデフォルト画像
  *
- * @param string $class          Class.
- * @param string $icon_class     Icon Class.
+ * @param string $class Class.
+ * @param string $icon_class Icon Class.
  * @param string $thumbnail_size Thumbnail size.
  */
 function ys_the_archive_default_image( $class = 'archive__no-img', $icon_class = 'archive__image', $thumbnail_size = 'full' ) {
@@ -392,7 +398,7 @@ function ys_get_poweredby() {
 /**
  * アイコン取得
  *
- * @param string $name  name.
+ * @param string $name name.
  * @param string $class class.
  *
  * @return string
@@ -404,7 +410,7 @@ function ys_get_icon( $name, $class = '' ) {
 /**
  * SNSアイコン取得
  *
- * @param string $name  name.
+ * @param string $name name.
  * @param string $title title.
  *
  * @return string
@@ -457,9 +463,9 @@ function ys_get_ystandard_version( $parent = false ) {
 /**
  * 設定取得
  *
- * @param string $name    option key.
- * @param mixed  $default デフォルト値.
- * @param mixed  $type    取得する型.
+ * @param string $name option key.
+ * @param mixed $default デフォルト値.
+ * @param mixed $type 取得する型.
  *
  * @return mixed
  */
@@ -470,8 +476,8 @@ function ys_get_option( $name, $default = false, $type = false ) {
 /**
  * 設定取得(bool)
  *
- * @param string $name    option key.
- * @param mixed  $default デフォルト値.
+ * @param string $name option key.
+ * @param mixed $default デフォルト値.
  *
  * @return mixed
  */
@@ -482,8 +488,8 @@ function ys_get_option_by_bool( $name, $default = false ) {
 /**
  * 設定取得(int)
  *
- * @param string $name    option key.
- * @param mixed  $default デフォルト値.
+ * @param string $name option key.
+ * @param mixed $default デフォルト値.
  *
  * @return mixed
  */
@@ -518,7 +524,7 @@ function ys_is_amp() {
  *
  * @param string $slug The slug name for the generic template.
  * @param string $name The name of the specialised template.
- * @param array  $args テンプレートに渡す変数.
+ * @param array $args テンプレートに渡す変数.
  */
 function ys_get_template_part( $slug, $name = null, $args = [] ) {
 	\ystandard\Template::get_template_part( $slug, $name, $args );

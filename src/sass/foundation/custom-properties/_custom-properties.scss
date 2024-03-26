@@ -133,10 +133,11 @@ body:where([class]) {
 	/**
 	 * Global Navigation
 	 */
+	--ystd--global-nav--display: flex;
 	--ystd--global-nav--search--cover--background: var(--ystd--header--background);
+	--ystd--global-nav--font-size: 0.9em;
 	--ystd--global-nav--gap: 1.5em;
 	--ystd--global-nav--font-weight: normal;
-	--ystd--mobile-nav--toggle--position-top: 0;
 	--ystd--mobile-nav--container--padding: 6em;
 	--ystd--mobile-nav--width: 600px;
 	--ystd--mobile-nav--background: #000000;

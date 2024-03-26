@@ -26,7 +26,7 @@ class Global_Nav {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'css_vars' ] );
-
+		add_action( 'wp_footer', [ $this, 'global_nav_search' ] );
 	}
 
 	/**
@@ -70,6 +70,15 @@ class Global_Nav {
 		$result = new \YS_Walker_Global_Nav_Menu();
 
 		return apply_filters( 'ys_global_nav_walker', $result );
+	}
+
+	/**
+	 * グローバルナビゲーションの検索ボタンで表示する検索フォームのセット
+	 *
+	 * @return void
+	 */
+	public function global_nav_search() {
+		ys_get_template_part( 'template-parts/navigation/global-nav-search-form' );
 	}
 
 	/**

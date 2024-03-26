@@ -2,62 +2,16 @@
  * 検索ボタンの開閉処理
  */
 const ysSetGlobalNavSearch = () => {
-	const searchButton = document.getElementById('global-nav__search-button');
+
 	if (searchButton) {
-		searchButton.addEventListener('click', () => {
-			const search = document.getElementById('global-nav__search');
-			if (search) {
-				search.classList.toggle('is-active');
-				setTimeout(function () {
-					document
-						.querySelector('#global-nav__search .search-field')
-						.focus();
-				}, 50);
-			}
-		});
+
 	}
-	const closeButton = document.getElementById('global-nav__search-close');
+
 	if (closeButton) {
-		closeButton.addEventListener('click', () => {
-			const search = document.getElementById('global-nav__search');
-			if (search) {
-				search.classList.remove('is-active');
-			}
-		});
+
 	}
 };
 
-/**
- * グローバルナビゲーションの開閉処理
- */
-const ysSetGlobalNavToggle = () => {
-
-
-	// グロナビ閉じる.
-	const globalNavLinks = document.querySelectorAll(
-		'.global-nav a[href*="#"]'
-	);
-	if (0 < globalNavLinks.length) {
-		globalNavLinks.forEach((element) => {
-			element.addEventListener('click', () => {
-				if (globalNavToggle) {
-					globalNavToggle.classList.remove('is-open');
-					ysToggleContentDisableScroll(globalNavToggle);
-				}
-				const globalMenu = document.getElementById('global-nav__menu');
-				if (globalMenu) {
-					globalMenu.classList.toggle('is-open');
-				}
-				const mobileFooter =
-					document.getElementsByClassName('footer-mobile-nav');
-
-				if (mobileFooter && mobileFooter.length) {
-					mobileFooter[0].classList.remove('is-hide');
-				}
-			});
-		});
-	}
-};
 
 /**
  * ページ内リンクのスムーススクロール.

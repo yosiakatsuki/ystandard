@@ -1,15 +1,17 @@
 @mixin button() {
-  display: var(--ystd--button--display);
-  padding: var(--ystd--button--padding);
-  background-color: var(--ystd--button--background-color);
-  border: var(--ystd--button--border-width) var(--ystd--button--border-style) var(--ystd--button--border-color);
-  border-radius: var(--ystd--button--border-radius);
-  color: var(--ystd--button--text-color);
-  font-size: var(--ystd--button--font-size);
-  text-decoration: none;
-  transition: all 0.3s;
+	display: var(--ystd--button--display);
+	padding: var(--ystd--button--padding);
+	background-color: var(--ystd--button--background-color);
+	border: var(--ystd--button--border-width) var(--ystd--button--border-style) var(--ystd--button--border-color);
+	border-radius: var(--ystd--button--border-radius);
+	color: var(--ystd--button--text-color);
+	font-size: var(--ystd--button--font-size);
+	text-decoration: none;
+	transition: all 0.3s;
 
-  &:hover {
-	box-shadow: var(--ystd--button--box-shadow);
-  }
+	@media (hover: hover) {
+		&:hover {
+			box-shadow: var(--ystd--button--box-shadow);
+		}
+	}
 }

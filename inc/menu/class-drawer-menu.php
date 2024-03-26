@@ -37,20 +37,67 @@ class Drawer_Menu {
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'inline_css' ] );
 		add_filter( self::DRAWER_MENU_START_SIZE_FILTER, [ __CLASS__, 'get_drawer_menu_start' ] );
 		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'css_vars' ] );
+		add_action( 'wp_footer', [ $this, 'drawer_nav' ] );
+		add_action( 'init', [ $this, 'set_drawer_nav_search_form' ] );
+	}
+
+	/**
+	 * ドロワーメニューHTMLの出力
+	 *
+	 * @return void
+	 */
+	public function drawer_nav() {
+		get_template_part( 'template-parts/navigation/drawer-nav' );
+	}
+
+	/**
+	 * ドロワーメニュー検索フォーム設定
+	 *
+	 * @return void
+	 */
+	public function set_drawer_nav_search_form() {
+		$drawer_nav_hook = apply_filters( 'ys_drawer_menu_search_form_hook', 'ys_before_drawer_nav_menu' );
+		// フック名を消してフォームを表示しない…ということも可能.
+		if ( $drawer_nav_hook ) {
+			add_action(
+				$drawer_nav_hook,
+				function () {
+					ys_get_template_part( 'template-parts/navigation/drawer-nav-search-form' );
+				}
+			);
+		}
 	}
 
 	/**
 	 * メニュー開閉ボタン取得
 	 *
-	 * @param string $type 開閉タイプ.
+	 * @param array $args {
+	 * 引数.
+	 *
+	 * @type string $type ボタンタイプ.
+	 * @type string $id ID.
+	 * @type string $class クラス.
+	 * }
 	 *
 	 * @return string
 	 */
-	public static function get_toggle_button( $type = 'toggle' ) {
+	public static function get_toggle_button( $args = [] ) {
+		$args  = wp_parse_args(
+			$args,
+			[
+				'type'  => 'toggle',
+				'id'    => 'global-nav__toggle',
+				'class' => 'global-nav__toggle',
+			]
+		);
+		$type  = $args['type'];
+		$id    = $args['id'];
+		$class = $args['class'];
+
 		$icon = apply_filters( 'ys_get_drawer_menu_icon', Icon::get_icon( 'menu' ) );
 		$attr = [
-			'id="global-nav__toggle"',
-			'class="global-nav__toggle"',
+			"id=\"{$id}\"",
+			"class=\"{$class}\"",
 			'data-label-open="menu"',
 			'data-label-close="close"',
 		];
@@ -77,26 +124,41 @@ class Drawer_Menu {
 	 */
 	public function css_vars( $css_vars ) {
 
-		$toggle_top = Option::get_option_by_int( 'ys_drawer_menu_toggle_top', 0 );
-		if ( 0 !== $toggle_top ) {
-			$css_vars['mobile-nav-toggle-top'] = "{$toggle_top}px";
+		$mobile_nav_bg    = [];
+		$mobile_nav_color = [];
+		$mobile_nav_open  = [];
+		$mobile_nav_close = [];
+
+		$mobile_nav_bg_option = Option::get_option( 'ys_color_nav_bg_sp', '' );
+		if ( $mobile_nav_bg_option ) {
+			$mobile_nav_bg = Enqueue_Utility::get_css_var(
+				'mobile-nav-bg',
+				$mobile_nav_bg_option
+			);
 		}
-		$mobile_nav_bg    = Enqueue_Utility::get_css_var(
-			'mobile-nav-bg',
-			Option::get_option( 'ys_color_nav_bg_sp', '#000000' )
-		);
-		$mobile_nav_color = Enqueue_Utility::get_css_var(
-			'mobile-nav-text',
-			Option::get_option( 'ys_color_nav_font_sp', '#ffffff' )
-		);
-		$mobile_nav_open  = Enqueue_Utility::get_css_var(
-			'mobile-nav-open',
-			Option::get_option( 'ys_color_nav_btn_sp_open', '#222222' )
-		);
-		$mobile_nav_close = Enqueue_Utility::get_css_var(
-			'mobile-nav-close',
-			Option::get_option( 'ys_color_nav_btn_sp', '#ffffff' )
-		);
+		$mobile_nav_color_option = Option::get_option( 'ys_color_nav_font_sp', '' );
+		if ( $mobile_nav_color_option ) {
+			$mobile_nav_color = Enqueue_Utility::get_css_var(
+				'mobile-nav-text',
+				$mobile_nav_color_option
+			);
+		}
+
+		$mobile_nav_open_option = Option::get_option( 'ys_color_nav_btn_sp_open', '' );
+		if ( $mobile_nav_open_option ) {
+			$mobile_nav_open = Enqueue_Utility::get_css_var(
+				'mobile-nav-open',
+				$mobile_nav_open_option
+			);
+		}
+
+		$mobile_nav_close_option = Option::get_option( 'ys_color_nav_btn_sp', '' );
+		if ( $mobile_nav_close_option ) {
+			$mobile_nav_close = Enqueue_Utility::get_css_var(
+				'mobile-nav-close',
+				$mobile_nav_close_option
+			);
+		}
 
 		return array_merge(
 			$css_vars,
@@ -116,21 +178,23 @@ class Drawer_Menu {
 	 */
 	public function inline_css( $css ) {
 
-		$global_nav_css = Filesystem::file_get_contents(
-			get_template_directory() . '/css/drawer-menu.css'
-		);
-		$breakpoint     = apply_filters(
+		$breakpoint = apply_filters(
 			self::DRAWER_MENU_START_SIZE_FILTER,
 			self::DRAWER_MENU_START_SIZE
 		);
 
-		$css .= str_replace(
-			'{{mobaile-nav-breakpoint}}',
-			$breakpoint . 'px',
-			$global_nav_css
-		);
+		$drawer_menu_css = <<<CSS
+		@media (min-width: {$breakpoint}px) {
+			:where(.global-nav) {
+				display: var(--ystd--global-nav--display);
+			}
+			:where(.global-nav__toggle) {
+				display: none;
+			}
+		}
+CSS;
 
-		return $css;
+		return $css . $drawer_menu_css;
 	}
 
 	/**
@@ -178,10 +242,10 @@ class Drawer_Menu {
 				'id'          => 'ys_drawer_menu_start',
 				'default'     => self::DRAWER_MENU_START_SIZE,
 				'label'       => 'ドロワーメニュー開始サイズ(px)',
-				'description' => '設定した画面サイズ以下でドロワーメニュー表示になります。(600~1440)',
+				'description' => '設定した画面サイズ以下でドロワーメニュー表示になります。',
 				'input_attrs' => [
-					'min'  => 600,
-					'max'  => 1440,
+					'min'  => 0,
+					'max'  => 9999,
 					'step' => 1,
 				],
 			]
@@ -200,27 +264,13 @@ class Drawer_Menu {
 				'default' => 0,
 			]
 		);
-		$customizer->add_section_label( 'ドロワーメニュー開閉ボタン設定' );
-		$customizer->add_number(
-			[
-				'id'          => 'ys_drawer_menu_toggle_top',
-				'default'     => 0,
-				'label'       => 'メニュー開閉ボタンの縦位置調整(px)',
-				'description' => 'メニュー開閉ボタンの上下位置を微調整できます。',
 
-				'input_attrs' => [
-					'min'  => - 100,
-					'max'  => 100,
-					'step' => 1,
-				],
-			]
-		);
 		$customizer->add_section_label( '色設定' );
 		// ナビゲーション背景色（SP）.
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_nav_bg_sp',
-				'default' => '#000000',
+				'default' => '',
 				'label'   => 'メニュー背景色',
 			]
 		);
@@ -228,7 +278,7 @@ class Drawer_Menu {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_nav_font_sp',
-				'default' => '#ffffff',
+				'default' => '',
 				'label'   => 'メニュー文字色',
 			]
 		);
@@ -236,7 +286,7 @@ class Drawer_Menu {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_nav_btn_sp_open',
-				'default' => '#222222',
+				'default' => '',
 				'label'   => 'メニュー開閉ボタン色：開く',
 			]
 		);
@@ -244,7 +294,7 @@ class Drawer_Menu {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_nav_btn_sp',
-				'default' => '#ffffff',
+				'default' => '',
 				'label'   => 'メニュー開閉ボタン色：閉じる',
 			]
 		);
