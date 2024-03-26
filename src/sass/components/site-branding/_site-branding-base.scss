@@ -1,0 +1,6 @@
+@use "../../global";
+
+:where(.site-branding) {
+	padding-top: var(--ystd--site-branding--padding-y);
+	padding-bottom: var(--ystd--site-branding--padding-y);
+}
