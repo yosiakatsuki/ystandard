@@ -2,16 +2,8 @@
 
 
 
-.site-header__content {
-  display: flex;
-}
 
 .site-branding {
-  padding: 0.5em 2em 0.5em 0;
-
-  @include global.media-breakpoint(md) {
-	padding: 1em 0 0;
-  }
 
   .site-title {
 	margin: 0;
@@ -49,9 +41,6 @@
   @include global.media-breakpoint(md) {
 	.site-header__content {
 	  align-items: center;
-	}
-	.site-branding {
-	  padding: 1em 0;
 	}
 	.global-nav {
 	  align-items: center;

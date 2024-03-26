@@ -9,3 +9,8 @@
 	margin-right: auto;
 	margin-left: auto;
 }
+
+:where(.site-header__content) {
+	display: flex;
+	gap: var(--ystd--layout-gap);
+}

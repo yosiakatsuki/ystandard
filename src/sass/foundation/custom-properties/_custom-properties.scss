@@ -131,6 +131,10 @@ body:where([class]) {
 	--ystd--header--description-color: var(--ystd--text-color--gray);
 	--ystd--header--shadow: none;
 	/**
+	 * Site Branding
+	 */
+	--ystd--site-branding--padding-y: clamp(0.5rem, 0.211rem + 1.23vw, 1rem);
+	/**
 	 * Global Navigation
 	 */
 	--ystd--global-nav--display: flex;
