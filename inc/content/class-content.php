@@ -874,12 +874,12 @@ class Content {
 		$customizer->add_image_label_radio(
 			[
 				'id'          => 'ys_post_layout',
-				'default'     => '2col',
+				'default'     => '1col',
 				'label'       => 'ページレイアウト',
 				'description' => '投稿ページの表示レイアウト',
 				'choices'     => [
-					'2col' => sprintf( $img, $col2 ),
 					'1col' => sprintf( $img, $col1 ),
+					'2col' => sprintf( $img, $col2 ),
 				],
 			]
 		);
@@ -1008,12 +1008,12 @@ class Content {
 		$customizer->add_image_label_radio(
 			[
 				'id'          => 'ys_page_layout',
-				'default'     => '2col',
+				'default'     => '1col',
 				'label'       => 'ページレイアウト',
 				'description' => '固定ページの表示レイアウト',
 				'choices'     => [
-					'2col' => sprintf( $img, $col2 ),
 					'1col' => sprintf( $img, $col1 ),
+					'2col' => sprintf( $img, $col2 ),
 				],
 			]
 		);

@@ -193,7 +193,7 @@ class Template {
 		$filter = apply_filters( "ys_{$post_type}_layout", null );
 		if ( is_null( $filter ) ) {
 			$fallback = Content::get_fallback_post_type( $post_type );
-			$type     = Option::get_option( "ys_{$fallback}_layout", '2col' );
+			$type     = Option::get_option( "ys_{$fallback}_layout", '1col' );
 		} else {
 			$type = $filter;
 		}
