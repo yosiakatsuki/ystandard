@@ -72,6 +72,11 @@
 		input {
 			background-color: transparent;
 			color: currentColor;
+			border-color: currentColor;
+		}
+
+		:where(.search-submit) {
+			border-color: currentColor;
 		}
 	}
 
@@ -137,74 +142,3 @@ html.is-drawer-open {
 		display: none;
 	}
 }
-
-//@media (max-width: #{"{{mobaile-nav-breakpoint}}"}) {
-//
-//
-//	.global-nav__menu {
-//		display: block;
-//		height: auto;
-//
-//		.sub-menu {
-//			position: relative;
-//			top: 0;
-//			margin-left: 1em;
-//			white-space: normal;
-//			z-index: 0;
-//		}
-//
-//
-//		> .menu-item {
-//			margin-top: 0.5em;
-//			margin-left: 0;
-//			text-align: left;
-//
-//			> a {
-//				display: block;
-//				height: auto;
-//				padding: 0.5em 0;
-//
-//				&::after {
-//					display: none;
-//				}
-//			}
-//
-//			&:last-child {
-//				.sub-menu {
-//					left: 0;
-//					right: unset;
-//				}
-//			}
-//		}
-//
-//		.menu-item-has-children {
-//			a:focus + .sub-menu,
-//			&:hover .sub-menu {
-//				background-color: transparent;
-//			}
-//		}
-//	}
-//
-//	.global-nav__toggle {
-//		display: block;
-//		cursor: pointer;
-//	}
-//
-//	.is-amp {
-//		.global-nav {
-//			display: none;
-//		}
-//		.global-nav__menu {
-//			.sub-menu {
-//				visibility: visible;
-//				opacity: 1;
-//			}
-//		}
-//	}
-//
-//	.site-header {
-//		button {
-//			color: var(--ystd--drawer-menu--button-color--open);
-//		}
-//	}
-//}
