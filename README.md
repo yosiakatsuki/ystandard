@@ -38,12 +38,12 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [変更] 「CSSインライン読み込み」オプション削除
 - [変更] カスタムプロパティの詳細度を変更 `:root` -> `body:where([class])`
 - [変更] `.container`クラスの分解
-  - `.content-container`
-  - `.header-container`
-  - `.sub-footer-container`
-  - `.footer-container`
-  - `.breadcrumbs-container`
-  - `.footer-mobile-nav-container`
+	- `.content-container`
+	- `.header-container`
+	- `.sub-footer-container`
+	- `.footer-container`
+	- `.breadcrumbs-container`
+	- `.footer-mobile-nav-container`
 - [変更] カスタマイザー 「[ys]デザイン」-> 「フッター」 -> 「サブフッター上下余白」変更
 - [変更] カスタマイザーでの色設定の初期値を無しに変更
 - [変更] ファイル整理。変更内容は「v5.0.0 - ファイル移動表」を参照
@@ -92,13 +92,12 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --global-nav-search-cover        | --ystd--global-nav--search--cover--background |
 | --global-nav-margin              | --ystd--global-nav--gap                       |
 | --global-nav-bold                | --ystd--global-nav--font-weight               |
-| --mobile-nav-toggle-top          | --ystd--mobile-nav--toggle--position-top      |
-| --mobile-nav-container-padding   | --ystd--mobile-nav--container--padding        |
-| --mobile-global-nav-width        | --ystd--mobile-nav--width                     |
-| --mobile-nav-bg                  | --ystd--mobile-nav--background                |
-| --mobile-nav-text                | --ystd--mobile-nav--text-color                |
-| --mobile-nav-open                | --ystd--mobile-nav--button-color--open        |
-| --mobile-nav-close               | --ystd--mobile-nav--button-color--close       |
+| --mobile-nav-container-padding   | --ystd--drawer-menu--container--padding-y     |
+| --mobile-global-nav-width        | --ystd--drawer-menu--width                    |
+| --mobile-nav-bg                  | --ystd--drawer-menu--background               |
+| --mobile-nav-text                | --ystd--drawer-menu--text-color               |
+| --mobile-nav-open                | --ystd--drawer-menu--button-color--open       |
+| --mobile-nav-close               | --ystd--drawer-menu--button-color--close      |
 | --breadcrumbs-text               | --ystd--breadcrumbs--text-color               |
 | --info-bar-bg                    | --ystd--info-bar--background                  |
 | --info-bar-text                  | --ystd--info-bar--text-color                  |
@@ -145,7 +144,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --ystd-posts-thumbnail-width     | --ystd--posts--thumbnail--width               |
 | --ystd-posts-content-gap         | --ystd--posts--content--gap                   |
 | --z-index-header                 | --ystd--z-index--header                       |
-| --z-index-global-nav             | --ystd--z-index--global-nav                   |
+| --z-index-global-nav             | --ystd--z-index--drawer-nav                   |
 | --z-index-global-nav-button      | --ystd--z-index--global-nav--button           |
 | --z-index-global-nav-sub-menu    | --ystd--z-index--global-nav--sub-menu         |
 | --z-index-mobile-footer          | --ystd--z-index--mobile-footer                |
@@ -156,6 +155,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 - --ystd-content-align-wide-width
 - --ystd-sidebar-width
+- --mobile-nav-toggle-top
 
 #### v5.0.0 - 廃止されたオプション
 

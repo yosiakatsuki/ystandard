@@ -17,13 +17,12 @@ export function drawerNav() {
  */
 function toggleDrawerNav() {
 	const globalNavToggle = document.getElementById('global-nav__toggle');
-	const drawerNavToggle = document.getElementById('drawer-nav__toggle');
-	if (!globalNavToggle || !drawerNavToggle) {
+	if (!globalNavToggle) {
 		return false;
 	}
 	// ドロワーメニュー開閉ボタン取得.
 	const globalNavToggleButtons = document.querySelectorAll(
-		'.global-nav__toggle, .drawer-menu-toggle'
+		'.global-nav__toggle'
 	);
 	// ボタンが無ければ処理終了
 	if (0 >= globalNavToggleButtons.length) {
@@ -54,7 +53,7 @@ function toggleDrawerNav() {
 function closeDrawerNav() {
 	// ドロワーメニュー閉じる.
 	const drawerNavCloseLinks = document.querySelectorAll(
-		'.global-nav a[href*="#"]'
+		'.global-nav a[href*="#"],#drawer-nav__close'
 	);
 	// ドロワーメニュー閉じるリンク・ボタンのチェック.
 	if (0 >= drawerNavCloseLinks.length) {
@@ -105,7 +104,7 @@ function setDrawerNavClass(type: 'toggle' | 'remove' = 'toggle') {
 		'is-drawer-nav-open'
 	);
 	// メイン要素.
-	setClass(document.documentElement, 'is-open');
+	setClass(document.documentElement, 'is-drawer-open');
 	// モバイルフッター.
 	setClass(document.getElementById('footer-mobile-nav'), 'is-open');
 }
