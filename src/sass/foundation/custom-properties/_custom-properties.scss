@@ -138,12 +138,21 @@ body:where([class]) {
 	--ystd--global-nav--font-size: 0.9em;
 	--ystd--global-nav--gap: 1.5em;
 	--ystd--global-nav--font-weight: normal;
-	--ystd--mobile-nav--container--padding: 6em;
-	--ystd--mobile-nav--width: 600px;
-	--ystd--mobile-nav--background: #000000;
-	--ystd--mobile-nav--text-color: var(--ystd--text-color--white);
-	--ystd--mobile-nav--button-color--open: var(--ystd--text-color);
-	--ystd--mobile-nav--button-color--close: var(--ystd--text-color--white);
+	/**
+	 * Drawer Menu
+	 */
+	--ystd--drawer-menu--container--padding-top: 0;
+	--ystd--drawer-menu--container--padding-x: 0;
+	--ystd--drawer-menu--container--padding-bottom: 1em;
+	--ystd--drawer-menu--background: var(--ystd--text-color);
+	--ystd--drawer-menu--text-color: var(--ystd--text-color--white);
+	--ystd--drawer-menu--font-size: var(--ystd--global-nav--font-size);
+	--ystd--drawer-menu--width: 600px;
+	--ystd--drawer-menu--button-color--open: var(--ystd--text-color);
+	--ystd--drawer-menu--button-color--close: var(--ystd--text-color--white);
+	--ystd--drawer-menu--gap: .5em;
+	--ystd--drawer-menu--menu-item--padding-y: .5em;
+
 	/**
 	 * Breadcrumbs
 	 */
@@ -258,7 +267,8 @@ body:where([class]) {
 	 * Z Index
 	 */
 	--ystd--z-index--header: 8;
-	--ystd--z-index--global-nav: 11;
+	--ystd--z-index--global-nav-search: 11;
+	--ystd--z-index--drawer-nav: 11;
 	--ystd--z-index--global-nav--button: 10;
 	--ystd--z-index--global-nav--sub-menu: 12;
 	--ystd--z-index--mobile-footer: 8;

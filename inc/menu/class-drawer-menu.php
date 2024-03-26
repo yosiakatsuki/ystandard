@@ -132,14 +132,14 @@ class Drawer_Menu {
 		$mobile_nav_bg_option = Option::get_option( 'ys_color_nav_bg_sp', '' );
 		if ( $mobile_nav_bg_option ) {
 			$mobile_nav_bg = Enqueue_Utility::get_css_var(
-				'mobile-nav-bg',
+				'drawer-menu--background',
 				$mobile_nav_bg_option
 			);
 		}
 		$mobile_nav_color_option = Option::get_option( 'ys_color_nav_font_sp', '' );
 		if ( $mobile_nav_color_option ) {
 			$mobile_nav_color = Enqueue_Utility::get_css_var(
-				'mobile-nav-text',
+				'drawer-menu--text-color',
 				$mobile_nav_color_option
 			);
 		}
@@ -147,7 +147,7 @@ class Drawer_Menu {
 		$mobile_nav_open_option = Option::get_option( 'ys_color_nav_btn_sp_open', '' );
 		if ( $mobile_nav_open_option ) {
 			$mobile_nav_open = Enqueue_Utility::get_css_var(
-				'mobile-nav-open',
+				'drawer-menu--button-color--open',
 				$mobile_nav_open_option
 			);
 		}
@@ -155,7 +155,7 @@ class Drawer_Menu {
 		$mobile_nav_close_option = Option::get_option( 'ys_color_nav_btn_sp', '' );
 		if ( $mobile_nav_close_option ) {
 			$mobile_nav_close = Enqueue_Utility::get_css_var(
-				'mobile-nav-close',
+				'drawer-menu--button-color--close',
 				$mobile_nav_close_option
 			);
 		}
@@ -188,7 +188,7 @@ class Drawer_Menu {
 			:where(.global-nav) {
 				display: var(--ystd--global-nav--display);
 			}
-			:where(.global-nav__toggle) {
+			:where(.site-header .global-nav__toggle) {
 				display: none;
 			}
 		}

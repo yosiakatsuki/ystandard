@@ -16,7 +16,7 @@ if ( ! ys_has_global_nav() ) {
 }
 ?>
 <div id="drawer-nav" class="<?php ys_global_nav_class( 'drawer-nav' ); ?>">
-	<div class="drawer-nav__toggle-container">
+	<div class="drawer-nav__close-container">
 		<?php
 		/**
 		 * ドロワーメニュー開閉ボタン
@@ -24,7 +24,7 @@ if ( ! ys_has_global_nav() ) {
 		ys_global_nav_toggle_button(
 			[
 				'id'    => 'drawer-nav__toggle',
-				'class' => 'global-nav__toggle drawer-nav__toggle',
+				'class' => 'global-nav__toggle drawer-nav__close',
 			]
 		);
 		?>
@@ -55,7 +55,7 @@ if ( ! ys_has_global_nav() ) {
 		wp_nav_menu(
 			[
 				'theme_location' => 'global',
-				'menu_class'     => 'global-nav__menu drawer-nav__menu',
+				'menu_class'     => 'drawer-nav__menu',
 				'menu_id'        => 'drawer-nav__menu',
 				'container'      => false,
 				'depth'          => 2,

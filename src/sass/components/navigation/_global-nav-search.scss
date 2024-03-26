@@ -20,7 +20,7 @@
 	z-index: -1;
 
 	&:where(.is-active) {
-		z-index: var(--ystd--z-index--global-nav);
+		z-index: var(--ystd--z-index--global-nav-search);
 		visibility: visible;
 		opacity: 0.98;
 		width: 100%;
