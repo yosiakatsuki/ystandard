@@ -6,7 +6,6 @@
 @use "components/blog-card/blog-card" with ($editor:true);
 @use "components/posts/posts" with ($editor:true);
 @use "components/ratio/ratio" with ($editor:true);
-@use "components/search-form/search-form" with ($editor:true);
 @use "components/share-button/share-button" with ($editor:true);
 @use "components/taxonomy/taxonomy" with ($editor:true);
 @use "components/toc/toc" with ($editor:true);
@@ -21,70 +20,82 @@
 @use "utility/table/table" as utility-table with ($editor:true);
 
 .mce-content-body {
-  @include meta.load-css('foundation/base/base');
-  @include meta.load-css('../block-styles/core__button/button');
-  @include meta.load-css('../block-styles/core__archives/archives');
-  @include meta.load-css('../block-styles/core__quote/quote');
-  @include meta.load-css('../block-styles/core__calendar/calendar');
-  @include meta.load-css('../block-styles/core__categories/categories');
-  @include meta.load-css('../block-styles/core__code/code');
-  @include meta.load-css('../block-styles/core__columns/columns');
-  @include meta.load-css('../block-styles/core__column/column');
-  @include meta.load-css('../block-styles/core__cover/cover');
-  @include meta.load-css('../block-styles/core__embed/embed');
-  @include meta.load-css('../block-styles/core__file/file');
-  @include meta.load-css('../block-styles/core__gallery/gallery');
-  @include meta.load-css('../block-styles/core__group/group');
-  @include meta.load-css('../block-styles/core__heading/heading-editor');
-  @include meta.load-css('../block-styles/core__image/image');
-  @include meta.load-css('../block-styles/core__image/image-editor');
-  @include meta.load-css('../block-styles/core__latest-comments/latest-comments');
-  @include meta.load-css('../block-styles/core__latest-comments/latest-comments-editor');
-  @include meta.load-css('../block-styles/core__latest-posts/latest-posts');
-  @include meta.load-css('../block-styles/core__media-text/media-text');
-  @include meta.load-css('../block-styles/core__paragraph/paragraph');
-  @include meta.load-css('../block-styles/core__pullquote/pullquote');
-  @include meta.load-css('../block-styles/core__pullquote/pullquote-editor');
-  @include meta.load-css('../block-styles/core__search/search');
-  @include meta.load-css('../block-styles/core__search/search-editor');
-  @include meta.load-css('../block-styles/core__separator/separator');
-  @include meta.load-css('../block-styles/core__spacer/spacer');
-  @include meta.load-css('../block-styles/core__table/table');
-  @include meta.load-css('../block-styles/core__table/table-editor');
-  @include meta.load-css('../block-styles/core__tag-cloud/tag-cloud');
-  @include meta.load-css('../block-styles/core__video/video');
-  @include meta.load-css('components/icon/index');
-  @include meta.load-css('components/advertisement/index');
-  @include meta.load-css('components/forms/forms');
 
-  //Component
-  @include author.author();
-  @include align.align();
-  @include blog-card.blog-card();
-  @include posts.ys-posts();
-  @include ratio.ratio();
-  @include search-form.search-form();
-  @include share-button.share-buttons();
-  @include taxonomy.taxonomy();
-  @include toc.toc();
-  @include caption.caption();
-  @include wordpress-embed.embed();
-  @include wordpress-gallery.gallery();
-  @include wordpress-wp.wp();
+	/**
+	 * 基本スタイルのロード
+	 */
+	@include meta.load-css('foundation/base/base');
+	/**
+	 * コンポーネント
+	 */
+	@include meta.load-css('components/icon/index');
+	@include meta.load-css('components/advertisement/index');
+	@include meta.load-css('components/forms/forms');
+	@include meta.load-css('components/search-form/search-form');
+	/**
+	 * ブロック関連のロード
+	 */
+	@include meta.load-css('../block-styles/core__button/button');
+	@include meta.load-css('../block-styles/core__archives/archives');
+	@include meta.load-css('../block-styles/core__quote/quote');
+	@include meta.load-css('../block-styles/core__calendar/calendar');
+	@include meta.load-css('../block-styles/core__categories/categories');
+	@include meta.load-css('../block-styles/core__code/code');
+	@include meta.load-css('../block-styles/core__columns/columns');
+	@include meta.load-css('../block-styles/core__column/column');
+	@include meta.load-css('../block-styles/core__cover/cover');
+	@include meta.load-css('../block-styles/core__embed/embed');
+	@include meta.load-css('../block-styles/core__file/file');
+	@include meta.load-css('../block-styles/core__gallery/gallery');
+	@include meta.load-css('../block-styles/core__group/group');
+	@include meta.load-css('../block-styles/core__heading/heading-editor');
+	@include meta.load-css('../block-styles/core__image/image');
+	@include meta.load-css('../block-styles/core__image/image-editor');
+	@include meta.load-css('../block-styles/core__latest-comments/latest-comments');
+	@include meta.load-css('../block-styles/core__latest-comments/latest-comments-editor');
+	@include meta.load-css('../block-styles/core__latest-posts/latest-posts');
+	@include meta.load-css('../block-styles/core__media-text/media-text');
+	@include meta.load-css('../block-styles/core__paragraph/paragraph');
+	@include meta.load-css('../block-styles/core__pullquote/pullquote');
+	@include meta.load-css('../block-styles/core__pullquote/pullquote-editor');
+	@include meta.load-css('../block-styles/core__search/search');
+	@include meta.load-css('../block-styles/core__search/search-editor');
+	@include meta.load-css('../block-styles/core__separator/separator');
+	@include meta.load-css('../block-styles/core__spacer/spacer');
+	@include meta.load-css('../block-styles/core__table/table');
+	@include meta.load-css('../block-styles/core__table/table-editor');
+	@include meta.load-css('../block-styles/core__tag-cloud/tag-cloud');
+	@include meta.load-css('../block-styles/core__video/video');
 
-  // Utility
-  @include utility-clearfix.clearfix();
-  @include utility-sns.sns-color();
-  @include utility-table.table();
 
-  background-color: var(--ystd--site-background);
-  color: var(--ystd--text-color);
-  font-family: var(--ystd--font-family);
-  line-height: var(--ystd--line-height);
-  letter-spacing: var(--ystd--letter-spacing);
-  word-wrap: break-word;
 
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+	//Component
+	@include author.author();
+	@include align.align();
+	@include blog-card.blog-card();
+	@include posts.ys-posts();
+	@include ratio.ratio();
+	@include share-button.share-buttons();
+	@include taxonomy.taxonomy();
+	@include toc.toc();
+	@include caption.caption();
+	@include wordpress-embed.embed();
+	@include wordpress-gallery.gallery();
+	@include wordpress-wp.wp();
+
+	// Utility
+	@include utility-clearfix.clearfix();
+	@include utility-sns.sns-color();
+	@include utility-table.table();
+
+	background-color: var(--ystd--site-background);
+	color: var(--ystd--text-color);
+	font-family: var(--ystd--font-family);
+	line-height: var(--ystd--line-height);
+	letter-spacing: var(--ystd--letter-spacing);
+	word-wrap: break-word;
+
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 }
