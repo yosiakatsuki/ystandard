@@ -21,7 +21,7 @@ defined( 'ABSPATH' ) || die();
 			/**
 			 * グローバルナビゲーション
 			 */
-			ys_get_template_part( 'template-parts/header/global-nav' );
+			ys_get_template_part( 'template-parts/navigation/global-nav' );
 			?>
 		</div>
 	</div>

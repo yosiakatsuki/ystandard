@@ -14,7 +14,7 @@ if ( ! has_nav_menu( 'global' ) ) {
 }
 ?>
 <amp-sidebar id="mobile-menu" layout="nodisplay" side="right" class="amp-nav">
-	<?php ys_global_nav_toggle_button( 'close' ); ?>
+	<?php ys_global_nav_toggle_button( [ 'type' => 'close' ] ); ?>
 	<nav class="global-nav__container">
 		<?php
 		wp_nav_menu(

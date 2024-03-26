@@ -29,6 +29,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 ### v5.0.0 :
 
 - [追加] WordPress 6.5向け調整
+- [変更] クラシックテーマからハイブリッドテーマへの切り替え
 - [変更] 動作に必要なWordPressバージョンを6.5に引き上げ
 - [削除] おすすめプラグイン機能廃止
 - [変更] CSSカスタムプロパティ名変更
@@ -36,14 +37,20 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- プレフィックス追加以外に変更があるものの変更前・変更後は下記「v5.0.0 - カスタムプロパティ変換表」を参照
 - [変更] 「CSSインライン読み込み」オプション削除
 - [変更] カスタムプロパティの詳細度を変更 `:root` -> `body:where([class])`
-- [変更] `.container`
-  の分解、`.container` -> `.content-container`、`.header-container`、`.sub-footer-container`、`.footer-container`、`breadcrumbs-container`
+- [変更] `.container`クラスの分解
+  - `.content-container`
+  - `.header-container`
+  - `.sub-footer-container`
+  - `.footer-container`
+  - `.breadcrumbs-container`
+  - `.footer-mobile-nav-container`
 - [変更] カスタマイザー 「[ys]デザイン」-> 「フッター」 -> 「サブフッター上下余白」変更
 - [変更] カスタマイザーでの色設定の初期値を無しに変更
 - [変更] ファイル整理。変更内容は「v5.0.0 - ファイル移動表」を参照
 - [変更] 命名変更
 	- `footer-sub` -> `sub-footer`：CSSクラス等に影響あり
 	- `footer-copy` -> `footer-copyright`：CSSクラス等に影響あり
+	- `global-nav__dscr` -> `global-nav__description`：CSSクラス等に影響あり
 
 #### v5.0.0 - カスタムプロパティ変換表
 
@@ -149,6 +156,10 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 - --ystd-content-align-wide-width
 - --ystd-sidebar-width
+
+#### v5.0.0 - 廃止されたオプション
+
+- ys_drawer_menu_toggle_top：メニュー開閉ボタンの縦位置調整
 
 #### v5.0.0 - ファイル移動表
 

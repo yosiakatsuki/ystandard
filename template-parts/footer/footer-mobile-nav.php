@@ -13,8 +13,8 @@ if ( ! has_nav_menu( 'mobile-footer' ) ) {
 	return;
 }
 ?>
-<nav class="footer-mobile-nav">
-	<div class="container">
+<nav id="footer-mobile-nav" class="footer-mobile-nav">
+	<div class="footer-mobile-nav-container">
 		<?php
 		wp_nav_menu(
 			[

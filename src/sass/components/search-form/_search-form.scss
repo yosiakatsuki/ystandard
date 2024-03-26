@@ -1,37 +1,46 @@
 @use "../../global";
 
-$editor: false !default;
-
-@mixin search-form() {
-
-  .search-form {
+:where(.search-form) {
 	position: relative;
-  }
+}
 
-  .search-field {
+:where(.search-field) {
+	--ystd--search-field--placeholder--color: inherit;
+	--ystd--search-field--placeholder--font-size: 0.9em;
+	--ystd--search-field--placeholder--opacity: 0.7;
+
 	padding-right: 3.5em;
 
 	&::placeholder {
-	  color: inherit;
-	  opacity: 0.7;
+		color: var(--ystd--search-field--placeholder--color);
+		opacity: var(--ystd--search-field--placeholder--opacity);
+		font-size: var(--ystd--search-field--placeholder--font-size);
 	}
 
 	&:-ms-input-placeholder {
-	  color: inherit;
-	  opacity: 0.7;
+		color: var(--ystd--search-field--placeholder--color);
+		opacity: var(--ystd--search-field--placeholder--opacity);
+		font-size: var(--ystd--search-field--placeholder--font-size);
 	}
 
 	&::-ms-input-placeholder {
-	  color: inherit;
-	  opacity: 0.7;
+		color: var(--ystd--search-field--placeholder--color);
+		opacity: var(--ystd--search-field--placeholder--opacity);
+		font-size: var(--ystd--search-field--placeholder--font-size);
 	}
-  }
+}
 
-  .search-submit {
+:where(.search-submit) {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
 	position: absolute;
 	top: 0;
 	right: 0;
-	height: 100%;
+
 	padding: 0.5em 1em;
 	background-color: transparent;
 	border-top: 0;
@@ -39,26 +48,28 @@ $editor: false !default;
 	border-bottom: 0;
 	border-left: 1px solid var(--ystd--form--border-color);
 	border-radius: 0;
+
 	color: var(--ystd--form--text-color);
 
+	box-sizing: border-box;
 	-webkit-appearance: none;
 
-	&:hover {
-	  box-shadow: none;
+	@media (hover: hover) {
+		&:hover {
+			box-shadow: none;
+		}
 	}
 
-	.ys-icon {
-	  display: block;
-	  vertical-align: 0.1em;
+
+	:where(.ys-icon) {
+		display: block;
+		vertical-align: 0.1em;
 	}
 
 	svg {
-	  display: block;
-	  @include global.svg_size(1em);
+		--ystd--search-submit--icon--size: 1em;
+		display: block;
+		width: var(--ystd--search-submit--icon--size);
+		height: var(--ystd--search-submit--icon--size);
 	}
-  }
-}
-
-@if false == $editor {
-  @include search-form();
 }
