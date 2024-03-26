@@ -3,6 +3,10 @@
 	grid-template-columns:repeat(1, 1fr);
 	margin-top: var(--ystd--content--footer--gap);
 
+	&:where(:empty) {
+		display: none;
+	}
+
 	> * {
 		width: 100%;
 		max-width: var(--ystd--content--size);
