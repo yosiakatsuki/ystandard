@@ -39,9 +39,6 @@
 
 .header-type--row1 {
   @include global.media-breakpoint(md) {
-	.site-header__content {
-	  align-items: center;
-	}
 	.global-nav {
 	  align-items: center;
 	  margin-left: auto;

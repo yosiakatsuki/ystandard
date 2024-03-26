@@ -1,0 +1,7 @@
+:where(.header-type--row1) {
+	:where(.global-nav__container) {
+	> * + * {
+		margin-left: var(--ystd--global-nav--gap);
+	}
+	}
+}
