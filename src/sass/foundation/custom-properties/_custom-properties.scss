@@ -265,6 +265,14 @@ body:where([class]) {
 	--ystd--button--hover--background: var(--ystd--button--background-color);
 	--ystd--button--hover--border-color: var(--ystd--button--border-color);
 	/**
+	 * Table
+	 */
+	--ystd--table--border-color: var(--ystd--site--border-color--gray);
+	--ystd--table--background: var(--ystd--site-background--light-gray);
+	--ystd--table--padding-y: 1em;
+	--ystd--table--padding-x: 0.5em;
+
+	/**
 	 * Post List
 	 */
 	--ystd--posts-item--gap: var(--ystd--layout-gap);

@@ -205,20 +205,27 @@ body {
  */
 :where(table) {
 	width: 100%;
-	border-top: 1px solid var(--ystd--site--border-color--gray);
+	border: 0;
 	word-break: break-word;
 	border-spacing: 0;
 	border-collapse: collapse;
 }
 
 :where(tr) {
-	border-left: 1px solid var(--ystd--site--border-color--gray);
+	//border-left: 1px solid var(--ystd--site--border-color--gray);
 }
 
 :where(td,th) {
-	padding: 0.5em 1em;
-	border-right: 1px solid var(--ystd--site--border-color--gray);
-	border-bottom: 1px solid var(--ystd--site--border-color--gray);
+	padding-top: var(--ystd--table--padding-y);
+	padding-bottom: var(--ystd--table--padding-y);
+	border-bottom: 1px solid var(--ystd--table--border-color);
+
+	&:where(:not(:last-child)) {
+		padding-right: var(--ystd--table--padding-x);
+	}
+	&:where(:not(:first-child)) {
+		padding-left: var(--ystd--table--padding-x);
+	}
 }
 
 :where(th) {
