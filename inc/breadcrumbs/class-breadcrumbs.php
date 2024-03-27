@@ -77,22 +77,31 @@ class Breadcrumbs {
 	 */
 	public function is_show_breadcrumbs() {
 
+		// フックで表示・非表示制御.
 		$pre = apply_filters( 'ys_pre_is_show_breadcrumbs', null );
 		if ( ! is_null( $pre ) ) {
 			return $pre;
 		}
-
+		// パンくずの位置設定の確認.
 		$position = Option::get_option( 'ys_breadcrumbs_position', 'footer' );
 		if ( 'none' === $position ) {
 			return false;
 		}
+		// フロントページは無し.
 		if ( is_front_page() ) {
 			return false;
 		}
+		// 404ページは無し.
+		if ( is_404() ) {
+			return false;
+		}
+		// タイトル無しテンプレートの場合.
 		if ( Template::is_no_title_template() ) {
 			if ( 'footer' !== $position ) {
+				// フッター以外（ヘッダー側）であればパンくず無し.
 				return false;
 			} else {
+				// フッター側＆表示する設定であれば表示する.
 				return Option::get_option_by_bool( 'ys_show_breadcrumb_blank_template', false );
 			}
 		}
@@ -508,7 +517,7 @@ class Breadcrumbs {
 	 * パンくずアイテムの変数セット
 	 *
 	 * @param string $title タイトル.
-	 * @param string $link  URL.
+	 * @param string $link URL.
 	 */
 	private function set_item( $title, $link ) {
 
@@ -568,8 +577,8 @@ class Breadcrumbs {
 	/**
 	 * 階層アイテムをセット
 	 *
-	 * @param int    $object_id     オブジェクトID.
-	 * @param string $object_type   オブジェクトタイプ.
+	 * @param int $object_id オブジェクトID.
+	 * @param string $object_type オブジェクトタイプ.
 	 * @param string $resource_type 固定ページ・カテゴリーなど.
 	 */
 	private function set_ancestors( $object_id, $object_type, $resource_type = '' ) {
@@ -597,7 +606,7 @@ class Breadcrumbs {
 	 * 年の情報セット.
 	 *
 	 * @param string|int $year 年.
-	 * @param bool       $link URLをセットするか.
+	 * @param bool $link URLをセットするか.
 	 */
 	private function set_year_item( $year, $link = true ) {
 		$label = $year;
@@ -617,9 +626,9 @@ class Breadcrumbs {
 	/**
 	 * 月情報セット
 	 *
-	 * @param string|int $year  年.
+	 * @param string|int $year 年.
 	 * @param string|int $month 月.
-	 * @param bool       $link  URLをセットするか.
+	 * @param bool $link URLをセットするか.
 	 */
 	private function set_month_item( $year, $month, $link = true ) {
 		$label = $month;
@@ -655,9 +664,9 @@ class Breadcrumbs {
 	/**
 	 * 日情報をセットするか
 	 *
-	 * @param string|int $day   日.
+	 * @param string|int $day 日.
 	 * @param string|int $month 月.
-	 * @param string|int $year  年.
+	 * @param string|int $year 年.
 	 */
 	private function set_day_item( $day, $month, $year ) {
 		$label = $day;
