@@ -6,6 +6,7 @@
 	--ystd--media-text--gap--mobile: var(--ystd--container--gutter);
 	--ystd--media-text--gap--desktop: calc(var(--ystd--container--gutter) * 2);
 	--ystd--media-text--gap: var(--ystd--media-text--gap--mobile);
+	--ystd--media-text--content--max-width: calc(var(--wp--style--global--wide-size) / 2 - var(--ystd--media-text--gap));
 
 	gap: var(--ystd--media-text--gap);
 
@@ -19,10 +20,6 @@
 		--ystd--media-text--padding-y--mobile: 0;
 		--ystd--media-text--padding-y--desktop: 0;
 
-		--ystd--media-text--content--max-width: calc(var(--wp--style--global--wide-size) / 2 - var(--ystd--media-text--gap));
-
-		width: 100%;
-
 		> * {
 			margin-bottom: 0;
 
@@ -33,9 +30,14 @@
 	}
 
 	&:where(.alignfull) {
+
 		> :where(.wp-block-media-text__content) {
+			width: 100%;
+			max-width: min(var(--ystd--media-text--content--max-width),calc(50vw - var(--ystd--container--gutter) - var(--ystd--media-text--gap)));
+			
 			@media (max-width: 600px) {
 				width: var(--ystd--container--size);
+				max-width: 100%;
 				margin-right: auto;
 				margin-left: auto;
 			}
@@ -69,7 +71,6 @@
 	> .wp-block-media-text__content {
 
 		padding: var(--ystd--media-text--padding-y--mobile) var(--ystd--media-text--padding-x--mobile);
-		max-width: var(--ystd--media-text--content--max-width);
 
 		@media (min-width: 600px) {
 			padding: var(--ystd--media-text--padding-y--desktop) var(--ystd--media-text--padding-x--desktop);
