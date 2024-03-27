@@ -115,12 +115,14 @@
 				left: 0;
 				width: 0;
 				height: 1px;
-				background-color: var(--ystd--header--text-color);
+				background-color: var(--ystd--global-nav--border-color);
 				transition: width 0.3s;
 			}
 
 			@media (hover: hover) {
 				&:hover {
+					color: var(--ystd--global-nav--hover--text-color);
+
 					&::after {
 						width: 100%;
 					}
@@ -131,6 +133,8 @@
 
 		&:where(.current-menu-item) {
 			> a {
+				color: var(--ystd--global-nav--current--text-color);
+
 				&::after {
 					width: 100%;
 				}
