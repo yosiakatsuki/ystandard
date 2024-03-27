@@ -1,1 +1,1 @@
-.wp-block-columns.is-not-stacked-on-mobile>.wp-block-column:not(:first-child){margin:0}.wp-block-columns{gap:var(--ystd--block-gap)}
+.wp-block-columns.is-not-stacked-on-mobile>.wp-block-column:not(:first-child){margin:0}:where(.wp-block-columns){--ystd--block-columns--gap:var(--ystd--block-gap);--ystd--block-columns--gap--row:var(--ystd--block-columns--gap);--ystd--block-columns--gap--column:var(--ystd--block-columns--gap);column-gap:var(--ystd--block-columns--gap--column);row-gap:var(--ystd--block-columns--gap--row)}
