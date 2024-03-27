@@ -56,6 +56,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- `footer-sub` -> `sub-footer`：CSSクラス等に影響あり
 	- `footer-copy` -> `footer-copyright`：CSSクラス等に影響あり
 	- `global-nav__dscr` -> `global-nav__description`：CSSクラス等に影響あり
+- [変更] パンくずリストを404ページで表示しないように変更
 
 #### v5.0.0 - カスタムプロパティ変換表
 
