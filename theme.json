@@ -156,7 +156,7 @@
 			"fluid": {
 				"minFontSize": "10px",
 				"minViewportWidth": "375px",
-				"maxViewportWidth": "1024px"
+				"maxViewportWidth": "1200px"
 			},
 			"fontFamilies": [
 				{
@@ -177,18 +177,220 @@
 			],
 			"fontSizes": [
 				{
-					"size": "16px",
-					"name": "デフォルト",
-					"slug": "base"
+					"fluid": {
+						"min": "12px",
+						"max": "14px"
+					},
+					"size": "14.12px",
+					"name": "14-12",
+					"slug": "ys-14-12"
 				},
 				{
 					"fluid": {
 						"min": "14px",
-						"max": "14px"
+						"max": "16px"
 					},
-					"size": "14px",
-					"name": "小",
-					"slug": "small"
+					"size": "16.14px",
+					"name": "16-14",
+					"slug": "ys-16-14"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "16px"
+					},
+					"size": "16px",
+					"name": "16px",
+					"slug": "ys-base"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "18px"
+					},
+					"size": "18.16px",
+					"name": "18-16",
+					"slug": "ys-18-16"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "20px"
+					},
+					"size": "20.16px",
+					"name": "20-16",
+					"slug": "ys-20-16"
+				},
+				{
+					"fluid": {
+						"min": "18px",
+						"max": "20px"
+					},
+					"size": "20.18px",
+					"name": "20-18",
+					"slug": "ys-20-18"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "24px"
+					},
+					"size": "24.16px",
+					"name": "24-16",
+					"slug": "ys-24-16"
+				},
+				{
+					"fluid": {
+						"min": "18px",
+						"max": "24px"
+					},
+					"size": "24.18px",
+					"name": "24-18",
+					"slug": "ys-24-18"
+				},
+				{
+					"fluid": {
+						"min": "20px",
+						"max": "24px"
+					},
+					"size": "24-20px",
+					"name": "24-20",
+					"slug": "ys-24-20"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "32px"
+					},
+					"size": "32.16px",
+					"name": "32-16",
+					"slug": "ys-32-16"
+				},
+				{
+					"fluid": {
+						"min": "20px",
+						"max": "32px"
+					},
+					"size": "32.20px",
+					"name": "32-20",
+					"slug": "ys-32-20"
+				},
+				{
+					"fluid": {
+						"min": "24px",
+						"max": "32px"
+					},
+					"size": "32.24px",
+					"name": "32-24",
+					"slug": "ys-32-24"
+				},
+				{
+					"fluid": {
+						"min": "18px",
+						"max": "36px"
+					},
+					"size": "36.18px",
+					"name": "36-18",
+					"slug": "ys-36-18"
+				},
+				{
+					"fluid": {
+						"min": "20px",
+						"max": "40px"
+					},
+					"size": "40.20px",
+					"name": "40-20",
+					"slug": "ys-40-20"
+				},
+				{
+					"fluid": {
+						"min": "32px",
+						"max": "40px"
+					},
+					"size": "40.32px",
+					"name": "40-32",
+					"slug": "ys-40-32"
+				},
+				{
+					"fluid": {
+						"min": "24px",
+						"max": "48px"
+					},
+					"size": "48.24px",
+					"name": "48-24",
+					"slug": "ys-48-24"
+				},
+				{
+					"fluid": {
+						"min": "40px",
+						"max": "52px"
+					},
+					"size": "52.40px",
+					"name": "52-40",
+					"slug": "ys-52-40"
+				},
+				{
+					"fluid": {
+						"min": "32px",
+						"max": "64px"
+					},
+					"size": "64.32px",
+					"name": "64-32",
+					"slug": "ys-64-32"
+				},
+				{
+					"fluid": {
+						"min": "40px",
+						"max": "80px"
+					},
+					"size": "80.40px",
+					"name": "80-40",
+					"slug": "ys-80-40"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "28px"
+					},
+					"size": "28.16px",
+					"name": "x1.75",
+					"slug": "ys-x175"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "40px"
+					},
+					"size": "40.16px",
+					"name": "x2.5",
+					"slug": "ys-250"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "48px"
+					},
+					"size": "48.16px",
+					"name": "x3.0",
+					"slug": "ys-300"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "56px"
+					},
+					"size": "56.16px",
+					"name": "x3.5",
+					"slug": "ys-350"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "64px"
+					},
+					"size": "64.16px",
+					"name": "x4.0",
+					"slug": "ys-400"
 				}
 			]
 		},
