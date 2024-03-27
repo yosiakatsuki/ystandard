@@ -34,6 +34,7 @@ class Copyright {
 			'ys_copyright',
 			Option::get_option( 'ys_copyright', self::get_default() )
 		);
+		// copyright表示があれば出力.
 		if ( $copy ) {
 			$copy = sprintf(
 				'<p id="footer-copy" class="copyright">%s</p>',
@@ -41,7 +42,8 @@ class Copyright {
 			);
 		}
 
-		return $copy;
+		// copyrightのHTMLまるまるフック.
+		return apply_filters( 'ys_copyright_html', $copy );
 	}
 
 	/**
