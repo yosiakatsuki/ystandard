@@ -412,12 +412,12 @@ class Archive {
 		$customizer->add_image_label_radio(
 			[
 				'id'          => 'ys_archive_layout',
-				'default'     => '2col',
+				'default'     => '1col',
 				'label'       => 'ページレイアウト',
 				'description' => 'アーカイブページの表示レイアウト',
 				'choices'     => [
-					'2col' => sprintf( $img, $col2 ),
 					'1col' => sprintf( $img, $col1 ),
+					'2col' => sprintf( $img, $col2 ),
 				],
 			]
 		);
