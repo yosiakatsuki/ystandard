@@ -1,14 +1,32 @@
 .wp-block-table {
-  thead {
-	border-bottom: 0;
-  }
-  tfoot {
-	border-top: 0;
-  }
-  &.is-style-stripes {
-	table,
-	tr {
-	  border-color: transparent;
+	thead {
+		border-bottom: 0;
 	}
-  }
+
+	tfoot {
+		border-top: 0;
+	}
+
+	td {
+		border-top: 0;
+		border-left: 0;
+		border-right: 0;
+		border-color: var(--ystd--table--border-color);
+		padding-top: var(--ystd--table--padding-y);
+		padding-bottom: var(--ystd--table--padding-y);
+
+		&:where(:not(:last-child)) {
+			padding-right: var(--ystd--table--padding-x);
+		}
+		&:where(:not(:first-child)) {
+			padding-left: var(--ystd--table--padding-x);
+		}
+	}
+
+	&.is-style-stripes {
+		table,
+		tr {
+			border-color: transparent;
+		}
+	}
 }
