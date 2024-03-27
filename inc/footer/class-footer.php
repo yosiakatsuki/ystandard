@@ -300,7 +300,7 @@ class Footer {
 			);
 		}
 		$footer_text_color = Option::get_option( 'ys_color_footer_font', '' );
-		if ( '' === $footer_text_color ) {
+		if ( $footer_text_color ) {
 			$css_vars = array_merge(
 				$css_vars,
 				Enqueue_Utility::get_css_var(
