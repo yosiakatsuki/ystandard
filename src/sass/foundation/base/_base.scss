@@ -104,7 +104,7 @@ body {
  */
 :where(ul,ol) {
 	margin-bottom: 0;
-	padding-left: 1.7em;
+	padding-left: 1em;
 
 	:where(ul,ol) {
 		margin: 0;

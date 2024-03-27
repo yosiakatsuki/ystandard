@@ -142,6 +142,9 @@ body:where([class]) {
 	--ystd--global-nav--font-size: 0.9em;
 	--ystd--global-nav--gap: 1.5em;
 	--ystd--global-nav--font-weight: normal;
+	--ystd--global-nav--border-color: var(--ystd--header--text-color);
+	--ystd--global-nav--current--text-color: var(--ystd--header--text-color);
+	--ystd--global-nav--hover--text-color: var(--ystd--global-nav--current--text-color);
 	/**
 	 * Drawer Menu
 	 */
