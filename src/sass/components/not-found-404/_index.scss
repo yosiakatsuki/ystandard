@@ -1,0 +1,29 @@
+@use "../../global";
+
+:where(.no-results__title) {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+:where(.not-found__header) {
+	> :where(*) {
+		max-width: var(--ystd--content--size);
+		margin-right: auto;
+		margin-left: auto;
+		margin-bottom: 0;
+
+		+ :where(*) {
+			margin-top: var(--ystd--layout-gap);
+		}
+	}
+}
+:where(.no-results__content) {
+	margin-top: calc(var(--ystd--layout-gap) * 2);
+}
+
+
+:where(.no-results__search-title) {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-weight: var(--ystd--font-weight--bold);
+}
