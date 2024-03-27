@@ -49,6 +49,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- `.footer-container`
 	- `.breadcrumbs-container`
 	- `.footer-mobile-nav-container`
+    - `.info-bar-container`
 - [変更] カスタマイザー 「[ys]デザイン」-> 「フッター」 -> 「サブフッター上下余白」変更
 - [変更] カスタマイザーでの色設定の初期値を無しに変更
 - [変更] ファイル整理。変更内容は「v5.0.0 - ファイル移動表」を参照

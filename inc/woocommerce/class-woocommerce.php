@@ -120,7 +120,7 @@ class WooCommerce {
 	 * コンテンツ ラッパー Start
 	 */
 	public static function wrapper_html_start() {
-		echo apply_filters( 'ys_woo_wrapper_html_start', '<div class="container"><div class="content__wrap">' );
+		echo apply_filters( 'ys_woo_wrapper_html_start', '<div class="content-container"><div class="content__wrap">' );
 	}
 
 	/**

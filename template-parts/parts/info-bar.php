@@ -20,7 +20,7 @@ if ( empty( $info_bar_data ) ) {
 			<span class="info-bar__text"><?php echo wp_kses_post( $info_bar_data['text'] ); ?></span>
 		</a>
 	<?php else : ?>
-		<div class="container">
+		<div class="info-bar-container">
 			<span class="info-bar__text"><?php echo wp_kses_post( $info_bar_data['text'] ); ?></span>
 		</div>
 	<?php endif; ?>

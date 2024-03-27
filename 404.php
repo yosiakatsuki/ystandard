@@ -8,7 +8,7 @@
  */
 
 get_header(); ?>
-<div class="container">
+<div class="content-container">
 	<?php
 	ys_get_template_part( 'template-parts/404/content' );
 	get_sidebar();
