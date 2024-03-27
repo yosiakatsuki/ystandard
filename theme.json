@@ -253,9 +253,27 @@
 						"min": "20px",
 						"max": "24px"
 					},
-					"size": "24-20px",
+					"size": "24.20px",
 					"name": "24-20",
 					"slug": "ys-24-20"
+				},
+				{
+					"fluid": {
+						"min": "20px",
+						"max": "28px"
+					},
+					"size": "28.20px",
+					"name": "28-20",
+					"slug": "ys-28-20"
+				},
+				{
+					"fluid": {
+						"min": "24px",
+						"max": "28px"
+					},
+					"size": "28.24px",
+					"name": "28-24",
+					"slug": "ys-28-24"
 				},
 				{
 					"fluid": {
@@ -286,12 +304,21 @@
 				},
 				{
 					"fluid": {
-						"min": "18px",
+						"min": "24px",
 						"max": "36px"
 					},
-					"size": "36.18px",
-					"name": "36-18",
-					"slug": "ys-36-18"
+					"size": "36.24px",
+					"name": "36-24",
+					"slug": "ys-36-24"
+				},
+				{
+					"fluid": {
+						"min": "28px",
+						"max": "36px"
+					},
+					"size": "36.28px",
+					"name": "36-28",
+					"slug": "ys-36-28"
 				},
 				{
 					"fluid": {
