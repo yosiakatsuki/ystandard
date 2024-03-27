@@ -1,0 +1,8 @@
+body .is-layout-constrained {
+	> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+		max-width: var(--ystd--content--size);
+	}
+	> .alignwide {
+		max-width: var(--ystd--container--size);
+	}
+}
