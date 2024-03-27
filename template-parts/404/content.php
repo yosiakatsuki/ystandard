@@ -28,10 +28,14 @@ defined( 'ABSPATH' ) || die();
 	</div>
 
 	<div class="no-results__content entry-content">
-		<div class="no-results__search">
-			<p class="no-results__search-title"><?php _e( 'Search again', 'ystandard' ); ?></p>
-			<?php get_search_form(); ?>
-		</div>
+		<?php if ( apply_filters( 'ys_has_no_results_search', true ) ) : ?>
+			<div class="no-results__search">
+				<p class="no-results__search-title">
+					<?php echo esc_html( apply_filters( 'ys_no_results_search_title', __( 'Search again', 'ystandard' ) ) ); ?>
+				</p>
+				<?php get_search_form(); ?>
+			</div>
+		<?php endif; ?>
 		<?php do_action( 'ys_no_results_content' ); ?>
 	</div>
 	<?php do_action( 'ys_content_main_append' ); ?>

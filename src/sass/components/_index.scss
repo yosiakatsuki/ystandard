@@ -17,18 +17,27 @@
 @use "comments/comments";
 @use "toc/toc";
 
+/**
+ * 汎用項目
+ */
 @use "icon";
 @use "wordpress";
+@use "advertisement";
 
+/**
+ * ページ関連
+ */
+@use "not-found-404";
+
+/**
+ * パーツ
+ */
 @use "site-header";
 @use "site-branding";
+@use "contents";
 @use "navigation";
 @use "site-footer";
 @use "sub-footer";
-@use "contents";
-@use "advertisement";
 @use "widget";
-
 @use "post-paging";
 @use "pagination";
-
