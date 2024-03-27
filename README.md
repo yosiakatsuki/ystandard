@@ -58,6 +58,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- `footer-copy` -> `footer-copyright`：CSSクラス等に影響あり
 	- `global-nav__dscr` -> `global-nav__description`：CSSクラス等に影響あり
 - [変更] パンくずリストを404ページで表示しないように変更
+- [追加] `/block-styles.json`からブロックスタイルを追加できる機能追加.
 
 #### v5.0.0 - カスタムプロパティ変換表
 
