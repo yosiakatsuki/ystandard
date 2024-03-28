@@ -34,7 +34,7 @@
 		> :where(.wp-block-media-text__content) {
 			width: 100%;
 			max-width: min(var(--ystd--media-text--content--max-width),calc(50vw - var(--ystd--container--gutter) - var(--ystd--media-text--gap)));
-			
+
 			@media (max-width: 600px) {
 				width: var(--ystd--container--size);
 				max-width: 100%;
