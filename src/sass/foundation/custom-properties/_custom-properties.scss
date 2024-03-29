@@ -96,6 +96,7 @@ body:where([class]) {
 	--ystd--archive--padding: 1em;
 	--ystd--archive--thumbnail--width: 100%;
 	--ystd--archive--header--layout-gap: var(--ystd--layout-gap);
+	--ystd--archive--header--title--font-size: clamp(1.5rem, 1.211rem + 1.23vw, 2rem);
 	--ystd--archive--header--description--font-size: 0.8em;
 	--ystd--archive--header--description--gap: 1em;
 	--ystd--archive--item--width: 100%;

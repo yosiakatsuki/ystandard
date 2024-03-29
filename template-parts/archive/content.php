@@ -10,8 +10,8 @@
 defined( 'ABSPATH' ) || die();
 ?>
 <main id="main" class="archive__main site-main">
-	<?php do_action( 'ys_site_main_prepend' ); ?>
 	<?php
+	do_action( 'ys_site_main_prepend' );
 	/**
 	 * アーカイブヘッダーの読み込み
 	 */
@@ -22,6 +22,7 @@ defined( 'ABSPATH' ) || die();
 		while ( have_posts() ) :
 			the_post();
 			do_action( 'ys_archive_before_content' );
+			// 一覧読み込み.
 			ys_get_template_part(
 				'template-parts/archive/details',
 				ys_get_archive_type()
@@ -30,11 +31,8 @@ defined( 'ABSPATH' ) || die();
 		endwhile;
 		?>
 	</div>
-	<?php
-	/**
-	 * ページネーション
-	 */
-	ys_get_template_part( 'template-parts/parts/pagination' );
-	?>
 	<?php do_action( 'ys_site_main_append' ); ?>
 </main>
+<?php
+// ページネーション
+ys_get_template_part( 'template-parts/parts/pagination' );

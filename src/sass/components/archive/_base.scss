@@ -16,6 +16,7 @@
 }
 
 :where(.archive__page-title) {
+	font-size: var(--ystd--archive--header--title--font-size);
 	margin-top: 0;
 	margin-bottom: 0;
 }
