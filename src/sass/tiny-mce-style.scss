@@ -4,7 +4,6 @@
 @use "components/author/author" with ($editor:true);
 @use "components/blog-card/blog-card" with ($editor:true);
 @use "components/posts/posts" with ($editor:true);
-@use "components/ratio/ratio" with ($editor:true);
 @use "components/share-button/share-button" with ($editor:true);
 @use "components/taxonomy/taxonomy" with ($editor:true);
 @use "components/toc/toc" with ($editor:true);
@@ -42,6 +41,7 @@
 	@include meta.load-css('components/advertisement/index');
 	@include meta.load-css('components/forms/forms');
 	@include meta.load-css('components/search-form/search-form');
+	@include meta.load-css('components/ratio/ratio');
 	/**
 	 * ブロック関連のロード
 	 */
@@ -83,7 +83,6 @@
 	@include author.author();
 	@include blog-card.blog-card();
 	@include posts.ys-posts();
-	@include ratio.ratio();
 	@include share-button.share-buttons();
 	@include taxonomy.taxonomy();
 	@include toc.toc();
