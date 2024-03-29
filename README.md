@@ -44,6 +44,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [変更] カスタムプロパティの詳細度を変更 `:root` -> `body:where([class])`
 - [変更] `.container`クラスの分解
 	- `.content-container`
+	- `.archive-container`
 	- `.header-container`
 	- `.sub-footer-container`
 	- `.footer-container`
