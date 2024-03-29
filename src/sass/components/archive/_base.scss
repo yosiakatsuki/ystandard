@@ -1,0 +1,11 @@
+:where(.archive-container) {
+	max-width: var(--ystd--container--size);
+	margin-right: auto;
+	margin-left: auto;
+}
+
+:where(.has-sidebar) {
+	:where(.content-container) {
+		--ystd--content--2col--size:100%;
+	}
+}
