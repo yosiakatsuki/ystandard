@@ -101,6 +101,11 @@ body:where([class]) {
 	--ystd--archive--header--description--gap: 1em;
 	--ystd--archive--item--width: 100%;
 	--ystd--archive--item--border-color: 1px solid var(--ystd--site--border-color--light-gray);
+	--ystd--archive--item--gap: calc(var(--ystd--layout-gap) / 2);
+	--ystd--archive--item--title--font-size: 1em;
+	--ystd--archive--item--detail--font-size: 0.7em;
+	--ystd--archive--item--meta--text-color: var(--ystd--content--meta--color);
+	--ystd--archive--item--excerpt--text-color: var(--ystd--text-color--gray);
 	--ystd--archive--category--background: var(--ystd--content--meta--color);
 
 	/**
