@@ -4,13 +4,8 @@
 	--ystd--content--width: var(--wp--style--global--content-size, 800px);
 
 	background-color: var(--ystd--site-content--background);
-	padding-top: var(--ystd--site-content--padding--mobile);
-	padding-bottom: var(--ystd--site-content--padding--mobile);
-
-	@include global.media-up-mobile() {
-		padding-top: var(--ystd--site-content--padding);
-		padding-bottom: var(--ystd--site-content--padding);
-	}
+	padding-top: var(--ystd--site-content--padding);
+	padding-bottom: var(--ystd--site-content--padding);
 }
 
 /**

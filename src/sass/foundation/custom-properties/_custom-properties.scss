@@ -68,8 +68,7 @@ body:where([class]) {
 	--ystd--content--header--meta--icon-size: 1em;
 	--ystd--content--2col--size: 1fr;
 	--ystd--site-content--background: transparent;
-	--ystd--site-content--padding: calc(var(--ystd--layout-gap) * 2);
-	--ystd--site-content--padding--mobile: calc(var(--ystd--site-content--padding) / 2);
+	--ystd--site-content--padding: var(--wp--preset--spacing--50, calc(var(--ystd--layout-gap) * 2));
 
 
 	--ystd--content--min-width: 66.66%;
