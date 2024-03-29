@@ -8,7 +8,7 @@
 
 :where(.has-sidebar) {
 	:where(.content-container),
-	:where(.content-container) {
+	:where(.archive-container) {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: var(--ystd--sidebar--2col--gap);
@@ -17,7 +17,7 @@
 			max-width: var(--ystd--container--size);
 			justify-content: space-between;
 			gap: var(--ystd--sidebar--2col--gap);
-			grid-template-columns: var(--ystd--content--2col--size) 1fr;
+			grid-template-columns: var(--ystd--content--2col--size) var(--ystd--sidebar--2col--size);
 		}
 	}
 }

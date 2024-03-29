@@ -44,7 +44,6 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [変更] カスタムプロパティの詳細度を変更 `:root` -> `body:where([class])`
 - [変更] `.container`クラスの分解
 	- `.content-container`
-	- `.archive-container`
 	- `.header-container`
 	- `.sub-footer-container`
 	- `.footer-container`
@@ -58,6 +57,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- `footer-sub` -> `sub-footer`：CSSクラス等に影響あり
 	- `footer-copy` -> `footer-copyright`：CSSクラス等に影響あり
 	- `global-nav__dscr` -> `global-nav__description`：CSSクラス等に影響あり
+	- `archive__dscr` -> `archive__description`：CSSクラス等に影響あり
 - [変更] パンくずリストを404ページで表示しないように変更
 - [追加] `/block-styles.json`からブロックスタイルを追加できる機能追加.
 

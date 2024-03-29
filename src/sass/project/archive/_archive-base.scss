@@ -1,26 +1,6 @@
 @use "../../global";
 @use "sass:math";
 
-
-.archive__main {
-  margin-bottom: var(--ystd--layout-gap);
-}
-
-.archive__header {
-  margin-bottom: var(--ystd--archive--padding);
-}
-
-.archive__page-title {
-  margin: 0;
-}
-
-.archive__dscr {
-  @include global.child_margin(var(--ystd--archive--padding));
-
-  margin-top: var(--ystd--archive--padding);
-  margin-bottom: calc(2 * var(--ystd--archive--padding));
-}
-
 .archive__container {
   display: flex;
   flex-direction: column;
