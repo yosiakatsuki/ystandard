@@ -1,12 +1,12 @@
 @use "../../global";
 
 :where(.paging__container) {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 1em;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ystd--layout-gap);
 
 	@include global.media-up-mobile() {
-		grid-template-columns: 1fr 1fr;
+		flex-direction: row;
 	}
 }
 
