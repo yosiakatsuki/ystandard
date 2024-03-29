@@ -13,6 +13,10 @@
 		margin-right: auto;
 		margin-left: auto;
 
+		@include global.media-up-desktop() {
+			max-width: 100%;
+		}
+
 		+ * {
 			margin-top: var(--ystd--layout-gap);
 		}

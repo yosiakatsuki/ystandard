@@ -23,10 +23,11 @@ if ( is_home() ) {
 		'</h1>'
 	);
 	?>
+	<?php
+	the_archive_description(
+		'<div class="archive__description taxonomy-description">',
+		'</div>'
+	);
+	?>
 </header>
-<?php
-the_archive_description(
-	'<div class="archive__dscr taxonomy-description">',
-	'</div>'
-);
-?>
+
