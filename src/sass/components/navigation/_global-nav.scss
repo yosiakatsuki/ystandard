@@ -199,6 +199,7 @@ body:where(.home) {
 	@media (hover: hover) {
 		&:hover {
 			box-shadow: none;
+			background-color: transparent;
 		}
 	}
 
