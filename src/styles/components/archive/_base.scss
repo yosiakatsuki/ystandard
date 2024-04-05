@@ -1,3 +1,6 @@
+/**
+ * ヘッダー部（タイトル・説明）
+ */
 :where(.archive__header > *),
 :where(.archive__container) {
 	max-width: var(--ystd--container--size);
@@ -29,20 +32,29 @@
 	}
 }
 
+/**
+ * コンテナ（一覧）
+ */
 :where(.archive__container) {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 100%;
+	gap: var(--ystd--archive--gap);
+}
+// アーカイブヘッダーがある場合は余白つける.
+:where(.archive__header + .archive__container) {
 	margin-top: var(--ystd--layout-gap);
 }
 
 /**
- * Archive item
+ * アイテム
  */
 :where(.archive__item) {
-	flex: 0 0 var(--ystd--archive--item--width);
 	width: var(--ystd--archive--item--width);
-	background-color: var(--ystd--content--background);
-	border-bottom: var(--ystd--archive--item--border-color);
+	background: var(--ystd--archive--item--background);
+	border-top: var(--ystd--archive--item--border-top);
+	border-right: var(--ystd--archive--item--border-right);
+	border-bottom: var(--ystd--archive--item--border-bottom);
+	border-left: var(--ystd--archive--item--border-left);
 
 	@media (hover: hover) {
 		&:hover {
@@ -82,12 +94,14 @@
 
 
 :where(.archive__text) {
+	padding: var(--ystd--archive--item--text--padding);
+
 	> :where(*) {
 		margin-top: 0;
 		margin-bottom: 0;
 
 		+ :where(*) {
-			margin-top: var(--ystd--archive--item--gap);
+			margin-top: var(--ystd--archive--item--text--gap);
 		}
 	}
 }
@@ -128,7 +142,11 @@
 }
 
 :where(.archive__meta) {
+	display: flex;
+	gap: var(--ystd--archive--item--text--gap);
+	max-width: 100%;
 	color: var(--ystd--archive--item--meta--text-color);
+	white-space: nowrap;
 	overflow: hidden;
 
 	:where(.ys-icon) {
