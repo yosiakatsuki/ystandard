@@ -2,26 +2,55 @@
 
 $breakpoints_setting: (
 	sm : 600px,
-	mobile : 640px,
 	md : 769px,
-	tablet:768px,
 	lg : 1025px,
+	mobile : 640px,
+	tablet:768px,
 	desktop:1024px,
+	xl:1200px,
 );
 
-@mixin media-up-mobile() {
-	@include media-breakpoint(mobile) {
-		@content;
-	}
-}
+/**
+ * モバイルのみ
+ */
 @mixin media-only-mobile() {
 	@include media-breakpoint-down(mobile) {
 		@content;
 	}
 }
 
+/**
+ * モバイルサイズ以上（タブレットサイズ〜）
+ */
+@mixin media-up-mobile() {
+	@include media-breakpoint(mobile) {
+		@content;
+	}
+}
+
+/**
+ * タブレットサイズ以上（iPad縦サイズ〜）
+ */
+@mixin media-up-tablet() {
+	@include media-breakpoint(tablet) {
+		@content;
+	}
+}
+
+/**
+ * デスクトップサイズ以上（iPad Pro縦サイズ〜）
+ */
 @mixin media-up-desktop() {
 	@include media-breakpoint(desktop) {
+		@content;
+	}
+}
+
+/**
+ * でかいサイズ以上 1200px~
+ */
+@mixin media-up-xl() {
+	@include media-breakpoint(xl) {
 		@content;
 	}
 }
