@@ -15,21 +15,44 @@ class Footer_Test extends WP_UnitTestCase {
 	 */
 	function test_sub_footer_css_var() {
 		$footer   = new \ystandard\Footer();
+		$expected = [];
+		$this->assertSame( $expected, $footer->add_css_var_footer_sub( [] ) );
+	}
+
+	/**
+	 * サブフッター 背景設定テスト
+	 */
+	function test_sub_footer_css_var_background() {
+		update_option( 'ys_color_sub_footer_bg', '#dddddd' );
+		$footer   = new \ystandard\Footer();
 		$expected = [
-			'sub-footer-bg'   => '#f1f1f3',
-			'sub-footer-text' => '#222222',
+			'sub-footer--background' => '#dddddd',
 		];
 		$this->assertSame( $expected, $footer->add_css_var_footer_sub( [] ) );
 	}
+
 	/**
-	 * サブフッター 初期値テスト
+	 * サブフッター 文字色設定テスト
 	 */
-	function test_sub_footer_css_var_bg_empty() {
-		update_option( 'ys_color_sub_footer_bg', '' );
+	function test_sub_footer_css_var_text_color() {
+		update_option( 'ys_color_sub_footer_text', '#000000' );
 		$footer   = new \ystandard\Footer();
 		$expected = [
-			'sub-footer-bg'   => 'transparent',
-			'sub-footer-text' => '#222222',
+			'sub-footer--text-color' => '#000000',
+		];
+		$this->assertSame( $expected, $footer->add_css_var_footer_sub( [] ) );
+	}
+
+	/**
+	 * サブフッター 文字色・背景色設定テスト
+	 */
+	function test_sub_footer_css_var_text_and_background_color() {
+		update_option( 'ys_color_sub_footer_bg', '#dddddd' );
+		update_option( 'ys_color_sub_footer_text', '#000000' );
+		$footer   = new \ystandard\Footer();
+		$expected = [
+			'sub-footer--background' => '#dddddd',
+			'sub-footer--text-color' => '#000000',
 		];
 		$this->assertSame( $expected, $footer->add_css_var_footer_sub( [] ) );
 	}
@@ -40,10 +63,7 @@ class Footer_Test extends WP_UnitTestCase {
 	function test_sub_footer_css_var_padding_empty() {
 		update_option( 'ys_sub_footer_padding', '' );
 		$footer   = new \ystandard\Footer();
-		$expected = [
-			'sub-footer-bg'   => '#f1f1f3',
-			'sub-footer-text' => '#222222',
-		];
+		$expected = [];
 		$this->assertSame( $expected, $footer->add_css_var_footer_sub( [] ) );
 	}
 
@@ -54,9 +74,7 @@ class Footer_Test extends WP_UnitTestCase {
 		update_option( 'ys_sub_footer_padding', '0' );
 		$footer   = new \ystandard\Footer();
 		$expected = [
-			'sub-footer-bg'      => '#f1f1f3',
-			'sub-footer-text'    => '#222222',
-			'sub-footer-padding' => 0,
+			'sub-footer--padding' => 0,
 		];
 		$this->assertSame( $expected, $footer->add_css_var_footer_sub( [] ) );
 	}
@@ -68,9 +86,7 @@ class Footer_Test extends WP_UnitTestCase {
 		update_option( 'ys_sub_footer_padding', '30' );
 		$footer   = new \ystandard\Footer();
 		$expected = [
-			'sub-footer-bg'      => '#f1f1f3',
-			'sub-footer-text'    => '#222222',
-			'sub-footer-padding' => '30px',
+			'sub-footer--padding' => '30px',
 		];
 		$this->assertSame( $expected, $footer->add_css_var_footer_sub( [] ) );
 	}
