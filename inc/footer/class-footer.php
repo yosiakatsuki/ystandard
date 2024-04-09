@@ -28,11 +28,11 @@ class Footer {
 		add_action( 'wp_footer', [ $this, 'footer_mobile_nav' ], 1 );
 		add_action( 'wp_footer', [ $this, 'back_to_top' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_main' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_footer_sub' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_mobile_footer_menu' ] );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_footer_mobile_nav_css' ] );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_back_to_top_css' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_main' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_sub' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_mobile_footer_menu' ] );
+		add_filter( 'ys_get_inline_css', [ $this, 'add_footer_mobile_nav_css' ] );
+		add_filter( 'ys_get_inline_css', [ $this, 'add_back_to_top_css' ] );
 	}
 
 	/**

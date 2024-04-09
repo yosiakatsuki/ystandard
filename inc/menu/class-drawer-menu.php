@@ -36,7 +36,7 @@ class Drawer_Menu {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'inline_css' ] );
 		add_filter( self::DRAWER_MENU_START_SIZE_FILTER, [ __CLASS__, 'get_drawer_menu_start' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'css_vars' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'css_vars' ] );
 		add_action( 'wp_footer', [ $this, 'drawer_nav' ] );
 		add_action( 'init', [ $this, 'set_drawer_nav_search_form' ] );
 	}

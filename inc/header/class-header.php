@@ -27,7 +27,7 @@ class Header {
 		add_action( 'customize_register', [ $this, 'register_title_tagline' ] );
 		add_action( 'customize_register', [ $this, 'register_header_design' ] );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_inline_css' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script_amp' ] );
 		add_action( 'wp_footer', [ $this, 'amp_mobile_nav' ] );
 	}

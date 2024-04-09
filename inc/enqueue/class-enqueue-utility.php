@@ -20,16 +20,24 @@ class Enqueue_Utility {
 
 	/**
 	 * CSSカスタムプロパティセット用フィルター名
+	 * 旧名 : ys_css_vars
+	 *
+	 * @deprecated v5.0.0
 	 */
-	const FILTER_CSS_VARS = 'ys_css_vars';
+	const FILTER_CSS_VARS = 'ys_get_css_custom_properties_args';
 
 	/**
 	 * CSSカスタムプロパティ preset 上書き用 フィルター名
+	 * 旧名 : ys_css_vars_presets
+	 *
+	 * @deprecated v5.0.0
 	 */
-	const FILTER_CSS_VARS_PRESETS = 'ys_css_vars_presets';
+	const FILTER_CSS_VARS_PRESETS = 'ys_get_css_custom_properties_args_presets';
 
 	/**
 	 * インラインCSSのフック名
+	 *
+	 * @deprecated v5.0.0
 	 */
 	const FILTER_INLINE_CSS = 'ys_get_inline_css';
 
@@ -41,9 +49,9 @@ class Enqueue_Utility {
 	/**
 	 * CSSカスタムプロパティ追加用配列の取得
 	 *
-	 * @param string $name    変数名.
-	 * @param string $value   値.
-	 * @param mixed  $default 初期値.
+	 * @param string $name 変数名.
+	 * @param string $value 値.
+	 * @param mixed $default 初期値.
 	 *
 	 * @return array
 	 */
@@ -78,7 +86,7 @@ class Enqueue_Utility {
 	 * Add crossorigin.
 	 *
 	 * @param string $handle handle.
-	 * @param string $value  value.
+	 * @param string $value value.
 	 */
 	public static function add_crossorigin( $handle, $value ) {
 		wp_script_add_data( $handle, 'crossorigin', $value );
@@ -88,7 +96,7 @@ class Enqueue_Utility {
 	 * Add custom-element.
 	 *
 	 * @param string $handle handle.
-	 * @param string $value  value.
+	 * @param string $value value.
 	 */
 	public static function add_custom_element( $handle, $value ) {
 		wp_script_add_data( $handle, 'custom-element', $value );

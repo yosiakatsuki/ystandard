@@ -134,11 +134,18 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	public static function get_css_vars_selector( $selector = 'body:where([class])' ) {
+
+		/**
+		 * 旧フック : ys_css_vars
+		 *
+		 * @deprecated v5.0.0
+		 */
+		$vars = apply_filters_deprecated( 'ys_css_vars', [ [] ], 'v5.0.0', 'ys_get_css_custom_properties_args' );
 		/**
 		 * CSSカスタムプロパティに指定する値
 		 * name,value
 		 */
-		$vars = apply_filters( Enqueue_Utility::FILTER_CSS_VARS, [] );
+		$vars = apply_filters( 'ys_get_css_custom_properties_args', $vars );
 		if ( empty( $vars ) ) {
 			return '';
 		}
@@ -160,10 +167,16 @@ class Enqueue_Styles {
 	 */
 	public static function get_css_vars_selector_preset( $selector = 'body' ) {
 		/**
+		 * 旧フック : ys_css_vars_presets
+		 *
+		 * @deprecated v5.0.0
+		 */
+		$vars = apply_filters_deprecated( 'ys_css_vars_presets', [ [] ], 'v5.0.0', 'ys_get_css_custom_properties_args' );
+		/**
 		 * CSSカスタムプロパティに指定する値
 		 * name,value
 		 */
-		$vars = apply_filters( Enqueue_Utility::FILTER_CSS_VARS_PRESETS, [] );
+		$vars = apply_filters( 'ys_get_css_custom_properties_args_presets', $vars );
 		if ( empty( $vars ) ) {
 			return '';
 		}
@@ -184,11 +197,12 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	private static function create_custom_properties_css( $vars ) {
-		$result     = '';
+		$result = '';
 		foreach ( $vars as $key => $value ) {
 			if ( ! empty( $key ) && '' !== $value ) {
-				// プレフィックス追加.
+				// 一度プレフィックスをクリア.
 				$key = str_replace( '--ystd--', '', $key );
+				// 結合.
 				$result .= "--ystd--{$key}: {$value};";
 			}
 		}

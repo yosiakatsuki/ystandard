@@ -1,3 +1,27 @@
+@use "../../global";
+
+
 :where(.archive__container.is-card) {
 
+	// カラム数
+	grid-template-columns: repeat(var(--ystd--archive--card--col--mobile), 1fr);
+
+	@include global.media-up-mobile() {
+		grid-template-columns: repeat(var(--ystd--archive--card--col--tablet), 1fr);
+	}
+	@include global.media-up-desktop() {
+		grid-template-columns: repeat(var(--ystd--archive--card--col--desktop), 1fr);
+	}
+
+	// メタ
+	:where(.archive__meta) {
+		justify-content: space-between;
+	}
 }
+// サイドバーあり
+:where(.has-sidebar .archive__container.is-card) {
+	@include global.media-up-desktop() {
+		grid-template-columns: repeat(var(--ystd--archive--card--col--has-sidebar), 1fr);
+	}
+}
+

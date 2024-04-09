@@ -55,6 +55,7 @@
 	border-right: var(--ystd--archive--item--border-right);
 	border-bottom: var(--ystd--archive--item--border-bottom);
 	border-left: var(--ystd--archive--item--border-left);
+	overflow: hidden;
 
 	@media (hover: hover) {
 		&:hover {
@@ -161,6 +162,10 @@
 }
 
 :where(.archive__excerpt) {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-line-clamp: var(--ystd--archive--item--excerpt--line-clamp);
+	-webkit-box-orient: vertical;
 	color: var(--ystd--archive--item--excerpt--text-color);
 	line-height: 1.3;
 }
