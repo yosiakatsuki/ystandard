@@ -11,6 +11,7 @@ defined( 'ABSPATH' ) || die();
 ?>
 <main id="main" class="archive__main site-main">
 	<?php
+	// main 開始直後フック
 	do_action( 'ys_site_main_prepend' );
 	/**
 	 * アーカイブヘッダーの読み込み
@@ -31,8 +32,10 @@ defined( 'ABSPATH' ) || die();
 		endwhile;
 		?>
 	</div>
-	<?php do_action( 'ys_site_main_append' ); ?>
+	<?php
+	// ページネーション
+	ys_get_template_part( 'template-parts/parts/pagination' );
+	// main 終了前フック
+	do_action( 'ys_site_main_append' );
+	?>
 </main>
-<?php
-// ページネーション
-ys_get_template_part( 'template-parts/parts/pagination' );

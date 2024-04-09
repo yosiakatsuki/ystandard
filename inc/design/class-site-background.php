@@ -24,7 +24,7 @@ class Site_Background {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'customize_save', [ $this, 'customize_save_after' ] );
-		add_filter( 'ys_css_vars', [ $this, 'add_css_vars' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_vars' ] );
 	}
 
 	/**
@@ -36,16 +36,18 @@ class Site_Background {
 	 */
 	public function add_css_vars( $css_vars ) {
 
+		// 背景色設定がある場合.
 		if ( self::is_custom_bg_color() ) {
 			$css_vars = array_merge(
 				$css_vars,
-				Enqueue_Utility::get_css_var( 'site-bg', self::get_site_bg() )
+				Enqueue_Utility::get_css_var( 'site-background', self::get_site_bg() )
 			);
 		}
+		// コンテンツ領域の色指定がある場合.
 		if ( self::is_custom_contet_bg_color() ) {
 			$css_vars = array_merge(
 				$css_vars,
-				Enqueue_Utility::get_css_var( 'content-bg', self::get_content_bg() )
+				Enqueue_Utility::get_css_var( 'content--background', self::get_content_bg() )
 			);
 		}
 
@@ -74,7 +76,7 @@ class Site_Background {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_site_bg',
-				'default' => self::get_site_bg_default(),
+				'default' => '',
 				'label'   => 'サイト背景色',
 			]
 		);
@@ -100,7 +102,7 @@ class Site_Background {
 		$customizer->add_color(
 			[
 				'id'          => 'ys_color_content_bg',
-				'default'     => self::get_content_bg_default(),
+				'default'     => '',
 				'label'       => '本文エリア背景色',
 				'description' => '投稿本文エリアの背景色を設定できます。',
 				'priority'    => 10,
@@ -125,25 +127,13 @@ class Site_Background {
 	}
 
 	/**
-	 * サイト背景色デフォルト値取得
-	 *
-	 * @return string
-	 */
-	public static function get_site_bg_default() {
-		return Option::get_default( 'ys_color_site_bg', '#ffffff' );
-	}
-
-	/**
 	 * サイト背景色取得
 	 *
 	 * @return string
 	 */
 	public static function get_site_bg() {
-		if ( Template::is_legacy_widget_preview() ) {
-			return self::get_site_bg_default();
-		}
 
-		return Option::get_option( 'ys_color_site_bg', self::get_site_bg_default() );
+		return Option::get_option( 'ys_color_site_bg', '' );
 	}
 
 	/**
@@ -152,16 +142,7 @@ class Site_Background {
 	 * @return bool
 	 */
 	public static function is_custom_bg_color() {
-		return self::get_site_bg_default() !== self::get_site_bg();
-	}
-
-	/**
-	 * コンテンツ域背景色デフォルト
-	 *
-	 * @return string
-	 */
-	public static function get_content_bg_default() {
-		return Option::get_default( 'ys_color_content_bg', '#ffffff' );
+		return ! empty( self::get_site_bg() );
 	}
 
 	/**
@@ -170,11 +151,8 @@ class Site_Background {
 	 * @return string
 	 */
 	public static function get_content_bg() {
-		if ( Template::is_legacy_widget_preview() ) {
-			return self::get_content_bg_default();
-		}
 
-		return Option::get_option( 'ys_color_content_bg', self::get_content_bg_default() );
+		return Option::get_option( 'ys_color_content_bg', '' );
 	}
 
 	/**
@@ -183,7 +161,7 @@ class Site_Background {
 	 * @return bool
 	 */
 	public static function is_custom_contet_bg_color() {
-		return self::get_content_bg_default() !== self::get_content_bg();
+		return ! empty( self::get_content_bg() );
 	}
 }
 

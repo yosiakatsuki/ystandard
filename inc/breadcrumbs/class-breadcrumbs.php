@@ -67,7 +67,7 @@ class Breadcrumbs {
 		add_action( 'wp_footer', [ $this, 'structured_data' ], 11 );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'get_header', [ $this, 'add_breadcrumbs' ] );
-		add_action( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_vars' ] );
+		add_action( 'ys_get_css_custom_properties_args', [ $this, 'add_css_vars' ] );
 	}
 
 	/**

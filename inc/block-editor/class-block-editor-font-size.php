@@ -26,7 +26,7 @@ class Block_Editor_Font_Size {
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
 		add_filter( Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS, [ $this, 'add_font_sizes_css' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS_PRESETS, [ $this, 'add_font_sizes_presets' ] );
+		add_filter( 'ys_get_css_custom_properties_args_presets', [ $this, 'add_font_sizes_presets' ] );
 		add_filter( Block_Editor_Assets::BLOCK_EDITOR_ASSETS_HOOK, [ $this, 'add_block_editor_font_sizes_css' ] );
 	}
 

@@ -102,22 +102,9 @@ class Body {
 		}
 
 		/**
-		 * 背景色あり
-		 */
-		if ( Site_Background::is_custom_bg_color() ) {
-			$classes[] = 'has-bg-color';
-		} else {
-			/**
-			 * コンテンツだけ背景色あり
-			 */
-			if ( Site_Background::is_custom_contet_bg_color() ) {
-				$classes[] = 'has-content-bg-color';
-			}
-		}
-		/**
 		 * なんか背景あり
 		 */
-		if ( Site_Background::is_custom_bg_color() || get_background_image() ) {
+		if ( self::has_background() ) {
 			$classes[] = 'has-background';
 		}
 
@@ -147,6 +134,33 @@ class Body {
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * サイトの背景ありモード判定
+	 *
+	 * @return bool
+	 */
+	public static function has_background() {
+		$has_background_image         = get_background_image();
+		$has_site_background_color    = Option::get_option( 'ys_color_site_bg', '' );
+		$has_content_background_color = Option::get_option( 'ys_color_content_bg', '' );
+
+		// コンテンツ領域の色指定がない場合は終了.
+		if ( ! $has_content_background_color ) {
+			return false;
+		}
+		// 背景画像設定があってコンテンツ背景があるので背景ありモード.
+		if ( $has_background_image ) {
+			return true;
+		}
+		// サイト背景 = コンテンツ背景 の場合は背景なし.
+		if ( $has_site_background_color === $has_content_background_color ) {
+			return false;
+		} else {
+			// サイト背景設定があってコンテンツ背景と違う色設定なので背景ありモード.
+			return true;
+		}
 	}
 }
 

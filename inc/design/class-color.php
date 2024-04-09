@@ -31,7 +31,7 @@ class Color {
 	 */
 	public function register() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_filter( 'ys_css_vars', [ $this, 'add_css_vars' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_vars' ] );
 	}
 
 	/**

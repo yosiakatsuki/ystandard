@@ -56,6 +56,16 @@ body:where([class]) {
 	--ystd--container--size: min(calc(100% - var(--ystd--container--gutter) * 2), var(--ystd--container--width));
 	--ystd--container--margin-vertical: var(--ystd--layout-gap);
 	/**
+	 * サイドバー
+	 */
+	// 200 - 336 : 1024 - 1200
+	--ystd--sidebar--2col--size: clamp(12.5rem, -36.955rem + 77.27vw, 21rem);
+	// 16 - 32 : 1024 - 1200
+	--ystd--sidebar--2col--gap: clamp(1rem, -4.818rem + 9.09vw, 2rem);
+	--ystd--sidebar--fixed-position--top: 2em;
+
+	--ystd--sidebar--padding: 1rem;
+	/**
 	 * コンテンツ
 	 */
 	--ystd--content--width: var(--wp--style--global--content-size, 800px);
@@ -66,7 +76,7 @@ body:where([class]) {
 	--ystd--content--header--meta--font-size: 0.7em;
 	--ystd--content--header--meta--gap: 1.5em;
 	--ystd--content--header--meta--icon-size: 1em;
-	--ystd--content--2col--size: 1fr;
+	--ystd--content--2col--size: calc(100% - var(--ystd--sidebar--2col--size) - var(--ystd--sidebar--2col--gap));
 	--ystd--site-content--background: transparent;
 	--ystd--site-content--padding: var(--wp--preset--spacing--50, calc(var(--ystd--layout-gap) * 2));
 
@@ -79,16 +89,6 @@ body:where([class]) {
 	 * Block Gap
 	 */
 	--ystd--block-gap: var(--ystd--layout-gap, 1.5em);
-	/**
-	 * サイドバー
-	 */
-	// 200 - 336 : 768 - 1024
-	--ystd--sidebar--2col--size: clamp(12.5rem, -13rem + 53.13vw, 21rem);
-	// 16 - 64 : 768 - 1024
-	--ystd--sidebar--2col--gap: clamp(1rem, -8rem + 18.75vw, 4rem);
-	--ystd--sidebar--fixed-position--top: 2em;
-
-	--ystd--sidebar--padding: 1rem;
 	/**
 	 * アーカイブ
 	 */
@@ -111,7 +111,13 @@ body:where([class]) {
 	--ystd--archive--item--detail--font-size: 0.7em;
 	--ystd--archive--item--meta--text-color: var(--ystd--content--meta--color);
 	--ystd--archive--item--excerpt--text-color: var(--ystd--text-color--gray);
+	--ystd--archive--item--excerpt--line-clamp: 2;
 	--ystd--archive--category--background: var(--ystd--content--meta--color);
+	// タイプ別
+	--ystd--archive--card--col--mobile: 1;
+	--ystd--archive--card--col--tablet: 2;
+	--ystd--archive--card--col--desktop: 3;
+	--ystd--archive--card--col--has-sidebar: 2;
 
 	/**
 	 * Background
@@ -194,7 +200,7 @@ body:where([class]) {
 	/**
 	 * Content
 	 */
-	--ystd--content--background: #ffffff;
+	--ystd--content--background: transparent;
 	--ystd--content--meta--color: var(--ystd--text-color--gray);
 	/**
 	 * Paging

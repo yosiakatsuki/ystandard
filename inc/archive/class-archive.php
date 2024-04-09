@@ -24,6 +24,7 @@ class Archive {
 	public function register() {
 		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
 		add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
+		add_filter( 'ys_get_css_custom_properties_args_presets', [ $this, 'add_custom_properties' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'get_the_archive_description', [ $this, 'archive_description' ], 999 );
 		add_action( 'ys_after_site_header', [ $this, 'home_post_thumbnail' ] );
@@ -145,8 +146,8 @@ class Archive {
 	/**
 	 * アーカイブデフォルト画像
 	 *
-	 * @param string $class          Class.
-	 * @param string $icon_class     Icon Class.
+	 * @param string $class Class.
+	 * @param string $icon_class Icon Class.
 	 * @param string $thumbnail_size Thumbnail size.
 	 *
 	 * @return string
@@ -384,6 +385,24 @@ class Archive {
 			[ 'header_thumbnail' => $thumbnail ]
 		);
 		echo ob_get_clean();
+	}
+
+
+	/**
+	 * CSSカスタムプロパティ追加
+	 *
+	 * @param array $css_properties CSS properties.
+	 *
+	 * @return array
+	 */
+	public function add_custom_properties( $css_properties ) {
+		// 背景ありモードの場合.
+		if ( Body::has_background() ) {
+			// テキストエリアの余白を調整.
+			$css_properties['--ystd--archive--item--text--padding'] = 'var(--ystd--archive--item--text--gap)';
+		}
+
+		return $css_properties;
 	}
 
 	/**

@@ -25,7 +25,7 @@ class Info_Bar {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'ys_after_site_header', [ $this, 'show_info_bar' ], 1 );
 		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'info_bar_css' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'add_css_var_info_bar' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_info_bar' ] );
 	}
 
 	/**

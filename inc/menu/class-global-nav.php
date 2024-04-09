@@ -25,7 +25,7 @@ class Global_Nav {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_filter( Enqueue_Utility::FILTER_CSS_VARS, [ $this, 'css_vars' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'css_vars' ] );
 		add_action( 'wp_footer', [ $this, 'global_nav_search' ] );
 	}
 
