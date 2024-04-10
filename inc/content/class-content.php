@@ -241,7 +241,7 @@ class Content {
 		if ( ! is_singular() ) {
 			return false;
 		}
-		if ( ! Post::is_active_post_header() ) {
+		if ( ! Post_Header::is_active_post_header() ) {
 			return false;
 		}
 		if ( ! has_post_thumbnail( $post_id ) ) {
