@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\CSS;
 use ystandard\utils\Theme;
 
 defined( 'ABSPATH' ) || die();
@@ -157,7 +158,7 @@ class Admin {
 	 * @return array;
 	 */
 	public function tiny_mce_before_init( $settings ) {
-		$settings['content_style'] = str_replace( '"', '\'', Style_Sheet::minify( wp_get_custom_css() ) );
+		$settings['content_style'] = str_replace( '"', '\'', CSS::minify( wp_get_custom_css() ) );
 
 		return $settings;
 

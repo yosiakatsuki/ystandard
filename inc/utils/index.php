@@ -11,6 +11,8 @@ defined( 'ABSPATH' ) || die();
 require_once __DIR__ . '/class-compatible.php';
 require_once __DIR__ . '/class-conditional-tags.php';
 require_once __DIR__ . '/class-convert.php';
+require_once __DIR__ . '/class-css.php';
+require_once __DIR__ . '/class-file.php';
 require_once __DIR__ . '/class-json.php';
 require_once __DIR__ . '/class-logo.php';
 require_once __DIR__ . '/class-post.php';

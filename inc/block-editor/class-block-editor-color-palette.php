@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
 
@@ -118,7 +119,7 @@ class Block_Editor_Color_Palette {
 			}
 		}
 
-		return Style_Sheet::minify( implode( ' ', $css ) );
+		return CSS::minify( implode( ' ', $css ) );
 	}
 
 	/**

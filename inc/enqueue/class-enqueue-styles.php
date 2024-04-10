@@ -9,8 +9,7 @@
 
 namespace ystandard;
 
-use ystandard\helper\Filesystem;
-use ystandard\helper\Style_Sheet;
+use ystandard\utils\CSS;
 use ystandard\utils\Theme;
 
 defined( 'ABSPATH' ) || die();
@@ -112,8 +111,8 @@ class Enqueue_Styles {
 	 */
 	private function get_inline_css() {
 
-		return Style_Sheet::minify(
-			apply_filters( Enqueue_Utility::FILTER_INLINE_CSS, '' )
+		return CSS::minify(
+			apply_filters( 'ys_get_inline_css', '' )
 		);
 	}
 
@@ -124,7 +123,7 @@ class Enqueue_Styles {
 	 */
 	private function get_blocks_inline_css() {
 
-		return Style_Sheet::minify( apply_filters( Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS, '' ) );
+		return CSS::minify( apply_filters( Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS, '' ) );
 	}
 
 	/**
@@ -249,7 +248,7 @@ class Enqueue_Styles {
 	 * @return string
 	 */
 	public function minify_custom_css( $css ) {
-		return Style_Sheet::minify( $css );
+		return CSS::minify( $css );
 	}
 }
 

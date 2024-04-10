@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
 
@@ -93,7 +94,7 @@ class Block_Editor_Font_Size {
 			$result .= "{$prefix}.has-{$value['slug']}-font-size{font-size:{$size} !important;}";
 		}
 
-		return Style_Sheet::minify( $result );
+		return CSS::minify( $result );
 	}
 
 	/**

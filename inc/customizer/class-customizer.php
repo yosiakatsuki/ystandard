@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\CSS;
 use ystandard\utils\Theme;
 
 defined( 'ABSPATH' ) || die();
@@ -104,11 +105,8 @@ class Customizer {
 		}';
 		// サイドバー表示用.
 		if ( Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
-			$css .= Style_Sheet::add_media_query(
-				'.is-customize-preview .sidebar {display:none;}',
-				'',
-				'sm'
-			);
+			// モバイルで非表示.
+			$css .= CSS::add_media_query_mobile( '.is-customize-preview .sidebar {display:none;}' );
 		}
 
 		return $css;
