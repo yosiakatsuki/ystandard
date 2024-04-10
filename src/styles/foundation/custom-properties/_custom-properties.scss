@@ -106,7 +106,6 @@ body:where([class]) {
 	--ystd--archive--item--border-bottom: 0;
 	--ystd--archive--item--border-left: 0;
 	--ystd--archive--item--text--gap: calc(var(--ystd--layout-gap) / 2);
-	--ystd--archive--item--text--padding: var(--ystd--archive--item--text--gap) 0 0;
 	--ystd--archive--item--title--font-size: 1em;
 	--ystd--archive--item--detail--font-size: 0.7em;
 	--ystd--archive--item--meta--text-color: var(--ystd--content--meta--color);
@@ -118,6 +117,18 @@ body:where([class]) {
 	--ystd--archive--card--col--tablet: 2;
 	--ystd--archive--card--col--desktop: 3;
 	--ystd--archive--card--col--has-sidebar: 2;
+	--ystd--archive--card--item--text--padding: var(--ystd--archive--item--text--gap) 0 0;
+	--ystd--archive--card--item--title--font-size: var(--ystd--archive--item--title--font-size);
+
+	--ystd--archive--list--item--padding: 0;
+	--ystd--archive--list--item--col--gap: var(--ystd--archive--gap);
+	--ystd--archive--list--item--image--height: auto;
+	--ystd--archive--list--item--image--width--mobile: min(150px, 30%);
+	--ystd--archive--list--item--image--width--tablet: min(250px, 30%);
+	--ystd--archive--list--item--image--width--desktop: var(--ystd--archive--list--item--image--width--tablet);
+	--ystd--archive--list--item--title--font-size: 1.2em;
+	--ystd--archive--list--item--text--padding: 0;
+
 
 	/**
 	 * Background

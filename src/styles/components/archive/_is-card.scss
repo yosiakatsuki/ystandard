@@ -17,6 +17,12 @@
 	:where(.archive__meta) {
 		justify-content: space-between;
 	}
+	:where(.archive__text) {
+		padding: var(--ystd--archive--card--item--text--padding);
+	}
+	:where(.archive__title) {
+		font-size: var(--ystd--archive--card--item--title--font-size);
+	}
 }
 // サイドバーあり
 :where(.has-sidebar .archive__container.is-card) {
