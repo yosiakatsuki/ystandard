@@ -56,7 +56,7 @@ class Meta_Description {
 		$length = Option::get_option_by_int( 'ys_option_meta_description_length', 80 );
 		$dscr   = '';
 
-		if ( Template::is_top_page() ) {
+		if ( Front_Page::is_top_page() ) {
 			/**
 			 * TOPページの場合
 			 */

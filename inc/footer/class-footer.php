@@ -59,7 +59,7 @@ class Footer {
 
 		$result = Utility::to_bool( apply_filters( 'ys_show_footer_mobile_nav', $result ) );
 
-		if ( Template::is_legacy_widget_preview() ) {
+		if ( Widget::is_legacy_widget_preview() ) {
 			$result = false;
 		}
 
@@ -93,7 +93,7 @@ class Footer {
 		if ( AMP::is_amp() ) {
 			return;
 		}
-		if ( Template::is_legacy_widget_preview() ) {
+		if ( Widget::is_legacy_widget_preview() ) {
 			return;
 		}
 		if ( ! Option::get_option_by_bool( 'ys_back_to_top_active', false ) ) {

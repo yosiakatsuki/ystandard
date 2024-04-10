@@ -21,6 +21,7 @@ class YS_Loader {
 	 */
 	const LOAD_FUNCTION_FILES = [
 		__DIR__ . '/template-function/index.php',
+		__DIR__ . '/utils/index.php',
 	];
 
 	/**
@@ -28,6 +29,7 @@ class YS_Loader {
 	 */
 	const EXCLUDE_DIR = [
 		'template-function',
+		'utils',
 		'..',
 		'.',
 	];

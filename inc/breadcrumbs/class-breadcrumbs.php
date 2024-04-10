@@ -96,7 +96,7 @@ class Breadcrumbs {
 			return false;
 		}
 		// タイトル無しテンプレートの場合.
-		if ( Template::is_no_title_template() ) {
+		if ( Template_Type::is_no_title_template() ) {
 			if ( 'footer' !== $position ) {
 				// フッター以外（ヘッダー側）であればパンくず無し.
 				return false;

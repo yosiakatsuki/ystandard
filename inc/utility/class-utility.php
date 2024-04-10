@@ -209,6 +209,7 @@ class Utility {
 	 * @param mixed $value 変換する値.
 	 *
 	 * @return bool
+	 * @deprecated
 	 */
 	public static function to_bool( $value ) {
 		return helper\Boolean::to_bool( $value );
@@ -220,6 +221,7 @@ class Utility {
 	 * @param mixed $value 変換する値.
 	 *
 	 * @return bool
+	 * @deprecated
 	 */
 	public static function is_false( $value ) {
 		if ( 'false' === $value || false === $value || 0 === $value || '0' === $value ) {
@@ -235,6 +237,7 @@ class Utility {
 	 * @param array $ua 対象ユーザーエージェントのリスト.
 	 *
 	 * @return boolean
+	 * @deprecated
 	 */
 	public static function check_user_agent( $ua ) {
 		if ( ! isset( $_SERVER['HTTP_USER_AGENT'] ) ) {

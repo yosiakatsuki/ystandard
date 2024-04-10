@@ -42,7 +42,7 @@ class OGP {
 	 * OGPタグ出力
 	 */
 	public function ogp_meta() {
-		if ( Template::is_legacy_widget_preview() ) {
+		if ( Widget::is_legacy_widget_preview() ) {
 			return;
 		}
 		$this->set_ogp_param();
@@ -75,7 +75,7 @@ class OGP {
 		$this->set_param( 'og:image', $this->get_ogp_image() );
 		$this->set_param( 'fb:app_id', Option::get_option( 'ys_ogp_fb_app_id', '' ) );
 
-		if ( ! Template::is_top_page() ) {
+		if ( ! Front_Page::is_top_page() ) {
 			$this->set_param( 'og:url', helper\URL::get_page_url() );
 			$this->set_param( 'og:title', wp_get_document_title() );
 			/**
@@ -123,14 +123,14 @@ class OGP {
 		/**
 		 * 投稿・固定ページ系
 		 */
-		if ( is_singular() && ! Template::is_top_page() ) {
+		if ( is_singular() && ! Front_Page::is_top_page() ) {
 			$this->set_param( 'twitter:title', $this->get_singular_title() );
 			$this->set_param( 'twitter:description', $this->get_singular_dscr() );
 		}
 		/**
 		 * アーカイブ系
 		 */
-		if ( is_archive() && ! Template::is_top_page() ) {
+		if ( is_archive() && ! Front_Page::is_top_page() ) {
 			$this->set_param( 'twitter:title', $this->get_archive_title() );
 			$this->set_param( 'twitter:description', $this->get_archive_dscr() );
 		}
@@ -214,7 +214,7 @@ class OGP {
 	 */
 	private function get_ogp_image() {
 		$image = '';
-		if ( is_singular() && ! Template::is_top_page() ) {
+		if ( is_singular() && ! Front_Page::is_top_page() ) {
 			$image = get_the_post_thumbnail_url();
 		}
 		/**

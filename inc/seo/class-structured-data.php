@@ -39,7 +39,7 @@ class Structured_Data {
 	 * Organization.
 	 */
 	public function organization() {
-		if ( Template::is_legacy_widget_preview() ) {
+		if ( Widget::is_legacy_widget_preview() ) {
 			return;
 		}
 		$data          = self::DEFAULT_DATA;
@@ -67,7 +67,7 @@ class Structured_Data {
 	 * Website.
 	 */
 	public function website() {
-		if ( Template::is_legacy_widget_preview() ) {
+		if ( Widget::is_legacy_widget_preview() ) {
 			return;
 		}
 		$data                  = self::DEFAULT_DATA;
@@ -75,7 +75,7 @@ class Structured_Data {
 		$data['url']           = home_url( '/' );
 		$data['name']          = get_bloginfo( 'name', 'display' );
 		$data['alternateName'] = get_bloginfo( 'name', 'display' );
-		if ( Template::is_top_page() ) {
+		if ( Front_Page::is_top_page() ) {
 			$data['potentialAction'] = [
 				'@type'       => 'SearchAction',
 				'target'      => home_url( '/' ) . '?s={search_term_string}',
@@ -92,7 +92,7 @@ class Structured_Data {
 	 * Article
 	 */
 	public function article() {
-		if ( Template::is_legacy_widget_preview() ) {
+		if ( Widget::is_legacy_widget_preview() ) {
 			return;
 		}
 		if ( is_front_page() || is_404() ) {

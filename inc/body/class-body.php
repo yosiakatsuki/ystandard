@@ -49,20 +49,6 @@ class Body {
 		}
 
 		/**
-		 * ワンカラム / サイドバーあり
-		 */
-		if ( Template::is_one_column() ) {
-			$classes[] = 'is-one-column';
-		} else {
-			$classes[] = 'has-sidebar';
-		}
-		/**
-		 * フロントページ
-		 */
-		if ( Template::is_single_front_page() ) {
-			$classes[] = 'is-front-page';
-		}
-		/**
 		 * Type: singular
 		 */
 		if ( is_singular() && ! is_front_page() ) {
@@ -87,18 +73,11 @@ class Body {
 		/**
 		 * タイトルなしテンプレート
 		 */
-		if ( Template::is_no_title_template() ) {
+		if ( Template_Type::is_no_title_template() ) {
 			$classes[] = 'no-title';
 		}
-		if ( Template::is_single_front_page() && Template::is_one_column() ) {
+		if ( Front_Page::is_single_front_page() && Template_Type::is_one_column() ) {
 			$classes[] = 'no-title';
-		}
-
-		/**
-		 * ワイド幅テンプレート
-		 */
-		if ( Template::is_wide() ) {
-			$classes[] = 'is-wide';
 		}
 
 		/**
