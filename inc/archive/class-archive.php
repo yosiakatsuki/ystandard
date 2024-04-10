@@ -401,7 +401,12 @@ class Archive {
 		// 背景ありモードの場合.
 		if ( Body::has_background() ) {
 			// テキストエリアの余白を調整.
-			$css_properties['--ystd--archive--item--text--padding'] = 'var(--ystd--archive--item--text--gap)';
+			// カードタイプ.
+			$css_properties['--ystd--archive--card--item--text--padding'] = 'var(--ystd--archive--item--text--gap)';
+			// リストタイプ.
+			$css_properties['--ystd--archive--list--item--col--gap']      = '0';
+			$css_properties['--ystd--archive--list--item--text--padding'] = 'var(--ystd--archive--gap)';
+			$css_properties['--ystd--archive--list--item--image--height'] = '100%';
 		}
 
 		return $css_properties;

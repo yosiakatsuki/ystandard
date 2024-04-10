@@ -40,6 +40,7 @@
 	grid-template-columns: 100%;
 	gap: var(--ystd--archive--gap);
 }
+
 // アーカイブヘッダーがある場合は余白つける.
 :where(.archive__header + .archive__container) {
 	margin-top: var(--ystd--layout-gap);
@@ -95,7 +96,6 @@
 
 
 :where(.archive__text) {
-	padding: var(--ystd--archive--item--text--padding);
 
 	> :where(*) {
 		margin-top: 0;
@@ -114,7 +114,7 @@
 
 :where(.archive__title) {
 	color: var(--ystd--archive--item--title--font-size);
-	font-size: 1em;
+	font-size: var(--ystd--archive--item--title--font-size);
 
 	a {
 		color: currentColor;
