@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\JSON;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -188,7 +190,7 @@ class Breadcrumbs {
 
 		$breadcrumbs = apply_filters( 'ys_get_json_ld_data', $breadcrumbs, 'breadcrumblist' );
 
-		Utility::json_ld( $breadcrumbs );
+		JSON::the_json_ld( $breadcrumbs );
 	}
 
 	/**

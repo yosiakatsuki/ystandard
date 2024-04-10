@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || die();
  * @return string
  */
 function ys_get_theme_version( $parent = false ) {
-	return \ystandard\Utility::get_theme_version( $parent );
+	return \ystandard\Utils\Theme::get_theme_version( $parent );
 }
 
 /**
@@ -28,5 +28,5 @@ function ys_get_theme_version( $parent = false ) {
  * @return string
  */
 function ys_get_ystandard_version( $parent = false ) {
-	return \ystandard\Utility::get_ystandard_version();
+	return \ystandard\Utils\Theme::get_ystandard_version();
 }

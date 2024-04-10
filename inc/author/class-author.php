@@ -9,6 +9,9 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+use ystandard\utils\Short_Code;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -79,7 +82,7 @@ class Author {
 	 * Author 表示.
 	 */
 	public static function post_author() {
-		echo Utility::do_shortcode(
+		echo Short_Code::do_shortcode(
 			self::SHORT_CODE,
 			[ 'sync_hide_option' => true ]
 		);
@@ -148,7 +151,7 @@ class Author {
 			/**
 			 * 投稿個別設定
 			 */
-			if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_author' ) ) ) {
+			if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_author' ) ) ) {
 				return false;
 			}
 			/**
@@ -283,7 +286,7 @@ class Author {
 	public function do_shortcode( $atts ) {
 		$atts = shortcode_atts( self::SHORTCODE_ATTR, $atts );
 
-		if ( Utility::to_bool( $atts['sync_hide_option'] ) && ! $this->is_active_author() ) {
+		if ( Convert::to_bool( $atts['sync_hide_option'] ) && ! $this->is_active_author() ) {
 			return '';
 		}
 		$author_id = $this->get_author_id( $atts );

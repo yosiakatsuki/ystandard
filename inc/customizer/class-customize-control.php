@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Trigger_Error;
+use ystandard\utils\Convert;
 
 defined( 'ABSPATH' ) || die();
 
@@ -521,10 +522,10 @@ class Customize_Control {
 	 */
 	public static function sanitize_checkbox( $value, $setting ) {
 		if ( 'option' === $setting->manager->get_setting( $setting->id )->type ) {
-			return ( ( isset( $value ) && Utility::to_bool( $value ) ) ? true : '' );
+			return ( ( isset( $value ) && Convert::to_bool( $value ) ) ? true : '' );
 		}
 
-		return ( ( isset( $value ) && Utility::to_bool( $value ) ) ? true : false );
+		return ( ( isset( $value ) && Convert::to_bool( $value ) ) ? true : false );
 	}
 
 	/**

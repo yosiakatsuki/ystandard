@@ -9,6 +9,10 @@
 
 namespace ystandard;
 
+use ystandard\utils\Logo;
+use ystandard\utils\Text;
+use ystandard\utils\URL;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -76,7 +80,7 @@ class OGP {
 		$this->set_param( 'fb:app_id', Option::get_option( 'ys_ogp_fb_app_id', '' ) );
 
 		if ( ! Front_Page::is_top_page() ) {
-			$this->set_param( 'og:url', helper\URL::get_page_url() );
+			$this->set_param( 'og:url', URL::get_page_url() );
 			$this->set_param( 'og:title', wp_get_document_title() );
 			/**
 			 * 投稿・固定ページ系
@@ -162,7 +166,7 @@ class OGP {
 
 		$title = apply_filters( 'ys_ogp_title_singular', $title );
 
-		return Utility::get_plain_text( $title );
+		return Text::get_plain_text( $title );
 	}
 
 	/**
@@ -173,7 +177,7 @@ class OGP {
 	private function get_archive_title() {
 		$title = apply_filters( 'ys_ogp_title_archive', get_the_archive_title() );
 
-		return Utility::get_plain_text( $title );
+		return Text::get_plain_text( $title );
 	}
 
 	/**
@@ -184,7 +188,7 @@ class OGP {
 	private function get_archive_dscr() {
 		$dscr = apply_filters( 'ys_ogp_description_archive', get_the_archive_description() );
 
-		return Utility::get_plain_text( $dscr );
+		return Text::get_plain_text( $dscr );
 	}
 
 	/**
@@ -204,7 +208,7 @@ class OGP {
 
 		$dscr = apply_filters( 'ys_ogp_description_singular', $dscr );
 
-		return Utility::get_plain_text( $dscr );
+		return Text::get_plain_text( $dscr );
 	}
 
 	/**
@@ -228,7 +232,7 @@ class OGP {
 		 * ロゴ
 		 */
 		if ( empty( $image ) ) {
-			$logo_id = Utility::get_custom_logo_id();
+			$logo_id = Logo::get_custom_logo_id();
 			if ( $logo_id ) {
 				$image_src = wp_get_attachment_image_src( $logo_id, self::ATTACHMENT_SIZE );
 				if ( $image_src ) {

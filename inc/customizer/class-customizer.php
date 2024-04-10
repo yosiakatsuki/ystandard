@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\Theme;
 
 defined( 'ABSPATH' ) || die();
 
@@ -141,7 +142,7 @@ class Customizer {
 			'ys-customizer',
 			get_template_directory_uri() . '/css/customizer.css',
 			[],
-			Utility::get_ystandard_version()
+			Theme::get_ystandard_version()
 		);
 	}
 

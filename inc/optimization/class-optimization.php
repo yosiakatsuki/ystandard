@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Theme;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -47,13 +49,13 @@ class Optimization {
 			'jquery-core',
 			Option::get_option( 'ys_load_cdn_jquery_url', '' ),
 			[],
-			Utility::get_ystandard_version()
+			Theme::get_ystandard_version()
 		);
 		wp_register_script(
 			'jquery',
 			false,
 			[ 'jquery-core' ],
-			Utility::get_ystandard_version()
+			Theme::get_ystandard_version()
 		);
 	}
 

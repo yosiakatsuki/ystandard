@@ -9,7 +9,11 @@
 
 namespace ystandard;
 
-use ystandard\helper\URL;
+use ystandard\utils\Conditional_Tags;
+use ystandard\utils\Convert;
+use ystandard\utils\Short_Code;
+use ystandard\utils\Text;
+use ystandard\Utils\URL;
 
 defined( 'ABSPATH' ) || die();
 
@@ -153,7 +157,7 @@ class Blog_Card {
 		 * ビジュアルエディタの中でショートコードを展開する
 		 */
 		add_shortcode( 'ys_blog_card', [ $this, 'do_shortcode' ] );
-		$blog_card = Utility::do_shortcode(
+		$blog_card = Short_Code::do_shortcode(
 			'ys_blog_card',
 			[
 				'url'   => $url,
@@ -291,7 +295,7 @@ class Blog_Card {
 			$this->params['title'] = $site_data['title'];
 		}
 		// 概要.
-		if ( ! Utility::is_false( $this->params['dscr'] ) ) {
+		if ( ! Conditional_Tags::is_false( $this->params['dscr'] ) ) {
 			if ( empty( $this->params['dscr'] ) && isset( $site_data['dscr'] ) ) {
 				$this->params['dscr'] = wp_trim_words(
 					html_entity_decode( $site_data['dscr'] ),
@@ -302,14 +306,14 @@ class Blog_Card {
 			$this->params['dscr'] = '';
 		}
 		// ドメイン.
-		if ( ! Utility::is_false( $this->params['domain'] ) ) {
+		if ( ! Conditional_Tags::is_false( $this->params['domain'] ) ) {
 			$this->params['domain'] = wp_parse_url( $this->params['url'], PHP_URL_HOST );
 		} else {
 			$this->params['domain'] = '';
 		}
 
 		// 画像.
-		if ( Utility::to_bool( $this->params['show_image'] ) && isset( $site_data['thumbnail'] ) ) {
+		if ( Convert::to_bool( $this->params['show_image'] ) && isset( $site_data['thumbnail'] ) ) {
 			$this->params['thumbnail'] = $site_data['thumbnail'];
 		}
 
@@ -415,7 +419,7 @@ class Blog_Card {
 		// 画像.
 		$this->params['thumbnail'] = $this->get_post_thumbnail( $post_id );
 		// 概要.
-		if ( ! Utility::is_false( $this->params['dscr'] ) ) {
+		if ( ! Conditional_Tags::is_false( $this->params['dscr'] ) ) {
 			if ( empty( $this->params['dscr'] ) ) {
 				$this->params['dscr'] = $this->get_post_excerpt( $post_id );
 			}
@@ -423,7 +427,7 @@ class Blog_Card {
 			$this->params['dscr'] = '';
 		}
 		// ドメイン.
-		if ( ! Utility::is_false( $this->params['domain'] ) ) {
+		if ( ! Conditional_Tags::is_false( $this->params['domain'] ) ) {
 			$this->params['domain'] = wp_parse_url( $this->params['url'], PHP_URL_HOST );
 		} else {
 			$this->params['domain'] = '';
@@ -446,7 +450,7 @@ class Blog_Card {
 		$content = get_extended( $post->post_content );
 
 		return wp_trim_words(
-			html_entity_decode( Utility::get_plain_text( $content['main'] ) ),
+			html_entity_decode( Text::get_plain_text( $content['main'] ) ),
 			40
 		);
 	}
@@ -459,7 +463,7 @@ class Blog_Card {
 	 * @return string
 	 */
 	private function get_post_thumbnail( $post_id ) {
-		if ( ! Utility::to_bool( $this->params['show_image'] ) ) {
+		if ( ! Convert::to_bool( $this->params['show_image'] ) ) {
 			return '';
 		}
 		if ( ! has_post_thumbnail( $post_id ) ) {

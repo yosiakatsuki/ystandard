@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Sanitize;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -262,7 +264,7 @@ class Archive {
 			}
 			$terms = array_slice( $terms, 0, $terms_length );
 			foreach ( $terms as $term ) {
-				$category_icon = Utility::get_taxonomy_icon( $taxonomy );
+				$category_icon = Taxonomy::get_taxonomy_icon( $taxonomy );
 				if ( ! empty( $icon ) && is_string( $icon ) ) {
 					$category_icon = $icon;
 				}
@@ -539,7 +541,7 @@ class Archive {
 	 * @return string
 	 */
 	public function sanitize_read_more( $value ) {
-		$allowed_html = Utility::get_kses_allowed_html(
+		$allowed_html = Sanitize::get_kses_allowed_html(
 			[
 				'span',
 				'strong',

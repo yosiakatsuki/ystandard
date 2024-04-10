@@ -9,6 +9,10 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+use ystandard\utils\Post;
+use ystandard\utils\Post_Type;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -168,7 +172,7 @@ class TOC {
 			$content = '';
 			if ( is_singular() ) {
 				remove_shortcode( self::SHORTCODE );
-				$content = Utility::get_post_content();
+				$content = Post::get_post_content();
 				add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
 			}
 		}
@@ -269,7 +273,7 @@ class TOC {
 			return false;
 		}
 		// Post meta.
-		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_toc' ) ) ) {
+		if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_toc' ) ) ) {
 			return false;
 		}
 
@@ -606,7 +610,7 @@ class TOC {
 				'description' => '目次を<strong>表示しない</strong>投稿タイプにチェックをつけてください。',
 			]
 		);
-		$post_types = Utility::get_post_types( [], [ 'ys-parts' ] );
+		$post_types = Post_Type::get_post_types( [], [ 'ys-parts' ] );
 
 		foreach ( $post_types as $name => $label ) {
 			$customizer->add_checkbox(

@@ -9,6 +9,9 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+use ystandard\utils\Text;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -34,7 +37,7 @@ class Meta_Description {
 			return;
 		}
 		if ( is_single() || is_page() ) {
-			if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_meta_dscr' ) ) ) {
+			if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_meta_dscr' ) ) ) {
 				return;
 			}
 		}
@@ -89,7 +92,7 @@ class Meta_Description {
 
 		$dscr = apply_filters( 'ys_get_meta_description', $dscr );
 
-		return Utility::get_plain_text( $dscr );
+		return Text::get_plain_text( $dscr );
 	}
 
 	/**

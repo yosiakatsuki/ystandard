@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -262,10 +264,10 @@ class Recent_Posts {
 		/**
 		 * 表示・非表示系
 		 */
-		$param['show_img']      = Utility::to_bool( $atts['show_img'] );
-		$param['show_date']     = Utility::to_bool( $atts['show_date'] );
-		$param['show_category'] = Utility::to_bool( $atts['show_category'] );
-		$param['show_excerpt']  = Utility::to_bool( $atts['show_excerpt'] );
+		$param['show_img']      = Convert::to_bool( $atts['show_img'] );
+		$param['show_date']     = Convert::to_bool( $atts['show_date'] );
+		$param['show_category'] = Convert::to_bool( $atts['show_category'] );
+		$param['show_excerpt']  = Convert::to_bool( $atts['show_excerpt'] );
 		/**
 		 * 概要
 		 */

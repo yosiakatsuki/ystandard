@@ -9,6 +9,11 @@
 
 namespace ystandard;
 
+use ystandard\utils\JSON;
+use ystandard\utils\Logo;
+use ystandard\utils\Text;
+use ystandard\utils\Thumbnail;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -46,7 +51,7 @@ class Structured_Data {
 		$data['@type'] = 'Organization';
 		$data['url']   = home_url( '/' );
 		if ( has_custom_logo() ) {
-			$logo_id = Utility::get_custom_logo_id();
+			$logo_id = Logo::get_custom_logo_id();
 			$logo    = wp_get_attachment_image_src( $logo_id, 'full' );
 			if ( $logo ) {
 				$data['logo'] = [
@@ -60,7 +65,7 @@ class Structured_Data {
 
 		$data = apply_filters( 'ys_get_json_ld_data', $data, 'organization' );
 
-		Utility::json_ld( $data );
+		JSON::the_json_ld( $data );
 	}
 
 	/**
@@ -85,7 +90,7 @@ class Structured_Data {
 
 		$data = apply_filters( 'ys_get_json_ld_data', $data, 'website' );
 
-		Utility::json_ld( $data );
+		JSON::the_json_ld( $data );
 	}
 
 	/**
@@ -116,7 +121,7 @@ class Structured_Data {
 			$url     = esc_url_raw( get_the_permalink( $post->ID ) );
 			$title   = esc_attr( get_the_title( $post->ID ) );
 			$excerpt = esc_attr( Content::get_custom_excerpt( '', 0, $post->ID ) );
-			$content = esc_attr( Utility::get_plain_text( $post->post_content ) );
+			$content = esc_attr( Text::get_plain_text( $post->post_content ) );
 			/**
 			 * 構造化データ作成
 			 */
@@ -165,7 +170,7 @@ class Structured_Data {
 
 		$article = apply_filters( 'ys_get_json_ld_data', $article, 'article' );
 
-		Utility::json_ld( $article );
+		JSON::the_json_ld( $article );
 	}
 
 
@@ -178,7 +183,7 @@ class Structured_Data {
 	 */
 	private function get_image_object( $post_id = 0 ) {
 		$data  = [];
-		$image = Utility::get_post_thumbnail_src( $post_id );
+		$image = Thumbnail::get_post_thumbnail_src( $post_id );
 		if ( $image ) {
 			$data['image'] = [
 				'@type'  => 'ImageObject',
@@ -234,7 +239,7 @@ class Structured_Data {
 		/**
 		 * ロゴ設定の取得
 		 */
-		$logo_id = Utility::get_custom_logo_id();
+		$logo_id = Logo::get_custom_logo_id();
 		if ( $logo_id ) {
 			$image = wp_get_attachment_image_src( $logo_id, 'full' );
 		}

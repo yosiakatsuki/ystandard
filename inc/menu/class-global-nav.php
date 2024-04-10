@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Filesystem;
+use ystandard\utils\Convert;
 
 defined( 'ABSPATH' ) || die();
 
@@ -58,7 +59,7 @@ class Global_Nav {
 	public static function has_global_nav() {
 		$result = has_nav_menu( 'global' );
 
-		return Utility::to_bool( apply_filters( 'ys_has_global_nav', $result ) );
+		return Convert::to_bool( apply_filters( 'ys_has_global_nav', $result ) );
 	}
 
 	/**

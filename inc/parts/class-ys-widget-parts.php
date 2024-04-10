@@ -81,7 +81,7 @@ class YS_Widget_Parts extends WP_Widget {
 		/**
 		 * ショートコード実行
 		 */
-		$shortcode = \ystandard\Utility::do_shortcode(
+		$shortcode = \ystandard\Utils\Short_Code::do_shortcode(
 			\ystandard\Parts::SHORTCODE,
 			array_merge(
 				$this->default_instance,

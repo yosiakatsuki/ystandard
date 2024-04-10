@@ -9,6 +9,9 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+use ystandard\utils\Text;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -306,7 +309,7 @@ class Content {
 		if ( ! $show ) {
 			return false;
 		}
-		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_related' ) ) ) {
+		if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_related' ) ) ) {
 			return false;
 		}
 
@@ -338,7 +341,7 @@ class Content {
 		if ( 'none' === $option || false === $option ) {
 			return false;
 		}
-		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_publish_date' ) ) ) {
+		if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_publish_date' ) ) ) {
 			return false;
 		}
 		// 更新日取得.
@@ -381,7 +384,7 @@ class Content {
 			$show = $filter;
 		}
 
-		if ( ! Utility::to_bool( $show ) ) {
+		if ( ! Convert::to_bool( $show ) ) {
 			return '';
 		}
 
@@ -403,7 +406,7 @@ class Content {
 			foreach ( $terms as $term ) {
 				$result[] = sprintf(
 					'<div class="singular-header__terms">%s<a href="%s">%s</a></div>',
-					Utility::get_taxonomy_icon( $taxonomy ),
+					Taxonomy::get_taxonomy_icon( $taxonomy ),
 					get_term_link( $term ),
 					$term->name
 				);
@@ -818,7 +821,7 @@ class Content {
 			 * Moreタグ以降を削除
 			 */
 			$content = preg_replace( '/<!--more-->.+/is', '', $content );
-			$content = Utility::get_plain_text( $content );
+			$content = Text::get_plain_text( $content );
 		}
 
 		return $content;

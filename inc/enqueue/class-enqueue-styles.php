@@ -11,6 +11,7 @@ namespace ystandard;
 
 use ystandard\helper\Filesystem;
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\Theme;
 
 defined( 'ABSPATH' ) || die();
 
@@ -90,7 +91,7 @@ class Enqueue_Styles {
 			'style-css',
 			get_stylesheet_uri(),
 			[],
-			Utility::get_theme_version( true )
+			Theme::get_theme_version( true )
 		);
 
 		$this->style_add_data();
@@ -219,7 +220,7 @@ class Enqueue_Styles {
 			'style-css',
 			get_stylesheet_uri(),
 			[],
-			Utility::get_theme_version( true )
+			Theme::get_theme_version( true )
 		);
 	}
 

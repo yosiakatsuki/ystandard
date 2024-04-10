@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\Convert;
 
 defined( 'ABSPATH' ) || die();
 
@@ -57,7 +58,7 @@ class Footer {
 	public static function show_footer_mobile_nav() {
 		$result = has_nav_menu( 'mobile-footer' );
 
-		$result = Utility::to_bool( apply_filters( 'ys_show_footer_mobile_nav', $result ) );
+		$result = Convert::to_bool( apply_filters( 'ys_show_footer_mobile_nav', $result ) );
 
 		if ( Widget::is_legacy_widget_preview() ) {
 			$result = false;
