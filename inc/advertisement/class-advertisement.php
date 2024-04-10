@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Conditional_Tags;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -73,7 +75,7 @@ class Advertisement {
 		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_before_title';
 		} else {
-			if ( Template::is_mobile() ) {
+			if ( Conditional_Tags::is_mobile() ) {
 				$key = 'ys_advertisement_before_title_sp';
 			}
 		}
@@ -90,7 +92,7 @@ class Advertisement {
 		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_after_title';
 		} else {
-			if ( Template::is_mobile() ) {
+			if ( Conditional_Tags::is_mobile() ) {
 				$key = 'ys_advertisement_after_title_sp';
 			}
 		}
@@ -108,7 +110,7 @@ class Advertisement {
 		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_before_content';
 		} else {
-			if ( Template::is_mobile() ) {
+			if ( Conditional_Tags::is_mobile() ) {
 				$key = 'ys_advertisement_before_content_sp';
 			}
 		}
@@ -130,7 +132,7 @@ class Advertisement {
 		if ( AMP::is_amp() ) {
 			$key = 'ys_amp_advertisement_replace_more';
 		} else {
-			if ( Template::is_mobile() ) {
+			if ( Conditional_Tags::is_mobile() ) {
 				$key = 'ys_advertisement_replace_more_sp';
 			}
 		}
@@ -154,7 +156,7 @@ class Advertisement {
 			$key_left  = 'ys_amp_advertisement_under_content';
 			$key_right = '';
 		} else {
-			if ( Template::is_mobile() ) {
+			if ( Conditional_Tags::is_mobile() ) {
 				$key_left  = 'ys_advertisement_under_content_sp';
 				$key_right = '';
 			}
@@ -181,7 +183,7 @@ class Advertisement {
 	 * インフィード広告
 	 */
 	public function archive_infeed() {
-		if ( Template::is_mobile() ) {
+		if ( Conditional_Tags::is_mobile() ) {
 			$step  = Option::get_option_by_int( 'ys_advertisement_infeed_sp_step', 3 );
 			$limit = Option::get_option_by_int( 'ys_advertisement_infeed_sp_limit', 3 );
 		} else {
@@ -203,7 +205,7 @@ class Advertisement {
 	 * @return string
 	 */
 	public static function get_infeed() {
-		if ( Template::is_mobile() ) {
+		if ( Conditional_Tags::is_mobile() ) {
 			$ad = Option::get_option( 'ys_advertisement_infeed_sp', '' );
 		} else {
 			$ad = Option::get_option( 'ys_advertisement_infeed_pc', '' );

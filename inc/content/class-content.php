@@ -101,7 +101,7 @@ class Content {
 	/**
 	 * 記事ヘッダー設定
 	 *
-	 * @param string   $key             Key.
+	 * @param string $key Key.
 	 * @param callable $function_to_add The name of the function you wish to be called.
 	 */
 	public static function set_singular_header( $key, $function_to_add ) {
@@ -119,7 +119,7 @@ class Content {
 	/**
 	 * 記事フッター設定
 	 *
-	 * @param string   $key             Key.
+	 * @param string $key Key.
 	 * @param callable $function_to_add The name of the function you wish to be called.
 	 */
 	public static function set_singular_footer( $key, $function_to_add ) {
@@ -192,6 +192,7 @@ class Content {
 	 *
 	 * @return false|string
 	 * @global \WP_Query
+	 * @deprecated
 	 */
 	public static function get_post_type() {
 		global $wp_query;
@@ -211,6 +212,7 @@ class Content {
 	 * @param string $post_type Post type.
 	 *
 	 * @return string
+	 * @deprecated
 	 */
 	public static function get_fallback_post_type( $post_type ) {
 
@@ -239,7 +241,7 @@ class Content {
 		if ( ! is_singular() ) {
 			return false;
 		}
-		if ( ! Template::is_active_post_header() ) {
+		if ( ! Post::is_active_post_header() ) {
 			return false;
 		}
 		if ( ! has_post_thumbnail( $post_id ) ) {
@@ -645,8 +647,8 @@ class Content {
 	/**
 	 * Hook:get_the_excerpt
 	 *
-	 * @param string   $content excerpt.
-	 * @param \WP_Post $post    Post.
+	 * @param string $content excerpt.
+	 * @param \WP_Post $post Post.
 	 */
 	public function get_the_excerpt( $content, $post ) {
 		return self::get_custom_excerpt( ' …', 0, $post->ID );
@@ -755,7 +757,7 @@ class Content {
 	/**
 	 * 投稿オプション(post-meta)取得
 	 *
-	 * @param string  $key     設定キー.
+	 * @param string $key 設定キー.
 	 * @param integer $post_id 投稿ID.
 	 *
 	 * @return string
@@ -771,8 +773,8 @@ class Content {
 	/**
 	 * 投稿抜粋文を作成
 	 *
-	 * @param string  $sep     抜粋最後の文字.
-	 * @param integer $length  抜粋長さ.
+	 * @param string $sep 抜粋最後の文字.
+	 * @param integer $length 抜粋長さ.
 	 * @param integer $post_id 投稿ID.
 	 *
 	 * @return string

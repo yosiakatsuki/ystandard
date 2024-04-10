@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Conditional_Tags;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -36,13 +38,13 @@ class Widget {
 		if ( ! is_null( $pre ) ) {
 			return $pre;
 		}
-		if ( Template::is_mobile() && Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
+		if ( Conditional_Tags::is_mobile() && Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
 			return false;
 		}
 		if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
 			return false;
 		}
-		if ( Template::is_one_column() ) {
+		if ( Template_Type::is_one_column() ) {
 			return false;
 		}
 
@@ -233,6 +235,23 @@ class Widget {
 				'after_title'   => '</h2>',
 			]
 		);
+	}
+
+	/**
+	 * レガシーウィジェットプレビュー中判定
+	 *
+	 * @return bool
+	 */
+	public static function is_legacy_widget_preview() {
+		$is_preview = false;
+		if ( ! empty( $_GET['legacy-widget-preview'] ) ) {
+			$is_preview = true;
+		}
+		if ( defined( 'IFRAME_REQUEST' ) && IFRAME_REQUEST ) {
+			$is_preview = true;
+		}
+
+		return $is_preview;
 	}
 }
 

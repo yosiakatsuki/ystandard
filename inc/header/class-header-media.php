@@ -89,7 +89,7 @@ class Header_Media {
 	 */
 	public static function is_active_header_media() {
 
-		if ( Template::is_top_page() ) {
+		if ( Front_Page::is_top_page() ) {
 			if ( self::has_custom_image() ) {
 				return true;
 			}

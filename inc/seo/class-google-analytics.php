@@ -56,7 +56,7 @@ class Google_Analytics {
 		if ( AMP::is_amp() ) {
 			return false;
 		}
-		if ( Template::is_legacy_widget_preview() ) {
+		if ( Widget::is_legacy_widget_preview() ) {
 			return false;
 		}
 		/**

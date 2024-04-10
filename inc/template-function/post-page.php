@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || die();
  * 投稿ヘッダー情報を隠すか
  */
 function ys_is_active_post_header() {
-	return \ystandard\Template::is_active_post_header();
+	return \ystandard\Post::is_active_post_header();
 }
 
 /**
@@ -34,7 +34,7 @@ function ys_get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
  * 投稿フッター情報を隠すか
  */
 function ys_is_active_post_footer() {
-	return \ystandard\Template::is_active_post_footer();
+	return \ystandard\Post::is_active_post_footer();
 }
 
 

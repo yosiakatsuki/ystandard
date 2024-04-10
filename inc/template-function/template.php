@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || die();
  * Front-pageでロードするテンプレート
  */
 function ys_get_front_page_template() {
-	return \ystandard\Template::get_front_page_template();
+	return \ystandard\Front_Page::get_front_page_template();
 }
 
 /**
@@ -20,7 +20,7 @@ function ys_get_front_page_template() {
  */
 function ys_is_no_title_template() {
 
-	return \ystandard\Template::is_no_title_template();
+	return \ystandard\Template_Type::is_no_title_template();
 }
 
 /**
@@ -38,5 +38,5 @@ function ys_get_template_part( $slug, $name = null, $args = [] ) {
  * モバイル判定
  */
 function ys_is_mobile() {
-	return \ystandard\Template::is_mobile();
+	return \ystandard\utils\Conditional_Tags::is_mobile();
 }
