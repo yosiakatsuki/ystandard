@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Filesystem;
+use ystandard\utils\File;
 
 defined( 'ABSPATH' ) || die();
 
@@ -91,7 +92,7 @@ class Icon {
 			if ( ! file_exists( $path ) ) {
 				return '';
 			}
-			$icon = Filesystem::file_get_contents( $path );
+			$icon = File::file_get_contents( $path );
 			if ( ! empty( $icon ) ) {
 				self::add_icon_cache( $name, $icon );
 			}
@@ -171,7 +172,7 @@ class Icon {
 
 		// ファイルから取得.
 		$path = get_template_directory() . '/library/simple-icons/brand-icons.json';
-		$json = Filesystem::file_get_contents( $path );
+		$json = File::file_get_contents( $path );
 		if ( ! empty( $json ) ) {
 			$data = json_decode( $json, true );
 			foreach ( $data['data'] as $key => $value ) {

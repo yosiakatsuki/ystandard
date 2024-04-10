@@ -9,8 +9,8 @@
 
 namespace ystandard;
 
-use ystandard\helper\Style_Sheet;
 use ystandard\utils\Convert;
+use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
 
@@ -171,12 +171,11 @@ class Footer {
 			margin:0;
 		}
 		";
-		$css .= Style_Sheet::add_media_query(
-			'#back-to-top {bottom:5vh;right:5vh;}',
-			'md'
-		);
+		// モバイル以上でサイズ調整.
+		$css .= CSS::add_media_query_over_mobile( '#back-to-top {bottom:5vh;right:5vh;}' );
 		if ( has_nav_menu( 'mobile-footer' ) ) {
-			$css .= Style_Sheet::add_media_query( '#back-to-top {display:none;}', '', 'md' );
+			// モバイルで非表示.
+			$css .= CSS::add_media_query_mobile( '#back-to-top {display:none;}' );
 		}
 
 		return $css;
@@ -382,7 +381,7 @@ class Footer {
 	 */
 	public function add_css_var_mobile_footer_menu( $css_vars ) {
 
-		$bg_color = Style_Sheet::hex_2_rgb( Option::get_option( 'ys_color_mobile_footer_bg', '#ffffff' ) );
+		$bg_color = CSS::hex_2_rgb( Option::get_option( 'ys_color_mobile_footer_bg', '#ffffff' ) );
 		$bg       = Enqueue_Utility::get_css_var(
 			'mobile-footer-bg',
 			sprintf(

@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
 
@@ -264,13 +265,12 @@ class Header {
 			);
 		}
 		if ( 0 < Option::get_option_by_int( 'ys_logo_width_pc', 0 ) ) {
-			$css .= Style_Sheet::add_media_query(
-				sprintf(
-					'.site-title img{width:%spx;}',
-					Option::get_option_by_int( 'ys_logo_width_pc', 0 )
-				),
-				'sm'
+			$_css = sprintf(
+				'.site-title img{width:%spx;}',
+				Option::get_option_by_int( 'ys_logo_width_pc', 0 )
 			);
+			// モバイル以上サイズ.
+			$css .= CSS::add_media_query_over_mobile( $_css );
 		}
 
 		return $css;
@@ -303,28 +303,24 @@ class Header {
 			}';
 		}
 		if ( 0 < $mobile ) {
-			$css .= Style_Sheet::add_media_query(
+			$css .= CSS::add_media_query_mobile(
 				":root {
 					--ys-site-header-height:{$mobile}px;
-				}",
-				'',
-				'sm'
+				}"
 			);
 		}
 		if ( 0 < $tablet ) {
-			$css .= Style_Sheet::add_media_query(
+			$css .= CSS::add_media_query_over_mobile(
 				":root {
 					--ys-site-header-height:{$tablet}px;
-				}",
-				'sm'
+				}"
 			);
 		}
 		if ( 0 < $pc ) {
-			$css .= Style_Sheet::add_media_query(
+			$css .= CSS::add_media_query_desktop(
 				":root {
 					--ys-site-header-height:{$pc}px;
-				}",
-				'md'
+				}"
 			);
 		}
 

@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
 
@@ -112,11 +113,10 @@ class Info_Bar {
 			line-height:1.3;
 			font-size:0.8em;
 		}';
-		$styles[] = Style_Sheet::add_media_query(
+		$styles[] = CSS::add_media_query_over_mobile(
 			'.info-bar {
 				font-size:1rem;
-			}',
-			'sm'
+			}'
 		);
 		$styles[] = '
 		.info-bar.has-link:hover {

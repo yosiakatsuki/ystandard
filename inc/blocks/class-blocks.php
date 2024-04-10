@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Path;
+use ystandard\utils\URL;
 
 defined( 'ABSPATH' ) || die();
 
@@ -213,7 +214,7 @@ class Blocks {
 	 * @return string
 	 */
 	private function replace_path_to_uri( $path, $is_child = false ) {
-		return Path::replace_template_path_to_uri( $path, $is_child );
+		return URL::replace_template_path_to_uri( $path, $is_child );
 	}
 }
 

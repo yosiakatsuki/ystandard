@@ -7,7 +7,7 @@ $breakpoints_setting: (
 	mobile : 640px,
 	tablet:768px,
 	desktop:1024px,
-	xl:1200px,
+	wide:1200px,
 );
 
 /**
@@ -49,8 +49,8 @@ $breakpoints_setting: (
 /**
  * でかいサイズ以上 1200px~
  */
-@mixin media-up-xl() {
-	@include media-breakpoint(xl) {
+@mixin media-up-wide() {
+	@include media-breakpoint(wide) {
 		@content;
 	}
 }
