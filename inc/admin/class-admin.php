@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\helper\Style_Sheet;
+use ystandard\utils\Theme;
 
 defined( 'ABSPATH' ) || die();
 
@@ -84,7 +85,7 @@ class Admin {
 			'ys-admin-bar',
 			get_template_directory_uri() . '/css/admin-bar.css',
 			[ 'admin-bar' ],
-			Utility::get_ystandard_version()
+			Theme::get_ystandard_version()
 		);
 	}
 
@@ -133,7 +134,7 @@ class Admin {
 			'ys-admin',
 			get_template_directory_uri() . '/css/admin.css',
 			[],
-			Utility::get_ystandard_version()
+			Theme::get_ystandard_version()
 		);
 	}
 

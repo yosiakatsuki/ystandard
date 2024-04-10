@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -36,7 +38,7 @@ class Option {
 			switch ( $type ) {
 				case 'bool':
 				case 'boolean':
-					$result = Utility::to_bool( $result );
+					$result = Convert::to_bool( $result );
 					break;
 				case 'int':
 					$result = intval( $result );

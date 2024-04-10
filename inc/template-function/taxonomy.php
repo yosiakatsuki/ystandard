@@ -34,5 +34,5 @@ function ys_get_the_taxonomies_data() {
  * @return string
  */
 function ys_get_taxonomy_icon( $taxonomy = false ) {
-	return \ystandard\Utility::get_taxonomy_icon( $taxonomy );
+	return \ystandard\Taxonomy::get_taxonomy_icon( $taxonomy );
 }

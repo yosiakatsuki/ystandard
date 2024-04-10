@@ -88,7 +88,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 			$widget_title = '<h2 class="author-widget-title">' . apply_filters( 'widget_title', $instance['title'] ) . '</h2>';
 		}
 
-		$shortcode = ystandard\Utility::do_shortcode(
+		$shortcode = \ystandard\utils\Short_Code::do_shortcode(
 			'ys_author',
 			$instance,
 			null,
@@ -185,7 +185,7 @@ class YS_Widget_Author_Box extends WP_Widget {
 		 */
 		$instance['default_user_name'] = $this->sanitize_author( $new_instance['default_user_name'] );
 		$instance['user_name']         = $this->sanitize_author( $new_instance['user_name'] );
-		$instance['sync_hide_option']  = \ystandard\Utility::to_bool( $new_instance['sync_hide_option'] );
+		$instance['sync_hide_option']  = \ystandard\Utils\Convert::to_bool( $new_instance['sync_hide_option'] );
 
 		return $instance;
 	}

@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Theme;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -55,7 +57,7 @@ class Enqueue_Scripts {
 			self::JS_HANDLE,
 			get_template_directory_uri() . '/js/ystandard.js',
 			[],
-			Utility::get_ystandard_version(),
+			Theme::get_ystandard_version(),
 			true
 		);
 		wp_localize_script(

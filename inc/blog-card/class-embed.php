@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Theme;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -60,7 +62,7 @@ class Embed {
 				'ys-embed',
 				get_template_directory_uri() . '/css/embed.css',
 				[],
-				Utility::get_ystandard_version()
+				Theme::get_ystandard_version()
 			);
 		}
 	}

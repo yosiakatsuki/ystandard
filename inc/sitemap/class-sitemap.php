@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Post_Type;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -124,7 +126,7 @@ class Sitemap {
 			]
 		);
 		$customizer->add_section_label( '投稿タイプ別設定' );
-		$post_types = Utility::get_post_types( [], [ 'ys-parts' ] );
+		$post_types = Post_Type::get_post_types( [], [ 'ys-parts' ] );
 
 		foreach ( $post_types as $name => $label ) {
 			$customizer->add_checkbox(
@@ -138,7 +140,7 @@ class Sitemap {
 		}
 
 		$customizer->add_section_label( 'カテゴリー・タグ別設定' );
-		$taxonomies = Utility::get_taxonomies();
+		$taxonomies = \ystandard\utils\Taxonomy::get_taxonomies();
 		foreach ( $taxonomies as $name => $label ) {
 			$customizer->add_checkbox(
 				[

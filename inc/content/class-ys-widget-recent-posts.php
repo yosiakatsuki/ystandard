@@ -102,7 +102,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 		/**
 		 * ショートコード実行
 		 */
-		$shortcode = \ystandard\Utility::do_shortcode(
+		$shortcode = \ystandard\Utils\Short_Code::do_shortcode(
 			\ystandard\Recent_Posts::SHORTCODE,
 			$instance,
 			null,
@@ -162,17 +162,17 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_category' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_category' ); ?>" name="<?php echo $this->get_field_name( 'show_category' ); ?>" value="1" <?php checked( \ystandard\Utility::to_bool( $instance['show_category'] ), true ); ?> />カテゴリーを表示する
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_category' ); ?>" name="<?php echo $this->get_field_name( 'show_category' ); ?>" value="1" <?php checked( \ystandard\Utils\Convert::to_bool( $instance['show_category'] ), true ); ?> />カテゴリーを表示する
 				</label>
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_date' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" value="1" <?php checked( \ystandard\Utility::to_bool( $instance['show_date'] ), true ); ?> />日付を表示する
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_date' ); ?>" name="<?php echo $this->get_field_name( 'show_date' ); ?>" value="1" <?php checked( \ystandard\Utils\Convert::to_bool( $instance['show_date'] ), true ); ?> />日付を表示する
 				</label>
 			</p>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_excerpt' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php checked( \ystandard\Utility::to_bool( $instance['show_excerpt'] ), true ); ?> />抜粋を表示する
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>" name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>" value="1" <?php checked( \ystandard\Utils\Convert::to_bool( $instance['show_excerpt'] ), true ); ?> />抜粋を表示する
 				</label>
 			</p>
 		</div>
@@ -191,7 +191,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 			<h4>画像設定</h4>
 			<p>
 				<label for="<?php echo $this->get_field_id( 'show_img' ); ?>">
-					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_img' ); ?>" name="<?php echo $this->get_field_name( 'show_img' ); ?>" value="1" <?php checked( \ystandard\Utility::to_bool( $instance['show_img'] ), true ); ?> />アイキャッチ画像を表示する
+					<input type="checkbox" id="<?php echo $this->get_field_id( 'show_img' ); ?>" name="<?php echo $this->get_field_name( 'show_img' ); ?>" value="1" <?php checked( \ystandard\Utils\Convert::to_bool( $instance['show_img'] ), true ); ?> />アイキャッチ画像を表示する
 				</label><br/>
 			</p>
 			<p>
@@ -507,7 +507,7 @@ class YS_Widget_Recent_Posts extends WP_Widget {
 	 * @return bool
 	 */
 	private function sanitize_checkbox( $value ) {
-		return \ystandard\Utility::to_bool( $value );
+		return \ystandard\Utils\Convert::to_bool( $value );
 	}
 
 	/**

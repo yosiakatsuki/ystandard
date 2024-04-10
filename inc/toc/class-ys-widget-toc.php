@@ -94,7 +94,7 @@ class YS_Widget_TOC extends WP_Widget {
 			$widget_title = $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
 
-		$shortcode = \ystandard\Utility::do_shortcode(
+		$shortcode = \ystandard\Utils\Short_Code::do_shortcode(
 			\ystandard\TOC::SHORTCODE,
 			[ 'title' => '' ],
 			null,

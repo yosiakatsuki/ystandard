@@ -9,6 +9,11 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+use ystandard\utils\Post;
+use ystandard\utils\Short_Code;
+use ystandard\utils\URL;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -115,10 +120,10 @@ class Share_Button {
 		$post_type = Content::get_post_type();
 		$filter    = apply_filters( "ys_{$post_type}_active_share_buttons", null );
 		if ( ! is_null( $filter ) ) {
-			return Utility::to_bool( $filter );
+			return Convert::to_bool( $filter );
 		}
 		if ( is_singular() ) {
-			return ! Utility::to_bool( Content::get_post_meta( 'ys_hide_share' ) );
+			return ! Convert::to_bool( Content::get_post_meta( 'ys_hide_share' ) );
 		}
 
 		return true;
@@ -131,7 +136,7 @@ class Share_Button {
 		if ( ! self::is_active_share_buttons() ) {
 			return;
 		}
-		echo Utility::do_shortcode(
+		echo Short_Code::do_shortcode(
 			self::SHORT_CODE,
 			self::get_share_button_settings( 'header', 'none' )
 		);
@@ -144,7 +149,7 @@ class Share_Button {
 		if ( ! self::is_active_share_buttons() ) {
 			return;
 		}
-		echo Utility::do_shortcode(
+		echo Short_Code::do_shortcode(
 			self::SHORT_CODE,
 			self::get_share_button_settings( 'footer', 'circle' )
 		);
@@ -294,8 +299,8 @@ class Share_Button {
 	 * ページ情報セット
 	 */
 	private function set_page() {
-		$url   = apply_filters( 'ys_share_btn_url', Utility::get_page_url() );
-		$title = apply_filters( 'ys_share_btn_title', Utility::get_page_title() );
+		$url   = apply_filters( 'ys_share_btn_url', URL::get_page_url() );
+		$title = apply_filters( 'ys_share_btn_title', Post::get_page_title() );
 		// 変数にセット.
 		$this->share_url   = rawurlencode( $url );
 		$this->share_title = rawurlencode( html_entity_decode( $title ) );
@@ -476,7 +481,7 @@ class Share_Button {
 	 * @return bool
 	 */
 	private function is_use_option() {
-		return Utility::to_bool( $this->shortcode_atts['use-option'] );
+		return Convert::to_bool( $this->shortcode_atts['use-option'] );
 	}
 
 	/**

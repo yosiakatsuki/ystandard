@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Post_Type;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -71,7 +73,7 @@ class Post_Meta {
 	 * @return array
 	 */
 	private function get_meta_box_post_types() {
-		$types = Utility::get_post_types( [], [ 'ys-parts' ] );
+		$types = Post_Type::get_post_types( [], [ 'ys-parts' ] );
 
 		return apply_filters(
 			'ys_get_meta_box_post_types',

@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Theme;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -154,7 +156,7 @@ class SNS {
 				self::HANDLE_TWITTER,
 				'//platform.twitter.com/widgets.js',
 				[],
-				Utility::get_ystandard_version(),
+				Theme::get_ystandard_version(),
 				true
 			);
 			Enqueue_Utility::add_defer( self::HANDLE_TWITTER );
@@ -167,7 +169,7 @@ class SNS {
 				self::HANDLE_FACEBOOK,
 				'//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=' . self::FACEBOOK_API_VERSION,
 				[],
-				Utility::get_ystandard_version(),
+				Theme::get_ystandard_version(),
 				true
 			);
 			Enqueue_Utility::add_defer( self::HANDLE_FACEBOOK );

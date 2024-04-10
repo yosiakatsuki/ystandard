@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Theme;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -141,9 +143,9 @@ class Theme_Info {
 			<div>
 				<p style="margin: 0;"><strong><span class="orbitron">yStandard</span>バージョン情報</strong></p>
 				<div class="ys-dashboard-version__list">
-					<p>本体 : <?php echo Utility::get_ystandard_version(); ?></p>
+					<p>本体 : <?php echo Theme::get_ystandard_version(); ?></p>
 					<?php if ( get_template() !== get_stylesheet() ) : ?>
-						<p>子テーマ : <?php echo Utility::get_theme_version(); ?></p>
+						<p>子テーマ : <?php echo Theme::get_theme_version(); ?></p>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -174,7 +176,7 @@ class Theme_Info {
 				$system_info   = [];
 				$system_info[] = 'WordPressバージョン: ' . get_bloginfo( 'version' );
 				$system_info[] = 'PHPバージョン: ' . phpversion();
-				$system_info[] = 'yStandardバージョン: ' . Utility::get_ystandard_version();
+				$system_info[] = 'yStandardバージョン: ' . Theme::get_ystandard_version();
 				$system_info   = apply_filters( 'ys_system_info', $system_info );
 				$system_info   = implode( PHP_EOL, $system_info );
 				?>

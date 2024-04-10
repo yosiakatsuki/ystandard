@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\URL;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -166,7 +168,7 @@ class Admin_Menu {
 								<small>※「外観」→「カスタマイズ」からも設定画面を開けます。</small>
 							</p>
 							<p class="wp-block-button">
-								<a class="wp-block-button__link" href="<?php echo esc_url_raw( add_query_arg( 'return', rawurlencode( Utility::get_page_url() ), wp_customize_url() ) ); ?>" rel="noopener noreferrer nofollow">設定を始める <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
+								<a class="wp-block-button__link" href="<?php echo esc_url_raw( add_query_arg( 'return', rawurlencode( URL::get_page_url() ), wp_customize_url() ) ); ?>" rel="noopener noreferrer nofollow">設定を始める <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 							</p>
 						</div>
 					</div>

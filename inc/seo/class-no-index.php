@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -77,7 +79,7 @@ class No_Index {
 			 */
 			$noindex = true;
 		} elseif ( is_single() || is_page() ) {
-			if ( Utility::to_bool( Content::get_post_meta( 'ys_noindex' ) ) ) {
+			if ( Convert::to_bool( Content::get_post_meta( 'ys_noindex' ) ) ) {
 				/**
 				 * 投稿・固定ページでnoindex設定されていればnoindex
 				 */
@@ -87,7 +89,7 @@ class No_Index {
 		/**
 		 * 一覧ページで2ページ目以降をnoindex
 		 */
-		if ( ! is_singular() && ! empty( get_query_var( 'paged' ) ) && Utility::to_bool( Option::get_option_by_bool( 'ys_archive_noindex_paged', true ) ) ) {
+		if ( ! is_singular() && ! empty( get_query_var( 'paged' ) ) && Convert::to_bool( Option::get_option_by_bool( 'ys_archive_noindex_paged', true ) ) ) {
 			$noindex = true;
 		}
 

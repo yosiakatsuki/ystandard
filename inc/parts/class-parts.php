@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -98,7 +100,7 @@ class Parts {
 		 * ラッパー
 		 */
 		$wrap = '%s';
-		if ( Utility::to_bool( $atts['use_entry_content'] ) ) {
+		if ( Convert::to_bool( $atts['use_entry_content'] ) ) {
 			$wrap = '<div class="entry-content entry__content">%s</div>';
 		}
 		/**

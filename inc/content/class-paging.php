@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -88,7 +90,7 @@ class Paging {
 		if ( is_singular( $post_type ) && ! $option ) {
 			return false;
 		}
-		if ( Utility::to_bool( Content::get_post_meta( 'ys_hide_paging' ) ) ) {
+		if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_paging' ) ) ) {
 			return false;
 		}
 
