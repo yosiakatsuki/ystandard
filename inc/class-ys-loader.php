@@ -20,14 +20,14 @@ class YS_Loader {
 	 * 関数定義したファイルの読み込み
 	 */
 	const LOAD_FUNCTION_FILES = [
-		__DIR__ . '/compatibility/compatibility.php',
-		__DIR__ . '/template/template-function.php',
+		__DIR__ . '/template-function/index.php',
 	];
 
 	/**
 	 * 処理しないディレクトリ
 	 */
 	const EXCLUDE_DIR = [
+		'template-function',
 		'..',
 		'.',
 	];

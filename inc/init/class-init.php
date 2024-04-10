@@ -24,6 +24,7 @@ class Init {
 		add_action( 'after_setup_theme', [ $this, 'init' ] );
 		add_action( 'after_setup_theme', [ $this, 'remove_meta' ] );
 		add_action( 'after_setup_theme', [ $this, 'tax_dscr_filter' ] );
+		add_action( 'pre_ping', [ $this, 'no_self_ping' ] );
 	}
 
 	/**
@@ -148,6 +149,22 @@ class Init {
 		add_filter( 'pre_term_description', 'wp_filter_post_kses' );
 		if ( ! is_admin() ) {
 			add_filter( 'term_description', 'do_shortcode' );
+		}
+	}
+
+	/**
+	 * セルフピンバック対策
+	 *
+	 * @param array $links links.
+	 *
+	 * @return void
+	 */
+	public function no_self_ping( &$links ) {
+		foreach ( $links as $l => $link ) {
+			// PHP 8 以上では str_starts_with にしたい.
+			if ( 0 === strpos( $link, home_url() ) ) {
+				unset( $links[ $l ] );
+			}
 		}
 	}
 }
