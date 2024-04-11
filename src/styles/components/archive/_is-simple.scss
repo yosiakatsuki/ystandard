@@ -1,0 +1,35 @@
+@use "../../global";
+
+:where(.archive__container.is-simple) {
+	gap: 0;
+
+	:where(.archive__item) {
+		display: flex;
+		align-items: flex-start;
+		flex-direction: column;
+		gap: calc(var(--ystd--archive--simple--item--gap) / 2);
+		position: relative;
+		padding: var(--ystd--archive--simple--item--padding-y) var(--ystd--archive--simple--item--padding-x);
+		border-bottom: var(--ystd--archive--simple--item--border-bottom);
+
+		@include global.media-up-mobile() {
+			flex-direction: row;
+			gap: var(--ystd--archive--simple--item--gap);
+		}
+	}
+
+	:where(.archive__meta) {
+		gap: var(--ystd--archive--simple--item--gap);
+	}
+
+	:where(.archive__title) {
+		margin: 0;
+		flex: 1 1 0;
+	}
+
+	:where(.archive__category ) {
+		padding: var(--ystd--archive--simple--item--category--padding);
+		background-color: var(--ystd--archive--simple--item--category--background);
+		color: var(--ystd--archive--simple--item--category--text-color);
+	}
+}
