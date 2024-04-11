@@ -407,6 +407,8 @@ class Archive {
 			$css_properties['--ystd--archive--list--item--col--gap']      = '0';
 			$css_properties['--ystd--archive--list--item--text--padding'] = 'var(--ystd--archive--gap)';
 			$css_properties['--ystd--archive--list--item--image--height'] = '100%';
+			// シンプル
+			$css_properties['--ystd--archive--simple--item--padding-x'] = 'var(--ystd--archive--gap)';
 		}
 
 		return $css_properties;
