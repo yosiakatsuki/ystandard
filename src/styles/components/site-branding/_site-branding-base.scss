@@ -1,6 +1,30 @@
 @use "../../global";
 
 :where(.site-branding) {
-	padding-top: var(--ystd--site-branding--padding-y);
-	padding-bottom: var(--ystd--site-branding--padding-y);
+	padding: var(--ystd--site-branding--padding);
+
+	:where(.site-title) {
+		margin: var(--ystd--site-branding--margin);
+		color: var(--ystd--site-branding--text-color);
+		font-size: var(--ystd--site-branding--font-size);
+		font-weight: var(--ystd--site-branding--font-weight);
+		line-height: var(--ystd--site-branding--line-height);
+		letter-spacing: var(--ystd--site-branding--letter-spacing);
+
+		a {
+			color: currentColor;
+			text-decoration: none;
+		}
+	}
+
+	:where(.custom-logo) {
+		display: block;
+	}
+
+	:where(.site-description) {
+		margin: 0.5em 0 0;
+		color: var(--ystd--header--description--text-color);
+		font-size: var(--ystd--header--description--font-size);
+		line-height: var(--ystd--header--description--line-height);
+	}
 }

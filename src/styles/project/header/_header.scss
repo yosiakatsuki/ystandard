@@ -1,51 +1,5 @@
 @use "../../global";
 
-
-
-
-.site-branding {
-
-  .site-title {
-	margin: 0;
-	padding: 0;
-	color: var(--ystd--header--text-color);
-	font-size: 1.5em;
-	font-weight: var(--ystd--font-weight--normal);
-	line-height: 1.3;
-	letter-spacing: 0.05em;
-
-	a {
-	  color: var(--ystd--header--text-color);
-	  text-decoration: none;
-	}
-  }
-
-  .custom-logo {
-	display: block;
-  }
-
-  .site-description {
-	margin: 0.5em 0 0;
-	color: var(--ystd--header--description-color);
-	font-size: 0.7em;
-	line-height: 1.3;
-
-	@include global.media-breakpoint(sm) {
-	  font-size: 0.8em;
-	}
-  }
-}
-
-
-.header-type--row1 {
-  @include global.media-breakpoint(md) {
-	.global-nav {
-	  align-items: center;
-	  margin-left: auto;
-	}
-  }
-}
-
 .header-type--center {
   .site-header__content {
 	display: block;

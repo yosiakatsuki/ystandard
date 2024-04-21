@@ -39,7 +39,7 @@
 
 	:where(.global-nav__description) {
 		display: block;
-		color: var(--ystd--header--description-color);
+		color: var(--ystd--header--description--text-color);
 		font-weight: normal;
 	}
 
@@ -208,6 +208,10 @@ body:where(.home) {
 		width: var(--ystd--button-icon--size);
 		height: var(--ystd--button-icon--size);
 	}
+	:where(.ys-icon) {
+		margin-right: auto;
+		margin-left: auto;
+	}
 
 	&::after {
 		content: attr(data-label-open);
@@ -216,6 +220,7 @@ body:where(.home) {
 		line-height: 1;
 		font-size: 0.6em;
 		text-align: center;
+		white-space: nowrap;
 	}
 
 	// svg -> line

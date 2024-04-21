@@ -37,7 +37,7 @@
 		}
 	}
 
-	svg {
+	:where(svg) {
 		width: var(--ystd--button--icon--size);
 		height: var(--ystd--button--icon--size);
 	}
