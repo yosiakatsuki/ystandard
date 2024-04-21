@@ -93,6 +93,29 @@ body:where([class]) {
 
 	--ystd--sidebar--padding: 1rem;
 	/**
+	 * Site Header
+	 */
+	--ystd--header--background: transparent;
+	--ystd--header--text-color: var(--ystd--text-color);
+	--ystd--header--description--text-color: var(--ystd--text-color--gray);
+	--ystd--header--description--font-size: 0.7em;
+	--ystd--header--description--line-height: 1.3;
+	--ystd--header--shadow: none;
+	/**
+	 * Site Branding
+	 */
+	--ystd--site-branding--margin-x: 0;
+	--ystd--site-branding--margin-y: 0;
+	--ystd--site-branding--margin: var(--ystd--site-branding--margin-y) var(--ystd--site-branding--margin-x);
+	--ystd--site-branding--padding-x: 0;
+	--ystd--site-branding--padding-y: clamp(0.5rem, 0.211rem + 1.23vw, 1rem);
+	--ystd--site-branding--padding: var(--ystd--site-branding--padding-y) var(--ystd--site-branding--padding-x);
+	--ystd--site-branding--text-color: var(--ystd--header--text-color);
+	--ystd--site-branding--font-size: 1.5em;
+	--ystd--site-branding--font-weight: var(--ystd--font-weight--normal);
+	--ystd--site-branding--line-height: 1.3;
+	--ystd--site-branding--letter-spacing: 0.05em;
+	/**
 	 * コンテンツ
 	 */
 	--ystd--content--width: var(--wp--style--global--content-size, 800px);
@@ -106,7 +129,6 @@ body:where([class]) {
 	--ystd--content--2col--size: calc(100% - var(--ystd--sidebar--2col--size) - var(--ystd--sidebar--2col--gap));
 	--ystd--site-content--background: transparent;
 	--ystd--site-content--padding: var(--wp--preset--spacing--50, calc(var(--ystd--layout-gap) * 2));
-
 
 	--ystd--content--min-width: 66.66%;
 	--ystd--content--margin-bottom: calc(2 * var(--ystd--layout-gap));
@@ -164,20 +186,6 @@ body:where([class]) {
 	--ystd--archive--simple--item--category--padding: 0.1em 0.75em;
 	--ystd--archive--simple--item--category--background: var(--ystd--text-color--gray);
 	--ystd--archive--simple--item--category--text-color: var(--ystd--text-color--white);
-
-
-
-	/**
-	 * Site Header
-	 */
-	--ystd--header--background: #ffffff;
-	--ystd--header--text-color: var(--ystd--text-color);
-	--ystd--header--description-color: var(--ystd--text-color--gray);
-	--ystd--header--shadow: none;
-	/**
-	 * Site Branding
-	 */
-	--ystd--site-branding--padding-y: clamp(0.5rem, 0.211rem + 1.23vw, 1rem);
 	/**
 	 * Global Navigation
 	 */

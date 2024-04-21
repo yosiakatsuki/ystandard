@@ -1,5 +1,8 @@
 @use "../../global";
 
 :where(.header-type--row1) {
-
+	:where(.global-nav) {
+		align-items: center;
+		margin-left: auto;
+	}
 }
