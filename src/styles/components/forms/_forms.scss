@@ -29,7 +29,7 @@
 	transition: all 0.3s;
 
 	@media (hover: hover) {
-		&:hover {
+		&:where(:hover) {
 			color: var(--ystd--button--hover--text-color);
 			background-color: var(--ystd--button--hover--background);
 			border-color: var(--ystd--button--hover--border-color);

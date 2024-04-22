@@ -1,0 +1,12 @@
+/**
+ * 関連ファイル
+ * - inc/header/class-header.php
+ * - src/styles/components/site-header/_type-center.scss
+ */
+
+:where(.header-type--center) {
+	:where(.global-nav) {
+		text-align: center;
+		justify-content: center;
+	}
+}

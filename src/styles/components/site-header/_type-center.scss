@@ -1,0 +1,12 @@
+/**
+ * 関連ファイル
+ * - inc/header/class-header.php
+ * - src/styles/components/navigation/_type-center.scss
+ */
+
+:where(.header-type--center) {
+	:where(.custom-logo) {
+		margin-right: auto;
+		margin-left: auto;
+	}
+}

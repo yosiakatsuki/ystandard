@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\helper\Style_Sheet;
 use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
@@ -27,7 +26,7 @@ class Header {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'register_title_tagline' ] );
 		add_action( 'customize_register', [ $this, 'register_header_design' ] );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'add_inline_css' ] );
+		add_filter( 'ys_get_inline_css', [ $this, 'add_inline_css' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script_amp' ] );
 		add_action( 'wp_footer', [ $this, 'amp_mobile_nav' ] );
@@ -240,10 +239,16 @@ class Header {
 	 */
 	public function add_inline_css( $css ) {
 
+		// ロゴ関連のCSS.
 		$css .= $this->get_logo_css();
+		// ヘッダーシャドウ.
 		$css .= $this->get_header_shadow_css();
+		// 固定ヘッダー.
 		$css .= self::get_fixed_header_css();
+		// ヘッダー高さ.
 		$css .= self::get_header_height_css();
+		// ヘッダータイプ「center」用のCSS.
+		$css .= self::get_type_center_header_css();
 
 		return $css;
 	}
@@ -298,29 +303,21 @@ class Header {
 		$tablet = Option::get_option_by_int( 'ys_header_fixed_height_tablet', 0 );
 		$mobile = Option::get_option_by_int( 'ys_header_fixed_height_mobile', 0 );
 		if ( 0 < $pc || 0 < $tablet || 0 < $mobile ) {
-			$css = '.site-header {
-				height:var(--ys-site-header-height,auto);
-			}';
+			$css = '.site-header {height:var(--ys-site-header-height,auto);}';
 		}
 		if ( 0 < $mobile ) {
 			$css .= CSS::add_media_query_mobile(
-				":root {
-					--ys-site-header-height:{$mobile}px;
-				}"
+				":root {--ys-site-header-height:{$mobile}px;}"
 			);
 		}
 		if ( 0 < $tablet ) {
 			$css .= CSS::add_media_query_over_mobile(
-				":root {
-					--ys-site-header-height:{$tablet}px;
-				}"
+				":root {--ys-site-header-height:{$tablet}px;}"
 			);
 		}
 		if ( 0 < $pc ) {
 			$css .= CSS::add_media_query_desktop(
-				":root {
-					--ys-site-header-height:{$pc}px;
-				}"
+				":root {--ys-site-header-height:{$pc}px;}"
 			);
 		}
 
@@ -350,6 +347,40 @@ class Header {
 				padding-top:var(--ys-site-header-height,0);
 			}';
 		}
+
+		return $css;
+	}
+
+	/**
+	 * タイプ「center」用のCSS
+	 */
+	public static function get_type_center_header_css() {
+		if ( 'center' !== self::get_header_type() ) {
+			return '';
+		}
+		// ドロワーメニューの開始サイズ.
+		$drawer_start = (int) Drawer_Menu::get_drawer_menu_start() + 1;
+		// CSS作成.
+		$css = "
+		@media (min-width: {$drawer_start}px) {
+			:where(.header-type--center) {
+				--ystd--header-type-center--padding-x:calc((100% - var(--ystd--container--size))/2);
+			}
+			:where(.header-type--center .header-container) {
+				max-width: 100%;
+			}
+			:where(.site-header__content)  {
+				display: block;
+				text-align: center;
+			}
+			:where(.header-type--center .site-branding,.header-type--center .global-nav) {
+				padding-right:var(--ystd--header-type-center--padding-x);
+				padding-left:var(--ystd--header-type-center--padding-x);
+			}
+			:where(.header-type--center .site-branding) {
+				padding-bottom:0.5em;
+			}
+		}";
 
 		return $css;
 	}

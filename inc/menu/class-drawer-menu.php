@@ -24,21 +24,18 @@ class Drawer_Menu {
 	 * メニュー展開サイズ.
 	 */
 	const DRAWER_MENU_START_SIZE = 768;
-	/**
-	 * メニュー展開サイズ取得用フィルター.
-	 */
-	const DRAWER_MENU_START_SIZE_FILTER = 'ys_get_drawer_menu_start';
 
 	/**
 	 * Drawer_Menu constructor.
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'inline_css' ] );
-		add_filter( self::DRAWER_MENU_START_SIZE_FILTER, [ __CLASS__, 'get_drawer_menu_start' ] );
+		add_filter( 'ys_get_inline_css', [ $this, 'inline_css' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'css_vars' ] );
 		add_action( 'wp_footer', [ $this, 'drawer_nav' ] );
 		add_action( 'init', [ $this, 'set_drawer_nav_search_form' ] );
+		// 他プラグインでフィルターを使って値を取得できる。yStandard非依存のため.
+		add_filter( 'ys_get_drawer_menu_start', [ __CLASS__, 'get_drawer_menu_start_option' ], 1 );
 	}
 
 	/**
@@ -178,10 +175,7 @@ class Drawer_Menu {
 	 */
 	public function inline_css( $css ) {
 
-		$breakpoint = apply_filters(
-			self::DRAWER_MENU_START_SIZE_FILTER,
-			self::DRAWER_MENU_START_SIZE
-		);
+		$breakpoint = (int) self::get_drawer_menu_start() + 1;
 
 		$drawer_menu_css = <<<CSS
 		@media (min-width: {$breakpoint}px) {
@@ -202,13 +196,22 @@ CSS;
 	 *
 	 * @return int
 	 */
-	public static function get_drawer_menu_start() {
+	public static function get_drawer_menu_start_option() {
 		$size = Option::get_option_by_int( 'ys_drawer_menu_start', self::DRAWER_MENU_START_SIZE );
 		if ( Option::get_option_by_bool( 'ys_always_drawer_menu', false ) ) {
 			$size = 9999;
 		}
 
 		return $size;
+	}
+
+	/**
+	 * フィルターを通したメニュー展開サイズ取得
+	 *
+	 * @return int
+	 */
+	public static function get_drawer_menu_start() {
+		return apply_filters( 'ys_get_drawer_menu_start', self::DRAWER_MENU_START_SIZE );
 	}
 
 	/**

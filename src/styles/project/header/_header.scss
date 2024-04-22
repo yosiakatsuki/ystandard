@@ -1,34 +1,5 @@
 @use "../../global";
 
-.header-type--center {
-  .site-header__content {
-	display: block;
-	text-align: center;
-  }
-
-  .site-branding {
-	padding-right: 2em;
-	padding-left: 2em;
-
-	@include global.media-breakpoint(md) {
-	  padding-bottom: .5em;
-	}
-
-	.custom-logo {
-	  margin-right: auto;
-	  margin-left: auto;
-	}
-  }
-
-  .global-nav {
-	text-align: left;
-	@include global.media-breakpoint(md) {
-	  text-align: center;
-	  justify-content: center;
-	}
-  }
-}
-
 .header-type--row2 {
   @include global.media-breakpoint(md) {
 	.site-header__content {
