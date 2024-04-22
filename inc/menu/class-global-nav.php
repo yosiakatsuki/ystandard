@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\helper\Filesystem;
 use ystandard\utils\Convert;
 
 defined( 'ABSPATH' ) || die();
@@ -38,10 +37,8 @@ class Global_Nav {
 	 * @return string
 	 */
 	public static function get_global_nav_class( $class ) {
-		$class   = [ $class ];
-		$bg      = Option::get_option( 'ys_color_header_bg', '#ffffff' );
-		$default = Option::get_default( 'ys_color_header_bg', '#ffffff' );
-		if ( $bg !== $default ) {
+		$class = [ $class ];
+		if ( Body::has_background() ) {
 			$class[] = 'has-background';
 		}
 		if ( ! has_nav_menu( 'global' ) ) {
