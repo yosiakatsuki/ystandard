@@ -191,7 +191,7 @@ class Header {
 			$css_vars = array_merge(
 				$css_vars,
 				Enqueue_Utility::get_css_var(
-					'--ystd--header--description-color',
+					'--ystd--header--description--text-color',
 					$description_color
 				),
 			);
