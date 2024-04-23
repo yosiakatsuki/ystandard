@@ -13,11 +13,12 @@
 	left: 0;
 
 	margin: 0;
-	background-color: var(--ystd--global-nav--search--cover--background);
+	background-color: var(--ystd--global-nav--search--cover--background, #fff);
 	visibility: hidden;
 	transition: opacity 0.5s, z-index 0.5s, width 1s ease-out 0.5s, height 1s ease-out 0.5s;
 	opacity: 0;
 	z-index: -1;
+	overscroll-behavior-y: contain;
 
 	&:where(.is-active) {
 		z-index: var(--ystd--z-index--global-nav-search);
@@ -25,7 +26,38 @@
 		opacity: 0.98;
 		width: 100%;
 		height: 100%;
+		overflow: auto;
 		transition: opacity 0.5s, z-index 0.5s;
+		--ystd--global-nav--search--scrollbar--color: transparent;
+
+		&::-webkit-scrollbar {
+			width: 1px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: var(--ystd--global-nav--search--scrollbar--color);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: var(--ystd--global-nav--search--scrollbar--color);
+			border: 1px solid transparent;
+		}
+
+		@supports not selector(::-webkit-scrollbar) {
+			& {
+				scrollbar-color: var(--ystd--global-nav--search--scrollbar--color) var(--ystd--global-nav--search--scrollbar--color);
+			}
+		}
+
+		&::after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			content: "";
+			width: 1px;
+			height: calc(100% + 1px);
+			background-color: transparent;
+		}
 	}
 
 	:where(.search-form) {

@@ -186,17 +186,20 @@ body:where([class]) {
 	--ystd--archive--simple--item--category--padding: 0.1em 0.75em;
 	--ystd--archive--simple--item--category--background: var(--ystd--text-color--gray);
 	--ystd--archive--simple--item--category--text-color: var(--ystd--text-color--white);
+
 	/**
 	 * Global Navigation
 	 */
 	--ystd--global-nav--display: flex;
-	--ystd--global-nav--search--cover--background: var(--ystd--header--background);
 	--ystd--global-nav--font-size: 0.9em;
 	--ystd--global-nav--gap: 1.5em;
 	--ystd--global-nav--font-weight: normal;
 	--ystd--global-nav--border-color: var(--ystd--header--text-color);
 	--ystd--global-nav--current--text-color: var(--ystd--header--text-color);
 	--ystd--global-nav--hover--text-color: var(--ystd--global-nav--current--text-color);
+	// ▼設定で追加 @see inc/header/class-header.php
+	// --ystd--global-nav--search--cover--background: var(--ystd--header--background);
+
 	/**
 	 * Drawer Menu
 	 */
