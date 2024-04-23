@@ -1,0 +1,11 @@
+/**
+ * 関連ファイル
+ * - inc/header/class-header.php
+ * - src/styles/components/navigation/_type-row2.scss
+ */
+
+:where(.header-type--row2) {
+	:where(.custom-logo) {
+		margin-right: auto;
+	}
+}
