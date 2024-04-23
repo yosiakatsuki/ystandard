@@ -247,6 +247,8 @@ class Header {
 		$css .= self::get_fixed_header_css();
 		// ヘッダー高さ.
 		$css .= self::get_header_height_css();
+		// ヘッダータイプ別のCSS.
+		$css .= self::get_header_type_css();
 		// ヘッダータイプ「center」用のCSS.
 		$css .= self::get_type_center_header_css();
 
@@ -352,6 +354,38 @@ class Header {
 	}
 
 	/**
+	 * ヘッダータイプ別のCSS取得
+	 */
+	public static function get_header_type_css() {
+		// ドロワーメニューの開始サイズ.
+		$drawer_start = (int) Drawer_Menu::get_drawer_menu_start() + 1;
+		// CSS作成.
+		$css = "
+		@media (min-width: {$drawer_start}px) {
+			:where(body:not(.header-type--row1)) {
+				--ystd--header-type-center--padding-x:calc((100% - var(--ystd--container--size))/2);
+			}
+			:where(body:not(.header-type--row1) .header-container) {
+				max-width: 100%;
+			}
+			:where(body:not(.header-type--row1) .site-header__content)  {
+				display: block;
+			}
+			:where(body:not(.header-type--row1) .site-branding),
+			:where(body:not(.header-type--row1) .global-nav) {
+				padding-right:var(--ystd--header-type-center--padding-x);
+				padding-left:var(--ystd--header-type-center--padding-x);
+			}
+			:where(body:not(.header-type--row1) .site-branding) {
+				padding-bottom:0.5em;
+			}
+		}
+		";
+
+		return $css;
+	}
+
+	/**
 	 * タイプ「center」用のCSS
 	 */
 	public static function get_type_center_header_css() {
@@ -363,22 +397,8 @@ class Header {
 		// CSS作成.
 		$css = "
 		@media (min-width: {$drawer_start}px) {
-			:where(.header-type--center) {
-				--ystd--header-type-center--padding-x:calc((100% - var(--ystd--container--size))/2);
-			}
-			:where(.header-type--center .header-container) {
-				max-width: 100%;
-			}
-			:where(.site-header__content)  {
-				display: block;
+			:where(.header-type--center .site-header__content)  {
 				text-align: center;
-			}
-			:where(.header-type--center .site-branding,.header-type--center .global-nav) {
-				padding-right:var(--ystd--header-type-center--padding-x);
-				padding-left:var(--ystd--header-type-center--padding-x);
-			}
-			:where(.header-type--center .site-branding) {
-				padding-bottom:0.5em;
 			}
 		}";
 
