@@ -35,7 +35,7 @@
 //  .sidebar__fixed {
 //	> * {
 //	  padding: calc(var(--ystd--layout-gap));
-//	  background-color: var(--ystd--content--background);
+//	  background-color: var(--ystd--site-content--background);
 //
 //	  @include global.media-breakpoint-down(sm) {
 //		margin-right: calc(-1 * var(--ystd--container--gutter));

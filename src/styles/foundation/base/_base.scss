@@ -2,7 +2,7 @@
 
 
 body {
-	background-color: var(--ystd--site-background);
+	background-color: var(--ystd--site--background);
 	color: var(--ystd--text-color);
 	font-family: var(--ystd--font-family);
 	line-height: var(--ystd--line-height);
@@ -132,7 +132,7 @@ body {
 	margin-right: 0;
 	margin-left: 0;
 	padding: 1.5em 1em 1.5em 2.5em;
-	background-color: rgba(var(--ystd--site-background--light-gray-rgb), 0.5);
+	background-color: rgba(var(--ystd--site--background--light-gray-rgb), 0.5);
 	border-left: 1px solid var(--ystd--site--border-color--gray);
 	font-size: 0.95em;
 
@@ -187,7 +187,7 @@ body {
  */
 :where(pre) {
 	padding: 1rem;
-	background-color: var(--ystd--site-background--light-gray);
+	background-color: var(--ystd--site--background--light-gray);
 	line-height: 1.4;
 	overflow: auto;
 
@@ -229,7 +229,7 @@ body {
 }
 
 :where(th) {
-	background-color: var(--ystd--site-background--light-gray);
+	background-color: var(--ystd--site--background--light-gray);
 	font-weight: normal;
 	text-align: left;
 }

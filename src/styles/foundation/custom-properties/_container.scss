@@ -1,0 +1,9 @@
+/**
+ * Container
+ */
+@mixin custom_properties() {
+	--ystd--container--width: var(--wp--style--global--wide-size, 1200px);
+	--ystd--container--gutter: 1rem;
+	--ystd--container--size: min(calc(100% - var(--ystd--container--gutter) * 2), var(--ystd--container--width));
+	--ystd--container--margin-vertical: var(--ystd--layout-gap);
+}

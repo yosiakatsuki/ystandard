@@ -1,0 +1,50 @@
+/**
+ * アーカイブ
+ */
+@mixin custom_properties() {
+	--ystd--archive--gap: var(--ystd--layout-gap);
+	--ystd--archive--padding: 1em;
+	--ystd--archive--thumbnail--width: 100%;
+	--ystd--archive--header--layout-gap: var(--ystd--layout-gap);
+	--ystd--archive--header--title--font-size: clamp(1.5rem, 1.211rem + 1.23vw, 2rem);
+	--ystd--archive--header--description--font-size: 0.8em;
+	--ystd--archive--header--description--gap: 1em;
+	--ystd--archive--item--width: 100%;
+	--ystd--archive--item--background: var(--ystd--site-content--background);
+	--ystd--archive--item--border-top: 0;
+	--ystd--archive--item--border-right: 0;
+	--ystd--archive--item--border-bottom: 0;
+	--ystd--archive--item--border-left: 0;
+	--ystd--archive--item--text--gap: calc(var(--ystd--layout-gap) / 2);
+	--ystd--archive--item--title--font-size: 1em;
+	--ystd--archive--item--detail--font-size: 0.7em;
+	--ystd--archive--item--meta--text-color: var(--ystd--content--meta--color);
+	--ystd--archive--item--excerpt--text-color: var(--ystd--text-color--gray);
+	--ystd--archive--item--excerpt--line-clamp: 2;
+	--ystd--archive--category--background: var(--ystd--content--meta--color);
+	// タイプ別
+	// カード
+	--ystd--archive--card--col--mobile: 1;
+	--ystd--archive--card--col--tablet: 2;
+	--ystd--archive--card--col--desktop: 3;
+	--ystd--archive--card--col--has-sidebar: 2;
+	--ystd--archive--card--item--text--padding: var(--ystd--archive--item--text--gap) 0 0;
+	--ystd--archive--card--item--title--font-size: var(--ystd--archive--item--title--font-size);
+	// リスト
+	--ystd--archive--list--item--padding: 0;
+	--ystd--archive--list--item--col--gap: var(--ystd--archive--gap);
+	--ystd--archive--list--item--image--height: auto;
+	--ystd--archive--list--item--image--width--mobile: min(150px, 30%);
+	--ystd--archive--list--item--image--width--tablet: min(250px, 30%);
+	--ystd--archive--list--item--image--width--desktop: var(--ystd--archive--list--item--image--width--tablet);
+	--ystd--archive--list--item--title--font-size: 1.2em;
+	--ystd--archive--list--item--text--padding: 0;
+	// シンプル
+	--ystd--archive--simple--item--padding-x: 0;
+	--ystd--archive--simple--item--padding-y: var(--ystd--archive--gap);
+	--ystd--archive--simple--item--border-bottom: 1px solid var(--ystd--site--border-color--light-gray);
+	--ystd--archive--simple--item--gap: var(--ystd--archive--gap);
+	--ystd--archive--simple--item--category--padding: 0.1em 0.75em;
+	--ystd--archive--simple--item--category--background: var(--ystd--text-color--gray);
+	--ystd--archive--simple--item--category--text-color: var(--ystd--text-color--white);
+}

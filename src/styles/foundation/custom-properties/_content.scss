@@ -1,0 +1,23 @@
+/**
+ * Contents
+ */
+@mixin custom_properties() {
+	--ystd--content--width: var(--wp--style--global--content-size, 800px);
+	--ystd--content--size: min(calc(100% - var(--ystd--container--gutter) * 2), var(--ystd--content--width));
+	--ystd--content--header--gap: 1em;
+	--ystd--content--footer--gap: 4rem;
+	--ystd--content--post-title--font-size: var(--ystd--headline--font-size--h1, 1.4em);
+	--ystd--content--header--meta--font-size: 0.7em;
+	--ystd--content--header--meta--gap: 1.5em;
+	--ystd--content--header--meta--icon-size: 1em;
+	--ystd--content--2col--size: calc(100% - var(--ystd--sidebar--2col--size) - var(--ystd--sidebar--2col--gap));
+
+	--ystd--site-content--background: transparent;
+	--ystd--site-content--padding: var(--wp--preset--spacing--50, calc(var(--ystd--layout-gap) * 2));
+
+	--ystd--content--min-width: 66.66%;
+	--ystd--content--margin-bottom: calc(2 * var(--ystd--layout-gap));
+	--ystd--content--margin-horizon: auto;
+	--ystd--content--padding: auto;
+	--ystd--content--meta--color: var(--ystd--text-color--gray);
+}

@@ -1,0 +1,11 @@
+/**
+ * Post List
+ */
+@mixin custom_properties() {
+	--ystd--posts-item--gap: var(--ystd--layout-gap);
+	--ystd--posts-item--width: 100%;
+	--ystd--posts--gap--inner: 0.5em;
+	--ystd--posts-item--border-color: var(--ystd--archive--item--border-color);
+	--ystd--posts--thumbnail--width: 100%;
+	--ystd--posts--content--gap: var(--ystd--posts--gap--inner);
+}

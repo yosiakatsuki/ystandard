@@ -1,0 +1,116 @@
+@use "../../global";
+@use "sass:meta";
+
+@use "ystandard";
+@use "typography";
+@use "site-background";
+@use "site-border";
+@use "spacing";
+@use "z-index";
+
+@use "link";
+@use "align";
+@use "body";
+@use "headline";
+@use "form";
+@use "button";
+@use "table";
+@use "container";
+@use "site-header";
+@use "site-branding";
+@use "global-nav";
+@use "drawer-menu";
+@use "breadcrumbs";
+@use "sidebar";
+@use "content";
+@use "archive";
+@use "info-bar";
+@use "paging";
+@use "pagination";
+@use "toc";
+@use "advertisement";
+@use "tagcloud";
+@use "footer";
+@use "footer-sub";
+@use "footer-mobile";
+@use "post-list";
+@use "sns";
+@use "alert";
+
+body:where([class]) {
+	/**
+	 * サイト全体に関するプロパティ
+	 */
+	// ブランドカラー等
+	@include ystandard.custom_properties();
+	// 文字色・フォントサイズ等
+	@include typography.custom_properties();
+	// Background
+	@include site-background.custom_properties();
+	// Border
+	@include site-border.custom_properties();
+	// Spacing
+	@include spacing.custom_properties();
+	// Z Index
+	@include z-index.custom_properties();
+
+	/**
+	 * コンポーネントごとのプロパティ
+	 */
+	// Link
+	@include link.custom_properties();
+	// Align
+	@include align.custom_properties();
+	// コンテナ
+	@include container.custom_properties();
+	// Body
+	@include body.custom_properties();
+	// 見出し
+	@include headline.custom_properties();
+	// Form
+	@include form.custom_properties();
+	// Button
+	@include button.custom_properties();
+	// Table
+	@include table.custom_properties();
+	// Site Header
+	@include site-header.custom_properties();
+	// Site Branding
+	@include site-branding.custom_properties();
+	//  Global Navigation
+	@include global-nav.custom_properties();
+	//  Drawer Menu
+	@include drawer-menu.custom_properties();
+	//  Breadcrumbs
+	@include breadcrumbs.custom_properties();
+	// サイドバー
+	@include sidebar.custom_properties();
+	// コンテンツ
+	@include content.custom_properties();
+	// アーカイブ
+	@include archive.custom_properties();
+	// Info bar
+	@include info-bar.custom_properties();
+	// Paging
+	@include paging.custom_properties();
+	// Pagination
+	@include pagination.custom_properties();
+	// TOC
+	@include toc.custom_properties();
+	// Advertisement
+	@include advertisement.custom_properties();
+	// Tag Cloud
+	@include tagcloud.custom_properties();
+	// Footer
+	@include footer.custom_properties();
+	// Sub Footer
+	@include footer-sub.custom_properties();
+	// Mobile Footer
+	@include footer-mobile.custom_properties();
+	// Post List
+	@include post-list.custom_properties();
+	// SNS
+	@include sns.custom_properties();
+	// アラート
+	@include alert.custom_properties();
+}

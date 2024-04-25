@@ -1,0 +1,10 @@
+/**
+ * Pagination
+ */
+@mixin custom_properties() {
+	--ystd--pagination--margin-top: 2em;
+	--ystd--pagination--gap: 1em;
+	--ystd--pagination--text-color: var(--ystd--text-color);
+	--ystd--pagination--current-text-color: var(--ystd--pagination--text-color);
+	--ystd--pagination--font-size: 1em;
+}

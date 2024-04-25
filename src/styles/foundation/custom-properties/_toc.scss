@@ -1,0 +1,9 @@
+/**
+ * TOC
+ */
+@mixin custom_properties() {
+	--ystd--toc--text-color: var(--ystd--text-color);
+	--ystd--toc--background: rgba(var(--ystd--site--border-color--light-gray-rgb), .2);
+	--ystd--toc--border-color: var(--ystd--site--border-color--gray);
+	--ystd--toc--list--border-color: var(--ystd--site--border-color--gray);
+}

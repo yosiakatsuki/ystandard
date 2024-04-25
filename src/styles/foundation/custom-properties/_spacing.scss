@@ -1,0 +1,7 @@
+/**
+ * Spacing
+ */
+@mixin custom_properties() {
+	--ystd--layout-gap: var(--wp--style--block-gap, 1.5rem);
+	--ystd--block-gap: var(--ystd--layout-gap, 1.5em);
+}

@@ -1,0 +1,9 @@
+/**
+ * Table
+ */
+@mixin custom_properties() {
+	--ystd--table--border-color: var(--ystd--site--border-color--gray);
+	--ystd--table--background: var(--ystd--site--background--light-gray);
+	--ystd--table--padding-y: 1em;
+	--ystd--table--padding-x: 0.5em;
+}

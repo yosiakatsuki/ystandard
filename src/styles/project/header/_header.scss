@@ -1,28 +1,12 @@
 @use "../../global";
 
-.header-type--row2 {
-  @include global.media-breakpoint(md) {
-	.site-header__content {
-	  display: block;
-	}
-	.site-branding {
-	  padding-bottom: .5em;
-	}
-  }
-}
-
 .site-header-thumbnail {
-  overflow: hidden;
 
   img {
-	display: block;
-	width: 100%;
+
 
 	@include global.media-breakpoint(sm) {
-	  height: 50vh;
-	  max-height: 400px;
-	  object-fit: cover;
-	  object-position: 50% 50%;
+
 	}
   }
 
