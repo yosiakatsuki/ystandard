@@ -3,5 +3,5 @@
  */
 @mixin custom_properties() {
 	--ytsd--mobile-footer--text-color: var(--ystd--text-color);
-	--ystd--mobile-footer--background: rgba(#ffffff, 0.95);
+	--ystd--mobile-footer--background: #{rgba(#ffffff, 0.95)};
 }

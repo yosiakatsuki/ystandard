@@ -3,6 +3,6 @@
  */
 @mixin custom_properties() {
 	--ystd--form--text-color: var(--ystd--text-color);
-	--ystd--form--background: rgba(#fff, 0.9);
-	--ystd--form--border-color: rgba(#bdc3c7, 0.9);
+	--ystd--form--background: #{rgba(#fff, 0.9)};
+	--ystd--form--border-color: #{rgba(#bdc3c7, 0.9)};
 }
