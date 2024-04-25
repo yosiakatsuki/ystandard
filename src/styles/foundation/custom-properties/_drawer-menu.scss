@@ -1,0 +1,16 @@
+/**
+ * Drawer Menu
+ */
+@mixin custom_properties() {
+	--ystd--drawer-menu--container--padding-top: 0;
+	--ystd--drawer-menu--container--padding-x: 0;
+	--ystd--drawer-menu--container--padding-bottom: 1em;
+	--ystd--drawer-menu--background: var(--ystd--text-color);
+	--ystd--drawer-menu--text-color: var(--ystd--text-color--white);
+	--ystd--drawer-menu--font-size: var(--ystd--global-nav--font-size);
+	--ystd--drawer-menu--width: 600px;
+	--ystd--drawer-menu--button-color--open: var(--ystd--text-color);
+	--ystd--drawer-menu--button-color--close: var(--ystd--text-color--white);
+	--ystd--drawer-menu--gap: .5em;
+	--ystd--drawer-menu--menu-item--padding-y: .5em;
+}

@@ -1,0 +1,8 @@
+/**
+ * Tag Cloud
+ */
+@mixin custom_properties() {
+	--ystd--tagcloud--background: var(--ystd--site--background--light-gray);
+	--ystd--tagcloud--text-color: var(--ystd--text-color);
+	--ystd--tagcloud--icon: "#";
+}

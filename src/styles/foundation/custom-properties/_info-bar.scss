@@ -1,0 +1,7 @@
+/**
+ * Info Bar
+ */
+@mixin custom_properties() {
+	--ystd--info-bar--background: var(--ystd--site--background--light-gray);
+	--ystd--info-bar--text-color: var(--ystd--text-color);
+}

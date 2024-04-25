@@ -1,0 +1,11 @@
+/**
+ * Background
+ */
+@mixin custom_properties() {
+	--ystd--site--background: #ffffff;
+	--ystd--site--background-rgb: 255, 255, 255;
+	--ystd--site--background--gray: #e9ecef;
+	--ystd--site--background--gray-rgb: 233, 236, 239;
+	--ystd--site--background--light-gray: #f1f1f3;
+	--ystd--site--background--light-gray-rgb: 241, 241, 243;
+}

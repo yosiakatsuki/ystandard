@@ -40,7 +40,7 @@ class Site_Background {
 		if ( self::is_custom_bg_color() ) {
 			$css_vars = array_merge(
 				$css_vars,
-				Enqueue_Utility::get_css_var( 'site-background', self::get_site_bg() )
+				Enqueue_Utility::get_css_var( 'site--background', self::get_site_bg() )
 			);
 		}
 		// コンテンツ領域の色指定がある場合.

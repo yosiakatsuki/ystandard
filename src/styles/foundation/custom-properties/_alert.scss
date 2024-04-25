@@ -1,0 +1,13 @@
+/**
+ * アラート
+ */
+@mixin custom_properties() {
+	--ystd--alert--background--blue: #ceecfd;
+	--ystd--alert--text-color--blue: #07689f;
+	--ystd--alert--background--red: #f2d9db;
+	--ystd--alert--text-color--red: #ae3b43;
+	--ystd--alert--background--green: #c8eae4;
+	--ystd--alert--text-color--green: #007660;
+	--ystd--alert--background--yellow: #ffedcc;
+	--ystd--alert--text-color--yellow: #e29e21;
+}

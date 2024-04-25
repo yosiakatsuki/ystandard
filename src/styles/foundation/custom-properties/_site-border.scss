@@ -1,0 +1,11 @@
+/**
+ * Border
+ */
+@mixin custom_properties() {
+	--ystd--site--border-color--dark: #292b2c;
+	--ystd--site--border-color--dark-rgb: 41, 43, 44;
+	--ystd--site--border-color--gray: #bdc3c7;
+	--ystd--site--border-color--gray-rgb: 189, 195, 199;
+	--ystd--site--border-color--light-gray: #eeeeee;
+	--ystd--site--border-color--light-gray-rgb: 238, 238, 238;
+}

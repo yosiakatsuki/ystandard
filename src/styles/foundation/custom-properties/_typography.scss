@@ -1,0 +1,15 @@
+/**
+ * Typography
+ */
+@mixin custom_properties() {
+	--ystd--font-family: "Helvetica neue", "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+	--ystd--font-family--code: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	--ystd--font-family--yu: Avenir, "Segoe UI", "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", sans-serif;
+	--ystd--text-color: #222222;
+	--ystd--text-color--white: #ffffff;
+	--ystd--text-color--gray: #656565;
+	--ystd--line-height: 1.7;
+	--ystd--letter-spacing: 0.05em;
+	--ystd--font-weight--normal: 400;
+	--ystd--font-weight--bold: 700;
+}

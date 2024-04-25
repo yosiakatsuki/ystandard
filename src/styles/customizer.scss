@@ -1,5 +1,5 @@
 // 管理画面 - カスタマイザー用CSS
 @use "global";
-@use "foundation/custom-properties/custom-properties";
+@use "foundation/custom-properties/index";
 @use "project/admin/manual";
 @use "project/customizer/index" as customizer;

@@ -1,0 +1,8 @@
+/**
+ * Sub Footer
+ */
+@mixin custom_properties() {
+	--ystd--sub-footer--background: var(--ystd--site--background--light-gray);
+	--ystd--sub-footer--text-color: var(--ystd--text-color);
+	--ystd--sub-footer--padding: 4em;
+}

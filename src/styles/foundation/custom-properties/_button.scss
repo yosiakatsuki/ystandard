@@ -1,0 +1,19 @@
+/**
+ * Button
+ */
+@mixin custom_properties() {
+	--ystd--button--text-color: #ffffff;
+	--ystd--button--background-color: var(--ystd--text-color);
+	--ystd--button--display: inline-flex;
+	--ystd--button--padding: 0.5em 1.5em;
+	--ystd--button--border-width: 1px;
+	--ystd--button--border-style: solid;
+	--ystd--button--border-color: var(--ystd--button--background-color);
+	--ystd--button--border-radius: 4px;
+	--ystd--button--font-size: 1em;
+	--ystd--button--icon--size: 1.25em;
+	--ystd--button--box-shadow: 3px 3px 6px #{rgba(#000000, 0.2)};
+	--ystd--button--hover--text-color: currentColor;
+	--ystd--button--hover--background: var(--ystd--button--background-color);
+	--ystd--button--hover--border-color: var(--ystd--button--border-color);
+}

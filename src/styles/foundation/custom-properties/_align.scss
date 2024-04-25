@@ -1,0 +1,6 @@
+/**
+ * Align
+ */
+@mixin custom_properties() {
+	--ystd--align--gutter: var(--ystd--layout-gap);
+}

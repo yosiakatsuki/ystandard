@@ -1,0 +1,12 @@
+/**
+ * Z Index
+ */
+@mixin custom_properties() {
+	--ystd--z-index--header: 8;
+	--ystd--z-index--global-nav-search: 11;
+	--ystd--z-index--drawer-nav: 11;
+	--ystd--z-index--global-nav--button: 10;
+	--ystd--z-index--global-nav--sub-menu: 12;
+	--ystd--z-index--mobile-footer: 8;
+	--ystd--z-index--back-to-top: 8;
+}

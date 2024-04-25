@@ -1,0 +1,12 @@
+/**
+ * Sidebar
+ */
+@mixin custom_properties() {
+	// 200(1024) - 336(1200)
+	--ystd--sidebar--2col--size: clamp(12.5rem, -36.955rem + 77.27vw, 21rem);
+	// 16(1024) - 32(1200)
+	--ystd--sidebar--2col--gap: clamp(1rem, -4.818rem + 9.09vw, 2rem);
+	--ystd--sidebar--fixed-position--top: 2em;
+
+	--ystd--sidebar--padding: 1rem;
+}

@@ -18,7 +18,7 @@
 @use "utility/table/table" as utility-table with ($editor:true);
 
 .mce-content-body {
-	background-color: var(--ystd--site-background);
+	background-color: var(--ystd--site--background);
 	color: var(--ystd--text-color);
 	font-family: var(--ystd--font-family);
 	line-height: var(--ystd--line-height);

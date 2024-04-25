@@ -1,7 +1,7 @@
 module.exports = {
 	plugins: [
-		require( 'autoprefixer' ),
-		require( 'cssnano' )( {
+		require('autoprefixer'),
+		require('cssnano')({
 			preset: [
 				'default',
 				{
@@ -9,7 +9,7 @@ module.exports = {
 					colormin: false,
 				},
 			],
-		} ),
-		require( 'css-declaration-sorter' )( { order: 'smacss' } ),
+		}),
+		require('css-declaration-sorter')({ order: 'smacss' }),
 	],
 };

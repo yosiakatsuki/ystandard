@@ -1,0 +1,50 @@
+/**
+ * SNS
+ */
+@mixin custom_properties() {
+	$color__sns: (
+		"globe" : #2980b9,
+		"globe-rgb" : #{"41, 128, 185"},
+		"twitter" : #21a1f3,
+		"twitter-rgb" : #{"33, 161, 243"},
+		"x" : #000000,
+		"x-rgb" : #{"0, 0, 0"},
+		"facebook" : #1977f2,
+		"facebook-rgb" : #{"25, 119, 242"},
+		"hatenabookmark" : #00a4de,
+		"hatenabookmark-rgb" : #{"0, 164, 222"},
+		"rss" : #fb8501,
+		"rss-rgb" : #{"251, 133, 1"},
+		"feedly" : #2bb24c,
+		"feedly-rgb" : #{"43, 178, 76"},
+		"pocket" : #ef3f56,
+		"pocket-rgb" : #{"239, 63, 86"},
+		"instagram" : #e4405f,
+		"instagram-rgb" : #{"228, 64, 95"},
+		"line" : #00c300,
+		"line-rgb" : #{"0, 195, 0"},
+		"tumblr" : #36465d,
+		"tumblr-rgb" : #{"54, 70, 93"},
+		"youtube-play" : #ff0000,
+		"youtube-play-rgb" : #{"255, 0, 0"},
+		"youtube" : #ff0000,
+		"youtube-rgb" : #{"255, 0, 0"},
+		"github" : #181717,
+		"github-rgb" : #{"24, 24, 24"},
+		"pinterest" : #bd081c,
+		"pinterest-rgb" : #{"189, 8, 28"},
+		"linkedin" : #0077b5,
+		"linkedin-rgb" : #{"0, 119, 181"},
+		"amazon": #ff9900,
+		"amazon-rgb": #{"255, 153, 0"},
+		"wordpress": #21759B,
+		"wordpress-rgb": #{"33, 119, 155"},
+		"twitch": #9146FF,
+		"twitch-rgb": #{"145, 70, 255"},
+		"dribbble": #EA4C89,
+		"dribbble-rgb": #{"234, 76, 137"},
+	);
+	@each $key, $color in $color__sns {
+		--ystd--sns--color--#{$key}: #{$color};
+	}
+}
