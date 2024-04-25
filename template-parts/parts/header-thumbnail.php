@@ -8,12 +8,16 @@
  */
 
 defined( 'ABSPATH' ) || die();
-
-if ( empty( $header_thumbnail ) ) {
+/**
+ * @var array $args {
+ * @type string $header_thumbnail 投稿サムネイル画像HTML.
+ * }
+ */
+if ( empty( $args ) || ! isset( $args['header_thumbnail'] ) ) {
 	return;
 }
 ?>
 
 <figure class="site-header-thumbnail">
-	<?php echo $header_thumbnail; ?>
+	<?php echo wp_kses_post( $args['header_thumbnail'] ); ?>
 </figure>

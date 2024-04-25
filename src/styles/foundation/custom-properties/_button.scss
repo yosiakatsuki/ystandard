@@ -13,7 +13,7 @@
 	--ystd--button--font-size: 1em;
 	--ystd--button--icon--size: 1.25em;
 	--ystd--button--box-shadow: 3px 3px 6px #{rgba(#000000, 0.2)};
-	--ystd--button--hover--text-color: currentColor;
+	--ystd--button--hover--text-color: var(--ystd--button--text-color);
 	--ystd--button--hover--background: var(--ystd--button--background-color);
 	--ystd--button--hover--border-color: var(--ystd--button--border-color);
 }

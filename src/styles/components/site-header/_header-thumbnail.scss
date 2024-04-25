@@ -1,0 +1,17 @@
+@use "../../global";
+
+:where(.site-header-thumbnail) {
+	overflow: hidden;
+
+	:where(img) {
+		display: block;
+		width: 100%;
+		object-fit: cover;
+
+		@include global.media-up-mobile() {
+			height: 50vh;
+			max-height: 400px;
+			object-position: 50% 50%;
+		}
+	}
+}

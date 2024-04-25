@@ -532,7 +532,8 @@ class Content {
 			'',
 			[ 'header_thumbnail' => $thumbnail ]
 		);
-		echo ob_get_clean();
+		$thumbnail_html = ob_get_clean();
+		echo apply_filters( 'ys_the_header_post_thumbnail', $thumbnail_html );
 	}
 
 	/**
