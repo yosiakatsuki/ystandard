@@ -26,13 +26,10 @@ class Footer {
 	 */
 	public function __construct() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
-		add_action( 'wp_footer', [ $this, 'footer_mobile_nav' ], 1 );
 		add_action( 'wp_footer', [ $this, 'back_to_top' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_main' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_sub' ] );
-		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_mobile_footer_menu' ] );
-		add_filter( 'ys_get_inline_css', [ $this, 'add_footer_mobile_nav_css' ] );
 		add_filter( 'ys_get_inline_css', [ $this, 'add_back_to_top_css' ] );
 	}
 
@@ -48,23 +45,6 @@ class Footer {
 		}
 
 		return apply_filters( 'ys_is_active_footer_widgets', $result );
-	}
-
-	/**
-	 * モバイルフッター表示判断
-	 *
-	 * @return bool
-	 */
-	public static function show_footer_mobile_nav() {
-		$result = has_nav_menu( 'mobile-footer' );
-
-		$result = Convert::to_bool( apply_filters( 'ys_show_footer_mobile_nav', $result ) );
-
-		if ( Widget::is_legacy_widget_preview() ) {
-			$result = false;
-		}
-
-		return $result;
 	}
 
 	/**
@@ -181,104 +161,7 @@ class Footer {
 		return $css;
 	}
 
-	/**
-	 * モバイルフッター用CSS
-	 *
-	 * @param string $css CSS.
-	 *
-	 * @return string
-	 */
-	public function add_footer_mobile_nav_css( $css ) {
 
-		if ( ! self::show_footer_mobile_nav() ) {
-			return $css;
-		}
-
-		$css .= '
-		.footer-mobile-nav {
-			z-index: var(--ystd--z-index--mobile-footer);
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			background-color: var(--ystd--mobile-footer--background);
-			box-shadow: 0 -1px 2px #00000012;
-			color: var(--ytsd--mobile-footer--text-color);
-			text-align: center;
-			transition: transform .3s
-		}
-
-		.footer-mobile-nav.is-hide {
-			transform: translateY(100%)
-		}
-
-		@media (min-width: 769px) {
-			.footer-mobile-nav {
-				display: none
-			}
-		}
-
-		.footer-mobile-nav ul {
-			display: flex;
-			justify-content: space-between;
-			margin: 0;
-			padding: .75em 0;
-			list-style: none
-		}
-
-		.footer-mobile-nav li:nth-child(n+5) {
-			display: none
-		}
-
-		@media (min-width: 600px) {
-			.footer-mobile-nav li:nth-child(n+5) {
-				display: block
-			}
-		}
-
-		.footer-mobile-nav a {
-			display: block;
-			color: currentColor;
-			text-decoration: none
-		}
-
-		.footer-mobile-nav i {
-			font-size: 1.5em
-		}
-
-		.footer-mobile-nav svg {
-			width: 1.5em;
-			height: 1.5em
-		}
-
-		.footer-mobile-nav__dscr {
-			display: block;
-			font-size: .7em;
-			line-height: 1.2
-		}
-
-		.has-mobile-footer .site-footer {
-			padding-bottom: 4em
-		}
-
-		@media (min-width: 769px) {
-			.has-mobile-footer .site-footer {
-				padding-bottom: 0
-			}
-		}';
-
-		return $css;
-	}
-
-	/**
-	 * モバイルフッターナビゲーションの表示
-	 */
-	public function footer_mobile_nav() {
-		if ( ! self::show_footer_mobile_nav() ) {
-			return;
-		}
-		Template::get_template_part( 'template-parts/footer/footer-mobile-nav' );
-	}
 
 	/**
 	 * フッターメイン
@@ -373,37 +256,6 @@ class Footer {
 	}
 
 	/**
-	 * モバイルフッターメニュー色
-	 *
-	 * @param array $css_vars CSS.
-	 *
-	 * @return array
-	 */
-	public function add_css_var_mobile_footer_menu( $css_vars ) {
-
-		$bg_color = CSS::hex_2_rgb( Option::get_option( 'ys_color_mobile_footer_bg', '#ffffff' ) );
-		$bg       = Enqueue_Utility::get_css_var(
-			'mobile-footer-bg',
-			sprintf(
-				'rgb(%s,%s,%s,0.95)',
-				$bg_color[0],
-				$bg_color[1],
-				$bg_color[2]
-			)
-		);
-		$color    = Enqueue_Utility::get_css_var(
-			'mobile-footer-text',
-			Option::get_option( 'ys_color_mobile_footer_text', '#222222' )
-		);
-
-		return array_merge(
-			$css_vars,
-			$bg,
-			$color
-		);
-	}
-
-	/**
 	 * ウィジェット登録
 	 */
 	public function widget_init() {
@@ -476,7 +328,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_footer_font',
-				'default' => '#222222',
+				'default' => '',
 				'label'   => 'フッター文字色',
 			]
 		);
@@ -484,7 +336,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_footer_text_gray',
-				'default' => '#a7a7a7',
+				'default' => '',
 				'label'   => 'フッター文字色(グレー)',
 			]
 		);
@@ -558,7 +410,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_back_to_top_bg_color',
-				'default' => '#f1f1f3',
+				'default' => '',
 				'label'   => '先頭へ戻るボタン背景色',
 			]
 		);
@@ -566,7 +418,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_back_to_top_color',
-				'default' => '#222222',
+				'default' => '',
 				'label'   => '先頭へ戻るボタン文字色',
 			]
 		);
@@ -608,7 +460,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_mobile_footer_bg',
-				'default' => '#ffffff',
+				'default' => '',
 				'label'   => 'モバイルフッター背景色',
 			]
 		);
@@ -616,7 +468,7 @@ class Footer {
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_mobile_footer_text',
-				'default' => '#222222',
+				'default' => '',
 				'label'   => 'モバイルフッター文字色',
 			]
 		);

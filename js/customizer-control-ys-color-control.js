@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!*************************************************************!*\
-  !*** ./src/js/admin/customizer-control-ys-color-control.js ***!
-  \*************************************************************/
+/*!******************************************************************!*\
+  !*** ./src/scripts/admin/customizer-control-ys-color-control.js ***!
+  \******************************************************************/
 wp.customize.controlConstructor['ys-color-control'] = wp.customize.Control.extend({
   ready: function () {
     var control = this,

@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!**************************************!*\
-  !*** ./src/js/admin/search-icons.js ***!
-  \**************************************/
+/*!*******************************************!*\
+  !*** ./src/scripts/admin/search-icons.js ***!
+  \*******************************************/
 document.addEventListener('DOMContentLoaded', () => {
   const search = document.getElementById('icon-search');
   search.addEventListener('keyup', e => {

@@ -36,6 +36,14 @@ $breakpoints_setting: (
 		@content;
 	}
 }
+/**
+ * タブレットサイズ以下（iPad縦サイズまで）
+ */
+@mixin media-under-tablet() {
+	@include media-breakpoint-down(tablet,0) {
+		@content;
+	}
+}
 
 /**
  * デスクトップサイズ以上（iPad Pro縦サイズ〜）

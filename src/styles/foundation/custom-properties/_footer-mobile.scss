@@ -2,6 +2,14 @@
  * Mobile Footer
  */
 @mixin custom_properties() {
-	--ytsd--mobile-footer--text-color: var(--ystd--text-color);
-	--ystd--mobile-footer--background: #{rgba(#ffffff, 0.95)};
+	--ystd--mobile-footer-nav--text-color: var(--ystd--text-color);
+	--ystd--mobile-footer-nav--background: #{rgba(#ffffff, 0.95)};
+	--ystd--mobile-footer-nav--padding-x: 0;
+	--ystd--mobile-footer-nav--padding-y: 0.75em;
+	--ystd--mobile-footer-nav--gap: 0.25em;
+	--ystd--mobile-footer-nav--icon--size: 1.5em;
+	--ystd--mobile-footer-nav--description--font-size: 0.7em;
+	--ystd--mobile-footer-nav--description--line-height: 1.2;
+	// JSでモバイルフッター高さをいれる.
+	--ystd--mobile-footer-nav--footer-padding-bottom: 4em;
 }

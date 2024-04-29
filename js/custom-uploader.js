@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!*****************************************!*\
-  !*** ./src/js/admin/custom-uploader.js ***!
-  \*****************************************/
+/*!**********************************************!*\
+  !*** ./src/scripts/admin/custom-uploader.js ***!
+  \**********************************************/
 jQuery(document).ready($ => {
   let customUploader = null;
   const classSelected = 'is-selected';

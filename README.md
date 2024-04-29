@@ -32,10 +32,10 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [変更] クラシックテーマからハイブリッドテーマへの切り替え
 - [変更] 動作に必要なWordPressバージョンを6.5に引き上げ
 - [変更] 設定初期値変更
-  - 色を設定する項目の初期値を初期値なし（空白）に変更
-  - デザイン -> 投稿ページ -> ページレイアウト : 1カラムをデフォルトに変更
-  - デザイン -> 固定ページ -> ページレイアウト : 1カラムをデフォルトに変更
-  - デザイン -> アーカイブページ -> ページレイアウト : 1カラムをデフォルトに変更
+	- 色を設定する項目の初期値を初期値なし（空白）に変更
+	- デザイン -> 投稿ページ -> ページレイアウト : 1カラムをデフォルトに変更
+	- デザイン -> 固定ページ -> ページレイアウト : 1カラムをデフォルトに変更
+	- デザイン -> アーカイブページ -> ページレイアウト : 1カラムをデフォルトに変更
 - [削除] おすすめプラグイン機能廃止
 - [変更] CSSカスタムプロパティ名変更
 	- プレフィックスに`ystd`を追加
@@ -49,15 +49,16 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- `.footer-container`
 	- `.breadcrumbs-container`
 	- `.footer-mobile-nav-container`
-    - `.info-bar-container`
+	- `.info-bar-container`
 - [変更] カスタマイザー 「[ys]デザイン」-> 「フッター」 -> 「サブフッター上下余白」変更
 - [変更] カスタマイザーでの色設定の初期値を無し(空白)に変更
 - [変更] ファイル整理。変更内容は「v5.0.0 - ファイル移動表」を参照
-- [変更] 命名変更
+- [変更] クラス命変更
 	- `footer-sub` -> `sub-footer`：CSSクラス等に影響あり
 	- `footer-copy` -> `footer-copyright`：CSSクラス等に影響あり
 	- `global-nav__dscr` -> `global-nav__description`：CSSクラス等に影響あり
 	- `archive__dscr` -> `archive__description`：CSSクラス等に影響あり
+	- `footer-mobile-nav__dscr` -> `footer-mobile-nav__description`：CSSクラス等に影響あり
 - [変更] パンくずリストを404ページで表示しないように変更
 - [変更] アーカイブ：ページネーションを`archive__main`の外側に移動.
 - [追加] `/block-styles.json`からブロックスタイルを追加できる機能追加.
@@ -89,9 +90,9 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --font-color                     | --ystd--text-color                            |
 | --font-white                     | --ystd--text-color--white                     |
 | --font-gray                      | --ystd--text-color--gray                      |
-| --site-bg                        | --ystd--site--background                       |
-| --site-bg-gray                   | --ystd--site--background--gray                 |
-| --site-bg-light-gray             | --ystd--site--background--light-gray           |
+| --site-bg                        | --ystd--site--background                      |
+| --site-bg-gray                   | --ystd--site--background--gray                |
+| --site-bg-light-gray             | --ystd--site--background--light-gray          |
 | --site-border-gray               | --ystd--site--border-color--gray              |
 | --site-border-gray-light         | --ystd--site--border-color--light-gray        |
 | --link-text                      | --ystd--link--text-color                      |
@@ -132,8 +133,8 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --sub-footer-bg                  | --ystd--sub-footer--background                |
 | --sub-footer-text                | --ystd--sub-footer--text-color                |
 | --sub-footer-padding             | --ystd--sub-footer--padding                   |
-| --mobile-footer-text             | --ytsd--mobile-footer--text-color             |
-| --mobile-footer-bg               | --ystd--mobile-footer--background             |
+| --mobile-footer-text             | --ystd--mobile-footer-nav--text-color         |
+| --mobile-footer-bg               | --ystd--mobile-footer-nav--background         |
 | --form-text                      | --ystd--form--text-color                      |
 | --form-bg-white                  | --ystd--form--background                      |
 | --form-border-gray               | --ystd--form--border-color                    |
