@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!********************************************!*\
-  !*** ./src/js/admin/customizer-control.js ***!
-  \********************************************/
+/*!*************************************************!*\
+  !*** ./src/scripts/admin/customizer-control.js ***!
+  \*************************************************/
 (function ($) {
   wp.customize.bind('ready', function () {
     var customize = this;

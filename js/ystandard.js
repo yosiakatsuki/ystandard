@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/drawer-nav/index.ts":
-/*!************************************!*\
-  !*** ./src/js/drawer-nav/index.ts ***!
-  \************************************/
+/***/ "./src/scripts/drawer-nav/index.ts":
+/*!*****************************************!*\
+  !*** ./src/scripts/drawer-nav/index.ts ***!
+  \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -134,10 +134,45 @@ function toggleBodyScroll(target) {
 
 /***/ }),
 
-/***/ "./src/js/search-form/index.ts":
-/*!*************************************!*\
-  !*** ./src/js/search-form/index.ts ***!
-  \*************************************/
+/***/ "./src/scripts/mobile-footer/index.ts":
+/*!********************************************!*\
+  !*** ./src/scripts/mobile-footer/index.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   setMobileFooter: () => (/* binding */ setMobileFooter)
+/* harmony export */ });
+function setMobileFooter() {
+  let resizeTimer;
+  document.addEventListener('DOMContentLoaded', setMobileFooterPadding);
+  // リサイズイベントは間引く.
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setMobileFooterPadding, 300);
+  });
+}
+function setMobileFooterPadding() {
+  const mobileFooter = document.querySelector('.footer-mobile-nav');
+  let mobileFooterHeight = '0';
+  if (!mobileFooter) {
+    return;
+  }
+  // モバイルフッターが表示されている場合、高さをセットする.
+  if ('none' !== window.getComputedStyle(mobileFooter).display) {
+    mobileFooterHeight = mobileFooter.clientHeight + 'px';
+  }
+  // モバイルフッターの高さ分をセット.
+  document.body.style.setProperty('--ystd--mobile-footer-nav--footer-padding-bottom', mobileFooterHeight);
+}
+
+/***/ }),
+
+/***/ "./src/scripts/search-form/index.ts":
+/*!******************************************!*\
+  !*** ./src/scripts/search-form/index.ts ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -255,16 +290,19 @@ function setCloseSearch() {
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*****************************!*\
-  !*** ./src/js/ystandard.ts ***!
-  \*****************************/
+/*!**********************************!*\
+  !*** ./src/scripts/ystandard.ts ***!
+  \**********************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _drawer_nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./drawer-nav */ "./src/js/drawer-nav/index.ts");
-/* harmony import */ var _search_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-form */ "./src/js/search-form/index.ts");
+/* harmony import */ var _drawer_nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./drawer-nav */ "./src/scripts/drawer-nav/index.ts");
+/* harmony import */ var _search_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-form */ "./src/scripts/search-form/index.ts");
+/* harmony import */ var _mobile_footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mobile-footer */ "./src/scripts/mobile-footer/index.ts");
+
 
 
 (0,_drawer_nav__WEBPACK_IMPORTED_MODULE_0__.drawerNav)();
 (0,_search_form__WEBPACK_IMPORTED_MODULE_1__.setGlobalNavSearch)();
+(0,_mobile_footer__WEBPACK_IMPORTED_MODULE_2__.setMobileFooter)();
 })();
 
 /******/ })()

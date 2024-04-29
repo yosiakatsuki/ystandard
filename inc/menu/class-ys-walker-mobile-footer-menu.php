@@ -74,7 +74,7 @@ class YS_Walker_Mobile_Footer_Menu extends Walker_Nav_Menu {
 		$description = '';
 
 		if ( 0 === $depth && $item->description ) {
-			$description = '<span class="footer-mobile-nav__dscr">' . do_shortcode( $item->description ) . '</span>';
+			$description = '<span class="footer-mobile-nav__description">' . do_shortcode( $item->description ) . '</span>';
 		}
 
 		$before      = empty( $args->before ) ? '' : $args->before;

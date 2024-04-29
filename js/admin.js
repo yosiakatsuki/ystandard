@@ -1,8 +1,8 @@
 /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
-/*!*******************************!*\
-  !*** ./src/js/admin/admin.js ***!
-  \*******************************/
+/*!************************************!*\
+  !*** ./src/scripts/admin/admin.js ***!
+  \************************************/
 function copyClipboardForm(target) {
   const text = jQuery(target).prev();
   const info = jQuery(target).next();
