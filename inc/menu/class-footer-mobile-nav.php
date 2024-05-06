@@ -24,9 +24,22 @@ class Footer_Mobile_Nav {
 	 * Footer constructor.
 	 */
 	public function __construct() {
+		add_action( 'after_setup_theme', [ $this, 'register_nav_menus' ], 30 );
 		add_action( 'wp_footer', [ $this, 'footer_mobile_nav' ], 1 );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_mobile_footer_menu' ] );
 		add_filter( 'ys_get_inline_css', [ $this, 'add_footer_mobile_nav_css' ] );
+	}
+
+	/*
+	 * ナビゲーションメニューの登録
+	 */
+	public function register_nav_menus() {
+		register_nav_menus(
+			[
+				'mobile-footer'        => 'モバイルフッター',
+				'mobile-footer-tablet' => 'モバイルフッター(タブレットサイズ用)',
+			]
+		);
 	}
 
 	/**

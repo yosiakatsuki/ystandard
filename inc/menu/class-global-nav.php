@@ -24,9 +24,23 @@ class Global_Nav {
 	 * Global_Nav constructor.
 	 */
 	public function __construct() {
+		add_action( 'after_setup_theme', [ $this, 'register_nav_menus' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'css_vars' ] );
 		add_action( 'wp_footer', [ $this, 'global_nav_search' ] );
+	}
+
+	/**
+	 * ナビゲーションメニューの登録
+	 *
+	 * @return void
+	 */
+	public function register_nav_menus() {
+		register_nav_menus(
+			[
+				'global' => 'グローバルナビゲーション',
+			]
+		);
 	}
 
 	/**

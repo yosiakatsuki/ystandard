@@ -57,14 +57,6 @@ class Init {
 		add_theme_support( 'automatic-feed-links' );
 		// タイトル出力.
 		add_theme_support( 'title-tag' );
-		// メニュー有効化.
-		register_nav_menus(
-			[
-				'global'        => 'グローバルナビゲーション',
-				'footer'        => 'フッターメニュー',
-				'mobile-footer' => 'モバイルフッター',
-			]
-		);
 		// HTML5.
 		add_theme_support(
 			'html5',
