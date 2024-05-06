@@ -25,12 +25,26 @@ class Footer {
 	 * Footer constructor.
 	 */
 	public function __construct() {
+		add_action( 'after_setup_theme', [ $this, 'register_nav_menus' ], 20 );
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
 		add_action( 'wp_footer', [ $this, 'back_to_top' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_main' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_sub' ] );
 		add_filter( 'ys_get_inline_css', [ $this, 'add_back_to_top_css' ] );
+	}
+
+	/**
+	 * ナビゲーションメニューの登録
+	 *
+	 * @return void
+	 */
+	public function register_nav_menus() {
+		register_nav_menus(
+			[
+				'footer' => 'フッターメニュー',
+			]
+		);
 	}
 
 	/**
@@ -160,7 +174,6 @@ class Footer {
 
 		return $css;
 	}
-
 
 
 	/**
