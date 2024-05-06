@@ -57,18 +57,6 @@ class Init {
 		add_theme_support( 'automatic-feed-links' );
 		// タイトル出力.
 		add_theme_support( 'title-tag' );
-		// HTML5.
-		add_theme_support(
-			'html5',
-			[
-				'navigation-widgets',
-				'search-form',
-				'comment-form',
-				'comment-list',
-				'gallery',
-				'caption',
-			]
-		);
 		// カスタムロゴ.
 		add_theme_support(
 			'custom-logo',
@@ -103,22 +91,10 @@ class Init {
 		add_filter( 'widget_text', 'do_shortcode' );
 		// テーマカスタマイザーでウィジェットの編集をしやすくする.
 		add_theme_support( 'customize-selective-refresh-widgets' );
-		// ブロックエディターサポート.
-		add_theme_support( 'wp-block-styles' );
-		// 幅広画像のサポート.
-		add_theme_support( 'align-wide' );
 		// レスポンシブ.
 		add_theme_support( 'responsive-embeds' );
-		// line-height(5.5~).
-		add_theme_support( 'custom-line-height' );
-		// カバーブロックの高さ単位(5.5~).
-		add_theme_support( 'custom-units', 'px', 'rem', 'em', 'percentages', 'vh', 'vw' );
-		// カスタム余白(5.6~).
-		add_theme_support( 'custom-spacing' );
 		// 固定ページで抜粋を有効化.
 		add_post_type_support( 'page', 'excerpt' );
-		// Appearance Tools(6.1~).
-		add_theme_support( 'appearance-tools' );
 	}
 
 	/**
