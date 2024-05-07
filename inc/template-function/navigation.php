@@ -59,3 +59,32 @@ function ys_is_active_header_search_form() {
 function ys_global_nav_toggle_button( $args = [] ) {
 	echo \ystandard\Drawer_Menu::get_toggle_button( $args );
 }
+
+/**
+ * モバイルフッターナビゲーションを出力
+ *
+ * @return void
+ */
+function ys_the_mobile_footer_menu() {
+	echo \ystandard\Footer_Mobile_Nav::the_mobile_footer_menu();
+}
+
+/**
+ * モバイルフッターナビゲーションを表示するか.
+ *
+ * @return bool
+ */
+function ys_show_footer_mobile_nav() {
+	return \ystandard\Footer_Mobile_Nav::show_footer_mobile_nav();
+}
+
+/**
+ * モバイルフッターCSSクラス出力
+ *
+ * @return void
+ */
+function ys_the_mobile_footer_classes() {
+	echo \ystandard\Footer_Mobile_Nav::the_mobile_footer_classes();
+}
+
+

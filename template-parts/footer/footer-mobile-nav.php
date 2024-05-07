@@ -9,23 +9,12 @@
 
 defined( 'ABSPATH' ) || die();
 
-if ( ! has_nav_menu( 'mobile-footer' ) ) {
+if ( ! ys_show_footer_mobile_nav() ) {
 	return;
 }
 ?>
-<nav id="footer-mobile-nav" class="footer-mobile-nav">
+<nav id="footer-mobile-nav" class="<?php ys_the_mobile_footer_classes(); ?>">
 	<div class="footer-mobile-nav-container">
-		<?php
-		wp_nav_menu(
-			[
-				'theme_location' => 'mobile-footer',
-				'menu_class'     => 'mobile-footer-nav__list',
-				'container'      => false,
-				'fallback_cb'    => '',
-				'depth'          => 1,
-				'walker'         => new YS_Walker_Mobile_Footer_Menu(),
-			]
-		);
-		?>
+		<?php ys_the_mobile_footer_menu(); ?>
 	</div>
 </nav>
