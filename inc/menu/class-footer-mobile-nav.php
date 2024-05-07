@@ -36,10 +36,48 @@ class Footer_Mobile_Nav {
 	public function register_nav_menus() {
 		register_nav_menus(
 			[
-				'mobile-footer'        => 'モバイルフッター',
-				'mobile-footer-tablet' => 'モバイルフッター(タブレットサイズ用)',
+				'mobile-footer' => 'モバイルフッター',
 			]
 		);
+
+		// モバイルフッターの登録があればタブレット用も用意.
+		if ( has_nav_menu( 'mobile-footer' ) ) {
+			register_nav_menus(
+				[
+					'mobile-footer-tablet' => 'モバイルフッター(タブレットサイズ用)',
+				]
+			);
+		}
+	}
+
+	public static function the_mobile_footer_menu() {
+		$result = wp_nav_menu(
+			[
+				'theme_location' => 'mobile-footer',
+				'menu_class'     => 'mobile-footer-nav__list',
+				'container'      => false,
+				'fallback_cb'    => '',
+				'depth'          => 1,
+				'walker'         => new \YS_Walker_Mobile_Footer_Menu(),
+				'echo'           => false,
+			]
+		);
+		// タブレット用メニューがある場合.
+		if ( has_nav_menu( 'mobile-footer-tablet' ) ) {
+			$result .= wp_nav_menu(
+				[
+					'theme_location' => 'mobile-footer-tablet',
+					'menu_class'     => 'mobile-footer-nav__list is-tablet',
+					'container'      => false,
+					'fallback_cb'    => '',
+					'depth'          => 1,
+					'walker'         => new \YS_Walker_Mobile_Footer_Menu(),
+					'echo'           => false,
+				]
+			);
+		}
+
+		return apply_filters( 'ys_the_mobile_footer_menu', $result );
 	}
 
 	/**
@@ -52,11 +90,31 @@ class Footer_Mobile_Nav {
 
 		$result = Convert::to_bool( apply_filters( 'ys_show_footer_mobile_nav', $result ) );
 
+		// ウォジェットプレビューの場合は表示しない.
 		if ( Widget::is_legacy_widget_preview() ) {
 			$result = false;
 		}
 
 		return $result;
+	}
+
+
+	/**
+	 * モバイルフッターメニュー用CSSクラス取得.
+	 *
+	 * @return string
+	 */
+	public static function the_mobile_footer_classes() {
+		$tablet  = has_nav_menu( 'mobile-footer-tablet' );
+		$classes = [ 'footer-mobile-nav' ];
+
+		if ( $tablet ) {
+			$classes[] = 'has-footer-mobile-nav--tablet';
+		}
+
+		$classes = apply_filters( 'ys_the_mobile_footer_classes', implode( ' ', $classes ) );
+
+		return esc_attr( $classes );
 	}
 
 	/**
