@@ -97,47 +97,57 @@
 			"blockGap" : true,
 			"spacingSizes": [
 				{
-					"size": "clamp(0.313rem, 0.132rem + 0.77vw, 0.625rem)",
+					"size": "clamp(0.313rem, 0.17rem + 0.61vw, 0.625rem)",
 					"slug": "10",
 					"name": "10px"
 				},
 				{
-					"size": "clamp(0.625rem, 0.264rem + 1.54vw, 1.25rem)",
+					"size": "clamp(0.625rem, 0.341rem + 1.21vw, 1.25rem)",
 					"slug": "20",
 					"name": "20px"
 				},
 				{
-					"size": "clamp(0.938rem, 0.396rem + 2.31vw, 1.875rem)",
+					"size": "clamp(0.938rem, 0.511rem + 1.82vw, 1.875rem)",
 					"slug": "30",
 					"name": "30px"
 				},
 				{
-					"size": "clamp(1.25rem, 0.528rem + 3.08vw, 2.5rem)",
+					"size": "clamp(1.25rem, 0.682rem + 2.42vw, 2.5rem)",
 					"slug": "40",
 					"name": "40px"
 				},
 				{
-					"size": "clamp(1.563rem, 0.66rem + 3.85vw, 3.125rem)",
+					"size": "clamp(1.563rem, 0.852rem + 3.03vw, 3.125rem)",
 					"slug": "50",
 					"name": "50px"
 				},
 				{
-					"size": "clamp(1.875rem, 0.792rem + 4.62vw, 3.75rem)",
+					"size": "clamp(1.875rem, 1.023rem + 3.64vw, 3.75rem)",
 					"slug": "60",
 					"name": "60px"
 				},
 				{
-					"size": "clamp(2.188rem, 0.924rem + 5.39vw, 4.375rem)",
+					"size": "clamp(2.188rem, 1.193rem + 4.24vw, 4.375rem)",
 					"slug": "70",
 					"name": "70px"
 				},
 				{
-					"size": "clamp(2.5rem, 1.055rem + 6.16vw, 5rem)",
+					"size": "clamp(2.5rem, 1.364rem + 4.85vw, 5rem)",
 					"slug": "80",
 					"name": "80px"
 				},
 				{
-					"size": "clamp(3.75rem, 1.583rem + 9.24vw, 7.5rem)",
+					"size": "clamp(2.813rem, 1.534rem + 5.45vw, 5.625rem)",
+					"slug": "90",
+					"name": "90px"
+				},
+				{
+					"size": "clamp(3.125rem, 1.705rem + 6.06vw, 6.25rem)",
+					"slug": "100",
+					"name": "100px"
+				},
+				{
+					"size": "clamp(3.75rem, 2.045rem + 7.27vw, 7.5rem)",
 					"slug": "120",
 					"name": "120px"
 				}
