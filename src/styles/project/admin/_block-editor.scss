@@ -5,25 +5,25 @@
  */
 body,
 .editor-post-title__block .editor-post-title__input {
-  background-color: var(--ystd--site--background);
-  color: var(--ystd--text-color);
-  font-family: var(--ystd--font-family);
-  line-height: var(--ystd--line-height);
-  letter-spacing: var(--ystd--letter-spacing);
-  word-wrap: break-word;
+	background-color: var(--wp--custom--ystd--editor--background, var(--ystd--site--background));
+	color: var(--wp--custom--ystd--editor--text-color, var(--ystd--text-color));
+	font-family: var(--wp--custom--ystd--editor--font-family, var(--ystd--font-family));
+	line-height: var(--wp--custom--ystd--editor--line-height, var(--ystd--line-height));
+	letter-spacing: var(--wp--custom--ystd--editor--letter-spacing, var(--ystd--letter-spacing));
+	word-wrap: break-word;
 
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
 }
 
 body {
-  font-size: 16px;
+	font-size: var(--wp--custom--ystd--editor--font-size, 16px);
 }
 
 .editor-post-title__block .editor-post-title__input {
-  font-size: 1.4em;
-  resize: none;
+	font-size: var(--wp--custom--ystd--editor--title--font-size, 1.4em);
+	resize: none;
 }
 
 //.block-editor-block-list__layout.is-root-container > .wp-block[data-align=full] .alignfull {
@@ -38,49 +38,49 @@ body {
  */
 h1,
 h2 {
-  font-size: global.get_font_size("xx-large");
+	font-size: global.get_font_size("xx-large");
 }
 
 h3 {
-  font-size: global.get_font_size("x-large");
+	font-size: global.get_font_size("x-large");
 }
 
 h4 {
-  font-size: 1.4em;
+	font-size: 1.4em;
 }
 
 h5,
 h6 {
-  font-size: 1.3em;
+	font-size: 1.3em;
 }
 
 /**
  * 画像
  */
 img {
-  max-width: 100%;
-  height: auto;
+	max-width: 100%;
+	height: auto;
 }
 
 .wp-block-image {
-  &.is-resized {
-	display: block !important;
+	&.is-resized {
+		display: block !important;
 
-	.block-editor-rich-text {
-	  display: block !important;
+		.block-editor-rich-text {
+			display: block !important;
+		}
+
+		> figcaption {
+			display: block !important;
+		}
 	}
 
-	> figcaption {
-	  display: block !important;
+	.components-resizable-box__container {
+		max-width: 100% !important;
+		height: auto !important;
 	}
-  }
-
-  .components-resizable-box__container {
-	max-width: 100% !important;
-	height: auto !important;
-  }
 }
 
 .block-list-appender {
-  margin-top: 0 !important;
+	margin-top: 0 !important;
 }
