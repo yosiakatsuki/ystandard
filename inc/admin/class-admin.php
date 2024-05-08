@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\helper\Style_Sheet;
 use ystandard\utils\CSS;
 use ystandard\utils\Theme;
 
@@ -35,8 +34,8 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_styles' ] );
 		add_action( 'admin_init', [ $this, 'enqueue_visual_editor_styles' ] );
 		add_action( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ] );
-		Notice::set_notice( [ $this, 'widget_manual' ] );
-		Notice::set_notice( [ $this, 'menu_manual' ] );
+		Admin_Notice::set_notice( [ $this, 'widget_manual' ] );
+		Admin_Notice::set_notice( [ $this, 'menu_manual' ] );
 	}
 
 	/**
@@ -46,7 +45,7 @@ class Admin {
 		global $pagenow;
 		$manual = self::manual_link( 'manual_category/menu' );
 		if ( 'nav-menus.php' === $pagenow && ! empty( $manual ) ) {
-			Notice::manual( $manual );
+			Admin_Notice::manual( $manual );
 		}
 	}
 
@@ -57,7 +56,7 @@ class Admin {
 		global $pagenow;
 		$manual = self::manual_link( 'manual/widget-area' );
 		if ( 'widgets.php' === $pagenow && ! empty( $manual ) ) {
-			Notice::manual( $manual );
+			Admin_Notice::manual( $manual );
 		}
 	}
 

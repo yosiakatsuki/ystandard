@@ -45,7 +45,7 @@ if ( ! ys_has_global_nav() ) {
 		 * グローバルナビゲーション（共通）・ドロワーメニュー　メニュー直前のフック
 		 *
 		 * ドロワーメニュー内の検索フォーム出力はアクションフックで出力
-		 * @see inc/menu/class-drawer-menu.php
+		 * @see inc/navigation/class-drawer-menu.php
 		 */
 		do_action( 'ys_before_global_nav_menu' );
 		do_action( 'ys_before_drawer_nav_menu' );

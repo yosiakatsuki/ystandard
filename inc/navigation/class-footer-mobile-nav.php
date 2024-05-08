@@ -36,16 +36,16 @@ class Footer_Mobile_Nav {
 	public function register_nav_menus() {
 		register_nav_menus(
 			[
-				'mobile-footer' => 'モバイルフッター',
+				'mobile-footer'        => 'モバイルフッター',
+				'mobile-footer-tablet' => 'モバイルフッター(タブレットサイズ用)',
 			]
 		);
-
-		// モバイルフッターの登録があればタブレット用も用意.
-		if ( has_nav_menu( 'mobile-footer' ) ) {
-			register_nav_menus(
-				[
-					'mobile-footer-tablet' => 'モバイルフッター(タブレットサイズ用)',
-				]
+		// メニュー不整合チェック.
+		if ( ! has_nav_menu( 'mobile-footer' ) && has_nav_menu( 'mobile-footer-tablet' ) ) {
+			Admin_Notice::set_notice(
+				function () {
+					Admin_Notice::warning( '「モバイルフッター(タブレットサイズ用)」を利用するためには「モバイルフッター」を設定する必要があります。' );
+				}
 			);
 		}
 	}

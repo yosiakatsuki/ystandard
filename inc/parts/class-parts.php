@@ -63,7 +63,7 @@ class Parts {
 		 * ウィジェット
 		 */
 		add_action( 'widgets_init', [ $this, 'register_widget' ] );
-		Notice::set_notice( [ $this, 'manual' ] );
+		Admin_Notice::set_notice( [ $this, 'manual' ] );
 	}
 
 	/**
@@ -74,7 +74,7 @@ class Parts {
 		$post_type = Content::get_post_type();
 		$manual    = Admin::manual_link( 'manual/ys-parts' );
 		if ( 'edit.php' === $pagenow && Parts::POST_TYPE === $post_type ) {
-			Notice::manual( $manual );
+			Admin_Notice::manual( $manual );
 		}
 	}
 
