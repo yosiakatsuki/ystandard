@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || die();
  *
  * @package ystandard
  */
-class Notice {
+class Admin_Notice {
 
 	/**
 	 * アクション名
@@ -26,9 +26,9 @@ class Notice {
 	/**
 	 * アクションのセット
 	 *
-	 * @param string|array $function      Function.
-	 * @param int          $priority      Priority.
-	 * @param int          $accepted_args Args.
+	 * @param string|array|callable $function Function.
+	 * @param int $priority Priority.
+	 * @param int $accepted_args Args.
 	 */
 	public static function set_notice( $function, $priority = 10, $accepted_args = 1 ) {
 		add_action( self::ACTION, $function, $priority, $accepted_args );
@@ -37,12 +37,12 @@ class Notice {
 	/**
 	 * 管理画面通知
 	 *
-	 * @param string  $content notice content.
-	 * @param string  $type    type.
-	 * @param boolean $echo    echo.
+	 * @param string $content notice content.
+	 * @param string $type type.
+	 * @param boolean $echo echo.
 	 */
 	public static function notice( $content, $type = 'error', $echo = true ) {
-		$notice = "<div class=\"notice notice-{$type} is-dismissible\">{$content}</div>";
+		$notice = "<div class=\"ys-notice notice notice-{$type} is-dismissible\">{$content}</div>";
 		if ( $echo ) {
 			echo $notice;
 
@@ -55,8 +55,8 @@ class Notice {
 	/**
 	 * 管理画面通知 - 完了
 	 *
-	 * @param string  $content notice content.
-	 * @param boolean $echo    echo.
+	 * @param string $content notice content.
+	 * @param boolean $echo echo.
 	 */
 	public static function success( $content, $echo = true ) {
 		return self::notice( $content, 'success', $echo );
@@ -65,8 +65,8 @@ class Notice {
 	/**
 	 * 管理画面通知 - お知らせ
 	 *
-	 * @param string  $content notice content.
-	 * @param boolean $echo    echo.
+	 * @param string $content notice content.
+	 * @param boolean $echo echo.
 	 */
 	public static function info( $content, $echo = true ) {
 		return self::notice( $content, 'info', $echo );
@@ -75,8 +75,8 @@ class Notice {
 	/**
 	 * 管理画面通知 - 警告
 	 *
-	 * @param string  $content notice content.
-	 * @param boolean $echo    echo.
+	 * @param string $content notice content.
+	 * @param boolean $echo echo.
 	 */
 	public static function warning( $content, $echo = true ) {
 		return self::notice( $content, 'warning', $echo );
@@ -85,8 +85,8 @@ class Notice {
 	/**
 	 * 管理画面通知 - エラー
 	 *
-	 * @param string  $content notice content.
-	 * @param boolean $echo    echo.
+	 * @param string $content notice content.
+	 * @param boolean $echo echo.
 	 */
 	public static function error( $content, $echo = true ) {
 		return self::notice( $content, 'error', $echo );
@@ -98,7 +98,7 @@ class Notice {
 	 * @param string $content notice content.
 	 */
 	public static function manual( $content ) {
-		echo "<div class=\"notice notice-manual\">{$content}</div>";
+		echo "<div class=\"ys-notice notice notice-manual\">{$content}</div>";
 	}
 
 	/**
@@ -107,7 +107,7 @@ class Notice {
 	 * @param string $content notice content.
 	 */
 	public static function plain( $content ) {
-		echo "<div class=\"notice\">{$content}</div>";
+		echo "<div class=\"ys-notice notice notice-plain\">{$content}</div>";
 	}
 
 }

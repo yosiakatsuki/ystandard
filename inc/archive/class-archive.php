@@ -9,6 +9,7 @@
 
 namespace ystandard;
 
+use admin;
 use ystandard\utils\Sanitize;
 
 defined( 'ABSPATH' ) || die();
@@ -485,7 +486,7 @@ class Archive {
 		$customizer->add_label(
 			[
 				'id'              => 'ys_archive_type_simple_select_warning',
-				'description'     => Notice::warning( '※選択したレイアウト(シンプル)はβ版機能となります。', false ),
+				'description'     => Admin_Notice::warning( '※選択したレイアウト(シンプル)はβ版機能となります。', false ),
 				'active_callback' => function () {
 					return ! $this->is_archive_type_not_simple();
 				},

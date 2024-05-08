@@ -48,7 +48,7 @@ ys_global_nav_toggle_button();
 	 * 検索フォームのHTMLは</body>直前にフックで出力される
 	 *
 	 * @see template-parts/navigation/global-nav-search-form.php 検索フォームHTML
-	 * @see inc/menu/class-global-nav.php フック関連
+	 * @see inc/navigation/class-global-nav.php フック関連
 	 *
 	 */
 	if ( ys_is_active_header_search_form() ) :

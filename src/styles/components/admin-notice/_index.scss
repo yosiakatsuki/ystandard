@@ -1,0 +1,28 @@
+.ys-notice:not(.notice-manual):not(.notice-plain) {
+	padding-top: .75em;
+	padding-bottom: .75em;
+}
+
+.notice + .notice {
+	margin-top: .75em !important;
+}
+
+.ys-notice.notice-manual {
+	background: none;
+	border: 0;
+	box-shadow: none;
+	margin: 0.5em 0;
+	padding: 0;
+
+	p {
+		margin: .5em 0 0;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+}
+
+.wp-header-end + .ys-notice.notice-manual {
+	margin-top: 0;
+}
