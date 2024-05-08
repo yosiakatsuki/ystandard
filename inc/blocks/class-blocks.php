@@ -73,6 +73,8 @@ class Blocks {
 	 */
 	private function enqueue_block_styles( $dir ) {
 		foreach ( glob( "{$dir}/*", GLOB_ONLYDIR ) as $dir_path ) {
+			// 命名規則：{namespace}__{block-name}/{block-name}.cssにする.
+			// 例：core__gallery/gallery.css.
 			$block        = $this->parse_block_name( basename( $dir_path ) );
 			$block_name   = $block['namespace'] . '/' . $block['name'];
 			$style_handle = "ystd-$block_name";
@@ -95,6 +97,12 @@ class Blocks {
 							'deps'   => [ 'global-styles' ],
 						]
 					);
+					// エディター側にも読み込み。エディター側専用は -editor.css で.
+					$this->enqueue_block_editor_styles[] = [
+						'handle' => "{$style_handle}",
+						'src'    => $style_src,
+						'path'   => $theme_css_path,
+					];
 				} else {
 					$this->enqueue_styles[] = [
 						'handle' => $style_handle,
