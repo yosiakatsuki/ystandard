@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use admin;
 use ystandard\utils\Sanitize;
 
 defined( 'ABSPATH' ) || die();
