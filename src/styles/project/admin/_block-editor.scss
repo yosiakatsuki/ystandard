@@ -33,6 +33,10 @@ body {
 //  padding-left: 0;
 //}
 
+:where(h1,h2,h3,h4,h5,h6) {
+	font-family: var(--wp--custom--ystd--editor--heading-font-family, var(--ystd--font-family));
+}
+
 /**
  * 見出し
  */
