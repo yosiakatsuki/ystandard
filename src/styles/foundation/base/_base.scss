@@ -33,7 +33,6 @@ body {
 
 :where(h1) {
 	font-size: var(--ystd--headline--font-size--h1);
-	//font-size: global.get_font_size("x-large");
 }
 
 :where(h2) {

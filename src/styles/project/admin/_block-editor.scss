@@ -1,8 +1,6 @@
 @use "../../global";
 
-/**
- * 基本
- */
+// エディター全体のスタイル
 body,
 .editor-post-title__block .editor-post-title__input {
 	background-color: var(--wp--custom--ystd--editor--background, var(--ystd--site--background));
@@ -17,74 +15,53 @@ body,
 	text-rendering: optimizeLegibility;
 }
 
+// 本文のスタイル
 body {
 	font-size: var(--wp--custom--ystd--editor--font-size, 16px);
 }
 
+// タイトル入力欄
 .editor-post-title__block .editor-post-title__input {
 	font-size: var(--wp--custom--ystd--editor--title--font-size, 1.4em);
 	resize: none;
 }
 
-//.block-editor-block-list__layout.is-root-container > .wp-block[data-align=full] .alignfull {
-//  margin-right: 0;
-//  margin-left: 0;
-//  padding-right: 0;
-//  padding-left: 0;
-//}
-
+// 見出し関連
 :where(h1,h2,h3,h4,h5,h6) {
 	font-family: var(--wp--custom--ystd--editor--heading-font-family, var(--ystd--font-family));
 }
-
-/**
- * 見出し
- */
-h1,
-h2 {
-	font-size: global.get_font_size("xx-large");
+:where(h1:not(.editor-post-title),h2,h3,h4,h5,h6) {
+	margin-top: var(--ystd--headline--default--padding-top);
+	margin-bottom: var(--ystd--headline--default--padding-bottom);
+	padding: 0;
+	line-height: var(--ystd--headline--line-height);
+	letter-spacing: var(--ystd--headline--letter-spacing);
 }
 
-h3 {
-	font-size: global.get_font_size("x-large");
+:where(h1+h2,h2+h3,h3+h4,h4+h5,h5+h6) {
+	margin-top: var(--ystd--layout-gap);
 }
 
-h4 {
-	font-size: 1.4em;
+:where(h1:not(.editor-post-title)) {
+	font-size: var(--ystd--headline--font-size--h1);
 }
 
-h5,
-h6 {
-	font-size: 1.3em;
+:where(h2) {
+	font-size: var(--ystd--headline--font-size--h2);
 }
 
-/**
- * 画像
- */
-img {
-	max-width: 100%;
-	height: auto;
+:where(h3) {
+	font-size: var(--ystd--headline--font-size--h3);
 }
 
-.wp-block-image {
-	&.is-resized {
-		display: block !important;
-
-		.block-editor-rich-text {
-			display: block !important;
-		}
-
-		> figcaption {
-			display: block !important;
-		}
-	}
-
-	.components-resizable-box__container {
-		max-width: 100% !important;
-		height: auto !important;
-	}
+:where(h4) {
+	font-size: var(--ystd--headline--font-size--h4);
 }
 
-.block-list-appender {
-	margin-top: 0 !important;
+:where(h5) {
+	font-size: var(--ystd--headline--font-size--h5);
+}
+
+:where(h6) {
+	font-size: var(--ystd--headline--font-size--h6);
 }
