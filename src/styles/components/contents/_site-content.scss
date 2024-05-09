@@ -17,12 +17,13 @@ body:where(.is-wide) {
 		--wp--style--global--content-size: var(--ystd--container--width);
 	}
 }
+
 /**
  * タイトルなし
  */
 body:where(.no-title) {
 	:where(.site-content) {
-		padding-top: 0;
+		--ystd--site-content--padding: 0;
 	}
 }
 
