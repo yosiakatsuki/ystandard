@@ -3,7 +3,7 @@
 .wp-block-image {
   margin-bottom: 0;
 
-  figcaption {
+	:where(figcaption) {
 	padding: 0 .5em .5em;
 	margin: 0;
 	font-size: .8em;
@@ -17,19 +17,6 @@
 
 	+ .wp-block-image.alignfull {
 	  margin-top: 0;
-	}
-  }
-}
-
-body,
-.has-sidebar .site-content {
-  @media (min-width: 1px) {
-	.wp-block-image {
-	  &.alignwide,
-	  &.alignfull {
-		padding-right: 0;
-		padding-left: 0;
-	  }
 	}
   }
 }
