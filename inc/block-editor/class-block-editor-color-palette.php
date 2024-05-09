@@ -125,9 +125,9 @@ class Block_Editor_Color_Palette {
 	/**
 	 * カラーパレット用CSS作成
 	 *
-	 * @param string $slug   Slug.
-	 * @param string $color  Color.
-	 * @param array  $args   Args.
+	 * @param string $slug Slug.
+	 * @param string $color Color.
+	 * @param array $args Args.
 	 * @param string $prefix CSS Prefix.
 	 *
 	 * @return string
@@ -198,17 +198,31 @@ class Block_Editor_Color_Palette {
 	}
 
 	/**
-	 * 色設定の定義
+	 * theme.jsonのカラーパレット取得
+	 *
+	 * @return array
+	 */
+	public static function get_color_palette() {
+		$color_palette = self::get_color_palette_from_theme_json();
+
+		return apply_filters( 'ys_editor_color_palette', $color_palette );
+
+	}
+
+	/**
+	 * TODO:カスタマイザーの色定義をteheme.jsonの情報にマージする
+	 * wp_theme_json_data_themeを使う
 	 *
 	 * @param bool $all ユーザー定義追加.
 	 *
 	 * @return array
 	 */
-	public static function get_color_palette( $all = true ) {
-		$color_palette   = [];
-		$default_palette = self::get_color_palette_default();
+	public static function get_color_palette_temp( $all = true ) {
+		$color_palette = [];
+		$theme_palette = self::get_color_palette_from_theme_json();
 
-		foreach ( $default_palette as $default ) {
+		foreach ( $theme_palette as $default ) {
+			// カスタマイザーでの変更内容をマージ
 			$color           = Option::get_option(
 				"ys-color-palette-{$default['slug']}",
 				$default['default']
@@ -247,141 +261,22 @@ class Block_Editor_Color_Palette {
 	}
 
 	/**
-	 * カラーパレットのデフォルト色を取得.
-	 *
-	 * @param string $name Color Name.
-	 *
-	 * @return string
-	 */
-	public static function get_color_palette_default_color( $name ) {
-		$default = self::get_color_palette_default();
-		if ( ! isset( $default[ $name ] ) ) {
-			return '';
-		}
-
-		return $default[ $name ]['default'];
-	}
-
-	/**
-	 * カラーパレットのデフォルト値
+	 * theme.jsonからカラーパレット取得
 	 *
 	 * @return array
 	 */
-	public static function get_color_palette_default() {
-		return [
-			'blue'         => [
-				'name'        => _x( 'Blue', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-blue',
-				'color'       => '',
-				'default'     => '#07689f',
-				'description' => '',
-			],
-			'light-blue'   => [
-				'name'        => _x( 'Light Blue', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-light-blue',
-				'color'       => '',
-				'default'     => '#ceecfd',
-				'description' => '',
-			],
-			'red'          => [
-				'name'        => _x( 'Red', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-red',
-				'color'       => '',
-				'default'     => '#ae3b43',
-				'description' => '',
-			],
-			'light-red'    => [
-				'name'        => _x( 'Pink', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-light-red',
-				'color'       => '',
-				'default'     => '#f2d9db',
-				'description' => '',
-			],
-			'green'        => [
-				'name'        => _x( 'Green', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-green',
-				'color'       => '',
-				'default'     => '#007660',
-				'description' => '',
-			],
-			'light-green'  => [
-				'name'        => _x( 'Light Green', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-light-green',
-				'color'       => '',
-				'default'     => '#c8eae4',
-				'description' => '',
-			],
-			'yellow'       => [
-				'name'        => _x( 'Yellow', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-yellow',
-				'color'       => '',
-				'default'     => '#e29e21',
-				'description' => '',
-			],
-			'light-yellow' => [
-				'name'        => _x( 'Light Yellow', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-light-yellow',
-				'color'       => '',
-				'default'     => '#ffedcc',
-				'description' => '',
-			],
-			'orange'       => [
-				'name'        => _x( 'Orange', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-orange',
-				'color'       => '',
-				'default'     => '#dc760a',
-				'description' => '',
-			],
-			'light-orange' => [
-				'name'        => _x( 'Light Orange', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-light-orange',
-				'color'       => '',
-				'default'     => '#fdebd8',
-				'description' => '',
-			],
-			'purple'       => [
-				'name'        => _x( 'Purple', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-purple',
-				'color'       => '',
-				'default'     => '#711593',
-				'description' => '',
-			],
-			'light-purple' => [
-				'name'        => _x( 'Light Purple', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-light-purple',
-				'color'       => '',
-				'default'     => '#f6e3fd',
-				'description' => '',
-			],
-			'gray'         => [
-				'name'        => _x( 'Gray', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-gray',
-				'color'       => '',
-				'default'     => '#656565',
-				'description' => '',
-			],
-			'light-gray'   => [
-				'name'        => _x( 'Light Gray', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-light-gray',
-				'color'       => '',
-				'default'     => '#f1f1f3',
-				'description' => '',
-			],
-			'black'        => [
-				'name'        => _x( 'Black', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-black',
-				'color'       => '',
-				'default'     => '#222222',
-				'description' => '',
-			],
-			'white'        => [
-				'name'        => _x( 'White', 'color-palette', 'ystandard' ),
-				'slug'        => 'ys-white',
-				'color'       => '',
-				'default'     => '#ffffff',
-				'description' => '',
-			],
-		];
+	public static function get_color_palette_from_theme_json() {
+		$theme_json    = \WP_Theme_JSON_Resolver::get_merged_data();
+		$settings      = $theme_json->get_settings();
+		$color_palette = [];
+		// defaultとthemeに分かれているのでマージ.
+		if ( ! empty( $settings['color']['palette'] ) ) {
+			foreach ( $settings['color']['palette'] as $colors ) {
+				$color_palette = array_merge( $color_palette, $colors );
+			}
+		}
+
+		return $color_palette;
 	}
 
 	/**
