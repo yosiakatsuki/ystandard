@@ -73,7 +73,8 @@ body {
 
 	:where(img,video,iframe) {
 		display: block;
-		margin: 0 auto;
+		margin-top: 0;
+		margin-bottom: 0;
 	}
 }
 
