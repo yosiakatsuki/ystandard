@@ -94,7 +94,7 @@ class Blocks {
 							'src'    => $style_src,
 							'ver'    => filemtime( $theme_css_path ),
 							'path'   => $theme_css_path,
-							'deps'   => [ 'global-styles' ],
+							'deps'   => [ 'global-styles', 'ystandard' ],
 						]
 					);
 					// エディター側にも読み込み。エディター側専用は -editor.css で.
