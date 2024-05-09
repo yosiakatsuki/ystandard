@@ -1,0 +1,6 @@
+@use "../../styles/global";
+@use "sass:meta";
+
+div.editor-styles-wrapper {
+	@include meta.load-css('paragraph');
+}

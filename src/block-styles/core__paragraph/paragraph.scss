@@ -1,17 +1,22 @@
 @use "../../styles/global";
 
 body {
-  p.has-background {
-	padding: 1em 1.5em;
-  }
+	p.has-background {
+		padding: 1em 1.5em;
+	}
 
-  .has-drop-cap:not(:focus):first-letter {
-	margin-right: 0.05em;
-	font-size: 3em;
-	font-weight: var(--ystd--font-weight--normal);
-	vertical-align: 1em;
-	line-height: 1;
-	text-transform: uppercase
-  }
+	.has-drop-cap:not(:focus):first-letter {
+		margin-right: 0.05em;
+		font-size: 3em;
+		font-weight: var(--ystd--font-weight--normal);
+		vertical-align: 1em;
+		line-height: 1;
+		text-transform: uppercase
+	}
 }
 
+:where(p[style*="text-decoration:none"],p[style*="text-decoration: none"]) {
+	> a {
+		text-decoration: none;
+	}
+}
