@@ -1,0 +1,18 @@
+{
+	"version": 3,
+	"settings": {
+		"custom": {
+			"ystd": {
+				"editor": {
+					"description": "ブロックエディター内でのスタイルを設定",
+					"background": "--wp--custom--ystd--editor--background",
+					"textColor": "--wp--custom--ystd--editor--text-color",
+					"fontFamily": "--wp--custom--ystd--editor--font-family",
+					"lineHeight": "--wp--custom--ystd--editor--line-height",
+					"letterSpacing": "--wp--custom--ystd--editor--letter-spacing",
+					"headingFontFamily": "--wp--custom--ystd--editor--heading-font-family"
+				}
+			}
+		}
+	}
+}
