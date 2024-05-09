@@ -7,19 +7,20 @@
 	padding: var(--ystd--button--padding);
 	background-color: var(--ystd--button--background-color);
 	border-radius: var(--ystd--button--border-radius);
-	border-width: var(--ystd--button--border-width);
-	border-color: var(--ystd--button--border-color);
-	border-style: var(--ystd--button--border-style);
 	color: var(--ystd--button--text-color);
 	font-size: var(--ystd--button--font-size);
 	text-decoration: none;
 	transition: all 0.3s;
 
+	//border-width: var(--ystd--button--border-width);
+	//border-color: var(--ystd--button--border-color);
+	//border-style: var(--ystd--button--border-style);
+
 	@media (hover: hover) {
 		&:hover {
 			color: var(--ystd--button--hover--text-color);
 			background-color: var(--ystd--button--hover--background);
-			border-color: var(--ystd--button--hover--border-color);
+			//border-color: var(--ystd--button--hover--border-color);
 			box-shadow: var(--ystd--button--box-shadow);
 		}
 	}
