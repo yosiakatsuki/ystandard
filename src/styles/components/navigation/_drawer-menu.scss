@@ -80,18 +80,6 @@
 		}
 	}
 
-	a {
-		display: block;
-		color: currentColor;
-		text-decoration: none;
-
-		@media (hover: hover) {
-			&:hover {
-				color: currentColor;
-			}
-		}
-	}
-
 	:where(.global-nav__description) {
 		display: none;
 	}
@@ -104,6 +92,18 @@
 	margin-right: 0;
 	margin-left: 0;
 	font-size: var(--ystd--drawer-menu--font-size);
+
+	a {
+		display: block;
+		color: currentColor;
+		text-decoration: none;
+
+		@media (hover: hover) {
+			&:hover {
+				color: currentColor;
+			}
+		}
+	}
 
 	&,
 	:where(.sub-menu) {
