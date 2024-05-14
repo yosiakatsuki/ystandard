@@ -22,10 +22,6 @@
 	text-underline-offset: 0.2ex;
 }
 
-:where(button) {
-	all: unset;
-}
-
 :where(input, button, textarea, select) {
 	font: inherit;
 	color: inherit;

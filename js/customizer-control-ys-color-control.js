@@ -1,1 +1,48 @@
-wp.customize.controlConstructor["ys-color-control"]=wp.customize.Control.extend({ready:function(){var o,t=this,n=!1;(o=this.container.find(".color-picker-hex")).val(t.setting()).wpColorPicker({palettes:t.params.palette,change:function(){n=!0,t.setting.set(o.wpColorPicker("color")),n=!1},clear:function(){n=!0,t.setting.set(""),n=!1}}),t.setting.bind((function(t){n||(o.val(t),o.wpColorPicker("color",t))})),t.container.on("keydown",(function(n){27===n.which&&t.container.find(".wp-picker-container").hasClass("wp-picker-active")&&(o.wpColorPicker("close"),t.container.find(".wp-color-result").focus(),n.stopPropagation())}))}});
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!******************************************************************!*\
+  !*** ./src/scripts/admin/customizer-control-ys-color-control.js ***!
+  \******************************************************************/
+wp.customize.controlConstructor['ys-color-control'] = wp.customize.Control.extend({
+  ready: function () {
+    var control = this,
+      updating = false,
+      picker;
+    picker = this.container.find('.color-picker-hex');
+    picker.val(control.setting()).wpColorPicker({
+      palettes: control.params.palette,
+      change: function () {
+        updating = true;
+        control.setting.set(picker.wpColorPicker('color'));
+        updating = false;
+      },
+      clear: function () {
+        updating = true;
+        control.setting.set('');
+        updating = false;
+      }
+    });
+    control.setting.bind(function (value) {
+      if (updating) {
+        return;
+      }
+      picker.val(value);
+      picker.wpColorPicker('color', value);
+    });
+    control.container.on('keydown', function (event) {
+      var pickerContainer;
+      if (27 !== event.which) {
+        return;
+      }
+      pickerContainer = control.container.find('.wp-picker-container');
+      if (pickerContainer.hasClass('wp-picker-active')) {
+        picker.wpColorPicker('close');
+        control.container.find('.wp-color-result').focus();
+        event.stopPropagation();
+      }
+    });
+  }
+});
+/******/ })()
+;
+//# sourceMappingURL=customizer-control-ys-color-control.js.map

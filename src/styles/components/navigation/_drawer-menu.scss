@@ -44,7 +44,7 @@
 		width: min(var(--ystd--container--size), var(--ystd--drawer-menu--width));
 		margin-right: auto;
 		margin-left: auto;
-		overflow: auto;
+		//overflow-y: auto;
 
 		> * + * {
 			margin-top: var(--ystd--layout-gap);

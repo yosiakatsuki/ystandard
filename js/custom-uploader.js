@@ -1,1 +1,48 @@
-jQuery(document).ready((e=>{let t=null;const s="is-selected";let l=e(".ys-custom-uploader__hidden").val();e(".ys-custom-uploader__clear").click((()=>{e(".ys-custom-uploader__hidden").val(""),e(".ys-custom-uploader__preview").text("画像が選択されていません。"),e(".ys-custom-uploader").toggleClass(s)})),e(".ys-custom-uploader__select").click((function(o){o.preventDefault(),t||(t=wp.media({title:"画像を選択",button:{text:"選択"},multiple:!1}),t.on("select",(()=>{t.state().get("selection").each((function(t){l=t.toJSON().url,e(".ys-custom-uploader__hidden").val(l),e(".ys-custom-uploader__preview").text("").append('<img src="'+l+'" />'),e(".ys-custom-uploader").toggleClass(s)}))}))),t.open()})),l&&(e(".ys-custom-uploader__preview").text("").append('<img src="'+l+'" />'),e(".ys-custom-uploader").addClass(s))}));
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!**********************************************!*\
+  !*** ./src/scripts/admin/custom-uploader.js ***!
+  \**********************************************/
+jQuery(document).ready($ => {
+  let customUploader = null;
+  const classSelected = 'is-selected';
+  let imageUrl = $('.ys-custom-uploader__hidden').val();
+  $('.ys-custom-uploader__clear').click(() => {
+    $('.ys-custom-uploader__hidden').val('');
+    $('.ys-custom-uploader__preview').text('画像が選択されていません。');
+    $('.ys-custom-uploader').toggleClass(classSelected);
+  });
+  $('.ys-custom-uploader__select').click(function (e) {
+    e.preventDefault();
+    if (customUploader) {
+      customUploader.open();
+      return;
+    }
+    //メディアアップローダー設定
+    customUploader = wp.media({
+      title: '画像を選択',
+      button: {
+        text: '選択'
+      },
+      multiple: false
+    });
+    //画像選択された時の処理
+    customUploader.on('select', () => {
+      const image = customUploader.state().get('selection');
+      image.each(function (file) {
+        imageUrl = file.toJSON().url;
+        $('.ys-custom-uploader__hidden').val(imageUrl);
+        $('.ys-custom-uploader__preview').text('').append('<img src="' + imageUrl + '" />');
+        $('.ys-custom-uploader').toggleClass(classSelected);
+      });
+    });
+    customUploader.open();
+  });
+  if (imageUrl) {
+    $('.ys-custom-uploader__preview').text('').append('<img src="' + imageUrl + '" />');
+    $('.ys-custom-uploader').addClass(classSelected);
+  }
+});
+/******/ })()
+;
+//# sourceMappingURL=custom-uploader.js.map

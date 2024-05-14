@@ -5,6 +5,7 @@ module.exports = {
 	globals: {
 		// @ts-ignore
 		...defaultConfig.globals,
+		ystdScriptOption: true,
 	},
 	rules: {
 		// @ts-ignore
