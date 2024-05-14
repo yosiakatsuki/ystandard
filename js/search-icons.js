@@ -1,1 +1,24 @@
-document.addEventListener("DOMContentLoaded",(()=>{document.getElementById("icon-search").addEventListener("keyup",(e=>{const n=jQuery,t=n(e.target).val();n(".ys-icon-search__item").each(((e,c)=>{if(t){const e=-1===n(c).data("icon-name").indexOf(t)?"none":"block";n(c).css("display",e)}else n(c).css("display","block")}))}))}));
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*******************************************!*\
+  !*** ./src/scripts/admin/search-icons.js ***!
+  \*******************************************/
+document.addEventListener('DOMContentLoaded', () => {
+  const search = document.getElementById('icon-search');
+  search.addEventListener('keyup', e => {
+    const $ = jQuery;
+    const inputValue = $(e.target).val();
+    $('.ys-icon-search__item').each((index, element) => {
+      if (!inputValue) {
+        $(element).css('display', 'block');
+      } else {
+        const iconName = $(element).data('icon-name');
+        const display = -1 === iconName.indexOf(inputValue) ? 'none' : 'block';
+        $(element).css('display', display);
+      }
+    });
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=search-icons.js.map
