@@ -1,6 +1,6 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
-	"version": 2,
+	"version": 3,
 	"settings": {
 		"appearanceTools": true,
 		"useRootPaddingAwareAlignments": true,
@@ -439,7 +439,11 @@
 	},
 	"styles": {
 		"spacing": {
-			"blockGap": "1.5rem"
+			"blockGap": "1.5rem",
+			"padding": {
+				"left": "var(--ystd--container--gutter)",
+				"right": "var(--ystd--container--gutter)"
+			}
 		}
 	}
 }
