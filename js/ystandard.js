@@ -143,6 +143,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   drawerNav: () => (/* binding */ drawerNav)
 /* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/scripts/utils/index.ts");
+
+
 /**
  * ドロワーメニューの開閉処理.
  */
@@ -154,6 +157,17 @@ function drawerNav() {
     }
     // ドロワーメニューを閉じる処理セット.
     closeDrawerNav();
+    // ドロワーメニュー閉じるボタンエリアの高さ設定.
+    setCloseContainerHeight();
+  });
+  let resizeWindow;
+  window.addEventListener('resize', () => {
+    if (resizeWindow) {
+      clearTimeout(resizeWindow);
+    }
+    resizeWindow = setTimeout(function () {
+      setCloseContainerHeight();
+    }, 100);
   });
 }
 
@@ -263,6 +277,67 @@ function toggleBodyScroll(target) {
   }
 }
 
+/**
+ * ドロワーメニュー閉じるボタンエリアの高さ設定.
+ */
+function setCloseContainerHeight() {
+  const headerHeight = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight)();
+  const container = document.querySelector('.drawer-nav__close-container');
+  // 高さセット.
+  if (container && headerHeight) {
+    container.style.height = `${headerHeight}px`;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/scripts/fixed-header/index.ts":
+/*!*******************************************!*\
+  !*** ./src/scripts/fixed-header/index.ts ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   initFixedHeader: () => (/* binding */ initFixedHeader)
+/* harmony export */ });
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/scripts/utils/index.ts");
+
+function initFixedHeader() {
+  let resizeFixedHeader;
+  document.addEventListener('DOMContentLoaded', () => {
+    setFixedHeaderPadding();
+  });
+  window.addEventListener('resize', () => {
+    if (resizeFixedHeader) {
+      clearTimeout(resizeFixedHeader);
+    }
+    resizeFixedHeader = setTimeout(function () {
+      // 固定ヘッダー高さセット.
+      setFixedHeaderPadding();
+    }, 100);
+  });
+}
+
+/**
+ * 固定ヘッダー高さセット.
+ */
+function setFixedHeaderPadding() {
+  const bodyClass = document.body.classList;
+  // 各条件.
+  const hasFixedHeader = bodyClass.contains('has-fixed-header');
+  const isDisableAutoPadding = bodyClass.contains('disable-auto-padding');
+  const isOverlay = bodyClass.contains('is-overlay');
+  // チェック.
+  if (hasFixedHeader && !isDisableAutoPadding && !isOverlay) {
+    const headerHeight = (0,_utils__WEBPACK_IMPORTED_MODULE_0__.getHeaderHeight)();
+    if (headerHeight) {
+      document.body.style.paddingTop = `${headerHeight}px`;
+      document.body.style.setProperty('--ystd--sidebar--custom-fixed-position--top', `calc(${headerHeight}px + var(--ystd--sidebar--fixed-position--top) * 2)`);
+    }
+  }
+}
+
 /***/ }),
 
 /***/ "./src/scripts/mobile-footer/index.ts":
@@ -360,6 +435,29 @@ function setCloseSearch() {
   });
 }
 
+/***/ }),
+
+/***/ "./src/scripts/utils/index.ts":
+/*!************************************!*\
+  !*** ./src/scripts/utils/index.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getHeaderHeight: () => (/* binding */ getHeaderHeight)
+/* harmony export */ });
+/**
+ * ヘッダー高さ取得.
+ */
+function getHeaderHeight() {
+  const header = document.getElementById('masthead');
+  if (!header) {
+    return undefined;
+  }
+  return Math.floor(header.getBoundingClientRect().height);
+}
+
 /***/ })
 
 /******/ 	});
@@ -429,6 +527,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search-form */ "./src/scripts/search-form/index.ts");
 /* harmony import */ var _mobile_footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mobile-footer */ "./src/scripts/mobile-footer/index.ts");
 /* harmony import */ var _anchor_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./anchor-link */ "./src/scripts/anchor-link/index.ts");
+/* harmony import */ var _fixed_header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./fixed-header */ "./src/scripts/fixed-header/index.ts");
+
 
 
 
@@ -437,6 +537,7 @@ __webpack_require__.r(__webpack_exports__);
 (0,_search_form__WEBPACK_IMPORTED_MODULE_1__.setGlobalNavSearch)();
 (0,_mobile_footer__WEBPACK_IMPORTED_MODULE_2__.setMobileFooter)();
 (0,_anchor_link__WEBPACK_IMPORTED_MODULE_3__.initAnchorLink)();
+(0,_fixed_header__WEBPACK_IMPORTED_MODULE_4__.initFixedHeader)();
 })();
 
 /******/ })()

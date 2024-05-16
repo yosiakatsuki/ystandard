@@ -4,9 +4,10 @@
 	position: relative;
 
 	@include global.media-up-desktop() {
-		max-width: var(--ystd--sidebar--2col--max-width);
+		max-width: var(--ystd--sidebar--2col--size);
 	}
 }
+
 :where(.sidebar__widget,.sidebar__fixed) {
 	> * {
 		max-width: var(--ystd--container--size);
@@ -22,26 +23,15 @@
 		}
 	}
 }
+
+:where(.sidebar__widget + .sidebar__fixed) {
+	margin-top: var(--ystd--layout-gap);
+}
+
 :where(.sidebar__fixed) {
 	@include global.media-up-desktop() {
 		position: sticky;
-		top: var(--ystd--sidebar--fixed-position--top);
+		// --ystd--sidebar--custom-fixed-position--top はJSでセット.
+		top: var(--ystd--sidebar--custom-fixed-position--top, var(--ystd--sidebar--fixed-position--top));
 	}
 }
-
-
-//.has-background {
-//  .sidebar__widget,
-//  .sidebar__fixed {
-//	> * {
-//	  padding: calc(var(--ystd--layout-gap));
-//	  background-color: var(--ystd--site-content--background);
-//
-//	  @include global.media-breakpoint-down(sm) {
-//		margin-right: calc(-1 * var(--ystd--container--gutter));
-//		margin-left: calc(-1 * var(--ystd--container--gutter));
-//		padding: var(--ystd--layout-gap) var(--ystd--container--gutter);
-//	  }
-//	}
-//  }
-//}

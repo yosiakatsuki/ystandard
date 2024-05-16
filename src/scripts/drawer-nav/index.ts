@@ -1,3 +1,5 @@
+import { getHeaderHeight } from '../utils';
+
 /**
  * ドロワーメニューの開閉処理.
  */
@@ -9,6 +11,18 @@ export function drawerNav() {
 		}
 		// ドロワーメニューを閉じる処理セット.
 		closeDrawerNav();
+		// ドロワーメニュー閉じるボタンエリアの高さ設定.
+		setCloseContainerHeight();
+	});
+
+	let resizeWindow: NodeJS.Timeout;
+	window.addEventListener('resize', () => {
+		if (resizeWindow) {
+			clearTimeout(resizeWindow);
+		}
+		resizeWindow = setTimeout(function () {
+			setCloseContainerHeight();
+		}, 100);
 	});
 }
 
@@ -124,5 +138,19 @@ function toggleBodyScroll(target: Element) {
 		document.body.style.top = '';
 		document.body.style.width = '';
 		window.scrollTo(0, parseInt(top || '0') * -1);
+	}
+}
+
+/**
+ * ドロワーメニュー閉じるボタンエリアの高さ設定.
+ */
+function setCloseContainerHeight() {
+	const headerHeight = getHeaderHeight();
+	const container = document.querySelector(
+		'.drawer-nav__close-container'
+	) as HTMLElement | null;
+	// 高さセット.
+	if (container && headerHeight) {
+		container.style.height = `${headerHeight}px`;
 	}
 }
