@@ -1,17 +1,26 @@
-export function setAnchorLink() {
+export function initAnchorLink() {
 	document.addEventListener('DOMContentLoaded', () => {
-		// アンカーリンク付きのリンク取得.
-		const links = document.querySelectorAll('a[href*="#"]');
-		links.forEach((link) => {
-			link.addEventListener('click', (e) => {
-				const targetId = getTargetId(e.currentTarget as HTMLElement);
-				// 対象IDがない場合はスクロールしない.
-				if (null === targetId) {
-					return;
-				}
-				e.preventDefault();
-				doScroll(targetId);
-			});
+		// ページ内リンククリック処理.
+		setAnchorLinkClick();
+		setTimeout(function () {
+			// ページ読み込み時の位置調整.
+			setLoadedPosition();
+		}, 1);
+	});
+}
+
+function setAnchorLinkClick() {
+	// アンカーリンク付きのリンク取得.
+	const links = document.querySelectorAll('a[href*="#"]');
+	links.forEach((link) => {
+		link.addEventListener('click', (e) => {
+			const targetId = getTargetId(e.currentTarget as HTMLElement);
+			// 対象IDがない場合はスクロールしない.
+			if (null === targetId) {
+				return;
+			}
+			e.preventDefault();
+			doScroll(targetId);
 		});
 	});
 }
@@ -71,6 +80,27 @@ function doScroll(id: string, behavior: ScrollBehavior | undefined = 'smooth') {
 	window.scroll({
 		top,
 		behavior,
+	});
+}
+
+function setLoadedPosition() {
+	const url = location.href;
+
+	if (-1 === url.indexOf('#')) {
+		return;
+	}
+	const id = url.split('#')[1].split('?')[0];
+	// 対象の要素取得.
+	const target = document.getElementById(id);
+	if (!target) {
+		return;
+	}
+
+	const position =
+		target.getBoundingClientRect().top + window.scrollY - getScrollBuffer();
+	// 内部リンク付きURLの場合、位置調整.
+	window.scrollTo({
+		top: position,
 	});
 }
 
