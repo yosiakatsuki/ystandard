@@ -1,23 +1,3 @@
-/**
- * ページ表示時の位置調整
- */
-const ysSetLoadedPosition = () => {
-	if (-1 === location.href.indexOf('#')) {
-		return;
-	}
-	const id = location.href.split('#')[1].split('?')[0];
-	const target = document.getElementById(id);
-	if (!target && '' !== id) {
-		return;
-	}
-	window.scrollTo({
-		top:
-			target.getBoundingClientRect().top +
-			window.pageYOffset -
-			ysGetScrollBuffer(),
-	});
-};
-
 const getHeaderHeight = () => {
 	const header = document.getElementById('masthead');
 	if (!header) {
@@ -62,10 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 固定ヘッダー高さセット.
 	ysSetFixedHeaderPadding();
 	ysSetDrawerNavPadding();
-	// ページ内リンクの位置調整.
-	setTimeout(function () {
-		ysSetLoadedPosition();
-	}, 1);
 });
 
 window.addEventListener('resize', () => {

@@ -10,22 +10,30 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   setAnchorLink: () => (/* binding */ setAnchorLink)
+/* harmony export */   initAnchorLink: () => (/* binding */ initAnchorLink)
 /* harmony export */ });
-function setAnchorLink() {
+function initAnchorLink() {
   document.addEventListener('DOMContentLoaded', () => {
-    // アンカーリンク付きのリンク取得.
-    const links = document.querySelectorAll('a[href*="#"]');
-    links.forEach(link => {
-      link.addEventListener('click', e => {
-        const targetId = getTargetId(e.currentTarget);
-        // 対象IDがない場合はスクロールしない.
-        if (null === targetId) {
-          return;
-        }
-        e.preventDefault();
-        doScroll(targetId);
-      });
+    // ページ内リンククリック処理.
+    setAnchorLinkClick();
+    setTimeout(function () {
+      // ページ読み込み時の位置調整.
+      setLoadedPosition();
+    }, 1);
+  });
+}
+function setAnchorLinkClick() {
+  // アンカーリンク付きのリンク取得.
+  const links = document.querySelectorAll('a[href*="#"]');
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      const targetId = getTargetId(e.currentTarget);
+      // 対象IDがない場合はスクロールしない.
+      if (null === targetId) {
+        return;
+      }
+      e.preventDefault();
+      doScroll(targetId);
     });
   });
 }
@@ -83,6 +91,23 @@ function doScroll(id, behavior = 'smooth') {
   window.scroll({
     top,
     behavior
+  });
+}
+function setLoadedPosition() {
+  const url = location.href;
+  if (-1 === url.indexOf('#')) {
+    return;
+  }
+  const id = url.split('#')[1].split('?')[0];
+  // 対象の要素取得.
+  const target = document.getElementById(id);
+  if (!target) {
+    return;
+  }
+  const position = target.getBoundingClientRect().top + window.scrollY - getScrollBuffer();
+  // 内部リンク付きURLの場合、位置調整.
+  window.scrollTo({
+    top: position
   });
 }
 
@@ -411,7 +436,7 @@ __webpack_require__.r(__webpack_exports__);
 (0,_drawer_nav__WEBPACK_IMPORTED_MODULE_0__.drawerNav)();
 (0,_search_form__WEBPACK_IMPORTED_MODULE_1__.setGlobalNavSearch)();
 (0,_mobile_footer__WEBPACK_IMPORTED_MODULE_2__.setMobileFooter)();
-(0,_anchor_link__WEBPACK_IMPORTED_MODULE_3__.setAnchorLink)();
+(0,_anchor_link__WEBPACK_IMPORTED_MODULE_3__.initAnchorLink)();
 })();
 
 /******/ })()
