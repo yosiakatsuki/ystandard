@@ -57,6 +57,8 @@
 	}
 
 	:where(.drawer-nav__close-container) {
+		display: flex;
+		align-items: center;
 		width: var(--ystd--container--size);
 		margin-right: auto;
 		margin-bottom: var(--ystd--layout-gap);
