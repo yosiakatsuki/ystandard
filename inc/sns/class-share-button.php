@@ -401,7 +401,7 @@ class Share_Button {
 		/**
 		 * URL作成
 		 */
-		$this->data['sns']['bluesky'] = "https://bsky.app/intent/compose?text\"={$url} {$title}\"";
+		$this->data['sns']['bluesky'] = "https://bsky.app/intent/compose?text\"={$title} {$url}\"";
 	}
 
 	/**
