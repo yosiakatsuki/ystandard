@@ -41,6 +41,7 @@ class Share_Button {
 		'type'                 => 'circle',
 		'x'                    => true,
 		'twitter'              => false,
+		'bluesky'              => false,
 		'facebook'             => true,
 		'hatenabookmark'       => true,
 		'pocket'               => true,
@@ -203,6 +204,7 @@ class Share_Button {
 		$this->set_page();
 		$this->set_x();
 		$this->set_twitter();
+		$this->set_bluesky();
 		$this->set_facebook();
 		$this->set_hatenabookmark();
 		$this->set_pocket();
@@ -381,6 +383,28 @@ class Share_Button {
 	}
 
 	/**
+	 * Bluesky
+	 */
+	private function set_bluesky() {
+		if ( $this->is_use_option() ) {
+			if ( ! $this->is_active_button( 'bluesky' ) ) {
+				return;
+			}
+		} else {
+			if ( ! $this->shortcode_atts['bluesky'] ) {
+				return;
+			}
+		}
+		// Title,Url.
+		$title = $this->share_title;
+		$url   = $this->share_url;
+		/**
+		 * URL作成
+		 */
+		$this->data['sns']['bluesky'] = "https://bsky.app/intent/compose?text\"={$url} {$title}\"";
+	}
+
+	/**
 	 * Facebook
 	 */
 	private function set_facebook() {
@@ -525,6 +549,14 @@ class Share_Button {
 				'label'   => '旧Twitter',
 			]
 		);
+		// Bluesky.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_sns_share_button_bluesky',
+				'default' => 0,
+				'label'   => 'Bluesky(β)',
+			]
+		);
 		// Facebook.
 		$customizer->add_checkbox(
 			[
@@ -557,6 +589,7 @@ class Share_Button {
 				'label'   => 'LINE',
 			]
 		);
+
 		$customizer->add_section_label( 'ボタン表示タイプ' );
 		// 記事上表示タイプ.
 		$customizer->add_select(

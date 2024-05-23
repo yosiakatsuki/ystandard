@@ -38,7 +38,7 @@ class Icon {
 	/**
 	 * キャッシュキー
 	 */
-	const CACHE_KEY = 'icons_4.47.0';
+	const CACHE_KEY = 'icons_4.50.0';
 	/**
 	 * オブジェクトキャッシュキー
 	 */

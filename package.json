@@ -28,7 +28,7 @@
 		"prettier": "^3.0.2",
 		"rimraf": "^5.0.1",
 		"sass": "^1.66.1",
-		"simple-icons": "^9.11.0"
+		"simple-icons": "^11.15.0"
 	},
 	"scripts": {
 		"wpenv:start:update": "wp-env start --xdebug=debug,develop -- --update",
