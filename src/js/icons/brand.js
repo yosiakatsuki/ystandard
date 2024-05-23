@@ -19,6 +19,7 @@ const {
 	siDiscord,
 	siTiktok,
 	siX,
+	siBluesky,
 } = require('simple-icons');
 const fs = require('fs');
 const jsonPath = './library/simple-icons/brand-icons.json';
@@ -43,6 +44,7 @@ const iconList = [
 	siDiscord,
 	siTiktok,
 	siX,
+	siBluesky,
 ];
 const data = {};
 
