@@ -53,6 +53,14 @@ $breakpoints_setting: (
 		@content;
 	}
 }
+/**
+ * サイドバー表示サイズ
+ */
+@mixin media-up-show-sidebar() {
+	@include media-up-desktop() {
+		@content;
+	}
+}
 
 /**
  * でかいサイズ以上 1200px~

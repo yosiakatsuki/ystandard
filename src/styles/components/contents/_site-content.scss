@@ -26,14 +26,3 @@ body:where(.no-title) {
 		--ystd--site-content--padding: 0;
 	}
 }
-
-/**
- * サイドバーあり(2カラム)
- */
-body:where(.has-sidebar) {
-	:where(.site-content .entry-header,.site-content .entry-content,.site-content .entry-footer) {
-		--ystd--content--size: 100%;
-		--ystd--container--size: 100%;
-		--wp--style--global--content-size: 100%;
-	}
-}

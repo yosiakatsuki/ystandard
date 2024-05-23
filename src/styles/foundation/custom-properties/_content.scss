@@ -10,7 +10,7 @@
 	--ystd--content--header--meta--font-size: 0.7em;
 	--ystd--content--header--meta--gap: 1.5em;
 	--ystd--content--header--meta--icon-size: 1em;
-	--ystd--content--2col--size: calc(100% - var(--ystd--sidebar--2col--size) - var(--ystd--sidebar--2col--gap));
+	--ystd--content--2col--size: min(calc(100% - var(--ystd--sidebar--2col--size) - var(--ystd--sidebar--2col--gap)), var(--ystd--content--width));
 
 	--ystd--site-content--background: transparent;
 	--ystd--site-content--padding: var(--wp--preset--spacing--50, calc(var(--ystd--layout-gap) * 2));

@@ -6,6 +6,9 @@
 	margin-left: auto;
 }
 
+/**
+ * サイドバーあり（2カラム）
+ */
 :where(.has-sidebar) {
 	:where(.content-container),
 	:where(.archive-container) {
