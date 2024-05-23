@@ -28,7 +28,7 @@ class Theme_Info {
 	/**
 	 * REST API URL
 	 */
-	const REST_POST_URL = 'http://wp-ystandard.com/wp-json/wp/v2/posts?per_page=5&categories=1';
+	const REST_POST_URL = 'https://wp-ystandard.com/wp-json/wp/v2/posts?per_page=5&categories=1';
 
 	/**
 	 * お知らせカテゴリー情報取得
@@ -46,6 +46,8 @@ class Theme_Info {
 	 */
 	public function __construct() {
 		add_action( 'wp_dashboard_setup', [ $this, 'dashboard_info_setup' ] );
+		Admin_Notice::set_notice( [ $this, 'notice_wordpress_version' ] );
+		Admin_Notice::set_notice( [ $this, 'notice_php_version' ] );
 	}
 
 	/**
@@ -110,35 +112,47 @@ class Theme_Info {
 	}
 
 	/**
+	 * WordPress本体のバージョンチェック
+	 *
+	 * @return void
+	 */
+	public function notice_wordpress_version() {
+		if ( $this->check_wordpress_version() ) {
+			return;
+		}
+		$current  = get_bloginfo( 'version' );
+		$requires = self::get_requires_wp();
+		// translators: %1$s: WordPressバージョン, %2$s: 必要バージョン
+		$message = __( 'サイトがyStandardの動作要件以下のWordPressバージョン(%1$s)で動作しています。%2$s以上に更新してください。', 'ystandard' );
+		Admin_Notice::warning(
+			'<div class="tw-text-ys-alert-warning-text tw-font-bold">' . sprintf( $message, $current, $requires ) . '</div>'
+		);
+	}
+
+	/**
+	 * PHPのバージョンチェック
+	 *
+	 * @return void
+	 */
+	public function notice_php_version() {
+		if ( $this->check_php_version() ) {
+			return;
+		}
+		$current  = phpversion();
+		$requires = self::get_requires_php();
+		// translators: %1$s: WordPressバージョン, %2$s: 必要バージョン
+		$message = __( 'サイトがyStandardの動作要件以下のPHPバージョン(%1$s)で動作しています。%2$s以上に更新してください。', 'ystandard' );
+		Admin_Notice::warning(
+			'<div class="tw-text-ys-alert-warning-text tw-font-bold">' . sprintf( $message, $current, $requires ) . '</div>'
+		);
+	}
+
+	/**
 	 * ダッシュボード おしらせ表示
 	 */
 	public function dashboard_info() {
 		$feed = $this->get_feed();
-		if ( ! $this->check_php_version() ) :
-			?>
-			<div class="ys-dashboard-section">
-				<div class="ys-dashboard__notice is-warning">
-					<?php echo Icon::get_icon( 'alert-triangle' ); ?>
-					<div class="ys-dashboard__notice-text">
-						<p>
-							サイトがyStandardの動作要件以下のPHPバージョン（<?php echo phpversion(); ?>）で動作しています。 <?php echo self::get_requires_php(); ?>以上に更新してください。
-						</p>
-					</div>
-				</div>
-			</div>
-		<?php endif; ?>
-		<?php if ( ! $this->check_wordpress_version() ) : ?>
-			<div class="ys-dashboard-section">
-				<div class="ys-dashboard__notice is-warning">
-					<?php echo Icon::get_icon( 'alert-triangle' ); ?>
-					<div class="ys-dashboard__notice-text">
-						<p>
-							サイトがyStandardの動作要件以下のWordPressバージョン（<?php bloginfo( 'version' ); ?>）で動作しています。 <?php echo self::get_requires_wp(); ?>以上に更新してください。
-						</p>
-					</div>
-				</div>
-			</div>
-		<?php endif; ?>
+		?>
 		<div class="ys-dashboard-section">
 			<div>
 				<p style="margin: 0;"><strong><span class="orbitron">yStandard</span>バージョン情報</strong></p>
@@ -170,7 +184,8 @@ class Theme_Info {
 			<div class="ys-dashboard__system-info">
 				<div class="ys-dashboard__system-info-title">
 					<span>システム情報（サポート用）</span>
-					<button class="ys-dashboard__system-info-open"><?php echo Icon::get_icon( 'chevrons-down' ); ?></button>
+					<button
+						class="ys-dashboard__system-info-open"><?php echo Icon::get_icon( 'chevrons-down' ); ?></button>
 				</div>
 				<?php
 				$system_info   = [];
@@ -181,7 +196,8 @@ class Theme_Info {
 				$system_info   = implode( PHP_EOL, $system_info );
 				?>
 				<div class="ys-dashboard__system-info-text">
-					<textarea cols="30" rows="5" style="min-width: 100%;" readonly><?php echo esc_textarea( $system_info ); ?></textarea>
+					<textarea cols="30" rows="5" style="min-width: 100%;"
+							  readonly><?php echo esc_textarea( $system_info ); ?></textarea>
 					<button class="ys-dashboard__system-info-copy button action">システム情報をコピー</button>
 				</div>
 				<script>
