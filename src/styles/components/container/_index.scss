@@ -1,0 +1,27 @@
+@use "../../global";
+
+:where(.content-container) {
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/**
+ * サイドバーあり（2カラム）
+ */
+:where(.has-sidebar) {
+	:where(.content-container),
+	:where(.archive-container) {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--ystd--sidebar--2col--gap);
+
+		@include global.media-up-desktop() {
+			max-width: var(--ystd--container--size);
+			justify-content: space-between;
+			gap: var(--ystd--sidebar--2col--gap);
+			grid-template-columns: var(--ystd--content--2col--size) var(--ystd--sidebar--2col--size);
+		}
+	}
+}
+
