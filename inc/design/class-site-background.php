@@ -37,17 +37,17 @@ class Site_Background {
 	public function add_css_vars( $css_vars ) {
 
 		// 背景色設定がある場合.
-		if ( self::is_custom_bg_color() ) {
+		if ( self::has_custom_bg_color() ) {
 			$css_vars = array_merge(
 				$css_vars,
 				Enqueue_Utility::get_css_var( 'site--background', self::get_site_bg() )
 			);
 		}
 		// コンテンツ領域の色指定がある場合.
-		if ( self::is_custom_contet_bg_color() ) {
+		if ( self::has_custom_contet_bg_color() ) {
 			$css_vars = array_merge(
 				$css_vars,
-				Enqueue_Utility::get_css_var( 'content--background', self::get_content_bg() )
+				Enqueue_Utility::get_css_var( 'site-content--background', self::get_content_bg() )
 			);
 		}
 
@@ -141,7 +141,7 @@ class Site_Background {
 	 *
 	 * @return bool
 	 */
-	public static function is_custom_bg_color() {
+	public static function has_custom_bg_color() {
 		return ! empty( self::get_site_bg() );
 	}
 
@@ -160,7 +160,7 @@ class Site_Background {
 	 *
 	 * @return bool
 	 */
-	public static function is_custom_contet_bg_color() {
+	public static function has_custom_contet_bg_color() {
 		return ! empty( self::get_content_bg() );
 	}
 }
