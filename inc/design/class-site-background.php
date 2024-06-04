@@ -43,13 +43,6 @@ class Site_Background {
 				Enqueue_Utility::get_css_var( 'site--background', self::get_site_bg() )
 			);
 		}
-		// コンテンツ領域の色指定がある場合.
-		if ( self::has_custom_contet_bg_color() ) {
-			$css_vars = array_merge(
-				$css_vars,
-				Enqueue_Utility::get_css_var( 'site-content--background', self::get_content_bg() )
-			);
-		}
 
 		return $css_vars;
 	}
@@ -94,20 +87,6 @@ class Site_Background {
 		$customizer->set_refresh( 'background_attachment' );
 		$customizer->set_refresh( 'background_position_x' );
 		$customizer->set_refresh( 'background_position_y' );
-		// コンテンツ域 背景色.
-		$customizer->add_section_label(
-			'本文エリア背景色',
-			[ 'priority' => 10 ]
-		);
-		$customizer->add_color(
-			[
-				'id'          => 'ys_color_content_bg',
-				'default'     => '',
-				'label'       => '本文エリア背景色',
-				'description' => '投稿本文エリアの背景色を設定できます。',
-				'priority'    => 10,
-			]
-		);
 	}
 
 	/**
@@ -143,25 +122,6 @@ class Site_Background {
 	 */
 	public static function has_custom_bg_color() {
 		return ! empty( self::get_site_bg() );
-	}
-
-	/**
-	 * コンテンツ域背景色
-	 *
-	 * @return string
-	 */
-	public static function get_content_bg() {
-
-		return Option::get_option( 'ys_color_content_bg', '' );
-	}
-
-	/**
-	 * コンテンツ背景色を変更しているか
-	 *
-	 * @return bool
-	 */
-	public static function has_custom_contet_bg_color() {
-		return ! empty( self::get_content_bg() );
 	}
 }
 

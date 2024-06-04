@@ -21,9 +21,9 @@ class Option {
 	/**
 	 * 設定取得
 	 *
-	 * @param string $name    option key.
-	 * @param mixed  $default デフォルト値.
-	 * @param mixed  $type    取得する型.
+	 * @param string $name option key.
+	 * @param mixed $default デフォルト値.
+	 * @param mixed $type 取得する型.
 	 *
 	 * @return mixed
 	 */
@@ -51,8 +51,8 @@ class Option {
 	/**
 	 * デフォルト値書き換え
 	 *
-	 * @param string $name    option key.
-	 * @param mixed  $default デフォルト値.
+	 * @param string $name option key.
+	 * @param mixed $default デフォルト値.
 	 *
 	 * @return mixed
 	 */
@@ -63,8 +63,8 @@ class Option {
 	/**
 	 * 設定取得(bool)
 	 *
-	 * @param string $name    option key.
-	 * @param mixed  $default デフォルト値.
+	 * @param string $name option key.
+	 * @param mixed $default デフォルト値.
 	 *
 	 * @return mixed
 	 */
@@ -75,8 +75,8 @@ class Option {
 	/**
 	 * 設定取得(int)
 	 *
-	 * @param string $name    option key.
-	 * @param mixed  $default デフォルト値.
+	 * @param string $name option key.
+	 * @param mixed $default デフォルト値.
 	 *
 	 * @return mixed
 	 */
@@ -85,22 +85,21 @@ class Option {
 	}
 
 	/**
-	 * 設定の変更処理
+	 * 設定の存在確認.
 	 *
-	 * @param string $old_key     旧設定.
-	 * @param mixed  $old_default 旧設定の初期値.
-	 * @param string $new_key     新設定.
-	 * @param mixed  $new_default 新設定の初期値.
+	 * @param string $name option key.
+	 *
+	 * @return bool
 	 */
-	private function change_option_key( $old_key, $old_default, $new_key, $new_default ) {
-		if ( get_option( $new_key, $new_default ) === $new_default ) {
-			if ( get_option( $old_key, $old_default ) !== $old_default ) {
-				update_option(
-					$new_key,
-					get_option( $old_key, $new_default )
-				);
-				delete_option( $old_key );
-			}
+	public static function exists_option( $name ) {
+		// 仮想のデフォルト値を作成.
+		$default = substr( md5( wp_date( 'YmdHis' ) ), 0, 20 );
+		$option  = self::get_option( $name, $default );
+		// デフォルト値が返ってきたら設定は存在しない
+		if ( $option === $default ) {
+			return false;
 		}
+
+		return true;
 	}
 }

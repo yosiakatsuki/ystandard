@@ -10,7 +10,7 @@
 	--ystd--archive--header--description--font-size: 0.8em;
 	--ystd--archive--header--description--gap: 1em;
 	--ystd--archive--item--width: 100%;
-	--ystd--archive--item--background: var(--ystd--site-content--background);
+	--ystd--archive--item--background: var(--ystd--content--background, transparent);
 	--ystd--archive--item--border-top: 0;
 	--ystd--archive--item--border-right: 0;
 	--ystd--archive--item--border-bottom: 0;

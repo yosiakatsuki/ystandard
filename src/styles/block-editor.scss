@@ -1,4 +1,4 @@
-@use "foundation/custom-properties/index";
+@use "foundation/custom-properties";
 @use "foundation/base/base-editor";
 /**
  * component
@@ -9,6 +9,7 @@
 @use "components/ratio/ratio";
 @use "components/share-button/share-button";
 @use "components/widget";
+@use "components/sns";
 
 /**
  * utility

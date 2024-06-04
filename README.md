@@ -50,7 +50,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- `.info-bar-container`
 - [変更] カスタマイザー 「[ys]デザイン」-> 「フッター」 -> 「サブフッター上下余白」変更
 - [変更] カスタマイザー 「[ys]デザイン」-> 「サイト背景色」 -> 「本文エリア背景色」仕様変更
-  - 投稿・固定ページごとに設定する仕様に変更。本文エリア背景色を設定した場合、全幅ブロックがページいっぱいに広がらない仕様に変更
+	- 投稿・固定ページごとに設定する仕様に変更。本文エリア背景色を設定した場合、全幅ブロックがページいっぱいに広がらない仕様に変更
 - [変更] カスタマイザーでの色設定の初期値を無し(空白)に変更
 - [変更] ファイル整理。変更内容は「v5.0.0 - ファイル移動表」を参照
 - [変更] クラス命変更
@@ -173,15 +173,21 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 #### v5.0.0 - 廃止されたオプション
 
 - ys_drawer_menu_toggle_top：メニュー開閉ボタンの縦位置調整
+- ys_color_content_bg：本文エリア背景色（投稿・固定ページ別の設定に変更）
 
 #### v5.0.0 - ファイル移動表
 
-| 変更前                                              | 変更後                                                  |
-|--------------------------------------------------|------------------------------------------------------|
-| template-parts/footer/footer-sub.php             | template-parts/footer/sub-footer.php                 |
-| template-parts/footer/footer-copy.php            | template-parts/footer/footer-copyright.php           |
-| template-parts/header/global-nav.php             | template-parts/navigation/global-nav.php             |
-| template-parts/header/global-nav-search-form.php | template-parts/navigation/global-nav-search-form.php |
+| 変更前                                              | 変更後                                                     |
+|--------------------------------------------------|---------------------------------------------------------|
+| template-parts/footer/footer-sub.php             | template-parts/footer/sub-footer.php                    |
+| template-parts/footer/footer-copy.php            | template-parts/footer/footer-copyright.php              |
+| template-parts/header/global-nav.php             | template-parts/navigation/global-nav.php                |
+| template-parts/header/global-nav-search-form.php | template-parts/navigation/global-nav-search-form.php    |
+| template-parts/parts/share-button.php            | template-parts/sns-share-button/share-button.php        |
+| template-parts/parts/share-button-circle.php     | template-parts/sns-share-button/share-button-circle.php |
+| template-parts/parts/share-button-icon.php       | template-parts/sns-share-button/share-button-icon.php   |
+| template-parts/parts/share-button-official.php   | template-parts/sns-share-button/share-button-icon.php   |
+| template-parts/parts/share-button-square.php     | template-parts/sns-share-button/share-button-icon.php   |
 
 ### v4以前の変更履歴
 

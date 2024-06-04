@@ -11,7 +11,7 @@ if ( ! ys_is_active_sidebar() ) {
 	return;
 }
 ?>
-<aside id="secondary" class="sidebar sidebar-widget widget-area">
+<aside id="secondary" class="<?php echo ys_get_sidebar_class(); ?>">
 	<?php if ( is_active_sidebar( 'sidebar-widget' ) ) : ?>
 		<div id="sidebar-widget" class="sidebar__widget">
 			<?php dynamic_sidebar( 'sidebar-widget' ); ?>
@@ -22,4 +22,4 @@ if ( ! ys_is_active_sidebar() ) {
 			<?php dynamic_sidebar( 'sidebar-fixed' ); ?>
 		</div>
 	<?php endif; ?>
-</aside><!-- .sidebar .widget-area -->
+</aside>

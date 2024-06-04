@@ -59,8 +59,8 @@ class Enqueue_Styles {
 		 * カスタムプロパティ
 		 */
 		wp_register_style( 'ystandard-custom-properties', false, [ self::HANDLE_MAIN ], true, true );
-		wp_add_inline_style( 'ystandard-custom-properties', self::get_css_vars_selector() );
-		wp_add_inline_style( 'ystandard-custom-properties', self::get_css_vars_selector_preset() );
+		wp_add_inline_style( 'ystandard-custom-properties', self::get_css_custom_properties() );
+		wp_add_inline_style( 'ystandard-custom-properties', self::get_css_custom_properties_override_wp_preset() );
 		wp_enqueue_style( 'ystandard-custom-properties' );
 		/**
 		 * 設定・その他連携機能で追加されたCSS
@@ -133,7 +133,7 @@ class Enqueue_Styles {
 	 *
 	 * @return string
 	 */
-	public static function get_css_vars_selector( $selector = 'body:where([class])' ) {
+	public static function get_css_custom_properties( $selector = 'body:where([class])' ) {
 
 		/**
 		 * 旧フック : ys_css_vars
@@ -165,7 +165,7 @@ class Enqueue_Styles {
 	 *
 	 * @return string
 	 */
-	public static function get_css_vars_selector_preset( $selector = 'body' ) {
+	public static function get_css_custom_properties_override_wp_preset( $selector = 'body' ) {
 		/**
 		 * 旧フック : ys_css_vars_presets
 		 *

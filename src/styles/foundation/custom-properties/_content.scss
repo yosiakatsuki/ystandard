@@ -12,12 +12,17 @@
 	--ystd--content--header--meta--icon-size: 1em;
 	--ystd--content--2col--size: min(calc(100% - var(--ystd--sidebar--2col--size) - var(--ystd--sidebar--2col--gap)), var(--ystd--content--width));
 
-	--ystd--site-content--background: transparent;
 	--ystd--site-content--padding: var(--wp--preset--spacing--50, calc(var(--ystd--layout-gap) * 2));
+	--ystd--site-content--padding-x: var(--ystd--site-content--padding);
+	--ystd--site-content--padding-y: var(--ystd--site-content--padding);;
 
 	--ystd--content--min-width: 66.66%;
 	--ystd--content--margin-bottom: calc(2 * var(--ystd--layout-gap));
 	--ystd--content--margin-horizon: auto;
-	--ystd--content--padding: auto;
+	// インラインCSSで設定される項目.
+	//--ystd--content--background: transparent;
+	--ystd--content--padding: 0;
+	--ystd--content--padding-x: var(--ystd--content--padding);
+	--ystd--content--padding-y: var(--ystd--content--padding);
 	--ystd--content--meta--color: var(--ystd--text-color--gray);
 }
