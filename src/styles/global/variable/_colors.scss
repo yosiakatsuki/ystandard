@@ -1,8 +1,5 @@
 
 // SNSカラー
-/**
- * @deprecated
- */
 $color__sns: (
 	"globe" : #2980b9,
 	"globe-rgb" : #{"41, 128, 185"},
@@ -44,4 +41,6 @@ $color__sns: (
 	"twitch-rgb": #{"145, 70, 255"},
 	"dribbble": #EA4C89,
 	"dribbble-rgb": #{"234, 76, 137"},
-) !default;
+	"bluesky" : #0285FF,
+	"bluesky-rgb" : #{"2, 133, 255"},
+);

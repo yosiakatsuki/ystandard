@@ -11,6 +11,7 @@ namespace ystandard;
 
 use ystandard\utils\Convert;
 use ystandard\utils\Post;
+use ystandard\utils\Post_Type;
 use ystandard\utils\Short_Code;
 use ystandard\utils\URL;
 
@@ -46,6 +47,7 @@ class Share_Button {
 		'type'                 => 'circle',
 		'x'                    => true,
 		'twitter'              => false,
+		'bluesky'              => false,
 		'facebook'             => true,
 		'hatenabookmark'       => true,
 		'pocket'               => true,
@@ -117,7 +119,7 @@ class Share_Button {
 	 * @return bool
 	 */
 	private static function is_active_share_buttons() {
-		$post_type = Content::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_{$post_type}_active_share_buttons", null );
 		if ( ! is_null( $filter ) ) {
 			return Convert::to_bool( $filter );
@@ -160,13 +162,13 @@ class Share_Button {
 	 * コンテンツ ヘッダー・フッター表示用 設定取得
 	 *
 	 * @param string $position header,footer.
-	 * @param string $default  Default.
+	 * @param string $default Default.
 	 *
 	 * @return array
 	 */
 	private static function get_share_button_settings( $position, $default ) {
 
-		$post_type = Content::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$type      = apply_filters(
 			"ys_{$post_type}_share_button_type_{$position}",
 			Option::get_option( "ys_share_button_type_{$position}", $default )
@@ -188,8 +190,8 @@ class Share_Button {
 	/**
 	 * ショートコード実行
 	 *
-	 * @param array $atts    Attributes.
-	 * @param null  $content Content.
+	 * @param array $atts Attributes.
+	 * @param null $content Content.
 	 *
 	 * @return string
 	 */
@@ -209,6 +211,7 @@ class Share_Button {
 		$this->set_x();
 		$this->set_twitter();
 		$this->set_facebook();
+		$this->set_bluesky();
 		$this->set_hatenabookmark();
 		$this->set_pocket();
 		$this->set_line();
@@ -221,7 +224,7 @@ class Share_Button {
 
 		ob_start();
 		Template::get_template_part(
-			'template-parts/parts/share-button',
+			'template-parts/sns-share-button/share-button',
 			$this->shortcode_atts['type'],
 			[ 'share_button' => $this->data ]
 		);
@@ -386,6 +389,28 @@ class Share_Button {
 	}
 
 	/**
+	 * Bluesky
+	 */
+	private function set_bluesky() {
+		if ( $this->is_use_option() ) {
+			if ( ! $this->is_active_button( 'bluesky' ) ) {
+				return;
+			}
+		} else {
+			if ( ! $this->shortcode_atts['bluesky'] ) {
+				return;
+			}
+		}
+		// Title,Url.
+		$title = $this->share_title;
+		$url   = $this->share_url;
+		/**
+		 * URL作成
+		 */
+		$this->data['sns']['bluesky'] = "https://bsky.app/intent/compose?text\"={$url} {$title}\"";
+	}
+
+	/**
 	 * Facebook
 	 */
 	private function set_facebook() {
@@ -487,8 +512,8 @@ class Share_Button {
 	/**
 	 * SNSボタンを表示する設定になっているか
 	 *
-	 * @param string $sns     name.
-	 * @param bool   $default default.
+	 * @param string $sns name.
+	 * @param bool $default default.
 	 *
 	 * @return bool
 	 */
@@ -528,6 +553,14 @@ class Share_Button {
 				'id'      => 'ys_sns_share_button_twitter',
 				'default' => 0,
 				'label'   => '旧Twitter',
+			]
+		);
+		// Bluesky.
+		$customizer->add_checkbox(
+			[
+				'id'      => 'ys_sns_share_button_bluesky',
+				'default' => 0,
+				'label'   => 'Bluesky',
 			]
 		);
 		// Facebook.

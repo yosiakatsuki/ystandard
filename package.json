@@ -25,7 +25,7 @@
 		"prettier": "^3.2.5",
 		"rimraf": "^5.0.5",
 		"sass": "^1.72.0",
-		"simple-icons": "^11.8.0",
+		"simple-icons": "^12.1.0",
 		"tailwindcss": "^3.4.3"
 	},
 	"scripts": {
@@ -35,9 +35,9 @@
 		"wpenv:destroy": "wp-env destroy",
 		"watch:script:app": "wp-scripts start --config webpack.app.config.js",
 		"watch:script": "run-p watch:script:*",
-		"watch:postcss:block-style": "postcss temp/css/block-styles/**/*.css --base temp/css/block-styles --dir css/block-styles --verbose -w",
-		"watch:postcss:theme": "postcss temp/**/*.css --base temp/css --dir css --verbose -w",
-		"watch:postcss": "run-p watch:postcss:*",
+		"watch:css:postcss:block-style": "postcss temp/css/block-styles/**/*.css --base temp/css/block-styles --dir css/block-styles --verbose -w",
+		"watch:css:postcss:theme": "postcss temp/**/*.css --base temp/css --dir css --verbose -w",
+		"watch:css:postcss": "run-p watch:css:postcss:*",
 		"watch:css:block-style": "sass src/block-styles:temp/css/block-styles --no-source-map --no-stop-on-error -w",
 		"watch:css:theme": "sass src/styles:temp/css --no-source-map --no-stop-on-error -w",
 		"watch:css": "run-p watch:css:*",

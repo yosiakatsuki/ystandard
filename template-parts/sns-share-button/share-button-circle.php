@@ -1,6 +1,6 @@
 <?php
 /**
- * シェアボタン テンプレート : square
+ * シェアボタン テンプレート : circle
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -9,11 +9,21 @@
 
 defined( 'ABSPATH' ) || die();
 
+/**
+ * @var array $args {
+ * @type string $share_button シェアボタン用データ.
+ * }
+ */
+if ( empty( $args ) || ! isset( $args['share_button'] ) ) {
+	return;
+}
+$share_button = $args['share_button'];
+// シェアボタンデータチェック.
 if ( empty( $share_button ) ) {
 	return;
 }
 ?>
-<div class="sns-share is-square">
+<div class="sns-share is-circle">
 	<?php if ( isset( $share_button['text']['before'] ) && $share_button['text']['before'] ) : ?>
 		<p class="sns-share__before"><?php echo esc_html( $share_button['text']['before'] ); ?></p>
 	<?php endif; ?>

@@ -5,7 +5,7 @@
 @use "breadcrumbs/breadcrumbs";
 @use "ratio/ratio";
 
-@use "share-button/share-button";
+
 @use "taxonomy/taxonomy";
 @use "author/author";
 @use "recent-posts/recent-posts";
@@ -44,3 +44,5 @@
 @use "post-paging";
 @use "pagination";
 @use "sidebar";
+@use "sns";
+@use "share-button"; // 仕掛

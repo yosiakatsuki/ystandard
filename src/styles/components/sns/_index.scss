@@ -1,0 +1,13 @@
+@use "../../global";
+
+
+@each $key, $color in global.$color__sns {
+	@if str-slice($key, -4) != "-rgb" {
+		.sns-bg--#{$key} {
+			background-color: var(--ystd--sns--color--#{$key});
+		}
+		.sns-text--#{$key} {
+			color: var(--ystd--sns--color--#{$key});
+		}
+	}
+}
