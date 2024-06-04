@@ -1,0 +1,7 @@
+@use "share-button";
+
+:where(.sns-share__button) {
+	:where(svg) {
+		stroke-width: 0;
+	}
+}

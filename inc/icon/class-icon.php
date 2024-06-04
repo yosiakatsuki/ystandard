@@ -39,7 +39,7 @@ class Icon {
 	/**
 	 * キャッシュキー
 	 */
-	const CACHE_KEY = 'icons_4.47.0';
+	const CACHE_KEY = 'icons_5.0.0';
 	/**
 	 * オブジェクトキャッシュキー
 	 */
@@ -60,8 +60,8 @@ class Icon {
 	/**
 	 * ショートコード実行
 	 *
-	 * @param array $atts    Attributes.
-	 * @param null  $content Content.
+	 * @param array $atts Attributes.
+	 * @param null $content Content.
 	 *
 	 * @return string
 	 */
@@ -77,7 +77,7 @@ class Icon {
 	/**
 	 * SNSアイコン取得
 	 *
-	 * @param string $name  name.
+	 * @param string $name name.
 	 * @param string $class class.
 	 *
 	 * @return string
@@ -104,8 +104,8 @@ class Icon {
 	/**
 	 * ショートコード実行
 	 *
-	 * @param array $atts    Attributes.
-	 * @param null  $content Content.
+	 * @param array $atts Attributes.
+	 * @param null $content Content.
 	 *
 	 * @return string
 	 */
@@ -121,14 +121,21 @@ class Icon {
 	/**
 	 * SNSアイコン取得
 	 *
-	 * @param string $name  name.
+	 * @param string $name name.
 	 * @param string $title title.
 	 *
 	 * @return string
 	 */
 	public static function get_sns_icon( $name, $title = '' ) {
-		$icon  = self::get_sns_icon_cache( $name );
-		$title = empty( $title ) ? $icon['title'] : $title;
+		$icon = self::get_sns_icon_cache( $name );
+		// SNSアイコン情報がなければ全アイコンを探す
+		if ( empty( $icon ) ) {
+			return self::get_icon( $name );
+		}
+		// タイトルが設定されていなければアイコンのタイトルを使用.
+		if ( empty( $title ) ) {
+			$title = $icon['title'];
+		}
 		$path  = $icon['path'];
 		$class = "icon--{$name}";
 		$icon  = "<svg class=\"{$class}\" role=\"img\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" aria-hidden=\"true\" focusable=\"false\"><title>{$title}</title><path d=\"{$path}\"/></svg>";
@@ -139,7 +146,7 @@ class Icon {
 	/**
 	 * アイコン表示用HTML取得
 	 *
-	 * @param string $icon  Icon.
+	 * @param string $icon Icon.
 	 * @param string $class Class.
 	 *
 	 * @return string
@@ -276,11 +283,13 @@ class Icon {
 	 * @return string|bool
 	 */
 	public static function get_sns_icon_cache( $name ) {
+		// アイコンのキャッシュから取得.
 		$icons = self::get_all_icons_cache();
 		if ( isset( $icons['sns'][ $name ] ) ) {
 			return $icons['sns'][ $name ];
 		}
 
+		// キャッシュがなければSNSアイコンのリストから取得.
 		$icons = self::get_all_sns_icons();
 		if ( isset( $icons[ $name ] ) ) {
 			return $icons[ $name ];
