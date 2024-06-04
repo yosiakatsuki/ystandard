@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\Post_Type;
 use ystandard\utils\Text;
 
 defined( 'ABSPATH' ) || die();
@@ -65,8 +66,6 @@ class Content {
 		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
 		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
 		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
-		add_action( 'customize_register', [ $this, 'customize_register_post' ] );
-		add_action( 'customize_register', [ $this, 'customize_register_page' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
 		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
 	}
@@ -198,15 +197,7 @@ class Content {
 	 * @deprecated
 	 */
 	public static function get_post_type() {
-		global $wp_query;
-		$post_type = get_post_type();
-		if ( ! $post_type ) {
-			if ( isset( $wp_query->query['post_type'] ) ) {
-				$post_type = $wp_query->query['post_type'];
-			}
-		}
-
-		return $post_type;
+		return Post_Type::get_post_type();
 	}
 
 	/**
@@ -219,17 +210,7 @@ class Content {
 	 */
 	public static function get_fallback_post_type( $post_type ) {
 
-		if ( 'post' === $post_type ) {
-			return 'post';
-		}
-		if ( 'page' === $post_type ) {
-			return 'page';
-		}
-		if ( 'attachment' === $post_type ) {
-			return 'attachment';
-		}
-
-		return is_post_type_hierarchical( $post_type ) ? 'page' : 'post';
+		return Post_Type::get_fallback_post_type( $post_type );
 	}
 
 	/**
@@ -612,12 +593,7 @@ class Content {
 	 * @return array
 	 */
 	public function post_class( $classes ) {
-		/**
-		 * [hentryの削除]
-		 */
-		if ( apply_filters( 'ystd_remove_hentry', true ) ) {
-			$classes = array_diff( $classes, [ 'hentry' ] );
-		}
+
 		/**
 		 * アイキャッチ画像の有無
 		 */
@@ -854,235 +830,6 @@ class Content {
 		}
 
 		return $sep;
-	}
-
-	/**
-	 * 投稿設定
-	 *
-	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
-	 */
-	public function customize_register_post( $wp_customize ) {
-		$customizer = new Customize_Control( $wp_customize );
-		$customizer->add_section(
-			[
-				'section'     => 'ys_design_post',
-				'title'       => '投稿ページ',
-				'priority'    => 100,
-				'description' => Admin::manual_link( 'manual/post-layout' ),
-				'panel'       => Design::PANEL_NAME,
-			]
-		);
-		$customizer->add_section_label( 'レイアウト' );
-		// 表示カラム数.
-		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
-		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
-		$img  = '<img src="%s" alt="" width="100" height="100" />';
-		$customizer->add_image_label_radio(
-			[
-				'id'          => 'ys_post_layout',
-				'default'     => '1col',
-				'label'       => 'ページレイアウト',
-				'description' => '投稿ページの表示レイアウト',
-				'choices'     => [
-					'1col' => sprintf( $img, $col1 ),
-					'2col' => sprintf( $img, $col2 ),
-				],
-			]
-		);
-		// アイキャッチ.
-		$default = Customizer::get_assets_dir_uri( '/design/eye-catch/default.png' );
-		$full    = Customizer::get_assets_dir_uri( '/design/eye-catch/full.png' );
-		$img     = '<img src="%s" alt="" width="100" height="100" />';
-		$customizer->add_image_label_radio(
-			[
-				'id'      => 'ys_post_post_thumbnail_type',
-				'default' => 'default',
-				'label'   => 'アイキャッチ画像の表示タイプ',
-				'choices' => [
-					'default' => sprintf( $img, $default ),
-					'full'    => sprintf( $img, $full ),
-				],
-			]
-		);
-		$customizer->add_section_label( '記事上部' );
-		// アイキャッチの表示.
-		$customizer->add_label(
-			[
-				'id'    => 'ys_show_post_header_thumbnail_label',
-				'label' => 'アイキャッチ画像の表示設定',
-			]
-		);
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_post_header_thumbnail',
-				'default' => 1,
-				'label'   => 'アイキャッチ画像を表示する',
-			]
-		);
-		// 投稿日時を表示する.
-		$customizer->add_select(
-			[
-				'id'      => 'ys_show_post_publish_date',
-				'default' => 'both',
-				'label'   => '投稿日・更新日の表示タイプ',
-				'choices' => [
-					'both'    => '投稿日・更新日',
-					'publish' => '投稿日のみ',
-					'update'  => '更新日のみ',
-					'none'    => '表示しない',
-				],
-			]
-		);
-		$customizer->add_label(
-			[
-				'id'    => 'ys_show_post_header_category_label',
-				'label' => 'カテゴリー情報の表示設定',
-			]
-		);
-		// カテゴリー表示.
-		$customizer->add_checkbox(
-			[
-				'id'          => 'ys_show_post_header_category',
-				'default'     => 1,
-				'label'       => 'カテゴリー情報を表示する',
-				'description' => '※ページ上部では1件のみ表示されます',
-			]
-		);
-		$customizer->add_section_label( '記事下部' );
-		$customizer->add_label(
-			[
-				'id'          => 'ys_post_after_contents_section_label',
-				'label'       => '記事下コンテンツの表示・非表示設定',
-				'description' => '※シェアボタンの表示は「[ys]SNS」→「SNSシェアボタン」から設定できます',
-			]
-		);
-		// カテゴリー・タグ.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_post_category',
-				'default' => 1,
-				'label'   => 'カテゴリー・タグ',
-			]
-		);
-		// 著者情報を表示する.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_post_author',
-				'default' => 1,
-				'label'   => '著者情報',
-			]
-		);
-		// 関連記事.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_post_related',
-				'default' => 1,
-				'label'   => '関連記事',
-			]
-		);
-		// 次の記事・前の記事.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_post_paging',
-				'default' => 1,
-				'label'   => '次の記事・前の記事',
-			]
-		);
-	}
-
-	/**
-	 * 固定ページ設定
-	 *
-	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
-	 */
-	public function customize_register_page( $wp_customize ) {
-		$customizer = new Customize_Control( $wp_customize );
-		$customizer->add_section(
-			[
-				'section'     => 'ys_design_page',
-				'title'       => '固定ページ',
-				'priority'    => 110,
-				'description' => Admin::manual_link( 'manual/page-layout' ),
-				'panel'       => Design::PANEL_NAME,
-			]
-		);
-		$customizer->add_section_label( 'レイアウト' );
-		// 表示カラム数.
-		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
-		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
-		$img  = '<img src="%s" alt="" width="100" height="100" />';
-		$customizer->add_image_label_radio(
-			[
-				'id'          => 'ys_page_layout',
-				'default'     => '1col',
-				'label'       => 'ページレイアウト',
-				'description' => '固定ページの表示レイアウト',
-				'choices'     => [
-					'1col' => sprintf( $img, $col1 ),
-					'2col' => sprintf( $img, $col2 ),
-				],
-			]
-		);
-		// アイキャッチ.
-		$default = Customizer::get_assets_dir_uri( '/design/eye-catch/default.png' );
-		$full    = Customizer::get_assets_dir_uri( '/design/eye-catch/full.png' );
-		$img     = '<img src="%s" alt="" width="100" height="100" />';
-		$customizer->add_image_label_radio(
-			[
-				'id'      => 'ys_page_post_thumbnail_type',
-				'default' => 'default',
-				'label'   => 'アイキャッチ画像の表示タイプ',
-				'choices' => [
-					'default' => sprintf( $img, $default ),
-					'full'    => sprintf( $img, $full ),
-				],
-			]
-		);
-		$customizer->add_section_label( '記事上部' );
-		// アイキャッチの表示.
-		$customizer->add_label(
-			[
-				'id'    => 'ys_show_page_header_thumbnail_label',
-				'label' => 'アイキャッチ画像の表示設定',
-			]
-		);
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_page_header_thumbnail',
-				'default' => 1,
-				'label'   => 'アイキャッチ画像を表示する',
-			]
-		);
-		// 投稿日時を表示する.
-		$customizer->add_select(
-			[
-				'id'      => 'ys_show_page_publish_date',
-				'default' => 'both',
-				'label'   => '投稿日・更新日の表示タイプ',
-				'choices' => [
-					'both'    => '投稿日・更新日',
-					'publish' => '投稿日のみ',
-					'update'  => '更新日のみ',
-					'none'    => '表示しない',
-				],
-			]
-		);
-		$customizer->add_section_label( '記事下部' );
-		$customizer->add_label(
-			[
-				'id'          => 'ys_after_contents_section_label',
-				'label'       => '記事下コンテンツの表示・非表示設定',
-				'description' => '※シェアボタンの表示は「[ys]SNS」→「SNSシェアボタン」から設定できます',
-			]
-		);
-		// 著者情報を表示する.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_page_author',
-				'default' => 1,
-				'label'   => '著者情報',
-			]
-		);
 	}
 }
 

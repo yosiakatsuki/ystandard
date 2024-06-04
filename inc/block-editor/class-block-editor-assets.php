@@ -39,11 +39,13 @@ class Block_Editor_Assets {
 			'ys-block-editor-assets',
 			get_template_directory_uri() . '/css/block-editor-assets.css'
 		);
-		$custom_property        = Enqueue_Styles::get_css_vars_selector( 'body .editor-styles-wrapper' );
-		$custom_property_preset = Enqueue_Styles::get_css_vars_selector_preset( 'body .editor-styles-wrapper' );
+		// CSSカスタムプロパティ取得.
+		$custom_property = Enqueue_Styles::get_css_custom_properties( 'body .editor-styles-wrapper' );
+		// WP上書き用CSSカスタムプロパティ取得.
+		$custom_property_preset = Enqueue_Styles::get_css_custom_properties_override_wp_preset( 'body .editor-styles-wrapper' );
 		wp_add_inline_style(
 			'ys-block-editor-assets',
-			apply_filters( self::BLOCK_EDITOR_ASSETS_HOOK, $custom_property . $custom_property_preset )
+			apply_filters( 'ys_block_editor_assets_inline_css', $custom_property . $custom_property_preset )
 		);
 	}
 

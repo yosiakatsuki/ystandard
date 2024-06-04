@@ -37,6 +37,8 @@
 @use "sns";
 @use "alert";
 
+@use "editor";
+
 body:where([class]) {
 	/**
 	 * サイト全体に関するプロパティ
@@ -113,4 +115,6 @@ body:where([class]) {
 	@include sns.custom_properties();
 	// アラート
 	@include alert.custom_properties();
+	// エディター
+	@include editor.custom_properties();
 }

@@ -1,0 +1,7 @@
+/**
+ * Editor
+ */
+@mixin custom_properties() {
+	--ystd--editor--background: var(--ystd--content--background, var(--ystd--site--background));
+	--ystd--editor--text-color: var(--ystd--text-color);
+}

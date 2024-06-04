@@ -1,0 +1,45 @@
+@use "../../global";
+
+/**
+ * 本文エリア背景色を設定した場合の調整
+ */
+
+// コンテンツエリア.
+:where(.site-main > article.has-content-background) {
+	background-color: var(--ystd--content--background, transparent);
+
+	--ystd--content--padding-y: calc(var(--ystd--container--gutter) * 2);
+	--ystd--content--padding-x: 0;
+
+	@include global.media-up-mobile() {
+		--ystd--content--padding-x: var(--ystd--container--gutter);
+	}
+	// 全幅・幅広の調整
+	:where(.entry-content > .alignwide,.entry-content > .alignfull) {
+		max-width: none;
+		margin-right: calc(-1 * var(--ystd--content--padding-x));
+		margin-left: calc(-1 * var(--ystd--content--padding-x));
+	}
+
+	// 先頭アイキャッチの調整
+	:where(.entry-header > .singular-header__thumbnail:first-child) {
+		max-width: none;
+		margin-top: calc(-1 * var(--ystd--content--padding-y));
+		margin-right: calc(-1 * var(--ystd--content--padding-x));
+		margin-left: calc(-1 * var(--ystd--content--padding-x));
+	}
+}
+
+// サイドバーなしの場合はラッパーをコンテンツサイズを上限にする
+:where(body:not(.has-sidebar) .site-main > article.has-content-background) {
+	@include global.media-up-mobile() {
+		max-width: var(--ystd--content--size);
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+// サイドバーの調整
+:where(.sidebar.has-content-background) {
+	--ystd--container--size: var(--ystd--content--size);
+}

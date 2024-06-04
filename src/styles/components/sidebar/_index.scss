@@ -43,11 +43,13 @@
  * レイアウト・コンテンツ調整
  */
 body:where(.has-sidebar) {
-	:where(.site-content .entry-header,.site-content .entry-content,.site-content .entry-footer) {
-		@include global.media-up-show-sidebar() {
-			--ystd--content--size: 100%;
-			--ystd--container--size: 100%;
-			--wp--style--global--content-size: 100%;
+	:where(.site-content article:not(.has-content-background)) {
+		:where(.entry-header,.entry-content,.entry-footer) {
+			@include global.media-up-show-sidebar() {
+				--ystd--content--size: 100%;
+				--ystd--container--size: 100%;
+				--wp--style--global--content-size: 100%;
+			}
 		}
 	}
 }

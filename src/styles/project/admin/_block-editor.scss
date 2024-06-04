@@ -3,8 +3,8 @@
 // エディター全体のスタイル
 body,
 .editor-post-title__block .editor-post-title__input {
-	background-color: var(--wp--custom--ystd--editor--background, var(--ystd--site--background));
-	color: var(--wp--custom--ystd--editor--text-color, var(--ystd--text-color));
+	background-color: var(--wp--custom--ystd--editor--background, var(--ystd--editor--background));
+	color: var(--wp--custom--ystd--editor--text-color, var(--ystd--editor--text-color));
 	font-family: var(--wp--custom--ystd--editor--font-family, var(--ystd--font-family));
 	line-height: var(--wp--custom--ystd--editor--line-height, var(--ystd--line-height));
 	letter-spacing: var(--wp--custom--ystd--editor--letter-spacing, var(--ystd--letter-spacing));
@@ -30,6 +30,7 @@ body {
 :where(h1,h2,h3,h4,h5,h6) {
 	font-family: var(--wp--custom--ystd--editor--heading-font-family, var(--ystd--font-family));
 }
+
 :where(h1:not(.editor-post-title),h2,h3,h4,h5,h6) {
 	margin-top: var(--ystd--headline--default--padding-top);
 	margin-bottom: var(--ystd--headline--default--padding-bottom);
