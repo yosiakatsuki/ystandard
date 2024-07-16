@@ -23,22 +23,22 @@ class Icon {
 	/**
 	 * ショートコードパラメーター
 	 */
-	const SHORTCODE_ATTR_SNS = array(
+	const SHORTCODE_ATTR_SNS = [
 		'name'  => '',
 		'title' => '',
-	);
+	];
 	/**
 	 * ショートコードパラメーター
 	 */
-	const SHORTCODE_ATTR_ICON = array(
+	const SHORTCODE_ATTR_ICON = [
 		'name'  => '',
 		'class' => '',
-	);
+	];
 
 	/**
 	 * キャッシュキー
 	 */
-	const CACHE_KEY = 'icons_4.50.0-';
+	const CACHE_KEY = 'icons_4.50.0';
 	/**
 	 * オブジェクトキャッシュキー
 	 */
@@ -49,18 +49,18 @@ class Icon {
 	 */
 	public function register() {
 		if ( ! shortcode_exists( 'ys_sns_icon' ) ) {
-			add_shortcode( 'ys_sns_icon', array( $this, 'do_shortcode_sns' ) );
+			add_shortcode( 'ys_sns_icon', [ $this, 'do_shortcode_sns' ] );
 		}
 		if ( ! shortcode_exists( 'ys_icon' ) ) {
-			add_shortcode( 'ys_icon', array( $this, 'do_shortcode_icon' ) );
+			add_shortcode( 'ys_icon', [ $this, 'do_shortcode_icon' ] );
 		}
 	}
 
 	/**
 	 * ショートコード実行
 	 *
-	 * @param array $atts Attributes.
-	 * @param null  $content Content.
+	 * @param array       $atts    Attributes.
+	 * @param null|string $content Content.
 	 *
 	 * @return string
 	 */
@@ -76,7 +76,7 @@ class Icon {
 	/**
 	 * SNSアイコン取得
 	 *
-	 * @param string $name name.
+	 * @param string $name  name.
 	 * @param string $class class.
 	 *
 	 * @return string
@@ -103,8 +103,8 @@ class Icon {
 	/**
 	 * ショートコード実行
 	 *
-	 * @param array $atts Attributes.
-	 * @param null  $content Content.
+	 * @param array       $atts    Attributes.
+	 * @param null|string $content Content.
 	 *
 	 * @return string
 	 */
@@ -120,7 +120,7 @@ class Icon {
 	/**
 	 * SNSアイコン取得
 	 *
-	 * @param string $name name.
+	 * @param string $name  name.
 	 * @param string $title title.
 	 *
 	 * @return string
@@ -145,7 +145,7 @@ class Icon {
 	/**
 	 * アイコン表示用HTML取得
 	 *
-	 * @param string $icon Icon.
+	 * @param string $icon  Icon.
 	 * @param string $class Class.
 	 *
 	 * @return string
@@ -155,10 +155,10 @@ class Icon {
 		if ( is_array( $class ) ) {
 			$class = trim( implode( ' ', $class ) );
 		}
-		$html_class = array(
+		$html_class = [
 			'ys-icon',
 			$class,
-		);
+		];
 		$html_class = trim( implode( ' ', $html_class ) );
 
 		return "<span class=\"{$html_class}\">{$icon}</span>";
@@ -174,7 +174,7 @@ class Icon {
 		if ( isset( $all_icons['sns'] ) && ! empty( $all_icons['sns'] ) ) {
 			return $all_icons['sns'];
 		}
-		$icons = array();
+		$icons = [];
 
 		// ファイルから取得.
 		$path = get_template_directory() . '/library/simple-icons/brand-icons.json';
@@ -198,10 +198,10 @@ class Icon {
 	 * @return array
 	 */
 	public static function get_icon_cache_schema() {
-		return array(
-			'icon' => array(),
-			'sns'  => array(),
-		);
+		return [
+			'icon' => [],
+			'sns'  => [],
+		];
 	}
 
 	/**
@@ -220,10 +220,10 @@ class Icon {
 			return true;
 		}
 		if ( ! isset( $icons['icon'] ) ) {
-			$icons['icon'] = array();
+			$icons['icon'] = [];
 		}
 		if ( ! isset( $icons['sns'] ) ) {
-			$icons['sns'] = array();
+			$icons['sns'] = [];
 		}
 		if ( empty( $icons['icon'] ) && empty( $icons['sns'] ) ) {
 			return true;
@@ -240,7 +240,7 @@ class Icon {
 	public static function get_all_icons_cache() {
 		$icons = wp_cache_get( self::OBJECT_CACHE_KEY );
 		if ( false === $icons ) {
-			$icons = Cache::get_cache( self::CACHE_KEY, array() );
+			$icons = Cache::get_cache( self::CACHE_KEY, [] );
 			if ( false !== $icons ) {
 				wp_cache_add( self::OBJECT_CACHE_KEY, $icons );
 			}
@@ -313,12 +313,12 @@ class Icon {
 		}
 
 		if ( ! isset( $icons_cache['icon'] ) ) {
-			$icons_cache['icon'] = array();
+			$icons_cache['icon'] = [];
 		}
 		$icons_cache['icon'][ $name ] = $icon;
 		$icons_cache                  = apply_filters( 'ys_set_icon_cache', $icons_cache );
-		Cache::delete_cache( self::CACHE_KEY, array() );
-		Cache::set_cache( self::CACHE_KEY, $icons_cache, array(), 30, true );
+		Cache::delete_cache( self::CACHE_KEY, [] );
+		Cache::set_cache( self::CACHE_KEY, $icons_cache, [], 30, true );
 	}
 
 	/**
@@ -333,8 +333,8 @@ class Icon {
 		}
 		$icons_cache['sns'] = $icons;
 		$icons_cache        = apply_filters( 'ys_set_sns_icon_cache', $icons_cache );
-		Cache::delete_cache( self::CACHE_KEY, array() );
-		Cache::set_cache( self::CACHE_KEY, $icons_cache, array(), 30, true );
+		Cache::delete_cache( self::CACHE_KEY, [] );
+		Cache::set_cache( self::CACHE_KEY, $icons_cache, [], 30, true );
 	}
 }
 
