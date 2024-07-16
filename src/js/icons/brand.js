@@ -1,5 +1,4 @@
 const {
-	siTwitter,
 	siFacebook,
 	siHatenabookmark,
 	siPocket,
@@ -24,7 +23,6 @@ const {
 const fs = require('fs');
 const jsonPath = './library/simple-icons/brand-icons.json';
 const iconList = [
-	siTwitter,
 	siFacebook,
 	siHatenabookmark,
 	siPocket,

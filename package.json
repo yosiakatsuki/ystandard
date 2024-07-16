@@ -44,7 +44,6 @@
 		"watch:css": "run-p watch:css:*",
 		"watch": "run-p watch:*",
 		"lint:php": "composer phpcs",
-		"lint:js": "eslint --fix ./src/js/*.js",
 		"lint": "run-s lint:*",
 		"build:js": "babel src/js --out-dir js --ignore 'src/js/icons/*'",
 		"build:css:block-style": "sass src/block-styles:css/block-styles --no-source-map",
