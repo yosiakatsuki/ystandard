@@ -1,8 +1,11 @@
-.wp-block-button.is-style-outline {
-  color: var(--ystd-button-background-color);
+:where(.wp-block-button.is-style-outline) {
+	color: var(--ystd-button-background-color);
+	--ystd-button-text-color: var(--ystd-button-background-color);
 
-  .wp-block-button__link {
-	--ystd-button-border-color: currentColor;
-	border: var(--ystd-button-border-width) var(--ystd-button-border-style) var(--ystd-button-border-color);
-  }
+	.wp-block-button__link {
+		--ystd-button-border-color: currentColor;
+		background-color: transparent;
+		border: var(--ystd-button-border-width) var(--ystd-button-border-style) var(--ystd-button-border-color);
+		color: var(--ystd-button-background-color);
+	}
 }
