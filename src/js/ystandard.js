@@ -2,28 +2,28 @@
  * 検索ボタンの開閉処理
  */
 const ysSetGlobalNavSearch = () => {
-	const searchButton = document.getElementById('global-nav__search-button');
-	if (searchButton) {
-		searchButton.addEventListener('click', () => {
-			const search = document.getElementById('global-nav__search');
-			if (search) {
-				search.classList.toggle('is-active');
-				setTimeout(function () {
+	const searchButton = document.getElementById( 'global-nav__search-button' );
+	if ( searchButton ) {
+		searchButton.addEventListener( 'click', () => {
+			const search = document.getElementById( 'global-nav__search' );
+			if ( search ) {
+				search.classList.toggle( 'is-active' );
+				setTimeout( function() {
 					document
-						.querySelector('#global-nav__search .search-field')
+						.querySelector( '#global-nav__search .search-field' )
 						.focus();
-				}, 50);
+				}, 50 );
 			}
-		});
+		} );
 	}
-	const closeButton = document.getElementById('global-nav__search-close');
-	if (closeButton) {
-		closeButton.addEventListener('click', () => {
-			const search = document.getElementById('global-nav__search');
-			if (search) {
-				search.classList.remove('is-active');
+	const closeButton = document.getElementById( 'global-nav__search-close' );
+	if ( closeButton ) {
+		closeButton.addEventListener( 'click', () => {
+			const search = document.getElementById( 'global-nav__search' );
+			if ( search ) {
+				search.classList.remove( 'is-active' );
 			}
-		});
+		} );
 	}
 };
 
@@ -31,80 +31,80 @@ const ysSetGlobalNavSearch = () => {
  * グローバルナビゲーションの開閉処理
  */
 const ysSetGlobalNavToggle = () => {
-	const globalNavToggle = document.getElementById('global-nav__toggle');
-	if (!globalNavToggle) {
+	const globalNavToggle = document.getElementById( 'global-nav__toggle' );
+	if ( !globalNavToggle ) {
 		return;
 	}
 	const globalNavToggleButtons = document.querySelectorAll(
-		'#global-nav__toggle, .drawer-menu-toggle'
+		'#global-nav__toggle, .drawer-menu-toggle',
 	);
-	if (0 < globalNavToggleButtons.length) {
-		globalNavToggleButtons.forEach((element) => {
-			element.addEventListener('click', (e) => {
+	if ( 0 < globalNavToggleButtons.length ) {
+		globalNavToggleButtons.forEach( ( element ) => {
+			element.addEventListener( 'click', ( e ) => {
 				e.preventDefault();
 				if (
-					'none' === window.getComputedStyle(globalNavToggle).display
+					'none' === window.getComputedStyle( globalNavToggle ).display
 				) {
 					return false;
 				}
-				globalNavToggle.classList.toggle('is-open');
-				const globalMenu = document.getElementById('global-nav__menu');
-				if (globalMenu) {
-					globalMenu.classList.toggle('is-open');
+				globalNavToggle.classList.toggle( 'is-open' );
+				const globalMenu = document.getElementById( 'global-nav__menu' );
+				if ( globalMenu ) {
+					globalMenu.classList.toggle( 'is-open' );
 				}
 				const globalSearch =
-					document.getElementById('global-nav__search');
-				if (globalSearch) {
-					globalSearch.classList.toggle('is-open');
+					document.getElementById( 'global-nav__search' );
+				if ( globalSearch ) {
+					globalSearch.classList.toggle( 'is-open' );
 				}
-				ysToggleContentDisableScroll(globalNavToggle);
+				ysToggleContentDisableScroll( globalNavToggle );
 				const mobileFooter =
-					document.getElementsByClassName('footer-mobile-nav');
-				if (mobileFooter && mobileFooter.length) {
-					mobileFooter[0].classList.toggle('is-hide');
+					document.getElementsByClassName( 'footer-mobile-nav' );
+				if ( mobileFooter && mobileFooter.length ) {
+					mobileFooter[ 0 ].classList.toggle( 'is-hide' );
 				}
-			});
-		});
+			} );
+		} );
 	}
 	// グロナビ閉じる.
 	const globalNavLinks = document.querySelectorAll(
-		'.global-nav a[href*="#"]'
+		'.global-nav a[href*="#"]',
 	);
-	if (0 < globalNavLinks.length) {
-		globalNavLinks.forEach((element) => {
-			element.addEventListener('click', () => {
-				if (globalNavToggle) {
-					globalNavToggle.classList.remove('is-open');
-					ysToggleContentDisableScroll(globalNavToggle);
+	if ( 0 < globalNavLinks.length ) {
+		globalNavLinks.forEach( ( element ) => {
+			element.addEventListener( 'click', () => {
+				if ( globalNavToggle ) {
+					globalNavToggle.classList.remove( 'is-open' );
+					ysToggleContentDisableScroll( globalNavToggle );
 				}
-				const globalMenu = document.getElementById('global-nav__menu');
-				if (globalMenu) {
-					globalMenu.classList.toggle('is-open');
+				const globalMenu = document.getElementById( 'global-nav__menu' );
+				if ( globalMenu ) {
+					globalMenu.classList.toggle( 'is-open' );
 				}
 				const mobileFooter =
-					document.getElementsByClassName('footer-mobile-nav');
+					document.getElementsByClassName( 'footer-mobile-nav' );
 
-				if (mobileFooter && mobileFooter.length) {
-					mobileFooter[0].classList.remove('is-hide');
+				if ( mobileFooter && mobileFooter.length ) {
+					mobileFooter[ 0 ].classList.remove( 'is-hide' );
 				}
-			});
-		});
+			} );
+		} );
 	}
 };
 
-const ysToggleContentDisableScroll = (target) => {
-	if (target.classList.contains('is-open')) {
+const ysToggleContentDisableScroll = ( target ) => {
+	if ( target.classList.contains( 'is-open' ) ) {
 		document.body.style.top = `-${window.scrollY}px`;
 		document.body.style.position = 'fixed';
 		document.body.style.width = '100%';
 	} else if (
-		'none' !== document.defaultView.getComputedStyle(target, null).display
+		'none' !== document.defaultView.getComputedStyle( target, null ).display
 	) {
 		const top = document.body.style.top;
 		document.body.style.position = '';
 		document.body.style.top = '';
 		document.body.style.width = '';
-		window.scrollTo(0, parseInt(top || '0') * -1);
+		window.scrollTo( 0, parseInt( top || '0' ) * -1 );
 	}
 };
 
@@ -112,58 +112,58 @@ const ysToggleContentDisableScroll = (target) => {
  * ページ内リンクのスムーススクロール.
  */
 const ysSetSmoothScroll = () => {
-	const links = document.querySelectorAll('a[href*="#"]');
-	for (let i = 0; i < links.length; i++) {
-		links[i].addEventListener('click', (e) => {
-			const urlSplit = e.currentTarget.getAttribute('href').split('#');
+	const links = document.querySelectorAll( 'a[href*="#"]:not(.skip-link)' );
+	for ( let i = 0; i < links.length; i++ ) {
+		links[ i ].addEventListener( 'click', ( e ) => {
+			const urlSplit = e.currentTarget.getAttribute( 'href' ).split( '#' );
 
-			let targetPageUrl = urlSplit[0];
-			if (!window?.ystdScriptOption?.isPermalinkBasic) {
-				targetPageUrl = targetPageUrl.split('?')[0];
+			let targetPageUrl = urlSplit[ 0 ];
+			if ( !window?.ystdScriptOption?.isPermalinkBasic ) {
+				targetPageUrl = targetPageUrl.split( '?' )[ 0 ];
 			}
-			targetPageUrl = targetPageUrl.split('&')[0];
-			targetPageUrl = targetPageUrl.replace(/\/$/, '');
+			targetPageUrl = targetPageUrl.split( '&' )[ 0 ];
+			targetPageUrl = targetPageUrl.replace( /\/$/, '' );
 
-			let currentPageUrl = location.href.split('#')[0];
-			if (!window?.ystdScriptOption?.isPermalinkBasic) {
-				currentPageUrl = currentPageUrl.split('?')[0];
+			let currentPageUrl = location.href.split( '#' )[ 0 ];
+			if ( !window?.ystdScriptOption?.isPermalinkBasic ) {
+				currentPageUrl = currentPageUrl.split( '?' )[ 0 ];
 			}
-			currentPageUrl = currentPageUrl.split('&')[0];
-			currentPageUrl = currentPageUrl.replace(/\/$/, '');
-			const id = urlSplit[1].split('?')[0].split('&')[0];
-			if ('' !== targetPageUrl && targetPageUrl !== currentPageUrl) {
-				location.href = e.currentTarget.getAttribute('href');
+			currentPageUrl = currentPageUrl.split( '&' )[ 0 ];
+			currentPageUrl = currentPageUrl.replace( /\/$/, '' );
+			const id = urlSplit[ 1 ].split( '?' )[ 0 ].split( '&' )[ 0 ];
+			if ( '' !== targetPageUrl && targetPageUrl !== currentPageUrl ) {
+				location.href = e.currentTarget.getAttribute( 'href' );
 				return;
 			}
 			e.preventDefault();
-			ysScrollToTarget(id);
-		});
+			ysScrollToTarget( id );
+		} );
 	}
 };
 
-const ysScrollToTarget = (id, behavior = 'smooth') => {
-	const target = document.getElementById(id);
-	if (!target && '' !== id) {
+const ysScrollToTarget = ( id, behavior = 'smooth' ) => {
+	const target = document.getElementById( id );
+	if ( !target && '' !== id ) {
 		return;
 	}
 	let top = 0;
-	if (target) {
+	if ( target ) {
 		const pos = target.getBoundingClientRect().top;
 		top = pos + window.pageYOffset - ysGetScrollBuffer();
 	}
-	window.scroll({
+	window.scroll( {
 		top,
 		behavior,
-	});
+	} );
 };
 
 const ysGetScrollBuffer = () => {
 	let buffer = 50;
-	const header = document.getElementById('masthead');
-	if (header) {
+	const header = document.getElementById( 'masthead' );
+	if ( header ) {
 		if (
 			'fixed' ===
-			window.getComputedStyle(header, null).getPropertyValue('position')
+			window.getComputedStyle( header, null ).getPropertyValue( 'position' )
 		) {
 			buffer = header.getBoundingClientRect().bottom + 20;
 		}
@@ -175,40 +175,40 @@ const ysGetScrollBuffer = () => {
  * ページ表示時の位置調整
  */
 const ysSetLoadedPosition = () => {
-	if (-1 === location.href.indexOf('#')) {
+	if ( -1 === location.href.indexOf( '#' ) ) {
 		return;
 	}
-	const id = location.href.split('#')[1].split('?')[0];
-	const target = document.getElementById(id);
-	if (!target && '' !== id) {
+	const id = location.href.split( '#' )[ 1 ].split( '?' )[ 0 ];
+	const target = document.getElementById( id );
+	if ( !target && '' !== id ) {
 		return;
 	}
-	window.scrollTo({
+	window.scrollTo( {
 		top:
 			target.getBoundingClientRect().top +
 			window.pageYOffset -
 			ysGetScrollBuffer(),
-	});
+	} );
 };
 
 /**
  * TOPへ戻る.
  */
 const ysSetBackToTop = () => {
-	const backToTop = document.getElementById('back-to-top');
-	if (backToTop && backToTop.classList.contains('is-square')) {
+	const backToTop = document.getElementById( 'back-to-top' );
+	if ( backToTop && backToTop.classList.contains( 'is-square' ) ) {
 		const width = backToTop.getBoundingClientRect().width;
 		const height = backToTop.getBoundingClientRect().height;
 		const size = width < height ? `${height}px` : `${width}px`;
 		backToTop.style.width = size;
 		backToTop.style.height = size;
-		backToTop.addEventListener('click', (e) => {
+		backToTop.addEventListener( 'click', ( e ) => {
 			e.preventDefault();
-			window.scroll({
+			window.scroll( {
 				top: 0,
 				behavior: 'smooth',
-			});
-		});
+			} );
+		} );
 	}
 };
 
@@ -219,53 +219,53 @@ const ysSetScrollBarWidth = () => {
 	const scrollbar = window.innerWidth - document.body.clientWidth;
 	if (
 		window
-			.getComputedStyle(document.documentElement)
-			.getPropertyValue('--scrollbar-width')
+			.getComputedStyle( document.documentElement )
+			.getPropertyValue( '--scrollbar-width' )
 	) {
 		document
-			.querySelector(':root')
-			.style.setProperty('--scrollbar-width', scrollbar + 'px');
+			.querySelector( ':root' )
+			.style.setProperty( '--scrollbar-width', scrollbar + 'px' );
 	}
 };
 
 const getHeaderHeight = () => {
-	const header = document.getElementById('masthead');
-	if (!header) {
+	const header = document.getElementById( 'masthead' );
+	if ( !header ) {
 		return undefined;
 	}
-	return Math.floor(header.getBoundingClientRect().height);
+	return Math.floor( header.getBoundingClientRect().height );
 };
 
 const ysSetFixedHeaderPadding = () => {
 	const classes = document.body.classList;
 	if (
-		classes.contains('has-fixed-header') &&
-		!classes.contains('disable-auto-padding') &&
-		!classes.contains('is-overlay')
+		classes.contains( 'has-fixed-header' ) &&
+		!classes.contains( 'disable-auto-padding' ) &&
+		!classes.contains( 'is-overlay' )
 	) {
 		const size = getHeaderHeight();
-		if (size) {
+		if ( size ) {
 			document.body.style.paddingTop = `${size}px`;
 			document
-				.querySelector(':root')
-				.style.setProperty('--fixed-sidebar-top', `${size + 48}px`);
+				.querySelector( ':root' )
+				.style.setProperty( '--fixed-sidebar-top', `${size + 48}px` );
 		}
 	}
 };
 
 const ysSetDrawerNavPadding = () => {
 	const size = getHeaderHeight();
-	if (size) {
+	if ( size ) {
 		document
-			.querySelector(':root')
+			.querySelector( ':root' )
 			.style.setProperty(
-				'--mobile-nav-container-padding',
-				`${size + 24}px`
-			);
+			'--mobile-nav-container-padding',
+			`${size + 24}px`,
+		);
 	}
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener( 'DOMContentLoaded', () => {
 	// スクロールバー分.
 	ysSetScrollBarWidth();
 	// 固定ヘッダー高さセット.
@@ -280,17 +280,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	// TOPへ戻る.
 	ysSetBackToTop();
 	// ページ内リンクの位置調整.
-	setTimeout(function () {
+	setTimeout( function() {
 		ysSetLoadedPosition();
-	}, 1);
-});
+	}, 1 );
+} );
 
-window.addEventListener('resize', () => {
-	if (window.ysResizeFixedHeader) {
-		clearTimeout(window.ysResizeFixedHeader);
+window.addEventListener( 'resize', () => {
+	if ( window.ysResizeFixedHeader ) {
+		clearTimeout( window.ysResizeFixedHeader );
 	}
-	window.ysResizeFixedHeader = setTimeout(function () {
+	window.ysResizeFixedHeader = setTimeout( function() {
 		// 固定ヘッダー高さセット.
 		ysSetFixedHeaderPadding();
-	}, 100);
-});
+	}, 100 );
+} );
