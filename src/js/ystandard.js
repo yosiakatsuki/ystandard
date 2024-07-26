@@ -1,13 +1,45 @@
 /**
  * 検索ボタンの開閉処理
  */
+const handleSearchModalFocus = ( event ) => {
+	const searchModal = document.getElementById( 'global-nav__search' );
+	if ( !searchModal ) {
+		return;
+	}
+	switch ( event.code ) {
+		case 'Escape':
+			document.getElementById( 'global-nav__search-close' ).click();
+			break;
+		case 'Tab':
+			// 最初の要素でシフトキーを押したら最後の要素に移動.
+			if ( document.activeElement.classList.contains( 'search-field' ) && event.shiftKey ) {
+				event.preventDefault();
+				document
+					.getElementById( 'global-nav__search-close' )
+					.focus();
+				return;
+			}
+			// 最後の要素でタブキーを押したら最初の要素に移動.
+			if ( 'global-nav__search-close' === document.activeElement.id && ! event.shiftKey ) {
+				event.preventDefault();
+				document
+					.querySelector( '#global-nav__search .search-field' )
+					.focus();
+				return;
+			}
+			break;
+	}
+};
 const ysSetGlobalNavSearch = () => {
+	// モーダル開く.
 	const searchButton = document.getElementById( 'global-nav__search-button' );
 	if ( searchButton ) {
 		searchButton.addEventListener( 'click', () => {
 			const search = document.getElementById( 'global-nav__search' );
 			if ( search ) {
-				search.classList.toggle( 'is-active' );
+				search.removeAttribute( 'aria-hidden' );
+				search.classList.add( 'is-active' );
+				window.addEventListener( 'keydown', handleSearchModalFocus, { capture: true } );
 				setTimeout( function() {
 					document
 						.querySelector( '#global-nav__search .search-field' )
@@ -16,12 +48,15 @@ const ysSetGlobalNavSearch = () => {
 			}
 		} );
 	}
+	// モーダル閉じる.
 	const closeButton = document.getElementById( 'global-nav__search-close' );
 	if ( closeButton ) {
 		closeButton.addEventListener( 'click', () => {
 			const search = document.getElementById( 'global-nav__search' );
 			if ( search ) {
+				search.setAttribute( 'aria-hidden', 'true' );
 				search.classList.remove( 'is-active' );
+				window.removeEventListener( 'keydown', handleSearchModalFocus, { capture: true } );
 			}
 		} );
 	}
