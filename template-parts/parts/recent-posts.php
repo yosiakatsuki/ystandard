@@ -27,7 +27,11 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 				<div class="ys-posts__content">
 					<?php if ( $recent_posts['show_img'] ) : ?>
 						<div class="ys-posts__thumbnail">
-							<a href="<?php the_permalink(); ?>" class="ratio is-<?php echo $recent_posts['thumbnail_ratio']; ?>">
+							<a
+								href="<?php the_permalink(); ?>"
+								class="ratio is-<?php echo $recent_posts['thumbnail_ratio']; ?>"
+								aria-label="<?php echo esc_attr( get_the_title() ); ?>"
+							>
 								<div class="ratio__item">
 									<figure class="ratio__image">
 										<?php
@@ -55,7 +59,8 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 								<?php if ( $recent_posts['show_date'] ) : ?>
 									<span class="ys-posts__date">
 										<?php echo ys_get_icon( 'calendar' ); ?>
-										<time class="updated" datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
+										<time class="updated"
+													datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
 									</span>
 								<?php endif; ?>
 								<?php if ( $term && $recent_posts['show_category'] ) : ?>
