@@ -30,7 +30,7 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 							<a
 								href="<?php the_permalink(); ?>"
 								class="ratio is-<?php echo $recent_posts['thumbnail_ratio']; ?>"
-
+								aria-label="<?php echo esc_attr( get_the_title() ); ?>"
 							>
 								<div class="ratio__item">
 									<figure class="ratio__image">
@@ -40,7 +40,6 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 												$recent_posts['thumbnail_size'],
 												[
 													'class' => 'ys-posts__image',
-													'alt' => get_the_title(),
 												]
 											);
 										} else {
