@@ -110,8 +110,9 @@ class Footer {
 		}
 		$button_class = empty( $button_class ) ? '' : "class=\"{$button_class}\"";
 		echo sprintf(
-			'<button id="back-to-top" %s type="button"><span class="back-to-top__content">%s</span></button>',
+			'<button id="back-to-top" %s type="button" aria-label="%s"><span class="back-to-top__content">%s</span></button>',
 			$button_class,
+			__( 'ページ先頭へ戻る', 'ystandard' ),
 			do_shortcode( $text )
 		);
 	}

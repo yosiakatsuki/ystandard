@@ -36,7 +36,11 @@ if ( ! ys_has_global_nav() ) {
 	</nav>
 	<?php do_action( 'ys_global_nav_before_search' ); ?>
 	<?php if ( ys_is_active_header_search_form() ) : ?>
-		<button id="global-nav__search-button" class="global-nav__search-button">
+		<button
+			id="global-nav__search-button"
+			class="global-nav__search-button"
+			aria-label="<?php echo esc_attr( __( '検索', 'yStandard' ) ); ?>"
+		>
 			<?php echo ys_get_icon( 'search' ); ?>
 		</button>
 	<?php endif; ?>

@@ -21,7 +21,7 @@ if ( empty( $pagination ) ) {
 <nav class="pagination">
 	<?php foreach ( $pagination as $item ) : ?>
 		<?php if ( $item['url'] ) : ?>
-			<a class="<?php echo $item['class']; ?>" href="<?php echo $item['url']; ?>"><?php echo $item['text']; ?></a>
+			<a class="<?php echo $item['class']; ?>" href="<?php echo $item['url']; ?>" <?php echo $item['attr']; ?>><?php echo $item['text']; ?></a>
 		<?php else : ?>
 			<span class="<?php echo $item['class']; ?>"><?php echo $item['text']; ?></span>
 		<?php endif; ?>

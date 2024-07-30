@@ -53,6 +53,7 @@ class Drawer_Menu {
 			'class="global-nav__toggle"',
 			'data-label-open="menu"',
 			'data-label-close="close"',
+			'aria-label="menu"',
 		];
 		if ( AMP::is_amp() ) {
 			$attr[] = 'on="tap:mobile-menu.' . $type . '"';

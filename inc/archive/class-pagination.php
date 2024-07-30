@@ -97,7 +97,9 @@ class Pagination {
 		if ( 1 < $current ) {
 			$this->set_pagination_item(
 				apply_filters( 'ys_get_pagination_prev_text', Icon::get_icon( 'chevron-left' ) ),
-				get_pagenum_link( $current - 1 )
+				get_pagenum_link( $current - 1 ),
+				'',
+				'aria-label="' . esc_attr__( '前へ', 'yStandard' ) . '"'
 			);
 		}
 		// 先頭へ.
@@ -151,7 +153,9 @@ class Pagination {
 		if ( $current < $total ) {
 			$this->set_pagination_item(
 				apply_filters( 'ys_get_pagination_next_text', Icon::get_icon( 'chevron-right' ) ),
-				get_pagenum_link( $current + 1 )
+				get_pagenum_link( $current + 1 ),
+				'',
+				'aria-label="' . esc_attr__( '次へ', 'yStandard' ) . '"'
 			);
 		}
 
@@ -164,12 +168,14 @@ class Pagination {
 	 * @param string $text  テキスト.
 	 * @param string $url   リンクURL.
 	 * @param string $class 共通以外のクラス指定.
+	 * @param string $attr  その他属性.
 	 */
-	private function set_pagination_item( $text, $url, $class = 'pagination__item' ) {
+	private function set_pagination_item( $text, $url, $class = 'pagination__item', $attr = '' ) {
 		$this->pagination[] = [
 			'text'  => $text,
 			'url'   => $url,
 			'class' => $class,
+			'attr'  => $attr,
 		];
 	}
 
