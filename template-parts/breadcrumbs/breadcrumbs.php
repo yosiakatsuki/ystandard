@@ -9,9 +9,10 @@
 
 defined( 'ABSPATH' ) || die();
 
-if ( empty( $breadcrumbs ) ) {
+if ( empty( $args['breadcrumbs'] ) ) {
 	return;
 }
+$breadcrumbs = $args['breadcrumbs'];
 ?>
 <div id="breadcrumbs" class="breadcrumbs">
 	<div class="breadcrumbs-container">
