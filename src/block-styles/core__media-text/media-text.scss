@@ -38,6 +38,14 @@
 			}
 		}
 	}
+	/**
+	 * 右に画像
+	 */
+	&:where(.has-media-on-the-right) {
+		> :where(.wp-block-media-text__content) {
+			width: 100%;
+		}
+	}
 
 	/**
 	 * 全幅
