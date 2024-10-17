@@ -7,8 +7,6 @@
  * @license GPL-2.0+
  */
 
-use ystandard\helper\Style_Sheet;
-
 defined( 'ABSPATH' ) || die();
 
 /**
