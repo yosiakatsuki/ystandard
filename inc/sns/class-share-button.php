@@ -387,7 +387,7 @@ class Share_Button {
 	 */
 	private function set_bluesky() {
 		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'bluesky' ) ) {
+			if ( ! $this->is_active_button( 'bluesky', false ) ) {
 				return;
 			}
 		} else {
@@ -554,7 +554,7 @@ class Share_Button {
 			[
 				'id'      => 'ys_sns_share_button_bluesky',
 				'default' => 0,
-				'label'   => 'Bluesky(β)',
+				'label'   => 'Bluesky',
 			]
 		);
 		// Facebook.
