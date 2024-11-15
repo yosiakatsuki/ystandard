@@ -208,9 +208,7 @@ class Admin {
 
 		$inline_class = $inline ? 'is-inline' : '';
 
-		$link = wp_targeted_link_rel(
-			"<a class=\"ys-manual-link {$inline_class}\" href=\"{$url}\" target=\"_blank\">{$icon}{$text}</a>"
-		);
+		$link = "<a class=\"ys-manual-link {$inline_class}\" href=\"{$url}\" target=\"_blank\">{$icon}{$text}</a>";
 		if ( ! $inline ) {
 			$link = sprintf( '<div class="ys-manual-link__wrap">%s</div>', $link );
 		}

@@ -234,7 +234,7 @@ class Blog_Card {
 			[ 'ys_card_data' => $this->params ]
 		);
 
-		return wp_targeted_link_rel( ob_get_clean() );
+		return ob_get_clean();
 	}
 
 	/**
@@ -494,7 +494,7 @@ class Blog_Card {
 			$target = ' target="' . $this->params['target'] . '"';
 		}
 
-		return wp_targeted_link_rel( "<div class=\"ys-blog-card__text-link\"><a href=\"{$url}\" {$target}>{$url}</a></div>" );
+		return "<div class=\"ys-blog-card__text-link\"><a href=\"{$url}\" {$target}>{$url}</a></div>";
 	}
 
 	/**
