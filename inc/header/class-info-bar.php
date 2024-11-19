@@ -68,7 +68,7 @@ class Info_Bar {
 			[ 'info_bar_data' => $data ]
 		);
 
-		echo wp_targeted_link_rel( ob_get_clean() );
+		echo ob_get_clean();
 	}
 
 	/**
