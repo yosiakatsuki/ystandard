@@ -131,7 +131,7 @@
 
 		}
 
-		&:where(.current-menu-item) {
+		&:where(.current-menu-item:not(.menu-item-home)) {
 			> a {
 				color: var(--ystd--global-nav--current--text-color);
 
