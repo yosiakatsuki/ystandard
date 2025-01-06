@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use PHP_CodeSniffer\Tokenizers\PHP;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -35,7 +37,7 @@ class SNS {
 	/**
 	 * Facebook App Version.
 	 */
-	const FACEBOOK_API_VERSION = 'v17.0';
+	const FACEBOOK_API_VERSION = 'v21.0';
 
 	/**
 	 * Copyright constructor.
@@ -43,6 +45,7 @@ class SNS {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_sns_scripts' ] );
+		add_action( 'wp_body_open', [ $this, 'sns_body_open' ] );
 	}
 
 
@@ -173,6 +176,14 @@ class SNS {
 			Enqueue_Utility::add_defer( self::HANDLE_FACEBOOK );
 		}
 		do_action( 'ys_enqueue_sns_script' );
+	}
+
+	/**
+	 * Body直下のSNS関連タグ追加
+	 * @return void
+	 */
+	public function sns_body_open() {
+		echo '<div id="fb-root"></div>' . PHP_EOL;
 	}
 
 	/**

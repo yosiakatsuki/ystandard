@@ -80,18 +80,49 @@ class Taxonomy {
 	 * カテゴリー・タグの一覧ページ画像表示
 	 */
 	public function header_post_thumbnail() {
-		if ( ! $this->is_tax_cat_tag() ) {
+
+		$thumbnail = $this->get_header_post_thumbnail();
+		if ( empty( $thumbnail ) ) {
 			return;
 		}
+		ob_start();
+		Template::get_template_part(
+			'template-parts/parts/header-thumbnail',
+			'',
+			[ 'header_thumbnail' => $thumbnail ]
+		);
+		echo ob_get_clean();
+	}
+
+	/**
+	 * カテゴリー・タグの一覧ページ画像取得
+	 *
+	 * @return false|string
+	 */
+	private function get_header_post_thumbnail() {
+
+		if ( ! $this->is_tax_cat_tag() ) {
+			return '';
+		}
+
+		/**
+		 * ヘッダーサムネイル画像カスタマイズ用フック
+		 */
+		$hook = apply_filters( 'ys_get_header_thumbnail', null );
+		if ( ! is_null( $hook ) ) {
+			return $hook;
+		}
+
 		$content = $this->get_term_content();
 		if ( empty( $content['image'] ) ) {
-			return;
+			return '';
 		}
 		$image = attachment_url_to_postid( $content['image'] );
 		if ( ! $image ) {
-			return;
+			return '';
 		}
-		$thumbnail = wp_get_attachment_image(
+
+		return wp_get_attachment_image(
 			$image,
 			'post-thumbnail',
 			false,
@@ -102,14 +133,6 @@ class Taxonomy {
 				'loading' => 'eager',
 			]
 		);
-
-		ob_start();
-		Template::get_template_part(
-			'template-parts/parts/header-thumbnail',
-			'',
-			[ 'header_thumbnail' => $thumbnail ]
-		);
-		echo ob_get_clean();
 	}
 
 	/**
@@ -262,7 +285,8 @@ class Taxonomy {
 				<?php echo Admin::manual_link( 'manual/cat-tag-archive-title' ); ?>
 			</th>
 			<td>
-				<input name="title-override" id="title-override" type="text" value="<?php echo esc_attr( get_term_meta( $term->term_id, 'title-override', true ) ); ?>" size="40">
+				<input name="title-override" id="title-override" type="text"
+							 value="<?php echo esc_attr( get_term_meta( $term->term_id, 'title-override', true ) ); ?>" size="40">
 				<p><?php echo $taxonomy->label; ?>一覧ページのタイトルを入力した内容に置き換えます。</p>
 			</td>
 		</tr>
@@ -290,7 +314,9 @@ class Taxonomy {
 					echo '<p class="term-dscr-no-item">[ys]パーツがありません。</p>';
 				}
 				?>
-				<p><?php echo $taxonomy->label; ?>の説明を選択した<a href="<?php echo esc_url_raw( admin_url( 'edit.php?post_type=ys-parts' ) ); ?>" target="_blank">[ys]パーツ</a>の内容に置き換えます。</p>
+				<p><?php echo $taxonomy->label; ?>の説明を選択した<a
+						href="<?php echo esc_url_raw( admin_url( 'edit.php?post_type=ys-parts' ) ); ?>"
+						target="_blank">[ys]パーツ</a>の内容に置き換えます。</p>
 			</td>
 		</tr>
 		<tr>

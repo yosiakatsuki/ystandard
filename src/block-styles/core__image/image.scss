@@ -1,35 +1,36 @@
 @use "../../sass/global";
 
 .wp-block-image {
-  margin-bottom: 0;
+	margin-bottom: 0;
 
-  figcaption {
-	padding: 0 .5em .5em;
-	margin: 0;
-	font-size: .8em;
-	font-style: normal;
-  }
-
-  &.alignfull {
-	img {
-	  display: block;
+	figcaption {
+		padding: 0 .5em .5em;
+		margin: 0;
+		font-size: .8em;
+		font-style: normal;
 	}
 
-	+ .wp-block-image.alignfull {
-	  margin-top: 0;
+	&.alignfull {
+		img {
+			display: block;
+		}
+
+		+ .wp-block-image.alignfull {
+			margin-top: 0;
+		}
 	}
-  }
 }
+
 
 body,
 .has-sidebar .site-content {
-  @media (min-width: 1px) {
-	.wp-block-image {
-	  &.alignwide,
-	  &.alignfull {
-		padding-right: 0;
-		padding-left: 0;
-	  }
+	@media (min-width: 1px) {
+		.wp-block-image {
+			&.alignwide,
+			&.alignfull {
+				padding-right: 0;
+				padding-left: 0;
+			}
+		}
 	}
-  }
 }
