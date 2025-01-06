@@ -536,8 +536,12 @@ class Content {
 	 * @return string
 	 */
 	private function get_header_post_thumbnail() {
+		if ( ! is_singular() ) {
+			return '';
+		}
 
-		$hook = apply_filters( 'ys_get_header_post_thumbnail', null );
+		$hook = apply_filters( 'ys_get_header_thumbnail', null );
+		$hook = apply_filters( 'ys_get_header_post_thumbnail', $hook );
 		if ( ! is_null( $hook ) ) {
 			return $hook;
 		}

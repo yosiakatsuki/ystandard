@@ -360,14 +360,45 @@ class Archive {
 	 * 一覧ページのアイキャッチ画像表示
 	 */
 	public function home_post_thumbnail() {
-		if ( ! is_home() || 'page' !== get_option( 'show_on_front' ) ) {
+		$thumbnail = $this->get_home_post_thumbnail();
+		if ( empty( $thumbnail ) ) {
 			return;
 		}
+		ob_start();
+		Template::get_template_part(
+			'template-parts/parts/header-thumbnail',
+			'',
+			[ 'header_thumbnail' => $thumbnail ]
+		);
+		echo ob_get_clean();
+	}
+
+	/**
+	 * 一覧ページのアイキャッチ画像取得.
+	 */
+	private function get_home_post_thumbnail() {
+
+		if ( ! is_archive() && ! is_home() ) {
+			return '';
+		}
+		/**
+		 * ヘッダーサムネイル画像カスタマイズ用フック
+		 */
+		$hook = apply_filters( 'ys_get_header_thumbnail', null );
+		if ( ! is_null( $hook ) ) {
+			return $hook;
+		}
+
+		if ( ! is_home() || 'page' !== get_option( 'show_on_front' ) ) {
+			return '';
+		}
+
 		$page = get_option( 'page_for_posts' );
 		if ( ! $page ) {
-			return;
+			return '';
 		}
-		$thumbnail = get_the_post_thumbnail(
+
+		return get_the_post_thumbnail(
 			$page,
 			'post-thumbnail',
 			[
@@ -377,13 +408,6 @@ class Archive {
 				'loading' => 'eager',
 			]
 		);
-		ob_start();
-		Template::get_template_part(
-			'template-parts/parts/header-thumbnail',
-			'',
-			[ 'header_thumbnail' => $thumbnail ]
-		);
-		echo ob_get_clean();
 	}
 
 	/**
