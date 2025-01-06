@@ -180,6 +180,7 @@ class SNS {
 
 	/**
 	 * Body直下のSNS関連タグ追加
+	 *
 	 * @return void
 	 */
 	public function sns_body_open() {

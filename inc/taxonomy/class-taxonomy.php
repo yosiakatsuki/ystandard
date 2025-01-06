@@ -285,8 +285,7 @@ class Taxonomy {
 				<?php echo Admin::manual_link( 'manual/cat-tag-archive-title' ); ?>
 			</th>
 			<td>
-				<input name="title-override" id="title-override" type="text"
-							 value="<?php echo esc_attr( get_term_meta( $term->term_id, 'title-override', true ) ); ?>" size="40">
+				<input name="title-override" id="title-override" type="text" value="<?php echo esc_attr( get_term_meta( $term->term_id, 'title-override', true ) ); ?>" size="40">
 				<p><?php echo $taxonomy->label; ?>一覧ページのタイトルを入力した内容に置き換えます。</p>
 			</td>
 		</tr>
