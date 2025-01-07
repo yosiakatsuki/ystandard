@@ -34,7 +34,7 @@ if ( isset( $share_button['official']['twitter-related'] ) && $share_button['off
 		<?php endif; ?>
 		<?php if ( isset( $share_button['sns']['facebook'] ) ) : ?>
 			<li class="sns-share__button is-facebook">
-				<div class="fb-like" data-href="<?php echo esc_url_raw( $url ); ?>" data-width="" data-layout="button" data-action="like" data-size="small"></div>
+				<div class="fb-share-button" data-href="<?php echo esc_url_raw( $url ); ?>" data-width="" data-layout="button" data-action="like"></div>
 			</li>
 		<?php endif; ?>
 		<?php if ( isset( $share_button['sns']['hatenabookmark'] ) ) : ?>
