@@ -233,7 +233,7 @@ class Share_Button {
 		if ( 'official' !== $this->shortcode_atts['type'] ) {
 			return;
 		}
-		if ( $this->is_active_button( 'twitter' ) ) {
+		if ( $this->is_active_button( 'twitter' ) || $this->is_active_button( 'x' ) ) {
 			wp_enqueue_script(
 				'share-button-twitter',
 				'https://platform.twitter.com/widgets.js',

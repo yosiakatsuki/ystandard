@@ -27,7 +27,7 @@ if ( isset( $share_button['official']['twitter-related'] ) && $share_button['off
 		<p class="sns-share__before"><?php echo esc_html( $share_button['text']['before'] ); ?></p>
 	<?php endif; ?>
 	<ul class="sns-share__container">
-		<?php if ( isset( $share_button['sns']['twitter'] ) ) : ?>
+		<?php if ( isset( $share_button['sns']['twitter'] ) || isset( $share_button['sns']['x'] ) ) : ?>
 			<li class="sns-share__button is-twitter">
 				<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="<?php echo esc_attr( $title ); ?>" data-url="<?php echo esc_url_raw( $url ); ?>"<?php echo $twitter_attr; ?> data-show-count="false">Tweet</a>
 			</li>
