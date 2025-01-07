@@ -233,7 +233,7 @@ class Share_Button {
 		if ( 'official' !== $this->shortcode_atts['type'] ) {
 			return;
 		}
-		if ( $this->is_active_button( 'twitter' ) ) {
+		if ( $this->is_active_button( 'twitter' ) || $this->is_active_button( 'x' ) ) {
 			wp_enqueue_script(
 				'share-button-twitter',
 				'https://platform.twitter.com/widgets.js',
@@ -244,12 +244,10 @@ class Share_Button {
 			Enqueue_Utility::add_async( 'share-button-twitter' );
 		}
 		if ( $this->is_active_button( 'facebook' ) ) {
-			$app_id  = Option::get_option( 'ys_ogp_fb_app_id', '' );
-			$app_id  = empty( $app_id ) ? '' : '&appId=' . $app_id;
 			$sdk_ver = SNS::FACEBOOK_API_VERSION;
 			wp_enqueue_script(
 				'share-button-facebook',
-				"https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version={$sdk_ver}{$app_id}&autoLogAppEvents=1",
+				"https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version={$sdk_ver}",
 				[],
 				null,
 				true

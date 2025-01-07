@@ -86,6 +86,10 @@
 			color: currentColor;
 		}
 	}
+
+	&.is-open {
+		transition: none;
+	}
 }
 
 .global-nav__search-button {

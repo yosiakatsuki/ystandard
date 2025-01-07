@@ -145,7 +145,7 @@ sup {
  * Remove the border on images inside links in IE 10.
  */
 
-img {
+:where(img) {
 	border-style: none;
 }
 
