@@ -8,7 +8,6 @@ const {
 	siWordpress,
 	siPinterest,
 	siInstagram,
-	siLinkedin,
 	siYoutube,
 	siTwitch,
 	siDribbble,
@@ -19,8 +18,8 @@ const {
 	siTiktok,
 	siX,
 	siBluesky,
-} = require('simple-icons');
-const fs = require('fs');
+} = require( 'simple-icons' );
+const fs = require( 'fs' );
 const jsonPath = './library/simple-icons/brand-icons.json';
 const iconList = [
 	siFacebook,
@@ -32,7 +31,6 @@ const iconList = [
 	siWordpress,
 	siPinterest,
 	siInstagram,
-	siLinkedin,
 	siYoutube,
 	siTwitch,
 	siDribbble,
@@ -45,17 +43,22 @@ const iconList = [
 	siBluesky,
 ];
 const data = {};
+iconList.forEach( ( value ) => {
+	if ( value?.slug ) {
+		console.log( value.slug );
+		data[ value.slug ] = value;
+	}
+} );
 
-iconList.map((value) => {
-	data[value.slug] = value;
-	return '';
-});
-fs.writeFile(jsonPath, JSON.stringify({ data }), (err) => {
+console.log(`iconList: ${iconList.length}`);
+console.log(`data: ${Object.keys(data).length}`);
+
+fs.writeFile( jsonPath, JSON.stringify( { data } ), ( err ) => {
 	/* eslint-disable no-console */
-	if (err) {
-		console.log(err);
+	if ( err ) {
+		console.log( err );
 	} else {
-		console.log('write end');
+		console.log( 'write end' );
 	}
 	/* eslint-enable */
-});
+} );
