@@ -127,14 +127,41 @@ class Admin {
 		wp_enqueue_style( 'wp-block-library' );
 		wp_enqueue_style(
 			'ys-google-font',
-			'https://fonts.googleapis.com/css?family=Orbitron'
-		);
-		wp_enqueue_style(
-			'ys-admin',
-			get_template_directory_uri() . '/css/admin.css',
+			'https://fonts.googleapis.com/css?family=Orbitron',
 			[],
 			Utility::get_ystandard_version()
 		);
+		// 必要なページのみ読み込み.
+		if ( $this->is_enqueue_admin_css( $hook_suffix ) ) {
+			wp_enqueue_style(
+				'ys-admin',
+				get_template_directory_uri() . '/css/admin.css',
+				[],
+				Utility::get_ystandard_version()
+			);
+		}
+	}
+
+	/**
+	 * 管理画面のCSSを読み込むかどうか.
+	 *
+	 * @param string $hook_suffix hook suffix.
+	 *
+	 * @return bool
+	 */
+	private function is_enqueue_admin_css( $hook_suffix ) {
+		$pages = [
+			'ystandard-start-page',
+			'ystandard_page',
+			'index', // ダッシュボード.
+		];
+		foreach ( $pages as $page ) {
+			if ( strpos( $hook_suffix, $page ) !== false ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
