@@ -37,9 +37,9 @@ class Blocks {
 	public function __construct() {
 		$this->enqueue_block_editor_styles = [];
 		$this->enqueue_styles              = [];
-		add_action( 'after_setup_theme', [ $this, 'enqueue_theme_block_styles' ], 100 );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_styles' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_theme_block_styles' ] );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_styles' ], 100 );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_editor_styles' ], 100 );
 	}
 
 	/**
@@ -82,24 +82,12 @@ class Blocks {
 			$theme_css_path = $dir_path . '/' . $block['name'] . '.css';
 			if ( file_exists( $theme_css_path ) ) {
 				// URL.
-				$style_src = $this->replace_path_to_uri( $theme_css_path, $is_child );
-				if ( function_exists( 'wp_enqueue_block_style' ) ) {
-					wp_enqueue_block_style(
-						$block_name,
-						[
-							'handle' => $style_handle,
-							'src'    => $style_src,
-							'ver'    => filemtime( $theme_css_path ),
-							'path'   => $theme_css_path,
-						]
-					);
-				} else {
-					$this->enqueue_styles[] = [
-						'handle' => $style_handle,
-						'src'    => $style_src,
-						'path'   => $theme_css_path,
-					];
-				}
+				$style_src              = $this->replace_path_to_uri( $theme_css_path, $is_child );
+				$this->enqueue_styles[] = [
+					'handle' => $style_handle,
+					'src'    => $style_src,
+					'path'   => $theme_css_path,
+				];
 			}
 
 			// 必ず読み込むスタイル.
@@ -146,13 +134,14 @@ class Blocks {
 		}
 		$this->enqueue_styles = [];
 	}
+
 	/**
 	 * ブロックエディター用CSS
 	 *
 	 * @return void
 	 */
 	public function enqueue_block_editor_styles() {
-		if ( ! is_array( $this->enqueue_block_editor_styles ) ) {
+		if ( ! is_array( $this->enqueue_block_editor_styles ) || ! is_admin() ) {
 			return;
 		}
 		foreach ( $this->enqueue_block_editor_styles as $style ) {
