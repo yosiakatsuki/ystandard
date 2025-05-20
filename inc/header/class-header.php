@@ -248,7 +248,7 @@ class Header {
 					'.site-title img{width:%spx;}',
 					Option::get_option_by_int( 'ys_logo_width_pc', 0 )
 				),
-				'sm'
+				'md'
 			);
 		}
 
