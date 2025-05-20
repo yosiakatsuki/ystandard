@@ -154,6 +154,7 @@ class Admin {
 			'ystandard-start-page',
 			'ystandard_page',
 			'index', // ダッシュボード.
+			'nav-menus', // メニュー.
 		];
 		foreach ( $pages as $page ) {
 			if ( strpos( $hook_suffix, $page ) !== false ) {
