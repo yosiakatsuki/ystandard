@@ -236,7 +236,7 @@
 	color: var(--mobile-nav-open);
 	outline: none;
 
-	@include global.media-breakpoint(sm) {
+	@include global.media-breakpoint(md) {
 		padding: 1em;
 	}
 
