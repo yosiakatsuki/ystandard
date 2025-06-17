@@ -259,8 +259,8 @@
 		"typography": {
 			"dropCap": false,
 			"fluid": {
-				"minFontSize": "10px",
-				"minViewportWidth": "375px",
+				"minFontSize": "8px",
+				"minViewportWidth": "390px",
 				"maxViewportWidth": "1200px"
 			},
 			"fontFamilies": [
@@ -364,6 +364,15 @@
 				},
 				{
 					"fluid": {
+						"min": "16px",
+						"max": "28px"
+					},
+					"size": "28.16px",
+					"name": "28-16",
+					"slug": "ys-28-16"
+				},
+				{
+					"fluid": {
 						"min": "20px",
 						"max": "28px"
 					},
@@ -427,6 +436,15 @@
 				},
 				{
 					"fluid": {
+						"min": "16px",
+						"max": "40px"
+					},
+					"size": "40.16px",
+					"name": "40-16",
+					"slug": "ys-40-16"
+				},
+				{
+					"fluid": {
 						"min": "20px",
 						"max": "40px"
 					},
@@ -442,6 +460,15 @@
 					"size": "40.32px",
 					"name": "40-32",
 					"slug": "ys-40-32"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "48px"
+					},
+					"size": "48.16px",
+					"name": "48-16",
+					"slug": "ys-48-16"
 				},
 				{
 					"fluid": {
@@ -463,6 +490,24 @@
 				},
 				{
 					"fluid": {
+						"min": "16px",
+						"max": "56px"
+					},
+					"size": "56.16px",
+					"name": "56-16",
+					"slug": "ys-56-16"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "64px"
+					},
+					"size": "64.16px",
+					"name": "64-16",
+					"slug": "ys-64-16"
+				},
+				{
+					"fluid": {
 						"min": "32px",
 						"max": "64px"
 					},
@@ -478,51 +523,6 @@
 					"size": "80.40px",
 					"name": "80-40",
 					"slug": "ys-80-40"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "28px"
-					},
-					"size": "28.16px",
-					"name": "x1.75",
-					"slug": "ys-x175"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "40px"
-					},
-					"size": "40.16px",
-					"name": "x2.5",
-					"slug": "ys-x250"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "48px"
-					},
-					"size": "48.16px",
-					"name": "x3.0",
-					"slug": "ys-x300"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "56px"
-					},
-					"size": "56.16px",
-					"name": "x3.5",
-					"slug": "ys-x350"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "64px"
-					},
-					"size": "64.16px",
-					"name": "x4.0",
-					"slug": "ys-x400"
 				},
 				{
 					"fluid": false,
