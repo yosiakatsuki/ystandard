@@ -1,89 +1,92 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このファイルは、このリポジトリでコードを扱う際にClaude Code (claude.ai/code) にガイダンスを提供します。
 
-## Project Overview
+## 言語設定
+**重要**: このプロジェクトでは日本語でのやり取りを行ってください。コメント、コミットメッセージ、説明はすべて日本語で記述してください。
 
-yStandard is a modern WordPress theme (v5.0.0) that requires WordPress 6.5+ and PHP 7.4+. It's built with TypeScript, SCSS, and uses modern build tools including Webpack, TailwindCSS, and PostCSS.
+## プロジェクト概要
 
-## Development Commands
+yStandardは、WordPress 6.5+とPHP 7.4+を必要とするモダンなWordPressテーマ（v5.0.0）です。TypeScript、SCSS、Webpack、TailwindCSS、PostCSSなどのモダンビルドツールで構築されています。
 
-### Asset Development
+## 開発コマンド
+
+### アセット開発
 ```bash
-npm run watch        # Watch all assets for development
-npm run watch:css    # Watch CSS only
-npm run watch:script # Watch JS/TS only
-npm run build        # Build all assets for production
-npm run clean        # Clean build directories
+npm run watch        # 開発用に全アセットを監視
+npm run watch:css    # CSSのみ監視
+npm run watch:script # JS/TSのみ監視
+npm run build        # 本番用に全アセットをビルド
+npm run clean        # ビルドディレクトリをクリーン
 ```
 
-### Code Quality
+### コード品質
 ```bash
-npm run lint         # Lint all code (PHP, JS, CSS)
-npm run lint:php     # PHP linting with WordPress standards
-npm run lint:js      # JavaScript/TypeScript linting
-npm run test:php     # Run PHP unit tests
-composer test        # Alternative PHP test command
+npm run lint         # 全コードをリント（PHP、JS、CSS）
+npm run lint:php     # WordPress標準でPHPをリント
+npm run lint:js      # JavaScript/TypeScriptをリント
+npm run test:php     # PHPユニットテストを実行
+composer test        # 代替PHPテストコマンド
 ```
 
-### WordPress Environment
+### WordPress環境
 ```bash
-npm run wpenv:start    # Start local WordPress environment
-npm run wpenv:stop     # Stop environment
-npm run wpenv:destroy  # Clean up environment
+npm run wpenv:start    # ローカルWordPress環境を開始
+npm run wpenv:stop     # 環境を停止
+npm run wpenv:destroy  # 環境をクリーンアップ
 ```
 
-### Distribution
+### 配布
 ```bash
-npm run zip          # Create distribution package
+npm run zip          # 配布パッケージを作成
 ```
 
-## Architecture
+## アーキテクチャ
 
-### Directory Structure
-- `/src/` - Source code for assets
-  - `/scripts/` - TypeScript modules (admin, frontend features)
-  - `/styles/` - SCSS files organized by foundation/components/utilities
-- `/inc/` - PHP classes organized by feature (Admin, Blocks, Customizer, etc.)
-- `/template-parts/` - Template part system for theme structure
-- `/dist/` - Built assets (generated)
+### ディレクトリ構造
+- `/src/` - アセットのソースコード
+  - `/scripts/` - TypeScriptモジュール（管理画面、フロントエンド機能）
+  - `/styles/` - foundation/components/utilitiesで整理されたSCSSファイル
+- `/inc/` - 機能別に整理されたPHPクラス（Admin、Blocks、Customizer等）
+- `/template-parts/` - テーマ構造用のテンプレートパートシステム
+- `/dist/` - ビルド済みアセット（生成）
 
-### PHP Architecture
-- Object-oriented with autoloader (`class-ys-loader.php`)
-- Modular component structure in `/inc/` subdirectories
-- Template functions organized by feature
-- WordPress coding standards enforced
+### PHPアーキテクチャ
+- オートローダー付きオブジェクト指向（`class-ys-loader.php`）
+- `/inc/`サブディレクトリのモジュラーコンポーネント構造
+- 機能別に整理されたテンプレート関数
+- WordPress コーディング規約を適用
 
-### Asset Pipeline
-- **TypeScript**: Compiled with WordPress Scripts webpack config
-- **SCSS**: PostCSS pipeline with TailwindCSS (prefixed `tw-`)
-- **CSS**: Custom properties system, modular loading
-- **JavaScript**: ES modules with WordPress dependencies
+### アセットパイプライン
+- **TypeScript**: WordPress Scripts webpack設定でコンパイル
+- **SCSS**: TailwindCSS（プレフィックス `tw-`）付きPostCSSパイプライン
+- **CSS**: カスタムプロパティシステム、モジュラーローディング
+- **JavaScript**: WordPress依存関係付きESモジュール
 
-### Build Configuration
-- `webpack.app.config.js` - Main build configuration extending @wordpress/scripts
-- `postcss.config.js` - CSS processing with TailwindCSS, autoprefixer, cssnano
-- `tailwind.config.js` - Custom utility classes with preflight disabled
-- `tsconfig.json` - Strict TypeScript configuration
+### ビルド設定
+- `webpack.app.config.js` - @wordpress/scriptsを拡張したメインビルド設定
+- `postcss.config.js` - TailwindCSS、autoprefixer、cssnanoでのCSS処理
+- `tailwind.config.js` - プリフライト無効化でのカスタムユーティリティクラス
+- `tsconfig.json` - 厳密なTypeScript設定
 
-## Key Features
+## 主要機能
 
-### WordPress Integration
-- Full block editor support with custom block styles
-- FSE ready with theme.json configuration
-- Extensive customizer integration
-- WordPress 6.5+ required features
+### WordPress統合
+- カスタムブロックスタイル付きフルブロックエディターサポート
+- theme.json設定でFSE対応
+- 広範囲なカスタマイザー統合
+- WordPress 6.5+必須機能
 
-### Development Tools
-- PHPUnit testing with WordPress test environment
-- ESLint + Prettier for code formatting
-- PHP CodeSniffer with WordPress standards
-- Local development with @wordpress/env
+### 開発ツール
+- WordPress テスト環境付きPHPUnitテスト
+- コードフォーマット用ESLint + Prettier
+- WordPress標準でのPHP CodeSniffer
+- @wordpress/envでのローカル開発
 
-## Important Notes
+## 重要な注意事項
 
-- Text domain: `ystandard`
-- Requires PHP 8.0+ for development dependencies (Composer)
-- TailwindCSS classes are prefixed with `tw-`
-- All custom CSS uses CSS custom properties
-- Japanese is the primary language but theme is translation-ready
+- テキストドメイン: `ystandard`
+- 開発依存関係にPHP 8.0+が必要（Composer）
+- TailwindCSSクラスは `tw-` でプレフィックス
+- すべてのカスタムCSSはCSSカスタムプロパティを使用
+- 日本語が主要言語だが翻訳対応済み
