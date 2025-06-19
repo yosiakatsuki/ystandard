@@ -21,15 +21,51 @@ defined( 'ABSPATH' ) || die();
 class Archive {
 
 	/**
-	 * アクション・フィルターの登録
+	 * インスタンス
+	 *
+	 * @var Archive
 	 */
-	public function register() {
+	private static $instance;
+
+	/**
+	 * コンストラクタ
+	 * privateにして外部からのインスタンス化を防ぐ.
+	 */
+	private function __construct() {
 		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
 		add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
 		add_filter( 'ys_get_css_custom_properties_args_presets', [ $this, 'add_custom_properties' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'get_the_archive_description', [ $this, 'archive_description' ], 999 );
 		add_action( 'ys_after_site_header', [ $this, 'home_post_thumbnail' ] );
+	}
+
+	/**
+	 * インスタンス取得
+	 *
+	 * @return Archive
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * クローンを禁止
+	 */
+	private function __clone() {
+	}
+
+	/**
+	 * アンシリアライズを禁止
+	 *
+	 * @throws \Exception アンシリアライズ時に例外を投げる.
+	 */
+	public function __wakeup() {
+		throw new \Exception( 'Cannot unserialize singleton' );
 	}
 
 	/**
@@ -114,7 +150,7 @@ class Archive {
 		 * 共通でセットするクラス
 		 */
 		$classes[] = 'archive__item';
-		$classes[] = 'is-' . Archive::get_archive_type();
+		$classes[] = 'is-' . self::get_archive_type();
 		if ( ! empty( $class ) ) {
 			$class     = is_array( $class ) ? implode( ' ', $class ) : $class;
 			$classes[] = $class;
@@ -561,5 +597,5 @@ class Archive {
 	}
 }
 
-$class_archive = new Archive();
-$class_archive->register();
+// シングルトンインスタンスを取得して初期化.
+Archive::get_instance();
