@@ -51,7 +51,7 @@ class Enqueue_Utility {
 	 *
 	 * @param string $name 変数名.
 	 * @param string $value 値.
-	 * @param mixed $default 初期値.
+	 * @param mixed  $default 初期値.
 	 *
 	 * @return array
 	 */

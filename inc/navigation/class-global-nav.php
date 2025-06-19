@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
 
@@ -103,19 +104,36 @@ class Global_Nav {
 	public function css_vars( $css_vars ) {
 
 		$bold   = Enqueue_Utility::get_css_var(
-			'global-nav-bold',
+			'--ystd--global-nav--font-weight',
 			Option::get_option( 'ys_global_nav_bold', 'normal' )
 		);
 		$margin = Enqueue_Utility::get_css_var(
-			'global-nav-margin',
+			'--ystd--global-nav--gap',
 			Option::get_option( 'ys_header_nav_margin', 1.5 ) . 'em'
 		);
 
-		return array_merge(
+		$css_vars = array_merge(
 			$css_vars,
 			$bold,
 			$margin
 		);
+
+		// メニュー文字サイズ.
+		$font_size = Option::get_option( 'ys_global_nav_font_size', '' );
+		if ( ! empty( $font_size ) ) {
+
+			$font_size = Enqueue_Utility::get_css_var(
+				'--ystd--global-nav--font-size',
+				CSS::check_and_add_unit( $font_size, 'px' )
+			);
+
+			$css_vars = array_merge(
+				$css_vars,
+				$font_size
+			);
+		}
+
+		return $css_vars;
 	}
 
 	/**
@@ -138,17 +156,12 @@ class Global_Nav {
 			]
 		);
 		$customizer->add_section_label( 'グローバルメニューデザイン' );
-		$customizer->add_number(
+		$customizer->add_text(
 			[
-				'id'          => 'ys_header_nav_margin',
-				'default'     => 1.5,
-				'label'       => 'メニュー項目の間隔',
-				'description' => '単位はemです。大きくすればメニュー間の余白が大きくなります。',
-				'input_attrs' => [
-					'min'  => 0.1,
-					'max'  => 10.0,
-					'step' => 0.1,
-				],
+				'id'          => 'ys_global_nav_font_size',
+				'default'     => '',
+				'label'       => 'メニュー文字サイズ',
+				'description' => __( 'メニュー文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
 			]
 		);
 		$customizer->add_select(
@@ -172,7 +185,19 @@ class Global_Nav {
 				],
 			]
 		);
-
+		$customizer->add_number(
+			[
+				'id'          => 'ys_header_nav_margin',
+				'default'     => 1.5,
+				'label'       => 'メニュー項目の間隔',
+				'description' => '単位はemです。大きくすればメニュー間の余白が大きくなります。',
+				'input_attrs' => [
+					'min'  => 0.1,
+					'max'  => 10.0,
+					'step' => 0.1,
+				],
+			]
+		);
 	}
 }
 

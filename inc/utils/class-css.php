@@ -90,8 +90,8 @@ class CSS {
 			return 0;
 		}
 
-		// 定義にはmin側のサイズが入るので、maxの計算は-1する.
-		$result = (int) $breakpoints[ $type ] - 1;
+		// 定義にはmin側のサイズが入るので、maxの計算は-0.02する.
+		$result = (int) $breakpoints[ $type ] - 0.02;
 
 		return apply_filters( 'ys_get_breakpoints_max_width_size', $result, $type );
 	}
@@ -211,5 +211,32 @@ class CSS {
 			hexdec( substr( $color, 3, 2 ) ),
 			hexdec( substr( $color, 5, 2 ) ),
 		];
+	}
+
+
+	/**
+	 * 値に単位があるかチェックして、単位がなければpxを追加する
+	 *
+	 * @param string|int|float $value 値.
+	 *
+	 * @return string
+	 */
+	public static function check_and_add_unit( $value ) {
+		// 空の値や null の場合はそのまま返す.
+		if ( empty( $value ) && 0 !== $value && '0' !== $value ) {
+			return $value;
+		}
+
+		// 文字列に変換.
+		$value = (string) $value;
+
+		// 数値のみかチェック（整数または小数）.
+		if ( is_numeric( $value ) ) {
+			// 数値のみの場合はpxを追加.
+			return $value . 'px';
+		}
+
+		// 上記に該当しない場合はそのまま返す（例：auto、inherit、none など）.
+		return $value;
 	}
 }
