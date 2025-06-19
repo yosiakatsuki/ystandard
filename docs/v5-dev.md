@@ -34,5 +34,11 @@ AMP関連の機能・連携機能は廃止する
 - 既存カラーパレットを上書きするのではなく、新しく色設定を追加できるようにする。
 - 追加できる件数の上限は無し。
 
+## ys_get_template_partの廃止
+
+- 処理実態としては\ystandard\Template::get_template_part
+- WPコアのget_template_partを利用する
+- slugにファイルパスが指定された場合に該当ファイルをincludeする処理が実現できるか確認が必要
+
 ## template-parts/parts 内の整理
 @template-parts/parts ディレクトリ内の各ファイルを @template-parts にカテゴリーごとにディレクトリを分けて配置し、参照している部分も合わせて更新する
