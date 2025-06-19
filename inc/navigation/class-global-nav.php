@@ -20,6 +20,10 @@ defined( 'ABSPATH' ) || die();
  * @package ystandard
  */
 class Global_Nav {
+	/**
+	 * Panel Name.
+	 */
+	const PANEL_NAME = 'ys_global_nav';
 
 	/**
 	 * Global_Nav constructor.
@@ -133,6 +137,20 @@ class Global_Nav {
 			);
 		}
 
+		// ホバー・カレント文字色.
+		$hover_current_text_color = Option::get_option( 'ys_global_nav_hover_current_text_color', '' );
+		if ( ! empty( $hover_current_text_color ) ) {
+			$hover_current_text_color = Enqueue_Utility::get_css_var(
+				'--ystd--global-nav--current--text-color',
+				$hover_current_text_color
+			);
+			// ホバー・カレント文字色を追加.
+			$css_vars = array_merge(
+				$css_vars,
+				$hover_current_text_color
+			);
+		}
+
 		return $css_vars;
 	}
 
@@ -143,19 +161,16 @@ class Global_Nav {
 	 */
 	public function customize_register( $wp_customize ) {
 		$customizer = new Customize_Control( $wp_customize );
-		/**
-		 * セクション追加
-		 */
+		// パネル追加.
 		$customizer->add_section(
 			[
-				'section'     => 'ys_customizer_section_global_nav',
-				'title'       => 'グローバルナビゲーション',
-				'description' => 'グローバルナビゲーション設定' . Admin::manual_link( 'manual/global-nav' ),
-				'priority'    => 60,
-				'panel'       => Design::PANEL_NAME,
+				'title'       => __( '[ys]グローバルナビゲーション', 'ystandard' ),
+				'description' => __( 'グローバルナビゲーション設定', 'ystandard' ) . Admin::manual_link( 'manual/global-nav' ),
+				'section'     => self::PANEL_NAME,
+				'priority'    => Customizer::get_priority( self::PANEL_NAME ),
 			]
 		);
-		$customizer->add_section_label( 'グローバルメニューデザイン' );
+		$customizer->add_section_label( '文字サイズ・太さ' );
 		$customizer->add_text(
 			[
 				'id'          => 'ys_global_nav_font_size',
@@ -185,6 +200,17 @@ class Global_Nav {
 				],
 			]
 		);
+		$customizer->add_section_label( __( 'ホバー・カレント', 'ystandard' ) );
+		$customizer->add_color(
+			[
+				'id'          => 'ys_global_nav_hover_current_text_color',
+				'default'     => '',
+				'label'       => __( 'ホバー・カレント文字色', 'ystandard' ),
+				'description' => __( 'マウスホバー時、現在開いているページと同じページのメニュー文字色設定。空欄の場合、デフォルトの色が使用されます。', 'ystandard' ),
+			]
+		);
+
+		$customizer->add_section_label( __( 'レイアウト', 'ystandard' ) );
 		$customizer->add_number(
 			[
 				'id'          => 'ys_header_nav_margin',

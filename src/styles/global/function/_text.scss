@@ -1,7 +1,8 @@
+@use "sass:map";
 @use "../variable/text";
 //
 // テキストサイズ取得
 //
 @function get_font_size($type) {
-  @return map-get(text.$font__editor_font_size, $type);
+	@return map.get(text.$font__editor_font_size, $type);
 }

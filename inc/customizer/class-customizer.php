@@ -24,19 +24,22 @@ class Customizer {
 	 * パネルリスト
 	 */
 	const PANEL_PRIORITY = [
-		'ys_info_bar'           => 1000,
-		'ys_block_editor'       => 1010,
-		'ys_breadcrumbs'        => 1020,
-		'ys_design'             => 1020,
-		'ys_sns'                => 1100,
-		'ys_seo'                => 1110,
-		'ys_feed'               => 1120,
-		'ys_blog_card'          => 1121,
-		'ys_wp_sitemap'         => 1210,
-		'ys_performance_tuning' => 1220,
-		'ys_advertisement'      => 1230,
-		'ys_amp'                => 1300,
-		'ys_extension'          => 2000,
+		'ys_info_bar'           => 1000, // お知らせバー.
+		'ys_site_typography'    => 1001, // サイト文字設定（フォント・色）（未整理）.
+		'ys_site_link_color'    => 1001, // サイトリンクカラー（未整理）.
+		'ys_global_nav'         => 1009, // グローバルナビゲーション.
+		'ys_block_editor'       => 1010, // ブロックエディター.
+		'ys_breadcrumbs'        => 1020, // パンくずリスト.
+		'ys_design'             => 1020, // デザイン(廃止予定).
+		'ys_sns'                => 1100, // SNS.
+		'ys_seo'                => 1110, // SEO.
+		'ys_feed'               => 1120, // RSSフィード.
+		'ys_blog_card'          => 1121, // ブログカード.
+		'ys_wp_sitemap'         => 1210, // XMLサイトマップ.
+		'ys_performance_tuning' => 1220, // パフォーマンスチューニング.
+		'ys_advertisement'      => 1230, // 広告.
+		'ys_amp'                => 1300, // AMP（廃止予定）.
+		'ys_extension'          => 2000, // 拡張機能.
 	];
 
 	/**
@@ -45,7 +48,7 @@ class Customizer {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'customize_preview_init', [ $this, 'preview_init' ], 999 );
-		add_action( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'preview_inline_css' ], 999 );
+		add_action( 'ys_get_inline_css', [ $this, 'preview_inline_css' ], 999 );
 		add_action( 'customize_controls_print_styles', [ $this, 'print_styles' ] );
 		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 	}

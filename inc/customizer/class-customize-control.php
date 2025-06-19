@@ -239,7 +239,7 @@ class Customize_Control {
 	 * セクションラベル.
 	 *
 	 * @param string $label 文字.
-	 * @param array $args オプション.
+	 * @param array  $args オプション.
 	 */
 	public function add_section_label( $label, $args = [] ) {
 		$args = $this->parse_args( $args );
@@ -290,7 +290,7 @@ class Customize_Control {
 			$args['panel'],
 			$args
 		);
-		//  パネル情報を保存.
+		// パネル情報を保存.
 		$this->panel = $args['panel'];
 	}
 
@@ -325,9 +325,9 @@ class Customize_Control {
 	/**
 	 * 設定用パラメーターの抽出
 	 *
-	 * @param array $args パラメーター.
+	 * @param array  $args パラメーター.
 	 * @param string $id ID.
-	 * @param array $option 追加パラメーター.
+	 * @param array  $option 追加パラメーター.
 	 *
 	 * @return array
 	 */
@@ -351,9 +351,9 @@ class Customize_Control {
 	/**
 	 * コントロール用パラメーターの抽出
 	 *
-	 * @param array $args パラメーター.
+	 * @param array  $args パラメーター.
 	 * @param string $id ID.
-	 * @param array $option 追加パラメーター.
+	 * @param array  $option 追加パラメーター.
 	 *
 	 * @return array
 	 */
@@ -485,7 +485,7 @@ class Customize_Control {
 	/**
 	 * 設定・コントロール追加
 	 *
-	 * @param array $args Args.
+	 * @param array               $args Args.
 	 * @param object|null|boolean $control Control.
 	 *
 	 * @return void
@@ -520,7 +520,7 @@ class Customize_Control {
 	 * 設定・コントロール追加後のアクション
 	 *
 	 * @param string $setting Setting Name.
-	 * @param array $args Args.
+	 * @param array  $args Args.
 	 *
 	 * @return void
 	 */

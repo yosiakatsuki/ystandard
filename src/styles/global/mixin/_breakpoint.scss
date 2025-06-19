@@ -1,13 +1,14 @@
+@use "sass:map";
 @use "../variable/content";
 
 $breakpoints_setting: (
-	sm : 600px,
-	md : 769px,
-	lg : 1025px,
-	mobile : 640px,
-	tablet:768px,
-	desktop:1024px,
-	wide:1200px,
+	sm: 600px,
+	md: 769px,
+	lg: 1025px,
+	mobile: 640px,
+	tablet: 768px,
+	desktop: 1024px,
+	wide: 1200px,
 );
 
 /**
@@ -40,7 +41,7 @@ $breakpoints_setting: (
  * タブレットサイズ以下（iPad縦サイズまで）
  */
 @mixin media-under-tablet() {
-	@include media-breakpoint-down(tablet,0) {
+	@include media-breakpoint-down(tablet, 0) {
 		@content;
 	}
 }
@@ -71,8 +72,8 @@ $breakpoints_setting: (
 	}
 }
 
-@mixin media-breakpoint($name,$breakpoints: $breakpoints_setting) {
-	$breakpoint: map-get($breakpoints, $name);
+@mixin media-breakpoint($name, $breakpoints: $breakpoints_setting) {
+	$breakpoint: map.get($breakpoints, $name);
 	@if $breakpoint {
 		@media (min-width: $breakpoint) {
 			@content;
@@ -83,8 +84,12 @@ $breakpoints_setting: (
 	}
 }
 
-@mixin media-breakpoint-down($name,$gain:1px,$breakpoints: $breakpoints_setting) {
-	$breakpoint: map-get($breakpoints, $name);
+@mixin media-breakpoint-down(
+	$name,
+	$gain: 0.02px,
+	$breakpoints: $breakpoints_setting
+) {
+	$breakpoint: map.get($breakpoints, $name);
 	@if $breakpoint {
 		@media (max-width: ($breakpoint - $gain)) {
 			@content;
@@ -95,11 +100,15 @@ $breakpoints_setting: (
 	}
 }
 
-@mixin media-breakpoint-between($up,$down,$breakpoints: $breakpoints_setting) {
-	$breakpoint_min: map-get($breakpoints, $up);
-	$breakpoint_max: map-get($breakpoints, $down);
+@mixin media-breakpoint-between(
+	$up,
+	$down,
+	$breakpoints: $breakpoints_setting
+) {
+	$breakpoint_min: map.get($breakpoints, $up);
+	$breakpoint_max: map.get($breakpoints, $down);
 	@if $breakpoint_min and $breakpoint_max {
-		@media (min-width: $breakpoint_min) AND (max-width: ($breakpoint_max - 1px)) {
+		@media (min-width: $breakpoint_min) AND (max-width: ($breakpoint_max - 0.02px)) {
 			@content;
 		}
 	} @else {

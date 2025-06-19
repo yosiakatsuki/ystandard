@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\helper\Style_Sheet;
 use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
@@ -25,7 +24,7 @@ class Info_Bar {
 	public function register() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'ys_after_site_header', [ $this, 'show_info_bar' ], 1 );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'info_bar_css' ] );
+		add_filter( 'ys_get_inline_css', [ $this, 'info_bar_css' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_info_bar' ] );
 	}
 
@@ -175,7 +174,7 @@ class Info_Bar {
 			]
 		);
 
-		$customizer->add_section_label( 'テキスト' );
+		$customizer->add_section_label( __( 'テキスト', 'ystandard' ) );
 		// お知らせバーテキスト.
 		$customizer->add_text(
 			[
@@ -186,11 +185,11 @@ class Info_Bar {
 				'sanitize_callback' => [ $this, 'sanitize_info_bar_text' ],
 			]
 		);
-		// テキストカラー.
+		// テキストカラー(#222222).
 		$customizer->add_color(
 			[
 				'id'      => 'ys_info_bar_text_color',
-				'default' => '#222222',
+				'default' => '',
 				'label'   => 'お知らせバー文字色',
 			]
 		);
