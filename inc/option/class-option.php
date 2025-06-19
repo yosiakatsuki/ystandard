@@ -22,8 +22,8 @@ class Option {
 	 * 設定取得
 	 *
 	 * @param string $name option key.
-	 * @param mixed $default デフォルト値.
-	 * @param mixed $type 取得する型.
+	 * @param mixed  $default デフォルト値.
+	 * @param mixed  $type 取得する型.
 	 *
 	 * @return mixed
 	 */
@@ -52,7 +52,7 @@ class Option {
 	 * デフォルト値書き換え
 	 *
 	 * @param string $name option key.
-	 * @param mixed $default デフォルト値.
+	 * @param mixed  $default デフォルト値.
 	 *
 	 * @return mixed
 	 */
@@ -64,7 +64,7 @@ class Option {
 	 * 設定取得(bool)
 	 *
 	 * @param string $name option key.
-	 * @param mixed $default デフォルト値.
+	 * @param mixed  $default デフォルト値.
 	 *
 	 * @return mixed
 	 */
@@ -76,7 +76,7 @@ class Option {
 	 * 設定取得(int)
 	 *
 	 * @param string $name option key.
-	 * @param mixed $default デフォルト値.
+	 * @param mixed  $default デフォルト値.
 	 *
 	 * @return mixed
 	 */
