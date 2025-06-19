@@ -407,7 +407,7 @@ class Archive {
 			$css_properties['--ystd--archive--list--item--col--gap']      = '0';
 			$css_properties['--ystd--archive--list--item--text--padding'] = 'var(--ystd--archive--gap)';
 			$css_properties['--ystd--archive--list--item--image--height'] = '100%';
-			// シンプル
+			// シンプル.
 			$css_properties['--ystd--archive--simple--item--padding-x'] = 'var(--ystd--archive--gap)';
 		}
 
@@ -480,15 +480,6 @@ class Archive {
 				'label'       => '一覧レイアウト',
 				'description' => '記事一覧の表示タイプ',
 				'choices'     => $archive_types,
-			]
-		);
-		$customizer->add_label(
-			[
-				'id'              => 'ys_archive_type_simple_select_warning',
-				'description'     => Admin_Notice::warning( '※選択したレイアウト(シンプル)はβ版機能となります。', false ),
-				'active_callback' => function () {
-					return ! $this->is_archive_type_not_simple();
-				},
 			]
 		);
 		$customizer->add_section_label( '表示・非表示設定' );
