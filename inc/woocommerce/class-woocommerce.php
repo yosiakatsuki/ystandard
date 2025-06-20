@@ -38,7 +38,7 @@ class WooCommerce {
 		add_action( 'template_redirect', [ __CLASS__, 'init' ] );
 		add_action( 'template_redirect', [ __CLASS__, 'remove_action' ] );
 
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ __CLASS__, 'enqueue_inline_css' ] );
+		add_filter( 'ys_get_inline_css', [ __CLASS__, 'enqueue_inline_css' ] );
 		/**
 		 * Content
 		 */

@@ -6,6 +6,7 @@
  * @author  yosiakatsuki
  * @license GPL-3.0+
  */
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -28,7 +29,7 @@ function ys_is_no_title_template() {
  *
  * @param string $slug The slug name for the generic template.
  * @param string $name The name of the specialised template.
- * @param array $args テンプレートに渡す変数.
+ * @param array  $args テンプレートに渡す変数.
  */
 function ys_get_template_part( $slug, $name = null, $args = [] ) {
 	\ystandard\Template::get_template_part( $slug, $name, $args );

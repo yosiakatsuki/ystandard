@@ -24,21 +24,10 @@ class Admin_Notice {
 	const ACTION = 'admin_notices';
 
 	/**
-	 * アクションのセット
-	 *
-	 * @param string|array|callable $function Function.
-	 * @param int $priority Priority.
-	 * @param int $accepted_args Args.
-	 */
-	public static function set_notice( $function, $priority = 10, $accepted_args = 1 ) {
-		add_action( self::ACTION, $function, $priority, $accepted_args );
-	}
-
-	/**
 	 * 管理画面通知
 	 *
-	 * @param string $content notice content.
-	 * @param string $type type.
+	 * @param string  $content notice content.
+	 * @param string  $type type.
 	 * @param boolean $echo echo.
 	 */
 	public static function notice( $content, $type = 'error', $echo = true ) {
@@ -55,7 +44,7 @@ class Admin_Notice {
 	/**
 	 * 管理画面通知 - 完了
 	 *
-	 * @param string $content notice content.
+	 * @param string  $content notice content.
 	 * @param boolean $echo echo.
 	 */
 	public static function success( $content, $echo = true ) {
@@ -65,7 +54,7 @@ class Admin_Notice {
 	/**
 	 * 管理画面通知 - お知らせ
 	 *
-	 * @param string $content notice content.
+	 * @param string  $content notice content.
 	 * @param boolean $echo echo.
 	 */
 	public static function info( $content, $echo = true ) {
@@ -75,7 +64,7 @@ class Admin_Notice {
 	/**
 	 * 管理画面通知 - 警告
 	 *
-	 * @param string $content notice content.
+	 * @param string  $content notice content.
 	 * @param boolean $echo echo.
 	 */
 	public static function warning( $content, $echo = true ) {
@@ -85,7 +74,7 @@ class Admin_Notice {
 	/**
 	 * 管理画面通知 - エラー
 	 *
-	 * @param string $content notice content.
+	 * @param string  $content notice content.
 	 * @param boolean $echo echo.
 	 */
 	public static function error( $content, $echo = true ) {

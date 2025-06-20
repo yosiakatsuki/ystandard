@@ -43,6 +43,8 @@ class Enqueue_Utility {
 
 	/**
 	 * ブロック用インラインCSSのフック名
+	 *
+	 * @deprecated v5.0.0
 	 */
 	const FILTER_BLOCKS_INLINE_CSS = 'ys_get_blocks_inline_css';
 

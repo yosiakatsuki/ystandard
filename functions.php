@@ -10,4 +10,4 @@
 /**
  * 関数群を読み込み
  */
-require_once __DIR__ . '/inc/class-ys-loader.php';
+require_once __DIR__ . '/inc/index.php';

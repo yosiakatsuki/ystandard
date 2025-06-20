@@ -146,7 +146,6 @@ class TOC {
 	 * ウィジェット有効化
 	 */
 	public function register_widget() {
-		\YS_Loader::require_file( __DIR__ . '/class-ys-widget-toc.php' );
 		register_widget( 'YS_Widget_TOC' );
 	}
 

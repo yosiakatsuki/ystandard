@@ -74,7 +74,6 @@ class Author {
 	 * ウィジェット登録
 	 */
 	public function register_widget() {
-		\YS_Loader::require_file( __DIR__ . '/class-ys-widget-author-box.php' );
 		register_widget( 'YS_Widget_Author_Box' );
 	}
 

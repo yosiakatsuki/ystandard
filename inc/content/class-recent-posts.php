@@ -155,7 +155,6 @@ class Recent_Posts {
 	 * ウィジェット登録
 	 */
 	public function register_widget() {
-		\YS_Loader::require_file( __DIR__ . '/class-ys-widget-recent-posts.php' );
 		register_widget( 'YS_Widget_Recent_Posts' );
 	}
 

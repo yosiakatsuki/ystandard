@@ -63,7 +63,7 @@ class Parts {
 		 * ウィジェット
 		 */
 		add_action( 'widgets_init', [ $this, 'register_widget' ] );
-		Admin_Notice::set_notice( [ $this, 'manual' ] );
+		add_action( 'admin_notices', [ $this, 'manual' ] );
 	}
 
 	/**
@@ -82,7 +82,6 @@ class Parts {
 	 * ウィジェット登録
 	 */
 	public function register_widget() {
-		\YS_Loader::require_file( __DIR__ . '/class-ys-widget-parts.php' );
 		register_widget( 'YS_Widget_Parts' );
 	}
 

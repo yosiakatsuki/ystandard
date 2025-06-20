@@ -20,6 +20,8 @@ class Block_Editor_Assets {
 
 	/**
 	 * ブロックエディター用インラインCSSフック名
+	 *
+	 * @deprecated v5.0.0
 	 */
 	const BLOCK_EDITOR_ASSETS_HOOK = 'ys_block_editor_assets_inline_css';
 

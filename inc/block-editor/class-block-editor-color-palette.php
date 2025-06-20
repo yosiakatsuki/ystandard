@@ -27,11 +27,11 @@ class Block_Editor_Color_Palette {
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
 		add_filter(
-			Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS,
+			'ys_get_blocks_inline_css',
 			[ $this, 'enqueue_color_palette_css' ]
 		);
 		add_filter(
-			Block_Editor_Assets::BLOCK_EDITOR_ASSETS_HOOK,
+			'ys_block_editor_assets_inline_css',
 			[ $this, 'enqueue_block_editor_color_palette_css' ]
 		);
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
@@ -127,7 +127,7 @@ class Block_Editor_Color_Palette {
 	 *
 	 * @param string $slug Slug.
 	 * @param string $color Color.
-	 * @param array $args Args.
+	 * @param array  $args Args.
 	 * @param string $prefix CSS Prefix.
 	 *
 	 * @return string

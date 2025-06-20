@@ -34,8 +34,8 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_enqueue_styles' ] );
 		add_action( 'admin_init', [ $this, 'enqueue_visual_editor_styles' ] );
 		add_action( 'tiny_mce_before_init', [ $this, 'tiny_mce_before_init' ] );
-		Admin_Notice::set_notice( [ $this, 'widget_manual' ] );
-		Admin_Notice::set_notice( [ $this, 'menu_manual' ] );
+		add_action( 'admin_notices', [ $this, 'widget_manual' ] );
+		add_action( 'admin_notices', [ $this, 'menu_manual' ] );
 	}
 
 	/**

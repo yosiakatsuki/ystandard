@@ -42,9 +42,10 @@ class Footer_Mobile_Nav {
 		);
 		// メニュー不整合チェック.
 		if ( ! has_nav_menu( 'mobile-footer' ) && has_nav_menu( 'mobile-footer-tablet' ) ) {
-			Admin_Notice::set_notice(
+			add_action(
+				'admin_notices',
 				function () {
-					Admin_Notice::warning( '「モバイルフッター(タブレットサイズ用)」を利用するためには「モバイルフッター」を設定する必要があります。' );
+						Admin_Notice::warning( '「モバイルフッター(タブレットサイズ用)」を利用するためには「モバイルフッター」を設定する必要があります。' );
 				}
 			);
 		}

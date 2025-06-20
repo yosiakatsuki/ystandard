@@ -123,7 +123,7 @@ class Enqueue_Styles {
 	 */
 	private function get_blocks_inline_css() {
 
-		return CSS::minify( apply_filters( Enqueue_Utility::FILTER_BLOCKS_INLINE_CSS, '' ) );
+		return CSS::minify( apply_filters( 'ys_get_blocks_inline_css', '' ) );
 	}
 
 	/**

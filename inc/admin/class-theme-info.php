@@ -46,8 +46,8 @@ class Theme_Info {
 	 */
 	public function __construct() {
 		add_action( 'wp_dashboard_setup', [ $this, 'dashboard_info_setup' ] );
-		Admin_Notice::set_notice( [ $this, 'notice_wordpress_version' ] );
-		Admin_Notice::set_notice( [ $this, 'notice_php_version' ] );
+		add_action( 'admin_notices', [ $this, 'notice_wordpress_version' ] );
+		add_action( 'admin_notices', [ $this, 'notice_php_version' ] );
 	}
 
 	/**
@@ -197,7 +197,7 @@ class Theme_Info {
 				?>
 				<div class="ys-dashboard__system-info-text">
 					<textarea cols="30" rows="5" style="min-width: 100%;"
-							  readonly><?php echo esc_textarea( $system_info ); ?></textarea>
+								readonly><?php echo esc_textarea( $system_info ); ?></textarea>
 					<button class="ys-dashboard__system-info-copy button action">システム情報をコピー</button>
 				</div>
 				<script>

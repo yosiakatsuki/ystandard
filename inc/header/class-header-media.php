@@ -25,7 +25,7 @@ class Header_Media {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 
 		add_filter( 'header_video_settings', [ $this, 'header_video_settings' ] );
-		add_filter( Enqueue_Utility::FILTER_INLINE_CSS, [ $this, 'header_media_style' ] );
+		add_filter( 'ys_get_inline_css', [ $this, 'header_media_style' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_media' ], 2 );
 		add_action( 'wp_enqueue_scripts', [ $this, 'add_header_video_scripts' ] );
 	}

@@ -32,7 +32,7 @@ class Embed {
 			remove_action( 'embed_content_meta', 'print_embed_sharing_button' );
 			remove_action( 'embed_footer', 'print_embed_sharing_dialog' );
 			add_filter(
-				Block_Editor_Assets::BLOCK_EDITOR_ASSETS_HOOK,
+				'ys_block_editor_assets_inline_css',
 				function ( $css ) {
 					$css .= '.block-editor__container .wp-embedded-content {height:auto;}';
 
