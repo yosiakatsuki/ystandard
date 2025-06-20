@@ -73,12 +73,8 @@ class Advertisement {
 	 */
 	public function before_title() {
 		$key = 'ys_advertisement_before_title';
-		if ( AMP::is_amp() ) {
-			$key = 'ys_amp_advertisement_before_title';
-		} else {
-			if ( Conditional_Tags::is_mobile() ) {
-				$key = 'ys_advertisement_before_title_sp';
-			}
+		if ( Conditional_Tags::is_mobile() ) {
+			$key = 'ys_advertisement_before_title_sp';
 		}
 		$ad = empty( $key ) ? '' : Option::get_option( $key, '' );
 
@@ -90,12 +86,8 @@ class Advertisement {
 	 */
 	public function after_title() {
 		$key = 'ys_advertisement_after_title';
-		if ( AMP::is_amp() ) {
-			$key = 'ys_amp_advertisement_after_title';
-		} else {
-			if ( Conditional_Tags::is_mobile() ) {
-				$key = 'ys_advertisement_after_title_sp';
-			}
+		if ( Conditional_Tags::is_mobile() ) {
+			$key = 'ys_advertisement_after_title_sp';
 		}
 		$ad = empty( $key ) ? '' : Option::get_option( $key, '' );
 
@@ -108,12 +100,8 @@ class Advertisement {
 	public static function header_ad() {
 
 		$key = 'ys_advertisement_before_content';
-		if ( AMP::is_amp() ) {
-			$key = 'ys_amp_advertisement_before_content';
-		} else {
-			if ( Conditional_Tags::is_mobile() ) {
-				$key = 'ys_advertisement_before_content_sp';
-			}
+		if ( Conditional_Tags::is_mobile() ) {
+			$key = 'ys_advertisement_before_content_sp';
 		}
 		$ad = empty( $key ) ? '' : Option::get_option( $key, '' );
 
@@ -130,12 +118,8 @@ class Advertisement {
 	public function heading_ad( $content ) {
 
 		$key = 'ys_advertisement_replace_more';
-		if ( AMP::is_amp() ) {
-			$key = 'ys_amp_advertisement_replace_more';
-		} else {
-			if ( Conditional_Tags::is_mobile() ) {
-				$key = 'ys_advertisement_replace_more_sp';
-			}
+		if ( Conditional_Tags::is_mobile() ) {
+			$key = 'ys_advertisement_replace_more_sp';
 		}
 		$ad = empty( $key ) ? '' : Option::get_option( $key, '' );
 
@@ -153,14 +137,9 @@ class Advertisement {
 		$key_left  = 'ys_advertisement_under_content_left';
 		$key_right = 'ys_advertisement_under_content_right';
 
-		if ( AMP::is_amp() ) {
-			$key_left  = 'ys_amp_advertisement_under_content';
+		if ( Conditional_Tags::is_mobile() ) {
+			$key_left  = 'ys_advertisement_under_content_sp';
 			$key_right = '';
-		} else {
-			if ( Conditional_Tags::is_mobile() ) {
-				$key_left  = 'ys_advertisement_under_content_sp';
-				$key_right = '';
-			}
 		}
 		$ad_left  = Option::get_option( $key_left, '' );
 		$ad_right = empty( $key_right ) ? '' : Option::get_option( $key_right, '' );
@@ -598,72 +577,6 @@ class Advertisement {
 			]
 		);
 
-		$customizer->add_section(
-			[
-				'section'         => 'ys_customizer_section_amp_ads',
-				'title'           => 'AMP広告設定',
-				'description'     => Admin::manual_link( 'manual/amp-advertisement' ),
-				'active_callback' => function () {
-					return Option::get_option_by_bool( 'ys_amp_enable_amp_plugin_integration', false );
-				},
-			]
-		);
-		/**
-		 * 記事タイトル上
-		 */
-		$customizer->add_textarea(
-			[
-				'id'        => 'ys_amp_advertisement_before_title',
-				'default'   => '',
-				'transport' => 'postMessage',
-				'label'     => '記事タイトル上',
-			]
-		);
-		/**
-		 * 記事タイトル下
-		 */
-		$customizer->add_textarea(
-			[
-				'id'        => 'ys_amp_advertisement_after_title',
-				'default'   => '',
-				'transport' => 'postMessage',
-				'label'     => '記事タイトル下',
-			]
-		);
-		/**
-		 * 記事本文上
-		 */
-		$customizer->add_textarea(
-			[
-				'id'        => 'ys_amp_advertisement_before_content',
-				'default'   => '',
-				'transport' => 'postMessage',
-				'label'     => '記事本文上',
-			]
-		);
-		/**
-		 * Moreタグ部分
-		 */
-		$customizer->add_textarea(
-			[
-				'id'          => 'ys_amp_advertisement_replace_more',
-				'default'     => '',
-				'transport'   => 'postMessage',
-				'label'       => '最初の見出しの上',
-				'description' => '<small>目次を表示している場合、目次の上に表示されます。</small>',
-			]
-		);
-		/**
-		 * 記事下
-		 */
-		$customizer->add_textarea(
-			[
-				'id'        => 'ys_amp_advertisement_under_content',
-				'default'   => '',
-				'transport' => 'postMessage',
-				'label'     => '記事本文下',
-			]
-		);
 	}
 }
 

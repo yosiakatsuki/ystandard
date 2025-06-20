@@ -28,37 +28,8 @@ class Header {
 		add_action( 'customize_register', [ $this, 'register_header_design' ] );
 		add_filter( 'ys_get_inline_css', [ $this, 'add_inline_css' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_script_amp' ] );
-		add_action( 'wp_footer', [ $this, 'amp_mobile_nav' ] );
 	}
 
-	/**
-	 * AMPページでScriptエンキュー
-	 */
-	public function enqueue_script_amp() {
-		if ( ! AMP::is_amp() ) {
-			return;
-		}
-		wp_enqueue_script(
-			'amp-sidebar',
-			'https://cdn.ampproject.org/v0/amp-sidebar-0.1.js',
-			[],
-			null
-		);
-		Enqueue_Utility::add_async( 'amp-sidebar' );
-		Enqueue_Utility::add_custom_element( 'amp-sidebar', 'amp-sidebar' );
-	}
-
-	/**
-	 * AMP用モバイルナビゲーション
-	 */
-	public function amp_mobile_nav() {
-		if ( ! AMP::is_amp() ) {
-			return;
-		}
-
-		ys_get_template_part( 'template-parts/header/amp-nav' );
-	}
 
 	/**
 	 * ヘッダーロゴ取得
@@ -105,10 +76,6 @@ class Header {
 	 * @return bool
 	 */
 	public static function is_active_header_search_form() {
-
-		if ( AMP::is_amp() ) {
-			return false;
-		}
 
 		return Option::get_option_by_bool( 'ys_show_header_search_form', true );
 	}

@@ -145,9 +145,6 @@ class SNS {
 	 * SNS用JavaScriptの読み込み
 	 */
 	public function enqueue_sns_scripts() {
-		if ( AMP::is_amp() ) {
-			return;
-		}
 		/**
 		 * Twitter関連スクリプト読み込み
 		 */

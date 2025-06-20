@@ -94,7 +94,7 @@ class Optimization {
 		if ( ! $this->can_optimize_jquery() ) {
 			return;
 		}
-		if ( ! AMP::is_amp() && ! Option::get_option_by_bool( 'ys_not_load_jquery', false ) ) {
+		if ( ! Option::get_option_by_bool( 'ys_not_load_jquery', false ) ) {
 			return;
 		}
 		wp_deregister_script( 'jquery' );
@@ -124,9 +124,6 @@ class Optimization {
 	 */
 	public function optimize_emoji() {
 		if ( ! Option::get_option_by_bool( 'ys_option_disable_wp_emoji', true ) ) {
-			return;
-		}
-		if ( AMP::is_amp() ) {
 			return;
 		}
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );

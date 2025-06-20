@@ -38,7 +38,6 @@ class Customizer {
 		'ys_wp_sitemap'         => 1210, // XMLサイトマップ.
 		'ys_performance_tuning' => 1220, // パフォーマンスチューニング.
 		'ys_advertisement'      => 1230, // 広告.
-		'ys_amp'                => 1300, // AMP（廃止予定）.
 		'ys_extension'          => 2000, // 拡張機能.
 	];
 

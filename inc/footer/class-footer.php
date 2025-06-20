@@ -85,9 +85,6 @@ class Footer {
 	 * ページ先頭へ戻るボタン
 	 */
 	public function back_to_top() {
-		if ( AMP::is_amp() ) {
-			return;
-		}
 		if ( Widget::is_legacy_widget_preview() ) {
 			return;
 		}

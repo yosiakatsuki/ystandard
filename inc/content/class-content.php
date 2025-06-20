@@ -694,9 +694,6 @@ class Content {
 	 * @return string
 	 */
 	public function responsive_iframe( $content ) {
-		if ( AMP::is_amp() ) {
-			return $content;
-		}
 		/**
 		 * マッチさせたいiframeのURLをリスト化
 		 */

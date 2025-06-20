@@ -37,9 +37,6 @@ class Enqueue_Scripts {
 	 * Enqueue js
 	 */
 	public function enqueue_scripts() {
-		if ( AMP::is_amp() ) {
-			return;
-		}
 		wp_enqueue_script( 'jquery' );
 		// テーマメインJS.
 		wp_enqueue_script(

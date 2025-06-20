@@ -53,9 +53,6 @@ class Google_Analytics {
 	 * @return bool
 	 */
 	public static function is_enable_google_analytics() {
-		if ( AMP::is_amp() ) {
-			return false;
-		}
 		if ( Widget::is_legacy_widget_preview() ) {
 			return false;
 		}

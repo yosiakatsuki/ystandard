@@ -98,9 +98,6 @@ class Drawer_Menu {
 			'data-label-open="menu"',
 			'data-label-close="close"',
 		];
-		if ( AMP::is_amp() ) {
-			$attr[] = 'on="tap:mobile-menu.' . $type . '"';
-		}
 
 		return apply_filters(
 			'ys_get_toggle_button_html',

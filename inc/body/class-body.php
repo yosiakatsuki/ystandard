@@ -41,12 +41,6 @@ class Body {
 			$classes[] = 'has-custom-background-image';
 		}
 
-		/**
-		 * AMPならクラス追加
-		 */
-		if ( AMP::is_amp() ) {
-			$classes[] = 'is-amp';
-		}
 
 		/**
 		 * Type: singular
