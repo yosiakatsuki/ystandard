@@ -41,7 +41,7 @@ class Post_Type {
 	 * 投稿タイプ取得
 	 *
 	 * @param array $args args.
-	 * @param bool $exclude 除外.
+	 * @param bool  $exclude 除外.
 	 *
 	 * @return array
 	 */

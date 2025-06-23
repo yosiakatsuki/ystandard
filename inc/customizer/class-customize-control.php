@@ -180,7 +180,7 @@ class Customize_Control {
 	 */
 	public function add_image( $args ) {
 		$args = $this->parse_args( $args );
-		// 設定追加
+		// 設定追加.
 		$this->add_setting( $args, false );
 		$this->wp_customize->add_control(
 			new \WP_Customize_Image_Control(
@@ -589,5 +589,21 @@ class Customize_Control {
 		$value = wp_strip_all_tags( $value, true );
 
 		return $value;
+	}
+
+	/**
+	 * 極小テキストサイズの説明文を取得
+	 *
+	 * @param string $description xsの説明文.
+	 *
+	 * @return string
+	 */
+	public static function get_xs_description_text( $description ) {
+		// xsの説明文を取得.
+		if ( ! empty( $description ) ) {
+			$description = '<span class="tw-text-ys-customizer-small tw-block tw-my-1">' . $description . '</span>';
+		}
+
+		return $description;
 	}
 }

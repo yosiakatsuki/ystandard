@@ -38,7 +38,7 @@ module.exports = {
 				'ys-fz-l': '18px',
 				'ys-fz-xl': '20px',
 				'ys-fz-xxl': '24px',
-				'ys-customizer-small': '12px',
+				'ys-customizer-small': '10px',
 			},
 		},
 	},

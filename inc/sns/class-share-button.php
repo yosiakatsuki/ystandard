@@ -30,17 +30,6 @@ class Share_Button {
 	const SHORT_CODE = 'ys_share_button';
 
 	/**
-	 * シェアボタンタイプ
-	 */
-	const TYPE = [
-		'circle'   => '円',
-		'square'   => '四角',
-		'icon'     => 'アイコンのみ',
-		'official' => '公式',
-		'none'     => '表示しない',
-	];
-
-	/**
 	 * ショートコードパラメーター
 	 */
 	const SHORTCODE_ATTR = [
@@ -50,7 +39,6 @@ class Share_Button {
 		'bluesky'              => false,
 		'facebook'             => true,
 		'hatenabookmark'       => true,
-		'pocket'               => true,
 		'line'                 => true,
 		'twitter_via_user'     => '',
 		'twitter_related_user' => '',
@@ -191,7 +179,7 @@ class Share_Button {
 	 * ショートコード実行
 	 *
 	 * @param array $atts Attributes.
-	 * @param null $content Content.
+	 * @param null  $content Content.
 	 *
 	 * @return string
 	 */
@@ -201,7 +189,7 @@ class Share_Button {
 		if ( 'none' === $this->shortcode_atts['type'] ) {
 			return '';
 		}
-		if ( ! array_key_exists( $this->shortcode_atts['type'], self::TYPE ) ) {
+		if ( ! array_key_exists( $this->shortcode_atts['type'], self::get_share_button_type() ) ) {
 			return '';
 		}
 
@@ -213,7 +201,6 @@ class Share_Button {
 		$this->set_facebook();
 		$this->set_bluesky();
 		$this->set_hatenabookmark();
-		$this->set_pocket();
 		$this->set_line();
 		$this->set_text();
 		$this->enqueue_script();
@@ -274,16 +261,6 @@ class Share_Button {
 			);
 			Enqueue_Utility::add_async( 'share-button-hatenabookmark' );
 		}
-		if ( $this->is_active_button( 'pocket' ) ) {
-			wp_enqueue_script(
-				'share-button-pocket',
-				'https://widgets.getpocket.com/v1/j/btn.js?v=1',
-				[],
-				null,
-				true
-			);
-			Enqueue_Utility::add_async( 'share-button-pocket' );
-		}
 		if ( $this->is_active_button( 'line' ) ) {
 			wp_enqueue_script(
 				'share-button-line',
@@ -343,28 +320,6 @@ class Share_Button {
 		 * URL作成
 		 */
 		$this->data['sns']['line'] = "https://social-plugins.line.me/lineit/share?url={$url}";
-	}
-
-	/**
-	 * Pocket
-	 */
-	private function set_pocket() {
-		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'pocket' ) ) {
-				return;
-			}
-		} else {
-			if ( ! $this->shortcode_atts['pocket'] ) {
-				return;
-			}
-		}
-		// Title,Url.
-		$title = $this->share_title;
-		$url   = $this->share_url;
-		/**
-		 * URL作成
-		 */
-		$this->data['sns']['pocket'] = "https://getpocket.com/edit?url={$url}&title={$title}";
 	}
 
 	/**
@@ -513,12 +468,27 @@ class Share_Button {
 	 * SNSボタンを表示する設定になっているか
 	 *
 	 * @param string $sns name.
-	 * @param bool $default default.
+	 * @param bool   $default default.
 	 *
 	 * @return bool
 	 */
 	private function is_active_button( $sns, $default = true ) {
 		return Option::get_option_by_bool( "ys_sns_share_button_{$sns}", $default );
+	}
+
+
+	/**
+	 * シェアボタンのタイプ
+	 */
+	public static function get_share_button_type() {
+		return [
+			'circle'   => __( '円', 'ystandard' ),
+			'square'   => __( '四角', 'ystandard' ),
+			'icon'     => __( 'アイコンのみ', 'ystandard' ),
+			'official' => __( '公式', 'ystandard' ),
+			'none'     => __( '表示しない', 'ystandard' ),
+		];
+
 	}
 
 	/**
@@ -579,39 +549,12 @@ class Share_Button {
 				'label'   => 'はてなブックマーク',
 			]
 		);
-		// Pocket.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_sns_share_button_pocket',
-				'default' => 1,
-				'label'   => 'Pocket',
-			]
-		);
 		// LINE.
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_sns_share_button_line',
 				'default' => 1,
 				'label'   => 'LINE',
-			]
-		);
-		$customizer->add_section_label( 'ボタン表示タイプ' );
-		// 記事上表示タイプ.
-		$customizer->add_select(
-			[
-				'id'      => 'ys_share_button_type_header',
-				'default' => 'none',
-				'label'   => '記事上のシェアボタン表示タイプ',
-				'choices' => self::TYPE,
-			]
-		);
-		// 記事下表示タイプ.
-		$customizer->add_select(
-			[
-				'id'      => 'ys_share_button_type_footer',
-				'default' => 'circle',
-				'label'   => '記事下のシェアボタン表示タイプ',
-				'choices' => self::TYPE,
 			]
 		);
 		$customizer->add_section_label(

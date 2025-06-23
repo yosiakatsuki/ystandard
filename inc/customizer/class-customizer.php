@@ -25,20 +25,27 @@ class Customizer {
 	 */
 	const PANEL_PRIORITY = [
 		'ys_info_bar'           => 1000, // お知らせバー.
-		'ys_site_typography'    => 1001, // サイト文字設定（フォント・色）（未整理）.
-		'ys_site_link_color'    => 1001, // サイトリンクカラー（未整理）.
-		'ys_global_nav'         => 1009, // グローバルナビゲーション.
-		'ys_block_editor'       => 1010, // ブロックエディター.
-		'ys_breadcrumbs'        => 1020, // パンくずリスト.
-		'ys_design'             => 1020, // デザイン(廃止予定).
-		'ys_sns'                => 1100, // SNS.
-		'ys_seo'                => 1110, // SEO.
-		'ys_feed'               => 1120, // RSSフィード.
-		'ys_blog_card'          => 1121, // ブログカード.
-		'ys_wp_sitemap'         => 1210, // XMLサイトマップ.
-		'ys_performance_tuning' => 1220, // パフォーマンスチューニング.
-		'ys_advertisement'      => 1230, // 広告.
+		'ys_site_typography'    => 1100, // フォント・文字色.
+		'ys_site_background'    => 1110, // サイト背景（未整理）.
+		'ys_site_header'        => 1200, // サイトヘッダー（未整理）.
+		'ys_global_nav'         => 1210, // グローバルナビゲーション.
+		'ys_drawer_nav'         => 1210, // ドロワーメニュー（モバイルメニュー）.
+		'ys_color_palette'      => 1220, // カラーパレット（未整理）.ブロックエディター設定からの移行.
+		'ys_post_type_option'   => 1300, // 投稿タイプ別設定.投稿(1300), 固定ページ(1301),は固定。それ以降は1310で追加順となる.
+		'ys_site_footer'        => 1400, // サイトフッター.
+		'ys_site_copyright'     => 1410, // Copyright.
+		'ys_breadcrumbs'        => 1500, // パンくずリスト.
+		'ys_toc'                => 1510, // 目次(未整理).
+		'ys_sns'                => 1520, // SNS.
+		'ys_seo'                => 1530, // SEO.
+		'ys_feed'               => 1540, // RSSフィード.
+		'ys_wp_sitemap'         => 1550, // XMLサイトマップ.
+		'ys_performance_tuning' => 1600, // パフォーマンスチューニング.
+		'ys_advertisement'      => 1700, // 広告.
 		'ys_extension'          => 2000, // 拡張機能.
+
+		'ys_blog_card'          => 910, // ブログカード(廃止予定).
+		'ys_design'             => 900, // デザイン(廃止予定).
 	];
 
 	/**
