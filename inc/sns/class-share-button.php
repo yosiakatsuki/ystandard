@@ -159,7 +159,7 @@ class Share_Button {
 		$post_type = Post_Type::get_post_type();
 		$type      = apply_filters(
 			"ys_{$post_type}_share_button_type_{$position}",
-			Option::get_option( "ys_share_button_type_{$position}", $default )
+			Option::get_option( "ys_{$post_type}_share_button_type_{$position}", $default )
 		);
 
 		$settings = [
@@ -167,6 +167,7 @@ class Share_Button {
 			'use-option' => true,
 		];
 
+		// フッター側の場合、上下テキストの設定も追加.
 		if ( 'footer' === $position ) {
 			$settings['before'] = Option::get_option( 'ys_share_button_before', '' );
 			$settings['after']  = Option::get_option( 'ys_share_button_after', '' );
@@ -210,7 +211,7 @@ class Share_Button {
 		}
 
 		ob_start();
-		Template::get_template_part(
+		get_template_part(
 			'template-parts/sns-share-button/share-button',
 			$this->shortcode_atts['type'],
 			[ 'share_button' => $this->data ]
@@ -226,7 +227,7 @@ class Share_Button {
 		if ( 'official' !== $this->shortcode_atts['type'] ) {
 			return;
 		}
-		if ( $this->is_active_button( 'twitter' ) ) {
+		if ( $this->is_active_button( 'x' ) ) {
 			wp_enqueue_script(
 				'share-button-twitter',
 				'https://platform.twitter.com/widgets.js',
@@ -392,8 +393,7 @@ class Share_Button {
 	 */
 	private function set_x() {
 		if ( $this->is_use_option() ) {
-			$x_default = ! $this->is_active_button( 'twitter', false );
-			if ( ! $this->is_active_button( 'x', $x_default ) ) {
+			if ( ! $this->is_active_button( 'x', true ) ) {
 				return;
 			}
 		} else {

@@ -14,4 +14,4 @@ defined( 'ABSPATH' ) || die();
  * template-parts/singular/pagination.php
  * 固定ページだけカスタマイズする場合はこのテンプレートを子テーマにコピーして書き換えてください。
  */
-ys_get_template_part( 'template-parts/singular/pagination' );
+get_template_part( 'template-parts/singular/pagination' );

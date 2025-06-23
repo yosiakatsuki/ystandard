@@ -28,7 +28,7 @@ if ( ! ys_is_active_post_header() ) {
 	 * 3. 投稿日・更新日・カテゴリー (30)
 	 *      \ystandard\Content::singular_meta
 	 * 4. SNSシェアボタン (40)
-	 *      template-parts/parts/sns-share-button
+	 *      template-parts/sns-share-button/sns-share-button
 	 *      \ystandard\Share_Button::header_share_button
 	 * 5. 広告 (60)
 	 *      \ystandard\Advertisement::header_ad

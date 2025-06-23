@@ -9,11 +9,7 @@
 
 defined( 'ABSPATH' ) || die();
 
-/**
- * @var array $args {
- * @type string $share_button シェアボタン用データ.
- * }
- */
+// 渡されるパラメーター情報については template-parts/sns-share-button/share-button.php を参照.
 if ( empty( $args ) || ! isset( $args['share_button'] ) ) {
 	return;
 }
@@ -37,9 +33,9 @@ if ( isset( $share_button['official']['twitter-related'] ) && $share_button['off
 		<p class="sns-share__before"><?php echo esc_html( $share_button['text']['before'] ); ?></p>
 	<?php endif; ?>
 	<ul class="sns-share__container">
-		<?php if ( isset( $share_button['sns']['twitter'] ) ) : ?>
+		<?php if ( isset( $share_button['sns']['x'] ) ) : ?>
 			<li class="sns-share__button is-twitter">
-				<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="<?php echo esc_attr( $title ); ?>" data-url="<?php echo esc_url_raw( $url ); ?>"<?php echo $twitter_attr; ?> data-show-count="false">Tweet</a>
+				<a href="https://x.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="<?php echo esc_attr( $title ); ?>" data-url="<?php echo esc_url_raw( $url ); ?>"<?php echo $twitter_attr; ?> data-show-count="false">Post</a>
 			</li>
 		<?php endif; ?>
 		<?php if ( isset( $share_button['sns']['facebook'] ) ) : ?>
@@ -67,5 +63,3 @@ if ( isset( $share_button['official']['twitter-related'] ) && $share_button['off
 		<p class="sns-share__after"><?php echo esc_html( $share_button['text']['after'] ); ?></p>
 	<?php endif; ?>
 </div>
-
-

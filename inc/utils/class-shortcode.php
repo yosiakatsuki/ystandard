@@ -21,9 +21,9 @@ class Short_Code {
 	 * ショートコードの作成と実行
 	 *
 	 * @param string $name ショートコード名.
-	 * @param array $args パラメーター.
-	 * @param mixed $content コンテンツ.
-	 * @param bool $echo 出力.
+	 * @param array  $args パラメーター.
+	 * @param mixed  $content コンテンツ.
+	 * @param bool   $echo 出力.
 	 *
 	 * @return string
 	 */
@@ -56,7 +56,7 @@ class Short_Code {
 			$shortcode = sprintf( '[%s%s]%s[/%s]', $name, $atts, $content, $name );
 		}
 		$result = do_shortcode( $shortcode );
-		// 表示 or 取得
+		// 表示 or 取得.
 		if ( $echo ) {
 			echo $result;
 

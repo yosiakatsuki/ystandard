@@ -103,7 +103,7 @@ class Content {
 	/**
 	 * 記事ヘッダー設定
 	 *
-	 * @param string $key Key.
+	 * @param string   $key Key.
 	 * @param callable $function_to_add The name of the function you wish to be called.
 	 */
 	public static function set_singular_header( $key, $function_to_add ) {
@@ -121,7 +121,7 @@ class Content {
 	/**
 	 * 記事フッター設定
 	 *
-	 * @param string $key Key.
+	 * @param string   $key Key.
 	 * @param callable $function_to_add The name of the function you wish to be called.
 	 */
 	public static function set_singular_footer( $key, $function_to_add ) {
@@ -144,7 +144,7 @@ class Content {
 	 * @return int
 	 */
 	public static function get_header_priority( $key ) {
-		$post_type = self::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$cache_key = "{$post_type}-header-priority";
 		$priority  = wp_cache_get( $cache_key );
 		if ( ! $priority ) {
@@ -627,7 +627,7 @@ class Content {
 	/**
 	 * Hook:get_the_excerpt
 	 *
-	 * @param string $content excerpt.
+	 * @param string   $content excerpt.
 	 * @param \WP_Post $post Post.
 	 */
 	public function get_the_excerpt( $content, $post ) {
@@ -734,7 +734,7 @@ class Content {
 	/**
 	 * 投稿オプション(post-meta)取得
 	 *
-	 * @param string $key 設定キー.
+	 * @param string  $key 設定キー.
 	 * @param integer $post_id 投稿ID.
 	 *
 	 * @return string
@@ -750,7 +750,7 @@ class Content {
 	/**
 	 * 投稿抜粋文を作成
 	 *
-	 * @param string $sep 抜粋最後の文字.
+	 * @param string  $sep 抜粋最後の文字.
 	 * @param integer $length 抜粋長さ.
 	 * @param integer $post_id 投稿ID.
 	 *

@@ -9,11 +9,7 @@
 
 defined( 'ABSPATH' ) || die();
 
-/**
- * @var array $args {
- * @type string $share_button シェアボタン用データ.
- * }
- */
+// 渡されるパラメーター情報については template-parts/sns-share-button/share-button.php を参照.
 if ( empty( $args ) || ! isset( $args['share_button'] ) ) {
 	return;
 }
