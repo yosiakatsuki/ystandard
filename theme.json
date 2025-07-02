@@ -94,7 +94,7 @@
 			]
 		},
 		"spacing": {
-			"blockGap" : true,
+			"blockGap": true,
 			"spacingSizes": [
 				{
 					"size": "clamp(0.313rem, 0.17rem + 0.61vw, 0.625rem)",
@@ -247,14 +247,7 @@
 					"name": "200px"
 				}
 			],
-			"units": [
-				"%",
-				"px",
-				"em",
-				"rem",
-				"vh",
-				"vw"
-			]
+			"units": ["%", "px", "em", "rem", "vh", "vw"]
 		},
 		"typography": {
 			"dropCap": false,
@@ -373,6 +366,15 @@
 				},
 				{
 					"fluid": {
+						"min": "18px",
+						"max": "28px"
+					},
+					"size": "28.18px",
+					"name": "28-18",
+					"slug": "ys-28-18"
+				},
+				{
+					"fluid": {
 						"min": "20px",
 						"max": "28px"
 					},
@@ -400,6 +402,15 @@
 				},
 				{
 					"fluid": {
+						"min": "18px",
+						"max": "32px"
+					},
+					"size": "32.18px",
+					"name": "32-18",
+					"slug": "ys-32-18"
+				},
+				{
+					"fluid": {
 						"min": "20px",
 						"max": "32px"
 					},
@@ -415,6 +426,24 @@
 					"size": "32.24px",
 					"name": "32-24",
 					"slug": "ys-32-24"
+				},
+				{
+					"fluid": {
+						"min": "18px",
+						"max": "36px"
+					},
+					"size": "36.18px",
+					"name": "36-18",
+					"slug": "ys-36-18"
+				},
+				{
+					"fluid": {
+						"min": "20px",
+						"max": "36px"
+					},
+					"size": "36.20px",
+					"name": "36-20",
+					"slug": "ys-36-20"
 				},
 				{
 					"fluid": {
@@ -451,6 +480,24 @@
 					"size": "40.20px",
 					"name": "40-20",
 					"slug": "ys-40-20"
+				},
+				{
+					"fluid": {
+						"min": "24px",
+						"max": "40px"
+					},
+					"size": "40.24px",
+					"name": "40-24",
+					"slug": "ys-40-24"
+				},
+				{
+					"fluid": {
+						"min": "28px",
+						"max": "40px"
+					},
+					"size": "40.28px",
+					"name": "40-28",
+					"slug": "ys-40-28"
 				},
 				{
 					"fluid": {
