@@ -1,4 +1,7 @@
 .wp-block-table {
+	table {
+		border-top: 1px solid var(--ystd--table--border-color);
+	}
 	thead {
 		border-bottom: 0;
 	}
@@ -8,10 +11,11 @@
 	}
 
 	td {
+		border-color: var(--ystd--table--border-color);
 		border-top: 0;
 		border-left: 0;
+		border-bottom: 1px solid var(--ystd--table--border-color);
 		border-right: 0;
-		border-color: var(--ystd--table--border-color);
 		padding-top: var(--ystd--table--padding-y);
 		padding-bottom: var(--ystd--table--padding-y);
 
@@ -27,6 +31,11 @@
 		table,
 		tr {
 			border-color: transparent;
+		}
+	}
+	&.is-vertical-align-top {
+		td {
+			vertical-align: top;
 		}
 	}
 }
