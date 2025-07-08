@@ -1,0 +1,28 @@
+
+:where(.footer-container) {
+	> * {
+		max-width: var(--ystd--container--size);
+		margin-right: auto;
+		margin-left: auto;
+
+		+ * {
+			margin-top: var(--ystd--footer--content--gap);
+		}
+	}
+}
+
+:where(.footer-main) {
+	--ystd--text-color--gray: var(--ystd--footer--text-color--gray);
+	--ystd--content--meta--color: var(--ystd--footer--text-color--gray);
+
+	padding-top: var(--ystd--footer--padding-top);
+	padding-bottom: var(--ystd--footer--padding-bottom);
+	background-color: var(--ystd--footer--background);
+	color: var(--ystd--footer--text-color);
+	overflow: hidden;
+
+	a {
+		text-decoration: none;
+		color: currentColor;
+	}
+}

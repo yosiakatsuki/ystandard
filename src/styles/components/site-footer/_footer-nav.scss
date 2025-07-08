@@ -6,7 +6,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--ystd--footer--nav--gap--row) var(--ystd--footer--nav--gap--column);
-		font-size: 0.8em;
+		font-size: var(--ystd--footer--nav--font-size);
 
 		@include global.media-up-mobile() {
 			justify-content: center;

@@ -15,27 +15,33 @@
 
 	<?php
 	// サブフッター.
-	ys_get_template_part( 'template-parts/footer/sub-footer' );
+	get_template_part( 'template-parts/footer/sub-footer' );
 	?>
 
 	<?php do_action( 'ys_before_footer_main' ); ?>
 
-	<div class="footer-main">
-		<div class="footer-container">
+	<?php if ( ys_is_active_footer_main_contents() ) : ?>
+		<div class="footer-main">
+			<div class="footer-container">
 				<?php
 				// ウィジェット.
-				ys_get_template_part( 'template-parts/footer/footer-widget' );
+				get_template_part( 'template-parts/footer/footer-widget' );
 				// フッターナビゲーション.
-				ys_get_template_part( 'template-parts/footer/footer-nav' );
-				// Copyright.
-				ys_get_template_part( 'template-parts/footer/footer-copyright' );
+				get_template_part( 'template-parts/footer/footer-nav' );
 				?>
+			</div>
 		</div>
-	</div>
+	<?php endif; ?>
+
+	<?php
+	// Copyright.
+	get_template_part( 'template-parts/footer/footer-copyright' );
+	?>
 
 	<?php do_action( 'ys_site_footer_append' ); ?>
 </footer>
 <?php
+do_action( 'ys_after_site_footer' );
 wp_footer();
 do_action( 'ys_body_append' );
 ?>
