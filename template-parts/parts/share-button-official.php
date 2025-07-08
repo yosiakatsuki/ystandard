@@ -42,11 +42,6 @@ if ( isset( $share_button['official']['twitter-related'] ) && $share_button['off
 				<a href="https://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="basic-label-counter" data-hatena-bookmark-lang="ja" title="このエントリーをはてなブックマークに追加"><img src="https://b.st-hatena.com/images/v4/public/entry-button/button-only@2x.png" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"/></a>
 			</li>
 		<?php endif; ?>
-		<?php if ( isset( $share_button['sns']['pocket'] ) ) : ?>
-			<li class="sns-share__button is-pocket">
-				<a data-pocket-label="pocket" data-pocket-count="none" class="pocket-btn" data-lang="en"></a>
-			</li>
-		<?php endif; ?>
 		<?php if ( isset( $share_button['sns']['line'] ) ) : ?>
 			<li class="sns-share__button is-line">
 				<div class="line-it-button" data-lang="ja" data-type="share-a" data-ver="3" data-url="<?php echo esc_url_raw( $url ); ?>" data-color="default" data-size="small" data-count="false" style="display: none;"></div>
@@ -57,5 +52,3 @@ if ( isset( $share_button['official']['twitter-related'] ) && $share_button['off
 		<p class="sns-share__after"><?php echo esc_html( $share_button['text']['after'] ); ?></p>
 	<?php endif; ?>
 </div>
-
-
