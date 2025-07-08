@@ -40,9 +40,9 @@ class Parts {
 
 
 	/**
-	 * Register
+	 * Constructor
 	 */
-	public function register() {
+	public function __construct() {
 		/**
 		 * 投稿タイプ
 		 */
@@ -359,5 +359,4 @@ class Parts {
 
 }
 
-$class_parts = new Parts();
-$class_parts->register();
+new Parts();
