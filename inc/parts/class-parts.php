@@ -57,7 +57,7 @@ class Parts {
 		 */
 		$this->set_parts_content_filter();
 		if ( ! shortcode_exists( self::SHORTCODE ) ) {
-			add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
+			add_shortcode( self::SHORTCODE, [ __CLASS__, 'do_shortcode' ] );
 		}
 		/**
 		 * ウィジェット
@@ -92,7 +92,7 @@ class Parts {
 	 *
 	 * @return string
 	 */
-	public function do_shortcode( $atts ) {
+	public static function do_shortcode( $atts ) {
 
 		$atts = shortcode_atts( self::SHORTCODE_ATTR, $atts );
 		/**
@@ -117,13 +117,13 @@ class Parts {
 		}
 
 		if ( 'publish' !== $post->post_status ) {
-			if ( $this->is_block_editor() ) {
-				return $this->admin_no_publish_contents( $post->post_title );
+			if ( self::is_block_editor() ) {
+				return self::admin_no_publish_contents( $post->post_title );
 			} else {
 				return '';
 			}
 		}
-		$content = $this->get_parts_content( $post->post_content );
+		$content = self::get_parts_content( $post->post_content );
 
 		return sprintf( $wrap, $content );
 	}
@@ -133,7 +133,7 @@ class Parts {
 	 *
 	 * @return bool
 	 */
-	private function is_block_editor() {
+	private static function is_block_editor() {
 		if ( ! defined( 'REST_REQUEST' ) ) {
 			return false;
 		}
@@ -148,7 +148,7 @@ class Parts {
 	 *
 	 * @return string
 	 */
-	private function admin_no_publish_contents( $title ) {
+	private static function admin_no_publish_contents( $title ) {
 		return '<div style="font-size: 12px;">※パーツが公開されていません。下書きやゴミ箱に入っていないか確認してください。(パーツ名「' . $title . '」)</div>';
 	}
 
@@ -159,7 +159,7 @@ class Parts {
 	 *
 	 * @return string
 	 */
-	private function get_parts_content( $content ) {
+	private static function get_parts_content( $content ) {
 
 		// コンテンツ展開.
 		do_action( 'ys_parts_content_before' );
