@@ -1,0 +1,11 @@
+/**
+ * Back to top
+ */
+@mixin custom_properties() {
+	--ystd--back-to-top--text-color: #222;
+	--ystd--back-to-top--background-color: #fff;
+	--ystd--back-to-top--padding: 0.75em;
+	--ystd--back-to-top--border-radius: 0;
+	--ystd--back-to-top--position-y: 2rem;
+	--ystd--back-to-top--position-x: 2rem;
+}

@@ -9,5 +9,4 @@
 
 defined( 'ABSPATH' ) || die();
 
-require_once __DIR__ . '/class-copyright.php';
 require_once __DIR__ . '/class-footer.php';

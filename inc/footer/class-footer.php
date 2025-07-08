@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\utils\Convert;
 use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
@@ -25,12 +24,18 @@ class Footer {
 	 * Footer constructor.
 	 */
 	public function __construct() {
+		// フッターメニュー.
 		add_action( 'after_setup_theme', [ $this, 'register_nav_menus' ], 20 );
+		// フッターウィジェット.
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
-		add_action( 'wp_footer', [ $this, 'back_to_top' ] );
+		// カスタマイザー.
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		// CSS変数.
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_main' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_sub' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_back_to_top' ] );
+		// TOPへ戻る.
+		add_action( 'wp_footer', [ $this, 'back_to_top' ] );
 		add_filter( 'ys_get_inline_css', [ $this, 'add_back_to_top_css' ] );
 	}
 
@@ -71,9 +76,8 @@ class Footer {
 		if ( 0 === $parts_id ) {
 			return '';
 		}
-		$parts = new Parts();
 
-		return $parts->do_shortcode(
+		return Parts::do_shortcode(
 			[
 				'parts_id'          => $parts_id,
 				'use_entry_content' => true,
@@ -85,12 +89,15 @@ class Footer {
 	 * ページ先頭へ戻るボタン
 	 */
 	public function back_to_top() {
+		// レガシープレビューでは表示しない.
 		if ( Widget::is_legacy_widget_preview() ) {
 			return;
 		}
+		// ページ先頭へ戻るボタンが有効か.
 		if ( ! Option::get_option_by_bool( 'ys_back_to_top_active', false ) ) {
 			return;
 		}
+		// ボタンのテキスト.
 		$text = Option::get_option( 'ys_back_to_top_text', '[ys_icon name="arrow-up"]' );
 		if ( '' === $text ) {
 			return;
@@ -100,9 +107,9 @@ class Footer {
 			$button_class = 'is-square';
 		}
 		$button_class = empty( $button_class ) ? '' : "class=\"{$button_class}\"";
-		echo sprintf(
+		printf(
 			'<button id="back-to-top" %s type="button"><span class="back-to-top__content">%s</span></button>',
-			$button_class,
+			esc_attr( $button_class ),
 			do_shortcode( $text )
 		);
 	}
@@ -118,52 +125,6 @@ class Footer {
 		if ( ! Option::get_option_by_bool( 'ys_back_to_top_active', false ) ) {
 			return $css;
 		}
-		$bg     = Option::get_option( 'ys_back_to_top_bg_color', '#f1f1f3' );
-		$color  = Option::get_option( 'ys_back_to_top_color', '#222222' );
-		$radius = Option::get_option( 'ys_back_to_top_border_radius', 100 );
-		// CSS.
-		$css .= "
-		#back-to-top {
-			-webkit-appearance: none;
-			appearance: none;
-			position: fixed;
-			right: 5vh;
-			bottom: 5vh;
-			margin: 0;
-			padding: 0;
-			border: 0;
-			outline: none;
-			background: none;
-			cursor: pointer;
-			z-index: var(--ystd--z-index--back-to-top);
-		}
-		#back-to-top:hover{
-			box-shadow: none;
-		}
-		.back-to-top__content {
-			display: block;
-			padding: .75em;
-			box-shadow: 0 0 4px #0000001a;
-			line-height: 1;
-			white-space: nowrap;
-
-			background-color:{$bg};
-			border-radius:{$radius}px;
-			color:{$color};
-		}
-		.is-square .back-to-top__content {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			height: 100%;
-		}
-		.back-to-top__content > * {
-			margin:0;
-		}
-		";
-		// モバイル以上でサイズ調整.
-		$css .= CSS::add_media_query_over_mobile( '#back-to-top {bottom:5vh;right:5vh;}' );
 		if ( has_nav_menu( 'mobile-footer' ) ) {
 			// モバイルで非表示.
 			$css .= CSS::add_media_query_mobile( '#back-to-top {display:none;}' );
@@ -266,6 +227,50 @@ class Footer {
 	}
 
 	/**
+	 * ページ先頭へ戻るボタンのCSS変数を追加
+	 *
+	 * @param array $css_vars CSS変数.
+	 */
+	public function add_css_var_back_to_top( $css_vars ) {
+
+		$color = Option::get_option( 'ys_back_to_top_color', '' );
+		if ( $color ) {
+			$color    = Enqueue_Utility::get_css_var(
+				'back-to-top--text-color',
+				$color
+			);
+			$css_vars = array_merge(
+				$css_vars,
+				$color
+			);
+		}
+		$bg = Option::get_option( 'ys_back_to_top_bg_color', '' );
+		if ( $bg ) {
+			$bg       = Enqueue_Utility::get_css_var(
+				'back-to-top--background-color',
+				$bg
+			);
+			$css_vars = array_merge(
+				$css_vars,
+				$bg
+			);
+		}
+		$radius = Option::get_option( 'ys_back_to_top_border_radius', 100 );
+		if ( $radius ) {
+			$radius   = Enqueue_Utility::get_css_var(
+				'back-to-top--border-radius',
+				CSS::check_and_add_unit( "{$radius}" )
+			);
+			$css_vars = array_merge(
+				$css_vars,
+				$radius
+			);
+		}
+
+		return $css_vars;
+	}
+
+	/**
 	 * ウィジェット登録
 	 */
 	public function widget_init() {
@@ -313,11 +318,10 @@ class Footer {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section'     => 'ys_design_footer',
-				'title'       => 'フッター',
+				'section'     => 'ys_site_footer',
+				'title'       => '[ys]' . _x( 'フッター', 'customizer', 'ystandard' ),
 				'description' => 'フッターのデザイン設定',
-				'priority'    => 1000,
-				'panel'       => Design::PANEL_NAME,
+				'priority'    => Customizer::get_priority( 'ys_site_footer' ),
 			]
 		);
 		$customizer->add_section_label(
@@ -401,7 +405,7 @@ class Footer {
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_back_to_top_active',
-				'default' => 0,
+				'default' => 1,
 				'label'   => 'ページ先頭へ戻るボタンを表示する',
 			]
 		);
@@ -432,15 +436,12 @@ class Footer {
 				'label'   => '先頭へ戻るボタン文字色',
 			]
 		);
-		$customizer->add_number(
+		$customizer->add_text(
 			[
 				'id'          => 'ys_back_to_top_border_radius',
-				'default'     => 100,
+				'default'     => '',
 				'label'       => '先頭へ戻るボタンの角丸',
-				'input_attrs' => [
-					'min' => 0,
-					'max' => 100,
-				],
+				'description' => __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' ),
 			]
 		);
 		// 正方形.
@@ -456,30 +457,6 @@ class Footer {
 				'id'      => 'ys_back_to_top_square',
 				'default' => 1,
 				'label'   => 'ボタンの縦・横サイズをあわせる',
-			]
-		);
-
-		// モバイルフッター.
-		$customizer->add_section_label(
-			'モバイルフッターメニュー 色設定',
-			[
-				'description' => Admin::manual_link( 'manual/mobile-footer-menu' ),
-			]
-		);
-		// モバイルフッター背景色.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_mobile_footer_bg',
-				'default' => '',
-				'label'   => 'モバイルフッター背景色',
-			]
-		);
-		// モバイルフッター文字色.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_mobile_footer_text',
-				'default' => '',
-				'label'   => 'モバイルフッター文字色',
 			]
 		);
 	}

@@ -1,48 +1,49 @@
-@use "screen-reader-text/screen-reader-text";
-@use "forms/forms";
+@use "./screen-reader-text/screen-reader-text";
+@use "./forms/forms";
 
-@use "search-form/search-form";
-@use "breadcrumbs/breadcrumbs";
-@use "ratio/ratio";
+@use "./search-form/search-form";
+@use "./breadcrumbs/breadcrumbs";
+@use "./ratio/ratio";
 
 
-@use "taxonomy/taxonomy";
-@use "author/author";
-@use "recent-posts/recent-posts";
-@use "posts/posts";
-@use "post-related/post-related";
+@use "./taxonomy/taxonomy";
+@use "./author/author";
+@use "./recent-posts/recent-posts";
+@use "./posts/posts";
+@use "./post-related/post-related";
 
-@use "pagination/page-links";
-@use "blog-card/blog-card";
-@use "comments/comments";
-@use "toc/toc";
+@use "./pagination/page-links";
+@use "./blog-card/blog-card";
+@use "./comments/comments";
+@use "./toc/toc";
 
 /**
  * 汎用項目
  */
-@use "icon";
-@use "wordpress";
-@use "advertisement";
+@use "./icon";
+@use "./wordpress";
+@use "./advertisement";
 
 /**
  * ページ関連
  */
-@use "not-found-404";
+@use "./not-found-404";
 
 /**
  * パーツ
  */
-@use "site-header";
-@use "site-branding";
-@use "container";
-@use "contents";
-@use "archive";
-@use "navigation";
-@use "site-footer";
-@use "sub-footer";
-@use "widget";
-@use "post-paging";
-@use "pagination";
-@use "sidebar";
-@use "sns";
-@use "share-button"; // 仕掛
+@use "./site-header";
+@use "./site-branding";
+@use "./container";
+@use "./contents";
+@use "./archive";
+@use "./navigation";
+@use "./site-footer";
+@use "./sub-footer";
+@use "./widget";
+@use "./post-paging";
+@use "./pagination";
+@use "./sidebar";
+@use "./sns";
+@use "./share-button"; // 仕掛
+@use "./back-to-top";

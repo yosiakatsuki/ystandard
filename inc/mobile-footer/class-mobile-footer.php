@@ -24,16 +24,17 @@ class Mobile_Footer {
 	public function __construct() {
 		// カスタマイザー.
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var' ] );
 	}
 
 	/**
-	 * モバイルフッターメニュー色
+	 * CSS変数を追加.
 	 *
 	 * @param array $css_vars CSS.
 	 *
 	 * @return array
 	 */
-	public function add_css_var_mobile_footer_menu( $css_vars ) {
+	public function add_css_var( $css_vars ) {
 
 		// モバイルフッター背景色.
 		$bg_color = Option::get_option( 'ys_color_mobile_footer_bg', '' );
@@ -70,7 +71,7 @@ class Mobile_Footer {
 		$customizer = new Customize_Control( $wp_customize );
 		$customizer->add_section(
 			[
-				'section'     => 'ys_design_footer',
+				'section'     => 'ys_mobile_footer',
 				'title'       => '[ys]' . _x( 'モバイルフッター', 'customizer', 'ystandard' ),
 				'description' => _x( 'モバイルフッターの設定', 'customizer', 'ystandard' ),
 				'priority'    => Customizer::get_priority( 'ys_mobile_footer' ),

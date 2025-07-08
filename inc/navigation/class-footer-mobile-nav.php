@@ -10,7 +10,6 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
-use ystandard\utils\CSS;
 
 defined( 'ABSPATH' ) || die();
 
@@ -26,7 +25,6 @@ class Footer_Mobile_Nav {
 	public function __construct() {
 		add_action( 'after_setup_theme', [ $this, 'register_nav_menus' ], 30 );
 		add_action( 'wp_footer', [ $this, 'footer_mobile_nav' ], 1 );
-		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_mobile_footer_menu' ] );
 		add_filter( 'ys_get_inline_css', [ $this, 'add_footer_mobile_nav_css' ] );
 	}
 

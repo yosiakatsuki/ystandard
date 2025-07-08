@@ -1,43 +1,44 @@
 @use "../../global";
 @use "sass:meta";
 
-@use "ystandard";
-@use "typography";
-@use "site-background";
-@use "site-border";
-@use "spacing";
-@use "z-index";
+@use "./ystandard";
+@use "./typography";
+@use "./site-background";
+@use "./site-border";
+@use "./spacing";
+@use "./z-index";
 
-@use "link";
-@use "align";
-@use "body";
-@use "headline";
-@use "form";
-@use "button";
-@use "table";
-@use "container";
-@use "site-header";
-@use "site-branding";
-@use "global-nav";
-@use "drawer-menu";
-@use "breadcrumbs";
-@use "sidebar";
-@use "content";
-@use "archive";
-@use "info-bar";
-@use "paging";
-@use "pagination";
-@use "toc";
-@use "advertisement";
-@use "tagcloud";
-@use "footer";
-@use "footer-sub";
-@use "footer-mobile";
-@use "post-list";
-@use "sns";
-@use "alert";
+@use "./link";
+@use "./align";
+@use "./body";
+@use "./headline";
+@use "./form";
+@use "./button";
+@use "./table";
+@use "./container";
+@use "./site-header";
+@use "./site-branding";
+@use "./global-nav";
+@use "./drawer-menu";
+@use "./breadcrumbs";
+@use "./sidebar";
+@use "./content";
+@use "./archive";
+@use "./info-bar";
+@use "./paging";
+@use "./pagination";
+@use "./toc";
+@use "./advertisement";
+@use "./tagcloud";
+@use "./footer";
+@use "./footer-sub";
+@use "./footer-mobile";
+@use "./post-list";
+@use "./sns";
+@use "./alert";
+@use "./back-to-top";
 
-@use "editor";
+@use "./editor";
 
 body:where([class]) {
 	/**
@@ -115,6 +116,8 @@ body:where([class]) {
 	@include sns.custom_properties();
 	// アラート
 	@include alert.custom_properties();
+	// Back to Top
+	@include back-to-top.custom_properties();
 	// エディター
 	@include editor.custom_properties();
 }
