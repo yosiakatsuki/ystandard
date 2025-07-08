@@ -1,10 +1,10 @@
 :where(.copyright-wrapper) {
-	padding-top: var(--ystd-copyright--padding-top);
-	padding-bottom: var(--ystd-copyright--padding-bottom);
-	background-color: var(--ystd-copyright--background-color);
-	color: var(--ystd-copyright--text-color);
-	font-size: var(--ystd-copyright--font-size);
-	line-height: var(--ystd-copyright--line-height);
+	padding-top: var(--ystd--copyright--padding-top);
+	padding-bottom: var(--ystd--copyright--padding-bottom);
+	background-color: var(--ystd--copyright--background-color);
+	color: var(--ystd--copyright--text-color);
+	font-size: var(--ystd--copyright--font-size);
+	line-height: var(--ystd--copyright--line-height);
 }
 
 :where(.copyright-container) {
@@ -29,5 +29,5 @@
 
 :where(.powered-by) {
 	padding-top: 0.5em;
-	font-size: var(--ystd-pewerd-by--font-size);
+	font-size: var(--ystd--pewerd-by--font-size);
 }
