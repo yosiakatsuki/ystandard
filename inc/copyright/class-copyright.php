@@ -79,8 +79,8 @@ class Copyright {
 		/**
 		 * WordPress
 		 */
-		$url      = __( 'https://wordpress.org/' );
-		$powerdby = sprintf(
+		$url        = __( 'https://wordpress.org/' );
+		$powered_by = sprintf(
 			'Powered by <a href="%s" target="_blank" rel="nofollow noopener noreferrer">WordPress</a>',
 			$url
 		);
@@ -88,9 +88,9 @@ class Copyright {
 		 * Powered By
 		 */
 		$html = sprintf(
-			'<p id="footer-poweredby" class="footer-poweredby">%s%s</p>',
+			'<p id="footer-powered-by" class="footer-powered-by">%s%s</p>',
 			$theme,
-			$powerdby
+			$powered_by
 		);
 
 		return apply_filters( 'ys_poweredby', $html );
@@ -116,13 +116,13 @@ class Copyright {
 
 		$customizer->add_section(
 			[
-				'section'     => 'ys_design_copyright',
-				'title'       => 'Copyright',
-				'description' => 'Copyrightの設定' . Admin::manual_link( 'manual/copyright' ),
-				'priority'    => 1010,
-				'panel'       => Design::PANEL_NAME,
+				'section'     => 'ys_copyright',
+				'title'       => '[ys]' . _x( 'Copyright', 'customizer', 'ystandard' ),
+				'description' => __( 'Copyrightの設定', 'ystandard' ) . Admin::manual_link( 'manual/copyright' ),
+				'priority'    => Customizer::get_priority( 'ys_site_copyright' ),
 			]
 		);
+		$customizer->add_section_label( __( 'Copyrightテキスト', 'ystandard' ) );
 		/**
 		 * Copyright
 		 */
@@ -130,8 +130,34 @@ class Copyright {
 			[
 				'id'                => 'ys_copyright',
 				'default'           => self::get_default(),
-				'label'             => 'Copyright',
+				'label'             => _x( 'Copyright', 'customizer', 'ystandard' ),
 				'sanitize_callback' => [ $this, 'sanitize_copyright' ],
+			]
+		);
+		$customizer->add_section_label( __( 'Copyright 色・文字サイズ', 'ystandard' ) );
+		// Copyright文字色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_copyright_text',
+				'default' => '',
+				'label'   => __( '文字色', 'ystandard' ),
+			]
+		);
+		// Copyright背景色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_copyright_background',
+				'default' => '',
+				'label'   => __( '背景色', 'ystandard' ),
+			]
+		);
+		// Copyright文字サイズ.
+		$customizer->add_text(
+			[
+				'id'          => 'ys_copyright_font_size',
+				'default'     => '',
+				'label'       => __( '文字サイズ', 'ystandard' ),
+				'placeholder' => __( '例:12px', 'ystandard' ),
 			]
 		);
 	}

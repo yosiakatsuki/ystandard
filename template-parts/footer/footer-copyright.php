@@ -9,8 +9,8 @@
 
 defined( 'ABSPATH' ) || die();
 ?>
-<div class="site-info">
-	<div class="footer-copyright">
-		<?php ys_the_footer_site_info(); ?>
+<div class="footer-copyright">
+	<div class="footer-copyright-container">
+		<?php ys_the_copyright(); ?>
 	</div>
 </div>
