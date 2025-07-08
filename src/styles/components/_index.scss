@@ -5,7 +5,6 @@
 @use "./breadcrumbs/breadcrumbs";
 @use "./ratio/ratio";
 
-
 @use "./taxonomy/taxonomy";
 @use "./author/author";
 @use "./recent-posts/recent-posts";
@@ -40,10 +39,11 @@
 @use "./navigation";
 @use "./site-footer";
 @use "./sub-footer";
+@use "./copyright";
 @use "./widget";
 @use "./post-paging";
 @use "./pagination";
 @use "./sidebar";
 @use "./sns";
-@use "./share-button"; // 仕掛
+@use "./share-button";
 @use "./back-to-top";

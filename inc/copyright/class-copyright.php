@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\CSS;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -23,6 +25,8 @@ class Copyright {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		// CSS変数.
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_copyright' ] );
 	}
 
 	/**
@@ -88,7 +92,7 @@ class Copyright {
 		 * Powered By
 		 */
 		$html = sprintf(
-			'<p id="footer-powered-by" class="footer-powered-by">%s%s</p>',
+			'<p id="footer-powered-by" class="powered-by">%s%s</p>',
 			$theme,
 			$powered_by
 		);
@@ -157,9 +161,54 @@ class Copyright {
 				'id'          => 'ys_copyright_font_size',
 				'default'     => '',
 				'label'       => __( '文字サイズ', 'ystandard' ),
-				'placeholder' => __( '例:12px', 'ystandard' ),
+				'placeholder' => __( '例 : 12px', 'ystandard' ),
 			]
 		);
+	}
+
+	/**
+	 * CopyrightのCSS変数を追加
+	 *
+	 * @param array $css_vars CSS変数.
+	 *
+	 * @return array
+	 */
+	public function add_css_var_copyright( $css_vars ) {
+		// Copyright文字色.
+		$text_color = Option::get_option( 'ys_color_copyright_text', '' );
+		if ( '' !== $text_color ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'copyright--text-color',
+					$text_color
+				)
+			);
+		}
+		// Copyright背景色.
+		$bg_color = Option::get_option( 'ys_color_copyright_background', '' );
+		if ( '' !== $bg_color ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'copyright--background-color',
+					$bg_color
+				)
+			);
+		}
+		// Copyright文字サイズ.
+		$font_size = Option::get_option( 'ys_copyright_font_size', '' );
+		if ( '' !== $font_size ) {
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'copyright--font-size',
+					CSS::check_and_add_unit( $font_size )
+				)
+			);
+		}
+
+		return $css_vars;
 	}
 
 	/**

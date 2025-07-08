@@ -1,0 +1,13 @@
+/**
+ * Copyright
+ */
+@mixin custom_properties() {
+	--ystd-copyright--text-color: var(--ystd--text-color);
+	--ystd-copyright--background-color: var(--ystd--site--background--gray);
+	--ystd-copyright--padding-top: 2em;
+	--ystd-copyright--padding-bottom: 1em;
+	--ystd-copyright--font-size: 12px;
+	--ystd-copyright--line-height: 1.3;
+
+	--ystd-pewerd-by--font-size: 10px;
+}

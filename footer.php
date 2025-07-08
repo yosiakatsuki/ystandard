@@ -35,7 +35,7 @@
 
 	<?php
 	// Copyright.
-	get_template_part( 'template-parts/footer/footer-copyright' );
+	get_template_part( 'template-parts/copyright/copyright' );
 	?>
 
 	<?php do_action( 'ys_site_footer_append' ); ?>

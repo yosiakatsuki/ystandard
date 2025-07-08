@@ -30,9 +30,10 @@
 @use "./toc";
 @use "./advertisement";
 @use "./tagcloud";
-@use "./footer";
+@use "./site-footer";
 @use "./footer-sub";
 @use "./footer-mobile";
+@use "./copyright";
 @use "./post-list";
 @use "./sns";
 @use "./alert";
@@ -105,9 +106,11 @@ body:where([class]) {
 	// Tag Cloud
 	@include tagcloud.custom_properties();
 	// Footer
-	@include footer.custom_properties();
+	@include site-footer.custom_properties();
 	// Sub Footer
 	@include footer-sub.custom_properties();
+	// Copyright
+	@include copyright.custom_properties();
 	// Mobile Footer
 	@include footer-mobile.custom_properties();
 	// Post List

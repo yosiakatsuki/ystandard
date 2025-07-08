@@ -1,6 +1,6 @@
 <?php
 /**
- * フッターcopyrightテンプレート
+ * Copyrightテンプレート
  *
  * @package ystandard
  * @author  yosiakatsuki
@@ -9,8 +9,8 @@
 
 defined( 'ABSPATH' ) || die();
 ?>
-<div class="footer-copyright">
-	<div class="footer-copyright-container">
+<div class="copyright-wrapper">
+	<div class="copyright-container">
 		<?php ys_the_copyright(); ?>
 	</div>
 </div>
