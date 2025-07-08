@@ -44,7 +44,6 @@ class Share_Button {
 		'bluesky'              => false,
 		'facebook'             => true,
 		'hatenabookmark'       => true,
-		'pocket'               => true,
 		'line'                 => true,
 		'twitter_via_user'     => '',
 		'twitter_related_user' => '',
@@ -207,7 +206,6 @@ class Share_Button {
 		$this->set_bluesky();
 		$this->set_facebook();
 		$this->set_hatenabookmark();
-		$this->set_pocket();
 		$this->set_line();
 		$this->set_text();
 		$this->enqueue_script();
@@ -265,16 +263,6 @@ class Share_Button {
 				true
 			);
 			Enqueue_Utility::add_async( 'share-button-hatenabookmark' );
-		}
-		if ( $this->is_active_button( 'pocket' ) ) {
-			wp_enqueue_script(
-				'share-button-pocket',
-				'https://widgets.getpocket.com/v1/j/btn.js?v=1',
-				[],
-				null,
-				true
-			);
-			Enqueue_Utility::add_async( 'share-button-pocket' );
 		}
 		if ( $this->is_active_button( 'line' ) ) {
 			wp_enqueue_script(
@@ -335,28 +323,6 @@ class Share_Button {
 		 * URL作成
 		 */
 		$this->data['sns']['line'] = "https://social-plugins.line.me/lineit/share?url={$url}";
-	}
-
-	/**
-	 * Pocket
-	 */
-	private function set_pocket() {
-		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'pocket' ) ) {
-				return;
-			}
-		} else {
-			if ( ! $this->shortcode_atts['pocket'] ) {
-				return;
-			}
-		}
-		// Title,Url.
-		$title = $this->share_title;
-		$url   = $this->share_url;
-		/**
-		 * URL作成
-		 */
-		$this->data['sns']['pocket'] = "https://getpocket.com/edit?url={$url}&title={$title}";
 	}
 
 	/**
@@ -569,14 +535,6 @@ class Share_Button {
 				'id'      => 'ys_sns_share_button_hatenabookmark',
 				'default' => 1,
 				'label'   => 'はてなブックマーク',
-			]
-		);
-		// Pocket.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_sns_share_button_pocket',
-				'default' => 1,
-				'label'   => 'Pocket',
 			]
 		);
 		// LINE.
