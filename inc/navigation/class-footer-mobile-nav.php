@@ -145,41 +145,6 @@ class Footer_Mobile_Nav {
 		}
 		Template::get_template_part( 'template-parts/footer/footer-mobile-nav' );
 	}
-
-	/**
-	 * モバイルフッターメニュー色
-	 *
-	 * @param array $css_vars CSS.
-	 *
-	 * @return array
-	 */
-	public function add_css_var_mobile_footer_menu( $css_vars ) {
-
-		// モバイルフッター背景色
-		$bg_color = Option::get_option( 'ys_color_mobile_footer_bg', '' );
-		if ( $bg_color ) {
-			$bg_color = CSS::hex_2_rgb( $bg_color );
-			$bg       = Enqueue_Utility::get_css_var(
-				'mobile-footer--background',
-				sprintf(
-					'rgb(%s,%s,%s,0.95)',
-					$bg_color[0],
-					$bg_color[1],
-					$bg_color[2]
-				)
-			);
-			$css_vars = array_merge( $css_vars, $bg );
-		}
-
-		// 文字色.
-		$text_color = Option::get_option( 'ys_color_mobile_footer_text', '' );
-		if ( $text_color ) {
-			$color    = Enqueue_Utility::get_css_var( 'mobile-footer--text-color', $text_color );
-			$css_vars = array_merge( $css_vars, $color );
-		}
-
-		return $css_vars;
-	}
 }
 
 new Footer_Mobile_Nav();

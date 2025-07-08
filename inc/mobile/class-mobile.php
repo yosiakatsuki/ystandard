@@ -33,6 +33,9 @@ class Mobile {
 	public function customize_register( $wp_customize ) {
 		$customizer = new Customize_Control( $wp_customize );
 		/**
+		 * TODO: 投稿タイプ別のサイドバーありレイアウトを選んだ時の設定にする.
+		 */
+		/**
 		 * セクション追加
 		 */
 		$customizer->add_section(
