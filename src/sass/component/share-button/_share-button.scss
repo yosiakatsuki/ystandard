@@ -3,7 +3,6 @@
 $editor: false !default;
 
 @mixin share-buttons() {
-
 	.sns-share {
 		@include global.child_margin(0.5em);
 
@@ -43,14 +42,9 @@ $editor: false !default;
 			}
 			.sns-share__button {
 				&:hover {
-					transform: scale(1.0);
+					transform: scale(1);
 				}
 			}
-		}
-
-		// 微調整.
-		.icon--pocket {
-			margin-top: 15%;
 		}
 
 		.fb_iframe_widget,
@@ -104,4 +98,3 @@ $editor: false !default;
 @if false == $editor {
 	@include share-buttons();
 }
-
