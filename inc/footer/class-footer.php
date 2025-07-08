@@ -47,7 +47,7 @@ class Footer {
 	public function register_nav_menus() {
 		register_nav_menus(
 			[
-				'footer' => 'フッターメニュー',
+				'footer' => __( 'フッターメニュー', 'ystandard' ),
 			]
 		);
 	}
@@ -212,10 +212,9 @@ class Footer {
 
 		$padding = Option::get_option( 'ys_sub_footer_padding', '' );
 		if ( '' !== $padding ) {
-			$padding  = empty( $padding ) ? 0 : "{$padding}px";
 			$padding  = Enqueue_Utility::get_css_var(
 				'sub-footer--padding',
-				$padding
+				CSS::check_and_add_unit( $padding )
 			);
 			$css_vars = array_merge(
 				$css_vars,
@@ -276,9 +275,9 @@ class Footer {
 	public function widget_init() {
 		register_sidebar(
 			[
-				'name'          => 'フッター左',
+				'name'          => __( 'フッター左', 'ystandard' ),
 				'id'            => 'footer-left',
-				'description'   => 'フッターエリア左側',
+				'description'   => __( 'フッターエリア左側', 'ystandard' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -287,9 +286,9 @@ class Footer {
 		);
 		register_sidebar(
 			[
-				'name'          => 'フッター中央',
+				'name'          => __( 'フッター中央', 'ystandard' ),
 				'id'            => 'footer-center',
-				'description'   => 'フッターエリア中央',
+				'description'   => __( 'フッターエリア中央', 'ystandard' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -298,9 +297,9 @@ class Footer {
 		);
 		register_sidebar(
 			[
-				'name'          => 'フッター右',
+				'name'          => __( 'フッター右', 'ystandard' ),
 				'id'            => 'footer-right',
-				'description'   => 'フッターエリア右側',
+				'description'   => __( 'フッターエリア右側', 'ystandard' ),
 				'before_widget' => '<div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -320,12 +319,12 @@ class Footer {
 			[
 				'section'     => 'ys_site_footer',
 				'title'       => '[ys]' . _x( 'フッター', 'customizer', 'ystandard' ),
-				'description' => 'フッターのデザイン設定',
+				'description' => __( 'フッターのデザイン設定', 'ystandard' ),
 				'priority'    => Customizer::get_priority( 'ys_site_footer' ),
 			]
 		);
 		$customizer->add_section_label(
-			'フッターメインエリア設定',
+			__( 'フッターメインエリア設定', 'ystandard' ),
 			[
 				'description' => Admin::manual_link( 'manual/footer-area' ),
 			]
@@ -335,7 +334,7 @@ class Footer {
 			[
 				'id'      => 'ys_color_footer_bg',
 				'default' => '',
-				'label'   => 'フッター背景色',
+				'label'   => __( 'フッター背景色', 'ystandard' ),
 			]
 		);
 		// フッター文字色.
@@ -343,7 +342,7 @@ class Footer {
 			[
 				'id'      => 'ys_color_footer_font',
 				'default' => '',
-				'label'   => 'フッター文字色',
+				'label'   => __( 'フッター文字色', 'ystandard' ),
 			]
 		);
 		// フッター文字色(グレー).
@@ -351,11 +350,11 @@ class Footer {
 			[
 				'id'      => 'ys_color_footer_text_gray',
 				'default' => '',
-				'label'   => 'フッター文字色(グレー)',
+				'label'   => __( 'フッター文字色(グレー)', 'ystandard' ),
 			]
 		);
 		$customizer->add_section_label(
-			'サブフッター設定',
+			__( 'サブフッター設定', 'ystandard' ),
 			[
 				'description' => Admin::manual_link( 'manual/sub-footer' ),
 			]
@@ -365,7 +364,7 @@ class Footer {
 			[
 				'id'      => 'ys_color_sub_footer_bg',
 				'default' => '',
-				'label'   => 'サブフッター背景色',
+				'label'   => __( 'サブフッター背景色', 'ystandard' ),
 			]
 		);
 		// フッター文字色.
@@ -373,7 +372,7 @@ class Footer {
 			[
 				'id'      => 'ys_color_sub_footer_text',
 				'default' => '',
-				'label'   => 'サブフッター文字色',
+				'label'   => __( 'サブフッター文字色', 'ystandard' ),
 			]
 		);
 		// サブフッター コンテンツ.
@@ -381,23 +380,24 @@ class Footer {
 			[
 				'id'          => 'ys_footer_sub_content',
 				'default'     => 0,
-				'label'       => 'サブフッター コンテンツ',
-				'description' => 'サブフッターに表示する内容を[ys]パーツから選択します。',
+				'label'       => __( 'サブフッター コンテンツ', 'ystandard' ),
+				'description' => __( 'サブフッターに表示する内容を[ys]パーツから選択します。', 'ystandard' ),
 				'choices'     => Parts::get_parts_list( true ),
 			]
 		);
-		$customizer->add_number(
+		$customizer->add_text(
 			[
-				'id'      => 'ys_sub_footer_padding',
-				'default' => '',
-				'label'   => 'サブフッター上下余白',
+				'id'          => 'ys_sub_footer_padding',
+				'default'     => '',
+				'label'       => __( 'サブフッター上下余白', 'ystandard' ),
+				'description' => __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' ),
 			]
 		);
 		/**
 		 * ページ先頭へ戻るボタン
 		 */
 		$customizer->add_section_label(
-			'ページ先頭へ戻るボタン',
+			__( 'ページ先頭へ戻るボタン', 'ystandard' ),
 			[
 				'description' => Admin::manual_link( 'manual/back-to-top' ),
 			]
@@ -406,7 +406,7 @@ class Footer {
 			[
 				'id'      => 'ys_back_to_top_active',
 				'default' => 1,
-				'label'   => 'ページ先頭へ戻るボタンを表示する',
+				'label'   => __( 'ページ先頭へ戻るボタンを表示する', 'ystandard' ),
 			]
 		);
 		// ページ先頭へ戻るボタンテキスト.
@@ -415,8 +415,9 @@ class Footer {
 			[
 				'id'                => 'ys_back_to_top_text',
 				'default'           => '[ys_icon name="arrow-up"]',
-				'label'             => 'ページ先頭へ戻るボタンテキスト',
-				'description'       => "<a href='{$short_code_page}' target='_blank'>アイコンショートコード</a>と<code>img</code>タグが使用できます。",
+				'label'             => __( 'ページ先頭へ戻るボタンテキスト', 'ystandard' ),
+				// translators: %s: アイコンショートコードの管理画面URL.
+				'description'       => sprintf( __( '<a href="%s" target="_blank">アイコンショートコード</a>と<code>img</code>タグが使用できます。', 'ystandard' ), $short_code_page ),
 				'sanitize_callback' => [ $this, 'sanitize_back_to_top_text' ],
 			]
 		);
@@ -425,7 +426,7 @@ class Footer {
 			[
 				'id'      => 'ys_back_to_top_bg_color',
 				'default' => '',
-				'label'   => '先頭へ戻るボタン背景色',
+				'label'   => __( '先頭へ戻るボタン背景色', 'ystandard' ),
 			]
 		);
 		// ページ先頭へ戻るボタン文字色.
@@ -433,14 +434,14 @@ class Footer {
 			[
 				'id'      => 'ys_back_to_top_color',
 				'default' => '',
-				'label'   => '先頭へ戻るボタン文字色',
+				'label'   => __( '先頭へ戻るボタン文字色', 'ystandard' ),
 			]
 		);
 		$customizer->add_text(
 			[
 				'id'          => 'ys_back_to_top_border_radius',
 				'default'     => '',
-				'label'       => '先頭へ戻るボタンの角丸',
+				'label'       => __( '先頭へ戻るボタンの角丸', 'ystandard' ),
 				'description' => __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' ),
 			]
 		);
@@ -448,15 +449,15 @@ class Footer {
 		$customizer->add_label(
 			[
 				'id'          => 'ys_back_to_top_square_label',
-				'label'       => 'ボタンの縦・横サイズをあわせる',
-				'description' => '縦長・横長のボタンにする場合はチェックを外してください',
+				'label'       => __( 'ボタンの縦・横サイズをあわせる', 'ystandard' ),
+				'description' => __( '縦長・横長のボタンにする場合はチェックを外してください', 'ystandard' ),
 			]
 		);
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_back_to_top_square',
 				'default' => 1,
-				'label'   => 'ボタンの縦・横サイズをあわせる',
+				'label'   => __( 'ボタンの縦・横サイズをあわせる', 'ystandard' ),
 			]
 		);
 	}
