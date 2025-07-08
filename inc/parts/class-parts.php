@@ -149,7 +149,8 @@ class Parts {
 	 * @return string
 	 */
 	private static function admin_no_publish_contents( $title ) {
-		return '<div style="font-size: 12px;">※パーツが公開されていません。下書きやゴミ箱に入っていないか確認してください。(パーツ名「' . $title . '」)</div>';
+		/* translators: %s: パーツのタイトル (the part's title) */
+		return '<div style="font-size: 12px;">' . sprintf( __( '※パーツが公開されていません。下書きやゴミ箱に入っていないか確認してください。(パーツ名「%s」)', 'ystandard' ), $title ) . '</div>';
 	}
 
 	/**
@@ -244,7 +245,7 @@ class Parts {
 				'show_in_menu'          => true,
 				'menu_icon'             => Admin_Menu::get_menu_icon(),
 				'menu_position'         => 20,
-				'description'           => 'サイト内で使用するコンテンツのパーツを登録できます。',
+				'description'           => __( 'サイト内で使用するコンテンツのパーツを登録できます。', 'ystandard' ),
 				'has_archive'           => false,
 				'hierarchical'          => true,
 				'show_in_rest'          => true,
@@ -269,7 +270,7 @@ class Parts {
 		 */
 		add_meta_box(
 			'ys_add_parts_shortcode_info',
-			'ショートコード',
+			__( 'ショートコード', 'ystandard' ),
 			[ $this, 'add_parts_shortcode_info' ],
 			[ 'ys-parts' ],
 			'side',
@@ -290,15 +291,15 @@ class Parts {
 		}
 		?>
 		<div id="ys-ogp-description-section" class="meta-box__section">
-			<label for="ys_parts_shortcode" style="margin: 1em 0 0;display: block;">ショートコード</label>
+			<label for="ys_parts_shortcode" style="margin: 1em 0 0;display: block;"><?php echo __( 'ショートコード', 'ystandard' ); ?></label>
 			<div class="copy-form" style="margin: 0 0 1.5em;">
 				<input type="text" id="ys_parts_shortcode" class="copy-form__target" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
 				<button class="copy-form__button button action">
 					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>
-				<div class="copy-form__info">コピーしました！</div>
+				<div class="copy-form__info"><?php echo __( 'コピーしました！', 'ystandard' ); ?></div>
 			</div>
-			<div class="meta-box__dscr">投稿・固定ページやウィジェットに表示するためのショートコード</div>
+			<div class="meta-box__dscr"><?php echo __( '投稿・固定ページやウィジェットに表示するためのショートコード', 'ystandard' ); ?></div>
 		</div>
 		<?php
 	}
@@ -330,7 +331,7 @@ class Parts {
 	public function add_columns_head(
 		$defaults
 	) {
-		$defaults['ys-parts'] = 'ショートコード';
+		$defaults['ys-parts'] = __( 'ショートコード', 'ystandard' );
 
 		return $defaults;
 	}
@@ -351,7 +352,7 @@ class Parts {
 				<button class="copy-form__button button action">
 					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>
-				<div class="copy-form__info">コピーしました！</div>
+				<div class="copy-form__info"><?php echo __( 'コピーしました！', 'ystandard' ); ?></div>
 			</div>
 			<?php
 		}
