@@ -1,15 +1,21 @@
 @use "../../styles/global";
 
 .wp-block-table {
-  thead,
-  tfoot {
-	border: 0;
-  }
-
-  thead {
-	th {
-	  background-color: var(--ystd--site--background--light-gray);
-	  font-weight: var(--ystd--font-weight--normal);
+	thead,
+	tfoot {
+		border: 0;
 	}
-  }
+
+	thead {
+		th {
+			background-color: var(--ystd--site--background--light-gray);
+			font-weight: var(--ystd--font-weight--normal);
+		}
+	}
+
+	&.is-selected {
+		.block-editor-rich-text__editable {
+			border: 1px dashed #f1f1f1;
+		}
+	}
 }
