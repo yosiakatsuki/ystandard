@@ -1,11 +1,20 @@
-@use "widget-archive";
-@use "widget-calendar";
-@use "widget-categories";
-@use "widget-meta";
-@use "widget-nav-menu";
-@use "widget-pages";
-@use "widget-parts";
-@use "widget-recent-comments";
-@use "widget-recent-entries";
-@use "widget-tag-cloud";
-@use "widget-title";
+@use "./widget-archive";
+@use "./widget-calendar";
+@use "./widget-categories";
+@use "./widget-meta";
+@use "./widget-nav-menu";
+@use "./widget-pages";
+@use "./widget-parts";
+@use "./widget-recent-comments";
+@use "./widget-recent-entries";
+@use "./widget-tag-cloud";
+@use "./widget-title";
+
+:where(.widget) {
+	> * {
+		&:where(.aligncenter) {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}

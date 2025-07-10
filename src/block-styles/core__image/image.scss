@@ -23,8 +23,6 @@
 
 // align
 :where(.wp-block-image) {
-
-
 	&:where(.alignleft) {
 		> :where(*) {
 			margin-right: auto;

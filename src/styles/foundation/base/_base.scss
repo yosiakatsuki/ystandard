@@ -58,7 +58,7 @@ body {
 /**
  * image
  */
-:where(img,amp-img) {
+:where(img) {
 	max-width: 100%;
 	height: auto;
 }
@@ -223,6 +223,7 @@ body {
 	&:where(:not(:last-child)) {
 		padding-right: var(--ystd--table--padding-x);
 	}
+
 	&:where(:not(:first-child)) {
 		padding-left: var(--ystd--table--padding-x);
 	}

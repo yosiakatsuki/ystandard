@@ -1,0 +1,25 @@
+@use "foundation/custom-properties";
+@use "foundation/base/base-editor";
+/**
+ * component
+ */
+@use "components/blog-card/blog-card";
+@use "components/block-editor/align-editor" as block-editor-align;
+@use "components/posts/posts";
+@use "components/ratio/ratio";
+@use "components/share-button/share-button";
+@use "components/widget";
+@use "./components/widget/widget-editor";
+@use "components/sns";
+
+/**
+ * utility
+ */
+@use "utility/utility";
+
+/**
+ * admin
+ */
+@use "project/admin/block-editor" as admin-block-editor;
+@use "project/admin/widget" as admin-widget;
+@use "project/admin/manual";

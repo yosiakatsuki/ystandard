@@ -47,3 +47,7 @@
 @use "./sns";
 @use "./share-button";
 @use "./back-to-top";
+/**
+ * プラグイン連携等
+ */
+@use "./integrations";
