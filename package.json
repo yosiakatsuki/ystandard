@@ -64,7 +64,7 @@
 		"clean": "run-p clean:*",
 		"i18n:pot": "wp i18n make-pot . languages/ystandard.pot --domain=\"ystandard\" --exclude=\"library,tests,vendor,bin\" --skip-js",
 		"i18n:blocks": "po2json languages/ja.po languages/ystandard-ja-ys-block-editor-scripts.json -f jed",
-		"zip:copy": "rsync -a --exclude='.*' --exclude='/node_modules' --exclude='/vendor' --exclude='/bin' --exclude='/upload' --exclude='/composer.*' --exclude='*.config.js' --exclude='*.config.json' --exclude='*.xml.dist' --exclude='/tests' --exclude='/src' --exclude='/temp' --exclude='/docs' --exclude='package*.json' --exclude='tsconfig.json' --exclude='ystandard-info*.json' . ystandard",
+		"zip:copy": "rsync -a --exclude='.*' --exclude='/node_modules' --exclude='/vendor' --exclude='/bin' --exclude='/upload' --exclude='/composer.*' --exclude='*.config.js' --exclude='*.config.json' --exclude='*.xml.dist' --exclude='/tests' --exclude='/src' --exclude='/temp' --exclude='/docs' --exclude='package*.json' --exclude='tsconfig.json' --exclude='CLAUDE.md' --exclude='ystandard-info*.json' . ystandard",
 		"zip:archive": "zip -9 -qmr ystandard.zip ystandard",
 		"zip": "run-s build clean:upload clean:zip zip:copy zip:archive",
 		"mkdir:upload": "mkdir upload",
