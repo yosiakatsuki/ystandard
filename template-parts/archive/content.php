@@ -11,14 +11,12 @@ defined( 'ABSPATH' ) || die();
 ?>
 <main id="main" class="archive__main site-main">
 	<?php
-	// main 開始直後フック
+	// main 開始直後フック.
 	do_action( 'ys_site_main_prepend' );
-	/**
-	 * アーカイブヘッダーの読み込み
-	 */
-	ys_get_template_part( 'template-parts/archive/header' );
+	// アーカイブヘッダーの読み込み.
+	get_template_part( 'template-parts/archive/header' );
 	?>
-	<div class="archive__container is-<?php echo ys_get_archive_type(); ?>">
+	<div class="archive__container is-<?php echo esc_attr( ys_get_archive_type() ); ?>">
 		<?php
 		while ( have_posts() ) :
 			the_post();
@@ -33,9 +31,9 @@ defined( 'ABSPATH' ) || die();
 		?>
 	</div>
 	<?php
-	// ページネーション
-	ys_get_template_part( 'template-parts/parts/pagination' );
-	// main 終了前フック
+	// ページネーション.
+	get_template_part( 'template-parts/parts/pagination' );
+	// main 終了前フック.
 	do_action( 'ys_site_main_append' );
 	?>
 </main>

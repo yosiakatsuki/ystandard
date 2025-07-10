@@ -10,9 +10,9 @@
 defined( 'ABSPATH' ) || die();
 
 /**
- * Homeテンプレートは出さない
+ * TOPページでは出さない.
  */
-if ( is_home() ) {
+if ( is_front_page() ) {
 	return;
 }
 ?>

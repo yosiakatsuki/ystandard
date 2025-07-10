@@ -97,84 +97,14 @@
 			"blockGap": true,
 			"spacingSizes": [
 				{
-					"size": "clamp(0.313rem, 0.17rem + 0.61vw, 0.625rem)",
-					"slug": "ys-fluid-5-10",
-					"name": "10px-5px"
-				},
-				{
-					"size": "clamp(0.625rem, 0.341rem + 1.21vw, 1.25rem)",
-					"slug": "ys-fluid-10-20",
-					"name": "20px-10px"
-				},
-				{
-					"size": "clamp(0.938rem, 0.511rem + 1.82vw, 1.875rem)",
-					"slug": "ys-fluid-15-30",
-					"name": "30px-15px"
-				},
-				{
-					"size": "clamp(1.25rem, 0.682rem + 2.42vw, 2.5rem)",
-					"slug": "ys-fluid-20-40",
-					"name": "40px-20px"
-				},
-				{
-					"size": "clamp(1.563rem, 0.852rem + 3.03vw, 3.125rem)",
-					"slug": "ys-fluid-25-50",
-					"name": "50px-25px"
-				},
-				{
-					"size": "clamp(1.875rem, 1.023rem + 3.64vw, 3.75rem)",
-					"slug": "ys-fluid-30-60",
-					"name": "60px-30px"
-				},
-				{
-					"size": "clamp(2.188rem, 1.193rem + 4.24vw, 4.375rem)",
-					"slug": "ys-fluid-35-70",
-					"name": "70px-35px"
-				},
-				{
-					"size": "clamp(2.5rem, 1.364rem + 4.85vw, 5rem)",
-					"slug": "ys-fluid-40-80",
-					"name": "80px-40px"
-				},
-				{
-					"size": "clamp(2.813rem, 1.534rem + 5.45vw, 5.625rem)",
-					"slug": "ys-fluid-45-90",
-					"name": "90px-45px"
-				},
-				{
-					"size": "clamp(3.125rem, 1.705rem + 6.06vw, 6.25rem)",
-					"slug": "ys-fluid-50-100",
-					"name": "100px-50px"
-				},
-				{
-					"size": "clamp(3.75rem, 2.045rem + 7.27vw, 7.5rem)",
-					"slug": "ys-fluid-60-120",
-					"name": "120px-60px"
-				},
-				{
-					"size": "clamp(4.375rem, 2.386rem + 8.48vw, 8.75rem)",
-					"slug": "ys-fluid-70-140",
-					"name": "140px-70px"
-				},
-				{
-					"size": "clamp(5rem, 2.727rem + 9.7vw, 10rem)",
-					"slug": "ys-fluid-80-160",
-					"name": "160px-80px"
-				},
-				{
-					"size": "clamp(5.625rem, 3.068rem + 10.91vw, 11.25rem)",
-					"slug": "ys-fluid-90-180",
-					"name": "180px-90px"
-				},
-				{
-					"size": "clamp(6.25rem, 3.409rem + 12.12vw, 12.5rem)",
-					"slug": "ys-fluid-100-200",
-					"name": "200px-100px"
-				},
-				{
 					"size": "10px",
 					"slug": "ys-static-10",
 					"name": "10px"
+				},
+				{
+					"size": "clamp(0.313rem, 0.17rem + 0.61vw, 0.625rem)",
+					"slug": "ys-fluid-5-10",
+					"name": "10px-5px"
 				},
 				{
 					"size": "20px",
@@ -182,9 +112,19 @@
 					"name": "20px"
 				},
 				{
+					"size": "clamp(0.625rem, 0.341rem + 1.21vw, 1.25rem)",
+					"slug": "ys-fluid-10-20",
+					"name": "20px-10px"
+				},
+				{
 					"size": "30px",
 					"slug": "ys-static-30",
 					"name": "30px"
+				},
+				{
+					"size": "clamp(0.938rem, 0.511rem + 1.82vw, 1.875rem)",
+					"slug": "ys-fluid-15-30",
+					"name": "30px-15px"
 				},
 				{
 					"size": "40px",
@@ -192,9 +132,19 @@
 					"name": "40px"
 				},
 				{
+					"size": "clamp(1.25rem, 0.682rem + 2.42vw, 2.5rem)",
+					"slug": "ys-fluid-20-40",
+					"name": "40px-20px"
+				},
+				{
 					"size": "50px",
 					"slug": "ys-static-50",
 					"name": "50px"
+				},
+				{
+					"size": "clamp(1.563rem, 0.852rem + 3.03vw, 3.125rem)",
+					"slug": "ys-fluid-25-50",
+					"name": "50px-25px"
 				},
 				{
 					"size": "60px",
@@ -202,9 +152,19 @@
 					"name": "60px"
 				},
 				{
+					"size": "clamp(1.875rem, 1.023rem + 3.64vw, 3.75rem)",
+					"slug": "ys-fluid-30-60",
+					"name": "60px-30px"
+				},
+				{
 					"size": "70px",
 					"slug": "ys-static-70",
 					"name": "70px"
+				},
+				{
+					"size": "clamp(2.188rem, 1.193rem + 4.24vw, 4.375rem)",
+					"slug": "ys-fluid-35-70",
+					"name": "70px-35px"
 				},
 				{
 					"size": "80px",
@@ -212,9 +172,19 @@
 					"name": "80px"
 				},
 				{
+					"size": "clamp(2.5rem, 1.364rem + 4.85vw, 5rem)",
+					"slug": "ys-fluid-40-80",
+					"name": "80px-40px"
+				},
+				{
 					"size": "90px",
 					"slug": "ys-static-90",
 					"name": "90px"
+				},
+				{
+					"size": "clamp(2.813rem, 1.534rem + 5.45vw, 5.625rem)",
+					"slug": "ys-fluid-45-90",
+					"name": "90px-45px"
 				},
 				{
 					"size": "100px",
@@ -222,9 +192,19 @@
 					"name": "100px"
 				},
 				{
+					"size": "clamp(3.125rem, 1.705rem + 6.06vw, 6.25rem)",
+					"slug": "ys-fluid-50-100",
+					"name": "100px-50px"
+				},
+				{
 					"size": "120px",
 					"slug": "ys-static-120",
 					"name": "120px"
+				},
+				{
+					"size": "clamp(3.75rem, 2.045rem + 7.27vw, 7.5rem)",
+					"slug": "ys-fluid-60-120",
+					"name": "120px-60px"
 				},
 				{
 					"size": "140px",
@@ -232,9 +212,19 @@
 					"name": "140px"
 				},
 				{
+					"size": "clamp(4.375rem, 2.386rem + 8.48vw, 8.75rem)",
+					"slug": "ys-fluid-70-140",
+					"name": "140px-70px"
+				},
+				{
 					"size": "160px",
 					"slug": "ys-static-160",
 					"name": "160px"
+				},
+				{
+					"size": "clamp(5rem, 2.727rem + 9.7vw, 10rem)",
+					"slug": "ys-fluid-80-160",
+					"name": "160px-80px"
 				},
 				{
 					"size": "180px",
@@ -242,12 +232,29 @@
 					"name": "180px"
 				},
 				{
+					"size": "clamp(5.625rem, 3.068rem + 10.91vw, 11.25rem)",
+					"slug": "ys-fluid-90-180",
+					"name": "180px-90px"
+				},
+				{
 					"size": "200px",
 					"slug": "ys-static-200",
 					"name": "200px"
+				},
+				{
+					"size": "clamp(6.25rem, 3.409rem + 12.12vw, 12.5rem)",
+					"slug": "ys-fluid-100-200",
+					"name": "200px-100px"
 				}
 			],
-			"units": ["%", "px", "em", "rem", "vh", "vw"]
+			"units": [
+				"%",
+				"px",
+				"em",
+				"rem",
+				"vh",
+				"vw"
+			]
 		},
 		"typography": {
 			"dropCap": false,

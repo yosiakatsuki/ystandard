@@ -11,9 +11,9 @@ get_header(); ?>
 <div class="content-container">
 	<?php
 	if ( have_posts() ) {
-		ys_get_template_part( 'template-parts/archive/content' );
+		get_template_part( 'template-parts/archive/content' );
 	} else {
-		ys_get_template_part( 'template-parts/404/content' );
+		get_template_part( 'template-parts/404/content' );
 	}
 	get_sidebar();
 	?>

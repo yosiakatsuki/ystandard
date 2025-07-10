@@ -12,7 +12,6 @@
 :where(input[type="text"],input[type="search"],input[type="url"],input[type="email"],input[type="tel"],textarea,select) {
 	display: block;
 	width: 100%;
-	-webkit-appearance: none;
 }
 
 :where(button,input[type="reset"],input[type="submit"],input[type="button"]) {

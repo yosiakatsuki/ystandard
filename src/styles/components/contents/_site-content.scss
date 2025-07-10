@@ -5,6 +5,11 @@
 
 	padding-top: var(--ystd--site-content--padding-y);
 	padding-bottom: var(--ystd--site-content--padding-y);
+
+	@include global.media-up-mobile() {
+		padding-top: var(--ystd--site-content--padding-y);
+		padding-bottom: var(--ystd--site-content--padding-y);
+	}
 }
 
 /**
