@@ -4,75 +4,77 @@ $editor: false !default;
 
 @mixin author() {
 
-  .author-box__header {
-	display: flex;
-  }
-
-  .author-box__avatar {
-	width: 96px;
-	margin-right: 1em;
-
-	img {
-	  border-radius: 50%;
+	.author-box__header {
+		display: flex;
 	}
-  }
 
-  .author-box__name {
-	margin: 0;
-	font-size: 1.1em;
-	font-weight: global.$font__weight_bold;
-  }
+	.author-box__avatar {
+		width: 96px;
+		margin-right: 1em;
 
-  .author-box__position {
-	margin: 0;
-	color: var(--font-gray);
-	font-size: 0.8em;
-  }
-
-  .author-box__sns {
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 0.5em;
-	margin-right: -0.5em;
-	margin-left: -0.5em;
-	padding: 0;
-	list-style: none;
-
-	svg {
-	  @include global.svg_size(1em);
+		img {
+			border-radius: 50%;
+			aspect-ratio: 1/1;
+			object-fit: cover;
+		}
 	}
-  }
 
-  .author-box__sns-link {
-	padding: 0.5em;
-	color: currentColor;
-	text-decoration: none;
-
-	&:hover {
-	  color: currentColor;
-
-	  filter: brightness(1.2);
+	.author-box__name {
+		margin: 0;
+		font-size: 1.1em;
+		font-weight: global.$font__weight_bold;
 	}
-  }
 
-  .author-box__description {
-	@include global.child_margin(1em);
+	.author-box__position {
+		margin: 0;
+		color: var(--font-gray);
+		font-size: 0.8em;
+	}
 
-	margin-top: 1em;
-	font-size: 0.9em;
-  }
+	.author-box__sns {
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 0.5em;
+		margin-right: -0.5em;
+		margin-left: -0.5em;
+		padding: 0;
+		list-style: none;
 
-  .ys-profile-widget {
-	padding: 1em;
-	border: 1px solid var(--site-border-gray-light);
-  }
+		svg {
+			@include global.svg_size(1em);
+		}
+	}
 
-  .author-widget-title {
-	margin: 0 0 1em;
-	font-size: 1.1em;
-  }
+	.author-box__sns-link {
+		padding: 0.5em;
+		color: currentColor;
+		text-decoration: none;
+
+		&:hover {
+			color: currentColor;
+
+			filter: brightness(1.2);
+		}
+	}
+
+	.author-box__description {
+		@include global.child_margin(1em);
+
+		margin-top: 1em;
+		font-size: 0.9em;
+	}
+
+	.ys-profile-widget {
+		padding: 1em;
+		border: 1px solid var(--site-border-gray-light);
+	}
+
+	.author-widget-title {
+		margin: 0 0 1em;
+		font-size: 1.1em;
+	}
 }
 
 @if false == $editor {
-  @include author();
+	@include author();
 }
