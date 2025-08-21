@@ -44,7 +44,6 @@ class Share_Button {
 		'bluesky'              => false,
 		'facebook'             => true,
 		'hatenabookmark'       => true,
-		'pocket'               => true,
 		'line'                 => true,
 		'twitter_via_user'     => '',
 		'twitter_related_user' => '',
@@ -207,7 +206,6 @@ class Share_Button {
 		$this->set_bluesky();
 		$this->set_facebook();
 		$this->set_hatenabookmark();
-		$this->set_pocket();
 		$this->set_line();
 		$this->set_text();
 		$this->enqueue_script();
@@ -223,7 +221,7 @@ class Share_Button {
 			[ 'share_button' => $this->data ]
 		);
 
-		return wp_targeted_link_rel( ob_get_clean() );
+		return ob_get_clean();
 	}
 
 	/**
@@ -233,7 +231,7 @@ class Share_Button {
 		if ( 'official' !== $this->shortcode_atts['type'] ) {
 			return;
 		}
-		if ( $this->is_active_button( 'twitter' ) ) {
+		if ( $this->is_active_button( 'twitter' ) || $this->is_active_button( 'x' ) ) {
 			wp_enqueue_script(
 				'share-button-twitter',
 				'https://platform.twitter.com/widgets.js',
@@ -244,12 +242,10 @@ class Share_Button {
 			Enqueue_Utility::add_async( 'share-button-twitter' );
 		}
 		if ( $this->is_active_button( 'facebook' ) ) {
-			$app_id  = Option::get_option( 'ys_ogp_fb_app_id', '' );
-			$app_id  = empty( $app_id ) ? '' : '&appId=' . $app_id;
 			$sdk_ver = SNS::FACEBOOK_API_VERSION;
 			wp_enqueue_script(
 				'share-button-facebook',
-				"https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version={$sdk_ver}{$app_id}&autoLogAppEvents=1",
+				"https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version={$sdk_ver}",
 				[],
 				null,
 				true
@@ -267,16 +263,6 @@ class Share_Button {
 				true
 			);
 			Enqueue_Utility::add_async( 'share-button-hatenabookmark' );
-		}
-		if ( $this->is_active_button( 'pocket' ) ) {
-			wp_enqueue_script(
-				'share-button-pocket',
-				'https://widgets.getpocket.com/v1/j/btn.js?v=1',
-				[],
-				null,
-				true
-			);
-			Enqueue_Utility::add_async( 'share-button-pocket' );
 		}
 		if ( $this->is_active_button( 'line' ) ) {
 			wp_enqueue_script(
@@ -340,28 +326,6 @@ class Share_Button {
 	}
 
 	/**
-	 * Pocket
-	 */
-	private function set_pocket() {
-		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'pocket' ) ) {
-				return;
-			}
-		} else {
-			if ( ! $this->shortcode_atts['pocket'] ) {
-				return;
-			}
-		}
-		// Title,Url.
-		$title = $this->share_title;
-		$url   = $this->share_url;
-		/**
-		 * URL作成
-		 */
-		$this->data['sns']['pocket'] = "https://getpocket.com/edit?url={$url}&title={$title}";
-	}
-
-	/**
 	 * はてブ
 	 */
 	private function set_hatenabookmark() {
@@ -387,7 +351,7 @@ class Share_Button {
 	 */
 	private function set_bluesky() {
 		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'bluesky' ) ) {
+			if ( ! $this->is_active_button( 'bluesky', false ) ) {
 				return;
 			}
 		} else {
@@ -554,7 +518,7 @@ class Share_Button {
 			[
 				'id'      => 'ys_sns_share_button_bluesky',
 				'default' => 0,
-				'label'   => 'Bluesky(β)',
+				'label'   => 'Bluesky',
 			]
 		);
 		// Facebook.
@@ -571,14 +535,6 @@ class Share_Button {
 				'id'      => 'ys_sns_share_button_hatenabookmark',
 				'default' => 1,
 				'label'   => 'はてなブックマーク',
-			]
-		);
-		// Pocket.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_sns_share_button_pocket',
-				'default' => 1,
-				'label'   => 'Pocket',
 			]
 		);
 		// LINE.

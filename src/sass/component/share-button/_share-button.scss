@@ -3,7 +3,6 @@
 $editor: false !default;
 
 @mixin share-buttons() {
-
 	.sns-share {
 		@include global.child_margin(0.5em);
 
@@ -38,18 +37,14 @@ $editor: false !default;
 				flex-wrap: wrap;
 			}
 
-			.sns-share__button {
-				margin: 0 0.5em 0.25em 0;
-			}
-
 			.sns-share__after {
 				margin-top: 0;
 			}
-		}
-
-		// 微調整.
-		.icon--pocket {
-			margin-top: 15%;
+			.sns-share__button {
+				&:hover {
+					transform: scale(1);
+				}
+			}
 		}
 
 		.fb_iframe_widget,
@@ -60,14 +55,13 @@ $editor: false !default;
 
 	.sns-share__container {
 		display: flex;
-		margin-right: -0.5em;
-		margin-left: -0.5em;
+		flex-wrap: wrap;
+		gap: 0.5em;
 		padding: 0;
 		list-style: none;
 	}
 
 	.sns-share__button {
-		margin: 0 0.5em;
 		transition: transform 0.3s;
 
 		&:hover {
@@ -104,4 +98,3 @@ $editor: false !default;
 @if false == $editor {
 	@include share-buttons();
 }
-

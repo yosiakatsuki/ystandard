@@ -20,7 +20,7 @@ if ( ! function_exists( 'wp_body_open' ) ) {
 
 if ( ! function_exists( 'wp_targeted_link_rel' ) ) {
 	/**
-	 * WP 5.1で追加関数
+	 * WP 5.1で追加関数 - 6.7で削除
 	 *
 	 * @param string $content Content.
 	 *
