@@ -128,7 +128,9 @@ class Admin {
 		wp_enqueue_style( 'wp-block-library' );
 		wp_enqueue_style(
 			'ys-google-font',
-			'https://fonts.googleapis.com/css?family=Orbitron'
+			'https://fonts.googleapis.com/css?family=Orbitron',
+			[],
+			null
 		);
 		wp_enqueue_style(
 			'ys-admin',
@@ -182,10 +184,10 @@ class Admin {
 	/**
 	 * マニュアルリンク作成
 	 *
-	 * @param string $url    URL.
-	 * @param string $text   Text.
-	 * @param bool   $inline Inline.
-	 * @param string $icon   Icon Name.
+	 * @param string $url URL.
+	 * @param string $text Text.
+	 * @param bool $inline Inline.
+	 * @param string $icon Icon Name.
 	 *
 	 * @return string
 	 */
@@ -220,7 +222,7 @@ class Admin {
 	/**
 	 * Nonceチェック
 	 *
-	 * @param string $name   Name.
+	 * @param string $name Name.
 	 * @param string $action Action.
 	 *
 	 * @return bool|int
@@ -238,7 +240,7 @@ class Admin {
 	 * カスタムアップローダー出力
 	 *
 	 * @param string $name フォーム名.
-	 * @param string $url  画像URL.
+	 * @param string $url 画像URL.
 	 */
 	public static function custom_uploader_control( $name, $url ) {
 		?>
@@ -262,8 +264,8 @@ class Admin {
 	/**
 	 * 非推奨メッセージを表示する
 	 *
-	 * @param string $func    関数.
-	 * @param string $since   いつから.
+	 * @param string $func 関数.
+	 * @param string $since いつから.
 	 * @param string $comment コメント.
 	 */
 	public static function deprecated_comment( $func, $since, $comment = '' ) {
