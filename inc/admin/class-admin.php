@@ -131,6 +131,13 @@ class Admin {
 			[],
 			Utility::get_ystandard_version()
 		);
+		// アドミンバー用CSSは全ページ読み込み.
+		wp_enqueue_style(
+			'ys-admin-bar',
+			get_template_directory_uri() . '/css/admin-bar.css',
+			[],
+			Utility::get_ystandard_version()
+		);
 		// 必要なページのみ読み込み.
 		if ( $this->is_enqueue_admin_css( $hook_suffix ) ) {
 			wp_enqueue_style(
