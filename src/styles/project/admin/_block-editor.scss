@@ -1,7 +1,7 @@
 @use "../../global";
 
 // エディター全体のスタイル
-body,
+.editor-styles-wrapper,
 .editor-post-title__block .editor-post-title__input {
 	background-color: var(--wp--custom--ystd--editor--background, var(--ystd--editor--background));
 	color: var(--wp--custom--ystd--editor--text-color, var(--ystd--editor--text-color));
@@ -16,7 +16,7 @@ body,
 }
 
 // 本文のスタイル
-body {
+.editor-styles-wrapper {
 	font-size: var(--wp--custom--ystd--editor--font-size, 16px);
 }
 
