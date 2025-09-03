@@ -460,14 +460,6 @@ class Footer {
 				'description' => Admin::manual_link( 'manual/footer-area' ) . '<br>' . __( 'コピーライトの設定は「[ys]Copyright設定」から設定してください。', 'ystandard' ),
 			]
 		);
-		// フッター背景色.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_footer_bg',
-				'default' => '',
-				'label'   => __( 'フッター背景色', 'ystandard' ),
-			]
-		);
 		// フッター文字色.
 		$customizer->add_color(
 			[
@@ -482,6 +474,14 @@ class Footer {
 				'id'      => 'ys_color_footer_text_gray',
 				'default' => '',
 				'label'   => __( 'フッター文字色(グレー)', 'ystandard' ),
+			]
+		);
+		// フッター背景色.
+		$customizer->add_color(
+			[
+				'id'      => 'ys_color_footer_bg',
+				'default' => '',
+				'label'   => __( 'フッター背景色', 'ystandard' ),
 			]
 		);
 		/**
