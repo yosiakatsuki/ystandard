@@ -77,7 +77,7 @@ class Header {
 	 */
 	public static function is_active_header_search_form() {
 
-		return Option::get_option_by_bool( 'ys_show_header_search_form', true );
+		return Option::get_option_by_bool( 'ys_show_header_search_form', false );
 	}
 
 	/**
@@ -621,7 +621,7 @@ class Header {
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_show_header_search_form',
-				'default' => 1,
+				'default' => 0,
 				'label'   => '検索フォームを表示する',
 			]
 		);
