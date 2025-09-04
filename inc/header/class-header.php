@@ -232,19 +232,30 @@ class Header {
 		/**
 		 * ロゴ画像の幅設定
 		 */
+		// モバイル.
 		if ( 0 < Option::get_option_by_int( 'ys_logo_width_sp', 0 ) ) {
 			$css .= sprintf(
 				'.site-title img{width:%spx;}',
 				Option::get_option_by_int( 'ys_logo_width_sp', 0 )
 			);
 		}
+		// タブレット.
+		if ( 0 < Option::get_option_by_int( 'ys_logo_width_tablet', 0 ) ) {
+			$_css = sprintf(
+				'.site-title img{width:%spx;}',
+				Option::get_option_by_int( 'ys_logo_width_tablet', 0 )
+			);
+			// モバイル以上サイズ.
+			$css .= CSS::add_media_query_over_mobile( $_css );
+		}
+		// デスクトップ.
 		if ( 0 < Option::get_option_by_int( 'ys_logo_width_pc', 0 ) ) {
 			$_css = sprintf(
 				'.site-title img{width:%spx;}',
 				Option::get_option_by_int( 'ys_logo_width_pc', 0 )
 			);
-			// モバイル以上サイズ.
-			$css .= CSS::add_media_query_over_mobile( $_css );
+			// タブレット以上サイズ.
+			$css .= CSS::add_media_query_over_desktop( $_css );
 		}
 
 		return $css;
@@ -438,7 +449,23 @@ class Header {
 			[
 				'id'          => 'ys_logo_width_pc',
 				'default'     => 0,
-				'label'       => 'ロゴの表示幅(PC・タブレット)',
+				'label'       => 'ロゴの表示幅(PC)',
+				'description' => 'PC・タブレット表示のロゴ表示幅を指定できます。指定しない場合は0にしてください。',
+				'section'     => 'title_tagline',
+				'priority'    => 9,
+				'input_attrs' => [
+					'min'  => 0,
+					'max'  => 1000,
+					'size' => 20,
+				],
+			]
+		);
+
+		$customizer->add_number(
+			[
+				'id'          => 'ys_logo_width_tablet',
+				'default'     => 0,
+				'label'       => 'ロゴの表示幅(タブレット)',
 				'description' => 'PC・タブレット表示のロゴ表示幅を指定できます。指定しない場合は0にしてください。',
 				'section'     => 'title_tagline',
 				'priority'    => 9,

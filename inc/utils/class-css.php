@@ -135,6 +135,60 @@ class CSS {
 	}
 
 	/**
+	 * タブレット以上サイズ用ブレークポイントの追加.
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public static function add_media_query_over_tablet( $css ) {
+		$breakpoints = self::get_breakpoints();
+		$unit        = self::get_breakpoint_unit();
+		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'tablet', $breakpoints ) ) {
+			return $css;
+		}
+		$min = $breakpoints['tablet'];
+
+		return "@media (min-width:{$min}{$unit}) {{$css}}";
+	}
+
+	/**
+	 * デスクトップ以上サイズ用ブレークポイントの追加.
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public static function add_media_query_over_desktop( $css ) {
+		$breakpoints = self::get_breakpoints();
+		$unit        = self::get_breakpoint_unit();
+		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'desktop', $breakpoints ) ) {
+			return $css;
+		}
+		$min = $breakpoints['desktop'];
+
+		return "@media (min-width:{$min}{$unit}) {{$css}}";
+	}
+
+	/**
+	 * ワイド以上サイズ用ブレークポイントの追加.
+	 *
+	 * @param string $css CSS.
+	 *
+	 * @return string
+	 */
+	public static function add_media_query_over_wide( $css ) {
+		$breakpoints = self::get_breakpoints();
+		$unit        = self::get_breakpoint_unit();
+		if ( ! is_array( $breakpoints ) || ! array_key_exists( 'wide', $breakpoints ) ) {
+			return $css;
+		}
+		$min = $breakpoints['tablet'];
+
+		return "@media (min-width:{$min}{$unit}) {{$css}}";
+	}
+
+	/**
 	 * タブレット用ブレークポイントの追加.
 	 *
 	 * @param string $css CSS.
