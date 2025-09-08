@@ -30,15 +30,14 @@ class Block_Editor {
 		if ( class_exists( 'WP_Block_Editor_Context' ) ) {
 			add_filter( 'allowed_block_types_all', [ $this, 'disallow_block_types' ], 10, 2 );
 		}
-		add_filter( 'ys_disallowed_block_types_all', [ $this, 'disallow_fse_blocks' ], 1 );
 		add_action( 'customize_register', [ $this, 'customize_register' ], 9 );
 	}
 
 	/**
 	 * 使用できるブロックを制限する
 	 *
-	 * @param bool|array               $allowed_block_types 許可するブロック.
-	 * @param \WP_Block_Editor_Context $editor_context      コンテキスト.
+	 * @param bool|array $allowed_block_types 許可するブロック.
+	 * @param \WP_Block_Editor_Context $editor_context コンテキスト.
 	 *
 	 * @return bool|array
 	 */
@@ -83,55 +82,6 @@ class Block_Editor {
 		}
 
 		return $allowed_block_types;
-	}
-
-	/**
-	 * FSE関連ブロックを削除
-	 *
-	 * @param array $disallowed_block_types 除外ブロックリスト.
-	 *
-	 * @return array
-	 */
-	public function disallow_fse_blocks( $disallowed_block_types ) {
-
-		if ( apply_filters( 'ys_enable_fse_block_types', false ) ) {
-			return $disallowed_block_types;
-		}
-
-		return array_merge(
-			$disallowed_block_types,
-			[
-				'core/loginout',
-				'core/page-list',
-				'core/post-content',
-				'core/post-date',
-				'core/post-excerpt',
-				'core/post-terms',
-				'core/post-template',
-				'core/query-loop',
-				'core/query',
-				'core/query-pagination',
-				'core/query-pagination-next',
-				'core/query-pagination-numbers',
-				'core/query-pagination-previous',
-				'core/query-title',
-				'core/site-logo',
-				'core/site-title',
-				'core/site-tagline',
-				'core/navigation',
-				'core/post-author',
-				'core/post-navigation-link',
-				'core/post-comments',
-				'core/term-description',
-				'core/avatar',
-				'core/read-more',
-				'core/read-more',
-				'core/post-comments-form',
-				'core/post-author-biography',
-				'core/comments',
-				'core/post-author-name',
-			]
-		);
 	}
 
 	/**
