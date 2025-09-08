@@ -180,7 +180,7 @@ class Share_Button {
 	 * ショートコード実行
 	 *
 	 * @param array $atts Attributes.
-	 * @param null  $content Content.
+	 * @param null $content Content.
 	 *
 	 * @return string
 	 */
@@ -349,7 +349,7 @@ class Share_Button {
 	 */
 	private function set_bluesky() {
 		if ( $this->is_use_option() ) {
-			if ( ! $this->is_active_button( 'bluesky' ) ) {
+			if ( ! $this->is_active_button( 'bluesky', false ) ) {
 				return;
 			}
 		} else {
@@ -468,7 +468,7 @@ class Share_Button {
 	 * SNSボタンを表示する設定になっているか
 	 *
 	 * @param string $sns name.
-	 * @param bool   $default default.
+	 * @param bool $default default.
 	 *
 	 * @return bool
 	 */
