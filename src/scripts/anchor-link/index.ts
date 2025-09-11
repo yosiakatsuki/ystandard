@@ -20,7 +20,7 @@ function setAnchorLinkClick() {
 				return;
 			}
 			e.preventDefault();
-			doScroll(targetId);
+			doScroll(targetId, 'smooth');
 		});
 	});
 }
@@ -46,7 +46,6 @@ function getTargetId(currentTarget: HTMLElement): string | null {
 	}
 	targetUrl = targetUrl.split('&')[0].replace(/\/$/, '');
 	currentUrl = currentUrl.split('&')[0].replace(/\/$/, '');
-
 	// ターゲットURLがページURLと一致しない場合はリンク先へ移動.
 	if ('' !== targetUrl && targetUrl !== currentUrl) {
 		return null;

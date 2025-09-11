@@ -66,9 +66,13 @@ function toggleDrawerNav() {
  */
 function closeDrawerNav() {
 	// ドロワーメニュー閉じる.
-	const drawerNavCloseLinks = document.querySelectorAll(
-		'.global-nav a[href*="#"],#drawer-nav__close'
-	);
+	const targetQuery = [
+		'.global-nav a[href*="#"]',
+		'.drawer-nav a[href*="#"]',
+		'#drawer-nav__close',
+	].join(',');
+	// ドロワーメニュー閉じるリンク・ボタン取得.
+	const drawerNavCloseLinks = document.querySelectorAll(targetQuery);
 	// ドロワーメニュー閉じるリンク・ボタンのチェック.
 	if (0 >= drawerNavCloseLinks.length) {
 		return false;
