@@ -37,9 +37,12 @@ class Block_Editor_Assets {
 	 * ブロックエディタのスタイル追加
 	 */
 	public function enqueue_block_editor_assets() {
+		$path = '/css/block-editor-assets.css';
 		wp_enqueue_style(
 			'ys-block-editor-assets',
-			get_template_directory_uri() . '/css/block-editor-assets.css'
+			get_template_directory_uri() . $path,
+			[],
+			filemtime( get_template_directory() . $path )
 		);
 		// CSSカスタムプロパティ取得.
 		$custom_property = Enqueue_Styles::get_css_custom_properties( 'body .editor-styles-wrapper' );
