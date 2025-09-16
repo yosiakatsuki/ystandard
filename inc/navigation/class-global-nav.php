@@ -150,6 +150,18 @@ class Global_Nav {
 				$hover_current_text_color
 			);
 		}
+		$hover_current_text_weight = Option::get_option( 'ys_global_nav_hover_current_text_weight', '' );
+		if ( ! empty( $hover_current_text_weight ) ) {
+			$hover_current_text_weight = Enqueue_Utility::get_css_var(
+				'--ystd--global-nav--current--font-weight',
+				$hover_current_text_weight
+			);
+			// ホバー・カレント文字色を追加.
+			$css_vars = array_merge(
+				$css_vars,
+				$hover_current_text_weight
+			);
+		}
 
 		return $css_vars;
 	}
@@ -170,12 +182,12 @@ class Global_Nav {
 				'priority'    => Customizer::get_priority( self::PANEL_NAME ),
 			]
 		);
-		$customizer->add_section_label( '文字サイズ・太さ' );
+		$customizer->add_section_label( __( '文字サイズ・太さ', 'ystandard' ) );
 		$customizer->add_text(
 			[
 				'id'          => 'ys_global_nav_font_size',
 				'default'     => '',
-				'label'       => 'メニュー文字サイズ',
+				'label'       => __( 'メニュー文字サイズ', 'ystandard' ),
 				'description' => __( 'メニュー文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
 			]
 		);
@@ -183,21 +195,9 @@ class Global_Nav {
 			[
 				'id'          => 'ys_global_nav_bold',
 				'default'     => 'normal',
-				'label'       => 'メニュー文字太さ',
-				'description' => 'トップレベルのメニュー文字太さ設定。',
-				'choices'     => [
-					'normal' => __( '通常(normal)', 'ystandard' ),
-					'bold'   => __( '太字(bold)', 'ystandard' ),
-					'100'    => __( '100', 'ystandard' ),
-					'200'    => __( '200', 'ystandard' ),
-					'300'    => __( '300', 'ystandard' ),
-					'400'    => __( '400', 'ystandard' ),
-					'500'    => __( '500', 'ystandard' ),
-					'600'    => __( '600', 'ystandard' ),
-					'700'    => __( '700', 'ystandard' ),
-					'800'    => __( '800', 'ystandard' ),
-					'900'    => __( '900', 'ystandard' ),
-				],
+				'label'       => __( 'メニュー文字太さ', 'ystandard' ),
+				'description' => __( 'トップレベルのメニュー文字太さ設定。', 'ystandard' ),
+				'choices'     => Customize_Control::get_font_weight_choice(),
 			]
 		);
 		$customizer->add_section_label( __( 'ホバー・カレント', 'ystandard' ) );
@@ -207,6 +207,15 @@ class Global_Nav {
 				'default'     => '',
 				'label'       => __( 'ホバー・カレント文字色', 'ystandard' ),
 				'description' => __( 'マウスホバー時、現在開いているページと同じページのメニュー文字色設定。空欄の場合、デフォルトの色が使用されます。', 'ystandard' ),
+			]
+		);
+		$customizer->add_select(
+			[
+				'id'          => 'ys_global_nav_hover_current_text_weight',
+				'default'     => '',
+				'label'       => __( 'メニュー文字太さ', 'ystandard' ),
+				'description' => __( 'ホバー・カレント文字太さ設定。', 'ystandard' ),
+				'choices'     => Customize_Control::get_font_weight_choice(),
 			]
 		);
 

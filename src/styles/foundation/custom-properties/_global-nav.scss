@@ -8,11 +8,12 @@
 	--ystd--global-nav--font-weight: normal;
 	--ystd--global-nav--current--text-color: var(--ystd--header--text-color);
 	--ystd--global-nav--border-color: var(
-		--ystd--global-nav--current--text-color
+			--ystd--global-nav--current--text-color
 	);
 	--ystd--global-nav--hover--text-color: var(
-		--ystd--global-nav--current--text-color
+			--ystd--global-nav--current--text-color
 	);
+	--ystd--global-nav--current--font-weight: var(--ystd--global-nav--font-weight);
 	// ▼設定で追加 @see inc/header/class-header.php
 	// --ystd--global-nav--search--cover--background: var(--ystd--header--background);
 }

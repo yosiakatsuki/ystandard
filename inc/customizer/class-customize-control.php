@@ -610,4 +610,26 @@ class Customize_Control {
 
 		return $description;
 	}
+
+	/**
+	 * フォントウェイトの選択肢を取得
+	 *
+	 * @return array
+	 */
+	public static function get_font_weight_choice() {
+		return [
+			''       => __( '指定なし', 'ystandard' ),
+			'normal' => __( '通常(normal)', 'ystandard' ),
+			'bold'   => __( '太字(bold)', 'ystandard' ),
+			'100'    => __( '100', 'ystandard' ),
+			'200'    => __( '200', 'ystandard' ),
+			'300'    => __( '300', 'ystandard' ),
+			'400'    => __( '400', 'ystandard' ),
+			'500'    => __( '500', 'ystandard' ),
+			'600'    => __( '600', 'ystandard' ),
+			'700'    => __( '700', 'ystandard' ),
+			'800'    => __( '800', 'ystandard' ),
+			'900'    => __( '900', 'ystandard' ),
+		];
+	}
 }
