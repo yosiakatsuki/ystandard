@@ -21,7 +21,7 @@
 	--ystd--search-field--placeholder--color: var(--ystd--drawer-menu--text-color);
 
 	visibility: hidden;
-	transition: opacity 0.5s, z-index 0.5s, width 1s ease-out 0.5s, height 1s ease-out 0.5s;
+	transition: opacity 0.5s, width 1s ease-out 0.5s, height 1s ease-out 0.5s;
 	opacity: 0;
 	z-index: -1;
 
@@ -32,7 +32,7 @@
 		height: 100%;
 		padding: var(--ystd--drawer-menu--container--padding-top) var(--ystd--drawer-menu--container--padding-x) var(--ystd--drawer-menu--container--padding-bottom);
 		z-index: var(--ystd--z-index--drawer-nav);
-		transition: opacity 0.5s, z-index 0.5s;
+		transition: opacity 0.5s;
 
 		> * {
 			--ystd--drawer-nav--contents--zindex: calc(var(--ystd--z-index--drawer-nav) + 1);
@@ -44,7 +44,7 @@
 		width: min(var(--ystd--container--size), var(--ystd--drawer-menu--width));
 		margin-right: auto;
 		margin-left: auto;
-		//overflow-y: auto;
+		overflow-y: auto;
 
 		> * + * {
 			margin-top: var(--ystd--layout-gap);
@@ -61,7 +61,7 @@
 		align-items: center;
 		width: var(--ystd--container--size);
 		margin-right: auto;
-		margin-bottom: var(--ystd--layout-gap);
+		//margin-bottom: var(--ystd--layout-gap);
 		margin-left: auto;
 	}
 
@@ -133,6 +133,7 @@
 
 		:where(.menu-item) {
 			padding-left: 1em;
+			font-size: var(--ystd--drawer-menu--sub-menu--font-size);
 		}
 	}
 

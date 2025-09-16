@@ -21,6 +21,11 @@ defined( 'ABSPATH' ) || die();
 class Drawer_Menu {
 
 	/**
+	 * Panel Name.
+	 */
+	const PANEL_NAME = 'ys_drawer_nav';
+
+	/**
 	 * メニュー展開サイズ.
 	 */
 	const DRAWER_MENU_START_SIZE = 768;
@@ -118,49 +123,78 @@ class Drawer_Menu {
 	 */
 	public function css_vars( $css_vars ) {
 
-		$mobile_nav_bg    = [];
-		$mobile_nav_color = [];
-		$mobile_nav_open  = [];
-		$mobile_nav_close = [];
-
 		$mobile_nav_bg_option = Option::get_option( 'ys_color_nav_bg_sp', '' );
 		if ( $mobile_nav_bg_option ) {
-			$mobile_nav_bg = Enqueue_Utility::get_css_var(
-				'drawer-menu--background',
-				$mobile_nav_bg_option
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--drawer-menu--background',
+					$mobile_nav_bg_option
+				)
 			);
 		}
 		$mobile_nav_color_option = Option::get_option( 'ys_color_nav_font_sp', '' );
 		if ( $mobile_nav_color_option ) {
-			$mobile_nav_color = Enqueue_Utility::get_css_var(
-				'drawer-menu--text-color',
-				$mobile_nav_color_option
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--drawer-menu--text-color',
+					$mobile_nav_color_option
+				)
 			);
 		}
 
 		$mobile_nav_open_option = Option::get_option( 'ys_color_nav_btn_sp_open', '' );
 		if ( $mobile_nav_open_option ) {
-			$mobile_nav_open = Enqueue_Utility::get_css_var(
-				'drawer-menu--button-color--open',
-				$mobile_nav_open_option
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--drawer-menu--button-color--open',
+					$mobile_nav_open_option
+				)
 			);
 		}
 
 		$mobile_nav_close_option = Option::get_option( 'ys_color_nav_btn_sp', '' );
 		if ( $mobile_nav_close_option ) {
-			$mobile_nav_close = Enqueue_Utility::get_css_var(
-				'drawer-menu--button-color--close',
-				$mobile_nav_close_option
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--drawer-menu--button-color--close',
+					$mobile_nav_close_option
+				)
 			);
 		}
 
-		return array_merge(
-			$css_vars,
-			$mobile_nav_bg,
-			$mobile_nav_color,
-			$mobile_nav_open,
-			$mobile_nav_close
-		);
+		$font_size_option = Option::get_option( 'ys_drawer_menu_font_size', '' );
+		if ( $font_size_option ) {
+			if ( is_numeric( $font_size_option ) ) {
+				$font_size_option .= 'px';
+			}
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--drawer-menu--font-size',
+					$font_size_option
+				)
+			);
+		}
+
+		$sub_menu_font_size_option = Option::get_option( 'ys_drawer_menu_sub_menu_font_size', '' );
+		if ( $sub_menu_font_size_option ) {
+			if ( is_numeric( $sub_menu_font_size_option ) ) {
+				$sub_menu_font_size_option .= 'px';
+			}
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--drawer-menu--sub-menu--font-size',
+					$sub_menu_font_size_option
+				)
+			);
+		}
+
+		return $css_vars;
 	}
 
 	/**
@@ -223,26 +257,25 @@ CSS;
 		 */
 		$customizer->add_section(
 			[
-				'section'     => 'ys_customizer_section_drawer_menu',
-				'title'       => 'ドロワーメニュー',
-				'description' => 'ドロワーメニュー設定' . Admin::manual_link( 'manual/drawer-menu' ),
-				'priority'    => 70,
-				'panel'       => Design::PANEL_NAME,
+				'title'       => '[ys]' . __( 'ドロワーメニュー', 'ystandard' ),
+				'description' => __( 'ドロワーメニュー設定', 'ystandard' ) . Admin::manual_link( 'manual/drawer-menu' ),
+				'section'     => self::PANEL_NAME,
+				'priority'    => Customizer::get_priority( self::PANEL_NAME ),
 			]
 		);
 
 		$customizer->add_section_label(
-			'ドロワーメニュー表示設定',
+			__( 'ドロワーメニュー表示設定', 'ystandard' ),
 			[
-				'description' => 'グローバルメニューの折りたたみ表示に関する設定',
+				'description' => __( 'グローバルメニューの折りたたみ表示に関する設定', 'ystandard' ),
 			]
 		);
 		$customizer->add_number(
 			[
 				'id'          => 'ys_drawer_menu_start',
 				'default'     => self::DRAWER_MENU_START_SIZE,
-				'label'       => 'ドロワーメニュー開始サイズ(px)',
-				'description' => '設定した画面サイズ以下でドロワーメニュー表示になります。',
+				'label'       => __( 'ドロワーメニュー開始サイズ(px)', 'ystandard' ),
+				'description' => __( '設定した画面サイズ以下でドロワーメニュー表示になります。', 'ystandard' ),
 				'input_attrs' => [
 					'min'  => 0,
 					'max'  => 9999,
@@ -253,25 +286,25 @@ CSS;
 		$customizer->add_label(
 			[
 				'id'          => 'ys_always_drawer_menu_label',
-				'label'       => '常にドロワーメニュー表示にする',
-				'description' => 'チェックをつけるとグローバルメニューが常にドロワーメニューになります。',
+				'label'       => __( '常にドロワーメニュー表示にする', 'ystandard' ),
+				'description' => __( 'チェックをつけるとグローバルメニューが常にドロワーメニューになります。', 'ystandard' ),
 			]
 		);
 		$customizer->add_checkbox(
 			[
 				'id'      => 'ys_always_drawer_menu',
-				'label'   => '常にドロワーメニュー表示にする',
+				'label'   => __( '常にドロワーメニュー表示にする', 'ystandard' ),
 				'default' => 0,
 			]
 		);
 
-		$customizer->add_section_label( '色設定' );
+		$customizer->add_section_label( __( '色設定', 'ystandard' ) );
 		// ナビゲーション背景色（SP）.
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_nav_bg_sp',
 				'default' => '',
-				'label'   => 'メニュー背景色',
+				'label'   => __( 'メニュー背景色', 'ystandard' ),
 			]
 		);
 		// ナビゲーション文字色（SP）.
@@ -279,7 +312,7 @@ CSS;
 			[
 				'id'      => 'ys_color_nav_font_sp',
 				'default' => '',
-				'label'   => 'メニュー文字色',
+				'label'   => __( 'メニュー文字色', 'ystandard' ),
 			]
 		);
 		// ナビゲーションボタン色（SP）.
@@ -287,7 +320,7 @@ CSS;
 			[
 				'id'      => 'ys_color_nav_btn_sp_open',
 				'default' => '',
-				'label'   => 'メニュー開閉ボタン色：開く',
+				'label'   => __( 'メニュー開閉ボタン色：開く', 'ystandard' ),
 			]
 		);
 		// ナビゲーションボタン色（SP）.
@@ -295,7 +328,25 @@ CSS;
 			[
 				'id'      => 'ys_color_nav_btn_sp',
 				'default' => '',
-				'label'   => 'メニュー開閉ボタン色：閉じる',
+				'label'   => __( 'メニュー開閉ボタン色：閉じる', 'ystandard' ),
+			]
+		);
+
+		$customizer->add_section_label( __( '文字サイズ', 'ystandard' ) );
+		$customizer->add_text(
+			[
+				'id'          => 'ys_drawer_menu_font_size',
+				'default'     => '',
+				'label'       => __( '文字サイズ', 'ystandard' ),
+				'description' => __( 'ドロワーメニュー文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
+			]
+		);
+		$customizer->add_text(
+			[
+				'id'          => 'ys_drawer_menu_sub_menu_font_size',
+				'default'     => '',
+				'label'       => __( 'サブメニュー文字サイズ', 'ystandard' ),
+				'description' => __( 'サブメニュー（2階層目）の文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
 			]
 		);
 	}

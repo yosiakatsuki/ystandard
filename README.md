@@ -65,6 +65,8 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [変更] カスタマイザーでの色設定の初期値を無し(空白)に変更
 - [追加] グローバルメニュー文字サイズ設定追加(ys_global_nav_font_size).
 - [追加] グローバルメニュー ホバー文字太さ設定追加（ys_global_nav_hover_current_text_weight）
+- [追加] ドロワーメニュー 文字サイズ設定追加(ys_drawer_menu_font_size)
+- [追加] ドロワーメニュー サブメニュー文字サイズ設定追加(ys_drawer_menu_sub_menu_font_size)
 
 ##### HTML・CSS関連
 
