@@ -337,7 +337,7 @@ CSS;
 			[
 				'id'          => 'ys_drawer_menu_font_size',
 				'default'     => '',
-				'label'       => __( '文字サイズ', 'ystandard' ),
+				'label'       => __( 'メニュー文字サイズ', 'ystandard' ),
 				'description' => __( 'ドロワーメニュー文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
 			]
 		);
