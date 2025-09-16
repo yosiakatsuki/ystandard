@@ -1,23 +1,23 @@
 @use "../../global";
 
 .ys-manual-link {
-  display: inline-block;
-  margin-top: .25em;
-  color: var(--ystd-ystandard-color) !important;
-  font-weight: var(--ystd--font-weight--bold) !important;
-  font-size: 14px !important;
-
-  &.is-inline {
 	display: inline-block;
-  }
+	margin-top: .25em;
+	color: var(--ystd-ystandard-color) !important;
+	font-weight: var(--ystd--font-weight--bold) !important;
+	font-size: 10px !important;
 
-  svg {
-	width: 1em;
-	height: 1em;
-	margin-right: .25em;
-  }
+	&.is-inline {
+		display: inline-block;
+	}
+
+	svg {
+		width: 1em;
+		height: 1em;
+		margin-right: .25em;
+	}
 }
 
 p + .ys-manual-link__wrap {
-  margin-top: -0.75em;
+	margin-top: -0.75em;
 }

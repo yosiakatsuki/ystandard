@@ -21,6 +21,11 @@ defined( 'ABSPATH' ) || die();
 class Header {
 
 	/**
+	 * Panel Name.
+	 */
+	const PANEL_NAME = 'ys_site_header';
+
+	/**
 	 * Header constructor.
 	 */
 	public function __construct() {
@@ -371,7 +376,7 @@ class Header {
 			return '';
 		}
 		// ドロワーメニューの開始サイズ.
-		$drawer_start = (int) Drawer_Menu::get_drawer_menu_start() + 1;
+		$drawer_start = Drawer_Menu::get_drawer_menu_start() + 0.02;
 		// CSS作成.
 		$css = "
 		@media (min-width: {$drawer_start}px) {
@@ -567,14 +572,13 @@ class Header {
 		 */
 		$customizer->add_section(
 			[
-				'section'     => 'ys_customizer_section_header_design',
-				'title'       => 'サイトヘッダー',
-				'description' => 'サイトヘッダー部分のデザイン設定' . Admin::manual_link( 'manual/site-header' ),
-				'priority'    => 50,
-				'panel'       => Design::PANEL_NAME,
+				'title'       => '[ys]' . __( 'サイトヘッダー', 'ystandard' ),
+				'description' => __( 'サイトヘッダー部分のデザイン設定', 'ystandard' ) . Admin::manual_link( 'manual/site-header' ),
+				'section'     => self::PANEL_NAME,
+				'priority'    => Customizer::get_priority( self::PANEL_NAME ),
 			]
 		);
-		$customizer->add_section_label( 'ヘッダータイプ' );
+		$customizer->add_section_label( __( 'ヘッダータイプ', 'ystandard' ) );
 		/**
 		 * ヘッダータイプ
 		 */
@@ -587,9 +591,8 @@ class Header {
 			[
 				'id'          => 'ys_design_header_type',
 				'default'     => 'row1',
-				'label'       => '表示タイプ',
-				'description' => 'ヘッダーの表示タイプ',
-				'section'     => 'ys_customizer_section_header_design',
+				'label'       => __( '表示タイプ', 'ystandard' ),
+				'description' => __( 'ヘッダーの表示タイプ', 'ystandard' ),
 				'choices'     => [
 					'row1'   => sprintf( $img, $row1 ),
 					'center' => sprintf( $img, $center ),
@@ -597,13 +600,13 @@ class Header {
 				],
 			]
 		);
-		$customizer->add_section_label( 'ヘッダーデザイン' );
+		$customizer->add_section_label( __( 'ヘッダーデザイン', 'ystandard' ) );
 		// ヘッダー背景色.
 		$customizer->add_color(
 			[
 				'id'      => 'ys_color_header_bg',
 				'default' => '',
-				'label'   => '背景色',
+				'label'   => __( '背景色', 'ystandard' ),
 			]
 		);
 		// サイトタイトル文字色.
@@ -611,7 +614,7 @@ class Header {
 			[
 				'id'      => 'ys_color_header_font',
 				'default' => '',
-				'label'   => '文字色',
+				'label'   => __( '文字色', 'ystandard' ),
 			]
 		);
 		// サイト概要の文字色.
@@ -619,7 +622,7 @@ class Header {
 			[
 				'id'      => 'ys_color_header_dscr_font',
 				'default' => '',
-				'label'   => '概要文の文字色',
+				'label'   => __( '概要文の文字色', 'ystandard' ),
 			]
 		);
 		// ボックスシャドウ.
@@ -627,21 +630,21 @@ class Header {
 			[
 				'id'      => 'ys_header_box_shadow',
 				'default' => 'none',
-				'label'   => 'ヘッダーに影をつける',
+				'label'   => __( 'ヘッダーに影をつける', 'ystandard' ),
 				'choices' => [
-					'none'  => '影なし',
-					'small' => '小さめ',
-					'large' => '大きめ',
+					'none'  => __( '影なし', 'ystandard' ),
+					'small' => __( '小さめ', 'ystandard' ),
+					'large' => __( '大きめ', 'ystandard' ),
 				],
 			]
 		);
 		// 検索フォーム.
-		$customizer->add_section_label( '検索フォーム' );
+		$customizer->add_section_label( __( '検索フォーム', 'ystandard' ) );
 		$customizer->add_label(
 			[
 				'id'          => 'ys_show_header_search_form_label',
-				'label'       => '検索フォーム表示',
-				'description' => 'ヘッダーに検索フォームを表示します。<br>モバイルではスライドメニュー内にフォームが表示され、PCでは検索フォーム表示ボタンがヘッダーに追加されます。',
+				'label'       => __( '検索フォーム表示', 'ystandard' ),
+				'description' => __( 'ヘッダーに検索フォームを表示します。<br>モバイルではスライドメニュー内にフォームが表示され、PCでは検索フォーム表示ボタンがヘッダーに追加されます。', 'ystandard' ),
 			]
 		);
 		// スライドメニューに検索フォームを出力する.
@@ -649,7 +652,7 @@ class Header {
 			[
 				'id'      => 'ys_show_header_search_form',
 				'default' => 0,
-				'label'   => '検索フォームを表示する',
+				'label'   => __( '検索フォームを表示する', 'ystandard' ),
 			]
 		);
 
@@ -657,7 +660,7 @@ class Header {
 		 * ヘッダー固定表示
 		 */
 		$customizer->add_section_label(
-			'ヘッダー固定表示',
+			__( 'ヘッダー固定表示', 'ystandard' ),
 			[
 				'description' => Admin::manual_link( 'fixed-header' ),
 			]
@@ -667,7 +670,7 @@ class Header {
 			[
 				'id'      => 'ys_header_fixed',
 				'default' => 0,
-				'label'   => 'ヘッダーを画面上部に固定する',
+				'label'   => __( 'ヘッダーを画面上部に固定する', 'ystandard' ),
 			]
 		);
 		/**
@@ -676,8 +679,8 @@ class Header {
 		$customizer->add_label(
 			[
 				'id'          => 'ys_header_fixed_height_label',
-				'label'       => 'ヘッダー高さ',
-				'description' => 'ヘッダーの固定表示をする場合、ヘッダー高さを指定すると表示のガタつきを抑えられます。<br><br>プレビュー画面左上に表示された「ヘッダー高さ」の数字を参考に以下の設定に入力してください。',
+				'label'       => __( 'ヘッダー高さ', 'ystandard' ),
+				'description' => __( 'ヘッダーの固定表示をする場合、ヘッダー高さを指定すると表示のガタつきを抑えられます。<br><br>プレビュー画面左上に表示された「ヘッダー高さ」の数字を参考に以下の設定に入力してください。', 'ystandard' ),
 
 			]
 		);
@@ -688,7 +691,7 @@ class Header {
 			[
 				'id'      => 'ys_header_fixed_height_pc',
 				'default' => 0,
-				'label'   => '高さ(PC)',
+				'label'   => __( '高さ(PC)', 'ystandard' ),
 			]
 		);
 		/**
@@ -698,7 +701,7 @@ class Header {
 			[
 				'id'      => 'ys_header_fixed_height_tablet',
 				'default' => 0,
-				'label'   => '高さ(タブレット)',
+				'label'   => __( '高さ(タブレット)', 'ystandard' ),
 			]
 		);
 		/**
@@ -708,7 +711,7 @@ class Header {
 			[
 				'id'      => 'ys_header_fixed_height_mobile',
 				'default' => 0,
-				'label'   => '高さ(モバイル)',
+				'label'   => __( '高さ(モバイル)', 'ystandard' ),
 			]
 		);
 	}
