@@ -15,6 +15,10 @@
 	&:where(.has-global-padding) {
 		max-width: 100%;
 	}
+
+	&:where([style*="border-radius:"]) {
+		overflow: hidden;
+	}
 }
 
 .wp-block-group,
