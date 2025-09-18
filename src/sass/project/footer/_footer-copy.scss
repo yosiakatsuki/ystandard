@@ -1,9 +1,8 @@
 @use "../../global";
 
 .footer-copy {
-  @include global.child_margin(1em);
-
   text-align: center;
+  @include global.child_margin(1em);
 }
 
 .copyright {

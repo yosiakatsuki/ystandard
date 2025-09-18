@@ -1,8 +1,8 @@
 @use "../../global";
 
 .sidebar {
-  @include global.child_margin();
   margin-bottom: var(--ystd-content-margin-bottom);
+  @include global.child_margin();
 
   @include global.media-breakpoint(lg) {
 	width: min(var(--ystd-sidebar-width), var(--ystd-sidebar-max-width));
