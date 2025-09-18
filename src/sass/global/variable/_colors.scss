@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // 色
 $color__ystanadrd: #07689f !default;
 
@@ -20,7 +22,7 @@ $color__border-gray-light: #eeeeee !default;
 
 //リンク
 $color__link: #2980b9 !default;
-$color__link-hover: lighten($color__link, 10%) !default;
+$color__link-hover: color.adjust($color__link, $lightness: 10%) !default;
 
 //ボタン
 $color__btn-text: #ffffff !default;
@@ -29,27 +31,27 @@ $color__btn-bg: $color__text-main !default;
 
 // SNSカラー
 $color__sns: (
-		"globe" : #2980b9,
-		"twitter" : #21a1f3,
-		"x" : #000000,
-		"bluesky" : #0285FF,
-		"facebook" : #1977f2,
-		"hatenabookmark" : #00a4de,
-		"rss" : #fb8501,
-		"feedly" : #2bb24c,
-		"pocket" : #ef3f56,
-		"instagram" : #e4405f,
-		"line" : #00c300,
-		"tumblr" : #36465d,
-		"youtube-play" : #ff0000,
-		"youtube" : #ff0000,
-		"github" : #181717,
-		"pinterest" : #bd081c,
-		"linkedin" : #0077b5,
-		"amazon": #ff9900,
-		"wordpress": #21759B,
-		"twitch": #9146FF,
-		"dribbble": #EA4C89,
+	"globe" : #2980b9,
+	"twitter" : #21a1f3,
+	"x" : #000000,
+	"bluesky" : #0285FF,
+	"facebook" : #1977f2,
+	"hatenabookmark" : #00a4de,
+	"rss" : #fb8501,
+	"feedly" : #2bb24c,
+	"pocket" : #ef3f56,
+	"instagram" : #e4405f,
+	"line" : #00c300,
+	"tumblr" : #36465d,
+	"youtube-play" : #ff0000,
+	"youtube" : #ff0000,
+	"github" : #181717,
+	"pinterest" : #bd081c,
+	"linkedin" : #0077b5,
+	"amazon": #ff9900,
+	"wordpress": #21759B,
+	"twitch": #9146FF,
+	"dribbble": #EA4C89,
 ) !default;
 
 // アラート関連

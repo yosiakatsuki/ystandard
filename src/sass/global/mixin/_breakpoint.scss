@@ -1,7 +1,8 @@
+@use "sass:map";
 @use "../variable/content";
 
 @mixin media-breakpoint($name,$breakpoints: content.$breakpoints) {
-  $breakpoint: map-get($breakpoints, $name);
+  $breakpoint: map.get($breakpoints, $name);
   @if $breakpoint {
 	@media (min-width: $breakpoint) {
 	  @content;
@@ -19,7 +20,7 @@
 //  sm,md,lg
 
 @mixin media-breakpoint-down($name,$gain:1px,$breakpoints: content.$breakpoints) {
-  $breakpoint: map-get($breakpoints, $name);
+  $breakpoint: map.get($breakpoints, $name);
   @if $breakpoint {
 	@media (max-width: ($breakpoint - $gain)) {
 	  @content;
@@ -31,8 +32,8 @@
 }
 
 @mixin media-breakpoint-between($up,$down,$breakpoints: content.$breakpoints) {
-  $breakpoint_min: map-get($breakpoints, $up);
-  $breakpoint_max: map-get($breakpoints, $down);
+  $breakpoint_min: map.get($breakpoints, $up);
+  $breakpoint_max: map.get($breakpoints, $down);
   @if $breakpoint_min and $breakpoint_max {
 	@media (min-width: $breakpoint_min) AND (max-width: ($breakpoint_max - 1px)) {
 	  @content;

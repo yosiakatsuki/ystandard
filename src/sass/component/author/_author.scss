@@ -58,10 +58,9 @@ $editor: false !default;
 	}
 
 	.author-box__description {
-		@include global.child_margin(1em);
-
 		margin-top: 1em;
 		font-size: 0.9em;
+		@include global.child_margin(1em);
 	}
 
 	.ys-profile-widget {
