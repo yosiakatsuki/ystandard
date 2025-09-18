@@ -114,7 +114,12 @@ const ysSetGlobalNavToggle = () => {
 				}
 				const globalMenu = document.getElementById( 'global-nav__menu' );
 				if ( globalMenu ) {
-					globalMenu.classList.toggle( 'is-open' );
+					globalMenu.classList.remove( 'is-open' );
+				}
+				const globalSearch =
+					document.getElementById( 'global-nav__search' );
+				if ( globalSearch ) {
+					globalSearch.classList.remove( 'is-open' );
 				}
 				const mobileFooter =
 					document.getElementsByClassName( 'footer-mobile-nav' );
