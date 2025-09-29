@@ -919,6 +919,69 @@
 				{
 					"fluid": {
 						"min": "14px",
+						"max": "44px"
+					},
+					"size": "44.14px",
+					"name": "44px-14px",
+					"slug": "ys-44-14"
+				},
+				{
+					"fluid": {
+						"min": "16px",
+						"max": "44px"
+					},
+					"size": "44.16px",
+					"name": "44px-16px",
+					"slug": "ys-44-16"
+				},
+				{
+					"fluid": {
+						"min": "18px",
+						"max": "44px"
+					},
+					"size": "44.18px",
+					"name": "44px-18px",
+					"slug": "ys-44-18"
+				},
+				{
+					"fluid": {
+						"min": "20px",
+						"max": "44px"
+					},
+					"size": "44.20px",
+					"name": "44px-20px",
+					"slug": "ys-44-20"
+				},
+				{
+					"fluid": {
+						"min": "24px",
+						"max": "44px"
+					},
+					"size": "44.24px",
+					"name": "44px-24px",
+					"slug": "ys-44-24"
+				},
+				{
+					"fluid": {
+						"min": "28px",
+						"max": "44px"
+					},
+					"size": "44.28px",
+					"name": "44px-28px",
+					"slug": "ys-44-28"
+				},
+				{
+					"fluid": {
+						"min": "32px",
+						"max": "44px"
+					},
+					"size": "44.32px",
+					"name": "44px-32px",
+					"slug": "ys-44-32"
+				},
+				{
+					"fluid": {
+						"min": "14px",
 						"max": "48px"
 					},
 					"size": "48.14px",
@@ -960,6 +1023,15 @@
 					"size": "48.24px",
 					"name": "48px-24px",
 					"slug": "ys-48-24"
+				},
+				{
+					"fluid": {
+						"min": "28px",
+						"max": "48px"
+					},
+					"size": "48.28px",
+					"name": "48px-28px",
+					"slug": "ys-48-28"
 				},
 				{
 					"fluid": {
