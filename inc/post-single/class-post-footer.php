@@ -11,6 +11,9 @@ namespace ystandard;
 
 use ystandard\utils\Post_Type;
 
+/**
+ * Class Post_Footer
+ */
 class Post_Footer {
 
 	/**

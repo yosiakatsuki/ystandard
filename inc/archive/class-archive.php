@@ -597,5 +597,4 @@ class Archive {
 	}
 }
 
-// シングルトンインスタンスを取得して初期化.
 Archive::get_instance();

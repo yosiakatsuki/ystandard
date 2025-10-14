@@ -17,11 +17,30 @@ use ystandard\utils\Post_Type;
 class Post_Content {
 
 	/**
+	 * インスタンス
+	 *
+	 * @var Post_Content
+	 */
+	private static $instance;
+
+	/**
+	 * インスタンス取得
+	 *
+	 * @return Post_Content
+	 */
+	public static function get_instance(): Post_Content {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Post_Content constructor.
 	 */
-	public function __construct() {
+	private function __construct() {
 		add_filter( 'post_class', [ $this, 'post_class' ] );
-		add_filter( 'ys_sidebar_class', [ $this, 'sidebar_class' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_custom_property' ] );
 	}
 
@@ -32,7 +51,7 @@ class Post_Content {
 	 *
 	 * @return array
 	 */
-	public function add_custom_property( $vars ) {
+	public function add_custom_property( array $vars ): array {
 		// 投稿本文エリア背景色設定.
 		$content_background = $this->get_content_background_color( Post_Type::get_post_type() );
 		if ( $content_background ) {
@@ -50,11 +69,11 @@ class Post_Content {
 	 * @return array
 	 */
 	public function post_class( $classes ) {
-		// 構造化データ「hentry」の削除
+		// 構造化データ「hentry」の削除.
 		if ( apply_filters( 'ystd_remove_hentry', true ) ) {
 			$classes = array_diff( $classes, [ 'hentry' ] );
 		}
-		// 投稿本文エリア背景色設定
+		// 投稿本文エリア背景色設定.
 		$content_background = $this->get_content_background_color( Post_Type::get_post_type() );
 		if ( $content_background ) {
 			$classes[] = 'has-content-background';
@@ -63,22 +82,6 @@ class Post_Content {
 		return $classes;
 	}
 
-	/**
-	 * サイドバークラス
-	 *
-	 * @param array $classes Classes.
-	 *
-	 * @return array
-	 */
-	public function sidebar_class( $classes ) {
-		// 投稿本文エリア背景色設定
-		$content_background = $this->get_content_background_color( Post_Type::get_post_type() );
-		if ( $content_background ) {
-			$classes[] = 'has-content-background';
-		}
-
-		return $classes;
-	}
 
 	/**
 	 * 投稿本文エリア背景色設定取得.
@@ -87,7 +90,7 @@ class Post_Content {
 	 *
 	 * @return string
 	 */
-	private function get_content_background_color( $post_type ) {
+	public static function get_content_background_color( string $post_type ): string {
 		// 設定存在チェック、設定がなければ代替の投稿タイプを取得.
 		if ( Option::exists_option( "ys_{$post_type}_use_content_bg" ) ) {
 			$post_type = Post_Type::get_fallback_post_type( $post_type );
@@ -104,4 +107,4 @@ class Post_Content {
 	}
 }
 
-new Post_Content();
+Post_Content::get_instance();

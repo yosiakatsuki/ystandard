@@ -65,9 +65,9 @@ class Post_Type_Customizer {
 	 * Post_Type_Customizer constructor.
 	 *
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
-	 * @param string                $post_type 投稿タイプ.
-	 * @param string                $label ラベル.
-	 * @param int                   $priority 優先度.
+	 * @param string $post_type 投稿タイプ.
+	 * @param string $label ラベル.
+	 * @param int $priority 優先度.
 	 */
 	public function __construct( $wp_customize, $post_type, $label, $priority ) {
 		$this->customizer = new Customize_Control( $wp_customize );
@@ -91,7 +91,7 @@ class Post_Type_Customizer {
 		if ( empty( $this->post_type_object ) ) {
 			return false;
 		}
-		// $this->post_type_object->supports があるか確認
+		// $this->post_type_object->supports があるか確認.
 		if ( isset( $this->post_type_object->supports ) && is_array( $this->post_type_object->supports ) ) {
 			return in_array( 'thumbnail', $this->post_type_object->supports, true );
 		}
@@ -114,6 +114,7 @@ class Post_Type_Customizer {
 		if ( ! empty( $this->post_type_object ) && isset( $this->post_type_object->has_archive ) ) {
 			return $this->post_type_object->has_archive;
 		}
+
 		return false;
 	}
 
@@ -135,7 +136,7 @@ class Post_Type_Customizer {
 	 * 設定登録
 	 */
 	private function register_settings() {
-			// レイアウト設定.
+		// レイアウト設定.
 		$this->add_layout_settings();
 
 		// 本文エリア背景色設定.
@@ -194,8 +195,8 @@ class Post_Type_Customizer {
 				'default'         => '',
 				'label'           => __( '本文エリア背景色', 'ystandard' ),
 				'description'     => __( '本文エリアの背景色設定。', 'ystandard' ) . '<br>' . self::get_xs_text(
-					__( '※本文の背景色を設定した場合、全幅設定をしたブロックはデスクトップサイズの表示時に画面の横幅いっぱいに広がらず、コンテンツ本文領域が上限となります。', 'ystandard' )
-				),
+						__( '※本文の背景色を設定した場合、全幅設定をしたブロックはデスクトップサイズの表示時に画面の横幅いっぱいに広がらず、コンテンツ本文領域が上限となります。', 'ystandard' )
+					),
 				'active_callback' => function () {
 					return Convert::to_bool( get_option( "ys_{$this->post_type}_use_content_bg", 0 ) );
 				},
@@ -378,6 +379,7 @@ class Post_Type_Customizer {
 	 * カスタマイザー用のXSサイズの説明テキストを取得
 	 *
 	 * @param string $text 説明テキスト.
+	 *
 	 * @return string
 	 */
 	private static function get_xs_text( $text ) {
