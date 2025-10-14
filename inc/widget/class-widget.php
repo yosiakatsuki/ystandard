@@ -25,7 +25,7 @@ class Widget {
 	 */
 	public function register() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
-		add_action( 'ys_set_singular_content', [ $this, 'set_widget' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content_widget' ] );
 	}
 
 	/**
@@ -54,12 +54,12 @@ class Widget {
 	/**
 	 * フィルターのセット
 	 */
-	public function set_widget() {
-		Content::set_singular_header(
+	public function set_singular_content_widget() {
+		Post_Header::set_singular_header(
 			'widget',
 			[ __CLASS__, 'singular_header_widget' ]
 		);
-		Content::set_singular_footer(
+		Post_Footer::set_singular_footer(
 			'widget',
 			[ __CLASS__, 'singular_footer_widget' ]
 		);

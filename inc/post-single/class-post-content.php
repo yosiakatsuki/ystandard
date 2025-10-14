@@ -11,6 +11,8 @@ namespace ystandard;
 
 use ystandard\utils\Post_Type;
 
+defined( 'ABSPATH' ) || die();
+
 /**
  * Class Post_Content
  */
@@ -42,6 +44,15 @@ class Post_Content {
 	private function __construct() {
 		add_filter( 'post_class', [ $this, 'post_class' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_custom_property' ] );
+		add_action( 'wp', [ $this, 'set_singular_action_hook' ] );
+	}
+
+	/**
+	 * コンテンツ関連のアクション登録
+	 */
+	public function set_singular_action_hook(): void {
+		// 記事上・記事下のアクションセット.
+		do_action( 'ys_set_singular_content' );
 	}
 
 	/**

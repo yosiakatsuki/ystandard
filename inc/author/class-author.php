@@ -53,7 +53,7 @@ class Author {
 		add_action( 'show_password_fields', [ $this, 'add_custom_option' ], 10, 2 );
 		add_action( 'profile_update', [ $this, 'profile_update' ], 10, 2 );
 		add_filter( 'pre_get_avatar', [ $this, '_get_avatar' ], 10, 3 );
-		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_author' ] );
 		add_action( 'widgets_init', [ $this, 'register_widget' ] );
 		if ( ! shortcode_exists( self::SHORT_CODE ) ) {
 			add_shortcode( self::SHORT_CODE, [ $this, 'do_shortcode' ] );
@@ -63,8 +63,8 @@ class Author {
 	/**
 	 * 著者情報表示セット
 	 */
-	public function set_singular_content() {
-		Content::set_singular_footer(
+	public function set_singular_author() {
+		Post_Footer::set_singular_footer(
 			'author',
 			[ __CLASS__, 'post_author' ]
 		);
@@ -90,9 +90,9 @@ class Author {
 	/**
 	 * オリジナル画像変換
 	 *
-	 * @param string     $avatar      アバター画像.
+	 * @param string $avatar アバター画像.
 	 * @param string|int $id_or_email ID/メールアドレス.
-	 * @param array      $args        args.
+	 * @param array $args args.
 	 *
 	 * @return string
 	 */
@@ -333,7 +333,7 @@ class Author {
 	/**
 	 * カスタムユーザー画像追加
 	 *
-	 * @param bool     $show        Whether to show the password fields. Default true.
+	 * @param bool $show Whether to show the password fields. Default true.
 	 * @param \WP_User $profileuser User object for the current user to edit.
 	 *
 	 * @return bool
@@ -376,7 +376,7 @@ class Author {
 	/**
 	 * カスタムユーザー画像の保存
 	 *
-	 * @param int      $user_id       User ID.
+	 * @param int $user_id User ID.
 	 * @param \WP_User $old_user_data Object containing user's data prior to update.
 	 */
 	public function profile_update( $user_id, $old_user_data ) {

@@ -81,7 +81,7 @@ class Share_Button {
 	 */
 	public function register() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_share_button' ] );
 		if ( ! shortcode_exists( self::SHORT_CODE ) ) {
 			add_shortcode( self::SHORT_CODE, [ $this, 'do_shortcode' ] );
 		}
@@ -90,12 +90,12 @@ class Share_Button {
 	/**
 	 * ヘッダー・フッター コンテンツのセット
 	 */
-	public function set_singular_content() {
-		Content::set_singular_header(
+	public function set_singular_share_button() {
+		Post_Header::set_singular_header(
 			'sns-share',
 			[ __CLASS__, 'header_share_button' ]
 		);
-		Content::set_singular_footer(
+		Post_Footer::set_singular_footer(
 			'sns-share',
 			[ __CLASS__, 'footer_share_button' ]
 		);

@@ -34,7 +34,7 @@ class Advertisement {
 		add_action( 'ys_archive_after_content', [ $this, 'archive_infeed' ] );
 		add_action( 'ys_singular_before_title', [ $this, 'before_title' ] );
 		add_action( 'ys_singular_after_title', [ $this, 'after_title' ] );
-		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_advertisement' ] );
 		add_filter( 'ys_before_first_heading_content', [ $this, 'heading_ad' ] );
 
 		/**
@@ -55,14 +55,14 @@ class Advertisement {
 	}
 
 	/**
-	 * ヘッダー・フッター コンテンツのセット
+	 * 詳細ページのヘッダー・フッターに広告セット.
 	 */
-	public function set_singular_content() {
-		Content::set_singular_header(
+	public function set_singular_advertisement() {
+		Post_Header::set_singular_header(
 			'ad',
 			[ __CLASS__, 'header_ad' ]
 		);
-		Content::set_singular_footer(
+		Post_Footer::set_singular_footer(
 			'ad',
 			[ __CLASS__, 'footer_ad' ]
 		);
@@ -198,8 +198,8 @@ class Advertisement {
 	 * 広告表示用HTML取得
 	 *
 	 * @param string $content Advertisement.
-	 * @param string $title   Title.
-	 * @param string $class   Css class.
+	 * @param string $title Title.
+	 * @param string $class Css class.
 	 *
 	 * @return string
 	 */
@@ -295,8 +295,8 @@ class Advertisement {
 	/**
 	 * ショートコード実行
 	 *
-	 * @param array $atts    Attributes.
-	 * @param null  $content Content.
+	 * @param array $atts Attributes.
+	 * @param null $content Content.
 	 *
 	 * @return string
 	 */

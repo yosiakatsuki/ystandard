@@ -25,14 +25,14 @@ class Comment {
 		add_filter( 'comments_open', [ $this, 'comment_tags' ] );
 		add_filter( 'pre_comment_approved', [ $this, 'comment_tags' ] );
 		add_filter( 'comment_form_fields', [ $this, 'comment_form_fields' ] );
-		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_comment' ] );
 	}
 
 	/**
 	 * コメント表示セット
 	 */
-	public function set_singular_content() {
-		Content::set_singular_footer(
+	public function set_singular_comment() {
+		Post_Footer::set_singular_footer(
 			'comment',
 			[ __CLASS__, 'post_comment' ]
 		);

@@ -23,170 +23,15 @@ defined( 'ABSPATH' ) || die();
 class Content {
 
 	/**
-	 * ヘッダーコンテンツの優先順位
-	 */
-	const HEADER_PRIORITY = [
-		'post-thumbnail' => 10,
-		'title'          => 20,
-		'meta'           => 30,
-		'sns-share'      => 40,
-		'ad'             => 50,
-		'widget'         => 60,
-	];
-
-	/**
-	 * フッターコンテンツの優先順位
-	 */
-	const FOOTER_PRIORITY = [
-		'widget'    => 10,
-		'ad'        => 20,
-		'sns-share' => 30,
-		'taxonomy'  => 40,
-		'author'    => 50,
-		'related'   => 60,
-		'comment'   => 70,
-		'paging'    => 80,
-	];
-
-	/**
-	 * 埋め込みの縦横比
-	 *
-	 * @var string
-	 */
-	private $embed_aspect;
-
-	/**
 	 * アクション・フィルターの登録
 	 */
 	public function register() {
-		add_action( 'wp', [ $this, 'set_singular_action_hook' ] );
 		add_filter( 'post_class', [ $this, 'post_class' ] );
-		add_filter( 'the_content', [ $this, 'the_content_hook' ] );
 		add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ], 10, 2 );
 		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
 		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
 		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
-		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
-	}
-
-	/**
-	 * 記事上下表示のセット
-	 */
-	public function set_singular_content() {
-		self::set_singular_header(
-			'post-thumbnail',
-			[ __CLASS__, 'post_thumbnail_default' ]
-		);
-		self::set_singular_header(
-			'title',
-			[ __CLASS__, 'singular_title' ]
-		);
-		self::set_singular_header(
-			'meta',
-			[ __CLASS__, 'singular_meta' ]
-		);
-		self::set_singular_footer(
-			'related',
-			[ __CLASS__, 'related_posts' ]
-		);
-	}
-
-	/**
-	 * コンテンツ関連のアクション登録
-	 */
-	public function set_singular_action_hook() {
-		// 記事上・記事下のアクションセット.
-		do_action( 'ys_set_singular_content' );
-	}
-
-	/**
-	 * 記事ヘッダー設定
-	 *
-	 * @param string   $key Key.
-	 * @param callable $function_to_add The name of the function you wish to be called.
-	 */
-	public static function set_singular_header( $key, $function_to_add ) {
-		$priority = self::get_header_priority( $key );
-		if ( 'none' === $priority ) {
-			return;
-		}
-		add_action(
-			'ys_singular_header',
-			$function_to_add,
-			$priority
-		);
-	}
-
-	/**
-	 * 記事フッター設定
-	 *
-	 * @param string   $key Key.
-	 * @param callable $function_to_add The name of the function you wish to be called.
-	 */
-	public static function set_singular_footer( $key, $function_to_add ) {
-		$priority = self::get_footer_priority( $key );
-		if ( 'none' === $priority ) {
-			return;
-		}
-		add_action(
-			'ys_singular_footer',
-			$function_to_add,
-			$priority
-		);
-	}
-
-	/**
-	 * コンテンツヘッダーの優先順位取得
-	 *
-	 * @param string $key Key.
-	 *
-	 * @return int
-	 */
-	public static function get_header_priority( $key ) {
-		$post_type = Post_Type::get_post_type();
-		$cache_key = "{$post_type}-header-priority";
-		$priority  = wp_cache_get( $cache_key );
-		if ( ! $priority ) {
-			$priority = apply_filters(
-				'ys_get_content_header_priority',
-				self::HEADER_PRIORITY,
-				$post_type
-			);
-			wp_cache_set( $cache_key, $priority );
-		}
-
-		if ( isset( $priority[ $key ] ) ) {
-			return $priority[ $key ];
-		}
-
-		return 10;
-	}
-
-	/**
-	 * コンテンツフッターの優先順位取得
-	 *
-	 * @param string $key Key.
-	 *
-	 * @return int
-	 */
-	public static function get_footer_priority( $key ) {
-		$post_type = self::get_post_type();
-		$cache_key = "{$post_type}-footer-priority";
-		$priority  = wp_cache_get( $cache_key );
-		if ( ! $priority ) {
-			$priority = apply_filters(
-				'ys_get_content_footer_priority',
-				self::FOOTER_PRIORITY
-			);
-			wp_cache_set( $cache_key, $priority );
-		}
-
-		if ( isset( $priority[ $key ] ) ) {
-			return $priority[ $key ];
-		}
-
-		return 10;
 	}
 
 	/**
@@ -231,10 +76,10 @@ class Content {
 		if ( ! has_post_thumbnail( $post_id ) ) {
 			$result = false;
 		}
-		$post_type = self::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_show_{$post_type}_header_thumbnail", null );
 		if ( is_null( $filter ) ) {
-			$fallback = Content::get_fallback_post_type( $post_type );
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$option   = Option::get_option_by_bool( "ys_show_{$fallback}_header_thumbnail", true );
 		} else {
 			$option = $filter;
@@ -253,10 +98,10 @@ class Content {
 	 */
 	public static function is_full_post_thumbnail() {
 
-		$post_type = self::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_{$post_type}_post_thumbnail_type", null );
 		if ( is_null( $filter ) ) {
-			$fallback = Content::get_fallback_post_type( $post_type );
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$type     = Option::get_option( "ys_{$fallback}_post_thumbnail_type", 'default' );
 		} else {
 			$type = $filter;
@@ -278,10 +123,10 @@ class Content {
 		if ( ! is_singular() ) {
 			return false;
 		}
-		$post_type = self::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_show_{$post_type}_related", null );
 		if ( is_null( $filter ) ) {
-			$fallback = Content::get_fallback_post_type( $post_type );
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$show     = Option::get_option_by_bool( "ys_show_{$fallback}_related", true );
 		} else {
 			$show = $filter;
@@ -290,7 +135,7 @@ class Content {
 		if ( ! $show ) {
 			return false;
 		}
-		if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_related' ) ) ) {
+		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_related' ) ) ) {
 			return false;
 		}
 
@@ -310,10 +155,10 @@ class Content {
 		/**
 		 * 設定取得
 		 */
-		$post_type = self::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_show_{$post_type}_publish_date", null );
 		if ( is_null( $filter ) ) {
-			$fallback = Content::get_fallback_post_type( $post_type );
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$option   = Option::get_option( "ys_show_{$fallback}_publish_date", 'both' );
 		} else {
 			$option = $filter;
@@ -322,7 +167,7 @@ class Content {
 		if ( 'none' === $option || false === $option ) {
 			return false;
 		}
-		if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_publish_date' ) ) ) {
+		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_publish_date' ) ) ) {
 			return false;
 		}
 		// 更新日取得.
@@ -356,10 +201,10 @@ class Content {
 	 */
 	public static function get_post_header_category() {
 
-		$post_type = self::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_show_{$post_type}_header_taxonomy", null );
 		if ( is_null( $filter ) ) {
-			$fallback = Content::get_fallback_post_type( $post_type );
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$show     = Option::get_option_by_bool( "ys_show_{$fallback}_header_category", true );
 		} else {
 			$show = $filter;
@@ -431,7 +276,7 @@ class Content {
 
 		$tax_filter = '';
 		$content    = '';
-		$post_type  = self::get_post_type();
+		$post_type  = Post_Type::get_post_type();
 
 		if ( is_singular( 'post' ) ) {
 			$tax_filter = 'category';
@@ -452,7 +297,7 @@ class Content {
 			$shortcode_atts = apply_filters(
 				'ys_related_posts_atts',
 				[
-					'post_type' => self::get_post_type(),
+					'post_type' => Post_Type::get_post_type(),
 					'count'     => 6,
 					'filter'    => "{$tax_filter}same-post",
 					'list_type' => 'card',
@@ -460,7 +305,7 @@ class Content {
 					'cache'     => 'related_posts',
 					'run_type'  => 'related_posts',
 				],
-				self::get_post_type(),
+				Post_Type::get_post_type(),
 				get_the_ID()
 			);
 			$content        = $related->do_shortcode( $shortcode_atts );
@@ -607,27 +452,9 @@ class Content {
 	}
 
 	/**
-	 * Contentのフック
-	 *
-	 * @param string $content Content.
-	 *
-	 * @return string
-	 */
-	public function the_content_hook( $content ) {
-		// Moreタグの置換.
-		$content = $this->replace_more( $content );
-		// Iframeのレスポンシブ対応.
-		$content = $this->responsive_iframe( $content );
-		// 最初の見出し置換.
-		$content = $this->replace_first_heading( $content );
-
-		return $content;
-	}
-
-	/**
 	 * Hook:get_the_excerpt
 	 *
-	 * @param string   $content excerpt.
+	 * @param string $content excerpt.
 	 * @param \WP_Post $post Post.
 	 */
 	public function get_the_excerpt( $content, $post ) {
@@ -635,122 +462,22 @@ class Content {
 	}
 
 	/**
-	 * Moreタグの置換
-	 *
-	 * @param string $content Content.
-	 *
-	 * @return string
-	 */
-	public function replace_first_heading( $content ) {
-
-		if ( preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
-			$replace = apply_filters( 'ys_before_first_heading_content', '', $content );
-			if ( isset( $matches[0] ) && isset( $matches[0][0] ) ) {
-				$content = str_replace(
-					$matches[0][0],
-					$replace . $matches[0][0],
-					$content
-				);
-			}
-		}
-
-		return $content;
-	}
-
-	/**
-	 * Moreタグの置換
-	 *
-	 * @param string $content Content.
-	 *
-	 * @return string
-	 */
-	public function replace_more( $content ) {
-
-		$replace = apply_filters( 'ys_more_content', '' );
-		if ( '' !== $replace ) {
-			$content = preg_replace(
-				'/<p><span id="more-[0-9]+"><\/span><\/p>/',
-				$replace,
-				$content
-			);
-			/**
-			 * 「remove_filter( 'the_content', 'wpautop' )」対策
-			 */
-			$content = preg_replace(
-				'/<span id="more-[0-9]+"><\/span>/',
-				$replace,
-				$content
-			);
-		}
-
-		return $content;
-	}
-
-	/**
-	 * 投稿内のiframeレスポンシブ対応
-	 *
-	 * @param string $content Content.
-	 *
-	 * @return string
-	 */
-	public function responsive_iframe( $content ) {
-		/**
-		 * マッチさせたいiframeのURLをリスト化
-		 */
-		$list = [
-			[
-				'url'    => 'https:\/\/www\.google\.com\/maps\/embed',
-				'aspect' => '4-3',
-			],
-		];
-		$list = apply_filters( 'ys_responsive_iframe_pattern', $list );
-		/**
-		 * 置換する
-		 */
-		foreach ( $list as $value ) {
-			if ( isset( $value['url'] ) && isset( $value['aspect'] ) ) {
-				$this->embed_aspect = $value['aspect'];
-				$pattern            = '/<iframe[^>]+?' . $value['url'] . '[^<]+?<\/iframe>/is';
-				$content            = preg_replace_callback(
-					$pattern,
-					function ( $matches ) {
-						$map    = $matches[0];
-						$aspect = preg_match( '/data-aspect-ratio="(.+?)"/is', $map, $aspect_match );
-						if ( empty( $aspect ) || ( isset( $aspect_match[1] ) && 'none' !== $aspect_match[1] ) ) {
-							$embed_aspect = isset( $aspect_match[1] ) ? $aspect_match[1] : $this->embed_aspect;
-							$map          = '<div class="wp-embed-aspect-' . $embed_aspect . ' wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">' . $map . '</div></div>';
-						}
-
-						return $map;
-					},
-					$content
-				);
-			}
-		}
-
-		return $content;
-	}
-
-	/**
 	 * 投稿オプション(post-meta)取得
 	 *
-	 * @param string  $key 設定キー.
+	 * @param string $key 設定キー.
 	 * @param integer $post_id 投稿ID.
 	 *
 	 * @return string
+	 * @deprecated use Post_Type::get_post_meta()
 	 */
 	public static function get_post_meta( $key, $post_id = 0 ) {
-		if ( 0 === $post_id ) {
-			$post_id = get_the_ID();
-		}
-
-		return get_post_meta( $post_id, $key, true );
+		return Post_Type::get_post_meta( $key, $post_id );
 	}
 
 	/**
 	 * 投稿抜粋文を作成
 	 *
-	 * @param string  $sep 抜粋最後の文字.
+	 * @param string $sep 抜粋最後の文字.
 	 * @param integer $length 抜粋長さ.
 	 * @param integer $post_id 投稿ID.
 	 *

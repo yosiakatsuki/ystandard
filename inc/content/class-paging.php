@@ -24,14 +24,14 @@ class Paging {
 	 * フックやショートコードの登録
 	 */
 	public function register() {
-		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_paging' ] );
 	}
 
 	/**
 	 * ページングのセット
 	 */
-	public function set_singular_content() {
-		Content::set_singular_footer(
+	public function set_singular_paging() {
+		Post_Footer::set_singular_footer(
 			'paging',
 			[ __CLASS__, 'post_paging' ]
 		);

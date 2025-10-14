@@ -39,15 +39,15 @@ class Taxonomy {
 		add_filter( 'ys_ogp_description_archive', [ $this, 'ogp_description' ] );
 		add_filter( 'ys_ogp_image', [ $this, 'ogp_image' ] );
 		add_filter( 'wp_tag_cloud', [ $this, '_tag_cloud' ] );
-		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content' ] );
+		add_action( 'ys_set_singular_content', [ $this, 'set_singular_taxonomy' ] );
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
 	}
 
 	/**
 	 * タクソノミー表示セット
 	 */
-	public function set_singular_content() {
-		Content::set_singular_footer(
+	public function set_singular_taxonomy() {
+		Post_Footer::set_singular_footer(
 			'taxonomy',
 			[ __CLASS__, 'post_taxonomy' ]
 		);
@@ -246,8 +246,8 @@ class Taxonomy {
 	/**
 	 * カテゴリー編集画面に入力欄追加
 	 *
-	 * @param \WP_Term $term     Current taxonomy term object.
-	 * @param string   $taxonomy Current taxonomy slug.
+	 * @param \WP_Term $term Current taxonomy term object.
+	 * @param string $taxonomy Current taxonomy slug.
 	 */
 	public function edit_form_fields( $term, $taxonomy ) {
 		$taxonomy = get_taxonomy( $taxonomy );

@@ -41,7 +41,7 @@ class Post_Type {
 	 * 投稿タイプ取得
 	 *
 	 * @param array $args args.
-	 * @param bool  $exclude 除外.
+	 * @param bool $exclude 除外.
 	 *
 	 * @return array
 	 */
@@ -88,5 +88,21 @@ class Post_Type {
 		}
 
 		return is_post_type_hierarchical( $post_type ) ? 'page' : 'post';
+	}
+
+	/**
+	 * 投稿オプション(post-meta)取得
+	 *
+	 * @param string $key 設定キー.
+	 * @param integer $post_id 投稿ID.
+	 *
+	 * @return string
+	 */
+	public static function get_post_meta( $key, $post_id = 0 ) {
+		if ( 0 === $post_id ) {
+			$post_id = get_the_ID();
+		}
+
+		return get_post_meta( $post_id, $key, true );
 	}
 }
