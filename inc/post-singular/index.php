@@ -13,3 +13,4 @@ require_once __DIR__ . '/class-post-content.php';
 require_once __DIR__ . '/class-post-footer.php';
 require_once __DIR__ . '/class-post-header.php';
 require_once __DIR__ . '/class-post-content-hook.php';
+require_once __DIR__ . '/class-post-singular-thumbnail.php';
