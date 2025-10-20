@@ -31,7 +31,7 @@ class Content {
 		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
 		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
 		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
-		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
+
 	}
 
 	/**
@@ -288,68 +288,6 @@ class Content {
 		}
 	}
 
-	/**
-	 * アイキャッチ画像の表示
-	 */
-	public static function post_thumbnail_default() {
-		if ( self::is_full_post_thumbnail() ) {
-			return;
-		}
-		if ( ! self::is_active_post_thumbnail() ) {
-			return;
-		}
-		ob_start();
-		Template::get_template_part( 'template-parts/parts/post-thumbnail' );
-		echo ob_get_clean();
-	}
-
-	/**
-	 * アイキャッチ画像の表示 - ヘッダー
-	 */
-	public function header_post_thumbnail() {
-		$thumbnail = $this->get_header_post_thumbnail();
-		if ( empty( $thumbnail ) ) {
-			return;
-		}
-		ob_start();
-		Template::get_template_part(
-			'template-parts/parts/header-thumbnail',
-			'',
-			[ 'header_thumbnail' => $thumbnail ]
-		);
-		$thumbnail_html = ob_get_clean();
-		echo apply_filters( 'ys_the_header_post_thumbnail', $thumbnail_html );
-	}
-
-	/**
-	 * ヘッダーサムネイル取得
-	 *
-	 * @return string
-	 */
-	private function get_header_post_thumbnail() {
-
-		$hook = apply_filters( 'ys_get_header_post_thumbnail', null );
-		if ( ! is_null( $hook ) ) {
-			return $hook;
-		}
-		if ( ! self::is_full_post_thumbnail() ) {
-			return '';
-		}
-		if ( ! self::is_active_post_thumbnail() ) {
-			return '';
-		}
-
-		return get_the_post_thumbnail(
-			get_the_ID(),
-			'post-thumbnail',
-			[
-				'id'      => 'site-header-thumbnail__image',
-				'class'   => 'site-header-thumbnail__image',
-				'alt'     => get_the_title(),
-				'loading' => 'eager',
-			]
-		);
-	}
 
 	/**
 	 * 投稿タイトル

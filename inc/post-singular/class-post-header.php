@@ -65,7 +65,7 @@ class Post_Header {
 	public function set_singular_header_hook(): void {
 		self::set_singular_header(
 			'post-thumbnail',
-			[ __CLASS__, 'post_thumbnail_default' ]
+			[ '\ystandard\Post_Singular_Thumbnail', 'post_thumbnail_default' ]
 		);
 		self::set_singular_header(
 			'title',
