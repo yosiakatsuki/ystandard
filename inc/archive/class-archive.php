@@ -9,6 +9,7 @@
 
 namespace ystandard;
 
+use ystandard\utils\Post_Type;
 use ystandard\utils\Sanitize;
 use ystandard\utils\Post;
 
@@ -128,7 +129,7 @@ class Archive {
 			$url = home_url( '/?s=' . urlencode( get_search_query( false ) ) );
 			$url = get_post_type_archive_link( esc_url_raw( $url ) );
 		} elseif ( is_post_type_archive() ) {
-			$post_type = Content::get_post_type();
+			$post_type = Post_Type::get_post_type();
 			$url       = get_post_type_archive_link( $post_type );
 		} elseif ( is_tax() ) {
 			$tax = get_taxonomy( $queried_object->taxonomy );
@@ -291,7 +292,7 @@ class Archive {
 		if ( is_string( $taxonomies ) ) {
 			$taxonomies = [ $taxonomies ];
 		}
-		$post_type    = Content::get_post_type();
+		$post_type    = Post_Type::get_post_type();
 		$result       = [];
 		$terms_length = apply_filters( "ys_get_{$post_type}_archive_category_terms_length", 1 );
 		foreach ( $taxonomies as $taxonomy ) {
@@ -350,7 +351,7 @@ class Archive {
 				return false;
 			}
 			$taxonomy  = array_key_first( $taxonomies );
-			$post_type = Content::get_post_type();
+			$post_type = Post_Type::get_post_type();
 			if ( 'post' === $post_type ) {
 				$taxonomy = 'category';
 			}

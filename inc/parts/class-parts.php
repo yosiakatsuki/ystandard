@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
 
@@ -71,7 +72,7 @@ class Parts {
 	 */
 	public function manual() {
 		global $pagenow;
-		$post_type = Content::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$manual    = Admin::manual_link( 'manual/ys-parts' );
 		if ( 'edit.php' === $pagenow && Parts::POST_TYPE === $post_type ) {
 			Admin_Notice::manual( $manual );
@@ -340,7 +341,7 @@ class Parts {
 	 * カラム追加
 	 *
 	 * @param string $column_name カラム名.
-	 * @param int    $post_ID     投稿ID.
+	 * @param int $post_ID 投稿ID.
 	 */
 	public function add_custom_column(
 		$column_name, $post_ID

@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Post;
+use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
 
@@ -146,7 +147,7 @@ class Taxonomy {
 				];
 			}
 		}
-		$post_type = Content::get_post_type();
+		$post_type = Post_Type::get_post_type();
 
 		return apply_filters( "ys_get_{$post_type}_taxonomies", $data );
 	}
@@ -183,11 +184,11 @@ class Taxonomy {
 	 * @return bool;
 	 */
 	private static function is_active_post_taxonomy() {
-		$post_type = Content::get_post_type();
+		$post_type = Post_Type::get_post_type();
 
 		$filter = apply_filters( "ys_is_active_{$post_type}_taxonomy", null );
 		if ( is_null( $filter ) ) {
-			$fallback = Content::get_fallback_post_type( $post_type );
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$result   = Option::get_option_by_bool( "ys_show_{$fallback}_category", true );
 		} else {
 			$result = $filter;

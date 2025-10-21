@@ -34,7 +34,7 @@ class Template_Type {
 		/**
 		 * 投稿タイプ毎に幅広タイプか判定
 		 */
-		$post_type = Content::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$is_wide   = apply_filters( "ys_{$post_type}_is_wide", null );
 		if ( ! is_null( $is_wide ) ) {
 			return Convert::to_bool( $is_wide );

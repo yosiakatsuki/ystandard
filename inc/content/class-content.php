@@ -10,7 +10,6 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
-use ystandard\utils\Post;
 use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
@@ -27,30 +26,6 @@ class Content {
 	 */
 	public function register() {
 
-	}
-
-	/**
-	 * Post Type
-	 *
-	 * @return false|string
-	 * @global \WP_Query
-	 * @deprecated
-	 */
-	public static function get_post_type() {
-		return Post_Type::get_post_type();
-	}
-
-	/**
-	 * Fallback Post Type
-	 *
-	 * @param string $post_type Post type.
-	 *
-	 * @return string
-	 * @deprecated
-	 */
-	public static function get_fallback_post_type( $post_type ) {
-
-		return Post_Type::get_fallback_post_type( $post_type );
 	}
 
 	/**
