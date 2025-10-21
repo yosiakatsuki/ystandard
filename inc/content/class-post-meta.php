@@ -119,12 +119,12 @@ class Post_Meta {
 		<div class="meta-box__section">
 			<div class="meta-box__list">
 				<label class="meta-box__label" for="ys_ogp_title">OGP/Twitter Cards用タイトル</label>
-				<input id="ys_ogp_title" type="text" class="meta-box__text" name="ys_ogp_title" value="<?php echo esc_attr( Content::get_post_meta( 'ys_ogp_title', $post_id ) ); ?>"/>
+				<input id="ys_ogp_title" type="text" class="meta-box__text" name="ys_ogp_title" value="<?php echo esc_attr( Post_Type::get_post_meta( 'ys_ogp_title', $post_id ) ); ?>"/>
 				<div class="meta-box__dscr">※OGP/Twitter Cardsのタイトルとして出力する文章を設定できます。空白の場合投稿タイトルになります。</div>
 			</div>
 			<div class="meta-box__list">
 				<label class="meta-box__label" for="ys_ogp_description">OGP/Twitter Cards用description</label>
-				<textarea id="ys_ogp_description" class="meta-box__textarea" name="ys_ogp_description" rows="4" cols="40"><?php echo esc_textarea( Content::get_post_meta( 'ys_ogp_description', $post_id ) ); ?></textarea>
+				<textarea id="ys_ogp_description" class="meta-box__textarea" name="ys_ogp_description" rows="4" cols="40"><?php echo esc_textarea( Post_Type::get_post_meta( 'ys_ogp_description', $post_id ) ); ?></textarea>
 				<div class="meta-box__dscr">※OGP/Twitter Cardsのdescriptionとして出力する文章を設定できます。空白の場合、投稿本文から自動でdescriptionを作成します。</div>
 			</div>
 			<?php do_action( 'ys_meta_box_sns', $post_id ); ?>
@@ -285,8 +285,8 @@ class Post_Meta {
 	/**
 	 * Post meta保存 チェック
 	 *
-	 * @param int    $post_id The ID of the post being saved.
-	 * @param string $type    Type.
+	 * @param int $post_id The ID of the post being saved.
+	 * @param string $type Type.
 	 *
 	 * @return bool
 	 */
@@ -321,8 +321,8 @@ class Post_Meta {
 	/**
 	 * 投稿オプションの更新：チェックボックス
 	 *
-	 * @param int    $post_id 投稿ID.
-	 * @param string $key     設定キー.
+	 * @param int $post_id 投稿ID.
+	 * @param string $key 設定キー.
 	 */
 	public static function save_post_checkbox( $post_id, $key ) {
 		if ( isset( $_POST[ $key ] ) ) {
@@ -335,8 +335,8 @@ class Post_Meta {
 	/**
 	 * 投稿オプションの更新：textarea
 	 *
-	 * @param int    $post_id 投稿ID.
-	 * @param string $key     設定キー.
+	 * @param int $post_id 投稿ID.
+	 * @param string $key 設定キー.
 	 */
 	public static function save_post_text( $post_id, $key ) {
 		if ( ! isset( $_POST[ $key ] ) ) {
@@ -353,9 +353,9 @@ class Post_Meta {
 	/**
 	 * 投稿オプションの更新：textarea
 	 *
-	 * @param int    $post_id       投稿ID.
-	 * @param string $key           設定キー.
-	 * @param bool   $remove_breaks 改行を削除するか.
+	 * @param int $post_id 投稿ID.
+	 * @param string $key 設定キー.
+	 * @param bool $remove_breaks 改行を削除するか.
 	 */
 	public static function save_post_textarea( $post_id, $key, $remove_breaks = true ) {
 		if ( ! isset( $_POST[ $key ] ) ) {
@@ -372,12 +372,12 @@ class Post_Meta {
 	/**
 	 * チェックボックスのチェック判定
 	 *
-	 * @param string $key     Meta key.
-	 * @param int    $post_id Post ID.
+	 * @param string $key Meta key.
+	 * @param int $post_id Post ID.
 	 */
 	private function checked( $key, $post_id ) {
 		checked(
-			Content::get_post_meta( $key, $post_id ),
+			Post_Type::get_post_meta( $key, $post_id ),
 			'1',
 			true
 		);

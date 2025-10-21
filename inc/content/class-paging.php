@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
 
@@ -77,11 +78,11 @@ class Paging {
 		if ( is_page() ) {
 			return false;
 		}
-		$post_type = Content::get_post_type();
+		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_show_{$post_type}_paging", null );
 		if ( is_null( $filter ) ) {
 			$option   = ! is_post_type_hierarchical( $post_type );
-			$fallback = Content::get_fallback_post_type( $post_type );
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$option   = Option::get_option_by_bool( "ys_show_{$fallback}_paging", $option );
 		} else {
 			$option = $filter;
@@ -90,7 +91,7 @@ class Paging {
 		if ( is_singular( $post_type ) && ! $option ) {
 			return false;
 		}
-		if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_paging' ) ) ) {
+		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_paging' ) ) ) {
 			return false;
 		}
 

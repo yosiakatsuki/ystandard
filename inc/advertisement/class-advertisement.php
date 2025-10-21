@@ -11,6 +11,7 @@ namespace ystandard;
 
 use ystandard\utils\Conditional_Tags;
 use ystandard\utils\Convert;
+use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
 
@@ -284,7 +285,7 @@ class Advertisement {
 		 * 非表示設定
 		 */
 		if ( is_singular() ) {
-			if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_ad' ) ) ) {
+			if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_ad' ) ) ) {
 				return false;
 			}
 		}

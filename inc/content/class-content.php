@@ -143,19 +143,6 @@ class Content {
 			echo $related_post;
 		}
 	}
-
-	/**
-	 * 投稿オプション(post-meta)取得
-	 *
-	 * @param string $key 設定キー.
-	 * @param integer $post_id 投稿ID.
-	 *
-	 * @return string
-	 * @deprecated use Post_Type::get_post_meta()
-	 */
-	public static function get_post_meta( $key, $post_id = 0 ) {
-		return Post_Type::get_post_meta( $key, $post_id );
-	}
 }
 
 $class_content = new Content();

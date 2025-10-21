@@ -113,7 +113,7 @@ class Share_Button {
 			return Convert::to_bool( $filter );
 		}
 		if ( is_singular() ) {
-			return ! Convert::to_bool( Content::get_post_meta( 'ys_hide_share' ) );
+			return ! Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_share' ) );
 		}
 
 		return true;

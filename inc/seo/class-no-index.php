@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
 
@@ -79,7 +80,7 @@ class No_Index {
 			 */
 			$noindex = true;
 		} elseif ( is_single() || is_page() ) {
-			if ( Convert::to_bool( Content::get_post_meta( 'ys_noindex' ) ) ) {
+			if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_noindex' ) ) ) {
 				/**
 				 * 投稿・固定ページでnoindex設定されていればnoindex
 				 */

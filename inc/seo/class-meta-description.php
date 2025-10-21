@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\Post_Type;
 use ystandard\utils\Text;
 use ystandard\utils\Post;
 
@@ -38,7 +39,7 @@ class Meta_Description {
 			return;
 		}
 		if ( is_single() || is_page() ) {
-			if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_meta_dscr' ) ) ) {
+			if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_meta_dscr' ) ) ) {
 				return;
 			}
 		}

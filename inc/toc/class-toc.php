@@ -152,7 +152,7 @@ class TOC {
 	/**
 	 * ショートコード.
 	 *
-	 * @param array  $atts    Param.
+	 * @param array $atts Param.
 	 * @param string $content Content.
 	 *
 	 * @return string
@@ -272,7 +272,7 @@ class TOC {
 			return false;
 		}
 		// Post meta.
-		if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_toc' ) ) ) {
+		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_toc' ) ) ) {
 			return false;
 		}
 
@@ -336,8 +336,8 @@ class TOC {
 	/**
 	 * 目次下層HTML作成
 	 *
-	 * @param string $toc  HTML.
-	 * @param array  $args Args.
+	 * @param string $toc HTML.
+	 * @param array $args Args.
 	 */
 	private function get_toc_children( &$toc, $args ) {
 		$data        = $args['data'];
@@ -384,7 +384,7 @@ class TOC {
 	 * 目次アイテム作成(閉じタグは別で作成する)
 	 *
 	 * @param array $data data.
-	 * @param int   $i    number.
+	 * @param int $i number.
 	 *
 	 * @return string
 	 */
@@ -475,7 +475,7 @@ class TOC {
 	/**
 	 * アンカー文字列取得
 	 *
-	 * @param int $i     Number.
+	 * @param int $i Number.
 	 * @param int $level Level.
 	 *
 	 * @return string

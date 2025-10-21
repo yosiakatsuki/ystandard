@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\Post_Type;
 use ystandard\utils\Short_Code;
 
 defined( 'ABSPATH' ) || die();
@@ -150,16 +151,16 @@ class Author {
 			/**
 			 * 投稿個別設定
 			 */
-			if ( Convert::to_bool( Content::get_post_meta( 'ys_hide_author' ) ) ) {
+			if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_author' ) ) ) {
 				return false;
 			}
 			/**
 			 * 投稿タイプ別設定
 			 */
-			$post_type = Content::get_post_type();
+			$post_type = Post_Type::get_post_type();
 			$filter    = apply_filters( "ys_show_{$post_type}_author", null );
 			if ( is_null( $filter ) ) {
-				$fallback = Content::get_fallback_post_type( $post_type );
+				$fallback = Post_Type::get_fallback_post_type( $post_type );
 				$option   = Option::get_option_by_bool( "ys_show_{$fallback}_author", true );
 			} else {
 				$option = $filter;
