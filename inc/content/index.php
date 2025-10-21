@@ -9,7 +9,6 @@
 
 defined( 'ABSPATH' ) || die();
 
-require_once __DIR__ . '/class-content.php';
 require_once __DIR__ . '/class-paging.php';
 require_once __DIR__ . '/class-post-meta.php';
 require_once __DIR__ . '/class-recent-posts.php';
