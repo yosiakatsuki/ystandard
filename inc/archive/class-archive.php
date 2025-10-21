@@ -37,7 +37,6 @@ class Archive {
 		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
 		add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
 		add_filter( 'ys_get_css_custom_properties_args_presets', [ $this, 'add_custom_properties' ] );
-		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'get_the_archive_description', [ $this, 'archive_description' ], 999 );
 		add_action( 'ys_after_site_header', [ $this, 'home_post_thumbnail' ] );
 	}
@@ -53,21 +52,6 @@ class Archive {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * クローンを禁止
-	 */
-	private function __clone() {
-	}
-
-	/**
-	 * アンシリアライズを禁止
-	 *
-	 * @throws \Exception アンシリアライズ時に例外を投げる.
-	 */
-	public function __wakeup() {
-		throw new \Exception( 'Cannot unserialize singleton' );
 	}
 
 	/**
@@ -168,9 +152,11 @@ class Archive {
 	 * @return string
 	 */
 	public static function get_archive_type() {
+		$post_type = Post_Type::get_post_type();
+
 		return apply_filters(
 			'ys_get_archive_type',
-			Option::get_option( 'ys_archive_type', 'card' )
+			Option::get_option( "ys_{$post_type}_archive_type", 'card' )
 		);
 	}
 
@@ -226,11 +212,12 @@ class Archive {
 	 * @return string
 	 */
 	public static function the_archive_description( $length = 0 ) {
-		if ( ! Option::get_option_by_bool( 'ys_show_archive_description', true ) ) {
+		$post_type = Post_Type::get_post_type();
+		if ( ! Option::get_option_by_bool( "ys_show_{$post_type}_archive_description", true ) ) {
 			return '';
 		}
 		if ( 0 === $length ) {
-			$length = Option::get_option_by_int( 'ys_option_excerpt_length', 80 );
+			$length = Option::get_option_by_int( "ys_{$post_type}_archive_excerpt_length", 80 );
 		}
 		$excerpt = Post::get_custom_excerpt( '…', $length );
 		if ( empty( $excerpt ) ) {
@@ -250,8 +237,8 @@ class Archive {
 	 * @return string
 	 */
 	public static function get_archive_detail_date( $icon = true ) {
-
-		if ( ! Option::get_option_by_bool( 'ys_show_archive_publish_date', true ) ) {
+		$post_type = Post_Type::get_post_type();
+		if ( ! Option::get_option_by_bool( "ys_show_{$post_type}_archive_publish_date", true ) ) {
 			return '';
 		}
 
@@ -280,8 +267,8 @@ class Archive {
 	 * @return string
 	 */
 	public static function get_archive_detail_category( $icon = true ) {
-
-		if ( ! Option::get_option_by_bool( 'ys_show_archive_category', true ) ) {
+		$post_type = Post_Type::get_post_type();
+		if ( ! Option::get_option_by_bool( "ys_show_{$post_type}_archive_category", true ) ) {
 			return '';
 		}
 
@@ -292,7 +279,6 @@ class Archive {
 		if ( is_string( $taxonomies ) ) {
 			$taxonomies = [ $taxonomies ];
 		}
-		$post_type    = Post_Type::get_post_type();
 		$result       = [];
 		$terms_length = apply_filters( "ys_get_{$post_type}_archive_category_terms_length", 1 );
 		foreach ( $taxonomies as $taxonomy ) {
@@ -367,8 +353,8 @@ class Archive {
 	 * @return string
 	 */
 	public static function get_archive_detail_read_more() {
-
-		$read_more = Option::get_option( 'ys_archive_read_more_text', '' );
+		$post_type = Post_Type::get_post_type();
+		$read_more = Option::get_option( "ys_{$post_type}_archive_read_more_text", '' );
 		if ( ! trim( $read_more ) ) {
 			return '';
 		}
@@ -452,151 +438,6 @@ class Archive {
 		return $css_properties;
 	}
 
-	/**
-	 * アーカイブページ設定
-	 *
-	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
-	 */
-	public function customize_register( $wp_customize ) {
-		$customizer = new Customize_Control( $wp_customize );
-		$customizer->add_section(
-			[
-				'section'     => 'ys_design_archive',
-				'title'       => 'アーカイブページ',
-				'panel'       => Design::PANEL_NAME,
-				'priority'    => 120,
-				'description' => Admin::manual_link( 'manual/archive-layout' ),
-			]
-		);
-		$customizer->add_section_label( 'レイアウト' );
-		/**
-		 * 表示カラム数
-		 */
-		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
-		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
-		$img  = '<img src="%s" alt="" width="100" height="100" />';
-		$customizer->add_image_label_radio(
-			[
-				'id'          => 'ys_archive_layout',
-				'default'     => '1col',
-				'label'       => 'ページレイアウト',
-				'description' => 'アーカイブページの表示レイアウト',
-				'choices'     => [
-					'1col' => sprintf( $img, $col1 ),
-					'2col' => sprintf( $img, $col2 ),
-				],
-			]
-		);
-		/**
-		 * 一覧タイプ
-		 */
-		$list          = Customizer::get_assets_dir_uri( '/design/archive/list.png' );
-		$card          = Customizer::get_assets_dir_uri( '/design/archive/card.png' );
-		$simple        = Customizer::get_assets_dir_uri( '/design/archive/simple.png' );
-		$img           = '<img src="%s" alt="%s" width="100" height="100" />';
-		$archive_types = apply_filters(
-			'ys_customizer_archive_type_choices',
-			[
-				'card'   => [
-					'image' => sprintf( $img, $card, 'card' ),
-					'text'  => __( 'カード', 'ystandard' ),
-				],
-				'list'   => [
-					'image' => sprintf( $img, $list, 'list' ),
-					'text'  => __( 'リスト', 'ystandard' ),
-				],
-				'simple' => [
-					'image' => sprintf( $img, $simple, 'simple' ),
-					'text'  => __( 'シンプル', 'ystandard' ),
-				],
-			]
-		);
-		$customizer->add_image_label_radio(
-			[
-				'id'          => 'ys_archive_type',
-				'default'     => 'card',
-				'label'       => '一覧レイアウト',
-				'description' => '記事一覧の表示タイプ',
-				'choices'     => $archive_types,
-			]
-		);
-		$customizer->add_section_label( '表示・非表示設定' );
-		// 投稿日.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_archive_publish_date',
-				'default' => 1,
-				'label'   => '投稿日を表示する',
-			]
-		);
-		// カテゴリー.
-		$customizer->add_checkbox(
-			[
-				'id'      => 'ys_show_archive_category',
-				'default' => 1,
-				'label'   => 'カテゴリーを表示する',
-			]
-		);
-		// 概要.
-		$customizer->add_checkbox(
-			[
-				'id'              => 'ys_show_archive_description',
-				'default'         => 1,
-				'label'           => '概要を表示する',
-				'active_callback' => [ $this, 'is_archive_type_not_simple' ],
-			]
-		);
-		$customizer->add_number(
-			[
-				'id'              => 'ys_option_excerpt_length',
-				'default'         => 80,
-				'label'           => '概要文の文字数',
-				'active_callback' => [ $this, 'is_archive_type_not_simple' ],
-			]
-		);
-		$customizer->add_section_label(
-			'続きを読むリンク',
-			[ 'active_callback' => [ $this, 'is_archive_type_not_simple' ] ]
-		);
-		$customizer->add_text(
-			[
-				'id'                => 'ys_archive_read_more_text',
-				'default'           => '',
-				'label'             => '「続きを読む」リンクのテキスト',
-				'sanitize_callback' => [ $this, 'sanitize_read_more' ],
-				'active_callback'   => [ $this, 'is_archive_type_not_simple' ],
-			]
-		);
-	}
-
-	/**
-	 * 続きを読むリンクのサニタイズ
-	 *
-	 * @param string $value Text.
-	 *
-	 * @return string
-	 */
-	public function sanitize_read_more( $value ) {
-		$allowed_html = Sanitize::get_kses_allowed_html(
-			[
-				'span',
-				'strong',
-				'br',
-				'img',
-			]
-		);
-
-		return wp_kses( $value, $allowed_html );
-	}
-
-	/**
-	 * 一覧タイプがシンプルかどうか.
-	 *
-	 * @return bool
-	 */
-	public function is_archive_type_not_simple() {
-		return 'simple' !== Option::get_option( 'ys_archive_type', 'card' );
-	}
 }
 
 Archive::get_instance();

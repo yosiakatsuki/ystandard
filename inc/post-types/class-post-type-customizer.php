@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\Sanitize;
 use ystandard\utils\Taxonomy;
 
 defined( 'ABSPATH' ) || die();
@@ -137,23 +138,26 @@ class Post_Type_Customizer {
 	 */
 	private function register_settings() {
 		// レイアウト設定.
-		$this->add_layout_settings();
+		$this->add_singular_layout_settings();
 
 		// 本文エリア背景色設定.
-		$this->add_content_background_settings();
+		$this->add_singular_content_background_settings();
 
 		// 記事上部設定（階層なしタイプ用）.
-		$this->add_header_settings();
+		$this->add_singular_header_settings();
 
 		// 記事下部設定（階層なしタイプ用）.
-		$this->add_footer_settings();
+		$this->add_singular_footer_settings();
+
+		// アーカイブページレイアウト設定.
+		$this->add_archive_layout_settings();
 	}
 
 	/**
 	 * レイアウト設定を追加
 	 */
-	private function add_layout_settings() {
-		$this->customizer->add_section_label( '詳細ページレイアウト' );
+	private function add_singular_layout_settings() {
+		$this->customizer->add_section_label( __( '詳細ページレイアウト', 'ystandard' ) );
 
 		// ページレイアウト.
 		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
@@ -177,8 +181,8 @@ class Post_Type_Customizer {
 	/**
 	 * 本文エリア背景色設定を追加
 	 */
-	private function add_content_background_settings() {
-		$this->customizer->add_section_label( '詳細ページ本文エリア背景色' );
+	private function add_singular_content_background_settings() {
+		$this->customizer->add_section_label( __( '詳細ページ本文エリア背景色', 'ystandard' ) );
 
 		$this->customizer->add_checkbox(
 			[
@@ -207,8 +211,8 @@ class Post_Type_Customizer {
 	/**
 	 * 記事上部設定を追加
 	 */
-	private function add_header_settings() {
-		$this->customizer->add_section_label( '詳細ページ記事上部' );
+	private function add_singular_header_settings() {
+		$this->customizer->add_section_label( __( '詳細ページ記事上部', 'ystandard' ) );
 
 		if ( $this->has_post_thumbnail() ) {
 			// アイキャッチ画像の表示設定.
@@ -291,12 +295,11 @@ class Post_Type_Customizer {
 		);
 	}
 
-
 	/**
 	 * 記事下部設定を追加
 	 */
-	private function add_footer_settings() {
-		$this->customizer->add_section_label( '詳細ページ記事下部' );
+	private function add_singular_footer_settings() {
+		$this->customizer->add_section_label( __( '詳細ページ記事下部', 'ystandard' ) );
 
 		// SNSシェアボタンの表示設定.
 		$this->customizer->add_select(
@@ -359,7 +362,7 @@ class Post_Type_Customizer {
 				[
 					'id'      => "ys_show_{$this->post_type}_related",
 					'default' => 1,
-					'label'   => '関連記事',
+					'label'   => __( '関連記事', 'ystandard' ),
 				]
 			);
 
@@ -368,10 +371,170 @@ class Post_Type_Customizer {
 				[
 					'id'      => "ys_show_{$this->post_type}_paging",
 					'default' => 1,
-					'label'   => '次の記事・前の記事',
+					'label'   => __( '次の記事・前の記事', 'ystandard' ),
 				]
 			);
 		}
+	}
+
+
+	/**
+	 * アーカイブレイアウト設定を追加
+	 *
+	 * @return void
+	 */
+	private function add_archive_layout_settings() {
+		// アーカイブを持っていなければ設定は追加しない.
+		if ( ! $this->has_archive() ) {
+			return;
+		}
+		$this->customizer->add_section_label(
+			__( '一覧ページレイアウト', 'ystandard' ),
+			[
+				'description' => Admin::manual_link( 'manual/archive-layout' ),
+			]
+		);
+		/**
+		 * 表示カラム数
+		 * レイアウトの判定は inc/template/class-template-type.php 参照.
+		 */
+		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
+		$col2 = Customizer::get_assets_dir_uri( '/design/column-type/col-2.png' );
+		$img  = '<img src="%s" alt="" width="100" height="100" />';
+		$this->customizer->add_image_label_radio(
+			[
+				'id'          => "ys_{$this->post_type}_archive_layout",
+				'default'     => '1col',
+				'label'       => __( 'アーカイブページレイアウト', 'ystandard' ),
+				'description' => "{$this->label}" . __( 'アーカイブページの表示レイアウト', 'ystandard' ),
+				'choices'     => [
+					'1col' => sprintf( $img, $col1 ),
+					'2col' => sprintf( $img, $col2 ),
+				],
+			]
+		);
+
+		$this->customizer->add_section_label( __( '一覧タイプ', 'ystandard' ) );
+		/**
+		 * 一覧タイプ
+		 */
+		$list          = Customizer::get_assets_dir_uri( '/design/archive/list.png' );
+		$card          = Customizer::get_assets_dir_uri( '/design/archive/card.png' );
+		$simple        = Customizer::get_assets_dir_uri( '/design/archive/simple.png' );
+		$img           = '<img src="%s" alt="%s" width="100" height="100" />';
+		$archive_types = apply_filters(
+			'ys_customizer_archive_type_choices',
+			[
+				'card'   => [
+					'image' => sprintf( $img, $card, 'card' ),
+					'text'  => __( 'カード', 'ystandard' ),
+				],
+				'list'   => [
+					'image' => sprintf( $img, $list, 'list' ),
+					'text'  => __( 'リスト', 'ystandard' ),
+				],
+				'simple' => [
+					'image' => sprintf( $img, $simple, 'simple' ),
+					'text'  => __( 'シンプル', 'ystandard' ),
+				],
+			]
+		);
+		$this->customizer->add_image_label_radio(
+			[
+				'id'          => "ys_{$this->post_type}_archive_type",
+				'default'     => 'card',
+				'label'       => __( '一覧レイアウト', 'ystandard' ),
+				'description' => "{$this->label}" . __( '記事一覧の表示タイプ', 'ystandard' ),
+				'choices'     => $archive_types,
+			]
+		);
+		/**
+		 * 一覧表示項目の表示
+		 */
+		$this->customizer->add_section_label( __( '一覧表示項目の表示', 'ystandard' ) );
+		// 投稿日.
+		$this->customizer->add_checkbox(
+			[
+				'id'      => "ys_show_{$this->post_type}_archive_publish_date",
+				'default' => 1,
+				'label'   => __( '投稿日を表示する', 'ystandard' ),
+			]
+		);
+		// カテゴリー.
+		$this->customizer->add_checkbox(
+			[
+				'id'      => "ys_show_{$this->post_type}_archive_category",
+				'default' => 1,
+				'label'   => __( 'カテゴリーを表示する', 'ystandard' ),
+			]
+		);
+		// 概要.
+		$this->customizer->add_checkbox(
+			[
+				'id'              => "ys_show_{$this->post_type}_archive_description",
+				'default'         => 1,
+				'label'           => __( '概要を表示する', 'ystandard' ),
+				'active_callback' => [ $this, 'is_archive_type_not_simple' ],
+			]
+		);
+		$this->customizer->add_number(
+			[
+				'id'              => "ys_{$this->post_type}_archive_excerpt_length",
+				'default'         => 80,
+				'label'           => __( '概要文の文字数', 'ystandard' ),
+				'active_callback' => function () {
+					$not_simple = $this->is_archive_type_not_simple();
+					$show_desc  = Option::get_option_by_bool( "ys_show_{$this->post_type}_archive_description", true );
+
+					return $not_simple && $show_desc;
+				},
+			]
+		);
+		/**
+		 * 続きを読むリンク設定
+		 */
+		$this->customizer->add_section_label(
+			__( '続きを読むリンク', 'ystandard' ),
+			[ 'active_callback' => [ $this, 'is_archive_type_not_simple' ] ]
+		);
+		$this->customizer->add_text(
+			[
+				'id'                => "ys_{$this->post_type}_archive_read_more_text",
+				'default'           => '',
+				'label'             => __( '「続きを読む」リンクのテキスト', 'ystandard' ),
+				'sanitize_callback' => [ $this, 'sanitize_read_more' ],
+				'active_callback'   => [ $this, 'is_archive_type_not_simple' ],
+			]
+		);
+	}
+
+	/**
+	 * 一覧タイプがシンプルかどうか.
+	 *
+	 * @return bool
+	 */
+	public function is_archive_type_not_simple() {
+		return 'simple' !== Option::get_option( "ys_{$this->post_type}_archive_type", 'card' );
+	}
+
+	/**
+	 * 続きを読むリンクのサニタイズ
+	 *
+	 * @param string $value Text.
+	 *
+	 * @return string
+	 */
+	public function sanitize_read_more( $value ) {
+		$allowed_html = Sanitize::get_kses_allowed_html(
+			[
+				'span',
+				'strong',
+				'br',
+				'img',
+			]
+		);
+
+		return wp_kses( $value, $allowed_html );
 	}
 
 

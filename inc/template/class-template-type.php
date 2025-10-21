@@ -123,7 +123,7 @@ class Template_Type {
 		}
 		// その他一覧.
 		if ( is_home() || is_archive() || is_search() || is_404() ) {
-			if ( '1col' === Option::get_option( 'ys_archive_layout', '1col' ) ) {
+			if ( '1col' === Option::get_option( "ys_{$post_type}_archive_layout", '1col' ) ) {
 				return true;
 			}
 		}
