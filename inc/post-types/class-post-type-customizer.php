@@ -506,16 +506,66 @@ class Post_Type_Customizer {
 				'active_callback'   => [ $this, 'is_archive_type_not_simple' ],
 			]
 		);
+		/**
+		 * カテゴリーラベル色設定
+		 */
+		$this->customizer->add_section_label(
+			__( 'カテゴリーラベル色設定', 'ystandard' ),
+			[
+				'description'     => __( '「シンプル」レイアウトでのカテゴリーラベル色設定', 'ystandard' ),
+				'active_callback' => [ $this, 'is_active_archive_simple_layout_category_color' ],
+			]
+		);
+		// テキストカラー(#ffffff).
+		$this->customizer->add_color(
+			[
+				'id'              => "ys_{$this->post_type}_archive_simple_layout_category_text_color",
+				'default'         => '',
+				'label'           => __( 'カテゴリーラベル文字色', 'ystandard' ),
+				'active_callback' => [ $this, 'is_active_archive_simple_layout_category_color' ],
+			]
+		);
+		// 背景カラー(var(--ystd--text-color--gray)).
+		$this->customizer->add_color(
+			[
+				'id'              => "ys_{$this->post_type}_archive_simple_layout_category_background_color",
+				'default'         => '',
+				'label'           => __( 'カテゴリーラベル背景色', 'ystandard' ),
+				'active_callback' => [ $this, 'is_active_archive_simple_layout_category_color' ],
+			]
+		);
 	}
 
 	/**
-	 * 一覧タイプがシンプルかどうか.
+	 * 一覧タイプがシンプル.
+	 *
+	 * @return bool
+	 */
+	public function is_archive_type_simple() {
+		return 'simple' === Option::get_option( "ys_{$this->post_type}_archive_type", 'card' );
+	}
+
+	/**
+	 * 一覧タイプがシンプルではない.
 	 *
 	 * @return bool
 	 */
 	public function is_archive_type_not_simple() {
-		return 'simple' !== Option::get_option( "ys_{$this->post_type}_archive_type", 'card' );
+		return ! $this->is_archive_type_simple();
 	}
+
+	/**
+	 * シンプルレイアウトのカテゴリーラベル表示が有効か.
+	 *
+	 * @return bool
+	 */
+	public function is_active_archive_simple_layout_category_color() {
+		$is_simple     = $this->is_archive_type_simple();
+		$show_category = Option::get_option_by_bool( "ys_show_{$this->post_type}_archive_category", true );
+
+		return $is_simple && $show_category;
+	}
+
 
 	/**
 	 * 続きを読むリンクのサニタイズ

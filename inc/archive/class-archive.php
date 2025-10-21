@@ -10,13 +10,14 @@
 namespace ystandard;
 
 use ystandard\utils\Post_Type;
-use ystandard\utils\Sanitize;
 use ystandard\utils\Post;
 
 defined( 'ABSPATH' ) || die();
 
 /**
  * Class Archive
+ *
+ * カスタマイザー設定はinc/post-types/class-post-type-customizer.php 参照
  *
  * @package ystandard
  */
@@ -30,18 +31,6 @@ class Archive {
 	private static $instance;
 
 	/**
-	 * コンストラクタ
-	 * privateにして外部からのインスタンス化を防ぐ.
-	 */
-	private function __construct() {
-		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
-		add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
-		add_filter( 'ys_get_css_custom_properties_args_presets', [ $this, 'add_custom_properties' ] );
-		add_filter( 'get_the_archive_description', [ $this, 'archive_description' ], 999 );
-		add_action( 'ys_after_site_header', [ $this, 'home_post_thumbnail' ] );
-	}
-
-	/**
 	 * インスタンス取得
 	 *
 	 * @return Archive
@@ -52,6 +41,17 @@ class Archive {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * コンストラクタ
+	 */
+	private function __construct() {
+		add_filter( 'get_the_archive_title', [ $this, 'archive_title' ] );
+		add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
+		add_filter( 'ys_get_css_custom_properties_args_presets', [ $this, 'add_custom_properties' ] );
+		add_filter( 'get_the_archive_description', [ $this, 'archive_description' ], 999 );
+		add_action( 'ys_after_site_header', [ $this, 'home_post_thumbnail' ] );
 	}
 
 	/**
@@ -433,6 +433,19 @@ class Archive {
 			$css_properties['--ystd--archive--list--item--image--height'] = '100%';
 			// シンプル.
 			$css_properties['--ystd--archive--simple--item--padding-x'] = 'var(--ystd--archive--gap)';
+		}
+
+		// シンプルタイプの場合 カテゴリーの色設定追加.
+		if ( 'simple' === self::get_archive_type() ) {
+			$post_type  = Post_Type::get_post_type();
+			$text_color = Option::get_option( "ys_{$post_type}_archive_simple_layout_category_text_color", '' );
+			if ( $text_color ) {
+				$css_properties['--ystd--archive--simple--item--category--text-color'] = $text_color;
+			}
+			$bg_color = Option::get_option( "ys_{$post_type}_archive_simple_layout_category_background_color", '' );
+			if ( $bg_color ) {
+				$css_properties['--ystd--archive--simple--item--category--background'] = $bg_color;
+			}
 		}
 
 		return $css_properties;
