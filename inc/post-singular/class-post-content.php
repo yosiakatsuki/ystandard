@@ -17,6 +17,9 @@ defined( 'ABSPATH' ) || die();
 
 /**
  * Class Post_Content
+ *
+ * 投稿・固定ページ・投稿タイプ関連
+ * カスタマイザー設定は inc/post-types/class-post-type-customizer.php
  */
 class Post_Content {
 

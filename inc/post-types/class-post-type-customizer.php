@@ -127,7 +127,7 @@ class Post_Type_Customizer {
 				'section'     => "ys_post_type_option_{$this->post_type}",
 				'title'       => '[ys]' . __( '投稿タイプ設定 - ', 'ystandard' ) . "{$this->label}",
 				'priority'    => $this->priority,
-				'description' => Admin::manual_link( 'manual/post_type_layout' ),
+				'description' => __( '投稿タイプ別の詳細ページ・アーカイブページの設定', 'ystandard' ) . Admin::manual_link( 'manual/post_type_layout' ),
 			]
 		);
 	}
@@ -153,7 +153,7 @@ class Post_Type_Customizer {
 	 * レイアウト設定を追加
 	 */
 	private function add_layout_settings() {
-		$this->customizer->add_section_label( 'レイアウト' );
+		$this->customizer->add_section_label( '詳細ページレイアウト' );
 
 		// ページレイアウト.
 		$col1 = Customizer::get_assets_dir_uri( '/design/column-type/col-1.png' );
@@ -164,8 +164,8 @@ class Post_Type_Customizer {
 			[
 				'id'          => "ys_{$this->post_type}_layout",
 				'default'     => '1col',
-				'label'       => __( 'ページレイアウト', 'ystandard' ),
-				'description' => "{$this->label}" . __( 'ページの表示レイアウト', 'ystandard' ),
+				'label'       => __( '詳細ページページレイアウト', 'ystandard' ),
+				'description' => "{$this->label}" . __( '詳細ページページの表示レイアウト', 'ystandard' ),
 				'choices'     => [
 					'1col' => sprintf( $img, $col1 ),
 					'2col' => sprintf( $img, $col2 ),
@@ -178,7 +178,7 @@ class Post_Type_Customizer {
 	 * 本文エリア背景色設定を追加
 	 */
 	private function add_content_background_settings() {
-		$this->customizer->add_section_label( '本文エリア背景色' );
+		$this->customizer->add_section_label( '詳細ページ本文エリア背景色' );
 
 		$this->customizer->add_checkbox(
 			[
@@ -193,7 +193,7 @@ class Post_Type_Customizer {
 			[
 				'id'              => "ys_{$this->post_type}_content_bg",
 				'default'         => '',
-				'label'           => __( '本文エリア背景色', 'ystandard' ),
+				'label'           => __( '詳細ページ本文エリア背景色', 'ystandard' ),
 				'description'     => __( '本文エリアの背景色設定。', 'ystandard' ) . '<br>' . self::get_xs_text(
 						__( '※本文の背景色を設定した場合、全幅設定をしたブロックはデスクトップサイズの表示時に画面の横幅いっぱいに広がらず、コンテンツ本文領域が上限となります。', 'ystandard' )
 					),
@@ -208,7 +208,7 @@ class Post_Type_Customizer {
 	 * 記事上部設定を追加
 	 */
 	private function add_header_settings() {
-		$this->customizer->add_section_label( '記事上部' );
+		$this->customizer->add_section_label( '詳細ページ記事上部' );
 
 		if ( $this->has_post_thumbnail() ) {
 			// アイキャッチ画像の表示設定.
@@ -296,7 +296,7 @@ class Post_Type_Customizer {
 	 * 記事下部設定を追加
 	 */
 	private function add_footer_settings() {
-		$this->customizer->add_section_label( '記事下部' );
+		$this->customizer->add_section_label( '詳細ページ記事下部' );
 
 		// SNSシェアボタンの表示設定.
 		$this->customizer->add_select(
