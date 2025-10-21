@@ -26,10 +26,7 @@ class Content {
 	 * アクション・フィルターの登録
 	 */
 	public function register() {
-		add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ], 10, 2 );
-		add_filter( 'widget_text', [ $this, 'responsive_iframe' ] );
-		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
-		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
+
 	}
 
 	/**
@@ -147,17 +144,6 @@ class Content {
 		}
 	}
 
-
-	/**
-	 * Hook:get_the_excerpt
-	 *
-	 * @param string $content excerpt.
-	 * @param \WP_Post $post Post.
-	 */
-	public function get_the_excerpt( $content, $post ) {
-		return Post::get_custom_excerpt( ' …', 0, $post->ID );
-	}
-
 	/**
 	 * 投稿オプション(post-meta)取得
 	 *
@@ -169,35 +155,6 @@ class Content {
 	 */
 	public static function get_post_meta( $key, $post_id = 0 ) {
 		return Post_Type::get_post_meta( $key, $post_id );
-	}
-
-
-	/**
-	 * 投稿抜粋文字数
-	 *
-	 * @param int $length 抜粋文字数.
-	 *
-	 * @return int
-	 */
-	public function excerpt_length( $length = null ) {
-
-		return Option::get_option_by_int( 'ys_option_excerpt_length', 80 );
-	}
-
-	/**
-	 * ブログ名区切り文字設定
-	 *
-	 * @param string $sep 区切り文字.
-	 *
-	 * @return string
-	 */
-	public function title_separator( $sep ) {
-		$sep_option = Option::get_option( 'ys_title_separate', '' );
-		if ( '' !== $sep_option ) {
-			$sep = $sep_option;
-		}
-
-		return $sep;
 	}
 }
 

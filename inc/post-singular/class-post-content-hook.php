@@ -46,9 +46,9 @@ class Post_Content_Hook {
 	 * Post_Content_Hook constructor.
 	 */
 	private function __construct() {
-		add_filter( 'the_content', [ $this, 'replace_more' ] );
-		add_filter( 'the_content', [ $this, 'responsive_iframe' ] );
-		add_filter( 'the_content', [ $this, 'replace_first_heading' ] );
+		add_filter( 'the_content', [ __CLASS__, 'replace_more' ] );
+		add_filter( 'the_content', [ __CLASS__, 'responsive_iframe' ] );
+		add_filter( 'the_content', [ __CLASS__, 'replace_first_heading' ] );
 	}
 
 	/**
@@ -58,7 +58,7 @@ class Post_Content_Hook {
 	 *
 	 * @return string
 	 */
-	public function replace_more( $content ) {
+	public static function replace_more( $content ) {
 
 		$replace = apply_filters( 'ys_more_content', '' );
 		if ( '' !== $replace ) {
@@ -87,7 +87,7 @@ class Post_Content_Hook {
 	 *
 	 * @return string
 	 */
-	public function responsive_iframe( $content ) {
+	public static function responsive_iframe( $content ) {
 		/**
 		 * マッチさせたいiframeのURLをリスト化
 		 */
@@ -132,7 +132,7 @@ class Post_Content_Hook {
 	 *
 	 * @return string
 	 */
-	public function replace_first_heading( $content ) {
+	public static function replace_first_heading( $content ) {
 
 		if ( preg_match_all( '/(<h([1-6]{1})[^>]*>).*<\/h\2>/msuU', $content, $matches, PREG_SET_ORDER ) ) {
 			$replace = apply_filters( 'ys_before_first_heading_content', '', $content );

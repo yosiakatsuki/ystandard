@@ -25,6 +25,7 @@ class Widget {
 	 */
 	public function register() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
+		add_filter( 'widget_text', [ '\ystandard\Post_Content_Hook', 'responsive_iframe' ] );
 		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content_widget' ] );
 	}
 

@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Convert;
+use ystandard\utils\Post;
 use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
@@ -43,9 +44,12 @@ class Post_Content {
 	 * Post_Content constructor.
 	 */
 	private function __construct() {
-		add_filter( 'post_class', [ $this, 'post_class' ] );
-		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_custom_property' ] );
 		add_action( 'wp', [ $this, 'set_singular_action_hook' ] );
+		add_filter( 'post_class', [ $this, 'post_class' ] );
+		add_filter( 'get_the_excerpt', [ $this, 'get_the_excerpt' ], 10, 2 );
+		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 999 );
+		add_filter( 'document_title_separator', [ $this, 'title_separator' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_custom_property' ] );
 	}
 
 	/**
@@ -209,6 +213,44 @@ class Post_Content {
 		);
 
 		echo apply_filters( 'ys_singular_header_meta', $header_meta );
+	}
+
+	/**
+	 * Hook:get_the_excerpt
+	 *
+	 * @param string $content excerpt.
+	 * @param \WP_Post $post Post.
+	 */
+	public function get_the_excerpt( $content, $post ) {
+		return Post::get_custom_excerpt( ' …', 0, $post->ID );
+	}
+
+	/**
+	 * 投稿抜粋文字数
+	 *
+	 * @param int $length 抜粋文字数.
+	 *
+	 * @return int
+	 */
+	public function excerpt_length( $length = null ) {
+
+		return Option::get_option_by_int( 'ys_option_excerpt_length', 80 );
+	}
+
+	/**
+	 * ブログ名区切り文字設定
+	 *
+	 * @param string $sep 区切り文字.
+	 *
+	 * @return string
+	 */
+	public function title_separator( $sep ) {
+		$sep_option = Option::get_option( 'ys_title_separate', '' );
+		if ( '' !== $sep_option ) {
+			$sep = $sep_option;
+		}
+
+		return $sep;
 	}
 }
 
