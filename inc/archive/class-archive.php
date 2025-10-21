@@ -10,6 +10,7 @@
 namespace ystandard;
 
 use ystandard\utils\Sanitize;
+use ystandard\utils\Post;
 
 defined( 'ABSPATH' ) || die();
 
@@ -230,7 +231,7 @@ class Archive {
 		if ( 0 === $length ) {
 			$length = Option::get_option_by_int( 'ys_option_excerpt_length', 80 );
 		}
-		$excerpt = Content::get_custom_excerpt( '…', $length );
+		$excerpt = Post::get_custom_excerpt( '…', $length );
 		if ( empty( $excerpt ) ) {
 			return '';
 		}

@@ -10,8 +10,10 @@
 namespace ystandard;
 
 use ystandard\utils\Logo;
+use ystandard\utils\Post_Type;
 use ystandard\utils\Text;
 use ystandard\utils\URL;
+use ystandard\utils\Post;
 
 defined( 'ABSPATH' ) || die();
 
@@ -143,7 +145,7 @@ class OGP {
 	/**
 	 * OGP情報のセット
 	 *
-	 * @param string $key   Meta key.
+	 * @param string $key Meta key.
 	 * @param string $value Value.
 	 */
 	private function set_param( $key, $value ) {
@@ -159,7 +161,7 @@ class OGP {
 	 * @return string
 	 */
 	private function get_singular_title() {
-		$title = Content::get_post_meta( 'ys_ogp_title' );
+		$title = Post_Type::get_post_meta( 'ys_ogp_title' );
 		if ( empty( $title ) ) {
 			$title = get_the_title();
 		}
@@ -198,9 +200,9 @@ class OGP {
 	 */
 	private function get_singular_dscr() {
 
-		$dscr = Content::get_post_meta( 'ys_ogp_description' );
+		$dscr = Post_Type::get_post_meta( 'ys_ogp_description' );
 		if ( empty( $dscr ) ) {
-			$dscr = Content::get_custom_excerpt(
+			$dscr = Post::get_custom_excerpt(
 				'',
 				Option::get_option_by_int( 'ys_option_meta_description_length', 80 )
 			);

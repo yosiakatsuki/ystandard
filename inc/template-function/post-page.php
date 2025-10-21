@@ -26,7 +26,7 @@ function ys_is_active_post_header() {
  * @return string
  */
 function ys_get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
-	return \ystandard\Content::get_custom_excerpt( $sep, $length, $post_id );
+	return \ystandard\utils\Post::get_custom_excerpt( $sep, $length, $post_id );
 }
 
 

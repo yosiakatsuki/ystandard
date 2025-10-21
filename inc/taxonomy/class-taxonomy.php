@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Post;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -369,7 +371,7 @@ class Taxonomy {
 		if ( ! is_numeric( $parts_id ) ) {
 			$parts_id = 0;
 		} else {
-			$dscr = Content::get_custom_excerpt( '', 0, $parts_id );
+			$dscr = Post::get_custom_excerpt( '', 0, $parts_id );
 		}
 
 		return [

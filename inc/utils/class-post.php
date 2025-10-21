@@ -9,6 +9,8 @@
 
 namespace ystandard\utils;
 
+use ystandard\Option;
+
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -54,6 +56,60 @@ class Post {
 		if ( $do_filter ) {
 			$content = apply_filters( 'the_content', $content );
 			$content = str_replace( ']]>', ']]&gt;', $content );
+		}
+
+		return $content;
+	}
+
+	/**
+	 * 投稿抜粋文を作成
+	 *
+	 * @param string $sep 抜粋最後の文字.
+	 * @param integer $length 抜粋長さ.
+	 * @param integer $post_id 投稿ID.
+	 *
+	 * @return string
+	 */
+	public static function get_custom_excerpt( $sep = ' …', $length = 0, $post_id = 0 ) {
+		$length  = 0 === $length ? Option::get_option_by_int( 'ys_option_excerpt_length', 80 ) : $length;
+		$post    = get_post( $post_id );
+		$content = self::get_custom_excerpt_raw( $post_id );
+		/**
+		 * 長さ調節
+		 */
+		if ( empty( $post->post_excerpt ) && mb_strlen( $content ) > $length ) {
+			$length  = $length - mb_strlen( $sep );
+			$length  = 0 > $length ? 1 : $length;
+			$content = mb_substr( $content, 0, $length ) . $sep;
+		}
+
+		return apply_filters( 'ys_get_the_custom_excerpt', $content, $post_id );
+	}
+
+	/**
+	 * 切り取らない投稿抜粋文を作成
+	 *
+	 * @param integer $post_id 投稿ID.
+	 *
+	 * @return string
+	 */
+	public static function get_custom_excerpt_raw( $post_id = 0 ) {
+		$post_id = 0 === $post_id ? get_the_ID() : $post_id;
+		$post    = get_post( $post_id );
+		if ( post_password_required( $post ) ) {
+			return __( 'There is no excerpt because this is a protected post.' );
+		}
+		$content = $post->post_excerpt;
+		if ( '' === $content ) {
+			/**
+			 * Excerptが無ければ本文から作る
+			 */
+			$content = $post->post_content;
+			/**
+			 * Moreタグ以降を削除
+			 */
+			$content = preg_replace( '/<!--more-->.+/is', '', $content );
+			$content = Text::get_plain_text( $content );
 		}
 
 		return $content;

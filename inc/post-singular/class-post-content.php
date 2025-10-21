@@ -9,6 +9,7 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
 use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
@@ -115,6 +116,99 @@ class Post_Content {
 		}
 
 		return apply_filters( 'ys_get_content_background_color', $color, $post_type );
+	}
+
+	/**
+	 * 投稿日・更新日データ取得
+	 *
+	 * @return array|bool
+	 */
+	public static function get_post_date_data() {
+
+		$text_format     = get_option( 'date_format' );
+		$datetime_format = 'Y-m-d';
+		$result          = [];
+		/**
+		 * 設定取得
+		 */
+		$post_type = Post_Type::get_post_type();
+		$filter    = apply_filters( "ys_show_{$post_type}_publish_date", null );
+		if ( is_null( $filter ) ) {
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
+			$option   = Option::get_option( "ys_show_{$fallback}_publish_date", 'both' );
+		} else {
+			$option = $filter;
+		}
+
+		if ( 'none' === $option || false === $option ) {
+			return false;
+		}
+		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_publish_date' ) ) ) {
+			return false;
+		}
+		// 更新日取得.
+		if ( 'publish' !== $option ) {
+			if ( get_the_time( 'Ymd' ) < get_the_modified_time( 'Ymd' ) ) {
+				$icon     = 'update' === $option ? 'calendar' : 'rotate-cw';
+				$result[] = [
+					'text'     => get_the_modified_time( $text_format ),
+					'datetime' => get_the_modified_time( $datetime_format ),
+					'time'     => true,
+					'icon'     => Icon::get_icon( $icon ),
+				];
+			}
+		}
+		// 投稿日取得.
+		if ( 'update' !== $option || empty( $result ) ) {
+			$time     = empty( $result ) ? true : false;
+			$result[] = [
+				'text'     => get_the_time( $text_format ),
+				'datetime' => get_the_time( $datetime_format ),
+				'time'     => $time,
+				'icon'     => Icon::get_icon( 'calendar' ),
+			];
+		}
+
+		return array_reverse( $result );
+	}
+
+	/**
+	 * 投稿タイトル
+	 *
+	 * @return void
+	 */
+	public static function singular_title() {
+		ob_start();
+		Template::get_template_part( 'template-parts/parts/post-title' );
+		echo ob_get_clean();
+	}
+
+	/**
+	 * 投稿メタ情報
+	 */
+	public static function singular_meta() {
+		$date = '';
+		// 投稿日・更新日.
+		$post_date = self::get_post_date_data();
+		if ( ! empty( $post_date ) ) {
+			ob_start();
+			Template::get_template_part(
+				'template-parts/parts/post-date',
+				'',
+				[ 'post_date' => $post_date ]
+			);
+			$date = ob_get_clean();
+		}
+		// カテゴリー.
+		$cat = Post_Header::get_post_header_category();
+
+		$header_meta = sprintf(
+			'<div class="singular-header__meta">%s%s</div>',
+			$date,
+			$cat
+		);
+
+		echo apply_filters( 'ys_singular_header_meta', $header_meta );
 	}
 }
 

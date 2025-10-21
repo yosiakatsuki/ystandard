@@ -9,6 +9,7 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
 use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
@@ -69,11 +70,11 @@ class Post_Header {
 		);
 		self::set_singular_header(
 			'title',
-			[ __CLASS__, 'singular_title' ]
+			[ '\ystandard\Post_Content', 'singular_title' ]
 		);
 		self::set_singular_header(
 			'meta',
-			[ __CLASS__, 'singular_meta' ]
+			[ '\ystandard\Post_Content', 'singular_meta' ]
 		);
 	}
 
@@ -149,6 +150,78 @@ class Post_Header {
 
 		return apply_filters( 'ys_is_active_post_header', $result );
 	}
+
+	/**
+	 * 投稿ヘッダーのカテゴリー情報を取得
+	 */
+	public static function get_post_header_category() {
+
+		$post_type = Post_Type::get_post_type();
+		$filter    = apply_filters( "ys_show_{$post_type}_header_taxonomy", null );
+		if ( is_null( $filter ) ) {
+			$fallback = Post_Type::get_fallback_post_type( $post_type );
+			$show     = Option::get_option_by_bool( "ys_show_{$fallback}_header_category", true );
+		} else {
+			$show = $filter;
+		}
+
+		if ( ! Convert::to_bool( $show ) ) {
+			return '';
+		}
+
+		$result     = [];
+		$taxonomies = apply_filters(
+			"ys_get_{$post_type}_header_taxonomy",
+			self::get_post_header_taxonomies()
+		);
+		if ( empty( $taxonomies ) ) {
+			return '';
+		}
+		$terms_length = apply_filters( "ys_get_{$post_type}_header_terms_length", 1 );
+		foreach ( $taxonomies as $taxonomy ) {
+			$terms = get_the_terms( false, $taxonomy );
+			if ( is_wp_error( $terms ) || empty( $terms ) ) {
+				return '';
+			}
+			$terms = array_slice( $terms, 0, $terms_length );
+			foreach ( $terms as $term ) {
+				$result[] = sprintf(
+					'<div class="singular-header__terms">%s<a href="%s">%s</a></div>',
+					Taxonomy::get_taxonomy_icon( $taxonomy ),
+					get_term_link( $term ),
+					$term->name
+				);
+			}
+		}
+
+		return apply_filters(
+			"ys_get_{$post_type}_header_category",
+			implode( '', $result ),
+			$taxonomies
+		);
+	}
+
+	/**
+	 * 投稿詳細ヘッダー用表示タクソノミー取得
+	 *
+	 * @return array|bool
+	 */
+	public static function get_post_header_taxonomies() {
+		$taxonomies = get_the_taxonomies();
+		if ( ! $taxonomies ) {
+			return false;
+		}
+
+		$taxonomy = array_keys( $taxonomies );
+
+		if ( 'post' === get_post_type( get_the_ID() ) ) {
+			$taxonomy = [ 'category' ];
+		}
+
+		return $taxonomy;
+	}
+
+
 }
 
 Post_Header::get_instance();

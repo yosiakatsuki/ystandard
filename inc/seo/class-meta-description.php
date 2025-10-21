@@ -11,6 +11,7 @@ namespace ystandard;
 
 use ystandard\utils\Convert;
 use ystandard\utils\Text;
+use ystandard\utils\Post;
 
 defined( 'ABSPATH' ) || die();
 
@@ -86,7 +87,7 @@ class Meta_Description {
 			 * 投稿ページ
 			 */
 			if ( ! get_query_var( 'paged' ) ) {
-				$dscr = Content::get_custom_excerpt( '', $length );
+				$dscr = Post::get_custom_excerpt( '', $length );
 			}
 		}
 

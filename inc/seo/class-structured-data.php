@@ -13,6 +13,7 @@ use ystandard\utils\JSON;
 use ystandard\utils\Logo;
 use ystandard\utils\Text;
 use ystandard\utils\Thumbnail;
+use ystandard\utils\Post;
 
 defined( 'ABSPATH' ) || die();
 
@@ -120,7 +121,7 @@ class Structured_Data {
 			$data    = self::DEFAULT_DATA;
 			$url     = esc_url_raw( get_the_permalink( $post->ID ) );
 			$title   = esc_attr( get_the_title( $post->ID ) );
-			$excerpt = esc_attr( Content::get_custom_excerpt( '', 0, $post->ID ) );
+			$excerpt = esc_attr( Post::get_custom_excerpt( '', 0, $post->ID ) );
 			$content = esc_attr( Text::get_plain_text( $post->post_content ) );
 			/**
 			 * 構造化データ作成

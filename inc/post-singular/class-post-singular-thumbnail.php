@@ -42,6 +42,7 @@ class Post_Singular_Thumbnail {
 	 */
 	private function __construct() {
 		add_action( 'ys_after_site_header', [ $this, 'header_post_thumbnail' ] );
+		add_filter( 'post_class', [ $this, 'post_class' ] );
 	}
 
 	/**
@@ -161,6 +162,27 @@ class Post_Singular_Thumbnail {
 				'loading' => 'eager',
 			]
 		);
+	}
+
+	/**
+	 * Post Classを操作する
+	 *
+	 * @param array $classes Classes.
+	 *
+	 * @return array
+	 */
+	public function post_class( $classes ) {
+
+		/**
+		 * アイキャッチ画像の有無
+		 */
+		if ( is_singular() ) {
+			if ( self::is_active_post_thumbnail() ) {
+				$classes[] = 'has-thumbnail';
+			}
+		}
+
+		return $classes;
 	}
 }
 
