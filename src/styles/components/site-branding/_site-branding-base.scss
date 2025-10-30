@@ -2,6 +2,7 @@
 
 :where(.site-branding) {
 	padding: var(--ystd--site-branding--padding);
+	flex-shrink: 0;
 
 	:where(.site-title) {
 		margin: var(--ystd--site-branding--margin);

@@ -94,6 +94,7 @@
 		position: relative;
 		line-height: 1.3;
 		text-align: center;
+		white-space: nowrap;
 
 		&:where(:not(:first-child)) {
 			margin-left: var(--ystd--global-nav--gap);
