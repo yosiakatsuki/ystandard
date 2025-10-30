@@ -25,10 +25,7 @@
 		padding-inline: var(--ystd--block-details--padding-y);
 		padding-block: var(--ystd--block-details--padding-x);
 		line-height: 1.3;
-
-		&::marker {
-			display: none;
-		}
+		list-style-type: none;
 
 		&::after {
 			content: "";
