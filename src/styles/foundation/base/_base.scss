@@ -104,11 +104,18 @@ body {
  */
 :where(ul,ol) {
 	margin-bottom: 0;
-	padding-left: 1em;
 
 	:where(ul,ol) {
 		margin: 0;
 	}
+}
+
+:where(ul) {
+	padding-left: 1em;
+}
+
+:where(ol) {
+	padding-left: 1.3em;
 }
 
 :where(dt) {
