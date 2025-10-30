@@ -82,6 +82,16 @@
 					"slug": "ys-light-gray"
 				},
 				{
+					"color": "#0073aa",
+					"name": "Link Blue",
+					"slug": "ys-link-blue"
+				},
+				{
+					"color": "#409ad5",
+					"name": "Link Hover Blue",
+					"slug": "ys-link-hover-blue"
+				},
+				{
 					"color": "#222222",
 					"name": "Black",
 					"slug": "ys-black"

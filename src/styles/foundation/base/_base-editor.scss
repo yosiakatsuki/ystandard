@@ -29,6 +29,17 @@
 	}
 }
 
+:where(.editor-styles-wrapper) {
+	a {
+		color: var(--ystd--link--text-color);
+
+		&:hover,
+		&:focus {
+			color: var(--ystd--link--text-color--hover);
+		}
+	}
+}
+
 
 :where(code,kbd) {
 	&:not(.rich-text) {
