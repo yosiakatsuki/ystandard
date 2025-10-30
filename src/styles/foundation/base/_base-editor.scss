@@ -1,11 +1,67 @@
 @use "../../global";
 
-:where(h1,h2,h3,h4,h5,h6,strong) {
-	font-weight: var(--ystd--font-weight--bold);
+:where(body) {
+	:where(.wp-block) {
+		box-sizing: border-box;
+	}
+}
+
+// エディター全体のスタイル
+.editor-styles-wrapper,
+.editor-post-title__block .editor-post-title__input {
+	background-color: var(--wp--custom--ystd--editor--background, var(--ystd--editor--background));
+	color: var(--wp--custom--ystd--editor--text-color, var(--ystd--editor--text-color));
+	font-family: var(--wp--custom--ystd--editor--font-family, var(--ystd--font-family));
+	line-height: var(--wp--custom--ystd--editor--line-height, var(--ystd--line-height));
+	letter-spacing: var(--wp--custom--ystd--editor--letter-spacing, var(--ystd--letter-spacing));
+	word-wrap: break-word;
+
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+// 本文のスタイル
+.editor-styles-wrapper {
+	font-size: var(--wp--custom--ystd--editor--font-size, 16px);
+}
+
+// タイトル入力欄
+.editor-post-title__block .editor-post-title__input {
+	font-size: var(--wp--custom--ystd--editor--title--font-size, 1.4em);
+	resize: none;
+}
+
+// 見出し関連
+:where(h1,h2,h3,h4,h5,h6) {
+	font-family: var(--wp--custom--ystd--editor--heading-font-family, var(--ystd--font-family));
+}
+
+// 0.0.2で調整.
+div:where(.editor-styles-wrapper) {
+	h1:not(.editor-post-title), h2, h3, h4, h5, h6 {
+		padding: 0;
+		line-height: var(--ystd--headline--line-height);
+		letter-spacing: var(--ystd--headline--letter-spacing);
+	}
+}
+
+// 0.1.1で調整.
+div.editor-styles-wrapper {
+	:where(h1:not(.editor-post-title), h2, h3, h4, h5, h6) {
+		margin-top: var(--ystd--headline--default--margin-top);
+		margin-bottom: var(--ystd--headline--default--margin-bottom);
+	}
 }
 
 :where(.editor-styles-wrapper) {
-	h1 {
+	:where(h1+h2,h2+h3,h3+h4,h4+h5,h5+h6) {
+		margin-top: var(--ystd--layout-gap);
+	}
+}
+
+:where(.editor-styles-wrapper) {
+	h1:where(:not(.editor-post-title)) {
 		font-size: var(--ystd--headline--font-size--h1);
 	}
 
@@ -24,12 +80,17 @@
 	h5 {
 		font-size: var(--ystd--headline--font-size--h5);
 	}
+
 	h6 {
 		font-size: var(--ystd--headline--font-size--h6);
 	}
 }
 
 :where(.editor-styles-wrapper) {
+	:where(h1,h2,h3,h4,h5,h6,strong) {
+		font-weight: var(--ystd--font-weight--bold);
+	}
+
 	a {
 		color: var(--ystd--link--text-color);
 
@@ -38,33 +99,37 @@
 			color: var(--ystd--link--text-color--hover);
 		}
 	}
-}
 
-
-:where(code,kbd) {
-	&:not(.rich-text) {
-		padding: 0 0.2em;
-		color: var(--ystd--text-color--gray);
-		font-size: .9em;
-		font-family: var(--ystd--font-family--code);
+	:where(code,kbd) {
+		&:not(.rich-text) {
+			padding: 0 0.2em;
+			color: var(--ystd--text-color--gray);
+			font-size: .9em;
+			font-family: var(--ystd--font-family--code), monospace;
+		}
 	}
 }
 
-:where(body) {
-	:where(.wp-block) {
-		box-sizing: border-box;
+// 0.0.2で調整.
+div:where(.editor-styles-wrapper) {
+	/**
+	 * list
+	 */
+	ul, ol {
+		margin-bottom: 0;
+
+
+		:where(ul,ol) {
+			margin: 0;
+		}
 	}
-}
 
-/**
- * list
- */
-:where(ul,ol) {
-	margin-bottom: 0;
-	padding-left: 1em;
+	ul {
+		padding-left: 1em;
+	}
 
-	:where(ul,ol) {
-		margin: 0;
+	ol {
+		padding-left: 1.3em;
 	}
 }
 

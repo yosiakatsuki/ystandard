@@ -20,8 +20,8 @@ body {
  * headline
  */
 :where(h1,h2,h3,h4,h5,h6) {
-	margin-top: var(--ystd--headline--default--padding-top);
-	margin-bottom: var(--ystd--headline--default--padding-bottom);
+	margin-top: var(--ystd--headline--default--margin-top);
+	margin-bottom: var(--ystd--headline--default--margin-bottom);
 	padding: 0;
 	line-height: var(--ystd--headline--line-height);
 	letter-spacing: var(--ystd--headline--letter-spacing);

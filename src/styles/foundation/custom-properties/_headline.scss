@@ -2,8 +2,8 @@
  * Headline
  */
 @mixin custom_properties() {
-	--ystd--headline--default--padding-top: 3em;
-	--ystd--headline--default--padding-bottom: 0.25em;
+	--ystd--headline--default--margin-top: 3em;
+	--ystd--headline--default--margin-bottom: 0.25em;
 	--ystd--headline--font-size--h1: 1.4em;
 	--ystd--headline--font-size--h2: 1.4em;
 	--ystd--headline--font-size--h3: 1.3em;

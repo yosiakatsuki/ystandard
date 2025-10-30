@@ -59,7 +59,7 @@ class Block_Editor_Assets {
 	 */
 	public function enqueue_block_css() {
 		add_theme_support( 'editor-styles' );
-		add_editor_style( 'css/block-editor.css' );
+		add_editor_style( 'css/editor-style.css' );
 		add_editor_style( 'style.css' );
 	}
 }

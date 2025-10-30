@@ -20,6 +20,6 @@
 /**
  * admin
  */
-@use "project/admin/block-editor" as admin-block-editor;
+@use "project/block-editor" as block-editor;
 @use "project/admin/widget" as admin-widget;
 @use "project/admin/manual";
