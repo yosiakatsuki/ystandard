@@ -14,6 +14,12 @@
 			--ystd--global-nav--current--text-color
 	);
 	--ystd--global-nav--current--font-weight: var(--ystd--global-nav--font-weight);
+	--ystd--global-nav--sub-menu--background: #fff;
+	--ystd--global-nav--sub-menu--text-color: currentColor;
+	--ystd--global-nav--sub-menu--font-weight: 400;
+	--ystd--global-nav--sub-menu--hover--text-color: var(--ystd--global-nav--sub-menu--text-color);
+	--ystd--global-nav--sub-menu--hover--font-weight: 700;
+
 	// ▼設定で追加 @see inc/header/class-header.php
 	// --ystd--global-nav--search--cover--background: var(--ystd--header--background);
 }

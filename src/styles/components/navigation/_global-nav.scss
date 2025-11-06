@@ -69,22 +69,22 @@
 		transition: opacity 0.3s, background-color 0.3s;
 		opacity: 0;
 
+		> :where(.menu-item.current-menu-item) {
+			color: var(--ystd--global-nav--sub-menu--hover--text-color);
+			font-weight: var(--ystd--global-nav--sub-menu--hover--font-weight);
+		}
 
 		a {
-			transition: none;
+			color: var(--ystd--global-nav--sub-menu--text-color);
+			font-weight: var(--ystd--global-nav--sub-menu--font-weight);
 			padding: 1em 1.5em;
-
-			&::before {
-				content: "-";
-				margin-right: 0.5em;
-				transition: all 0.3s;
-			}
+			transition: color .3s, font-weight .3s, translate 0.3s;
 
 			&:hover,
 			&:focus {
-				&:before {
-					margin-left: 0.5em;
-				}
+				color: var(--ystd--global-nav--sub-menu--hover--text-color);
+				font-weight: var(--ystd--global-nav--sub-menu--hover--font-weight);
+				translate: 0.25em 0;
 			}
 
 		}
@@ -158,9 +158,15 @@
 
 		a:focus + .sub-menu,
 		&:hover .sub-menu {
-			background-color: var(--ystd--header--background);
+			background-color: var(--ystd--global-nav--sub-menu--background);
 			visibility: visible;
 			opacity: 1;
+
+			a::before {
+				content: "-";
+				margin-right: 0.5em;
+				transition: all 0.3s;
+			}
 		}
 	}
 }
@@ -210,6 +216,7 @@ body:where(.home) {
 		width: var(--ystd--button-icon--size);
 		height: var(--ystd--button-icon--size);
 	}
+
 	:where(.ys-icon) {
 		margin-right: auto;
 		margin-left: auto;

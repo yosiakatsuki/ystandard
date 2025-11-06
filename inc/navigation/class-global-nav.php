@@ -163,6 +163,82 @@ class Global_Nav {
 			);
 		}
 
+		// 2層目背景色.
+		$sub_menu_background_color   = Option::get_option( 'ys_global_nav_sub_menu_background_color', '' );
+		$sub_menu_background_opacity = Option::get_option( 'ys_global_nav_sub_menu_background_opacity', '' );
+		if ( ! empty( $sub_menu_background_color ) || ! empty( $sub_menu_background_opacity ) ) {
+			if ( empty( $sub_menu_background_color ) ) {
+				$sub_menu_background_color = '#ffffff';
+			}
+			// hexに変換.
+			$background_color = CSS::hex_2_rgb( $sub_menu_background_color );
+			// 不透明度が設定されていれば追加.
+			if ( ! empty( $sub_menu_background_opacity ) ) {
+				$background_color = 'rgba(' . $background_color[0] . ', ' . $background_color[1] . ', ' . $background_color[2] . ', ' . $sub_menu_background_opacity . ')';
+			} else {
+				$background_color = 'rgb(' . $background_color[0] . ', ' . $background_color[1] . ', ' . $background_color[2] . ')';
+			}
+			$sub_menu_background_color = Enqueue_Utility::get_css_var(
+				'--ystd--global-nav--sub-menu--background',
+				$background_color
+			);
+			// 2層目背景色を追加.
+			$css_vars = array_merge(
+				$css_vars,
+				$sub_menu_background_color
+			);
+		}
+		// 2層目文字色.
+		$sub_menu_text_color = Option::get_option( 'ys_global_nav_sub_menu_text_color', '' );
+		if ( ! empty( $sub_menu_text_color ) ) {
+			$sub_menu_text_color = Enqueue_Utility::get_css_var(
+				'--ystd--global-nav--sub-menu--text-color',
+				$sub_menu_text_color
+			);
+			// 2層目文字色を追加.
+			$css_vars = array_merge(
+				$css_vars,
+				$sub_menu_text_color
+			);
+		}
+		$sub_menu_text_weight = Option::get_option( 'ys_global_nav_sub_menu_text_weight', '' );
+		if ( ! empty( $sub_menu_text_weight ) ) {
+			$sub_menu_text_weight = Enqueue_Utility::get_css_var(
+				'--ystd--global-nav--sub-menu--font-weight',
+				$sub_menu_text_weight
+			);
+			// 2層目文字太さを追加.
+			$css_vars = array_merge(
+				$css_vars,
+				$sub_menu_text_weight
+			);
+		}
+		// 2層目ホバー・カレント文字色.
+		$sub_menu_hover_current_text_color = Option::get_option( 'ys_global_nav_sub_menu_hover_current_text_color', '' );
+		if ( ! empty( $sub_menu_hover_current_text_color ) ) {
+			$sub_menu_hover_current_text_color = Enqueue_Utility::get_css_var(
+				'--ystd--global-nav--sub-menu--hover--text-color',
+				$sub_menu_hover_current_text_color
+			);
+			// 2層目ホバー・カレント文字色を追加.
+			$css_vars = array_merge(
+				$css_vars,
+				$sub_menu_hover_current_text_color
+			);
+		}
+		$sub_menu_hover_current_text_weight = Option::get_option( 'ys_global_nav_sub_menu_hover_current_text_weight', '' );
+		if ( ! empty( $sub_menu_hover_current_text_weight ) ) {
+			$sub_menu_hover_current_text_weight = Enqueue_Utility::get_css_var(
+				'--ystd--global-nav--sub-menu--hover--font-weight',
+				$sub_menu_hover_current_text_weight
+			);
+			// 2層目ホバー・カレント文字太さを追加.
+			$css_vars = array_merge(
+				$css_vars,
+				$sub_menu_hover_current_text_weight
+			);
+		}
+
 		return $css_vars;
 	}
 
@@ -218,6 +294,64 @@ class Global_Nav {
 				'choices'     => Customize_Control::get_font_weight_choice(),
 			]
 		);
+
+		$customizer->add_section_label( __( 'メニュー2層目', 'ystandard' ) );
+		$customizer->add_color(
+			[
+				'id'          => 'ys_global_nav_sub_menu_background_color',
+				'default'     => '',
+				'label'       => __( '2層目背景色', 'ystandard' ),
+				'description' => __( '1層目メニューのホバーで表示される子メニューの背景色', 'ystandard' ),
+			]
+		);
+		$customizer->add_number(
+			[
+				'id'          => 'ys_global_nav_sub_menu_background_opacity',
+				'default'     => '',
+				'label'       => __( '2層目背景色の不透明度', 'ystandard' ),
+				'description' => __( '1層目メニューのホバーで表示される子メニューの背景の半透明にするかの設定（0.0~1.0）', 'ystandard' ),
+				'input_attrs' => [
+					'min'  => 0,
+					'max'  => 1,
+					'step' => 0.1,
+				],
+			]
+		);
+		$customizer->add_color(
+			[
+				'id'          => 'ys_global_nav_sub_menu_text_color',
+				'default'     => '',
+				'label'       => __( '2層目文字色', 'ystandard' ),
+				'description' => __( '1層目メニューのホバーで表示される子メニューの文字色', 'ystandard' ),
+			]
+		);
+		$customizer->add_select(
+			[
+				'id'          => 'ys_global_nav_sub_menu_text_weight',
+				'default'     => '',
+				'label'       => __( '2層目文字太さ', 'ystandard' ),
+				'description' => __( '1層目メニューのホバーで表示される子メニューの文字太さ設定。', 'ystandard' ),
+				'choices'     => Customize_Control::get_font_weight_choice(),
+			]
+		);
+		$customizer->add_color(
+			[
+				'id'          => 'ys_global_nav_sub_menu_hover_current_text_color',
+				'default'     => '',
+				'label'       => __( '2層目文字色', 'ystandard' ),
+				'description' => __( '1層目メニューのホバーで表示される子メニューのホバー・カレント文字色', 'ystandard' ),
+			]
+		);
+		$customizer->add_select(
+			[
+				'id'          => 'ys_global_nav_sub_menu_hover_current_text_weight',
+				'default'     => '',
+				'label'       => __( '2層目カレント・ホバー文字太さ', 'ystandard' ),
+				'description' => __( '1層目メニューのホバーで表示される子メニューのホバー・カレント文字太さ設定。', 'ystandard' ),
+				'choices'     => Customize_Control::get_font_weight_choice(),
+			]
+		);
+
 
 		$customizer->add_section_label( __( 'レイアウト', 'ystandard' ) );
 		$customizer->add_number(
