@@ -91,6 +91,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- `archive__dscr` -> `archive__description`：CSSクラス等に影響あり
 	- `footer-mobile-nav__dscr` -> `footer-mobile-nav__description`：CSSクラス等に影響あり
 - [変更] アーカイブ：ページネーションを`archive__main`の外側に移動.
+- [追加] ブロックの設定で装飾無しにした場合、その中のテキストも装飾無しにするスタイル指定追加
 
 #### v5.0.0 - カスタムプロパティ変換表
 
