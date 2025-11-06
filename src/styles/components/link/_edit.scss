@@ -1,0 +1,8 @@
+@use "./index";
+
+*[style*="text-decoration:none"],
+*[style*="text-decoration: none"] {
+	 a {
+		text-decoration: none;
+	}
+}

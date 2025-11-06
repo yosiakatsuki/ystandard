@@ -1,0 +1,6 @@
+:where(*[style*="text-decoration:none"]),
+:where(*[style*="text-decoration: none"]) {
+	 a {
+		text-decoration: none;
+	}
+}
