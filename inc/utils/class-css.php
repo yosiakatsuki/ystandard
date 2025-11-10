@@ -93,7 +93,7 @@ class CSS {
 		// 定義にはmin側のサイズが入るので、maxの計算は-0.02する.
 		$result = (int) $breakpoints[ $type ] - 0.02;
 
-		return apply_filters( 'ys_get_breakpoints_max_width_size', $result, $type );
+		return apply_filters( 'ys_get_breakpoints_max_width_size', $result, $breakpoints, $type );
 	}
 
 
