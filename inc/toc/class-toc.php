@@ -393,7 +393,7 @@ class TOC {
 		// リスト作成.
 		$item .= '<li class="ys-toc__item">';
 		$item .= '<a class="ys-toc__link" href="#' . $data[ $i ]['anchor'] . '">';
-		$item .= $data[ $i ]['title'];
+		$item .= Utility::get_plain_text( $data[ $i ]['title'] );
 		$item .= '</a>' . PHP_EOL;
 
 		return $item;
@@ -436,23 +436,29 @@ class TOC {
 	private function get_replace_data( $matches ) {
 		$new_matches        = [];
 		$this->anchor_level = [];
-		for ( $i = 0; $i < count( $matches ); $i ++ ) {
-			if ( preg_match( '/id="(.+)?"/i', $matches[ $i ][0], $id ) ) {
+		$i                  = 0;
+		foreach ( $matches as $match ) {
+			$all       = $match[0];
+			$start_tag = $match[1];
+			$level     = $match[2];
+
+			if ( preg_match( '/id="([^"]+)"/i', $all, $id ) ) {
 				$anchor  = $id[1];
-				$replace = $matches[ $i ][0];
+				$replace = $all;
 			} else {
-				$anchor  = $this->get_anchor( $i, $matches[ $i ][2] );
+				$anchor  = $this->get_anchor( $i, $level );
 				$replace = str_replace(
-					$matches[ $i ][1],
-					str_replace( '>', " id=\"{$anchor}\">", $matches[ $i ][1] ),
-					$matches[ $i ][0]
+					$start_tag,
+					str_replace( '>', " id=\"{$anchor}\">", $start_tag ),
+					$all
 				);
 			}
-			$new_matches[ $i ]            = $matches[ $i ];
+			$new_matches[ $i ]            = $match;
 			$new_matches[ $i ]['anchor']  = $anchor;
-			$new_matches[ $i ]['search']  = $matches[ $i ][0];
+			$new_matches[ $i ]['search']  = $all;
 			$new_matches[ $i ]['replace'] = $replace;
-			$new_matches[ $i ]['title']   = $this->get_toc_title( $matches[ $i ][0] );
+			$new_matches[ $i ]['title']   = $this->get_toc_title( $all );
+			$i ++;
 		}
 
 		return $new_matches;
@@ -466,10 +472,20 @@ class TOC {
 	 * @return string
 	 */
 	private function get_toc_title( $tag ) {
+
 		// blocksのサブテキスト削除.
 		$tag = preg_replace( '/<(span)[^<]+?class="ystdb-heading__subtext[^<]+?>.+?<\/\1>/', '', $tag );
+		// アコーディオンブロックの「+」を削除.
+		$tag = preg_replace( '/<(span)[^<]+?class="wp-block-accordion-heading__toggle-icon[^<]+?>.+?<\/\1>/', '', $tag );
 
-		return trim( strip_tags( $tag ) );
+		/**
+		 * フィルター: 目次タイトル取得
+		 *
+		 * @param string $tag 目次タイトルHTML.
+		 */
+		$tag = apply_filters( 'ys_get_toc_title', $tag );
+
+		return trim( wp_strip_all_tags( $tag ) );
 	}
 
 	/**
