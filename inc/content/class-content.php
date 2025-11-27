@@ -820,6 +820,13 @@ class Content {
 			 * Moreタグ以降を削除
 			 */
 			$content = preg_replace( '/<!--more-->.+/is', '', $content );
+			/**
+			 * 埋め込みブロックを削除
+			 */
+			// ブロックエディタの埋め込みブロックコメントとコンテンツを削除.
+			$content = preg_replace( '/<!-- wp:embed.+?<!-- \/wp:embed -->/is', '', $content );
+			// その他の埋め込み系ブロックも削除.
+			$content = preg_replace( '/<!-- wp:core-embed\/.+?<!-- \/wp:core-embed\/.+? -->/is', '', $content );
 			$content = Utility::get_plain_text( $content );
 		}
 
