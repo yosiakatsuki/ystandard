@@ -812,21 +812,15 @@ class Content {
 		}
 		$content = $post->post_excerpt;
 		if ( '' === $content ) {
-			/**
-			 * Excerptが無ければ本文から作る
-			 */
+			// Excerptが無ければ本文から作る.
 			$content = $post->post_content;
-			/**
-			 * Moreタグ以降を削除
-			 */
+			// Moreタグ以降を削除.
 			$content = preg_replace( '/<!--more-->.+/is', '', $content );
-			/**
-			 * 埋め込みブロックを削除
-			 */
 			// ブロックエディタの埋め込みブロックコメントとコンテンツを削除.
 			$content = preg_replace( '/<!-- wp:embed.+?<!-- \/wp:embed -->/is', '', $content );
 			// その他の埋め込み系ブロックも削除.
 			$content = preg_replace( '/<!-- wp:core-embed\/.+?<!-- \/wp:core-embed\/.+? -->/is', '', $content );
+			// HTMLタグ等を削除.
 			$content = Utility::get_plain_text( $content );
 		}
 
