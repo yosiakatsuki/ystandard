@@ -182,22 +182,22 @@ class Archive {
 	 *
 	 * @param int $length Length.
 	 *
-	 * @return string
+	 * @return void
 	 */
 	public static function the_archive_description( $length = 0 ) {
 		if ( ! Option::get_option_by_bool( 'ys_show_archive_description', true ) ) {
-			return '';
+			return;
 		}
 		if ( 0 === $length ) {
 			$length = Option::get_option_by_int( 'ys_option_excerpt_length', 80 );
 		}
 		$excerpt = Content::get_custom_excerpt( '…', $length );
 		if ( empty( $excerpt ) ) {
-			return '';
+			return;
 		}
 		printf(
 			'<p class="archive__excerpt">%s</p>',
-			$excerpt
+			wp_kses_post( $excerpt )
 		);
 	}
 
