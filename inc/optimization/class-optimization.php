@@ -69,6 +69,7 @@ class Optimization {
 		}
 		wp_script_add_data( 'jquery', 'group', 1 );
 		wp_script_add_data( 'jquery-core', 'group', 1 );
+		wp_script_add_data( 'jquery-migrate', 'group', 1 );
 	}
 
 	/**
@@ -83,6 +84,7 @@ class Optimization {
 		}
 		Enqueue_Utility::add_defer( 'jquery' );
 		Enqueue_Utility::add_defer( 'jquery-core' );
+		Enqueue_Utility::add_defer( 'jquery-migrate' );
 	}
 
 	/**

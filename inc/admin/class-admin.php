@@ -138,6 +138,13 @@ class Admin {
 			[],
 			Utility::get_ystandard_version()
 		);
+		// メタボックス用CSS.
+		wp_enqueue_style(
+			'ys-admin-meta-box',
+			get_template_directory_uri() . '/css/admin-meta-box.css',
+			[],
+			Utility::get_ystandard_version()
+		);
 		// 必要なページのみ読み込み.
 		if ( $this->is_enqueue_admin_css( $hook_suffix ) ) {
 			wp_enqueue_style(
