@@ -132,6 +132,12 @@ class Block_Editor {
 				'core/post-author-biography',
 				'core/comments',
 				'core/post-author-name',
+				'core/post-comments-count',
+				'core/post-comments-link',
+				'core/term-count',
+				'core/term-name',
+				'core/terms-query',
+				'core/term-template',
 			]
 		);
 	}
