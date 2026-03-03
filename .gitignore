@@ -31,3 +31,5 @@ build/
 .wp-content/
 .phpunit.result.cache
 .mcp.json
+.claude/settings.local.json
+.serena/memories/
