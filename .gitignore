@@ -30,3 +30,4 @@ build/
 /upload
 .wp-content/
 .phpunit.result.cache
+.mcp.json
