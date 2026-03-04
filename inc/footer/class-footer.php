@@ -209,6 +209,9 @@ class Footer {
 			text-align: center;
 			transition: transform .3s
 		}
+		:where(.footer-mobile-nav) {
+		  padding: var(--ystd--mobile-footer--padding-top) var(--ystd--mobile-footer--padding-right) var(--ystd--mobile-footer--padding-bottom) var(--ystd--mobile-footer--padding-left);
+		}
 
 		.footer-mobile-nav.is-hide {
 			transform: translateY(100%)
@@ -260,7 +263,7 @@ class Footer {
 		}
 
 		.has-mobile-footer .site-footer {
-			padding-bottom: 4em
+			padding-bottom: calc(4rem + var(--ystd--mobile-footer--padding-top) + var(--ystd--mobile-footer--padding-bottom));
 		}
 
 		@media (min-width: 769px) {
@@ -375,7 +378,7 @@ class Footer {
 	}
 
 	/**
-	 * モバイルフッターメニュー色
+	 * モバイルフッターメニュー
 	 *
 	 * @param array $css_vars CSS.
 	 *
@@ -397,12 +400,63 @@ class Footer {
 			'mobile-footer-text',
 			Option::get_option( 'ys_color_mobile_footer_text', '#222222' )
 		);
-
-		return array_merge(
+		$css_vars = array_merge(
 			$css_vars,
 			$bg,
 			$color
 		);
+
+		// モバイルフッター余白.
+		$padding_top = Option::get_option( 'ys_mobile_footer__padding_top', '' );
+		if ( '' !== $padding_top ) {
+			$padding_top = empty( $padding_top ) ? 0 : "{$padding_top}px";
+			$padding_top = Enqueue_Utility::get_css_var(
+				'ystd--mobile-footer--padding-top',
+				$padding_top
+			);
+			$css_vars    = array_merge(
+				$css_vars,
+				$padding_top
+			);
+		}
+		$padding_bottom = Option::get_option( 'ys_mobile_footer__padding_bottom', '' );
+		if ( '' !== $padding_bottom ) {
+			$padding_bottom = empty( $padding_bottom ) ? 0 : "{$padding_bottom}px";
+			$padding_bottom = Enqueue_Utility::get_css_var(
+				'ystd--mobile-footer--padding-bottom',
+				$padding_bottom
+			);
+			$css_vars       = array_merge(
+				$css_vars,
+				$padding_bottom
+			);
+		}
+		$padding_left = Option::get_option( 'ys_mobile_footer__padding_left', '' );
+		if ( '' !== $padding_left ) {
+			$padding_left = empty( $padding_left ) ? 0 : "{$padding_left}px";
+			$padding_left = Enqueue_Utility::get_css_var(
+				'ystd--mobile-footer--padding-left',
+				$padding_left
+			);
+			$css_vars     = array_merge(
+				$css_vars,
+				$padding_left
+			);
+		}
+		$padding_right = Option::get_option( 'ys_mobile_footer__padding_right', '' );
+		if ( '' !== $padding_right ) {
+			$padding_right = empty( $padding_right ) ? 0 : "{$padding_right}px";
+			$padding_right = Enqueue_Utility::get_css_var(
+				'ystd--mobile-footer--padding-right',
+				$padding_right
+			);
+			$css_vars      = array_merge(
+				$css_vars,
+				$padding_right
+			);
+		}
+
+		return $css_vars;
 	}
 
 	/**
@@ -620,6 +674,50 @@ class Footer {
 				'id'      => 'ys_color_mobile_footer_text',
 				'default' => '#222222',
 				'label'   => 'モバイルフッター文字色',
+			]
+		);
+		// モバイルフッターPadding Top.
+		$customizer->add_number(
+			[
+				'id'          => 'ys_mobile_footer__padding_top',
+				'label'       => __( 'モバイルフッターメニュー上側余白', 'ystandard' ),
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			]
+		);
+		// モバイルフッターPadding Bottom.
+		$customizer->add_number(
+			[
+				'id'          => 'ys_mobile_footer__padding_bottom',
+				'label'       => __( 'モバイルフッターメニュー下側余白', 'ystandard' ),
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			]
+		);
+		// モバイルフッターPadding Left.
+		$customizer->add_number(
+			[
+				'id'          => 'ys_mobile_footer__padding_left',
+				'label'       => __( 'モバイルフッターメニュー左側余白', 'ystandard' ),
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			]
+		);
+		// モバイルフッターPadding Right.
+		$customizer->add_number(
+			[
+				'id'          => 'ys_mobile_footer__padding_right',
+				'label'       => __( 'モバイルフッターメニュー右側余白', 'ystandard' ),
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
 			]
 		);
 	}

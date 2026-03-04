@@ -1,71 +1,72 @@
 @use "../global";
 
 .footer-mobile-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: var(--z-index-mobile-footer);
-  width: 100%;
-  background-color: var(--mobile-footer-bg);
-  text-align: center;
-  color: var(--mobile-footer-text);
-  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07);
-  transition: transform .3s;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	padding: var(--ystd--mobile-footer--padding-top) var(--ystd--mobile-footer--padding-right) var(--ystd--mobile-footer--padding-bottom) var(--ystd--mobile-footer--padding-left);
+	background-color: var(--mobile-footer-bg);
+	text-align: center;
+	color: var(--mobile-footer-text);
+	box-shadow: 0px -1px 2px rgba(0, 0, 0, 0.07);
+	transition: transform .3s;
+	z-index: var(--z-index-mobile-footer);
 
-  &.is-hide {
-	transform: translateY(100%);
-  }
-
-  @include global.media-breakpoint(md) {
-	display: none;
-  }
-
-  ul {
-	display: flex;
-	justify-content: space-between;
-	margin: 0;
-	padding: 0.75em 0;
-	list-style: none;
-  }
-
-  li {
-	&:nth-child(n+5) {
-	  display: none;
-
-	  @include global.media-breakpoint(sm) {
-		display: block;
-	  }
+	&.is-hide {
+		transform: translateY(100%);
 	}
-  }
 
-  a {
-	display: block;
-	color: currentColor;
-	text-decoration: none;
-  }
+	@include global.media-breakpoint(md) {
+		display: none;
+	}
 
-  i {
-	font-size: 1.5em;
-  }
+	ul {
+		display: flex;
+		justify-content: space-between;
+		margin: 0;
+		padding: 0.75em 0;
+		list-style: none;
+	}
 
-  svg {
-	width: 1.5em;
-	height: 1.5em;
-  }
+	li {
+		&:nth-child(n+5) {
+			display: none;
+
+			@include global.media-breakpoint(sm) {
+				display: block;
+			}
+		}
+	}
+
+	a {
+		display: block;
+		color: currentColor;
+		text-decoration: none;
+	}
+
+	i {
+		font-size: 1.5em;
+	}
+
+	svg {
+		width: 1.5em;
+		height: 1.5em;
+	}
 }
 
 .footer-mobile-nav__dscr {
-  display: block;
-  font-size: 0.7em;
-  line-height: 1.2;
+	display: block;
+	font-size: 0.7em;
+	line-height: 1.2;
 }
 
 .has-mobile-footer {
-  .site-footer {
-	padding-bottom: 4em;
+	.site-footer {
+		padding-bottom: 4em;
 
-	@include global.media-breakpoint(md) {
-	  padding-bottom: 0;
+		@include global.media-breakpoint(md) {
+			padding-bottom: 0;
+		}
 	}
-  }
 }

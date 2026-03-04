@@ -34,7 +34,7 @@ if ( empty( $author_data ) ) {
 
 					<?php foreach ( $author_data['sns'] as $key => $value ) : ?>
 						<li class="author-box__sns-item sns-text--<?php echo $value['color']; ?>">
-							<a class="author-box__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow noopener noreferrer" title="<?php echo $value['title']; ?>">
+							<a class="author-box__sns-link" href="<?php echo $value['url']; ?>" target="_blank" rel="nofollow" title="<?php echo $value['title']; ?>">
 								<?php echo $value['icon']; ?>
 							</a>
 						</li>

@@ -478,15 +478,6 @@ class Archive {
 				'choices'     => $archive_types,
 			]
 		);
-		$customizer->add_label(
-			[
-				'id'              => 'ys_archive_type_simple_select_warning',
-				'description'     => Notice::warning( '※選択したレイアウト(シンプル)はβ版機能となります。', false ),
-				'active_callback' => function () {
-					return ! $this->is_archive_type_not_simple();
-				},
-			]
-		);
 		$customizer->add_section_label( '表示・非表示設定' );
 		// 投稿日.
 		$customizer->add_checkbox(
