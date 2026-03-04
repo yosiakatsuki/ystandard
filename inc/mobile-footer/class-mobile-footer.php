@@ -59,6 +59,32 @@ class Mobile_Footer {
 			$css_vars = array_merge( $css_vars, $color );
 		}
 
+		// 余白.
+		// 上.
+		$padding_top = Option::get_option( 'ys_mobile_footer__padding_top', '' );
+		if ( '' !== $padding_top ) {
+			$padding_top = Enqueue_Utility::get_css_var( 'mobile-footer--padding-top', $padding_top . 'px' );
+			$css_vars    = array_merge( $css_vars, $padding_top );
+		}
+		// 下.
+		$padding_bottom = Option::get_option( 'ys_mobile_footer__padding_bottom', '' );
+		if ( '' !== $padding_bottom ) {
+			$padding_bottom = Enqueue_Utility::get_css_var( 'mobile-footer--padding-bottom', $padding_bottom . 'px' );
+			$css_vars       = array_merge( $css_vars, $padding_bottom );
+		}
+		// 左.
+		$padding_left = Option::get_option( 'ys_mobile_footer__padding_left', '' );
+		if ( '' !== $padding_left ) {
+			$padding_left = Enqueue_Utility::get_css_var( 'mobile-footer--padding-left', $padding_left . 'px' );
+			$css_vars     = array_merge( $css_vars, $padding_left );
+		}
+		// 右.
+		$padding_right = Option::get_option( 'ys_mobile_footer__padding_right', '' );
+		if ( '' !== $padding_right ) {
+			$padding_right = Enqueue_Utility::get_css_var( 'mobile-footer--padding-right', $padding_right . 'px' );
+			$css_vars      = array_merge( $css_vars, $padding_right );
+		}
+
 		return $css_vars;
 	}
 
@@ -72,15 +98,15 @@ class Mobile_Footer {
 		$customizer->add_section(
 			[
 				'section'     => 'ys_mobile_footer',
-				'title'       => '[ys]' . _x( 'モバイルフッター', 'customizer', 'ystandard' ),
-				'description' => _x( 'モバイルフッターの設定', 'customizer', 'ystandard' ),
+				'title'       => '[ys]' . _x( 'モバイルフッターメニュー', 'customizer', 'ystandard' ),
+				'description' => _x( 'モバイルフッターメニューの設定', 'customizer', 'ystandard' ),
 				'priority'    => Customizer::get_priority( 'ys_mobile_footer' ),
 			]
 		);
 
 		// モバイルフッター.
 		$customizer->add_section_label(
-			_x( '色設定', 'customizer', 'ystandard' ),
+			_x( '文字色・背景色設定', 'customizer', 'ystandard' ),
 			[
 				'description' => Admin::manual_link( 'manual/mobile-footer-menu' ),
 			]
@@ -90,7 +116,7 @@ class Mobile_Footer {
 			[
 				'id'      => 'ys_color_mobile_footer_bg',
 				'default' => '',
-				'label'   => _x( 'モバイルフッター背景色', 'customizer', 'ystandard' ),
+				'label'   => _x( '背景色', 'customizer', 'ystandard' ),
 			]
 		);
 		// モバイルフッター文字色.
@@ -98,9 +124,62 @@ class Mobile_Footer {
 			[
 				'id'      => 'ys_color_mobile_footer_text',
 				'default' => '',
-				'label'   => _x( 'モバイルフッター文字色', 'customizer', 'ystandard' ),
+				'label'   => _x( '文字色', 'customizer', 'ystandard' ),
+			]
+		);
+
+		// 余白の設定(Padding).
+		$customizer->add_section_label(
+			_x( '余白設定', 'customizer', 'ystandard' ),
+			[
+				'description' => Admin::manual_link( 'manual/mobile-footer-menu' ) . _x( '0~100の間で設定してください。それ以外の数値を入力すると設定が保存されません。', 'customizer', 'ystandard' ),
+			]
+		);
+		// モバイルフッターPadding Top.
+		$customizer->add_number(
+			[
+				'id'          => 'ys_mobile_footer__padding_top',
+				'label'       => _x( '余白-上', 'customizer', 'ystandard' ),
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			]
+		);
+		// モバイルフッターPadding Bottom.
+		$customizer->add_number(
+			[
+				'id'          => 'ys_mobile_footer__padding_bottom',
+				'label'       => _x( '余白-下', 'customizer', 'ystandard' ),
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			]
+		);
+		// モバイルフッターPadding left.
+		$customizer->add_number(
+			[
+				'id'          => 'ys_mobile_footer__padding_left',
+				'label'       => _x( '余白-左', 'customizer', 'ystandard' ),
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
+			]
+		);
+		// モバイルフッターPadding right.
+		$customizer->add_number(
+			[
+				'id'          => 'ys_mobile_footer__padding_right',
+				'label'       => _x( '余白-右', 'customizer', 'ystandard' ),
+				'input_attrs' => [
+					'min' => 0,
+					'max' => 100,
+				],
 			]
 		);
 	}
 }
+
 new Mobile_Footer();

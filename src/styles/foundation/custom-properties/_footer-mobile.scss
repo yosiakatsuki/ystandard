@@ -4,9 +4,13 @@
 @mixin custom_properties() {
 	--ystd--mobile-footer--text-color: var(--ystd--text-color);
 	--ystd--mobile-footer--background: #{rgba(#ffffff, 0.95)};
+	--ystd--mobile-footer--padding-top: 0;
+	--ystd--mobile-footer--padding-right: var(--ystd--container--gutter);
+	--ystd--mobile-footer--padding-bottom: 0;
+	--ystd--mobile-footer--padding-left: var(--ystd--container--gutter);
 	--ystd--mobile-footer-nav--padding-x: 0;
-	--ystd--mobile-footer-nav--padding-y: 0.75em;
-	--ystd--mobile-footer-nav--gap: 0.25em;
+	--ystd--mobile-footer-nav--padding-y: 12px;
+	--ystd--mobile-footer-nav--gap: 4px;
 	--ystd--mobile-footer-nav--icon--size: 1.5em;
 	--ystd--mobile-footer-nav--menu--line-height: 1.2;
 	--ystd--mobile-footer-nav--description--font-size: 0.7em;

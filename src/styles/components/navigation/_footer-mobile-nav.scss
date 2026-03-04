@@ -1,7 +1,7 @@
 @use "../../global";
 
 :where(.footer-mobile-nav-container) {
-	max-width: var(--ystd--container--size);
+	max-width: 100%;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -15,6 +15,7 @@
 	left: 0;
 	width: 100%;
 	display: none;
+	padding: var(--ystd--mobile-footer--padding-top) var(--ystd--mobile-footer--padding-right) var(--ystd--mobile-footer--padding-bottom) var(--ystd--mobile-footer--padding-left);
 	background-color: var(--ystd--mobile-footer--background);
 	text-align: center;
 	color: var(--ystd--mobile-footer--text-color);
@@ -35,8 +36,7 @@
 		align-items: center;
 		gap: var(--ystd--mobile-footer-nav--gap);
 		margin: 0;
-		padding: var(--ystd--mobile-footer-nav--padding-y)
-			var(--ystd--mobile-footer-nav--padding-x);
+		padding: var(--ystd--mobile-footer-nav--padding-y) var(--ystd--mobile-footer-nav--padding-x);
 		list-style: none;
 	}
 

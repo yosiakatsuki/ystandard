@@ -33,7 +33,7 @@ class Customizer {
 		'ys_color_palette'      => 1230, // カラーパレット（未整理）.ブロックエディター設定からの移行.
 		'ys_post_type_option'   => 1300, // 投稿タイプ別設定.投稿(1300), 固定ページ(1301),は固定。それ以降は1310で追加順となる.
 		'ys_site_footer'        => 1400, // サイトフッター.
-		'ys_mobile_footer'      => 1410, // モバイルフッター.
+		'ys_mobile_footer'      => 1410, // モバイルフッターメニュー.
 		'ys_site_copyright'     => 1420, // Copyright.
 		'ys_breadcrumbs'        => 1500, // パンくずリスト.
 		'ys_toc'                => 1510, // 目次(未整理).
