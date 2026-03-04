@@ -72,14 +72,14 @@ class Copyright {
 		/**
 		 * テーマの情報
 		 */
-		$theme = '<a href="https://wp-ystandard.com" target="_blank" rel="nofollow noopener noreferrer">yStandard Theme</a> by <a href="https://yosiakatsuki.net/blog/" target="_blank" rel="nofollow noopener noreferrer">yosiakatsuki</a> ';
+		$theme = '<a href="https://wp-ystandard.com" target="_blank" rel="nofollow">yStandard Theme</a> by <a href="https://yosiakatsuki.net/blog/" target="_blank" rel="nofollow">yosiakatsuki</a> ';
 		$theme = apply_filters( 'ys_poweredby_theme', $theme );
 		/**
 		 * WordPress
 		 */
 		$url      = __( 'https://wordpress.org/' );
 		$powerdby = sprintf(
-			'Powered by <a href="%s" target="_blank" rel="nofollow noopener noreferrer">WordPress</a>',
+			'Powered by <a href="%s" target="_blank" rel="nofollow">WordPress</a>',
 			$url
 		);
 		/**
