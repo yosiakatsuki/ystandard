@@ -1,0 +1,18 @@
+name: Reset develop-v4
+on:
+  workflow_dispatch:
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Reset develop-v4 to master
+        run: |
+          git checkout develop-v4
+          git reset --hard master
+          git push --force-with-lease origin develop-v4
