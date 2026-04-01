@@ -172,7 +172,6 @@ const ysSetSmoothScroll = () => {
 			currentPageUrl = currentPageUrl.replace( /\/$/, '' );
 			const id = urlSplit[ 1 ].split( '?' )[ 0 ].split( '&' )[ 0 ];
 			if ( '' !== targetPageUrl && targetPageUrl !== currentPageUrl ) {
-				location.href = e.currentTarget.getAttribute( 'href' );
 				return;
 			}
 			e.preventDefault();
