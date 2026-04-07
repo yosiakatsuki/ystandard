@@ -213,7 +213,7 @@ class Admin {
 		$dir = apply_filters( 'ys_update_check_dir', 'v4' );
 		$url = "https://wp-ystandard.com/download/ystandard/{$dir}/ystandard-info.json";
 
-		\Puc_v4_Factory::buildUpdateChecker(
+		\YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
 			apply_filters( 'ys_update_check_url', $url ),
 			get_template_directory() . '/functions.php', // Full path to the main plugin file or functions.php.
 			'ystandard'
