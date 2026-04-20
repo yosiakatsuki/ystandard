@@ -155,9 +155,8 @@
 	}
 
 	:where(svg) {
-		--ystd--svg--size: 0.8em;
-		width: var(--ystd--svg--size);
-		height: var(--ystd--svg--size);
+		width: var(--ystd--archive--item--meta--icon-size);
+		height: var(--ystd--archive--item--meta--icon-size);
 	}
 }
 
