@@ -33,3 +33,8 @@ build/
 .mcp.json
 .claude/settings.local.json
 .serena/memories/
+claude-temp/
+tsconfig.tsbuildinfo
+.phpunit.result.cache
+.playwright-mcp/
+!debug-tool/
