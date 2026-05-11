@@ -473,791 +473,213 @@
 			"fontSizes": [
 				{
 					"fluid": false,
-					"size": "10px",
+					"size": "0.625rem",
 					"name": "10px",
 					"slug": "ys-static-10"
 				},
 				{
 					"fluid": false,
-					"size": "12px",
+					"size": "0.75rem",
 					"name": "12px",
 					"slug": "ys-static-12"
 				},
 				{
-					"fluid": {
-						"min": "10px",
-						"max": "12px"
-					},
-					"size": "12.1px",
-					"name": "12px-10px",
-					"slug": "ys-12-10"
-				},
-				{
 					"fluid": false,
-					"size": "14px",
+					"size": "0.875rem",
 					"name": "14px",
 					"slug": "ys-static-14"
 				},
 				{
 					"fluid": {
-						"min": "10px",
-						"max": "14px"
+						"min": "0.75rem",
+						"max": "0.875rem"
 					},
-					"size": "14.1px",
-					"name": "14px-10px",
-					"slug": "ys-14-10"
-				},
-				{
-					"fluid": {
-						"min": "12px",
-						"max": "14px"
-					},
-					"size": "14.12px",
+					"size": "0.887rem",
 					"name": "14px-12px",
 					"slug": "ys-14-12"
 				},
 				{
 					"fluid": false,
-					"size": "16px",
+					"size": "1rem",
 					"name": "16px",
-					"slug": "ys-base"
+					"slug": "ys-static-16"
 				},
 				{
 					"fluid": {
-						"min": "12px",
-						"max": "16px"
+						"min": "0.875rem",
+						"max": "1rem"
 					},
-					"size": "16.12px",
-					"name": "16px-12px",
-					"slug": "ys-16-12"
-				},
-				{
-					"fluid": {
-						"min": "14px",
-						"max": "16px"
-					},
-					"size": "16.14px",
+					"size": "1.014rem",
 					"name": "16px-14px",
 					"slug": "ys-16-14"
 				},
 				{
 					"fluid": false,
-					"size": "18px",
+					"size": "1.125rem",
 					"name": "18px",
 					"slug": "ys-static-18"
 				},
 				{
 					"fluid": {
-						"min": "14px",
-						"max": "18px"
+						"min": "0.875rem",
+						"max": "1.125rem"
 					},
-					"size": "18.14px",
+					"size": "1.139rem",
 					"name": "18px-14px",
 					"slug": "ys-18-14"
 				},
 				{
-					"fluid": {
-						"min": "16px",
-						"max": "18px"
-					},
-					"size": "18.16px",
-					"name": "18px-16px",
-					"slug": "ys-18-16"
-				},
-				{
 					"fluid": false,
-					"size": "20px",
+					"size": "1.25rem",
 					"name": "20px",
 					"slug": "ys-static-20"
 				},
-
 				{
 					"fluid": {
-						"min": "14px",
-						"max": "20px"
+						"min": "1rem",
+						"max": "1.25rem"
 					},
-					"size": "20.14px",
-					"name": "20px-14px",
-					"slug": "ys-20-14"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "20px"
-					},
-					"size": "20.16px",
+					"size": "1.266rem",
 					"name": "20px-16px",
 					"slug": "ys-20-16"
 				},
 				{
 					"fluid": {
-						"min": "18px",
-						"max": "20px"
+						"min": "1.125rem",
+						"max": "1.25rem"
 					},
-					"size": "20.18px",
+					"size": "1.268rem",
 					"name": "20px-18px",
 					"slug": "ys-20-18"
 				},
 				{
 					"fluid": false,
-					"size": "22px",
+					"size": "1.375rem",
 					"name": "22px",
 					"slug": "ys-static-22"
 				},
 				{
-					"fluid": {
-						"min": "14px",
-						"max": "22px"
-					},
-					"size": "22.14px",
-					"name": "22px-14px",
-					"slug": "ys-22-14"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "22px"
-					},
-					"size": "22.16px",
-					"name": "22px-16px",
-					"slug": "ys-22-16"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "22px"
-					},
-					"size": "22.18px",
-					"name": "22px-18px",
-					"slug": "ys-22-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "22px"
-					},
-					"size": "22.20px",
-					"name": "22px-20px",
-					"slug": "ys-22-18"
-				},
-				{
 					"fluid": false,
-					"size": "24px",
+					"size": "1.5rem",
 					"name": "24px",
 					"slug": "ys-static-24"
 				},
-
 				{
 					"fluid": {
-						"min": "14px",
-						"max": "24px"
+						"min": "1.25rem",
+						"max": "1.5rem"
 					},
-					"size": "24.14px",
-					"name": "24px-14px",
-					"slug": "ys-24-14"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "24px"
-					},
-					"size": "24.16px",
-					"name": "24px-16px",
-					"slug": "ys-24-16"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "24px"
-					},
-					"size": "24.18px",
-					"name": "24px-18px",
-					"slug": "ys-24-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "24px"
-					},
-					"size": "24.20px",
+					"size": "1.520rem",
 					"name": "24px-20px",
 					"slug": "ys-24-20"
 				},
 				{
-					"fluid": {
-						"min": "14px",
-						"max": "28px"
-					},
-					"size": "28.14px",
-					"name": "28px-14px",
-					"slug": "ys-28-14"
+					"fluid": false,
+					"size": "1.75rem",
+					"name": "28px",
+					"slug": "ys-static-28"
+				},
+				{
+					"fluid": false,
+					"size": "2rem",
+					"name": "32px",
+					"slug": "ys-static-32"
 				},
 				{
 					"fluid": {
-						"min": "16px",
-						"max": "28px"
+						"min": "1.5rem",
+						"max": "2rem"
 					},
-					"size": "28.16px",
-					"name": "28px-16px",
-					"slug": "ys-28-16"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "28px"
-					},
-					"size": "28.18px",
-					"name": "28px-18px",
-					"slug": "ys-28-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "28px"
-					},
-					"size": "28.20px",
-					"name": "28px-20px",
-					"slug": "ys-28-20"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "28px"
-					},
-					"size": "28.24px",
-					"name": "28px-24px",
-					"slug": "ys-28-24"
-				},
-				{
-					"fluid": {
-						"min": "14px",
-						"max": "32px"
-					},
-					"size": "32.14px",
-					"name": "32px-14px",
-					"slug": "ys-32-14"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "32px"
-					},
-					"size": "32.16px",
-					"name": "32px-16px",
-					"slug": "ys-32-16"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "32px"
-					},
-					"size": "32.18px",
-					"name": "32px-18px",
-					"slug": "ys-32-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "32px"
-					},
-					"size": "32.20px",
-					"name": "32px-20px",
-					"slug": "ys-32-20"
-				},
-				{
-					"fluid": {
-						"min": "22px",
-						"max": "32px"
-					},
-					"size": "32.22px",
-					"name": "32px-22px",
-					"slug": "ys-32-22"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "32px"
-					},
-					"size": "32.24px",
+					"size": "2.024rem",
 					"name": "32px-24px",
 					"slug": "ys-32-24"
 				},
 				{
-					"fluid": {
-						"min": "28px",
-						"max": "32px"
-					},
-					"size": "32.28px",
-					"name": "32px-28px",
-					"slug": "ys-32-28"
+					"fluid": false,
+					"size": "2.5rem",
+					"name": "40px",
+					"slug": "ys-static-40"
+				},
+				{
+					"fluid": false,
+					"size": "3rem",
+					"name": "48px",
+					"slug": "ys-static-48"
 				},
 				{
 					"fluid": {
-						"min": "14px",
-						"max": "36px"
+						"min": "2rem",
+						"max": "3rem"
 					},
-					"size": "36.14px",
-					"name": "36px-14px",
-					"slug": "ys-36-14"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "36px"
-					},
-					"size": "36.16px",
-					"name": "36px-16px",
-					"slug": "ys-36-16"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "36px"
-					},
-					"size": "36.18px",
-					"name": "36px-18px",
-					"slug": "ys-36-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "36px"
-					},
-					"size": "36.20px",
-					"name": "36px-20px",
-					"slug": "ys-36-20"
-				},
-				{
-					"fluid": {
-						"min": "22px",
-						"max": "36px"
-					},
-					"size": "36.22px",
-					"name": "36px-22px",
-					"slug": "ys-36-22"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "36px"
-					},
-					"size": "36.24px",
-					"name": "36px-24px",
-					"slug": "ys-36-24"
-				},
-				{
-					"fluid": {
-						"min": "28px",
-						"max": "36px"
-					},
-					"size": "36.28px",
-					"name": "36px-28px",
-					"slug": "ys-36-28"
-				},
-				{
-					"fluid": {
-						"min": "14px",
-						"max": "40px"
-					},
-					"size": "40.14px",
-					"name": "40px-14px",
-					"slug": "ys-40-14"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "40px"
-					},
-					"size": "40.16px",
-					"name": "40px-16px",
-					"slug": "ys-40-16"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "40px"
-					},
-					"size": "40.18px",
-					"name": "40px-18px",
-					"slug": "ys-40-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "40px"
-					},
-					"size": "40.20px",
-					"name": "40px-20px",
-					"slug": "ys-40-20"
-				},
-				{
-					"fluid": {
-						"min": "22px",
-						"max": "40px"
-					},
-					"size": "40.22px",
-					"name": "40px-22px",
-					"slug": "ys-40-22"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "40px"
-					},
-					"size": "40.24px",
-					"name": "40px-24px",
-					"slug": "ys-40-24"
-				},
-				{
-					"fluid": {
-						"min": "28px",
-						"max": "40px"
-					},
-					"size": "40.28px",
-					"name": "40px-28px",
-					"slug": "ys-40-28"
-				},
-				{
-					"fluid": {
-						"min": "32px",
-						"max": "40px"
-					},
-					"size": "40.32px",
-					"name": "40px-32px",
-					"slug": "ys-40-32"
-				},
-				{
-					"fluid": {
-						"min": "14px",
-						"max": "44px"
-					},
-					"size": "44.14px",
-					"name": "44px-14px",
-					"slug": "ys-44-14"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "44px"
-					},
-					"size": "44.16px",
-					"name": "44px-16px",
-					"slug": "ys-44-16"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "44px"
-					},
-					"size": "44.18px",
-					"name": "44px-18px",
-					"slug": "ys-44-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "44px"
-					},
-					"size": "44.20px",
-					"name": "44px-20px",
-					"slug": "ys-44-20"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "44px"
-					},
-					"size": "44.24px",
-					"name": "44px-24px",
-					"slug": "ys-44-24"
-				},
-				{
-					"fluid": {
-						"min": "28px",
-						"max": "44px"
-					},
-					"size": "44.28px",
-					"name": "44px-28px",
-					"slug": "ys-44-28"
-				},
-				{
-					"fluid": {
-						"min": "32px",
-						"max": "44px"
-					},
-					"size": "44.32px",
-					"name": "44px-32px",
-					"slug": "ys-44-32"
-				},
-				{
-					"fluid": {
-						"min": "14px",
-						"max": "48px"
-					},
-					"size": "48.14px",
-					"name": "48px-14px",
-					"slug": "ys-48-14"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "48px"
-					},
-					"size": "48.16px",
-					"name": "48px-16px",
-					"slug": "ys-48-16"
-				},
-				{
-					"fluid": {
-						"min": "18px",
-						"max": "48px"
-					},
-					"size": "48.18px",
-					"name": "48px-18px",
-					"slug": "ys-48-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "48px"
-					},
-					"size": "48.20px",
-					"name": "48px-20px",
-					"slug": "ys-48-20"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "48px"
-					},
-					"size": "48.24px",
-					"name": "48px-24px",
-					"slug": "ys-48-24"
-				},
-				{
-					"fluid": {
-						"min": "28px",
-						"max": "48px"
-					},
-					"size": "48.28px",
-					"name": "48px-28px",
-					"slug": "ys-48-28"
-				},
-				{
-					"fluid": {
-						"min": "32px",
-						"max": "48px"
-					},
-					"size": "48.32px",
+					"size": "3.032rem",
 					"name": "48px-32px",
 					"slug": "ys-48-32"
 				},
 				{
-					"fluid": {
-						"min": "40px",
-						"max": "48px"
-					},
-					"size": "48.40px",
-					"name": "48px-40px",
-					"slug": "ys-48-40"
+					"fluid": false,
+					"size": "4rem",
+					"name": "64px",
+					"slug": "ys-static-64"
 				},
 				{
 					"fluid": {
-						"min": "16px",
-						"max": "52px"
+						"min": "2.25rem",
+						"max": "4rem"
 					},
-					"size": "52.16px",
-					"name": "52px-16px",
-					"slug": "ys-52-16"
+					"size": "4.036rem",
+					"name": "64px-36px",
+					"slug": "ys-64-36"
 				},
 				{
 					"fluid": {
-						"min": "18px",
-						"max": "52px"
+						"min": "3rem",
+						"max": "5rem"
 					},
-					"size": "52.18px",
-					"name": "52px-18px",
-					"slug": "ys-52-18"
+					"size": "5.048rem",
+					"name": "80px-48px",
+					"slug": "ys-80-48"
 				},
 				{
-					"fluid": {
-						"min": "20px",
-						"max": "52px"
-					},
-					"size": "52.20px",
-					"name": "52px-20px",
-					"slug": "ys-52-20"
+					"fluid": false,
+					"size": "0.75rem",
+					"name": "極小",
+					"slug": "x-small"
 				},
 				{
-					"fluid": {
-						"min": "24px",
-						"max": "52px"
-					},
-					"size": "52.24px",
-					"name": "52px-24px",
-					"slug": "ys-52-24"
+					"fluid": false,
+					"size": "0.875rem",
+					"name": "小",
+					"slug": "small"
 				},
 				{
-					"fluid": {
-						"min": "28px",
-						"max": "52px"
-					},
-					"size": "52.28px",
-					"name": "52px-28px",
-					"slug": "ys-52-28"
+					"fluid": false,
+					"size": "1rem",
+					"name": "標準",
+					"slug": "normal"
 				},
 				{
-					"fluid": {
-						"min": "32px",
-						"max": "52px"
-					},
-					"size": "52.32px",
-					"name": "52px-32px",
-					"slug": "ys-52-32"
+					"fluid": false,
+					"size": "1.125rem",
+					"name": "中",
+					"slug": "medium"
 				},
 				{
-					"fluid": {
-						"min": "40px",
-						"max": "52px"
-					},
-					"size": "52.40px",
-					"name": "52px-40px",
-					"slug": "ys-52-40"
+					"fluid": false,
+					"size": "1.25rem",
+					"name": "大",
+					"slug": "large"
 				},
 				{
-					"fluid": {
-						"min": "16px",
-						"max": "56px"
-					},
-					"size": "56.16px",
-					"name": "56px-16px",
-					"slug": "ys-56-16"
+					"fluid": false,
+					"size": "1.375rem",
+					"name": "極大",
+					"slug": "x-large"
 				},
 				{
-					"fluid": {
-						"min": "18px",
-						"max": "56px"
-					},
-					"size": "56.18px",
-					"name": "56px-18px",
-					"slug": "ys-56-18"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "56px"
-					},
-					"size": "56.20px",
-					"name": "56px-20px",
-					"slug": "ys-56-20"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "56px"
-					},
-					"size": "56.24px",
-					"name": "56px-24px",
-					"slug": "ys-56-24"
-				},
-				{
-					"fluid": {
-						"min": "32px",
-						"max": "56px"
-					},
-					"size": "56.32px",
-					"name": "56px-32px",
-					"slug": "ys-56-32"
-				},
-				{
-					"fluid": {
-						"min": "40px",
-						"max": "56px"
-					},
-					"size": "56.40px",
-					"name": "56px-40px",
-					"slug": "ys-56-40"
-				},
-				{
-					"fluid": {
-						"min": "16px",
-						"max": "64px"
-					},
-					"size": "64.16px",
-					"name": "64px-16px",
-					"slug": "ys-64-16"
-				},
-				{
-					"fluid": {
-						"min": "20px",
-						"max": "64px"
-					},
-					"size": "64.20px",
-					"name": "64px-20px",
-					"slug": "ys-64-20"
-				},
-				{
-					"fluid": {
-						"min": "32px",
-						"max": "64px"
-					},
-					"size": "64.32px",
-					"name": "64px-32px",
-					"slug": "ys-64-32"
-				},
-				{
-					"fluid": {
-						"min": "40px",
-						"max": "64px"
-					},
-					"size": "64.40px",
-					"name": "64px-40px",
-					"slug": "ys-64-40"
-				},
-				{
-					"fluid": {
-						"min": "48px",
-						"max": "64px"
-					},
-					"size": "64.48px",
-					"name": "64px-48px",
-					"slug": "ys-64-48"
-				},
-				{
-					"fluid": {
-						"min": "52px",
-						"max": "64px"
-					},
-					"size": "64.52px",
-					"name": "64px-52px",
-					"slug": "ys-64-52"
-				},
-				{
-					"fluid": {
-						"min": "24px",
-						"max": "80px"
-					},
-					"size": "80.24px",
-					"name": "80px-24px",
-					"slug": "ys-80-24"
-				},
-				{
-					"fluid": {
-						"min": "32px",
-						"max": "80px"
-					},
-					"size": "80.32px",
-					"name": "80px-32px",
-					"slug": "ys-80-32"
-				},
-				{
-					"fluid": {
-						"min": "40px",
-						"max": "80px"
-					},
-					"size": "80.40px",
-					"name": "80px-40px",
-					"slug": "ys-80-40"
+					"fluid": false,
+					"size": "1.625rem",
+					"name": "巨大",
+					"slug": "xx-large"
 				}
 			]
 		},
