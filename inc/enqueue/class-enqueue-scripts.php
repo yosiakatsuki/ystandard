@@ -93,7 +93,11 @@ class Enqueue_Scripts {
 			'ys_script_attributes',
 			self::SCRIPT_ATTRIBUTES
 		);
+		$strategy   = wp_scripts()->get_data( $handle, 'strategy' );
 		foreach ( $attributes as $attr ) {
+			if ( $strategy && in_array( $attr, [ 'async', 'defer' ], true ) ) {
+				continue;
+			}
 			$data = wp_scripts()->get_data( $handle, $attr );
 			if ( ! $data ) {
 				continue;

@@ -145,6 +145,13 @@ class Admin {
 			[],
 			Utility::get_ystandard_version()
 		);
+		// 管理画面全体の共通CSS.
+		wp_enqueue_style(
+			'ys-admin-all',
+			get_template_directory_uri() . '/css/admin-all.css',
+			[],
+			Utility::get_ystandard_version()
+		);
 		// 必要なページのみ読み込み.
 		if ( $this->is_enqueue_admin_css( $hook_suffix ) ) {
 			wp_enqueue_style(

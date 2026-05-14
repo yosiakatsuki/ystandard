@@ -54,11 +54,7 @@ class Font {
 				'default'     => 'meihiragino',
 				'label'       => '表示フォントタイプ',
 				'description' => '文字のフォントを変更できます',
-				'choices'     => [
-					'meihiragino' => $this->get_font_label( 'meihiragino' ),
-					'yugo'        => $this->get_font_label( 'yugo' ),
-					'serif'       => $this->get_font_label( 'serif' ),
-				],
+				'choices'     => self::get_font_choices(),
 			]
 		);
 
@@ -83,19 +79,6 @@ class Font {
 				'description' => '少し薄めの色で表示される部分の色設定',
 			]
 		);
-	}
-
-	/**
-	 * フォント選択肢のラベルを取得
-	 *
-	 * @param string $type タイプ名.
-	 *
-	 * @return string
-	 */
-	private function get_font_label( $type ) {
-		$fonts = self::get_usable_fonts();
-
-		return $fonts[ $type ]['label'];
 	}
 
 	/**
@@ -138,21 +121,123 @@ class Font {
 	public static function get_usable_fonts() {
 		return apply_filters(
 			'ys_usable_fonts',
-			[
-				'meihiragino' => [
-					'family' => '"Helvetica neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
-					'label'  => 'メイリオ・ヒラギノ角ゴシック',
-				],
-				'yugo'        => [
-					'family' => 'Avenir, "Segoe UI", YuGothic, "Yu Gothic Medium", sans-serif',
-					'label'  => '游ゴシック',
-				],
-				'serif'       => [
-					'family' => 'serif',
-					'label'  => '明朝体',
-				],
-			]
+			array_merge(
+				self::get_font_library_fonts(),
+				[
+					'meihiragino' => [
+						'family' => '"Helvetica neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif',
+						'label'  => 'メイリオ・ヒラギノ角ゴシック',
+					],
+					'yugo'        => [
+						'family' => 'Avenir, "Segoe UI", YuGothic, "Yu Gothic Medium", sans-serif',
+						'label'  => '游ゴシック',
+					],
+					'serif'       => [
+						'family' => 'serif',
+						'label'  => '明朝体',
+					],
+				]
+			)
 		);
+	}
+
+	/**
+	 * カスタマイザーに表示するフォント選択肢を取得
+	 *
+	 * @return array
+	 */
+	private static function get_font_choices() {
+		$choices = [];
+		$fonts   = self::get_usable_fonts();
+		foreach ( $fonts as $key => $font ) {
+			if ( empty( $font['label'] ) ) {
+				continue;
+			}
+			$choices[ $key ] = $font['label'];
+		}
+
+		return $choices;
+	}
+
+	/**
+	 * Font Libraryで選択可能なフォントを取得
+	 *
+	 * @return array
+	 */
+	private static function get_font_library_fonts() {
+		if ( ! function_exists( 'wp_get_global_settings' ) ) {
+			return [];
+		}
+
+		$font_families = wp_get_global_settings( [ 'typography', 'fontFamilies' ] );
+		if ( empty( $font_families ) || ! is_array( $font_families ) ) {
+			return [];
+		}
+
+		$result = [];
+		foreach ( self::normalize_font_families( $font_families ) as $font_family ) {
+			if (
+				! is_array( $font_family ) ||
+				empty( $font_family['slug'] ) ||
+				empty( $font_family['fontFamily'] )
+			) {
+				continue;
+			}
+
+			$key = 'font-library-' . sanitize_key( $font_family['slug'] );
+			if ( 'font-library-' === $key || isset( $result[ $key ] ) ) {
+				continue;
+			}
+
+			$result[ $key ] = [
+				'family' => sanitize_text_field( $font_family['fontFamily'] ),
+				'label'  => self::get_font_library_font_label( $font_family ),
+			];
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Font Libraryのフォント一覧を1次元配列に整形
+	 *
+	 * @param array $font_families フォント一覧.
+	 *
+	 * @return array
+	 */
+	private static function normalize_font_families( $font_families ) {
+		if ( isset( $font_families['slug'] ) ) {
+			return [ $font_families ];
+		}
+
+		$result = [];
+		foreach ( [ 'custom', 'theme', 'default' ] as $origin ) {
+			if ( empty( $font_families[ $origin ] ) || ! is_array( $font_families[ $origin ] ) ) {
+				continue;
+			}
+			$result = array_merge( $result, $font_families[ $origin ] );
+		}
+
+		if ( empty( $result ) && isset( $font_families[0] ) ) {
+			$result = $font_families;
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Font Libraryのフォント名を取得
+	 *
+	 * @param array $font_family フォント情報.
+	 *
+	 * @return string
+	 */
+	private static function get_font_library_font_label( $font_family ) {
+		if ( ! empty( $font_family['name'] ) ) {
+			return sanitize_text_field( $font_family['name'] );
+		}
+
+		return sanitize_text_field( $font_family['slug'] );
 	}
 }
 

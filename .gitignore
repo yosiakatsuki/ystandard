@@ -31,3 +31,4 @@ build/
 .wp-content/
 .phpunit.result.cache
 .codex/
+.playwright-mcp/
