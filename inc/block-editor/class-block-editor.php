@@ -55,7 +55,7 @@ class Block_Editor {
 			$allowed_block_types
 		);
 
-		if ( ! empty( $block_editor_context->post ) ) {
+		if ( ! empty( $editor_context->post ) ) {
 			// Post.
 			$disallowed_block_types = apply_filters(
 				'ys_disallowed_block_types_post',
