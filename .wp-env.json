@@ -1,7 +1,7 @@
 {
 	"port": 10000,
-	"core": "https://ja.wordpress.org/latest-ja.zip",
-	"phpVersion": "8.1",
+	"core": "WordPress/WordPress#6.9",
+	"phpVersion": "8.3",
 	"themes": [
 		"."
 	],
