@@ -126,6 +126,7 @@ class Block_Editor {
 				'core/post-comments',
 				'core/term-description',
 				'core/avatar',
+				'core/breadcrumbs',
 				'core/read-more',
 				'core/read-more',
 				'core/post-comments-form',
