@@ -1,1 +1,0 @@
-document.addEventListener("DOMContentLoaded",(function(){var e=jQuery(".copy-form__button:not(.is-without-event)");e.length&&e.each(((e,t)=>{t.addEventListener("click",(e=>{e.preventDefault(),function(e){const t=jQuery(e).prev(),n=jQuery(e).next();t.select(),document.execCommand("copy"),n.length&&n.show().fadeOut(2e3)}(e.target)}))}))}));
