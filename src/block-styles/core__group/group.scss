@@ -1,19 +1,14 @@
 @use "../../styles/global";
 
 .wp-block-group {
-
 	&:where(.has-background) {
-		padding-block-start: 1.5em;
-		padding-block-end: 1.5em;
+		padding-block-start: 1.5rem;
+		padding-block-end: 1.5rem;
 
 		&:not(.alignfull) {
-			padding-inline-start: 1.5em;
-			padding-inline-end: 1.5em;
+			padding-inline-start: 1.5rem;
+			padding-inline-end: 1.5rem;
 		}
-	}
-
-	&:where(.has-global-padding) {
-		max-width: 100%;
 	}
 
 	&:where([style*="border-radius:"]) {
