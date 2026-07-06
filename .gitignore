@@ -38,3 +38,5 @@ tsconfig.tsbuildinfo
 .phpunit.result.cache
 .playwright-mcp/
 !debug-tool/
+/css
+/js
