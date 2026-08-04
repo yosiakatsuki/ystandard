@@ -3,6 +3,14 @@
 require_once dirname( dirname( __FILE__ ) ) . '/vendor/autoload.php';
 define( 'DIR_TEST_DATA', __DIR__ . '/data' );
 
+// Playground内のwp-phpunitからテスト設定を読み込めるようにする.
+if ( file_exists( '/wordpress/wp-load.php' ) ) {
+	putenv( 'WP_PHPUNIT__TESTS_CONFIG=' . __DIR__ . '/wp-tests-config.php' );
+	// 毎回生成されるPlaygroundのDBをそのままテストに使用する.
+	putenv( 'WP_TESTS_SKIP_INSTALL=1' );
+	putenv( 'WP_PHPUNIT__TABLE_PREFIX=wp_' );
+}
+
 require_once __DIR__ . '/wp-tests-config.php';
 
 // If we're running in WP's build directory, ensure that WP knows that, too.

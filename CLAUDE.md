@@ -28,8 +28,9 @@ composer phpcs         # PHPCS 直接実行（WordPress-Core + WordPress-Docs）
 ### テスト
 
 ```bash
-npm run test           # wp-env 上で PHPUnit 実行（wp-env の起動を含む）
-composer test          # PHPUnit 直接実行（ローカル WP テスト環境が必要）
+npm run test           # Playground CLI上でPHPUnit実行
+npm run wpenv:test     # wp-env上でPHPUnit実行（Docker環境が必要）
+composer test          # PHPUnit直接実行（ローカルWordPressテスト環境が必要）
 ```
 
 テストファイルは `tests/` 配下、`test-` プレフィックス付き PHP ファイル。
