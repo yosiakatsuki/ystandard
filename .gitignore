@@ -32,3 +32,4 @@ build/
 .phpunit.result.cache
 .codex/
 .playwright-mcp/
+/plans/
