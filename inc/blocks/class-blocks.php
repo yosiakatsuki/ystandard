@@ -94,7 +94,7 @@ class Blocks {
 							'src'    => $style_src,
 							'ver'    => filemtime( $theme_css_path ),
 							'path'   => $theme_css_path,
-							'deps'   => [ 'global-styles', 'ystandard' ],
+							'deps'   => [ 'ystandard' ],
 						]
 					);
 					// エディター側にも読み込み。エディター側専用は -editor.css で.
@@ -216,7 +216,7 @@ class Blocks {
 	/**
 	 * テーマパスをテーマURLに変換
 	 *
-	 * @param string $path Path.
+	 * @param string  $path Path.
 	 * @param boolean $is_child 子テーマかどうか.
 	 *
 	 * @return string
