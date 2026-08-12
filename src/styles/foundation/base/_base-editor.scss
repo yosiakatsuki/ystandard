@@ -12,6 +12,7 @@
 	background-color: var(--wp--custom--ystd--editor--background, var(--ystd--editor--background));
 	color: var(--wp--custom--ystd--editor--text-color, var(--ystd--editor--text-color));
 	font-family: var(--wp--custom--ystd--editor--font-family, var(--ystd--font-family));
+	font-weight: var(--ystd--font-weight--normal, 400);
 	line-height: var(--wp--custom--ystd--editor--line-height, var(--ystd--line-height));
 	letter-spacing: var(--wp--custom--ystd--editor--letter-spacing, var(--ystd--letter-spacing));
 	word-wrap: break-word;
@@ -132,4 +133,3 @@ div:where(.editor-styles-wrapper) {
 		padding-left: 1.3em;
 	}
 }
-

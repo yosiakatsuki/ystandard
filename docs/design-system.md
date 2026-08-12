@@ -103,7 +103,7 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 | `--ystd--font-family--code` | `SFMono-Regular, Menlo, Monaco, Consolas, monospace` | - |
 | `--ystd--font-family--yu` | `Avenir, "Segoe UI", "游ゴシック体", YuGothic, ...sans-serif` | - |
 
-カスタマイザーのフォント選択肢はtheme.jsonを正本とし、Font Libraryで追加したフォントも含める。保存値はv4.57.0以降と同じ`font-library-{slug}`形式とする。v4以前の`ys_design_font_type`に`meihiragino`、`yugo`、`serif`が保存されている場合は、保存値を変更せず、CSS出力時とカスタマイザー表示時に対応する`font-library-ystd-*`へ変換する。`ys_usable_fonts`フィルターによる拡張も引き続き利用できる。
+カスタマイザーのフォント選択肢はtheme.jsonを正本とし、Font Libraryで追加したフォントも含める。保存値はv4.57.0以降と同じ`font-library-{slug}`形式とする。v4以前の`ys_design_font_type`に`meihiragino`、`yugo`、`serif`が保存されている場合は、保存値を変更せず、CSS出力時とカスタマイザー表示時に対応する`font-library-ystd-*`へ変換する。`ys_usable_fonts`フィルターによる拡張も引き続き利用できる。選択したフォントファミリーと標準フォントウエイトは、フロントエンドとブロックエディターの編集コンテンツへ同じCSSカスタムプロパティを使って反映する。
 
 #### フォントサイズ
 
