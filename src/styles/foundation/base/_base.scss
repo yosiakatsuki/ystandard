@@ -5,6 +5,7 @@ body {
 	background-color: var(--ystd--site--background);
 	color: var(--ystd--text-color);
 	font-family: var(--ystd--font-family);
+	font-weight: var(--ystd--font-weight--normal, 400);
 	line-height: var(--ystd--line-height);
 	letter-spacing: var(--ystd--letter-spacing);
 	word-wrap: break-word;

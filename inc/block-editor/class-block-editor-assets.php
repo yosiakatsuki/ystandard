@@ -29,7 +29,7 @@ class Block_Editor_Assets {
 	 * Block_Editor_Assets constructor.
 	 */
 	public function __construct() {
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ], 11 );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_block_editor_assets' ], 11 );
 		add_action( 'after_setup_theme', [ $this, 'enqueue_block_css' ] );
 	}
 
@@ -37,6 +37,10 @@ class Block_Editor_Assets {
 	 * ブロックエディタのスタイル追加
 	 */
 	public function enqueue_block_editor_assets() {
+		if ( ! is_admin() ) {
+			return;
+		}
+
 		$path = '/css/block-editor-assets.css';
 		wp_enqueue_style(
 			'ys-block-editor-assets',
@@ -45,9 +49,9 @@ class Block_Editor_Assets {
 			filemtime( get_template_directory() . $path )
 		);
 		// CSSカスタムプロパティ取得.
-		$custom_property = Enqueue_Styles::get_css_custom_properties( 'body .editor-styles-wrapper' );
+		$custom_property = Enqueue_Styles::get_css_custom_properties( '.editor-styles-wrapper' );
 		// WP上書き用CSSカスタムプロパティ取得.
-		$custom_property_preset = Enqueue_Styles::get_css_custom_properties_override_wp_preset( 'body .editor-styles-wrapper' );
+		$custom_property_preset = Enqueue_Styles::get_css_custom_properties_override_wp_preset( '.editor-styles-wrapper' );
 		wp_add_inline_style(
 			'ys-block-editor-assets',
 			apply_filters( 'ys_block_editor_assets_inline_css', $custom_property . $custom_property_preset )

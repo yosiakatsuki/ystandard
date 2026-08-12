@@ -1,7 +1,5 @@
 ( function ( $ ) {
 	wp.customize.bind( 'ready', function () {
-		var customize = this;
-
 		var selector = '#_customize-input-background_repeat,#_customize-input-background_attachment,#_customize-input-background_size,[name="background-position"]';
 		$( selector ).change( function () {
 			setBackgroundPresetCustom( $ );
