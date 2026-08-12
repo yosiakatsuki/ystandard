@@ -93,3 +93,13 @@
 		font-size: 0.7rem;
 	}
 }
+
+// ブロックエディターではカテゴリー・タグより後に表示する.
+.editor-sidebar__panel [role="tabpanel"]:has(> .ystandard-post-meta-panel) {
+	display: flex;
+	flex-direction: column;
+
+	> .ystandard-post-meta-panel {
+		order: 1;
+	}
+}

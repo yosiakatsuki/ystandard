@@ -73,6 +73,7 @@ const PostMetaPanels = () => {
 				<PluginDocumentSettingPanel
 					key={ panelName }
 					name={ `ystandard-${ panelName }` }
+					className="ystandard-post-meta-panel"
 					title={ panelTitle }
 				>
 					{ fields.map( ( field ) => (
