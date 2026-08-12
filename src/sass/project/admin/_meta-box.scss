@@ -107,4 +107,8 @@
 .ystandard-post-meta-fields {
 	display: grid;
 	gap: 12px;
+
+	.components-base-control__label {
+		text-transform: none;
+	}
 }
