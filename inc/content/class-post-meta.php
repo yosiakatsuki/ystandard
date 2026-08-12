@@ -54,7 +54,7 @@ class Post_Meta {
 				[ $this, 'add_post_option' ],
 				$type,
 				'side',
-				'default',
+				'low',
 				$callback_args
 			);
 			add_meta_box(
@@ -63,7 +63,7 @@ class Post_Meta {
 				[ $this, 'add_seo_option' ],
 				$type,
 				'side',
-				'default',
+				'low',
 				$callback_args
 			);
 			add_meta_box(
@@ -72,7 +72,7 @@ class Post_Meta {
 				[ $this, 'add_sns_option' ],
 				$type,
 				'side',
-				'default',
+				'low',
 				$callback_args
 			);
 		}

@@ -283,7 +283,7 @@ class Parts {
 			[ $this, 'add_parts_shortcode_info' ],
 			[ 'ys-parts' ],
 			'side',
-			'high',
+			'low',
 			[ '__back_compat_meta_box' => true ]
 		);
 	}

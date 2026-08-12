@@ -98,14 +98,30 @@ class PostMetaTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * ブロックエディター対象では従来メタボックスを互換用にすることを確認.
+	 * 従来メタボックスを互換用かつ最低優先度にすることを確認.
 	 */
 	public function test_legacy_meta_box_is_marked_for_back_compat() {
 		global $wp_meta_boxes;
 
 		$wp_meta_boxes = [];
 		$this->get_post_meta_instance()->add_meta_box();
-		$args = $wp_meta_boxes['post']['side']['default']['ys_post_option']['args'];
+		$args = $wp_meta_boxes['post']['side']['low']['ys_post_option']['args'];
+
+		$this->assertTrue( $args['__back_compat_meta_box'] );
+		$this->assertArrayHasKey( 'ys_seo_option', $wp_meta_boxes['post']['side']['low'] );
+		$this->assertArrayHasKey( 'ys_sns_option', $wp_meta_boxes['post']['side']['low'] );
+	}
+
+	/**
+	 * パーツの従来メタボックスを最低優先度にすることを確認.
+	 */
+	public function test_parts_legacy_meta_box_has_low_priority() {
+		global $wp_meta_boxes;
+
+		$wp_meta_boxes = [];
+		$parts         = new \ystandard\Parts();
+		$parts->add_meta_box();
+		$args = $wp_meta_boxes['ys-parts']['side']['low']['ys_add_parts_shortcode_info']['args'];
 
 		$this->assertTrue( $args['__back_compat_meta_box'] );
 	}
