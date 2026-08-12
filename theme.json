@@ -9,7 +9,7 @@
 			"wideSize": "1200px"
 		},
 		"color": {
-			"defaultPalette": true,
+			"defaultPalette": false,
 			"palette": [
 				{
 					"color": "#07689f",
@@ -521,12 +521,12 @@
 				},
 				{
 					"fluid": {
-						"min": "0.875rem",
+						"min": "1rem",
 						"max": "1.125rem"
 					},
-					"size": "1.139rem",
-					"name": "18px-14px",
-					"slug": "ys-18-14"
+					"size": "1.141rem",
+					"name": "18px-16px",
+					"slug": "ys-18-16"
 				},
 				{
 					"fluid": false,
