@@ -121,7 +121,7 @@ jobs:
         run: npm run build
 
       - name: Run test
-        run: npm run test
+        run: npm run wpenv:test
 
       - name: Notify Unit Test for Discord
         uses: sarisia/actions-status-discord@v1

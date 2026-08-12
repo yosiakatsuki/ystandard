@@ -53,6 +53,8 @@ class Blocks_Test extends WP_UnitTestCase {
 	 * フロントエンドのCSS読み込み順確認.
 	 */
 	public function test_enqueue_block_style_after_global_styles_and_theme_styles() {
+		wp_register_style( 'global-styles', false );
+		wp_enqueue_style( 'global-styles' );
 		do_action( 'wp_enqueue_scripts' );
 		do_blocks( $this->get_button_block_content() );
 
