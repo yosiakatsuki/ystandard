@@ -49,3 +49,47 @@
 .meta-box__copy-target {
 	flex-grow: 1;
 }
+
+.copy-form {
+	display: flex;
+	position: relative;
+	align-items: stretch;
+	max-width: 100%;
+
+	.copy-form__target {
+		min-width: 0;
+		flex: 1 1 auto;
+		background-color: transparent;
+	}
+
+	.copy-form__button {
+		display: inline-flex;
+		position: relative;
+		align-items: center;
+		justify-content: center;
+		min-width: 32px;
+		height: auto;
+		margin: 0 0 0 4px;
+		padding: 0 8px;
+		line-height: 1;
+
+		.ys-icon {
+			display: inline-flex;
+
+			svg {
+				width: 1rem;
+				height: 1rem;
+			}
+		}
+	}
+
+	.copy-form__info {
+		display: none;
+		position: absolute;
+		top: 100%;
+		right: 0;
+		padding: 0.25em 0 0;
+		color: #333333;
+		font-size: 0.7rem;
+	}
+}

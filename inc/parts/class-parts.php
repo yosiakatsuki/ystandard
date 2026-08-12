@@ -301,15 +301,15 @@ class Parts {
 		}
 		?>
 		<div id="ys-ogp-description-section" class="meta-box__section">
-			<label for="ys_parts_shortcode" style="margin: 1em 0 0;display: block;">ショートコード</label>
+			<label for="ys_parts_shortcode" style="margin: 1em 0 0;display: block;"><?php esc_html_e( 'ショートコード', 'ystandard' ); ?></label>
 			<div class="copy-form" style="margin: 0 0 1.5em;">
 				<input type="text" id="ys_parts_shortcode" class="copy-form__target" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
-				<button class="copy-form__button button action">
+				<button type="button" class="copy-form__button button action" aria-label="<?php esc_attr_e( 'ショートコードをコピー', 'ystandard' ); ?>">
 					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>
-				<div class="copy-form__info">コピーしました！</div>
+				<div class="copy-form__info" role="status" aria-live="polite"><?php esc_html_e( 'コピーしました！', 'ystandard' ); ?></div>
 			</div>
-			<div class="meta-box__dscr">投稿・固定ページやウィジェットに表示するためのショートコード</div>
+			<div class="meta-box__dscr"><?php esc_html_e( '投稿・固定ページやウィジェットに表示するためのショートコード', 'ystandard' ); ?></div>
 		</div>
 		<?php
 	}
