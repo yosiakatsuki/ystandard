@@ -224,13 +224,15 @@ webpackの出力先が既存の`js/`であるため、`output.clean`は無効に
 
 | コマンド | 責務 |
 | --- | --- |
-| `npm run build:js` | `wp-scripts build`による本番向けJavaScriptビルド |
-| `npm run watch:js` | `wp-scripts start`によるJavaScriptの監視ビルド |
-| `npm run lint:js` | `wp-scripts lint-js`によるJavaScriptの検査 |
+| `npm run build:js` | `NODE_ENV=production`を明示した`wp-scripts build`による本番向けJavaScriptビルド |
+| `npm run watch:js` | `NODE_ENV=development`を明示した`wp-scripts start`によるJavaScriptの監視ビルド |
+| `npm run lint:js` | `wp-scripts lint-js`による新しいブロックエディター用JavaScriptの検査 |
 | `npm run build:css`、`npm run watch:css` | 現在のSass・PostCSS構成を維持 |
 | `npm run build:icons` | 現在のNode.jsスクリプトを維持 |
 
-既存出力との同等性を確認した後、`.babelrc`と直接利用しなくなるBabel関連パッケージを削除する。コード全体の一括整形やCSSツールチェーンの変更は、この移行へ混在させない。
+実行環境に設定された`NODE_ENV`によって本番成果物が非圧縮にならないよう、npm scriptsでは`cross-env`を使って環境を固定する。本番ビルドではソースマップを生成せず、配布zipへ含めない。
+
+既存出力との同等性を確認した後、`.babelrc`と直接利用しなくなるBabel関連パッケージを削除する。コード全体の一括整形やCSSツールチェーンの変更は、この移行へ混在させない。既存JavaScriptには現在のLint規約に対する負債があるため、初回移行では新規ブロックエディター用コードを必須Lint対象とし、既存コードの一括整形は別変更に分ける。
 
 ## ファイル構成案
 
@@ -340,6 +342,7 @@ JavaScriptビルド移行では、これに加えて`npm run lint:js`と`npm run
 - `src/js/icons/brand.js`がwebpackへ混入しない
 - 投稿メタUIの`*.asset.php`に必要なWordPress依存ハンドルが出力される
 - 配布zipにJavaScriptと`*.asset.php`が含まれる
+- 本番用ソースマップが配布zipに含まれない
 
 ### 編集画面の確認対象
 

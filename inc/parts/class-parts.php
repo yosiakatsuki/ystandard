@@ -279,11 +279,12 @@ class Parts {
 		 */
 		add_meta_box(
 			'ys_add_parts_shortcode_info',
-			'ショートコード',
+			__( 'ショートコード', 'ystandard' ),
 			[ $this, 'add_parts_shortcode_info' ],
 			[ 'ys-parts' ],
 			'side',
-			'high'
+			'high',
+			[ '__back_compat_meta_box' => true ]
 		);
 	}
 
