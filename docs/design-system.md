@@ -137,6 +137,8 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 | `--ystd--font-weight--normal` | `400`（Font Libraryで追加したフォントに400がない場合は`ys_design_font_weight`で変更可能） |
 | `--ystd--font-weight--bold` | `700` |
 
+標準フォントウエイトのSettingはPHPで1つ登録し、ウエイト400を持たないFont Library追加フォントごとに同じSettingを参照するSelect Controlを登録する。表示対象は各Controlの`active_callback`で判定し、選択中のフォントに対応するControlだけを表示する。選択肢の生成、表示制御、保存値の検証はPHP側を正本とし、JavaScriptでは制御しない。
+
 #### 見出し
 
 | プロパティ | 初期値 |

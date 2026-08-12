@@ -40,7 +40,6 @@ class Typography {
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_vars' ] );
 		add_filter( 'customize_value_ys_design_font_type', [ $this, 'convert_legacy_font_type' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
-		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_customize_controls_script' ], 20 );
 	}
 
 	/**
@@ -178,18 +177,7 @@ class Typography {
 				'choices'     => self::get_font_choices(),
 			]
 		);
-		$font_type_setting = $wp_customize->get_setting( 'ys_design_font_type' );
-		$font_type         = $font_type_setting ? $font_type_setting->value() : '';
-		$customizer->add_select(
-			[
-				'id'              => 'ys_design_font_weight',
-				'default'         => '',
-				'label'           => __( '標準フォントウエイト', 'ystandard' ),
-				'description'     => __( '選択したフォントにはウエイト400がないため、本文の標準ウエイトを選択できます。', 'ystandard' ),
-				'choices'         => self::get_font_weight_choices( $font_type ),
-				'active_callback' => [ $this, 'is_active_font_weight_control' ],
-			]
-		);
+		$this->register_font_weight_controls( $wp_customize, $customizer );
 		$customizer->add_section_label( __( '文字色', 'ystandard' ) );
 		// 文字色.
 		$customizer->add_color(
@@ -278,35 +266,107 @@ class Typography {
 	 * @return bool
 	 */
 	public function is_active_font_weight_control( $control = null ) {
-		$font_type = Option::get_option( 'ys_design_font_type', '' );
-		if ( $control instanceof \WP_Customize_Control ) {
-			$setting = $control->manager->get_setting( 'ys_design_font_type' );
-			if ( $setting ) {
-				$font_type = $setting->value();
-			}
+		if ( ! $control instanceof \WP_Customize_Control ) {
+			return false;
 		}
 
-		return ! empty( self::get_font_weight_choices( $font_type ) );
+		$font_type = $control->input_attrs['data-font-type'] ?? '';
+		if ( empty( $font_type ) ) {
+			return false;
+		}
+
+		$selected_font_type = $this->get_selected_font_type( $control->manager );
+
+		return $selected_font_type === $font_type;
 	}
 
 	/**
-	 * カスタマイザー用スクリプトにフォントウエイト情報を追加
+	 * フォントウエイト設定をサニタイズ
+	 *
+	 * @param string                $font_weight フォントウエイト.
+	 * @param \WP_Customize_Setting $setting     カスタマイザー設定.
+	 *
+	 * @return string
 	 */
-	public function enqueue_customize_controls_script() {
-		$font_weight_choices = [];
-		$fonts               = self::get_usable_fonts();
+	public function sanitize_font_weight( $font_weight, $setting ) {
+		$font_weight = sanitize_key( $font_weight );
+		$font_type   = $this->get_selected_font_type( $setting->manager );
+		$choices     = self::get_font_weight_choices( $font_type );
+
+		return isset( $choices[ $font_weight ] ) ? $font_weight : $setting->default;
+	}
+
+	/**
+	 * フォントウエイト設定を追加
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 * @param Customize_Control     $customizer   カスタマイザーコントロール.
+	 */
+	private function register_font_weight_controls( $wp_customize, $customizer ) {
+		$setting_id   = 'ys_design_font_weight';
+		$setting_args = [
+			'id'                => $setting_id,
+			'setting_type'      => 'option',
+			'transport'         => 'refresh',
+			'default'           => Option::get_default( $setting_id, '' ),
+			'sanitize_callback' => [ $this, 'sanitize_font_weight' ],
+		];
+		$wp_customize->add_setting(
+			$setting_id,
+			Customize_Control::get_setting_args( $setting_args, $setting_id )
+		);
+
+		$fonts = self::get_usable_fonts();
 		foreach ( array_keys( $fonts ) as $font_type ) {
 			$choices = self::get_font_weight_choices( $font_type, $fonts );
-			if ( ! empty( $choices ) ) {
-				$font_weight_choices[ $font_type ] = $choices;
+			if ( empty( $choices ) ) {
+				continue;
 			}
+
+			$control_id   = $setting_id . '__' . sanitize_key( $font_type );
+			$control_args = [
+				'id'              => $setting_id,
+				'control_type'    => 'select',
+				'active_callback' => [ $this, 'is_active_font_weight_control' ],
+				'priority'        => 10,
+				'section'         => 'ys_section_font',
+				'label'           => __( '標準フォントウエイト', 'ystandard' ),
+				'description'     => __( '選択したフォントにはウエイト400がないため、本文の標準ウエイトを選択できます。', 'ystandard' ),
+				'choices'         => $choices,
+				'input_attrs'     => [ 'data-font-type' => $font_type ],
+			];
+			$wp_customize->add_control(
+				$control_id,
+				Customize_Control::get_control_args(
+					$control_args,
+					$control_id,
+					[ 'settings' => $setting_id ]
+				)
+			);
 		}
 
-		wp_localize_script(
-			'ys-customize-controls-js',
-			'ystdTypographyOption',
-			[ 'fontWeightChoices' => $font_weight_choices ]
-		);
+		$customizer->do_action_after_add_setting( $setting_id, $setting_args );
+	}
+
+	/**
+	 * カスタマイザーで選択中のフォントを取得
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 *
+	 * @return string
+	 */
+	private function get_selected_font_type( $wp_customize ) {
+		$setting = $wp_customize->get_setting( 'ys_design_font_type' );
+		if ( ! $setting ) {
+			return '';
+		}
+
+		$post_values = $wp_customize->unsanitized_post_values();
+		$font_type   = array_key_exists( $setting->id, $post_values )
+			? sanitize_key( $post_values[ $setting->id ] )
+			: $setting->value();
+
+		return self::convert_legacy_font_type( $font_type );
 	}
 
 	/**

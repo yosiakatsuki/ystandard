@@ -5,6 +5,8 @@
  * @package ystandard
  */
 
+require_once ABSPATH . WPINC . '/class-wp-customize-manager.php';
+
 /**
  * Class TypographyTest
  */
@@ -116,6 +118,66 @@ class TypographyTest extends WP_UnitTestCase {
 		$this->assertSame( [], \ystandard\Typography::get_font_weight_choices( 'font-library-regular-font' ) );
 		$this->assertSame( [], \ystandard\Typography::get_font_weight_choices( 'font-library-full-variable-font' ) );
 		$this->assertSame( [], \ystandard\Typography::get_font_weight_choices( 'font-library-ystd-gothic' ) );
+	}
+
+	/**
+	 * Test: フォントごとのウエイトコントロールをPHPで登録できる
+	 */
+	function test_customize_register_adds_font_weight_controls() {
+		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
+		add_filter( 'wp_theme_json_data_user', [ $this, 'add_font_library_font' ] );
+		update_option( 'ys_design_font_type', 'font-library-test-font' );
+		WP_Theme_JSON_Resolver::clean_cached_data();
+
+		$wp_customize = new WP_Customize_Manager();
+		\ystandard\Typography::get_instance()->customize_register( $wp_customize );
+
+		$setting          = $wp_customize->get_setting( 'ys_design_font_weight' );
+		$test_control     = $wp_customize->get_control( 'ys_design_font_weight__font-library-test-font' );
+		$variable_control = $wp_customize->get_control( 'ys_design_font_weight__font-library-variable-font' );
+
+		$this->assertInstanceOf( WP_Customize_Setting::class, $setting );
+		$this->assertInstanceOf( WP_Customize_Control::class, $test_control );
+		$this->assertSame( $setting, $test_control->settings['default'] );
+		$this->assertSame(
+			[
+				''  => '指定なし（400）',
+				500 => '500',
+				700 => '700',
+			],
+			$test_control->choices
+		);
+		$this->assertTrue( $test_control->active() );
+		$this->assertFalse( $variable_control->active() );
+		$this->assertNull( $wp_customize->get_control( 'ys_design_font_weight__font-library-regular-font' ) );
+
+		$wp_customize->set_post_value( 'ys_design_font_type', 'font-library-variable-font' );
+
+		$this->assertFalse( $test_control->active() );
+		$this->assertTrue( $variable_control->active() );
+	}
+
+	/**
+	 * Test: 選択中のフォントで利用できるウエイトだけ保存できる
+	 */
+	function test_sanitize_font_weight() {
+		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
+		add_filter( 'wp_theme_json_data_user', [ $this, 'add_font_library_font' ] );
+		update_option( 'ys_design_font_type', 'font-library-test-font' );
+		WP_Theme_JSON_Resolver::clean_cached_data();
+
+		$wp_customize = new WP_Customize_Manager();
+		\ystandard\Typography::get_instance()->customize_register( $wp_customize );
+		$setting = $wp_customize->get_setting( 'ys_design_font_weight' );
+
+		$this->assertSame( '700', $setting->sanitize( '700' ) );
+		$this->assertSame( '', $setting->sanitize( '600' ) );
+
+		$wp_customize->set_post_value( 'ys_design_font_type', 'font-library-variable-font' );
+		$this->assertSame( '600', $setting->sanitize( '600' ) );
+
+		$wp_customize->set_post_value( 'ys_design_font_type', 'font-library-regular-font' );
+		$this->assertSame( '', $setting->sanitize( '700' ) );
 	}
 
 	/**
