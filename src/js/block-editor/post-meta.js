@@ -8,7 +8,7 @@ import {
 } from '@wordpress/components';
 import { useEntityProp } from '@wordpress/core-data';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { createElement } from '@wordpress/element';
+import { createElement, useRef } from '@wordpress/element';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
@@ -19,6 +19,7 @@ const FieldControl = ( { field, value, onChange } ) => {
 	if ( 'text' === field.control ) {
 		return (
 			<TextControl
+				__next40pxDefaultSize
 				label={ field.label }
 				help={ field.help }
 				value={ value || '' }
@@ -91,6 +92,7 @@ const PostMetaPanels = () => {
 };
 
 const PartsShortcodePanel = () => {
+	const shortcodeInput = useRef( null );
 	const { postId, postStatus } = useSelect( ( select ) => {
 		const editor = select( 'core/editor' );
 
@@ -108,22 +110,37 @@ const PartsShortcodePanel = () => {
 
 	const shortcode = `[ys_parts parts_id="${ postId }"]`;
 	const copyShortcode = async () => {
-		if ( ! navigator.clipboard ) {
-			createErrorNotice(
-				__( 'ショートコードをコピーできませんでした。', 'ystandard' )
-			);
-			return;
+		let copied = false;
+
+		if ( navigator.clipboard ) {
+			try {
+				await navigator.clipboard.writeText( shortcode );
+				copied = true;
+			} catch {
+				copied = false;
+			}
 		}
 
-		try {
-			await navigator.clipboard.writeText( shortcode );
+		if ( ! copied && shortcodeInput.current ) {
+			try {
+				// HTTP環境などClipboard APIを使えない場合のフォールバック.
+				shortcodeInput.current.focus();
+				shortcodeInput.current.select();
+				shortcodeInput.current.setSelectionRange( 0, shortcode.length );
+				copied = document.execCommand( 'copy' );
+			} catch {
+				copied = false;
+			}
+		}
+
+		if ( copied ) {
 			createSuccessNotice(
 				__( 'ショートコードをコピーしました。', 'ystandard' ),
 				{
 					type: 'snackbar',
 				}
 			);
-		} catch {
+		} else {
 			createErrorNotice(
 				__( 'ショートコードをコピーできませんでした。', 'ystandard' )
 			);
@@ -136,6 +153,8 @@ const PartsShortcodePanel = () => {
 			title={ __( '[ys] ショートコード', 'ystandard' ) }
 		>
 			<TextControl
+				ref={ shortcodeInput }
+				__next40pxDefaultSize
 				label={ __( 'ショートコード', 'ystandard' ) }
 				value={ shortcode }
 				readOnly
