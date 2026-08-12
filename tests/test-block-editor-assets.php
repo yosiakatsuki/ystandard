@@ -44,6 +44,19 @@ class BlockEditorAssetsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * WordPress標準のカラーパレットが無効であることを確認.
+	 */
+	public function test_default_color_palette_is_disabled() {
+		WP_Theme_JSON_Resolver::clean_cached_data();
+
+		$default_palette_enabled = wp_get_global_settings( [ 'color', 'defaultPalette' ] );
+		$theme_palette           = wp_get_global_settings( [ 'color', 'palette', 'theme' ] );
+
+		$this->assertFalse( $default_palette_enabled );
+		$this->assertNotEmpty( $theme_palette );
+	}
+
+	/**
 	 * 編集コンテンツへフォント設定を追加できることを確認.
 	 */
 	public function test_enqueue_font_settings_for_editor_content() {
