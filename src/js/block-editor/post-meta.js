@@ -20,6 +20,7 @@ const FieldControl = ( { field, value, onChange } ) => {
 		return (
 			<TextControl
 				__next40pxDefaultSize
+				__nextHasNoMarginBottom
 				label={ field.label }
 				help={ field.help }
 				value={ value || '' }
@@ -31,6 +32,7 @@ const FieldControl = ( { field, value, onChange } ) => {
 	if ( 'textarea' === field.control ) {
 		return (
 			<TextareaControl
+				__nextHasNoMarginBottom
 				label={ field.label }
 				help={ field.help }
 				value={ value || '' }
@@ -41,6 +43,7 @@ const FieldControl = ( { field, value, onChange } ) => {
 
 	return (
 		<ToggleControl
+			__nextHasNoMarginBottom
 			label={ field.label }
 			help={ field.help }
 			checked={ Boolean( value ) }
@@ -76,16 +79,21 @@ const PostMetaPanels = () => {
 					className="ystandard-post-meta-panel"
 					title={ panelTitle }
 				>
-					{ fields.map( ( field ) => (
-						<FieldControl
-							key={ field.key }
-							field={ field }
-							value={ meta[ field.key ] }
-							onChange={ ( value ) =>
-								setMeta( { ...meta, [ field.key ]: value } )
-							}
-						/>
-					) ) }
+					<div className="ystandard-post-meta-fields">
+						{ fields.map( ( field ) => (
+							<FieldControl
+								key={ field.key }
+								field={ field }
+								value={ meta[ field.key ] }
+								onChange={ ( value ) =>
+									setMeta( {
+										...meta,
+										[ field.key ]: value,
+									} )
+								}
+							/>
+						) ) }
+					</div>
 				</PluginDocumentSettingPanel>
 			);
 		}
