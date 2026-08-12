@@ -40,6 +40,7 @@ class Typography {
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_vars' ] );
 		add_filter( 'customize_value_ys_design_font_type', [ $this, 'convert_legacy_font_type' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		add_action( 'customize_controls_enqueue_scripts', [ $this, 'enqueue_customize_controls_script' ], 20 );
 	}
 
 	/**
@@ -88,6 +89,15 @@ class Typography {
 				$css_vars,
 				Enqueue_Utility::get_css_var( '--ystd--font-family', $font_family )
 			);
+
+			$font_weight         = Option::get_option( 'ys_design_font_weight', '' );
+			$font_weight_choices = self::get_font_weight_choices( $option, $font );
+			if ( '' !== $font_weight && isset( $font_weight_choices[ $font_weight ] ) ) {
+				$css_vars = array_merge(
+					$css_vars,
+					Enqueue_Utility::get_css_var( '--ystd--font-weight--normal', $font_weight )
+				);
+			}
 		}
 
 		// 文字色.
@@ -168,6 +178,18 @@ class Typography {
 				'choices'     => self::get_font_choices(),
 			]
 		);
+		$font_type_setting = $wp_customize->get_setting( 'ys_design_font_type' );
+		$font_type         = $font_type_setting ? $font_type_setting->value() : '';
+		$customizer->add_select(
+			[
+				'id'              => 'ys_design_font_weight',
+				'default'         => '',
+				'label'           => __( '標準フォントウエイト', 'ystandard' ),
+				'description'     => __( '選択したフォントにはウエイト400がないため、本文の標準ウエイトを選択できます。', 'ystandard' ),
+				'choices'         => self::get_font_weight_choices( $font_type ),
+				'active_callback' => [ $this, 'is_active_font_weight_control' ],
+			]
+		);
 		$customizer->add_section_label( __( '文字色', 'ystandard' ) );
 		// 文字色.
 		$customizer->add_color(
@@ -220,6 +242,74 @@ class Typography {
 	}
 
 	/**
+	 * フォントウエイト選択肢を取得
+	 *
+	 * @param string     $font_type フォント設定値.
+	 * @param array|null $fonts     フォント一覧.
+	 *
+	 * @return array
+	 */
+	public static function get_font_weight_choices( $font_type, $fonts = null ) {
+		$font_type = self::convert_legacy_font_type( $font_type );
+		$fonts     = is_array( $fonts ) ? $fonts : self::get_usable_fonts();
+		if (
+			empty( $font_type ) ||
+			empty( $fonts[ $font_type ] ) ||
+			'custom' !== ( $fonts[ $font_type ]['origin'] ?? '' ) ||
+			empty( $fonts[ $font_type ]['weights'] ) ||
+			in_array( 400, $fonts[ $font_type ]['weights'], true )
+		) {
+			return [];
+		}
+
+		$choices = [ '' => __( '指定なし（400）', 'ystandard' ) ];
+		foreach ( $fonts[ $font_type ]['weights'] as $font_weight ) {
+			$choices[ $font_weight ] = (string) $font_weight;
+		}
+
+		return $choices;
+	}
+
+	/**
+	 * フォントウエイト設定の表示判定
+	 *
+	 * @param \WP_Customize_Control|null $control カスタマイザーコントロール.
+	 *
+	 * @return bool
+	 */
+	public function is_active_font_weight_control( $control = null ) {
+		$font_type = Option::get_option( 'ys_design_font_type', '' );
+		if ( $control instanceof \WP_Customize_Control ) {
+			$setting = $control->manager->get_setting( 'ys_design_font_type' );
+			if ( $setting ) {
+				$font_type = $setting->value();
+			}
+		}
+
+		return ! empty( self::get_font_weight_choices( $font_type ) );
+	}
+
+	/**
+	 * カスタマイザー用スクリプトにフォントウエイト情報を追加
+	 */
+	public function enqueue_customize_controls_script() {
+		$font_weight_choices = [];
+		$fonts               = self::get_usable_fonts();
+		foreach ( array_keys( $fonts ) as $font_type ) {
+			$choices = self::get_font_weight_choices( $font_type, $fonts );
+			if ( ! empty( $choices ) ) {
+				$font_weight_choices[ $font_type ] = $choices;
+			}
+		}
+
+		wp_localize_script(
+			'ys-customize-controls-js',
+			'ystdTypographyOption',
+			[ 'fontWeightChoices' => $font_weight_choices ]
+		);
+	}
+
+	/**
 	 * カスタマイザーに表示するフォント選択肢を取得
 	 *
 	 * @return array
@@ -253,7 +343,8 @@ class Typography {
 		}
 
 		$result = [];
-		foreach ( self::normalize_font_families( $font_families ) as $font_family ) {
+		foreach ( self::normalize_font_families( $font_families ) as $font_data ) {
+			$font_family = $font_data['font_family'];
 			if (
 				! is_array( $font_family ) ||
 				empty( $font_family['slug'] ) ||
@@ -268,8 +359,10 @@ class Typography {
 			}
 
 			$result[ $key ] = [
-				'family' => sanitize_text_field( $font_family['fontFamily'] ),
-				'label'  => self::get_font_library_font_label( $font_family ),
+				'family'  => sanitize_text_field( $font_family['fontFamily'] ),
+				'label'   => self::get_font_library_font_label( $font_family ),
+				'origin'  => $font_data['origin'],
+				'weights' => self::get_font_weights( $font_family ),
 			];
 		}
 
@@ -285,7 +378,12 @@ class Typography {
 	 */
 	private static function normalize_font_families( $font_families ) {
 		if ( isset( $font_families['slug'] ) ) {
-			return [ $font_families ];
+			return [
+				[
+					'origin'      => '',
+					'font_family' => $font_families,
+				],
+			];
 		}
 
 		$result = [];
@@ -293,14 +391,103 @@ class Typography {
 			if ( empty( $font_families[ $origin ] ) || ! is_array( $font_families[ $origin ] ) ) {
 				continue;
 			}
-			$result = array_merge( $result, $font_families[ $origin ] );
+			foreach ( $font_families[ $origin ] as $font_family ) {
+				$result[] = [
+					'origin'      => $origin,
+					'font_family' => $font_family,
+				];
+			}
 		}
 
 		if ( empty( $result ) && isset( $font_families[0] ) ) {
-			$result = $font_families;
+			foreach ( $font_families as $font_family ) {
+				$result[] = [
+					'origin'      => '',
+					'font_family' => $font_family,
+				];
+			}
 		}
 
 		return $result;
+	}
+
+	/**
+	 * フォントで利用可能なウエイトを取得
+	 *
+	 * @param array $font_family フォント情報.
+	 *
+	 * @return array
+	 */
+	private static function get_font_weights( $font_family ) {
+		if ( empty( $font_family['fontFace'] ) || ! is_array( $font_family['fontFace'] ) ) {
+			return [];
+		}
+
+		$weights = [];
+		foreach ( $font_family['fontFace'] as $font_face ) {
+			if ( ! is_array( $font_face ) ) {
+				continue;
+			}
+			$font_style = strtolower( $font_face['fontStyle'] ?? 'normal' );
+			if ( 'normal' !== $font_style ) {
+				continue;
+			}
+
+			$font_weight = $font_face['fontWeight'] ?? 400;
+			$weights     = array_merge( $weights, self::parse_font_weight( $font_weight ) );
+		}
+
+		$weights = array_values( array_unique( $weights ) );
+		sort( $weights, SORT_NUMERIC );
+
+		return $weights;
+	}
+
+	/**
+	 * FontWeightを数値の一覧に変換
+	 *
+	 * @param string|int|array $font_weight フォントウエイト.
+	 *
+	 * @return array
+	 */
+	private static function parse_font_weight( $font_weight ) {
+		if ( is_array( $font_weight ) ) {
+			$result = [];
+			foreach ( $font_weight as $weight ) {
+				$result = array_merge( $result, self::parse_font_weight( $weight ) );
+			}
+
+			return $result;
+		}
+
+		$font_weight = strtolower( trim( (string) $font_weight ) );
+		if ( 'normal' === $font_weight ) {
+			return [ 400 ];
+		}
+		if ( 'bold' === $font_weight ) {
+			return [ 700 ];
+		}
+
+		preg_match_all( '/\d{1,4}/', $font_weight, $matches );
+		$weights = array_values(
+			array_filter(
+				array_map( 'intval', $matches[0] ),
+				static function ( $weight ) {
+					return 1 <= $weight && 1000 >= $weight;
+				}
+			)
+		);
+		if ( 2 !== count( $weights ) || $weights[0] >= $weights[1] ) {
+			return $weights;
+		}
+
+		$range = [ $weights[0] ];
+		for ( $weight = (int) ceil( $weights[0] / 100 ) * 100; $weight <= $weights[1]; $weight += 100 ) {
+			$range[] = $weight;
+		}
+		$range[] = $weights[1];
+
+		return array_values( array_unique( $range ) );
 	}
 
 	/**

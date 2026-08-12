@@ -134,7 +134,7 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 |-----------|--------|
 | `--ystd--line-height` | `1.7` |
 | `--ystd--letter-spacing` | `0.05em` |
-| `--ystd--font-weight--normal` | `400` |
+| `--ystd--font-weight--normal` | `400`（Font Libraryで追加したフォントに400がない場合は`ys_design_font_weight`で変更可能） |
 | `--ystd--font-weight--bold` | `700` |
 
 #### 見出し
