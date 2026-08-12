@@ -141,12 +141,13 @@ class Enqueue_Styles {
 		 * @deprecated v5.0.0
 		 */
 		// Deprecated filter. Use 'ys_get_css_custom_properties_args' instead.
-		$vars = apply_filters_deprecated(
-			'ys_css_vars',
-			[ [] ],
-			'5.0.0',
-			'use `ys_get_css_custom_properties_args` filter instead'
-		);
+		$vars = apply_filters( 'ys_css_vars', [] );
+		// $vars = apply_filters_deprecated(
+		// 'ys_css_vars',
+		// [ [] ],
+		// '5.0.0',
+		// 'use `ys_get_css_custom_properties_args` filter instead'
+		// );
 		/**
 		 * CSSカスタムプロパティに指定する値
 		 * name,value
