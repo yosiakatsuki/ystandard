@@ -455,17 +455,17 @@
 			},
 			"fontFamilies": [
 				{
-					"fontFamily": "\"Helvetica Neue\", Arial, \"Hiragino Kaku Gothic ProN\", \"Hiragino Sans\", Meiryo, sans-serif",
-					"name": "ゴシック系",
+					"fontFamily": "\"Helvetica neue\", Arial, \"Hiragino Sans\", \"Hiragino Kaku Gothic ProN\", Meiryo, sans-serif",
+					"name": "メイリオ・ヒラギノ角ゴシック",
 					"slug": "ystd-gothic"
 				},
 				{
 					"fontFamily": "serif",
-					"name": "明朝系",
+					"name": "明朝体",
 					"slug": "ystd-serif"
 				},
 				{
-					"fontFamily": "\"Helvetica Neue\", Arial, \"Yu Gothic\", YuGothic, sans-serif",
+					"fontFamily": "Avenir, \"Segoe UI\", YuGothic, \"Yu Gothic Medium\", sans-serif",
 					"name": "游ゴシック",
 					"slug": "ystd-yu-gothic"
 				}

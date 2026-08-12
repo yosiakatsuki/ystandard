@@ -91,9 +91,9 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 
 | スラッグ | 名前 | font-family |
 |---------|------|------------|
-| `ystd-gothic` | ゴシック系 | `"Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif` |
-| `ystd-serif` | 明朝系 | `serif` |
-| `ystd-yu-gothic` | 游ゴシック | `"Helvetica Neue", Arial, "Yu Gothic", YuGothic, sans-serif` |
+| `ystd-gothic` | メイリオ・ヒラギノ角ゴシック | `"Helvetica neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif` |
+| `ystd-serif` | 明朝体 | `serif` |
+| `ystd-yu-gothic` | 游ゴシック | `Avenir, "Segoe UI", YuGothic, "Yu Gothic Medium", sans-serif` |
 
 **CSSカスタムプロパティ:**
 
@@ -103,7 +103,7 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 | `--ystd--font-family--code` | `SFMono-Regular, Menlo, Monaco, Consolas, monospace` | - |
 | `--ystd--font-family--yu` | `Avenir, "Segoe UI", "游ゴシック体", YuGothic, ...sans-serif` | - |
 
-カスタマイザー選択肢: `meihiragino`（メイリオ・ヒラギノ角ゴシック）、`yugo`（游ゴシック）、`serif`（明朝体）。`ys_usable_fonts` フィルターで拡張可能。
+カスタマイザーのフォント選択肢はtheme.jsonを正本とし、Font Libraryで追加したフォントも含める。保存値はv4.57.0以降と同じ`font-library-{slug}`形式とする。v4以前の`ys_design_font_type`に`meihiragino`、`yugo`、`serif`が保存されている場合は、保存値を変更せず、CSS出力時とカスタマイザー表示時に対応する`font-library-ystd-*`へ変換する。`ys_usable_fonts`フィルターによる拡張も引き続き利用できる。
 
 #### フォントサイズ
 
