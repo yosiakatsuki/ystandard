@@ -26,11 +26,11 @@ class Customizer {
 	const PANEL_PRIORITY = [
 		'ys_info_bar'           => 1000, // お知らせバー.
 		'ys_site_typography'    => 1100, // フォント・文字色.
+		'ys_block_editor'       => 1101, // ブロックエディター.
 		'ys_site_background'    => 1110, // サイト背景（未整理）.
 		'ys_site_header'        => 1200, // サイトヘッダー（未整理）.
 		'ys_global_nav'         => 1210, // グローバルナビゲーション.
 		'ys_drawer_nav'         => 1220, // ドロワーメニュー（モバイルメニュー）.
-		'ys_color_palette'      => 1230, // カラーパレット（未整理）.ブロックエディター設定からの移行.
 		'ys_post_type_option'   => 1300, // 投稿タイプ別設定.投稿(1300), 固定ページ(1301),は固定。それ以降は1310で追加順となる.
 		'ys_site_footer'        => 1400, // サイトフッター.
 		'ys_mobile_footer'      => 1410, // モバイルフッターメニュー.

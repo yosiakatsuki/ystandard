@@ -44,14 +44,25 @@ msgid "Search Results for \"%s\""
 msgstr ""
 
 #. translators: %s: User Setting No.
-#: inc/block-editor/class-block-editor-color-palette.php:226
+#: inc/block-editor/class-block-editor-color-palette.php:236
 msgctxt "color-palette"
-msgid "User Color %s"
+msgid "色設定 %s"
 msgstr ""
 
-#: inc/block-editor/class-block-editor-color-palette.php:235
-msgctxt "color-palette"
-msgid "よく使う色を設定しておくと便利です。"
+#: inc/block-editor/class-block-editor-color-palette.php:280
+msgid "色定義"
+msgstr ""
+
+#: inc/block-editor/class-block-editor-color-palette.php:284
+msgid "ブロックエディターのカラーパレットに追加する色を設定できます。"
+msgstr ""
+
+#: inc/block-editor/class-block-editor.php:98
+msgid "ブロックエディター"
+msgstr ""
+
+#: inc/block-editor/class-block-editor.php:99
+msgid "ブロックエディター関連の設定"
 msgstr ""
 
 #: inc/block-editor/class-block-editor-color-palette.php:268

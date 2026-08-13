@@ -19,9 +19,9 @@ defined( 'ABSPATH' ) || die();
 class Block_Editor {
 
 	/**
-	 * Panel Name.
+	 * Section Name.
 	 */
-	const PANEL_NAME = 'ys_block_editor';
+	const SECTION_NAME = 'ys_block_editor';
 
 	/**
 	 * Block_Editor constructor.
@@ -36,7 +36,7 @@ class Block_Editor {
 	/**
 	 * 使用できるブロックを制限する
 	 *
-	 * @param bool|array $allowed_block_types 許可するブロック.
+	 * @param bool|array               $allowed_block_types 許可するブロック.
 	 * @param \WP_Block_Editor_Context $editor_context コンテキスト.
 	 *
 	 * @return bool|array
@@ -92,14 +92,15 @@ class Block_Editor {
 	public function customize_register( $wp_customize ) {
 		$customizer = new Customize_Control( $wp_customize );
 
-		$customizer->add_panel(
+		$customizer->add_section(
 			[
-				'panel'       => self::PANEL_NAME,
-				'title'       => '[ys]ブロックエディター',
-				'description' => 'ブロックエディター関連の設定',
+				'section'     => self::SECTION_NAME,
+				'title'       => '[ys]' . esc_html__( 'ブロックエディター', 'ystandard' ),
+				'description' => esc_html__( 'ブロックエディター関連の設定', 'ystandard' ),
 			]
 		);
 	}
+
 }
 
 new Block_Editor();

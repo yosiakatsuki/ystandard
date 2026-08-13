@@ -35,7 +35,7 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 | `ys-black` | Black | `#222222` |
 | `ys-white` | White | `#ffffff` |
 
-ユーザー定義色を最大3つ追加可能（`ys-user-1` ~ `ys-user-3`）。
+カスタマイザーのトップレベルにある「[ys]ブロックエディター」セクションから、ユーザー定義色を最大6つ追加可能（`ys-user-1`〜`ys-user-6`）。セクション内では背景色付きの「色定義」見出しで設定を区切る。設定値は`ys-color-palette-ys-user-{連番}`で管理し、初期値は空とする。v4の`ys-user-1`〜`ys-user-3`の保存値は、白（`#ffffff`）を含めて引き継ぐ。テーマ標準色はカスタマイザーでは変更せず、`theme.json`を正本とする。
 
 #### CSSカスタムプロパティ - ベースカラー
 
@@ -613,11 +613,11 @@ src/scripts/*.ts
 | `ys_design` | 900 | パネル（廃止予定） |
 | `ys_info_bar` | 1000 | セクション |
 | `ys_site_typography` | 1100 | セクション |
+| `ys_block_editor` | 1101 | セクション |
 | `ys_site_background` | 1110 | セクション |
 | `ys_site_header` | 1200 | セクション |
 | `ys_global_nav` | 1210 | セクション |
 | `ys_drawer_nav` | 1220 | セクション |
-| `ys_color_palette` | 1230 | セクション |
 | `ys_post_type_option` | 1300 | セクション |
 | `ys_site_footer` | 1400 | セクション |
 | `ys_mobile_footer` | 1410 | セクション |
@@ -637,7 +637,7 @@ src/scripts/*.ts
 | 項目 | 数量 |
 |------|------|
 | CSSカスタムプロパティ総数 | 約220個 |
-| theme.json カラーパレット | 18色 + ユーザー定義3色 |
+| theme.json カラーパレット | 18色 + ユーザー定義最大6色 |
 | theme.json フォントサイズ | 約80種 |
 | theme.json スペーシング | 約60種 |
 | SCSS変数 | 4個 |
