@@ -55,16 +55,16 @@ msgid "Search Results for \"%s\""
 msgstr "「%s」の検索結果"
 
 #. translators: %s: User Setting No.
-#: inc/block-editor/class-block-editor-color-palette.php:236
+#: inc/block-editor/class-block-editor-color-palette.php:102
 msgctxt "color-palette"
 msgid "色設定 %s"
 msgstr ""
 
-#: inc/block-editor/class-block-editor-color-palette.php:280
+#: inc/block-editor/class-block-editor-color-palette.php:125
 msgid "色定義"
 msgstr ""
 
-#: inc/block-editor/class-block-editor-color-palette.php:284
+#: inc/block-editor/class-block-editor-color-palette.php:129
 msgid "ブロックエディターのカラーパレットに追加する色を設定できます。"
 msgstr ""
 
@@ -75,86 +75,6 @@ msgstr ""
 #: inc/block-editor/class-block-editor.php:99
 msgid "ブロックエディター関連の設定"
 msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:268
-msgctxt "color-palette"
-msgid "Blue"
-msgstr "青"
-
-#: inc/block-editor/class-block-editor-color-palette.php:275
-msgctxt "color-palette"
-msgid "Light Blue"
-msgstr "水色"
-
-#: inc/block-editor/class-block-editor-color-palette.php:282
-msgctxt "color-palette"
-msgid "Red"
-msgstr "赤"
-
-#: inc/block-editor/class-block-editor-color-palette.php:289
-msgctxt "color-palette"
-msgid "Pink"
-msgstr "ピンク"
-
-#: inc/block-editor/class-block-editor-color-palette.php:296
-msgctxt "color-palette"
-msgid "Green"
-msgstr "緑"
-
-#: inc/block-editor/class-block-editor-color-palette.php:303
-msgctxt "color-palette"
-msgid "Light Green"
-msgstr "淡緑"
-
-#: inc/block-editor/class-block-editor-color-palette.php:310
-msgctxt "color-palette"
-msgid "Yellow"
-msgstr "黄"
-
-#: inc/block-editor/class-block-editor-color-palette.php:317
-msgctxt "color-palette"
-msgid "Light Yellow"
-msgstr "淡黄"
-
-#: inc/block-editor/class-block-editor-color-palette.php:324
-msgctxt "color-palette"
-msgid "Orange"
-msgstr "オレンジ"
-
-#: inc/block-editor/class-block-editor-color-palette.php:331
-msgctxt "color-palette"
-msgid "Light Orange"
-msgstr "淡橙"
-
-#: inc/block-editor/class-block-editor-color-palette.php:338
-msgctxt "color-palette"
-msgid "Purple"
-msgstr "紫"
-
-#: inc/block-editor/class-block-editor-color-palette.php:345
-msgctxt "color-palette"
-msgid "Light Purple"
-msgstr "淡紫"
-
-#: inc/block-editor/class-block-editor-color-palette.php:352
-msgctxt "color-palette"
-msgid "Gray"
-msgstr "灰色"
-
-#: inc/block-editor/class-block-editor-color-palette.php:359
-msgctxt "color-palette"
-msgid "Light Gray"
-msgstr "薄灰色"
-
-#: inc/block-editor/class-block-editor-color-palette.php:366
-msgctxt "color-palette"
-msgid "Black"
-msgstr "黒"
-
-#: inc/block-editor/class-block-editor-color-palette.php:373
-msgctxt "color-palette"
-msgid "White"
-msgstr "白"
 
 #: inc/breadcrumbs/class-breadcrumbs.php:162
 msgctxt "structured-data"

@@ -224,6 +224,10 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 - `ys_customizer_color_palette`：カラーパレット設定への項目追加アクション
 - `ys_customizer_custom_color_palette`：テーマ標準のカラーパレット設定出力を停止するフィルター
+- `ys_editor_color_palette`：ブロックエディター用カラーパレットを変更するフィルター
+- `ys_get_color_palette_css_types`：カラーパレット用CSSの出力形式を変更するフィルター
+- `ys_is_enqueue_color_pallet`：フロント用カラーパレットCSSの出力状態を示すフィルター
+- `ys_is_enqueue_block_editor_color_pallet`：ブロックエディター用カラーパレットCSSの出力状態を示すフィルター
 
 #### v5.0.0 - ファイル移動表
 

@@ -54,6 +54,7 @@ class BlockEditorAssetsTest extends WP_UnitTestCase {
 
 		$this->assertFalse( $default_palette_enabled );
 		$this->assertNotEmpty( $theme_palette );
+		$this->assertFalse( get_theme_support( 'editor-color-palette' ) );
 	}
 
 	/**

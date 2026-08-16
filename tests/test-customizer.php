@@ -17,6 +17,7 @@ class CustomizerTest extends WP_UnitTestCase {
 		for ( $i = 1; $i <= \ystandard\Block_Editor_Color_Palette::USER_COLOR_LIMIT; $i ++ ) {
 			delete_option( 'ys-color-palette-ys-user-' . $i );
 		}
+		WP_Theme_JSON_Resolver::clean_cached_data();
 		parent::tear_down();
 	}
 
@@ -53,6 +54,9 @@ class CustomizerTest extends WP_UnitTestCase {
 		$wp_customize = new WP_Customize_Manager();
 		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
 			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
+		}
+		if ( ! class_exists( \ystandard\Color_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-color-control.php';
 		}
 		$block_editor = ( new ReflectionClass( \ystandard\Block_Editor::class ) )->newInstanceWithoutConstructor();
 		$color_palette = ( new ReflectionClass( \ystandard\Block_Editor_Color_Palette::class ) )->newInstanceWithoutConstructor();
@@ -96,8 +100,9 @@ class CustomizerTest extends WP_UnitTestCase {
 			\ystandard\Block_Editor_Color_Palette::get_user_color_palette()
 		);
 
+		WP_Theme_JSON_Resolver::clean_cached_data();
 		$editor_palette = array_column(
-			\ystandard\Block_Editor_Color_Palette::get_color_palette( false ),
+			wp_get_global_settings( [ 'color', 'palette', 'custom' ] ),
 			'color',
 			'slug'
 		);
@@ -105,6 +110,50 @@ class CustomizerTest extends WP_UnitTestCase {
 		$this->assertSame( '#ffffff', $editor_palette['ys-user-2'] );
 		$this->assertSame( '#abcdef', $editor_palette['ys-user-3'] );
 		$this->assertSame( '#654321', $editor_palette['ys-user-6'] );
+	}
+
+	/**
+	 * ユーザー定義色のプリセットCSSをGlobal Stylesが生成することを確認.
+	 */
+	public function test_global_styles_generates_user_color_palette_css() {
+		update_option( 'ys-color-palette-ys-user-1', '#07689f' );
+		WP_Theme_JSON_Resolver::clean_cached_data();
+
+		$stylesheet = wp_get_global_stylesheet( [ 'variables', 'presets' ] );
+
+		$this->assertStringContainsString( '--wp--preset--color--ys-user-1', $stylesheet );
+		$this->assertStringContainsString( '.has-ys-user-1-color', $stylesheet );
+		$this->assertStringContainsString( '.has-ys-user-1-background-color', $stylesheet );
+		$this->assertStringContainsString( '.has-ys-user-1-border-color', $stylesheet );
+	}
+
+	/**
+	 * カスタマイザーがGlobal Settingsのカラーパレットを使用することを確認.
+	 */
+	public function test_customizer_uses_global_settings_color_palette() {
+		update_option( 'ys-color-palette-ys-user-1', '#07689f' );
+		update_option( 'ys-color-palette-ys-user-2', '#f2b3b8' );
+		WP_Theme_JSON_Resolver::clean_cached_data();
+
+		$wp_customize = new WP_Customize_Manager();
+		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
+		}
+		if ( ! class_exists( \ystandard\Color_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-color-control.php';
+		}
+		$block_editor = ( new ReflectionClass( \ystandard\Block_Editor::class ) )->newInstanceWithoutConstructor();
+		$color_palette = ( new ReflectionClass( \ystandard\Block_Editor_Color_Palette::class ) )->newInstanceWithoutConstructor();
+
+		$block_editor->customize_register( $wp_customize );
+		$color_palette->customize_register( $wp_customize );
+
+		$control = $wp_customize->get_control( 'ys-color-palette-ys-user-1' );
+		$this->assertInstanceOf( \ystandard\Color_Control::class, $control );
+		$this->assertContains( '#07689f', $control->palette );
+		$this->assertContains( '#f2b3b8', $control->palette );
+		$this->assertContains( '#ceecfd', $control->palette );
+		$this->assertNotContains( '#000000', $control->palette );
 	}
 
 	/**
