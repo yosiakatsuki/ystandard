@@ -12,6 +12,11 @@ import { addAction, applyFilters, removeAction } from '@wordpress/hooks';
 
 export const SECTIONS_HOOK = 'ystandard.hooks.postSettings.sections';
 export const ITEMS_HOOK = 'ystandard.hooks.postSettings.items';
+export const BUILT_IN_SECTION_IDS = Object.freeze( {
+	post: 'ystandard/post',
+	seo: 'ystandard/seo',
+	sns: 'ystandard/sns',
+} );
 
 const HOOK_ADDED = 'hookAdded';
 const HOOK_REMOVED = 'hookRemoved';
@@ -106,28 +111,68 @@ const normalizeDefinitions = ( definitions, validator, type ) => {
 /**
  * 外部設定の定義を取得する.
  *
- * @param {Object} context 共通コンテキスト.
+ * @param {Object} context         共通コンテキスト.
+ * @param {Array}  builtInSections yStandard標準セクション.
  * @return {Array} 表示するセクションと設定項目.
  */
-export const getPostSettingsSections = ( context ) => {
-	let filteredSections;
-	let filteredItems;
+export const getPostSettingsSections = ( context, builtInSections = [] ) => {
+	let filteredSections = [];
+	let filteredItems = [];
 
 	try {
 		filteredSections = applyFilters( SECTIONS_HOOK, [], context );
+	} catch ( error ) {
+		warnInvalidDefinition(
+			'セクションフィルターの適用中にエラーが発生しました。',
+			error
+		);
+	}
+
+	try {
 		filteredItems = applyFilters( ITEMS_HOOK, [], context );
 	} catch ( error ) {
 		warnInvalidDefinition(
-			'フィルターの適用中にエラーが発生しました。',
+			'設定項目フィルターの適用中にエラーが発生しました。',
 			error
 		);
-		return [];
 	}
 
-	const sections = normalizeDefinitions(
+	const normalizedBuiltInSections = normalizeDefinitions(
+		builtInSections,
+		isValidSection,
+		'標準セクション'
+	);
+	const builtInSectionIds = new Set( [
+		...Object.values( BUILT_IN_SECTION_IDS ),
+		...normalizedBuiltInSections.map( ( section ) => section.id ),
+	] );
+	const externalSections = normalizeDefinitions(
 		filteredSections,
 		isValidSection,
 		'セクション'
+	).filter( ( section ) => {
+		if ( ! builtInSectionIds.has( section.id ) ) {
+			return true;
+		}
+
+		warnInvalidDefinition(
+			'予約済みの標準セクションと同じIDの定義を無視しました。',
+			section
+		);
+		return false;
+	} );
+	const sections = [
+		...normalizedBuiltInSections.map( ( section, index ) => ( {
+			...section,
+			index,
+		} ) ),
+		...externalSections.map( ( section, index ) => ( {
+			...section,
+			index: normalizedBuiltInSections.length + index,
+		} ) ),
+	].sort(
+		( first, second ) =>
+			first.order - second.order || first.index - second.index
 	);
 	const sectionIds = new Set( sections.map( ( section ) => section.id ) );
 	const items = normalizeDefinitions(
@@ -146,12 +191,10 @@ export const getPostSettingsSections = ( context ) => {
 		return false;
 	} );
 
-	return sections
-		.map( ( section ) => ( {
-			...section,
-			items: items.filter( ( item ) => section.id === item.section ),
-		} ) )
-		.filter( ( section ) => 0 < section.items.length );
+	return sections.map( ( section ) => ( {
+		...section,
+		items: items.filter( ( item ) => section.id === item.section ),
+	} ) );
 };
 
 /**
@@ -193,13 +236,13 @@ class PostSettingsItemErrorBoundary extends Component {
 }
 
 /**
- * 外部プラグインが登録した投稿設定を表示する.
+ * 投稿設定の登録変更を監視してセクションを取得する.
  *
- * @param {Object} props         コンポーネントプロパティ.
- * @param {Object} props.context 共通コンテキスト.
- * @return {Element|null} 設定パネル.
+ * @param {Object} context         共通コンテキスト.
+ * @param {Array}  builtInSections yStandard標準セクション.
+ * @return {Array} 表示するセクションと設定項目.
  */
-export const ExternalPostSettingsPanels = ( { context } ) => {
+export const usePostSettingsSections = ( context, builtInSections = [] ) => {
 	const [ , setRevision ] = useState( 0 );
 	const namespace = useRef();
 
@@ -225,7 +268,46 @@ export const ExternalPostSettingsPanels = ( { context } ) => {
 		};
 	}, [] );
 
-	const sections = getPostSettingsSections( context );
+	return getPostSettingsSections( context, builtInSections );
+};
+
+/**
+ * 外部プラグインが登録した設定項目を表示する.
+ *
+ * @param {Object} props         コンポーネントプロパティ.
+ * @param {Array}  props.items   設定項目.
+ * @param {Object} props.context 共通コンテキスト.
+ * @return {Element[]} 設定項目.
+ */
+export const PostSettingsItems = ( { items, context } ) =>
+	items.map( ( item ) => {
+		const ItemComponent = item.Component;
+
+		return (
+			<PostSettingsItemErrorBoundary
+				key={ item.id }
+				itemId={ item.id }
+				resetKey={ ItemComponent }
+			>
+				<ItemComponent
+					postType={ context.postType }
+					postId={ context.postId }
+				/>
+			</PostSettingsItemErrorBoundary>
+		);
+	} );
+
+/**
+ * 外部プラグインが登録した投稿設定を表示する.
+ *
+ * @param {Object} props         コンポーネントプロパティ.
+ * @param {Object} props.context 共通コンテキスト.
+ * @return {Element|null} 設定パネル.
+ */
+export const ExternalPostSettingsPanels = ( { context } ) => {
+	const sections = usePostSettingsSections( context ).filter(
+		( section ) => 0 < section.items.length
+	);
 
 	if ( ! sections.length ) {
 		return null;
@@ -238,22 +320,12 @@ export const ExternalPostSettingsPanels = ( { context } ) => {
 			className="ystandard-post-meta-panel"
 			title={ section.title }
 		>
-			{ section.items.map( ( item ) => {
-				const ItemComponent = item.Component;
-
-				return (
-					<PostSettingsItemErrorBoundary
-						key={ item.id }
-						itemId={ item.id }
-						resetKey={ ItemComponent }
-					>
-						<ItemComponent
-							postType={ context.postType }
-							postId={ context.postId }
-						/>
-					</PostSettingsItemErrorBoundary>
-				);
-			} ) }
+			<div className="ystandard-post-settings-items">
+				<PostSettingsItems
+					items={ section.items }
+					context={ context }
+				/>
+			</div>
 		</PluginDocumentSettingPanel>
 	) );
 };

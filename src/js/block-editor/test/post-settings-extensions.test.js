@@ -285,15 +285,35 @@ describe( 'ExternalPostSettingsPanels', () => {
 } );
 
 describe( 'PostMetaPanels', () => {
-	it( '既存のyStandard投稿設定パネルを表示する', () => {
-		const container = document.createElement( 'div' );
-		const root = createRoot( container );
-		useEntityProp.mockReturnValue( [ { ys_noindex: true }, jest.fn() ] );
+	const context = {
+		apiVersion: 1,
+		postType: 'post',
+		postId: 9123,
+	};
+	let container;
+	let root;
 
+	beforeEach( () => {
+		container = document.createElement( 'div' );
+		document.body.appendChild( container );
+		root = createRoot( container );
+		useEntityProp.mockReturnValue( [ { ys_noindex: true }, jest.fn() ] );
+	} );
+
+	afterEach( () => {
+		act( () => root.unmount() );
+		container.remove();
+		removeAllFilters( SECTIONS_HOOK );
+		removeAllFilters( ITEMS_HOOK );
+		jest.restoreAllMocks();
+	} );
+
+	const renderPanels = ( props = {} ) => {
 		act( () => {
 			root.render(
 				<PostMetaPanels
 					postType="post"
+					context={ context }
 					panels={ { seo: '[ys] SEO設定' } }
 					fields={ [
 						{
@@ -303,13 +323,126 @@ describe( 'PostMetaPanels', () => {
 							label: 'noindex',
 						},
 					] }
+					{ ...props }
 				/>
 			);
 		} );
+	};
+
+	it( '既存のyStandard投稿設定パネルを表示する', () => {
+		renderPanels();
 
 		expect( container.textContent ).toContain( '[ys] SEO設定' );
 		expect( container.textContent ).toContain( 'noindex' );
+		expect( container.querySelectorAll( 'section' ) ).toHaveLength( 1 );
+	} );
 
-		act( () => root.unmount() );
+	it( '外部TSXコンポーネントを既存のSEO設定パネルへ追加する', () => {
+		const receivedProps = [];
+		const createSetting = ( label ) => ( props ) => {
+			receivedProps.push( props );
+			return <div className="toolbox-setting">{ label }</div>;
+		};
+		const TitleSetting = createSetting( 'titleタグ' );
+		const DescriptionSetting = createSetting( 'meta description' );
+
+		addFilter( ITEMS_HOOK, 'test/toolbox-seo', ( items ) => [
+			...items,
+			{
+				id: 'ystdtb/seo-description',
+				section: 'ystandard/seo',
+				order: 110,
+				Component: DescriptionSetting,
+			},
+			{
+				id: 'ystdtb/seo-title',
+				section: 'ystandard/seo',
+				order: 100,
+				Component: TitleSetting,
+			},
+		] );
+
+		renderPanels();
+
+		const seoPanel = container.querySelector(
+			'[data-panel-name="ystandard-seo"]'
+		);
+		expect( container.querySelectorAll( 'section' ) ).toHaveLength( 1 );
+		expect( seoPanel.textContent ).toContain( 'noindex' );
+		expect(
+			Array.from(
+				seoPanel.querySelectorAll( '.toolbox-setting' ),
+				( node ) => node.textContent
+			)
+		).toEqual( [ 'titleタグ', 'meta description' ] );
+		expect( receivedProps ).toEqual(
+			expect.arrayContaining( [ { postType: 'post', postId: 9123 } ] )
+		);
+	} );
+
+	it( '予約済みSEOセクションの再定義を無視する', () => {
+		const warn = jest.spyOn( console, 'warn' ).mockImplementation();
+		const Setting = () => <div>外部設定</div>;
+
+		addFilter( SECTIONS_HOOK, 'test/override-seo', ( sections ) => [
+			...sections,
+			{ id: 'ystandard/seo', title: '変更後タイトル', order: 999 },
+		] );
+		addFilter( ITEMS_HOOK, 'test/seo-item', ( items ) => [
+			...items,
+			{
+				id: 'test/seo-item',
+				section: 'ystandard/seo',
+				order: 100,
+				Component: Setting,
+			},
+		] );
+
+		renderPanels();
+
+		expect( container.textContent ).toContain( '[ys] SEO設定' );
+		expect( container.textContent ).not.toContain( '変更後タイトル' );
+		expect( container.textContent ).toContain( '外部設定' );
+		expect( warn ).toHaveBeenCalled();
+	} );
+
+	it( '標準パネルと外部専用パネルを同時に表示する', () => {
+		const Setting = () => <div>デザイン設定</div>;
+
+		addFilter( SECTIONS_HOOK, 'test/design-section', ( sections ) => [
+			...sections,
+			{ id: 'ystdtb/design', title: '[Toolbox]デザイン', order: 100 },
+		] );
+		addFilter( ITEMS_HOOK, 'test/design-item', ( items ) => [
+			...items,
+			{
+				id: 'ystdtb/design-item',
+				section: 'ystdtb/design',
+				order: 10,
+				Component: Setting,
+			},
+		] );
+
+		renderPanels();
+
+		expect(
+			Array.from(
+				container.querySelectorAll( 'h2' ),
+				( node ) => node.textContent
+			)
+		).toEqual( [ '[ys] SEO設定', '[Toolbox]デザイン' ] );
+		expect( container.textContent ).toContain( 'デザイン設定' );
+	} );
+
+	it( '外部フィルターの例外で既存パネルを非表示にしない', () => {
+		jest.spyOn( console, 'warn' ).mockImplementation();
+		addFilter( ITEMS_HOOK, 'test/throw-error', () => {
+			throw new Error( 'フィルターエラー' );
+		} );
+
+		renderPanels();
+
+		expect( container.textContent ).toContain( '[ys] SEO設定' );
+		expect( container.textContent ).toContain( 'noindex' );
 	} );
 } );
