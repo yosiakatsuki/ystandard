@@ -8,10 +8,11 @@ import {
 } from '@wordpress/components';
 import { useEntityProp } from '@wordpress/core-data';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { createElement, useRef } from '@wordpress/element';
+import { createElement, Fragment, useRef } from '@wordpress/element';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
+import { ExternalPostSettingsPanels } from './post-settings-extensions';
 
 const settings = window.ystandardPostMetaSettings || {};
 
@@ -52,52 +53,50 @@ const FieldControl = ( { field, value, onChange } ) => {
 	);
 };
 
-const PostMetaPanels = () => {
-	const [ meta, setMeta ] = useEntityProp(
-		'postType',
-		settings.postType,
-		'meta'
-	);
+export const PostMetaPanels = ( {
+	postType = settings.postType,
+	panels = settings.panels || {},
+	fields: metaFields = settings.fields || [],
+} = {} ) => {
+	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
 
 	if ( ! meta ) {
 		return null;
 	}
 
-	return Object.entries( settings.panels || {} ).map(
-		( [ panelName, panelTitle ] ) => {
-			const fields = ( settings.fields || [] ).filter(
-				( field ) => panelName === field.panel
-			);
-			if ( ! fields.length ) {
-				return null;
-			}
-
-			return (
-				<PluginDocumentSettingPanel
-					key={ panelName }
-					name={ `ystandard-${ panelName }` }
-					className="ystandard-post-meta-panel"
-					title={ panelTitle }
-				>
-					<div className="ystandard-post-meta-fields">
-						{ fields.map( ( field ) => (
-							<FieldControl
-								key={ field.key }
-								field={ field }
-								value={ meta[ field.key ] }
-								onChange={ ( value ) =>
-									setMeta( {
-										...meta,
-										[ field.key ]: value,
-									} )
-								}
-							/>
-						) ) }
-					</div>
-				</PluginDocumentSettingPanel>
-			);
+	return Object.entries( panels ).map( ( [ panelName, panelTitle ] ) => {
+		const fields = metaFields.filter(
+			( field ) => panelName === field.panel
+		);
+		if ( ! fields.length ) {
+			return null;
 		}
-	);
+
+		return (
+			<PluginDocumentSettingPanel
+				key={ panelName }
+				name={ `ystandard-${ panelName }` }
+				className="ystandard-post-meta-panel"
+				title={ panelTitle }
+			>
+				<div className="ystandard-post-meta-fields">
+					{ fields.map( ( field ) => (
+						<FieldControl
+							key={ field.key }
+							field={ field }
+							value={ meta[ field.key ] }
+							onChange={ ( value ) =>
+								setMeta( {
+									...meta,
+									[ field.key ]: value,
+								} )
+							}
+						/>
+					) ) }
+				</div>
+			</PluginDocumentSettingPanel>
+		);
+	} );
 };
 
 const PartsShortcodePanel = () => {
@@ -176,12 +175,19 @@ const PartsShortcodePanel = () => {
 	);
 };
 
-const PostMetaPlugin = () => {
-	if ( settings.partsPostType === settings.postType ) {
-		return <PartsShortcodePanel />;
-	}
-
-	return <PostMetaPanels />;
+export const PostMetaPlugin = () => {
+	return (
+		<Fragment>
+			{ settings.partsPostType === settings.postType ? (
+				<PartsShortcodePanel />
+			) : (
+				<PostMetaPanels />
+			) }
+			<ExternalPostSettingsPanels
+				context={ settings.postSettingsContext }
+			/>
+		</Fragment>
+	);
 };
 
 registerPlugin( 'ystandard-post-meta', {

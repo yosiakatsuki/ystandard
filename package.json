@@ -52,7 +52,8 @@
 		"build:icons": "node ./src/js/icons/brand.js",
 		"build": "run-s clean build:*",
 		"test:php": "wp-playground-cli php --auto-mount --wp=6.9 --php=8.3 -- /wordpress/wp-content/themes/ystandard/vendor/bin/phpunit -c /wordpress/wp-content/themes/ystandard/phpunit.xml.dist",
-		"test": "npm run test:php",
+		"test:unit:js": "wp-scripts test-unit-js --runInBand",
+		"test": "run-s test:unit:js test:php",
 		"wpenv:test": "wp-env start && wp-env run tests-cli --env-cwd='wp-content/themes/ystandard' vendor/bin/phpunit -c phpunit.xml.dist",
 		"clean:upload": "rimraf upload & rimraf /ystandard",
 		"clean:css": "rimraf css",
@@ -80,6 +81,7 @@
 		"@wordpress/data": "^10.52.0",
 		"@wordpress/editor": "^14.52.0",
 		"@wordpress/element": "^8.4.0",
+		"@wordpress/hooks": "^4.52.0",
 		"@wordpress/i18n": "^6.25.0",
 		"@wordpress/plugins": "^7.52.0"
 	}

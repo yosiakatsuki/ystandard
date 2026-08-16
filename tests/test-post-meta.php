@@ -133,12 +133,16 @@ class PostMetaTest extends WP_UnitTestCase {
 		$GLOBALS['wp_scripts'] = null;
 		wp_scripts();
 		set_current_screen( 'post' );
+		$post_id         = self::factory()->post->create();
+		$previous_post   = isset( $GLOBALS['post'] ) ? $GLOBALS['post'] : null;
+		$GLOBALS['post'] = get_post( $post_id );
 
 		try {
 			do_action( 'enqueue_block_editor_assets' );
 			$handle = \ystandard\Block_Editor_Post_Meta::SCRIPT_HANDLE;
 			$script = wp_scripts()->registered[ $handle ];
 		} finally {
+			$GLOBALS['post'] = $previous_post;
 			set_current_screen( 'front' );
 		}
 
@@ -146,7 +150,13 @@ class PostMetaTest extends WP_UnitTestCase {
 		$this->assertContains( 'wp-core-data', $script->deps );
 		$this->assertContains( 'wp-editor', $script->deps );
 		$this->assertContains( 'wp-element', $script->deps );
+		$this->assertContains( 'wp-hooks', $script->deps );
 		$this->assertNotContains( 'react-jsx-runtime', $script->deps );
+		$this->assertNotEmpty( $script->extra['before'] );
+		$inline_script = implode( "\n", $script->extra['before'] );
+		$this->assertStringContainsString( '"apiVersion":1', $inline_script );
+		$this->assertStringContainsString( '"postType":"post"', $inline_script );
+		$this->assertStringContainsString( '"postId":' . $post_id, $inline_script );
 	}
 
 	/**
