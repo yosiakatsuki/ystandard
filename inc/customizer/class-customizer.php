@@ -150,7 +150,7 @@ class Customizer {
 		wp_enqueue_style(
 			'ys-customizer',
 			get_template_directory_uri() . '/css/customizer.css',
-			[],
+			[ 'wp-components' ],
 			Theme::get_ystandard_version()
 		);
 	}
@@ -173,7 +173,7 @@ class Customizer {
 		/**
 		 * カスタムコントロールの追加
 		 */
-		$wp_customize->register_control_type( __NAMESPACE__ . '\Color_Control' );
+		$wp_customize->register_control_type( __NAMESPACE__ . '\Color_Palette_Control' );
 
 		/**
 		 * 拡張機能

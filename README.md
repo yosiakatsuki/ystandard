@@ -52,6 +52,10 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 ##### 設定関連
 
+- [変更] カスタマイザーの色設定をWordPress Componentsの`ColorPalette`へ変更し、不透明度の選択に対応
+	- v4から引き継いだ`WP_Customize_Color_Control`の拡張を削除
+	- 保存済みの設定IDと6桁HEX値は引き継ぐ
+	- 新しい設定値として4桁・8桁HEXを保存可能
 - [変更] カスタマイザーのブロックエディター用カラーパレット設定をユーザー定義色のみに変更
 	- テーマ標準のカラーパレットは`theme.json`で提供し、カスタマイザーでは変更不可
 	- v4のユーザー定義色3件（`ys-color-palette-ys-user-1`〜`ys-color-palette-ys-user-3`）は設定値を引き継ぐ

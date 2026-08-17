@@ -89,8 +89,8 @@ class CustomizerTest extends WP_UnitTestCase {
 		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
 			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
 		}
-		if ( ! class_exists( \ystandard\Color_Control::class ) ) {
-			require get_template_directory() . '/inc/customizer/class-color-control.php';
+		if ( ! class_exists( \ystandard\Color_Palette_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-color-palette-control.php';
 		}
 		$block_editor = ( new ReflectionClass( \ystandard\Block_Editor::class ) )->newInstanceWithoutConstructor();
 		$color_palette = ( new ReflectionClass( \ystandard\Block_Editor_Color_Palette::class ) )->newInstanceWithoutConstructor();
@@ -150,12 +150,13 @@ class CustomizerTest extends WP_UnitTestCase {
 	 * ユーザー定義色のプリセットCSSをGlobal Stylesが生成することを確認.
 	 */
 	public function test_global_styles_generates_user_color_palette_css() {
-		update_option( 'ys-color-palette-ys-user-1', '#07689f' );
+		update_option( 'ys-color-palette-ys-user-1', '#07689f80' );
 		WP_Theme_JSON_Resolver::clean_cached_data();
 
 		$stylesheet = wp_get_global_stylesheet( [ 'variables', 'presets' ] );
 
 		$this->assertStringContainsString( '--wp--preset--color--ys-user-1', $stylesheet );
+		$this->assertStringContainsString( '#07689f80', $stylesheet );
 		$this->assertStringContainsString( '.has-ys-user-1-color', $stylesheet );
 		$this->assertStringContainsString( '.has-ys-user-1-background-color', $stylesheet );
 		$this->assertStringContainsString( '.has-ys-user-1-border-color', $stylesheet );
@@ -173,8 +174,8 @@ class CustomizerTest extends WP_UnitTestCase {
 		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
 			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
 		}
-		if ( ! class_exists( \ystandard\Color_Control::class ) ) {
-			require get_template_directory() . '/inc/customizer/class-color-control.php';
+		if ( ! class_exists( \ystandard\Color_Palette_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-color-palette-control.php';
 		}
 		$block_editor = ( new ReflectionClass( \ystandard\Block_Editor::class ) )->newInstanceWithoutConstructor();
 		$color_palette = ( new ReflectionClass( \ystandard\Block_Editor_Color_Palette::class ) )->newInstanceWithoutConstructor();
@@ -183,11 +184,52 @@ class CustomizerTest extends WP_UnitTestCase {
 		$color_palette->customize_register( $wp_customize );
 
 		$control = $wp_customize->get_control( 'ys-color-palette-ys-user-1' );
-		$this->assertInstanceOf( \ystandard\Color_Control::class, $control );
-		$this->assertContains( '#07689f', $control->palette );
-		$this->assertContains( '#f2b3b8', $control->palette );
-		$this->assertContains( '#ceecfd', $control->palette );
-		$this->assertNotContains( '#000000', $control->palette );
+		$this->assertInstanceOf( \ystandard\Color_Palette_Control::class, $control );
+		$this->assertTrue( $control->enable_alpha );
+		$palette = array_column( $control->palette, null, 'slug' );
+		$this->assertSame( '#07689f', $palette['ys-user-1']['color'] );
+		$this->assertSame( '色設定 1', $palette['ys-user-1']['name'] );
+		$this->assertSame( '#f2b3b8', $palette['ys-user-2']['color'] );
+		$this->assertSame( '#ceecfd', $palette['ys-light-blue']['color'] );
+		$this->assertArrayNotHasKey( 'black', $palette );
+		$control->to_json();
+		$this->assertTrue( $control->json['enableAlpha'] );
+		$this->assertSame( $control->palette, $control->json['palette'] );
+		$control->enqueue();
+		$script = wp_scripts()->registered['customizer-control-ys-color-palette-control'];
+		$this->assertSame( [ 'customize-controls', 'wp-components', 'wp-element' ], $script->deps );
+	}
+
+	/**
+	 * カラー設定でアルファ値を含むHEXを保存できることを確認.
+	 *
+	 * @dataProvider color_sanitize_provider
+	 *
+	 * @param mixed       $input    入力値.
+	 * @param string|null $expected 期待値.
+	 */
+	public function test_color_sanitize( $input, $expected ) {
+		$this->assertSame( $expected, \ystandard\Customize_Control::sanitize_color( $input ) );
+	}
+
+	/**
+	 * カラー設定のサニタイズ用データ.
+	 *
+	 * @return array
+	 */
+	public function color_sanitize_provider() {
+		return [
+			'empty'       => [ '', '' ],
+			'hex3'        => [ '#abc', '#abc' ],
+			'hex4'        => [ '#abcd', '#abcd' ],
+			'hex6'        => [ '#123456', '#123456' ],
+			'hex8'        => [ '#12345678', '#12345678' ],
+			'uppercase'   => [ '#ABCDEF80', '#ABCDEF80' ],
+			'no-hash'     => [ '123456', null ],
+			'invalid-hex' => [ '#gggggg', null ],
+			'invalid-len' => [ '#12345', null ],
+			'not-string'  => [ 123456, null ],
+		];
 	}
 
 	/**

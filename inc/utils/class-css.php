@@ -260,11 +260,27 @@ class CSS {
 	 * @return array
 	 */
 	public static function hex_2_rgb( $color ) {
+		$color = ltrim( $color, '#' );
+		if ( 3 === strlen( $color ) || 4 === strlen( $color ) ) {
+			$color = $color[0] . $color[0] . $color[1] . $color[1] . $color[2] . $color[2];
+		}
+
 		return [
-			hexdec( substr( $color, 1, 2 ) ),
-			hexdec( substr( $color, 3, 2 ) ),
-			hexdec( substr( $color, 5, 2 ) ),
+			hexdec( substr( $color, 0, 2 ) ),
+			hexdec( substr( $color, 2, 2 ) ),
+			hexdec( substr( $color, 4, 2 ) ),
 		];
+	}
+
+	/**
+	 * カラーコードにアルファ値が含まれているか.
+	 *
+	 * @param string $color カラーコード.
+	 *
+	 * @return bool
+	 */
+	public static function has_alpha_hex( $color ) {
+		return is_string( $color ) && 1 === preg_match( '/^#(?:[0-9a-f]{4}|[0-9a-f]{8})$/i', $color );
 	}
 
 

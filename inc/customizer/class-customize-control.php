@@ -200,31 +200,26 @@ class Customize_Control {
 	public function add_color( $args ) {
 		$args = $this->parse_args( $args );
 		// サニタイズ設定.
-		$args['sanitize_callback'] = 'sanitize_hex_color';
+		$args['sanitize_callback'] = [ __CLASS__, 'sanitize_color' ];
 		// 設定追加.
 		$this->add_setting( $args, false );
 		// パレット設定.
 		$palettes = self::get_color_palette_from_global_settings();
 
 		// コントロール追加.
-		if ( class_exists( __NAMESPACE__ . '\Color_Control' ) ) {
+		if ( class_exists( __NAMESPACE__ . '\Color_Palette_Control' ) ) {
 			$this->wp_customize->add_control(
-				new Color_Control(
+				new Color_Palette_Control(
 					$this->wp_customize,
 					$args['id'],
 					self::get_control_args(
 						$args,
 						$args['id'],
-						[ 'palette' => $palettes ]
+						[
+							'palette'      => $palettes,
+							'enable_alpha' => true,
+						]
 					)
-				)
-			);
-		} else {
-			$this->wp_customize->add_control(
-				new \WP_Customize_Color_Control(
-					$this->wp_customize,
-					$args['id'],
-					self::get_control_args( $args, $args['id'] )
 				)
 			);
 		}
@@ -234,7 +229,7 @@ class Customize_Control {
 	/**
 	 * Global Settingsからカラーパレットを取得.
 	 *
-	 * @return array|true
+	 * @return array
 	 */
 	private static function get_color_palette_from_global_settings() {
 		$color_settings = wp_get_global_settings( [ 'color' ] );
@@ -254,11 +249,15 @@ class Customize_Control {
 				if ( empty( $color['slug'] ) || empty( $color['color'] ) ) {
 					continue;
 				}
-				$colors[ $color['slug'] ] = $color['color'];
+				$colors[ $color['slug'] ] = [
+					'name'  => $color['name'] ?? $color['slug'],
+					'slug'  => $color['slug'],
+					'color' => $color['color'],
+				];
 			}
 		}
 
-		return empty( $colors ) ? true : array_values( $colors );
+		return array_values( $colors );
 	}
 
 	/**
@@ -587,6 +586,27 @@ class Customize_Control {
 		}
 
 		return ( ( isset( $value ) && Convert::to_bool( $value ) ) ? true : false );
+	}
+
+	/**
+	 * Color
+	 *
+	 * @param string $color Color.
+	 *
+	 * @return string|null
+	 */
+	public static function sanitize_color( $color ) {
+		if ( '' === $color ) {
+			return '';
+		}
+		if ( ! is_string( $color ) ) {
+			return null;
+		}
+		if ( preg_match( '/^#(?:[0-9a-f]{3}|[0-9a-f]{4}|[0-9a-f]{6}|[0-9a-f]{8})$/i', $color ) ) {
+			return $color;
+		}
+
+		return null;
 	}
 
 	/**
