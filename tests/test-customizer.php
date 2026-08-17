@@ -196,8 +196,15 @@ class CustomizerTest extends WP_UnitTestCase {
 		$this->assertTrue( $control->json['enableAlpha'] );
 		$this->assertSame( $control->palette, $control->json['palette'] );
 		$control->enqueue();
-		$script = wp_scripts()->registered['customizer-control-ys-color-palette-control'];
-		$this->assertSame( [ 'customize-controls', 'wp-components', 'wp-element' ], $script->deps );
+		$script     = wp_scripts()->registered['customizer-control-ys-color-palette-control'];
+		$asset_file = get_template_directory() . '/js/customizer-control-ys-color-palette-control.asset.php';
+		$asset      = file_exists( $asset_file ) ? require $asset_file : [
+			'dependencies' => [],
+			'version'      => \ystandard\utils\Theme::get_ystandard_version(),
+		];
+		$dependencies = array_values( array_unique( array_merge( [ 'customize-controls' ], $asset['dependencies'] ) ) );
+		$this->assertSame( $dependencies, $script->deps );
+		$this->assertSame( $asset['version'], $script->ver );
 	}
 
 	/**

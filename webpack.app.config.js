@@ -9,7 +9,7 @@ module.exports = {
 		'custom-uploader': './src/scripts/admin/custom-uploader.js',
 		'customizer-control': './src/scripts/admin/customizer-control.js',
 		'customizer-control-ys-color-palette-control':
-			'./src/scripts/admin/customizer-control-ys-color-palette-control.js',
+			'./src/scripts/admin/customizer-control-ys-color-palette-control.jsx',
 		'customizer-preview': './src/scripts/admin/customizer-preview.js',
 		'search-icons': './src/scripts/admin/search-icons.js',
 	},

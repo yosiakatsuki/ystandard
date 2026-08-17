@@ -14,7 +14,7 @@ WordPressの`@wordpress/components`にある`ColorPalette`はカスタマイザ�
 
 - `WP_Customize_Color_Control`を継承した`Color_Control`を削除する
 - `WP_Customize_Control`を継承した`Color_Palette_Control`を追加する
-- UIには`wp.components.ColorPalette`を使用し、`wp.blockEditor`には依存しない
+- UIには`@wordpress/components`の`Dropdown`、`ColorIndicator`、`ColorPalette`を使用し、`@wordpress/block-editor`には依存しない
 - Classic Editorなど投稿編集方式を変更するプラグインの状態は判定しない
 - `Customize_Control::add_color()`を使用するすべての設定を、新しいコントロールへ一括で切り替える
 - 保存済みの設定IDと6桁HEX値はそのまま引き継ぐ
@@ -23,17 +23,24 @@ WordPressの`@wordpress/components`にある`ColorPalette`はカスタマイザ�
 
 ## コントロール構成
 
-PHP側の`Color_Palette_Control`は、ラベル、説明、Reactのマウント先を出力する。Global Settingsから取得したパレットと`enableAlpha`をJSONでJavaScriptへ渡す。
+PHP側の`Color_Palette_Control`は、説明とReactのマウント先を出力する。Global Settingsから取得したパレット、ラベル、`enableAlpha`をJSONでJavaScriptへ渡す。
 
-JavaScript側は`wp.element.createRoot()`で次のコンポーネントを描画する。
+JavaScript側はJSXで実装し、`@wordpress/element`の`createRoot()`で次のコンポーネントを描画する。
 
-- `wp.components.SlotFillProvider`
-- `wp.components.Popover.Slot`
-- `wp.components.ColorPalette`
+- `SlotFillProvider`
+- `Dropdown`
+- `Button`
+- `ColorIndicator`
+- `ColorPalette`
+- `Popover.Slot`
+
+通常時は色見本と設定名だけをボタンとして表示し、クリックすると`Dropdown`のポップオーバー内に`ColorPalette`を表示する。未設定時の色見本には斜線を表示する。ポップオーバーは外側のクリックとEscで閉じ、キーボード操作と`aria-expanded`に対応する。
 
 `ColorPalette`の`value`にはカスタマイザー設定値を渡し、`onChange`では`control.setting.set()`を実行する。外部から設定値が変わった場合も再描画し、カスタマイザーの設定状態と双方向に同期する。
 
-スクリプトは`customize-controls`、`wp-components`、`wp-element`へ依存させる。カスタマイザーCSSは`wp-components`へ依存させ、WordPressコアのコンポーネントスタイルを先に読み込む。
+`@wordpress/components`と`@wordpress/element`はWordPress 6.9向けのバージョンを開発依存へ追加する。webpackではWordPressコアの共有スクリプトとして外部化し、React本体をテーマのバンドルへ含めない。
+
+`wp-scripts`が生成する`customizer-control-ys-color-palette-control.asset.php`をPHPで読み込み、抽出された依存スクリプトとバージョンを使用する。`customize-controls`だけはカスタマイザー固有の依存としてPHP側で追加する。カスタマイザーCSSは`wp-components`へ依存させ、WordPressコアのコンポーネントスタイルを先に読み込む。
 
 ## パレット
 
@@ -104,4 +111,6 @@ JavaScript側は`wp.element.createRoot()`で次のコンポーネントを描画
 - カスタム色で不透明度を選択できる
 - 色のクリアと再選択が設定値へ反映される
 - ツールチップとポップオーバーがカスタマイザー内で欠けずに表示される
+- 色見本と設定名のボタンからパレットを開閉できる
+- 外側のクリックとEscでポップオーバーを閉じられる
 - 保存後の再読み込みで色と不透明度が復元される

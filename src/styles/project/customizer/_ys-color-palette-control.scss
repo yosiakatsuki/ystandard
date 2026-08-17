@@ -1,5 +1,57 @@
 .customize-control-ys-color-palette-control {
-  .ys-color-palette-control__mount {
-	margin-top: 8px;
-  }
+	.ys-color-palette-control__dropdown,
+	.ys-color-palette-control__toggle {
+		width: 100%;
+	}
+
+	.ys-color-palette-control__toggle {
+		justify-content: flex-start;
+		min-height: 48px;
+		padding: 8px 12px;
+		border: 1px solid #949494;
+		border-radius: 2px;
+		color: #1e1e1e;
+		box-shadow: none;
+		gap: 12px;
+
+		&:hover {
+			border-color: #1e1e1e;
+			color: #1e1e1e;
+		}
+
+		&:focus:not(:disabled) {
+			border-color: var(--wp-admin-theme-color, #3858e9);
+			box-shadow: 0 0 0 1px var(--wp-admin-theme-color, #3858e9);
+		}
+	}
+
+	.ys-color-palette-control__indicator {
+		position: relative;
+		flex: 0 0 auto;
+		width: 28px;
+		height: 28px;
+		margin: 0;
+		border: 1px solid #949494;
+
+		&.is-empty::after {
+			position: absolute;
+			top: 2px;
+			left: 50%;
+			width: 1px;
+			height: calc(100% - 4px);
+			transform: rotate(45deg);
+			background: #949494;
+			content: "";
+		}
+	}
+
+	.ys-color-palette-control__label {
+		font-weight: 600;
+	}
+}
+
+.ys-color-palette-control__popover {
+	min-width: 280px;
+	max-width: calc(100vw - 32px);
+	padding: 16px;
 }

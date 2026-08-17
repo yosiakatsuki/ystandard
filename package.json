@@ -5,6 +5,8 @@
 	"license": "GPLv2",
 	"devDependencies": {
 		"@wordpress/browserslist-config": "^6.17.0",
+		"@wordpress/components": "^30.6.5",
+		"@wordpress/element": "^6.33.1",
 		"@wordpress/env": "^10.17.0",
 		"@wordpress/eslint-plugin": "^22.3.0",
 		"@wordpress/prettier-config": "^4.17.0",

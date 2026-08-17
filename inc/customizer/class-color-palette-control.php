@@ -9,6 +9,8 @@
 
 namespace ystandard;
 
+use ystandard\utils\Theme;
+
 defined( 'ABSPATH' ) || die();
 
 if ( class_exists( 'WP_Customize_Control' ) ) {
@@ -44,13 +46,24 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		 * スクリプト読み込み.
 		 */
 		public function enqueue() {
-			$file_name = 'customizer-control-ys-color-palette-control.js';
+			$file_base  = 'customizer-control-ys-color-palette-control';
+			$script_dir = get_template_directory() . '/js';
+			$asset      = [
+				'dependencies' => [],
+				'version'      => Theme::get_ystandard_version(),
+			];
+			$asset_file = "{$script_dir}/{$file_base}.asset.php";
+
+			if ( file_exists( $asset_file ) ) {
+				$asset = wp_parse_args( require $asset_file, $asset );
+			}
+
 			wp_enqueue_script(
 				'customizer-control-ys-color-palette-control',
-				get_template_directory_uri() . "/js/{$file_name}",
-				[ 'customize-controls', 'wp-components', 'wp-element' ],
-				filemtime( get_template_directory() . "/js/{$file_name}" ),
-				false
+				get_template_directory_uri() . "/js/{$file_base}.js",
+				array_values( array_unique( array_merge( [ 'customize-controls' ], $asset['dependencies'] ) ) ),
+				$asset['version'],
+				true
 			);
 		}
 
@@ -69,13 +82,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		protected function content_template() {
 			?>
 			<# var descriptionId = '_customize-description-' + data.id; #>
-			<# if ( data.label ) { #>
-				<span class="customize-control-title">{{ data.label }}</span>
-			<# } #>
+			<div class="ys-color-palette-control__mount"></div>
 			<# if ( data.description ) { #>
 				<span id="{{ descriptionId }}" class="description customize-control-description">{{{ data.description }}}</span>
 			<# } #>
-			<div class="ys-color-palette-control__mount"<# if ( data.description ) { #> aria-describedby="{{ descriptionId }}"<# } #>></div>
 			<?php
 		}
 	}
