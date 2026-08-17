@@ -74,6 +74,10 @@ msgstr ""
 msgid "Related Posts"
 msgstr ""
 
+#: inc/design/class-site-background.php:60
+msgid "サイト背景"
+msgstr ""
+
 #: inc/design/class-font.php:191
 msgid "極小"
 msgstr ""

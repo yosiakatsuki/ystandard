@@ -48,6 +48,40 @@ class CustomizerTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * サイト背景がトップレベルに移動し、他のデザイン設定がパネル内に残ることを確認.
+	 */
+	public function test_site_background_is_top_level_section() {
+		$wp_customize = new WP_Customize_Manager();
+
+		$wp_customize->register_controls();
+		$customizer_classes = [
+			\ystandard\Design::class,
+			\ystandard\Mobile::class,
+			\ystandard\Toc::class,
+			\ystandard\Site_Background::class,
+		];
+		foreach ( $customizer_classes as $class_name ) {
+			$customizer = ( new ReflectionClass( $class_name ) )->newInstanceWithoutConstructor();
+			$customizer->customize_register( $wp_customize );
+		}
+
+		$site_background = $wp_customize->get_section( 'ys_site_background' );
+		$this->assertInstanceOf( WP_Customize_Section::class, $site_background );
+		$this->assertSame( '[ys]サイト背景', $site_background->title );
+		$this->assertSame( '', $site_background->panel );
+		$this->assertSame( \ystandard\Customizer::get_priority( 'ys_site_background' ), $site_background->priority );
+		$this->assertSame( 'ys_site_background', $wp_customize->get_control( 'ys_color_site_bg' )->section );
+
+		foreach ( [ 'background_image', 'background_preset', 'background_size', 'background_repeat', 'background_attachment', 'background_position' ] as $control_id ) {
+			$this->assertSame( 'ys_site_background', $wp_customize->get_control( $control_id )->section );
+		}
+
+		$this->assertInstanceOf( WP_Customize_Panel::class, $wp_customize->get_panel( 'ys_design' ) );
+		$this->assertSame( 'ys_design', $wp_customize->get_section( 'ys_mobile_design' )->panel );
+		$this->assertSame( 'ys_design', $wp_customize->get_section( 'ys_design_toc' )->panel );
+	}
+
+	/**
 	 * ユーザー定義色を6件登録することを確認.
 	 */
 	public function test_color_palette_settings_are_registered() {

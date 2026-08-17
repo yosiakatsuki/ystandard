@@ -57,10 +57,9 @@ class Site_Background {
 		$customizer->add_section(
 			[
 				'section'     => 'ys_site_background',
-				'title'       => 'サイト背景',
+				'title'       => '[ys]' . __( 'サイト背景', 'ystandard' ),
 				'description' => Admin::manual_link( 'manual/site-background' ),
-				'priority'    => 20,
-				'panel'       => Design::PANEL_NAME,
+				'priority'    => Customizer::get_priority( 'ys_site_background' ),
 			]
 		);
 
