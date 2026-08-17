@@ -204,11 +204,7 @@ class Customize_Control {
 		// 設定追加.
 		$this->add_setting( $args, false );
 		// パレット設定.
-		$palettes      = true;
-		$color_palette = get_theme_support( 'editor-color-palette' );
-		if ( $color_palette && is_array( $color_palette ) ) {
-			$palettes = array_column( $color_palette[0], 'color' );
-		}
+		$palettes = self::get_color_palette_from_global_settings();
 
 		// コントロール追加.
 		if ( class_exists( __NAMESPACE__ . '\Color_Control' ) ) {
@@ -233,6 +229,36 @@ class Customize_Control {
 			);
 		}
 		$this->do_action_after_add_setting( $args['id'], $args );
+	}
+
+	/**
+	 * Global Settingsからカラーパレットを取得.
+	 *
+	 * @return array|true
+	 */
+	private static function get_color_palette_from_global_settings() {
+		$color_settings = wp_get_global_settings( [ 'color' ] );
+		$palette        = $color_settings['palette'] ?? [];
+		$origins        = [ 'theme', 'custom' ];
+		$colors         = [];
+
+		if ( ! empty( $color_settings['defaultPalette'] ) ) {
+			array_unshift( $origins, 'default' );
+		}
+
+		foreach ( $origins as $origin ) {
+			if ( empty( $palette[ $origin ] ) ) {
+				continue;
+			}
+			foreach ( $palette[ $origin ] as $color ) {
+				if ( empty( $color['slug'] ) || empty( $color['color'] ) ) {
+					continue;
+				}
+				$colors[ $color['slug'] ] = $color['color'];
+			}
+		}
+
+		return empty( $colors ) ? true : array_values( $colors );
 	}
 
 	/**

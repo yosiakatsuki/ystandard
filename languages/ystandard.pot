@@ -44,94 +44,25 @@ msgid "Search Results for \"%s\""
 msgstr ""
 
 #. translators: %s: User Setting No.
-#: inc/block-editor/class-block-editor-color-palette.php:226
+#: inc/block-editor/class-block-editor-color-palette.php:102
 msgctxt "color-palette"
-msgid "User Color %s"
+msgid "色設定 %s"
 msgstr ""
 
-#: inc/block-editor/class-block-editor-color-palette.php:235
-msgctxt "color-palette"
-msgid "よく使う色を設定しておくと便利です。"
+#: inc/block-editor/class-block-editor-color-palette.php:125
+msgid "色定義"
 msgstr ""
 
-#: inc/block-editor/class-block-editor-color-palette.php:268
-msgctxt "color-palette"
-msgid "Blue"
+#: inc/block-editor/class-block-editor-color-palette.php:129
+msgid "ブロックエディターのカラーパレットに追加する色を設定できます。"
 msgstr ""
 
-#: inc/block-editor/class-block-editor-color-palette.php:275
-msgctxt "color-palette"
-msgid "Light Blue"
+#: inc/block-editor/class-block-editor.php:98
+msgid "ブロックエディター"
 msgstr ""
 
-#: inc/block-editor/class-block-editor-color-palette.php:282
-msgctxt "color-palette"
-msgid "Red"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:289
-msgctxt "color-palette"
-msgid "Pink"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:296
-msgctxt "color-palette"
-msgid "Green"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:303
-msgctxt "color-palette"
-msgid "Light Green"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:310
-msgctxt "color-palette"
-msgid "Yellow"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:317
-msgctxt "color-palette"
-msgid "Light Yellow"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:324
-msgctxt "color-palette"
-msgid "Orange"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:331
-msgctxt "color-palette"
-msgid "Light Orange"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:338
-msgctxt "color-palette"
-msgid "Purple"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:345
-msgctxt "color-palette"
-msgid "Light Purple"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:352
-msgctxt "color-palette"
-msgid "Gray"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:359
-msgctxt "color-palette"
-msgid "Light Gray"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:366
-msgctxt "color-palette"
-msgid "Black"
-msgstr ""
-
-#: inc/block-editor/class-block-editor-color-palette.php:373
-msgctxt "color-palette"
-msgid "White"
+#: inc/block-editor/class-block-editor.php:99
+msgid "ブロックエディター関連の設定"
 msgstr ""
 
 #: inc/breadcrumbs/class-breadcrumbs.php:162
@@ -141,6 +72,10 @@ msgstr ""
 
 #: inc/content/class-content.php:449
 msgid "Related Posts"
+msgstr ""
+
+#: inc/design/class-site-background.php:60
+msgid "サイト背景"
 msgstr ""
 
 #: inc/design/class-font.php:191

@@ -9,9 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\helper\Style_Sheet;
-use ystandard\utils\CSS;
-
 defined( 'ABSPATH' ) || die();
 
 /**
@@ -22,257 +19,95 @@ defined( 'ABSPATH' ) || die();
 class Block_Editor_Color_Palette {
 
 	/**
+	 * ユーザー定義色の上限.
+	 */
+	const USER_COLOR_LIMIT = 6;
+
+	/**
 	 * Block_Editor_Color_Pallet constructor.
 	 */
 	public function __construct() {
-		add_action( 'after_setup_theme', [ $this, 'add_theme_support' ] );
-		add_filter(
-			'ys_get_blocks_inline_css',
-			[ $this, 'enqueue_color_palette_css' ]
-		);
-		add_filter(
-			'ys_block_editor_assets_inline_css',
-			[ $this, 'enqueue_block_editor_color_palette_css' ]
-		);
+		add_filter( 'wp_theme_json_data_user', [ $this, 'add_user_color_palette_to_theme_json' ] );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 	}
 
 	/**
-	 * Add Theme Support
+	 * ユーザー定義色をTheme.jsonのユーザー設定に追加.
+	 *
+	 * @param \WP_Theme_JSON_Data $theme_json Theme.jsonデータ.
+	 *
+	 * @return \WP_Theme_JSON_Data
 	 */
-	public function add_theme_support() {
-		/**
-		 * ブロックエディター色設定
-		 */
-		add_theme_support( 'editor-color-palette', self::get_color_palette( false ) );
-	}
+	public function add_user_color_palette_to_theme_json( $theme_json ) {
+		$data             = $theme_json->get_data();
+		$existing_palette = $data['settings']['color']['palette']['custom'] ?? [];
+		$user_slugs       = [];
 
-	/**
-	 * フロント用カラーパレットCSS
-	 *
-	 * @param string $css CSS.
-	 *
-	 * @return string
-	 */
-	public function enqueue_color_palette_css( $css ) {
-		add_filter( 'ys_is_enqueue_color_pallet', '__return_true' );
-
-		return $css . self::get_color_palette_css( '.ystd' );
-	}
-
-	/**
-	 * 編集画面用カラーパレットCSS
-	 *
-	 * @param string $css CSS.
-	 *
-	 * @return string
-	 */
-	public function enqueue_block_editor_color_palette_css( $css ) {
-		add_filter( 'ys_is_enqueue_block_editor_color_pallet', '__return_true' );
-
-		return $css . self::get_color_palette_css( '.editor-styles-wrapper' );
-	}
-
-	/**
-	 * カラーパレット用CSS取得
-	 *
-	 * @param string $prefix Prefix.
-	 *
-	 * @return string
-	 */
-	public static function get_color_palette_css( $prefix ) {
-		$palette = get_theme_support( 'editor-color-palette' );
-		if ( empty( $palette ) ) {
-			return '';
+		for ( $i = 1; $i <= self::USER_COLOR_LIMIT; $i ++ ) {
+			$user_slugs[] = 'ys-user-' . $i;
 		}
-		$types = self::get_color_palette_css_types();
-		$css   = [];
-		foreach ( $palette[0] as $color ) {
-			foreach ( $types as $value ) {
-				$css[] = self::create_color_palette_css(
-					$color['slug'],
-					$color['color'],
-					[
-						'palette'     => $value['palette'],
-						'conditional' => $value['conditional'],
-						'property'    => $value['property'],
-						'state'       => '',
-					],
-					$prefix
-				);
 
-				if ( $value['state'] ) {
-					foreach ( $value['state'] as $state ) {
-						$css[] = self::create_color_palette_css(
-							$color['slug'],
-							$color['color'],
-							[
-								'palette'     => $value['palette'],
-								'conditional' => $value['conditional'],
-								'property'    => $value['property'],
-								'state'       => $state,
-							],
-							$prefix
-						);
-					}
+		$filtered_palette = array_values(
+			array_filter(
+				$existing_palette,
+				function ( $color ) use ( $user_slugs ) {
+					return empty( $color['slug'] ) || ! in_array( $color['slug'], $user_slugs, true );
 				}
-			}
+			)
+		);
+		$user_palette     = array_map(
+			function ( $color ) {
+				return [
+					'name'  => $color['name'],
+					'slug'  => $color['slug'],
+					'color' => $color['color'],
+				];
+			},
+			self::get_user_color_palette( false )
+		);
+
+		if ( $existing_palette === $filtered_palette && empty( $user_palette ) ) {
+			return $theme_json;
 		}
 
-		return CSS::minify( implode( ' ', $css ) );
-	}
-
-	/**
-	 * カラーパレット用CSS作成
-	 *
-	 * @param string $slug Slug.
-	 * @param string $color Color.
-	 * @param array  $args Args.
-	 * @param string $prefix CSS Prefix.
-	 *
-	 * @return string
-	 */
-	public static function create_color_palette_css( $slug, $color, $args, $prefix = '' ) {
-		$color_name  = $slug;
-		$color_class = "has-{$color_name}-" . $args['palette'];
-		$property    = $args['property'];
-		$state       = isset( $args['state'] ) && ! empty( $args['state'] ) ? ':' . $args['state'] : '';
-
-		// 色指定.
-		$color_class_section = "{$prefix} .{$color_class}{$state}";
-		// 条件付き.
-		if ( is_array( $args['conditional'] ) ) {
-			foreach ( $args['conditional'] as $conditional ) {
-				$conditional_class           = 'has-' . $conditional;
-				$conditional_class_section[] = "{$prefix} .{$conditional_class}.{$color_class}{$state}";
-			}
-			$conditional_class_section = implode( ',', $conditional_class_section );
-		} else {
-			$conditional_class         = 'has-' . $args['conditional'];
-			$conditional_class_section = "{$prefix} .{$conditional_class}.{$color_class}{$state}";
-		}
-
-		return "
-			{$color_class_section},
-			{$conditional_class_section}{
-				{$property}:{$color};
-			}
-		";
-	}
-
-	/**
-	 * カラーパレット用CSSを出力するタイプ
-	 *
-	 * @return array[]
-	 */
-	public static function get_color_palette_css_types() {
-		return apply_filters(
-			'ys_get_color_palette_css_types',
+		return $theme_json->update_with(
 			[
-				'color'            => [
-					'property'    => 'color',
-					'conditional' => [ 'text-color', 'inline-color' ],
-					'palette'     => 'color',
-					'state'       => [ 'hover' ],
-				],
-				'background-color' => [
-					'property'    => 'background-color',
-					'conditional' => 'background',
-					'palette'     => 'background-color',
-					'state'       => false,
-				],
-				'border-color'     => [
-					'property'    => 'border-color',
-					'conditional' => 'border',
-					'palette'     => 'border-color',
-					'state'       => false,
-				],
-				'fill'             => [
-					'property'    => 'fill',
-					'conditional' => 'fill-color',
-					'palette'     => 'fill',
-					'state'       => false,
+				'version'  => 3,
+				'settings' => [
+					'color' => [
+						'palette' => array_merge( $filtered_palette, $user_palette ),
+					],
 				],
 			]
 		);
 	}
 
 	/**
-	 * theme.jsonのカラーパレット取得
+	 * ユーザー定義色を取得
+	 *
+	 * @param bool $all 未設定の色を含めるか.
 	 *
 	 * @return array
 	 */
-	public static function get_color_palette() {
-		$color_palette = self::get_color_palette_from_theme_json();
-
-		return apply_filters( 'ys_editor_color_palette', $color_palette );
-
-	}
-
-	/**
-	 * TODO:カスタマイザーの色定義をteheme.jsonの情報にマージする
-	 * wp_theme_json_data_themeを使う
-	 *
-	 * @param bool $all ユーザー定義追加.
-	 *
-	 * @return array
-	 */
-	public static function get_color_palette_temp( $all = true ) {
+	public static function get_user_color_palette( $all = true ) {
 		$color_palette = [];
-		$theme_palette = self::get_color_palette_from_theme_json();
 
-		foreach ( $theme_palette as $default ) {
-			// カスタマイザーでの変更内容をマージ
-			$color           = Option::get_option(
-				"ys-color-palette-{$default['slug']}",
-				$default['default']
-			);
-			$color_palette[] = array_merge(
-				$default,
-				[ 'color' => $color ]
-			);
-		}
-		/**
-		 * ユーザー定義情報の追加
-		 */
-		for ( $i = 1; $i <= 3; $i ++ ) {
+		for ( $i = 1; $i <= self::USER_COLOR_LIMIT; $i ++ ) {
 			$option_name    = 'ys-color-palette-ys-user-' . $i;
-			$option_value   = Option::get_option( $option_name, '#ffffff' );
-			$option_default = Option::get_default( $option_name, '#ffffff' );
+			$option_value   = Option::get_option( $option_name, '' );
+			$option_default = Option::get_default( $option_name, '' );
 			if ( $all || $option_value !== $option_default ) {
 				$name = sprintf(
-				/* translators: %s: User Setting No. */
-					_x( 'User Color %s', 'color-palette', 'ystandard' ),
+					/* translators: %s: User Setting No. */
+					_x( '色設定 %s', 'color-palette', 'ystandard' ),
 					$i
 				);
-				// 追加.
 				$color_palette[] = [
-					'name'        => $name,
-					'slug'        => 'ys-user-' . $i,
-					'color'       => Option::get_option( $option_name, '#ffffff' ),
-					'default'     => '#ffffff',
-					'description' => _x( 'よく使う色を設定しておくと便利です。', 'color-palette', 'ystandard' ),
+					'name'    => $name,
+					'slug'    => 'ys-user-' . $i,
+					'color'   => $option_value,
+					'default' => '',
 				];
-			}
-		}
-
-		return apply_filters( 'ys_editor_color_palette', $color_palette );
-
-	}
-
-	/**
-	 * theme.jsonからカラーパレット取得
-	 *
-	 * @return array
-	 */
-	public static function get_color_palette_from_theme_json() {
-		$theme_json    = \WP_Theme_JSON_Resolver::get_merged_data();
-		$settings      = $theme_json->get_settings();
-		$color_palette = [];
-		// defaultとthemeに分かれているのでマージ.
-		if ( ! empty( $settings['color']['palette'] ) ) {
-			foreach ( $settings['color']['palette'] as $colors ) {
-				$color_palette = array_merge( $color_palette, $colors );
 			}
 		}
 
@@ -286,49 +121,28 @@ class Block_Editor_Color_Palette {
 	 */
 	public function customize_register( $wp_customize ) {
 		$customizer = new Customize_Control( $wp_customize );
-		$customizer->add_section(
+		$customizer->add_section_label(
+			esc_html__( '色定義', 'ystandard' ),
 			[
-				'section'     => 'ys_color_palette',
-				'title'       => 'カラーパレット',
-				'description' => 'ブロックで使用できる文字色・背景色の設定を変更できます。' . Admin::manual_link( 'manual/block-editor-color' ),
-				'priority'    => 10,
-				'panel'       => Block_Editor::PANEL_NAME,
+				'id'          => 'ys_color_palette_section_label',
+				'section'     => Block_Editor::SECTION_NAME,
+				'description' => esc_html__( 'ブロックエディターのカラーパレットに追加する色を設定できます。', 'ystandard' ),
 			]
 		);
-		do_action( 'ys_customizer_color_palette', $wp_customize, $customizer );
-		if ( apply_filters( 'ys_customizer_custom_color_palette', false ) ) {
-			return;
-		}
-		/**
-		 * カラーパレット設定の追加
-		 */
-		$list = self::get_color_palette();
-		foreach ( $list as $item ) {
-			if ( isset( $item['name'] ) && isset( $item['slug'] ) && isset( $item['color'] ) ) {
-				$dscr    = '';
-				$default = '#ffffff';
-				// 説明文.
-				if ( isset( $item['description'] ) ) {
-					$dscr = $item['description'];
-				}
-				// 初期値.
-				if ( isset( $item['default'] ) ) {
-					$default = $item['default'];
-				}
-				// 設定追加.
-				$customizer->add_color(
-					[
-						'id'          => 'ys-color-palette-' . $item['slug'],
-						'default'     => $default,
-						'label'       => $item['name'],
-						'description' => $dscr,
-						'transport'   => 'postMessage',
-					]
-				);
-			}
-		}
 
+		foreach ( self::get_user_color_palette() as $item ) {
+			$customizer->add_color(
+				[
+					'id'        => 'ys-color-palette-' . $item['slug'],
+					'section'   => Block_Editor::SECTION_NAME,
+					'default'   => $item['default'],
+					'label'     => $item['name'],
+					'transport' => 'postMessage',
+				]
+			);
+		}
 	}
+
 }
 
 new Block_Editor_Color_Palette();

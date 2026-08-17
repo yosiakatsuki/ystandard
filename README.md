@@ -52,6 +52,15 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 ##### 設定関連
 
+- [変更] カスタマイザーのブロックエディター用カラーパレット設定をユーザー定義色のみに変更
+	- テーマ標準のカラーパレットは`theme.json`で提供し、カスタマイザーでは変更不可
+	- v4のユーザー定義色3件（`ys-color-palette-ys-user-1`〜`ys-color-palette-ys-user-3`）は設定値を引き継ぐ
+	- ユーザー定義色を6件（`ys-color-palette-ys-user-1`〜`ys-color-palette-ys-user-6`）まで拡張
+	- カスタマイザーのトップレベルに「[ys]ブロックエディター」セクションとして配置し、1クリックで設定を表示
+	- セクション内に背景色付きの「色定義」見出しを表示
+- [変更] カスタマイザー「[ys]デザイン」内の「サイト背景」を、トップレベルの「[ys]サイト背景」へ移動
+	- サイト背景色・背景画像の保存値とセクションIDは引き継ぐ
+	- 「モバイル表示」と「目次」は段階移行のため、引き続き「[ys]デザイン」内に配置
 - [変更] 設定初期値変更
 	- 色を設定する項目の初期値を初期値なし（空白）に変更
 	- デザイン -> 投稿ページ -> ページレイアウト : 1カラムをデフォルトに変更
@@ -207,11 +216,21 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 #### v5.0.0 - 廃止されたオプション
 
 - ys_drawer_menu_toggle_top：メニュー開閉ボタンの縦位置調整
+- `ys-color-palette-ys-{標準色スラッグ}`：テーマ標準色を個別に変更する設定（ユーザー定義色の`ys-color-palette-ys-user-1`〜`ys-color-palette-ys-user-6`は継続）
 - ys_color_content_bg：本文エリア背景色（投稿・固定ページ別の設定に変更）
 - ys_show\_{post_type}\_header_category：投稿上部 カテゴリー情報の表示設定（表示するタクソノミーの選択に変更 ys\_{post_type}\_header_taxonomy）
 - ys_share_button_type_header：シェアボタン表示設定（投稿タイプ別の設定に変更 ys\_{post_type}\_share_button_type_header）
 - ys_share_button_type_footer：シェアボタン表示設定（投稿タイプ別の設定に変更 ys\_{post_type}\_share_button_type_footer）
 - ys_show\_{post_type}\_category：記事下カテゴリー表示（投稿タイプ別に表示するタクソノミーの選択方式に変更）
+
+#### v5.0.0 - 廃止されたフック
+
+- `ys_customizer_color_palette`：カラーパレット設定への項目追加アクション
+- `ys_customizer_custom_color_palette`：テーマ標準のカラーパレット設定出力を停止するフィルター
+- `ys_editor_color_palette`：ブロックエディター用カラーパレットを変更するフィルター
+- `ys_get_color_palette_css_types`：カラーパレット用CSSの出力形式を変更するフィルター
+- `ys_is_enqueue_color_pallet`：フロント用カラーパレットCSSの出力状態を示すフィルター
+- `ys_is_enqueue_block_editor_color_pallet`：ブロックエディター用カラーパレットCSSの出力状態を示すフィルター
 
 #### v5.0.0 - ファイル移動表
 
