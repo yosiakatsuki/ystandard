@@ -82,6 +82,10 @@ if ( class_exists( 'WP_Customize_Control' ) ) {
 		protected function content_template() {
 			?>
 			<# var descriptionId = '_customize-description-' + data.id; #>
+			<# var labelId = '_customize-label-' + data.id; #>
+			<# if ( data.label ) { #>
+				<span id="{{ labelId }}" class="customize-control-title">{{ data.label }}</span>
+			<# } #>
 			<div class="ys-color-palette-control__mount"></div>
 			<# if ( data.description ) { #>
 				<span id="{{ descriptionId }}" class="description customize-control-description">{{{ data.description }}}</span>

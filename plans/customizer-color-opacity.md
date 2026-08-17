@@ -14,7 +14,7 @@ WordPressの`@wordpress/components`にある`ColorPalette`はカスタマイザ�
 
 - `WP_Customize_Color_Control`を継承した`Color_Control`を削除する
 - `WP_Customize_Control`を継承した`Color_Palette_Control`を追加する
-- UIには`@wordpress/components`の`Dropdown`、`ColorIndicator`、`ColorPalette`を使用し、`@wordpress/block-editor`には依存しない
+- UIには`@wordpress/block-editor`の`ColorGradientControl`と、ブロックエディターの色設定と同じ`Dropdown`、`Button`、`ColorIndicator`構造を使用する
 - Classic Editorなど投稿編集方式を変更するプラグインの状態は判定しない
 - `Customize_Control::add_color()`を使用するすべての設定を、新しいコントロールへ一括で切り替える
 - 保存済みの設定IDと6桁HEX値はそのまま引き継ぐ
@@ -31,22 +31,28 @@ JavaScript側はJSXで実装し、`@wordpress/element`の`createRoot()`で次の
 - `Dropdown`
 - `Button`
 - `ColorIndicator`
-- `ColorPalette`
+- `ColorGradientControl`
 - `Popover.Slot`
 
-通常時は色見本と設定名だけをボタンとして表示し、クリックすると`Dropdown`のポップオーバー内に`ColorPalette`を表示する。未設定時の色見本には斜線を表示する。ポップオーバーは外側のクリックとEscで閉じ、キーボード操作と`aria-expanded`に対応する。
+通常時は色見本と設定名だけをボタンとして表示し、クリックすると`Dropdown`のポップオーバー内に`ColorGradientControl`を表示する。トグルのDOM構造とCSSクラスはブロックエディターの`ColorGradientSettingsDropdown`に合わせる。未設定時の色見本には斜線を表示する。ポップオーバーは外側のクリックとEscで閉じ、キーボード操作と`aria-expanded`に対応する。
+
+`ColorGradientSettingsDropdown`全体は`ToolsPanel`コンテキストがないと項目を描画しないため、カスタマイザーでは直接使用しない。ポップオーバー内部の`ColorGradientControl`を使用し、外側は同じWordPress ComponentsとCSSクラスで構成する。
+
+ブロックエディターの枠線用クラスはWordPress 7.1相当で変更されているため、コントロールの境界デザインには使用しない。`ys-color-palette-control__item`へ枠線と角丸を定義し、WordPress 6.5〜7.1で同じ表示を維持する。旧コントロールと同様に設定名をコントロール上部へ表示し、色選択ボタン内にも同じ設定名を表示する。
+
+パレットのグループ名は`@wordpress/i18n`の`_x()`を使用し、ブロックエディター本体と同じ翻訳コンテキストで「テーマ」「デフォルト」「カスタム」へ翻訳する。
 
 `ColorPalette`の`value`にはカスタマイザー設定値を渡し、`onChange`では`control.setting.set()`を実行する。外部から設定値が変わった場合も再描画し、カスタマイザーの設定状態と双方向に同期する。
 
-`@wordpress/components`と`@wordpress/element`はWordPress 6.9向けのバージョンを開発依存へ追加する。webpackではWordPressコアの共有スクリプトとして外部化し、React本体をテーマのバンドルへ含めない。
+`@wordpress/block-editor`、`@wordpress/components`、`@wordpress/element`、`@wordpress/i18n`はWordPress 6.9向けのバージョンを開発依存へ追加する。webpackではWordPressコアの共有スクリプトとして外部化し、React本体をテーマのバンドルへ含めない。カスタマイザーでは`wp-block-editor`のスタイルを読み込み、ブロックエディターの色設定と同じ外観を適用する。使用するコンポーネントはテーマの最低対応バージョンであるWordPress 6.5にも存在するものに限定する。
 
-`wp-scripts`が生成する`customizer-control-ys-color-palette-control.asset.php`をPHPで読み込み、抽出された依存スクリプトとバージョンを使用する。`customize-controls`だけはカスタマイザー固有の依存としてPHP側で追加する。カスタマイザーCSSは`wp-components`へ依存させ、WordPressコアのコンポーネントスタイルを先に読み込む。
+`wp-scripts`が生成する`customizer-control-ys-color-palette-control.asset.php`をPHPで読み込み、抽出された依存スクリプトとバージョンを使用する。`customize-controls`だけはカスタマイザー固有の依存としてPHP側で追加する。カスタマイザーCSSは`wp-block-editor`と`wp-components`へ依存させ、WordPressコアのコンポーネントスタイルを先に読み込む。
 
 ## パレット
 
-パレットの正本は引き続きGlobal Settingsとする。`defaultPalette`が有効な場合はdefault originを含め、theme、customの順に同じslugを後勝ちで統合する。
+パレットの正本は引き続きGlobal Settingsとする。theme、`defaultPalette`が有効な場合のdefault、customの順に取得する。各定義元を平坦化せず、`ColorPalette`が複数パレットとして扱える`[{ name, slug, colors }]`形式で渡す。
 
-新しい`ColorPalette`では色名を表示できるため、カラーコードだけでなく次の情報を渡す。
+各パレットには表示名と定義元slugを渡し、パレット内の色には次の情報を渡す。
 
 - `name`
 - `slug`
@@ -98,6 +104,7 @@ JavaScript側はJSXで実装し、`@wordpress/element`の`createRoot()`で次の
 - `add_color()`で`Color_Palette_Control`が登録される
 - 全カラー設定で不透明度が有効になる
 - Global Settingsの色名、slug、カラーコードがコントロールへ渡る
+- Global Settingsのパレットが「テーマ」「デフォルト」「カスタム」にグループ化される
 - 3桁・4桁・6桁・8桁HEXと空文字を保存できる
 - 不正な色値を保存できない
 - モバイルフッター背景色で既存値とアルファ付き値の出力が正しい

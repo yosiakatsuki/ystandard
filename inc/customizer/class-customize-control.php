@@ -234,30 +234,43 @@ class Customize_Control {
 	private static function get_color_palette_from_global_settings() {
 		$color_settings = wp_get_global_settings( [ 'color' ] );
 		$palette        = $color_settings['palette'] ?? [];
-		$origins        = [ 'theme', 'custom' ];
-		$colors         = [];
+		$origins        = [
+			'theme' => _x( 'Theme', 'Indicates this palette comes from the theme.' ),
+		];
+		$palettes       = [];
 
 		if ( ! empty( $color_settings['defaultPalette'] ) ) {
-			array_unshift( $origins, 'default' );
+			$origins['default'] = _x( 'Default', 'Indicates this palette comes from WordPress.' );
 		}
+		$origins['custom'] = _x( 'Custom', 'Indicates this palette is created by the user.' );
 
-		foreach ( $origins as $origin ) {
+		foreach ( $origins as $origin => $name ) {
 			if ( empty( $palette[ $origin ] ) ) {
 				continue;
 			}
+
+			$colors = [];
 			foreach ( $palette[ $origin ] as $color ) {
 				if ( empty( $color['slug'] ) || empty( $color['color'] ) ) {
 					continue;
 				}
-				$colors[ $color['slug'] ] = [
+				$colors[] = [
 					'name'  => $color['name'] ?? $color['slug'],
 					'slug'  => $color['slug'],
 					'color' => $color['color'],
 				];
 			}
+
+			if ( ! empty( $colors ) ) {
+				$palettes[] = [
+					'name'   => $name,
+					'slug'   => $origin,
+					'colors' => $colors,
+				];
+			}
 		}
 
-		return array_values( $colors );
+		return $palettes;
 	}
 
 	/**

@@ -150,7 +150,7 @@ class Customizer {
 		wp_enqueue_style(
 			'ys-customizer',
 			get_template_directory_uri() . '/css/customizer.css',
-			[ 'wp-components' ],
+			[ 'wp-block-editor', 'wp-components' ],
 			Theme::get_ystandard_version()
 		);
 	}

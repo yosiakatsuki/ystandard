@@ -186,12 +186,17 @@ class CustomizerTest extends WP_UnitTestCase {
 		$control = $wp_customize->get_control( 'ys-color-palette-ys-user-1' );
 		$this->assertInstanceOf( \ystandard\Color_Palette_Control::class, $control );
 		$this->assertTrue( $control->enable_alpha );
-		$palette = array_column( $control->palette, null, 'slug' );
-		$this->assertSame( '#07689f', $palette['ys-user-1']['color'] );
-		$this->assertSame( '色設定 1', $palette['ys-user-1']['name'] );
-		$this->assertSame( '#f2b3b8', $palette['ys-user-2']['color'] );
-		$this->assertSame( '#ceecfd', $palette['ys-light-blue']['color'] );
-		$this->assertArrayNotHasKey( 'black', $palette );
+		$palettes = array_column( $control->palette, null, 'slug' );
+		$this->assertSame( [ 'theme', 'custom' ], array_keys( $palettes ) );
+		$this->assertSame( _x( 'Theme', 'Indicates this palette comes from the theme.' ), $palettes['theme']['name'] );
+		$this->assertSame( _x( 'Custom', 'Indicates this palette is created by the user.' ), $palettes['custom']['name'] );
+		$theme_palette  = array_column( $palettes['theme']['colors'], null, 'slug' );
+		$custom_palette = array_column( $palettes['custom']['colors'], null, 'slug' );
+		$this->assertSame( '#07689f', $custom_palette['ys-user-1']['color'] );
+		$this->assertSame( '色設定 1', $custom_palette['ys-user-1']['name'] );
+		$this->assertSame( '#f2b3b8', $custom_palette['ys-user-2']['color'] );
+		$this->assertSame( '#ceecfd', $theme_palette['ys-light-blue']['color'] );
+		$this->assertArrayNotHasKey( 'black', $theme_palette );
 		$control->to_json();
 		$this->assertTrue( $control->json['enableAlpha'] );
 		$this->assertSame( $control->palette, $control->json['palette'] );
@@ -205,6 +210,19 @@ class CustomizerTest extends WP_UnitTestCase {
 		$dependencies = array_values( array_unique( array_merge( [ 'customize-controls' ], $asset['dependencies'] ) ) );
 		$this->assertSame( $dependencies, $script->deps );
 		$this->assertSame( $asset['version'], $script->ver );
+	}
+
+	/**
+	 * カスタマイザーでブロックエディターのスタイルを読み込むことを確認.
+	 */
+	public function test_customizer_loads_block_editor_styles() {
+		$customizer = ( new ReflectionClass( \ystandard\Customizer::class ) )->newInstanceWithoutConstructor();
+		$customizer->print_styles( '' );
+
+		$style = wp_styles()->registered['ys-customizer'];
+		$this->assertTrue( wp_style_is( 'wp-block-editor', 'registered' ) );
+		$this->assertContains( 'wp-block-editor', $style->deps );
+		$this->assertContains( 'wp-components', $style->deps );
 	}
 
 	/**
