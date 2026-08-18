@@ -11,4 +11,3 @@ defined( 'ABSPATH' ) || die();
 
 require_once __DIR__ . '/class-custom-template.php';
 require_once __DIR__ . '/class-template-type.php';
-require_once __DIR__ . '/class-template.php';

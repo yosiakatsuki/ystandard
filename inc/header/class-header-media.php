@@ -119,7 +119,7 @@ class Header_Media {
 	 */
 	public function header_media() {
 		if ( self::is_active_header_media() ) {
-			Template::get_template_part( 'template-parts/header/custom-header' );
+			get_template_part( 'template-parts/header/custom-header' );
 		}
 	}
 

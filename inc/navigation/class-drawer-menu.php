@@ -64,7 +64,7 @@ class Drawer_Menu {
 			add_action(
 				$drawer_nav_hook,
 				function () {
-					ys_get_template_part( 'template-parts/navigation/drawer-nav-search-form' );
+					get_template_part( 'template-parts/navigation/drawer-nav-search-form' );
 				}
 			);
 		}

@@ -305,7 +305,7 @@ class Author {
 		];
 
 		ob_start();
-		Template::get_template_part(
+		get_template_part(
 			'template-parts/parts/author',
 			null,
 			[ 'author_data' => $data ]

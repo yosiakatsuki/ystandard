@@ -19,6 +19,6 @@
 <?php wp_body_open(); ?>
 <?php do_action( 'ys_body_prepend' ); ?>
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'ystandard' ); ?></a>
-<?php ys_get_template_part( 'template-parts/header/site-header' ); ?>
+<?php get_template_part( 'template-parts/header/site-header' ); ?>
 <?php do_action( 'ys_after_site_header' ); ?>
 <div id="content" class="site-content">

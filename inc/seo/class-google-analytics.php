@@ -36,7 +36,7 @@ class Google_Analytics {
 		}
 		$ys_tracking_option = apply_filters( 'ys_google_analytics_additional_config_info', [] );
 		ob_start();
-		Template::get_template_part(
+		get_template_part(
 			'template-parts/parts/ga',
 			Option::get_option( 'ys_ga_tracking_type', 'gtag' ),
 			[

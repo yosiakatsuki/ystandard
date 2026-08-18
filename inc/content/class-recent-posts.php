@@ -222,7 +222,7 @@ class Recent_Posts {
 		}
 
 		ob_start();
-		Template::get_template_part(
+		get_template_part(
 			$template,
 			$this->shortcode_atts['post_type'],
 			[

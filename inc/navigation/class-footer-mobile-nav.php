@@ -141,7 +141,7 @@ class Footer_Mobile_Nav {
 		if ( ! self::show_footer_mobile_nav() ) {
 			return;
 		}
-		Template::get_template_part( 'template-parts/footer/footer-mobile-nav' );
+		get_template_part( 'template-parts/footer/footer-mobile-nav' );
 	}
 }
 

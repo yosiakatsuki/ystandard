@@ -175,7 +175,7 @@ class Advertisement {
 		$num = $wp_query->current_post + 1;
 		if ( 0 === ( $num % $step ) && $limit >= ( $num / $step ) ) {
 			if ( '' !== self::get_infeed() ) {
-				ys_get_template_part( 'template-parts/archive/infeed' );
+				get_template_part( 'template-parts/archive/infeed' );
 			}
 		}
 	}

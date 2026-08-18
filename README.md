@@ -46,6 +46,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [変更] ファイル整理。変更内容は「v5.0.0 - ファイル移動表」を参照
 - [削除] polyfill削除（`Enqueue_Polyfill`クラスの削除）
 - [削除] おすすめプラグイン機能廃止
+- [変更] テンプレートパーツ読み込みをWordPressコアの`get_template_part()`へ統一
 - [追加] `/block-styles.json`からブロックスタイルを追加できる機能追加.
 - [変更] パンくずリストを404ページで表示しないように変更
 
@@ -246,8 +247,17 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - ys_share_button_type_footer：シェアボタン表示設定（投稿タイプ別の設定に変更 ys\_{post_type}\_share_button_type_footer）
 - ys_show\_{post_type}\_category：記事下カテゴリー表示（投稿タイプ別に表示するタクソノミーの選択方式に変更）
 
+#### v5.0.0 - 廃止された関数・クラスメソッド
+
+- `ys_get_template_part()`：WordPressコアの`get_template_part()`へ移行
+- `\ystandard\Template::get_template_part()`：WordPressコアの`get_template_part()`へ移行
+- 独自APIが追加していた投稿タイプ・タクソノミー別テンプレート候補と絶対パス読み込みも廃止
+
 #### v5.0.0 - 廃止されたフック
 
+- `ys_get_template_part_slug`：テンプレートパーツのスラグを変更するフィルター
+- `ys_get_template_part_name`：テンプレートパーツの名前を変更するフィルター
+- `ys_get_template_part_args`：テンプレートパーツへ渡す引数を変更するフィルター
 - `ys_customizer_color_palette`：カラーパレット設定への項目追加アクション
 - `ys_customizer_custom_color_palette`：テーマ標準のカラーパレット設定出力を停止するフィルター
 - `ys_editor_color_palette`：ブロックエディター用カラーパレットを変更するフィルター

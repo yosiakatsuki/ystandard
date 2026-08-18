@@ -10,4 +10,4 @@
 /**
  * フロントページテンプレート読み込み
  */
-ys_get_template_part( ys_get_front_page_template() );
+get_template_part( ys_get_front_page_template() );

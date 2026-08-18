@@ -168,16 +168,18 @@
 - Global StylesのCSSカスタムプロパティ生成を使用し、padding、margin、block gapなどの余白コントロールから選択可能にする
 
 ### `ys_get_template_part` 廃止
-- 実態は `\ystandard\Template::get_template_part`
-- WP コアの `get_template_part` に一本化
-- スラグにファイルパスを渡した際に該当ファイルを include する独自挙動は、コア関数で再現可能か要検証。再現できない場合は呼び出し側を書き換える
+- テーマ内33ファイル43箇所をWordPressコアの`get_template_part`へ置換
+- `ys_get_template_part()`と`\ystandard\Template::get_template_part()`を削除
+- サブディレクトリ、名前付きテンプレート、`$args`、子テーマ上書きはコア関数で維持
+- 投稿タイプ・タクソノミー別候補、絶対パス読み込み、3つの独自フィルターはv5で廃止
+- yStandard ToolboxとyStandard Blocksは独自のテンプレート読み込み経路を持ち、この削除への依存がないことを確認済み
 
 ### `template-parts/parts` 整理
 - `template-parts/parts/` の各ファイルを、意味カテゴリーごとのディレクトリに分割して `template-parts/` 直下へ配置
 - 参照している箇所も合わせて更新
 - 旧 `parts/` ディレクトリは廃止
 
-## 現在の進捗状況（2026-08-18時点）
+## 現在の進捗状況（2026-08-19時点）
 
 | 項目 | 状態 | 備考 |
 |---|---|---|
@@ -187,7 +189,7 @@
 | カラーパレット設定の整理 | 完了 | 標準色は`theme.json`で管理し、v4互換のユーザー定義色を6件まで設定可能。カスタマイザーの色設定は不透明度に対応 |
 | 文字サイズプリセット設定 | 実装済み | 固定値・fluidのユーザー定義プリセットを6件まで設定し、Global Stylesへ統合 |
 | 余白プリセット設定 | 実装済み | CSS長さ・計算式のユーザー定義プリセットを6件まで設定し、custom originとGlobal Stylesへ統合 |
-| `ys_get_template_part` 廃止 | 未着手 | 約 24 ファイル 33 箇所で利用中 |
+| `ys_get_template_part` 廃止 | 実装済み | 33ファイル43箇所をコア関数へ置換し、独自関数・クラスを削除 |
 | `template-parts/parts` 整理 | 一部着手 | header / footer / archive 等は分離済み、旧 `parts/` に 15 ファイル残存 |
 | HTML/CSS 構造の完成 | 進行中 | theme.json 導入後の挙動検証が必要 |
 
@@ -200,5 +202,3 @@
 - **パーツ単独読み込み設計**
   - ファイル冒頭での必要情報取得方式の具体設計
   - クラス経由方式との並行サポート時の一貫性
-- **`get_template_part` 置換時のファイルパス指定対応**
-  - コア関数で吸収できるか、呼び出し側書き換えが必要か

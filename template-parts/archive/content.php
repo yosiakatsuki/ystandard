@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || die();
 			the_post();
 			do_action( 'ys_archive_before_content' );
 			// 一覧読み込み.
-			ys_get_template_part(
+			get_template_part(
 				'template-parts/archive/details',
 				ys_get_archive_type()
 			);

@@ -17,11 +17,11 @@ defined( 'ABSPATH' ) || die();
 			/**
 			 * サイトタイトル・ロゴの出力
 			 */
-			ys_get_template_part( 'template-parts/header/header-logo' );
+			get_template_part( 'template-parts/header/header-logo' );
 			/**
 			 * グローバルナビゲーション
 			 */
-			ys_get_template_part( 'template-parts/navigation/global-nav' );
+			get_template_part( 'template-parts/navigation/global-nav' );
 			?>
 		</div>
 	</div>

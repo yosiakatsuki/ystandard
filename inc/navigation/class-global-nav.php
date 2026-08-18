@@ -95,7 +95,7 @@ class Global_Nav {
 	 * @return void
 	 */
 	public function global_nav_search() {
-		ys_get_template_part( 'template-parts/navigation/global-nav-search-form' );
+		get_template_part( 'template-parts/navigation/global-nav-search-form' );
 	}
 
 	/**

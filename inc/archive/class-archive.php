@@ -405,7 +405,7 @@ class Archive {
 			]
 		);
 		ob_start();
-		Template::get_template_part(
+		get_template_part(
 			'template-parts/parts/header-thumbnail',
 			'',
 			[ 'header_thumbnail' => $thumbnail ]

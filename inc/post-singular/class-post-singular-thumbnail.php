@@ -111,7 +111,7 @@ class Post_Singular_Thumbnail {
 			return;
 		}
 		ob_start();
-		Template::get_template_part( 'template-parts/parts/post-thumbnail' );
+		get_template_part( 'template-parts/parts/post-thumbnail' );
 		echo ob_get_clean();
 	}
 
@@ -124,7 +124,7 @@ class Post_Singular_Thumbnail {
 			return;
 		}
 		ob_start();
-		Template::get_template_part(
+		get_template_part(
 			'template-parts/parts/header-thumbnail',
 			'',
 			[ 'header_thumbnail' => $thumbnail ]

@@ -72,7 +72,7 @@ class Breadcrumbs {
 			return;
 		}
 		ob_start();
-		Template::get_template_part(
+		get_template_part(
 			'template-parts/breadcrumbs/breadcrumbs',
 			'',
 			[ 'breadcrumbs' => Breadcrumbs_Data::get_breadcrumbs() ]

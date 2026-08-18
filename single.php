@@ -12,7 +12,7 @@ get_header(); ?>
 	<?php
 	while ( have_posts() ) :
 		the_post();
-		ys_get_template_part( 'template-parts/single/content' );
+		get_template_part( 'template-parts/single/content' );
 	endwhile;
 	get_sidebar();
 	?>

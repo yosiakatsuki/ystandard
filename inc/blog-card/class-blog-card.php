@@ -232,7 +232,7 @@ class Blog_Card {
 		}
 
 		ob_start();
-		Template::get_template_part(
+		get_template_part(
 			'template-parts/parts/blog-card',
 			null,
 			[ 'ys_card_data' => $this->params ]
