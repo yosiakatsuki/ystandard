@@ -145,6 +145,11 @@ msgstr ""
 msgid "xx-large"
 msgstr ""
 
+#: inc/post-types/class-post-type-customizer.php:184
+#: inc/post-types/class-post-type-customizer.php:432
+msgid "モバイル表示でサイドバーを非表示にする"
+msgstr ""
+
 #. Template Name of the theme
 msgid ""
 "投稿ヘッダーなし 1カラム(ワイド)"

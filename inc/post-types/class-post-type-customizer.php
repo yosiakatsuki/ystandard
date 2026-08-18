@@ -176,6 +176,17 @@ class Post_Type_Customizer {
 				],
 			]
 		);
+
+		$this->customizer->add_checkbox(
+			[
+				'id'              => "ys_hide_{$this->post_type}_sidebar_mobile",
+				'default'         => Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ),
+				'label'           => __( 'モバイル表示でサイドバーを非表示にする', 'ystandard' ),
+				'active_callback' => function () {
+					return '2col' === Option::get_option( "ys_{$this->post_type}_layout", '1col' );
+				},
+			]
+		);
 	}
 
 	/**
@@ -411,6 +422,17 @@ class Post_Type_Customizer {
 					'1col' => sprintf( $img, $col1 ),
 					'2col' => sprintf( $img, $col2 ),
 				],
+			]
+		);
+
+		$this->customizer->add_checkbox(
+			[
+				'id'              => "ys_hide_{$this->post_type}_archive_sidebar_mobile",
+				'default'         => Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ),
+				'label'           => __( 'モバイル表示でサイドバーを非表示にする', 'ystandard' ),
+				'active_callback' => function () {
+					return '2col' === Option::get_option( "ys_{$this->post_type}_archive_layout", '1col' );
+				},
 			]
 		);
 

@@ -115,7 +115,7 @@ class Customizer {
 			z-index:99;
 		}';
 		// サイドバー表示用.
-		if ( Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
+		if ( Sidebar::is_hidden_on_mobile() ) {
 			// モバイルで非表示.
 			$css .= CSS::add_media_query_mobile( '.is-customize-preview .sidebar {display:none;}' );
 		}

@@ -625,7 +625,9 @@ src/scripts/*.ts
 | `ys_breadcrumbs` | 1500 | セクション |
 | `ys_toc` | 1510 | セクション |
 
-`ys_site_background`はトップレベルの「[ys]サイト背景」セクションとして配置する。旧「[ys]デザイン」パネルは段階移行中のため、「モバイル表示」と「目次」の所属先として一時的に残す。
+`ys_site_background`はトップレベルの「[ys]サイト背景」セクションとして配置する。モバイルサイドバー設定は投稿タイプ別設定へ移行済みで、旧「[ys]デザイン」パネルは「目次」の所属先として一時的に残す。
+
+モバイルサイドバー設定は、詳細ページでは`ys_hide_{post_type}_sidebar_mobile`、アーカイブページでは`ys_hide_{post_type}_archive_sidebar_mobile`として保存する。新しい設定が未保存の場合は、旧`ys_hide_sidebar_mobile`を互換値として使用する。
 
 ### 設定値の保存方式
 

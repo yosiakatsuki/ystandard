@@ -39,7 +39,8 @@ class Widget {
 		if ( ! is_null( $pre ) ) {
 			return $pre;
 		}
-		if ( Conditional_Tags::is_mobile() && Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
+		// モバイルでは、現在のページに対応する投稿タイプ別設定を使用する.
+		if ( Conditional_Tags::is_mobile() && Sidebar::is_hidden_on_mobile() ) {
 			return false;
 		}
 		if ( ! is_active_sidebar( 'sidebar-widget' ) && ! is_active_sidebar( 'sidebar-fixed' ) ) {
