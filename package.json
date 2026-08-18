@@ -4,9 +4,13 @@
 	"author": "yosiakatuki",
 	"license": "GPLv2",
 	"devDependencies": {
+		"@wordpress/block-editor": "^15.6.9",
 		"@wordpress/browserslist-config": "^6.17.0",
+		"@wordpress/components": "^30.6.5",
+		"@wordpress/element": "^6.33.1",
 		"@wordpress/env": "^10.17.0",
 		"@wordpress/eslint-plugin": "^22.3.0",
+		"@wordpress/i18n": "^6.6.1",
 		"@wordpress/prettier-config": "^4.17.0",
 		"@wordpress/scripts": "^30.10.0",
 		"@wp-playground/cli": "3.1.48",

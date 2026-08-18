@@ -8,8 +8,8 @@ module.exports = {
 		admin: './src/scripts/admin/admin.js',
 		'custom-uploader': './src/scripts/admin/custom-uploader.js',
 		'customizer-control': './src/scripts/admin/customizer-control.js',
-		'customizer-control-ys-color-control':
-			'./src/scripts/admin/customizer-control-ys-color-control.js',
+		'customizer-control-ys-color-palette-control':
+			'./src/scripts/admin/customizer-control-ys-color-palette-control.jsx',
 		'customizer-preview': './src/scripts/admin/customizer-preview.js',
 		'search-icons': './src/scripts/admin/search-icons.js',
 	},

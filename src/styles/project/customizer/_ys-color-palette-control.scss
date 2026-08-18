@@ -1,0 +1,25 @@
+.customize-control-ys-color-palette-control {
+	.ys-color-palette-control__item {
+		position: relative;
+		max-width: 100%;
+		padding: 0;
+		border: 1px solid #dddddd;
+		border-radius: 2px;
+	}
+
+	.ys-color-palette-control__dropdown {
+		display: block;
+		padding: 0;
+		border-radius: inherit;
+	}
+
+	.ys-color-palette-control__toggle {
+		justify-content: flex-start;
+		width: 100%;
+		height: auto;
+		padding: 10px 12px;
+		background-color: #ffffff;
+		border-radius: inherit;
+		text-align: left;
+	}
+}

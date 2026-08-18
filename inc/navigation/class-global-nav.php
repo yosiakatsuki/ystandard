@@ -170,13 +170,17 @@ class Global_Nav {
 			if ( empty( $sub_menu_background_color ) ) {
 				$sub_menu_background_color = '#ffffff';
 			}
-			// hexに変換.
-			$background_color = CSS::hex_2_rgb( $sub_menu_background_color );
-			// 不透明度が設定されていれば追加.
-			if ( ! empty( $sub_menu_background_opacity ) ) {
-				$background_color = 'rgba(' . $background_color[0] . ', ' . $background_color[1] . ', ' . $background_color[2] . ', ' . $sub_menu_background_opacity . ')';
+			if ( CSS::has_alpha_hex( $sub_menu_background_color ) ) {
+				$background_color = $sub_menu_background_color;
 			} else {
-				$background_color = 'rgb(' . $background_color[0] . ', ' . $background_color[1] . ', ' . $background_color[2] . ')';
+				// hexに変換.
+				$background_color = CSS::hex_2_rgb( $sub_menu_background_color );
+				// 不透明度が設定されていれば追加.
+				if ( ! empty( $sub_menu_background_opacity ) ) {
+					$background_color = 'rgba(' . $background_color[0] . ', ' . $background_color[1] . ', ' . $background_color[2] . ', ' . $sub_menu_background_opacity . ')';
+				} else {
+					$background_color = 'rgb(' . $background_color[0] . ', ' . $background_color[1] . ', ' . $background_color[2] . ')';
+				}
 			}
 			$sub_menu_background_color = Enqueue_Utility::get_css_var(
 				'--ystd--global-nav--sub-menu--background',

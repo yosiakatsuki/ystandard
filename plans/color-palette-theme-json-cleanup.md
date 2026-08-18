@@ -73,9 +73,9 @@ WordPressのGlobal Stylesは、色プリセットごとに次のCSSを自動生�
 
 `.has-{slug}-fill`と`has-fill-color`はWordPressコアの色プリセットが生成しない独自仕様だが、yStandardテーマ内に利用箇所はない。アドオン固有の塗り色機能が必要な場合は、その機能を提供するアドオン側がCSSを所有する。
 
-### カスタマイザーのカラーピッカー
+### カスタマイザーのカラーパレット
 
-`Customize_Control::add_color()`は、カラーピッカーの候補色を`get_theme_support( 'editor-color-palette' )`から取得している。テーマサポートを削除すると既定のIrisパレットへ戻るため、Global Settingsから候補色を作る処理へ置き換える。
+`Customize_Control::add_color()`は、カラーパレットの候補色をGlobal Settingsから取得する。UIには`wp.components.ColorPalette`を使用し、色名、slug、カラーコードを渡す。
 
 `wp_get_global_settings()`から`color.palette`を取得し、次の順序で有効色をまとめる。
 
@@ -83,7 +83,7 @@ WordPressのGlobal Stylesは、色プリセットごとに次のCSSを自動生�
 - theme origin
 - custom origin
 
-同じslugが複数originにある場合は、Global Settingsの優先順位に合わせて後のoriginで上書きする。最終的に色コードの配列へ変換して`Color_Control`へ渡す。パレットが空の場合だけ、現在と同じく`true`を渡してIrisの既定パレットを使う。
+同じslugが複数originにある場合は、Global Settingsの優先順位に合わせて後のoriginで上書きする。最終的に色情報の配列へ変換して`Color_Palette_Control`へ渡す。パレットが空の場合は空配列を渡し、カスタム色の選択だけを表示する。
 
 ## 削除する処理
 
@@ -166,7 +166,7 @@ WordPressのGlobal Stylesは、色プリセットごとに次のCSSを自動生�
 
 ### カスタマイザー
 
-- テーマサポートがなくても`Color_Control`のパレットにtheme originの色が入る
+- テーマサポートがなくても`Color_Palette_Control`のパレットにtheme originの色が入る
 - 設定済みユーザー定義色がcustom originからパレットへ入る
 - `defaultPalette: false`の場合はdefault originの色を入れない
 - 色設定1〜6の登録、初期値、ラベル、v4オプション継承は既存テストを維持する

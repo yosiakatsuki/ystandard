@@ -39,15 +39,20 @@ class Mobile_Footer {
 		// モバイルフッター背景色.
 		$bg_color = Option::get_option( 'ys_color_mobile_footer_bg', '' );
 		if ( $bg_color ) {
-			$bg_color = CSS::hex_2_rgb( $bg_color );
-			$bg       = Enqueue_Utility::get_css_var(
-				'mobile-footer--background',
-				sprintf(
+			if ( CSS::has_alpha_hex( $bg_color ) ) {
+				$background_color = $bg_color;
+			} else {
+				$bg_color         = CSS::hex_2_rgb( $bg_color );
+				$background_color = sprintf(
 					'rgb(%s,%s,%s,0.95)',
 					$bg_color[0],
 					$bg_color[1],
 					$bg_color[2]
-				)
+				);
+			}
+			$bg       = Enqueue_Utility::get_css_var(
+				'mobile-footer--background',
+				$background_color
 			);
 			$css_vars = array_merge( $css_vars, $bg );
 		}

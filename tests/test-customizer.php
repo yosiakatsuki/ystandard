@@ -17,6 +17,20 @@ class CustomizerTest extends WP_UnitTestCase {
 		for ( $i = 1; $i <= \ystandard\Block_Editor_Color_Palette::USER_COLOR_LIMIT; $i ++ ) {
 			delete_option( 'ys-color-palette-ys-user-' . $i );
 		}
+		foreach ( [
+			'ys_hide_sidebar_mobile',
+			'ys_hide_post_sidebar_mobile',
+			'ys_hide_post_archive_sidebar_mobile',
+			'ys_hide_page_sidebar_mobile',
+			'ys_post_layout',
+			'ys_post_archive_layout',
+		] as $option_name ) {
+			delete_option( $option_name );
+		}
+		// テストで登録したカスタム投稿タイプを次のテストへ残さない.
+		if ( post_type_exists( 'book' ) ) {
+			unregister_post_type( 'book' );
+		}
 		WP_Theme_JSON_Resolver::clean_cached_data();
 		parent::tear_down();
 	}
@@ -48,15 +62,19 @@ class CustomizerTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * サイト背景がトップレベルに移動し、他のデザイン設定がパネル内に残ることを確認.
+	 * サイト背景がトップレベルに移動し、目次設定がデザインパネル内に残ることを確認.
 	 */
 	public function test_site_background_is_top_level_section() {
 		$wp_customize = new WP_Customize_Manager();
 
+		// カスタムコントロール登録時に必要なクラスをテスト環境で補完する.
+		if ( ! class_exists( \ystandard\Color_Palette_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-color-palette-control.php';
+		}
+
 		$wp_customize->register_controls();
 		$customizer_classes = [
 			\ystandard\Design::class,
-			\ystandard\Mobile::class,
 			\ystandard\Toc::class,
 			\ystandard\Site_Background::class,
 		];
@@ -77,8 +95,67 @@ class CustomizerTest extends WP_UnitTestCase {
 		}
 
 		$this->assertInstanceOf( WP_Customize_Panel::class, $wp_customize->get_panel( 'ys_design' ) );
-		$this->assertSame( 'ys_design', $wp_customize->get_section( 'ys_mobile_design' )->panel );
+		$this->assertNull( $wp_customize->get_section( 'ys_mobile_design' ) );
 		$this->assertSame( 'ys_design', $wp_customize->get_section( 'ys_design_toc' )->panel );
+	}
+
+	/**
+	 * モバイルサイドバー設定が投稿タイプ別に登録されることを確認.
+	 */
+	public function test_mobile_sidebar_settings_are_registered_by_post_type() {
+		update_option( 'ys_hide_sidebar_mobile', 1 );
+
+		$wp_customize = new WP_Customize_Manager();
+		$wp_customize->register_controls();
+		new \ystandard\Post_Type_Customizer( $wp_customize, 'post', '投稿', 1300 );
+		new \ystandard\Post_Type_Customizer( $wp_customize, 'page', '固定ページ', 1301 );
+
+		$post_setting = $wp_customize->get_setting( 'ys_hide_post_sidebar_mobile' );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $post_setting );
+		$this->assertTrue( $post_setting->default );
+		$post_control = $wp_customize->get_control( 'ys_hide_post_sidebar_mobile' );
+		$this->assertSame( 'ys_post_type_option_post', $post_control->section );
+		$this->assertSame( 'モバイル表示でサイドバーを非表示にする', $post_control->label );
+
+		$archive_setting = $wp_customize->get_setting( 'ys_hide_post_archive_sidebar_mobile' );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $archive_setting );
+		$this->assertTrue( $archive_setting->default );
+		$this->assertNull( $wp_customize->get_setting( 'ys_hide_page_archive_sidebar_mobile' ) );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $wp_customize->get_setting( 'ys_hide_page_sidebar_mobile' ) );
+		$this->assertNull( $wp_customize->get_setting( 'ys_hide_sidebar_mobile' ) );
+		$this->assertNull( $wp_customize->get_section( 'ys_mobile_design' ) );
+
+		update_option( 'ys_post_layout', '1col' );
+		$this->assertFalse( $wp_customize->get_control( 'ys_hide_post_sidebar_mobile' )->active() );
+		update_option( 'ys_post_layout', '2col' );
+		$this->assertTrue( $wp_customize->get_control( 'ys_hide_post_sidebar_mobile' )->active() );
+
+		update_option( 'ys_post_archive_layout', '1col' );
+		$this->assertFalse( $wp_customize->get_control( 'ys_hide_post_archive_sidebar_mobile' )->active() );
+		update_option( 'ys_post_archive_layout', '2col' );
+		$this->assertTrue( $wp_customize->get_control( 'ys_hide_post_archive_sidebar_mobile' )->active() );
+	}
+
+	/**
+	 * カスタム投稿タイプにもモバイルサイドバー設定が登録されることを確認.
+	 */
+	public function test_mobile_sidebar_settings_are_registered_for_custom_post_type() {
+		register_post_type(
+			'book',
+			[
+				'public'      => true,
+				'has_archive' => true,
+				'label'       => '本',
+			]
+		);
+
+		$wp_customize = new WP_Customize_Manager();
+		$wp_customize->register_controls();
+		new \ystandard\Post_Type_Customizer( $wp_customize, 'book', '本', 1310 );
+
+		$this->assertInstanceOf( WP_Customize_Setting::class, $wp_customize->get_setting( 'ys_hide_book_sidebar_mobile' ) );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $wp_customize->get_setting( 'ys_hide_book_archive_sidebar_mobile' ) );
+
 	}
 
 	/**
@@ -89,8 +166,8 @@ class CustomizerTest extends WP_UnitTestCase {
 		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
 			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
 		}
-		if ( ! class_exists( \ystandard\Color_Control::class ) ) {
-			require get_template_directory() . '/inc/customizer/class-color-control.php';
+		if ( ! class_exists( \ystandard\Color_Palette_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-color-palette-control.php';
 		}
 		$block_editor = ( new ReflectionClass( \ystandard\Block_Editor::class ) )->newInstanceWithoutConstructor();
 		$color_palette = ( new ReflectionClass( \ystandard\Block_Editor_Color_Palette::class ) )->newInstanceWithoutConstructor();
@@ -150,12 +227,13 @@ class CustomizerTest extends WP_UnitTestCase {
 	 * ユーザー定義色のプリセットCSSをGlobal Stylesが生成することを確認.
 	 */
 	public function test_global_styles_generates_user_color_palette_css() {
-		update_option( 'ys-color-palette-ys-user-1', '#07689f' );
+		update_option( 'ys-color-palette-ys-user-1', '#07689f80' );
 		WP_Theme_JSON_Resolver::clean_cached_data();
 
 		$stylesheet = wp_get_global_stylesheet( [ 'variables', 'presets' ] );
 
 		$this->assertStringContainsString( '--wp--preset--color--ys-user-1', $stylesheet );
+		$this->assertStringContainsString( '#07689f80', $stylesheet );
 		$this->assertStringContainsString( '.has-ys-user-1-color', $stylesheet );
 		$this->assertStringContainsString( '.has-ys-user-1-background-color', $stylesheet );
 		$this->assertStringContainsString( '.has-ys-user-1-border-color', $stylesheet );
@@ -173,8 +251,8 @@ class CustomizerTest extends WP_UnitTestCase {
 		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
 			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
 		}
-		if ( ! class_exists( \ystandard\Color_Control::class ) ) {
-			require get_template_directory() . '/inc/customizer/class-color-control.php';
+		if ( ! class_exists( \ystandard\Color_Palette_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-color-palette-control.php';
 		}
 		$block_editor = ( new ReflectionClass( \ystandard\Block_Editor::class ) )->newInstanceWithoutConstructor();
 		$color_palette = ( new ReflectionClass( \ystandard\Block_Editor_Color_Palette::class ) )->newInstanceWithoutConstructor();
@@ -183,11 +261,77 @@ class CustomizerTest extends WP_UnitTestCase {
 		$color_palette->customize_register( $wp_customize );
 
 		$control = $wp_customize->get_control( 'ys-color-palette-ys-user-1' );
-		$this->assertInstanceOf( \ystandard\Color_Control::class, $control );
-		$this->assertContains( '#07689f', $control->palette );
-		$this->assertContains( '#f2b3b8', $control->palette );
-		$this->assertContains( '#ceecfd', $control->palette );
-		$this->assertNotContains( '#000000', $control->palette );
+		$this->assertInstanceOf( \ystandard\Color_Palette_Control::class, $control );
+		$this->assertTrue( $control->enable_alpha );
+		$palettes = array_column( $control->palette, null, 'slug' );
+		$this->assertSame( [ 'theme', 'custom' ], array_keys( $palettes ) );
+		$this->assertSame( _x( 'Theme', 'Indicates this palette comes from the theme.' ), $palettes['theme']['name'] );
+		$this->assertSame( _x( 'Custom', 'Indicates this palette is created by the user.' ), $palettes['custom']['name'] );
+		$theme_palette  = array_column( $palettes['theme']['colors'], null, 'slug' );
+		$custom_palette = array_column( $palettes['custom']['colors'], null, 'slug' );
+		$this->assertSame( '#07689f', $custom_palette['ys-user-1']['color'] );
+		$this->assertSame( '色設定 1', $custom_palette['ys-user-1']['name'] );
+		$this->assertSame( '#f2b3b8', $custom_palette['ys-user-2']['color'] );
+		$this->assertSame( '#ceecfd', $theme_palette['ys-light-blue']['color'] );
+		$this->assertArrayNotHasKey( 'black', $theme_palette );
+		$control->to_json();
+		$this->assertTrue( $control->json['enableAlpha'] );
+		$this->assertSame( $control->palette, $control->json['palette'] );
+		$control->enqueue();
+		$script     = wp_scripts()->registered['customizer-control-ys-color-palette-control'];
+		$asset_file = get_template_directory() . '/js/customizer-control-ys-color-palette-control.asset.php';
+		$asset      = file_exists( $asset_file ) ? require $asset_file : [
+			'dependencies' => [],
+			'version'      => \ystandard\utils\Theme::get_ystandard_version(),
+		];
+		$dependencies = array_values( array_unique( array_merge( [ 'customize-controls' ], $asset['dependencies'] ) ) );
+		$this->assertSame( $dependencies, $script->deps );
+		$this->assertSame( $asset['version'], $script->ver );
+	}
+
+	/**
+	 * カスタマイザーでブロックエディターのスタイルを読み込むことを確認.
+	 */
+	public function test_customizer_loads_block_editor_styles() {
+		$customizer = ( new ReflectionClass( \ystandard\Customizer::class ) )->newInstanceWithoutConstructor();
+		$customizer->print_styles( '' );
+
+		$style = wp_styles()->registered['ys-customizer'];
+		$this->assertTrue( wp_style_is( 'wp-block-editor', 'registered' ) );
+		$this->assertContains( 'wp-block-editor', $style->deps );
+		$this->assertContains( 'wp-components', $style->deps );
+	}
+
+	/**
+	 * カラー設定でアルファ値を含むHEXを保存できることを確認.
+	 *
+	 * @dataProvider color_sanitize_provider
+	 *
+	 * @param mixed       $input    入力値.
+	 * @param string|null $expected 期待値.
+	 */
+	public function test_color_sanitize( $input, $expected ) {
+		$this->assertSame( $expected, \ystandard\Customize_Control::sanitize_color( $input ) );
+	}
+
+	/**
+	 * カラー設定のサニタイズ用データ.
+	 *
+	 * @return array
+	 */
+	public function color_sanitize_provider() {
+		return [
+			'empty'       => [ '', '' ],
+			'hex3'        => [ '#abc', '#abc' ],
+			'hex4'        => [ '#abcd', '#abcd' ],
+			'hex6'        => [ '#123456', '#123456' ],
+			'hex8'        => [ '#12345678', '#12345678' ],
+			'uppercase'   => [ '#ABCDEF80', '#ABCDEF80' ],
+			'no-hash'     => [ '123456', null ],
+			'invalid-hex' => [ '#gggggg', null ],
+			'invalid-len' => [ '#12345', null ],
+			'not-string'  => [ 123456, null ],
+		];
 	}
 
 	/**

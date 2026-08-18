@@ -115,7 +115,7 @@ class Customizer {
 			z-index:99;
 		}';
 		// サイドバー表示用.
-		if ( Option::get_option_by_bool( 'ys_hide_sidebar_mobile', false ) ) {
+		if ( Sidebar::is_hidden_on_mobile() ) {
 			// モバイルで非表示.
 			$css .= CSS::add_media_query_mobile( '.is-customize-preview .sidebar {display:none;}' );
 		}
@@ -150,7 +150,7 @@ class Customizer {
 		wp_enqueue_style(
 			'ys-customizer',
 			get_template_directory_uri() . '/css/customizer.css',
-			[],
+			[ 'wp-block-editor', 'wp-components' ],
 			Theme::get_ystandard_version()
 		);
 	}
@@ -173,7 +173,7 @@ class Customizer {
 		/**
 		 * カスタムコントロールの追加
 		 */
-		$wp_customize->register_control_type( __NAMESPACE__ . '\Color_Control' );
+		$wp_customize->register_control_type( __NAMESPACE__ . '\Color_Palette_Control' );
 
 		/**
 		 * 拡張機能
