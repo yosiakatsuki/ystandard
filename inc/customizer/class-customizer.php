@@ -175,6 +175,7 @@ class Customizer {
 		 * カスタムコントロールの追加
 		 */
 		$wp_customize->register_control_type( __NAMESPACE__ . '\Color_Palette_Control' );
+		$wp_customize->register_control_type( __NAMESPACE__ . '\Toggle_Group_Control' );
 
 		/**
 		 * 拡張機能

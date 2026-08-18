@@ -12,5 +12,7 @@ defined( 'ABSPATH' ) || die();
 require_once __DIR__ . '/class-image-label-radio-control.php';
 require_once __DIR__ . '/class-section-label-control.php';
 require_once __DIR__ . '/class-color-palette-control.php';
+require_once __DIR__ . '/class-spacer-control.php';
+require_once __DIR__ . '/class-toggle-group-control.php';
 require_once __DIR__ . '/class-customize-control.php';
 require_once __DIR__ . '/class-customizer.php';

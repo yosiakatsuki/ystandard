@@ -10,6 +10,8 @@ module.exports = {
 		'customizer-control': './src/scripts/admin/customizer-control.js',
 		'customizer-control-ys-color-palette-control':
 			'./src/scripts/admin/customizer-control-ys-color-palette-control.jsx',
+		'customizer-control-ys-toggle-group-control':
+			'./src/scripts/admin/customizer-control-ys-toggle-group-control.jsx',
 		'customizer-preview': './src/scripts/admin/customizer-preview.js',
 		'search-icons': './src/scripts/admin/search-icons.js',
 	},

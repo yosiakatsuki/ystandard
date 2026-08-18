@@ -65,6 +65,18 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- ユーザー定義色を6件（`ys-color-palette-ys-user-1`〜`ys-color-palette-ys-user-6`）まで拡張
 	- カスタマイザーのトップレベルに「[ys]ブロックエディター」セクションとして配置し、1クリックで設定を表示
 	- セクション内に背景色付きの「色定義」見出しを表示
+- [追加] カスタマイザーの「[ys]ブロックエディター」に文字サイズプリセット設定を追加
+	- 固定値またはfluidを選び、ユーザー定義文字サイズを6件まで登録可能
+	- 有効な設定を`ystd-font-size-preset-1`〜`ystd-font-size-preset-6`としてテーマ標準プリセットの先頭へ追加
+	- 固定値は単位なしの数値、単位付きの長さ、`calc()`、`clamp()`に対応
+	- fluidはremまたはpxを選択し、WordPressのGlobal StylesでCSSを生成
+- [追加] カスタマイザーの「[ys]ブロックエディター」に余白プリセット設定を追加
+	- ユーザー定義余白を6件まで登録可能
+	- 有効な設定を`ystd-spacing-preset-1`〜`ystd-spacing-preset-6`としてテーマ標準プリセットより前へ追加
+	- 単位なしの数値、単位付きの長さ、`calc()`、`clamp()`、`min()`、`max()`に対応
+	- WordPressのGlobal StylesでCSSカスタムプロパティを生成し、padding、margin、block gapなどの余白設定から選択可能
+- [変更] ブロックエディターの文字サイズプリセットを`theme.json`へ一本化
+	- `editor-font-sizes`テーマサポートと重複するフロント・エディター用CSS生成を削除
 - [変更] カスタマイザー「[ys]デザイン」内の「サイト背景」を、トップレベルの「[ys]サイト背景」へ移動
 	- サイト背景色・背景画像の保存値とセクションIDは引き継ぐ
 	- 「目次」は段階移行のため、引き続き「[ys]デザイン」内に配置
@@ -242,6 +254,9 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - `ys_get_color_palette_css_types`：カラーパレット用CSSの出力形式を変更するフィルター
 - `ys_is_enqueue_color_pallet`：フロント用カラーパレットCSSの出力状態を示すフィルター
 - `ys_is_enqueue_block_editor_color_pallet`：ブロックエディター用カラーパレットCSSの出力状態を示すフィルター
+- `ys_editor_font_sizes`：ブロックエディター用文字サイズプリセットを変更するフィルター
+- `ys_is_enqueue_font_size`：フロント用文字サイズCSSの出力状態を示すフィルター
+- `ys_is_enqueue_block_editor_font_size`：ブロックエディター用文字サイズCSSの出力状態を示すフィルター
 
 #### v5.0.0 - ファイル移動表
 

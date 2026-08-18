@@ -17,6 +17,16 @@ class CustomizerTest extends WP_UnitTestCase {
 		for ( $i = 1; $i <= \ystandard\Block_Editor_Color_Palette::USER_COLOR_LIMIT; $i ++ ) {
 			delete_option( 'ys-color-palette-ys-user-' . $i );
 		}
+		for ( $i = 1; $i <= \ystandard\Block_Editor_Font_Size::USER_FONT_SIZE_LIMIT; $i ++ ) {
+			foreach ( [ 'label', 'type', 'static', 'min', 'max', 'unit' ] as $field ) {
+				delete_option( \ystandard\Block_Editor_Font_Size::get_option_name( $i, $field ) );
+			}
+		}
+		for ( $i = 1; $i <= \ystandard\Block_Editor_Spacing_Size::USER_SPACING_SIZE_LIMIT; $i ++ ) {
+			foreach ( [ 'label', 'value' ] as $field ) {
+				delete_option( \ystandard\Block_Editor_Spacing_Size::get_option_name( $i, $field ) );
+			}
+		}
 		foreach ( [
 			'ys_hide_sidebar_mobile',
 			'ys_hide_post_sidebar_mobile',
@@ -306,6 +316,246 @@ class CustomizerTest extends WP_UnitTestCase {
 			$this->assertSame( '', $wp_customize->get_control( $setting_id )->description );
 		}
 		$this->assertNull( $wp_customize->get_setting( 'ys-color-palette-ys-blue' ) );
+	}
+
+	/**
+	 * 文字サイズプリセットを6件登録することを確認.
+	 */
+	public function test_font_size_preset_settings_are_registered() {
+		$wp_customize = new WP_Customize_Manager();
+		// 独自コントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
+		}
+		// 余白コントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Spacer_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-spacer-control.php';
+		}
+		// ToggleGroupControlをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Toggle_Group_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-toggle-group-control.php';
+		}
+		$block_editor = ( new ReflectionClass( \ystandard\Block_Editor::class ) )->newInstanceWithoutConstructor();
+		$font_size    = ( new ReflectionClass( \ystandard\Block_Editor_Font_Size::class ) )->newInstanceWithoutConstructor();
+
+		$block_editor->customize_register( $wp_customize );
+		$font_size->customize_register( $wp_customize );
+
+		$section_label = $wp_customize->get_control( 'ys_font_size_preset_section_label' );
+		$this->assertInstanceOf( \ystandard\Section_Label_Control::class, $section_label );
+		$this->assertSame( '文字サイズ定義', $section_label->label );
+		$this->assertSame( 'ブロックエディターで選択できる文字サイズ設定を追加できます。', $section_label->description );
+
+		for ( $i = 1; $i <= \ystandard\Block_Editor_Font_Size::USER_FONT_SIZE_LIMIT; $i ++ ) {
+			$prefix = \ystandard\Block_Editor_Font_Size::OPTION_PREFIX . $i;
+			$group_label = $wp_customize->get_control( 'ys_font_size_preset_' . $i . '_label' );
+			$this->assertInstanceOf( WP_Customize_Control::class, $group_label );
+			$this->assertSame( 'hidden', $group_label->type );
+			$this->assertSame( '文字サイズ設定' . $i, $group_label->label );
+			ob_start();
+			$render_content = new ReflectionMethod( $group_label, 'render_content' );
+			$render_content->setAccessible( true );
+			$render_content->invoke( $group_label );
+			$group_label_html = ob_get_clean();
+			$this->assertStringContainsString( '文字サイズ設定' . $i, $group_label_html );
+			$this->assertSame( '', $wp_customize->get_setting( $prefix . '-label' )->default );
+			$this->assertSame( 'static', $wp_customize->get_setting( $prefix . '-type' )->default );
+			$this->assertSame( '', $wp_customize->get_setting( $prefix . '-static' )->default );
+			$this->assertSame( '', $wp_customize->get_setting( $prefix . '-min' )->default );
+			$this->assertSame( '', $wp_customize->get_setting( $prefix . '-max' )->default );
+			$this->assertSame( 'rem', $wp_customize->get_setting( $prefix . '-unit' )->default );
+			$this->assertSame( 'text', $wp_customize->get_control( $prefix . '-label' )->type );
+			$this->assertSame( '設定名（ラベル）', $wp_customize->get_control( $prefix . '-label' )->label );
+			$this->assertSame( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', $wp_customize->get_control( $prefix . '-static' )->description );
+			$this->assertSame( 'number', $wp_customize->get_control( $prefix . '-min' )->type );
+			$this->assertSame( '最大（PC表示）', $wp_customize->get_control( $prefix . '-max' )->label );
+			$this->assertSame( '最小（モバイル表示）', $wp_customize->get_control( $prefix . '-min' )->label );
+			$this->assertSame( 0.1, $wp_customize->get_control( $prefix . '-min' )->input_attrs['step'] );
+			$this->assertInstanceOf( \ystandard\Toggle_Group_Control::class, $wp_customize->get_control( $prefix . '-type' ) );
+			$this->assertInstanceOf( \ystandard\Toggle_Group_Control::class, $wp_customize->get_control( $prefix . '-unit' ) );
+		}
+
+		$this->assertNull( $wp_customize->get_control( 'ys_font_size_preset_1_spacer' ) );
+		$this->assertNull( $wp_customize->get_setting( 'ys_font_size_preset_2_spacer' ) );
+		$spacer = $wp_customize->get_control( 'ys_font_size_preset_2_spacer' );
+		$this->assertInstanceOf( \ystandard\Spacer_Control::class, $spacer );
+		$this->assertSame( 'ys-spacer-control', $spacer->type );
+		$this->assertSame( 60, $spacer->size );
+		$this->assertSame( [], $spacer->settings );
+		ob_start();
+		$render_spacer = new ReflectionMethod( $spacer, 'render_content' );
+		$render_spacer->setAccessible( true );
+		$render_spacer->invoke( $spacer );
+		$spacer_html = ob_get_clean();
+		$this->assertStringContainsString( 'ys-customizer-spacer', $spacer_html );
+		$this->assertStringContainsString( 'height:60px', $spacer_html );
+		$this->assertStringContainsString( 'aria-hidden="true"', $spacer_html );
+
+		$first_prefix = \ystandard\Block_Editor_Font_Size::OPTION_PREFIX . '1';
+		$control_ids  = array_values(
+			array_filter(
+				array_keys( $wp_customize->controls() ),
+				function ( $control_id ) use ( $first_prefix ) {
+					return 0 === strpos( $control_id, $first_prefix );
+				}
+			)
+		);
+		$this->assertSame(
+			[
+				$first_prefix . '-label',
+				$first_prefix . '-type',
+				$first_prefix . '-static',
+				$first_prefix . '-unit',
+				$first_prefix . '-max',
+				$first_prefix . '-min',
+			],
+			$control_ids
+		);
+
+		$type_control = $wp_customize->get_control( \ystandard\Block_Editor_Font_Size::OPTION_PREFIX . '1-type' );
+		$type_control->to_json();
+		$this->assertSame( [ 'static' => '固定値', 'fluid' => '可変' ], $type_control->json['choices'] );
+		$type_control->enqueue();
+		$script     = wp_scripts()->registered['customizer-control-ys-toggle-group-control'];
+		$asset_file = get_template_directory() . '/js/customizer-control-ys-toggle-group-control.asset.php';
+		$asset      = file_exists( $asset_file ) ? require $asset_file : [
+			'dependencies' => [],
+			'version'      => \ystandard\utils\Theme::get_ystandard_version(),
+		];
+		$dependencies = array_values( array_unique( array_merge( [ 'customize-controls' ], $asset['dependencies'] ) ) );
+		$this->assertSame( $dependencies, $script->deps );
+		$this->assertSame( $asset['version'], $script->ver );
+	}
+
+	/**
+	 * 文字サイズプリセットの入力制約を検証することを確認.
+	 */
+	public function test_font_size_preset_settings_validate_input() {
+		// 独自コントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
+		}
+		// 余白コントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Spacer_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-spacer-control.php';
+		}
+		// ToggleGroupControlをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Toggle_Group_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-toggle-group-control.php';
+		}
+		$font_size = ( new ReflectionClass( \ystandard\Block_Editor_Font_Size::class ) )->newInstanceWithoutConstructor();
+		$prefix    = \ystandard\Block_Editor_Font_Size::OPTION_PREFIX . '1';
+
+		$static_customize = new WP_Customize_Manager();
+		$font_size->customize_register( $static_customize );
+		$static_validity = $static_customize->get_setting( $prefix . '-static' )->validate( '16px; color: red' );
+		$this->assertWPError( $static_validity );
+		$this->assertSame( 'invalid_font_size', $static_validity->get_error_code() );
+
+		update_option( $prefix . '-type', 'fluid' );
+		update_option( $prefix . '-unit', 'px' );
+		$px_customize = new WP_Customize_Manager();
+		$font_size->customize_register( $px_customize );
+		$px_validity = $px_customize->get_setting( $prefix . '-min' )->validate( '16.5' );
+		$this->assertWPError( $px_validity );
+		$this->assertSame( 'invalid_fluid_font_size', $px_validity->get_error_code() );
+
+		update_option( $prefix . '-unit', 'rem' );
+		update_option( $prefix . '-max', '1' );
+		$range_customize = new WP_Customize_Manager();
+		$font_size->customize_register( $range_customize );
+		$range_validity = $range_customize->get_setting( $prefix . '-min' )->validate( '2' );
+		$this->assertWPError( $range_validity );
+		$this->assertSame( 'invalid_fluid_font_size_range', $range_validity->get_error_code() );
+
+		$validity = $range_customize->get_setting( $prefix . '-min' )->validate( '0.9' );
+		$this->assertTrue( $validity );
+	}
+
+	/**
+	 * 余白プリセットを6件登録することを確認.
+	 */
+	public function test_spacing_size_preset_settings_are_registered() {
+		$wp_customize = new WP_Customize_Manager();
+		// 独自ラベルコントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
+		}
+		// 余白コントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Spacer_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-spacer-control.php';
+		}
+		$block_editor = ( new ReflectionClass( \ystandard\Block_Editor::class ) )->newInstanceWithoutConstructor();
+		$spacing_size = ( new ReflectionClass( \ystandard\Block_Editor_Spacing_Size::class ) )->newInstanceWithoutConstructor();
+
+		$block_editor->customize_register( $wp_customize );
+		$spacing_size->customize_register( $wp_customize );
+
+		$section_label = $wp_customize->get_control( 'ys_spacing_preset_section_label' );
+		$this->assertInstanceOf( \ystandard\Section_Label_Control::class, $section_label );
+		$this->assertSame( '余白定義', $section_label->label );
+		$this->assertSame( 'ブロックエディターで選択できる余白設定を追加できます。', $section_label->description );
+
+		for ( $i = 1; $i <= \ystandard\Block_Editor_Spacing_Size::USER_SPACING_SIZE_LIMIT; $i ++ ) {
+			$prefix      = \ystandard\Block_Editor_Spacing_Size::OPTION_PREFIX . $i;
+			$group_label = $wp_customize->get_control( 'ys_spacing_preset_' . $i . '_label' );
+			$this->assertInstanceOf( WP_Customize_Control::class, $group_label );
+			$this->assertSame( 'hidden', $group_label->type );
+			$this->assertSame( '余白設定' . $i, $group_label->label );
+			ob_start();
+			$render_content = new ReflectionMethod( $group_label, 'render_content' );
+			$render_content->setAccessible( true );
+			$render_content->invoke( $group_label );
+			$group_label_html = ob_get_clean();
+			$this->assertStringContainsString( '余白設定' . $i, $group_label_html );
+			$this->assertSame( '', $wp_customize->get_setting( $prefix . '-label' )->default );
+			$this->assertSame( '', $wp_customize->get_setting( $prefix . '-value' )->default );
+			$this->assertSame( '設定名（ラベル）', $wp_customize->get_control( $prefix . '-label' )->label );
+			$this->assertSame( '値', $wp_customize->get_control( $prefix . '-value' )->label );
+			$this->assertSame( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', $wp_customize->get_control( $prefix . '-value' )->description );
+		}
+
+		$this->assertNull( $wp_customize->get_control( 'ys_spacing_preset_1_spacer' ) );
+		$this->assertNull( $wp_customize->get_setting( 'ys_spacing_preset_2_spacer' ) );
+		$spacer = $wp_customize->get_control( 'ys_spacing_preset_2_spacer' );
+		$this->assertInstanceOf( \ystandard\Spacer_Control::class, $spacer );
+		$this->assertSame( 60, $spacer->size );
+		$this->assertSame( [], $spacer->settings );
+
+		$first_prefix = \ystandard\Block_Editor_Spacing_Size::OPTION_PREFIX . '1';
+		$control_ids  = array_values(
+			array_filter(
+				array_keys( $wp_customize->controls() ),
+				function ( $control_id ) use ( $first_prefix ) {
+					return 0 === strpos( $control_id, $first_prefix );
+				}
+			)
+		);
+		$this->assertSame( [ $first_prefix . '-label', $first_prefix . '-value' ], $control_ids );
+	}
+
+	/**
+	 * 余白プリセットの入力制約を検証することを確認.
+	 */
+	public function test_spacing_size_preset_settings_validate_input() {
+		// 独自ラベルコントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
+		}
+		// 余白コントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Spacer_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-spacer-control.php';
+		}
+		$wp_customize = new WP_Customize_Manager();
+		$spacing_size = ( new ReflectionClass( \ystandard\Block_Editor_Spacing_Size::class ) )->newInstanceWithoutConstructor();
+		$spacing_size->customize_register( $wp_customize );
+
+		$setting  = $wp_customize->get_setting( \ystandard\Block_Editor_Spacing_Size::get_option_name( 1, 'value' ) );
+		$validity = $setting->validate( '16px; color: red' );
+		$this->assertWPError( $validity );
+		$this->assertSame( 'invalid_spacing_size', $validity->get_error_code() );
+		$this->assertTrue( $setting->validate( 'calc(1rem + 1vw)' ) );
+		$this->assertTrue( $setting->validate( '' ) );
 	}
 
 	/**

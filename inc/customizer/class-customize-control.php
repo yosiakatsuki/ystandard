@@ -99,8 +99,11 @@ class Customize_Control {
 	 * @param array $args オプション.
 	 */
 	public function add_number( $args ) {
-		$args['control_type']      = 'number';
-		$args['sanitize_callback'] = [ __CLASS__, 'sanitize_number' ];
+		$args['control_type'] = 'number';
+		// 専用の入力制約がある設定では、呼び出し元のサニタイズ処理を優先する.
+		if ( ! isset( $args['sanitize_callback'] ) ) {
+			$args['sanitize_callback'] = [ __CLASS__, 'sanitize_number' ];
+		}
 		$this->add_setting( $args );
 	}
 
@@ -149,6 +152,60 @@ class Customize_Control {
 		$args['sanitize_callback'] = [ __CLASS__, 'sanitize_select' ];
 
 		$this->add_setting( $args );
+	}
+
+	/**
+	 * 横並び選択.
+	 *
+	 * @param array $args オプション.
+	 */
+	public function add_toggle_group( $args ) {
+		$args                      = $this->parse_args( $args );
+		$args['control_type']      = 'ys-toggle-group-control';
+		$args['sanitize_callback'] = [ __CLASS__, 'sanitize_select' ];
+		$this->add_setting( $args, false );
+
+		// Reactコントロールが読み込まれている場合だけ専用UIを登録する.
+		if ( class_exists( __NAMESPACE__ . '\\Toggle_Group_Control' ) ) {
+			$this->wp_customize->add_control(
+				new Toggle_Group_Control(
+					$this->wp_customize,
+					$args['id'],
+					self::get_control_args( $args, $args['id'] )
+				)
+			);
+			$this->do_action_after_add_setting( $args['id'], $args );
+		}
+	}
+
+	/**
+	 * 余白.
+	 *
+	 * @param array $args オプション.
+	 */
+	public function add_spacer( $args = [] ) {
+		$args['id']           = $args['id'] ?? wp_unique_id( 'ys_customizer_spacer_' );
+		$args['size']         = isset( $args['size'] ) ? absint( $args['size'] ) : 24;
+		$args                 = $this->parse_args( $args );
+		$args['control_type'] = 'ys-spacer-control';
+
+		// 余白コントロールが読み込まれている場合だけ、保存値を持たないUIを登録する.
+		if ( class_exists( __NAMESPACE__ . '\\Spacer_Control' ) ) {
+			$this->wp_customize->add_control(
+				new Spacer_Control(
+					$this->wp_customize,
+					$args['id'],
+					self::get_control_args(
+						$args,
+						$args['id'],
+						[
+							'settings' => [],
+							'size'     => $args['size'],
+						]
+					)
+				)
+			);
+		}
 	}
 
 	/**
@@ -277,7 +334,7 @@ class Customize_Control {
 	 * セクションラベル.
 	 *
 	 * @param string $label 文字.
-	 * @param array $args オプション.
+	 * @param array  $args オプション.
 	 */
 	public function add_section_label( $label, $args = [] ) {
 		$args = $this->parse_args( $args );
@@ -363,9 +420,9 @@ class Customize_Control {
 	/**
 	 * 設定用パラメーターの抽出
 	 *
-	 * @param array $args パラメーター.
+	 * @param array  $args パラメーター.
 	 * @param string $id ID.
-	 * @param array $option 追加パラメーター.
+	 * @param array  $option 追加パラメーター.
 	 *
 	 * @return array
 	 */
@@ -375,6 +432,7 @@ class Customize_Control {
 			'transport'         => 'transport',
 			'default'           => 'default',
 			'sanitize_callback' => 'sanitize_callback',
+			'validate_callback' => 'validate_callback',
 		];
 
 		return apply_filters(
@@ -389,9 +447,9 @@ class Customize_Control {
 	/**
 	 * コントロール用パラメーターの抽出
 	 *
-	 * @param array $args パラメーター.
+	 * @param array  $args パラメーター.
 	 * @param string $id ID.
-	 * @param array $option 追加パラメーター.
+	 * @param array  $option 追加パラメーター.
 	 *
 	 * @return array
 	 */
@@ -482,6 +540,7 @@ class Customize_Control {
 			'default'           => '',
 			'input_attrs'       => [],
 			'sanitize_callback' => '',
+			'validate_callback' => '',
 			'active_callback'   => [],
 		];
 	}
@@ -527,7 +586,7 @@ class Customize_Control {
 	/**
 	 * 設定・コントロール追加
 	 *
-	 * @param array $args Args.
+	 * @param array               $args Args.
 	 * @param object|null|boolean $control Control.
 	 *
 	 * @return void
@@ -562,7 +621,7 @@ class Customize_Control {
 	 * 設定・コントロール追加後のアクション
 	 *
 	 * @param string $setting Setting Name.
-	 * @param array $args Args.
+	 * @param array  $args Args.
 	 *
 	 * @return void
 	 */

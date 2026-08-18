@@ -120,13 +120,19 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 
 | スラッグ | ラベル | サイズ |
 |---------|-------|--------|
-| `ys-x-small` | 極小 | 12px |
-| `ys-small` | 小 | 14px |
-| `ys-normal` | 標準 | 16px |
-| `ys-medium` | 中 | 18px |
-| `ys-large` | 大 | 20px |
-| `ys-x-large` | 極大 | 22px |
-| `ys-huge` | 巨大 | 26px |
+| `x-small` | 極小 | 12px |
+| `small` | 小 | 14px |
+| `normal` | 標準 | 16px |
+| `medium` | 中 | 18px |
+| `large` | 大 | 20px |
+| `x-large` | 極大 | 22px |
+| `xx-large` | 巨大 | 26px |
+
+カスタマイザーの「[ys]ブロックエディター」→「文字サイズ定義」から、ユーザー定義プリセットを最大6件追加できる。slugは`ystd-font-size-preset-{連番}`で固定し、有効な設定を設定番号順でテーマ標準プリセットの先頭へ追加する。
+
+固定値は数値、単位付きのCSS長さ、`calc()`、`clamp()`を使用でき、数値だけの場合はpxを補う。fluidはminとmaxへ同じremまたはpxを適用し、remは0.1刻み、pxは整数で0〜999の範囲とする。保存値は`wp_theme_json_data_theme`でtheme originへ追加し、CSSカスタムプロパティ、プリセットクラス、流体値の`clamp()`生成はWordPressのGlobal Stylesへ委ねる。
+
+テーマ標準プリセットも`theme.json`を正本とし、`editor-font-sizes`テーマサポートとテーマ独自の文字サイズCSSは使用しない。
 
 **CSSカスタムプロパティ:**
 
@@ -164,6 +170,12 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 
 1. **固定値** (`ys-static-{size}`): 10px〜200pxまで
 2. **Fluid値** (`ys-fluid-{min}-{max}`): `clamp()` で可変
+
+#### カスタマイザーの余白プリセット
+
+カスタマイザーの「[ys]ブロックエディター」→「余白定義」から、ユーザー定義プリセットを最大6件追加できる。slugは`ystd-spacing-preset-{連番}`で固定し、有効な設定を設定番号順でcustom originの先頭へ追加する。これにより、WordPress固定の「デフォルト」「なし」を除く実際の余白プリセットでは、テーマ標準プリセットより前に表示される。
+
+値は数値、単位付きのCSS長さ、`calc()`、`clamp()`、`min()`、`max()`を使用でき、数値だけの場合はpxを補う。保存値は`wp_theme_json_data_user`でGlobal Stylesへ反映し、CSSカスタムプロパティの生成とpadding、margin、block gapなどの余白コントロールへの登録はWordPressへ委ねる。
 
 #### CSSカスタムプロパティ
 
@@ -656,7 +668,7 @@ src/scripts/*.ts
 | CSSカスタムプロパティ総数 | 約220個 |
 | theme.json カラーパレット | 18色 + ユーザー定義最大6色 |
 | theme.json フォントサイズ | 約80種 |
-| theme.json スペーシング | 約60種 |
+| theme.json スペーシング | 約60種 + ユーザー定義最大6種 |
 | SCSS変数 | 4個 |
 | SCSS Mixin | 16個 |
 | SCSS Function | 5個 |
