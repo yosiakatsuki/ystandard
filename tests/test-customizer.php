@@ -22,6 +22,10 @@ class CustomizerTest extends WP_UnitTestCase {
 			'ys_hide_post_sidebar_mobile',
 			'ys_hide_post_archive_sidebar_mobile',
 			'ys_hide_page_sidebar_mobile',
+			'ys_sidebar_width',
+			'ys_sidebar_gap',
+			'ys_content_width',
+			'ys_container_width',
 			'ys_post_layout',
 			'ys_post_archive_layout',
 		] as $option_name ) {
@@ -40,7 +44,7 @@ class CustomizerTest extends WP_UnitTestCase {
 	 */
 	function test_get_priority() {
 		$priority = \ystandard\Customizer::get_priority( 'ys_seo' );
-		$this->assertSame( $priority, 1110 );
+		$this->assertSame( $priority, 1530 );
 
 		$priority = \ystandard\Customizer::get_priority( 'ys_none' );
 		$this->assertSame( $priority, 1000 );
@@ -59,6 +63,117 @@ class CustomizerTest extends WP_UnitTestCase {
 			\ystandard\Customizer::get_priority( 'ys_site_background' ),
 			\ystandard\Customizer::get_priority( 'ys_block_editor' )
 		);
+	}
+
+	/**
+	 * レイアウトセクションにサイドバー設定が登録されることを確認.
+	 */
+	public function test_sidebar_layout_settings_are_registered() {
+		$wp_customize = new WP_Customize_Manager();
+		// 独自ラベルコントロールをテスト環境で利用できるようにする.
+		if ( ! class_exists( \ystandard\Section_Label_Control::class ) ) {
+			require get_template_directory() . '/inc/customizer/class-section-label-control.php';
+		}
+		$wp_customize->register_controls();
+
+		$layout = ( new ReflectionClass( \ystandard\Layout::class ) )->newInstanceWithoutConstructor();
+		$layout->customize_register( $wp_customize );
+		\ystandard\Sidebar::customize_register( $wp_customize );
+
+		$this->assertNull( $wp_customize->get_panel( 'ys_layout' ) );
+		$section = $wp_customize->get_section( 'ys_layout' );
+		$this->assertInstanceOf( WP_Customize_Section::class, $section );
+		$this->assertSame( '[ys]レイアウト', $section->title );
+		$this->assertSame( '', $section->panel );
+		$this->assertSame( 1090, $section->priority );
+		$this->assertLessThan(
+			\ystandard\Customizer::get_priority( 'ys_site_typography' ),
+			$section->priority
+		);
+
+		$label_control = $wp_customize->get_control( 'ys_layout_sidebar_section_label' );
+		$this->assertInstanceOf( \ystandard\Section_Label_Control::class, $label_control );
+		$this->assertSame( 'サイドバー', $label_control->label );
+		$this->assertSame( 'ys_layout', $label_control->section );
+
+		$content_label_control = $wp_customize->get_control( 'ys_layout_content_section_label' );
+		$this->assertInstanceOf( \ystandard\Section_Label_Control::class, $content_label_control );
+		$this->assertSame( 'コンテンツ領域', $content_label_control->label );
+		$this->assertSame( 'ys_layout', $content_label_control->section );
+
+		$content_width_control = $wp_customize->get_control( 'ys_content_width' );
+		$content_width_setting = $wp_customize->get_setting( 'ys_content_width' );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $content_width_setting );
+		$this->assertSame( '', $content_width_setting->default );
+		$this->assertSame( 'refresh', $content_width_setting->transport );
+		$this->assertSame( 'コンテンツ幅', $content_width_control->label );
+		$this->assertSame( 'text', $content_width_control->type );
+		$this->assertSame( '800px', $content_width_control->input_attrs['placeholder'] );
+
+		$container_width_control = $wp_customize->get_control( 'ys_container_width' );
+		$container_width_setting = $wp_customize->get_setting( 'ys_container_width' );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $container_width_setting );
+		$this->assertSame( '', $container_width_setting->default );
+		$this->assertSame( 'refresh', $container_width_setting->transport );
+		$this->assertSame( 'コンテナ幅', $container_width_control->label );
+		$this->assertSame( 'text', $container_width_control->type );
+		$this->assertSame( '1200px', $container_width_control->input_attrs['placeholder'] );
+
+		$width_setting = $wp_customize->get_setting( 'ys_sidebar_width' );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $width_setting );
+		$this->assertSame( '', $width_setting->default );
+		$this->assertSame( 'refresh', $width_setting->transport );
+		$width_control = $wp_customize->get_control( 'ys_sidebar_width' );
+		$this->assertSame( 'ys_layout', $width_control->section );
+		$this->assertSame( '2カラムのサイドバー幅', $width_control->label );
+		$this->assertSame( 'text', $width_control->type );
+		$this->assertSame( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', $width_control->description );
+
+		$gap_setting = $wp_customize->get_setting( 'ys_sidebar_gap' );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $gap_setting );
+		$this->assertSame( '', $gap_setting->default );
+		$this->assertSame( 'refresh', $gap_setting->transport );
+		$gap_control = $wp_customize->get_control( 'ys_sidebar_gap' );
+		$this->assertSame( 'ys_layout', $gap_control->section );
+		$this->assertSame( 'メインコンテンツとサイドバーの間隔', $gap_control->label );
+		$this->assertSame( 'text', $gap_control->type );
+		$this->assertSame( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', $gap_control->description );
+
+		$this->assertSame( '300', \ystandard\Layout::sanitize_css_value( '300' ) );
+		$this->assertSame( 'calc(30% - 2rem)', \ystandard\Layout::sanitize_css_value( 'calc(30% - 2rem)' ) );
+		$this->assertSame( 'clamp(200px, 25vw, 480px)', \ystandard\Layout::sanitize_css_value( 'clamp(200px, 25vw, 480px)' ) );
+		$this->assertSame( '', \ystandard\Layout::sanitize_css_value( '300px; color: red' ) );
+		$this->assertSame( '', \ystandard\Layout::sanitize_css_value( 'url(https://example.com)' ) );
+		$this->assertSame( '', \ystandard\Layout::sanitize_css_value( 'calc(30% - 2rem' ) );
+	}
+
+	/**
+	 * コンテンツ幅とコンテナ幅がGlobal Stylesへ反映されることを確認.
+	 */
+	public function test_custom_layout_widths_are_added_to_theme_json_user_data() {
+		update_option( 'ys_content_width', 720 );
+		update_option( 'ys_container_width', 'min(100% - 2rem, 1280px)' );
+
+		$theme_json = new WP_Theme_JSON_Data(
+			[
+				'version'  => 3,
+				'settings' => [
+					'layout' => [
+						'contentSize' => '800px',
+						'wideSize'    => '1200px',
+					],
+				],
+			],
+			'custom'
+		);
+		$data       = \ystandard\Layout::add_custom_layout_to_theme_json( $theme_json )->get_data();
+
+		$this->assertSame( '720px', $data['settings']['layout']['contentSize'] );
+		$this->assertSame( 'min(100% - 2rem, 1280px)', $data['settings']['layout']['wideSize'] );
+
+		WP_Theme_JSON_Resolver::clean_cached_data();
+		$this->assertSame( '720px', wp_get_global_settings( [ 'layout', 'contentSize' ] ) );
+		$this->assertSame( 'min(100% - 2rem, 1280px)', wp_get_global_settings( [ 'layout', 'wideSize' ] ) );
 	}
 
 	/**

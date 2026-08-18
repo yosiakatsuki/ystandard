@@ -89,6 +89,30 @@ msgstr "関連記事"
 msgid "サイト背景"
 msgstr "サイト背景"
 
+#: inc/layout/class-layout.php:61
+msgid "レイアウト"
+msgstr "レイアウト"
+
+#: inc/layout/class-layout.php:62
+msgid "サイト全体のレイアウトに関する設定"
+msgstr "サイト全体のレイアウトに関する設定"
+
+#: inc/layout/class-layout.php:67
+msgid "コンテンツ領域"
+msgstr "コンテンツ領域"
+
+#: inc/layout/class-layout.php:71
+msgid "サイト全体のコンテンツ領域に関する設定"
+msgstr "サイト全体のコンテンツ領域に関する設定"
+
+#: inc/layout/class-layout.php:80
+msgid "コンテンツ幅"
+msgstr "コンテンツ幅"
+
+#: inc/layout/class-layout.php:91
+msgid "コンテナ幅"
+msgstr "コンテナ幅"
+
 #: inc/design/class-font.php:191
 msgid "極小"
 msgstr ""
@@ -149,6 +173,28 @@ msgstr ""
 #: inc/post-types/class-post-type-customizer.php:432
 msgid "モバイル表示でサイドバーを非表示にする"
 msgstr ""
+
+#: inc/sidebar/class-sidebar.php:84
+msgid "サイドバー"
+msgstr "サイドバー"
+
+#: inc/sidebar/class-sidebar.php:88
+msgid "2カラムレイアウトのサイドバーに関する設定"
+msgstr "2カラムレイアウトのサイドバーに関する設定"
+
+#: inc/sidebar/class-sidebar.php:96
+msgid "2カラムのサイドバー幅"
+msgstr "2カラムのサイドバー幅"
+
+#: inc/layout/class-layout.php:75
+#: inc/sidebar/class-sidebar.php:97
+#: inc/sidebar/class-sidebar.php:107
+msgid "単位付きで入力してください。数値のみを入力した場合は単位はpxになります。"
+msgstr "単位付きで入力してください。数値のみを入力した場合は単位はpxになります。"
+
+#: inc/sidebar/class-sidebar.php:106
+msgid "メインコンテンツとサイドバーの間隔"
+msgstr "メインコンテンツとサイドバーの間隔"
 
 #. Template Name of the theme
 msgid ""

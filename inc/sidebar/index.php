@@ -10,3 +10,5 @@
 defined( 'ABSPATH' ) || die();
 
 require_once __DIR__ . '/class-sidebar.php';
+
+\ystandard\Sidebar::register_layout_settings();

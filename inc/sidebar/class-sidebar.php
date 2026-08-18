@@ -16,6 +16,21 @@ use ystandard\utils\Post_Type;
  */
 class Sidebar {
 	/**
+	 * サイドバー設定ラベル名.
+	 */
+	private const LAYOUT_LABEL_NAME = 'ys_layout_sidebar_section_label';
+
+	/**
+	 * サイドバー幅設定名.
+	 */
+	private const WIDTH_OPTION_NAME = 'ys_sidebar_width';
+
+	/**
+	 * カラム間隔設定名.
+	 */
+	private const GAP_OPTION_NAME = 'ys_sidebar_gap';
+
+	/**
 	 * 旧モバイルサイドバー設定.
 	 */
 	private const LEGACY_HIDE_MOBILE_OPTION = 'ys_hide_sidebar_mobile';
@@ -45,6 +60,78 @@ class Sidebar {
 	 */
 	private function __construct() {
 		add_filter( 'ys_sidebar_class', [ $this, 'sidebar_class' ] );
+	}
+
+	/**
+	 * レイアウト設定のフックを登録.
+	 *
+	 * @return void
+	 */
+	public static function register_layout_settings(): void {
+		add_action( 'customize_register', [ self::class, 'customize_register' ] );
+		add_filter( 'ys_get_css_custom_properties_args', [ self::class, 'add_layout_css_vars' ] );
+	}
+
+	/**
+	 * サイドバーのレイアウト設定を追加.
+	 *
+	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
+	 * @return void
+	 */
+	public static function customize_register( $wp_customize ): void {
+		$customizer = new Customize_Control( $wp_customize );
+		$customizer->add_section_label(
+			__( 'サイドバー', 'ystandard' ),
+			[
+				'id'          => self::LAYOUT_LABEL_NAME,
+				'section'     => Layout::SECTION_NAME,
+				'description' => __( '2カラムレイアウトのサイドバーに関する設定', 'ystandard' ),
+			]
+		);
+
+		$customizer->add_text(
+			[
+				'id'                => self::WIDTH_OPTION_NAME,
+				'section'           => Layout::SECTION_NAME,
+				'label'             => __( '2カラムのサイドバー幅', 'ystandard' ),
+				'description'       => __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' ),
+				'sanitize_callback' => [ Layout::class, 'sanitize_css_value' ],
+			]
+		);
+
+		$customizer->add_text(
+			[
+				'id'                => self::GAP_OPTION_NAME,
+				'section'           => Layout::SECTION_NAME,
+				'label'             => __( 'メインコンテンツとサイドバーの間隔', 'ystandard' ),
+				'description'       => __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' ),
+				'sanitize_callback' => [ Layout::class, 'sanitize_css_value' ],
+			]
+		);
+	}
+
+	/**
+	 * サイドバーのレイアウト用CSSカスタムプロパティを追加.
+	 *
+	 * @param array $css_vars CSSカスタムプロパティ.
+	 * @return array
+	 */
+	public static function add_layout_css_vars( array $css_vars ): array {
+		$width = Layout::normalize_css_value( Option::get_option( self::WIDTH_OPTION_NAME, '' ) );
+
+		// 未設定時はSCSSの可変幅を維持し、保存値がある場合だけ上書きする.
+		if ( '' !== $width ) {
+			$css_vars['--ystd--sidebar--2col--size'] = $width;
+		}
+
+		$gap = Layout::normalize_css_value( Option::get_option( self::GAP_OPTION_NAME, '' ) );
+
+		// 0も有効な設定として扱い、未設定の場合だけテーマ標準の間隔を維持する.
+		if ( '' !== $gap ) {
+			$css_vars['--ystd--sidebar--2col--gap'] = $gap;
+		}
+
+		return $css_vars;
 	}
 
 	/**

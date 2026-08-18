@@ -201,12 +201,20 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 | `--ystd--content--min-width` | `66.66%` |
 | `--ystd--content--margin-bottom` | `calc(2 * var(--ystd--layout-gap))` |
 
+カスタマイザーの「[ys]レイアウト」→「コンテンツ領域」で、`contentSize`相当の「コンテンツ幅」と`wideSize`相当の「コンテナ幅」を設定できる。入力欄のプレースホルダーには、Global Stylesから取得した現在値を表示する。
+
+保存値は`wp_theme_json_data_user`を通じてGlobal Stylesへ反映するため、公開画面のWordPress CSSカスタムプロパティと投稿エディターのレイアウト基準へ同じ値が適用される。
+
 #### CSSカスタムプロパティ - サイドバー
 
 | プロパティ | 初期値 |
 |-----------|--------|
 | `--ystd--sidebar--2col--size` | `clamp(12.5rem, -36.955rem + 77.27vw, 21rem)` |
 | `--ystd--sidebar--2col--gap` | `2rem` |
+
+`--ystd--sidebar--2col--size`と`--ystd--sidebar--2col--gap`は、カスタマイザーの「[ys]レイアウト」→「サイドバー」で上書きできる。未入力時は上記の初期値を維持する。
+
+2カラム時のメインカラム幅は、コンテナの残り幅と`--ystd--content--width`の小さい方を使用する。メインカラムが上限幅に達した後の余りは`justify-content: space-between`でカラム間へ配分されるため、`--ystd--sidebar--2col--gap`は最低間隔として扱う。
 
 ---
 
@@ -612,6 +620,7 @@ src/scripts/*.ts
 |------|--------|------|
 | `ys_design` | 900 | パネル（廃止予定） |
 | `ys_info_bar` | 1000 | セクション |
+| `ys_layout` | 1090 | セクション |
 | `ys_site_typography` | 1100 | セクション |
 | `ys_block_editor` | 1101 | セクション |
 | `ys_site_background` | 1110 | セクション |
@@ -626,6 +635,10 @@ src/scripts/*.ts
 | `ys_toc` | 1510 | セクション |
 
 `ys_site_background`はトップレベルの「[ys]サイト背景」セクションとして配置する。モバイルサイドバー設定は投稿タイプ別設定へ移行済みで、旧「[ys]デザイン」パネルは「目次」の所属先として一時的に残す。
+
+`ys_layout`は「[ys]フォント・文字色」の直前にトップレベルの「[ys]レイアウト」セクションとして配置する。`ys_layout_content_section_label`の下へ「コンテンツ幅」と「コンテナ幅」を、`ys_layout_sidebar_section_label`の下へ「2カラムのサイドバー幅」と「メインコンテンツとサイドバーの間隔」をまとめる。
+
+4つの幅・間隔設定はいずれもテキストコントロールを使用し、単位のない数値にはCSS出力時に`px`を補完する。単位付きの値と`calc()`、`min()`、`max()`、`clamp()`、`var()`を使った計算式も指定できる。
 
 モバイルサイドバー設定は、詳細ページでは`ys_hide_{post_type}_sidebar_mobile`、アーカイブページでは`ys_hide_{post_type}_archive_sidebar_mobile`として保存する。新しい設定が未保存の場合は、旧`ys_hide_sidebar_mobile`を互換値として使用する。
 

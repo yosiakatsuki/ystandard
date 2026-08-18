@@ -20,6 +20,8 @@ class SidebarTest extends WP_UnitTestCase {
 			'ys_hide_post_archive_sidebar_mobile',
 			'ys_hide_page_sidebar_mobile',
 			'ys_hide_book_archive_sidebar_mobile',
+			'ys_sidebar_width',
+			'ys_sidebar_gap',
 		] as $option_name ) {
 			delete_option( $option_name );
 		}
@@ -195,5 +197,87 @@ class SidebarTest extends WP_UnitTestCase {
 		$this->assertTrue( \ystandard\Widget::is_active_sidebar() );
 
 		remove_filter( 'ys_pre_is_active_sidebar', $callback );
+	}
+
+	/**
+	 * 未設定時はサイドバーのレイアウト用CSS変数を追加しないことを確認.
+	 */
+	public function test_layout_css_vars_keep_theme_defaults_when_options_are_empty() {
+		$css_vars = \ystandard\Sidebar::add_layout_css_vars( [ '--ystd--existing' => '1rem' ] );
+
+		$this->assertSame( [ '--ystd--existing' => '1rem' ], $css_vars );
+	}
+
+	/**
+	 * 保存した幅と間隔がCSS変数へ追加されることを確認.
+	 */
+	public function test_layout_css_vars_include_saved_width_and_gap() {
+		update_option( 'ys_sidebar_width', 300 );
+		update_option( 'ys_sidebar_gap', 0 );
+
+		$css_vars = \ystandard\Sidebar::add_layout_css_vars( [] );
+
+		$this->assertSame( '300px', $css_vars['--ystd--sidebar--2col--size'] );
+		$this->assertSame( '0px', $css_vars['--ystd--sidebar--2col--gap'] );
+	}
+
+	/**
+	 * 単位付きの値と計算式がCSS変数へ追加されることを確認.
+	 */
+	public function test_layout_css_vars_include_css_values() {
+		update_option( 'ys_sidebar_width', 'clamp(200px, 25vw, 480px)' );
+		update_option( 'ys_sidebar_gap', '2rem' );
+
+		$css_vars = \ystandard\Sidebar::add_layout_css_vars( [] );
+		$this->assertSame( 'clamp(200px, 25vw, 480px)', $css_vars['--ystd--sidebar--2col--size'] );
+		$this->assertSame( '2rem', $css_vars['--ystd--sidebar--2col--gap'] );
+	}
+
+	/**
+	 * 不正な保存値をCSSへ出力しないことを確認.
+	 */
+	public function test_layout_css_vars_ignore_invalid_values() {
+		update_option( 'ys_sidebar_width', '300px; color: red' );
+		update_option( 'ys_sidebar_gap', 'url(https://example.com)' );
+
+		$css_vars = \ystandard\Sidebar::add_layout_css_vars( [] );
+
+		$this->assertArrayNotHasKey( '--ystd--sidebar--2col--size', $css_vars );
+		$this->assertArrayNotHasKey( '--ystd--sidebar--2col--gap', $css_vars );
+	}
+
+	/**
+	 * optionフィルターの値も範囲検証してからCSSへ追加することを確認.
+	 */
+	public function test_layout_css_vars_validate_filtered_values() {
+		$width_callback = static function () {
+			return 'calc(30% - 2rem)';
+		};
+		$gap_callback   = static function () {
+			return 'expression(alert(1))';
+		};
+		add_filter( 'ys_get_option_ys_sidebar_width', $width_callback );
+		add_filter( 'ys_get_option_ys_sidebar_gap', $gap_callback );
+
+		$css_vars = \ystandard\Sidebar::add_layout_css_vars( [] );
+
+		$this->assertSame( 'calc(30% - 2rem)', $css_vars['--ystd--sidebar--2col--size'] );
+		$this->assertArrayNotHasKey( '--ystd--sidebar--2col--gap', $css_vars );
+
+		remove_filter( 'ys_get_option_ys_sidebar_width', $width_callback );
+		remove_filter( 'ys_get_option_ys_sidebar_gap', $gap_callback );
+	}
+
+	/**
+	 * 既存のCSS出力経路から保存値が出力されることを確認.
+	 */
+	public function test_layout_css_vars_are_rendered_by_enqueue_styles() {
+		update_option( 'ys_sidebar_width', 320 );
+		update_option( 'ys_sidebar_gap', 48 );
+
+		$css = \ystandard\Enqueue_Styles::get_css_custom_properties();
+
+		$this->assertStringContainsString( '--ystd--sidebar--2col--size: 320px;', $css );
+		$this->assertStringContainsString( '--ystd--sidebar--2col--gap: 48px;', $css );
 	}
 }

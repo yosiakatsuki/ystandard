@@ -25,6 +25,7 @@ class Customizer {
 	 */
 	const PANEL_PRIORITY = [
 		'ys_info_bar'           => 1000, // お知らせバー.
+		'ys_layout'             => 1090, // レイアウト.
 		'ys_site_typography'    => 1100, // フォント・文字色.
 		'ys_block_editor'       => 1101, // ブロックエディター.
 		'ys_site_background'    => 1110, // サイト背景（未整理）.
