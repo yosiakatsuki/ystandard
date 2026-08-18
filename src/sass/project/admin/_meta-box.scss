@@ -112,3 +112,12 @@
 		text-transform: none;
 	}
 }
+
+.ystandard-post-settings-items {
+	display: grid;
+	gap: 12px;
+
+	&:not(:first-child) {
+		margin-top: 12px;
+	}
+}

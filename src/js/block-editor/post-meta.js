@@ -8,10 +8,16 @@ import {
 } from '@wordpress/components';
 import { useEntityProp } from '@wordpress/core-data';
 import { useDispatch, useSelect } from '@wordpress/data';
-import { createElement, useRef } from '@wordpress/element';
+import { createElement, Fragment, useRef } from '@wordpress/element';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 import { registerPlugin } from '@wordpress/plugins';
+import {
+	BUILT_IN_SECTION_IDS,
+	ExternalPostSettingsPanels,
+	PostSettingsItems,
+	usePostSettingsSections,
+} from './post-settings-extensions';
 
 const settings = window.ystandardPostMetaSettings || {};
 
@@ -52,33 +58,53 @@ const FieldControl = ( { field, value, onChange } ) => {
 	);
 };
 
-const PostMetaPanels = () => {
-	const [ meta, setMeta ] = useEntityProp(
-		'postType',
-		settings.postType,
-		'meta'
+export const PostMetaPanels = ( {
+	postType = settings.postType,
+	panels = settings.panels || {},
+	fields: metaFields = settings.fields || [],
+	context = settings.postSettingsContext,
+} = {} ) => {
+	const [ meta, setMeta ] = useEntityProp( 'postType', postType, 'meta' );
+	const builtInPanels = Object.entries( panels ).map(
+		( [ panelName, panelTitle ], index ) => ( {
+			id: BUILT_IN_SECTION_IDS[ panelName ] || `ystandard/${ panelName }`,
+			title: panelTitle,
+			order: ( index + 1 ) * 10,
+			panelName,
+		} )
 	);
+	const builtInSections = builtInPanels.map( ( { id, title, order } ) => ( {
+		id,
+		title,
+		order,
+	} ) );
+	const builtInPanelNames = new Map(
+		builtInPanels.map( ( panel ) => [ panel.id, panel.panelName ] )
+	);
+	const sections = usePostSettingsSections( context, builtInSections );
 
-	if ( ! meta ) {
-		return null;
-	}
+	return sections.map( ( section ) => {
+		const panelName = builtInPanelNames.get( section.id );
+		const fields = meta
+			? metaFields.filter( ( field ) => panelName === field.panel )
+			: [];
 
-	return Object.entries( settings.panels || {} ).map(
-		( [ panelName, panelTitle ] ) => {
-			const fields = ( settings.fields || [] ).filter(
-				( field ) => panelName === field.panel
-			);
-			if ( ! fields.length ) {
-				return null;
-			}
+		if ( ! fields.length && ! section.items.length ) {
+			return null;
+		}
 
-			return (
-				<PluginDocumentSettingPanel
-					key={ panelName }
-					name={ `ystandard-${ panelName }` }
-					className="ystandard-post-meta-panel"
-					title={ panelTitle }
-				>
+		return (
+			<PluginDocumentSettingPanel
+				key={ section.id }
+				name={
+					panelName
+						? `ystandard-${ panelName }`
+						: `ystandard-post-settings-${ section.id }`
+				}
+				className="ystandard-post-meta-panel"
+				title={ section.title }
+			>
+				{ 0 < fields.length && (
 					<div className="ystandard-post-meta-fields">
 						{ fields.map( ( field ) => (
 							<FieldControl
@@ -94,10 +120,18 @@ const PostMetaPanels = () => {
 							/>
 						) ) }
 					</div>
-				</PluginDocumentSettingPanel>
-			);
-		}
-	);
+				) }
+				{ 0 < section.items.length && (
+					<div className="ystandard-post-settings-items">
+						<PostSettingsItems
+							items={ section.items }
+							context={ context }
+						/>
+					</div>
+				) }
+			</PluginDocumentSettingPanel>
+		);
+	} );
 };
 
 const PartsShortcodePanel = () => {
@@ -176,12 +210,21 @@ const PartsShortcodePanel = () => {
 	);
 };
 
-const PostMetaPlugin = () => {
-	if ( settings.partsPostType === settings.postType ) {
-		return <PartsShortcodePanel />;
-	}
-
-	return <PostMetaPanels />;
+export const PostMetaPlugin = () => {
+	return (
+		<Fragment>
+			{ settings.partsPostType === settings.postType ? (
+				<Fragment>
+					<PartsShortcodePanel />
+					<ExternalPostSettingsPanels
+						context={ settings.postSettingsContext }
+					/>
+				</Fragment>
+			) : (
+				<PostMetaPanels context={ settings.postSettingsContext } />
+			) }
+		</Fragment>
+	);
 };
 
 registerPlugin( 'ystandard-post-meta', {

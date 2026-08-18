@@ -59,10 +59,11 @@ class Block_Editor_Post_Meta {
 			true
 		);
 		wp_set_script_translations( self::SCRIPT_HANDLE, 'ystandard', get_template_directory() . '/languages' );
+		$post = get_post();
 		wp_add_inline_script(
 			self::SCRIPT_HANDLE,
 			'window.ystandardPostMetaSettings = ' . wp_json_encode(
-				$this->get_script_settings( $post_type ),
+				$this->get_script_settings( $post_type, $post instanceof \WP_Post ? $post->ID : 0 ),
 				JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
 			) . ';',
 			'before'
@@ -73,10 +74,11 @@ class Block_Editor_Post_Meta {
 	 * JavaScriptへ渡す設定を取得.
 	 *
 	 * @param string $post_type 投稿タイプ.
+	 * @param int    $post_id   投稿ID.
 	 *
 	 * @return array
 	 */
-	private function get_script_settings( $post_type ) {
+	private function get_script_settings( $post_type, $post_id ) {
 		$fields = [];
 		if ( Parts::POST_TYPE !== $post_type ) {
 			foreach ( Post_Meta::get_meta_fields() as $key => $field ) {
@@ -95,10 +97,15 @@ class Block_Editor_Post_Meta {
 		}
 
 		return [
-			'postType'      => $post_type,
-			'partsPostType' => Parts::POST_TYPE,
-			'fields'        => $fields,
-			'panels'        => [
+			'postType'            => $post_type,
+			'partsPostType'       => Parts::POST_TYPE,
+			'postSettingsContext' => [
+				'apiVersion' => 1,
+				'postType'   => $post_type,
+				'postId'     => $post_id,
+			],
+			'fields'              => $fields,
+			'panels'              => [
 				'post' => __( '[ys] 投稿設定', 'ystandard' ),
 				'seo'  => __( '[ys] SEO設定', 'ystandard' ),
 				'sns'  => __( '[ys] SNS設定', 'ystandard' ),
