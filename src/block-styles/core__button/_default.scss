@@ -1,33 +1,45 @@
 .wp-block-button {
-	color: var(--ystd--button--text-color);
-}
+	:where(.wp-block-button__link) {
+		display: var(--ystd--button--display);
+		align-items: center;
+		padding: var(--ystd--button--padding);
+		border-radius: var(--ystd--button--border-radius);
+		font-size: var(--ystd--button--font-size);
+		line-height: var(--ystd--button--line-height);
+		text-decoration: none;
+		opacity: var(--ystd--button--opacity);
 
-.wp-block-button__link {
-	display: var(--ystd--button--display);
-	padding: var(--ystd--button--padding);
-	background-color: var(--ystd--button--background-color);
-	border-radius: var(--ystd--button--border-radius);
-	color: var(--ystd--button--text-color);
-	font-size: var(--ystd--button--font-size);
-	line-height: var(--ystd--button--line-height);
-	text-decoration: none;
-	transition: all 0.3s;
+		@media (prefers-reduced-motion: no-preference) {
+			transition: opacity 0.3s;
+		}
 
-	//border-width: var(--ystd--button--border-width);
-	//border-color: var(--ystd--button--border-color);
-	//border-style: var(--ystd--button--border-style);
+		@media (hover: hover) {
+			&:hover {
+				opacity: var(--ystd--button--hover--opacity);
+			}
+		}
 
-	@media (hover: hover) {
-		&:hover {
-			color: var(--ystd--button--hover--text-color);
-			background-color: var(--ystd--button--hover--background);
-			//border-color: var(--ystd--button--hover--border-color);
-			box-shadow: var(--ystd--button--box-shadow);
+		:where(svg, img) {
+			width: var(--ystd--button--icon--size);
+			height: var(--ystd--button--icon--size);
+			flex-shrink: 0;
+			vertical-align: middle;
 		}
 	}
+}
 
-	svg {
-		width: var(--ystd--button--icon--size);
-		height: var(--ystd--button--icon--size);
+.wp-block-button:where(:not(.is-style-outline)) {
+	color: var(--ystd--button--text-color);
+
+	:where(.wp-block-button__link) {
+		background-color: var(--ystd--button--background-color);
+		color: var(--ystd--button--text-color);
+
+		@media (hover: hover) {
+			&:hover {
+				color: var(--ystd--button--hover--text-color);
+				background-color: var(--ystd--button--hover--background);
+			}
+		}
 	}
 }

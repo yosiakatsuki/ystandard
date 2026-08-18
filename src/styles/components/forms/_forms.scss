@@ -1,6 +1,6 @@
 @use "../../global";
 
-:where(input,textarea,select,button) {
+:where(input, textarea, select, button) {
 	padding: 0.5rem;
 	background-color: var(--ystd--form--background);
 	border: 1px solid var(--ystd--form--border-color);
@@ -9,35 +9,48 @@
 	font-size: 1em;
 }
 
-:where(input[type="text"],input[type="search"],input[type="url"],input[type="email"],input[type="tel"],textarea,select) {
+:where(
+	input[type="text"],
+	input[type="search"],
+	input[type="url"],
+	input[type="email"],
+	input[type="tel"],
+	textarea,
+	select
+) {
 	display: block;
 	width: 100%;
 }
 
-:where(button,input[type="reset"],input[type="submit"],input[type="button"]) {
+:where(
+	button,
+	input[type="reset"],
+	input[type="submit"],
+	input[type="button"]
+) {
 	display: var(--ystd--button--display);
 	padding: var(--ystd--button--padding);
 	background-color: var(--ystd--button--background-color);
 	border-radius: var(--ystd--button--border-radius);
-	border-width: var(--ystd--button--border-width);
-	border-color: var(--ystd--button--border-color);
-	border-style: var(--ystd--button--border-style);
 	color: var(--ystd--button--text-color);
 	font-size: var(--ystd--button--font-size);
 	text-decoration: none;
-	transition: all 0.3s;
+	opacity: var(--ystd--button--opacity);
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition: opacity 0.3s;
+	}
 
 	@media (hover: hover) {
 		&:where(:hover) {
-			color: var(--ystd--button--hover--text-color);
-			background-color: var(--ystd--button--hover--background);
-			border-color: var(--ystd--button--hover--border-color);
-			box-shadow: var(--ystd--button--box-shadow);
+			opacity: var(--ystd--button--hover--opacity);
 		}
 	}
 
 	:where(svg) {
 		width: var(--ystd--button--icon--size);
 		height: var(--ystd--button--icon--size);
+		flex-shrink: 0;
+		vertical-align: middle;
 	}
 }
