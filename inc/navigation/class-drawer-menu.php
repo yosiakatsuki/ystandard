@@ -37,7 +37,7 @@ class Drawer_Menu {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_filter( 'ys_get_inline_css', [ $this, 'inline_css' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'css_vars' ] );
-		add_action( 'wp_footer', [ $this, 'drawer_nav' ] );
+		add_action( 'wp_footer', [ $this, 'drawer_nav' ], 0 );
 		add_action( 'init', [ $this, 'set_drawer_nav_search_form' ] );
 		// 他プラグインでフィルターを使って値を取得できる。yStandard非依存のため.
 		add_filter( 'ys_get_drawer_menu_start', [ __CLASS__, 'get_drawer_menu_start_option' ], 1 );

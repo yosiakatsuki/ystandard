@@ -1,14 +1,12 @@
-
 :where(.sub-footer) {
 	padding-top: var(--ystd--sub-footer--padding);
 	padding-bottom: var(--ystd--sub-footer--padding);
-	background-color: var(--ystd--sub-footer--background, var(--ystd--footer--background));
+	background-color: var(
+		--ystd--sub-footer--background,
+		var(--ystd--footer--background)
+	);
 	color: var(--ystd--sub-footer--text-color);
 	overflow: hidden;
-
-	:where(a) {
-		color: currentColor;
-	}
 
 	:where(.entry-content) {
 		--ystd--content--size: var(--ystd--container--size);
