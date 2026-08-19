@@ -8,4 +8,11 @@
 	--ystd--header--description--font-size: 0.7em;
 	--ystd--header--description--line-height: 1.3;
 	--ystd--header--shadow: none;
+	--ystd--header--thumbnail--width: 100%;
+	--ystd--header--thumbnail--height--mobile: auto;
+	--ystd--header--thumbnail--height--tablet: 50vh;
+	--ystd--header--thumbnail--max-height--mobile: none;
+	--ystd--header--thumbnail--max-height--tablet: 400px;
+	--ystd--header--thumbnail--object-fit: cover;
+	--ystd--header--thumbnail--object-position: 50% 50%;
 }

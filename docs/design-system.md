@@ -410,6 +410,13 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 | `--ystd--header--text-color` | `var(--ystd--text-color)` | `ys_color_header_font` |
 | `--ystd--header--description--text-color` | `var(--ystd--text-color--gray)` | `ys_color_header_dscr_font` |
 | `--ystd--header--shadow` | `none` | `ys_header_box_shadow` |
+| `--ystd--header--thumbnail--width` | `100%` | - |
+| `--ystd--header--thumbnail--height--mobile` | `auto` | - |
+| `--ystd--header--thumbnail--height--tablet` | `50vh` | - |
+| `--ystd--header--thumbnail--max-height--mobile` | `none` | - |
+| `--ystd--header--thumbnail--max-height--tablet` | `400px` | - |
+| `--ystd--header--thumbnail--object-fit` | `cover` | - |
+| `--ystd--header--thumbnail--object-position` | `50% 50%` | - |
 
 ### 5.2 サイトブランディング
 
