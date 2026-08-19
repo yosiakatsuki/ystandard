@@ -46,7 +46,6 @@ class Customizer {
 		'ys_advertisement'      => 1800, // 広告.
 		'ys_extension'          => 2000, // 拡張機能.
 
-		'ys_blog_card'          => 910, // ブログカード(廃止予定).
 	];
 
 	/**

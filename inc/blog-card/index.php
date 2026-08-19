@@ -10,4 +10,3 @@
 defined( 'ABSPATH' ) || die();
 
 require_once __DIR__ . '/class-blog-card.php';
-require_once __DIR__ . '/class-embed.php';

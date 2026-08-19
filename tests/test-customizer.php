@@ -103,6 +103,22 @@ class CustomizerTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * ブログカードとoEmbedの設定が登録されないことを確認.
+	 */
+	public function test_blog_card_and_oembed_settings_are_removed() {
+		$wp_customize = new WP_Customize_Manager();
+		$optimization = ( new ReflectionClass( \ystandard\Optimization::class ) )->newInstanceWithoutConstructor();
+		$optimization->customize_register( $wp_customize );
+
+		$this->assertNull( $wp_customize->get_section( 'ys_blog_card' ) );
+		$this->assertNull( $wp_customize->get_setting( 'ys_blog_card_create_card_auto' ) );
+		$this->assertSame( 1000, \ystandard\Customizer::get_priority( 'ys_blog_card' ) );
+		$this->assertNull( $wp_customize->get_section( 'ys_optimize_oembed' ) );
+		$this->assertNull( $wp_customize->get_setting( 'ys_option_disable_wp_oembed' ) );
+		$this->assertFalse( method_exists( \ystandard\Optimization::class, 'optimize_oembed' ) );
+	}
+
+	/**
 	 * レイアウトセクションにサイドバー設定が登録されることを確認.
 	 */
 	public function test_sidebar_layout_settings_are_registered() {

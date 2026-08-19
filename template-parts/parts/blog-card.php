@@ -9,12 +9,11 @@
 
 defined( 'ABSPATH' ) || die();
 
-/**
- * ブログカードの表示は基本的にショートコードで処理しています。
- */
-if ( ! isset( $ys_card_data ) || empty( $ys_card_data ) ) {
+// 呼び出し元から表示データを受け取れない場合は、不完全なカードを出力しない.
+if ( empty( $args['ys_card_data'] ) ) {
 	return;
 }
+$ys_card_data = $args['ys_card_data'];
 
 ?>
 

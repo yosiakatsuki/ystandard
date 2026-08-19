@@ -88,6 +88,11 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- 投稿タイプ別設定に「目次を自動で作成する」を追加
 	- 新設定が未保存の場合はv4の投稿タイプ別無効化設定を参照
 	- `[ys_toc]`ショートコードは維持し、目次ウィジェットと旧「[ys]デザイン」パネルは削除
+- [削除] カスタマイザーの「[ys]ブログカード」とテーマ独自のEmbed関連機能を削除
+	- URLのみの行をブログカードへ自動変換する処理を廃止
+	- `[ys_blog_card]`ショートコードとテーマ標準の表示は維持
+	- yStandard Blocksの`Card_Block`への描画委譲を廃止
+	- 「[ys]高速化」のoEmbed設定と最適化処理を廃止し、WordPress標準動作へ変更
 - [変更] 設定初期値変更
 	- 色を設定する項目の初期値を初期値なし（空白）に変更
 	- デザイン -> 投稿ページ -> ページレイアウト : 1カラムをデフォルトに変更
@@ -249,12 +254,20 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - ys_share_button_type_header：シェアボタン表示設定（投稿タイプ別の設定に変更 ys\_{post_type}\_share_button_type_header）
 - ys_share_button_type_footer：シェアボタン表示設定（投稿タイプ別の設定に変更 ys\_{post_type}\_share_button_type_footer）
 - ys_show\_{post_type}\_category：記事下カテゴリー表示（投稿タイプ別に表示するタクソノミーの選択方式に変更）
+- `ys_blog_card_create_card_auto`：URLのみの行をブログカードへ自動変換する設定
+- `ys_option_disable_wp_oembed`：WordPressのoEmbedを無効化する設定
 
 #### v5.0.0 - 廃止された関数・クラスメソッド
 
 - `ys_get_template_part()`：WordPressコアの`get_template_part()`へ移行
 - `\ystandard\Template::get_template_part()`：WordPressコアの`get_template_part()`へ移行
 - 独自APIが追加していた投稿タイプ・タクソノミー別テンプレート候補と絶対パス読み込みも廃止
+- `\ystandard\Embed`：テーマ独自のEmbed表示を廃止
+- `ys_embed_content()`：WordPressコアのEmbed表示へ移行
+- `\ystandard\Blog_Card::embed_register_handler()`：URLのみの行を自動変換する処理を廃止
+- `\ystandard\Blog_Card::blog_card_handler()`：URLのみの行を自動変換する処理を廃止
+- `\ystandard\Blog_Card::get_admin_blog_card()`：エディター用のEmbed展開を廃止
+- `\ystandard\Blog_Card::customize_register()`：ブログカード設定を廃止
 
 #### v5.0.0 - 廃止されたフック
 
@@ -270,6 +283,12 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - `ys_editor_font_sizes`：ブロックエディター用文字サイズプリセットを変更するフィルター
 - `ys_is_enqueue_font_size`：フロント用文字サイズCSSの出力状態を示すフィルター
 - `ys_is_enqueue_block_editor_font_size`：ブロックエディター用文字サイズCSSの出力状態を示すフィルター
+- `ys_use_blogcard`：URLのみの行をブログカードへ自動変換するか変更するフィルター
+- `ys_use_blogcard_admin`：管理画面でURLのみの行をブログカードへ変換するか変更するフィルター
+- `ys_use_ystdb_card`：`[ys_blog_card]`の描画をyStandard Blocksへ委譲するか変更するフィルター
+- `ys_editor_blog_card_embed_css`：エディター用ブログカードのCSSを変更するフィルター
+- `ys_cache_count_key__blog_card`：ブログカードのキャッシュ件数確認に使用するキーを変更するフィルター
+- `ys_cache_delete_key__blog_card`：ブログカードのキャッシュ削除に使用するキーを変更するフィルター
 
 #### v5.0.0 - ファイル移動表
 

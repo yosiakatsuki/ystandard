@@ -11,9 +11,7 @@ namespace ystandard;
 
 use ystandard\utils\Conditional_Tags;
 use ystandard\utils\Convert;
-use ystandard\utils\Short_Code;
 use ystandard\utils\Text;
-use ystandard\Utils\URL;
 
 defined( 'ABSPATH' ) || die();
 
@@ -56,126 +54,10 @@ class Blog_Card {
 	private $params = [];
 
 	/**
-	 * パネル名
-	 *
-	 * @var string
-	 */
-	const PANEL_NAME = 'ys_blog_card';
-
-	/**
 	 * YS_Blog_Card constructor.
 	 */
 	public function __construct() {
-
-		add_action( 'after_setup_theme', [ $this, 'embed_register_handler' ] );
 		add_shortcode( 'ys_blog_card', [ $this, 'do_shortcode' ] );
-		add_action( 'customize_register', [ $this, 'customize_register' ] );
-	}
-
-	/**
-	 * ブロクカードの展開処理登録
-	 */
-	public function embed_register_handler() {
-
-		if ( ! apply_filters( 'ys_use_blogcard', Option::get_option_by_bool( 'ys_blog_card_create_card_auto', true ) ) ) {
-			return;
-		}
-
-		if ( apply_filters( 'ys_use_blogcard_admin', is_admin() ) ) {
-			return;
-		}
-
-		wp_embed_register_handler(
-			'ys_blog_card',
-			$this->get_register_pattern(),
-			[ $this, 'blog_card_handler' ]
-		);
-	}
-
-	/**
-	 * ブログカード化する条件パターンを取得
-	 */
-	private function get_register_pattern() {
-		/**
-		 * Embed 変換されるURLパターンを取得
-		 */
-		$oembed    = _wp_oembed_get_object();
-		$providers = array_keys( $oembed->providers );
-		/**
-		 * デリミタの削除
-		 */
-		foreach ( $providers as $key => $value ) {
-			$providers[ $key ] = preg_replace( '/^#(.+)#.*$/', '$1', $value );
-		}
-
-		return '#^(?!.*(' . implode( '|', $providers ) . '))https?://.*$#i';
-	}
-
-	/**
-	 * Embedの変換ハンドラ
-	 *
-	 * @param [type] $matches matches.
-	 * @param [type] $attr attr.
-	 * @param [type] $url url.
-	 * @param [type] $rawattr rawattr.
-	 *
-	 * @return string ブログカード用ショートコード
-	 */
-	public function blog_card_handler( $matches, $attr, $url, $rawattr ) {
-		$blog_card = '[ys_blog_card url="' . $url . '"]';
-		/**
-		 * ビジュアルエディタ用処理
-		 */
-		if ( is_admin() || $this->is_oembed() ) {
-			/**
-			 * ビジュアルエディタの中でショートコードを展開する
-			 */
-			$blog_card = $this->get_admin_blog_card( $url );
-		}
-
-		return $blog_card;
-	}
-
-	/**
-	 * Embedでの展開か
-	 *
-	 * @return bool
-	 */
-	private function is_oembed() {
-		return false !== strpos( URL::get_page_url(), 'oembed/1.0' );
-	}
-
-	/**
-	 * エディタ内で展開するブログカードHTMLを作成する
-	 *
-	 * @param string $url URL.
-	 *
-	 * @return string
-	 */
-	public function get_admin_blog_card( $url ) {
-		/**
-		 * ビジュアルエディタの中でショートコードを展開する
-		 */
-		add_shortcode( 'ys_blog_card', [ $this, 'do_shortcode' ] );
-		$blog_card = Short_Code::do_shortcode(
-			'ys_blog_card',
-			[
-				'url'   => $url,
-				'cache' => 'disable',
-			],
-			null,
-			false
-		);
-		$blog_card = str_replace( '<a ', '<span ', $blog_card );
-		$blog_card = str_replace( '</a>', '</span>', $blog_card );
-		// CSS追加.
-		$css       = apply_filters(
-			'ys_editor_blog_card_embed_css',
-			file_get_contents( get_template_directory() . '/css/embed.css' )
-		);
-		$blog_card = sprintf( '%s<style>%s</style>', $blog_card, $css );
-
-		return $blog_card;
 	}
 
 	/**
@@ -196,14 +78,6 @@ class Blog_Card {
 		 */
 		if ( empty( $this->params['url'] ) ) {
 			return '';
-		}
-		/**
-		 * [yStandard Blocks]利用中の場合、プラグイン側で処理をする
-		 */
-		if ( class_exists( 'ystandard_blocks\Card_Block' ) && apply_filters( 'ys_use_ystdb_card', true ) ) {
-			$ystdb_card = new \ystandard_blocks\Card_Block();
-
-			return $ystdb_card->render( $this->params );
 		}
 		/**
 		 * URLチェック
@@ -499,32 +373,6 @@ class Blog_Card {
 		}
 
 		return "<div class=\"ys-blog-card__text-link\"><a href=\"{$url}\" {$target}>{$url}</a></div>";
-	}
-
-	/**
-	 * 設定追加
-	 *
-	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
-	 */
-	public function customize_register( $wp_customize ) {
-		$customizer = new Customize_Control( $wp_customize );
-		$customizer->add_section(
-			[
-				'section'     => self::PANEL_NAME,
-				'title'       => '[ys]ブログカード',
-				'description' => 'ブログフィードの設定',
-			]
-		);
-		$customizer->add_section_label( 'URLの自動変換' );
-		$customizer->add_checkbox(
-			[
-				'id'          => 'ys_blog_card_create_card_auto',
-				'label'       => 'URLのみの行を自動でブログカード形式に変換する',
-				'default'     => 1,
-				'transport'   => 'postMessage',
-				'description' => '※この設定をONにすることで、自動でURLのみが入力された行をブログカード形式に変換します。',
-			]
-		);
 	}
 }
 

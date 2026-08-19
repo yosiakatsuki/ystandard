@@ -24,4 +24,3 @@ require_once __DIR__ . '/site-footer.php';
 require_once __DIR__ . '/icon.php';
 require_once __DIR__ . '/version.php';
 require_once __DIR__ . '/option.php';
-require_once __DIR__ . '/embed.php';

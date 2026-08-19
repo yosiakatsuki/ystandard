@@ -410,12 +410,7 @@ class Admin_Menu {
 		 * @global \wpdb
 		 */
 		global $wpdb;
-		$transient_key = apply_filters(
-			'ys_cache_count_key__' . $cache_key,
-			$prefix . $cache_key,
-			$cache_key,
-			$prefix
-		);
+		$transient_key = $prefix . $cache_key;
 		// クエリ実行.
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
@@ -446,12 +441,7 @@ class Admin_Menu {
 		 * @global \wpdb
 		 */
 		global $wpdb;
-		$transient_key = apply_filters(
-			'ys_cache_delete_key__' . $cache_key,
-			$prefix . $cache_key,
-			$cache_key,
-			$prefix
-		);
+		$transient_key = $prefix . $cache_key;
 		/**
 		 * キャッシュの削除
 		 */

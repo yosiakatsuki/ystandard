@@ -26,7 +26,6 @@ class Optimization {
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		add_action( 'wp', [ $this, 'optimize_emoji' ] );
-		add_action( 'after_setup_theme', [ $this, 'optimize_oembed' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'disable_jquery' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'defer_jquery' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'jquery_in_footer' ] );
@@ -104,22 +103,6 @@ class Optimization {
 	}
 
 	/**
-	 * Embed関連の調整
-	 */
-	public function optimize_oembed() {
-		if ( ! Option::get_option_by_bool( 'ys_option_disable_wp_oembed', true ) ) {
-			return;
-		}
-		if ( is_admin() ) {
-			return;
-		}
-		add_filter( 'embed_oembed_discover', '__return_false' );
-		remove_action( 'wp_head', 'rest_output_link_wp_head' );
-		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
-		remove_action( 'wp_head', 'wp_oembed_add_host_js' );
-	}
-
-	/**
 	 * 絵文字の調整
 	 */
 	public function optimize_emoji() {
@@ -161,8 +144,6 @@ class Optimization {
 		$this->add_cache_section( $customizer );
 		// 絵文字.
 		$this->add_emoji_section( $customizer );
-		// embed.
-		$this->add_oembed_section( $customizer );
 		// JavaScript.
 		$this->add_javascript_section( $customizer );
 	}
@@ -239,32 +220,6 @@ class Optimization {
 				'default'     => 1,
 				'label'       => '絵文字関連のCSS・JSの出力を最適化する',
 				'description' => 'ページ表示時に絵文字の表示が少し遅れると感じる場合はこの設定をOFFにしてください。',
-			]
-		);
-	}
-
-	/**
-	 * 埋め込み設定追加
-	 *
-	 * @param Customize_Control $customizer customize control.
-	 */
-	private function add_oembed_section( $customizer ) {
-		/**
-		 * Embed
-		 */
-		$customizer->add_section(
-			[
-				'section'     => 'ys_optimize_oembed',
-				'title'       => 'oEmbed',
-				'description' => 'oEmbedによる埋め込みの設定' . Admin::manual_link( 'manual/oembed' ),
-			]
-		);
-		$customizer->add_checkbox(
-			[
-				'id'          => 'ys_option_disable_wp_oembed',
-				'default'     => 1,
-				'label'       => 'oEmbedによる埋め込みを無効にする',
-				'description' => 'oEmbedの埋め込みリンクを有効にしたい場合はこの設定をOFFにしてください。',
 			]
 		);
 	}
