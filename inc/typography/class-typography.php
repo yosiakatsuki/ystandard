@@ -69,7 +69,7 @@ class Typography {
 	}
 
 	/**
-	 * フォントCSS
+	 * 文字設定CSS
 	 *
 	 * @param array $css_vars CSS.
 	 *
@@ -147,6 +147,26 @@ class Typography {
 			);
 		}
 
+		// テキスト設定.
+		$text_settings = [
+			'ys_site_line_height'       => [ '--ystd--line-height', '' ],
+			'ys_heading_line_height'    => [ '--ystd--headline--line-height', '' ],
+			'ys_site_letter_spacing'    => [ '--ystd--letter-spacing', 'em' ],
+			'ys_heading_letter_spacing' => [ '--ystd--headline--letter-spacing', 'em' ],
+		];
+		foreach ( $text_settings as $option_name => $css_var ) {
+			$value = Option::get_option( $option_name, '' );
+			// 未設定時や数値以外の値ではtheme.jsonの初期値を使用する.
+			if ( '' === $value || ! is_numeric( $value ) ) {
+				continue;
+			}
+
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var( $css_var[0], (string) $value . $css_var[1] )
+			);
+		}
+
 		return $css_vars;
 	}
 
@@ -161,8 +181,8 @@ class Typography {
 		$customizer->add_section(
 			[
 				'section'     => 'ys_section_font',
-				'title'       => __( '[ys]フォント・文字色', 'ystandard' ),
-				'description' => __( 'サイト全体にフォント・文字色の設定', 'ystandard' ) . Admin::manual_link( 'manual/font' ),
+				'title'       => __( '[ys]サイトフォント・文字設定', 'ystandard' ),
+				'description' => __( 'サイト全体のフォント・文字色・テキスト関連の設定', 'ystandard' ) . Admin::manual_link( 'manual/font' ),
 				'priority'    => Customizer::get_priority( self::PANEL_NAME ),
 			]
 		);
@@ -198,7 +218,6 @@ class Typography {
 				'description' => '少し薄めの色で表示される部分の色設定',
 			]
 		);
-		$customizer->add_section_label( __( 'リンク色', 'ystandard' ) );
 		// リンク色.
 		$customizer->add_color(
 			[
@@ -213,6 +232,63 @@ class Typography {
 				'id'      => 'ys_color_link_hover',
 				'default' => '',
 				'label'   => 'リンク色(マウスホバー)',
+			]
+		);
+		$customizer->add_section_label( __( 'テキスト設定', 'ystandard' ) );
+		$customizer->add_number(
+			[
+				'id'          => 'ys_site_line_height',
+				'default'     => '',
+				'label'       => __( '行高さ（全体）', 'ystandard' ),
+				'description' => __( '本文などサイト全体の基準となる行高さ', 'ystandard' ),
+				'input_attrs' => [
+					'min'         => 1,
+					'max'         => 3,
+					'step'        => 0.1,
+					'placeholder' => 1.7,
+				],
+			]
+		);
+		$customizer->add_number(
+			[
+				'id'          => 'ys_heading_line_height',
+				'default'     => '',
+				'label'       => __( '行高さ（見出し）', 'ystandard' ),
+				'description' => __( '見出し（h1〜h6）の行高さ', 'ystandard' ),
+				'input_attrs' => [
+					'min'         => 1,
+					'max'         => 3,
+					'step'        => 0.1,
+					'placeholder' => 1.3,
+				],
+			]
+		);
+		$customizer->add_number(
+			[
+				'id'          => 'ys_site_letter_spacing',
+				'default'     => '',
+				'label'       => __( '文字間隔（全体）', 'ystandard' ),
+				'description' => __( 'サイト全体の基準となる文字間隔（em）', 'ystandard' ),
+				'input_attrs' => [
+					'min'         => -0.1,
+					'max'         => 0.5,
+					'step'        => 0.01,
+					'placeholder' => 0.05,
+				],
+			]
+		);
+		$customizer->add_number(
+			[
+				'id'          => 'ys_heading_letter_spacing',
+				'default'     => '',
+				'label'       => __( '文字間隔（見出し）', 'ystandard' ),
+				'description' => __( '見出し（h1〜h6）の文字間隔（em）', 'ystandard' ),
+				'input_attrs' => [
+					'min'         => -0.1,
+					'max'         => 0.5,
+					'step'        => 0.01,
+					'placeholder' => 0.05,
+				],
 			]
 		);
 	}
@@ -331,7 +407,7 @@ class Typography {
 				'priority'        => 10,
 				'section'         => 'ys_section_font',
 				'label'           => __( '標準フォントウエイト', 'ystandard' ),
-				'description'     => __( '選択したフォントにはウエイト400がないため、本文の標準ウエイトを選択できます。', 'ystandard' ),
+				'description'     => __( '選択したフォントにはウエイト400がないため、本文の標準ウエイトを選択してください。', 'ystandard' ),
 				'choices'         => $choices,
 				'input_attrs'     => [ 'data-font-type' => $font_type ],
 			];

@@ -19,6 +19,10 @@ class TypographyTest extends WP_UnitTestCase {
 		remove_filter( 'wp_theme_json_data_user', [ $this, 'add_font_library_font' ] );
 		delete_option( 'ys_design_font_type' );
 		delete_option( 'ys_design_font_weight' );
+		delete_option( 'ys_site_line_height' );
+		delete_option( 'ys_heading_line_height' );
+		delete_option( 'ys_site_letter_spacing' );
+		delete_option( 'ys_heading_letter_spacing' );
 		WP_Theme_JSON_Resolver::clean_cached_data();
 
 		parent::tear_down();
@@ -140,6 +144,10 @@ class TypographyTest extends WP_UnitTestCase {
 		$this->assertInstanceOf( WP_Customize_Control::class, $test_control );
 		$this->assertSame( $setting, $test_control->settings['default'] );
 		$this->assertSame(
+			'選択したフォントにはウエイト400がないため、本文の標準ウエイトを選択してください。',
+			$test_control->description
+		);
+		$this->assertSame(
 			[
 				''  => '指定なし（400）',
 				500 => '500',
@@ -155,6 +163,51 @@ class TypographyTest extends WP_UnitTestCase {
 
 		$this->assertFalse( $test_control->active() );
 		$this->assertTrue( $variable_control->active() );
+	}
+
+	/**
+	 * Test: サイトフォント・文字設定をカスタマイザーへ追加できる
+	 */
+	function test_customize_register_adds_text_settings() {
+		$wp_customize = new WP_Customize_Manager();
+		\ystandard\Typography::get_instance()->customize_register( $wp_customize );
+
+		$section                = $wp_customize->get_section( 'ys_section_font' );
+		$site_line_height       = $wp_customize->get_control( 'ys_site_line_height' );
+		$heading_line_height    = $wp_customize->get_control( 'ys_heading_line_height' );
+		$site_letter_spacing    = $wp_customize->get_control( 'ys_site_letter_spacing' );
+		$heading_letter_spacing = $wp_customize->get_control( 'ys_heading_letter_spacing' );
+		$text_label_id          = 'ys_' . substr( md5( 'テキスト設定ys_section_font' ), 0, 40 );
+		$link_label_id          = 'ys_' . substr( md5( 'リンク色ys_section_font' ), 0, 40 );
+
+		$this->assertSame( '[ys]サイトフォント・文字設定', $section->title );
+		$this->assertStringStartsWith( 'サイト全体のフォント・文字色・テキスト関連の設定', $section->description );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $wp_customize->get_setting( $text_label_id ) );
+		$this->assertNull( $wp_customize->get_setting( $link_label_id ) );
+		$this->assertSame( '行高さ（全体）', $site_line_height->label );
+		$this->assertSame( [ 'min' => 1, 'max' => 3, 'step' => 0.1, 'placeholder' => 1.7 ], $site_line_height->input_attrs );
+		$this->assertSame( '行高さ（見出し）', $heading_line_height->label );
+		$this->assertSame( [ 'min' => 1, 'max' => 3, 'step' => 0.1, 'placeholder' => 1.3 ], $heading_line_height->input_attrs );
+		$this->assertSame( '文字間隔（全体）', $site_letter_spacing->label );
+		$this->assertSame( [ 'min' => -0.1, 'max' => 0.5, 'step' => 0.01, 'placeholder' => 0.05 ], $site_letter_spacing->input_attrs );
+		$this->assertSame( '文字間隔（見出し）', $heading_letter_spacing->label );
+		$this->assertSame( [ 'min' => -0.1, 'max' => 0.5, 'step' => 0.01, 'placeholder' => 0.05 ], $heading_letter_spacing->input_attrs );
+	}
+
+	/**
+	 * Test: テキスト設定を入力範囲内で保存できる
+	 */
+	function test_sanitize_text_settings() {
+		$wp_customize = new WP_Customize_Manager();
+		\ystandard\Typography::get_instance()->customize_register( $wp_customize );
+
+		$site_line_height    = $wp_customize->get_setting( 'ys_site_line_height' );
+		$site_letter_spacing = $wp_customize->get_setting( 'ys_site_letter_spacing' );
+
+		$this->assertSame( '1.8', $site_line_height->sanitize( '1.8' ) );
+		$this->assertSame( '', $site_line_height->sanitize( '3.1' ) );
+		$this->assertSame( '-0.02', $site_letter_spacing->sanitize( '-0.02' ) );
+		$this->assertSame( '', $site_letter_spacing->sanitize( '0.51' ) );
 	}
 
 	/**
@@ -207,6 +260,23 @@ class TypographyTest extends WP_UnitTestCase {
 		$css_vars = \ystandard\Typography::get_instance()->add_css_vars( [] );
 
 		$this->assertArrayNotHasKey( '--ystd--font-weight--normal', $css_vars );
+	}
+
+	/**
+	 * Test: テキスト設定をCSSカスタムプロパティとして出力できる
+	 */
+	function test_add_css_vars_uses_text_settings() {
+		update_option( 'ys_site_line_height', '1.8' );
+		update_option( 'ys_heading_line_height', '1.4' );
+		update_option( 'ys_site_letter_spacing', '0' );
+		update_option( 'ys_heading_letter_spacing', '-0.02' );
+
+		$css_vars = \ystandard\Typography::get_instance()->add_css_vars( [] );
+
+		$this->assertSame( '1.8', $css_vars['--ystd--line-height'] );
+		$this->assertSame( '1.4', $css_vars['--ystd--headline--line-height'] );
+		$this->assertSame( '0em', $css_vars['--ystd--letter-spacing'] );
+		$this->assertSame( '-0.02em', $css_vars['--ystd--headline--letter-spacing'] );
 	}
 
 	/**

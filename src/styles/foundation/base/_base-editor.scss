@@ -13,8 +13,6 @@
 	color: var(--wp--custom--ystd--editor--text-color, var(--ystd--editor--text-color));
 	font-family: var(--wp--custom--ystd--editor--font-family, var(--ystd--font-family));
 	font-weight: var(--ystd--font-weight--normal, 400);
-	line-height: var(--wp--custom--ystd--editor--line-height, var(--ystd--line-height));
-	letter-spacing: var(--wp--custom--ystd--editor--letter-spacing, var(--ystd--letter-spacing));
 	word-wrap: break-word;
 
 	-moz-osx-font-smoothing: grayscale;
@@ -42,8 +40,6 @@
 div:where(.editor-styles-wrapper) {
 	h1:not(.editor-post-title), h2, h3, h4, h5, h6 {
 		padding: 0;
-		line-height: var(--ystd--headline--line-height);
-		letter-spacing: var(--ystd--headline--letter-spacing);
 	}
 }
 
@@ -88,7 +84,7 @@ div.editor-styles-wrapper {
 }
 
 :where(.editor-styles-wrapper) {
-	:where(h1,h2,h3,h4,h5,h6,strong) {
+	:where(strong) {
 		font-weight: var(--ystd--font-weight--bold);
 	}
 

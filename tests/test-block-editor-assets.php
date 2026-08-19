@@ -27,6 +27,10 @@ class BlockEditorAssetsTest extends WP_UnitTestCase {
 		remove_filter( 'wp_theme_json_data_user', [ $this, 'add_font_library_font' ] );
 		delete_option( 'ys_design_font_type' );
 		delete_option( 'ys_design_font_weight' );
+		delete_option( 'ys_site_line_height' );
+		delete_option( 'ys_heading_line_height' );
+		delete_option( 'ys_site_letter_spacing' );
+		delete_option( 'ys_heading_letter_spacing' );
 		WP_Theme_JSON_Resolver::clean_cached_data();
 		set_current_screen( 'front' );
 
@@ -58,12 +62,54 @@ class BlockEditorAssetsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * theme.jsonの全体・見出し文字設定がCSSカスタムプロパティを参照することを確認.
+	 */
+	public function test_global_typography_styles_use_custom_properties() {
+		WP_Theme_JSON_Resolver::clean_cached_data();
+		$stylesheet = wp_get_global_stylesheet( [ 'styles' ] );
+
+		$this->assertSame(
+			'var(--ystd--line-height, 1.7)',
+			wp_get_global_styles( [ 'typography', 'lineHeight' ], [ 'origin' => 'base' ] )
+		);
+		$this->assertSame(
+			'var(--ystd--letter-spacing, 0.05em)',
+			wp_get_global_styles( [ 'typography', 'letterSpacing' ], [ 'origin' => 'base' ] )
+		);
+		$this->assertSame(
+			'var(--ystd--headline--line-height, 1.3)',
+			wp_get_global_styles( [ 'elements', 'heading', 'typography', 'lineHeight' ], [ 'origin' => 'base' ] )
+		);
+		$this->assertSame(
+			'var(--ystd--headline--letter-spacing, 0.05em)',
+			wp_get_global_styles( [ 'elements', 'heading', 'typography', 'letterSpacing' ], [ 'origin' => 'base' ] )
+		);
+		$this->assertSame(
+			'var(--ystd--headline--font-weight, 700)',
+			wp_get_global_styles( [ 'elements', 'heading', 'typography', 'fontWeight' ], [ 'origin' => 'base' ] )
+		);
+		$this->assertStringContainsString( '--ystd--headline--font-weight', $stylesheet );
+
+		foreach ( range( 1, 6 ) as $level ) {
+			$this->assertSame(
+				"var(--ystd--headline--font-weight--h{$level})",
+				wp_get_global_styles( [ 'elements', "h{$level}", 'typography', 'fontWeight' ], [ 'origin' => 'base' ] )
+			);
+			$this->assertStringContainsString( "--ystd--headline--font-weight--h{$level}", $stylesheet );
+		}
+	}
+
+	/**
 	 * 編集コンテンツへフォント設定を追加できることを確認.
 	 */
 	public function test_enqueue_font_settings_for_editor_content() {
 		add_filter( 'wp_theme_json_data_user', [ $this, 'add_font_library_font' ] );
 		update_option( 'ys_design_font_type', 'font-library-test-font' );
 		update_option( 'ys_design_font_weight', '700' );
+		update_option( 'ys_site_line_height', '1.8' );
+		update_option( 'ys_heading_line_height', '1.4' );
+		update_option( 'ys_site_letter_spacing', '0.08' );
+		update_option( 'ys_heading_letter_spacing', '0.02' );
 		WP_Theme_JSON_Resolver::clean_cached_data();
 		set_current_screen( 'post' );
 
@@ -74,6 +120,10 @@ class BlockEditorAssetsTest extends WP_UnitTestCase {
 		$this->assertStringStartsWith( '.editor-styles-wrapper{ ', $inline_css );
 		$this->assertStringContainsString( '--ystd--font-family: "Test Font", sans-serif;', $inline_css );
 		$this->assertStringContainsString( '--ystd--font-weight--normal: 700;', $inline_css );
+		$this->assertStringContainsString( '--ystd--line-height: 1.8;', $inline_css );
+		$this->assertStringContainsString( '--ystd--headline--line-height: 1.4;', $inline_css );
+		$this->assertStringContainsString( '--ystd--letter-spacing: 0.08em;', $inline_css );
+		$this->assertStringContainsString( '--ystd--headline--letter-spacing: 0.02em;', $inline_css );
 	}
 
 	/**
