@@ -10,4 +10,3 @@
 defined( 'ABSPATH' ) || die();
 
 require_once __DIR__ . '/class-toc.php';
-require_once __DIR__ . '/class-ys-widget-toc.php';

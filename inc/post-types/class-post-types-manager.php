@@ -66,19 +66,23 @@ class Post_Types_Manager {
 		$this->managed_post_types = $this->get_managed_post_types();
 
 		// 基本設定の後に配置.
-		$priority_setting = Customizer::get_priority( 'ys_post_type_option' );
+		$priority_setting          = Customizer::get_priority( 'ys_post_type_option' );
+		$custom_post_type_priority = $priority_setting + 10;
 
 		foreach ( $this->managed_post_types as $post_type_data ) {
 			$post_type = $post_type_data['name'];
 			$label     = $post_type_data['label'];
 
-			// 標準投稿タイプの優先度調整. post はそのまま、pageは+1、それ以外は + 10.
 			if ( 'post' === $post_type ) {
+				// 標準の投稿設定を投稿タイプ別設定群の先頭に固定する.
 				$priority = $priority_setting;
 			} elseif ( 'page' === $post_type ) {
+				// 標準の固定ページ設定を投稿の直後に固定する.
 				$priority = $priority_setting + 1;
 			} else {
-				$priority = $priority_setting + 10;
+				// 複数のカスタム投稿タイプが同じ優先度にならないよう、追加順に1刻みで割り当てる.
+				$priority = $custom_post_type_priority;
+				++$custom_post_type_priority;
 			}
 
 			new Post_Type_Customizer( $wp_customize, $post_type, $label, $priority );

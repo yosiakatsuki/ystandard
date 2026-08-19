@@ -637,7 +637,6 @@ src/scripts/*.ts
 
 | キー | 優先度 | 種別 |
 |------|--------|------|
-| `ys_design` | 900 | パネル（廃止予定） |
 | `ys_info_bar` | 1000 | セクション |
 | `ys_layout` | 1090 | セクション |
 | `ys_site_typography` | 1100 | セクション |
@@ -647,13 +646,24 @@ src/scripts/*.ts
 | `ys_global_nav` | 1210 | セクション |
 | `ys_drawer_nav` | 1220 | セクション |
 | `ys_post_type_option` | 1300 | セクション |
-| `ys_site_footer` | 1400 | セクション |
-| `ys_mobile_footer` | 1410 | セクション |
-| `ys_site_copyright` | 1420 | セクション |
-| `ys_breadcrumbs` | 1500 | セクション |
-| `ys_toc` | 1510 | セクション |
+| `ys_toc` | 1400 | セクション |
+| `ys_breadcrumbs` | 1410 | セクション |
+| `ys_site_footer` | 1500 | セクション |
+| `ys_mobile_footer` | 1510 | セクション |
+| `ys_site_copyright` | 1520 | セクション |
+| `ys_sns` | 1600 | パネル |
+| `ys_seo` | 1610 | パネル |
+| `ys_feed` | 1620 | パネル |
+| `ys_wp_sitemap` | 1630 | パネル |
+| `ys_performance_tuning` | 1700 | パネル |
+| `ys_advertisement` | 1800 | パネル |
+| `ys_extension` | 2000 | パネル |
 
-`ys_site_background`はトップレベルの「[ys]サイト背景」セクションとして配置する。モバイルサイドバー設定は投稿タイプ別設定へ移行済みで、旧「[ys]デザイン」パネルは「目次」の所属先として一時的に残す。
+`ys_site_background`と`ys_design_toc`は、それぞれトップレベルの「[ys]サイト背景」「[ys]目次」セクションとして配置する。旧「[ys]デザイン」パネルは廃止する。
+
+投稿タイプ別設定は、投稿を`1300`、固定ページを`1301`へ固定し、カスタム投稿タイプを`1310`から1刻みで配置する。「詳細ページその他設定」に`ys_create_{post_type}_toc`を登録し、新設定が未保存の場合だけ旧`ys_disable_toc_post_type_{post_type}`を反転して使用する。
+
+「[ys]目次」では、目次タイトル、表示位置、対象見出しレベル、表示に必要な見出し数を設定する。表示位置の保存値`widget`は互換性のため維持し、カスタマイザーでは「ショートコードのみ」と表示する。`[ys_toc]`ショートコードは維持し、レガシー目次ウィジェットは登録しない。
 
 `ys_layout`は「[ys]フォント・文字色」の直前にトップレベルの「[ys]レイアウト」セクションとして配置する。`ys_layout_content_section_label`の下へ「コンテンツ幅」と「コンテナ幅」を、`ys_layout_sidebar_section_label`の下へ「2カラムのサイドバー幅」と「メインコンテンツとサイドバーの間隔」をまとめる。
 

@@ -239,3 +239,63 @@ msgstr "サイト内を検索する"
 msgctxt "global nav"
 msgid "close"
 msgstr "閉じる"
+
+#: inc/post-types/class-post-type-customizer.php:399
+msgid "詳細ページその他設定"
+msgstr "詳細ページその他設定"
+
+#: inc/post-types/class-post-type-customizer.php:409
+msgid "目次を自動で作成する"
+msgstr "目次を自動で作成する"
+
+#: inc/post-types/class-post-type-customizer.php:229
+msgid "詳細ページ本文上部"
+msgstr "詳細ページ本文上部"
+
+#: inc/post-types/class-post-type-customizer.php:316
+msgid "詳細ページ本文下部"
+msgstr "詳細ページ本文下部"
+
+#: inc/toc/class-toc.php:574
+msgid "[ys]目次"
+msgstr "[ys]目次"
+
+#: inc/toc/class-toc.php:579 inc/toc/class-toc.php:583
+msgid "目次タイトル"
+msgstr "目次タイトル"
+
+#: inc/toc/class-toc.php:584
+msgid "目次"
+msgstr "目次"
+
+#: inc/toc/class-toc.php:587 inc/toc/class-toc.php:592
+msgid "目次の表示位置"
+msgstr "目次の表示位置"
+
+#: inc/toc/class-toc.php:594
+msgid "表示しない"
+msgstr "表示しない"
+
+#: inc/toc/class-toc.php:595
+msgid "最初の見出しの上（投稿内）"
+msgstr "最初の見出しの上（投稿内）"
+
+#: inc/toc/class-toc.php:596
+msgid "ショートコードのみ"
+msgstr "ショートコードのみ"
+
+#: inc/toc/class-toc.php:600
+msgid "表示条件"
+msgstr "表示条件"
+
+#: inc/toc/class-toc.php:604
+msgid "目次に含める見出しレベル"
+msgstr "目次に含める見出しレベル"
+
+#: inc/toc/class-toc.php:621
+msgid "目次の表示に必要な見出しの数"
+msgstr "目次の表示に必要な見出しの数"
+
+#: inc/toc/class-toc.php:626
+msgid "例)設定が「3」の場合、投稿内に3つ以上見出しがある場合に目次が表示されます。"
+msgstr "例)設定が「3」の場合、投稿内に3つ以上見出しがある場合に目次が表示されます。"

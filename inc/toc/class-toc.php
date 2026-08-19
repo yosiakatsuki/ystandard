@@ -12,6 +12,7 @@ namespace ystandard;
 use ystandard\utils\Convert;
 use ystandard\utils\Post;
 use ystandard\utils\Post_Type;
+use ystandard\utils\Text;
 
 defined( 'ABSPATH' ) || die();
 
@@ -136,17 +137,6 @@ class TOC {
 		if ( ! shortcode_exists( self::SHORTCODE ) ) {
 			add_shortcode( self::SHORTCODE, [ $this, 'do_shortcode' ] );
 		}
-		/**
-		 * ウィジェット
-		 */
-		add_action( 'widgets_init', [ $this, 'register_widget' ] );
-	}
-
-	/**
-	 * ウィジェット有効化
-	 */
-	public function register_widget() {
-		register_widget( 'YS_Widget_TOC' );
 	}
 
 	/**
@@ -263,8 +253,8 @@ class TOC {
 		 * @global \WP_Post
 		 */
 		global $post;
-		// 投稿タイプ.
-		if ( Option::get_option_by_bool( 'ys_disable_toc_post_type_' . $post->post_type, false ) ) {
+		// 投稿タイプ別設定で自動作成を停止している場合は、本文へ目次を挿入しない.
+		if ( ! self::is_enabled_for_post_type( $post->post_type ) ) {
 			return false;
 		}
 		// 表示タイプ.
@@ -277,6 +267,25 @@ class TOC {
 		}
 
 		return true;
+	}
+
+	/**
+	 * 投稿タイプ別に目次の自動作成が有効か確認
+	 *
+	 * @param string $post_type 投稿タイプ.
+	 *
+	 * @return bool
+	 */
+	public static function is_enabled_for_post_type( $post_type ) {
+		$setting_name = 'ys_create_' . $post_type . '_toc';
+
+		// 新設定が保存されている場合は、明示的な無効化も含めて旧設定より優先する.
+		if ( Option::exists_option( $setting_name ) ) {
+			return Option::get_option_by_bool( $setting_name, true );
+		}
+
+		// 新設定が未保存のサイトでは、従来の表示状態を維持するため旧無効化設定を反転する.
+		return ! Option::get_option_by_bool( 'ys_disable_toc_post_type_' . $post_type, false );
 	}
 
 	/**
@@ -393,7 +402,7 @@ class TOC {
 		// リスト作成.
 		$item .= '<li class="ys-toc__item">';
 		$item .= '<a class="ys-toc__link" href="#' . $data[ $i ]['anchor'] . '">';
-		$item .= Utility::get_plain_text( $data[ $i ]['title'] );
+		$item .= Text::get_plain_text( $data[ $i ]['title'] );
 		$item .= '</a>' . PHP_EOL;
 
 		return $item;
@@ -562,38 +571,37 @@ class TOC {
 		$customizer->add_section(
 			[
 				'section'     => 'ys_design_toc',
-				'title'       => '目次',
+				'title'       => __( '[ys]目次', 'ystandard' ),
 				'description' => Admin::manual_link( 'manual/table-of-contents' ),
-				'priority'    => 115,
-				'panel'       => Design::PANEL_NAME,
+				'priority'    => Customizer::get_priority( 'ys_toc' ),
 			]
 		);
-		$customizer->add_section_label( '目次タイトル' );
+		$customizer->add_section_label( __( '目次タイトル', 'ystandard' ) );
 		$customizer->add_text(
 			[
 				'id'      => 'ys_toc_title',
-				'label'   => '目次タイトル',
-				'default' => '目次',
+				'label'   => __( '目次タイトル', 'ystandard' ),
+				'default' => __( '目次', 'ystandard' ),
 			]
 		);
-		$customizer->add_section_label( '目次の表示位置' );
+		$customizer->add_section_label( __( '目次の表示位置', 'ystandard' ) );
 		$customizer->add_select(
 			[
 				'id'      => 'ys_toc_display_type',
 				'default' => 'content',
-				'label'   => '目次の表示位置',
+				'label'   => __( '目次の表示位置', 'ystandard' ),
 				'choices' => [
-					'none'    => '表示しない',
-					'content' => '最初の見出しの上(投稿内)',
-					'widget'  => 'ウィジェット・ショートコードのみ',
+					'none'    => __( '表示しない', 'ystandard' ),
+					'content' => __( '最初の見出しの上（投稿内）', 'ystandard' ),
+					'widget'  => __( 'ショートコードのみ', 'ystandard' ),
 				],
 			]
 		);
-		$customizer->add_section_label( '表示条件' );
+		$customizer->add_section_label( __( '表示条件', 'ystandard' ) );
 		$customizer->add_label(
 			[
 				'id'    => 'ys_toc_level_label',
-				'label' => '目次に含める見出しレベル',
+				'label' => __( '目次に含める見出しレベル', 'ystandard' ),
 			]
 		);
 		for ( $i = 1; $i <= 6; $i ++ ) {
@@ -610,32 +618,14 @@ class TOC {
 			[
 				'id'          => 'ys_toc_required_count',
 				'default'     => 3,
-				'label'       => '目次の表示に必要な見出しの数',
+				'label'       => __( '目次の表示に必要な見出しの数', 'ystandard' ),
 				'input_attrs' => [
 					'min' => 1,
 					'max' => 10,
 				],
-				'description' => '例)設定が「3」の場合、投稿内に3つ以上見出しがある場合に目次が表示されます。',
+				'description' => __( '例)設定が「3」の場合、投稿内に3つ以上見出しがある場合に目次が表示されます。', 'ystandard' ),
 			]
 		);
-
-		$customizer->add_section_label(
-			'目次を無効化するタイプ',
-			[
-				'description' => '目次を<strong>表示しない</strong>投稿タイプにチェックをつけてください。',
-			]
-		);
-		$post_types = Post_Type::get_post_types( [], [ 'ys-parts' ] );
-
-		foreach ( $post_types as $name => $label ) {
-			$customizer->add_checkbox(
-				[
-					'id'      => 'ys_disable_toc_post_type_' . $name,
-					'label'   => $label,
-					'default' => 0,
-				]
-			);
-		}
 	}
 }
 

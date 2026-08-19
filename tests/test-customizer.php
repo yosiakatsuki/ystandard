@@ -38,12 +38,22 @@ class CustomizerTest extends WP_UnitTestCase {
 			'ys_container_width',
 			'ys_post_layout',
 			'ys_post_archive_layout',
+			'ys_create_post_toc',
+			'ys_create_page_toc',
+			'ys_create_book_toc',
+			'ys_create_movie_toc',
+			'ys_disable_toc_post_type_post',
+			'ys_disable_toc_post_type_page',
 		] as $option_name ) {
 			delete_option( $option_name );
 		}
 		// テストで登録したカスタム投稿タイプを次のテストへ残さない.
 		if ( post_type_exists( 'book' ) ) {
 			unregister_post_type( 'book' );
+		}
+		// テストで登録した2件目のカスタム投稿タイプも次のテストへ残さない.
+		if ( post_type_exists( 'movie' ) ) {
+			unregister_post_type( 'movie' );
 		}
 		WP_Theme_JSON_Resolver::clean_cached_data();
 		parent::tear_down();
@@ -53,11 +63,28 @@ class CustomizerTest extends WP_UnitTestCase {
 	 * Test: get_priority
 	 */
 	function test_get_priority() {
-		$priority = \ystandard\Customizer::get_priority( 'ys_seo' );
-		$this->assertSame( $priority, 1530 );
+		$expected = [
+			'ys_post_type_option'   => 1300,
+			'ys_toc'                => 1400,
+			'ys_breadcrumbs'        => 1410,
+			'ys_site_footer'        => 1500,
+			'ys_mobile_footer'      => 1510,
+			'ys_site_copyright'     => 1520,
+			'ys_sns'                => 1600,
+			'ys_seo'                => 1610,
+			'ys_feed'               => 1620,
+			'ys_wp_sitemap'         => 1630,
+			'ys_performance_tuning' => 1700,
+			'ys_advertisement'      => 1800,
+			'ys_extension'          => 2000,
+		];
+
+		foreach ( $expected as $key => $priority ) {
+			$this->assertSame( $priority, \ystandard\Customizer::get_priority( $key ) );
+		}
 
 		$priority = \ystandard\Customizer::get_priority( 'ys_none' );
-		$this->assertSame( $priority, 1000 );
+		$this->assertSame( 1000, $priority );
 	}
 
 	/**
@@ -187,7 +214,7 @@ class CustomizerTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * サイト背景がトップレベルに移動し、目次設定がデザインパネル内に残ることを確認.
+	 * サイト背景と目次がトップレベルに移動し、旧デザインパネルが削除されることを確認.
 	 */
 	public function test_site_background_is_top_level_section() {
 		$wp_customize = new WP_Customize_Manager();
@@ -199,7 +226,6 @@ class CustomizerTest extends WP_UnitTestCase {
 
 		$wp_customize->register_controls();
 		$customizer_classes = [
-			\ystandard\Design::class,
 			\ystandard\Toc::class,
 			\ystandard\Site_Background::class,
 		];
@@ -219,9 +245,16 @@ class CustomizerTest extends WP_UnitTestCase {
 			$this->assertSame( 'ys_site_background', $wp_customize->get_control( $control_id )->section );
 		}
 
-		$this->assertInstanceOf( WP_Customize_Panel::class, $wp_customize->get_panel( 'ys_design' ) );
+		$this->assertNull( $wp_customize->get_panel( 'ys_design' ) );
 		$this->assertNull( $wp_customize->get_section( 'ys_mobile_design' ) );
-		$this->assertSame( 'ys_design', $wp_customize->get_section( 'ys_design_toc' )->panel );
+
+		$toc = $wp_customize->get_section( 'ys_design_toc' );
+		$this->assertInstanceOf( WP_Customize_Section::class, $toc );
+		$this->assertSame( '[ys]目次', $toc->title );
+		$this->assertSame( '', $toc->panel );
+		$this->assertSame( 1400, $toc->priority );
+		$this->assertSame( 'ショートコードのみ', $wp_customize->get_control( 'ys_toc_display_type' )->choices['widget'] );
+		$this->assertNull( $wp_customize->get_control( 'ys_disable_toc_post_type_post' ) );
 	}
 
 	/**
@@ -249,6 +282,28 @@ class CustomizerTest extends WP_UnitTestCase {
 		$this->assertInstanceOf( WP_Customize_Setting::class, $wp_customize->get_setting( 'ys_hide_page_sidebar_mobile' ) );
 		$this->assertNull( $wp_customize->get_setting( 'ys_hide_sidebar_mobile' ) );
 		$this->assertNull( $wp_customize->get_section( 'ys_mobile_design' ) );
+
+		$toc_label = $wp_customize->get_control( 'ys_post_other_section_label' );
+		$this->assertInstanceOf( \ystandard\Section_Label_Control::class, $toc_label );
+		$this->assertSame( '詳細ページその他設定', $toc_label->label );
+		$this->assertSame( 'ys_post_type_option_post', $toc_label->section );
+		$toc_setting = $wp_customize->get_setting( 'ys_create_post_toc' );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $toc_setting );
+		$this->assertTrue( $toc_setting->default );
+		$toc_control = $wp_customize->get_control( 'ys_create_post_toc' );
+		$this->assertSame( '目次を自動で作成する', $toc_control->label );
+		$this->assertSame( 'ys_post_type_option_post', $toc_control->section );
+
+		$control_labels = array_map(
+			function ( $control ) {
+				return $control->label;
+			},
+			$wp_customize->controls()
+		);
+		$this->assertContains( '詳細ページ本文上部', $control_labels );
+		$this->assertContains( '詳細ページ本文下部', $control_labels );
+		$this->assertNotContains( '詳細ページ記事上部', $control_labels );
+		$this->assertNotContains( '詳細ページ記事下部', $control_labels );
 
 		update_option( 'ys_post_layout', '1col' );
 		$this->assertFalse( $wp_customize->get_control( 'ys_hide_post_sidebar_mobile' )->active() );
@@ -280,7 +335,38 @@ class CustomizerTest extends WP_UnitTestCase {
 
 		$this->assertInstanceOf( WP_Customize_Setting::class, $wp_customize->get_setting( 'ys_hide_book_sidebar_mobile' ) );
 		$this->assertInstanceOf( WP_Customize_Setting::class, $wp_customize->get_setting( 'ys_hide_book_archive_sidebar_mobile' ) );
+		$this->assertInstanceOf( WP_Customize_Setting::class, $wp_customize->get_setting( 'ys_create_book_toc' ) );
 
+	}
+
+	/**
+	 * カスタム投稿タイプのセクション優先度が1310から1刻みになることを確認.
+	 */
+	public function test_custom_post_type_section_priorities_are_incremented() {
+		register_post_type(
+			'book',
+			[
+				'public' => true,
+				'label'  => '本',
+			]
+		);
+		register_post_type(
+			'movie',
+			[
+				'public' => true,
+				'label'  => '映画',
+			]
+		);
+
+		$wp_customize = new WP_Customize_Manager();
+		$wp_customize->register_controls();
+		$manager = ( new ReflectionClass( \ystandard\Post_Types_Manager::class ) )->newInstanceWithoutConstructor();
+		$manager->customize_register( $wp_customize );
+
+		$this->assertSame( 1300, $wp_customize->get_section( 'ys_post_type_option_post' )->priority );
+		$this->assertSame( 1301, $wp_customize->get_section( 'ys_post_type_option_page' )->priority );
+		$this->assertSame( 1310, $wp_customize->get_section( 'ys_post_type_option_book' )->priority );
+		$this->assertSame( 1311, $wp_customize->get_section( 'ys_post_type_option_movie' )->priority );
 	}
 
 	/**

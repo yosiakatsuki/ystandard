@@ -70,7 +70,7 @@ npm run wpenv:destroy
 
 ### 名前空間とクラス命名
 - 一部のクラスは `namespace ystandard` を使用（例: `inc/template/class-template.php`, `inc/blocks/class-blocks.php`）
-- 一部はグローバル名前空間で `class-ys-*` プレフィックス（例: `inc/toc/class-ys-widget-toc.php`）
+- 一部はグローバル名前空間で`class-ys-*`プレフィックス（例: `inc/author/class-ys-widget-author-box.php`）
 - **既存ファイルの流儀に合わせる**。新しい方式を混ぜない
 
 ### CSS / TailwindCSS

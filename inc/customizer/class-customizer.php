@@ -32,22 +32,21 @@ class Customizer {
 		'ys_site_header'        => 1200, // サイトヘッダー（未整理）.
 		'ys_global_nav'         => 1210, // グローバルナビゲーション.
 		'ys_drawer_nav'         => 1220, // ドロワーメニュー（モバイルメニュー）.
-		'ys_post_type_option'   => 1300, // 投稿タイプ別設定.投稿(1300), 固定ページ(1301),は固定。それ以降は1310で追加順となる.
-		'ys_site_footer'        => 1400, // サイトフッター.
-		'ys_mobile_footer'      => 1410, // モバイルフッターメニュー.
-		'ys_site_copyright'     => 1420, // Copyright.
-		'ys_breadcrumbs'        => 1500, // パンくずリスト.
-		'ys_toc'                => 1510, // 目次(未整理).
-		'ys_sns'                => 1520, // SNS.
-		'ys_seo'                => 1530, // SEO.
-		'ys_feed'               => 1540, // RSSフィード.
-		'ys_wp_sitemap'         => 1550, // XMLサイトマップ.
-		'ys_performance_tuning' => 1600, // パフォーマンスチューニング.
-		'ys_advertisement'      => 1700, // 広告.
+		'ys_post_type_option'   => 1300, // 投稿タイプ別設定.投稿(1300), 固定ページ(1301), カスタム投稿タイプは1310から1刻み.
+		'ys_toc'                => 1400, // 目次.
+		'ys_breadcrumbs'        => 1410, // パンくずリスト.
+		'ys_site_footer'        => 1500, // サイトフッター.
+		'ys_mobile_footer'      => 1510, // モバイルフッターメニュー.
+		'ys_site_copyright'     => 1520, // Copyright.
+		'ys_sns'                => 1600, // SNS.
+		'ys_seo'                => 1610, // SEO.
+		'ys_feed'               => 1620, // RSSフィード.
+		'ys_wp_sitemap'         => 1630, // XMLサイトマップ.
+		'ys_performance_tuning' => 1700, // パフォーマンスチューニング.
+		'ys_advertisement'      => 1800, // 広告.
 		'ys_extension'          => 2000, // 拡張機能.
 
 		'ys_blog_card'          => 910, // ブログカード(廃止予定).
-		'ys_design'             => 900, // デザイン(廃止予定).
 	];
 
 	/**
@@ -185,7 +184,7 @@ class Customizer {
 			[
 				'title'       => '[ys]拡張機能',
 				'description' => 'yStandard専用プラグイン等による拡張機能の設定',
-				'priority'    => 9999,
+				'priority'    => self::get_priority( 'ys_extension' ),
 			]
 		);
 	}

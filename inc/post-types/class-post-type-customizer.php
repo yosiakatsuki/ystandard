@@ -149,6 +149,9 @@ class Post_Type_Customizer {
 		// 記事下部設定（階層なしタイプ用）.
 		$this->add_singular_footer_settings();
 
+		// 詳細ページのその他設定.
+		$this->add_singular_other_settings();
+
 		// アーカイブページレイアウト設定.
 		$this->add_archive_layout_settings();
 	}
@@ -223,7 +226,7 @@ class Post_Type_Customizer {
 	 * 記事上部設定を追加
 	 */
 	private function add_singular_header_settings() {
-		$this->customizer->add_section_label( __( '詳細ページ記事上部', 'ystandard' ) );
+		$this->customizer->add_section_label( __( '詳細ページ本文上部', 'ystandard' ) );
 
 		if ( $this->has_post_thumbnail() ) {
 			// アイキャッチ画像の表示設定.
@@ -310,7 +313,7 @@ class Post_Type_Customizer {
 	 * 記事下部設定を追加
 	 */
 	private function add_singular_footer_settings() {
-		$this->customizer->add_section_label( __( '詳細ページ記事下部', 'ystandard' ) );
+		$this->customizer->add_section_label( __( '詳細ページ本文下部', 'ystandard' ) );
 
 		// SNSシェアボタンの表示設定.
 		$this->customizer->add_select(
@@ -386,6 +389,26 @@ class Post_Type_Customizer {
 				]
 			);
 		}
+	}
+
+	/**
+	 * 詳細ページのその他設定を追加
+	 */
+	private function add_singular_other_settings() {
+		$this->customizer->add_section_label(
+			__( '詳細ページその他設定', 'ystandard' ),
+			[
+				'id' => "ys_{$this->post_type}_other_section_label",
+			]
+		);
+
+		$this->customizer->add_checkbox(
+			[
+				'id'      => "ys_create_{$this->post_type}_toc",
+				'default' => TOC::is_enabled_for_post_type( $this->post_type ),
+				'label'   => __( '目次を自動で作成する', 'ystandard' ),
+			]
+		);
 	}
 
 

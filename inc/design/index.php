@@ -9,5 +9,4 @@
 
 defined( 'ABSPATH' ) || die();
 
-require_once __DIR__ . '/class-design.php';
 require_once __DIR__ . '/class-site-background.php';
