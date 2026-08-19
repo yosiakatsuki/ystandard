@@ -52,25 +52,47 @@ class Post_Singular_Thumbnail {
 	 *
 	 * @return bool
 	 */
-	public static function is_active_post_thumbnail( int $post_id = null ): bool {
-		$result = true;
+	public static function is_active_post_thumbnail( ?int $post_id = null ): bool {
+		// 詳細ページ以外では本文ヘッダー用のアイキャッチを表示しない.
 		if ( ! is_singular() ) {
 			return false;
 		}
+		// 通常タイプは本文ヘッダーと一緒に表示状態を切り替える.
 		if ( ! Post_Header::is_active_post_header() ) {
 			return false;
 		}
+
+		return self::is_enabled_post_thumbnail( $post_id );
+	}
+
+	/**
+	 * アイキャッチ画像の設定が有効か
+	 *
+	 * @param int|null $post_id 投稿ID.
+	 *
+	 * @return bool
+	 */
+	private static function is_enabled_post_thumbnail( ?int $post_id = null ): bool {
+		$result = true;
+		// アーカイブなどでは投稿タイプ別の詳細ページ設定を適用しない.
+		if ( ! is_singular() ) {
+			return false;
+		}
+		// 画像が未設定の場合は表示対象から外す.
 		if ( ! has_post_thumbnail( $post_id ) ) {
 			$result = false;
 		}
 		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_show_{$post_type}_header_thumbnail", null );
+		// フィルター指定がなければカスタマイザーの設定を使用する.
 		if ( is_null( $filter ) ) {
 			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$option   = Option::get_option_by_bool( "ys_show_{$fallback}_header_thumbnail", true );
 		} else {
+			// 子テーマやプラグインから指定された表示設定を優先する.
 			$option = $filter;
 		}
+		// 現在の投稿タイプに対する表示設定を最終結果へ反映する.
 		if ( is_singular( $post_type ) ) {
 			$result = ! $option ? false : $result;
 		}
@@ -142,13 +164,20 @@ class Post_Singular_Thumbnail {
 	private function get_header_post_thumbnail() {
 
 		$hook = apply_filters( 'ys_get_header_post_thumbnail', null );
+		// HTMLが明示された場合はテーマ標準の判定より優先する.
 		if ( ! is_null( $hook ) ) {
 			return $hook;
 		}
+		// フロントページと投稿ヘッダーなしテンプレートでは従来どおり表示しない.
+		if ( Front_Page::is_single_front_page() || Template_Type::is_no_title_template() ) {
+			return '';
+		}
+		// 本文内へ表示する通常タイプはサイトヘッダー直下へ出力しない.
 		if ( ! self::is_full_post_thumbnail() ) {
 			return '';
 		}
-		if ( ! self::is_active_post_thumbnail() ) {
+		// 全幅タイプは本文ヘッダーの表示状態と分離して判定する.
+		if ( ! self::is_enabled_post_thumbnail() ) {
 			return '';
 		}
 
