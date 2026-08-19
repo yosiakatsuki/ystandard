@@ -213,6 +213,9 @@ class Drawer_Menu {
 			:where(.global-nav) {
 				display: var(--ystd--global-nav--display);
 			}
+			:where(body.header-type--row1 .site-header__content:has(> .global-nav) > .site-branding) {
+				flex-shrink: 0;
+			}
 			:where(.site-header .global-nav__toggle) {
 				display: none;
 			}
