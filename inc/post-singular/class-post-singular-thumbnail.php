@@ -9,6 +9,7 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
 use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
@@ -86,12 +87,21 @@ class Post_Singular_Thumbnail {
 		$filter    = apply_filters( "ys_show_{$post_type}_header_thumbnail", null );
 		// フィルター指定がなければカスタマイザーの設定を使用する.
 		if ( is_null( $filter ) ) {
-			$fallback = Post_Type::get_fallback_post_type( $post_type );
-			$option   = Option::get_option_by_bool( "ys_show_{$fallback}_header_thumbnail", true );
+			$setting = "ys_show_{$post_type}_header_thumbnail";
+			// 投稿タイプ別設定が保存されていれば、その値を優先する.
+			if ( Option::exists_option( $setting ) ) {
+				$option = Option::get_option_by_bool( $setting, true );
+			} else {
+				// 新設定が未保存の場合は、投稿タイプの性質に応じた従来設定を引き継ぐ.
+				$fallback = Post_Type::get_fallback_post_type( $post_type );
+				$option   = Option::get_option_by_bool( "ys_show_{$fallback}_header_thumbnail", true );
+			}
 		} else {
 			// 子テーマやプラグインから指定された表示設定を優先する.
 			$option = $filter;
 		}
+		// 投稿単位設定で投稿タイプ別の表示状態を上書きする.
+		$option = Post_Meta::resolve_state( 'post_thumbnail', Convert::to_bool( $option ), (int) $post_id );
 		// 現在の投稿タイプに対する表示設定を最終結果へ反映する.
 		if ( is_singular( $post_type ) ) {
 			$result = ! $option ? false : $result;

@@ -9,8 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\utils\Convert;
-use ystandard\utils\Post_Type;
 use ystandard\utils\Text;
 use ystandard\utils\Post;
 
@@ -35,13 +33,14 @@ class Meta_Description {
 	 * メタディスクリプションタグ出力
 	 */
 	public function meta_description() {
-		if ( ! Option::get_option_by_bool( 'ys_option_create_meta_description', true ) ) {
-			return;
+		$create = Option::get_option_by_bool( 'ys_option_create_meta_description', true );
+		// 詳細ページでは投稿単位設定でテーマ全体の出力状態を上書きする.
+		if ( is_singular() ) {
+			$create = Post_Meta::resolve_state( 'meta_description', $create );
 		}
-		if ( is_single() || is_page() ) {
-			if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_meta_dscr' ) ) ) {
-				return;
-			}
+		// 最終的に無効ならmeta descriptionを出力しない.
+		if ( ! $create ) {
+			return;
 		}
 		/**
 		 * Metaタグの作成

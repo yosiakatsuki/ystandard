@@ -10,7 +10,6 @@
 namespace ystandard;
 
 use ystandard\utils\Conditional_Tags;
-use ystandard\utils\Convert;
 use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
@@ -281,13 +280,9 @@ class Advertisement {
 		if ( is_search() && 0 === $wp_query->found_posts ) {
 			return false;
 		}
-		/**
-		 * 非表示設定
-		 */
-		if ( is_singular() ) {
-			if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_ad' ) ) ) {
-				return false;
-			}
+		// 投稿単位設定がある詳細ページではテーマ標準の表示状態を上書きする.
+		if ( is_singular() && ! Post_Meta::resolve_state( 'advertisement', true ) ) {
+			return false;
 		}
 
 		return true;

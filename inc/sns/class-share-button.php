@@ -112,10 +112,6 @@ class Share_Button {
 		if ( ! is_null( $filter ) ) {
 			return Convert::to_bool( $filter );
 		}
-		if ( is_singular() ) {
-			return ! Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_share' ) );
-		}
-
 		return true;
 	}
 
@@ -156,11 +152,21 @@ class Share_Button {
 	 */
 	private static function get_share_button_settings( $position, $default ) {
 
-		$post_type = Post_Type::get_post_type();
-		$type      = apply_filters(
+		$post_type     = Post_Type::get_post_type();
+		$type          = apply_filters(
 			"ys_{$post_type}_share_button_type_{$position}",
 			Option::get_option( "ys_{$post_type}_share_button_type_{$position}", $default )
 		);
+		$active_filter = apply_filters( "ys_{$post_type}_active_share_buttons", null );
+		// 外部フィルターで有効状態が確定している場合は、従来どおり投稿単位設定で上書きしない.
+		$state = is_null( $active_filter ) ? Post_Meta::get_state( "share_buttons_{$position}" ) : 'default';
+		// 投稿単位でOFFの場合はテーマの表示形式にかかわらず非表示にする.
+		if ( 'off' === $state ) {
+			$type = 'none';
+		} elseif ( 'on' === $state && 'none' === $type ) {
+			// テーマ側が非表示でも投稿単位でONの場合は標準の円形ボタンを表示する.
+			$type = 'circle';
+		}
 
 		$settings = [
 			'type'       => $type,

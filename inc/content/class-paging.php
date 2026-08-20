@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\utils\Convert;
 use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
@@ -81,17 +80,22 @@ class Paging {
 		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_show_{$post_type}_paging", null );
 		if ( is_null( $filter ) ) {
-			$option   = ! is_post_type_hierarchical( $post_type );
-			$fallback = Post_Type::get_fallback_post_type( $post_type );
-			$option   = Option::get_option_by_bool( "ys_show_{$fallback}_paging", $option );
+			$option  = ! is_post_type_hierarchical( $post_type );
+			$setting = "ys_show_{$post_type}_paging";
+			// 投稿タイプ別設定が保存されていれば、その値を優先する.
+			if ( Option::exists_option( $setting ) ) {
+				$option = Option::get_option_by_bool( $setting, $option );
+			} else {
+				// 新設定が未保存の場合は、投稿タイプの性質に応じた従来設定を引き継ぐ.
+				$fallback = Post_Type::get_fallback_post_type( $post_type );
+				$option   = Option::get_option_by_bool( "ys_show_{$fallback}_paging", $option );
+			}
 		} else {
 			$option = $filter;
 		}
 
-		if ( is_singular( $post_type ) && ! $option ) {
-			return false;
-		}
-		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_paging' ) ) ) {
+		// 固定ページ以外の詳細ページでは投稿単位設定で表示状態を上書きする.
+		if ( is_singular( $post_type ) && ! Post_Meta::resolve_state( 'paging', $option ) ) {
 			return false;
 		}
 

@@ -9,9 +9,7 @@
 
 namespace ystandard;
 
-use ystandard\utils\Convert;
 use ystandard\utils\Post;
-use ystandard\utils\Post_Type;
 use ystandard\utils\Text;
 
 defined( 'ABSPATH' ) || die();
@@ -209,8 +207,13 @@ class TOC {
 		if ( $this->is_widget ) {
 			$toc = '';
 		}
-		// 表示タイプ.
-		if ( 'content' !== Option::get_option( 'ys_toc_display_type', 'content' ) ) {
+		$display_type = Option::get_option( 'ys_toc_display_type', 'content' );
+		// テーマ側が非表示でも投稿単位でONなら本文内表示を既定値にする.
+		if ( 'none' === $display_type && 'on' === Post_Meta::get_state( 'toc' ) ) {
+			$display_type = 'content';
+		}
+		// 本文内表示以外では見出しIDだけを作り、目次HTMLを挿入しない.
+		if ( 'content' !== $display_type ) {
 			$toc = '';
 		}
 		if ( doing_filter( 'the_content' ) ) {
@@ -253,16 +256,10 @@ class TOC {
 		 * @global \WP_Post
 		 */
 		global $post;
-		// 投稿タイプ別設定で自動作成を停止している場合は、本文へ目次を挿入しない.
-		if ( ! self::is_enabled_for_post_type( $post->post_type ) ) {
-			return false;
-		}
-		// 表示タイプ.
-		if ( 'none' === Option::get_option( 'ys_toc_display_type', 'content' ) ) {
-			return false;
-		}
-		// Post meta.
-		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_toc' ) ) ) {
+		$theme_enabled = self::is_enabled_for_post_type( $post->post_type )
+			&& 'none' !== Option::get_option( 'ys_toc_display_type', 'content' );
+		// 投稿単位設定で投稿タイプ別設定と表示タイプの最終結果を上書きする.
+		if ( ! Post_Meta::resolve_state( 'toc', $theme_enabled ) ) {
 			return false;
 		}
 

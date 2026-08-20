@@ -10,7 +10,6 @@
 namespace ystandard;
 
 use ystandard\utils\Logo;
-use ystandard\utils\Post_Type;
 use ystandard\utils\Text;
 use ystandard\utils\URL;
 use ystandard\utils\Post;
@@ -161,7 +160,7 @@ class OGP {
 	 * @return string
 	 */
 	private function get_singular_title() {
-		$title = Post_Type::get_post_meta( 'ys_ogp_title' );
+		$title = Post_Meta::get_string( 'ogp_title' );
 		if ( empty( $title ) ) {
 			$title = get_the_title();
 		}
@@ -200,7 +199,7 @@ class OGP {
 	 */
 	private function get_singular_dscr() {
 
-		$dscr = Post_Type::get_post_meta( 'ys_ogp_description' );
+		$dscr = Post_Meta::get_string( 'ogp_description' );
 		if ( empty( $dscr ) ) {
 			$dscr = Post::get_custom_excerpt(
 				'',

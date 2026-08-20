@@ -50,7 +50,6 @@ class Parts {
 		$post_type = self::POST_TYPE;
 		add_action( 'init', [ $this, 'register_post_type' ], 9 );
 		add_filter( 'pre_get_posts', [ $this, 'set_order' ] );
-		add_action( "add_meta_boxes_{$post_type}", [ $this, 'add_meta_box' ] );
 		add_filter( "manage_{$post_type}_posts_columns", [ $this, 'add_columns_head' ] );
 		add_action( "manage_{$post_type}_posts_custom_column", [ $this, 'add_custom_column' ], 10, 2 );
 		/**
@@ -261,50 +260,6 @@ class Parts {
 			]
 		);
 	}
-
-	/**
-	 * メタボックス追加
-	 */
-	public function add_meta_box() {
-		/**
-		 * 投稿オプション
-		 */
-		add_meta_box(
-			'ys_add_parts_shortcode_info',
-			__( 'ショートコード', 'ystandard' ),
-			[ $this, 'add_parts_shortcode_info' ],
-			[ 'ys-parts' ],
-			'side',
-			'high'
-		);
-	}
-
-	/**
-	 * ショートコード表示メタボックスを追加
-	 *
-	 * @param \WP_Post $post 投稿オブジェクト.
-	 */
-	public function add_parts_shortcode_info(
-		$post
-	) {
-		if ( 'publish' !== $post->post_status ) {
-			return;
-		}
-		?>
-		<div id="ys-ogp-description-section" class="meta-box__section">
-			<label for="ys_parts_shortcode" style="margin: 1em 0 0;display: block;"><?php echo __( 'ショートコード', 'ystandard' ); ?></label>
-			<div class="copy-form" style="margin: 0 0 1.5em;">
-				<input type="text" id="ys_parts_shortcode" class="copy-form__target" value='[ys_parts <?php echo 'parts_id="' . esc_attr( $post->ID ) . '"'; ?>]' readonly onfocus="this.select();"/>
-				<button class="copy-form__button button action">
-					<?php echo ys_get_icon( 'clipboard' ); ?>
-				</button>
-				<div class="copy-form__info"><?php echo __( 'コピーしました！', 'ystandard' ); ?></div>
-			</div>
-			<div class="meta-box__dscr"><?php echo __( '投稿・固定ページやウィジェットに表示するためのショートコード', 'ystandard' ); ?></div>
-		</div>
-		<?php
-	}
-
 
 	/**
 	 * 管理画面並び替え

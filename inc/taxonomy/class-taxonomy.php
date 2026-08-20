@@ -9,8 +9,10 @@
 
 namespace ystandard;
 
+use ystandard\utils\Convert;
 use ystandard\utils\Post;
 use ystandard\utils\Post_Type;
+use ystandard\utils\Taxonomy as Taxonomy_Utils;
 
 defined( 'ABSPATH' ) || die();
 
@@ -148,6 +150,20 @@ class Taxonomy {
 			}
 		}
 		$post_type = Post_Type::get_post_type();
+		$names     = array_keys( $data );
+		$selected  = self::get_selected_footer_taxonomies( $post_type, $names );
+		$state     = Post_Meta::get_state( 'footer_taxonomy' );
+		// 投稿単位でOFFの場合は、テンプレートが直接呼ばれてもタクソノミーを出力しない.
+		if ( 'off' === $state ) {
+			$data = [];
+		} elseif ( 'on' === $state && empty( $selected ) ) {
+			// テーマ側ですべて非表示でも、投稿単位のONでは投稿に紐づく全種類を表示する.
+			$selected = $names;
+		}
+		// v5の投稿タイプ別設定がある場合は、選択されたタクソノミーだけを残す.
+		if ( 'off' !== $state && self::has_footer_taxonomy_settings( $post_type, $names ) ) {
+			$data = array_intersect_key( $data, array_flip( $selected ) );
+		}
 
 		return apply_filters( "ys_get_{$post_type}_taxonomies", $data );
 	}
@@ -188,10 +204,62 @@ class Taxonomy {
 
 		$filter = apply_filters( "ys_is_active_{$post_type}_taxonomy", null );
 		if ( is_null( $filter ) ) {
-			$fallback = Post_Type::get_fallback_post_type( $post_type );
-			$result   = Option::get_option_by_bool( "ys_show_{$fallback}_category", true );
+			$post_type_taxonomies = Taxonomy_Utils::get_post_type_taxonomies( $post_type );
+			$taxonomies           = $post_type_taxonomies ? array_keys( $post_type_taxonomies ) : [];
+			// v5の投稿タイプ別設定が保存されていれば、1種類以上の選択を表示状態として扱う.
+			if ( self::has_footer_taxonomy_settings( $post_type, $taxonomies ) ) {
+				$result = ! empty( self::get_selected_footer_taxonomies( $post_type, $taxonomies ) );
+			} else {
+				// 新設定が未保存の場合は、v4までの表示設定を実行時に引き継ぐ.
+				$fallback = Post_Type::get_fallback_post_type( $post_type );
+				$result   = Option::get_option_by_bool( "ys_show_{$fallback}_category", true );
+			}
 		} else {
 			$result = $filter;
+		}
+
+		return Post_Meta::resolve_state( 'footer_taxonomy', Convert::to_bool( $result ) );
+	}
+
+	/**
+	 * 本文下部タクソノミーのv5設定が保存されているか確認する.
+	 *
+	 * @param string $post_type 投稿タイプ.
+	 * @param array  $taxonomies タクソノミー名.
+	 *
+	 * @return bool
+	 */
+	private static function has_footer_taxonomy_settings( $post_type, $taxonomies ) {
+		foreach ( $taxonomies as $taxonomy ) {
+			// 1件でも保存済みであれば、v5の投稿タイプ別設定一式を使用する.
+			if ( Option::exists_option( "ys_{$post_type}_footer_taxonomy_{$taxonomy}" ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * 本文下部へ表示するタクソノミー名を取得する.
+	 *
+	 * @param string $post_type 投稿タイプ.
+	 * @param array  $taxonomies タクソノミー名.
+	 *
+	 * @return array
+	 */
+	private static function get_selected_footer_taxonomies( $post_type, $taxonomies ) {
+		// v5設定が未保存の場合は従来どおり全種類を表示対象にする.
+		if ( ! self::has_footer_taxonomy_settings( $post_type, $taxonomies ) ) {
+			return $taxonomies;
+		}
+
+		$result = [];
+		foreach ( $taxonomies as $taxonomy ) {
+			// 個別設定が未保存のタクソノミーはカスタマイザーの既定値ONとして扱う.
+			if ( Option::get_option_by_bool( "ys_{$post_type}_footer_taxonomy_{$taxonomy}", true ) ) {
+				$result[] = $taxonomy;
+			}
 		}
 
 		return $result;

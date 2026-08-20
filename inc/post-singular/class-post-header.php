@@ -157,22 +157,38 @@ class Post_Header {
 	public static function get_post_header_category() {
 
 		$post_type = Post_Type::get_post_type();
-		$filter    = apply_filters( "ys_show_{$post_type}_header_taxonomy", null );
-		if ( is_null( $filter ) ) {
+		$setting   = "ys_{$post_type}_header_taxonomy";
+		$taxonomy  = 'none';
+		// v5の投稿タイプ別設定が保存されていれば、選択されたタクソノミーを使用する.
+		if ( Option::exists_option( $setting ) ) {
+			$taxonomy = Option::get_option( $setting, 'none' );
+			$show     = 'none' !== $taxonomy;
+		} else {
+			// 新設定が未保存の場合は、v4までの表示設定を実行時に引き継ぐ.
 			$fallback = Post_Type::get_fallback_post_type( $post_type );
 			$show     = Option::get_option_by_bool( "ys_show_{$fallback}_header_category", true );
-		} else {
-			$show = $filter;
+		}
+		$filter = apply_filters( "ys_show_{$post_type}_header_taxonomy", null );
+		// 子テーマやプラグインから表示状態が指定されていればテーマ設定より優先する.
+		if ( ! is_null( $filter ) ) {
+			$show = Convert::to_bool( $filter );
 		}
 
-		if ( ! Convert::to_bool( $show ) ) {
+		// 投稿単位設定で投稿タイプ別の表示状態を上書きする.
+		if ( ! Post_Meta::resolve_state( 'header_taxonomy', Convert::to_bool( $show ) ) ) {
 			return '';
 		}
 
-		$result     = [];
+		$result = [];
+		// 投稿単位でONにした場合も表示対象を確保できるよう、未選択時は既定候補を使用する.
+		if ( 'none' === $taxonomy ) {
+			$taxonomies = self::get_post_header_taxonomies();
+		} else {
+			$taxonomies = [ $taxonomy ];
+		}
 		$taxonomies = apply_filters(
 			"ys_get_{$post_type}_header_taxonomy",
-			self::get_post_header_taxonomies()
+			$taxonomies
 		);
 		if ( empty( $taxonomies ) ) {
 			return '';

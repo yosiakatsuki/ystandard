@@ -210,6 +210,44 @@ class Page_Header_Thumbnail_Test extends WP_UnitTestCase {
 	}
 
 	/**
+	 * 投稿単位のONでテーマ設定が非表示のアイキャッチを表示できることを確認する.
+	 */
+	public function test_post_setting_can_enable_header_thumbnail() {
+		$post_id = $this->create_page_with_thumbnail();
+		$this->set_page_thumbnail_options( 'full', 0 );
+		update_post_meta(
+			$post_id,
+			\ystandard\Post_Meta::META_KEY,
+			[
+				'version'        => 1,
+				'post_thumbnail' => 'on',
+			]
+		);
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertStringContainsString( '<figure class="site-header-thumbnail">', $this->get_header_thumbnail_output() );
+	}
+
+	/**
+	 * 投稿単位のOFFでテーマ設定が表示のアイキャッチを非表示にできることを確認する.
+	 */
+	public function test_post_setting_can_disable_header_thumbnail() {
+		$post_id = $this->create_page_with_thumbnail();
+		$this->set_page_thumbnail_options();
+		update_post_meta(
+			$post_id,
+			\ystandard\Post_Meta::META_KEY,
+			[
+				'version'        => 1,
+				'post_thumbnail' => 'off',
+			]
+		);
+		$this->go_to( get_permalink( $post_id ) );
+
+		$this->assertSame( '', $this->get_header_thumbnail_output() );
+	}
+
+	/**
 	 * アイキャッチ未設定の場合は全幅画像を表示しないことを確認する.
 	 */
 	public function test_full_header_thumbnail_requires_post_thumbnail() {

@@ -149,12 +149,6 @@ class Author {
 	public function is_active_author() {
 		if ( is_singular() ) {
 			/**
-			 * 投稿個別設定
-			 */
-			if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_author' ) ) ) {
-				return false;
-			}
-			/**
 			 * 投稿タイプ別設定
 			 */
 			$post_type = Post_Type::get_post_type();
@@ -165,7 +159,8 @@ class Author {
 			} else {
 				$option = $filter;
 			}
-			if ( is_singular( $post_type ) && ! $option ) {
+			// 投稿単位設定で投稿タイプ別の表示状態を上書きする.
+			if ( is_singular( $post_type ) && ! Post_Meta::resolve_state( 'author', $option ) ) {
 				return false;
 			}
 		}

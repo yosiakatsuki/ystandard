@@ -26,6 +26,9 @@
 		"resolveJsonModule": true,
 		"baseUrl": "./",
 		"paths": {
+			"@aktk/block-components/*": [
+				"src/aktk-block-components/*"
+			]
 		},
 		"typeRoots": [
 			"./src/types",

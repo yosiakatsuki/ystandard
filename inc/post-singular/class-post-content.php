@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\utils\Convert;
 use ystandard\utils\Post;
 use ystandard\utils\Post_Type;
 
@@ -111,7 +110,7 @@ class Post_Content {
 	 */
 	public static function get_content_background_color( string $post_type ): string {
 		// 設定存在チェック、設定がなければ代替の投稿タイプを取得.
-		if ( Option::exists_option( "ys_{$post_type}_use_content_bg" ) ) {
+		if ( ! Option::exists_option( "ys_{$post_type}_use_content_bg" ) ) {
 			$post_type = Post_Type::get_fallback_post_type( $post_type );
 		}
 
@@ -147,11 +146,14 @@ class Post_Content {
 			$option = $filter;
 		}
 
-		if ( 'none' === $option || false === $option ) {
+		$theme_enabled = 'none' !== $option && false !== $option;
+		// 投稿単位設定で投稿タイプ別の表示状態を上書きする.
+		if ( ! Post_Meta::resolve_state( 'publish_date', $theme_enabled ) ) {
 			return false;
 		}
-		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_publish_date' ) ) ) {
-			return false;
+		// テーマ側が非表示で投稿単位ONの場合は両方表示を既定値にする.
+		if ( ! $theme_enabled ) {
+			$option = 'both';
 		}
 		// 更新日取得.
 		if ( 'publish' !== $option ) {

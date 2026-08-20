@@ -13,4 +13,5 @@ require_once __DIR__ . '/class-block-editor-assets.php';
 require_once __DIR__ . '/class-block-editor-color-palette.php';
 require_once __DIR__ . '/class-block-editor-font-size.php';
 require_once __DIR__ . '/class-block-editor-spacing-size.php';
+require_once __DIR__ . '/class-block-editor-post-settings.php';
 require_once __DIR__ . '/class-block-editor.php';

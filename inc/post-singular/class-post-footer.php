@@ -9,7 +9,6 @@
 
 namespace ystandard;
 
-use ystandard\utils\Convert;
 use ystandard\utils\Post_Type;
 
 defined( 'ABSPATH' ) || die();
@@ -145,16 +144,21 @@ class Post_Footer {
 		$post_type = Post_Type::get_post_type();
 		$filter    = apply_filters( "ys_show_{$post_type}_related", null );
 		if ( is_null( $filter ) ) {
-			$fallback = Post_Type::get_fallback_post_type( $post_type );
-			$show     = Option::get_option_by_bool( "ys_show_{$fallback}_related", true );
+			$setting = "ys_show_{$post_type}_related";
+			// 投稿タイプ別設定が保存されていれば、その値を優先する.
+			if ( Option::exists_option( $setting ) ) {
+				$show = Option::get_option_by_bool( $setting, true );
+			} else {
+				// 新設定が未保存の場合は、投稿タイプの性質に応じた従来設定を引き継ぐ.
+				$fallback = Post_Type::get_fallback_post_type( $post_type );
+				$show     = Option::get_option_by_bool( "ys_show_{$fallback}_related", true );
+			}
 		} else {
 			$show = $filter;
 		}
 
-		if ( ! $show ) {
-			return false;
-		}
-		if ( Convert::to_bool( Post_Type::get_post_meta( 'ys_hide_related' ) ) ) {
+		// 投稿単位設定で投稿タイプ別の表示状態を上書きする.
+		if ( ! Post_Meta::resolve_state( 'related_posts', $show ) ) {
 			return false;
 		}
 
