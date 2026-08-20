@@ -94,7 +94,10 @@ class Block_Editor {
 	 */
 	public function disallow_fse_blocks( $disallowed_block_types ) {
 
-		if ( apply_filters( 'ys_enable_fse_block_types', false ) ) {
+		$enable_fse_block_types = Option::get_option_by_bool( 'ys_enable_fse_block_types', false );
+
+		// 上級者向け設定または既存フィルターで有効化された場合は、テーマによる除外を適用しない.
+		if ( apply_filters( 'ys_enable_fse_block_types', $enable_fse_block_types ) ) {
 			return $disallowed_block_types;
 		}
 
@@ -156,6 +159,24 @@ class Block_Editor {
 				'panel'       => self::PANEL_NAME,
 				'title'       => '[ys]ブロックエディター',
 				'description' => 'ブロックエディター関連の設定',
+			]
+		);
+
+		$customizer->add_section(
+			[
+				'section'     => 'ys_block_editor_advanced',
+				'title'       => __( 'コアブロック設定（上級者向け）', 'ystandard' ),
+				'description' => __( 'サイトエディター向けコアブロックの利用を設定します。', 'ystandard' ),
+				'priority'    => 1000,
+			]
+		);
+
+		$customizer->add_checkbox(
+			[
+				'id'          => 'ys_enable_fse_block_types',
+				'default'     => 0,
+				'label'       => __( 'サイトエディター向けコアブロックを有効にする', 'ystandard' ),
+				'description' => __( 'この設定をONにすると、yStandardによるサイトエディター向けコアブロックの除外を停止します。使用するブロックによっては表示が崩れる可能性があります。', 'ystandard' ),
 			]
 		);
 	}
