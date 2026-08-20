@@ -15,7 +15,7 @@ if ( ! ys_has_global_nav() ) {
 	return;
 }
 ?>
-<div id="drawer-nav" class="<?php ys_global_nav_class( 'drawer-nav' ); ?>">
+<dialog id="drawer-nav" class="<?php ys_global_nav_class( 'drawer-nav' ); ?>" aria-label="<?php esc_attr_e( 'サイトメニュー', 'ystandard' ); ?>">
 	<div class="drawer-nav__close-container">
 		<?php
 		/**
@@ -23,6 +23,7 @@ if ( ! ys_has_global_nav() ) {
 		 */
 		ys_global_nav_toggle_button(
 			[
+				'type'  => 'close',
 				'id'    => 'drawer-nav__toggle',
 				'class' => 'global-nav__toggle drawer-nav__close',
 			]
@@ -45,6 +46,7 @@ if ( ! ys_has_global_nav() ) {
 		 * グローバルナビゲーション（共通）・ドロワーメニュー　メニュー直前のフック
 		 *
 		 * ドロワーメニュー内の検索フォーム出力はアクションフックで出力
+		 *
 		 * @see inc/navigation/class-drawer-menu.php
 		 */
 		do_action( 'ys_before_global_nav_menu' );
@@ -65,7 +67,6 @@ if ( ! ys_has_global_nav() ) {
 		);
 		/**
 		 * グローバルナビゲーション（共通）・ドロワーメニュー　メニュー直後のフック
-		 *
 		 */
 		do_action( 'ys_after_global_nav_menu' );
 		do_action( 'ys_after_drawer_nav_menu' );
@@ -79,5 +80,4 @@ if ( ! ys_has_global_nav() ) {
 	do_action( 'ys_global_nav_append' );
 	do_action( 'ys_drawer_nav_append' );
 	?>
-</div>
-
+</dialog>

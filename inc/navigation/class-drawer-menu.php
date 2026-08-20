@@ -92,17 +92,24 @@ class Drawer_Menu {
 				'class' => 'global-nav__toggle',
 			]
 		);
-		$type  = $args['type'];
+		$type  = 'close' === $args['type'] ? 'close' : 'toggle';
 		$id    = $args['id'];
 		$class = $args['class'];
 
 		$icon = apply_filters( 'ys_get_drawer_menu_icon', Icon::get_icon( 'menu' ) );
 		$attr = [
-			"id=\"{$id}\"",
-			"class=\"{$class}\"",
+			'type="button"',
+			'id="' . esc_attr( $id ) . '"',
+			'class="' . esc_attr( $class ) . '"',
+			'aria-label="' . ( 'close' === $type ? esc_attr__( 'メニューを閉じる', 'ystandard' ) : esc_attr__( 'メニューを開く', 'ystandard' ) ) . '"',
 			'data-label-open="menu"',
 			'data-label-close="close"',
 		];
+		// 開くボタンだけが、操作対象と現在の開閉状態を支援技術へ伝える.
+		if ( 'toggle' === $type ) {
+			$attr[] = 'aria-controls="drawer-nav"';
+			$attr[] = 'aria-expanded="false"';
+		}
 
 		return apply_filters(
 			'ys_get_toggle_button_html',
