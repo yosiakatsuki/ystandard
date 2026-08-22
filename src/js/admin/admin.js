@@ -17,8 +17,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		copyButtons.each( ( i, elem ) => {
 			elem.addEventListener( 'click', ( e ) => {
 				e.preventDefault();
-				copyClipboardForm( e.target );
-			} )
+				copyClipboardForm( e.currentTarget );
+			} );
 		} );
 	}
 } );

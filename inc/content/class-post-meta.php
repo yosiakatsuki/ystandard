@@ -31,6 +31,7 @@ class Post_Meta {
 	 * Admin_Post_Meta constructor.
 	 */
 	public function __construct() {
+		add_action( 'init', [ $this, 'register_post_meta' ], 20 );
 		add_action( 'admin_menu', [ $this, 'add_meta_box' ] );
 		add_action( 'save_post', [ $this, 'save_post_meta_seo' ] );
 		add_action( 'save_post', [ $this, 'save_post_meta_sns' ] );
@@ -42,27 +43,39 @@ class Post_Meta {
 	 */
 	public function add_meta_box() {
 		$types = $this->get_meta_box_post_types();
-		add_meta_box(
-			'ys_post_option',
-			'[ys] 投稿設定',
-			[ $this, 'add_post_option' ],
-			$types,
-			'side'
-		);
-		add_meta_box(
-			'ys_seo_option',
-			'[ys] SEO設定',
-			[ $this, 'add_seo_option' ],
-			$types,
-			'side'
-		);
-		add_meta_box(
-			'ys_sns_option',
-			'[ys] SNS設定',
-			[ $this, 'add_sns_option' ],
-			$types,
-			'side'
-		);
+		foreach ( $types as $type ) {
+			$callback_args = [];
+			if ( self::is_block_editor_post_type( $type ) ) {
+				$callback_args['__back_compat_meta_box'] = true;
+			}
+			add_meta_box(
+				'ys_post_option',
+				'[ys] 投稿設定',
+				[ $this, 'add_post_option' ],
+				$type,
+				'side',
+				'low',
+				$callback_args
+			);
+			add_meta_box(
+				'ys_seo_option',
+				'[ys] SEO設定',
+				[ $this, 'add_seo_option' ],
+				$type,
+				'side',
+				'low',
+				$callback_args
+			);
+			add_meta_box(
+				'ys_sns_option',
+				'[ys] SNS設定',
+				[ $this, 'add_sns_option' ],
+				$type,
+				'side',
+				'low',
+				$callback_args
+			);
+		}
 	}
 
 	/**
@@ -70,14 +83,238 @@ class Post_Meta {
 	 *
 	 * @return array
 	 */
-	private function get_meta_box_post_types() {
+	public function get_meta_box_post_types() {
 		$types = Utility::get_post_types( [], [ 'ys-parts' ] );
 
-		return apply_filters(
-			'ys_get_meta_box_post_types',
-			array_keys( $types )
+		return array_values(
+			array_unique(
+				apply_filters(
+					'ys_get_meta_box_post_types',
+					array_keys( $types )
+				)
+			)
 		);
 
+	}
+
+	/**
+	 * 投稿メタ定義を取得.
+	 *
+	 * @return array
+	 */
+	public static function get_meta_fields() {
+		$fields = [
+			'ys_hide_ad'           => [
+				'type'        => 'boolean',
+				'panel'       => 'post',
+				'label'       => __( '広告を非表示にする', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_hide_toc'          => [
+				'type'        => 'boolean',
+				'panel'       => 'post',
+				'label'       => __( '目次を非表示にする', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_hide_share'        => [
+				'type'        => 'boolean',
+				'panel'       => 'post',
+				'label'       => __( 'シェアボタンを非表示にする', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_hide_publish_date' => [
+				'type'        => 'boolean',
+				'panel'       => 'post',
+				'label'       => __( '投稿日・更新日を非表示にする', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_hide_author'       => [
+				'type'        => 'boolean',
+				'panel'       => 'post',
+				'label'       => __( '著者情報を非表示にする', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_hide_related'      => [
+				'type'        => 'boolean',
+				'panel'       => 'post',
+				'label'       => __( '関連記事を非表示にする', 'ystandard' ),
+				'post_types'  => [ 'post' ],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_hide_paging'       => [
+				'type'        => 'boolean',
+				'panel'       => 'post',
+				'label'       => __( '前の記事・次の記事を非表示にする', 'ystandard' ),
+				'post_types'  => [ 'post' ],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_noindex'           => [
+				'type'        => 'boolean',
+				'panel'       => 'seo',
+				'label'       => __( 'この記事をnoindexにする', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_hide_meta_dscr'    => [
+				'type'        => 'boolean',
+				'panel'       => 'seo',
+				'label'       => __( 'meta descriptionタグを無効化する', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_boolean' ],
+			],
+			'ys_ogp_title'         => [
+				'type'        => 'string',
+				'control'     => 'text',
+				'panel'       => 'sns',
+				'label'       => __( 'OGP/Twitter Cards用タイトル', 'ystandard' ),
+				'help'        => __( '空白の場合は投稿タイトルになります。', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => 'sanitize_text_field',
+			],
+			'ys_ogp_description'   => [
+				'type'        => 'string',
+				'control'     => 'textarea',
+				'panel'       => 'sns',
+				'label'       => __( 'OGP/Twitter Cards用description', 'ystandard' ),
+				'help'        => __( '空白の場合は投稿本文からdescriptionを自動生成します。', 'ystandard' ),
+				'post_types'  => [],
+				'sanitize_cb' => [ __CLASS__, 'sanitize_ogp_description' ],
+			],
+		];
+
+		return apply_filters( 'ys_block_editor_post_meta_fields', $fields );
+	}
+
+	/**
+	 * ブロックエディターUIを使用する投稿タイプを取得.
+	 *
+	 * @return array
+	 */
+	public function get_block_editor_post_types() {
+		$types = [];
+		foreach ( $this->get_meta_box_post_types() as $post_type ) {
+			if ( self::is_block_editor_post_type( $post_type ) ) {
+				$types[] = $post_type;
+			}
+		}
+
+		return apply_filters( 'ys_block_editor_post_meta_post_types', $types );
+	}
+
+	/**
+	 * ブロックエディターUIを使用できる投稿タイプか判定.
+	 *
+	 * @param string $post_type 投稿タイプ.
+	 *
+	 * @return bool
+	 */
+	public static function is_block_editor_post_type( $post_type ) {
+		$post_type_object = get_post_type_object( $post_type );
+		if ( ! $post_type_object || ! $post_type_object->show_in_rest ) {
+			return false;
+		}
+		if ( ! use_block_editor_for_post_type( $post_type ) ) {
+			return false;
+		}
+
+		return post_type_supports( $post_type, 'custom-fields' );
+	}
+
+	/**
+	 * 投稿メタをREST APIへ登録.
+	 */
+	public function register_post_meta() {
+		foreach ( [ 'post', 'page' ] as $post_type ) {
+			if ( ! post_type_supports( $post_type, 'custom-fields' ) ) {
+				add_post_type_support( $post_type, 'custom-fields' );
+			}
+		}
+
+		foreach ( $this->get_block_editor_post_types() as $post_type ) {
+			foreach ( self::get_meta_fields() as $key => $field ) {
+				if ( ! self::is_field_available_for_post_type( $field, $post_type ) ) {
+					continue;
+				}
+				register_post_meta(
+					$post_type,
+					$key,
+					[
+						'type'              => $field['type'],
+						'single'            => true,
+						'default'           => 'boolean' === $field['type'] ? false : '',
+						'show_in_rest'      => true,
+						'sanitize_callback' => $field['sanitize_cb'],
+						'auth_callback'     => [ __CLASS__, 'can_edit_post_meta' ],
+					]
+				);
+			}
+			add_action( "rest_after_insert_{$post_type}", [ $this, 'do_rest_save_actions' ], 10, 3 );
+		}
+	}
+
+	/**
+	 * フィールドが投稿タイプで利用できるか判定.
+	 *
+	 * @param array  $field     フィールド定義.
+	 * @param string $post_type 投稿タイプ.
+	 *
+	 * @return bool
+	 */
+	public static function is_field_available_for_post_type( $field, $post_type ) {
+		return empty( $field['post_types'] ) || in_array( $post_type, $field['post_types'], true );
+	}
+
+	/**
+	 * REST APIから投稿メタを編集できるか判定.
+	 *
+	 * @param bool   $allowed   許可状態.
+	 * @param string $meta_key  メタキー.
+	 * @param int    $object_id 投稿ID.
+	 *
+	 * @return bool
+	 */
+	public static function can_edit_post_meta( $allowed, $meta_key, $object_id ) {
+		return current_user_can( 'edit_post', $object_id );
+	}
+
+	/**
+	 * 真偽値をサニタイズ.
+	 *
+	 * @param mixed $value 入力値.
+	 *
+	 * @return bool
+	 */
+	public static function sanitize_boolean( $value ) {
+		return rest_sanitize_boolean( $value );
+	}
+
+	/**
+	 * OGP descriptionをサニタイズ.
+	 *
+	 * @param mixed $value 入力値.
+	 *
+	 * @return string
+	 */
+	public static function sanitize_ogp_description( $value ) {
+		return sanitize_text_field( $value );
+	}
+
+	/**
+	 * REST API保存後に既存の保存アクションを実行.
+	 *
+	 * @param \WP_Post         $post     投稿オブジェクト.
+	 * @param \WP_REST_Request $request  RESTリクエスト.
+	 * @param bool             $creating 新規作成か.
+	 */
+	public function do_rest_save_actions( $post, $request, $creating ) {
+		do_action( 'ys_save_post_meta_seo', $post->ID );
+		do_action( 'ys_save_post_meta_sns', $post->ID );
+		do_action( 'ys_save_post_meta_post', $post->ID );
 	}
 
 	/**
@@ -324,7 +561,12 @@ class Post_Meta {
 	 */
 	public static function save_post_checkbox( $post_id, $key ) {
 		if ( isset( $_POST[ $key ] ) ) {
-			update_post_meta( $post_id, $key, $_POST[ $key ] );
+			$value = self::sanitize_boolean( wp_unslash( $_POST[ $key ] ) );
+			if ( $value ) {
+				update_post_meta( $post_id, $key, '1' );
+			} else {
+				delete_post_meta( $post_id, $key );
+			}
 		} else {
 			delete_post_meta( $post_id, $key );
 		}
@@ -341,7 +583,7 @@ class Post_Meta {
 			return;
 		}
 		if ( ! empty( $_POST[ $key ] ) ) {
-			$text = esc_attr( $_POST[ $key ] );
+			$text = sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
 			update_post_meta( $post_id, $key, $text );
 		} else {
 			delete_post_meta( $post_id, $key );
@@ -360,7 +602,8 @@ class Post_Meta {
 			return;
 		}
 		if ( ! empty( $_POST[ $key ] ) ) {
-			$text = wp_strip_all_tags( $_POST[ $key ], $remove_breaks );
+			$value = wp_unslash( $_POST[ $key ] );
+			$text  = $remove_breaks ? self::sanitize_ogp_description( $value ) : sanitize_textarea_field( $value );
 			update_post_meta( $post_id, $key, $text );
 		} else {
 			delete_post_meta( $post_id, $key );
