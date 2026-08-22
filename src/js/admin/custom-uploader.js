@@ -2,12 +2,12 @@ jQuery(document).ready(($) => {
 	let customUploader = null;
 	const classSelected = 'is-selected';
 	let imageUrl = $('.ys-custom-uploader__hidden').val();
-	$('.ys-custom-uploader__clear').click(() => {
+	$('.ys-custom-uploader__clear').on('click', () => {
 		$('.ys-custom-uploader__hidden').val('');
 		$('.ys-custom-uploader__preview').text('画像が選択されていません。');
 		$('.ys-custom-uploader').toggleClass(classSelected);
 	});
-	$('.ys-custom-uploader__select').click(function (e) {
+	$('.ys-custom-uploader__select').on('click', function (e) {
 		e.preventDefault();
 		if (customUploader) {
 			customUploader.open();
