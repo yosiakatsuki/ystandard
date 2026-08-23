@@ -25,7 +25,7 @@ class Post_Meta {
 	/**
 	 * 新しい投稿設定のメタキー.
 	 */
-	const META_KEY = 'ys_post_settings';
+	const META_KEY = '_ys_post_settings';
 
 	/**
 	 * 投稿設定の保存形式バージョン.
