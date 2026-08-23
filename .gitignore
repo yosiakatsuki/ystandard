@@ -28,6 +28,7 @@ build/
 /vendor
 /temp
 /upload
+/plans/
 .wp-content/
 .phpunit.result.cache
 .mcp.json
