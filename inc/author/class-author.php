@@ -301,7 +301,7 @@ class Author {
 
 		ob_start();
 		get_template_part(
-			'template-parts/parts/author',
+			'template-parts/author/author-box',
 			null,
 			[ 'author_data' => $data ]
 		);

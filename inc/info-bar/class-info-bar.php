@@ -62,7 +62,7 @@ class Info_Bar {
 
 		ob_start();
 		get_template_part(
-			'template-parts/parts/info-bar',
+			'template-parts/info-bar/info-bar',
 			null,
 			[ 'info_bar_data' => $data ]
 		);

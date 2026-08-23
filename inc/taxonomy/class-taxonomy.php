@@ -110,7 +110,7 @@ class Taxonomy {
 
 		ob_start();
 		get_template_part(
-			'template-parts/parts/header-thumbnail',
+			'template-parts/header/header-thumbnail',
 			'',
 			[ 'header_thumbnail' => $thumbnail ]
 		);
@@ -125,7 +125,7 @@ class Taxonomy {
 			return;
 		}
 
-		get_template_part( 'template-parts/parts/post-taxonomy' );
+		get_template_part( 'template-parts/post/post-taxonomy' );
 	}
 
 	/**

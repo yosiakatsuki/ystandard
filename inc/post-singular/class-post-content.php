@@ -188,7 +188,7 @@ class Post_Content {
 	 */
 	public static function singular_title() {
 		ob_start();
-		get_template_part( 'template-parts/parts/post-title' );
+		get_template_part( 'template-parts/post/post-title' );
 		echo ob_get_clean();
 	}
 
@@ -202,7 +202,7 @@ class Post_Content {
 		if ( ! empty( $post_date ) ) {
 			ob_start();
 			get_template_part(
-				'template-parts/parts/post-date',
+				'template-parts/post/post-date',
 				'',
 				[ 'post_date' => $post_date ]
 			);

@@ -12,6 +12,9 @@ defined( 'ABSPATH' ) || die();
 /**
  * 著者情報の表示は基本的にショートコードで処理しています。
  */
+$author_data = $args['author_data'] ?? [];
+
+// 呼び出し元から表示データを受け取れない場合は、不完全な著者情報を出力しない.
 if ( empty( $author_data ) ) {
 	return;
 }

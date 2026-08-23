@@ -32,7 +32,7 @@ defined( 'ABSPATH' ) || die();
 	</div>
 	<?php
 	// ページネーション.
-	get_template_part( 'template-parts/parts/pagination' );
+	get_template_part( 'template-parts/archive/pagination' );
 	// main 終了前フック.
 	do_action( 'ys_site_main_append' );
 	?>

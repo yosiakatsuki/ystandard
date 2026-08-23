@@ -20,20 +20,20 @@ if ( ! ys_is_active_post_footer() ) {
  * 2. 広告 (20)
  *      \ystandard\Advertisement::footer_ad
  * 3. SNSシェアボタン (30)
- *      template-parts/parts/sns-share-button
+ *      template-parts/sns-share-button/share-button
  *      \ystandard\Share_Button::footer_share_button
  * 4. カテゴリー・タグ (40)
- *      template-parts/parts/post-taxonomy
+	 *      template-parts/post/post-taxonomy
  *      \ystandard\Taxonomy::post_taxonomy
  * 5. 著者(50)
- *      template-parts/parts/author
+ *      template-parts/author/author-box
  *      \ystandard\Author::post_author
  * 6. 関連記事(60) parts/post-related
  *      \ystandard\Content::related_posts
  * 7. コメント(70)
  *      \ystandard\Comment::post_comment
  * 8. 前の記事・次の記事(80)
- *      template-parts/parts/post-paging
+	 *      template-parts/post/post-paging
  *      \ystandard\Paging::post_paging
  */
 echo '<footer class="singular__footer entry-footer">';

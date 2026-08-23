@@ -9,6 +9,10 @@
 
 defined( 'ABSPATH' ) || die();
 
+// 呼び出し元で表示対象として組み立てた日付情報だけを使用する.
+$post_date = $args['post_date'] ?? [];
+
+// 表示対象の日付がない場合は、空のメタ情報を出力しない.
 if ( empty( $post_date ) ) {
 	return;
 }

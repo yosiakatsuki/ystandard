@@ -9,6 +9,10 @@
 
 defined( 'ABSPATH' ) || die();
 
+// 呼び出し元がサニタイズした表示データだけを使用する.
+$info_bar_data = $args['info_bar_data'] ?? [];
+
+// 表示データがない場合は、不完全なお知らせバーを出力しない.
 if ( empty( $info_bar_data ) ) {
 	return;
 }

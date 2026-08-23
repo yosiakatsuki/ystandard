@@ -107,7 +107,7 @@ class Blog_Card {
 
 		ob_start();
 		get_template_part(
-			'template-parts/parts/blog-card',
+			'template-parts/blog-card/blog-card',
 			null,
 			[ 'ys_card_data' => $this->params ]
 		);

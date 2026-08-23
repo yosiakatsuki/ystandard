@@ -12,6 +12,11 @@ defined( 'ABSPATH' ) || die();
 /**
  *  記事一覧ショートコード展開
  */
+// ショートコード設定とクエリを、呼び出し元から明示的に受け取る.
+$recent_posts = $args['recent_posts'] ?? [];
+$posts_query  = $args['posts_query'] ?? null;
+
+// 一覧生成に必要なデータがない場合は、不完全なHTMLを出力しない.
 if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 	return;
 }
@@ -25,36 +30,11 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 			?>
 			<li class="ys-posts__item">
 				<div class="ys-posts__content">
-					<?php if ( $recent_posts['show_img'] ) : ?>
-						<div class="ys-posts__thumbnail">
-							<a href="<?php the_permalink(); ?>" class="ratio is-<?php echo $recent_posts['thumbnail_ratio']; ?>">
-								<div class="ratio__item">
-									<figure class="ratio__image">
-										<?php
-										if ( has_post_thumbnail() ) {
-											the_post_thumbnail(
-												$recent_posts['thumbnail_size'],
-												[ 'class' => 'ys-posts__image' ]
-											);
-										} else {
-											ys_the_archive_default_image(
-												'ys-post__no-image',
-												'ys-posts__image',
-												$recent_posts['thumbnail_size']
-											);
-										}
-										?>
-									</figure>
-								</div>
-							</a>
-						</div>
-					<?php endif; ?>
 					<div class="ys-posts__text">
 						<?php if ( $recent_posts['show_date'] || ( $term && $recent_posts['show_category'] ) ) : ?>
 							<div class="ys-posts__meta">
 								<?php if ( $recent_posts['show_date'] ) : ?>
 									<span class="ys-posts__date">
-										<?php echo ys_get_icon( 'calendar' ); ?>
 										<time class="updated" datetime="<?php the_time( 'Y-m-d' ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></time>
 									</span>
 								<?php endif; ?>
@@ -64,7 +44,6 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 									$class_taxonomy = $taxonomy_slug . '--' . $term['slug'];
 									?>
 									<span class="ys-posts__cat <?php echo esc_attr( $class_taxonomy ); ?>">
-										<?php echo ys_get_taxonomy_icon( $recent_posts['taxonomy'] ); ?>
 										<?php echo $term['name']; ?>
 									</span>
 								<?php endif; ?>
@@ -75,11 +54,6 @@ if ( empty( $recent_posts ) || empty( $posts_query ) ) {
 								<?php the_title(); ?>
 							</a>
 						</p>
-						<?php if ( $recent_posts['show_excerpt'] ) : ?>
-							<p class="ys-posts__dscr">
-								<?php echo ys_get_custom_excerpt( ' …', $recent_posts['excerpt_length'] ); ?>
-							</p>
-						<?php endif; ?>
 					</div>
 				</div>
 			</li>

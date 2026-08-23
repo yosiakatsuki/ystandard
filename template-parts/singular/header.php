@@ -20,10 +20,10 @@ if ( ! ys_is_active_post_header() ) {
 	 * 記事ヘッダー
 	 *
 	 * 1. アイキャッチ画像(10)
-	 *      template-parts/parts/post-thumbnail
+	 *      template-parts/post/post-thumbnail
 	 *      \ystandard\Content::post_thumbnail_default
 	 * 2. タイトル (20)
-	 *      template-parts/parts/post-title
+	 *      template-parts/post/post-title
 	 *      \ystandard\Content::singular_title
 	 * 3. 投稿日・更新日・カテゴリー (30)
 	 *      \ystandard\Content::singular_meta

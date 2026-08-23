@@ -67,7 +67,7 @@ class Recent_Posts {
 	/**
 	 * デフォルトテンプレート.
 	 */
-	const DEFAULT_TEMPLATE = 'template-parts/parts/recent-posts';
+	const DEFAULT_TEMPLATE = 'template-parts/recent-posts/recent-posts';
 
 	/**
 	 * 表示タイプ
@@ -83,7 +83,7 @@ class Recent_Posts {
 		],
 		'simple' => [
 			'label'    => 'シンプル',
-			'template' => 'template-parts/parts/recent-posts-simple',
+			'template' => 'template-parts/recent-posts/recent-posts-simple',
 		],
 	];
 

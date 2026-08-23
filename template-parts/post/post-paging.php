@@ -9,6 +9,10 @@
 
 defined( 'ABSPATH' ) || die();
 
+// 呼び出し元で取得した前後記事のIDだけを使用する.
+$paging = $args['paging'] ?? [];
+
+// 前後記事がない場合は、空のページングを出力しない.
 if ( empty( $paging ) ) {
 	return;
 }

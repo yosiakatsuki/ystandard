@@ -47,6 +47,8 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [削除] polyfill削除（`Enqueue_Polyfill`クラスの削除）
 - [削除] おすすめプラグイン機能廃止
 - [変更] テンプレートパーツ読み込みをWordPressコアの`get_template_part()`へ統一
+- [変更] `template-parts/parts/`のテンプレートを意味別ディレクトリへ移動し、旧ディレクトリを廃止
+- [削除] Universal Analytics用の`analytics.js`テンプレートを削除し、Google Analytics出力をGA4用の`gtag.js`へ一本化
 - [追加] `/block-styles.json`からブロックスタイルを追加できる機能追加.
 - [変更] パンくずリストを404ページで表示しないように変更
 
@@ -256,6 +258,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - ys_show\_{post_type}\_category：記事下カテゴリー表示（投稿タイプ別に表示するタクソノミーの選択方式に変更）
 - `ys_blog_card_create_card_auto`：URLのみの行をブログカードへ自動変換する設定
 - `ys_option_disable_wp_oembed`：WordPressのoEmbedを無効化する設定
+- `ys_ga_tracking_type`：Google Analyticsのトラッキングコード種別設定（GA4用の`gtag.js`へ一本化）
 
 #### v5.0.0 - 廃止された関数・クラスメソッド
 
@@ -303,6 +306,20 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | template-parts/parts/share-button-icon.php       | template-parts/sns-share-button/share-button-icon.php   |
 | template-parts/parts/share-button-official.php   | template-parts/sns-share-button/share-button-icon.php   |
 | template-parts/parts/share-button-square.php     | template-parts/sns-share-button/share-button-icon.php   |
+| template-parts/parts/author.php                  | template-parts/author/author-box.php                    |
+| template-parts/parts/blog-card.php               | template-parts/blog-card/blog-card.php                  |
+| template-parts/parts/ga-analytics.php            | 削除（Universal Analytics対応終了）                     |
+| template-parts/parts/ga-gtag.php                 | template-parts/google-analytics/gtag.php                |
+| template-parts/parts/header-thumbnail.php        | template-parts/header/header-thumbnail.php              |
+| template-parts/parts/info-bar.php                | template-parts/info-bar/info-bar.php                    |
+| template-parts/parts/pagination.php              | template-parts/archive/pagination.php                   |
+| template-parts/parts/post-date.php               | template-parts/post/post-date.php                       |
+| template-parts/parts/post-paging.php             | template-parts/post/post-paging.php                     |
+| template-parts/parts/post-taxonomy.php           | template-parts/post/post-taxonomy.php                   |
+| template-parts/parts/post-thumbnail.php          | template-parts/post/post-thumbnail.php                  |
+| template-parts/parts/post-title.php              | template-parts/post/post-title.php                      |
+| template-parts/parts/recent-posts.php            | template-parts/recent-posts/recent-posts.php            |
+| template-parts/parts/recent-posts-simple.php     | template-parts/recent-posts/recent-posts-simple.php     |
 
 ### v4以前の変更履歴
 

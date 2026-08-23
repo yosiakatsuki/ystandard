@@ -59,7 +59,7 @@ class Paging {
 		 * テンプレート読み込み
 		 */
 		get_template_part(
-			'template-parts/parts/post-paging',
+			'template-parts/post/post-paging',
 			'',
 			[ 'paging' => $data ]
 		);

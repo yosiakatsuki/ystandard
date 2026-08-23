@@ -143,7 +143,7 @@ class Post_Singular_Thumbnail {
 			return;
 		}
 		ob_start();
-		get_template_part( 'template-parts/parts/post-thumbnail' );
+		get_template_part( 'template-parts/post/post-thumbnail' );
 		echo ob_get_clean();
 	}
 
@@ -157,7 +157,7 @@ class Post_Singular_Thumbnail {
 		}
 		ob_start();
 		get_template_part(
-			'template-parts/parts/header-thumbnail',
+			'template-parts/header/header-thumbnail',
 			'',
 			[ 'header_thumbnail' => $thumbnail ]
 		);
