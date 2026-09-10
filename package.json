@@ -7,7 +7,7 @@
 		"@wordpress/browserslist-config": "^6.21.0",
 		"@wordpress/env": "^10.21.0",
 		"@wordpress/prettier-config": "^4.21.0",
-		"@wordpress/scripts": "^34.0.0",
+		"@wordpress/scripts": "^34.2.0",
 		"@wp-playground/cli": "3.1.48",
 		"autoprefixer": "^10.4.21",
 		"browserslist": "^4.24.4",
