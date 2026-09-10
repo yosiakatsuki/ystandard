@@ -59,7 +59,7 @@ jobs:
             # 成功した時点で終了する。60秒で停止し、終了しなければ5秒後に強制終了する。
             if timeout --kill-after=5s 60s lftp --norc <<EOF
           set cmd:fail-exit yes
-          set ftp:ssl-allow no
+          set ftp:ssl-allow yes
           set net:max-retries 1
           open --user $(quote "$FTP_USERNAME") --env-password $(quote "ftp://${FTP_SERVER}:21")
           mirror --verbose --exclude=ystandard-info-beta.json -R -- $(quote "$LOCAL_DIR") $(quote "$REMOTE_DIR")
