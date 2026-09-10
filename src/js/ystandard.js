@@ -235,20 +235,25 @@ const ysSetLoadedPosition = () => {
  */
 const ysSetBackToTop = () => {
 	const backToTop = document.getElementById( 'back-to-top' );
-	if ( backToTop && backToTop.classList.contains( 'is-square' ) ) {
+	// ボタンを表示しないページでは初期化を省略する.
+	if ( ! backToTop ) {
+		return;
+	}
+	// 正方形設定が有効な場合だけ寸法をそろえ、それ以外は元の形状を保つ.
+	if ( backToTop.classList.contains( 'is-square' ) ) {
 		const width = backToTop.getBoundingClientRect().width;
 		const height = backToTop.getBoundingClientRect().height;
 		const size = width < height ? `${height}px` : `${width}px`;
 		backToTop.style.width = size;
 		backToTop.style.height = size;
-		backToTop.addEventListener( 'click', ( e ) => {
-			e.preventDefault();
-			window.scroll( {
-				top: 0,
-				behavior: 'smooth',
-			} );
-		} );
 	}
+	backToTop.addEventListener( 'click', ( e ) => {
+		e.preventDefault();
+		window.scroll( {
+			top: 0,
+			behavior: 'smooth',
+		} );
+	} );
 };
 
 /**
