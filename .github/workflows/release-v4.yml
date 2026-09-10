@@ -36,15 +36,60 @@ jobs:
       - name: Create Upload Files
         run: npm run copy:production
 
+      - name: Install FTP client
+        timeout-minutes: 5
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y lftp
+
       - name: Deploy
-        uses: SamKirkland/FTP-Deploy-Action@2.0.0
+        timeout-minutes: 7
+        shell: bash
+        run: |
+          # lftpの引数に含まれる引用符・バックスラッシュを保護する。
+          quote() {
+            local value="$1"
+            value="${value//\\/\\\\}"
+            printf '"%s"' "${value//\"/\\\"}"
+          }
+          export LFTP_PASSWORD="$FTP_PASSWORD"
+
+          for attempt in {1..5}; do
+            echo "FTPデプロイ: 試行 $attempt/5"
+            # 成功した時点で終了する。60秒で停止し、終了しなければ5秒後に強制終了する。
+            if timeout --kill-after=5s 60s lftp --norc <<EOF
+          set cmd:fail-exit yes
+          set ftp:ssl-allow no
+          set net:max-retries 1
+          open --user $(quote "$FTP_USERNAME") --env-password $(quote "ftp://${FTP_SERVER}:21")
+          mirror --verbose --exclude=ystandard-info-beta.json -R -- $(quote "$LOCAL_DIR") $(quote "$REMOTE_DIR")
+          quit
+          EOF
+            then
+              echo "FTPデプロイ成功"
+              exit 0
+            else
+              # 失敗を記録し、残りの試行へ進む。
+              status=$?
+              echo "FTPデプロイ失敗（終了コード$status、124はタイムアウト）"
+            fi
+            # 手動中断時は再試行しない。
+            if [[ "$status" == 130 || "$status" == 143 ]]; then
+              exit "$status"
+            fi
+            # 最後の失敗後は待機せず終了する。
+            if (( attempt < 5 )); then
+              sleep 10
+            fi
+          done
+          echo "::error::FTPデプロイが5回すべて失敗しました"
+          exit 1
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
           LOCAL_DIR: upload
           REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR_PRODUCTION_V4 }}
-          ARGS: --verbose --exclude=ystandard-info-beta.json
 
       - name: Notify Deployment Release Version for Discord
         uses: sarisia/actions-status-discord@v1
