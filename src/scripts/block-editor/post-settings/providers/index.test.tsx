@@ -1,7 +1,7 @@
 /**
  * Internal Dependencies
  */
-import { getStandardItems } from '.';
+import { getStandardItems, getStandardSections } from '.';
 
 jest.mock('@aktk/block-components/wp-controls/button', () => () => null, {
 	virtual: true,
@@ -15,6 +15,25 @@ jest.mock('./parts-shortcode', () => () => null);
 jest.mock('./state-setting', () => () => null);
 
 describe('投稿タイプ別の標準投稿設定', () => {
+	it('ys-partsではショートコード設定だけを表示する', () => {
+		const context = {
+			apiVersion: 1 as const,
+			postType: 'ys-parts',
+			postId: 1,
+		};
+
+		expect(getStandardSections(context)).toEqual([
+			{
+				id: 'ystandard/shortcode',
+				title: 'ショートコード',
+				order: 10,
+			},
+		]);
+		expect(getStandardItems(context).map(({ id }) => id)).toEqual([
+			'ystandard/parts-shortcode',
+		]);
+	});
+
 	it('要素の表示設定をページ内の表示順に並べる', () => {
 		const availableStateSettings = [
 			'post_thumbnail',

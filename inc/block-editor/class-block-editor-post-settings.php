@@ -35,7 +35,7 @@ class Block_Editor_Post_Settings {
 	}
 
 	/**
-	 * 投稿設定モーダル用スクリプトを読み込む.
+	 * ブロックエディター投稿設定用スクリプトを読み込む.
 	 */
 	public function enqueue_scripts() {
 		$screen = get_current_screen();
@@ -70,7 +70,7 @@ class Block_Editor_Post_Settings {
 		);
 
 		$style_path = get_theme_file_path( '/js/block-editor/style-post-settings.css' );
-		// SCSSのビルド成果物がある場合だけモーダル用スタイルを読み込む.
+		// SCSSのビルド成果物がある場合だけ投稿設定用スタイルを読み込む.
 		if ( is_readable( $style_path ) ) {
 			wp_enqueue_style(
 				self::SCRIPT_HANDLE,
@@ -94,7 +94,7 @@ class Block_Editor_Post_Settings {
 	}
 
 	/**
-	 * 投稿設定モーダルへ渡す初期データを取得する.
+	 * ブロックエディター投稿設定へ渡す初期データを取得する.
 	 *
 	 * @param string $post_type 投稿タイプ.
 	 * @param int    $post_id   投稿ID.

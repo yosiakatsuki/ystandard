@@ -33,7 +33,7 @@ export default class PostSettingsItemBoundary extends Component<
 	 * 設定項目またはエラー表示を描画する.
 	 */
 	public render() {
-		// 1項目の例外でモーダル全体を停止させず、代替表示へ切り替える.
+		// 1項目の例外で投稿設定UI全体を停止させず、代替表示へ切り替える.
 		if (this.state.hasError) {
 			return this.props.fallback;
 		}
