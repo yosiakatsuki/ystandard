@@ -53,6 +53,8 @@ class Customizer {
 	 */
 	public function __construct() {
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
+		// カスタマイザー保存時にtheme.jsonのキャッシュをクリアする.
+		add_action( 'customize_save_after', 'wp_clean_theme_json_cache' );
 		add_action( 'customize_preview_init', [ $this, 'preview_init' ], 999 );
 		add_action( 'ys_get_inline_css', [ $this, 'preview_inline_css' ], 999 );
 		add_action( 'customize_controls_print_styles', [ $this, 'print_styles' ] );
