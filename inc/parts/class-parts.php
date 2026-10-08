@@ -296,16 +296,16 @@ class Parts {
 	 * カラム追加
 	 *
 	 * @param string $column_name カラム名.
-	 * @param int $post_ID 投稿ID.
+	 * @param int    $post_ID 投稿ID.
 	 */
 	public function add_custom_column(
 		$column_name, $post_ID
 	) {
 		if ( 'ys-parts' === $column_name ) {
 			?>
-			<div class="copy-form">
+			<div class="copy-form copy-form--parts-list">
 				<input type="text" class="copy-form__target" value='[ys_parts parts_id="<?php echo esc_attr( absint( $post_ID ) ); ?>"]' readonly onfocus="this.select();"/>
-				<button class="copy-form__button button action">
+				<button type="button" class="copy-form__button button action" aria-label="<?php echo esc_attr__( 'ショートコードをコピー', 'ystandard' ); ?>">
 					<?php echo ys_get_icon( 'clipboard' ); ?>
 				</button>
 				<div class="copy-form__info"><?php echo __( 'コピーしました！', 'ystandard' ); ?></div>

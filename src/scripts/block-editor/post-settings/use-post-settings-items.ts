@@ -37,7 +37,7 @@ function warnInvalidDefinition(type: 'section' | 'item') {
 }
 
 /**
- * フィルターの例外で投稿設定モーダル全体が停止しないようにする.
+ * フィルターの例外で投稿設定UI全体が停止しないようにする.
  *
  * @param hookName フック名.
  * @param defaults 標準定義.

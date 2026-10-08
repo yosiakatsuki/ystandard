@@ -99,6 +99,34 @@
 	  }
 	}
   }
+
+  &.copy-form--parts-list {
+	display: block;
+
+	.copy-form__target {
+	  width: 100%;
+	  padding-right: 3rem;
+	}
+
+	.copy-form__button {
+	  display: flex;
+	  position: absolute;
+	  top: 0;
+	  right: 0;
+	  bottom: 0;
+	  align-items: center;
+	  justify-content: center;
+	  width: 2.5rem;
+	  height: auto;
+	  min-height: 0;
+	  padding: 0;
+
+	  .ys-icon,
+	  .ys-icon svg {
+		display: block;
+	  }
+	}
+  }
 }
 
 @keyframes show-tooltip {
