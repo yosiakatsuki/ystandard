@@ -450,7 +450,7 @@
 			"dropCap": false,
 			"fluid": {
 				"minFontSize": "8px",
-				"minViewportWidth": "390px",
+				"minViewportWidth": "375px",
 				"maxViewportWidth": "1200px"
 			},
 			"fontFamilies": [
