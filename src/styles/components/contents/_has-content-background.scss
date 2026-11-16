@@ -33,7 +33,7 @@
 // サイドバーなしの場合はラッパーをコンテンツサイズを上限にする
 :where(body:not(.has-sidebar) .site-main > article.has-content-background) {
 	@include global.media-up-mobile() {
-		max-width: var(--ystd--content--size);
+		max-width: var(--ystd--content--width);
 		margin-right: auto;
 		margin-left: auto;
 	}
@@ -41,5 +41,5 @@
 
 // サイドバーの調整
 :where(.sidebar.has-content-background) {
-	--ystd--container--size: var(--ystd--content--size);
+	--ystd--container--width: var(--ystd--content--width);
 }

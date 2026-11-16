@@ -49,7 +49,7 @@
 	}
 
 	:where(.drawer-nav__container) {
-		width: min(var(--ystd--container--size), var(--ystd--drawer-menu--width));
+		width: min(var(--ystd--container--width), var(--ystd--drawer-menu--width));
 		min-height: 0;
 		margin-right: auto;
 		margin-left: auto;
@@ -69,7 +69,7 @@
 	:where(.drawer-nav__close-container) {
 		display: flex;
 		align-items: center;
-		width: var(--ystd--container--size);
+		width: var(--ystd--container--width);
 		margin-right: auto;
 		//margin-bottom: var(--ystd--layout-gap);
 		margin-left: auto;

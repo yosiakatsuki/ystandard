@@ -17,7 +17,7 @@
  */
 body:where(.is-wide) {
 	:where(.site-content) {
-		--ystd--content--size: var(--ystd--container--size);
+		--ystd--content--width: var(--ystd--container--width);
 		--wp--style--global--content-size: var(--ystd--container--width);
 	}
 }

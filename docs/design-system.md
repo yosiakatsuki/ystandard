@@ -209,7 +209,6 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 |-----------|--------|
 | `--ystd--container--width` | `var(--wp--style--global--wide-size, 1200px)` |
 | `--ystd--container--gutter` | `1rem` |
-| `--ystd--container--size` | `min(calc(100% - gutter * 2), width)` |
 | `--ystd--container--margin-vertical` | `var(--ystd--layout-gap)` |
 
 #### CSSカスタムプロパティ - コンテンツ
@@ -219,6 +218,8 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 | `--ystd--content--width` | `var(--wp--style--global--content-size, 800px)` |
 | `--ystd--content--min-width` | `66.66%` |
 | `--ystd--content--margin-bottom` | `calc(2 * var(--ystd--layout-gap))` |
+
+通常幅・幅広の制御には、それぞれ`--ystd--content--width`と`--ystd--container--width`を直接使用する。
 
 カスタマイザーの「[ys]レイアウト」→「コンテンツ領域」で、`contentSize`相当の「コンテンツ幅」と`wideSize`相当の「コンテナ幅」を設定できる。入力欄のプレースホルダーには、Global Stylesから取得した現在値を表示する。
 

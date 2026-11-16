@@ -11,14 +11,14 @@
 	}
 
 	*:where(:not(.alignfull)) {
-		max-width: var(--ystd--content--size);
+		max-width: var(--ystd--content--width);
 		margin-right: auto;
 		margin-left: auto;
 	}
 
 	// 入れ子の幅広ブロックはコアとブロック自身のレイアウト設定に任せる。
 	*:where(.alignwide) {
-		max-width: var(--ystd--container--size);
+		max-width: var(--ystd--container--width);
 		margin-right: auto;
 		margin-left: auto;
 	}

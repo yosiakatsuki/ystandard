@@ -7,7 +7,7 @@
 
 :where(.not-found__header) {
 	> :where(*) {
-		max-width: var(--ystd--content--size);
+		max-width: var(--ystd--content--width);
 		margin-right: auto;
 		margin-left: auto;
 		margin-bottom: 0;
