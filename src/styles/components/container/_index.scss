@@ -17,7 +17,7 @@
 		gap: var(--ystd--sidebar--2col--gap);
 
 		@include global.media-up-desktop() {
-			max-width: var(--ystd--container--size);
+			max-width: var(--ystd--container--width);
 			justify-content: space-between;
 			gap: var(--ystd--sidebar--2col--gap);
 			grid-template-columns: var(--ystd--content--2col--size) var(--ystd--sidebar--2col--size);

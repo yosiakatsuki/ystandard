@@ -3,7 +3,6 @@
  */
 @mixin custom_properties() {
 	--ystd--content--width: var(--wp--style--global--content-size, 800px);
-	--ystd--content--size: min(calc(100% - var(--ystd--container--gutter) * 2), var(--ystd--content--width));
 	--ystd--content--header--gap: 1em;
 	--ystd--content--footer--gap: 4rem;
 	--ystd--content--post-title--font-size: var(--ystd--headline--font-size--h1, 1.4em);
