@@ -1,6 +1,5 @@
 :where(.entry-content) {
-
-	> * + *:where(:not(h1,h2,h3,h4,h5,h6,.alignfull)) {
+	> * + *:where(:not(h1, h2, h3, h4, h5, h6, .alignfull)) {
 		margin-top: var(--ystd--block-gap);
 	}
 	*:where(:first-child) {
@@ -11,12 +10,13 @@
 		margin-bottom: 0;
 	}
 
-	> *:where(:not(.alignfull)) {
+	*:where(:not(.alignfull)) {
 		max-width: var(--ystd--content--size);
 		margin-right: auto;
 		margin-left: auto;
 	}
 
+	// 入れ子の幅広ブロックはコアとブロック自身のレイアウト設定に任せる。
 	*:where(.alignwide) {
 		max-width: var(--ystd--container--size);
 		margin-right: auto;
