@@ -49,7 +49,7 @@ export default function PartsShortcode({
 			}
 			await navigator.clipboard.writeText(shortcode);
 			setNotice(__('ショートコードをコピーしました。', 'ystandard'));
-		} catch (error) {
+		} catch {
 			setNotice(
 				__('ショートコードをコピーできませんでした。', 'ystandard')
 			);

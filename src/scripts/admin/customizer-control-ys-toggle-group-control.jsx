@@ -26,7 +26,7 @@ const ToggleGroup = ({ choices, description, label, onChange, value }) => (
 
 wp.customize.controlConstructor['ys-toggle-group-control'] =
 	wp.customize.Control.extend({
-		ready: function () {
+		ready() {
 			const control = this;
 			const mount = control.container
 				.get(0)

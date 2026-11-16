@@ -721,9 +721,9 @@ class Customize_Control {
 	 * @return string
 	 */
 	public static function get_xs_description_text( $description ) {
-		// xsの説明文を取得.
+		// 補足説明がある場合だけ、文字サイズと余白を揃える要素で囲む.
 		if ( ! empty( $description ) ) {
-			$description = '<span class="tw-text-ys-customizer-small tw-block tw-my-1">' . $description . '</span>';
+			$description = '<span class="ys-customizer-description--xs">' . $description . '</span>';
 		}
 
 		return $description;

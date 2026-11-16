@@ -111,7 +111,7 @@ const ColorPaletteDropdown = ({
 
 wp.customize.controlConstructor['ys-color-palette-control'] =
 	wp.customize.Control.extend({
-		ready: function () {
+		ready() {
 			const control = this;
 			const mount = control.container
 				.get(0)

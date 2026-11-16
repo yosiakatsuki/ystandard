@@ -19,7 +19,7 @@ let usesFixedBodyScrollLock = false;
  */
 export function drawerNav() {
 	document.addEventListener('DOMContentLoaded', () => {
-		const drawerNav = document.getElementById(
+		const drawerElement = document.getElementById(
 			'drawer-nav'
 		) as HTMLDialogElement | null;
 		const globalNavToggle = document.getElementById(
@@ -27,12 +27,12 @@ export function drawerNav() {
 		) as HTMLButtonElement | null;
 
 		// メニューを出力しない構成では、開閉イベントを登録できないため処理を終える.
-		if (!drawerNav || !globalNavToggle) {
+		if (!drawerElement || !globalNavToggle) {
 			return;
 		}
 
-		setOpenEvent(drawerNav, globalNavToggle);
-		setCloseEvents(drawerNav, globalNavToggle);
+		setOpenEvent(drawerElement, globalNavToggle);
+		setCloseEvents(drawerElement, globalNavToggle);
 		setCloseContainerHeight();
 	});
 
@@ -51,11 +51,11 @@ export function drawerNav() {
 /**
  * ドロワーメニューを開くイベントを登録する.
  *
- * @param drawerNav       ドロワーメニュー.
+ * @param drawerElement   ドロワーメニュー.
  * @param globalNavToggle メニューを開くボタン.
  */
 function setOpenEvent(
-	drawerNav: HTMLDialogElement,
+	drawerElement: HTMLDialogElement,
 	globalNavToggle: HTMLButtonElement
 ) {
 	globalNavToggle.addEventListener('click', (event) => {
@@ -67,22 +67,22 @@ function setOpenEvent(
 		}
 
 		// 多重に開く操作をしてshowModal()が例外になることを防ぐ.
-		if (isDrawerOpen(drawerNav)) {
+		if (isDrawerOpen(drawerElement)) {
 			return;
 		}
 
-		openDrawerNav(drawerNav, globalNavToggle);
+		openDrawerNav(drawerElement, globalNavToggle);
 	});
 }
 
 /**
  * ドロワーメニューを閉じるイベントを登録する.
  *
- * @param drawerNav       ドロワーメニュー.
+ * @param drawerElement   ドロワーメニュー.
  * @param globalNavToggle メニューを開くボタン.
  */
 function setCloseEvents(
-	drawerNav: HTMLDialogElement,
+	drawerElement: HTMLDialogElement,
 	globalNavToggle: HTMLButtonElement
 ) {
 	const targetQuery = [
@@ -94,34 +94,34 @@ function setCloseEvents(
 
 	drawerNavCloseElements.forEach((element) => {
 		element.addEventListener('click', () => {
-			closeDrawerNav(drawerNav, globalNavToggle);
+			closeDrawerNav(drawerElement, globalNavToggle);
 		});
 	});
 
-	drawerNav.addEventListener('click', (event) => {
+	drawerElement.addEventListener('click', (event) => {
 		// ダイアログ内の操作では閉じず、背景部分を直接クリックした場合だけ閉じる.
-		if (event.target !== drawerNav) {
+		if (event.target !== drawerElement) {
 			return;
 		}
 
-		closeDrawerNav(drawerNav, globalNavToggle);
+		closeDrawerNav(drawerElement, globalNavToggle);
 	});
 
 	// ネイティブのEscape操作を含め、すべての終了経路で表示状態を確実に戻す.
-	drawerNav.addEventListener('close', () => {
-		finishClosingDrawerNav(drawerNav, globalNavToggle);
+	drawerElement.addEventListener('close', () => {
+		finishClosingDrawerNav(drawerElement, globalNavToggle);
 		globalNavToggle.focus();
 	});
 
 	// ネイティブdialogがない環境だけ、Escapeキーの終了処理を補う.
-	if (!supportsNativeDialog(drawerNav)) {
+	if (!supportsNativeDialog(drawerElement)) {
 		document.addEventListener('keydown', (event) => {
 			// 他のキー操作や閉じている状態には影響を与えない.
-			if ('Escape' !== event.key || !isDrawerOpen(drawerNav)) {
+			if ('Escape' !== event.key || !isDrawerOpen(drawerElement)) {
 				return;
 			}
 
-			closeDrawerNav(drawerNav, globalNavToggle);
+			closeDrawerNav(drawerElement, globalNavToggle);
 		});
 	}
 }
@@ -129,23 +129,23 @@ function setCloseEvents(
 /**
  * ドロワーメニューを開く.
  *
- * @param drawerNav       ドロワーメニュー.
+ * @param drawerElement   ドロワーメニュー.
  * @param globalNavToggle メニューを開くボタン.
  */
 function openDrawerNav(
-	drawerNav: HTMLDialogElement,
+	drawerElement: HTMLDialogElement,
 	globalNavToggle: HTMLButtonElement
 ) {
 	// 対応ブラウザではトップレイヤーと標準のフォーカス制御を利用する.
-	if (supportsNativeDialog(drawerNav)) {
-		drawerNav.showModal();
+	if (supportsNativeDialog(drawerElement)) {
+		drawerElement.showModal();
 		lockPageScroll();
 		setDrawerNavState(globalNavToggle, true);
 
 		window.requestAnimationFrame(() => {
 			// 開く直後に別経路から閉じられた場合は、終了済みの状態を上書きしない.
-			if (drawerNav.open) {
-				drawerNav.classList.add(OPEN_CLASS);
+			if (drawerElement.open) {
+				drawerElement.classList.add(OPEN_CLASS);
 			}
 		});
 		return;
@@ -154,47 +154,47 @@ function openDrawerNav(
 	// 未対応ブラウザでは従来のクラス表示でメニュー操作を維持する.
 	lockPageScroll();
 	setDrawerNavState(globalNavToggle, true);
-	drawerNav.classList.add(OPEN_CLASS);
+	drawerElement.classList.add(OPEN_CLASS);
 	document.getElementById('drawer-nav__toggle')?.focus();
 }
 
 /**
  * ドロワーメニューを閉じる.
  *
- * @param drawerNav       ドロワーメニュー.
+ * @param drawerElement   ドロワーメニュー.
  * @param globalNavToggle メニューを開くボタン.
  */
 function closeDrawerNav(
-	drawerNav: HTMLDialogElement,
+	drawerElement: HTMLDialogElement,
 	globalNavToggle: HTMLButtonElement
 ) {
 	// 閉じた状態のリンク操作では、フォーカスやスクロール位置を変更しない.
-	if (!isDrawerOpen(drawerNav)) {
+	if (!isDrawerOpen(drawerElement)) {
 		return;
 	}
 
 	// ネイティブdialogの終了処理はcloseイベントへ集約する.
-	if (supportsNativeDialog(drawerNav)) {
-		drawerNav.close();
+	if (supportsNativeDialog(drawerElement)) {
+		drawerElement.close();
 		return;
 	}
 
 	// 未対応ブラウザではcloseイベントがないため、その場で終了処理を行う.
-	finishClosingDrawerNav(drawerNav, globalNavToggle);
+	finishClosingDrawerNav(drawerElement, globalNavToggle);
 	globalNavToggle.focus();
 }
 
 /**
  * ドロワーメニューを閉じたあとの状態を戻す.
  *
- * @param drawerNav       ドロワーメニュー.
+ * @param drawerElement   ドロワーメニュー.
  * @param globalNavToggle メニューを開くボタン.
  */
 function finishClosingDrawerNav(
-	drawerNav: HTMLDialogElement,
+	drawerElement: HTMLDialogElement,
 	globalNavToggle: HTMLButtonElement
 ) {
-	drawerNav.classList.remove(OPEN_CLASS);
+	drawerElement.classList.remove(OPEN_CLASS);
 	setDrawerNavState(globalNavToggle, false);
 	unlockPageScroll();
 }
@@ -202,22 +202,22 @@ function finishClosingDrawerNav(
 /**
  * ネイティブdialogを利用できるか確認する.
  *
- * @param drawerNav ドロワーメニュー.
+ * @param drawerElement ドロワーメニュー.
  */
-function supportsNativeDialog(drawerNav: HTMLDialogElement) {
+function supportsNativeDialog(drawerElement: HTMLDialogElement) {
 	return (
-		'function' === typeof drawerNav.showModal &&
-		'function' === typeof drawerNav.close
+		'function' === typeof drawerElement.showModal &&
+		'function' === typeof drawerElement.close
 	);
 }
 
 /**
  * ドロワーメニューが開いているか確認する.
  *
- * @param drawerNav ドロワーメニュー.
+ * @param drawerElement ドロワーメニュー.
  */
-function isDrawerOpen(drawerNav: HTMLDialogElement) {
-	return drawerNav.open || drawerNav.classList.contains(OPEN_CLASS);
+function isDrawerOpen(drawerElement: HTMLDialogElement) {
+	return drawerElement.open || drawerElement.classList.contains(OPEN_CLASS);
 }
 
 /**

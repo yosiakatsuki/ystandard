@@ -122,10 +122,10 @@ class Theme_Info {
 		}
 		$current  = get_bloginfo( 'version' );
 		$requires = self::get_requires_wp();
-		// translators: %1$s: WordPressバージョン, %2$s: 必要バージョン
+		// translators: %1$s: WordPressバージョン, %2$s: 必要バージョン.
 		$message = __( 'サイトがyStandardの動作要件以下のWordPressバージョン(%1$s)で動作しています。%2$s以上に更新してください。', 'ystandard' );
 		Admin_Notice::warning(
-			'<div class="tw-text-ys-alert-warning-text tw-font-bold">' . sprintf( $message, $current, $requires ) . '</div>'
+			'<div class="ys-notice__version-warning">' . sprintf( $message, $current, $requires ) . '</div>'
 		);
 	}
 
@@ -140,10 +140,10 @@ class Theme_Info {
 		}
 		$current  = phpversion();
 		$requires = self::get_requires_php();
-		// translators: %1$s: WordPressバージョン, %2$s: 必要バージョン
+		// translators: %1$s: WordPressバージョン, %2$s: 必要バージョン.
 		$message = __( 'サイトがyStandardの動作要件以下のPHPバージョン(%1$s)で動作しています。%2$s以上に更新してください。', 'ystandard' );
 		Admin_Notice::warning(
-			'<div class="tw-text-ys-alert-warning-text tw-font-bold">' . sprintf( $message, $current, $requires ) . '</div>'
+			'<div class="ys-notice__version-warning">' . sprintf( $message, $current, $requires ) . '</div>'
 		);
 	}
 

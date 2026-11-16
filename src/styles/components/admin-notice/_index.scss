@@ -3,6 +3,11 @@
 	padding-bottom: .75em;
 }
 
+.ys-notice__version-warning {
+	color: var(--ystd--alert--text-color--yellow);
+	font-weight: 700;
+}
+
 .notice + .notice {
 	margin-top: .75em !important;
 }

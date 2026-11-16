@@ -4,6 +4,8 @@ theme.json 対応のクラシック WordPress テーマ（v5.0.0 開発中）。
 
 - テーマ動作要件: WordPress 6.5+ / PHP 7.4+（`style.css` ヘッダー）
 - 開発環境要件: PHP 8.0+（`composer.json` の `require`）
+- Node.js要件: 22.22.3以降の22系、24.15.0以降の24系、または26.0.0以上（`package.json` の `engines`）
+- npm要件: 10以上
 
 ## 現在の開発状況
 
@@ -23,31 +25,29 @@ npm run clean          # ビルド成果物削除（css / js / zip / upload）
 npm run zip            # 配布用 zip 作成（build 込み）
 ```
 
+配布ZIPは`wp-scripts plugin-zip`で作成する。収録対象は`package.json`の`files`で管理し、ZIP内のルートフォルダは`ystandard/`とする。`npm-packlist`の仕様により`package.json`自体も含まれる。
+
 ### 品質チェック
 ```bash
 npm run lint           # PHP + JS 一括（run-s lint:*）
 npm run lint:php       # PHPCS（composer phpcs と等価）
-npm run lint:js        # ESLint（src/scripts/*.js を --fix）
+npm run lint:js        # ESLint（src/scripts と src/aktk-block-components を検査）
 ```
 
 ### テスト
 ```bash
-npm run test           # = npm run test:php
-npm run test:php       # wp-env を起動してから PHPUnit を実行
-composer test          # vendor/bin/phpunit を直接実行（wp-env 起動済み前提）
+npm run test                    # PHPとJSのテストを順に実行
+npm run test:php                # ブラウザを起動せずPlayground CLIでPHPUnitを実行
+npm run test:js:post-settings   # Vitestで投稿設定のJSテストを実行
+composer test                   # vendor/bin/phpunitを直接実行（WordPressテスト環境が必要）
 ```
 
 ### 翻訳ファイル生成
+WP-CLIの`wp`コマンドを利用できる環境で実行する。
+
 ```bash
 npm run i18n:pot       # languages/ystandard.pot を生成（wp i18n make-pot）
-npm run i18n:blocks    # ja.po → ブロックエディター用 JSON 変換
-```
-
-### ローカル環境
-```bash
-npm run wpenv:start    # wp-env + Xdebug 起動
-npm run wpenv:stop
-npm run wpenv:destroy
+npm run i18n:blocks    # WP-CLIでja.poからスクリプト別のJSONを生成（POは保持）
 ```
 
 ## コーディング規約
@@ -59,9 +59,9 @@ npm run wpenv:destroy
 - 違反を見つけたら PHPCS を実行して確認する
 
 ### JS / TS
-- ESLint v9 だが設定は `.eslintrc.js`（旧形式）、Prettier は `.prettierrc.js`
+- ESLint v10の設定は`eslint.config.mjs`（flat config）、Prettierは`.prettierrc.js`
 - `@wordpress/eslint-plugin` ベース。コード変更後は `npm run lint:js` を実行
-- pre-commit で husky が動く（`.husky/`）
+- JSテストは`vitest.config.mjs`に従い、Node.js上で実行する
 
 ### フックプレフィックス
 既存コードで **`ys_` と `ystd_` が混在**している。新規追加時は該当ファイル・近隣コードのプレフィックスに合わせる。勝手に統一しない。
@@ -73,9 +73,9 @@ npm run wpenv:destroy
 - 一部はグローバル名前空間で`class-ys-*`プレフィックス（例: `inc/author/class-ys-widget-author-box.php`）
 - **既存ファイルの流儀に合わせる**。新しい方式を混ぜない
 
-### CSS / TailwindCSS
-- TailwindCSS クラスは全て `tw-` プレフィックス付き（`tailwind.config.js`）
-- Tailwind の preflight は無効、`important: true`（クラスに `!important` 付与）
+### CSS / SCSS
+- スタイルは既存の SCSS 構成に合わせ、用途別のクラスで定義する
+- セレクターの詳細度は基本的にクラス単独の `0,1,0` とする
 - 色・サイズ等は `theme.json` のプリセットを優先し、ハードコード値を避ける
 - カスタムは CSS カスタムプロパティ経由で定義
 
@@ -96,7 +96,8 @@ npm run wpenv:destroy
 - `/css/`, `/js/` — ビルド成果物（コミット対象）。`/temp/` はビルド中間生成物（git 管理外）
 
 ### CSS ビルドパイプライン（2系統）
-- テーマ: `src/styles` → SCSS → `temp/css` → PostCSS（Tailwind + autoprefixer + cssnano）→ `css/`
+- PostCSS設定は`postcss.config.mjs`で管理する
+- テーマ: `src/styles` → SCSS → `temp/css` → PostCSS（autoprefixer + cssnano + css-declaration-sorter）→ `css/`
 - ブロックスタイル: `src/block-styles` → SCSS → `temp/css/block-styles` → PostCSS → `css/block-styles/`
 
 ### ブロックテーマではない

@@ -1,4 +1,9 @@
 /**
+ * 外部依存
+ */
+import { afterEach, describe, expect, it, vi } from 'vitest';
+
+/**
  * WordPress Dependencies
  */
 import { addFilter, removeFilter } from '@wordpress/hooks';
@@ -12,7 +17,7 @@ import {
 	getPostSettingsSections,
 } from './use-post-settings-items';
 
-jest.mock('./providers', () => ({
+vi.mock('./providers', () => ({
 	getStandardSections: () => [
 		{ id: 'ystandard/post', title: '要素の表示設定', order: 10 },
 		{ id: 'ystandard/seo', title: 'SEO設定', order: 20 },
@@ -97,6 +102,7 @@ describe('投稿設定の拡張定義', () => {
 	});
 
 	it('未登録セクションを参照する外部項目を除外する', () => {
+		const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
 		const Component = () => null;
 		addFilter(ITEM_FILTER, ITEM_NAMESPACE, (items) => [
 			...items,
@@ -112,7 +118,7 @@ describe('投稿設定の拡張定義', () => {
 		const items = getPostSettingsItems(CONTEXT, sections);
 
 		expect(items.some(({ id }) => id === 'example/orphan')).toBe(false);
-		expect(console).toHaveWarnedWith(
+		expect(warn).toHaveBeenCalledWith(
 			'Invalid post settings item definition was ignored.'
 		);
 	});

@@ -1,4 +1,9 @@
 /**
+ * 外部依存
+ */
+import { describe, expect, it } from 'vitest';
+
+/**
  * Internal Dependencies
  */
 import {

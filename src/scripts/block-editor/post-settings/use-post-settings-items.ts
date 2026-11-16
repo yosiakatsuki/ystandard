@@ -58,7 +58,7 @@ function applyDefinitionFilters<T extends Definition>(
 			return defaults;
 		}
 		return definitions as T[];
-	} catch (error) {
+	} catch {
 		warnInvalidDefinition(type);
 		return defaults;
 	}

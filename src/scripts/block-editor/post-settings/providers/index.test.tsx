@@ -1,18 +1,23 @@
 /**
+ * 外部依存
+ */
+import { describe, expect, it, vi } from 'vitest';
+
+/**
  * Internal Dependencies
  */
 import { getStandardItems, getStandardSections } from '.';
 
-jest.mock('@aktk/block-components/wp-controls/button', () => () => null, {
-	virtual: true,
-});
-jest.mock('./display-setting-actions', () => () => null);
-jest.mock('./ogp-settings', () => ({
+vi.mock('@aktk/block-components/wp-controls/button', () => ({
+	default: () => null,
+}));
+vi.mock('./display-setting-actions', () => ({ default: () => null }));
+vi.mock('./ogp-settings', () => ({
 	OgpDescriptionSetting: () => null,
 	OgpTitleSetting: () => null,
 }));
-jest.mock('./parts-shortcode', () => () => null);
-jest.mock('./state-setting', () => () => null);
+vi.mock('./parts-shortcode', () => ({ default: () => null }));
+vi.mock('./state-setting', () => ({ default: () => null }));
 
 describe('投稿タイプ別の標準投稿設定', () => {
 	it('ys-partsではショートコード設定だけを表示する', () => {

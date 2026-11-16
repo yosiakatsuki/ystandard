@@ -1,12 +1,17 @@
 /**
+ * 外部依存
+ */
+import { describe, expect, it, vi } from 'vitest';
+
+/**
  * Internal Dependencies
  */
 import PostSettings from './post-settings';
 import PostSettingsModal from './post-settings-modal';
 import PostSettingsPanel from './post-settings-panel';
 
-jest.mock('./post-settings-modal', () => () => null);
-jest.mock('./post-settings-panel', () => () => null);
+vi.mock('./post-settings-modal', () => ({ default: () => null }));
+vi.mock('./post-settings-panel', () => ({ default: () => null }));
 
 describe('投稿タイプ別の投稿設定UI', () => {
 	it('ys-partsではエディター設定パネルを表示する', () => {

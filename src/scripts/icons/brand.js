@@ -1,7 +1,6 @@
 const {
 	siFacebook,
 	siHatenabookmark,
-	siPocket,
 	siLine,
 	siFeedly,
 	siRss,
@@ -13,18 +12,19 @@ const {
 	siDribbble,
 	siGithub,
 	siTumblr,
-	siAmazon,
 	siDiscord,
 	siTiktok,
 	siX,
 	siBluesky,
 } = require('simple-icons');
+// v16で削除されたアイコンは、v14.4.0由来の既存データを維持する。
+const legacyIcons = require('./legacy-brand-icons.json');
 const fs = require('fs');
 const jsonPath = './library/simple-icons/brand-icons.json';
 const iconList = [
 	siFacebook,
 	siHatenabookmark,
-	siPocket,
+	legacyIcons.pocket,
 	siLine,
 	siFeedly,
 	siRss,
@@ -36,7 +36,7 @@ const iconList = [
 	siDribbble,
 	siGithub,
 	siTumblr,
-	siAmazon,
+	legacyIcons.amazon,
 	siDiscord,
 	siTiktok,
 	siX,

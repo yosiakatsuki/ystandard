@@ -301,7 +301,6 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 - **リセット・ベーススタイル**: `:where()` セレクタで詳細度0に抑制
 - **CSSカスタムプロパティ**: `body:where([class])` セレクタで定義
 - **コンポーネント**: 通常のクラスセレクタ
-- **TailwindCSS**: `!important` 付き（管理画面のみで使用、フロントエンドには含まれない）
 
 ### 3.3 CSS単位の方針（アクセシビリティ対応）
 
@@ -314,7 +313,7 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 | `letter-spacing` | `em` | フォントサイズに比例させるため |
 | `padding` / `margin` / `gap` | `px` | フォントサイズ設定変更時に余白が膨らみ、可読性が低下するのを防ぐため |
 | `max-width`（コンテナ） | `rem` | フォントサイズに応じてコンテナ幅も拡大し、1行あたりの文字数を維持するため |
-| メディアクエリ | `rem` | フォントサイズが大きいユーザーに適切なレイアウトを提供するため（Tailwind CSS v4 も同方針） |
+| メディアクエリ | `rem` | フォントサイズが大きいユーザーに適切なレイアウトを提供するため |
 | `border-width` | `px` | 拡大しても太くなる必要がないため |
 | `box-shadow` | `px` | 装飾的な値であり拡大に追従する必要がないため |
 
@@ -340,11 +339,11 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 - `.ystd` — テーマルート
 - コンポーネント単位でクラスを付与
 
-#### TailwindCSS
+#### 管理画面のスタイル
 
-- プレフィックス: `tw-`
-- 管理画面（`admin.scss`）でのみ使用
-- フロントエンド（`ystandard.scss`）には含まれない
+- 管理画面のスタイルは用途別のクラスで定義し、既存のSCSSへ配置する
+- 動作要件の警告文は`components/admin-notice`、カスタマイザーの補足説明は`project/customizer`で管理する
+- セレクターの詳細度は基本的にクラス単独の`0,1,0`とする
 
 ---
 
@@ -614,7 +613,7 @@ src/styles/*.scss
     │
     ├── sass → temp/css/ or css/
     │
-    └── postcss (tailwindcss → autoprefixer → cssnano → css-declaration-sorter)
+    └── postcss (autoprefixer → cssnano → css-declaration-sorter)
         │
         └── css/*.css（本番CSS）
 
