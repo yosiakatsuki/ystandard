@@ -346,6 +346,7 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 #### 管理画面のスタイル
 
 - 管理画面のスタイルは用途別のクラスで定義し、既存のSCSSへ配置する
+- スタートページの案内ボタンは`ys-contents__button`で装飾する。`ys-admin`が本文用CSSと誤判定されないよう、ブロック専用クラスから独立させる
 - 動作要件の警告文は`components/admin-notice`、カスタマイザーの補足説明は`project/customizer`で管理する
 - セレクターの詳細度は基本的にクラス単独の`0,1,0`とする
 

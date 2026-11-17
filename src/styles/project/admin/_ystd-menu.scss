@@ -80,12 +80,22 @@
 	}
   }
 
-  .wp-block-button__link {
+  // 本文用CSSと誤判定されないよう、コアブロックに依存せず管理画面専用クラスで装飾する.
+  .ys-contents__button {
 	display: block;
+	align-content: center;
+	box-sizing: border-box;
+	height: 100%;
+	padding: calc(.667em + 2px) calc(1.333em + 2px);
+	border-radius: 9999px;
+	box-shadow: none;
 	background-color: var(--ystd-ystandard-color);
 	color: #fff;
 	font-size: .9rem;
 	text-align: center;
+	text-decoration: none;
+	word-break: break-word;
+	cursor: pointer;
 
 	@include global.media-breakpoint(sm) {
 	  display: inline-block;

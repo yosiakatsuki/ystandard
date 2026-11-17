@@ -151,8 +151,8 @@ class Admin_Menu {
 								yStandardの設定や使い方の公式マニュアルページです。<br>
 								テーマをインストールしたら最初にやっておきたい設定など、様々なマニュアルを用意しています。
 							</p>
-							<p class="wp-block-button">
-								<a class="wp-block-button__link" href="https://wp-ystandard.com/category/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
+							<p>
+								<a class="ys-contents__button" href="https://wp-ystandard.com/category/manual/" target="_blank" rel="noopener noreferrer nofollow">マニュアルを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 							</p>
 						</div>
 					</div>
@@ -167,8 +167,8 @@ class Admin_Menu {
 								テーマカスタマイザーを開いてテーマの設定を始めましょう！<br>
 								<small>※「外観」→「カスタマイズ」からも設定画面を開けます。</small>
 							</p>
-							<p class="wp-block-button">
-								<a class="wp-block-button__link" href="<?php echo esc_url_raw( add_query_arg( 'return', rawurlencode( URL::get_page_url() ), wp_customize_url() ) ); ?>" rel="noopener noreferrer nofollow">設定を始める <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
+							<p>
+								<a class="ys-contents__button" href="<?php echo esc_url_raw( add_query_arg( 'return', rawurlencode( URL::get_page_url() ), wp_customize_url() ) ); ?>" rel="noopener noreferrer nofollow">設定を始める <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 							</p>
 						</div>
 					</div>
@@ -183,8 +183,8 @@ class Admin_Menu {
 								yStandardの機能を更に強化する拡張プラグイン。<br>
 								見出しスタイルのカスタマイズ機能やページ先頭の画像や動画の上にヘッダーメニューを重ねて表示できる機能など、コードを書かなくてもキレイなWebサイト・ブログを作れる機能を詰め込んだプラグインです。
 							</p>
-							<p class="wp-block-button">
-								<a class="wp-block-button__link" href="https://wp-ystandard.com/plugins/" target="_blank" rel="noopener noreferrer nofollow">拡張プラグインを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
+							<p>
+								<a class="ys-contents__button" href="https://wp-ystandard.com/plugins/" target="_blank" rel="noopener noreferrer nofollow">拡張プラグインを見る <?php echo Icon::get_icon( 'arrow-right-circle' ); ?></a>
 							</p>
 						</div>
 					</div>
