@@ -15,7 +15,7 @@
 		--ystd--content--padding-x: var(--ystd--container--gutter);
 	}
 	// 全幅・幅広の調整
-	:where(.entry-content > .alignwide,.entry-content > .alignfull) {
+	:where(.block-content > .alignwide,.block-content > .alignfull) {
 		max-width: none;
 		margin-right: calc(-1 * var(--ystd--content--padding-x));
 		margin-left: calc(-1 * var(--ystd--content--padding-x));

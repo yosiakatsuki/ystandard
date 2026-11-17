@@ -32,7 +32,11 @@ class Footer_Test extends WP_UnitTestCase {
 			$group['attrs']['style']['spacing']['padding']
 		);
 		$this->assertCount( 1, $group['innerBlocks'] );
-		$this->assertSame( 'core/site-logo', $group['innerBlocks'][0]['blockName'] );
+		$inner_group = $group['innerBlocks'][0];
+		$this->assertSame( 'core/group', $inner_group['blockName'] );
+		$this->assertSame( 'wide', $inner_group['attrs']['align'] );
+		$this->assertCount( 1, $inner_group['innerBlocks'] );
+		$this->assertSame( 'core/site-logo', $inner_group['innerBlocks'][0]['blockName'] );
 		$this->assertTrue( ys_is_active_footer_template_part() );
 
 		foreach ( [ 'footer-left', 'footer-center', 'footer-right' ] as $sidebar ) {
@@ -50,6 +54,7 @@ class Footer_Test extends WP_UnitTestCase {
 		$output = $this->render_footer();
 
 		$this->assertStringContainsString( '<p>Footer block content</p>', $output );
+		$this->assertStringContainsString( 'class="site-footer-contents block-content"', $output );
 		$this->assertStringContainsString( 'class="copyright-wrapper"', $output );
 		$this->assertStringNotContainsString( 'class="footer-main"', $output );
 		$this->assertStringNotContainsString( 'class="footer-container"', $output );
@@ -121,7 +126,7 @@ class Footer_Test extends WP_UnitTestCase {
 		$this->assertSame(
 			[
 				'ys_site_footer_prepend',
-				'template-parts/footer/footer-main',
+				'template-parts/footer/footer-content',
 				'template-parts/footer/footer-nav',
 				'template-parts/copyright/copyright',
 				'ys_site_footer_append',

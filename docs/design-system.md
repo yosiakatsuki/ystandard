@@ -590,6 +590,17 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 
 ## 7. ブロックスタイル
 
+### 共通コンテンツ領域
+
+ブロックを展開する領域には`.block-content`を付け、幅・ブロック間の余白・スペーサーの共通スタイルを適用する。共通CSSは`src/styles/components/contents/_block-content.scss`で管理する。
+
+- 投稿・固定ページ・404コンテンツでは、既存の`.entry-content`と併用する
+- フッターは`.site-footer-contents.block-content`で囲む
+- ブロックウィジェットは、WordPressの`widget_block_dynamic_classname`フィルターで既存コンテナへ追加する
+- `[ys]パーツ`はブロックを含む場合に自動でラッパーを追加する。従来の`use_entry_content`指定も維持するが、付けるクラスは`.block-content`だけとする。ブロックを含まないパーツは指定がない限りラッパーを追加しない
+
+共通クラス自体に最大幅や左右余白は追加せず、従来と同じルールで内側のブロックに適用する。サイドバー付きの記事内の幅調整も`.block-content`を対象とし、記事本文の識別には引き続き`.entry-content`を使用する。
+
 29個のコアブロックに対してカスタムスタイルを提供。`wp_enqueue_block_style()` によるブロック単位の遅延読み込み。
 
 ### 対応ブロック

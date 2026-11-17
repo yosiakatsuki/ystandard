@@ -96,13 +96,6 @@ class Parts {
 
 		$atts = shortcode_atts( self::SHORTCODE_ATTR, $atts );
 		/**
-		 * ラッパー
-		 */
-		$wrap = '%s';
-		if ( Convert::to_bool( $atts['use_entry_content'] ) ) {
-			$wrap = '<div class="entry-content entry__content">%s</div>';
-		}
-		/**
 		 * コンテンツ作成
 		 */
 		$parts_id = $atts['parts_id'];
@@ -122,6 +115,11 @@ class Parts {
 			} else {
 				return '';
 			}
+		}
+		$wrap = '%s';
+		// 従来の表示指定とブロックの自動検出を、同じ共通スタイルへまとめる.
+		if ( Convert::to_bool( $atts['use_entry_content'] ) || has_blocks( $post->post_content ) ) {
+			$wrap = '<div class="block-content">%s</div>';
 		}
 		$content = self::get_parts_content( $post->post_content );
 

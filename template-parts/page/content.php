@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || die();
 	<?php do_action( 'ys_content_main_prepend' ); ?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class( [ 'singular-article' ] ); ?>>
 		<?php get_template_part( 'template-parts/page/header' ); ?>
-		<div class="entry-content">
+		<div class="entry-content block-content">
 			<?php
 			the_content();
 			get_template_part( 'template-parts/page/pagination' );
