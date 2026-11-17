@@ -345,9 +345,6 @@ class Header {
 		// CSS作成.
 		$css = "
 		@media (min-width: {$drawer_start}px) {
-			:where(body:not(.header-type--row1)) {
-				--ystd--header-type-center--padding-x:calc((100% - var(--ystd--container--width))/2);
-			}
 			:where(body:not(.header-type--row1) .header-container) {
 				max-width: 100%;
 			}

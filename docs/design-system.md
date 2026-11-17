@@ -223,6 +223,8 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 
 通常幅・幅広の制御には、それぞれ`--ystd--content--width`と`--ystd--container--width`を直接使用する。
 
+コンテナの幅・余白は各コンポーネント配下のSCSSで管理する。ヘッダー用の計算は`src/styles/components/site-header/_container.scss`へ分離し、ブロックテンプレート化に伴う調整も他のコンテナから独立して行う。
+
 カスタマイザーの「[ys]レイアウト」→「コンテンツ領域」で、`contentSize`相当の「コンテンツ幅」と`wideSize`相当の「コンテナ幅」を設定できる。入力欄のプレースホルダーには、Global Stylesから取得した現在値を表示する。
 
 保存値は`wp_theme_json_data_user`を通じてGlobal Stylesへ反映するため、公開画面のWordPress CSSカスタムプロパティと投稿エディターのレイアウト基準へ同じ値が適用される。
@@ -405,6 +407,8 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 ## 5. コンポーネントトークン一覧
 
 ### 5.1 サイトヘッダー
+
+従来のヘッダーにはWordPressの`global-padding`が付かないため、`.header-container`の上限幅を`min(var(--ystd--container--width), calc(100% - var(--ystd--container--gutter) * 2))`として左右の余白を確保する。中央・2段表示では背景を全幅に保ちながら、内容の左右にコンテナの中央寄せ相当またはガーターの大きい方を適用する。
 
 | プロパティ | 初期値 | カスタマイザー設定 |
 |-----------|--------|------------------|

@@ -1,0 +1,17 @@
+:where(.header-container) {
+	// ブロックのglobal-paddingが付かないため、ヘッダー側で左右のガーターを確保する.
+	max-width: min(
+		var(--ystd--container--width),
+		calc(100% - var(--ystd--container--gutter) * 2)
+	);
+	margin-right: auto;
+	margin-left: auto;
+}
+
+:where(body:not(.header-type--row1)) {
+	// 中央・2段表示の背景は全幅に保ち、内容には最低ガーター分の左右余白を設ける.
+	--ystd--header-type-center--padding-x: max(
+		var(--ystd--container--gutter),
+		calc((100% - var(--ystd--container--width)) / 2)
+	);
+}
