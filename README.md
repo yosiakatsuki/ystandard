@@ -56,8 +56,14 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 - [変更] フッターの左・中央・右ウィジェットエリアを、ブロックで編集できるフッターテンプレートパーツに置き換え
 	- `block-template-parts`テーマサポートを追加し、`parts/footer.html`をフッターパーツとして登録
-	- 初期内容は空。既存のウィジェット内容は自動移行せず、フッターパーツで再設定が必要
-	- サブフッター・フッターナビゲーション・コピーライトは従来どおり表示
+	- 初期内容は幅広のグループブロックとサイトロゴのみ。上下の内側余白には40pxの余白プリセットを使用
+	- 既存のウィジェット内容は自動移行せず、フッターパーツで再設定が必要
+	- フッターナビゲーション・コピーライトは独立したパーツとして表示
+	- カスタマイザーに横並び選択の「フッターテンプレートパーツの出力」を追加し、「出力する」を初期値に設定
+	- フッター本体の内容・色・余白はテンプレートパーツで設定し、従来の色・余白設定を削除
+	- サブフッターの機能・設定・テンプレート・CSSを削除
+	- `footer.php`は前後のフックとメイン・ナビ・コピーライトの読み込みだけを行い、出力判定は各パーツ内で実施
+	- `ys_before_footer_main`フックと旧フッター全体・サブフッター用の補助関数を廃止
 	- フッターウィジェット専用の余白設定・CSS・`ys_is_active_footer_widgets()`・`ys_is_active_footer_widgets`フィルターを削除
 - [変更] カスタマイザーの色設定をWordPress Componentsの`ColorPalette`へ変更し、不透明度の選択に対応
 	- v4から引き継いだ`WP_Customize_Color_Control`の拡張を削除
@@ -106,7 +112,6 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 	- デザイン -> 固定ページ -> ページレイアウト : 1カラムをデフォルトに変更
 	- デザイン -> アーカイブページ -> ページレイアウト : 1カラムをデフォルトに変更
 - [変更] 「CSSインライン読み込み」オプション削除
-- [変更] カスタマイザー 「[ys]デザイン」-> 「フッター」 -> 「サブフッター上下余白」変更
 - [変更] カスタマイザー 「[ys]デザイン」-> 「サイト背景色」 -> 「本文エリア背景色」仕様変更
 	- 投稿・固定ページごとに設定する仕様に変更。本文エリア背景色を設定した場合、全幅ブロックがページいっぱいに広がらない仕様に変更
 - [変更] カスタマイザー 「[ys]デザイン」-> 「アーカイブページ」仕様変更
@@ -126,6 +131,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 ##### HTML・CSS関連
 
+- [修正] フッターナビゲーションの余白設定とCSS変数名の不一致を修正し、横・縦の余白を反映
 - [変更] CSSカスタムプロパティ名変更
 	- プレフィックスに`ystd`を追加
 	- CSSカスタムプロパティ名の変更前・変更後は下記「v5.0.0 - カスタムプロパティ変換表」を参照
@@ -133,13 +139,11 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [変更] `.container`クラスの分解
 	- `.content-container`
 	- `.header-container`
-	- `.sub-footer-container`
-	- `.footer-container`
+	- `.footer-nav__container`
 	- `.breadcrumbs-container`
 	- `.footer-mobile-nav-container`
 	- `.info-bar-container`
 - [変更] クラス命変更
-	- `footer-sub` -> `sub-footer`：CSSクラス等に影響あり
 	- `footer-copy` -> `footer-copyright`：CSSクラス等に影響あり
 	- `global-nav__dscr` -> `global-nav__description`：CSSクラス等に影響あり
 	- `archive__dscr` -> `archive__description`：CSSクラス等に影響あり
@@ -210,12 +214,6 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --tagcloud-text                  | --ystd--tagcloud--text-color                  |
 | --tagcloud-icon                  | --ystd--tagcloud--icon                        |
 | --fixed-sidebar-top              | --ystd--sidebar--fixed-position--top          |
-| --footer-bg                      | --ystd--footer--background                    |
-| --footer-text                    | --ystd--footer--text-color                    |
-| --footer-text-gray               | --ystd--footer--text-color--gray              |
-| --sub-footer-bg                  | --ystd--sub-footer--background                |
-| --sub-footer-text                | --ystd--sub-footer--text-color                |
-| --sub-footer-padding             | --ystd--sub-footer--padding                   |
 | --mobile-footer-text             | --ystd--mobile-footer--text-color             |
 | --mobile-footer-bg               | --ystd--mobile-footer--background             |
 | --form-text                      | --ystd--form--text-color                      |
@@ -248,12 +246,34 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 #### v5.0.0 - 廃止されたカスタムプロパティ
 
+- `--ystd--footer--background`
+- `--ystd--footer--text-color`
+- `--ystd--footer--text-color--gray`
+- `--ystd--footer--padding-top`
+- `--ystd--footer--padding-bottom`
+- `--ystd--footer--content--gap`
+- `--ystd--footer--widget--column-gap`
+- `--ystd--footer--widget--content-gap`
+- `--ystd--sub-footer--background`
+- `--ystd--sub-footer--text-color`
+- `--ystd--sub-footer--padding`
 - --ystd-content-align-wide-width
 - --ystd-sidebar-width
 - --mobile-nav-toggle-top
 
 #### v5.0.0 - 廃止されたオプション
 
+- `ys_color_footer_font`：フッター本体の文字色
+- `ys_color_footer_text_gray`：フッター本体のグレー文字色
+- `ys_color_footer_bg`：フッター本体の背景色
+- `ys_footer_main_padding_top`：フッター本体の上余白
+- `ys_footer_main_padding_bottom`：フッター本体の下余白
+- `ys_footer_main_content_gap`：フッターパーツとナビゲーション間の余白
+- `ys_footer_widget_column_gap`：フッターウィジェット間の余白
+- `ys_color_sub_footer_bg`：サブフッター背景色
+- `ys_color_sub_footer_text`：サブフッター文字色
+- `ys_footer_sub_content`：サブフッターに表示するパーツ
+- `ys_sub_footer_padding`：サブフッター上下余白
 - ys_drawer_menu_toggle_top：メニュー開閉ボタンの縦位置調整
 - `ys-color-palette-ys-{標準色スラッグ}`：テーマ標準色を個別に変更する設定（ユーザー定義色の`ys-color-palette-ys-user-1`〜`ys-color-palette-ys-user-6`は継続）
 - ys_color_content_bg：本文エリア背景色（投稿・固定ページ別の設定に変更）
@@ -267,6 +287,9 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 #### v5.0.0 - 廃止された関数・クラスメソッド
 
+- `ys_is_active_footer_main_contents()`・`\ystandard\Footer::is_active_main_contents()`：フッター全体の一括表示判定を廃止
+- `ys_get_sub_footer_contents()`・`\ystandard\Footer::get_footer_sub_contents()`：サブフッターを廃止
+- `\ystandard\Footer::add_css_var_footer_main()`・`\ystandard\Footer::add_css_var_footer_sub()`：本体のデザインをテンプレートパーツへ一本化
 - `ys_get_template_part()`：WordPressコアの`get_template_part()`へ移行
 - `\ystandard\Template::get_template_part()`：WordPressコアの`get_template_part()`へ移行
 - 独自APIが追加していた投稿タイプ・タクソノミー別テンプレート候補と絶対パス読み込みも廃止
@@ -279,6 +302,8 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 #### v5.0.0 - 廃止されたフック
 
+- `ys_before_footer_main`：フッターメイン直前のアクション
+- `ys_is_active_footer_widgets`：フッターウィジェットの表示を変更するフィルター
 - `ys_get_template_part_slug`：テンプレートパーツのスラグを変更するフィルター
 - `ys_get_template_part_name`：テンプレートパーツの名前を変更するフィルター
 - `ys_get_template_part_args`：テンプレートパーツへ渡す引数を変更するフィルター
@@ -302,7 +327,6 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 
 | 変更前                                              | 変更後                                                     |
 |--------------------------------------------------|---------------------------------------------------------|
-| template-parts/footer/footer-sub.php             | template-parts/footer/sub-footer.php                    |
 | template-parts/footer/footer-copy.php            | template-parts/copyright/copyright.php                  |
 | template-parts/header/global-nav.php             | template-parts/navigation/global-nav.php                |
 | template-parts/header/global-nav-search-form.php | template-parts/navigation/global-nav-search-form.php    |

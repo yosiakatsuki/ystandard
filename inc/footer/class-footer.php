@@ -29,9 +29,7 @@ class Footer {
 		// カスタマイザー.
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		// CSS変数.
-		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_main' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_nav' ] );
-		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_sub' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_back_to_top' ] );
 		// TOPへ戻る.
 		add_action( 'wp_footer', [ $this, 'back_to_top' ] );
@@ -52,18 +50,6 @@ class Footer {
 	}
 
 	/**
-	 * フッターメインコンテンツが有効か.
-	 *
-	 * @return bool
-	 */
-	public static function is_active_main_contents() {
-		$has_footer_nav           = self::is_active_footer_nav();
-		$has_footer_template_part = self::is_active_template_part();
-
-		return $has_footer_nav || $has_footer_template_part;
-	}
-
-	/**
 	 * フッターメニューが有効か.
 	 *
 	 * @return bool
@@ -78,33 +64,19 @@ class Footer {
 	}
 
 	/**
-	 * フッターテンプレートパーツに内容があるか
+	 * フッターテンプレートパーツを表示するか
 	 *
 	 * @return bool
 	 */
 	public static function is_active_template_part() {
+		// 非表示を選んだ場合は、保存済みパーツの取得・出力を省く.
+		if ( 'show' !== Option::get_option( 'ys_footer_template_part_display', 'show' ) ) {
+			return false;
+		}
+
 		$template_part = get_block_template( get_stylesheet() . '//footer', 'wp_template_part' );
 
 		return $template_part && '' !== trim( $template_part->content );
-	}
-
-	/**
-	 * サブフッター用コンテンツ取得
-	 *
-	 * @return string
-	 */
-	public static function get_footer_sub_contents() {
-		$parts_id = Option::get_option_by_int( 'ys_footer_sub_content', 0 );
-		if ( 0 === $parts_id ) {
-			return '';
-		}
-
-		return Parts::do_shortcode(
-			[
-				'parts_id'          => $parts_id,
-				'use_entry_content' => true,
-			]
-		);
 	}
 
 	/**
@@ -157,84 +129,6 @@ class Footer {
 
 
 	/**
-	 * フッターメイン
-	 *
-	 * @param array $css_vars CSS.
-	 *
-	 * @return array
-	 */
-	public function add_css_var_footer_main( $css_vars ) {
-		// フッター背景色.
-		$footer_bg_color = Option::get_option( 'ys_color_footer_bg', '' );
-		if ( $footer_bg_color ) {
-			$css_vars = array_merge(
-				$css_vars,
-				Enqueue_Utility::get_css_var(
-					'footer--background',
-					$footer_bg_color
-				)
-			);
-		}
-		// フッター文字色.
-		$footer_text_color = Option::get_option( 'ys_color_footer_font', '' );
-		if ( $footer_text_color ) {
-			$css_vars = array_merge(
-				$css_vars,
-				Enqueue_Utility::get_css_var(
-					'footer--text-color',
-					$footer_text_color
-				)
-			);
-		}
-		// フッター文字色(グレー).
-		$footer_text_gray = Option::get_option( 'ys_color_footer_text_gray', '' );
-		if ( $footer_text_gray ) {
-			$css_vars = array_merge(
-				$css_vars,
-				Enqueue_Utility::get_css_var(
-					'footer--text-color--gray',
-					$footer_text_gray
-				)
-			);
-		}
-		// フッターメイン 上部padding.
-		$padding_top = Option::get_option( 'ys_footer_main_padding_top', '' );
-		if ( '' !== $padding_top ) {
-			$css_vars = array_merge(
-				$css_vars,
-				Enqueue_Utility::get_css_var(
-					'footer--padding-top',
-					CSS::check_and_add_unit( $padding_top )
-				)
-			);
-		}
-		// フッターメイン 下部padding.
-		$padding_bottom = Option::get_option( 'ys_footer_main_padding_bottom', '' );
-		if ( '' !== $padding_bottom ) {
-			$css_vars = array_merge(
-				$css_vars,
-				Enqueue_Utility::get_css_var(
-					'footer--padding-bottom',
-					CSS::check_and_add_unit( $padding_bottom )
-				)
-			);
-		}
-		// フッターメイン コンテンツ間の余白.
-		$footer_content_gap = Option::get_option( 'ys_footer_main_content_gap', '' );
-		if ( '' !== $footer_content_gap ) {
-			$css_vars = array_merge(
-				$css_vars,
-				Enqueue_Utility::get_css_var(
-					'footer--content--gap',
-					CSS::check_and_add_unit( $footer_content_gap )
-				)
-			);
-		}
-
-		return $css_vars;
-	}
-
-	/**
 	 * フッターナビゲーションのCSS変数を追加
 	 *
 	 * @param array $css_vars CSS変数.
@@ -259,7 +153,7 @@ class Footer {
 			$css_vars = array_merge(
 				$css_vars,
 				Enqueue_Utility::get_css_var(
-					'footer--nav--gap-column',
+					'footer--nav--gap--column',
 					CSS::check_and_add_unit( $gap_x )
 				)
 			);
@@ -270,57 +164,9 @@ class Footer {
 			$css_vars = array_merge(
 				$css_vars,
 				Enqueue_Utility::get_css_var(
-					'footer--nav--gap-row',
+					'footer--nav--gap--row',
 					CSS::check_and_add_unit( $gap_y )
 				)
-			);
-		}
-
-		return $css_vars;
-	}
-
-	/**
-	 * サブフッター色
-	 *
-	 * @param array $css_vars CSS.
-	 *
-	 * @return array
-	 */
-	public function add_css_var_footer_sub( $css_vars ) {
-		// サブフッター背景色.
-		$bg = Option::get_option( 'ys_color_sub_footer_bg', '' );
-		if ( $bg ) {
-			$bg       = Enqueue_Utility::get_css_var(
-				'sub-footer--background',
-				$bg
-			);
-			$css_vars = array_merge(
-				$css_vars,
-				$bg
-			);
-		}
-		// サブフッターテキスト色.
-		$color = Option::get_option( 'ys_color_sub_footer_text', '' );
-		if ( '' !== $color ) {
-			$color    = Enqueue_Utility::get_css_var(
-				'sub-footer--text-color',
-				$color
-			);
-			$css_vars = array_merge(
-				$css_vars,
-				$color
-			);
-		}
-
-		$padding = Option::get_option( 'ys_sub_footer_padding', '' );
-		if ( '' !== $padding ) {
-			$padding  = Enqueue_Utility::get_css_var(
-				'sub-footer--padding',
-				CSS::check_and_add_unit( $padding )
-			);
-			$css_vars = array_merge(
-				$css_vars,
-				$padding
 			);
 		}
 
@@ -382,71 +228,20 @@ class Footer {
 			[
 				'section'     => 'ys_site_footer',
 				'title'       => '[ys]' . _x( 'フッター', 'customizer', 'ystandard' ),
-				'description' => __( 'フッターのデザイン設定', 'ystandard' ),
+				'description' => __( 'フッターパーツの表示とナビゲーションの設定', 'ystandard' ),
 				'priority'    => Customizer::get_priority( 'ys_site_footer' ),
 			]
 		);
-		$customizer->add_section_label(
-			__( 'フッターメインエリア　色設定', 'ystandard' ),
+		$customizer->add_toggle_group(
 			[
-				'description' => Admin::manual_link( 'manual/footer-area' ) . '<br>' . __( 'コピーライトの設定は「[ys]Copyright設定」から設定してください。', 'ystandard' ),
-			]
-		);
-		// フッター文字色.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_footer_font',
-				'default' => '',
-				'label'   => __( 'フッター文字色', 'ystandard' ),
-			]
-		);
-		// フッター文字色(グレー).
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_footer_text_gray',
-				'default' => '',
-				'label'   => __( 'フッター文字色(グレー)', 'ystandard' ),
-			]
-		);
-		// フッター背景色.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_footer_bg',
-				'default' => '',
-				'label'   => __( 'フッター背景色', 'ystandard' ),
-			]
-		);
-		/**
-		 * フッターメイン余白.
-		 */
-		$customizer->add_section_label(
-			__( 'フッターメインエリア　余白設定', 'ystandard' ),
-			[
-				'description' => Admin::manual_link( 'manual/footer-area' ) . '<br>' . __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' ),
-			]
-		);
-		// フッターメイン 上部padding.
-		$customizer->add_text(
-			[
-				'id'      => 'ys_footer_main_padding_top',
-				'default' => '',
-				'label'   => __( 'フッター(メイン)上部 余白', 'ystandard' ),
-			]
-		);
-		// フッターメイン 下部padding.
-		$customizer->add_text(
-			[
-				'id'      => 'ys_footer_main_padding_bottom',
-				'default' => '',
-				'label'   => __( 'フッター(メイン)下部 余白', 'ystandard' ),
-			]
-		);
-		// フッターメイン コンテンツ間の余白.
-		$customizer->add_text(
-			[
-				'id'      => 'ys_footer_main_content_gap',
-				'default' => '',
-				'label'   => __( 'フッターパーツとフッターナビゲーション間の余白', 'ystandard' ),
+				'id'          => 'ys_footer_template_part_display',
+				'label'       => __( 'フッターテンプレートパーツの出力', 'ystandard' ),
+				'description' => __( 'フッターの内容・色・余白は、フッターテンプレートパーツで設定してください。', 'ystandard' ),
+				'default'     => 'show',
+				'choices'     => [
+					'show' => __( '出力する', 'ystandard' ),
+					'hide' => __( '出力しない', 'ystandard' ),
+				],
 			]
 		);
 
@@ -486,49 +281,6 @@ class Footer {
 			]
 		);
 
-		/**
-		 * サブフッター
-		 */
-		$customizer->add_section_label(
-			__( 'サブフッター設定', 'ystandard' ),
-			[
-				'description' => Admin::manual_link( 'manual/sub-footer' ),
-			]
-		);
-		// フッター背景色.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_sub_footer_bg',
-				'default' => '',
-				'label'   => __( 'サブフッター背景色', 'ystandard' ),
-			]
-		);
-		// フッター文字色.
-		$customizer->add_color(
-			[
-				'id'      => 'ys_color_sub_footer_text',
-				'default' => '',
-				'label'   => __( 'サブフッター文字色', 'ystandard' ),
-			]
-		);
-		// サブフッター コンテンツ.
-		$customizer->add_select(
-			[
-				'id'          => 'ys_footer_sub_content',
-				'default'     => 0,
-				'label'       => __( 'サブフッター コンテンツ', 'ystandard' ),
-				'description' => __( 'サブフッターに表示する内容を[ys]パーツから選択します。', 'ystandard' ),
-				'choices'     => Parts::get_parts_list( true ),
-			]
-		);
-		$customizer->add_text(
-			[
-				'id'          => 'ys_sub_footer_padding',
-				'default'     => '',
-				'label'       => __( 'サブフッター上下余白', 'ystandard' ),
-				'description' => __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' ),
-			]
-		);
 		/**
 		 * ページ先頭へ戻るボタン
 		 */

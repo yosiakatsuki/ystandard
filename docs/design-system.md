@@ -469,21 +469,21 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 
 アーカイブには3つの表示パターン（カード型・リスト型・シンプル型）があり、それぞれ専用のトークンを持つ。
 
-### 5.7 サイトフッター
+### サイトフッター
 
-| プロパティ | 初期値 | カスタマイザー設定 |
-|-----------|--------|------------------|
-| `--ystd--footer--background` | `var(--ystd--site--background--gray)` | `ys_color_footer_bg` |
-| `--ystd--footer--text-color` | `var(--ystd--text-color)` | `ys_color_footer_font` |
-| `--ystd--footer--padding-top` | `4em` | `ys_footer_main_padding_top` |
-| `--ystd--footer--padding-bottom` | `1em` | `ys_footer_main_padding_bottom` |
+フッター本体は`parts/footer.html`とユーザーが保存したテンプレートパーツで構成し、内容・配色・余白はブロック側で設定する。
 
-### 5.8 サブフッター
+初期テンプレートは、幅広のグループ内にサイトロゴだけを配置する。上下の内側余白には40pxのプリセット`ys-static-40`を使用する。
 
-| プロパティ | 初期値 | カスタマイザー設定 |
-|-----------|--------|------------------|
-| `--ystd--sub-footer--background` | `var(--ystd--site--background--light-gray)` | `ys_color_sub_footer_bg` |
-| `--ystd--sub-footer--text-color` | `var(--ystd--text-color)` | `ys_color_sub_footer_text` |
+カスタマイザーの`ys_footer_template_part_display`は、横並びの「出力する（show）」「出力しない（hide）」から選択する。初期値は`show`とし、非表示にしてもフッターナビゲーションとコピーライトは表示する。
+
+フッターナビゲーションは独立した`footer-nav`と`footer-nav__container`で構成し、次のトークンを使用する。
+
+- `--ystd--footer--nav--font-size`：初期値`0.8em`。`ys_footer_nav_font_size`で変更
+- `--ystd--footer--nav--gap--row`：初期値`0.5em`。`ys_footer_nav_gap_y`で変更
+- `--ystd--footer--nav--gap--column`：初期値`2em`。`ys_footer_nav_gap_x`で変更
+
+サブフッター機能と、フッター本体専用の色・余白トークンは廃止する。
 
 ### 5.9 コピーライト
 

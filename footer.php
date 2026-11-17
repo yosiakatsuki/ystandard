@@ -11,36 +11,16 @@
 </div>
 <?php do_action( 'ys_before_site_footer' ); ?>
 <footer id="footer" class="footer site-footer">
-	<?php do_action( 'ys_site_footer_prepend' ); ?>
-
 	<?php
-	// サブフッター.
-	get_template_part( 'template-parts/footer/sub-footer' );
-	?>
-
-	<?php do_action( 'ys_before_footer_main' ); ?>
-
-	<?php if ( ys_is_active_footer_main_contents() ) : ?>
-		<div class="footer-main">
-			<div class="footer-container">
-				<?php
-				// 空のパーツによってナビゲーションの前に余白が付くことを防ぐ.
-				if ( ys_is_active_footer_template_part() ) {
-					block_template_part( 'footer' );
-				}
-				// フッターナビゲーション.
-				get_template_part( 'template-parts/footer/footer-nav' );
-				?>
-			</div>
-		</div>
-	<?php endif; ?>
-
-	<?php
+	do_action( 'ys_site_footer_prepend' );
+	// フッターコンテンツ.
+	get_template_part( 'template-parts/footer/footer-content' );
+	// フッターナビ.
+	get_template_part( 'template-parts/footer/footer-nav' );
 	// Copyright.
 	get_template_part( 'template-parts/copyright/copyright' );
+	do_action( 'ys_site_footer_append' );
 	?>
-
-	<?php do_action( 'ys_site_footer_append' ); ?>
 </footer>
 <?php
 do_action( 'ys_after_site_footer' );
