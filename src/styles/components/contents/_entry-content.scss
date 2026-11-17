@@ -16,10 +16,22 @@
 		margin-left: auto;
 	}
 
+	*:where(:not(.alignfull).has-global-padding) {
+		max-width: calc(
+			var(--ystd--content--width) + var(--ystd--container--gutter) * 2
+		);
+	}
+
 	// 入れ子の幅広ブロックはコアとブロック自身のレイアウト設定に任せる。
 	*:where(.alignwide) {
 		max-width: var(--ystd--container--width);
 		margin-right: auto;
 		margin-left: auto;
+	}
+
+	*:where(.alignwide.has-global-padding) {
+		max-width: calc(
+			var(--ystd--container--width) + var(--ystd--container--gutter) * 2
+		);
 	}
 }

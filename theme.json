@@ -1,6 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/theme.json",
 	"version": 3,
+	"templateParts": [
+		{
+			"name": "footer",
+			"title": "フッター",
+			"area": "footer"
+		}
+	],
 	"settings": {
 		"appearanceTools": true,
 		"useRootPaddingAwareAlignments": true,
@@ -601,6 +608,24 @@
 					"slug": "ys-static-40"
 				},
 				{
+					"fluid": {
+						"min": "1.75rem",
+						"max": "2.5rem"
+					},
+					"size": "2.528rem",
+					"name": "40px-28px",
+					"slug": "ys-40-28"
+				},
+				{
+					"fluid": {
+						"min": "2rem",
+						"max": "2.5rem"
+					},
+					"size": "2.532rem",
+					"name": "40px-32px",
+					"slug": "ys-40-32"
+				},
+				{
 					"fluid": false,
 					"size": "3rem",
 					"name": "48px",
@@ -734,7 +759,7 @@
 			}
 		},
 		"spacing": {
-			"blockGap": "1.5rem",
+			"blockGap": "var(--ystd--block-gap)",
 			"padding": {
 				"left": "var(--ystd--container--gutter)",
 				"right": "var(--ystd--container--gutter)"

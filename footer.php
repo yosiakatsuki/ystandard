@@ -24,8 +24,10 @@
 		<div class="footer-main">
 			<div class="footer-container">
 				<?php
-				// ウィジェット.
-				get_template_part( 'template-parts/footer/footer-widget' );
+				// 空のパーツによってナビゲーションの前に余白が付くことを防ぐ.
+				if ( ys_is_active_footer_template_part() ) {
+					block_template_part( 'footer' );
+				}
 				// フッターナビゲーション.
 				get_template_part( 'template-parts/footer/footer-nav' );
 				?>

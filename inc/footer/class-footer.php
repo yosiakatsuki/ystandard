@@ -26,13 +26,10 @@ class Footer {
 	public function __construct() {
 		// フッターメニュー.
 		add_action( 'after_setup_theme', [ $this, 'register_nav_menus' ], 20 );
-		// フッターウィジェット.
-		add_action( 'widgets_init', [ $this, 'widget_init' ] );
 		// カスタマイザー.
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 		// CSS変数.
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_main' ] );
-		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_widget' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_nav' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_footer_sub' ] );
 		add_filter( 'ys_get_css_custom_properties_args', [ $this, 'add_css_var_back_to_top' ] );
@@ -60,10 +57,10 @@ class Footer {
 	 * @return bool
 	 */
 	public static function is_active_main_contents() {
-		$has_footer_nav    = self::is_active_footer_nav();
-		$has_footer_widget = self::is_active_widget();
+		$has_footer_nav           = self::is_active_footer_nav();
+		$has_footer_template_part = self::is_active_template_part();
 
-		return $has_footer_nav || $has_footer_widget;
+		return $has_footer_nav || $has_footer_template_part;
 	}
 
 	/**
@@ -81,17 +78,14 @@ class Footer {
 	}
 
 	/**
-	 * フッターウィジェットが有効か
+	 * フッターテンプレートパーツに内容があるか
 	 *
 	 * @return bool
 	 */
-	public static function is_active_widget() {
-		$result = true;
-		if ( ! is_active_sidebar( 'footer-left' ) && ! is_active_sidebar( 'footer-center' ) && ! is_active_sidebar( 'footer-right' ) ) {
-			$result = false;
-		}
+	public static function is_active_template_part() {
+		$template_part = get_block_template( get_stylesheet() . '//footer', 'wp_template_part' );
 
-		return apply_filters( 'ys_is_active_footer_widgets', $result );
+		return $template_part && '' !== trim( $template_part->content );
 	}
 
 	/**
@@ -245,29 +239,6 @@ class Footer {
 	 *
 	 * @param array $css_vars CSS変数.
 	 *
-	 * @return array|mixed
-	 */
-	public function add_css_var_footer_widget( $css_vars ) {
-		// フッターウィジェット間の余白.
-		$footer_widget_gap = Option::get_option( 'ys_footer_widget_column_gap', '' );
-		if ( '' !== $footer_widget_gap ) {
-			$css_vars = array_merge(
-				$css_vars,
-				Enqueue_Utility::get_css_var(
-					'footer--widget--column-gap',
-					CSS::check_and_add_unit( $footer_widget_gap )
-				)
-			);
-		}
-
-		return $css_vars;
-	}
-
-	/**
-	 * フッターナビゲーションのCSS変数を追加
-	 *
-	 * @param array $css_vars CSS変数.
-	 *
 	 * @return array|mixed|string[]
 	 */
 	public function add_css_var_footer_nav( $css_vars ) {
@@ -401,45 +372,6 @@ class Footer {
 	}
 
 	/**
-	 * ウィジェット登録
-	 */
-	public function widget_init() {
-		register_sidebar(
-			[
-				'name'          => __( 'フッター左', 'ystandard' ),
-				'id'            => 'footer-left',
-				'description'   => __( 'フッターエリア左側', 'ystandard' ),
-				'before_widget' => '<div id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			]
-		);
-		register_sidebar(
-			[
-				'name'          => __( 'フッター中央', 'ystandard' ),
-				'id'            => 'footer-center',
-				'description'   => __( 'フッターエリア中央', 'ystandard' ),
-				'before_widget' => '<div id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			]
-		);
-		register_sidebar(
-			[
-				'name'          => __( 'フッター右', 'ystandard' ),
-				'id'            => 'footer-right',
-				'description'   => __( 'フッターエリア右側', 'ystandard' ),
-				'before_widget' => '<div id="%1$s" class="widget %2$s">',
-				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
-			]
-		);
-	}
-
-	/**
 	 * カスタマイザー追加
 	 *
 	 * @param \WP_Customize_Manager $wp_customize カスタマイザー.
@@ -514,25 +446,7 @@ class Footer {
 			[
 				'id'      => 'ys_footer_main_content_gap',
 				'default' => '',
-				'label'   => __( 'フッターウィジェットとフッターナビゲーション間の余白', 'ystandard' ),
-			]
-		);
-		/**
-		 * フッターウィジェット.
-		 */
-		$customizer->add_section_label(
-			__( 'フッターウィジェット', 'ystandard' ),
-			[
-				'description' => __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' ),
-			]
-		);
-		// フッターウィジェット間の余白.
-		$customizer->add_text(
-			[
-				'id'          => 'ys_footer_widget_column_gap',
-				'default'     => '',
-				'label'       => __( 'フッターウィジェット間の余白', 'ystandard' ),
-				'description' => __( 'フッターウィジェットエリアを2種類以上使用する場合、ウィジェットエリア間の余白を変更できます。', 'ystandard' ),
+				'label'   => __( 'フッターパーツとフッターナビゲーション間の余白', 'ystandard' ),
 			]
 		);
 

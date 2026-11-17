@@ -28,12 +28,12 @@ function ys_is_active_footer_nav() {
 }
 
 /**
- * フッターウィジェットが有効か
+ * フッターテンプレートパーツに内容があるか
  *
  * @return bool
  */
-function ys_is_active_footer_widgets() {
-	return \ystandard\Footer::is_active_widget();
+function ys_is_active_footer_template_part() {
+	return \ystandard\Footer::is_active_template_part();
 }
 
 /**
