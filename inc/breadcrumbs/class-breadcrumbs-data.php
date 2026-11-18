@@ -81,15 +81,9 @@ class Breadcrumbs_Data {
 		if ( is_404() ) {
 			return false;
 		}
-		// タイトル無しテンプレートの場合.
-		if ( Template_Type::is_no_title_template() ) {
-			if ( 'footer' !== $position ) {
-				// フッター以外（ヘッダー側）であればパンくず無し.
-				return false;
-			} else {
-				// フッター側＆表示する設定であれば表示する.
-				return Option::get_option_by_bool( 'ys_show_breadcrumb_blank_template', false );
-			}
+		// 投稿ヘッダーがない場合、ヘッダー直下への追加は設定で明示的に許可する.
+		if ( 'header' === $position && Template_Type::is_no_title_template() ) {
+			return Option::get_option_by_bool( 'ys_show_breadcrumb_blank_template', false );
 		}
 
 		return true;
@@ -111,18 +105,14 @@ class Breadcrumbs_Data {
 		 * フロントページの場合
 		 */
 		if ( is_front_page() ) {
-			if ( self::$page_on_front ) {
-				$title = get_the_title( self::$page_on_front );
-				if ( ! $title ) {
-					$title = get_bloginfo( 'name', 'display' );
-				}
-				self::set_item(
-					$title,
-					home_url( '/' )
-				);
-			} else {
-				self::set_item( self::$home_label, home_url( '/' ) );
+			$front_page = self::get_public_post( self::$page_on_front );
+			$title      = self::$home_label;
+			// ホームに公開済みの固定ページを使っている場合は、そのページのタイトルを表示する.
+			if ( $front_page ) {
+				$title = get_the_title( $front_page );
+				$title = $title ? $title : get_bloginfo( 'name', 'display' );
 			}
+			self::set_item( $title, home_url( '/' ) );
 
 			return apply_filters( 'ys_get_breadcrumbs_data', self::$items );
 		}
@@ -228,21 +218,16 @@ class Breadcrumbs_Data {
 	 * 添付ファイルページ
 	 */
 	private static function set_attachment() {
-		self::set_item(
-			get_the_title(),
-			get_the_permalink()
-		);
+		self::set_post_item( get_queried_object_id() );
 	}
 
 	/**
 	 * 固定ページ
 	 */
 	private static function set_page() {
-		self::set_ancestors( get_the_ID(), 'page' );
-		self::set_item(
-			get_the_title(),
-			get_the_permalink()
-		);
+		$page_id = get_queried_object_id();
+		self::set_ancestors( $page_id, 'page' );
+		self::set_post_item( $page_id );
 	}
 
 	/**
@@ -264,7 +249,8 @@ class Breadcrumbs_Data {
 	 * 投稿ページ
 	 */
 	private static function set_single() {
-		$post_type = self::get_post_type();
+		$post_id   = get_queried_object_id();
+		$post_type = get_post_type( $post_id );
 		if ( $post_type ) {
 			$taxonomy = '';
 			if ( 'post' === $post_type ) {
@@ -293,9 +279,10 @@ class Breadcrumbs_Data {
 					);
 				}
 			}
-			$terms = get_the_terms( get_the_ID(), $taxonomy );
-			if ( $terms ) {
-				$term = $terms[0];
+			$terms = get_the_terms( $post_id, $taxonomy );
+			// タームを取得できなくても投稿自体のパンくずは表示する.
+			if ( is_array( $terms ) && ! empty( $terms ) ) {
+				$term = reset( $terms );
 				self::set_ancestors( $term->term_id, $taxonomy );
 				$link = get_term_link( $term );
 				if ( is_wp_error( $link ) ) {
@@ -308,10 +295,7 @@ class Breadcrumbs_Data {
 			}
 		}
 
-		self::set_item(
-			get_the_title(),
-			get_the_permalink()
-		);
+		self::set_post_item( $post_id );
 	}
 
 	/**
@@ -319,7 +303,7 @@ class Breadcrumbs_Data {
 	 */
 	private static function set_category() {
 		$category_name = single_cat_title( '', false );
-		$category_id   = get_cat_ID( $category_name );
+		$category_id   = get_queried_object_id();
 		self::set_ancestors( $category_id, 'category' );
 		self::set_item(
 			$category_name,
@@ -410,10 +394,36 @@ class Breadcrumbs_Data {
 		 * Home
 		 */
 		if ( 'page' === self::$show_on_front && self::$page_for_posts ) {
-			self::set_item(
-				get_the_title( self::$page_for_posts ),
-				get_permalink( self::$page_for_posts )
-			);
+			self::set_post_item( self::$page_for_posts );
+		}
+	}
+
+	/**
+	 * 一般の閲覧者が開ける投稿を取得する.
+	 *
+	 * @param int|string|false $post_id 投稿ID.
+	 * @return \WP_Post|null
+	 */
+	private static function get_public_post( $post_id ) {
+		$post = $post_id ? get_post( $post_id ) : null;
+		// ログイン権限やパスワード入力に依存せず表示できる投稿に限る.
+		if ( ! $post || ! is_post_publicly_viewable( $post ) || '' !== $post->post_password ) {
+			return null;
+		}
+
+		return $post;
+	}
+
+	/**
+	 * 公開されている投稿をパンくずに追加する.
+	 *
+	 * @param int|string $post_id 投稿ID.
+	 */
+	private static function set_post_item( $post_id ) {
+		$post = self::get_public_post( $post_id );
+		// 非公開のタイトルやURLを表示せず、前後の公開項目で階層をつなぐ.
+		if ( $post ) {
+			self::set_item( get_the_title( $post ), get_permalink( $post ) );
 		}
 	}
 
@@ -471,10 +481,7 @@ class Breadcrumbs_Data {
 			}
 		}
 		if ( $add_item ) {
-			self::set_item(
-				get_the_title( self::$page_for_posts ),
-				get_permalink( self::$page_for_posts )
-			);
+			self::set_post_item( self::$page_for_posts );
 		}
 	}
 
@@ -490,10 +497,7 @@ class Breadcrumbs_Data {
 		krsort( $ancestors );
 		foreach ( $ancestors as $ancestor_id ) {
 			if ( 'page' === $object_type ) {
-				self::set_item(
-					get_the_title( $ancestor_id ),
-					get_permalink( $ancestor_id )
-				);
+				self::set_post_item( $ancestor_id );
 			} else {
 				$ancestors_term = get_term_by( 'id', $ancestor_id, $object_type );
 				if ( $ancestors_term ) {
@@ -554,7 +558,8 @@ class Breadcrumbs_Data {
 				11 => 'November',
 				12 => 'December',
 			];
-			$label   = $monthes[ $month ];
+			// URLから取得した月は「01」のようにゼロ埋めされることがある.
+			$label = $monthes[ (int) $month ] ?? $month;
 		}
 		if ( $link ) {
 			$url = get_month_link( $year, $month );

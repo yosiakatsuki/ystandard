@@ -7,7 +7,10 @@
 }
 
 :where(.breadcrumbs-container) {
-	max-width: var(--ystd--container--width);
+	max-width: min(
+		var(--ystd--container--width),
+		calc(100% - var(--ystd--container--gutter) * 2)
+	);
 	margin-right: auto;
 	margin-left: auto;
 }

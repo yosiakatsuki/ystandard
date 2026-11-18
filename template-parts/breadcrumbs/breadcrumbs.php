@@ -14,15 +14,15 @@ if ( empty( $args['breadcrumbs'] ) ) {
 }
 $breadcrumbs = $args['breadcrumbs'];
 ?>
-<div id="breadcrumbs" class="breadcrumbs">
+<nav id="breadcrumbs" class="breadcrumbs" aria-label="<?php esc_attr_e( 'パンくずリスト', 'ystandard' ); ?>">
 	<div class="breadcrumbs-container">
-		<ol class="breadcrumbs__list li-clear">
+		<ol class="breadcrumbs__list">
 			<?php foreach ( $breadcrumbs as $key => $item ) : ?>
 				<li class="breadcrumbs__item">
 					<?php if ( empty( $item['item'] ) ) : ?>
 						<?php echo esc_html( $item['name'] ); ?>
 					<?php else : ?>
-						<a href="<?php echo esc_url_raw( $item['item'] ); ?>">
+						<a href="<?php echo esc_url( $item['item'] ); ?>">
 							<?php echo esc_html( $item['name'] ); ?>
 						</a>
 					<?php endif; ?>
@@ -30,4 +30,4 @@ $breadcrumbs = $args['breadcrumbs'];
 			<?php endforeach; ?>
 		</ol>
 	</div><!-- .container -->
-</div><!-- #breadcrumbs.breadcrumbs -->
+</nav><!-- #breadcrumbs.breadcrumbs -->
