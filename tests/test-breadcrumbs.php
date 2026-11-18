@@ -5,6 +5,7 @@
  * @package ystandard
  */
 
+use ystandard\Breadcrumbs;
 use ystandard\Breadcrumbs_Data;
 use ystandard\Breadcrumbs_Option;
 use ystandard\Enqueue_Styles;
@@ -161,6 +162,82 @@ class BreadcrumbsTest extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( '--ystd--breadcrumbs--font-size:', $css );
 		$this->assertStringNotContainsString( '--ystd--breadcrumbs--padding:', $css );
 		$this->assertStringNotContainsString( '--ystd--breadcrumbs--background:', $css );
+	}
+
+	/**
+	 * 閲覧権限の有無にかかわらず、公開されている祖先ページだけを出力する.
+	 */
+	public function test_non_public_page_ancestors_are_omitted() {
+		$parent_id = self::factory()->post->create(
+			[
+				'post_type'  => 'page',
+				'post_title' => 'Public ancestor',
+			]
+		);
+		foreach ( [ [ 'post_status' => 'draft' ], [ 'post_password' => 'test-password' ], [ 'post_status' => 'private' ] ] as $visibility ) {
+			$parent_id = self::factory()->post->create(
+				array_merge(
+					[
+						'post_type'   => 'page',
+						'post_title'  => 'Hidden ancestor',
+						'post_parent' => $parent_id,
+					],
+					$visibility
+				)
+			);
+		}
+		$page_id = self::factory()->post->create(
+			[
+				'post_type'   => 'page',
+				'post_title'  => 'Public child',
+				'post_parent' => $parent_id,
+			]
+		);
+		$this->go_to( get_permalink( $page_id ) );
+
+		$expected = [ 'Home', 'Public ancestor', 'Public child' ];
+		$this->assertSame( $expected, array_column( Breadcrumbs_Data::get_breadcrumbs(), 'name' ) );
+
+		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
+		$this->assertSame( $expected, array_column( Breadcrumbs_Data::get_breadcrumbs(), 'name' ) );
+
+		$renderer = ( new ReflectionClass( Breadcrumbs::class ) )->newInstanceWithoutConstructor();
+		ob_start();
+		$renderer->show_breadcrumbs();
+		$html = ob_get_clean();
+		$this->assertStringContainsString( '<nav id="breadcrumbs" class="breadcrumbs" aria-label="パンくずリスト">', $html );
+		$this->assertStringContainsString( 'Public ancestor', $html );
+		$this->assertStringNotContainsString( 'Hidden ancestor', $html );
+
+		ob_start();
+		$renderer->structured_data();
+		$json_ld = ob_get_clean();
+		$this->assertStringContainsString( 'Public ancestor', $json_ld );
+		$this->assertStringNotContainsString( 'Hidden ancestor', $json_ld );
+	}
+
+	/**
+	 * 「投稿ページ」が非公開の間は投稿のパンくずに追加しない.
+	 */
+	public function test_private_posts_page_is_omitted() {
+		$front_page_id = self::factory()->post->create( [ 'post_type' => 'page' ] );
+		$posts_page_id = self::factory()->post->create(
+			[
+				'post_type'   => 'page',
+				'post_status' => 'private',
+				'post_title'  => 'Posts list',
+			]
+		);
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_on_front', $front_page_id );
+		update_option( 'page_for_posts', $posts_page_id );
+
+		$post_id = self::factory()->post->create();
+		$this->go_to( get_permalink( $post_id ) );
+		$this->assertNotContains( get_the_title( $posts_page_id ), array_column( Breadcrumbs_Data::get_breadcrumbs(), 'name' ) );
+
+		wp_update_post( [ 'ID' => $posts_page_id, 'post_status' => 'publish' ] );
+		$this->assertContains( 'Posts list', array_column( Breadcrumbs_Data::get_breadcrumbs(), 'name' ) );
 	}
 
 	/**
