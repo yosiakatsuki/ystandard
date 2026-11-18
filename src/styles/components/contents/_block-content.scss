@@ -18,7 +18,7 @@
 	}
 
 	// フル幅以外のブロックで、グローバルパディングがない場合は、コンテナのガター分を引いた幅にする。
-	> *:where(:not(.alignfull.has-global-padding)) {
+	> *:where(:not(.alignfull):not(.has-global-padding)) {
 		max-width: min(
 			var(--ystd--content--width),
 			calc(100% - var(--ystd--container--gutter) * 2)
