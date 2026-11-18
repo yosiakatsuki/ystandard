@@ -67,7 +67,32 @@ class Breadcrumbs_Option {
 			]
 		);
 
-		$customizer->add_section_label( __( '色設定', 'ystandard' ) );
+		$customizer->add_section_label( __( 'デザイン', 'ystandard' ) );
+		$length_description = __( '単位付きで入力してください。数値のみを入力した場合は単位はpxになります。', 'ystandard' );
+		$customizer->add_text(
+			[
+				'id'                => 'ys_breadcrumbs_font_size',
+				'label'             => __( 'パンくずリスト文字サイズ', 'ystandard' ),
+				'description'       => $length_description,
+				'placeholder'       => '14px',
+				'sanitize_callback' => [ Layout::class, 'sanitize_css_value' ],
+			]
+		);
+		$customizer->add_text(
+			[
+				'id'                => 'ys_breadcrumbs_padding',
+				'label'             => __( 'パンくずリスト上下余白', 'ystandard' ),
+				'description'       => $length_description,
+				'placeholder'       => '0.5em',
+				'sanitize_callback' => [ Layout::class, 'sanitize_css_value' ],
+			]
+		);
+		$customizer->add_color(
+			[
+				'id'    => 'ys_color_breadcrumbs_background',
+				'label' => __( 'パンくずリスト背景色', 'ystandard' ),
+			]
+		);
 		// パンくずリスト文字色.
 		$customizer->add_color(
 			[
@@ -103,7 +128,7 @@ class Breadcrumbs_Option {
 	 * @return boolean
 	 */
 	public function is_show_blank_option() {
-		return 'footer' === Option::get_option( 'ys_breadcrumbs_position', 'footer' );
+		return 'header' === Option::get_option( 'ys_breadcrumbs_position', 'footer' );
 	}
 }
 

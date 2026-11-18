@@ -31,22 +31,21 @@ class Breadcrumbs {
 	}
 
 	/**
-	 * パンくず用色設定
+	 * パンくずリストのデザイン設定をCSSカスタムプロパティに反映する.
 	 *
 	 * @param array $css_vars CSS Vars.
 	 *
 	 * @return array
 	 */
 	public function add_css_vars( $css_vars ) {
-		$breadcrumb_text = Enqueue_Utility::get_css_var(
-			'breadcrumbs-text',
-			Option::get_option( 'ys_color_breadcrumbs_text', '#656565' )
-		);
+		$styles = [
+			'breadcrumbs--font-size'  => Layout::normalize_css_value( Option::get_option( 'ys_breadcrumbs_font_size', '' ) ),
+			'breadcrumbs--padding'    => Layout::normalize_css_value( Option::get_option( 'ys_breadcrumbs_padding', '' ) ),
+			'breadcrumbs--background' => Customize_Control::sanitize_color( Option::get_option( 'ys_color_breadcrumbs_background', '' ) ),
+			'breadcrumbs--text-color' => Customize_Control::sanitize_color( Option::get_option( 'ys_color_breadcrumbs_text', '#656565' ) ),
+		];
 
-		return array_merge(
-			$css_vars,
-			$breadcrumb_text
-		);
+		return array_merge( $css_vars, array_filter( $styles ) );
 	}
 
 	/**

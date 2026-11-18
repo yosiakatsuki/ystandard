@@ -4,7 +4,7 @@
 @mixin custom_properties() {
 	--ystd--breadcrumbs--background: transparent;
 	--ystd--breadcrumbs--text-color: var(--ystd--text-color--gray);
-	--ystd--breadcrumbs--padding: 0.75em;
+	--ystd--breadcrumbs--padding: 0.5em;
 	--ystd--breadcrumbs--gap: 0.5em;
 	--ystd--breadcrumbs--font-size: 0.75em;
 	--ystd--breadcrumbs--line-height: 1.2;

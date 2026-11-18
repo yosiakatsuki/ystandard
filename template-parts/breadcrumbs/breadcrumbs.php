@@ -16,7 +16,7 @@ $breadcrumbs = $args['breadcrumbs'];
 ?>
 <div id="breadcrumbs" class="breadcrumbs">
 	<div class="breadcrumbs-container">
-		<ol class="breadcrumbs__list li-clear">
+		<ol class="breadcrumbs__list">
 			<?php foreach ( $breadcrumbs as $key => $item ) : ?>
 				<li class="breadcrumbs__item">
 					<?php if ( empty( $item['item'] ) ) : ?>

@@ -81,15 +81,9 @@ class Breadcrumbs_Data {
 		if ( is_404() ) {
 			return false;
 		}
-		// タイトル無しテンプレートの場合.
-		if ( Template_Type::is_no_title_template() ) {
-			if ( 'footer' !== $position ) {
-				// フッター以外（ヘッダー側）であればパンくず無し.
-				return false;
-			} else {
-				// フッター側＆表示する設定であれば表示する.
-				return Option::get_option_by_bool( 'ys_show_breadcrumb_blank_template', false );
-			}
+		// 投稿ヘッダーがない場合、ヘッダー直下への追加は設定で明示的に許可する.
+		if ( 'header' === $position && Template_Type::is_no_title_template() ) {
+			return Option::get_option_by_bool( 'ys_show_breadcrumb_blank_template', false );
 		}
 
 		return true;
