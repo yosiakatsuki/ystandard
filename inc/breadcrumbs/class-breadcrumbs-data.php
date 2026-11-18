@@ -280,8 +280,9 @@ class Breadcrumbs_Data {
 				}
 			}
 			$terms = get_the_terms( $post_id, $taxonomy );
-			if ( $terms ) {
-				$term = $terms[0];
+			// タームを取得できなくても投稿自体のパンくずは表示する.
+			if ( is_array( $terms ) && ! empty( $terms ) ) {
+				$term = reset( $terms );
 				self::set_ancestors( $term->term_id, $taxonomy );
 				$link = get_term_link( $term );
 				if ( is_wp_error( $link ) ) {
@@ -302,7 +303,7 @@ class Breadcrumbs_Data {
 	 */
 	private static function set_category() {
 		$category_name = single_cat_title( '', false );
-		$category_id   = get_cat_ID( $category_name );
+		$category_id   = get_queried_object_id();
 		self::set_ancestors( $category_id, 'category' );
 		self::set_item(
 			$category_name,
@@ -557,7 +558,8 @@ class Breadcrumbs_Data {
 				11 => 'November',
 				12 => 'December',
 			];
-			$label   = $monthes[ $month ];
+			// URLから取得した月は「01」のようにゼロ埋めされることがある.
+			$label = $monthes[ (int) $month ] ?? $month;
 		}
 		if ( $link ) {
 			$url = get_month_link( $year, $month );

@@ -241,6 +241,67 @@ class BreadcrumbsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * 未登録のタクソノミーを指定しても投稿のパンくずは表示する.
+	 */
+	public function test_unregistered_taxonomy_preserves_the_post_breadcrumb() {
+		$post_id = self::factory()->post->create();
+		$this->go_to( get_permalink( $post_id ) );
+		add_filter(
+			'ys_breadcrumbs_single_taxonomy',
+			static function () {
+				return 'ys_unregistered_taxonomy';
+			}
+		);
+
+		$this->assertSame(
+			[ home_url( '/' ), get_permalink( $post_id ) ],
+			array_column( Breadcrumbs_Data::get_breadcrumbs(), 'item' )
+		);
+	}
+
+	/**
+	 * 同名カテゴリーがあっても、閲覧中のカテゴリーの階層とURLを使う.
+	 */
+	public function test_category_archives_use_the_queried_category() {
+		$categories = [];
+		foreach ( self::factory()->category->create_many( 2 ) as $parent_id ) {
+			$category_id = self::factory()->category->create(
+				[
+					'name'   => 'Shared name',
+					'slug'   => 'shared-name-' . $parent_id,
+					'parent' => $parent_id,
+				]
+			);
+			self::factory()->post->create( [ 'post_category' => [ $category_id ] ] );
+			$categories[ $category_id ] = $parent_id;
+		}
+
+		foreach ( $categories as $category_id => $parent_id ) {
+			$this->go_to( get_category_link( $category_id ) );
+			$this->assertSame(
+				[ home_url( '/' ), get_category_link( $parent_id ), get_category_link( $category_id ) ],
+				array_column( Breadcrumbs_Data::get_breadcrumbs(), 'item' )
+			);
+		}
+	}
+
+	/**
+	 * 月がゼロ埋めされているURLでも英語の月名を表示できる.
+	 */
+	public function test_english_month_archive_accepts_zero_padded_months() {
+		add_filter(
+			'locale',
+			static function () {
+				return 'en_US';
+			}
+		);
+		self::factory()->post->create( [ 'post_date' => '2019-01-15 10:00:00' ] );
+		$this->go_to( home_url( '/?m=201901' ) );
+
+		$this->assertSame( [ 'Home', '2019', 'January' ], array_column( Breadcrumbs_Data::get_breadcrumbs(), 'name' ) );
+	}
+
+	/**
 	 * 投稿ヘッダー無しテンプレートを使用する固定ページを開く.
 	 */
 	private function go_to_blank_template_page() {
