@@ -10,15 +10,33 @@
 		margin-bottom: 0;
 	}
 
+	// フル幅以外のブロック.
 	> *:where(:not(.alignfull)) {
 		max-width: var(--ystd--content--width);
 		margin-right: auto;
 		margin-left: auto;
 	}
 
-	*:where(:not(.alignfull).has-global-padding) {
+	// フル幅以外のブロックで、グローバルパディングがない場合は、コンテナのガター分を引いた幅にする。
+	> *:where(:not(.alignfull.has-global-padding)) {
+		max-width: min(
+			var(--ystd--content--width),
+			calc(100% - var(--ystd--container--gutter) * 2)
+		);
+	}
+
+	// フル幅以外のブロックで、グローバルパディングがある場合は、コンテナのガター分を足した幅にする。
+	> *:where(:not(.alignfull).has-global-padding) {
 		max-width: calc(
 			var(--ystd--content--width) + var(--ystd--container--gutter) * 2
+		);
+	}
+
+	// 幅広ブロックで、グローバルパディングがない場合は、コンテナのガター分を引いた幅にする。
+	> *:where(.alignwide:not(.has-global-padding)) {
+		max-width: min(
+			var(--ystd--content--width),
+			calc(100% - var(--ystd--container--gutter) * 2)
 		);
 	}
 
