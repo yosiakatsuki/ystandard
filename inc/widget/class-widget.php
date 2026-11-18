@@ -26,7 +26,19 @@ class Widget {
 	public function register() {
 		add_action( 'widgets_init', [ $this, 'widget_init' ] );
 		add_filter( 'widget_text', [ '\ystandard\Post_Content_Hook', 'responsive_iframe' ] );
+		add_filter( 'widget_block_dynamic_classname', [ $this, 'add_block_content_class' ] );
 		add_action( 'ys_set_singular_content', [ $this, 'set_singular_content_widget' ] );
+	}
+
+	/**
+	 * ブロックウィジェットを共通のブロックコンテンツ領域にする
+	 *
+	 * @param string $classname ウィジェットのクラス.
+	 *
+	 * @return string
+	 */
+	public function add_block_content_class( $classname ) {
+		return $classname . ' block-content';
 	}
 
 	/**

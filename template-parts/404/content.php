@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || die();
 		</h2>
 	</div>
 
-	<div class="no-results__content entry-content">
+	<div class="no-results__content entry-content block-content">
 		<?php if ( apply_filters( 'ys_has_no_results_search', true ) ) : ?>
 			<div class="no-results__search">
 				<p class="no-results__search-title">

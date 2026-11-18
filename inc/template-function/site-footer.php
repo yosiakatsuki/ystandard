@@ -10,15 +10,6 @@
 defined( 'ABSPATH' ) || die();
 
 /**
- * フッターコンテンツが有効か
- *
- * @return bool
- */
-function ys_is_active_footer_main_contents() {
-	return \ystandard\Footer::is_active_main_contents();
-}
-
-/**
  * フッターナビゲーションが有効か
  *
  * @return bool
@@ -28,21 +19,12 @@ function ys_is_active_footer_nav() {
 }
 
 /**
- * フッターウィジェットが有効か
+ * フッターテンプレートパーツを表示するか
  *
  * @return bool
  */
-function ys_is_active_footer_widgets() {
-	return \ystandard\Footer::is_active_widget();
-}
-
-/**
- * サブフッターコンテンツ取得
- *
- * @return string
- */
-function ys_get_sub_footer_contents() {
-	return \ystandard\Footer::get_footer_sub_contents();
+function ys_is_active_footer_template_part() {
+	return \ystandard\Footer::is_active_template_part();
 }
 
 /**

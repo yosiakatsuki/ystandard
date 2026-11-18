@@ -37,6 +37,8 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 
 カスタマイザーのトップレベルにある「[ys]ブロックエディター」セクションから、ユーザー定義色を最大6つ追加可能（`ys-user-1`〜`ys-user-6`）。セクション内では背景色付きの「色定義」見出しで設定を区切る。設定値は`ys-color-palette-ys-user-{連番}`で管理し、初期値は空とする。v4の`ys-user-1`〜`ys-user-3`の保存値は、白（`#ffffff`）を含めて引き継ぐ。テーマ標準色はカスタマイザーでは変更せず、`theme.json`を正本とする。
 
+追加色は`wp_theme_json_data_user`でcustom originへ登録し、投稿・テンプレートパーツ・パターン編集の「カスタム」パレットへ表示する。サイトエディターが取得する使用中テーマのGlobal Stylesユーザー設定REST応答にも同じ追加色を補完する。テーマのプリセットとは区別し、サイトエディターで保存した他のカスタム色も維持する。取得時に保存済みデータは更新しない。
+
 #### CSSカスタムプロパティ - ベースカラー
 
 | プロパティ | 初期値 | カスタマイザー設定 |
@@ -221,6 +223,8 @@ WordPress ブロックエディターに登録されるカラーパレット。`
 
 通常幅・幅広の制御には、それぞれ`--ystd--content--width`と`--ystd--container--width`を直接使用する。
 
+コンテナの幅・余白は各コンポーネント配下のSCSSで管理する。ヘッダー用の計算は`src/styles/components/site-header/_container.scss`へ分離し、ブロックテンプレート化に伴う調整も他のコンテナから独立して行う。
+
 カスタマイザーの「[ys]レイアウト」→「コンテンツ領域」で、`contentSize`相当の「コンテンツ幅」と`wideSize`相当の「コンテナ幅」を設定できる。入力欄のプレースホルダーには、Global Stylesから取得した現在値を表示する。
 
 保存値は`wp_theme_json_data_user`を通じてGlobal Stylesへ反映するため、公開画面のWordPress CSSカスタムプロパティと投稿エディターのレイアウト基準へ同じ値が適用される。
@@ -342,6 +346,7 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 #### 管理画面のスタイル
 
 - 管理画面のスタイルは用途別のクラスで定義し、既存のSCSSへ配置する
+- スタートページの案内ボタンは`ys-contents__button`で装飾する。`ys-admin`が本文用CSSと誤判定されないよう、ブロック専用クラスから独立させる
 - 動作要件の警告文は`components/admin-notice`、カスタマイザーの補足説明は`project/customizer`で管理する
 - セレクターの詳細度は基本的にクラス単独の`0,1,0`とする
 
@@ -403,6 +408,8 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 ## 5. コンポーネントトークン一覧
 
 ### 5.1 サイトヘッダー
+
+従来のヘッダーにはWordPressの`global-padding`が付かないため、`.header-container`の上限幅を`min(var(--ystd--container--width), calc(100% - var(--ystd--container--gutter) * 2))`として左右の余白を確保する。中央・2段表示では背景を全幅に保ちながら、内容の左右にコンテナの中央寄せ相当またはガーターの大きい方を適用する。
 
 | プロパティ | 初期値 | カスタマイザー設定 |
 |-----------|--------|------------------|
@@ -469,21 +476,21 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 
 アーカイブには3つの表示パターン（カード型・リスト型・シンプル型）があり、それぞれ専用のトークンを持つ。
 
-### 5.7 サイトフッター
+### サイトフッター
 
-| プロパティ | 初期値 | カスタマイザー設定 |
-|-----------|--------|------------------|
-| `--ystd--footer--background` | `var(--ystd--site--background--gray)` | `ys_color_footer_bg` |
-| `--ystd--footer--text-color` | `var(--ystd--text-color)` | `ys_color_footer_font` |
-| `--ystd--footer--padding-top` | `4em` | `ys_footer_main_padding_top` |
-| `--ystd--footer--padding-bottom` | `1em` | `ys_footer_main_padding_bottom` |
+フッター本体は`parts/footer.html`とユーザーが保存したテンプレートパーツで構成し、内容・配色・余白はブロック側で設定する。
 
-### 5.8 サブフッター
+初期テンプレートは、幅広のグループ内にサイトロゴだけを配置する。上下の内側余白には40pxのプリセット`ys-static-40`を使用する。
 
-| プロパティ | 初期値 | カスタマイザー設定 |
-|-----------|--------|------------------|
-| `--ystd--sub-footer--background` | `var(--ystd--site--background--light-gray)` | `ys_color_sub_footer_bg` |
-| `--ystd--sub-footer--text-color` | `var(--ystd--text-color)` | `ys_color_sub_footer_text` |
+カスタマイザーの`ys_footer_template_part_display`は、横並びの「出力する（show）」「出力しない（hide）」から選択する。初期値は`show`とし、非表示にしてもフッターナビゲーションとコピーライトは表示する。
+
+フッターナビゲーションは独立した`footer-nav`と`footer-nav__container`で構成し、次のトークンを使用する。
+
+- `--ystd--footer--nav--font-size`：初期値`0.8em`。`ys_footer_nav_font_size`で変更
+- `--ystd--footer--nav--gap--row`：初期値`0.5em`。`ys_footer_nav_gap_y`で変更
+- `--ystd--footer--nav--gap--column`：初期値`2em`。`ys_footer_nav_gap_x`で変更
+
+サブフッター機能と、フッター本体専用の色・余白トークンは廃止する。
 
 ### 5.9 コピーライト
 
@@ -589,6 +596,17 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 ---
 
 ## 7. ブロックスタイル
+
+### 共通コンテンツ領域
+
+ブロックを展開する領域には`.block-content`を付け、幅・ブロック間の余白・スペーサーの共通スタイルを適用する。共通CSSは`src/styles/components/contents/_block-content.scss`で管理する。
+
+- 投稿・固定ページ・404コンテンツでは、既存の`.entry-content`と併用する
+- フッターは`.site-footer-contents.block-content`で囲む
+- ブロックウィジェットは、WordPressの`widget_block_dynamic_classname`フィルターで既存コンテナへ追加する
+- `[ys]パーツ`はブロックを含む場合に自動でラッパーを追加する。従来の`use_entry_content`指定も維持するが、付けるクラスは`.block-content`だけとする。ブロックを含まないパーツは指定がない限りラッパーを追加しない
+
+共通クラス自体に最大幅や左右余白は追加せず、従来と同じルールで内側のブロックに適用する。サイドバー付きの記事内の幅調整も`.block-content`を対象とし、記事本文の識別には引き続き`.entry-content`を使用する。
 
 29個のコアブロックに対してカスタムスタイルを提供。`wp_enqueue_block_style()` によるブロック単位の遅延読み込み。
 

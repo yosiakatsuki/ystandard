@@ -1,19 +1,25 @@
-:where(.entry-content) {
+:where(.block-content) {
 	> * + *:where(:not(h1, h2, h3, h4, h5, h6, .alignfull)) {
 		margin-top: var(--ystd--block-gap);
 	}
-	*:where(:first-child) {
+	> *:where(:first-child) {
 		margin-top: 0;
 	}
 
-	*:where(:last-child) {
+	> *:where(:last-child) {
 		margin-bottom: 0;
 	}
 
-	*:where(:not(.alignfull)) {
+	> *:where(:not(.alignfull)) {
 		max-width: var(--ystd--content--width);
 		margin-right: auto;
 		margin-left: auto;
+	}
+
+	*:where(:not(.alignfull).has-global-padding) {
+		max-width: calc(
+			var(--ystd--content--width) + var(--ystd--container--gutter) * 2
+		);
 	}
 
 	// 入れ子の幅広ブロックはコアとブロック自身のレイアウト設定に任せる。
@@ -21,5 +27,11 @@
 		max-width: var(--ystd--container--width);
 		margin-right: auto;
 		margin-left: auto;
+	}
+
+	*:where(.alignwide.has-global-padding) {
+		max-width: calc(
+			var(--ystd--container--width) + var(--ystd--container--gutter) * 2
+		);
 	}
 }

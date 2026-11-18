@@ -93,6 +93,8 @@ class Init {
 		add_theme_support( 'customize-selective-refresh-widgets' );
 		// レスポンシブ.
 		add_theme_support( 'responsive-embeds' );
+		// クラシックテーマでブロックテンプレートパーツを編集できるようにする.
+		add_theme_support( 'block-template-parts' );
 		// 固定ページで抜粋を有効化.
 		add_post_type_support( 'page', 'excerpt' );
 	}

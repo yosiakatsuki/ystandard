@@ -32,7 +32,6 @@
 @use "./advertisement";
 @use "./tagcloud";
 @use "./site-footer";
-@use "./footer-sub";
 @use "./footer-mobile";
 @use "./copyright";
 @use "./post-list";
@@ -108,8 +107,6 @@ body:where([class]) {
 	@include tagcloud.custom_properties();
 	// Footer
 	@include site-footer.custom_properties();
-	// Sub Footer
-	@include footer-sub.custom_properties();
 	// Copyright
 	@include copyright.custom_properties();
 	// Mobile Footer

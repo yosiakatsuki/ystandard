@@ -9,11 +9,13 @@
 
 defined( 'ABSPATH' ) || die();
 
+// メニュー未割り当て時は空のナビゲーション領域を作らない.
 if ( ! has_nav_menu( 'footer' ) ) {
 	return;
 }
 ?>
-<nav class="footer-nav">
+<nav class="footer-nav" aria-label="<?php esc_attr_e( 'フッターメニュー', 'ystandard' ); ?>">
+	<div class="footer-nav__container">
 		<?php
 		wp_nav_menu(
 			[
@@ -25,4 +27,5 @@ if ( ! has_nav_menu( 'footer' ) ) {
 			]
 		);
 		?>
+	</div>
 </nav>

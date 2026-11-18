@@ -44,7 +44,7 @@
  */
 body:where(.has-sidebar) {
 	:where(.site-content article:not(.has-content-background)) {
-		:where(.entry-header,.entry-content,.entry-footer) {
+		:where(.entry-header,.block-content,.entry-footer) {
 			@include global.media-up-show-sidebar() {
 				--ystd--content--width: 100%;
 				--ystd--container--width: 100%;

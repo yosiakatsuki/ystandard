@@ -13,6 +13,7 @@
 		"languages/",
 		"library/",
 		"page-template/",
+		"parts/",
 		"template-parts/",
 		"style.css",
 		"theme.json",

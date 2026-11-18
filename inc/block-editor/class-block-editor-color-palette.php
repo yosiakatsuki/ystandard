@@ -28,11 +28,12 @@ class Block_Editor_Color_Palette {
 	 */
 	public function __construct() {
 		add_filter( 'wp_theme_json_data_user', [ $this, 'add_user_color_palette_to_theme_json' ] );
+		add_filter( 'rest_request_after_callbacks', [ $this, 'add_user_color_palette_to_rest_response' ], 10, 3 );
 		add_action( 'customize_register', [ $this, 'customize_register' ] );
 	}
 
 	/**
-	 * ユーザー定義色をTheme.jsonのユーザー設定に追加.
+	 * ユーザー定義色をtheme.jsonのユーザー設定に追加.
 	 *
 	 * @param \WP_Theme_JSON_Data $theme_json Theme.jsonデータ.
 	 *
@@ -66,6 +67,7 @@ class Block_Editor_Color_Palette {
 			self::get_user_color_palette( false )
 		);
 
+		// 追加色も古い管理対象の色もなければ、元のユーザー設定をそのまま使う.
 		if ( $existing_palette === $filtered_palette && empty( $user_palette ) ) {
 			return $theme_json;
 		}
@@ -80,6 +82,58 @@ class Block_Editor_Color_Palette {
 				],
 			]
 		);
+	}
+
+	/**
+	 * サイトエディターが取得するユーザー設定に追加色を補完.
+	 *
+	 * @param mixed            $response REST応答.
+	 * @param array            $handler  RESTハンドラー.
+	 * @param \WP_REST_Request $request  RESTリクエスト.
+	 *
+	 * @return mixed
+	 */
+	public function add_user_color_palette_to_rest_response( $response, $handler, $request ) {
+		// 取得に成功したユーザー設定だけを補完し、保存処理やエラー応答には触れない.
+		if ( 'GET' !== $request->get_method()
+			|| ! preg_match( '#^/wp/v2/global-styles/(\d+)/?$#', $request->get_route(), $matches )
+			|| ! $response instanceof \WP_REST_Response
+			|| 200 !== $response->get_status() ) {
+			return $response;
+		}
+
+		// テーマ切り替え前の設定や別テーマのスタイルに、使用中テーマの追加色を混ぜない.
+		if ( ! has_term( get_stylesheet(), 'wp_theme', (int) $matches[1] ) ) {
+			return $response;
+		}
+
+		$data = $response->get_data();
+		// _fieldsでsettingsが省かれた応答には、不要なフィールドを増やさない.
+		if ( ! is_array( $data ) || ! isset( $data['settings'] ) ) {
+			return $response;
+		}
+
+		// このREST経路ではwp_theme_json_data_userが適用されないため、同じ追加色の処理を使う.
+		$settings     = (array) $data['settings'];
+		$theme_json   = new \WP_Theme_JSON_Data(
+			[
+				'version'  => 3,
+				'settings' => $settings,
+			],
+			'custom'
+		);
+		$updated_data = $this->add_user_color_palette_to_theme_json( $theme_json )->get_data();
+		$palette      = $updated_data['settings']['color']['palette']['custom'] ?? null;
+		// 未設定の場合は、空のパレットや設定を新たに作らずに返す.
+		if ( null === $palette ) {
+			return $response;
+		}
+
+		$settings['color']['palette']['custom'] = $palette;
+		$data['settings']                       = $settings;
+		$response->set_data( $data );
+
+		return $response;
 	}
 
 	/**

@@ -1,11 +1,15 @@
 @use "../../global";
 
-
 :where(.footer-nav) {
+	padding: var(--ystd--footer--nav--padding-y)
+		var(--ystd--footer--nav--padding-x);
+	background-color: var(--ystd--footer--nav--background-color);
+
 	:where(.footer-nav__menu) {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--ystd--footer--nav--gap--row) var(--ystd--footer--nav--gap--column);
+		gap: var(--ystd--footer--nav--gap--row)
+			var(--ystd--footer--nav--gap--column);
 		font-size: var(--ystd--footer--nav--font-size);
 
 		@include global.media-up-mobile() {
@@ -13,12 +17,14 @@
 		}
 	}
 
-	:where(ul,ol) {
+	:where(ul, ol) {
 		list-style: none;
+		margin: 0;
 		padding: 0;
 	}
 
 	a {
+		text-decoration: none;
 		color: currentColor;
 
 		@media (hover: hover) {
@@ -27,4 +33,10 @@
 			}
 		}
 	}
+}
+
+:where(.footer-nav__container) {
+	max-width: var(--ystd--container--width);
+	margin-right: auto;
+	margin-left: auto;
 }
