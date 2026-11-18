@@ -81,7 +81,7 @@ class Breadcrumbs_Option {
 		$customizer->add_text(
 			[
 				'id'                => 'ys_breadcrumbs_padding',
-				'label'             => __( 'パンくずリスト上下余白', 'ystandard' ),
+				'label'             => __( 'パンくずリスト上下パディング', 'ystandard' ),
 				'description'       => $length_description,
 				'placeholder'       => '0.5em',
 				'sanitize_callback' => [ Layout::class, 'sanitize_css_value' ],
