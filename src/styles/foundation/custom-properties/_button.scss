@@ -1,6 +1,7 @@
 /**
  * Button
  */
+
 @mixin custom_properties() {
 	--ystd--button--text-color: #ffffff;
 	--ystd--button--background-color: var(--ystd--text-color);
@@ -29,4 +30,9 @@
 	--ystd--button--outline--hover--border-color: var(
 		--ystd--button--outline--border-color
 	);
+
+	--ystd--button--transition--property:
+		opacity, color, background-color, border-color;
+	--ystd--button--transition--duration: 0.3s;
+	--ystd--button--transition--easing: ease;
 }

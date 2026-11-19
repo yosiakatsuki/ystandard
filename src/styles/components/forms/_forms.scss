@@ -54,3 +54,18 @@
 		vertical-align: middle;
 	}
 }
+
+:where(
+	input[type="submit"],
+	button[type="submit"],
+	form button:not([type="button"], [type="reset"]),
+	button[form]:not([type="button"], [type="reset"])
+) {
+	transition-property: var(--ystd--button--transition--property);
+	transition-duration: var(--ystd--button--transition--duration);
+	transition-timing-function: var(--ystd--button--transition--easing);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition-property: none;
+	}
+}

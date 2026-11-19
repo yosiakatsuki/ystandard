@@ -9,8 +9,12 @@
 		text-decoration: none;
 		opacity: var(--ystd--button--opacity);
 
-		@media (prefers-reduced-motion: no-preference) {
-			transition: opacity 0.3s;
+		transition-property: var(--ystd--button--transition--property);
+		transition-duration: var(--ystd--button--transition--duration);
+		transition-timing-function: var(--ystd--button--transition--easing);
+
+		@media (prefers-reduced-motion: reduce) {
+			transition-property: none;
 		}
 
 		@media (hover: hover) {
@@ -28,6 +32,7 @@
 	}
 }
 
+// ブロックスタイル：アウトライン.
 .wp-block-button:where(:not(.is-style-outline)) {
 	color: var(--ystd--button--text-color);
 
