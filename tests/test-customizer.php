@@ -91,7 +91,7 @@ class CustomizerTest extends WP_UnitTestCase {
 	 * ブロックエディター設定がフォント・文字色の直後に並ぶことを確認.
 	 */
 	public function test_block_editor_priority_is_after_typography() {
-		$this->assertSame( 1101, \ystandard\Customizer::get_priority( 'ys_block_editor' ) );
+		$this->assertSame( 1110, \ystandard\Customizer::get_priority( 'ys_block_editor' ) );
 		$this->assertGreaterThan(
 			\ystandard\Customizer::get_priority( 'ys_site_typography' ),
 			\ystandard\Customizer::get_priority( 'ys_block_editor' )

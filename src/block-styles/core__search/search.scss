@@ -1,4 +1,19 @@
 .wp-block-search {
+  // ボタン：色・枠線・角丸は共通の値を使い、大きさはブロック専用の値を使う.
+  --ystd--search--button--color--text: var(--ystd--button--color--text);
+  --ystd--search--button--color--background: var(--ystd--button--color--background);
+  --ystd--search--button--border--width: var(--ystd--button--border--width);
+  --ystd--search--button--border--style: var(--ystd--button--border--style);
+  --ystd--search--button--border--color: var(--ystd--button--border--color);
+  --ystd--search--button--border--radius: var(--ystd--button--border--radius);
+  --ystd--search--button--hover--color--text: var(--ystd--button--hover--color--text);
+  --ystd--search--button--hover--color--background: var(--ystd--button--hover--color--background);
+  --ystd--search--button--hover--border--color: var(--ystd--button--hover--border--color);
+  --ystd--search--button--typography--font-size: 0.8em;
+  --ystd--search--button--typography--line-height: 1;
+  --ystd--search--button--spacing--padding--y: 0.5em;
+  --ystd--search--button--spacing--padding--x: 1em;
+
   .wp-block-search__label {
 	font-size: 0.9em;
 	font-weight: 400;
@@ -13,18 +28,38 @@
 
   .wp-block-search__button {
 	-webkit-appearance: none;
-	padding: .5em 1em;
-	border: 1px solid var(--ystd--form--border-color);
-	border-radius: 0;
-	background-color: transparent;
-	color: var(--ystd--form--text-color);
-	font-size: 0.8em;
-	line-height: 1;
+	padding: var(--ystd--search--button--spacing--padding--y)
+	  var(--ystd--search--button--spacing--padding--x);
+	border-width: var(--ystd--search--button--border--width);
+	border-style: var(--ystd--search--button--border--style);
+	border-color: var(--ystd--search--button--border--color);
+	border-radius: var(--ystd--search--button--border--radius);
+	background-color: var(--ystd--search--button--color--background);
+	color: var(--ystd--search--button--color--text);
+	font-size: var(--ystd--search--button--typography--font-size);
+	line-height: var(--ystd--search--button--typography--line-height);
+
+	transition-property: var(--ystd--button--transition--property);
+	transition-duration: var(--ystd--button--transition--duration);
+	transition-timing-function: var(--ystd--button--transition--timing-function);
+
+	@media (prefers-reduced-motion: reduce) {
+	  transition-property: none;
+	}
 
 	&:hover {
 	  box-shadow: none;
 	}
 
+	@media (hover: hover) {
+	  &:hover {
+		background-color: var(--ystd--search--button--hover--color--background);
+		border-color: var(--ystd--search--button--hover--border--color);
+		color: var(--ystd--search--button--hover--color--text);
+	  }
+	}
+
+	// アイコン表示時は、アイコンの大きさに合わせて上下の余白をなくす.
 	&.has-icon {
 	  padding-top: 0;
 	  padding-bottom: 0;
@@ -50,7 +85,8 @@
 	  .wp-block-search__button {
 		margin-left: 0;
 		border-left: 0;
-		padding: 0.5em 1em;
+		padding: var(--ystd--search--button--spacing--padding--y)
+		  var(--ystd--search--button--spacing--padding--x);
 
 		&.has-icon {
 		  padding-top: 0.25em;

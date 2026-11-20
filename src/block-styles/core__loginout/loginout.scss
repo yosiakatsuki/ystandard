@@ -1,0 +1,11 @@
+.wp-block-loginout > :where(a) {
+	transition-property: var(--ystd--button--transition--property);
+	transition-duration: var(--ystd--button--transition--duration);
+	transition-timing-function: var(
+		--ystd--button--transition--timing-function
+	);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition-property: none;
+	}
+}

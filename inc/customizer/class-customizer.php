@@ -27,8 +27,9 @@ class Customizer {
 		'ys_info_bar'           => 1000, // お知らせバー.
 		'ys_layout'             => 1090, // レイアウト.
 		'ys_site_typography'    => 1100, // フォント・文字色.
-		'ys_block_editor'       => 1101, // ブロックエディター.
-		'ys_site_background'    => 1110, // サイト背景（未整理）.
+		'ys_block_editor'       => 1110, // ブロックエディター.
+		'ys_button_style'       => 1120, // ボタンスタイル.
+		'ys_site_background'    => 1130, // サイト背景（未整理）.
 		'ys_site_header'        => 1200, // サイトヘッダー（未整理）.
 		'ys_global_nav'         => 1210, // グローバルナビゲーション.
 		'ys_drawer_nav'         => 1220, // ドロワーメニュー（モバイルメニュー）.
