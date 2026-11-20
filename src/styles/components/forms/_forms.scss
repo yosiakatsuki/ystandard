@@ -29,21 +29,35 @@
 	input[type="button"]
 ) {
 	display: var(--ystd--button--display);
-	padding: var(--ystd--button--padding);
-	background-color: var(--ystd--button--background-color);
-	border-radius: var(--ystd--button--border-radius);
-	color: var(--ystd--button--text-color);
-	font-size: var(--ystd--button--font-size);
+	min-width: var(--ystd--button--dimensions--min-width);
+	min-height: var(--ystd--button--dimensions--min-height);
+	padding: var(--ystd--button--spacing--padding--y)
+		var(--ystd--button--spacing--padding--x);
+	background-color: var(--ystd--button--color--background);
+	border-width: var(--ystd--button--border--width);
+	border-style: var(--ystd--button--border--style);
+	border-color: var(--ystd--button--border--color);
+	border-radius: var(--ystd--button--border--radius);
+	color: var(--ystd--button--color--text);
+	font-size: var(--ystd--button--typography--font-size);
+	line-height: var(--ystd--button--typography--line-height);
 	text-decoration: none;
-	opacity: var(--ystd--button--opacity);
 
-	@media (prefers-reduced-motion: no-preference) {
-		transition: opacity 0.3s;
+	transition-property: var(--ystd--button--transition--property);
+	transition-duration: var(--ystd--button--transition--duration);
+	transition-timing-function: var(
+		--ystd--button--transition--timing-function
+	);
+
+	@media (prefers-reduced-motion: reduce) {
+		transition-property: none;
 	}
 
 	@media (hover: hover) {
 		&:where(:hover) {
-			opacity: var(--ystd--button--hover--opacity);
+			background-color: var(--ystd--button--hover--color--background);
+			border-color: var(--ystd--button--hover--border--color);
+			color: var(--ystd--button--hover--color--text);
 		}
 	}
 
@@ -52,20 +66,5 @@
 		height: var(--ystd--button--icon--size);
 		flex-shrink: 0;
 		vertical-align: middle;
-	}
-}
-
-:where(
-	input[type="submit"],
-	button[type="submit"],
-	form button:not([type="button"], [type="reset"]),
-	button[form]:not([type="button"], [type="reset"])
-) {
-	transition-property: var(--ystd--button--transition--property);
-	transition-duration: var(--ystd--button--transition--duration);
-	transition-timing-function: var(--ystd--button--transition--easing);
-
-	@media (prefers-reduced-motion: reduce) {
-		transition-property: none;
 	}
 }

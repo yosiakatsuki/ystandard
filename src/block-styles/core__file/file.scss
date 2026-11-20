@@ -1,4 +1,19 @@
 .wp-block-file {
+  // ボタン：色・枠線・角丸は共通の値を使い、大きさはブロック専用の値を使う.
+  --ystd--file--button--color--text: var(--ystd--button--color--text);
+  --ystd--file--button--color--background: var(--ystd--button--color--background);
+  --ystd--file--button--border--width: var(--ystd--button--border--width);
+  --ystd--file--button--border--style: var(--ystd--button--border--style);
+  --ystd--file--button--border--color: var(--ystd--button--border--color);
+  --ystd--file--button--border--radius: var(--ystd--button--border--radius);
+  --ystd--file--button--hover--color--text: var(--ystd--button--hover--color--text);
+  --ystd--file--button--hover--color--background: var(--ystd--button--hover--color--background);
+  --ystd--file--button--hover--border--color: var(--ystd--button--hover--border--color);
+  --ystd--file--button--typography--font-size: 0.8em;
+  --ystd--file--button--typography--line-height: 1.3;
+  --ystd--file--button--spacing--padding--y: 0.5em;
+  --ystd--file--button--spacing--padding--x: 1em;
+
   display: flex;
   flex-wrap: wrap;
   gap: 0.5em 1em;
@@ -11,23 +26,21 @@
 
   .wp-block-file__button {
 	display: var(--ystd--button--display);
-	padding: var(--ystd--button--padding);
-	background-color: var(--ystd--button--background-color);
-	border-radius: var(--ystd--button--border-radius);
-	color: var(--ystd--button--text-color);
-	font-size: var(--ystd--button--font-size);
+	padding: var(--ystd--file--button--spacing--padding--y)
+	  var(--ystd--file--button--spacing--padding--x);
+	border-width: var(--ystd--file--button--border--width);
+	border-style: var(--ystd--file--button--border--style);
+	border-radius: var(--ystd--file--button--border--radius);
+	font-size: var(--ystd--file--button--typography--font-size);
+	line-height: var(--ystd--file--button--typography--line-height);
 	text-decoration: none;
 
-	transition-property: opacity, box-shadow;
+	transition-property: var(--ystd--button--transition--property);
 	transition-duration: var(--ystd--button--transition--duration);
-	transition-timing-function: var(--ystd--button--transition--easing);
+	transition-timing-function: var(--ystd--button--transition--timing-function);
 
 	@media (prefers-reduced-motion: reduce) {
 	  transition-property: none;
-	}
-
-	&:hover {
-	  box-shadow: 4px 4px 8px rgba(#000000, 0.15);
 	}
   }
 
@@ -36,13 +49,24 @@
 	margin-right: 0;
   }
 
+  // コアのリンク状態別スタイル（opacity: 0.85など）を打ち消し、通常時の色にそろえる.
   .wp-block-file__button,
   a.wp-block-file__button:active,
   a.wp-block-file__button:focus,
   a.wp-block-file__button:hover,
   a.wp-block-file__button:visited {
-	background-color: var(--ystd--button--background-color);
-	color: var(--ystd--button--text-color);
+	background-color: var(--ystd--file--button--color--background);
+	border-color: var(--ystd--file--button--border--color);
+	color: var(--ystd--file--button--color--text);
+	opacity: 1;
+  }
+
+  @media (hover: hover) {
+	a.wp-block-file__button:hover {
+	  background-color: var(--ystd--file--button--hover--color--background);
+	  border-color: var(--ystd--file--button--hover--border--color);
+	  color: var(--ystd--file--button--hover--color--text);
+	}
   }
 }
 

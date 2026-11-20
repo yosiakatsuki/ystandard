@@ -1,38 +1,64 @@
 /**
  * Button
+ *
+ * theme.jsonの`styles.elements.button`と、ボタン用のSCSSから参照する.
  */
 
 @mixin custom_properties() {
-	--ystd--button--text-color: #ffffff;
-	--ystd--button--background-color: var(--ystd--text-color);
+	// 通常時.
 	--ystd--button--display: inline-flex;
-	--ystd--button--padding: 0.5em 1.5em;
-	--ystd--button--border-radius: 4px;
-	--ystd--button--font-size: 1em;
-	--ystd--button--line-height: 1.3;
+	--ystd--button--align-items: center;
+	--ystd--button--justify-content: center;
+	// 行の高さとフォントによる文字の上下の余白を削り、大文字の高さとベースラインの間で上下中央に見えるようにする.
+	// ボタンブロックだけに適用する（フォームのボタンはテーマ独自のボタンにも影響するため対象外）.
+	--ystd--button--text-box: trim-both cap alphabetic;
+	--ystd--button--color--text: var(--ystd--text-color--white);
+	--ystd--button--color--background: var(--ystd--text-color);
+	--ystd--button--border--width: 2px;
+	--ystd--button--border--style: solid;
+	--ystd--button--border--color: var(--ystd--button--color--background);
+	--ystd--button--border--radius: 5em;
+	--ystd--button--typography--font-family: var(--ystd--font-family);
+	--ystd--button--typography--font-size: 1em;
+	--ystd--button--typography--font-weight: var(--ystd--font-weight--normal);
+	--ystd--button--typography--letter-spacing: var(--ystd--letter-spacing);
+	--ystd--button--typography--line-height: 1.3;
+	--ystd--button--typography--text-align: center;
+	--ystd--button--typography--text-decoration: none;
+	--ystd--button--spacing--padding--y: 0.5em;
+	--ystd--button--spacing--padding--x: 1.5em;
+	--ystd--button--dimensions--min-width: auto;
+	--ystd--button--dimensions--min-height: auto;
 	--ystd--button--icon--size: 1.25em;
-	--ystd--button--opacity: 1;
-	--ystd--button--hover--text-color: var(--ystd--button--text-color);
-	--ystd--button--hover--background: var(--ystd--button--background-color);
-	--ystd--button--hover--opacity: 0.8;
 
-	--ystd--button--outline--text-color: var(--ystd--text-color);
-	--ystd--button--outline--background-color: transparent;
-	--ystd--button--outline--border-width: 1px;
-	--ystd--button--outline--border-style: solid;
-	--ystd--button--outline--border-color: var(--ystd--text-color);
-	--ystd--button--outline--hover--text-color: var(
-		--ystd--button--outline--text-color
+	// ホバー時：文字色と背景色を反転させ、それ以外は通常時の値を使う.
+	--ystd--button--hover--color--text: var(--ystd--button--color--background);
+	--ystd--button--hover--color--background: transparent;
+	--ystd--button--hover--border--width: var(--ystd--button--border--width);
+	--ystd--button--hover--border--style: var(--ystd--button--border--style);
+	--ystd--button--hover--border--color: var(--ystd--button--border--color);
+	--ystd--button--hover--border--radius: var(--ystd--button--border--radius);
+	--ystd--button--hover--spacing--padding--y: var(
+		--ystd--button--spacing--padding--y
 	);
-	--ystd--button--outline--hover--background: var(
-		--ystd--button--outline--background-color
-	);
-	--ystd--button--outline--hover--border-color: var(
-		--ystd--button--outline--border-color
+	--ystd--button--hover--spacing--padding--x: var(
+		--ystd--button--spacing--padding--x
 	);
 
-	--ystd--button--transition--property:
-		opacity, color, background-color, border-color;
+	// アウトライン：文字色にも枠線色を使う.
+	--ystd--button--outline--color--text: var(--ystd--button--border--color);
+	--ystd--button--outline--color--background: transparent;
+	--ystd--button--outline--border--color: var(--ystd--button--border--color);
+	// hover.
+	--ystd--button--outline--hover--color--text: var(
+		--ystd--button--hover--border--color
+	);
+	--ystd--button--outline--hover--color--background: transparent;
+	--ystd--button--outline--hover--border--color: var(
+		--ystd--button--hover--border--color
+	);
+
+	--ystd--button--transition--property: all;
 	--ystd--button--transition--duration: 0.3s;
-	--ystd--button--transition--easing: ease;
+	--ystd--button--transition--timing-function: ease;
 }

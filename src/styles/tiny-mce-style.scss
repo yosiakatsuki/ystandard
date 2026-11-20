@@ -1,5 +1,6 @@
 @use "sass:meta";
 @use "global";
+@use "foundation/custom-properties/button";
 //Component
 @use "components/author/author" with (
 	$editor: true
@@ -41,7 +42,7 @@
 );
 
 :root {
-	@include meta.load-css("foundation/custom-properties/button");
+	@include button.custom_properties();
 }
 
 .mce-content-body {

@@ -1,20 +1,17 @@
-.wp-block-button:where(.is-style-outline) {
-	color: var(--ystd--button--outline--text-color);
-
+// 通常時のスタイルは、theme.jsonの`styles.blocks.core/button.variations.outline`で指定する.
+// ブロックスタイルのtheme.jsonでは:hoverを指定できず、遅れて出力される通常時のスタイル（詳細度0,1,0）が
+// theme.jsonのボタンのホバー時のスタイルも上書きしてしまうため、ホバー時はクラスを2つ重ねて指定する.
+.wp-block-button.is-style-outline {
 	:where(.wp-block-button__link) {
-		color: var(--ystd--button--outline--text-color);
-		background-color: var(--ystd--button--outline--background-color);
-		border: var(--ystd--button--outline--border-width)
-			var(--ystd--button--outline--border-style)
-			var(--ystd--button--outline--border-color);
-
 		@media (hover: hover) {
 			&:hover {
-				color: var(--ystd--button--outline--hover--text-color);
 				background-color: var(
-					--ystd--button--outline--hover--background
+					--ystd--button--outline--hover--color--background
 				);
-				border-color: var(--ystd--button--outline--hover--border-color);
+				border-color: var(
+					--ystd--button--outline--hover--border--color
+				);
+				color: var(--ystd--button--outline--hover--color--text);
 			}
 		}
 	}

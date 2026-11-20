@@ -234,17 +234,16 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 | --form-text                      | --ystd--form--text-color                      |
 | --form-bg-white                  | --ystd--form--background                      |
 | --form-border-gray               | --ystd--form--border-color                    |
-| --ystd-button-text-color         | --ystd--button--text-color                    |
-| --ystd-button-background-color   | --ystd--button--background-color              |
+| --ystd-button-text-color         | --ystd--button--color--text                   |
+| --ystd-button-background-color   | --ystd--button--color--background             |
 | --ystd-button-display            | --ystd--button--display                       |
-| --ystd-button-padding            | --ystd--button--padding                       |
-| --ystd-button-border-width       | --ystd--button--border-width                  |
-| --ystd-button-border-style       | --ystd--button--border-style                  |
-| --ystd-button-border-color       | --ystd--button--border-color                  |
-| --ystd-button-border-radius      | --ystd--button--border-radius                 |
-| --ystd-button-font-size          | --ystd--button--font-size                     |
-| --ystd-button-box-shadow         | --ystd--button--box-shadow                    |
-| --ystd-button-hover-text-color   | --ystd--button--hover--text-color             |
+| --ystd-button-padding            | --ystd--button--spacing--padding--x / --y     |
+| --ystd-button-border-width       | --ystd--button--border--width                 |
+| --ystd-button-border-style       | --ystd--button--border--style                 |
+| --ystd-button-border-color       | --ystd--button--border--color                 |
+| --ystd-button-border-radius      | --ystd--button--border--radius                |
+| --ystd-button-font-size          | --ystd--button--typography--font-size         |
+| --ystd-button-hover-text-color   | --ystd--button--hover--color--text            |
 | --ystd-posts-item-gap            | --ystd--posts-item--gap                       |
 | --ystd-posts-item-width          | --ystd--posts-item--width                     |
 | --ystd-posts-inner-gap           | --ystd--posts--gap--inner                     |
@@ -275,6 +274,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - --ystd-content-align-wide-width
 - --ystd-sidebar-width
 - --mobile-nav-toggle-top
+- --ystd-button-box-shadow
 
 #### v5.0.0 - 廃止されたオプション
 

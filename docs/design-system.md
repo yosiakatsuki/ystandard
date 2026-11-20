@@ -328,14 +328,37 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 
 #### CSSカスタムプロパティ
 
+WordPressコアのCSSカスタムプロパティとtheme.jsonの`styles`の構造に合わせて命名する。
+
 ```
---ystd--{コンポーネント}--{プロパティ}
+--ystd--{コンポーネント}--{要素}--{バリエーション}--{状態}--{グループ}--{プロパティ}
 ```
 
+- 階層は`--`で区切り、同じ階層の中の単語はケバブケースでつなぐ（WordPressコアの`--wp--preset--font-size--x-large`と同じ形式）
+- `{コンポーネント}`と`{グループ}--{プロパティ}`以外の階層は、該当する場合だけ付ける
+  - `{要素}`：コンポーネント内の部品（例：`search--button`）
+  - `{バリエーション}`：ブロックスタイルなどの種類（例：`outline`）
+  - `{状態}`：theme.jsonの擬似クラス名から`:`を除いたもの（例：`hover`、`focus`）
+- `{グループ}--{プロパティ}`は、theme.jsonの`styles`のキーをケバブケースにして使う
+  - `color--text`、`color--background`
+  - `border--width`、`border--style`、`border--color`、`border--radius`
+  - `typography--font-size`、`typography--line-height`
+  - `spacing--padding--top`、`spacing--padding--right`、`spacing--padding--bottom`、`spacing--padding--left`（上下・左右をまとめる場合は`spacing--padding--y`、`spacing--padding--x`）
+  - `dimensions--min-height`（theme.jsonにない`min-width`も同じグループに置く）
+- theme.jsonにないプロパティは、CSSのプロパティ名をそのまま使う（例：`display`、`opacity`、`transition--timing-function`）
+- theme.jsonの`styles`で指定できるプロパティは、`styles`の値に`--ystd--*`を指定する（例：`styles.elements.button.color.background`に`var(--ystd--button--color--background)`）
+- 変数の値は`src/styles/foundation/custom-properties/`で定義する。「背景色と同じ色」のように別の値から作る初期値も、ここで`--ystd--*`を参照して組み立てる
+- ブロック専用の変数は、そのブロックのSCSSでブロックのルート要素（例：`.wp-block-search`）に定義し、共通の変数を参照する（例：`--ystd--search--button--color--text: var(--ystd--button--color--text)`）
+- 使う側の`var()`にはフォールバック値を書かない
+
 例:
-- `--ystd--header--background`
-- `--ystd--content--post-title--font-size`
-- `--ystd--archive--item--title--font-size`
+- `--ystd--button--color--background`
+- `--ystd--button--outline--hover--border--color`
+- `--ystd--search--button--spacing--padding--y`
+
+このルールは、ボタン関連の変数から順に適用している。上記以外の既存の変数は、旧ルール（`--ystd--{コンポーネント}--{プロパティ}`）の名前のまま残っている。
+
+v4に存在したCSSカスタムプロパティを改名・廃止した場合は、`README.md`の「v5.0.0 - カスタムプロパティ変換表」と「v5.0.0 - 廃止されたカスタムプロパティ」も更新する。
 
 #### CSSクラス（BEM風）
 
@@ -510,13 +533,77 @@ SCSSの `$breakpoints_setting` マップで定義。CSSカスタムプロパテ�
 
 ### 5.11 ボタン
 
+theme.jsonの`styles.elements.button`（通常時と`:hover`）で下記の変数を参照し、`.wp-element-button`と`.wp-block-button__link`へ適用する。theme.jsonで指定できない`display`、`align-items`、`justify-content`、`min-width`、`text-box`、`transition`、アイコンの大きさは、`src/block-styles/core__button/`で指定する。
+
+#### 通常時
+
 | プロパティ | 初期値 |
 |-----------|--------|
-| `--ystd--button--text-color` | `#ffffff` |
-| `--ystd--button--background-color` | `var(--ystd--text-color)` |
-| `--ystd--button--padding` | `0.5em 1.5em` |
-| `--ystd--button--border-radius` | `4px` |
-| `--ystd--button--box-shadow` | `3px 3px 6px rgba(#000, 0.2)` |
+| `--ystd--button--display` | `inline-flex` |
+| `--ystd--button--align-items` | `center` |
+| `--ystd--button--justify-content` | `center` |
+| `--ystd--button--text-box` | `trim-both cap alphabetic` |
+| `--ystd--button--color--text` | `var(--ystd--text-color--white)` |
+| `--ystd--button--color--background` | `var(--ystd--text-color)` |
+| `--ystd--button--border--width` | `2px` |
+| `--ystd--button--border--style` | `solid` |
+| `--ystd--button--border--color` | `var(--ystd--button--color--background)` |
+| `--ystd--button--border--radius` | `5em` |
+| `--ystd--button--typography--font-family` | `var(--ystd--font-family)` |
+| `--ystd--button--typography--font-size` | `1em` |
+| `--ystd--button--typography--font-weight` | `var(--ystd--font-weight--normal)` |
+| `--ystd--button--typography--letter-spacing` | `var(--ystd--letter-spacing)` |
+| `--ystd--button--typography--line-height` | `1.3` |
+| `--ystd--button--typography--text-align` | `center` |
+| `--ystd--button--typography--text-decoration` | `none` |
+| `--ystd--button--spacing--padding--y` | `0.5em` |
+| `--ystd--button--spacing--padding--x` | `1.5em` |
+| `--ystd--button--dimensions--min-width` / `--min-height` | `auto` |
+| `--ystd--button--icon--size` | `1.25em` |
+| `--ystd--button--transition--property` | `all` |
+| `--ystd--button--transition--duration` | `0.3s` |
+| `--ystd--button--transition--timing-function` | `ease` |
+
+`--ystd--button--text-box`は、行の高さとフォントによる文字の上下の余白を削り、大文字の高さとベースラインの間でボタンの文字を上下中央に見せる。ボタンブロックだけに適用し、フォームのボタンには適用しない（`button`要素全体への指定のため、テーマ独自のボタンにも影響するため）。非対応のブラウザでは無視され、これまでどおり行の高さを含めた表示になる。
+
+#### ホバー時
+
+theme.jsonの`:hover`では、ホバー時に変えたい枠線・色・余白だけを指定する。文字色と背景色を反転させ、それ以外は通常時の変数を参照する。
+
+| プロパティ | 初期値 |
+|-----------|--------|
+| `--ystd--button--hover--color--text` | `var(--ystd--button--color--background)` |
+| `--ystd--button--hover--color--background` | `transparent` |
+| `--ystd--button--hover--border--width` / `--style` / `--color` / `--radius` | 通常時の同じ名前の変数 |
+| `--ystd--button--hover--spacing--padding--y` / `--x` | 通常時の同じ名前の変数 |
+
+#### アウトライン
+
+| プロパティ | 初期値 |
+|-----------|--------|
+| `--ystd--button--outline--color--text` | `var(--ystd--button--border--color)` |
+| `--ystd--button--outline--color--background` | `transparent` |
+| `--ystd--button--outline--border--color` | `var(--ystd--button--border--color)` |
+| `--ystd--button--outline--hover--color--text` | `var(--ystd--button--hover--border--color)` |
+| `--ystd--button--outline--hover--color--background` | `transparent` |
+| `--ystd--button--outline--hover--border--color` | `var(--ystd--button--hover--border--color)` |
+
+通常時のスタイルは、theme.jsonの`styles.blocks.core/button.variations.outline`で指定する。WordPressコアのtheme.jsonが同じ場所に枠線・色・余白を定義しているため、コアが定義している項目はすべて上書きする（指定しなかった項目はコアの値が残る）。枠線の太さ・種類と余白は、通常時の変数を参照する。
+
+ブロックスタイルのスタイルは、使用したボタンごとに`:root :where(.wp-block-button.is-style-outline--{連番} .wp-block-button__link)`（詳細度`0,1,0`）として遅れて出力され、theme.jsonのボタンのホバー時のスタイルも上書きする。また、ブロックスタイルのtheme.jsonでは`:hover`を指定できない。そのため、ホバー時のスタイルだけは`src/block-styles/core__button/_is-style-outline.scss`で`.wp-block-button.is-style-outline`（詳細度`0,3,0`）として指定する。
+
+#### カスタマイザー
+
+カスタマイザーの「[ys]ボタンスタイル」で設定した値は、PHPから`body`に出力し、上記の`--ystd--button--*`を直接上書きする。ホバー時に設定できるのは色（文字色・背景色・枠線色）だけで、未設定の項目は通常時の変数から作った初期値を使う。
+
+#### ブロック専用の変数
+
+検索ブロック（`--ystd--search--button--*`）とファイルブロック（`--ystd--file--button--*`）は、各ブロックのSCSSでブロックのルート要素に専用の変数を定義する。
+
+- 色・枠線・角丸は、共通の変数を参照する
+- 文字サイズ・行の高さ・余白は、ブロック専用の初期値を使う（文字サイズ`0.8em`、余白`0.5em 1em`）
+
+フォームのボタンは専用の変数を持たず、`--ystd--button--*`を直接使う。
 
 ### 5.12 フォーム
 
@@ -665,8 +752,9 @@ src/scripts/*.ts
 | `ys_info_bar` | 1000 | セクション |
 | `ys_layout` | 1090 | セクション |
 | `ys_site_typography` | 1100 | セクション |
-| `ys_block_editor` | 1101 | セクション |
-| `ys_site_background` | 1110 | セクション |
+| `ys_block_editor` | 1110 | セクション |
+| `ys_button_style` | 1120 | セクション |
+| `ys_site_background` | 1130 | セクション |
 | `ys_site_header` | 1200 | セクション |
 | `ys_global_nav` | 1210 | セクション |
 | `ys_drawer_nav` | 1220 | セクション |

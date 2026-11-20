@@ -88,11 +88,12 @@ body {
 :where(a) {
 	color: var(--ystd--link--text-color);
 	transition: all 0.3s;
+}
 
-	@media (hover: hover) {
-		&:hover {
-			color: var(--ystd--link--text-color--hover);
-		}
+// ボタンなどのホバー時の色（詳細度0,1,0）を上書きしないよう、:hoverも:where()に含めて詳細度を0にする.
+@media (hover: hover) {
+	:where(a:hover) {
+		color: var(--ystd--link--text-color--hover);
 	}
 }
 
