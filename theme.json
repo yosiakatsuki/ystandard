@@ -134,14 +134,14 @@
 					"name": "16px"
 				},
 				{
-					"size": "clamp(0.75rem, 0.636rem + 0.48vw, 1rem)",
-					"slug": "ys-fluid-12-16",
-					"name": "16px-12px"
-				},
-				{
 					"size": "clamp(0.5rem, 0.273rem + 0.97vw, 1rem)",
 					"slug": "ys-fluid-8-16",
 					"name": "16px-8px"
+				},
+				{
+					"size": "clamp(0.75rem, 0.636rem + 0.48vw, 1rem)",
+					"slug": "ys-fluid-12-16",
+					"name": "16px-12px"
 				},
 				{
 					"size": "20px",
@@ -154,14 +154,14 @@
 					"name": "24px"
 				},
 				{
-					"size": "clamp(1rem, 0.773rem + 0.97vw, 1.5rem)",
-					"slug": "ys-fluid-16-24",
-					"name": "24px-16px"
-				},
-				{
 					"size": "clamp(0.75rem, 0.409rem + 1.45vw, 1.5rem)",
 					"slug": "ys-fluid-12-24",
 					"name": "24px-12px"
+				},
+				{
+					"size": "clamp(1rem, 0.773rem + 0.97vw, 1.5rem)",
+					"slug": "ys-fluid-16-24",
+					"name": "24px-16px"
 				},
 				{
 					"size": "32px",
@@ -169,14 +169,14 @@
 					"name": "32px"
 				},
 				{
-					"size": "clamp(1.5rem, 1.273rem + 0.97vw, 2rem)",
-					"slug": "ys-fluid-24-32",
-					"name": "32px-24px"
-				},
-				{
 					"size": "clamp(1rem, 0.545rem + 1.94vw, 2rem)",
 					"slug": "ys-fluid-16-32",
 					"name": "32px-16px"
+				},
+				{
+					"size": "clamp(1.5rem, 1.273rem + 0.97vw, 2rem)",
+					"slug": "ys-fluid-24-32",
+					"name": "32px-24px"
 				},
 				{
 					"size": "40px",
@@ -184,9 +184,9 @@
 					"name": "40px"
 				},
 				{
-					"size": "clamp(2rem, 1.773rem + 0.97vw, 2.5rem)",
-					"slug": "ys-fluid-32-40",
-					"name": "40px-32px"
+					"size": "clamp(1.25rem, 0.682rem + 2.42vw, 2.5rem)",
+					"slug": "ys-fluid-20-40",
+					"name": "40px-20px"
 				},
 				{
 					"size": "clamp(1.5rem, 1.045rem + 1.94vw, 2.5rem)",
@@ -194,9 +194,9 @@
 					"name": "40px-24px"
 				},
 				{
-					"size": "clamp(1.25rem, 0.682rem + 2.42vw, 2.5rem)",
-					"slug": "ys-fluid-20-40",
-					"name": "40px-20px"
+					"size": "clamp(2rem, 1.773rem + 0.97vw, 2.5rem)",
+					"slug": "ys-fluid-32-40",
+					"name": "40px-32px"
 				},
 				{
 					"size": "48px",
@@ -204,9 +204,9 @@
 					"name": "48px"
 				},
 				{
-					"size": "clamp(2.25rem, 1.909rem + 1.45vw, 3rem)",
-					"slug": "ys-fluid-36-48",
-					"name": "48px-36px"
+					"size": "clamp(1.5rem, 0.818rem + 2.91vw, 3rem)",
+					"slug": "ys-fluid-24-48",
+					"name": "48px-24px"
 				},
 				{
 					"size": "clamp(2rem, 1.545rem + 1.94vw, 3rem)",
@@ -214,9 +214,9 @@
 					"name": "48px-32px"
 				},
 				{
-					"size": "clamp(1.5rem, 0.818rem + 2.91vw, 3rem)",
-					"slug": "ys-fluid-24-48",
-					"name": "48px-24px"
+					"size": "clamp(2.25rem, 1.909rem + 1.45vw, 3rem)",
+					"slug": "ys-fluid-36-48",
+					"name": "48px-36px"
 				},
 				{
 					"size": "56px",
@@ -224,9 +224,9 @@
 					"name": "56px"
 				},
 				{
-					"size": "clamp(2.5rem, 2.045rem + 1.94vw, 3.5rem)",
-					"slug": "ys-fluid-40-56",
-					"name": "56px-40px"
+					"size": "clamp(1.75rem, 0.955rem + 3.39vw, 3.5rem)",
+					"slug": "ys-fluid-28-56",
+					"name": "56px-28px"
 				},
 				{
 					"size": "clamp(2rem, 1.318rem + 2.91vw, 3.5rem)",
@@ -234,9 +234,9 @@
 					"name": "56px-32px"
 				},
 				{
-					"size": "clamp(1.75rem, 0.955rem + 3.39vw, 3.5rem)",
-					"slug": "ys-fluid-28-56",
-					"name": "56px-28px"
+					"size": "clamp(2.5rem, 2.045rem + 1.94vw, 3.5rem)",
+					"slug": "ys-fluid-40-56",
+					"name": "56px-40px"
 				},
 				{
 					"size": "64px",
@@ -244,9 +244,9 @@
 					"name": "64px"
 				},
 				{
-					"size": "clamp(3rem, 2.545rem + 1.94vw, 4rem)",
-					"slug": "ys-fluid-48-64",
-					"name": "64px-48px"
+					"size": "clamp(2rem, 1.091rem + 3.88vw, 4rem)",
+					"slug": "ys-fluid-32-64",
+					"name": "64px-32px"
 				},
 				{
 					"size": "clamp(2.5rem, 1.818rem + 2.91vw, 4rem)",
@@ -254,9 +254,9 @@
 					"name": "64px-40px"
 				},
 				{
-					"size": "clamp(2rem, 1.091rem + 3.88vw, 4rem)",
-					"slug": "ys-fluid-32-64",
-					"name": "64px-32px"
+					"size": "clamp(3rem, 2.545rem + 1.94vw, 4rem)",
+					"slug": "ys-fluid-48-64",
+					"name": "64px-48px"
 				},
 				{
 					"size": "80px",
@@ -264,9 +264,9 @@
 					"name": "80px"
 				},
 				{
-					"size": "clamp(3.75rem, 3.182rem + 2.42vw, 5rem)",
-					"slug": "ys-fluid-60-80",
-					"name": "80px-60px"
+					"size": "clamp(2.5rem, 1.364rem + 4.85vw, 5rem)",
+					"slug": "ys-fluid-40-80",
+					"name": "80px-40px"
 				},
 				{
 					"size": "clamp(3rem, 2.091rem + 3.88vw, 5rem)",
@@ -274,9 +274,9 @@
 					"name": "80px-48px"
 				},
 				{
-					"size": "clamp(2.5rem, 1.364rem + 4.85vw, 5rem)",
-					"slug": "ys-fluid-40-80",
-					"name": "80px-40px"
+					"size": "clamp(3.75rem, 3.182rem + 2.42vw, 5rem)",
+					"slug": "ys-fluid-60-80",
+					"name": "80px-60px"
 				},
 				{
 					"size": "96px",
@@ -284,9 +284,9 @@
 					"name": "96px"
 				},
 				{
-					"size": "clamp(4.5rem, 3.818rem + 2.91vw, 6rem)",
-					"slug": "ys-fluid-72-96",
-					"name": "96px-72px"
+					"size": "clamp(3rem, 1.636rem + 5.82vw, 6rem)",
+					"slug": "ys-fluid-48-96",
+					"name": "96px-48px"
 				},
 				{
 					"size": "clamp(4rem, 3.091rem + 3.88vw, 6rem)",
@@ -294,9 +294,9 @@
 					"name": "96px-64px"
 				},
 				{
-					"size": "clamp(3rem, 1.636rem + 5.82vw, 6rem)",
-					"slug": "ys-fluid-48-96",
-					"name": "96px-48px"
+					"size": "clamp(4.5rem, 3.818rem + 2.91vw, 6rem)",
+					"slug": "ys-fluid-72-96",
+					"name": "96px-72px"
 				},
 				{
 					"size": "120px",
@@ -304,14 +304,14 @@
 					"name": "120px"
 				},
 				{
-					"size": "clamp(5rem, 3.864rem + 4.85vw, 7.5rem)",
-					"slug": "ys-fluid-80-120",
-					"name": "120px-80px"
-				},
-				{
 					"size": "clamp(3.75rem, 2.045rem + 7.27vw, 7.5rem)",
 					"slug": "ys-fluid-60-120",
 					"name": "120px-60px"
+				},
+				{
+					"size": "clamp(5rem, 3.864rem + 4.85vw, 7.5rem)",
+					"slug": "ys-fluid-80-120",
+					"name": "120px-80px"
 				},
 				{
 					"size": "160px",
@@ -319,9 +319,9 @@
 					"name": "160px"
 				},
 				{
-					"size": "clamp(7.5rem, 6.364rem + 4.85vw, 10rem)",
-					"slug": "ys-fluid-120-160",
-					"name": "160px-120px"
+					"size": "clamp(5rem, 2.727rem + 9.7vw, 10rem)",
+					"slug": "ys-fluid-80-160",
+					"name": "160px-80px"
 				},
 				{
 					"size": "clamp(6rem, 4.182rem + 7.76vw, 10rem)",
@@ -329,9 +329,9 @@
 					"name": "160px-96px"
 				},
 				{
-					"size": "clamp(5rem, 2.727rem + 9.7vw, 10rem)",
-					"slug": "ys-fluid-80-160",
-					"name": "160px-80px"
+					"size": "clamp(7.5rem, 6.364rem + 4.85vw, 10rem)",
+					"slug": "ys-fluid-120-160",
+					"name": "160px-120px"
 				},
 				{
 					"size": "200px",
@@ -339,14 +339,14 @@
 					"name": "200px"
 				},
 				{
-					"size": "clamp(7.5rem, 5.227rem + 9.7vw, 12.5rem)",
-					"slug": "ys-fluid-120-200",
-					"name": "200px-120px"
-				},
-				{
 					"size": "clamp(6.25rem, 3.409rem + 12.12vw, 12.5rem)",
 					"slug": "ys-fluid-100-200",
 					"name": "200px-100px"
+				},
+				{
+					"size": "clamp(7.5rem, 5.227rem + 9.7vw, 12.5rem)",
+					"slug": "ys-fluid-120-200",
+					"name": "200px-120px"
 				}
 			],
 			"units": [
@@ -454,21 +454,21 @@
 				},
 				{
 					"fluid": {
-						"min": "1rem",
-						"max": "1.125rem"
-					},
-					"size": "1.141rem",
-					"name": "18px-16px",
-					"slug": "ys-18-16"
-				},
-				{
-					"fluid": {
 						"min": "0.875rem",
 						"max": "1.125rem"
 					},
 					"size": "1.139rem",
 					"name": "18px-14px",
 					"slug": "ys-18-14"
+				},
+				{
+					"fluid": {
+						"min": "1rem",
+						"max": "1.125rem"
+					},
+					"size": "1.141rem",
+					"name": "18px-16px",
+					"slug": "ys-18-16"
 				},
 				{
 					"fluid": false,
@@ -478,21 +478,21 @@
 				},
 				{
 					"fluid": {
-						"min": "1.125rem",
-						"max": "1.25rem"
-					},
-					"size": "1.268rem",
-					"name": "20px-18px",
-					"slug": "ys-20-18"
-				},
-				{
-					"fluid": {
 						"min": "1rem",
 						"max": "1.25rem"
 					},
 					"size": "1.266rem",
 					"name": "20px-16px",
 					"slug": "ys-20-16"
+				},
+				{
+					"fluid": {
+						"min": "1.125rem",
+						"max": "1.25rem"
+					},
+					"size": "1.268rem",
+					"name": "20px-18px",
+					"slug": "ys-20-18"
 				},
 				{
 					"fluid": false,
@@ -517,15 +517,6 @@
 				},
 				{
 					"fluid": {
-						"min": "1.25rem",
-						"max": "1.5rem"
-					},
-					"size": "1.520rem",
-					"name": "24px-20px",
-					"slug": "ys-24-20"
-				},
-				{
-					"fluid": {
 						"min": "1.125rem",
 						"max": "1.5rem"
 					},
@@ -534,19 +525,19 @@
 					"slug": "ys-24-18"
 				},
 				{
+					"fluid": {
+						"min": "1.25rem",
+						"max": "1.5rem"
+					},
+					"size": "1.520rem",
+					"name": "24px-20px",
+					"slug": "ys-24-20"
+				},
+				{
 					"fluid": false,
 					"size": "1.75rem",
 					"name": "28px",
 					"slug": "ys-static-28"
-				},
-				{
-					"fluid": {
-						"min": "1.5rem",
-						"max": "1.75rem"
-					},
-					"size": "1.774rem",
-					"name": "28px-24px",
-					"slug": "ys-28-24"
 				},
 				{
 					"fluid": {
@@ -558,6 +549,15 @@
 					"slug": "ys-28-20"
 				},
 				{
+					"fluid": {
+						"min": "1.5rem",
+						"max": "1.75rem"
+					},
+					"size": "1.774rem",
+					"name": "28px-24px",
+					"slug": "ys-28-24"
+				},
+				{
 					"fluid": false,
 					"size": "2rem",
 					"name": "32px",
@@ -565,12 +565,12 @@
 				},
 				{
 					"fluid": {
-						"min": "1.75rem",
+						"min": "1.375rem",
 						"max": "2rem"
 					},
-					"size": "2.028rem",
-					"name": "32px-28px",
-					"slug": "ys-32-28"
+					"size": "2.022rem",
+					"name": "32px-22px",
+					"slug": "ys-32-22"
 				},
 				{
 					"fluid": {
@@ -583,27 +583,18 @@
 				},
 				{
 					"fluid": {
-						"min": "1.375rem",
+						"min": "1.75rem",
 						"max": "2rem"
 					},
-					"size": "2.022rem",
-					"name": "32px-22px",
-					"slug": "ys-32-22"
+					"size": "2.028rem",
+					"name": "32px-28px",
+					"slug": "ys-32-28"
 				},
 				{
 					"fluid": false,
 					"size": "2.25rem",
 					"name": "36px",
 					"slug": "ys-static-36"
-				},
-				{
-					"fluid": {
-						"min": "1.75rem",
-						"max": "2.25rem"
-					},
-					"size": "2.278rem",
-					"name": "36px-28px",
-					"slug": "ys-36-28"
 				},
 				{
 					"fluid": {
@@ -615,6 +606,15 @@
 					"slug": "ys-36-24"
 				},
 				{
+					"fluid": {
+						"min": "1.75rem",
+						"max": "2.25rem"
+					},
+					"size": "2.278rem",
+					"name": "36px-28px",
+					"slug": "ys-36-28"
+				},
+				{
 					"fluid": false,
 					"size": "2.5rem",
 					"name": "40px",
@@ -622,12 +622,12 @@
 				},
 				{
 					"fluid": {
-						"min": "2rem",
+						"min": "1.5rem",
 						"max": "2.5rem"
 					},
-					"size": "2.532rem",
-					"name": "40px-32px",
-					"slug": "ys-40-32"
+					"size": "2.524rem",
+					"name": "40px-24px",
+					"slug": "ys-40-24"
 				},
 				{
 					"fluid": {
@@ -640,12 +640,12 @@
 				},
 				{
 					"fluid": {
-						"min": "1.5rem",
+						"min": "2rem",
 						"max": "2.5rem"
 					},
-					"size": "2.524rem",
-					"name": "40px-24px",
-					"slug": "ys-40-24"
+					"size": "2.532rem",
+					"name": "40px-32px",
+					"slug": "ys-40-32"
 				},
 				{
 					"fluid": false,
@@ -655,12 +655,12 @@
 				},
 				{
 					"fluid": {
-						"min": "2.25rem",
+						"min": "1.75rem",
 						"max": "3rem"
 					},
-					"size": "3.036rem",
-					"name": "48px-36px",
-					"slug": "ys-48-36"
+					"size": "3.028rem",
+					"name": "48px-28px",
+					"slug": "ys-48-28"
 				},
 				{
 					"fluid": {
@@ -673,27 +673,18 @@
 				},
 				{
 					"fluid": {
-						"min": "1.75rem",
+						"min": "2.25rem",
 						"max": "3rem"
 					},
-					"size": "3.028rem",
-					"name": "48px-28px",
-					"slug": "ys-48-28"
+					"size": "3.036rem",
+					"name": "48px-36px",
+					"slug": "ys-48-36"
 				},
 				{
 					"fluid": false,
 					"size": "3.5rem",
 					"name": "56px",
 					"slug": "ys-static-56"
-				},
-				{
-					"fluid": {
-						"min": "2.5rem",
-						"max": "3.5rem"
-					},
-					"size": "3.540rem",
-					"name": "56px-40px",
-					"slug": "ys-56-40"
 				},
 				{
 					"fluid": {
@@ -705,28 +696,19 @@
 					"slug": "ys-56-32"
 				},
 				{
+					"fluid": {
+						"min": "2.5rem",
+						"max": "3.5rem"
+					},
+					"size": "3.540rem",
+					"name": "56px-40px",
+					"slug": "ys-56-40"
+				},
+				{
 					"fluid": false,
 					"size": "4rem",
 					"name": "64px",
 					"slug": "ys-static-64"
-				},
-				{
-					"fluid": {
-						"min": "3rem",
-						"max": "4rem"
-					},
-					"size": "4.048rem",
-					"name": "64px-48px",
-					"slug": "ys-64-48"
-				},
-				{
-					"fluid": {
-						"min": "2.5rem",
-						"max": "4rem"
-					},
-					"size": "4.040rem",
-					"name": "64px-40px",
-					"slug": "ys-64-40"
 				},
 				{
 					"fluid": {
@@ -739,12 +721,21 @@
 				},
 				{
 					"fluid": {
-						"min": "3.5rem",
-						"max": "5rem"
+						"min": "2.5rem",
+						"max": "4rem"
 					},
-					"size": "5.056rem",
-					"name": "80px-56px",
-					"slug": "ys-80-56"
+					"size": "4.040rem",
+					"name": "64px-40px",
+					"slug": "ys-64-40"
+				},
+				{
+					"fluid": {
+						"min": "3rem",
+						"max": "4rem"
+					},
+					"size": "4.048rem",
+					"name": "64px-48px",
+					"slug": "ys-64-48"
 				},
 				{
 					"fluid": {
@@ -754,6 +745,15 @@
 					"size": "5.048rem",
 					"name": "80px-48px",
 					"slug": "ys-80-48"
+				},
+				{
+					"fluid": {
+						"min": "3.5rem",
+						"max": "5rem"
+					},
+					"size": "5.056rem",
+					"name": "80px-56px",
+					"slug": "ys-80-56"
 				},
 				{
 					"fluid": false,
