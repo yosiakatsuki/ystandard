@@ -158,7 +158,7 @@ class BlockEditorSpacingSizeTest extends WP_UnitTestCase {
 		$stylesheet           = wp_get_global_stylesheet( [ 'variables', 'presets' ] );
 
 		$this->assertSame( 'ystd-spacing-preset-1', $custom_spacing_sizes[0]['slug'] );
-		$this->assertContains( 'ys-static-10', array_column( $theme_spacing_sizes, 'slug' ) );
+		$this->assertContains( 'ys-static-8', array_column( $theme_spacing_sizes, 'slug' ) );
 		$this->assertStringContainsString( '--wp--preset--spacing--ystd-spacing-preset-1', $stylesheet );
 	}
 }
