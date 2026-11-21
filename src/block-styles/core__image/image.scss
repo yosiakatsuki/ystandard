@@ -10,6 +10,11 @@
 		font-style: normal;
 	}
 
+	// リンク付き画像で、ベースライン揃えによる下側の余白をなくす
+	> :where(a) {
+		vertical-align: bottom;
+	}
+
 	&:where(.alignfull) {
 		:where(img) {
 			display: block;
