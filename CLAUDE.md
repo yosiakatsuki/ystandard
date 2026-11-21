@@ -97,7 +97,7 @@ npm run i18n:blocks    # WP-CLIでja.poからスクリプト別のJSONを生成�
 - `/src/styles/` — テーマ用 SCSS ソース
 - `/src/block-styles/` — ブロックスタイル用 SCSS ソース（`core__*` 等ブロック単位）
 - `/library/` — レガシー/外部由来コード（PHPCS 対象外）
-- `/css/`, `/js/` — ビルド成果物（コミット対象）。`/temp/` はビルド中間生成物（git 管理外）
+- `/css/`, `/js/` — ビルド成果物（git 管理外）。`/temp/` はビルド中間生成物（git 管理外）
 
 ### CSS ビルドパイプライン（2系統）
 - PostCSS設定は`postcss.config.mjs`で管理する
