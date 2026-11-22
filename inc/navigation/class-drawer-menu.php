@@ -173,11 +173,10 @@ class Drawer_Menu {
 			);
 		}
 
-		$font_size_option = Option::get_option( 'ys_drawer_menu_font_size', '' );
+		// 保存済みの不正な値をCSSへ出力しないよう、出力時にも検証する.
+		$font_size_option = Layout::normalize_css_value( Option::get_option( 'ys_drawer_menu_font_size', '' ) );
+		// 未入力・不正な値の場合はSCSS側の初期値を使うため出力しない.
 		if ( $font_size_option ) {
-			if ( is_numeric( $font_size_option ) ) {
-				$font_size_option .= 'px';
-			}
 			$css_vars = array_merge(
 				$css_vars,
 				Enqueue_Utility::get_css_var(
@@ -187,11 +186,9 @@ class Drawer_Menu {
 			);
 		}
 
-		$sub_menu_font_size_option = Option::get_option( 'ys_drawer_menu_sub_menu_font_size', '' );
+		$sub_menu_font_size_option = Layout::normalize_css_value( Option::get_option( 'ys_drawer_menu_sub_menu_font_size', '' ) );
+		// 未入力・不正な値の場合はSCSS側の初期値を使うため出力しない.
 		if ( $sub_menu_font_size_option ) {
-			if ( is_numeric( $sub_menu_font_size_option ) ) {
-				$sub_menu_font_size_option .= 'px';
-			}
 			$css_vars = array_merge(
 				$css_vars,
 				Enqueue_Utility::get_css_var(
@@ -201,13 +198,9 @@ class Drawer_Menu {
 			);
 		}
 
-		$width_option = Option::get_option( 'ys_drawer_menu_width', '' );
-		// 未入力の場合はSCSS側の初期値（600px）を使うため出力しない.
+		$width_option = Layout::normalize_css_value( Option::get_option( 'ys_drawer_menu_width', '' ) );
+		// 未入力・不正な値の場合はSCSS側の初期値（600px）を使うため出力しない.
 		if ( $width_option ) {
-			// 単位なしの数値はpxとして扱う.
-			if ( is_numeric( $width_option ) ) {
-				$width_option .= 'px';
-			}
 			$css_vars = array_merge(
 				$css_vars,
 				Enqueue_Utility::get_css_var(
@@ -325,10 +318,11 @@ CSS;
 		);
 		$customizer->add_text(
 			[
-				'id'          => 'ys_drawer_menu_width',
-				'default'     => '',
-				'label'       => __( 'メニュー最大幅', 'ystandard' ),
-				'description' => __( 'ドロワーメニュー内のコンテンツの最大幅。未入力の場合は600px。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
+				'id'                => 'ys_drawer_menu_width',
+				'default'           => '',
+				'sanitize_callback' => [ Layout::class, 'sanitize_css_value' ],
+				'label'             => __( 'メニュー最大幅', 'ystandard' ),
+				'description'       => __( 'ドロワーメニュー内のコンテンツの最大幅。未入力の場合は600px。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
 			]
 		);
 
@@ -369,18 +363,20 @@ CSS;
 		$customizer->add_section_label( __( '文字サイズ', 'ystandard' ) );
 		$customizer->add_text(
 			[
-				'id'          => 'ys_drawer_menu_font_size',
-				'default'     => '',
-				'label'       => __( 'メニュー文字サイズ', 'ystandard' ),
-				'description' => __( 'ドロワーメニュー文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
+				'id'                => 'ys_drawer_menu_font_size',
+				'default'           => '',
+				'sanitize_callback' => [ Layout::class, 'sanitize_css_value' ],
+				'label'             => __( 'メニュー文字サイズ', 'ystandard' ),
+				'description'       => __( 'ドロワーメニュー文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
 			]
 		);
 		$customizer->add_text(
 			[
-				'id'          => 'ys_drawer_menu_sub_menu_font_size',
-				'default'     => '',
-				'label'       => __( 'サブメニュー文字サイズ', 'ystandard' ),
-				'description' => __( 'サブメニュー（2階層目）の文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
+				'id'                => 'ys_drawer_menu_sub_menu_font_size',
+				'default'           => '',
+				'sanitize_callback' => [ Layout::class, 'sanitize_css_value' ],
+				'label'             => __( 'サブメニュー文字サイズ', 'ystandard' ),
+				'description'       => __( 'サブメニュー（2階層目）の文字サイズ設定。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
 			]
 		);
 	}
