@@ -201,6 +201,22 @@ class Drawer_Menu {
 			);
 		}
 
+		$width_option = Option::get_option( 'ys_drawer_menu_width', '' );
+		// 未入力の場合はSCSS側の初期値（600px）を使うため出力しない.
+		if ( $width_option ) {
+			// 単位なしの数値はpxとして扱う.
+			if ( is_numeric( $width_option ) ) {
+				$width_option .= 'px';
+			}
+			$css_vars = array_merge(
+				$css_vars,
+				Enqueue_Utility::get_css_var(
+					'--ystd--drawer-menu--width',
+					$width_option
+				)
+			);
+		}
+
 		return $css_vars;
 	}
 
@@ -305,6 +321,14 @@ CSS;
 				'id'      => 'ys_always_drawer_menu',
 				'label'   => __( '常にドロワーメニュー表示にする', 'ystandard' ),
 				'default' => 0,
+			]
+		);
+		$customizer->add_text(
+			[
+				'id'          => 'ys_drawer_menu_width',
+				'default'     => '',
+				'label'       => __( 'メニュー最大幅', 'ystandard' ),
+				'description' => __( 'ドロワーメニュー内のコンテンツの最大幅。未入力の場合は600px。数値のみ(単位なし)の場合、自動でpxが単位として追加されます。', 'ystandard' ),
 			]
 		);
 

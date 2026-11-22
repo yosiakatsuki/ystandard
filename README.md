@@ -131,6 +131,7 @@ standard」に聞こえることから"一風変わった"というコンセプ�
 - [追加] グローバルメニュー 2層目ホバー・カレント文字太さ設定追加（ys_global_nav_sub_menu_hover_current_text_weight）
 - [追加] ドロワーメニュー 文字サイズ設定追加(ys_drawer_menu_font_size)
 - [追加] ドロワーメニュー サブメニュー文字サイズ設定追加(ys_drawer_menu_sub_menu_font_size)
+- [追加] ドロワーメニュー メニュー最大幅設定追加(ys_drawer_menu_width)
 - [追加] アーカイブページ 表示タイプが「シンプル」のときにカテゴリーラベルの文字色・背景色の設定を追加(ys_{$post_type}_archive_simple_layout_category_text_color, ys_{$post_type}_archive_simple_layout_category_background_color)
 
 ##### HTML・CSS関連

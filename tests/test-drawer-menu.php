@@ -62,4 +62,35 @@ class Drawer_Menu_Test extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'aria-label="サイトメニュー"', $output );
 		$this->assertStringContainsString( '</dialog>', $output );
 	}
+
+	/**
+	 * メニュー最大幅が数値のみの場合にpxを補完して出力することを確認する.
+	 */
+	public function test_drawer_menu_width_appends_px_to_number() {
+		update_option( 'ys_drawer_menu_width', '720' );
+
+		$css_vars = apply_filters( 'ys_get_css_custom_properties_args', [] );
+
+		$this->assertSame( '720px', $css_vars['--ystd--drawer-menu--width'] );
+	}
+
+	/**
+	 * メニュー最大幅が単位付きの場合はそのまま出力することを確認する.
+	 */
+	public function test_drawer_menu_width_keeps_unit() {
+		update_option( 'ys_drawer_menu_width', '40rem' );
+
+		$css_vars = apply_filters( 'ys_get_css_custom_properties_args', [] );
+
+		$this->assertSame( '40rem', $css_vars['--ystd--drawer-menu--width'] );
+	}
+
+	/**
+	 * メニュー最大幅が未入力の場合は出力しないことを確認する.
+	 */
+	public function test_drawer_menu_width_is_not_output_when_empty() {
+		$css_vars = apply_filters( 'ys_get_css_custom_properties_args', [] );
+
+		$this->assertArrayNotHasKey( '--ystd--drawer-menu--width', $css_vars );
+	}
 }
