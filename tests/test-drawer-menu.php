@@ -62,4 +62,63 @@ class Drawer_Menu_Test extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'aria-label="サイトメニュー"', $output );
 		$this->assertStringContainsString( '</dialog>', $output );
 	}
+
+	/**
+	 * メニュー最大幅が数値のみの場合にpxを補完して出力することを確認する.
+	 */
+	public function test_drawer_menu_width_appends_px_to_number() {
+		update_option( 'ys_drawer_menu_width', '720' );
+
+		$css_vars = apply_filters( 'ys_get_css_custom_properties_args', [] );
+
+		$this->assertSame( '720px', $css_vars['--ystd--drawer-menu--width'] );
+	}
+
+	/**
+	 * メニュー最大幅が単位付きの場合はそのまま出力することを確認する.
+	 */
+	public function test_drawer_menu_width_keeps_unit() {
+		update_option( 'ys_drawer_menu_width', '40rem' );
+
+		$css_vars = apply_filters( 'ys_get_css_custom_properties_args', [] );
+
+		$this->assertSame( '40rem', $css_vars['--ystd--drawer-menu--width'] );
+	}
+
+	/**
+	 * 保存済みの値にCSS宣言を追加する文字が含まれる場合は出力しないことを確認する.
+	 */
+	public function test_drawer_menu_css_vars_ignore_invalid_values() {
+		update_option( 'ys_drawer_menu_width', '100px;}body{display:none' );
+		update_option( 'ys_drawer_menu_font_size', '16px;}body{display:none' );
+		update_option( 'ys_drawer_menu_sub_menu_font_size', '14px;}body{display:none' );
+
+		$css_vars = apply_filters( 'ys_get_css_custom_properties_args', [] );
+
+		$this->assertArrayNotHasKey( '--ystd--drawer-menu--width', $css_vars );
+		$this->assertArrayNotHasKey( '--ystd--drawer-menu--font-size', $css_vars );
+		$this->assertArrayNotHasKey( '--ystd--drawer-menu--sub-menu--font-size', $css_vars );
+	}
+
+	/**
+	 * 文字サイズが数値のみの場合にpxを補完して出力することを確認する.
+	 */
+	public function test_drawer_menu_font_size_appends_px_to_number() {
+		update_option( 'ys_drawer_menu_font_size', '18' );
+		update_option( 'ys_drawer_menu_sub_menu_font_size', '0.9em' );
+
+		$css_vars = apply_filters( 'ys_get_css_custom_properties_args', [] );
+
+		$this->assertSame( '18px', $css_vars['--ystd--drawer-menu--font-size'] );
+		$this->assertSame( '0.9em', $css_vars['--ystd--drawer-menu--sub-menu--font-size'] );
+	}
+
+	/**
+	 * メニュー最大幅が未入力の場合は出力しないことを確認する.
+	 */
+	public function test_drawer_menu_width_is_not_output_when_empty() {
+		$css_vars = apply_filters( 'ys_get_css_custom_properties_args', [] );
+
+		$this->assertArrayNotHasKey( '--ystd--drawer-menu--width', $css_vars );
+	}
 }

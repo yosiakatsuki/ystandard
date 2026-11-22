@@ -483,7 +483,7 @@ v4に存在したCSSカスタムプロパティを改名・廃止した場合は
 | `--ystd--drawer-menu--background` | `var(--ystd--text-color)` | `ys_color_nav_bg_sp` |
 | `--ystd--drawer-menu--text-color` | `var(--ystd--text-color--white)` | `ys_color_nav_font_sp` |
 | `--ystd--drawer-menu--font-size` | `16px` | `ys_drawer_menu_font_size` |
-| `--ystd--drawer-menu--width` | `600px` | - |
+| `--ystd--drawer-menu--width` | `600px` | `ys_drawer_menu_width` |
 | `--ystd--drawer-menu--button-color--open` | `var(--ystd--text-color)` | `ys_color_nav_btn_sp_open` |
 | `--ystd--drawer-menu--button-color--close` | `var(--ystd--text-color--white)` | `ys_color_nav_btn_sp` |
 

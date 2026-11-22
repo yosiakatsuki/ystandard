@@ -49,7 +49,11 @@
 	}
 
 	:where(.drawer-nav__container) {
-		width: min(var(--ystd--container--width), var(--ystd--drawer-menu--width));
+		// 画面幅が狭い場合もガーター分の余白を残して画面内に収める.
+		width: min(
+			var(--ystd--drawer-menu--width),
+			calc(100% - var(--ystd--container--gutter) * 2)
+		);
 		min-height: 0;
 		margin-right: auto;
 		margin-left: auto;
@@ -69,7 +73,11 @@
 	:where(.drawer-nav__close-container) {
 		display: flex;
 		align-items: center;
-		width: var(--ystd--container--width);
+		// コンテナ幅は固定値のため、画面幅からガーター分を引いた値で上限をかける.
+		width: min(
+			var(--ystd--container--width),
+			calc(100% - var(--ystd--container--gutter) * 2)
+		);
 		margin-right: auto;
 		//margin-bottom: var(--ystd--layout-gap);
 		margin-left: auto;
