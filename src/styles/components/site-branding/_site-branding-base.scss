@@ -1,6 +1,8 @@
 @use "../../global";
 
 :where(.site-branding) {
+	// 開閉ボタンなど横並びの要素の方が高い場合も、ロゴを上下中央に配置する.
+	align-self: center;
 	padding: var(--ystd--site-branding--padding);
 
 	:where(.site-title) {
